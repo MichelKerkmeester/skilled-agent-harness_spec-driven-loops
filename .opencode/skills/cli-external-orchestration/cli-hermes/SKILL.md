@@ -169,7 +169,7 @@ LOADING_LEVELS = {
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm that the user wants Hermes rather than another cli-X mode",
     "Confirm whether the dispatch writes (needs --yolo) or is read-only",
-    "Confirm the model is on the two-id roster and the llmgateway provider is configured",
+    "Confirm the model is on the closed roster and the llmgateway provider is configured",
     "Confirm the required verification command before dispatch",
 ]
 ```
@@ -267,7 +267,7 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 ### ⚠️ ESCALATE IF
 
 1. Hermes is missing from PATH or `hermes config get providers.llmgateway.base_url` prints nothing.
-2. The task needs a model outside the two-id roster.
+2. The task needs a model outside the closed roster.
 3. The task depends on a source-read behavior the contract pin has not yet confirmed.
 4. The task requests `hermes skills trust`, `hermes mcp add`, or a config change; those are the operator's.
 5. A Hermes plugin or hook would need `--accept-hooks`.

@@ -24,7 +24,7 @@ The packet owns three things: the routing contract, the availability and provide
 
 Two traits separate Hermes from the six sibling runtimes, and both shape how you use this mode.
 
-**Hermes has no agents directory.** Its profiles are whole-home islands and its sub-agents receive a goal and context rather than a file, so there is nothing to point at. The resolved persona is inlined at the top of the dispatch prompt instead, which makes every dispatch `{persona + task}` and never a bare task.
+**Hermes has no agent flag.** Its profiles are whole-home islands and its sub-agents receive a goal and context rather than a file, so there is nothing to point at. A persona therefore reaches a session two ways at once: the generator mirrors each shared agent as the preloadable skill `agent-<name>`, which carries the whole text, and an environment variable names it so the repo plugin binds it for the session. Inlining the persona at the top of the prompt stays the fallback for a run without the plugin or the mirror, which keeps every dispatch `{persona + task}` and never a bare task.
 
 **Its repo surface is narrow on purpose.** Hermes reads exactly two things from a project's `.hermes/` folder, `skills/` after a trust grant and `plugins/` behind an opt-in variable. The provider block, shell hooks and MCP servers are user-level config in `~/.hermes/config.yaml` and no repo file can carry them, so they appear here as operator steps.
 
@@ -112,7 +112,7 @@ The rule that follows: a dispatch given a write or terminal toolset passes `--yo
 |---|---|
 | `SKILL.md` | The routing contract, eight hard rules, dispatch shape and gotchas |
 | `references/cli-reference.md` | Flags, headless forms, exit codes, isolation flags, environment |
-| `references/providers-and-models.md` | The `llmgateway` provider contract and the two-id roster |
+| `references/providers-and-models.md` | The `llmgateway` provider contract and the closed roster |
 | `references/hermes-tools.md` | Toolsets, project skills and plugins, the `.hermes/` write guard |
 | `references/integration-patterns.md` | Conductor and executor patterns, cross-validation, anti-patterns |
 | `references/agent-delegation.md` | Persona inlining, persona skills, `delegate_task`, command templates |
