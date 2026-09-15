@@ -12,6 +12,11 @@ const CLI_ORCHESTRATION = path.resolve(HERE, '../../../skills/cli-external-orche
 const CO = path.join(CLI_ORCHESTRATION, 'cli-opencode/SKILL.md');
 const CC = path.join(CLI_ORCHESTRATION, 'cli-claude-code/SKILL.md');
 
+// The correct Hermes headless prefix, and the same one missing the rules flag. Assembled
+// rather than written whole so the fixtures below read as one difference each.
+const HERMES_NO_RULES = 'hermes chat -Q --oneshot --query-file p.md --source tool';
+const HERMES_BASE = `${HERMES_NO_RULES} --ignore-rules`;
+
 test('parses the flat hard_rules list from real SKILL.md frontmatter', () => {
   const co = readHardRules(CO);
   assert.deepEqual(co.map((r) => r.id), [
@@ -246,4 +251,140 @@ test('every runtime dispatch shape resolves to its skill (mutation-proof)', () =
   // everything could not pass the loop above by accident.
   assert.equal(DISPATCH_SHAPES.find((d) => d.test.test('git status && ls -la')), undefined);
   assert.equal(matchDispatchShape('git status && ls -la'), null);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ENFORCEMENT GUARD
+//
+// Every failure this suite was written after shares one shape: something looked
+// enforced and enforced nothing. A check with no implementation. An implementation no
+// skill declared. A predicate that only ever saw commands it passed. A whole runtime
+// whose shape matched none of its own dispatches. None of them failed anything, because
+// nothing asserted that enforcement was reachable end to end.
+//
+// So each check below must name a command it accepts AND one it refuses. A new check
+// with no entry fails this guard rather than shipping unexercised, and an entry whose
+// two commands do not actually differ fails too.
+// ─────────────────────────────────────────────────────────────────────────────
+
+// satisfied → the check returns true; violated → it returns false.
+const CHECK_FIXTURES = {
+  'stdin-redirect-required': {
+    satisfied: 'opencode run -m p/m "task" </dev/null',
+    violated: 'opencode run -m p/m "task"',
+  },
+  'explicit-model-required': {
+    satisfied: 'opencode run -m p/m "task" </dev/null',
+    violated: 'opencode run "task" </dev/null',
+  },
+  'no-bare-agent-general': {
+    satisfied: 'opencode run -m p/m --agent build "task" </dev/null',
+    violated: 'opencode run -m p/m --agent=general "task" </dev/null',
+  },
+  'command-flag-for-slash-prompt': {
+    satisfied: 'opencode run -m p/m --command memory/search "/memory:search q" </dev/null',
+    violated: 'opencode run -m p/m "/memory:search q" </dev/null',
+  },
+  'share-requires-confirmation': {
+    satisfied: 'opencode run -m p/m "task" </dev/null',
+    violated: 'opencode run -m p/m "task" --share=public </dev/null',
+  },
+  'pi-offline-required': {
+    satisfied: 'pi -p --offline --model llmgateway/glm-5.3-flash "task" </dev/null',
+    violated: 'pi -p --model llmgateway/glm-5.3-flash "task" </dev/null',
+  },
+  'pi-provider-qualified-model': {
+    satisfied: 'pi -p --offline --model llmgateway/glm-5.3-flash "task" </dev/null',
+    violated: 'pi -p --offline --model glm-5.3-flash "task" </dev/null',
+  },
+  'hermes-yolo-required-for-writes': {
+    satisfied: `${HERMES_BASE} -t terminal,file,todo --yolo`,
+    violated: `${HERMES_BASE} -t terminal,file,todo`,
+  },
+  'hermes-ignore-rules-required': {
+    satisfied: `${HERMES_BASE} -t file,todo`,
+    violated: `${HERMES_NO_RULES} -s cli-hermes -t file,todo`,
+  },
+  'hermes-explicit-toolsets-required': {
+    satisfied: `${HERMES_BASE} -t file,todo`,
+    violated: `${HERMES_BASE} -t search,todo`,
+  },
+  'hermes-no-worktree-flag': {
+    satisfied: `${HERMES_BASE} -t file,todo`,
+    violated: `${HERMES_BASE} -t file,todo --worktree`,
+  },
+  'hermes-mcp-config-operator-required': {
+    satisfied: 'hermes mcp list </dev/null',
+    violated: 'hermes mcp add code_mode --command node </dev/null',
+  },
+  'hermes-hooks-user-level': {
+    satisfied: `${HERMES_BASE} -t file,todo`,
+    violated: `${HERMES_BASE} -t file,todo --accept-hooks`,
+  },
+  'non-interactive-permission-mode-risk': {
+    satisfied: 'claude -p "task" --dangerously-skip-permissions </dev/null',
+    violated: 'claude -p "task" </dev/null',
+  },
+  // An availability check can only refuse when PATH conclusively lacks the binary, so its
+  // violating case is exercised against an empty PATH rather than a different command.
+  'command-v-codex-required': { satisfied: 'npm test', violated: 'codex exec "task"', emptyPath: true },
+  'command-v-cursor-agent-required': { satisfied: 'npm test', violated: 'cursor-agent -p "task"', emptyPath: true },
+  'command-v-devin-required': { satisfied: 'npm test', violated: 'devin -p "task"', emptyPath: true },
+  'command-v-pi-required': { satisfied: 'npm test', violated: 'pi -p "task"', emptyPath: true },
+  'command-v-hermes-required': { satisfied: 'npm test', violated: 'hermes chat -q "task"', emptyPath: true },
+};
+
+test('ENFORCEMENT GUARD: every check names a command it accepts and one it refuses', () => {
+  const missing = KNOWN_CHECKS.filter((id) => !CHECK_FIXTURES[id]);
+  assert.deepEqual(missing, [], `checks with no fixture pair: ${missing.join(', ')}`);
+  const stale = Object.keys(CHECK_FIXTURES).filter((id) => !KNOWN_CHECKS.includes(id));
+  assert.deepEqual(stale, [], `fixtures for checks that no longer exist: ${stale.join(', ')}`);
+
+  const savedPath = process.env.PATH;
+  try {
+    for (const [id, fixture] of Object.entries(CHECK_FIXTURES)) {
+      const check = CHECKS[id];
+      assert.equal(typeof check, 'function', `${id} is not implemented`);
+      assert.notEqual(fixture.satisfied, fixture.violated, `${id} fixture pair is the same command`);
+      if (fixture.emptyPath) process.env.PATH = '/nonexistent-dir-for-this-guard';
+      else process.env.PATH = savedPath;
+      assert.equal(check(fixture.satisfied), true, `${id} refused its satisfying command`);
+      assert.equal(check(fixture.violated), false, `${id} accepted its violating command`);
+    }
+  } finally {
+    process.env.PATH = savedPath;
+  }
+});
+
+// A packet with no rules contributes nothing to enforcement, and the preflight returns
+// early when a skill declares none -- which reads exactly like a clean dispatch.
+test('ENFORCEMENT GUARD: every cli packet declares at least one rule', () => {
+  const packets = fs.readdirSync(CLI_ORCHESTRATION, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && e.name.startsWith('cli-'))
+    .map((e) => [e.name, path.join(CLI_ORCHESTRATION, e.name, 'SKILL.md')])
+    .filter(([, md]) => fs.existsSync(md));
+  assert.ok(packets.length >= 7, `expected every cli packet, saw ${packets.length}`);
+  for (const [name, md] of packets) {
+    const rules = readHardRules(md);
+    assert.ok(rules.length > 0, `${name} declares no hard rules, so its preflight enforces nothing`);
+    for (const rule of rules) {
+      assert.ok(rule.message && rule.message.length > 20, `${name}/${rule.id} has no usable message`);
+      assert.ok(['error', 'block', 'warn'].includes(rule.severity), `${name}/${rule.id} severity '${rule.severity}' is not a known level`);
+    }
+  }
+});
+
+// Both directions: a declared check with no implementation never fires, and an
+// implemented check no packet declares is dead code that reads as coverage.
+test('ENFORCEMENT GUARD: declared checks and implemented checks are a bijection', () => {
+  const declared = new Set();
+  for (const entry of fs.readdirSync(CLI_ORCHESTRATION, { withFileTypes: true })) {
+    if (!entry.isDirectory() || !entry.name.startsWith('cli-')) continue;
+    const md = path.join(CLI_ORCHESTRATION, entry.name, 'SKILL.md');
+    if (fs.existsSync(md)) for (const rule of readHardRules(md)) declared.add(rule.check);
+  }
+  const orphanRules = [...declared].filter((c) => !KNOWN_CHECKS.includes(c));
+  assert.deepEqual(orphanRules, [], `declared but never implemented: ${orphanRules.join(', ')}`);
+  const orphanChecks = KNOWN_CHECKS.filter((c) => !declared.has(c));
+  assert.deepEqual(orphanChecks, [], `implemented but no packet declares them: ${orphanChecks.join(', ')}`);
 });

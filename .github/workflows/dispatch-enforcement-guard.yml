@@ -1,0 +1,45 @@
+name: Dispatch Enforcement Guard
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main, 'skilled/**']
+  push:
+    branches: [main, 'skilled/**']
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch-enforcement-guard:
+    name: Every declared dispatch rule is reachable and discriminates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run the dispatch rule engine suite
+        # This gate exists because the failure it guards is silence. A check with no
+        # implementation, an implementation no packet declares, a predicate that only
+        # ever saw commands it passed, and a runtime whose shape matched none of its
+        # own dispatches all looked enforced while enforcing nothing. The shared
+        # report-only test runner already collects this suite, but a report cannot
+        # fail a build, so the suite that proves enforcement gets its own blocking job.
+        run: |
+          set -euo pipefail
+          SUITE=".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs"
+          # Fail closed: a pull request that deletes the suite must not disable its own gate.
+          if [ ! -f "$SUITE" ]; then
+            echo "::error::Dispatch rule suite not found at $SUITE — failing closed."
+            exit 1
+          fi
+          if ! node --test "$SUITE"; then
+            echo "::error::A dispatch rule is unreachable, undeclared, or does not discriminate — see the failures above."
+            exit 1
+          fi
+      - name: Run the dispatch audit core suite
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode ci
+          npx --prefix .opencode vitest run .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs

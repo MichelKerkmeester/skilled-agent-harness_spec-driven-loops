@@ -45,7 +45,9 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".github/workflows/dispatch-enforcement-guard.yml"
     ],
     "entities": [
       {
@@ -79,6 +81,18 @@
         "source": "derived"
       },
       {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-enforcement-guard.yml",
+        "kind": "config",
+        "path": ".github/workflows/dispatch-enforcement-guard.yml",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -109,7 +123,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Every",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Every defect the earlier phases closed shares one shape: something looked enforced and enforced nothing",
     "created_at": "2026-09-15T16:29:33Z",
-    "last_save_at": "2026-09-15T16:43:01.282Z",
+    "last_save_at": "2026-09-15T18:02:16.337Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +207,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff175478816b86895a20efa00ea50a0e443449c99abdca75cb22c005110385ec",
+    "source_fingerprint": "sha256:4bda690a072a0effb996bd07313e606a1a840ae69712463c54961b59cc2e015a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8bd6660d74aee2d3136b168631eedcd1e4c26353962a278fe3350ba7a291024d",
+      "spec.md": "7a239ff1482b1465fc2e2d168712efbf87fbeb4ac73760b7048d73b3e9a2b9b4",
       "plan.md": "6d4d9964a2b475f173e89c7f5bad644440b216a509b0374ea48e285eea1d6302",
       "tasks.md": "c7d769ae728de5aa2ef4c05f6c5f4e1e2a13f9d7dee0d4543384862462332b12",
       "implementation-summary.md": "abcdb43d2501c94282fe4380cc8bdad072711804d73d457a7824c3d2997a4730"
