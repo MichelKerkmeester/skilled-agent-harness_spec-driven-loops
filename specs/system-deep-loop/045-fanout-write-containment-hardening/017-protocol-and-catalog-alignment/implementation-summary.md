@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Both loop protocols carry the containment rules and the hub catalog describes the five modes and five hubs the registry and manifest define."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/017-protocol-and-catalog-alignment"
     last_updated_at: "2026-09-15T00:55:23Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Aligned the review protocol and the hub catalog; filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 2: protocol-and-catalog-alignment
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Both loop protocols now describe the same containment model. `deep-review/references/protocol/loop-protocol.md` carries the deep-research protocol's paragraph on preserve by default, the per-pass quarantine layout, the opt-in restore to pre-dispatch bytes, never-delete for untracked paths, the sibling-lineage lock exemption and advisory settlement, with its lane-completion clause adapted to review artifacts. `feature-catalog/feature-catalog.md` enumerates the registry's five modes, names its two improvement lanes, and states five activated hubs where it said seven. The deep/review compiled contract is regenerated and its recorded digest equals the protocol bytes.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi for the protocol and the three catalog lines; the delegate flagged the hub-cohort line as a different stale claim outside its list, and the orchestrator corrected it in the same file. The orchestrator reviewed the diffs and ran the whole suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Enumerate the five modes in place | A count beside its members cannot drift from them silently |
+| Adapt only the lane-completion clause | Review lanes complete on iteration records and the report; everything else is the same rule |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +77,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Review protocol containment mentions | 3, from 1 unrelated |
+| Registry key set versus catalog list | equal, five modes |
+| Contract drift and render tests | PASS, exit 0, 32 tests |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 2631 passed, 8 skipped, exit 0, 1229 s |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +89,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Catalog leaf warnings.** The catalog validator reports six pre-existing leaf-level warnings about runtime-engine paths and heading mismatches; none concern this phase and they are recorded here rather than fixed.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -47,7 +47,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "35edf9e67abf6e681dc547a3697374a3ef98acfeb1a137a381ac2263415a3939",
+      "sha256": "5df3a79cc38dbf710026badaf2e727a016fca8d278f4a112ead4df11d9311186",
       "section": "full"
     },
     {
