@@ -42,9 +42,10 @@ and 010 closed the six findings of a five-iteration Sonnet review. The sibling g
 aligned the rule router.
 
 **Where it stopped.** Two rule sentences the harness showed inert, the item cap and the closing
-contract, were rewritten as directives and the after-condition is being regenerated on both
-models. That rerun is the only open measurement. Everything else is committed, and the branch
-was level with origin at `67b2171d03` when this was written.
+contract, were rewritten as directives and the after-condition was regenerated on both models.
+Each moved exactly one model: the cap holds on GLM and not Sonnet, the closing contract holds on
+Sonnet and not GLM. Nothing is open. The verification pass is `468ffab0b9` and the result commit
+follows it.
 
 **Ownership.** Concurrent sessions live-synced this branch throughout. Two of this program's
 commits reached origin through another session's push. Attribute before assuming a working-tree
@@ -75,7 +76,8 @@ it binds:
 
 - **The reply harness could not measure two rules.** The item cap and the closing contract
   scored inert on GLM-5.3-Flash and on Sonnet 5 because both were descriptive. Both were made
-  directive and the after-condition is regenerating under `005/runs/iterated/`.
+  directive and remeasured under `005/runs/iterated/`. The Sonnet flat list survived a fourth
+  time, so the next move on the item cap is an operator decision, not another rewrite.
 - **The human study in the release gate is unobservable** from inside a session. The gate
   records it as GAP, not as PASS.
 - **The audited claude executor refuses nested dispatch** from inside Claude Code. Sonnet work
@@ -137,28 +139,17 @@ and naming them in the message.
 
 ### 3.1 Recommended Starting Point
 
-Read the rerun result before anything else. The rerun writes `run-manifest.json` into each
-replies directory when it finishes, and the launcher log ends with `RERUN-DONE`.
-
-```
-R=specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated
-H=.opencode/skills/sk-communication/benchmark/reply-harness
-cat $R/glm-after-replies/run-manifest.json $R/sonnet-after-replies/run-manifest.json
-node $H/score.mjs --condition after --replies $R/glm-after-replies --out $R/results/glm-after.json
-node $H/score.mjs --condition after --replies $R/sonnet-after-replies --out $R/results/sonnet-after.json
-```
-
-Compare each against the matching before-condition result under `005/runs/results/` and
-`005/runs/sonnet/`, then record the delta for C6 and for the closing rows in
-`005/implementation-summary.md`.
+Read `005/implementation-summary.md`, Third Run, Iterated Rules. It holds the one open
+question the program leaves: the visible item cap does not move Sonnet 5 as wording, four
+observations running. Decide whether the case gets a stronger observable, the rule gets a
+mechanism, or the cap stays advisory on that model. Nothing else is pending.
 
 ### 3.2 Priority Tasks Remaining
 
-1. **Score the rerun** as above and record whether the two directive rewrites moved C6 and the
-   closing rows. If either is still inert, the rule sentence is the next thing to change, not
-   the harness.
-2. **Commit the rerun results with the two rule edits** in `communication.md` and
-   `handoff-and-questions.md`, then ask for a push.
+1. **Decide the item cap on Sonnet** as above. Until then the rule stands as written and the
+   harness records the miss.
+2. **Watch the GLM receipts miss.** One observation on the iterated run, after two passes.
+   A second miss makes it a rule problem, a pass makes it noise.
 3. **Watch for the leaked-scaffolding guard in live replies.** Other sessions were copying the
    runtime's batching nudge into replies as "Privately, what I need next" with inline (1), (2)
    numbering. The guard landed in `communication.md` §3 and §7 on 2026-09-15. If it recurs,
@@ -197,7 +188,7 @@ into the harness README's instructions.
 | Deep review closed | OBSERVED | 0 P0, 2 P1, 4 P2, all six closed in 010 with direct tests |
 | Root document at 283 lines with the root-only logic intact | OBSERVED | Line-by-line diff against `055/scratch/agents-md.original-496.md` |
 | Runtime mirrors in sync | OBSERVED | Gate-1 pointers, runtime mirrors, hook registrations and agent mirrors all report no drift |
-| The directive rewrites move C6 and the closing rows | **UNVERIFIED** | Rerun in progress under `005/runs/iterated/` |
+| The directive rewrites move C6 and the closing rows | OBSERVED | Iterated run under `005/runs/iterated/`: cap holds on GLM, closing contract holds on Sonnet, each on one model only |
 | Every verification checklist row is worked | DERIVED | Worked by three Sonnet leaves on 2026-09-15, each folder validated after |
 <!-- /ANCHOR:validation-checklist -->
 

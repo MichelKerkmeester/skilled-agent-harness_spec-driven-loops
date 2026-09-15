@@ -39,7 +39,7 @@
       "comments"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Two adopted candidates have owners outside this program's usual surfaces",
     "created_at": "2026-09-12T16:39:32Z",
-    "last_save_at": "2026-09-15T05:17:54.360Z",
+    "last_save_at": "2026-09-15T05:36:58.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ada50dd58816a844872cae1be74a4b38a755dd03b28ed75514a4da706877e43",
+    "source_fingerprint": "sha256:a80c73bce0890b454021b330d52761e65013eead132ad6cc5e3d10ef2ad0a520",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "60c327ea6f32645f3ffa76881e9e5b06f22e920ba30a1d1ff36147451b48919d",
       "plan.md": "73595c32344c11a47d1adc154416deca2351da97a68be663de5d6bb785d0aedb",
-      "tasks.md": "3af196e1d7799e57157ab1302097c90bd25ff87b727c5580de4c1cd1b497b493",
+      "tasks.md": "932f09ad6341967fbf7bbc4f4b089b5afae79f8812ccff86f0227cb889dc2403",
       "implementation-summary.md": "6a787a77a4c04b13eca95199942e047886ee702a4a22f8c5fe9fe61c31622bd4"
     },
     "last_active_at": null

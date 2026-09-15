@@ -110,11 +110,11 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] 055 validates under `validate.sh --strict` with RESULT: PASSED
-- [ ] Every acceptance-criteria row reads Met, Waived or Superseded
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (checklist worked 2026-09-15 with the folder validated PASSED)
+- [x] 055 validates under `validate.sh --strict` with RESULT: PASSED (2026-09-15)
+- [x] Every acceptance-criteria row reads Met, Waived or Superseded (five rows Met, AC-002 Superseded by ADR-001)
 <!-- /ANCHOR:completion -->
 
 ---

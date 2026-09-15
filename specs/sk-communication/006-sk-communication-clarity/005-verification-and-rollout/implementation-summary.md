@@ -128,6 +128,16 @@ A five-iteration deep review ran on Sonnet 5 at xhigh effort through the claude 
 - F001, P2, the checks array shrinks on the no-op path: confirmed as designed, recorded in the phase 004 summary.
 - F002, P2, an unconstructed contract type gained a field: confirmed as pre-existing shape, recorded in the phase 004 summary.
 
+## Third Run, Iterated Rules
+
+The two rules with no measured effect were rewritten as directives on 2026-09-15, the visible item cap in `communication.md` §8 and the closing contract in `handoff-and-questions.md` §1, and the after condition was regenerated on both models from the same seven prompts. Results under `runs/iterated/`, prompts, replies, scores and both comparisons.
+
+- GLM-5.3-Flash: weighted mean 0.74 against 0.74 on the first after run, flat. The item cap now holds: the twelve-item case came back as four labelled groups of four, three, three and two, where both earlier runs printed a flat twelve. The first-line contract now passes where it failed on both earlier sides. The closing contract regressed: the checker case named the result and the exit code but never the command, so the receipts row fails and blocks on this side where it passed on both earlier sides.
+- Sonnet 5: weighted mean 0.80 against 0.73 on the first after run. The closing contract now holds: the checker case names the command, then the status, then nothing else, where the earlier after run reported the result with no command behind it. The item cap still does not hold: a flat twelve-item list, the same shape as every earlier Sonnet side.
+- Gate: control held on both models. Condition 4 still fails, on one row per model, receipts on GLM and the item cap on Sonnet. The gate does not certify release and says so.
+
+What this measures. Each rule moved exactly one model. The directive item cap changed GLM's list shape and not Sonnet's, the directive closing contract changed Sonnet's close and not GLM's. With one sample per case per condition the GLM receipts regression may be noise, and the Sonnet flat list is the fourth identical observation, which is not. The next change for the item cap is not wording: Sonnet is choosing the flat list with the rule in front of it, so the case needs a stronger observable or the rule needs a mechanism, and that is a decision for the operator rather than another rewrite.
+
 ## Harness Hardening, 2026-09-15
 
 The checklist pass named two adversarial runs the phase had not exercised, and one bound it had not coded. Every subprocess the harness starts now carries a timeout, 60 seconds for the two git calls in `generate-prompts.mjs` and 120 seconds for the scanner in `score.mjs`. The prompt manifest records `casesHash`, the digest of `cases.json` at generation time, and `score.mjs --prompts <dir>` refuses to score when the digest on disk differs or when the manifest was generated for the other condition. Four runs exercised it: the frozen before replies rescored through the new path with rows identical to `runs/results/before.json`, a manifest from the other condition refused with exit 1, a forged digest refused with exit 1 and no result file, and `blind.mjs` over both reply sets, whose 14 masked files carry no baseline commit, reply directory, change kind or condition label. The prompt generator also follows the rule-set baseline to `003/baselines/`, where the three phase 003 baselines now live.
@@ -135,6 +145,6 @@ The checklist pass named two adversarial runs the phase had not exercised, and o
 ## Known Limitations
 
 1. **One sample per case per condition.** The deltas are directional evidence from seven cases, not a powered result. The gate's GAP section says so.
-2. **One rule had no measurable effect on either model.** The visible-item cap did not change list grouping on GLM or Sonnet. The first-line contract worked on Sonnet and not on GLM, and the receipts rule worked on GLM and not on Sonnet, so those two are model-sensitive rather than inert. Iterating any of them is the operator's decision.
+2. **Each iterated rule moved one model.** After the 2026-09-15 rewrite the item cap holds on GLM and not on Sonnet, and the closing contract holds on Sonnet and not on GLM. The Sonnet flat list is four identical observations. The GLM receipts miss is one, and may be noise.
 3. **The mechanical scorer is a proxy.** It reads the scanner and one predicate per case. A blinded judge reading `runs/blind/` would add what no predicate sees.
 <!-- /ANCHOR:limitations -->

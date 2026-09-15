@@ -1,0 +1,31 @@
+{
+  "condition": "after",
+  "ruleSetSource": "working-tree",
+  "caseIds": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "NC1"
+  ],
+  "ruleFileHashes": {
+    "AGENTS.md (section 8)": "36bf22aa6fb2b91f723438f4f4cefafece9f2c030c407a960a1564c8f565a555",
+    "REPO RULES.md": "887e1bb3bf8bec01dd6ccbe105d953efe8c175e03def337a6ac2a1faf0ea9594",
+    "repo-rules/blast-radius.md": "2752ec8e36fd1fadfda6f83c259b69152a3d8be5d1aa1dae49fbfffdfaab8208",
+    "repo-rules/communication-prose.md": "edeeaf1107faa293ca87f3881e03db2d3d2c9c5cdd346b9ed90eb41789d5fc58",
+    "repo-rules/communication.md": "3171c5c4e004b6e2487f68df11e3b5dee732c24adc5a0d9e3cb1538ede3678bd",
+    "repo-rules/delegation-and-orchestration.md": "1c4b24056c4f18c25a2b90e337c8b74f46f2f0a5c00b5f275a1948acd11f6c0e",
+    "repo-rules/evidence-and-proof.md": "5e88f043330d8529d0b73dccfba279497d364836a413a7954dc0e6fe82b7612a",
+    "repo-rules/handoff-and-questions.md": "bf55b70ec21e1c9c38b24baff79275d9d3905456530c80965d646e84c50a901d",
+    "repo-rules/presenting-decisions.md": "d7c6d98d50d3403caf86d85224e6c7a45ddb4b2e55cf92d9e4272f958fd4d22a",
+    "repo-rules/prevent-overengineering.md": "350f97e1fb1024eca29a87f5a1b5b72a0b91cf06ada4a0616bb9942dfff27a36",
+    "repo-rules/root-cause-and-debugging.md": "9b589fa7e32b522ba379da74adcb6f5324503670c0a3d737c71b5a49e7b4e396",
+    "repo-rules/scope-discipline.md": "373c6448dcd63f1b321386aeb4c42b46efa554fb9e79d1e4d61c470bb3673e3d",
+    "repo-rules/skill-hub-routing.md": "1c994924dd28100a30f830fac889b4ced8c1ab79c600beb9f9b40ed937efd8d3",
+    "repo-rules/uncertainty-and-honesty.md": "19faa2ef18168a65dbb9f5671574682ac6cfef0e22d9e61e2f6ca55a1ef700be"
+  },
+  "casesHash": "190105fe49564835859377eb3a73267a5c362ec398f75dc47ed80e668106ebb1",
+  "writtenAt": "2026-09-15T05:59:05.294Z"
+}

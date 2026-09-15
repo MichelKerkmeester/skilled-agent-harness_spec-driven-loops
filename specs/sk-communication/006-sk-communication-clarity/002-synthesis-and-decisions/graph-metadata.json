@@ -3,7 +3,6 @@
   "packet_id": "sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions",
   "spec_folder": "sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions",
   "parent_id": "sk-communication/006-sk-communication-clarity",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "Two model families will return overlapping and sometimes conflicting recommendation sets, and a",
     "created_at": "2026-09-12T12:44:35Z",
-    "last_save_at": "2026-09-15T05:35:09.054Z",
+    "last_save_at": "2026-09-15T05:36:41.765Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04b176faaeaad38396965feb916761f428de26e6c09bd8c9c92d113ea8a600bb",
+    "source_fingerprint": "sha256:5aba45134722b36bdfbf7faa3a61620b26c017de31fa6e0a5ccd3ca51d390261",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bb4d99ae794f41e7213737fe885c7c98e737de61aaad8eee3edba6b6a557edc0",
       "plan.md": "b790733a3cf5430dd16b8d2e264c0b1ab3a65fecb7d3891d4ffc310956538313",
-      "tasks.md": "5ee35f54ade91afe4f883f18c33a9082c4a48a8161a025761f3f807985eb7c56",
+      "tasks.md": "1bf2d445739781ddca5a8ef20f9f1f3bb7e01efa9143d919b2ff364b431a175c",
       "decision-record.md": "6801b6066a98a01c1e9b724efc3079d43b406c13aea92a267e503c4e134cf2ae",
       "implementation-summary.md": "08a264635f12c27c87a16d5f14b199796be24557b0e7272734eb15e66a853b36"
     },

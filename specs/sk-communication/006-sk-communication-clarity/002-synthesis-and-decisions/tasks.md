@@ -107,9 +107,9 @@ candidates no surface can carry and record what was rejected and why.
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (checklist worked 2026-09-15 with the folder validated PASSED)
 <!-- /ANCHOR:completion -->
 
 ---

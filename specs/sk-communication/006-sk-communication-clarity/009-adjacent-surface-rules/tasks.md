@@ -148,7 +148,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope
 - [x] CHK-FIX-005 [P1] Matrix axes listed: surface by candidate, two rows, two gates
 - [x] CHK-FIX-006 [P1] Not applicable, no code reads process-wide state in this phase
-- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range (open: work is uncommitted, all evidence cites file:line, not a commit hash, per Known Limitations item 1)
+- [x] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range (the phase's edits landed in `0baba0bca0`, and the verification pass that wrote these rows is `468ffab0b9`, so every file:line above reads against `0baba0bca0` and the checklist against `468ffab0b9`.)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -188,10 +188,10 @@ contextType: "general"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 12/13 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-09-14, both owning gates and the parent Phase Documentation Map read ran from the changed state; the one open P1 is the evidence pin, the packet validator result is recorded in the implementation summary
+**Verification Date**: 2026-09-15, both owning gates and the parent Phase Documentation Map read ran from the changed state; the one open P1 is the evidence pin, the packet validator result is recorded in the implementation summary
 <!-- /ANCHOR:summary -->
 
 ---

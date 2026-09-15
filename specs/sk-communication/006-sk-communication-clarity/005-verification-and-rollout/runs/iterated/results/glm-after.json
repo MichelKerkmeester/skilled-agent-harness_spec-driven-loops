@@ -1,0 +1,232 @@
+{
+  "condition": "after",
+  "generatedAt": "2026-09-15T05:59:05.724Z",
+  "repliesDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/glm-after-replies",
+  "casesFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
+  "weights": {
+    "answer-position": 0.2,
+    "next-action-honesty": 0.15,
+    "receipts": 0.2,
+    "tone": 0.1,
+    "tangent-suppression": 0.1,
+    "completeness-under-cap": 0.15,
+    "mechanical-tells": 0.1
+  },
+  "rows": [
+    {
+      "caseId": "C1",
+      "control": false,
+      "provider": "llmgateway/glm-5.3-flash",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "firstSentenceHasPathOrSymbol",
+        "pass": true,
+        "detail": {
+          "firstSentence": "The push-race retry policy lives in `.opencode/bin/git-sync.sh`."
+        }
+      },
+      "scannerCounts": {
+        "review": 2
+      },
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 0,
+        "tone": 0,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 0.5
+      },
+      "weightedScore": 0.65,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/glm-after-replies/C1.md"
+    },
+    {
+      "caseId": "C2",
+      "control": false,
+      "provider": "llmgateway/glm-5.3-flash",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "closingNextActionLine",
+        "pass": true,
+        "detail": {
+          "closingLine": "Review status: APPROVED",
+          "closingNextActionLine": true,
+          "anythingLeftOpenDeclared": true
+        }
+      },
+      "scannerCounts": {
+        "review": 6,
+        "soft1": 1
+      },
+      "dimensionScores": {
+        "answer-position": 0,
+        "next-action-honesty": 1,
+        "receipts": 1,
+        "tone": 1,
+        "tangent-suppression": 0,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 0
+      },
+      "weightedScore": 0.6,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/glm-after-replies/C2.md"
+    },
+    {
+      "caseId": "C3",
+      "control": false,
+      "provider": "llmgateway/glm-5.3-flash",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "commandAndStatusBeforeInterpretation",
+        "pass": false,
+        "detail": {
+          "commandIdx": -1,
+          "statusIdx": 21,
+          "interpretationIdx": 64
+        }
+      },
+      "scannerCounts": {},
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 0,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 1
+      },
+      "weightedScore": 0.8,
+      "blockingFired": true,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/glm-after-replies/C3.md"
+    },
+    {
+      "caseId": "C4",
+      "control": false,
+      "provider": "llmgateway/glm-5.3-flash",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "noSoftenersAndConcreteNextStep",
+        "pass": true,
+        "detail": {
+          "softeners": 0,
+          "concreteNextStep": true
+        }
+      },
+      "scannerCounts": {},
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 1,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 1
+      },
+      "weightedScore": 1,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/glm-after-replies/C4.md"
+    },
+    {
+      "caseId": "C5",
+      "control": false,
+      "provider": "llmgateway/glm-5.3-flash",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "noTangentSentencesAndLabeledDeferral",
+        "pass": true,
+        "detail": {
+          "tangentSentences": [],
+          "unlabeledDeferredLines": []
+        }
+      },
+      "scannerCounts": {
+        "soft1": 1,
+        "hard": 3,
+        "review": 2
+      },
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 1,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 0
+      },
+      "weightedScore": 0.9,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/glm-after-replies/C5.md"
+    },
+    {
+      "caseId": "C6",
+      "control": false,
+      "provider": "llmgateway/glm-5.3-flash",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "noGroupOverFiveAndAllItemsRetained",
+        "pass": true,
+        "detail": {
+          "groupSizes": [
+            4,
+            3,
+            3,
+            2
+          ],
+          "overFive": [],
+          "expectedItems": [],
+          "missingItems": []
+        }
+      },
+      "scannerCounts": {
+        "soft1": 8,
+        "review": 1
+      },
+      "dimensionScores": {
+        "answer-position": 0,
+        "next-action-honesty": 1,
+        "receipts": 0,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 0
+      },
+      "weightedScore": 0.5,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/glm-after-replies/C6.md"
+    },
+    {
+      "caseId": "NC1",
+      "control": true,
+      "provider": "llmgateway/glm-5.3-flash",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "restatementPresent",
+        "pass": true,
+        "detail": {
+          "words": 421,
+          "asksInstead": false,
+          "cue": true,
+          "opening": "Here is the packet, in plain terms: it decides which rule file you read before you act, what a code comment may contain and how a reply itself must read. REPO R"
+        }
+      },
+      "scannerCounts": {
+        "soft1": 4,
+        "review": 3
+      },
+      "dimensionScores": {
+        "answer-position": 0,
+        "next-action-honesty": 0,
+        "receipts": 0,
+        "tone": 1,
+        "tangent-suppression": 0,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 0
+      },
+      "weightedScore": 0.25,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/glm-after-replies/NC1.md"
+    }
+  ],
+  "noOps": []
+}
