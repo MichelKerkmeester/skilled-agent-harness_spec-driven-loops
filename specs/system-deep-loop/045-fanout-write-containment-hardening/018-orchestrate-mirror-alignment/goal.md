@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "scaffold/018-orchestrate-mirror-alignment"
     last_updated_at: "2026-09-15T00:55:24Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,9 +77,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] Every orchestrate mirror declares the delegation tool in its runtime's vocabulary and the source permission block grants it
-- [ ] The agent mirror-sync checker exits zero for the orchestrate agent
-- [ ] The deep-loop suite exits zero
+- [x] Every orchestrate mirror declares the delegation tool in its runtime's vocabulary and the source permission block grants it
+- [x] The agent mirror-sync checker exits zero for the orchestrate agent
+- [x] The deep-loop suite exits zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -95,11 +95,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; task grant and shared sentence in the source, Pi and Codex mirrors regenerated; four mirror checks exit 0 |
+| Full suite | Green | `npm test` in the runtime: 152 files, 2631 passed, 8 skipped, exit 0, 1210 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Pi tools list | No installed Pi package registers a subagent tool and the generator map has no entry; declaration kept in the body, recorded as reviewed |
+| Model-benchmark test | `deep-improvement/scripts` has a remediation test expecting the retired opencode-go DeepSeek route; fails before and after this change; outside this packet, recorded as reviewed |
 <!-- /ANCHOR:log -->

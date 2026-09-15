@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: orchestrate-mirror-alignment"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The orchestrate agent's OpenCode source grants the delegation tool in its permission block and every runtime mirror declares that tool in its own vocabulary, with the mirror-sync checker green."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-15 |
-| **Branch** | `scaffold/018-orchestrate-mirror-alignment` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 18 of 19 |
 | **Predecessor** | 017-protocol-and-catalog-alignment |
@@ -57,10 +57,10 @@ This is **Phase 18** of the Remediate the alignment review findings specificatio
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The orchestrate agent said it orchestrates through the delegation tool, but its OpenCode permission block did not grant it and its Pi mirror did not declare it, while the Claude mirror did. An agent whose own permissions omit the tool it says it uses is misdocumented at best and blocked at worst.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+One delegation declaration, carried by every mirror in that runtime's own vocabulary.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,22 @@ This is **Phase 18** of the Remediate the alignment review findings specificatio
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- `task: allow` in the OpenCode source's permission block
+- A body sentence, byte-identical across the four mirrors, naming the delegation tool per runtime: task in OpenCode, Agent in Claude Code, spawn_agent in Codex, subagent in Pi
+- Regenerated Pi and Codex mirrors through their generators, with every mirror gate green
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Adding the tool to Pi's generated tools list - no installed Pi package registers a subagent tool today and the generator gate rejects a hand edit; recorded as reviewed
+- Codex's role schema - it carries no tool key, delegation is gated globally by its multi-agent feature
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/agents/orchestrate.md` | Modify | `task: allow` and the delegation-tool sentence |
+| `.claude/agents/orchestrate.md` | Modify | Sentence mirrored; Agent already declared |
+| `.pi/agents/orchestrate.md` | Regenerate | Sentence and the unmapped-permission note |
+| `.codex/agents/orchestrate.toml` | Regenerate | Sentence in the developer instructions |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +96,14 @@ This is **Phase 18** of the Remediate the alignment review findings specificatio
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | The OpenCode source's permission block grants the delegation tool |
+| REQ-002 | Every mirror carries the same delegation sentence naming the tool for its runtime, and the mirror-sync checker exits zero |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | The Pi and Codex mirrors are generator output, not hand edits, and their own check modes exit zero |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +114,8 @@ This is **Phase 18** of the Remediate the alignment review findings specificatio
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The mirror-sync checker reports all mirrors in sync
+- **SC-002**: The deep-loop suite exits zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +125,8 @@ This is **Phase 18** of the Remediate the alignment review findings specificatio
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | Pi's tools list still lacks the delegation tool | Low | No installed package registers it; the body names the vocabulary a returning consumer would use, and the generator map is one line away when one exists |
+| Dependency | Mirror generators and their gates | Green | All four checks exit zero |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -135,16 +139,13 @@ This is **Phase 18** of the Remediate the alignment review findings specificatio
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: Not applicable
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: The OpenCode grant is the one that binds; mirrors document it
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: Every mirror gate passes
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -153,18 +154,13 @@ This is **Phase 18** of the Remediate the alignment review findings specificatio
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Runtime with no delegation tool: the sentence says so and the agent treats itself as unable to dispatch
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Hand-edited generated mirror: its gate fails; regenerate instead
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -174,18 +170,17 @@ This is **Phase 18** of the Remediate the alignment review findings specificatio
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 4/25 | Four agent files |
+| Risk | 6/25 | Agent permission and mirror gates |
+| Research | 4/20 | Runtime tool vocabularies had to be confirmed per runtime |
+| **Total** | **14/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---
