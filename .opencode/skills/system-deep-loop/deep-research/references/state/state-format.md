@@ -9,7 +9,7 @@ trigger_phrases:
   - "research packet location"
 importance_tier: important
 contextType: implementation
-version: 1.14.0.29
+version: 1.14.0.30
 ---
 
 # State Format Reference
@@ -122,3 +122,26 @@ The config file carries the protection map; details live in `state-reducer-regis
 - Do not document `deep-review` state here; route to the sibling skill.
 - Do not treat legacy aliases as write targets. The workflow reads legacy aliases only for migration windows and writes canonical `deep-research-*` names.
 - Do not manually edit reducer-owned dashboard or registry files.
+
+---
+
+## 7. LEDGER VOCABULARY AND PROJECTION CEILING
+
+### Registered vocabulary
+
+The canonical dotted stems for this mode live in `.opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts`:
+
+- `DeepResearchEventStems` — the registered stems the ledger accepts.
+- `DEEP_RESEARCH_STEM_PRODUCERS` — one entry per stem recording whether a mechanical producer emits it today (`spoken`, with the producer files) or why nothing does (`reserved`).
+
+`.opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` scans the workflow assets and runtime scripts and fails (exit 2) when a registered stem has no producer, a spoken stem has no emitter, or a reserved stem is emitted anyway.
+
+### Which file is authoritative
+
+`deep-research-state.jsonl` is authoritative while the mode's authority record (`authority-deep-research.json`, state `legacy_authoritative`) names the legacy writer. Once the record moves to `new_authoritative_reversible` or `new_authoritative_final` with `selectedWriter: "dark"`, the ledger is authoritative and the append gateway refreshes this file as a projection after each append.
+
+### What a projection refresh can reproduce
+
+The projection folds only registered stems, and its `run_initialized` arm rebuilds a thin config row: `type`, `topic`, `maxIterations`, `generation`, `timestamp`. A pre-flip config row written by the workflow carries more — `convergenceThreshold`, `minIterations`, `minIdeaObservations`, `antiConvergence`, `sessionId`, `executor`, `specFolder`, `createdAt` — and a refresh cannot rebuild those keys.
+
+Because losing them silently would look like a complete projection, a replace that would drop keys from an existing `type: "config"` first row is refused with `ATTRIBUTION_COLLAPSE` (invariant `no-attribution-loss-on-replace`) before any bytes are written. An operator who hits it either migrates the attribution into a registered `deep_research.run_initialized` payload or moves the legacy file aside to accept the loss deliberately.

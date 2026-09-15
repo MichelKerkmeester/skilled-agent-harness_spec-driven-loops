@@ -188,6 +188,50 @@ function encodeProjectionBytes(bytes: Uint8Array | string): Uint8Array {
   return typeof bytes === 'string' ? new TextEncoder().encode(bytes) : Uint8Array.from(bytes);
 }
 
+function parseJsonlFirstRow(text: string): Record<string, unknown> | null {
+  const firstLine = text.split('\n', 1)[0];
+  if (firstLine === undefined || firstLine.trim() === '') return null;
+  try {
+    const parsed: unknown = JSON.parse(firstLine);
+    return isRecord(parsed) ? parsed : null;
+  } catch {
+    // A torn or non-JSON first line is not an attribution row: the replace
+    // path has to stay available for repairing output this guard cannot read.
+    return null;
+  }
+}
+
+// A replace that drops keys from an existing config row would silently lose
+// operator context the ledger cannot rebuild. Compare key sets, not values: a
+// projected row that reproduces every existing key passes even when values
+// change, and a projection that grows the row naturally satisfies the guard.
+function assertNoAttributionCollapse(
+  contract: ProjectionPathIdentity,
+  currentBytes: Uint8Array | null,
+  projectedText: string,
+): void {
+  if (currentBytes === null) return;
+  const existingRow = parseJsonlFirstRow(new TextDecoder('utf-8').decode(currentBytes));
+  if (existingRow === null || existingRow.type !== 'config') return;
+  const projectedRow = parseJsonlFirstRow(projectedText);
+  if (projectedRow === null) return;
+  const missingKeys = Object.keys(existingRow).filter((key) => !(key in projectedRow));
+  if (missingKeys.length === 0) return;
+  throw new LegacyProjectionError(
+    LegacyProjectionErrorCodes.ATTRIBUTION_COLLAPSE,
+    'Projection replace would drop keys from the existing config row',
+    {
+      artifactId: contract.artifactId,
+      projectionVersion: contract.projectionVersion,
+      invariant: 'no-attribution-loss-on-replace',
+      details: {
+        missingKeys: missingKeys.join(','),
+        missingKeyCount: missingKeys.length,
+      },
+    },
+  );
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. SHADOW STORE
 // ───────────────────────────────────────────────────────────────────
@@ -523,6 +567,10 @@ export class ShadowProjectionStore {
       const suffix = projection.bytes.subarray(currentBytes.length);
       if (suffix.length > 0) appendUtf8Durable(outputPath, decodeProjectionBytes(suffix));
       return 'appended';
+    }
+
+    if (contract.format === 'jsonl') {
+      assertNoAttributionCollapse(contract, currentBytes, projectedText);
     }
 
     writeTextAtomic(outputPath, projectedText);

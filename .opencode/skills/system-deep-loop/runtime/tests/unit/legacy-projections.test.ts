@@ -658,6 +658,86 @@ describe('legacy projection progress and recovery', () => {
     expect(readFileSync(repaired.receipt.outputPath)).toEqual(Buffer.from(expected));
   });
 
+  it('refuses a replace that would drop keys from an existing config row', async () => {
+    const testEnvironment = environment('attribution-collapse');
+    const harness = createHarness();
+    await appendFixture(harness, 1, { label: 'topic-1', value: 1 });
+
+    const thinRow: JsonObject = {
+      type: 'config',
+      topic: 'topic-1',
+      maxIterations: 4,
+      generation: 1,
+      timestamp: FIXTURE_TIMESTAMP,
+    };
+    const baseBytes = serializeLegacyJsonl([]);
+    const contract: LegacyProjectionContract<JsonlProjectionState> = {
+      artifactId: 'research-state',
+      censusSurfaceId: 'research-state',
+      ledgerId: FIXTURE_LEDGER_ID,
+      streamIds: ['fixture-stream'],
+      relativePath: 'research/deep-research-state.jsonl',
+      format: 'jsonl',
+      refreshBoundary: 'event',
+      foldId: 'legacy-research-state-fold@1',
+      reducerId: 'legacy-research-state-reducer',
+      projectionVersion: 'legacy-research-state@1',
+      reducerVersion: 'research-state-reducer@1',
+      serializerId: 'legacy-jsonl-row-v1',
+      legacyWriter: 'deep-research',
+      readers: ['deep-research reducer'],
+      base: {
+        baseSha: BASE_SHA,
+        baseDigest: legacyProjectionDigest(baseBytes),
+        bytes: baseBytes,
+        state: { rows: [], lastValue: null },
+        ledgerHead: baseHead(),
+      },
+      acceptedEventVersions: { [FIXTURE_EVENT_TYPE]: [1] },
+      reduce(state, event): JsonlProjectionState {
+        const payload = event.effective.envelope.payload;
+        if (typeof payload.label !== 'string') throw new TypeError('Fixture label is required');
+        return {
+          rows: [{ ...thinRow, topic: payload.label, timestamp: event.effective.envelope.occurred_at }],
+          lastValue: state.lastValue,
+        };
+      },
+      serialize(state): Uint8Array {
+        return serializeLegacyJsonl(state.rows);
+      },
+    };
+
+    const projector = engine(testEnvironment);
+    const expected = serializeLegacyJsonl([thinRow]);
+    const first = await projectJsonl(projector, harness, expected, contract);
+    expect(first.ok).toBe(true);
+
+    // Simulate a pre-flip row written by the workflow: same stem, more
+    // attribution keys. A replace of this row would lose them silently.
+    const richRow = {
+      ...thinRow,
+      mode: 'research',
+      sessionId: 'session-1',
+      lineageMode: 'fresh',
+      specFolder: 'specs/example',
+      createdAt: FIXTURE_TIMESTAMP,
+    };
+    const outputPath = join(testEnvironment.shadowRoot, 'research/deep-research-state.jsonl');
+    writeFileSync(outputPath, `${JSON.stringify(richRow)}\n`, 'utf8');
+
+    const refused = await projectJsonl(projector, harness, expected, contract);
+    expect(refused).toMatchObject({
+      ok: false,
+      error: {
+        code: LegacyProjectionErrorCodes.ATTRIBUTION_COLLAPSE,
+        invariant: 'no-attribution-loss-on-replace',
+      },
+    });
+
+    // The atomic replace never ran: the richer row survives on disk.
+    expect(readFileSync(outputPath, 'utf8')).toBe(`${JSON.stringify(richRow)}\n`);
+  });
+
   it('rejects a projection head older than the durable watermark', async () => {
     const testEnvironment = environment('watermark-regression');
     const harness = createHarness();

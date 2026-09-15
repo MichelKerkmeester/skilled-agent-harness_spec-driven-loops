@@ -339,11 +339,32 @@ describe('verify-iteration ledger-backing gate (structural, default-on)', () => 
     expect(r.reason).toBe(REASONS.LEDGER_BACKING_MISSING);
   });
 
-  it('passes when the mode ledger has backing frames', () => {
+  it('passes when the mode ledger has backing frames and names the producing root', () => {
     writeLedgerFrames();
     process.env.DEEP_LOOP_AUTHORITY_ROOT = writeAuthority('new_authoritative_final');
     const r = verify('review', artifactDir, 1);
     expect(r.ok).toBe(true);
+    expect(r.ledgerBacking).toEqual({
+      status: 'backed',
+      framesRoot: path.join(artifactDir, 'deep-review-ledger', 'frames'),
+      framesRootKind: 'artifact-dir',
+    });
+    expect(r.warnings).toBeUndefined();
+  });
+
+  it('accepts a parent-of-lineage frames root but reports it as a warning', () => {
+    const parentFrames = path.join(packetRoot, 'deep-review-ledger', 'frames');
+    fs.mkdirSync(parentFrames, { recursive: true });
+    fs.writeFileSync(path.join(parentFrames, '0000000000000001.frame'), '{}\n');
+    process.env.DEEP_LOOP_AUTHORITY_ROOT = writeAuthority('new_authoritative_final');
+    const r = verify('review', artifactDir, 1);
+    expect(r.ok).toBe(true);
+    expect(r.ledgerBacking).toEqual({
+      status: 'backed',
+      framesRoot: parentFrames,
+      framesRootKind: 'parent-of-lineage',
+    });
+    expect(r.warnings?.some((w) => w.includes('parent-of-lineage'))).toBe(true);
   });
 
   it('the kill-switch (DEEP_LOOP_LEDGER_BACKING_GATE=0) disables the gate', () => {
@@ -351,11 +372,13 @@ describe('verify-iteration ledger-backing gate (structural, default-on)', () => 
     process.env.DEEP_LOOP_LEDGER_BACKING_GATE = '0';
     const r = verify('review', artifactDir, 1);
     expect(r.ok).toBe(true);
+    expect(r.ledgerBacking).toEqual({ status: 'disabled' });
   });
 
   it('stays inert before the mode moves to ledger authority (legacy writer sanctioned)', () => {
     process.env.DEEP_LOOP_AUTHORITY_ROOT = writeAuthority('legacy_authoritative');
     const r = verify('review', artifactDir, 1);
     expect(r.ok).toBe(true);
+    expect(r.ledgerBacking.status).toBe('not-enforced');
   });
 });

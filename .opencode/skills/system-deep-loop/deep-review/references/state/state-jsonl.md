@@ -9,7 +9,7 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.5
+version: 1.11.0.6
 ---
 
 # Deep Review State Log Records
@@ -46,11 +46,15 @@ This reference defines the append-only JSONL records that preserve deep-review r
 
 Append-only JSON Lines file. One JSON object per line.
 
+While the mode's authority record still names the legacy writer (`authority-deep-review.json`, state `legacy_authoritative`), this file is the authoritative target the workflow appends to and no ledger backs it. Once that record moves to `new_authoritative_reversible` or `new_authoritative_final` with `selectedWriter: "dark"`, the ledger becomes authoritative and the append gateway refreshes this file as a projection of it. The projection folds only the registered stems, and a refresh that would replace an existing config row while dropping any of its keys is refused with `ATTRIBUTION_COLLAPSE` before any bytes are written. The registered stems, the producer census, and what a refresh can and cannot reproduce are in `state-format.md` section 11.
+
 ### Line 1: Config Record
 
 ```json
 {"type":"config","mode":"review","topic":"...","reviewTarget":"...","sessionId":"rvw-...","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":7,"convergenceThreshold":0.10,"createdAt":"2026-03-24T14:00:00Z","specFolder":"..."}
 ```
+
+The projected variant of this row is thin: only `type`, `topic`, `maxIterations`, `generation`, and `timestamp` come back from a ledger refresh. The remaining keys exist only in the row the workflow writes at init.
 
 ### Iteration Records
 

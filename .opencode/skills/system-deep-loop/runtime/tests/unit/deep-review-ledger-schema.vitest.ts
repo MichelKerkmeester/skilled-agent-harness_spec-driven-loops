@@ -912,6 +912,29 @@ describe('deep-review typed ledger schema', () => {
     });
   });
 
+  it('rejects typed adjudication content under the flat gate stem and gate content under the typed stem', () => {
+    const registry = createDeepReviewEventRegistry();
+    const typed = eventInput('deep_review.claim_adjudication_recorded', 12, '0'.repeat(64));
+    const flat = eventInput('deep_review.claim_adjudication', 13, '0'.repeat(64));
+
+    // The two adjudication stems carry closed, disjoint payloads: a producer
+    // holding typed per-finding content cannot compress it into the gate
+    // summary, and gate counts cannot masquerade as a typed record.
+    expect(() => prepareDeepReviewEvent({
+      ...typed,
+      stem: 'deep_review.claim_adjudication',
+      scope: flat.scope,
+      data: typed.data,
+    } as unknown as DeepReviewEventInput<'deep_review.claim_adjudication'>, registry)).toThrow();
+
+    expect(() => prepareDeepReviewEvent({
+      ...flat,
+      stem: 'deep_review.claim_adjudication_recorded',
+      scope: typed.scope,
+      data: flat.data,
+    } as unknown as DeepReviewEventInput<'deep_review.claim_adjudication_recorded'>, registry)).toThrow();
+  });
+
   it('preserves raw observations separately from derived severity and verdict', () => {
     const registry = createDeepReviewEventRegistry();
     const candidate = prepareDeepReviewEvent(

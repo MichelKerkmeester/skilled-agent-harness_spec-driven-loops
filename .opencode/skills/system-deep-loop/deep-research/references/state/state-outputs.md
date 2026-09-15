@@ -10,7 +10,7 @@ trigger_phrases:
   - "spec anchoring output"
 importance_tier: normal
 contextType: implementation
-version: 1.14.0.3
+version: 1.14.0.4
 ---
 
 # Deep Research Output Files Reference
@@ -32,6 +32,8 @@ Load this reference when writing or validating markdown outputs rather than JSON
 ### Core Principle
 
 Human-readable outputs must stay synchronized with raw state and respect reducer ownership.
+
+JSONL itself is authority-dependent: under `legacy_authoritative` the file is the writer's target, and under ledger authority it is refreshed as a projection of the registered stems. What the projection can reproduce, and the `ATTRIBUTION_COLLAPSE` refusal that protects an existing config row, are in `state-format.md` section 7.
 
 ---
 

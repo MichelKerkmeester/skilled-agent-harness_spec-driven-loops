@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/012-runtime-surface-parity-research"
+    packet_pointer: "cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research"
     last_updated_at: "2026-09-15T15:52:45Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
@@ -48,18 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 1: runtime-surface-parity-research
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Ten iterations on runtime surface parity for commands, skills, agents, goal and hooks, run on DeepSeek V4.1 Flash at max through cli-pi. The synthesis at `research/research.md` carries the corrected command matrix, the parity table, the Devin boundary and the ranked plan. The lane overturned two of its own charter premises on evidence, and established that five of six command mirrors are correct by policy rather than drifted, which narrowed the work from a broad repair to one recorded operator decision.
 <!-- /ANCHOR:what-built -->
 
 ---

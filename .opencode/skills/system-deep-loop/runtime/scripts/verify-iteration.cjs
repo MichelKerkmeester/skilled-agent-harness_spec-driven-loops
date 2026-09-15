@@ -206,8 +206,11 @@ function checkLedgerBacking(loopType, artifactDir, legacyFilePath) {
   if (authority.status !== 'violation' && authority.status !== 'ok') {
     return { status: 'not-enforced', authority: authority.status };
   }
-  const roots = [artifactDir, path.dirname(artifactDir)];
-  const backed = roots.some((root) => {
+  const roots = [
+    { root: artifactDir, kind: 'artifact-dir' },
+    { root: path.dirname(artifactDir), kind: 'parent-of-lineage' },
+  ];
+  const match = roots.find(({ root }) => {
     const framesDir = path.join(root, `${leaf}-ledger`, 'frames');
     try {
       return fs.existsSync(framesDir) && fs.readdirSync(framesDir).some((f) => f.endsWith('.frame'));
@@ -215,7 +218,12 @@ function checkLedgerBacking(loopType, artifactDir, legacyFilePath) {
       return false;
     }
   });
-  return { status: backed ? 'backed' : 'unbacked' };
+  if (!match) return { status: 'unbacked' };
+  return {
+    status: 'backed',
+    framesRoot: path.join(match.root, `${leaf}-ledger`, 'frames'),
+    framesRootKind: match.kind,
+  };
 }
 
 function verify(loopType, artifactDir, iteration) {
@@ -271,9 +279,10 @@ function verify(loopType, artifactDir, iteration) {
   // iteration record with no mode ledger behind it means the leaf wrote the projection
   // directly, bypassing the gateway -- exactly the divergence where the reducer would
   // otherwise build a report from projection-only state. Fail the iteration loudly.
+  let ledgerBacking = { status: 'disabled' };
   if (process.env.DEEP_LOOP_LEDGER_BACKING_GATE !== '0') {
-    const backing = checkLedgerBacking(loopType, artifactDir, stateLogPath);
-    if (backing.status === 'unbacked') {
+    ledgerBacking = checkLedgerBacking(loopType, artifactDir, stateLogPath);
+    if (ledgerBacking.status === 'unbacked') {
       return {
         ok: false,
         reason: REASONS.LEDGER_BACKING_MISSING,
@@ -281,6 +290,14 @@ function verify(loopType, artifactDir, iteration) {
       };
     }
   }
+  // Every measured gateway invocation roots the ledger at the artifact directory,
+  // so a match through the parent-of-lineage directory still passes (the path is
+  // legitimate) but is reported instead of silently accepted: the producer path
+  // has to be visible on the result so a vestigial root cannot hide.
+  const ledgerRootWarning = ledgerBacking.status === 'backed'
+    && ledgerBacking.framesRootKind === 'parent-of-lineage'
+    ? `ledger frames for ${stateLogName} resolved through the parent-of-lineage directory: ${ledgerBacking.framesRoot}`
+    : null;
 
   // 2c. The state log should be backed by the append gateway's ledger, not merely
   // shaped like a complete record: a leaf that writes the projection directly
@@ -311,11 +328,13 @@ function verify(loopType, artifactDir, iteration) {
     return { ok: false, reason: REASONS.DELTA_FILE_MISSING, detail: `deltas/iter-${pad3(iteration)}.jsonl missing or has no type=iteration record` };
   }
 
+  const warnings = [gatewayWarning, ledgerRootWarning].filter(Boolean);
   return {
     ok: true,
     reason: null,
     detail: `iteration ${iteration} complete: narrative + route-proof + delta`,
-    ...(gatewayWarning ? { warnings: [gatewayWarning] } : {}),
+    ledgerBacking,
+    ...(warnings.length > 0 ? { warnings } : {}),
   };
 }
 
@@ -350,4 +369,4 @@ if (require.main === module) {
   process.exit(main());
 }
 
-module.exports = { verify, checkGatewayReceipt, checkRouteProof, findIterationNarrative, readJsonlRecords, readJsonlRecordsDetailed, pad3, REASONS, LEAF_BY_LOOP, STATE_LOG_BY_LOOP, ARTIFACT_ID_BY_LOOP };
+module.exports = { verify, checkGatewayReceipt, checkLedgerBacking, checkRouteProof, findIterationNarrative, readJsonlRecords, readJsonlRecordsDetailed, pad3, REASONS, LEAF_BY_LOOP, STATE_LOG_BY_LOOP, ARTIFACT_ID_BY_LOOP };

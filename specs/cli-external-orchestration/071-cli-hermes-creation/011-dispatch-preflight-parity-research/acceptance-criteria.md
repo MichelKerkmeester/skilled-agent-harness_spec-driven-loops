@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-dispatch-preflight-parity-research"
+    packet_pointer: "cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research"
     last_updated_at: "2026-09-15T15:46:31Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Every criterion met with its evidence recorded"
+    next_safe_action: "None; the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "spec-071-011-dispatch-preflight-parity-research"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the dispatch preflight surface, When ten iterations run with no early convergence, Then each closes its chartered angle | Ten iteration files, 94KB total, one per chartered angle; stop policy was max-iterations so convergence before the cap was telemetry only | Met | - |
+| AC-002 | REQ-002 | Given the iterations, When synthesised, Then research.md carries every deliverable the charter names | research.md, 276 lines: severity table for all 23 rules, defect table, Cursor and OpenCode parity table, ranked recommendations, four-phase decomposition | Met | - |
+| AC-003 | REQ-003 | Given a recommendation, When recorded, Then it cites the file and line it rests on | Every ranked row carries a file:line citation; inferred claims are marked inline and collected in a closing table of six items | Met | - |
+| AC-004 | REQ-004 | Given the findings, When acted on, Then the implementation phases close them | Phases 013 to 016 implemented the ranked list; the two severity-5 findings this lane surfaced, the inert codex shape and the missing Hermes plugin opt-in, were both verified independently before being fixed | Met | - |
 
 ### Status values
 

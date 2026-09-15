@@ -26,6 +26,7 @@ export const LegacyProjectionErrorCodes = {
   WATERMARK_INVALID: 'WATERMARK_INVALID',
   WATERMARK_REGRESSION: 'WATERMARK_REGRESSION',
   PUBLICATION_FAILED: 'PUBLICATION_FAILED',
+  ATTRIBUTION_COLLAPSE: 'ATTRIBUTION_COLLAPSE',
 } as const;
 
 /** Programmatic shadow-projection failure code. */
