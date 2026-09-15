@@ -47,6 +47,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
       ".hermes/SYNC.md",
       ".opencode/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs",
       ".opencode/agents/markdown.md"
@@ -86,6 +87,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-hermes.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-14T17:24:47Z",
-    "last_save_at": "2026-09-14T19:42:58.038Z",
+    "last_save_at": "2026-09-15T04:45:46.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4cd009c0c018f6bf47d3af25c724db81f25839edf5a3bbc286d2912a7a82127",
+    "source_fingerprint": "sha256:f35bda57d9b6a627a83d934417458a3f090e74e1c65a9c38afa51c6e0c9b30a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2566fc9a762d6d3a939f91c0d054aecaa38b23b2859ae721f7239eef124bb35a",
+      "spec.md": "de1167169cb6bbccdeedec2316714c373e1dcc72eff34aea264ec47d420c99e8",
       "plan.md": "dcbadb814bdc636accae6d2d5dd419a0f558404bb26354c6d5e2710a7e3bf5ea",
       "tasks.md": "579ed173b621d9e25b9467b83cd1fa111b2f3454feb19944567d289e070baddc",
-      "implementation-summary.md": "d8c5bb5846c4d76a0d711de4caf1389c0feac14e1791c05d7d049bcd6546cff7"
+      "implementation-summary.md": "2a70a08b2cf7ce72ca194b5d13608f83561b490ad5024a01dcdccfa1aeaeb34f"
     },
     "last_active_at": null
   }

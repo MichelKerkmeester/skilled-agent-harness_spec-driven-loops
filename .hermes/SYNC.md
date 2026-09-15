@@ -13,7 +13,7 @@ description: "How .hermes derives from .opencode: curated per-skill symlinks, ge
 
 Hermes Agent (Nous Research) is a Python agent CLI installed as a git checkout under `~/.hermes`. Its config (`config.yaml`), shell hooks, MCP servers, provider block and the project trust grant are all user-level. This folder mirrors what `.pi/`, `.devin/` and `.cursor/` do for their runtimes to the extent Hermes allows it, and lists the operator steps for the rest.
 
-Two behaviors shape the layout. Hermes follows a symlinked skills tree, flattens it, and **scans all of it** with its static security scanner at every session start: linking the whole `.opencode/skills` tree cost ten minutes per session and quarantined every hub, so `skills/` holds one directory link per curated skill instead. And Hermes's own file tools gate any write whose immediate parent directory is `.hermes`, so the files here are authored from outside a Hermes session.
+Two behaviors shape the layout. Hermes **scans every project skill directory** with its static security scanner at session start (content-hash cached, fail-closed): a symlinked directory is scanned in full, so the whole-tree link cost ten minutes per session and quarantined every hub, and even one linked skill directory was quarantined on its scripts and references. `skills/` therefore holds generated markdown-only copies of every canonical `SKILL.md`, the same coverage `.claude/skills` gets from its symlink, at a scan cost of seconds. And Hermes's own file tools gate any write whose immediate parent directory is `.hermes`, so the files here are authored from outside a Hermes session.
 
 ---
 
@@ -21,7 +21,7 @@ Two behaviors shape the layout. Hermes follows a symlinked skills tree, flattens
 
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
-| `skills/<name>/` | one directory symlink per curated skill | `.opencode/skills/**/<name>` | Add a link only for a skill a Hermes session needs. Never link the whole tree: the static scanner walks everything it can reach, pegs a CPU core for ten minutes per session and quarantines every hub as dangerous (observed 2026-09-14). `hermes skills list` does not show project skills; `-s <name>` loads one |
+| `skills/<name>/SKILL.md` | **generated** markdown-only copy, one folder per canonical `SKILL.md` (all 56, flat by frontmatter name) | `.opencode/skills/**/SKILL.md` | Yes — `sync-skills-hermes.cjs --check`. Not a symlink: Hermes scans every project skill directory at session start, so a linked directory drags its `scripts/`, `node_modules/` and references through the scanner (ten minutes for the whole tree, every hub quarantined; even the single `cli-hermes` link was quarantined on 37 findings). The copies scan in seconds; each names its canonical directory for `references/`, `assets/` and `scripts/`. `-s <name>` preloads any of them (verified live for `sk-git`, `cli-hermes`, `system-spec-kit`); seven are hidden from `skills_list` because Hermes's prose scanner rates their own text dangerous, and still preload |
 | `prompts/*.md` | **generated** pointer stubs | `.opencode/commands/**/*.md` | Yes — `sync-prompts-hermes.cjs --check` |
 | `plugins/repo-guards/` | **hand-authored** project plugin | shared guard cores under `.opencode/**` | Behavioral drift only; `hermes plugins validate` checks the manifest |
 | `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook` | No |
@@ -47,6 +47,7 @@ None of these is a repo file, and no dispatch performs them.
 ## 4. WHEN TO SYNC
 
 - Any `.opencode/commands/**` file is added, renamed or deleted → re-run `sync-prompts-hermes.cjs`. Write mode prunes stale output.
+- Any `.opencode/skills/**/SKILL.md` changes → re-run `sync-skills-hermes.cjs`. Write mode prunes stale folders and replaces a leftover directory symlink.
 - Guard-core behavior changes under `.opencode/**` → review `plugins/repo-guards/__init__.py` by hand; it shells out to the cores, so a renamed core path is the drift to watch.
 
 ---
@@ -59,6 +60,10 @@ node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs
 
 # Check without writing
 node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check
+
+# Regenerate the skill copies (write mode also prunes stale folders)
+node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs
+node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
 
 # Validate the project plugin manifest
 hermes plugins validate .hermes/plugins/repo-guards

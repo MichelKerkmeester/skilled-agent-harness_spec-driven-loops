@@ -33,7 +33,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Complete — folder built and live-proven 2026-09-14; skills surface is a curated per-skill symlink set |
+| **Status** | Complete — folder built and live-proven 2026-09-14; skills surface is a generated markdown-only mirror of all 56 skills (2026-09-15) |
 | **Created** | 2026-09-14 |
 | **Branch** | `scaffold/005-hermes-runtime-folder` |
 | **Parent Spec** | ../spec.md |
