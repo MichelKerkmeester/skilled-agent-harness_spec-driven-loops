@@ -3,7 +3,6 @@
   "packet_id": "sk-doc/055-governance-doc-alignment",
   "spec_folder": "sk-doc/055-governance-doc-alignment",
   "parent_id": null,
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -211,7 +210,7 @@
     ],
     "causal_summary": "The 006 clarity program paused with its validation state unproven: a swarm rewrote twelve documents, and the repair pass that would confirm them was killed partway",
     "created_at": "2026-09-13T11:50:18Z",
-    "last_save_at": "2026-09-15T05:22:57.776Z",
+    "last_save_at": "2026-09-15T05:37:03.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,12 +221,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9cd35d0e64e6af5ea20cb3cae5442018a83aa8a0247fa038374046ca538d9b0",
+    "source_fingerprint": "sha256:d3caa3869559ffc7b4336bc0c9032259091d6ac0e910464fa12973792725892e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c842c157614e1fd1460ba61b191dc06168e301810f0e48c44ad860f539a8dce5",
       "plan.md": "32177ebdd8dcbb19aab4d92b734a4546ff15a68379b0c6cad2caf47595849c34",
-      "tasks.md": "6f60459e75589bbceadeab26c36256647c35164e33a84283abda136583806e9e",
+      "tasks.md": "4bcfe8b9489df55a35d3fdd462f1e0e3a8b2772ce1ab2920333dc5238f03e278",
       "decision-record.md": "2203d47bf3d42214310bfe090ad7c8cb0e720a9b94927f500b68c88cd1506e3d",
       "implementation-summary.md": "9648caa6603ec6d2510449c5805be1f20d1dd21c810ee7b33402eafc6f6f380f"
     },

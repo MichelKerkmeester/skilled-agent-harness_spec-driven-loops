@@ -55,7 +55,7 @@ contextType: "general"
   - DONE 2026-09-14: five iterations, stop policy max-iterations, runner run 1789402391295-tfhy3y completed 17:07Z, synthesis and resource map under research/luna-fanout/lineages/luna/
 - [x] T007 Hold the repository frozen outside this phase folder for the whole time a lineage is live
   - DONE 2026-09-14: the repository was frozen outside this folder while each iteration ran
-- [ ] T008 Salvage artifacts and resume rather than restart if a lineage stops on a provider limit
+- [x] T008 Salvage artifacts and resume rather than restart if a lineage stops on a provider limit
   - Not needed: no lineage stopped on a provider limit
 <!-- /ANCHOR:phase-2 -->
 
@@ -79,9 +79,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (checklist worked 2026-09-15 with the folder validated PASSED)
 <!-- /ANCHOR:completion -->
 
 ---

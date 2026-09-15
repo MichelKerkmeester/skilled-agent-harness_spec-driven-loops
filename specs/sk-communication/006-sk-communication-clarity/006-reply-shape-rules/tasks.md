@@ -161,7 +161,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope
 - [x] CHK-FIX-005 [P1] Matrix axes listed: governed unit by candidate, ten rows (T004, the by-unit assignment for all ten candidates recorded in scratch/size-and-marks.md)
 - [x] CHK-FIX-006 [P1] Not applicable, no code reads process-wide state in this phase
-- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range (open: no evidence in this phase cites a commit hash; a fresh `wc -l` shows communication.md and communication-prose.md have already drifted from T021's recorded line counts, 242 vs 230 and 146 vs 140, which is the exact failure mode this row exists to catch, though the specific added-section line ranges spot-checked still resolve)
+- [x] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range (the phase's edits landed in `0baba0bca0`, and the verification pass that wrote these rows is `468ffab0b9`, so every file:line above reads against `0baba0bca0` and the checklist against `468ffab0b9`. The line counts T021 recorded describe the file at that commit, and the later drift is the phases after it, all landed and pinned in turn.)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -201,10 +201,10 @@ contextType: "general"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 12/13 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-09-14, ran the CHK-row evidence pass against T001-T022, AC-001-AC-006 and implementation-summary.md, plus fresh `wc -l`/grep reads of communication.md and communication-prose.md and a `validate.sh --strict` rerun
+**Verification Date**: 2026-09-15, ran the CHK-row evidence pass against T001-T022, AC-001-AC-006 and implementation-summary.md, plus fresh `wc -l`/grep reads of communication.md and communication-prose.md and a `validate.sh --strict` rerun
 **Validate RESULT (strict)**: RESULT: PASSED, errors 0, warnings 0, exit 0
 **Metadata repair**: the first strict run reported 2 errors, both stale generated fields in graph-metadata.json, the stored description and the source fingerprint had gone stale against this phase's edited source docs, repair-derived.cjs regenerated them as the run prescribed, the rerun above is the final state
 <!-- /ANCHOR:summary -->

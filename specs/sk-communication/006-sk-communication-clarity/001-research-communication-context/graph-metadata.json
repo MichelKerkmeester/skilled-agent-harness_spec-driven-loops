@@ -3,7 +3,6 @@
   "packet_id": "sk-communication/006-sk-communication-clarity/001-research-communication-context",
   "spec_folder": "sk-communication/006-sk-communication-clarity/001-research-communication-context",
   "parent_id": "sk-communication/006-sk-communication-clarity",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "Three external communication sources sit in `../context/` and none has been read against this",
     "created_at": "2026-09-12T12:44:34Z",
-    "last_save_at": "2026-09-15T05:35:09.055Z",
+    "last_save_at": "2026-09-15T05:36:39.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +208,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:37aa8fffda8b214a00dbf33d0cf0855849883178e296feb07d6c6763f89005d7",
+    "source_fingerprint": "sha256:e58d7eb23220b4923d024e0337b1c5e24d49cb3a72ad111ca0f02af949251b30",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "38442cf4fc1ce1f88ad68d2b6eaf28773515229e8e75751d13ea9c3ff4a2497f",
       "plan.md": "cbf09edd675cb34e2ba343aa005fc58127bd76bebf7788f62148a7e055f003a6",
-      "tasks.md": "2a9dd2157b8b10be93b1a2cb5bb5d5df0a1ea38713122aad92362c654be853cc",
+      "tasks.md": "fb73d7d5527c60a1b4f6ac70500143fe86ddf79f8b57d495da5e805bf5019ddb",
       "implementation-summary.md": "a19ac5f516158607e4d3eb37c107a5f77565702bae13703c1724c7470a4192a9",
       "research/research.md": "91f49ef27f333c09bef7ef33bd4e9b6135709159dea8066dc33538d559e061d9"
     },
