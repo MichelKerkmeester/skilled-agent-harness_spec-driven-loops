@@ -124,23 +124,18 @@ state_write_protocol:
   command: "node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode research --run-directory {artifact_dir} --event-json <record file>"
   applies_to: "every append_to_jsonl and append_jsonl directive in this workflow"
   refusal_handling: "halt on exit 2; never fall back to a direct file write"
-  migration_exception: "Embedded lifecycle writers append run-now and pause sentinel records directly; no ledger event stem exists for them yet, so the gateway would reject them."
-  exempt_append_sites: 1
   contract: |
     The directives below specify WHAT to record; this block specifies the mechanism. The
     command accepts a canonical event envelope — a `stem` with `scope` and `data`, or an
     `event_type` with a `payload` — and for this mode it also accepts a legacy-shaped row,
     which it upcasts before appending. Where the upcast is lossy it returns a warning, and
-    the warning is surfaced rather than swallowed. Only a small number of the directives
-    below currently reach the log this way: of nineteen, one routes through the gateway,
-    four are deliberately pinned to the legacy path by the schema and refused by the
-    upcaster on purpose — a decision, not an omission — and the remaining fourteen have no
-    registered stem, because the ledger models research semantics and those rows are
-    workflow bookkeeping. Whether they should become ledger events is unsettled. A
-    refusal names its own reason, so the caller can tell a deliberate pin from a missing
-    stem. A row the upcaster refuses returns exit 1 and writes nothing, with the reason
-    naming why. Exit 1 is distinct from the exit 2 refusal described in the next
-    paragraph: exit 1 means the input never reached authority, exit 2 means authority
+    the warning is surfaced rather than swallowed. Most of the directives below record
+    workflow bookkeeping rather than research semantics: the schema deliberately pins several
+    of them to the legacy path and the upcaster refuses them on purpose, and the rest have no
+    registered stem yet. A refusal names its own reason, so the caller can tell a deliberate
+    pin from a missing stem. A row the upcaster refuses returns exit 1 and writes nothing,
+    with the reason naming why. Exit 1 is distinct from the exit 2 refusal described in the
+    next paragraph: exit 1 means the input never reached authority, exit 2 means authority
     refused it.
 
     The gateway authorizes the write against the mode's durable authority record, serialises it
@@ -153,15 +148,9 @@ state_write_protocol:
     receipt, so a later reader cannot tell an accepted record from an invented one. A refusal
     is a halt, never a reason to write the file directly.
 
-    One exception exists and is deliberate. The embedded lifecycle writers append run-now and
-    pause sentinel records straight to the log, because those records have no registered event
-    type in this mode's ledger schema and the gateway would refuse them. They record that a
-    sentinel changed, not research progress. Every record the workflow itself produces goes
-    through the gateway, and these move to it once the schema names them.
-
-    The exempt_append_sites count names how many direct-append sites this exception currently
-    covers; introducing a further site causes the conformance check to fail until that site is
-    reviewed and the count is intentionally updated to reflect it.
+    There is no direct-append exception. The synthesis reconciliation rows are canonical
+    ledger events, because state_log is a projection the gateway rebuilds from the ledger and
+    a row written beside it is dropped by the next refresh.
 
 state_paths:
   # Template paths document the canonical packet layout. Runtime resolution happens via
@@ -1408,9 +1397,12 @@ workflow:
           - Divergence summary: {divergence_summary}
           - Segment transitions, wave scores, and checkpoint metrics are experimental and omitted from the live report.
         command: |
-          node --input-type=module <<'EOF'
-          import { appendFileSync, existsSync, lstatSync, readFileSync, realpathSync, readdirSync } from 'node:fs';
-          import { isAbsolute, join, relative, resolve, sep } from 'node:path';
+          GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+          [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+          EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-research-synthesis.XXXXXX")"
+          node --input-type=module - "$EVENT_DIR" <<'EOF'
+          import { existsSync, lstatSync, readFileSync, realpathSync, readdirSync, writeFileSync } from 'node:fs';
+          import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
           const paths = {
             artifactDir: String.raw`{state_paths.packet_dir}`,
@@ -1521,8 +1513,29 @@ workflow:
             return registry.keyFindings.flatMap(findingKeys);
           }
 
-          function appendEvent(event) {
-            appendFileSync(paths.stateLog, `${JSON.stringify(event)}\n`, 'utf8');
+          const eventDir = process.argv[2];
+          // The scope needs one run-stable token the synthesis step can derive from the
+          // state-log path it was handed; the artifact directory name is that token.
+          const scopeRunId = basename(dirname(paths.stateLog)) || 'research';
+
+          // The state log is a projection the gateway rebuilds from the ledger, so the
+          // synthesis row is staged as a canonical ledger event; a write beside the
+          // projection is dropped by the next refresh.
+          function recordEvent(event) {
+            const data = { ...event };
+            const eventName = data.event;
+            delete data.type;
+            delete data.event;
+            delete data.timestamp;
+            writeFileSync(
+              join(eventDir, `${eventName}.json`),
+              JSON.stringify({
+                stem: `deep_research.${eventName}`,
+                scope: { runId: scopeRunId, lineageId: scopeRunId },
+                data,
+              }),
+              'utf8',
+            );
           }
 
           const registry = readJson(paths.registry);
@@ -1561,7 +1574,7 @@ workflow:
           if (Number.isFinite(reconstructionGapCount) && reconstructionGapCount > 0) invariantFailures.push('state_finding_reconstruction_gap');
 
           if (invariantFailures.length > 0) {
-            appendEvent({
+            recordEvent({
               type: 'event',
               event: 'synthesis_incomplete',
               mode: 'research',
@@ -1585,7 +1598,7 @@ workflow:
             });
             process.exitCode = 2;
           } else {
-            appendEvent({
+            recordEvent({
               type: 'event',
               event: 'synthesis_complete',
               totalIterations,
@@ -1596,6 +1609,18 @@ workflow:
             });
           }
           EOF
+          NODE_STATUS=$?
+          for eventFile in "$EVENT_DIR"/*.json; do
+            [ -e "$eventFile" ] || continue
+            node "$GATEWAY" --mode research --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$eventFile"
+            GATEWAY_STATUS=$?
+            if [ "$GATEWAY_STATUS" -ne 0 ]; then
+              rm -rf "$EVENT_DIR"
+              exit "$GATEWAY_STATUS"
+            fi
+          done
+          rm -rf "$EVENT_DIR"
+          exit "$NODE_STATUS"
 
       gate_post_synthesis_spec_writeback:
         type: approval_gate

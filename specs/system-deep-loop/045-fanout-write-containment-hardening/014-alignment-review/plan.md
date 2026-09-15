@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 1: alignment-review"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Run three cli-devin DeepSeek lanes of five iterations over the 014 spec folder, merge, verify every P0 and P1 against the tree, and bind each to a phase or a recorded disposition."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (ESM) plus a CommonJS runner script |
+| **Framework** | None |
+| **Storage** | Git working tree, JSONL state and status ledgers |
+| **Testing** | Vitest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The lanes read the 014 spec, which names the six dimensions and their surfaces, and review the tree against the repo rules. After the merge the orchestrator verified each P1 by reading the cited code and documents, bound the confirmed ones to phases 016 to 020 and recorded the rest with reasons.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Fan-out review with orchestrator verification and phase binding
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Three cli-devin lanes**: Five iterations each on the primary executor
+- **Merge**: Strongest-restriction verdict and attribution
+- **Binding table**: Phase or reviewed disposition per finding
 
 ### Data Flow
-[Brief description of how data moves through the system]
+014 spec → lanes → reports and registries → merge → verification → phases 016 to 020 or recorded dispositions.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,18 +70,18 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Command YAMLs | Different runner flags; leaf as full loop | phase 016 | landed |
+| Review protocol and hub catalog | Missing containment rules; wrong mode count | phase 017 | landed |
+| Orchestrate mirrors | Delegation tool undeclared | phase 018 | landed |
+| Forced-depth validator | Empty record set passed | phase 019 | landed |
+| Direct append sites | Dropped by the projection refresh | phase 020 | landed |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Confirmed P1s: five from lane A, one each from lanes B and C, two of which are the same protocol finding.
+- Recorded as reviewed: the review YAML's single-executor linked-worktree guard (predates the packet), Pi's generated tools list (no installed delegation tool), a model-benchmark test expecting a retired route.
+- Route proof: every numbered record carries target_agent, resolved_route, agent_definition_loaded and mode.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -99,9 +100,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Run | Three lanes, fifteen iterations | fanout-run.cjs |
+| Merge | Attribution and verdict | fanout-merge.cjs |
+| Verification | Each P1 read against the tree | orchestrator |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +112,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phases 008 to 013 and 015 landed first | Internal | Green | - |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +120,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Not applicable
+- **Procedure**: A review binds work; the phases carry their own rollback
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +153,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | minutes |
+| Core Implementation | Low | one dispatch |
+| Verification | Med | full suite run |
+| **Total** | | **one dispatch plus one suite run** |
 <!-- /ANCHOR:effort -->
 
 ---

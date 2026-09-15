@@ -131,6 +131,12 @@ export const DEEP_RESEARCH_EVENT_ROUTING = Object.freeze({
   'deep_research.memory_save_completed': Object.freeze(['artifactIndex']),
   'deep_research.memory_save_failed': Object.freeze(['artifactIndex', 'status']),
   'deep_research.run_completed': Object.freeze(['status']),
+  'deep_research.run_now_requested': Object.freeze(['status']),
+  'deep_research.run_now_rejected': Object.freeze(['status']),
+  'deep_research.run_now_accepted': Object.freeze(['status']),
+  'deep_research.run_now_restored': Object.freeze(['status']),
+  'deep_research.synthesis_incomplete': Object.freeze(['status']),
+  'deep_research.synthesis_complete': Object.freeze(['status']),
 } as const satisfies Readonly<Record<DeepResearchEventStem, readonly ProjectionPlane[]>>);
 
 function stemsForPlane(plane: ProjectionPlane): readonly DeepResearchEventStem[] {
@@ -1303,6 +1309,12 @@ function artifactFromEvent(
     case 'deep_research.convergence_blocked':
     case 'deep_research.synthesis_started':
     case 'deep_research.run_completed':
+    case 'deep_research.run_now_requested':
+    case 'deep_research.run_now_rejected':
+    case 'deep_research.run_now_accepted':
+    case 'deep_research.run_now_restored':
+    case 'deep_research.synthesis_incomplete':
+    case 'deep_research.synthesis_complete':
       return null;
   }
   return assertNeverStem((event as DeepResearchLedgerEvent).payload.stem as never);
@@ -1404,6 +1416,12 @@ function statusTransitionForEvent(
     }
     case 'deep_research.synthesis_started':
     case 'deep_research.synthesis_committed':
+    case 'deep_research.run_now_requested':
+    case 'deep_research.run_now_rejected':
+    case 'deep_research.run_now_accepted':
+    case 'deep_research.run_now_restored':
+    case 'deep_research.synthesis_incomplete':
+    case 'deep_research.synthesis_complete':
       return null;
     case 'deep_research.memory_save_failed': {
       const payload = payloadFor(event, 'deep_research.memory_save_failed');
@@ -1782,6 +1800,12 @@ function applyEvent(
     case 'deep_research.run_restarted':
     case 'deep_research.synthesis_started':
     case 'deep_research.synthesis_committed':
+    case 'deep_research.run_now_requested':
+    case 'deep_research.run_now_rejected':
+    case 'deep_research.run_now_accepted':
+    case 'deep_research.run_now_restored':
+    case 'deep_research.synthesis_incomplete':
+    case 'deep_research.synthesis_complete':
     case 'deep_research.memory_save_requested':
     case 'deep_research.memory_save_completed':
     case 'deep_research.memory_save_failed':

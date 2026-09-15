@@ -6,7 +6,7 @@
 // └──────────────────────────────────────────────────────────────────────────┘
 
 import { afterEach, describe, expect, it } from 'vitest';
-import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, readdirSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -337,5 +337,55 @@ describe('check-protocol-append-sites', () => {
     expect(r.payload.violations).toHaveLength(1);
     expect(r.payload.violations[0].rule).toBe('UNDECLARED_DIRECT_APPEND');
     expect(r.payload.violations[0].file).toBe('helper-wrapper.yaml');
+  });
+});
+
+describe('retired append-site exemptions', () => {
+  // The exemptions existed to cover direct appends. Retiring them means the
+  // real assets must declare no exemption AND contain no direct append the
+  // checker would have had to exempt: otherwise the counts are not zero, they
+  // have only stopped being counted.
+  const ASSETS_DIR = resolve(here, '..', '..', '..', '..', '..', 'commands', 'deep', 'assets');
+
+  function assetNames(): string[] {
+    return readdirSync(ASSETS_DIR).filter((name) => name.endsWith('.yaml')).sort();
+  }
+
+  function runChecker(dir: string): { status: number | null; stderr: string; payload: any } {
+    const result = spawnSync(process.execPath, [CLI_PATH, '--dir', dir], { encoding: 'utf8' });
+    let payload: any = null;
+    try {
+      payload = JSON.parse(result.stdout.trim());
+    } catch {
+      payload = null;
+    }
+    return { status: result.status, stderr: result.stderr, payload };
+  }
+
+  it('reports zero violations and zero exemptions for the real command assets', () => {
+    const r = runChecker(ASSETS_DIR);
+    expect(r.stderr).toBe('');
+    expect(r.status, JSON.stringify(r.payload)).toBe(0);
+    expect(r.payload.ok).toBe(true);
+    expect(r.payload.violations).toEqual([]);
+    expect(r.payload.scanned).toBeGreaterThanOrEqual(assetNames().length);
+  });
+
+  it('leaves no exemption declaration and no direct append in any command asset', () => {
+    const offenders: string[] = [];
+    for (const name of assetNames()) {
+      const lines = readFileSync(join(ASSETS_DIR, name), 'utf8').split('\n');
+      for (const line of lines) {
+        if (/^\s*migration_exception\s*:/.test(line)) offenders.push(`${name}: migration_exception`);
+        if (/^\s*exempt_append_sites\s*:/.test(line)) offenders.push(`${name}: exempt_append_sites`);
+        if (/\bappendFileSync\s*\(/.test(line)) offenders.push(`${name}: appendFileSync`);
+        const gtIdx = line.indexOf('>>');
+        if (gtIdx !== -1) {
+          const after = line.slice(gtIdx + 2);
+          if (/\{[^}]*\}/.test(after) || /log/i.test(after)) offenders.push(`${name}: shell redirect append`);
+        }
+      }
+    }
+    expect(offenders).toEqual([]);
   });
 });

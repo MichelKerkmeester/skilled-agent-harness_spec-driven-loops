@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "scaffold/020-direct-append-sites-through-gateway"
     last_updated_at: "2026-09-15T01:34:53Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,9 +77,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] No command YAML invokes the direct state-record appender; the append-site checker reports zero exempt sites for research and review
-- [ ] Each event those sites recorded (iteration error, claim adjudication, run-now, pause) reaches the state log through the gateway and survives a subsequent gateway append, proven by a test that fails against the current YAMLs
-- [ ] Contract drift tests and the deep-loop suite exit zero
+- [x] No command YAML invokes the direct state-record appender; the append-site checker reports zero exempt sites for research and review
+- [x] Each event those sites recorded (iteration error, claim adjudication, run-now, pause) reaches the state log through the gateway and survives a subsequent gateway append, proven by a test that fails against the current YAMLs
+- [x] Contract drift tests and the deep-loop suite exit zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -95,11 +95,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; twelve stems, nine sites migrated, exemptions retired, survival and control tests; checker, contract, gateway tests and typecheck exit 0 |
+| Full suite | Green | `npm test` in the runtime: 152 files, 2644 passed, 8 skipped, exit 0, 1291 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Scope extended by necessity | Reducer packages and schema fixtures had to change for the exhaustive switches; reported by the delegate as a deviation and accepted |
+| End-to-end catch | A leading-dot legacy artifact name was rejected by the review schema; fixed by declaring the field as file-name JSON |
 <!-- /ANCHOR:log -->

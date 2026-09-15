@@ -116,19 +116,32 @@ Follow-on work the alternatives research surfaced. Each phase is one fix, dispat
 | 5 | `005-churn-cumulative-arm/` | complete | Detect a neighbour that dirties the shared checkout slowly, as a safety net for the opt-in restore remedy; under the preserve default nothing depends on it. |
 | 6 | `006-reducer-ordered-lists/` | complete | Register findings a lane wrote as a numbered list, and flag a lane that registered nothing. |
 | 7 | `007-worktree-removal/` | complete | Remove the per-lineage worktree mechanism entirely, since attribution is not a requirement and preserve-by-default plus never-fatal meet the operator's need. |
-| 007-worktree-removal | 008-quarantine-destination-canonical | [Criteria TBD] | [Verification TBD] |
-| 008-quarantine-destination-canonical | 009-baseline-deletion-detection | [Criteria TBD] | [Verification TBD] |
-| 009-baseline-deletion-detection | 010-containment-on-failed-lanes | [Criteria TBD] | [Verification TBD] |
-| 010-containment-on-failed-lanes | 011-restore-never-through-symlink | [Criteria TBD] | [Verification TBD] |
-| 011-restore-never-through-symlink | 012-quarantine-retention-per-pass | [Criteria TBD] | [Verification TBD] |
-| 012-quarantine-retention-per-pass | 013-review-lane-advisory-and-strict-config | [Criteria TBD] | [Verification TBD] |
-| 013-review-lane-advisory-and-strict-config | 014-alignment-review | [Criteria TBD] | [Verification TBD] |
-| 014-alignment-review | 015-symlink-contained-paths | [Criteria TBD] | [Verification TBD] |
-| 015-symlink-contained-paths | 016-command-yaml-alignment | [Criteria TBD] | [Verification TBD] |
-| 016-command-yaml-alignment | 017-protocol-and-catalog-alignment | [Criteria TBD] | [Verification TBD] |
-| 017-protocol-and-catalog-alignment | 018-orchestrate-mirror-alignment | [Criteria TBD] | [Verification TBD] |
-| 018-orchestrate-mirror-alignment | 019-forced-depth-empty-records | [Criteria TBD] | [Verification TBD] |
-| 019-forced-depth-empty-records | 020-direct-append-sites-through-gateway | [Criteria TBD] | [Verification TBD] |
+| 8 | `008-quarantine-destination-canonical/` | complete | Stop a symlink inside a lane's own directory from redirecting the runner's quarantine, patch and manifest writes outside the artifact root. |
+| 9 | `009-baseline-deletion-detection/` | complete | Report a lane that deletes a file which was untracked at baseline, so the no-deletion guarantee has no blind spot. |
+| 10 | `010-containment-on-failed-lanes/` | complete | Run write containment for a lane that failed, timed out or fell short on artifacts, not only for one that succeeded. |
+| 11 | `011-restore-never-through-symlink/` | complete | Make the opt-in restore refuse to write through a symlink at the violated path. |
+| 12 | `012-quarantine-retention-per-pass/` | complete | Keep every containment pass's quarantine evidence instead of letting a later pass overwrite an earlier one. |
+| 13 | `013-review-lane-advisory-and-strict-config/` | complete | Stop the empty-registry advisory misfiring on review lanes, and reject the removed worktrees key instead of accepting it silently. |
+| 14 | `014-alignment-review/` | complete | Run a fifteen-iteration alignment review of the remediated tree and bind every confirmed finding to a phase or record it as reviewed. |
+| 15 | `015-symlink-contained-paths/` | complete | Close the three residual symlink gaps the fresh review found: a restore that follows a symlinked ancestor, baseline capture and read paths that are not symlink-contained, and a quarantine check that can be raced between check and create. |
+| 16 | `016-command-yaml-alignment/` | complete | Make the four deep-loop command YAMLs drive the fan-out runner with the same flags and the same native path, and make the prompt pack describe the state-log mechanism the runtime actually implements. |
+| 17 | `017-protocol-and-catalog-alignment/` | complete | Carry the write-containment rules into the deep-review loop protocol and make the hub feature catalog describe the modes the registry actually holds. |
+| 18 | `018-orchestrate-mirror-alignment/` | complete | Make the orchestrate agent declare the same delegation tool surface in every runtime mirror, including its own permission block. |
+| 19 | `019-forced-depth-empty-records/` | complete | Stop the forced-depth validator passing a lane whose state log holds no usable iteration records, and stop a leaf writing iteration records without an iteration number. |
+| 20 | `020-direct-append-sites-through-gateway/` | complete | Stop a projection refresh from dropping state-log rows the command YAMLs still append directly: every remaining direct append goes through the gateway, and the exemptions that allowed them are retired. |
+| 007-worktree-removal | 008-quarantine-destination-canonical | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 008-quarantine-destination-canonical | 009-baseline-deletion-detection | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 009-baseline-deletion-detection | 010-containment-on-failed-lanes | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 010-containment-on-failed-lanes | 011-restore-never-through-symlink | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 011-restore-never-through-symlink | 012-quarantine-retention-per-pass | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 012-quarantine-retention-per-pass | 013-review-lane-advisory-and-strict-config | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 013-review-lane-advisory-and-strict-config | 014-alignment-review | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 014-alignment-review | 015-symlink-contained-paths | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 015-symlink-contained-paths | 016-command-yaml-alignment | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 016-command-yaml-alignment | 017-protocol-and-catalog-alignment | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 017-protocol-and-catalog-alignment | 018-orchestrate-mirror-alignment | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 018-orchestrate-mirror-alignment | 019-forced-depth-empty-records | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 019-forced-depth-empty-records | 020-direct-append-sites-through-gateway | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
 <!-- /ANCHOR:phase-map -->
 
 ---

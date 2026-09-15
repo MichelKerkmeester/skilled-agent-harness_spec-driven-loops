@@ -99,8 +99,6 @@ state_write_protocol:
   command: "node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode review --run-directory {artifact_dir} --event-json <record file>"
   applies_to: "every append_to_jsonl and append_jsonl directive in this workflow"
   refusal_handling: "halt on exit 2; never fall back to a direct file write"
-  migration_exception: "the one-shot legacy-state migration command appends a legacy-shaped migration marker directly; it predates the canonical log and is not a workflow record"
-  exempt_append_sites: 3
   contract: |
     The directives below specify WHAT to record; this block specifies the mechanism. The gateway
     authorizes the write against the mode's durable authority record, serialises it behind the
@@ -113,14 +111,10 @@ state_write_protocol:
     receipt, so a later reader cannot tell an accepted record from an invented one. A refusal
     is a halt, never a reason to write the file directly.
 
-    One exception exists and is deliberate. The legacy-state migration command appends a
-    legacy-shaped migration marker directly, because it runs before a canonical log exists and
-    records that the move happened rather than recording workflow progress. Every record the
-    workflow itself produces goes through the gateway.
-
-    The exempt_append_sites number is the count of direct-append sites this exception covers;
-    adding another such site fails the conformance check until it is reviewed and the count is
-    deliberately updated to include it.
+    There is no direct-append exception. state_log is a projection the gateway rebuilds from
+    the ledger, so a row written beside it is dropped by the next refresh: the migration
+    marker, the recovery baseline, the iteration-error row and the claim-adjudication gate
+    row are canonical ledger events like every other record.
 
 state_paths:
   # Template paths document the canonical packet layout. Runtime resolution happens via
@@ -296,7 +290,7 @@ workflow:
         on_canonical_present: "Leave canonical review/ state untouched and do not overwrite it with legacy scratch artifacts."
         on_legacy_detected: "Move only the review-specific whitelist, append a migration event to the canonical JSONL, and leave unrelated scratch files untouched."
         on_conflict: "If canonical review/ state and legacy scratch review state both exist but disagree, halt for operator repair instead of merging contradictory state."
-        command: "mkdir -p {state_paths.iteration_dir} && if [ ! -e {state_paths.config} ] && [ ! -e {state_paths.state_log} ] && [ ! -e {state_paths.strategy} ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {state_paths.config}; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {state_paths.state_log}; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {state_paths.strategy}; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {state_paths.dashboard}; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {state_paths.pause_sentinel}; [ -e {state_paths.legacy_root_report} ] && mv {state_paths.legacy_root_report} {state_paths.review_output}; if [ -e {state_paths.state_log} ]; then printf '%s\n' '{\"type\":\"event\",\"event\":\"migration\",\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"],\"timestamp\":\"{ISO_8601_NOW}\"}' >> {state_paths.state_log}; fi; fi; find {state_paths.local_packet_dir} -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; 2>/dev/null || true"
+        command: "mkdir -p {state_paths.iteration_dir} && if [ ! -e {state_paths.config} ] && [ ! -e {state_paths.state_log} ] && [ ! -e {state_paths.strategy} ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {state_paths.config}; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {state_paths.state_log}; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {state_paths.strategy}; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {state_paths.dashboard}; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {state_paths.pause_sentinel}; [ -e {state_paths.legacy_root_report} ] && mv {state_paths.legacy_root_report} {state_paths.review_output}; if [ -e {state_paths.state_log} ]; then MIGRATION_EVENT=$(mktemp); GATEWAY=.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs; [ -f \"$GATEWAY\" ] || GATEWAY=scripts/append-mode-event.cjs; printf '%s\n' '{\"stem\":\"deep_review.migration\",\"scope\":{\"runId\":\"{session_id}\",\"sessionId\":\"{session_id}\"},\"data\":{\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"]}}' > \"$MIGRATION_EVENT\"; node \"$GATEWAY\" --mode review --run-directory \"$(dirname {state_paths.state_log})\" --event-json \"$MIGRATION_EVENT\"; MIGRATION_STATUS=$?; rm -f \"$MIGRATION_EVENT\"; [ \"$MIGRATION_STATUS\" -eq 0 ] || exit \"$MIGRATION_STATUS\"; fi; fi; find {state_paths.local_packet_dir} -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; 2>/dev/null || true"
 
       step_acquire_lock:
         action: "Acquire the single-writer advisory lock before session classification"
@@ -1256,11 +1250,14 @@ workflow:
             - "claude-code supports --effort for reasoning depth"
         if_cli_opencode:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+            GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+            EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-review-baseline.XXXXXX")"
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module - "$EVENT_DIR" <<'EOF'
             import { execFileSync } from 'node:child_process';
-            import { appendFileSync, readFileSync, readlinkSync, realpathSync } from 'node:fs';
+            import { readFileSync, readlinkSync, realpathSync, writeFileSync } from 'node:fs';
             import { createHash } from 'node:crypto';
-            import { basename, dirname, isAbsolute, relative, resolve } from 'node:path';
+            import { basename, dirname, isAbsolute, join, relative, resolve } from 'node:path';
 
             import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
 
@@ -1353,9 +1350,21 @@ workflow:
             }
 
             const recoveryBaselineCommit = git(['rev-parse', '--verify', 'HEAD']);
-            appendFileSync(
-              '{state_paths.state_log}',
-              `${JSON.stringify({ type: 'event', event: 'recovery_baseline', mode: 'review', iteration: Number('{current_iteration}'), recoveryBaselineCommit, worktree: repoRoot, timestamp: new Date().toISOString() })}\n`,
+            // The state log is a projection the gateway rebuilds from the ledger, so the
+            // recovery baseline is staged as a canonical ledger event for the wrapper
+            // below to append; a write beside the projection is dropped by the next refresh.
+            writeFileSync(
+              join(process.argv[2], '01-recovery_baseline.json'),
+              JSON.stringify({
+                stem: 'deep_review.recovery_baseline',
+                scope: { runId: '{session_id}', sessionId: '{session_id}' },
+                data: {
+                  mode: 'review',
+                  iteration: Number('{current_iteration}'),
+                  recoveryBaselineCommit,
+                  worktree: repoRoot,
+                },
+              }),
               'utf8',
             );
             const message = 'Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; state_source=externalized_files; do_not_switch_mode=true'
@@ -1525,6 +1534,18 @@ workflow:
             }
             process.exit(dispatchExit);
             EOF
+            NODE_STATUS=$?
+            for eventFile in "$EVENT_DIR"/*.json; do
+              [ -e "$eventFile" ] || continue
+              node "$GATEWAY" --mode review --run-directory "$(dirname '{state_paths.state_log}')" --event-json "$eventFile"
+              GATEWAY_STATUS=$?
+              if [ "$GATEWAY_STATUS" -ne 0 ]; then
+                rm -rf "$EVENT_DIR"
+                exit "$GATEWAY_STATUS"
+              fi
+            done
+            rm -rf "$EVENT_DIR"
+            exit "$NODE_STATUS"
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
@@ -1881,12 +1902,21 @@ workflow:
           - traceability_checks: "From latest JSONL iteration record when present"
         on_missing_outputs:
           action: "Mark iteration as 'error', continue to next"
-          # Canonical iteration record: include sessionId, generation, durationMs so the reducer can persist
-          # the failure without dropping the iteration. Schema source: state-format.md §Iteration Records.
+          # Canonical iteration record: include sessionId, generation, durationMs so the reducer can
+          # persist the failure without dropping the iteration. Schema source: state-format.md §Iteration Records.
+          # The row is staged for the append gateway: the state log is a projection of the
+          # ledger, so a directly appended error row is dropped by the next refresh.
           command: |
-            cat <<'DEEP_LOOP_STATE_RECORD' | node .opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs {state_paths.state_log}
-            {"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation},"lineageMode":"{config.lineage.lineageMode}"}
+            GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+            EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-iteration-error.XXXXXX")"
+            cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
+            {"stem":"deep_review.iteration_error","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation},"lineageMode":"{config.lineage.lineageMode}"}}
             DEEP_LOOP_STATE_RECORD
+            node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
+            RECORD_STATUS=$?
+            rm -f "$EVENT_FILE"
+            exit "$RECORD_STATUS"
 
       step_post_iteration_claim_adjudication:
         action: "Validate typed claim-adjudication packets for any new P0/P1 findings and persist the result to state.jsonl so the next iteration's claimAdjudicationGate can read it"
@@ -1897,22 +1927,36 @@ workflow:
         on_pass:
           set:
             claim_adjudication_passed: true
-          # Append via the deterministic stdin helper, never an edit/patch tool:
-          # the state log holds multi-KB single-line records that a context-matched
-          # apply_patch cannot anchor on (it halts the loop). See append-state-record.cjs.
+          # The row is staged as a canonical ledger event and appended by the gateway:
+          # the state log is a projection of the ledger, so a write beside it is dropped
+          # by the next refresh.
           command: |
-            cat <<'DEEP_LOOP_STATE_RECORD' | node .opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs {state_paths.state_log}
-            {"type":"event","event":"claim_adjudication","mode":"review","run":{current_iteration},"passed":true,"activeP0P1":{active_p0_p1_count},"missingPackets":[],"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}
+            GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+            EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-claim-adjudication.XXXXXX")"
+            cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
+            {"stem":"deep_review.claim_adjudication","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"mode":"review","run":{current_iteration},"passed":true,"activeP0P1":{active_p0_p1_count},"missingPackets":[],"reason":null,"sessionId":"{session_id}","generation":{generation}}}
             DEEP_LOOP_STATE_RECORD
+            node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
+            RECORD_STATUS=$?
+            rm -f "$EVENT_FILE"
+            exit "$RECORD_STATUS"
           log: "Claim adjudication passed for iteration {current_iteration}. All new P0/P1 findings have typed packets."
         on_fail:
           action: "Mark the iteration as invalid for convergence. The next iteration's claimAdjudicationGate (step_check_convergence step 0) reads the persisted `passed: false` event and vetoes STOP until a follow-up iteration rewrites the packets."
           set:
             claim_adjudication_passed: false
           command: |
-            cat <<'DEEP_LOOP_STATE_RECORD' | node .opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs {state_paths.state_log}
-            {"type":"event","event":"claim_adjudication","mode":"review","run":{current_iteration},"passed":false,"activeP0P1":{active_p0_p1_count},"missingPackets":{missing_packet_ids},"reason":"Missing typed packet fields for new P0/P1 findings","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}
+            GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+            EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-claim-adjudication.XXXXXX")"
+            cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
+            {"stem":"deep_review.claim_adjudication","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"mode":"review","run":{current_iteration},"passed":false,"activeP0P1":{active_p0_p1_count},"missingPackets":{missing_packet_ids},"reason":"Missing typed packet fields for new P0/P1 findings","sessionId":"{session_id}","generation":{generation}}}
             DEEP_LOOP_STATE_RECORD
+            node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
+            RECORD_STATUS=$?
+            rm -f "$EVENT_FILE"
+            exit "$RECORD_STATUS"
           log: "Claim adjudication incomplete for new P0/P1 findings. Event persisted. The next iteration's step_check_convergence claim-adjudication pre-check will veto STOP while `passed: false` remains the latest event and active P0/P1 > 0."
 
       step_reduce_review_state:
@@ -2205,8 +2249,12 @@ workflow:
       step_convergence_report:
         action: "Append convergence report to JSONL"
         command: |
-          node --input-type=module <<'EOF'
-          import { appendFileSync, existsSync, readFileSync, statSync } from 'node:fs';
+          GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+          [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+          EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-review-synthesis.XXXXXX")"
+          node --input-type=module - "$EVENT_DIR" <<'EOF'
+          import { existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+          import { basename, dirname, join } from 'node:path';
 
           const paths = {
             stateLog: String.raw`{state_paths.state_log}`,
@@ -2292,8 +2340,29 @@ workflow:
               .flatMap(findingKeys);
           }
 
-          function appendEvent(event) {
-            appendFileSync(paths.stateLog, `${JSON.stringify(event)}\n`, 'utf8');
+          const eventDir = process.argv[2];
+          // The scope needs one run-stable token the synthesis step can derive from the
+          // state-log path it was handed; the artifact directory name is that token.
+          const scopeRunId = basename(dirname(paths.stateLog)) || 'review';
+
+          // The state log is a projection the gateway rebuilds from the ledger, so the
+          // synthesis row is staged as a canonical ledger event; a write beside the
+          // projection is dropped by the next refresh.
+          function recordEvent(event) {
+            const data = { ...event };
+            const eventName = data.event;
+            delete data.type;
+            delete data.event;
+            delete data.timestamp;
+            writeFileSync(
+              join(eventDir, `${eventName}.json`),
+              JSON.stringify({
+                stem: `deep_review.${eventName}`,
+                scope: { runId: scopeRunId, sessionId: scopeRunId },
+                data,
+              }),
+              'utf8',
+            );
           }
 
           const registry = readJson(paths.registry);
@@ -2322,7 +2391,7 @@ workflow:
           if (missingStructuredFindingCount > 0) invariantFailures.push('structured_state_findings_missing_from_registry');
 
           if (invariantFailures.length > 0) {
-            appendEvent({
+            recordEvent({
               type: 'event',
               event: 'synthesis_incomplete',
               mode: 'review',
@@ -2346,7 +2415,7 @@ workflow:
               timestamp: '{ISO_8601_NOW}',
             });
           } else {
-            appendEvent({
+            recordEvent({
               type: 'event',
               event: 'synthesis_complete',
               mode: 'review',
@@ -2362,6 +2431,18 @@ workflow:
             });
           }
           EOF
+          NODE_STATUS=$?
+          for eventFile in "$EVENT_DIR"/*.json; do
+            [ -e "$eventFile" ] || continue
+            node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$eventFile"
+            GATEWAY_STATUS=$?
+            if [ "$GATEWAY_STATUS" -ne 0 ]; then
+              rm -rf "$EVENT_DIR"
+              exit "$GATEWAY_STATUS"
+            fi
+          done
+          rm -rf "$EVENT_DIR"
+          exit "$NODE_STATUS"
         note: "Emit as numeric ratio (e.g., 0.75), not quoted string. Compute: dimensions_covered / total_dimensions."
 
       step_update_config_status:

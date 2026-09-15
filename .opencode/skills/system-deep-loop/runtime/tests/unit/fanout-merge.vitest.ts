@@ -89,7 +89,12 @@ function runSynthesisInvariant(
   expectedExitCode = 0,
   appendMalformedState = false,
 ): Record<string, unknown> {
-  const artifactDir = makeTempDir('research-lineage-invariant-');
+  // The canonical artifact directory is named for its mode: the state log is a
+  // projection the gateway refreshes, and the projection path is derived from
+  // the run directory, so the fixture has to present the real layout rather
+  // than a directory the workflow would never see.
+  const artifactDir = join(makeTempDir('research-lineage-invariant-'), 'research');
+  mkdirSync(artifactDir, { recursive: true });
   const stateLogPath = join(artifactDir, 'deep-research-state.jsonl');
   const registryPath = join(artifactDir, 'findings-registry.json');
   const researchPath = join(artifactDir, 'research.md');

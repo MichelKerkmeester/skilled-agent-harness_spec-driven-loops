@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -134,7 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -147,12 +153,6 @@
       },
       {
         "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The fan-out containment packet changed the deep-loop runtime, its command YAMLs, the deep-research references and compiled contract, and the skill documentation around them across thirteen phases and one remediation round",
     "created_at": "2026-09-14T22:56:43Z",
-    "last_save_at": "2026-09-14T22:57:32.618Z",
+    "last_save_at": "2026-09-15T08:10:21.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e22e988a7b483d989d826e72d9207172bad09b8d72a71cd2776a38e63325dbbe",
+    "source_fingerprint": "sha256:4f5b08d392687d518cefcae9342b4a25564c9789b60087b38a1b04bf5497d634",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ba9326c8421a76e2140b025cb076b34990f717b60d566ececa5d5ee560258023",
-      "plan.md": "030f6025723afd6f5e1cbaa5d0021e158a68ecefff07c806b0530b7c0493f3ac",
-      "tasks.md": "a4666c9266305260d47fed2e9769c231a9360c0c1043fffe99c7a0649eb47c5a",
-      "implementation-summary.md": "f6bd30e2cc2a4c494a485623bae6633ebab8c843971f4c1e106fb9a9151d4253"
+      "spec.md": "30c4dd184a80ccdbb25faf40372e638614b39f3d630d7d86a254c5e26b68504f",
+      "plan.md": "7625fcbef244182cd48e5b8de61e061caea68120263cdae071aaa9518d6ffea6",
+      "tasks.md": "2c597f87534aa3ba722a73877b967b6c47ffa8cccbe298c99ebfcae8013d06f5",
+      "implementation-summary.md": "0f3f4ae60173b775829b8fd7770efdec8ae0a4de0f53c1f2026c28fc736816c3"
     },
     "last_active_at": null
   }

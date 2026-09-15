@@ -81,8 +81,10 @@ type DataFieldKind =
   | 'digest'
   | 'identifier'
   | 'identifier-array'
+  | 'json'
   | 'nullable-identifier'
   | 'nullable-prose'
+  | 'nullable-uint32'
   | 'passage-locators'
   | 'prose'
   | 'quality-gate-results'
@@ -357,6 +359,62 @@ const DATA_FIELD_RULES = Object.freeze({
     completionReason: 'nullable-prose',
     incompleteReason: 'nullable-prose',
   },
+  'deep_research.run_now_requested': {
+    mode: 'code',
+    run: 'uint32',
+    sessionId: 'identifier',
+    generation: 'uint32',
+    sentinelPath: 'prose',
+  },
+  'deep_research.run_now_rejected': {
+    mode: 'code',
+    run: 'uint32',
+    sessionId: 'identifier',
+    generation: 'uint32',
+    sentinelPath: 'prose',
+    reason: 'prose',
+    pauseSentinelPath: 'prose',
+  },
+  'deep_research.run_now_accepted': {
+    mode: 'code',
+    run: 'uint32',
+    sessionId: 'identifier',
+    generation: 'uint32',
+    sentinelPath: 'prose',
+    dispatchEvent: 'code',
+  },
+  'deep_research.run_now_restored': {
+    mode: 'code',
+    run: 'uint32',
+    sessionId: 'identifier',
+    generation: 'uint32',
+    sentinelPath: 'prose',
+  },
+  'deep_research.synthesis_incomplete': {
+    mode: 'code',
+    severity: 'code',
+    totalIterations: 'uint32',
+    answeredCount: 'uint32',
+    totalQuestions: 'uint32',
+    stopReason: 'prose',
+    reason: 'prose',
+    invariantFailures: 'code-array',
+    missingArtifacts: 'json',
+    registryFindingCount: 'nullable-uint32',
+    iterationFindingCount: 'uint32',
+    countOnlyFindingCount: 'uint32',
+    identifiableFindingCount: 'uint32',
+    missingStructuredFindingCount: 'uint32',
+    sourceFindingCount: 'nullable-uint32',
+    reconstructionGapCount: 'nullable-uint32',
+    stateParseFailureCount: 'uint32',
+  },
+  'deep_research.synthesis_complete': {
+    totalIterations: 'uint32',
+    answeredCount: 'uint32',
+    totalQuestions: 'uint32',
+    stopReason: 'prose',
+  },
 } as const satisfies Readonly<
   Record<DeepResearchEventStem, Readonly<Record<string, DataFieldRule>>>
 >);
@@ -389,6 +447,12 @@ const SCOPE_FIELDS = Object.freeze({
   'deep_research.memory_save_completed': ['runId', 'lineageId'],
   'deep_research.memory_save_failed': ['runId', 'lineageId'],
   'deep_research.run_completed': ['runId', 'lineageId'],
+  'deep_research.run_now_requested': ['runId', 'lineageId'],
+  'deep_research.run_now_rejected': ['runId', 'lineageId'],
+  'deep_research.run_now_accepted': ['runId', 'lineageId'],
+  'deep_research.run_now_restored': ['runId', 'lineageId'],
+  'deep_research.synthesis_incomplete': ['runId', 'lineageId'],
+  'deep_research.synthesis_complete': ['runId', 'lineageId'],
 } as const satisfies Readonly<Record<DeepResearchEventStem, readonly string[]>>);
 
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
@@ -453,6 +517,20 @@ function isTimestamp(value: unknown): value is string {
 
 function isUint32(value: unknown): value is number {
   return Number.isSafeInteger(value) && (value as number) >= 0 && (value as number) <= 0xffff_ffff;
+}
+
+// Structured content that has no single canonical scalar form (an array of
+// artifact records, a nested count summary) still has to reach the ledger
+// intact, so it rides as JSON. Recursing through the forbidden mutable field
+// check keeps prose from hiding inside the structure.
+function isImmutableJson(value: unknown): boolean {
+  if (hasForbiddenMutableField(value)) return false;
+  if (value === null) return true;
+  if (typeof value === 'number') return Number.isFinite(value);
+  return typeof value === 'string'
+    || typeof value === 'boolean'
+    || Array.isArray(value)
+    || isObject(value);
 }
 
 function isRatio(value: unknown): value is number {
@@ -581,10 +659,14 @@ function isFieldValue(rule: DataFieldRule, value: unknown): boolean {
     case 'identifier-array':
     case 'reference-array':
       return isTokenArray(value, isSystemToken);
+    case 'json':
+      return isImmutableJson(value);
     case 'nullable-identifier':
       return value === null || isSystemToken(value);
     case 'nullable-prose':
       return value === null || isProse(value);
+    case 'nullable-uint32':
+      return value === null || isUint32(value);
     case 'passage-locators':
       return Array.isArray(value)
         && value.length > 0

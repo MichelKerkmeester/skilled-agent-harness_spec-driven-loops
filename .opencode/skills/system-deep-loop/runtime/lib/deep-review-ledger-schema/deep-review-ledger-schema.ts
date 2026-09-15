@@ -85,9 +85,11 @@ type DataFieldKind =
   | 'gate-results'
   | 'identifier'
   | 'identifier-array'
+  | 'json'
   | 'null'
   | 'nullable-identifier'
   | 'nullable-prose'
+  | 'nullable-uint32'
   | 'prose'
   | 'ratio'
   | 'report-section-manifest'
@@ -403,6 +405,80 @@ const DATA_FIELD_RULES = Object.freeze({
     completionReason: 'nullable-prose',
     incompleteReason: 'nullable-prose',
   },
+  'deep_review.migration': {
+    mode: 'code',
+    // Artifact names include hidden sentinels ('.deep-research-pause'), which the
+    // identifier token pattern rejects; these are file names, not system tokens.
+    legacyArtifacts: 'json',
+    canonicalArtifacts: 'json',
+  },
+  'deep_review.recovery_baseline': {
+    mode: 'code',
+    iteration: 'uint32',
+    recoveryBaselineCommit: 'identifier',
+    worktree: 'prose',
+  },
+  'deep_review.synthesis_incomplete': {
+    mode: 'code',
+    severity: 'code',
+    totalIterations: 'uint32',
+    activeP0: 'uint32',
+    activeP1: 'uint32',
+    activeP2: 'uint32',
+    dimensionCoverage: 'ratio',
+    verdict: 'prose',
+    releaseReadinessState: 'prose',
+    stopReason: 'prose',
+    reason: 'prose',
+    invariantFailures: 'code-array',
+    missingArtifacts: 'json',
+    registryFindingCount: 'nullable-uint32',
+    iterationFindingCount: 'uint32',
+    identifiableFindingCount: 'uint32',
+    missingStructuredFindingCount: 'uint32',
+    stateParseFailureCount: 'uint32',
+  },
+  'deep_review.synthesis_complete': {
+    mode: 'code',
+    totalIterations: 'uint32',
+    activeP0: 'uint32',
+    activeP1: 'uint32',
+    activeP2: 'uint32',
+    dimensionCoverage: 'ratio',
+    verdict: 'prose',
+    releaseReadinessState: 'prose',
+    stopReason: 'prose',
+  },
+  'deep_review.claim_adjudication': {
+    mode: 'code',
+    run: 'uint32',
+    passed: 'boolean',
+    activeP0P1: 'uint32',
+    missingPackets: 'identifier-array',
+    reason: 'nullable-prose',
+    sessionId: 'identifier',
+    generation: 'uint32',
+  },
+  'deep_review.iteration_error': {
+    type: enumRule('iteration'),
+    iteration: 'uint32',
+    run: 'uint32',
+    mode: 'code',
+    status: enumRule('error'),
+    focus: 'prose',
+    dimensions: 'identifier-array',
+    filesReviewed: 'identifier-array',
+    findingsCount: 'uint32',
+    findingsSummary: 'json',
+    findingsNew: 'json',
+    findingDetails: 'json',
+    traceabilityChecks: 'json',
+    newFindingsRatio: 'ratio',
+    durationMs: 'uint32',
+    sessionId: 'identifier',
+    generation: 'uint32',
+    lineageMode: 'code',
+  },
 } as const satisfies Readonly<
   Record<DeepReviewEventStem, Readonly<Record<string, DataFieldRule>>>
 >);
@@ -465,6 +541,12 @@ const SCOPE_FIELDS = Object.freeze({
   'deep_review.continuity_save_completed': ['runId', 'sessionId'],
   'deep_review.continuity_save_failed': ['runId', 'sessionId'],
   'deep_review.run_completed': ['runId', 'sessionId'],
+  'deep_review.migration': ['runId', 'sessionId'],
+  'deep_review.recovery_baseline': ['runId', 'sessionId'],
+  'deep_review.synthesis_incomplete': ['runId', 'sessionId'],
+  'deep_review.synthesis_complete': ['runId', 'sessionId'],
+  'deep_review.claim_adjudication': ['runId', 'sessionId'],
+  'deep_review.iteration_error': ['runId', 'sessionId'],
 } as const satisfies Readonly<Record<DeepReviewEventStem, readonly string[]>>);
 
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
@@ -542,6 +624,20 @@ function isUint32(value: unknown): value is number {
   return Number.isSafeInteger(value)
     && (value as number) >= 0
     && (value as number) <= 0xffff_ffff;
+}
+
+// Structured content that has no single canonical scalar form (an artifact
+// record, a per-severity count summary) still has to reach the ledger intact,
+// so it rides as JSON. Recursing through the forbidden mutable field check
+// keeps prose from hiding inside the structure.
+function isImmutableJson(value: unknown): boolean {
+  if (hasForbiddenMutableField(value)) return false;
+  if (value === null) return true;
+  if (typeof value === 'number') return Number.isFinite(value);
+  return typeof value === 'string'
+    || typeof value === 'boolean'
+    || Array.isArray(value)
+    || isObject(value);
 }
 
 function isRatio(value: unknown): value is number {
@@ -728,12 +824,16 @@ function isFieldValue(rule: DataFieldRule, value: unknown): boolean {
       return isSystemToken(value);
     case 'identifier-array':
       return isTokenArray(value, isSystemToken);
+    case 'json':
+      return isImmutableJson(value);
     case 'null':
       return value === null;
     case 'nullable-identifier':
       return value === null || isSystemToken(value);
     case 'nullable-prose':
       return value === null || isProse(value);
+    case 'nullable-uint32':
+      return value === null || isUint32(value);
     case 'prose':
       return isProse(value);
     case 'ratio':

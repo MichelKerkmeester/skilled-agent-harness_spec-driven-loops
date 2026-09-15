@@ -94,8 +94,8 @@ Phases 001 through 014 under this folder, each with its own `goal.md`: 008 to 01
 - [x] No command YAML or documentation surface still describes the revert-and-fail model
 - [x] Every phase 001 through 007 validates PASSED with its criteria checked
 - [x] The suite exits zero after the last phase lands
-- [ ] Each confirmed P0 and P1 review finding is closed by a phase, and a fresh review of the remediated tree has no active P0
-- [ ] The 15-iteration alignment review has run and each confirmed finding is bound to a phase or recorded as reviewed
+- [x] Each confirmed P0 and P1 review finding is closed by a phase, and a fresh review of the remediated tree has no active P0
+- [x] The 15-iteration alignment review has run and each confirmed finding is bound to a phase or recorded as reviewed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -117,6 +117,9 @@ and findings belong here.
 | Implementation | Done | Preserve-by-default containment, per-lineage worktrees, concurrent-editor detection, the worktree default flip with its isolation tally, and the report-only checkout watch for isolated lanes whose cwd stays in the shared checkout; packet docs reconciled |
 | Fix phases 001 to 007 | Done | Commits `5340e39233`, `bcb1333560`, `4581feb2bd`, `65ea476de3`, `a766c23a8f`, `cbb1e4ae53`, `ca713e3478`, each suite-verified; final suite 151 files, 2568 passed, exit 0; live two-lane run on this checkout with a neighbour and another session writing mid-run: both lanes fulfilled, nothing reverted |
 | Deep review, 10 iterations | Done, verdict FAIL | Five LUNA at max fast on cli-codex, five DeepSeek V4.1 Flash at max on cli-pi, merged strongest-restriction: one P0 per lane, seven P1, twenty-one P2; verified findings bound to phases 008 to 013, parent doc findings fixed directly; `review/fanout-attribution.md` |
+| Remediation 008 to 013 | Done | Commits `47bdca586a`, `efe974e6f0`, `2ba05e1a28`, `52959f1065`, `df7a1a2cf4`, `57c02b8592`, each suite-verified |
+| Fresh review | Done, CONDITIONAL, P0 0 | LUNA 3 + DeepSeek 3 on cli-pi; residue bound to phase 015 (`02548faa76`) |
+| Alignment review, 15 iterations | Done, CONDITIONAL, P0 0, P1 7 | Three cli-devin DeepSeek lanes of five, no fallback used; findings bound to phases 016 to 020 (`43d9f4a8ab`, `95b90296d2`, `45188c98ec`, `67b2171d03`, and this commit); three recorded as reviewed in `014-alignment-review/goal.md` |
 
 ### Deviations and findings
 

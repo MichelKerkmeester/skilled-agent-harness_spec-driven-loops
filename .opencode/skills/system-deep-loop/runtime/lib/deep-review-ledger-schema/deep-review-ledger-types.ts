@@ -446,6 +446,93 @@ export interface RunCompletedData extends JsonObject {
 // 4. EVENT UNION
 // ───────────────────────────────────────────────────────────────────
 
+// Run-level bookkeeping rows: the migration marker, the recovery baseline, the
+// synthesis reconciliation and the claim-adjudication gate all describe the run
+// itself rather than one dimension pass, so they carry run-level counts and the
+// artifact identities a reader has to re-check after a projection refresh.
+export interface MigrationRecordedData extends JsonObject {
+  readonly mode: string;
+  readonly legacyArtifacts: string[];
+  readonly canonicalArtifacts: string[];
+}
+
+export interface RecoveryBaselineRecordedData extends JsonObject {
+  readonly mode: string;
+  readonly iteration: Uint32;
+  readonly recoveryBaselineCommit: string;
+  readonly worktree: string;
+}
+
+export interface SynthesisIncompleteData extends JsonObject {
+  readonly mode: string;
+  readonly severity: string;
+  readonly totalIterations: Uint32;
+  readonly activeP0: Uint32;
+  readonly activeP1: Uint32;
+  readonly activeP2: Uint32;
+  readonly dimensionCoverage: number;
+  readonly verdict: string;
+  readonly releaseReadinessState: string;
+  readonly stopReason: string;
+  readonly reason: string;
+  readonly invariantFailures: string[];
+  readonly missingArtifacts: JsonObject[];
+  readonly registryFindingCount: Uint32 | null;
+  readonly iterationFindingCount: Uint32;
+  readonly identifiableFindingCount: Uint32;
+  readonly missingStructuredFindingCount: Uint32;
+  readonly stateParseFailureCount: Uint32;
+}
+
+export interface SynthesisCompleteData extends JsonObject {
+  readonly mode: string;
+  readonly totalIterations: Uint32;
+  readonly activeP0: Uint32;
+  readonly activeP1: Uint32;
+  readonly activeP2: Uint32;
+  readonly dimensionCoverage: number;
+  readonly verdict: string;
+  readonly releaseReadinessState: string;
+  readonly stopReason: string;
+}
+
+// The convergence gate reads this row's `passed` flag, so it stays a separate
+// lightweight stem from the heavier per-finding adjudication record.
+export interface ClaimAdjudicationData extends JsonObject {
+  readonly mode: string;
+  readonly run: Uint32;
+  readonly passed: boolean;
+  readonly activeP0P1: Uint32;
+  readonly missingPackets: string[];
+  readonly reason: string | null;
+  readonly sessionId: string;
+  readonly generation: Uint32;
+}
+
+// A review lane that produced no iteration file still owes the reducer an
+// iteration row, so this payload carries `type` explicitly: the projected row
+// has to stay `type: "iteration"` or the iteration vanishes from every count.
+export interface IterationErrorRecordedData extends JsonObject {
+  readonly type: 'iteration';
+  readonly iteration: Uint32;
+  readonly run: Uint32;
+  readonly mode: string;
+  readonly status: 'error';
+  readonly focus: string;
+  readonly dimensions: string[];
+  readonly filesReviewed: string[];
+  readonly findingsCount: Uint32;
+  readonly findingsSummary: JsonObject;
+  readonly findingsNew: JsonObject;
+  readonly findingDetails: JsonObject[];
+  readonly traceabilityChecks: JsonObject;
+  readonly newFindingsRatio: number;
+  readonly durationMs: Uint32;
+  readonly sessionId: string;
+  readonly generation: Uint32;
+  readonly lineageMode: string;
+}
+
 export const DeepReviewEventStems = Object.freeze([
   'deep_review.run_initialized',
   'deep_review.run_resumed',
@@ -473,6 +560,12 @@ export const DeepReviewEventStems = Object.freeze([
   'deep_review.continuity_save_completed',
   'deep_review.continuity_save_failed',
   'deep_review.run_completed',
+  'deep_review.migration',
+  'deep_review.recovery_baseline',
+  'deep_review.synthesis_incomplete',
+  'deep_review.synthesis_complete',
+  'deep_review.claim_adjudication',
+  'deep_review.iteration_error',
 ] as const);
 
 export type DeepReviewEventStem = typeof DeepReviewEventStems[number];
@@ -504,6 +597,12 @@ export const DeepReviewWireEventTypes = Object.freeze({
   'deep_review.continuity_save_completed': 'deep-review.ledger.continuity-save-completed',
   'deep_review.continuity_save_failed': 'deep-review.ledger.continuity-save-failed',
   'deep_review.run_completed': 'deep-review.ledger.run-completed',
+  'deep_review.migration': 'deep-review.ledger.migration',
+  'deep_review.recovery_baseline': 'deep-review.ledger.recovery-baseline',
+  'deep_review.synthesis_incomplete': 'deep-review.ledger.synthesis-incomplete',
+  'deep_review.synthesis_complete': 'deep-review.ledger.synthesis-complete',
+  'deep_review.claim_adjudication': 'deep-review.ledger.claim-adjudication',
+  'deep_review.iteration_error': 'deep-review.ledger.iteration-error',
 } as const satisfies Readonly<Record<DeepReviewEventStem, string>>);
 
 export type DeepReviewWireEventType =
@@ -536,6 +635,12 @@ export interface DeepReviewPayloadMap {
   readonly 'deep_review.continuity_save_completed': ContinuitySaveCompletedData;
   readonly 'deep_review.continuity_save_failed': ContinuitySaveFailedData;
   readonly 'deep_review.run_completed': RunCompletedData;
+  readonly 'deep_review.migration': MigrationRecordedData;
+  readonly 'deep_review.recovery_baseline': RecoveryBaselineRecordedData;
+  readonly 'deep_review.synthesis_incomplete': SynthesisIncompleteData;
+  readonly 'deep_review.synthesis_complete': SynthesisCompleteData;
+  readonly 'deep_review.claim_adjudication': ClaimAdjudicationData;
+  readonly 'deep_review.iteration_error': IterationErrorRecordedData;
 }
 
 export interface DeepReviewScopeMap {
@@ -565,6 +670,12 @@ export interface DeepReviewScopeMap {
   readonly 'deep_review.continuity_save_completed': DeepReviewBaseScope;
   readonly 'deep_review.continuity_save_failed': DeepReviewBaseScope;
   readonly 'deep_review.run_completed': DeepReviewBaseScope;
+  readonly 'deep_review.migration': DeepReviewBaseScope;
+  readonly 'deep_review.recovery_baseline': DeepReviewBaseScope;
+  readonly 'deep_review.synthesis_incomplete': DeepReviewBaseScope;
+  readonly 'deep_review.synthesis_complete': DeepReviewBaseScope;
+  readonly 'deep_review.claim_adjudication': DeepReviewBaseScope;
+  readonly 'deep_review.iteration_error': DeepReviewBaseScope;
 }
 
 export interface DeepReviewLedgerPayload<
