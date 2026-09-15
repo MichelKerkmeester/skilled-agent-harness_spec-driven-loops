@@ -10,7 +10,7 @@ trigger_phrases:
   - "research event records"
 importance_tier: normal
 contextType: implementation
-version: 1.14.0.3
+version: 1.14.0.4
 ---
 
 # Deep Research JSONL State Reference
@@ -51,8 +51,16 @@ record is durable; exit `2` means it was refused and the refusal names the check
 Writing to `deep-research-state.jsonl` directly bypasses all four of those properties. Two writers
 with no shared ordering can interleave, and a record nobody authorized carries no receipt, so a
 later reader cannot tell an accepted record from an invented one. The file below remains the
-readable surface — six consumers depend on it — but it is now a projection of the ledger rather
-than the place writes land.
+readable surface — six consumers depend on it — but under ledger authority it is a projection of the
+ledger rather than the place writes land.
+
+That split is authority-dependent: while the mode's authority record still names the legacy writer
+(`authority-deep-research.json`, state `legacy_authoritative`), this file is the authoritative target
+and no ledger backs it; the projection relationship begins when the record moves to
+`new_authoritative_reversible` or `new_authoritative_final` with `selectedWriter: "dark"`. The
+registered stems and their producer census live in `state-format.md` section 7, and
+`.opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` fails when the
+census and the emitter surface on disk disagree.
 
 ---
 
@@ -73,6 +81,8 @@ The config record captures the initialized loop contract.
 ```
 
 The full config file also stores executor, lineage, reducer, capability matrix, pause sentinel, archive, and file-protection settings.
+
+A ledger projection rebuilds this row thin — only `type`, `topic`, `maxIterations`, `generation`, and `timestamp` — so a refresh that would replace the row while dropping keys from an existing `type: "config"` first line is refused (`ATTRIBUTION_COLLAPSE`) rather than published. Move or migrate the legacy row deliberately before cutting the mode over.
 
 ---
 

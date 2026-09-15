@@ -292,6 +292,36 @@ describe('deep-review-projections projection surface — findings-registry byte 
     );
   });
 
+  // The flat claim_adjudication row is the gate summary: counts and a passed
+  // flag, no per-finding severity. It is the canonical stem for that shape, so
+  // the typed adjudications array has to stay empty for it rather than fold a
+  // record out of fields the row does not carry.
+  it('does not fold the flat gate-summary adjudication into the typed adjudications array', () => {
+    const surface = createDeepReviewProjectionsProjectionContract();
+    const events = [
+      reviewEvent(
+        'deep_review.claim_adjudication',
+        { runId: 'rev-1', sessionId: 's-1' },
+        {
+          mode: 'review',
+          run: 3,
+          passed: false,
+          activeP0P1: 1,
+          missingPackets: ['find-1'],
+          reason: 'missing_packets',
+          sessionId: 's-1',
+          generation: 1,
+        },
+      ),
+    ];
+    const folded = foldLegacyProjectionSurface(surface, events, fakeHead);
+    const registry = parseJson(folded[0].bytes);
+    expect(registry.adjudications).toEqual([]);
+    expect(registry.findings).toEqual([]);
+    expect(registry.evidence).toEqual([]);
+    expect(registry.lineage).toEqual([]);
+  });
+
   it('produces stable pretty-printed JSON bytes with a trailing newline', () => {
     const surface = createDeepReviewProjectionsProjectionContract();
     const folded = foldLegacyProjectionSurface(surface, registryFixtureEvents(), fakeHead);

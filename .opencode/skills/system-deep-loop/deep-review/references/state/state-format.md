@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.28
+version: 1.11.0.29
 ---
 
 # Deep Review State Format
@@ -408,6 +408,8 @@ Auto-generated summary. Never manually edited.
 
 Every new P0/P1 finding must carry a **typed claim-adjudication packet**. The packet is parsed by `step_post_iteration_claim_adjudication` in the review workflow and its pass/fail result is persisted as a `claim_adjudication` event in `deep-review-state.jsonl`. The next iteration's `step_check_convergence` legal-stop decision tree reads the latest event via `claimAdjudicationGate` (gate `f`), a missing or failed packet vetoes STOP even if every other gate passes. Prose-only adjudication blocks are no longer accepted.
 
+The persisted gate result is the flat `claim_adjudication` event, and it is canonical in its own right. The ledger registers `deep_review.claim_adjudication` for exactly this run-level summary and separately registers `deep_review.claim_adjudication_recorded` for the typed per-finding record (`findingId`, `claimDigest`, `finalSeverity`, `adjudicationOutcome`). They are not aliases: the payloads are closed and disjoint, so a producer holding only gate counts writes the flat stem and never invents the typed fields. Section 11 lists the registered vocabulary and the check that holds it to the emitter surface on disk.
+
 ### Typed Packet Schema (required)
 
 Embed the packet inside the iteration file for each new P0/P1 finding. The orchestrator parses it after evaluation and persists the validation result.
@@ -546,3 +548,30 @@ Severity for `resource-map-coverage` findings is calibrated to the coverage-gate
 | Coverage | Required dimensions and required protocols covered |
 
 All three gates must pass before STOP. Gate failure forces `verdict: "FAIL"` regardless of finding counts.
+
+---
+
+## 11. LEDGER VOCABULARY AND PROJECTION CEILING
+
+### Registered vocabulary
+
+The canonical dotted stems for this mode live in `.opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts`:
+
+- `DeepReviewEventStems` — the registered stems the ledger accepts.
+- `DEEP_REVIEW_STEM_PRODUCERS` — one entry per stem recording whether a mechanical producer emits it today (`spoken`, with the producer files) or why nothing does (`reserved`).
+
+The registry is only honest while it matches the emitter surface. `.opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` scans the workflow assets and runtime scripts and fails (exit 2) when a registered stem has no producer, a spoken stem has no emitter, or a reserved stem is emitted anyway:
+
+```bash
+node .opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs
+```
+
+### Which file is authoritative
+
+`deep-review-state.jsonl` is authoritative while the mode's authority record (`authority-deep-review.json`, state `legacy_authoritative`) names the legacy writer. Once the record moves to `new_authoritative_reversible` or `new_authoritative_final` with `selectedWriter: "dark"`, the ledger is authoritative and this file becomes a projection that the append gateway refreshes after each append.
+
+### What a projection refresh can reproduce
+
+The projection folds only registered stems, and its `run_initialized` arm rebuilds a thin config row: `type`, `topic`, `maxIterations`, `generation`, `timestamp`. A pre-flip config row written by the workflow carries attribution the fold cannot rebuild — `mode`, `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `resource_map_present`, `resource_map`, `sessionId`, `parentSessionId`, `lineageMode`, `continuedFromRun`, `convergenceThreshold`, `antiConvergence`, `stopPolicy`, `executor`, `createdAt`, `specFolder`.
+
+Because losing those keys silently would make the projection look complete while the operator's context is gone, a replace that would drop keys from an existing `type: "config"` first row is refused with `ATTRIBUTION_COLLAPSE` (invariant `no-attribution-loss-on-replace`) before any bytes are written. An operator who hits it either migrates the attribution into a registered `deep_review.run_initialized` payload or intentionally moves the legacy file aside to accept the loss.

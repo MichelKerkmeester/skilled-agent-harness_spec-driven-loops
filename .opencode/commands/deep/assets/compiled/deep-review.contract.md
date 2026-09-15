@@ -52,7 +52,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "0d3acf364ae21c1fc2a924e9daa700fb8e184b7c1f8eb8677dbf487b9c47ee55",
+      "sha256": "40e53a4d1846c4d514c2979ba59c4bdfdc25cd6b9778224f94f16394125f3324",
       "section": "full"
     },
     {

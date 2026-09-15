@@ -1,18 +1,20 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes",
   "description": "Phase 1: close-silent-preflight-holes",
   "keywords": [
     "phase",
     "close-silent-preflight-holes"
   ],
-  "lastUpdated": "2026-09-15T16:29:32.277Z",
+  "lastUpdated": "2026-09-15T18:21:30.595Z",
   "specId": "013",
   "folderSlug": "close-silent-preflight-holes",
   "parentChain": [
     "cli-external-orchestration",
     "071-cli-hermes-creation"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-09-26_19-21__the-stop-hook-was-right-to-block-me-and-the-gap.md"
+  ]
 }

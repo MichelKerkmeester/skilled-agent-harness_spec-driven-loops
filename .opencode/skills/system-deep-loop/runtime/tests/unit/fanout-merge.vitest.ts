@@ -99,7 +99,11 @@ function runSynthesisInvariant(
   const registryPath = join(artifactDir, 'findings-registry.json');
   const researchPath = join(artifactDir, 'research.md');
   const dashboardPath = join(artifactDir, 'deep-research-dashboard.md');
-  writeFileSync(stateLogPath, `${JSON.stringify({ type: 'config', mode: 'research' })}\n`, 'utf8');
+  // The state log is refreshed as a projection of the ledger, so the seeded
+  // config row must carry only keys a refresh reproduces. `mode` is not a
+  // research config key and a replace that dropped it would be refused as an
+  // attribution collapse before the synthesis event could land.
+  writeFileSync(stateLogPath, `${JSON.stringify({ type: 'config' })}\n`, 'utf8');
   writeFileSync(
     registryPath,
     `${JSON.stringify({ keyFindings: registryFindings.map((title, index) => ({ id: `F${index + 1}`, title })) })}\n`,

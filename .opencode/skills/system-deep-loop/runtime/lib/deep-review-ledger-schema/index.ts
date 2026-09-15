@@ -14,6 +14,7 @@ export {
   prepareDeepReviewEvent,
 } from './deep-review-ledger-schema.js';
 export {
+  DEEP_REVIEW_STEM_PRODUCERS,
   DeepReviewEventStems,
   DeepReviewWireEventTypes,
 } from './deep-review-ledger-types.js';

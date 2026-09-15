@@ -414,6 +414,47 @@ export const DeepResearchEventStems = Object.freeze([
 
 export type DeepResearchEventStem = typeof DeepResearchEventStems[number];
 
+// A registration is only honest when every stem either has a mechanical
+// producer or is explicitly reserved. `spoken` names the files that emit the
+// stem; `reserved` records why nothing emits it yet and what would earn a
+// producer. The stem-producer checker holds this table to the emitter surface
+// on disk and fails when the two disagree.
+export type DeepResearchStemProducerStatus =
+  | { readonly status: 'spoken'; readonly producers: readonly string[] }
+  | { readonly status: 'reserved'; readonly reason: string };
+
+export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
+  'deep_research.run_initialized': { status: 'reserved', reason: 'No writer emits it today: runs open with the flat config row. The run-open step would speak it once initialization appends its charter and executor fingerprint.' },
+  'deep_research.run_resumed': { status: 'reserved', reason: 'No writer emits it today: resume rebuilds the flat config and state in place. The resume step would speak it once a resumed run records its compatibility decision as an event.' },
+  'deep_research.run_restarted': { status: 'reserved', reason: 'No writer emits it today: restart rebinds the flat config in place. The restart step would speak it once the archived lineage and restart reason are appended.' },
+  'deep_research.question_registered': { status: 'reserved', reason: 'No writer emits it today: questions are flat rows in the state log. A question step would speak it once registration appends its dependency and source-class contract.' },
+  'deep_research.branch_planned': { status: 'reserved', reason: 'No writer emits it today: branch plans live in strategy prose. A branch step would speak it once a planned branch and its budget are appended.' },
+  'deep_research.branch_selected': { status: 'reserved', reason: 'No writer emits it today: selection is a strategy update. A branch step would speak it once the selected branch and its rationale are appended.' },
+  'deep_research.iteration_started': { status: 'reserved', reason: 'No writer emits it today: iteration opening is a flat row. An iteration step would speak it once a pass opens with its focus ref.' },
+  'deep_research.iteration_completed': { status: 'reserved', reason: 'No writer emits it today: completion is a flat row folded by the reducer. An iteration step would speak it once completion appends its ratio and ruled-out approaches.' },
+  'deep_research.source_captured': { status: 'reserved', reason: 'No writer emits it today: captured sources live in the source log. A source step would speak it once capture appends its version and digests.' },
+  'deep_research.evidence_admission_decided': { status: 'reserved', reason: 'No writer emits it today: admission is reducer-derived. An admission step would speak it once an admitted or rejected source is appended with its reasons.' },
+  'deep_research.claim_asserted': { status: 'reserved', reason: 'No writer emits it today: claims live in the evidence registry. A claim step would speak it once assertion appends its scope and evidence refs.' },
+  'deep_research.claim_relation_recorded': { status: 'reserved', reason: 'No writer emits it today: relations are reducer-derived. A claim step would speak it once a support or contradiction link is appended.' },
+  'deep_research.claim_superseded': { status: 'reserved', reason: 'No writer emits it today: supersession is computed from claim versions. A claim step would speak it once a superseding version is appended.' },
+  'deep_research.gap_detected': { status: 'reserved', reason: 'No writer emits it today: gaps live in strategy prose. A gap step would speak it once detection appends the missing coverage it found.' },
+  'deep_research.next_focus_selected': { status: 'reserved', reason: 'No writer emits it today: next focus is computed into the strategy file. A focus step would speak it once selection appends its candidates and choice.' },
+  'deep_research.convergence_evaluated': { status: 'reserved', reason: 'No writer emits it today: convergence is recomputed from flat rows. A convergence step would speak it once the decision is appended rather than inferred.' },
+  'deep_research.convergence_blocked': { status: 'reserved', reason: 'No writer emits it today: blocked convergence is a flat event. A convergence step would speak it once blocker ids and the incomplete reason are appended.' },
+  'deep_research.synthesis_started': { status: 'reserved', reason: 'No writer emits it today: synthesis is a workflow phase. The synthesis step would speak it once the report phase opens with its source range.' },
+  'deep_research.synthesis_committed': { status: 'reserved', reason: 'No writer emits it today: the research report is written as a file. The synthesis step would speak it once the report digest is appended.' },
+  'deep_research.memory_save_requested': { status: 'reserved', reason: 'No writer emits it today: continuity saves route through the save command. The save step would speak it once a request is appended for replay.' },
+  'deep_research.memory_save_completed': { status: 'reserved', reason: 'No writer emits it today: the save command writes its own artifacts. The save step would speak it once completion records its persistence receipts.' },
+  'deep_research.memory_save_failed': { status: 'reserved', reason: 'No writer emits it today: a failed save surfaces to the operator directly. The save step would speak it once failure records its retryable reason code.' },
+  'deep_research.run_completed': { status: 'reserved', reason: 'No writer emits it today: closure is the reducer inference from flat rows. The finalization step would speak it once terminal status and counts are appended.' },
+  'deep_research.run_now_requested': { status: 'reserved', reason: 'No writer emits it today: the run-now handshake writes flat rows. The control step would speak it once a request is appended through the gateway.' },
+  'deep_research.run_now_rejected': { status: 'reserved', reason: 'No writer emits it today: rejection is a flat row from the control step. The control step would speak it once a rejected request is appended with its reason.' },
+  'deep_research.run_now_accepted': { status: 'reserved', reason: 'No writer emits it today: acceptance is a flat row from the control step. The control step would speak it once an accepted request is appended with its delay.' },
+  'deep_research.run_now_restored': { status: 'spoken', producers: ['.opencode/commands/deep/assets/deep-research-auto.yaml'] },
+  'deep_research.synthesis_incomplete': { status: 'reserved', reason: 'No writer emits it today: incomplete synthesis is reported as flat rows and artifacts. The synthesis step would speak it once the incomplete verdict is appended.' },
+  'deep_research.synthesis_complete': { status: 'reserved', reason: 'No writer emits it today: the synthesis summary is reducer-derived. The synthesis step would speak it once the verdict and stop reason are appended.' },
+} as const satisfies Readonly<Record<DeepResearchEventStem, DeepResearchStemProducerStatus>>);
+
 export const DeepResearchWireEventTypes = Object.freeze({
   'deep_research.run_initialized': 'deep-research.ledger.run-initialized',
   'deep_research.run_resumed': 'deep-research.ledger.run-resumed',

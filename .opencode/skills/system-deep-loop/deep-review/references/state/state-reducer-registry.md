@@ -8,7 +8,7 @@ trigger_phrases:
   - "review state reconstruction"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.4
+version: 1.11.0.5
 ---
 
 # Deep Review State Reducer And Registry
@@ -35,6 +35,8 @@ The reducer turns append-only review evidence into the current findings registry
 | Review report | Synthesis | Final handoff |
 
 No agent should hand-edit reducer-owned derived state as the authoritative fix. Repair JSONL or rerun the reducer.
+
+Under ledger authority the JSONL the reducer reads is a projection of the ledger, bounded by the registered stems; the registered vocabulary and the producer census are in `state-format.md` section 11, and `.opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` holds the census to the emitter surface on disk.
 
 ---
 

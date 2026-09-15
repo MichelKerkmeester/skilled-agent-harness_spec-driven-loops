@@ -14,6 +14,7 @@ export {
   prepareDeepResearchEvent,
 } from './deep-research-ledger-schema.js';
 export {
+  DEEP_RESEARCH_STEM_PRODUCERS,
   DeepResearchEventStems,
   DeepResearchWireEventTypes,
 } from './deep-research-ledger-types.js';

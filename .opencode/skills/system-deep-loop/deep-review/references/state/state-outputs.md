@@ -8,7 +8,7 @@ trigger_phrases:
   - "review report output"
 importance_tier: normal
 contextType: implementation
-version: 1.11.0.3
+version: 1.11.0.4
 ---
 
 # Deep Review State Outputs
@@ -35,6 +35,8 @@ Deep-review outputs are audit artifacts. Iteration agents write evidence, the re
 | `iterations/iteration-NNN.md` | Iteration agent | Write-once | Detailed findings for one pass |
 | `review-report.md` | Synthesis | Final output | Findings-first release-readiness report |
 | `resource-map.md` | Synthesis | Final or disabled | Converged delta evidence map |
+
+While the mode's authority record names the legacy writer, the JSONL log is the file the workflow appends to and no ledger backs it. Under ledger authority the append gateway refreshes it as a projection, and a refresh that would drop keys from an existing config row is refused (`ATTRIBUTION_COLLAPSE`) rather than published. The registered ledger vocabulary, the producer census, and what a projection can and cannot reproduce are in `state-format.md` section 11.
 
 ---
 

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-dispatch-preflight-parity-research"
+    packet_pointer: "cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research"
     last_updated_at: "2026-09-15T15:46:31Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
@@ -48,18 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 1: dispatch-preflight-parity-research
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Ten iterations on the dispatch preflight, run on DeepSeek V4.1 Flash at max through cli-pi with the stop policy set to max-iterations. The synthesis at `research/research.md` carries the severity table for all 23 declared rules, the defect table, the Cursor and OpenCode parity comparison, the ranked recommendations and the phase decomposition that phases 013 to 016 were built from. Two severity-5 findings came out of it that were not known beforehand: the codex dispatch shape matched no real codex command, leaving that runtime unguarded, and the fan-out runner never set the Hermes project-plugin opt-in, leaving every repo guard inert in the runs they were built for.
 <!-- /ANCHOR:what-built -->
 
 ---
