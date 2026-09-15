@@ -2102,6 +2102,9 @@ function buildCodexLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 }
 
 function buildClaudeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  if (!isClaudeBinaryAvailable(options.env || process.env)) {
+    throw inputError('cli-claude-code executor unavailable: command -v claude failed');
+  }
   const model = lineage.model || 'claude-opus-4-8';
   const args = [
     '-p',
@@ -2198,6 +2201,9 @@ function pinReasoningEffortForModel(model, reasoningEffort) {
 }
 
 function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  if (!isOpencodeBinaryAvailable(options.env || process.env)) {
+    throw inputError('cli-opencode executor unavailable: command -v opencode failed');
+  }
   const model = lineage.model || 'anthropic/claude-opus-4-8';
   const args = [
     'run',
@@ -2621,6 +2627,11 @@ const HERMES_SPEC_FOLDER_ENV = 'HERMES_SPEC_FOLDER';
 // Hermes reads a repo's plugins only when this opt-in is set, so every marker the plugin
 // consumes is inert without it.
 const HERMES_PROJECT_PLUGINS_ENV = 'HERMES_ENABLE_PROJECT_PLUGINS';
+// The plugin binds the session persona from this name; the mirrored skill carries its text.
+const HERMES_PERSONA_ENV = 'HERMES_AGENT_PERSONA';
+const HERMES_AGENT_SKILL_PREFIX = 'agent-';
+// Same grammar the repo plugin validates against, so a name it would reject never ships.
+const HERMES_PERSONA_NAME = /^[a-z0-9][a-z0-9-]{0,63}$/;
 // Names that may never enter a leaf's toolset list through the MCP door: see the toolset
 // comment above for `delegation` and `memory`; `clarify` waits on a user who is not there.
 const HERMES_MCP_RESERVED_NAMES = new Set(['delegation', 'memory', 'clarify']);
@@ -2687,6 +2698,17 @@ function buildHermesLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   if (resolvedSandbox !== 'read-only') {
     args.push('--yolo');
   }
+  // Hermes has no agent flag, so a persona reaches a session two ways at once: the mirrored
+  // skill carries the whole text and the plugin's persona section binds the name. Preloading
+  // and --ignore-rules coexist: a live A/B showed the preload surviving the flag, so the leaf
+  // gets the persona without the rules files, memories or session search coming with it.
+  const persona = typeof lineage.agentPersona === 'string' ? lineage.agentPersona.trim() : '';
+  if (persona) {
+    if (!HERMES_PERSONA_NAME.test(persona)) {
+      throw inputError(`cli-hermes agentPersona '${persona}' is not a valid agent name`);
+    }
+    args.push('-s', `${HERMES_AGENT_SKILL_PREFIX}${persona}`);
+  }
   const hermesEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort);
   if (hermesEffort) {
     if (!HERMES_REASONING_LEVELS.has(hermesEffort)) {
@@ -2739,6 +2761,24 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
 
 function isCodexBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v codex >/dev/null 2>&1'], {
+    env,
+    stdio: 'ignore',
+  });
+  return result.status === 0;
+}
+
+// Claude and OpenCode were the only two kinds spawning without this check, so an absent
+// binary surfaced as a spawn failure mid-lineage rather than a refusal before the run.
+function isClaudeBinaryAvailable(env = process.env) {
+  const result = spawnSync('/bin/sh', ['-c', 'command -v claude >/dev/null 2>&1'], {
+    env,
+    stdio: 'ignore',
+  });
+  return result.status === 0;
+}
+
+function isOpencodeBinaryAvailable(env = process.env) {
+  const result = spawnSync('/bin/sh', ['-c', 'command -v opencode >/dev/null 2>&1'], {
     env,
     stdio: 'ignore',
   });
@@ -3274,6 +3314,9 @@ async function main() {
           // never loads, and the two markers below reach a session that cannot read them.
           [HERMES_PROJECT_PLUGINS_ENV]: '1',
           [HERMES_SPEC_FOLDER_ENV]: specFolder,
+          ...(typeof lineage.agentPersona === 'string' && lineage.agentPersona.trim()
+            ? { [HERMES_PERSONA_ENV]: lineage.agentPersona.trim() }
+            : {}),
           ...(resolveSandboxMode(lineage.sandboxMode) === 'read-only' ? { [HERMES_READ_ONLY_ENV]: '1' } : {}),
         } : {}),
       };

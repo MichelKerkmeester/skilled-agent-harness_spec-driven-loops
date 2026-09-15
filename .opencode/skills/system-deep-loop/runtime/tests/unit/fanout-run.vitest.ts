@@ -1651,6 +1651,28 @@ describe('fanout-run.cjs — cli-hermes adapter', () => {
   // the pinned provider name, then the model.
   const prefix = (model: string) => ['chat', '-Q', '--oneshot', '--query-file', '-', '--provider', 'llmgateway', '--model', model, '--ignore-rules', '--source', 'tool', '--max-turns', '200'];
 
+  // Hermes has no agent flag, so the fan-out could not run a lineage as a persona at all:
+  // the plugin's persona section and the mirrored agent- skills both existed with no caller.
+  it('preloads the mirrored agent skill when a lineage names a persona', () => {
+    const opts = withStub('persona');
+    const args = (lineage: Record<string, unknown>) => (buildLineageCommand(
+      lineage, 'p', 'workspace-write', 'default', opts,
+    ) as { args: string[] }).args.join(' ');
+
+    expect(args({ kind: 'cli-hermes', model: 'glm-5.3-flash', agentPersona: 'markdown' }))
+      .toContain('-s agent-markdown');
+    // Absent persona adds no preload, so an ordinary lineage is unchanged.
+    expect(args({ kind: 'cli-hermes', model: 'glm-5.3-flash' })).not.toContain('-s agent-');
+    // The preload and --ignore-rules travel together: the A/B showed the preload survives it.
+    expect(args({ kind: 'cli-hermes', model: 'glm-5.3-flash', agentPersona: 'markdown' }))
+      .toContain('--ignore-rules');
+    // A name the repo plugin would reject never ships.
+    expect(() => buildLineageCommand(
+      { kind: 'cli-hermes', model: 'glm-5.3-flash', agentPersona: 'Bad Name!' },
+      'p', 'workspace-write', 'default', opts,
+    )).toThrow(/is not a valid agent name/);
+  });
+
   it('fails closed before command construction when hermes is absent', () => {
     const env = { ...process.env, PATH: makeTempDir('fanout-run-no-hermes-') };
     expect(isHermesBinaryAvailable(env)).toBe(false);

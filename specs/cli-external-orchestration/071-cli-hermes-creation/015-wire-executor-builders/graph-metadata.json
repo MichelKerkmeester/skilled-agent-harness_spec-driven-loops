@@ -45,7 +45,10 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
     ],
     "entities": [
       {
@@ -79,6 +82,24 @@
         "source": "derived"
       },
       {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -109,7 +130,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The fan-out builder is the only caller that cannot get a flag wrong, so anything it fails to set is unreachable rather than merely risky",
     "created_at": "2026-09-15T16:29:33Z",
-    "last_save_at": "2026-09-15T16:43:01.283Z",
+    "last_save_at": "2026-09-15T17:42:58.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +208,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9cd7737661fd93c90f15de9d7048376560076985f9b8ded70760454fbdb7bb5",
+    "source_fingerprint": "sha256:3ba3aaa073a68e37feb06d6e8bc66e118b444df855f282839d21fe58cd8c7a23",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f1048936dbcf7b8de8b9e52e5d074ec916823bf8147938207cec69aa4cd4fe5b",
+      "spec.md": "a4d4e447f69f78af12a3b2e8f0a661271af625fcbffe6e30e044ae7b797439d7",
       "plan.md": "82373435178e42beae8ad222ae25f7e98802469662e498fc34b7062468de5278",
       "tasks.md": "cc6ff99a299234d33f919c6cf9245714e497686dc809378edc9edacd7a826318",
       "implementation-summary.md": "f17b63ba6649d682c7453fe441c6331bd47cb23feae123c65bf83209e18d67e8"
