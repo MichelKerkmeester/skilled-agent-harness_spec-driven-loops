@@ -122,6 +122,7 @@ Resolve the agent `.md` from the ACTIVE runtime's agent directory:
 | Cursor | `.cursor/agents/<name>.md` |
 | Pi | `.pi/agents/<name>.md` |
 | Devin | `.devin/agents/<name>/AGENT.md` |
+| Hermes | `.hermes/agents/<name>.md`, mirrored as the skill `agent-<name>` |
 
 Map each subtask to the RIGHT persona, not one default: `code → code` · `review → review` · `design → design` · research → `deep-research` · exploration/context → `context` · debugging → `debug` · docs/markdown → `markdown` · planning/architecture → `ai-council` · coordination → `orchestrate`.
 
@@ -137,7 +138,7 @@ Attach the resolved persona via the mode's native surface where the CLI loads it
 | `cli-opencode` | PARTIAL: route `--agent orchestrate` → Task subagent (`mode: subagent` personas are rejected at top-level `--agent`). Else INLINE. |
 | `cli-codex` | INLINE (mandatory): `.codex/agents/*.toml` is TUI-only; `codex exec` / `-p` load config, not a persona. |
 | `cli-pi` | INLINE (mandatory): core Pi has no persona surface on `pi -p`. |
-| `cli-hermes` | INLINE (mandatory): a headless `hermes chat` has no persona surface; profiles are whole-home islands and `delegate_task` children receive goal and context only. |
+| `cli-hermes` | SKILL + PLUGIN: `-s agent-<name>` preloads the mirrored persona skill and `HERMES_AGENT_PERSONA=<name>` (repo plugin) binds it for the session. INLINE otherwise: a headless `hermes chat` has no persona flag; profiles are whole-home islands. |
 | fanout runtime | INLINE into the composed prompt string (`fanout-run.cjs` has no persona slot). |
 
 ### 6.3 Inline block format

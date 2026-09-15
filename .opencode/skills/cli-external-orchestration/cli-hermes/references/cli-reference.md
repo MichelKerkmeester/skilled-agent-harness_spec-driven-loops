@@ -105,6 +105,7 @@ Observed 2026-09-14, correcting the source-read claim the research carried: a he
 | `SPECKIT_HERMES_STATE_DIR` | The fan-out runner | Per-lineage detection hint, never a home relocation |
 | `SPECKIT_HERMES_READ_ONLY` | The fan-out runner, on a read-only lineage | The repo plugin refuses `write_file`, `patch`, `terminal`, `process_manage` and `execute_code` |
 | `HERMES_SPEC_FOLDER` | The fan-out runner, or a caller | Repo-relative packet path; the repo plugin renders that packet's goal slice into the session prompt |
+| `HERMES_AGENT_PERSONA` | A caller | Agent name; the repo plugin binds it as the session persona and points at the preloaded skill `agent-<name>` (pass `-s agent-<name>`; a prompt section is capped at 4000 characters, so the full persona travels as the skill) |
 
 Hermes loads `~/.hermes/.env` itself, so a key kept there needs no pass-through from the dispatching shell.
 

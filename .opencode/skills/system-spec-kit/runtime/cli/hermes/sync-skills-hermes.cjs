@@ -19,6 +19,11 @@ const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
 const REPO_ROOT = findRepoRoot(__dirname);
 const SOURCE_DIR = process.env.HERMES_SKILLS_SOURCE_DIR || path.join(REPO_ROOT, '.opencode', 'skills');
 const OUTPUT_DIR = process.env.HERMES_SKILLS_OUTPUT_DIR || path.join(REPO_ROOT, '.hermes', 'skills');
+// Hermes has no flag that loads an agent file, and a plugin prompt section is capped at 4000
+// characters, so each shared agent persona is also mirrored as a preloadable skill named
+// `agent-<name>`: `-s agent-<name>` carries the whole persona into the session.
+const AGENTS_DIR = process.env.HERMES_AGENTS_SOURCE_DIR || path.join(REPO_ROOT, '.claude', 'agents');
+const AGENT_SKILL_PREFIX = 'agent-';
 // Hermes scans every project skill directory with its static security scanner at session start,
 // so the generated folder holds one markdown file per skill and nothing the scanner would walk:
 // no scripts, no node_modules, no references. The canonical directory is named in the body.
@@ -63,7 +68,7 @@ function splitFrontmatter(content) {
 function frontmatterName(frontmatter, fallback) {
   const line = (frontmatter || '').split(/\r?\n/).find((l) => /^name:\s*/.test(l));
   if (!line) return fallback;
-  return line.replace(/^name:\s*/, '').trim().replace(/^["']|["']$/g, '') || fallback;
+  return line.replace(/^name:\s*/, '').trim().replace(/^(["'])(.*)\1$/, '$2') || fallback;
 }
 
 function renderSkill(relativePath, content) {
@@ -81,6 +86,35 @@ function renderSkill(relativePath, content) {
   ].join('\n');
   const fm = frontmatter === null ? `name: ${name}\ndescription: "${name} skill"` : frontmatter;
   return { name, text: `---\n${fm}\n---\n\n${header}${body}` };
+}
+
+function listAgentFiles(directory) {
+  if (!fs.existsSync(directory)) return [];
+  return fs.readdirSync(directory, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'README.md')
+    .map((entry) => entry.name)
+    .sort();
+}
+
+function frontmatterField(frontmatter, key) {
+  const line = (frontmatter || '').split(/\r?\n/).find((l) => new RegExp(`^${key}:\\s*`).test(l));
+  if (!line) return '';
+  return line.replace(new RegExp(`^${key}:\\s*`), '').trim().replace(/^(["'])(.*)\1$/, '$2');
+}
+
+function renderAgent(fileName, content) {
+  const { frontmatter, body } = splitFrontmatter(content);
+  const stem = fileName.replace(/\.md$/, '');
+  const name = `${AGENT_SKILL_PREFIX}${stem}`;
+  const description = frontmatterField(frontmatter, 'description') || `${stem} agent persona`;
+  const header = [
+    GENERATED_MARKER,
+    `> Agent persona \`${stem}\` from \`.hermes/agents/${fileName}\` (the shared agent files), mirrored as a`,
+    `> preloadable skill because Hermes has no agent flag. Preload with \`-s ${name}\` and adopt it for the session.`,
+    '',
+  ].join('\n');
+  const escaped = description.replace(/"/g, '\\"');
+  return { name, text: `---\nname: ${name}\ndescription: "${escaped}"\n---\n\n${header}${body}` };
 }
 
 function listOutputDirs() {
@@ -112,6 +146,14 @@ function buildExpected() {
       throw new Error(`duplicate skill name '${name}': ${expected.get(name).source} and ${relativePath}`);
     }
     expected.set(name, { source: relativePath, text });
+  }
+  for (const fileName of listAgentFiles(AGENTS_DIR)) {
+    const content = fs.readFileSync(path.join(AGENTS_DIR, fileName), 'utf8');
+    const { name, text } = renderAgent(fileName, content);
+    if (expected.has(name)) {
+      throw new Error(`agent skill name '${name}' collides with a skill`);
+    }
+    expected.set(name, { source: `agents/${fileName}`, text });
   }
   return expected;
 }
@@ -171,4 +213,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { sync, renderSkill, listSkillFiles, buildExpected };
+module.exports = { sync, renderSkill, renderAgent, listSkillFiles, listAgentFiles, buildExpected };

@@ -1,6 +1,6 @@
 ---
 title: "Hermes Runtime Folder And Prompt Sync"
-description: "The repository's `.hermes/` folder carries one generated markdown-only SKILL.md copy per canonical skill, generated command-prompt stubs, one project plugin and a sync manifest, and nothing that pretends to configure Hermes."
+description: "The repository's `.hermes/` folder carries an agents link, one generated markdown-only SKILL.md copy per canonical skill and per shared agent, generated command-prompt stubs, one project plugin and a sync manifest, and nothing that pretends to configure Hermes."
 trigger_phrases:
   - "hermes runtime folder and prompt sync"
   - "sync-prompts-hermes"
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-The repository's `.hermes/` folder carries one generated markdown-only SKILL.md copy per canonical skill, generated command-prompt stubs, one project plugin and a sync manifest, and nothing that pretends to configure Hermes.
+The repository's `.hermes/` folder carries an agents link, one generated markdown-only SKILL.md copy per canonical skill and per shared agent, generated command-prompt stubs, one project plugin and a sync manifest, and nothing that pretends to configure Hermes.
 
 The folder is deliberately smaller than its siblings for the other runtimes, because Hermes reads far less from a project than they do.
 

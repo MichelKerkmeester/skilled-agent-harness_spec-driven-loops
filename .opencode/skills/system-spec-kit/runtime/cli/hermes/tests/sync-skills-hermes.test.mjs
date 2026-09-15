@@ -19,17 +19,21 @@ function fixture() {
   mkdirSync(join(source, 'hub', 'mode-a', 'scripts'), { recursive: true });
   mkdirSync(join(source, 'hub', 'node_modules', 'dep'), { recursive: true });
   mkdirSync(join(source, 'plain'), { recursive: true });
+  const agents = join(root, 'agents');
+  mkdirSync(agents, { recursive: true });
+  writeFileSync(join(agents, 'markdown.md'), '---\nname: markdown\ndescription: Docs "executor"\ntools: Read\n---\n\n# The Markdown Agent\n');
+  writeFileSync(join(agents, 'README.txt'), 'not an agent');
   writeFileSync(join(source, 'hub', 'SKILL.md'), '---\nname: hub\ndescription: "Hub"\n---\n\n# Hub\n\nbody\n');
   writeFileSync(join(source, 'hub', 'mode-a', 'SKILL.md'), '---\nname: mode-a\ndescription: "Mode A"\n---\n\n# Mode A\n');
   writeFileSync(join(source, 'hub', 'mode-a', 'scripts', 'x.sh'), 'rm -rf /tmp/x\n');
   writeFileSync(join(source, 'hub', 'node_modules', 'dep', 'SKILL.md'), '---\nname: dep\n---\n');
   writeFileSync(join(source, 'plain', 'SKILL.md'), '# No frontmatter\n');
-  return { root, source, output };
+  return { root, source, output, agents };
 }
 
 function run(env, args = []) {
   return execFileSync(process.execPath, [SCRIPT, ...args], {
-    env: { ...process.env, HERMES_SKILLS_SOURCE_DIR: env.source, HERMES_SKILLS_OUTPUT_DIR: env.output },
+    env: { ...process.env, HERMES_SKILLS_SOURCE_DIR: env.source, HERMES_SKILLS_OUTPUT_DIR: env.output, HERMES_AGENTS_SOURCE_DIR: env.agents },
     encoding: 'utf8',
   });
 }
@@ -38,7 +42,13 @@ test('writes one markdown-only folder per SKILL.md, flat by frontmatter name, sk
   const env = fixture();
   try {
     const out = run(env);
-    assert.match(out, /Wrote 3 of 3/);
+    assert.match(out, /Wrote 4 of 4/);
+    const agent = readFileSync(join(env.output, 'agent-markdown', 'SKILL.md'), 'utf8');
+    assert.match(agent, /^---\nname: agent-markdown\n/);
+    assert.ok(agent.includes('description: "Docs \\"executor\\""'), agent.slice(0, 80));
+    assert.match(agent, /Preload with `-s agent-markdown`/);
+    assert.match(agent, /# The Markdown Agent/);
+    assert.ok(!agent.includes('tools: Read'));
     for (const name of ['hub', 'mode-a', 'plain']) {
       assert.ok(existsSync(join(env.output, name, 'SKILL.md')), name);
     }
@@ -59,7 +69,7 @@ test('--check passes when in sync, fails on drift, and write mode prunes stale f
   const env = fixture();
   try {
     run(env);
-    assert.match(run(env, ['--check']), /PASS: 3/);
+    assert.match(run(env, ['--check']), /PASS: 4/);
     mkdirSync(join(env.output, 'stale'), { recursive: true });
     writeFileSync(join(env.output, 'stale', 'SKILL.md'), 'x');
     rmSync(join(env.output, 'plain'), { recursive: true, force: true });
@@ -74,7 +84,7 @@ test('--check passes when in sync, fails on drift, and write mode prunes stale f
     run(env);
     assert.ok(!existsSync(join(env.output, 'stale')));
     assert.ok(!lstatSync(join(env.output, 'plain')).isSymbolicLink());
-    assert.match(run(env, ['--check']), /PASS: 3/);
+    assert.match(run(env, ['--check']), /PASS: 4/);
   } finally {
     rmSync(env.root, { recursive: true, force: true });
   }

@@ -28,7 +28,7 @@ class FakeContext:
     def register_hook(self, name, fn):
         self.hooks[name] = fn
 
-    def register_system_prompt_section(self, name, fn):
+    def register_system_prompt_section(self, name, fn, max_chars=None):
         self.sections[name] = fn
 
 
@@ -42,7 +42,7 @@ class RepoGuardsTests(unittest.TestCase):
         self.assertEqual(
             set(self.ctx.hooks), {"pre_tool_call", "transform_tool_result", "pre_verify", "on_session_end"},
         )
-        self.assertIn("repo-guards-session-context", self.ctx.sections)
+        self.assertEqual(set(self.ctx.sections), {"repo-guards-session-context", "repo-guards-persona", "repo-guards-goal"})
 
     def test_self_dispatch_is_blocked(self):
         out = self.plugin.pre_tool_call("terminal", {"command": 'hermes chat -Q --oneshot -q "x"'})
@@ -84,7 +84,7 @@ class RepoGuardsTests(unittest.TestCase):
         self.assertIn("Bound packet: specs/cli-external-orchestration/071-cli-hermes-creation", text)
         self.assertIn("Objective:", text)
         self.assertNotIn("_memory:", text)
-        self.assertLessEqual(len(text), self.plugin.GOAL_SLICE_MAX_CHARS + 200)
+        self.assertLessEqual(len(text), 4000)
 
     def test_goal_slice_is_empty_outside_the_repo_or_without_a_packet(self):
         with mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": "../../etc"}):
@@ -93,13 +93,28 @@ class RepoGuardsTests(unittest.TestCase):
             os.environ.pop("HERMES_SPEC_FOLDER", None)
             self.assertEqual(self.plugin._goal_slice(), "")
 
+    def test_persona_comes_from_the_agents_directory(self):
+        with mock.patch.dict(os.environ, {"HERMES_AGENT_PERSONA": "markdown"}):
+            text = self.plugin._persona()
+        self.assertIn("Persona: markdown", text)
+        self.assertIn("-s agent-markdown", text)
+        self.assertLess(len(text), 4000)
+        for bad in ("../markdown", "Nope", "does-not-exist"):
+            with mock.patch.dict(os.environ, {"HERMES_AGENT_PERSONA": bad}):
+                self.assertEqual(self.plugin._persona(), "", bad)
+
     def test_session_section_carries_the_goal_and_the_read_only_notice(self):
         with mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {"additionalContext": "Session context received."}}), \
-             mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": "specs/cli-external-orchestration/071-cli-hermes-creation", "SPECKIT_HERMES_READ_ONLY": "1"}):
-            section = self.ctx.sections["repo-guards-session-context"]({"session_id": "s"})
-        self.assertIn("Session context received.", section)
-        self.assertIn("Bound packet:", section)
-        self.assertIn("read-only", section)
+             mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": "specs/cli-external-orchestration/071-cli-hermes-creation", "SPECKIT_HERMES_READ_ONLY": "1", "HERMES_AGENT_PERSONA": "markdown"}):
+            context = self.ctx.sections["repo-guards-session-context"]({"session_id": "s"})
+            persona = self.ctx.sections["repo-guards-persona"]({"session_id": "s"})
+            goal = self.ctx.sections["repo-guards-goal"]({"session_id": "s"})
+        self.assertIn("Session context received.", context)
+        self.assertIn("read-only", context)
+        self.assertIn("Persona: markdown", persona)
+        self.assertIn("Bound packet:", goal)
+        for section in (context, persona, goal):
+            self.assertLessEqual(len(section), 4000)
 
     def test_every_hook_fails_open(self):
         with mock.patch.object(self.plugin, "_run_core", side_effect=RuntimeError("boom")):
