@@ -752,7 +752,14 @@ function retainIterationRecords(records) {
 // preferring the copy that carries the gateway's route-proof fields and the first
 // copy when neither does. A duplicate iteration file on disk stays a violation:
 // that is an extra artifact, not one artifact recorded twice.
-function forcedDepthIterationViolation({ diskNumbers, records, cap }) {
+//
+// A log that names its iteration under another key is a different failure, and the
+// quieter one: those records collapse to nothing, so the set check below passes
+// vacuously and a lane with a full set of iteration files and not one usable record
+// is reported complete. Zero usable records is therefore a violation in its own
+// right — the state log has to prove the depth the artifact files suggest, and a log
+// that never numbered an iteration proves nothing about it.
+function forcedDepthIterationViolation({ diskNumbers, records, cap, stateLogPath }) {
   const expected = Array.from({ length: cap }, (_, index) => index + 1);
   const describe = (numbers) => (numbers.length === 0 ? 'none' : numbers.join(','));
   const unique = (numbers) => [...new Set(numbers)].sort((left, right) => left - right);
@@ -768,8 +775,15 @@ function forcedDepthIterationViolation({ diskNumbers, records, cap }) {
       return `expected iteration files 1..${cap}, got ${describe(diskNumbers)}`;
     }
   }
+  const stateLog = stateLogPath || 'the lineage state log';
+  const iterationRecords = (records || []).filter((record) => record && record.type === 'iteration');
   const recorded = [...retainIterationRecords(records).keys()];
-  if (recorded.length > 0 && !sameSet(recorded)) {
+  if (recorded.length === 0) {
+    return iterationRecords.length > 0
+      ? `no usable iteration records in ${stateLog}: ${iterationRecords.length} iteration records carry no integer iteration`
+      : `no usable iteration records in ${stateLog}: it holds no iteration record at all`;
+  }
+  if (!sameSet(recorded)) {
     return `expected state records for iterations 1..${cap}, got ${describe(unique(recorded))}`;
   }
   return null;
@@ -953,6 +967,7 @@ function completionFromArtifacts({ lineageDir, lineage, records, loopType }) {
     diskNumbers: diskNumbers.length > 0 ? diskNumbers : null,
     records,
     cap: lineage.iterations,
+    stateLogPath: requiredLineageStateLogPath(loopType, dir),
   });
   if (violation) return { complete: false, reason: violation };
   return { complete: true, reason: '' };
@@ -1003,6 +1018,8 @@ function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPo
     diskNumbers: lineageDir ? iterationNumbersOnDisk(lineageDir) : null,
     records,
     cap: lineage.iterations,
+    stateLogPath: stateRead.statePath
+      || (lineageDir ? requiredLineageStateLogPath(loopType, lineageDir) : null),
   });
   if (setViolation) return setViolation;
   if (!isMaxIterationsStopReason(synthesis.stopReason)) {

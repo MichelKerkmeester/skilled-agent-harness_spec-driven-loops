@@ -49,6 +49,26 @@ function stampObservedTime(record) {
   return stamped;
 }
 
+/**
+ * An iteration record without an integer `iteration` is unusable to every consumer
+ * downstream: forced-depth validation collapses records by that number, so a lane
+ * that numbered its iterations under any other key leaves nothing to check and its
+ * full set of iteration files reads as complete on an empty record set. Refusing it
+ * at the gateway is the one place every producer passes through, and the producer is
+ * still running there — it can number the record and retry, which is impossible once
+ * the record is buried in the log.
+ *
+ * @param {Object} record - Parsed state record.
+ * @returns {string|null} The refusal reason, or null when the record is appendable.
+ */
+function iterationRecordRefusal(record) {
+  if (record === null || typeof record !== 'object' || Array.isArray(record)) return null;
+  if (record.type !== 'iteration') return null;
+  return Number.isInteger(record.iteration) && record.iteration > 0
+    ? null
+    : 'iteration record is missing an integer iteration';
+}
+
 function main() {
   const target = process.argv[2];
   if (!target) {
@@ -70,6 +90,11 @@ function main() {
       parsed = JSON.parse(record);
     } catch (err) {
       process.stderr.write(`append-state-record: record is not valid JSON (${err.message}); refusing to append\n`);
+      process.exit(1);
+    }
+    const refusal = iterationRecordRefusal(parsed);
+    if (refusal) {
+      process.stderr.write(`append-state-record: ${refusal}; refusing to append\n`);
       process.exit(1);
     }
     // Re-serialise to a guaranteed single line (collapses any incidental newlines

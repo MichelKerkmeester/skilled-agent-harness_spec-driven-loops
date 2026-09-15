@@ -39,14 +39,18 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/trustworthy-state-records.vitest.ts"
     ],
     "entities": [
       {
@@ -86,6 +90,30 @@
         "source": "derived"
       },
       {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "append-state-record.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trustworthy-state-records.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/trustworthy-state-records.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +144,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement One",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +162,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,13 +180,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Leaf",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -168,35 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "One alignment-review lane wrote its five iteration records numbered under `run` instead of `iteration`",
     "created_at": "2026-09-15T00:55:24Z",
-    "last_save_at": "2026-09-15T00:56:50.973Z",
+    "last_save_at": "2026-09-15T05:12:50.411Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:151e3fcb1211fba957bc00e37eafe1278654cac986b27c662601366972db238c",
+    "source_fingerprint": "sha256:0951eed8d5823c6bcea0675b032d4a0dd5501f20ab6c0281ad1ac2339c79a278",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "807677690fc1680dca7b2756c25f78dc52fef14bb612a444d693794445ed0f79",
-      "plan.md": "d54785353f6ab2b9d1f5a249b716a4ef34789dc2bfd7c28a8b7754c9330795b3",
-      "tasks.md": "976f1245f20d309f44898e2c173a1fd2749f50a22f28ea3d9c1a4c12b5cd745a",
-      "implementation-summary.md": "2b679276e494c7f8e6e6fad109c65d3d2e5fc01bb96f54eb8748fe63a075488b"
+      "spec.md": "1989bb0c35d356294fe5b1765026662caa88589b28a6ea519dfebb2d0e2d523b",
+      "plan.md": "84a915287e9a429316a9a842bb621186402858858377cc7dd70011463ad8047e",
+      "tasks.md": "444e96e507d718b461fcbb141e93af643bbb3ab847ef9f5ec4c9733636c3b05d",
+      "implementation-summary.md": "4ec82b0dc83144d5489159a25a21ca866d14d86735b4fb46505f58b57b48f556"
     },
     "last_active_at": null
   }

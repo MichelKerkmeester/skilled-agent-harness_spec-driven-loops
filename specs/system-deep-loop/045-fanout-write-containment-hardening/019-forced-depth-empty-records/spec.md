@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 4: forced-depth-empty-records"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Forced-depth validation fails a lane whose state log holds no usable iteration records, and the state-record appender refuses an iteration record without a positive integer iteration number."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-15 |
-| **Branch** | `scaffold/019-forced-depth-empty-records` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 19 of 19 |
 | **Predecessor** | 018-orchestrate-mirror-alignment |
@@ -57,10 +57,10 @@ This is **Phase 19** of the Remediate the alignment review findings specificatio
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+One alignment-review lane wrote its five iteration records numbered under `run` instead of `iteration`. The forced-depth validator collapsed them to an empty set and checked the set only when records existed, so five iteration files and zero usable records passed. Nothing at the appender required an iteration record to carry an integer iteration number.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+A lane cannot pass forced-depth validation on records the runner cannot use, and an unnumbered iteration record is refused before it lands.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,22 @@ This is **Phase 19** of the Remediate the alignment review findings specificatio
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- An empty collapsed record set under max-iterations with a positive cap is a violation naming the state log and the count of unnumbered iteration records
+- The appender refuses an iteration record whose iteration is not a positive integer, before appending anything
+- Tests at both call sites of the validator and five appender cases
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- The research YAML directive that still numbers an iteration record under `run` - owned by the command-asset phase that follows
+- The mode gateway's upcaster - untouched
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Empty or unnumbered record set fails forced depth with a message naming the state log |
+| `.opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs` | Modify | Iteration records require a positive integer iteration; refusal names the field |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Two validator tests, one per call site |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/trustworthy-state-records.vitest.ts` | Modify | Five appender cases |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +96,14 @@ This is **Phase 19** of the Remediate the alignment review findings specificatio
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Under the max-iterations stop policy with a positive cap, an empty collapsed iteration record set is a violation that names the state log path and the count of unnumbered iteration records |
+| REQ-002 | The state-record appender refuses a record of type iteration whose iteration is not a positive integer, with a message naming the missing field, and appends nothing |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | Numbered iteration records and non-iteration records append as before |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +114,8 @@ This is **Phase 19** of the Remediate the alignment review findings specificatio
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The unnumbered-records test passes against the unmodified validator (proving the hole) and fails-closed after; the refusal tests fail against the unmodified appender and pass after
+- **SC-002**: The deep-loop runtime suite exits zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +125,8 @@ This is **Phase 19** of the Remediate the alignment review findings specificatio
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A research directive that emits `run` meets the strict appender | Med | That directive goes through the mode gateway's upcaster today; the follow-on phase adds the iteration number at the source |
+| Risk | Load-induced timeout in an unrelated timestamp-window test | Low | Reproduced as a timeout, not a failure; green on rerun and in isolation |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -135,16 +139,13 @@ This is **Phase 19** of the Remediate the alignment review findings specificatio
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: One count over records already parsed
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: Not applicable
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: A refusal at the appender is explicit and names the field; a validation failure names the log it read
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -153,18 +154,15 @@ This is **Phase 19** of the Remediate the alignment review findings specificatio
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Records under `run`: counted as unnumbered, lane fails
+- No iteration records at all: lane fails
+- Iteration zero or negative: refused
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Non-iteration record without a number: appended as before
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -174,18 +172,17 @@ This is **Phase 19** of the Remediate the alignment review findings specificatio
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 6/25 | Two scripts, two test files |
+| Risk | 8/25 | Settle-time validator and the appender every leaf uses |
+| Research | 3/20 | Finding located by a lane's own defect |
+| **Total** | **17/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---

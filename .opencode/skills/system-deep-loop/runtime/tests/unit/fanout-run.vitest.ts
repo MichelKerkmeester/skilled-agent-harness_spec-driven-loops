@@ -620,6 +620,42 @@ describe('fanout-run.cjs — max-iterations stop-reason tolerance', () => {
     });
     expect(violation).toContain('expected state records for iterations 1..3, got 1,2');
   });
+  it('fails a forced-depth lane whose state log numbers iterations under another key', () => {
+    const { dir, stateRead } = makeResearchLineageDir(5, true);
+    stateRead.records = [
+      ...Array.from({ length: 5 }, (_, index) => ({ type: 'iteration', run: index + 1, mode: 'research' })),
+      { type: 'event', event: 'maxIterationsReached', stopReason: 'maxIterationsReached' },
+    ];
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'research', stopPolicy: 'max-iterations', lineage: { iterations: 5 }, stateRead, lineageDir: dir,
+    });
+    expect(violation).toContain('no usable iteration records');
+    expect(violation).toContain('5 iteration records carry no integer iteration');
+    expect(violation).toContain(join(dir, 'deep-research-state.jsonl'));
+  });
+
+  it('fails an artifact-complete lane whose state log holds no iteration record at all', () => {
+    const { dir, stateRead } = makeResearchLineageDir(3, true);
+    stateRead.records = [{ type: 'event', event: 'maxIterationsReached', stopReason: 'maxIterationsReached' }];
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'research', stopPolicy: 'max-iterations', lineage: { iterations: 3 }, stateRead, lineageDir: dir,
+    });
+    expect(violation).toContain('it holds no iteration record at all');
+    expect(violation).toContain(join(dir, 'deep-research-state.jsonl'));
+  });
+
+  it('fails the same way on the synthesis path, naming the state log it read', () => {
+    const { dir, stateRead } = makeResearchLineageDir(5, true);
+    stateRead.records = [
+      ...Array.from({ length: 5 }, (_, index) => ({ type: 'iteration', run: index + 1, mode: 'research' })),
+      { type: 'event', event: 'synthesis_complete', totalIterations: 5, stopReason: 'maxIterationsReached' },
+    ];
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'research', stopPolicy: 'max-iterations', lineage: { iterations: 5 }, stateRead, lineageDir: dir,
+    });
+    expect(violation).toContain('5 iteration records carry no integer iteration');
+    expect(violation).toContain(join(dir, 'deep-research-state.jsonl'));
+  });
 
   it('passes a state log that records every iteration twice when one copy carries the route proof', () => {
     const { dir, stateRead } = makeResearchLineageDir(3, true);

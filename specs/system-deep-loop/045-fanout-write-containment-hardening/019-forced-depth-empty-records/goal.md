@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "scaffold/019-forced-depth-empty-records"
     last_updated_at: "2026-09-15T00:55:24Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,9 +77,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] A lane with five iteration files and zero numbered state records fails forced-depth validation with a message naming the state log; the test fails against the current validator
-- [ ] The gateway refuses an iteration record without an integer iteration number
-- [ ] The deep-loop suite exits zero
+- [x] A lane with five iteration files and zero numbered state records fails forced-depth validation with a message naming the state log; the test fails against the current validator
+- [x] The gateway refuses an iteration record without an integer iteration number
+- [x] The deep-loop suite exits zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -95,11 +95,12 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; validator and appender changes, seven tests; touched files, integration and lifecycle suites and typecheck exit 0 |
+| Full suite | Green | `npm test` in the runtime: 152 files, 2639 passed, 8 skipped, exit 0, 1201 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Research directive emits run | `deep-research-auto.yaml` writes an iteration record numbered under `run`; bound to phase 020 with the direct-append work on the same files |
 <!-- /ANCHOR:log -->
