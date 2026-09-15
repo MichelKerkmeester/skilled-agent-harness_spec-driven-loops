@@ -173,3 +173,70 @@ describe('render-command-contract', () => {
     expect(result.stdout).toBe(`COMPARE OK command=${command} bytes=${legacyBody(command).length}\n`);
   });
 });
+
+// ── Fan-out call-site contract ──────────────────────────────────────────────
+//
+// The fan-out spawn step shells out to the shared runner, and the runner reads
+// every convergence knob from CLI flags alone: the fan-out config schema rejects
+// a stop-policy key, so a policy placed there would be dropped silently. A call
+// site that omits a flag therefore pins that knob to the runner default and the
+// operator's configured value never reaches a lineage.
+const FANOUT_CALL_SITES = [
+  { command: 'deep/review', variant: 'auto', yaml: '.opencode/commands/deep/assets/deep-review-auto.yaml' },
+  { command: 'deep/review', variant: 'confirm', yaml: '.opencode/commands/deep/assets/deep-review-confirm.yaml' },
+  { command: 'deep/research', variant: 'auto', yaml: '.opencode/commands/deep/assets/deep-research-auto.yaml' },
+  { command: 'deep/research', variant: 'confirm', yaml: '.opencode/commands/deep/assets/deep-research-confirm.yaml' },
+] as const;
+
+const FANOUT_FLAGS = [
+  ['--convergence-threshold', '{convergence_threshold}'],
+  ['--stop-policy', '{stop_policy}'],
+  ['--convergence-mode', '{convergence_mode}'],
+] as const;
+
+function fanoutSpawnStep(yamlPath: string): string {
+  const text = readFileSync(workspacePath(yamlPath), 'utf8');
+  const marker = '  step_fanout_spawn:';
+  const start = text.indexOf(`\n${marker}`);
+  if (start === -1) throw new Error(`${yamlPath}: step_fanout_spawn not found`);
+  const step = text.slice(start + 1);
+  const next = step.slice(marker.length).search(/\n  [A-Za-z_]/);
+  return next === -1 ? step : step.slice(0, marker.length + next + 1);
+}
+
+// Collapse the shell line continuations so the call reads as the single command
+// the runner receives.
+function renderFanoutCommand(step: string): string {
+  const lines = step.split('\n');
+  const start = lines.findIndex((line) => line.trim().startsWith('node ') && line.includes('fanout-run.cjs'));
+  if (start === -1) throw new Error('fan-out spawn step contains no fanout-run.cjs call');
+  const rendered: string[] = [];
+  for (let index = start; index < lines.length; index += 1) {
+    const line = lines[index].trim();
+    rendered.push(line.endsWith('\\') ? line.slice(0, -1).trim() : line);
+    if (!line.endsWith('\\')) break;
+  }
+  return rendered.join(' ');
+}
+
+describe('fan-out call-site contract', () => {
+  it.each(FANOUT_CALL_SITES)('$command $variant passes every convergence flag to the runner', ({ yaml }) => {
+    const rendered = renderFanoutCommand(fanoutSpawnStep(yaml));
+
+    expect(rendered).toContain('fanout-run.cjs');
+    for (const [flag, placeholder] of FANOUT_FLAGS) {
+      expect(rendered).toContain(`${flag} ${placeholder}`);
+    }
+  });
+
+  it.each(FANOUT_CALL_SITES)('$command $variant spawns lineages only through the runner', ({ yaml }) => {
+    const step = fanoutSpawnStep(yaml);
+
+    expect(step).toContain('fanout-run.cjs');
+    // The leaf agent is an iteration executor. A fan-out step that dispatches it
+    // hands one lineage the whole loop, so every lineage would run the phase
+    // machine the runner owns, without the runner's pool or stop checks.
+    expect(step).not.toMatch(/\bfor_each\s*:/);
+    expect(step).not.toMatch(/\bagent\s*:\s*deep-(?:review|research)\b/);
+  });
+});

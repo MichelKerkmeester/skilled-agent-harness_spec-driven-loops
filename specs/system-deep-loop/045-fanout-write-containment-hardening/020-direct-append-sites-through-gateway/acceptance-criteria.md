@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 1: command-yaml-alignment"
+title: "Acceptance Criteria: Phase 1: direct-append-sites-through-gateway"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -10,23 +10,23 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/016-command-yaml-alignment"
-    last_updated_at: "2026-09-15T00:55:22Z"
-    last_updated_by: "claude-fable-5-1"
+    packet_pointer: "scaffold/020-direct-append-sites-through-gateway"
+    last_updated_at: "2026-09-15T01:34:53Z"
+    last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-09-14-016-command-yaml-alignment"
+      session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Phase 1: command-yaml-alignment
+# Acceptance Criteria: Phase 1: direct-append-sites-through-gateway
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-deep-loop/045-fanout-write-containment-hardening/016-command-yaml-alignment
-**Level:** 2
-**Status:** Complete
+**Packet:** [PACKET-ID]
+**Level:** [2/3/3+]
+**Status:** [Draft/In Progress/Complete]
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,9 +54,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given each of the four YAMLs, When its fan-out call is rendered, Then it carries threshold, stop policy and mode | `render-command-contract.vitest.ts:223`; failed on the mode flag against the unmodified YAMLs | Met | - |
-| AC-002 | REQ-002 | Given each YAML, When its spawn step is inspected, Then it calls the runner and dispatches no leaf agent as a full loop | `render-command-contract.vitest.ts:232`; failed on the confirm native branch before | Met | - |
-| AC-003 | REQ-003 | Given the prompt packs and contracts, When the drift test runs, Then the gateway wording is present and the contracts are fresh | `check-contract-drift.vitest.ts:1` green after recompile | Met | - |
+| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
 
 ### Status values
 

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 1: command-yaml-alignment"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "All four deep-loop command YAMLs pass the convergence threshold, stop policy and convergence mode to the fan-out runner, no YAML dispatches the leaf agent as a full-loop executor, and the prompt packs describe the state-log gateway the runtime implements."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-15 |
-| **Branch** | `scaffold/016-command-yaml-alignment` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 16 of 19 |
 | **Predecessor** | 015-symlink-contained-paths |
@@ -57,10 +57,10 @@ This is **Phase 16** of the Remediate the alignment review findings specificatio
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The four command YAMLs drove the fan-out runner with different loop flags: none passed the convergence mode the runner reads, and the confirm review YAML passed neither threshold nor stop policy. The same YAML's native fan-out branch dispatched the leaf review agent as a full-loop sub-agent, the opposite of the model the auto YAML documents. The prompt packs called the state log a read-only projection in wording that hid the gateway as its single writer.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+One runner contract across the four commands, one native model, and prompt packs that say what the gateway does.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,23 @@ This is **Phase 16** of the Remediate the alignment review findings specificatio
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The three loop flags on every fan-out call site, bound from the config placeholders
+- Removing the confirm review YAML's native leaf-as-loop branch in favour of the runner
+- Prompt-pack wording naming the gateway as the state log's only writer
+- Regenerated compiled contracts and a contract test that renders each call site
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- The confirm YAML's interactive stop logic - the flag governs the fan-out lineages, which run the auto surface
+- The direct append sites the review YAML still uses for error and adjudication records - observed, bound separately
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/commands/deep/assets/deep-review-auto.yaml, deep-review-confirm.yaml, deep-research-auto.yaml, deep-research-confirm.yaml` | Modify | Three loop flags on every fan-out call; the confirm review native branch replaced by the runner path; a stop-policy input bound in the confirm review YAML |
+| `.opencode/commands/deep/assets/compiled/deep-review.contract.md, deep-research.contract.md` | Regenerate | Digest the edited YAMLs and prompt packs |
+| `.opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl and the deep-research twin` | Modify | Gateway named as the state log's only writer; projection phrasing removed |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts` | Modify | Fan-out call-site contract tests, eight cases |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +97,14 @@ This is **Phase 16** of the Remediate the alignment review findings specificatio
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Every fan-out call site in the four YAMLs passes the convergence threshold, the stop policy and the convergence mode, bound from config placeholders |
+| REQ-002 | No command YAML dispatches the leaf review or research agent as a full-loop sub-agent; native lineages run through the runner |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | The prompt packs name the append gateway as the state log's only writer and the compiled contracts are regenerated |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +115,8 @@ This is **Phase 16** of the Remediate the alignment review findings specificatio
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The call-site contract test fails against the unmodified YAMLs on the missing mode flag and the confirm native branch, and passes after
+- **SC-002**: Contract drift and render tests, and the deep-loop suite, exit zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +126,8 @@ This is **Phase 16** of the Remediate the alignment review findings specificatio
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A confirm run's interactive loop ignores the new stop-policy input | Low | The input binds the fan-out lineages; the single-executor confirm loop is unchanged and documented as such |
+| Risk | Compiled contracts drift again on the next doc edit | Low | The drift test catches it, as it did twice in this packet |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -135,16 +140,13 @@ This is **Phase 16** of the Remediate the alignment review findings specificatio
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: Not applicable
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: Not applicable
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: All four YAMLs parse and their contracts recompile
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -153,18 +155,14 @@ This is **Phase 16** of the Remediate the alignment review findings specificatio
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Mode flag absent from config: the placeholder binds the documented default
+- Confirm run with fan-out: lineages run through the runner with all three flags
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Contract stale after edit: the drift test fails until recompiled
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -174,18 +172,17 @@ This is **Phase 16** of the Remediate the alignment review findings specificatio
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 8/25 | Four YAMLs, two templates, two contracts, one test file |
+| Risk | 8/25 | Command contracts every deep loop runs through |
+| Research | 4/20 | Findings from the alignment review, one premise corrected by the delegate |
+| **Total** | **20/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---

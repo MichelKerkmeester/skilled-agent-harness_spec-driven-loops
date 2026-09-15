@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The four deep-loop command YAMLs pass one runner contract, no YAML runs the leaf agent as a full loop, and the prompt packs name the gateway as the state log's only writer."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/016-command-yaml-alignment"
     last_updated_at: "2026-09-15T00:55:22Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Aligned the four command YAMLs and the prompt packs; filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 1: command-yaml-alignment
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+The four deep-loop command YAMLs now drive the fan-out runner with one contract. Every fan-out call site under `.opencode/commands/deep/assets/` passes the convergence threshold, the stop policy and the convergence mode from the same config placeholders; the confirm review YAML, which passed neither threshold nor stop policy and dispatched the leaf review agent as a full-loop sub-agent, gained a bound stop-policy input and lost that native branch in favour of the runner path the auto YAML documents. Both prompt packs name the append gateway as the state log's only writer and drop the projection phrasing, both compiled contracts are regenerated, and eight rendered call-site cases in `render-command-contract.vitest.ts` pin the flags and the absence of any leaf-as-loop dispatch.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi. The delegate ran the new contract test against the unmodified YAMLs first, corrected one premise in the brief by reading the gateway library (a projection contract does exist; the wording, not the mechanism, was wrong), recompiled both contracts and ran the whole suite. The orchestrator reviewed the diffs and ran the suite again before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Bind the mode flag from the placeholder rather than hard-code it | The single-executor path already binds it; one source |
+| Remove the confirm native branch rather than patch it | The runner already owns native lineages; a second path is the defect |
+| Keep the ledger-refresh claim in the prompt packs | The gateway library implements a projection contract; only the read-only wording was wrong |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +78,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Call-site contract test against unmodified YAMLs | FAIL as expected on the mode flag and the native branch |
+| Contract drift and render tests plus typecheck | PASS, exit 0, 32 tests |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 2631 passed, 8 skipped, exit 0, 1222 s |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +89,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Direct append sites.** The review auto YAML still appends its error and adjudication records directly; the projection rewrite could replace such rows, which is recorded on the parent for a dedicated phase.
 <!-- /ANCHOR:limitations -->
 
 ---

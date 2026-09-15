@@ -42,7 +42,7 @@ All paths are relative to the repo root.
 - **ALLOWED WRITE PATHS (the ONLY paths you may create, modify, or append to)**:
   - `{state_paths_iteration_pattern}`, this iteration's narrative markdown
   - `{state_paths_delta_pattern}`, this iteration's delta JSONL
-  - the append gateway's own writes into the run directory when you invoke it (see OUTPUT CONTRACT item 2) — `{state_paths_state_log}` itself is a read-only projection and is NEVER a path you write directly
+  - the append gateway's own writes into the run directory when you invoke it (see OUTPUT CONTRACT item 2) — the gateway is the only writer of `{state_paths_state_log}`; that path is NEVER one you write directly
 - **BANNED OPERATIONS (NEVER execute against any path)**: `rm`, `rm -rf`, `git rm`, `mv`, `sed -i` (including `sed -i ''`), `rmdir`, `find ... -delete`, shell output-redirect truncate `>` against any file not in the allowed-write list, and any tool call whose effect is to delete, rename, or replace a file outside the allowed-write list. Reading is unrestricted; **writing, renaming, and deleting are scoped**.
 - **SCOPE VIOLATION PROTOCOL**: if your plan would require modifying any path NOT in the allowed-write list, you MUST STOP that action and emit a finding instead. Record the would-be mutation as a `scope_violation` entry in the iteration narrative (under a `## SCOPE VIOLATIONS` heading) and continue the research. NEVER execute the out-of-scope mutation. The research packet (`{state_paths_iteration_pattern}` directory and parents) is the only zone for your writes; the researched target/topic surface is off-limits.
 - **GATEWAY CALLS ARE REQUIRED AND IN-SCOPE — NEVER A CONTAINMENT VIOLATION**: running `append-mode-event.cjs` against your own run directory is REQUIRED every iteration, not optional. Its writes land inside the run directory, which is your own write authority — that is never the "out-of-scope write" any containment warning means. "Don't run the repo's tooling" guidance targets builds, tests, and repo-wide scripts (e.g. `generate-context.js`, `validate.sh --recursive`, git writes); it does NOT exempt this state-recording gateway. Skipping the gateway call, or writing `{state_paths_state_log}` directly instead, fails the iteration.
@@ -57,13 +57,13 @@ You MUST produce THREE artifacts per iteration. The YAML-owned post_dispatch_val
 
 1. **Iteration narrative markdown** at `{state_paths_iteration_pattern}` (path is pre-substituted for the current iteration number). Structure: headings for Focus, Actions Taken, Findings, Questions Answered, Questions Remaining, Next Focus.
 
-2. **Canonical iteration record recorded THROUGH THE APPEND GATEWAY** — never written to `{state_paths_state_log}` directly, which is now a read-only projection the gateway refreshes from the ledger. The record MUST use `"type":"iteration"` EXACTLY — NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored (the iteration will look incomplete and the reducer may re-run it). Required schema:
+2. **Canonical iteration record recorded THROUGH THE APPEND GATEWAY** — never written to `{state_paths_state_log}` directly — the gateway is its only writer, and it refreshes that log from the ledger after authorizing, fencing, and receipting the record. The record MUST use `"type":"iteration"` EXACTLY — NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored (the iteration will look incomplete and the reducer may re-run it). Required schema:
 
 ```json
 {"type":"iteration","iteration":<n>,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":<0..1>,"status":"<string>","focus":"<string>","graphEvents":[/* optional */],"executor":{/* workflow-owned for non-native runs */}}
 ```
 
-Record this single JSON object through the append gateway — do NOT `echo`/`>>` it into `{state_paths_state_log}` (a read-only projection the gateway refreshes from the ledger). Write the one-line record to a temp file, then run:
+Record this single JSON object through the append gateway — do NOT `echo`/`>>` it into `{state_paths_state_log}` (the gateway is its only writer and refreshes it from the ledger). Write the one-line record to a temp file, then run:
 
 ```bash
 node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
@@ -72,7 +72,7 @@ node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
   --event-json <that temp file>
 ```
 
-`--event-json` must name the SINGLE-record file (the gateway `JSON.parse`s it whole), never the multi-line `{state_paths_delta_pattern}`. Exit `0` = the record is durable in the ledger and the projection is refreshed; exit `2` = refused → STOP and name the failed check. Never fall back to a direct write.
+`--event-json` must name the SINGLE-record file (the gateway `JSON.parse`s it whole), never the multi-line `{state_paths_delta_pattern}`. Exit `0` = the record is durable in the ledger and the refreshed state_log carries it; exit `2` = refused → STOP and name the failed check. Never fall back to a direct write.
 
 For non-native CLI executors, the workflow owns executor provenance. It writes a pre-dispatch sentinel, then patches the first canonical `"type":"iteration"` record with the `executor` block before `post_dispatch_validate` runs. Do NOT append your own `dispatch_failure` event or a partial fallback record when the executor itself crashes or times out; the workflow emits the typed failure event on that path.
 

@@ -35,6 +35,7 @@ user_inputs:
   max_iterations: 7
   convergence_threshold: 0.10
   convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
+  stop_policy: "[convergence|max-iterations] - Stop behavior. Default: convergence. max-iterations treats convergence as telemetry until the hard iteration ceiling."
 
 # ─────────────────────────────────────────────────────────────────
 # CONTEXT LOADING
@@ -100,22 +101,11 @@ state_write_protocol:
   migration_exception: "the one-shot legacy-state migration command appends a legacy-shaped migration marker directly; it predates the canonical log and is not a workflow record"
   exempt_append_sites: 1
   contract: |
-    Every canonical record named by an append_to_jsonl or append_jsonl directive below is
-    intended to reach the log by invoking the command above with that record as the event JSON.
-    Those directives specify WHAT to record; this block specifies the mechanism they are moving
-    to, so it is stated once rather than repeated at each site where it could drift.
-
-    The gateway authorizes the write against the mode's durable authority record, serialises it
-    behind the ledger fence, and returns a receipt. It does NOT refresh this mode's legacy state
-    file: no projection contract is registered for this mode, so `projectionRefreshed` comes back
-    false and the legacy file is left untouched. Exit 0 therefore means the event is durable in
-    the ledger, and nothing more. Exit 2 means it was refused and the refusal names the check
-    that failed.
-
-    Because the legacy file is what this workflow's existing readers consume, this block declares
-    the mechanism these records are INTENDED to move to. It is not yet a live cutover for this
-    mode, and the existing direct writes must stay until a projection contract exists for it.
-    Switching them over before then would leave the legacy file silently stale.
+    The directives below specify WHAT to record; this block specifies the mechanism. The gateway
+    authorizes the write against the mode's durable authority record, serialises it behind the
+    ledger fence, returns a receipt, and refreshes state_log from the ledger. Exit 0 means the
+    record is durable in the ledger and the refreshed state_log carries it. Exit 2 means it was
+    refused, and the refusal names the check that failed.
 
     Writing state_log directly bypasses ordering, authorization, and the receipt. Two writers
     can then interleave with no shared ordering, and a record nobody authorized carries no
@@ -188,35 +178,31 @@ workflow:
     instructions: |
       Fan-out mode is active. Spawn all lineages. Each lineage runs the full loop in its own
       isolated sub-packet under {artifact_dir}/lineages/{label}/.
+      A cli-opencode lineage inside this fan-out is an explicit parallel-detached OpenCode
+      session with a separate lineage directory and session id; it is not the single-executor
+      self-invocation path. fanout-run.cjs owns the stack-only recursion guard for that
+      first-level detached lineage and still blocks recursive same-kind dispatch from inside it.
+      fanout-run.cjs owns native and CLI lineage execution; native is run through the
+      deep/review command surface with config.fanout_lineage_artifact_dir so the LEAF
+      deep-review agent is used only for individual iterations, never as a full-loop
+      sub-agent or pasted phase-running prompt.
       After all lineages complete, jump directly to phase_synthesis — skip phase_init and
       phase_main_loop entirely (those are the single-executor path). The merge step in
       phase_synthesis will consolidate results across all lineages.
     sub_steps:
       step_fanout_spawn_cli:
-        description: "Spawn all CLI lineages in capped worker pool"
-        skip_when: "no entries in config.fanout.executors with kind != 'native'"
+        description: "Spawn all native and CLI lineages in capped worker pool"
+        skip_when: "no entries in config.fanout.executors"
         command: |
           node .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
             --spec-folder {spec_folder} \
             --loop-type review \
             --fanout-config-json '{config.fanout_json}' \
-            --base-artifact-dir {artifact_dir}
+            --base-artifact-dir {artifact_dir} \
+            --convergence-threshold {convergence_threshold} \
+            --stop-policy {stop_policy} \
+            --convergence-mode {convergence_mode}
         working_directory: "{repo_root}"
-        wait_for_completion: true
-      step_fanout_spawn_native:
-        description: "Dispatch each native lineage as a sequential deep-review sub-agent"
-        skip_when: "no entries in config.fanout.executors with kind == 'native'"
-        for_each: "lineage in expanded native entries of config.fanout"
-        dispatch:
-          agent: deep-review
-          model: opus
-          context: |
-            Execute the deep-review loop with these parameters:
-              spec_folder: {spec_folder}
-              config.fanout_lineage_artifact_dir: {artifact_dir}/lineages/{lineage.label}
-              session_id: fanout-{lineage.label}-{fanout_run_id}
-              executor: native
-            Run to convergence. Write all outputs to the override directory.
         wait_for_completion: true
 
   # ═══════════════════════════════════════════════════════════════
@@ -229,7 +215,7 @@ workflow:
       step_preflight_contract:
         action: "Validate required setup bindings and executable workflow contract before any file writes"
         verify:
-          - required_values_present: [review_target, review_target_type, review_dimensions, spec_folder, max_iterations, convergence_threshold, convergence_mode]
+          - required_values_present: [review_target, review_target_type, review_dimensions, spec_folder, max_iterations, convergence_threshold, convergence_mode, stop_policy]
           - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
           - tool_contract: "FAIL if executable steps reference tools outside the command allowlist"
