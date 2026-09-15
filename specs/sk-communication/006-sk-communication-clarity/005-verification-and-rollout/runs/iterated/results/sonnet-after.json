@@ -1,6 +1,6 @@
 {
   "condition": "after",
-  "generatedAt": "2026-09-15T05:59:06.098Z",
+  "generatedAt": "2026-09-15T07:04:59.994Z",
   "repliesDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/sonnet-after-replies",
   "casesFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
   "weights": {
@@ -165,8 +165,8 @@
       "provider": "claude-sonnet-5",
       "changeKind": "n/a",
       "predicate": {
-        "mechanic": "noGroupOverFiveAndAllItemsRetained",
-        "pass": false,
+        "mechanic": "allItemsRetainedCapAdvisory",
+        "pass": true,
         "detail": {
           "groupSizes": [
             12
@@ -174,7 +174,20 @@
           "overFive": [
             12
           ],
-          "expectedItems": [],
+          "capHeld": false,
+          "expectedItems": [
+            "blast-radius.md",
+            "communication.md",
+            "delegation-and-orchestration.md",
+            "evidence-and-proof.md",
+            "handoff-and-questions.md",
+            "presenting-decisions.md",
+            "prevent-overengineering.md",
+            "root-cause-and-debugging.md",
+            "scope-discipline.md",
+            "skill-hub-routing.md",
+            "uncertainty-and-honesty.md"
+          ],
           "missingItems": []
         }
       },
@@ -189,11 +202,11 @@
         "receipts": 0,
         "tone": 1,
         "tangent-suppression": 1,
-        "completeness-under-cap": 0,
+        "completeness-under-cap": 1,
         "mechanical-tells": 0
       },
-      "weightedScore": 0.35,
-      "blockingFired": true,
+      "weightedScore": 0.5,
+      "blockingFired": false,
       "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/sonnet-after-replies/C6.md"
     },
     {

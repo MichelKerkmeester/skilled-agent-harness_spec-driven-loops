@@ -220,7 +220,7 @@
     ],
     "causal_summary": "The repository governs how a reply reads across three layers: `AGENTS.md` keeps the two clauses",
     "created_at": "2026-09-12T12:44:34Z",
-    "last_save_at": "2026-09-15T06:00:21.331Z",
+    "last_save_at": "2026-09-15T07:07:38.692Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,11 +228,11 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:d9782b17ae82c165c5a88ad6f9ff33e7468bb295684be4690115497783b36b76",
+    "source_fingerprint": "sha256:73ea3232f90714206205f39d2b2332ef714667db83eaa9b983e54105813bc2a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "146139fbc78b933cf7d341a65a3e2f4e195bb696faa3c41945a99efdd46a7ca7",
-      "handover.md": "8619de2e0db2d9c372df7eab5c7b7d59e024eb5bc9dc961cbcb162b5a3db07a6"
+      "handover.md": "d0ae87ad26f6c34966e683adb938024d050846e13a78da6694c6753f8e204dbd"
     },
     "last_active_child_id": "sk-communication/006-sk-communication-clarity/001-research-communication-context",
     "last_active_at": "2026-09-14T16:13:28.503Z"

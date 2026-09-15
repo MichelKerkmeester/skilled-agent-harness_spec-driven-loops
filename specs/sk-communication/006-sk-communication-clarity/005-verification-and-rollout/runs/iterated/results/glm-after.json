@@ -1,6 +1,6 @@
 {
   "condition": "after",
-  "generatedAt": "2026-09-15T05:59:05.724Z",
+  "generatedAt": "2026-09-15T07:04:59.557Z",
   "repliesDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/glm-after-replies",
   "casesFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
   "weights": {
@@ -164,7 +164,7 @@
       "provider": "llmgateway/glm-5.3-flash",
       "changeKind": "n/a",
       "predicate": {
-        "mechanic": "noGroupOverFiveAndAllItemsRetained",
+        "mechanic": "allItemsRetainedCapAdvisory",
         "pass": true,
         "detail": {
           "groupSizes": [
@@ -174,7 +174,20 @@
             2
           ],
           "overFive": [],
-          "expectedItems": [],
+          "capHeld": true,
+          "expectedItems": [
+            "blast-radius.md",
+            "communication.md",
+            "delegation-and-orchestration.md",
+            "evidence-and-proof.md",
+            "handoff-and-questions.md",
+            "presenting-decisions.md",
+            "prevent-overengineering.md",
+            "root-cause-and-debugging.md",
+            "scope-discipline.md",
+            "skill-hub-routing.md",
+            "uncertainty-and-honesty.md"
+          ],
           "missingItems": []
         }
       },

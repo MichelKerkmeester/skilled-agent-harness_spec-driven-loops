@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: sk-communication clarity program"
-description: "The eight operator decisions that unblock the program: three rule conflicts and five engine questions, each with its alternatives and consequences."
+description: "The ten operator decisions of the program: three rule conflicts, five engine questions, the wording-standard shape and the item cap, each with its alternatives and consequences."
 trigger_phrases:
   - "clarity program decisions"
   - "colon rule rejected"
@@ -950,3 +950,80 @@ backdated.
 <!-- /ANCHOR:adr-009 -->
 
 ---
+
+<!-- ANCHOR:adr-010 -->
+## ADR-010: Accept the flat list on the measured models and score the item cap as advisory
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-15 |
+| **Deciders** | Operator, on the third harness run |
+
+---
+
+<!-- ANCHOR:adr-010-context -->
+### Context
+
+The visible item cap in `communication.md` §8 asks a reply to split any group longer than five
+into labelled groups. The harness case that keys on it asks for every rule file under
+`repo-rules/`, twelve items. Across four runs Sonnet 5 answered with one flat list every time,
+including the run after the rule was rewritten as a directive with the rule text in its prompt.
+GLM-5.3-Flash followed the directive on the third run. A fifth rewrite was the wrong next move,
+because a model that reads the rule and still chooses the flat list is not failing on wording.
+The alternatives were a mechanism outside the model, a rewrite pass or a check that returns an
+oversized list, or accepting the flat list on that model.
+<!-- /ANCHOR:adr-010-context -->
+
+---
+
+<!-- ANCHOR:adr-010-decision -->
+### Decision
+
+The rule stays as written. The harness stops treating the flat list as a blocking failure. The
+coverage case keys on retention instead: every rule file present in both conditions, eleven of
+them, has to be named, and the group sizes are recorded in the row detail without deciding it.
+No mechanism is built.
+<!-- /ANCHOR:adr-010-decision -->
+
+---
+
+<!-- ANCHOR:adr-010-consequences -->
+### Consequences
+
+- A twelve-item flat list scores as a pass on retention. A dropped file still fails the case.
+- The cap is advisory on the models measured. A future model that groups gets recorded as such.
+- Every earlier result was rescored under this predicate, so the numbers in phase 005 read
+  against one scale.
+<!-- /ANCHOR:adr-010-consequences -->
+
+---
+
+<!-- ANCHOR:adr-010-five-checks -->
+### Five checks
+
+| # | Check | Result | Note |
+|---|-------|--------|------|
+| 1 | **Simplest?** | PASS | One predicate change and one case field, no new code path |
+| 2 | **Reversible?** | PASS | Restore the group check in the predicate and rescore |
+| 3 | **Evidence?** | PASS | Four identical Sonnet observations, one GLM pass after the directive |
+| 4 | **Fits Goal?** | PASS | The rule keeps its one home, the harness measures what the operator wants held |
+| 5 | **Open Horizons?** | PASS | A mechanism can still be added later without touching the rule |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-010-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-010-impl -->
+### Implementation
+
+**What changes**:
+- `cases.json` names the eleven expected files on the coverage case, `score.mjs` fails the case only on a missing item and records the group sizes, `rubric.json` renames the mechanic.
+- All six reply sets rescored, comparisons regenerated, phase 005 summary updated.
+
+**How to roll back**: Restore the group-size condition in the predicate, drop the expected items from the case and rescore.
+<!-- /ANCHOR:adr-010-impl -->
+<!-- /ANCHOR:adr-010 -->

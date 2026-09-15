@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Every adopted candidate from the three communication sources lives in exactly one owning surface, the reply-shape rule is split so the router reaches both halves, the wording standard is a base plus a supplement, the projection engine sends that standard as its provider instruction, and a harness with a baseline shows the rules changed what replies do.
+**Objective:** Every adopted candidate from the three sources lives in one owning surface, the reply-shape rule is split so the router reaches both halves, the wording standard is a base plus a supplement, the engine sends that standard as its provider instruction, and a baselined harness shows the rules changed what replies do.
 
 ### Decisions
 
@@ -48,16 +48,17 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The nine ADRs in `002-synthesis-and-decisions/decision-record.md` bind as written |
+| D1 | The ten ADRs in `002-synthesis-and-decisions/decision-record.md` bind as written |
 | D2 | Order: 003, then 006 and 008 in parallel, then 007, then 004, then 009, then 005 last |
-| D3 | GLM-5.3-Flash at max thinking through cli-pi and the LLM gateway. One phase or less per brief, files named, scope frozen, twelve tool calls |
-| D4 | Leaves never dispatch again. The conductor verifies every return against the repository |
+| D3 | GLM-5.3-Flash at max thinking through cli-pi. One phase or less per brief, files named, scope frozen, twelve tool calls |
+| D4 | Leaves never dispatch. The conductor verifies every return against the repository |
 | D5 | The wording standard has one home. No detector set, no private rubric, enters the engine |
 | D6 | The AGENTS.md two-clause floor in section 8 stays. No new root-doc clause |
-| D7 | Every rule edit passes `check-repo-rules.cjs` at 9/9, every packet edit passes strict validation with `RESULT: PASSED` |
-| D8 | The colon-clause ban stays rejected, the word ban binds reply prose only, the unconfirmed-cause qualifier is adopted |
-| D9 | Comment hygiene is a hard block. No packet id, phase number or ADR id enters a code comment |
-| D10 | The baseline precedes any change by phases 003 to 009, or phase 005 makes no regression claim |
+| D7 | Every rule edit passes `check-repo-rules.cjs` at 9/9, every packet edit passes strict validation `RESULT: PASSED` |
+| D8 | Colon-clause ban rejected, the word ban binds reply prose only, the unconfirmed-cause qualifier adopted |
+| D9 | Comment hygiene is a hard block. No packet id, phase number or ADR id in a code comment |
+| D10 | The baseline precedes any change by 003 to 009, or 005 makes no regression claim |
+| D11 | The item cap stays a rule, the harness scores it as advisory, retention decides the coverage case (ADR-010) |
 
 ### Operator copy
 

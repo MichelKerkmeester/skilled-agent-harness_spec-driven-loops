@@ -6,12 +6,12 @@ compare: dimension next-action-honesty: 1.0000 -> 1.0000 (delta 0.0000)
 compare: dimension receipts: 0.6667 -> 0.6667 (delta 0.0000)
 compare: dimension tone: 0.8333 -> 1.0000 (delta 0.1667)
 compare: dimension tangent-suppression: 1.0000 -> 1.0000 (delta 0.0000)
-compare: dimension completeness-under-cap: 0.5000 -> 0.8333 (delta 0.3333)
+compare: dimension completeness-under-cap: 1.0000 -> 1.0000 (delta 0.0000)
 compare: dimension mechanical-tells: 0.2583 -> 0.3583 (delta 0.1000)
-compare: weighted mean: 0.6008 -> 0.7442 (delta 0.1433)
+compare: weighted mean: 0.6758 -> 0.7692 (delta 0.0933)
 compare: control observable before=true after=true, weighted score is informational for the control
 compare: control NC1: 0.6000 -> 0.5900 (unchanged)
 compare: no-op rows: before=0 after=0
-compare: after-side blocking rows: C1, C6
+compare: after-side blocking rows: C1
 compare: after-side no-op rows failing their predicate: none
 compare: gate failures: controlMoved=false blockingOnAfterSide=true

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Nothing in this repository measures whether a communication rule changes a reply",
     "created_at": "2026-09-12T12:44:38Z",
-    "last_save_at": "2026-09-15T06:00:18.642Z",
+    "last_save_at": "2026-09-15T07:06:03.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8481bf46cfa0ccd3470e176cf4f2c0809263eba1a002d1173c168fd56d3ef2a5",
+    "source_fingerprint": "sha256:5632dc96cf22c460ee693668a20eb84dc477b9f316ed641f3da670ad0eea967b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8347f243987d06d4f096fccf267e8e12dbb121033e7b1bd391fa63fa55e59fbc",
       "plan.md": "da38e5744a5781ba292fc7313ccd458082dabd22d798d98ccafa6ce051008ea3",
       "tasks.md": "dfd953af0686edd5e9f761095b4f0b10350507f6b5526046c1959142115e3496",
-      "implementation-summary.md": "c238a3c82c4a7b33321bb3694e121363a0a2d5782b4e025bc9c8882e7e9ff414"
+      "implementation-summary.md": "c3645907c4a08a37d1ac8762917197379e05b2fd5313559199e246c945d3dfad"
     },
     "last_active_at": null
   }
