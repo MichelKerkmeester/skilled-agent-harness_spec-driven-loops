@@ -120,7 +120,7 @@ Aggregate scope across phases; per-phase detail lives in each child's `plan.md`.
 | 2 | 002-deepseek-v4-max/ | DeepSeek V4 max thinking tiers dispatchable on cli-devin (2 uids) — shipped 2026-08-14, list-verified | Complete |
 | 3 | 003-glm-5-3-opencode-go/ | GLM 5.3 documented in the opencode-go catalog (docs-only; no code allowlist in cli-opencode) — shipped 2026-08-14, list-verified | Complete |
 | 4 | 004-gemini-3-7-flash-high/ | Gemini 3.7 Flash High dispatchable on cli-cursor and cli-devin (1 id + 1 uid), dispatch-tested end-to-end | Complete |
-
+| 5 | 005-deepseek-v4-1-flash/ | DeepSeek V4.1 Flash, both tiers, onto the two enforced Devin allowlists, with the fan-out fixture bound to the source | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins.
@@ -136,6 +136,7 @@ Aggregate scope across phases; per-phase detail lives in each child's `plan.md`.
 | 002-deepseek-v4-max | 003-glm-5-3-opencode-go | DeepSeek max uids in devin allowlist + mirror + fixtures; devin family list updated | Deep-loop vitest green; `validate.sh --strict` exit 0 |
 | 003-glm-5-3-opencode-go | 004-gemini-3-7-flash-high | opencode-go catalog carries glm-5.3; no stale family/count claims | `grep` sweep clean; `validate.sh --strict` exit 0 |
 | 004-gemini-3-7-flash-high | (parent complete) | Gemini 3.7 Flash High dispatchable on both modes, dispatch-tested; every doc claim honest | Live dispatch receipts + deep-loop vitest + `validate.sh --recursive --strict` exit 0 |
+| 004-gemini-3-7-flash-high | 005-deepseek-v4-1-flash | The allowlist mechanism and its cross-check are in place, so a new family is two sorted entries rather than a new pathway | Read the mirror-parity assertion in the fan-out suite |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -2067,7 +2067,7 @@ function buildCodexLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
     throw inputError('cli-codex executor unavailable: command -v codex failed');
   }
   const webSearch = effectiveWebSearchPolicy(lineage);
-  const model = lineage.model || 'o4-mini';
+  const model = lineage.model || CODEX_DEFAULT_MODEL;
   const reasoningEffort = lineage.reasoningEffort || 'medium';
   const args = [];
   if (webSearch === 'live') {
@@ -2105,7 +2105,7 @@ function buildClaudeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   if (!isClaudeBinaryAvailable(options.env || process.env)) {
     throw inputError('cli-claude-code executor unavailable: command -v claude failed');
   }
-  const model = lineage.model || 'claude-opus-4-8';
+  const model = lineage.model || CLAUDE_DEFAULT_MODEL;
   const args = [
     '-p',
     prompt,
@@ -2204,7 +2204,7 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
   if (!isOpencodeBinaryAvailable(options.env || process.env)) {
     throw inputError('cli-opencode executor unavailable: command -v opencode failed');
   }
-  const model = lineage.model || 'anthropic/claude-opus-4-8';
+  const model = lineage.model || OPENCODE_DEFAULT_MODEL;
   const args = [
     'run',
     '--model',
@@ -2280,6 +2280,14 @@ const CURSOR_ALLOWED_MODELS = new Set([
   'gpt-5.6-luna-max',
   'gpt-5.6-luna-max-fast',
 ]);
+// An unpinned lineage falls back to these. They are deliberately NOT the model each
+// packet recommends for a hand-written dispatch: that recommendation is advice to an
+// operator choosing a model, while these keep an existing fan-out reproducible. A test
+// asserts each one matches the fallback its packet documents, so the two cannot drift
+// apart again in silence.
+const CODEX_DEFAULT_MODEL = 'gpt-5.6-luna';
+const CLAUDE_DEFAULT_MODEL = 'claude-opus-4-8';
+const OPENCODE_DEFAULT_MODEL = 'opencode-go/deepseek-v4.1-flash';
 const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 
 // Mirrors PI_SUPPORTED_MODELS in executor-config.ts. Pi is a provider
@@ -2414,6 +2422,8 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // these ids were pinnable. `swe-2-max` is dispatch-verified on 3000.10.21; the
 // other two are list-verified only. There is no bare `swe-2` id to pin.
 const DEVIN_ALLOWED_MODELS = new Set([
+  'deepseek-v4-1-flash-high',
+  'deepseek-v4-1-flash-max',
   'deepseek-v4-flash-max',
   'glm-5-2',
   'glm-5-2-1m',
@@ -2421,6 +2431,8 @@ const DEVIN_ALLOWED_MODELS = new Set([
   'glm-5-2-max-1m',
   'glm-5-2-none',
   'glm-5-2-none-1m',
+  'glm-5-3-flash-high',
+  'glm-5-3-flash-max',
   'gpt-5-6-luna-max',
   'gpt-5-6-luna-max-priority',
   'swe',
@@ -2431,7 +2443,7 @@ const DEVIN_ALLOWED_MODELS = new Set([
   'swe-2-max',
   'swe-2-medium',
 ]);
-const DEVIN_DEFAULT_MODEL = 'swe';
+const DEVIN_DEFAULT_MODEL = 'swe-2-max';
 
 function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isDevinBinaryAvailable(options.env || process.env)) {
@@ -2598,8 +2610,16 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
 // pass-through with a wide catalog, so this synchronous duplicate keeps command
 // construction fail-closed without importing the TypeScript module. Both ids are the
 // bare literals the operator's LLM Gateway (DevPass) provider expects.
+// Hermes and Pi reach the same gateway account, so their rosters are deliberately equal.
+// Two lists meant to hold the same ids drift, and the drift surfaces as a model one
+// runtime accepts and the other refuses for no reason the caller can see.
 const HERMES_ALLOWED_MODELS = new Set([
   'deepseek-v4.1-flash',
+  'minimax-m3',
+  'gpt-5.6-luna',
+  'gpt-5.6-sol',
+  'mimo-v2.5-pro',
+  'qwen3.8-max',
   'glm-5.3-flash',
 ]);
 const HERMES_DEFAULT_MODEL = 'deepseek-v4.1-flash';
@@ -3829,6 +3849,9 @@ module.exports = {
   DEVIN_DEFAULT_MODEL,
   CURSOR_ALLOWED_MODELS,
   CURSOR_DEFAULT_MODEL,
+  CODEX_DEFAULT_MODEL,
+  CLAUDE_DEFAULT_MODEL,
+  OPENCODE_DEFAULT_MODEL,
   PI_ALLOWED_MODELS,
   PI_DEFAULT_MODEL,
   HERMES_ALLOWED_MODELS,

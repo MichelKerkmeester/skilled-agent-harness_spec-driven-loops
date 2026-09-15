@@ -44,7 +44,7 @@ describe('executor-config', () => {
   });
 
   it('allows only confirmed-safe cli-hermes fields', () => {
-    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-hermes']).toEqual(['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools']);
+    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-hermes']).toEqual(['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona']);
     expect(parseExecutorConfig({
       kind: 'cli-hermes',
       model: 'candidate-model',
@@ -962,8 +962,16 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
 });
 
 describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
-  it('contains exactly the two LLM Gateway literals the operator confirmed', () => {
-    expect([...HERMES_SUPPORTED_MODELS].sort()).toEqual(['deepseek-v4.1-flash', 'glm-5.3-flash']);
+  // Hermes and Pi reach the same gateway account, so the rosters are deliberately equal
+  // except where the gateway itself disagrees. Every id here answered a live one-turn probe
+  // through Hermes; `mimo-v2.5-pro-ultraspeed` is Pi's alone because the gateway returns
+  // HTTP 400 "Requested model ... not supported" for it on this route.
+  it('matches the Pi roster minus the one id the gateway refuses for Hermes', () => {
+    expect([...HERMES_SUPPORTED_MODELS].sort()).toEqual([
+      'deepseek-v4.1-flash', 'glm-5.3-flash', 'gpt-5.6-luna', 'gpt-5.6-sol',
+      'mimo-v2.5-pro', 'minimax-m3', 'qwen3.8-max',
+    ]);
+    expect(HERMES_SUPPORTED_MODELS).not.toContain('mimo-v2.5-pro-ultraspeed');
   });
 
   it('defaults to deepseek-v4.1-flash, which is itself an allowed model', () => {
@@ -980,9 +988,15 @@ describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
     expect(isHermesModelAllowed('llmgateway/deepseek-v4.1-flash')).toBe(false);
   });
 
-  it('pins both roster models to the max reasoning tier', () => {
-    for (const model of HERMES_SUPPORTED_MODELS) {
+  // The two flash families are served only at their max thinking tier, so a requested effort
+  // is pinned up for them. The rest of the roster honours the effort a lineage asks for, and
+  // asserting otherwise would silently upgrade every dispatch to the most expensive tier.
+  it('pins the flash families to max and leaves the rest of the roster alone', () => {
+    for (const model of ['deepseek-v4.1-flash', 'glm-5.3-flash']) {
       expect(pinReasoningEffortForModel(model, 'high')).toBe('max');
+    }
+    for (const model of ['gpt-5.6-luna', 'gpt-5.6-sol', 'minimax-m3', 'mimo-v2.5-pro', 'qwen3.8-max']) {
+      expect(pinReasoningEffortForModel(model, 'high')).toBe('high');
     }
   });
 });

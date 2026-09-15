@@ -1523,7 +1523,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     expect(command.effectiveConfig).toMatchObject({ reasoningEffort: null, serviceTier: null });
   });
 
-  it('defaults an omitted model to the swe alias', () => {
+  it('defaults an omitted model to the pinned SWE-2 Max id', () => {
     const binDir = makeTempDir('fanout-run-devin-default-model-');
     writeStubBinary(binDir, 'devin');
     const command = buildLineageCommand(
@@ -1533,8 +1533,8 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
       'default',
       { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } },
     );
-    expect(command.args).toContain('swe');
-    expect(command.effectiveConfig.model).toBe('swe');
+    expect(command.args).toContain('swe-2-max');
+    expect(command.effectiveConfig.model).toBe('swe-2-max');
   });
 
   it('accepts every model in the enforced allowlist', () => {
@@ -1542,12 +1542,16 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     writeStubBinary(binDir, 'devin');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const allowed = [
-      'deepseek-v4-flash-max',
+      'deepseek-v4-1-flash-high', 'deepseek-v4-1-flash-max', 'deepseek-v4-flash-max',
       'glm-5-2', 'glm-5-2-1m', 'glm-5-2-max', 'glm-5-2-max-1m', 'glm-5-2-none', 'glm-5-2-none-1m',
+      'glm-5-3-flash-high', 'glm-5-3-flash-max',
       'gpt-5-6-luna-max', 'gpt-5-6-luna-max-priority',
       'swe', 'swe-1-7', 'swe-1-7-lightning', 'swe-1-7-medium',
       'swe-2-high', 'swe-2-max', 'swe-2-medium',
     ];
+    // The fixture is the whole roster on purpose, so an id added to the allowlist
+    // without a passing dispatch shape fails here rather than at run time.
+    expect([...allowed].sort()).toEqual([...DEVIN_SUPPORTED_MODELS].sort());
     for (const model of allowed) {
       const command = buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts);
       expect(command.args).toContain(model);
@@ -1628,6 +1632,45 @@ describe('fanout-run.cjs — executor model mirror parity with the TS source', (
 
   it('keeps the Hermes CJS default aligned with the TS source', () => {
     expect(HERMES_DEFAULT_MODEL).toBe(TS_HERMES_DEFAULT_MODEL);
+  });
+});
+
+// Three builders read an inline literal that had drifted from what their packet published,
+// with nothing failing, while the four reading a named constant had not. All seven are
+// constants now, and a packet names the model FAMILY rather than a version or effort tier so
+// its prose does not go stale on a point release. This keeps the two in the same family: a
+// constant moved to another family fails, a version bump inside the family does not.
+describe('fanout-run.cjs — unpinned lineage fallbacks match their packets', () => {
+  const runner = requireCjs(fanoutRunScript) as Record<string, string>;
+  const packetDir = resolve(
+    dirname(fanoutRunScript), '../../../../skills/cli-external-orchestration',
+  );
+  const cases: Array<[string, string, string, RegExp]> = [
+    ['CODEX_DEFAULT_MODEL', 'cli-codex', 'GPT Luna', /gpt-[\d.]+-luna/],
+    ['CLAUDE_DEFAULT_MODEL', 'cli-claude-code', 'Opus', /claude-opus-/],
+    ['OPENCODE_DEFAULT_MODEL', 'cli-opencode', 'DeepSeek V4.1 Flash', /deepseek-v4\.1-flash/],
+    ['CURSOR_DEFAULT_MODEL', 'cli-cursor', 'Composer', /composer-/],
+    ['DEVIN_DEFAULT_MODEL', 'cli-devin', 'SWE 2 Max', /swe-2-max/],
+    ['PI_DEFAULT_MODEL', 'cli-pi', 'DeepSeek V4.1 Flash', /deepseek-v4\.1-flash/],
+    ['HERMES_DEFAULT_MODEL', 'cli-hermes', 'DeepSeek V4.1 Flash', /deepseek-v4\.1-flash/],
+  ];
+
+  it('every builder fallback is a named constant, not an inline literal', () => {
+    for (const [constant] of cases) {
+      expect(typeof runner[constant], `${constant} is not exported`).toBe('string');
+      expect(runner[constant]!.length, `${constant} is empty`).toBeGreaterThan(0);
+    }
+  });
+
+  it('every packet publishes the family its runner fallback belongs to', () => {
+    for (const [constant, packet, family, idPattern] of cases) {
+      expect(runner[constant], `${constant} left the ${family} family its packet publishes`)
+        .toMatch(idPattern);
+      const md = readFileSync(join(packetDir, packet, 'SKILL.md'), 'utf8');
+      const line = md.split('\n').find((l) => l.includes('Fan-out fallback:'));
+      expect(line, `${packet} publishes no fan-out fallback line`).toBeTruthy();
+      expect(line, `${packet} publishes a family the runner does not use`).toContain(family);
+    }
   });
 });
 

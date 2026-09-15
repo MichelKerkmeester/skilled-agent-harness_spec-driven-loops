@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash",
+  "description": "Phase 1: deepseek-v4-1-flash",
+  "keywords": [
+    "phase",
+    "deepseek-v4-1-flash"
+  ],
+  "lastUpdated": "2026-09-15T18:35:32.210Z",
+  "specId": "005",
+  "folderSlug": "deepseek-v4-1-flash",
+  "parentChain": [
+    "cli-external-orchestration",
+    "043-roster-update-luna-deepseek-glm-gemini"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

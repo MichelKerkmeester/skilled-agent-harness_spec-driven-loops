@@ -254,6 +254,11 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  */
 export const HERMES_SUPPORTED_MODELS = [
   'deepseek-v4.1-flash',
+  'minimax-m3',
+  'gpt-5.6-luna',
+  'gpt-5.6-sol',
+  'mimo-v2.5-pro',
+  'qwen3.8-max',
   'glm-5.3-flash',
 ] as const;
 export type HermesSupportedModel = typeof HERMES_SUPPORTED_MODELS[number];
@@ -406,8 +411,19 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * retired by operator decision: Devin bills it at twice the 3.7 rate and one
  * research pass exhausted the daily quota. It stays reachable through the
  * cursor route only.
+ *
+ * The DeepSeek V4.1 Flash family joined 2026-09-15, both tiers confirmed
+ * verbatim in the live `devin models list` output. Devin exposes this family
+ * as two uids rather than one max-only uid, so unlike V4 Flash the high tier
+ * is reachable here too. deepseek-v4-1-flash-max is dispatch-tested: a direct
+ * `devin -p` call returned a live model response. deepseek-v4-1-flash-high is
+ * list-verified only, and no dispatch-test claim is made for it. The family
+ * prices higher on output than V4 Flash, so it is a deliberate choice rather
+ * than a drop-in default, and the default here does not move.
  */
 export const DEVIN_SUPPORTED_MODELS = [
+  'deepseek-v4-1-flash-high',
+  'deepseek-v4-1-flash-max',
   'deepseek-v4-flash-max',
   'glm-5-2',
   'glm-5-2-1m',
@@ -415,6 +431,8 @@ export const DEVIN_SUPPORTED_MODELS = [
   'glm-5-2-max-1m',
   'glm-5-2-none',
   'glm-5-2-none-1m',
+  'glm-5-3-flash-high',
+  'glm-5-3-flash-max',
   'gpt-5-6-luna-max',
   'gpt-5-6-luna-max-priority',
   'swe',
@@ -435,7 +453,7 @@ export type DevinSupportedModel = typeof DEVIN_SUPPORTED_MODELS[number];
  * on devin 3000.10.21, the other two list-verified only. There is no bare
  * `swe-2` id to pin.
  */
-export const DEVIN_DEFAULT_MODEL: DevinSupportedModel = 'swe';
+export const DEVIN_DEFAULT_MODEL: DevinSupportedModel = 'swe-2-max';
 
 /** True when `model` is in the enforced cli-devin allowlist. */
 export function isDevinModelAllowed(model: string): model is DevinSupportedModel {
