@@ -63,16 +63,8 @@
       "001-deep-research/resource-map.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
-      "001-deep-research/research/research.md",
-      "001-deep-research/goal.md",
-      "002-hermes-contract-pin/goal.md",
-      "003-deep-loop-executor-support/goal.md",
-      "004-cli-hermes-skill-packet/goal.md",
-      "005-hermes-runtime-folder/goal.md",
-      "006-hermes-hook-and-plugin-layer/goal.md",
-      "007-hermes-model-registry-and-routing/goal.md",
-      "008-hermes-playbook-and-catalog/goal.md",
-      "009-docs-governance-and-closeout/goal.md"
+      "010-hermes-hook-parity/goal.md",
+      "001-deep-research/research/research.md"
     ],
     "entities": [
       {
@@ -148,6 +140,18 @@
         "source": "derived"
       },
       {
+        "name": "And Hermes",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Two Pi",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "the LLM Gateway",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -158,30 +162,18 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "every",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This repository dispatches work to six external coding CLIs as `cli-external-orchestration` modes (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`)",
     "created_at": "2026-09-14T16:04:01Z",
-    "last_save_at": "2026-09-15T16:43:01.304Z",
+    "last_save_at": "2026-09-15T17:54:21.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:63358cb061fcffcf29b4966232108f67d8d24a0450cba19c0cb2f19760083a29",
+    "source_fingerprint": "sha256:353101c68b0175be2b4023176d50ddd830a2ccbeaad6ebe7a5799623f04fea16",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a84a1a15ec6930979a4fb50dcd3abe8e2230aeddf1a3e5754900cf74abf42fa3"
