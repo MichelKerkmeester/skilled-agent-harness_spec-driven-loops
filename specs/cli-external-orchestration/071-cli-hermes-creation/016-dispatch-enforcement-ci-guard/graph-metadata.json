@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Every defect the earlier phases closed shares one shape: something looked enforced and enforced nothing",
     "created_at": "2026-09-15T16:29:33Z",
-    "last_save_at": "2026-09-15T18:02:16.337Z",
+    "last_save_at": "2026-09-15T18:12:11.937Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4bda690a072a0effb996bd07313e606a1a840ae69712463c54961b59cc2e015a",
+    "source_fingerprint": "sha256:cea0cb0ee0a8abd82e5d1abdc2509c231d77544aa5068882d16bf837c916b3fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7a239ff1482b1465fc2e2d168712efbf87fbeb4ac73760b7048d73b3e9a2b9b4",
       "plan.md": "6d4d9964a2b475f173e89c7f5bad644440b216a509b0374ea48e285eea1d6302",
       "tasks.md": "c7d769ae728de5aa2ef4c05f6c5f4e1e2a13f9d7dee0d4543384862462332b12",
-      "implementation-summary.md": "abcdb43d2501c94282fe4380cc8bdad072711804d73d457a7824c3d2997a4730"
+      "implementation-summary.md": "34fdba21d46d82328685d1461bcf621e6fdc63886005a63d5f5b5ed66ab7a194"
     },
     "last_active_at": null
   }

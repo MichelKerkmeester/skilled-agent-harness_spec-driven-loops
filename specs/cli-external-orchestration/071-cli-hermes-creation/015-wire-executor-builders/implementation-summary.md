@@ -48,18 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 3: wire-executor-builders
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` gained binary probes for the Claude and OpenCode paths and persona support for Hermes: a lineage may name a persona, which preloads the mirrored agent skill and sets the variable the repo plugin binds from. The field is admitted in `executor-config.ts` and covered in `tests/unit/fanout-run.vitest.ts`.
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/015-wire-executor-builders"
+    packet_pointer: "cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders"
     last_updated_at: "2026-09-15T16:29:33Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Every criterion met with its evidence recorded"
+    next_safe_action: "None; the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "spec-071-015-wire-executor-builders"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given an absent Claude or OpenCode binary, When a lineage command is built, Then it refuses before spawning | Exercised directly against an empty PATH: both refuse with "executor unavailable: command -v ... failed"; with a real PATH the Claude path builds, and the OpenCode path stops on an unrelated sandbox-mode constraint rather than the probe | Met | - |
+| AC-002 | REQ-002 | Given a Hermes lineage naming a persona, When its command and environment are built, Then the mirrored agent skill is preloaded and the persona variable is set | Runner unit suite test "preloads the mirrored agent skill when a lineage names a persona"; builder exercised directly and emits the preload flag | Met | - |
+| AC-003 | REQ-003 | Given a persona name the repo plugin would reject, When the command is built, Then it is refused | Same test asserts the throw; exercised directly, an invalid name is refused with "is not a valid agent name" | Met | - |
+| AC-004 | REQ-004 | Given a lineage naming no persona, When its command is built, Then no preload flag is added | Same test asserts the absence; the runner suite is 151 passing, one added and none removed | Met | - |
 
 ### Status values
 

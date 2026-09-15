@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/013-close-silent-preflight-holes"
+    packet_pointer: "cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes"
     last_updated_at: "2026-09-15T16:29:32Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Every criterion met with its evidence recorded"
+    next_safe_action: "None; the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "spec-071-013-close-silent-preflight-holes"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the seven documented headless dispatches, When each is matched against the shape list and the tokenizer, Then both resolve it to its own skill | `node --test .opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` test "every runtime dispatch shape resolves to its skill"; reverting the codex shape fails it with "no shape matched the documented cli-codex dispatch" | Met | - |
+| AC-002 | REQ-002 | Given a Hermes fan-out lineage, When the dispatch environment is built, Then it carries the project-plugin opt-in beside the packet and read-only markers | Hermes adapter stress suite asserts the opt-in equals "1"; removing the line from the runner fails it with "expected null to be '1'" | Met | - |
+| AC-003 | REQ-003 | Given a dispatch missing its stdin redirect on any of the seven runtimes, When the preflight evaluates it, Then it is denied rather than advised | All seven packets declare the stdin rule at `error`; the end-to-end hook run denies the codex and pi cases | Met | - |
+| AC-004 | REQ-004 | Given a Hermes toolset list without the file toolset, When the preflight evaluates it, Then it is denied | `.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs` requires the reader toolset; the hook denies `-t search,todo` and allows `-t file,todo` | Met | - |
+| AC-005 | REQ-005 | Given a preloading Hermes dispatch with no rules flag, When the preflight evaluates it, Then it is denied | The exemption clause is removed; the two test assertions that pinned the old behaviour now expect the violation, and the corrected shape stays clean | Met | - |
+| AC-006 | REQ-006 | Given the repository instruction file, When the Hermes context scanner reads it, Then it returns no finding | Scanner run directly against the file returns CLEAN, and against the symlinked copy too; it returned one joiner finding before | Met | - |
+| AC-007 | REQ-007 | Given every living document in the packet, When searched for the disproved dispatch shape, Then none instructs it | The reference, the playbook root and two scenarios corrected; the dated benchmark reports keep it as history by decision | Met | - |
 
 ### Status values
 

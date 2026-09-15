@@ -48,18 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 4: dispatch-enforcement-ci-guard
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Three guards in `.opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`: a fixture pair per check, a bijection between declared rules and implemented checks, and a per-packet rule assertion. `.github/workflows/dispatch-enforcement-guard.yml` runs the suite in a job that can fail the build and fails closed when the suite is absent.
 <!-- /ANCHOR:what-built -->
 
 ---
