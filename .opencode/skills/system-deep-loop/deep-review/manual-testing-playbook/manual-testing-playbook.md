@@ -607,20 +607,30 @@ Expected signals: Findings are compared across iterations by location and descri
 
 ## 13. AUTOMATED TEST CROSS-REFERENCE
 
-No dedicated automated test suite currently exists for `deep-review`. This playbook anchors directly to the live `deep-review` docs plus the active command and runtime definitions.
+Automated coverage for `deep-review` lives in the deep-loop runtime test tree and the spec-kit runtime test trees:
 
-- `SKILL.md`: `.opencode/skills/system-deep-loop/deep-review/SKILL.md`
-- `README.md`: `.opencode/skills/system-deep-loop/deep-review/README.md`
-- `Command`: `.opencode/commands/deep/review.md`
-- `Auto YAML`: `.opencode/commands/deep/assets/deep-review-auto.yaml`
-- `Confirm YAML`: `.opencode/commands/deep/assets/deep-review-confirm.yaml`
-- `Agent (OpenCode)`: `.opencode/agents/deep-review.md`
-- `Agent (Claude)`: `.claude/agents/deep-review.md`
-- `Review Contract`: `.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml`
-- `Loop Protocol`: `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`
-- `Convergence`: `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-- `State Format`: `.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md`
-- `Quick Reference`: `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
+| Test File | Covered Runtime Surface |
+|---|---|
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-deltas-contract.vitest.ts` | Deep-review deltas contract |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts` | Deep-review ledger schema |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-projections-contract.vitest.ts` | Deep-review projections contract |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts` | Deep-review ledger reducers |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-sealed-artifacts.vitest.ts` | Deep-review sealed artifacts |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-state-contract.vitest.ts` | Deep-review state contract |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts` | Deep-review state reducer |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts` | Deep-review strategy heading handling |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` | Review-depth convergence integration |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts` | Review-depth graph integration |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts` | Review-depth validator integration |
+| `.opencode/skills/system-spec-kit/runtime/tests/deep-loop/review-depth-reducer.vitest.ts` | Review-depth reducer contract |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts` | Auto-restart contract |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts` | Command/runtime contract parity |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-review-reducer-schema.vitest.ts` | Reducer schema contract |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/post-save-review.vitest.ts` | Post-save review quality and score penalty |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/review-record-validation.vitest.ts` | Review-record packet validation |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/review-reducer-fail-closed.vitest.ts` | Reducer fail-closed behavior |
+| `.opencode/skills/system-spec-kit/runtime/cli/tests/review-research-paths.vitest.ts` | Review/research path resolution |
+| `.opencode/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-summary-fallback.test.cjs` | Reducer summary fallback |
 
 ---
 

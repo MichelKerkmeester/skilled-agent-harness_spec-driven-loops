@@ -71,7 +71,7 @@ Privilege the OpenCode runtime agent and skill rules for LEAF-only behavior, and
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/research.md` | Synthesis and memory integration contract; use `## 5. OUTPUT FORMATS`, `## 6. MEMORY INTEGRATION`, and `## 10. ERROR HANDLING` |
+| `.opencode/commands/deep/research.md` | Command routing; output formats, memory integration and error handling are presented by `.opencode/commands/deep/assets/deep-research-presentation.txt` (`Output Formats`, `Memory Integration After Completing`, `Error Handling` sections) |
 | `.opencode/skills/system-deep-loop/deep-research/SKILL.md` | Supported save path and reference-only features; use `ANCHOR:rules` |
 | `.opencode/skills/system-deep-loop/deep-research/README.md` | User-facing reference-only notes and FAQ; use `ANCHOR:overview`, `ANCHOR:faq`, and `ANCHOR:related-documents` |
 | `.opencode/agents/deep-research.md` | Canonical runtime guardrails; inspect `## 0. ILLEGAL NESTING (HARD BLOCK)` and `SPEC FOLDER PERMISSION` |

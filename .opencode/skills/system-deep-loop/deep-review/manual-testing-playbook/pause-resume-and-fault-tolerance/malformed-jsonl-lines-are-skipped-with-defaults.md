@@ -76,7 +76,7 @@ Privilege the state format reference for JSONL schema rules and the convergence 
 | `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Error handling in iteration loop, use the iteration loop section |
 | `.opencode/commands/deep/assets/deep-review-auto.yaml` | JSONL parsing and error handling in state read steps |
 | `.opencode/commands/deep/assets/deep-review-confirm.yaml` | JSONL parsing and error handling in state read steps |
-| `.opencode/commands/deep/review.md` | Error handling documentation, use `## 10. ERROR HANDLING` if present |
+| `.opencode/commands/deep/review.md` | Command routing; the error-handling display is owned by `.opencode/commands/deep/assets/deep-review-presentation.txt` (`Error Handling` section) |
 | `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Rules for state reading, use `ANCHOR:rules` Rule 1 |
 
 ---

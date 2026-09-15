@@ -29,8 +29,8 @@ Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion de
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
 - `references/stack-detection.md`
-- `references/smart-routing.md`
-- `references/smart-routing.md`
+- `ROUTER.md`
+- `ROUTER.md`
 - `sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md`
 - `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
 - `sk-code-opencode/references/typescript/quality-standards/overview-and-type-system.md`
@@ -98,7 +98,7 @@ Evidence: `/tmp/skc-CS-003-<cli>.txt` (raw per-runtime transcript) and `results/
 
 - `../manual-testing-playbook.md` - Root directory page and scenario summary.
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` - OPENCODE precedence rule.
-- `.opencode/skills/sk-code/shared/references/smart-routing.md` - OPENCODE and MOTION_DEV maps.
+- `.opencode/skills/sk-code/ROUTER.md` - OPENCODE and MOTION_DEV maps.
 - `.opencode/skills/sk-code/sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md` - Expected TypeScript route.
 - `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/es-module-bootstrap.js` - Supplementary Motion ESM pattern.
 

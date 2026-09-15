@@ -26,7 +26,6 @@ Shared re-export seam for `emitResourceMap`, the workflow output renderer that r
 - `deep-research/scripts/reduce-state.cjs`
 - `runtime/scripts/reduce-state.cjs`
 - `runtime/lib/write-set-conflict-graph/shipped-census.ts`
-- `runtime/lib/cross-mode-closures/parity.ts`
 
 ---
 

@@ -46,7 +46,7 @@ Prompt: `Edit .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrat
 
 ### Exact Command Sequence
 
-1. **Make the target package's dist stale** (reversible — see `manual-testing-playbook/tooling-and-scripts/cli-dist-freshness-guard.md` in the system-spec-kit skill for the same recipe used against the identical package):
+1. **Make the target package's dist stale** (reversible — see `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-dist-freshness-guard.md` for the same recipe used against the identical package):
    ```bash
    SOURCE=.opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
    DIST=.opencode/skills/system-spec-kit/runtime/dist/lib/validation/orchestrator.js

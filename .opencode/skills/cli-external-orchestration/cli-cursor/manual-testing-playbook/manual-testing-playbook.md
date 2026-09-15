@@ -466,7 +466,7 @@ Verify `beforeSubmitPrompt` and `stop` do NOT fire under `cursor-agent -p`, and 
 
 Prompt: `In the same isolated temp workspace, wire beforeSubmitPrompt and stop to the logging probe alongside a full dispatch round trip, and confirm neither event fires.`
 
-Expected signals: The probe log shows zero entries for `beforeSubmitPrompt` and zero for `stop` across the full session. `runtime/hooks/cursor/spec-gate-classify.mjs` exists and its README documents it as dormant. `runtime/hooks/cursor/README.md` and `mcp-server/hooks/cursor/README.md` both state the non-delivery finding explicitly.
+Expected signals: The probe log shows zero entries for `beforeSubmitPrompt` and zero for `stop` across the full session. `../../../../system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs` exists and its `README.md` documents it as dormant. `../../../../system-spec-kit/runtime/hooks/cursor/README.md` states the non-delivery finding explicitly.
 
 Desired user-visible outcome: A reproduced confirmation of the documented gap, so no future adapter silently assumes advisory Gate-3 classification is reachable via `beforeSubmitPrompt` when it is not.
 

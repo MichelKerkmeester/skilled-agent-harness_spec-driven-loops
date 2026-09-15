@@ -93,7 +93,7 @@ fourth surface, beside `sk-code-webflow`, `sk-code-opencode`, and `sk-code-mobil
 
 ### Detection and Bundling
 
-Surface detection (in `../../shared/references/stack-detection.md`) resolves OBSIDIAN from the CWD and
+Surface detection (in `../shared/references/stack-detection.md`) resolves OBSIDIAN from the CWD and
 changed/target files, at precedence **OPENCODE > OBSIDIAN > PI_REMOTE > WEBFLOW > UNKNOWN**, OPENCODE
 still wins a genuinely resolved `.opencode/` target; OBSIDIAN catches the plugin repository's own
 paths, which would otherwise fall to UNKNOWN as generic Node.js. The hub then bundles this surface
@@ -115,7 +115,7 @@ returns `[sk-code-quality, sk-code-obsidian]`.
 - `../sk-code-webflow`, `../sk-code-opencode`, `../sk-code-mobile-cli`: sibling read-only surfaces on
   the same axis.
 - `../sk-code-quality`, `../sk-code-review`: workflow modes that bundle this surface.
-- `../../shared/`: the implement → debug → verify doctrine this surface folds in via symlink.
+- `../shared/`: the implement → debug → verify doctrine this surface folds in via symlink.
 - `system-spec-kit` (spec folders + memory), `sk-git` (worktrees, commits, finish).
 
 ---
@@ -158,7 +158,7 @@ the single `sk-code` identity and the hub bundles this surface.
 - `references/`: the Obsidian API boundary, single-stylesheet ownership, `.db-*` grammar, screenshot
   harness, verification gate, and the target source conventions.
 - `changelog/`: release notes for this packet.
-- `../../ROUTER.md`, `../../mode-registry.json`, `../../hub-router.json`: the parent hub's routing.
+- `../ROUTER.md`, `../mode-registry.json`, `../hub-router.json`: the parent hub's routing.
 - The **Obsidian Plugin repo**: the plugin source, `manifest.json`, and `styles.css`. This surface is
   its read-only evidence mirror; see §2 "The Obsidian Plugin Repository".
 - `specs/sk-code/007-sk-code-obsidian-surface/`: this surface's own spec packet, which lives beside the

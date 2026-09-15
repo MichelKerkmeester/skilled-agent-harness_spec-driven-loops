@@ -33,8 +33,8 @@ Prompt: `Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by Interse
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
 - `references/stack-detection.md` (always loaded for router decision)
-- `references/smart-routing.md`
-- `references/smart-routing.md`
+- `ROUTER.md`
+- `ROUTER.md`
 - `references/phase-detection.md`
 - `references/universal/code-quality-standards.md`
 - `sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
@@ -109,7 +109,7 @@ Evidence: `/tmp/skc-SD001-loaded-refs.txt` (AI response, surface-detection log l
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/SKILL.md` — Smart router pseudocode (lines 53-68).
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` — WEBFLOW marker definitions (lines 30-37).
-- `.opencode/skills/sk-code/shared/references/smart-routing.md` — Intent → resource-loading mapping.
+- `.opencode/skills/sk-code/ROUTER.md` — Intent → resource-loading mapping.
 - `.opencode/skills/sk-code/sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md` — Expected-loaded reference.
 - `.opencode/skills/system-skill-advisor/runtime/scripts/skill-graph.json` — sk-code signals + adjacency.
 

@@ -34,8 +34,8 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
 - `references/stack-detection.md`
-- `references/smart-routing.md`
-- `references/smart-routing.md`
+- `ROUTER.md`
+- `ROUTER.md`
 - `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
 - `sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md`
 - `sk-code-webflow/references/animation/performance-and-pitfalls.md`

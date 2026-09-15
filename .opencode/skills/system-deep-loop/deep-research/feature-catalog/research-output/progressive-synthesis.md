@@ -40,7 +40,7 @@ The final workflow still owns synthesis. After convergence, the synth phase read
 | `.opencode/agents/deep-research.md` | Agent | Defines when the iteration agent may create or update `research/research.md`. |
 | `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference | Defines progressive update rules for `research/research.md`. |
 | `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Defines the final synthesis cleanup pass that consolidates the document. |
-| `.opencode/commands/speckit/deep-research.md` | Command | Publishes `research/research.md` as a canonical loop output. |
+| `.opencode/commands/deep/research.md` | Command | Publishes `research/research.md` as a canonical loop output. |
 
 ### Validation And Tests
 
