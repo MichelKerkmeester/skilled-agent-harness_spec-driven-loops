@@ -345,12 +345,34 @@ test('a dispatch is resolved from the command, not from text that merely contain
     ['wrapped in bash -c', `bash -c "${dispatch} </dev/null"`],
     ['wrapped in sh -c', `sh -c '${dispatch} </dev/null'`],
     ['prompt piped in', 'cat p.md | hermes chat -Q --oneshot --query-file - --ignore-rules -t file,todo'],
+    // Exec wrappers run the real command in their own process, so the tokenizer reads the
+    // wrapper as the executor and stops. These are the shapes this repo actually dispatches
+    // through: every playbook scenario uses the perl one as its portable timeout, so missing
+    // them left the guard enforcing nothing on the standard form.
+    ['perl alarm wrapper', `perl -e 'alarm 300; exec @ARGV' -- ${dispatch} </dev/null`],
+    ['env prefix', `env -u AI_SESSION_CHILD ${dispatch} </dev/null`],
+    ['env then perl', `env HERMES_ENABLE_PROJECT_PLUGINS=1 perl -e 'alarm 300; exec @ARGV' -- ${dispatch} </dev/null`],
+    ['timeout wrapper', `timeout 300 ${dispatch} </dev/null`],
+    ['nohup wrapper', `nohup ${dispatch} </dev/null`],
+    // A wrapper unwrap is anchored to the start of what it is given, so a dispatch preceded
+    // by ANY other statement escaped enforcement entirely. Every scenario in this repo's
+    // playbook opens with a setup line, so this was the normal shape going unguarded.
+    ['prefixed by a newline', `s=$(date +%s)\nperl -e 'alarm 300; exec @ARGV' -- ${dispatch} </dev/null`],
+    ['prefixed by &&', `cd /tmp && perl -e 'alarm 300; exec @ARGV' -- ${dispatch} </dev/null`],
+    ['prefixed by ;', `Q="hi"; perl -e 'alarm 300; exec @ARGV' -- ${dispatch} </dev/null`],
+    // A redirect whose target is a quoted variable is what every capture in the playbook
+    // uses, and it made the tokenizer lose the command.
+    ['output captured to a variable path', `OUT=/tmp/o.txt\n${dispatch} > "$OUT"`],
   ];
   for (const [label, cmd] of govern) {
     assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-hermes', `should govern (${label}): ${cmd}`);
   }
 
   const doNotGovern = [
+    // A heredoc body is data the call writes, never commands it runs. Writing a script that
+    // dispatches is not dispatching, and refusing it blocked real work.
+    ['heredoc writing a script', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF`],
+    ['heredoc then running the script', `cat > run.sh <<'EOF'\n${dispatch}\nEOF\nbash run.sh`],
     ['heredoc documenting it', `python3 - <<'PY'\nshape = "${dispatch}"\nPY`],
     ['prose quoting it', `echo "the ${dispatch} form is auditable"`],
     ['grep for the text', `grep -rn "${dispatch}" docs/`],

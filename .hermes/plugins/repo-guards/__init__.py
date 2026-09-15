@@ -572,10 +572,15 @@ def pre_llm_call(
 
     The gate answer binds the session once it is given, so its question is not repeated on
     later turns the way the per-prompt brief is.
+
+    The two halves treat an orchestrated leaf differently, and the difference is the point.
+    The spec-folder question MUST NOT reach a leaf: its write authority is already bound to
+    a lineage directory, nobody is at the prompt to answer, and a leaf that answers its own
+    gate question spends the turn on that instead of the task. The routing brief has no such
+    problem. A leaf still picks how to do the work, and naming the skill that owns the
+    surface it is about to touch is as useful there as anywhere else.
     """
     try:
-        if _orchestrated_leaf():
-            return None
         prompt = _prompt_text(user_message)
         if not prompt:
             return None
@@ -583,7 +588,7 @@ def pre_llm_call(
         brief = _advisor_brief(prompt)
         if brief:
             parts.append(brief)
-        if is_first_turn:
+        if is_first_turn and not _orchestrated_leaf():
             question = _spec_gate_question(prompt, session_id if isinstance(session_id, str) else "")
             if question:
                 parts.append(question)

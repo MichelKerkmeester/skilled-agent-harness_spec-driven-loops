@@ -102,6 +102,15 @@ const HERMES_WRITE_TOOLSETS = /(?:^|[\s=,])(?:terminal|coding|code_execution|bro
 // it yields a leaf that cannot read anything and still exits 0 with empty stdout.
 const HERMES_FILE_TOOLSET = /(?:^|,)file(?:,|$)/;
 
+// Some checks have a legitimate negative control: a scenario proving the refusal exists must
+// issue the shape that gets refused. Testing the delegation guard needs the delegation
+// toolset; proving a read-nothing leaf needs no reader; proving the approval gate needs a
+// write toolset without the approval flag. Without a way to say so, those scenarios are
+// permanently un-runnable, and an operator who cannot run the guard's own proof stops
+// trusting the guard. The marker is an explicit env prefix, so it cannot appear by accident
+// and `grep` finds every use.
+const NEGATIVE_CONTROL = /(?:^|\s)SPECKIT_DISPATCH_NEGATIVE_CONTROL=1(?:\s|$)/;
+
 /**
  * Build a check that refuses a dispatch whose binary is absent from PATH.
  *
@@ -192,6 +201,7 @@ export const CHECKS = {
   // named) are the intended --yolo-less shape and pass.
   'hermes-yolo-required-for-writes': (cmd) => {
     if (!HERMES_CHAT.test(cmd)) return true;
+    if (NEGATIVE_CONTROL.test(cmd)) return true; // a scenario proving the gate must trip it
     const toolsets = cmd.match(/(?:^|\s)(?:-t|--toolsets)(?:\s+|=)([^\s]+)/);
     if (!toolsets) return true; // no explicit list: the toolset rule reports that case
     if (!HERMES_WRITE_TOOLSETS.test(toolsets[1])) return true;
@@ -208,6 +218,7 @@ export const CHECKS = {
   // leave both out, or it can spawn sub-agents outside the runner's boundary and write memories.
   'hermes-explicit-toolsets-required': (cmd) => {
     if (!HERMES_CHAT.test(cmd)) return true;
+    if (NEGATIVE_CONTROL.test(cmd)) return true; // a scenario proving the refusal must trip it
     const toolsets = cmd.match(/(?:^|\s)(?:-t|--toolsets)(?:\s+|=)([^\s]+)/);
     if (!toolsets) return false;
     if (/(?:^|,)(?:delegation|memory)(?:,|$)/.test(toolsets[1])) return false;

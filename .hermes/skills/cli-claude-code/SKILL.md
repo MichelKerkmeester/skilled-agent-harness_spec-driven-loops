@@ -214,7 +214,9 @@ Run one, then confirm — the skill will retry the original dispatch:
 
 ### Default Invocation (Skill Default)
 
-**Default model + flags + agent**: `claude-sonnet-4-6` · `--output-format text` · no `--agent` (general-purpose). For deep-reasoning work, override with `--model claude-opus-4-6 --effort high`. The pinned shape:
+**Default model + flags + agent**: `claude-sonnet-4-6` · `--output-format text` · no `--agent` (general-purpose). For deep-reasoning work, override with `--model claude-opus-4-6 --effort high`.
+
+> **Fan-out fallback:** a deep-loop lineage that pins no model runs **Opus**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
 
 ```bash
 claude -p "<prompt>" \

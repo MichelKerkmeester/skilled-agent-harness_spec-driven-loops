@@ -212,6 +212,8 @@ Cursor CLI is not authenticated on this machine. cli-cursor uses Cursor account 
 
 **Default model + approval**: `composer-2.5` (Cursor's own native model) · `auto-review` approval (Smart Auto). `auto` (Cursor's own router) is NOT used — it can silently resolve to a model outside the enforced allowlist below, which defeats the point of enforcing one.
 
+> **Fan-out fallback:** a deep-loop lineage that pins no model runs **Composer**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
+
 ```bash
 cursor-agent -p "<prompt>" \
   --output-format text \

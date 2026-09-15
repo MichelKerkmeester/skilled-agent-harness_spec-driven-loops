@@ -294,7 +294,24 @@ export function matchDispatchShape(command) {
 // correctly refuses to read it as an executor. Only these four wrappers are unwrapped,
 // and only their `-c` payload, so ordinary quoted text stays text.
 const SHELL_WRAPPER = /(?:^|[\s;&|])(?:\/[^\s;&|]*\/)?(?:bash|sh|zsh|dash)\s+(?:-[a-z]*c|--command)\s+(['"])([\s\S]*?)\1/;
-const MAX_UNWRAP_DEPTH = 2;
+
+// An exec wrapper runs the real command in its own process, so the tokenizer reads the
+// wrapper as the executor and stops. These are the wrappers this repo actually dispatches
+// through, and missing them meant a guard that enforced nothing on the standard shape:
+//   perl -e 'alarm N; exec @ARGV' -- <cmd>      the portable timeout this repo uses
+//   env [VAR=V ...] <cmd>                        used to clear or set a marker
+//   timeout|gtimeout [flags] <seconds> <cmd>
+//   nohup|stdbuf|setsid|nice|ionice [flags] <cmd>
+const EXEC_WRAPPERS = [
+  // Everything after a bare `--` is the wrapped command.
+  /^\s*(?:\/[^\s]*\/)?perl\s+[\s\S]*?\s--\s+([\s\S]+)$/,
+  /^\s*(?:\/[^\s]*\/)?env\s+(?:-[a-zA-Z]\s+\S+\s+|-[a-zA-Z]+\s+|\w+=[^\s]*\s+)*([\s\S]+)$/,
+  /^\s*(?:\/[^\s]*\/)?g?timeout\s+(?:-[^\s]+\s+)*[\d.]+[smhd]?\s+([\s\S]+)$/,
+  /^\s*(?:\/[^\s]*\/)?(?:nohup|stdbuf|setsid|nice|ionice)\s+(?:-[^\s]+\s+)*([\s\S]+)$/,
+];
+
+// Wrappers nest in practice (`env VAR=1 perl -e ... -- cmd`), so allow a few passes.
+const MAX_UNWRAP_DEPTH = 4;
 
 /**
  * Resolve a command to the packet whose rules govern it, or null when nothing does.
@@ -308,21 +325,89 @@ const MAX_UNWRAP_DEPTH = 2;
  * @param {string} command - raw command text.
  * @returns {{skill: string, packetPath: string} | null}
  */
-export function resolveDispatchPacket(command) {
-  const entryFor = (skill) => DISPATCH_SHAPES.find((d) => d.skill === skill) || null;
-  let current = typeof command === 'string' ? command : '';
+// A heredoc body is data the call WRITES, never commands the call runs, so a dispatch
+// inside one must not be read as a dispatch. Stripping it first is what separates
+// "write a script that dispatches" from "dispatch".
+function stripHeredocBodies(command) {
+  return command.replace(/<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1[\s\S]*?^\s*\2\s*$/gm, '<<HEREDOC');
+}
+
+// Split on shell separators that sit outside quotes. A wrapper unwrap is anchored to the
+// start of what it is given, so it only works once each segment is considered on its own:
+// `cd /tmp && perl ... -- hermes chat ...` has the dispatch in the second segment.
+function shellSegments(command) {
+  const segments = [];
+  let buf = '';
+  let quote = null;
+  for (let i = 0; i < command.length; i += 1) {
+    const ch = command[i];
+    if (quote) {
+      buf += ch;
+      if (ch === quote && command[i - 1] !== '\\') quote = null;
+      continue;
+    }
+    if (ch === '"' || ch === "'") { quote = ch; buf += ch; continue; }
+    if (ch === '\n' || ch === ';') { segments.push(buf); buf = ''; continue; }
+    if ((ch === '&' || ch === '|') && command[i + 1] === ch) { segments.push(buf); buf = ''; i += 1; continue; }
+    if (ch === '|') { segments.push(buf); buf = ''; continue; }
+    buf += ch;
+  }
+  segments.push(buf);
+  return segments.map((s) => s.trim()).filter(Boolean);
+}
+
+// A redirection is not part of the command being run, and a redirect whose target is a
+// quoted variable (`> "$OUT"`, the shape every capture in this repo's playbook uses) makes
+// the tokenizer lose the command entirely. Strip them before deciding WHICH packet governs.
+// The rules are still evaluated against the original command text, so `</dev/null` is
+// still visible to the stdin rule.
+const REDIRECTION = /\s(?:\d?>>?|\d?<|&>>?|\d?>&\d?)\s*(?:"[^"]*"|'[^']*'|[^\s;&|]+)/g;
+
+// Resolve one segment, unwrapping the wrappers that hide the real executor inside it.
+// Redirection stripping is a LAST resort, never a first step: the pattern is not
+// quote-aware, so running it up front ate the closing quote of a `bash -c "... </dev/null"`
+// payload and broke the unwrap it was meant to help.
+function resolveSegment(segment, redirectionsStripped = false) {
+  let current = segment;
   for (let depth = 0; depth <= MAX_UNWRAP_DEPTH; depth += 1) {
     const inspected = inspectDispatch(current);
-    if (inspected.kind === 'direct') return entryFor(inspected.executor);
-    // Ambiguous means the tokenizer saw dispatch evidence it could not pin to one
-    // executor. Enforcement must not be the thing that guesses, so fall back to the
-    // shape list for the packet and let the rules decide.
+    if (inspected.kind === 'direct') return inspected.executor;
+    // Ambiguous means the tokenizer saw dispatch evidence inside ONE segment but could not
+    // pin one executor. Match the shape list against that segment only: matching the whole
+    // command is what made a call that merely quotes a dispatch read as one.
     if (inspected.kind === 'ambiguous') {
-      return DISPATCH_SHAPES.find((d) => d.test.test(current)) || null;
+      // Test the shape against the segment with quoted spans blanked out. A command that
+      // BUILDS a payload containing a dispatch (`P='{"command":"opencode run ..."}'`) reads
+      // as ambiguous, and matching inside its quotes refused a call that dispatches nothing.
+      // Escaped quotes inside a payload (`"{\"command\":\"codex exec ...\"}"`) must not end
+      // the span, or the blanking stops at the first one and the dispatch text survives.
+      const unquoted = current
+        .replace(/'(?:\\.|[^'\\])*'/g, "''")
+        .replace(/"(?:\\.|[^"\\])*"/g, '""');
+      return DISPATCH_SHAPES.find((d) => d.test.test(unquoted))?.skill || null;
     }
-    const wrapped = current.match(SHELL_WRAPPER);
-    if (!wrapped) return null;
-    current = wrapped[2];
+    const shell = current.match(SHELL_WRAPPER);
+    if (shell) { current = shell[2]; continue; }
+    const exec = EXEC_WRAPPERS.reduce((found, re) => found || current.match(re), null);
+    if (exec) { current = exec[1]; continue; }
+    // Nothing matched. A redirect to a quoted variable (`> "$OUT"`, what every capture in
+    // this repo's playbook uses) makes the tokenizer lose the command, so retry once
+    // without redirections. The rules still see the original text, so `</dev/null` stays
+    // visible to the stdin rule.
+    if (redirectionsStripped) return null;
+    const stripped = current.replace(REDIRECTION, ' ').trim();
+    return stripped === current ? null : resolveSegment(stripped, true);
+  }
+  return null;
+}
+
+export function resolveDispatchPacket(command) {
+  const entryFor = (skill) => DISPATCH_SHAPES.find((d) => d.skill === skill) || null;
+  const raw = typeof command === 'string' ? command : '';
+  if (!raw) return null;
+  for (const segment of shellSegments(stripHeredocBodies(raw))) {
+    const skill = resolveSegment(segment);
+    if (skill) return entryFor(skill);
   }
   return null;
 }
