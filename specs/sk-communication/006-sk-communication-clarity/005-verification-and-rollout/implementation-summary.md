@@ -136,7 +136,22 @@ The two rules with no measured effect were rewritten as directives on 2026-09-15
 - Sonnet 5: weighted mean 0.80 against 0.73 on the first after run. The closing contract now holds: the checker case names the command, then the status, then nothing else, where the earlier after run reported the result with no command behind it. The item cap still does not hold: a flat twelve-item list, the same shape as every earlier Sonnet side.
 - Gate: control held on both models. Condition 4 still fails, on one row per model, receipts on GLM and the item cap on Sonnet. The gate does not certify release and says so.
 
-What this measures. Each rule moved exactly one model. The directive item cap changed GLM's list shape and not Sonnet's, the directive closing contract changed Sonnet's close and not GLM's. With one sample per case per condition the GLM receipts regression may be noise, and the Sonnet flat list is the fourth identical observation, which is not. The next change for the item cap is not wording: Sonnet is choosing the flat list with the rule in front of it, so the case needs a stronger observable or the rule needs a mechanism, and that is a decision for the operator rather than another rewrite.
+What this measures. Each rule moved exactly one model. The directive item cap changed GLM's list shape and not Sonnet's, the directive closing contract changed Sonnet's close and not GLM's. With one sample per case per condition the GLM receipts regression may be noise. The Sonnet flat list was the fourth identical observation, so the operator was asked to choose between a mechanism and accepting the list, and chose to accept it, recorded as ADR-010.
+
+## Rescored Under ADR-010
+
+The coverage case now keys on retention of the eleven rule files present in both conditions, and the group sizes are recorded without deciding the row. Every reply set was rescored, so the numbers below replace the ones above, which counted the flat list as a blocking failure.
+
+| Side | Weighted mean | Blocking rows |
+|------|---------------|---------------|
+| GLM before | 0.68 | C1 |
+| GLM after, first run | 0.77 | C1 |
+| GLM after, iterated rules | 0.74 | C3 |
+| Sonnet before | 0.73 | C1, C3 |
+| Sonnet after, first run | 0.75 | C3 |
+| Sonnet after, iterated rules | 0.83 | none |
+
+On Sonnet with the iterated rules the gate passes every observable condition: control held, correctness and safety within tolerance, mean above baseline, no blocking row, no-op rows apart. The human study stays a GAP. On GLM the receipts row blocks, one observation after two passes.
 
 ## Harness Hardening, 2026-09-15
 
@@ -145,6 +160,6 @@ The checklist pass named two adversarial runs the phase had not exercised, and o
 ## Known Limitations
 
 1. **One sample per case per condition.** The deltas are directional evidence from seven cases, not a powered result. The gate's GAP section says so.
-2. **Each iterated rule moved one model.** After the 2026-09-15 rewrite the item cap holds on GLM and not on Sonnet, and the closing contract holds on Sonnet and not on GLM. The Sonnet flat list is four identical observations. The GLM receipts miss is one, and may be noise.
+2. **The item cap is advisory on the models measured.** Sonnet printed the flat list four times, the operator accepted it as ADR-010, and the harness now scores retention. GLM's receipts miss on the iterated run is one observation after two passes and may be noise.
 3. **The mechanical scorer is a proxy.** It reads the scanner and one predicate per case. A blinded judge reading `runs/blind/` would add what no predicate sees.
 <!-- /ANCHOR:limitations -->

@@ -35,7 +35,7 @@
     {
       "id": "completeness-under-cap",
       "weight": 0.15,
-      "mechanic": "noGroupOverFiveAndAllItemsRetained",
+      "mechanic": "allItemsRetainedCapAdvisory",
       "judgeGuidance": "Grade the reply on its lists. No group of items runs past five and nothing asked for was dropped to get there. An ungrouped long dump or a trimmed caveat grades low."
     },
     {

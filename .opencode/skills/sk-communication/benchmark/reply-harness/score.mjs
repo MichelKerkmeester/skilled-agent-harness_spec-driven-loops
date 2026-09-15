@@ -117,11 +117,16 @@ function pCap(reply, caseEntry) {
   }
   if (current) groups.push(current)
   const overFive = groups.filter(n => n > 5)
-  const expected = [...new Set((String(caseEntry.prompt).match(/`([^`\n]+)`/g) ?? []).map(t => t.slice(1, -1)))]
+  // The operator accepted the flat list on the measured models, so the cap is recorded for
+  // the reader and only a dropped item fails the case. Expected items come from the case
+  // when it names them, else from the backticked tokens in its prompt.
+  const expected = Array.isArray(caseEntry.expectedItems) && caseEntry.expectedItems.length
+    ? [...new Set(caseEntry.expectedItems.map(String))]
+    : [...new Set((String(caseEntry.prompt).match(/`([^`\n]+)`/g) ?? []).map(t => t.slice(1, -1)))]
   const missingItems = expected.filter(t => !reply.includes(t))
   return {
-    pass: !overFive.length && !missingItems.length,
-    detail: { groupSizes: groups, overFive, expectedItems: expected, missingItems }
+    pass: !missingItems.length,
+    detail: { groupSizes: groups, overFive, capHeld: !overFive.length, expectedItems: expected, missingItems }
   }
 }
 
@@ -152,7 +157,7 @@ const MECHANICS = {
   commandAndStatusBeforeInterpretation: (reply) => (pReceipts(reply).pass ? 1 : 0),
   noSoftenersAndConcreteNextStep: (reply) => (pTone(reply).pass ? 1 : 0),
   noTangentSentencesAndLabeledDeferral: (reply) => (pTangent(reply).pass ? 1 : 0),
-  noGroupOverFiveAndAllItemsRetained: (reply, caseEntry) => (pCap(reply, caseEntry).pass ? 1 : 0),
+  allItemsRetainedCapAdvisory: (reply, caseEntry) => (pCap(reply, caseEntry).pass ? 1 : 0),
   scannerFindingsBySeverity: (reply, caseEntry, counts) => tellsScore(counts)
 }
 const MECHANIC_NAMES = new Set(Object.keys(MECHANICS))
@@ -162,7 +167,7 @@ const OWN = {
   C3: "commandAndStatusBeforeInterpretation",
   C4: "noSoftenersAndConcreteNextStep",
   C5: "noTangentSentencesAndLabeledDeferral",
-  C6: "noGroupOverFiveAndAllItemsRetained",
+  C6: "allItemsRetainedCapAdvisory",
   NC1: "restatementPresent"
 }
 const PREDICATE_BUILDERS = {
@@ -246,6 +251,7 @@ for (const c of cases) {
   for (const field of ["keyedRule", "passObservable", "failObservable"]) {
     if (c[field] !== undefined && typeof c[field] !== "string") die(`${casesFile} case ${c.id} field ${field} must be a string when present`)
   }
+  if (c.expectedItems !== undefined && (!Array.isArray(c.expectedItems) || c.expectedItems.some(t => typeof t !== "string" || !t.trim()))) die(`${casesFile} case ${c.id} expectedItems must be a list of non-empty strings when present`)
 }
 const controls = cases.filter(c => c.control)
 if (controls.length !== 1 || controls[0].id !== "NC1") die(`${casesFile} needs control true on NC1 and nowhere else`)

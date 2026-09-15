@@ -43,9 +43,9 @@ aligned the rule router.
 
 **Where it stopped.** Two rule sentences the harness showed inert, the item cap and the closing
 contract, were rewritten as directives and the after-condition was regenerated on both models.
-Each moved exactly one model: the cap holds on GLM and not Sonnet, the closing contract holds on
-Sonnet and not GLM. Nothing is open. The verification pass is `468ffab0b9` and the result commit
-follows it.
+Each moved exactly one model. The operator then accepted the flat list on Sonnet as ADR-010, so
+the harness scores the cap as advisory and Sonnet passes every observable gate condition with the
+iterated rules. Nothing is open. The verification pass is `468ffab0b9`.
 
 **Ownership.** Concurrent sessions live-synced this branch throughout. Two of this program's
 commits reached origin through another session's push. Attribute before assuming a working-tree
@@ -77,7 +77,7 @@ it binds:
 - **The reply harness could not measure two rules.** The item cap and the closing contract
   scored inert on GLM-5.3-Flash and on Sonnet 5 because both were descriptive. Both were made
   directive and remeasured under `005/runs/iterated/`. The Sonnet flat list survived a fourth
-  time, so the next move on the item cap is an operator decision, not another rewrite.
+  time and the operator accepted it, ADR-010, so the cap is advisory in the harness.
 - **The human study in the release gate is unobservable** from inside a session. The gate
   records it as GAP, not as PASS.
 - **The audited claude executor refuses nested dispatch** from inside Claude Code. Sonnet work
@@ -139,15 +139,12 @@ and naming them in the message.
 
 ### 3.1 Recommended Starting Point
 
-Read `005/implementation-summary.md`, Third Run, Iterated Rules. It holds the one open
-question the program leaves: the visible item cap does not move Sonnet 5 as wording, four
-observations running. Decide whether the case gets a stronger observable, the rule gets a
-mechanism, or the cap stays advisory on that model. Nothing else is pending.
+Read `005/implementation-summary.md`, Rescored Under ADR-010. Nothing is pending. The one
+thing to watch is the GLM receipts row, one miss after two passes.
 
 ### 3.2 Priority Tasks Remaining
 
-1. **Decide the item cap on Sonnet** as above. Until then the rule stands as written and the
-   harness records the miss.
+1. **Nothing is required.** The item cap decision is taken and recorded.
 2. **Watch the GLM receipts miss.** One observation on the iterated run, after two passes.
    A second miss makes it a rule problem, a pass makes it noise.
 3. **Watch for the leaked-scaffolding guard in live replies.** Other sessions were copying the
@@ -188,7 +185,7 @@ into the harness README's instructions.
 | Deep review closed | OBSERVED | 0 P0, 2 P1, 4 P2, all six closed in 010 with direct tests |
 | Root document at 283 lines with the root-only logic intact | OBSERVED | Line-by-line diff against `055/scratch/agents-md.original-496.md` |
 | Runtime mirrors in sync | OBSERVED | Gate-1 pointers, runtime mirrors, hook registrations and agent mirrors all report no drift |
-| The directive rewrites move C6 and the closing rows | OBSERVED | Iterated run under `005/runs/iterated/`: cap holds on GLM, closing contract holds on Sonnet, each on one model only |
+| The directive rewrites move C6 and the closing rows | OBSERVED | Iterated run under `005/runs/iterated/`: cap holds on GLM, closing contract holds on Sonnet, each on one model only, cap advisory since ADR-010 |
 | Every verification checklist row is worked | DERIVED | Worked by three Sonnet leaves on 2026-09-15, each folder validated after |
 <!-- /ANCHOR:validation-checklist -->
 
