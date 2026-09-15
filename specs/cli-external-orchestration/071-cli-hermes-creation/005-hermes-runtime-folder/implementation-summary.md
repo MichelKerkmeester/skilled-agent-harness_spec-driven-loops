@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The repo-root .hermes folder exists with curated per-skill symlinks, 33 generated prompt templates, the project plugin, the playbook symlink and a sync manifest; a live session reached a repo skill and ran a command template end to end."
+description: "The repo-root .hermes folder exists with generated markdown-only copies of all 56 skills, 33 generated prompt templates, the project plugin, the playbook symlink and a sync manifest; a live session reached a repo skill and ran a command template end to end."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "cli-external-orchestration/071-cli-hermes-creation/005-hermes-runtime-folder"
     last_updated_at: "2026-09-14T20:40:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Live skill reach and template dispatch proven; skills surface redesigned to per-skill links"
+    recent_action: "Skills surface regenerated as markdown-only copies of all 56 skills; live preload proven; earlier: redesigned to per-skill links"
     next_safe_action: "None; phase closed"
     blockers: []
     key_files:
@@ -54,13 +54,14 @@ A Hermes session started in this repository now has a `.hermes/` folder shaped l
 
 ### Phase 5: hermes runtime folder
 
-You get `skills/<name>` as one directory symlink per curated skill (the whole-tree link was tried and rejected: Hermes scanned the entire tree for ten minutes per session and quarantined every hub), 33 generated prompt templates under `prompts/` that point at the canonical commands and are carried by `--query-file`, the `plugins/repo-guards/` slot phase 006 fills, the playbook symlink, and a `SYNC.md` that lists the four operator steps Hermes keeps user-level.
+You get `skills/<name>/SKILL.md` as a generated markdown-only copy of every canonical skill (56, flat by frontmatter name, from `sync-skills-hermes.cjs`; a symlinked directory is scanned in full by Hermes, so the whole-tree link took ten minutes and quarantined every hub, and a single linked skill was quarantined on its scripts and references), 33 generated prompt templates under `prompts/` that point at the canonical commands and are carried by `--query-file`, the `plugins/repo-guards/` slot phase 006 fills, the playbook symlink, and a `SYNC.md` that lists the four operator steps Hermes keeps user-level.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.hermes/skills` | Created (symlink) | `../.opencode/skills` |
+| `.hermes/skills/<name>/SKILL.md` | Generated (56) | markdown-only copies naming their canonical directory |
+| `.opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` | Created | generator with `--check`; 3 node tests |
 | `.hermes/manual-testing-playbook` | Created (symlink) | `../.opencode/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook` |
 | `.hermes/prompts/*.md` | Generated | 33 pointer stubs, one per canonical command |
 | `.hermes/SYNC.md` | Created | Surface inventory, operator steps, sync workflow, plugin hook map |
@@ -106,7 +107,7 @@ Symlinks were created with the same relative targets the Pi and Devin folders us
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Only linked skills are visible to Hermes.** Adding one is a new directory symlink under `skills/`; a dispatch that needs any other skill names it by path.
+1. **Seven copies are quarantined by Hermes's prose scanner** (`cli-cursor`, `cli-devin`, `cli-opencode`, `deep-research`, `mcp-aside-devtools`, `mcp-magicpath`, `sk-create-repo-rule`) on patterns in their own text; they still preload with `-s`, and Hermes has no knob for it. A new skill appears after re-running the generator under `skills/`; a dispatch that needs any other skill names it by path.
 2. **`hermes skills trust` is user-level.** Done 2026-09-14 under operator authorization; a fresh machine needs it again.
 <!-- /ANCHOR:limitations -->
 

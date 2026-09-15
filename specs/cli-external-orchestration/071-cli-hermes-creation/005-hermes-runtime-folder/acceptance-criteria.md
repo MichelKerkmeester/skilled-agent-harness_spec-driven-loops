@@ -54,7 +54,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the repo root, When `ls -la .hermes` runs, Then the symlinks resolve and the real files are present | Observed 2026-09-14: `skills`, `manual-testing-playbook` symlinks; `prompts/` 33 files; `plugins/repo-guards/`; `SYNC.md` | Met | - |
+| AC-001 | REQ-001 | Given the repo root, When `ls -la .hermes` runs, Then the playbook symlink and the generated files resolve and the real files are present | Observed 2026-09-14: `skills`, `manual-testing-playbook` symlinks; `prompts/` 33 files; `plugins/repo-guards/`; `SYNC.md` | Met | - |
 | AC-002 | REQ-002 | Given a trusted repo, When a live session preloads a repo skill, Then the skill text is reachable | `-s cli-hermes` quoted the first hard rule id; `hermes skills list` shows no project rows, so the listing form is superseded by the preload form | Met | - |
 | AC-003 | REQ-003 | Given a prompt template, When it is dispatched through `--query-file`, Then one repo command runs end to end | `agent-router` template: read the canonical command, answered with the persona token, exit 0 | Met | - |
 | AC-004 | REQ-004 | Given the folder, When its files are compared with the repo, Then nothing is duplicated except by symlink | Prompts are generated pointer stubs; `SYNC.md` and the plugin are unique to Hermes | Met | - |
@@ -84,5 +84,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All four criteria are met live. The skills surface changed shape on evidence: per-skill directory links, never the whole tree.
+All four criteria are met live. The skills surface changed shape twice on evidence: whole-tree link, then per-skill directory links, then generated markdown-only copies of every skill, because Hermes scans any linked directory in full.
 <!-- /ANCHOR:closure -->

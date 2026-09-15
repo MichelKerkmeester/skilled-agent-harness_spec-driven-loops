@@ -164,7 +164,7 @@ See [`dispatch-guards/hard-rule-preflight-checks.md`](dispatch-guards/hard-rule-
 
 #### Description
 
-The repository's `.hermes/` folder carries one directory symlink per curated skill, generated command-prompt stubs, one project plugin and a sync manifest, and nothing that pretends to configure Hermes.
+The repository's `.hermes/` folder carries one generated markdown-only SKILL.md copy per canonical skill, generated command-prompt stubs, one project plugin and a sync manifest, and nothing that pretends to configure Hermes.
 
 #### Current Reality
 
