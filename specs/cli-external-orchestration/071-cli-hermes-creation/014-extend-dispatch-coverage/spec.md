@@ -57,10 +57,10 @@ This is **Phase 14** of the Dispatch preflight parity implementation specificati
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Phase 1 made the preflight enforce, but two runtimes could not reach it and several predicates could be walked past. Cursor and OpenCode carried only after-the-fact recording, so a wrong dispatch typed in either session was logged once it had already run. Three OpenCode predicates matched one spelling of a flag and missed its equals form or its unquoted prompt, so the rules read as enforced while the other spelling passed. Pi's mandatory offline flag and its provider-qualified model selector were required by the fan-out builder and by the packet's own contract, but nothing checked a hand-written dispatch for either.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Every runtime that can host a dispatch refuses a violating one before it runs, and each predicate catches every spelling of the condition it names.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,27 @@ This is **Phase 14** of the Dispatch preflight parity implementation specificati
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- A Cursor pre-execution adapter translating the shared engine into Cursor's permission envelope.
+- An OpenCode pre-execution hook on the existing dispatch plugin.
+- The three predicate bypasses: the agent equals form, the share equals form, the unquoted slash prompt.
+- Two new Pi checks covering the offline flag and the provider-qualified model.
+- A registration assertion so a runtime cannot lose its adapter silently.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Builder parity and persona wiring - phase 015 owns them.
+- The cross-registry CI guard - phase 016.
+- The quoted-payload false positive, recorded in phase 1 and still open.
+- Devin's retired command surface, removed by operator directive.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/hooks/dispatch/cursor/dispatch-preflight-lint.mjs` | Create | Cursor translation shim over the Claude adapter |
+| `.opencode/plugins/cli-dispatch-audit.js` | Modify | Pre-execution hook that denies by throwing |
+| `.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs` | Modify | Widen three predicates, add the two Pi checks |
+| `.opencode/skills/cli-external-orchestration/cli-pi/SKILL.md` | Modify | Declare the two Pi rules |
+| `.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` | Modify | Register the Cursor binding |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +101,16 @@ This is **Phase 14** of the Dispatch preflight parity implementation specificati
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | A violating dispatch in a Cursor session is refused before it runs |
+| REQ-002 | A violating dispatch in an OpenCode session is refused before it runs |
+| REQ-003 | Each widened predicate catches both spellings of its condition |
+| REQ-004 | A Pi dispatch without the offline flag, or with an unqualified model, is refused |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-005 | Losing an adapter file or its registration fails a test rather than passing silently |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +121,8 @@ This is **Phase 14** of the Dispatch preflight parity implementation specificati
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: Both new adapters deny a violating dispatch and approve a correct one when exercised directly.
+- **SC-002**: Every widened or added predicate has a passing case, a violating case and a negative control.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +132,9 @@ This is **Phase 14** of the Dispatch preflight parity implementation specificati
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | Widening the slash-prompt predicate could match a URL or a POSIX path | Medium: a false refusal on an ordinary prompt | Negative controls for both shapes are asserted in the suite |
+| Risk | An OpenCode plugin sees only commands run inside an OpenCode session | Low: chained dispatches from another host are out of its reach by construction | Recorded as a scope limit rather than papered over; the other hosts carry their own adapters |
+| Dependency | The shared check engine | A second copy would drift from the first | Both adapters call the same engine rather than reimplementing severity or rule parsing |
 <!-- /ANCHOR:risks -->
 
 ---

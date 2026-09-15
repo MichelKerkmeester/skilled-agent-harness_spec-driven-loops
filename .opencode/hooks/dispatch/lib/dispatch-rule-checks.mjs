@@ -89,6 +89,8 @@ const HEADLESS_DISPATCH_SHAPES = [
 ];
 
 const HERMES_CHAT = /\bhermes\s+chat\b/;
+// Pi's headless shape, reused by the two pi-specific checks below.
+const PI_PRINT = /\bpi\s+(?:[^|;&]*\s)?(?:-p|--print)\b/;
 // `--query-file` is Hermes's own stdin contract: `-` reads the prompt from stdin and a
 // path reads a file, and either way the run never waits on an inherited terminal stdin.
 const HERMES_STDIN_HANDLED = /--query-file(\s|=)/;
@@ -149,20 +151,36 @@ export const CHECKS = {
     if (!/\bopencode\s+run\b/.test(cmd)) return true; // not the dispatch shape → n/a
     return /(^|\s)(-m|--model)(\s|=)/.test(cmd);
   },
-  // A bare top-level `--agent general` is rejected by opencode at runtime.
-  'no-bare-agent-general': (cmd) => !/--agent\s+general(\s|$)/.test(cmd),
-  // A slash-command-shaped prompt needs --command, else opencode delivers it as raw prose.
+  // A bare top-level `--agent general` is rejected by opencode at runtime. Both spellings
+  // count: `--agent=general` reached the runtime unflagged while `--agent general` did not.
+  'no-bare-agent-general': (cmd) => !/--agent(?:\s+|=)general(\s|$)/.test(cmd),
+  // A slash-command-shaped prompt needs --command, else opencode delivers it as raw prose
+  // and the wrong task runs with no error. The prompt need not be quoted to be a prompt.
   'command-flag-for-slash-prompt': (cmd) => {
-    const slashPrompt = /(["'])\s*\/[a-z0-9]+:[a-z0-9-]+/i.test(cmd); // "/family:name ...
+    const slashPrompt = /(?:["']|\s)\s*\/[a-z0-9]+:[a-z0-9-]+/i.test(cmd);
     if (!slashPrompt) return true;
     return /--command(\s|=)/.test(cmd);
   },
-  // --share publishes the session; flag for confirmation (advisory — can't verify consent here).
-  'share-requires-confirmation': (cmd) => !/--share(\s|$)/.test(cmd),
+  // --share publishes the session; flag for confirmation (advisory — can't verify consent
+  // here). `--share=<value>` publishes exactly as the bare flag does.
+  'share-requires-confirmation': (cmd) => !/--share(?:\s|=|$)/.test(cmd),
   // The four availability rules below were declared with `severity: error` but had no
   // implementation, so they never refused anything. Each answers one question: does the
   // binary this command invokes actually resolve on PATH? Anything uncertain passes —
   // a guard that cannot see PATH must not invent a refusal.
+  // Pi's startup network probes are not bounded by the dispatch timeout: a non-interactive
+  // run without --offline hung past two minutes in the packet's own live probe, which reads
+  // as a slow model rather than a stalled startup.
+  'pi-offline-required': (cmd) => !PI_PRINT.test(cmd) || /(^|\s)--offline(\s|$)/.test(cmd),
+  // Pi resolves a bare model id against its own default provider, so an unqualified selector
+  // silently runs a different provider's model instead of failing. The gateway needs the
+  // two-segment `provider/model` form and 400s without it.
+  'pi-provider-qualified-model': (cmd) => {
+    if (!PI_PRINT.test(cmd)) return true;
+    const model = cmd.match(/(?:^|\s)(?:-m|--model)(?:\s+|=)([^\s"']+)/);
+    if (!model) return true; // absence is the availability/model rule's business, not this one
+    return model[1].includes('/');
+  },
   'command-v-codex-required': binaryOnPathCheck('codex', /\bcodex\s+/),
   'command-v-cursor-agent-required': binaryOnPathCheck('cursor-agent', /\bcursor-agent\s+/),
   'command-v-devin-required': binaryOnPathCheck('devin', /\bdevin\s+/),

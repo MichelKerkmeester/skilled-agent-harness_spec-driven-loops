@@ -12,6 +12,14 @@ hard_rules:
     check: command-v-pi-required
     message: "Run command -v pi before every dispatch; if it fails, refuse the route without constructing or launching a command."
     severity: error
+  - id: pi-offline-required
+    check: pi-offline-required
+    message: "Any non-interactive `pi -p` MUST pass `--offline`. Pi's startup network probes are not bounded by the dispatch timeout and hung past two minutes in this packet's live probe, which reads as a slow model rather than a stalled startup."
+    severity: error
+  - id: pi-provider-qualified-model
+    check: pi-provider-qualified-model
+    message: "A `--model` passed to `pi -p` MUST carry its provider, as `provider/model`. A bare id resolves against Pi's own default provider, so the run silently uses a different provider's model instead of failing, and the LLM Gateway rejects the unqualified form outright."
+    severity: error
 ---
 
 <!-- Keywords: pi cli, pi agent, pi.dev cli, pi coding agent, delegate to pi, cross-ai, headless dispatch, json event stream, rpc mode, native skills, extensions, pi packages -->

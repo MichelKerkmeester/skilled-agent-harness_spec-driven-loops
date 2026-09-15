@@ -346,6 +346,18 @@
             "timeout": 5,
             "fallback": "none"
           }
+        ],
+        "cursor": [
+          {
+            "event": "preToolUse",
+            "group": 0,
+            "slot": 3,
+            "matcher": "Shell",
+            "runner": "node",
+            "script": ".opencode/hooks/dispatch/cursor/dispatch-preflight-lint.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
         ]
       },
       "pi": {

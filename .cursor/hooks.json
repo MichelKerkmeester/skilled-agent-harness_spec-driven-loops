@@ -67,6 +67,12 @@
         "type": "command",
         "matcher": "Shell",
         "timeout": 10
+      },
+      {
+        "command": "node .opencode/hooks/dispatch/cursor/dispatch-preflight-lint.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=preToolUse adapter=dispatch-preflight-lint.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
+        "type": "command",
+        "matcher": "Shell",
+        "timeout": 10
       }
     ],
     "postToolUse": [
