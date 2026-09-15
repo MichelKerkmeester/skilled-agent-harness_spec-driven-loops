@@ -136,9 +136,11 @@ Bring Hermes to the same parity the other six runtimes have, in the order that w
 | 7 | `007-hermes-model-registry-and-routing/` | Prompt-models profiles; roster enforcement at both dispatch entry points; effort-name map for the gateway route | Complete 2026-09-14 — roster refusal proven in the runner, guard and registry rows landed, levels checked live |
 | 8 | `008-hermes-playbook-and-catalog/` | Manual-testing playbook and feature catalog with `sk-create-manual-testing-playbook` and `sk-create-feature-catalog` | Complete 2026-09-14 — 36 scenarios, second pass 22 of 22 live, catalog validated |
 | 9 | `009-docs-governance-and-closeout/` | READMEs with `sk-create-readme`, roster docs, `REPO RULES.md` and `AGENTS.md` check, recursive strict validation | Complete 2026-09-14 — roster surfaces, READMEs, recursive gate |
+| 10 | `010-hermes-hook-parity/` | Ten more hook bridges in the `repo-guards` plugin (prompt-time advisor and gate, post-edit quality, task-dispatch and MCP route guards, goal core, session-start advisories, session cleanup, vision), implemented on cli-pi with DeepSeek V4.1 Flash | Complete 2026-09-15 — 42 tests, seven live scenarios |
 
 The plan follows phase 001's ranked recommendation, confirmed by the operator on 2026-09-14: the earlier candidates for an agent and command bridge and for MCP host integration are content of phase 4, and the hook layer is narrowed to the project plugin.
 
+| 10 | 010-hermes-hook-parity/ | [Phase 10 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -162,6 +164,7 @@ The plan follows phase 001's ranked recommendation, confirmed by the operator on
 | 006 | 007 | The project plugin loads and its `pre_verify` and `pre_tool_call` hooks fire on a live dispatch | Live hook output recorded |
 | 007 | 008 | A rostered model dispatches through the executor and an off-roster id is refused | Runner output for both cases |
 | 008 | 009 | Playbook scenarios executed with recorded evidence | Playbook report files |
+| 009-docs-governance-and-closeout | 010-hermes-hook-parity | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

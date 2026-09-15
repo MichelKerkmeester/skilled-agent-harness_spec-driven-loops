@@ -36,11 +36,13 @@ Native plugins load from `./.hermes/plugins/<name>/` when `HERMES_ENABLE_PROJECT
 
 | Hermes hook | Repo guard core | Effect |
 |---|---|---|
-| `pre_tool_call` | self-dispatch refusal; read-only refusal; dispatch preflight lint; sk-git advisory core | Refuses a nested `hermes chat`; refuses `write_file`, `patch`, `terminal` and code execution when `SPECKIT_HERMES_READ_ONLY=1`; blocks a `cli-*` dispatch that violates a blocking hard rule; stages the sk-git advisory for a git command |
-| `transform_tool_result` | the staged sk-git advisory | Appends the `⚠ sk-git advisory` lines to the git command's tool result |
+| `pre_llm_call` | skill advisor CLI; spec-gate classifier | Appends the advisor brief every turn and the Gate 3 question on the first turn to the user message; skipped for an orchestrated leaf |
+| `pre_tool_call` | self-dispatch refusal; read-only refusal; dispatch preflight lint; task-dispatch guard; MCP route guard; sk-git advisory; sk-vision | Refuses a nested `hermes chat`; refuses the write and command tools when `SPECKIT_HERMES_READ_ONLY=1`; blocks a `cli-*` dispatch or a `delegate_task` the guards reject; stages the sk-git, MCP-route and vision advisories |
+| `transform_tool_result` | the staged advisories; post-edit quality | Appends the staged advisories and the post-edit quality warning for `write_file` and `patch` (the core runs here because post and transform hooks run on separate bounded threads) |
+| `on_session_start` | shared goal core | Binds the packet named by `HERMES_SPEC_FOLDER` to the session id |
 | `pre_verify` | completion-evidence stop | Returns a continue nudge when a completion claim names no evidence |
-| system prompt section | session-start context; the packet named by `HERMES_SPEC_FOLDER` | Freezes the session context, the bound packet path and its goal slice into the prompt |
-| `on_session_end` | session-stop context | Records the closing state |
+| system prompt sections | session-start context; persona; goal core; session-start guards | Four sections under the 4000-character cap: context, `agent-<name>` persona binding, the core's goal (else the packet slice), and the worktree, dist-freshness, git-hooks and primary-reconcile warnings |
+| `on_session_end` | session-stop context; session cleanup | Records the closing state and reaps the MCP helpers the process spawned |
 
 Validation: `hermes plugins validate ./.hermes/plugins/repo-guards` and `hermes plugins doctor`. Agent Plugins v1 portable packages exist in Hermes but are deferred here; their hook surface is unsettled.
 
