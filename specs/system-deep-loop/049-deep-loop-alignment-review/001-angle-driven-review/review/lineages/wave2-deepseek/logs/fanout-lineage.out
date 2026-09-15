@@ -1,0 +1,20 @@
+Wave2-deepseek is complete. Final status:
+
+**What ran (all in-session, no nested dispatch)**
+- **Iteration 5 (angle 15)** — recorded earlier this session; re-verified now: `OK iteration 5 complete: narrative + route-proof + delta`.
+- **Registry** — `deep-review-findings-registry.json` updated with F033–F044: **24 active, 0 resolved (P0=1, P1=11, P2=12)**.
+- **Synthesis** — `review-report.md` written (Executive Summary, planning packet, full 24-finding registry, 6 workstreams, traceability, audit appendix); dashboard and strategy updated to the final COMPLETE state.
+- **State log** — 13 records ending `claim_adjudication` (run 5) → `synthesis_complete` (`stopReason: maxIterationsReached`, verdict FAIL, release-blocking) → `traceability_summary`; both terminal lines byte-identical to `logs/synthesis-events.jsonl`.
+- **Runner summary** — `logs/fanout-lineage.out` written.
+
+**One repair made**
+- `iterations/iteration-004.md` was missing its required closing verdict line — `verify-iteration.cjs` failed it on `iteration_verdict_missing`. Appended `Review verdict: FAIL` (grounded in that iteration's own severity note: it filed the P0 and moved the lane to release-blocking). All five iterations now verify OK.
+
+**Verified**
+- All five iteration verifications read `OK`; every JSON/JSONL artifact re-parses; registry/report/dashboard/strategy agree on 24 open / 1-11-12.
+- Every write I made is inside the lineage directory. The only modified tracked file elsewhere (`review/observability-events.jsonl`) is the orchestrator's own `fanout-run` heartbeat stream, untouched by me. No reviewed source was changed.
+
+**Inferred / noted**
+- The gateway (`append-mode-event.cjs`) is not the active write path in this epoch: `check-direct-append.cjs` reports `not-enforced` (`legacy_authoritative`), so the state log is the sanctioned writer — which is how wave1-deepseek also recorded its synthesis events.
+
+**Your call:** nothing is committed — the wave2-deepseek lineage is untracked. Whether it gets committed, and whether its finding set is merged with wave one's for the `/speckit:plan` remediation, is the orchestrator's decision.

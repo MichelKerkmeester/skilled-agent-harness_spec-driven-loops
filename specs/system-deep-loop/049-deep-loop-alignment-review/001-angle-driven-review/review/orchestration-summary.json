@@ -1,5 +1,5 @@
 {
-  "run_id": "1789465945073-px9i6h",
+  "run_id": "1789475514883-p58bmd",
   "loop_type": "review",
   "spec_folder": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review",
   "base_artifact_dir": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/review",
@@ -22,49 +22,49 @@
   },
   "timestamp_anomalies": [
     {
-      "label": "wave1-deepseek",
-      "state_log": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/review/lineages/wave1-deepseek/deep-review-state.jsonl",
+      "label": "wave2-deepseek",
+      "state_log": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/review/lineages/wave2-deepseek/deep-review-state.jsonl",
       "window": {
-        "start_at_iso": "2026-09-15T09:52:25.077Z",
-        "end_at_iso": "2026-09-15T10:20:07.103Z",
+        "start_at_iso": "2026-09-15T13:16:25.045Z",
+        "end_at_iso": "2026-09-15T13:33:10.364Z",
         "tolerance_ms": 120000
       },
       "counts": {
-        "anomalous": 6,
+        "anomalous": 10,
         "untimestamped": 1,
         "unparseable": 0,
         "total": 13
       },
       "sample": [
         {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-09-15T12:52:00Z",
+          "deltaMs": 1345045
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-09-15T12:53:10Z",
+          "deltaMs": 1275045
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-09-15T13:10:00Z",
+          "deltaMs": 265045
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-09-15T13:11:10Z",
+          "deltaMs": 195045
+        },
+        {
           "index": 7,
           "reason": "after_window",
-          "timestamp": "2026-09-15T10:28:00Z",
-          "deltaMs": 352897
-        },
-        {
-          "index": 8,
-          "reason": "after_window",
-          "timestamp": "2026-09-15T10:30:00Z",
-          "deltaMs": 472897
-        },
-        {
-          "index": 9,
-          "reason": "after_window",
-          "timestamp": "2026-09-15T10:44:00Z",
-          "deltaMs": 1312897
-        },
-        {
-          "index": 10,
-          "reason": "after_window",
-          "timestamp": "2026-09-15T10:46:00Z",
-          "deltaMs": 1432897
-        },
-        {
-          "index": 11,
-          "reason": "after_window",
-          "timestamp": "2026-09-15T10:50:00Z",
-          "deltaMs": 1672897
+          "timestamp": "2026-09-15T14:12:00Z",
+          "deltaMs": 2209636
         }
       ]
     }

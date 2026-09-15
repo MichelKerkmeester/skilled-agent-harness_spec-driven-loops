@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-deep-loop/049-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability",
+  "description": "Phase 3: leaf-manifest-and-doctrine-reachability",
+  "keywords": [
+    "phase",
+    "leaf-manifest-and-doctrine-reachability"
+  ],
+  "lastUpdated": "2026-09-15T14:23:12.328Z",
+  "specId": "004",
+  "folderSlug": "leaf-manifest-and-doctrine-reachability",
+  "parentChain": [
+    "system-deep-loop",
+    "049-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

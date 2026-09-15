@@ -1,0 +1,1912 @@
+{
+  "sessionId": "fanout-wave2-glm-1789475514883-p58bmd",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-09-15T14:08:00Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "The four variant line-1 config literals are four different record shapes; only review-auto's can agree with its config from line 1",
+      "file": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "line": null,
+      "description": "review-auto:466-467 = the 16-key literal with the full lineage/mode/stopPolicy block plus the agree-from-line-1 invariant; research-auto:368 = 12 keys, no lineage/mode/stopPolicy/executor; research-confirm:369 = 8 keys, additionally dropping minIterations/minIdeaObservations/nextRunAt/remainingDelayMs that its own auto declares, while its config populate :344-368 carries stuckThreshold/status/executionMode/lineage.* (sessionId AUTO_SESSION_ID) so its config file and its state-log line 1 disagree from line 1; all four detached lanes' actual line-1 records (this lane's = state-log line 1) carry topic+executor that NO workflow literal emits",
+      "findingClass": "line-1-config-record-shape-quartet",
+      "deltaStatus": "active",
+      "scopeProof": "both variant pairs read (the precedent lane covered the review pair only, the research pair restored by the wave-two rewrite as this angle); the four shapes + the four published detached line-1 records compared; precedent F001 = the same defect class on the review-confirm half",
+      "affectedSurfaceHints": [
+        "deep-review-auto",
+        "deep-review-confirm",
+        "deep-research-auto",
+        "deep-research-confirm",
+        "the detached lanes' line-1 records"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "title": "The ledger-authority flip is emergent, its write side is the gateway's shadow projection store, and enforcement is triple-split: receipt-gated not-enforced, a 1/0/1/0 invocation matrix, and a runner acceptance that never calls the verifier — the containment promise activates for no published mechanical writer",
+      "file": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+      "line": null,
+      "description": "(1) checkLedgerBacking (:202-219) consults checkGatewayReceipt FIRST and returns not-enforced without an ok/violation authority (:152-153, :200-201: a deliberate no-op while a mode runs the legacy writer); (2) the WRITE side: rg -ln legacy-projection-watermarks across runtime/lib = exactly ONE hit, shadow-projection-store.ts, reached via the gateway's tsx child (append-mode-event.cjs:27, :112-157, :207) — the flip is the FIRST receipt+frames existence, not an event, flag or migration step; (3) frames roots = [artifactDir, dirname(artifactDir)]/<leaf>-ledger/frames (:209-211): the secondary root reaches OUTSIDE the lineage and the producing root is not reported; (4) invocation matrix (rg -c verify-iteration, 7 surfaces): review-auto 1x (:1663), research-auto 1x (:1663), review-confirm 0x, research-confirm 0x, review.md 0x, research.md 0x, fanout-run.cjs 0x — the detached acceptance authority (:976-1028) parses records and counts files, it never gates; (5) both escape switches are source-comment-only: DEEP_LOOP_LEDGER_BACKING_GATE=0 (:269-270) kills 2b; DEEP_LOOP_VERIFY_GATEWAY_RECEIPT=1 (:286-292), documented advisory-only for 2c, ALSO hardens 2b via the unconditional receipt consultation (receipt disagreement -> violation -> unbacked -> loud failure); (6) the inspection toolchain (verify-authority.cjs, check-projection-coverage.cjs, check-protocol-append-sites.cjs, all in runtime/scripts/) is referenced by NO variant, neither markdown, nor the runner (census: 0); (7) OPERATIONAL: this lane's legacy-direct iteration-1 record gated TODAY: {ok:true, detail: iteration 1 complete: narrative + route-proof + delta} exit=0 — the 2b not-enforced path measured live",
+      "findingClass": "ledger-authority-emergent-triple-split",
+      "deltaStatus": "active",
+      "scopeProof": "the verifier's gate+receipt+watermark machinery read at the cited loci; the sole-writer rg across runtime/lib; the 7-surface invocation census; the unwired-tool census; the live exit-0 measurement — the affected class (bypass detection, append-only integrity, cutover enforcement) is exactly the state_write_protocol promise all four variants declare over every append directive; this resolves wave1's dead end (the flip's WRITE side and WHEN) and extends wave1's F018 (1x/0x review pair) to the full 1/0/1/0 + runner-never matrix",
+      "affectedSurfaceHints": [
+        "verify-iteration.cjs 2b/2c",
+        "check-direct-append.cjs watermark contract",
+        "shadow-projection-store.ts (sole watermark writer)",
+        "fanout-run.cjs:976-1028 acceptance",
+        "all four variants' gate steps",
+        ".legacy-projection-watermarks/ + <deep-review-ledger>/frames/"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P1",
+      "title": "The mirror fleet is a two-tiara topology with no bridge: .codex+.pi derive from .opencode while .cursor+.devin mirror .claude, no mechanism ever compares the two tiaras, they already differ by 215 bytes on review.md, and the fleet's own governance voices disagree 23:3 on WHICH tree is canonical",
+      "file": ".pi/SYNC.md",
+      "line": null,
+      "description": "(1) the two documented chains: .pi/SYNC.md — Canonical for agents is .opencode/agents/ (the same upstream Codex uses), NOT the .claude/agents/ fork that Cursor and Devin symlink; the roster-check — CANONICAL_DIR = .claude/agents, The Claude tree is canonical, LINKED = cursor/devin, AUTHORED = opencode/codex/pi; (2) the comparative enforcement: symlink RESOLUTION for cursor/devin (a real file there = a silent fork) but for the three authored/generated trees ONLY PRESENCE, never content equality (the checker's own comment); the .pi content guard = the SECOND, unreconciled mechanism (sync-agents-pi.cjs --check); NOTHING compares .opencode against .claude; (3) the measured divergence: .opencode/agents/review.md = 25,726B vs .claude = 25,511B — the uncompared seam ALREADY differs, while .claude ≡ .cursor (diff -q x3) and .devin = .claude: the fork-side perfectly faithful, the .opencode-side faithfully serving ITS derivatives (.pi 25,599, .codex 25,659) — the 215B sits AT the seam; (4) the canonicality vote: 26 assertions — 23x .claude-canonical (11+11 copied notes + the checker) vs 3x .opencode-canonical (the deep-review note pair + SYNC.md; the .codex conversions point at .opencode too) — TWO answers, 23:3, no recorded reconciliation, and SYNC.md explicitly calls .claude the fork",
+      "findingClass": "two-tiara-topology-no-bridge",
+      "deltaStatus": "active",
+      "scopeProof": "both derivation chains read at their documentation+code loci; the 3x diff + the 6-entry size row; the 26-assertion vote; the 12-reference-site governance census; the 215B divergence measured at the uncompared seam",
+      "affectedSurfaceHints": [
+        "the 72+ declaration files",
+        ".pi/SYNC.md",
+        "agent-roster-mirror-check.cjs",
+        "sync-agents-pi.cjs --check",
+        "the pre-commit hook",
+        "the doctor's mirror-asset"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F014",
+      "severity": "P1",
+      "title": "The containment promise is a seven-stage relay held by convention: comments promise fail-closed, the inline code advises, the verifier checks only the verdict's FORMAT, the lane self-reports, the reducer labels its own compute PROVISIONAL, the runner preserves, and the ONE hard consequence lives at the PARENT's merge — while the receipt/recursion/allowlist machinery is codex-branch-ONLY and the pack's downstream-automation clause gives the verdict TWO unreconciled authorities",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "the relay: (1) PROMISE — review-auto:1446 Fail closed; :1556 Fails closed when the codex binary is absent, never degrades to native; the pack:148 exit 2 = refused, STOP, never fall back to a direct write; the pack:69 never relabel, the downstream automation parses this final line via exact string match, do not vary the format; the 2b comment Fail the iteration loudly; (2) ADVISE — verify-iteration.cjs:286-292 the 2c advisory-only-never-fail; checkLedgerBacking :200-201 not-enforced until ledger authority; the (028) failure-is-non-fatal staging; review-auto:823 the pivot failure binds rejected then PROCEEDS; (3) FORMAT-ONLY — :178-183 the verdictPattern, exactly one line, the FINAL: the SHAPE never the truth (a PASS over three active P1s passes); (4) SELF-REPORT — the narrative's final line = the verdict's only in-iteration carrier (this lane: 3x self-issued CONDITIONAL, each reducer-derivable); (5) RECOMPUTE — reduce-state.cjs:1847-1852 the ternary from the FINDINGS, :1896 - Provisional Verdict, :2050 the v2 caveat; (6) RUNNER-PRESERVES — zero verify-iteration references; the acceptance = records+disk+cap+stopReason; :1436 = another PROMISE; (7) THE ONE HARD — fanout-merge.cjs:751-823 the strongest-restriction, any lineage active P0 = merged FAIL, SEVERITY_RANK {P0:3,P1:2,P2:1}, the :781 empty-PASS guard — in the PARENT's step. The receipts-privilege: the INTENT/COMPLETION receipts + CODEX_SESSION_ID + the CODEX_/OPENAI_/AZURE_OPENAI_ allowlist = the AUTO YAMLs' cli-codex branch ONLY (:1554-1555, 17+17 mentions) vs the confirms+commands+SKILL 0+0+0+0+1; the runner-level receipts = UNIVERSAL (the audit/effect-ledger intent+completion+hash-frames) but the COMMAND-level = codex-branch-only — this lane (native-pi) produced NO command-level receipt; its invocation-metadata = receipt-SHAPED, lane-level, runner-authored. The residue: the 9+6 hub-mentions = COMPARATIVE prose (sibling-roster, provider-roster, keyword-weights, the ~/.codex/state/lock contrast, the symlink/canonical/never-drift sentences, the PID-kill family) — NONE copies the receipt machinery; the residue that IS = the PROMISE-text circulating without its non-codex ENFORCER. The two verdict authorities: the pack:69's downstream (synthesis phase, CI gate parser — NOT LOCATED) parses the SELF-REPORTED line; the reducer:1847 computes from the findings and :1896 prints PROVISIONAL; the merge enforces the COMPUTED; a divergence = recorded-not-repaired (the state-log keeps the false self-report, the registry carries the reducer's)",
+      "findingClass": "seven-stage-containment-relay-two-verdict-authorities",
+      "deltaStatus": "active",
+      "scopeProof": "all seven stages cited at their code/doc loci; the receipt-coverage census 17+17-vs-0+0+0+0+1; the 15 comparative-loci adjudication; the insider evidence: this lane's 3 dispatched, receiptless-at-the-command-level, gate-passed-not-enforced, self-reported-then-derivable iterations = the relay RUNNING end to end; the 3-lane latent-clean record (5/5 published verdicts convention-held)",
+      "affectedSurfaceHints": [
+        "the pack's verdict/gateway clauses",
+        "verify-iteration.cjs 2b/2c/verdictPattern",
+        "reduce-state.cjs :1847-1852/:1896",
+        "the runner's acceptance+prompt",
+        "fanout-merge.cjs :751-823",
+        "the AUTO YAMLs' codex-branch receipt machinery",
+        "the 9+6 comparative loci",
+        "this lane's invocation-metadata and 3 self-reported verdicts"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F016",
+      "severity": "P1",
+      "title": "The two-authority pattern is the packet's whole-system governance disease: FOUR measured instances, ZERO reconciled, ONE enforced consequence, and the supervision model = trust + post-hoc-merge, uniformly",
+      "file": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/spec.md",
+      "line": null,
+      "description": "(1) the FLEET's canonicality (this lane's F010, angle 18): the 25:3 vote (11+11 copied Path-Convention notes + the roster-check's CANONICAL_DIR=.claude vs .pi/SYNC.md + the deep-review note-pair + the .codex conversions), the 215B UNCOMPARED seam (.opencode/agents/review.md 25,726B vs .claude 25,511B), the 0-RECONCILED - TWO answers, convention-held; (2) the VERDICT's truth (this lane's F014, angle 19): the pack:69's downstream-automation parses the SELF-REPORTED final line, the reducer:1847-1852 computes from the findings + :1896 prints PROVISIONAL, the runner PRESERVES (zero verifier references), the ONLY enforcement = the merge's strongest-restriction (fanout-merge.cjs:751-823) - TWO answers, convention-held (the 5/5 published: w1-glm CONDITIONAL/P1-2, w1-ds FAIL/P0-1, this lane's 5x-CONDITIONAL-derivable - ZERO divergences, ZERO enforcement); (3) the SEVERITY scale (this lane's F015, angle 19): the 4 promise-sites (ONE a REQUIREMENT, spec:138-REQ-003) vs the 11-surface 3-tier machinery - TWO tier-sets, convention-held (every lane rates 3-tier; the P3 = orphaned-AT-PROMISE; wave1-F006's recorded fix = UNAPPLIED through its own amendment-window); (4) the RECEIPTS-PRIVILEGE (this lane's F014, angle 19): the command-level receipts/recursion/allowlist = the codex-branch ONLY (17+17), the native-pi = the runner's LANE-LEVEL envelope, the merge TRUSTS BOTH lanes' findings EQUALLY - TWO attestation-grades, convention-held (the 4-lane wave: 2x-cli-pi receiptless-AT-COMMAND-LEVEL, w1-ds = the deepseek-CLI, w1-glm = glm-5.3-flash - the grades = UNDOCUMENTED per executor = F018's finding). THE PATTERN: in every governed domain the packet ships (the agent fleet, the review verdict, the severity vocabulary, the dispatch receipts): TWO authorities pronounce, ZERO mechanism reconciles, the divergence = LATENT (held by REVIEWER DISCIPLINE: 5/5 verdicts, 34-days-allowlist, 2x-manual-parity, the 215B-frozen seam), the ONE hard consequence (the merge's strongest-restriction, the PARENT'S step) = the LAST-LINK-ONLY. The SUPERVISION MODEL: TRUST + POST-HOC-MERGE - the packet's correctness = the reviewers' honesty + the parent's single P0-filter, NOTHING between. The UNIFORM REPAIR-SHAPE: (i) name ONE authority (the losers: the 22 copied notes, the pack:69 clause, the 4-tier wording, the :1556 parity-claim), (ii) record the SANCTIONED-DELTA (the permission-Map-vs-tools-CSV, the PROVISIONAL-then-merge, the 4-to-3 collapse rule, the receipts-grades), (iii) the BRIDGE-CHECK (the .opencode-vs-.claude comparison, the self-report-vs-compute consistency, the P3 pointer, the receipts-for-all-or-graded) - 4 instances, 4 repairs, ONE shape = ONE parent workstream, 4 rows. FULL-EVIDENCE: iterations/iteration-005.md # Findings by Severity -> F016 (the claim-adjudication packet: the 5th-single-authority search = the state-log's 1-mechanical-JSON-parse EXCEPTION; the ALTERNATIVE = the intentional-REDUNDANCY/drift-DETECTION reading, compatible, the COST = unstated; the DOWNGRADE-TRIGGER = any-1-of-4-reconciled-ANYWHERE -> P2 / all-4-in-an-UNREAD-doc -> the 0.5-confidence-verify)",
+      "findingClass": "two-authority-whole-system-governance-disease",
+      "deltaStatus": "active",
+      "scopeProof": "the 4 instances = this lane's OWN findings RE-CITED as instances (F010/F014/F015 + the receipts-CLUSTER), EACH cited at its loci (the 25:3, the :1847/:1896, the 4-vs-11, the 17+17); the 5/5-and-1-ENFORCED census = the 3 lanes' PUBLISHED verdicts + the merge's SEVERITY_RANK; the 34d + the 215B = the proof-BOTH-ways (the divergence HAPPENS, the rot ACCRUES); the P1 adjudication packet (claim/counterevidence/alternative/downgradeTrigger) = the narrative's-F016; the INSIDER: this lane = the 4th-INSTANCE-RUNNING (receiptless-3x, computed-derivable-5x)",
+      "affectedSurfaceHints": [
+        "the fleet's canonicality (F010's: the 6 trees, the SYNC/checker pair, the 215B seam)",
+        "the verdict stack (the pack:69, the reducer:1847-1852/:1896, the runner's acceptance, the merge:751-823)",
+        "the severity vocabulary (goal:47/:57, spec:83/:138, the 11 3-tier surfaces)",
+        "the receipts-privilege (the AUTO codex-branches, the runner's frames, the invocation-metadata)",
+        "the SC-001 merge (the ADDITIVE 4-instance carry)",
+        "the parent's remediation workstream (the NEW, 4 rows)"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-005",
+      "severity": "P1",
+      "title": "Summary P1 finding 5",
+      "file": null,
+      "line": null,
+      "description": "Angle 20 - what wave one surfaced that angles 11-20 do not cover (spec.md:107; the lane's FINAL iteration - the covenant stop = THIS iteration completing, stopReason: maxIterationsReached at the synthesis; the recorded stabilization pair 4-5 completes here, the evidence re-verification = the fix-completeness replay, nothing fixed in-review). Duties: (1) BOTH wave-one reports + BOTH findings-registries read - the orphan dispositions = ACTIVE, untouched by their own lanes: this iteration = the FIRST second-look; (2) the 7 no-angle-covers orphans (w1-glm F005/F014/F015/F016 + w1-ds F005/F006/F010) EXAMINED 7/7 at their TODAY-loci - STILL-TRUE 7/7 (0 refuted; 1 DOUBLY-STALE: the :454 pointer's target drifted THROUGH two states, now rendering the verify-cross-references bullet; 1 REFINED: F014's 3->2 approval compression = documented-AT-BIRTH in the :551-553 JSDoc, confidence 0.65->0.85, the claim's substance stands, its undocumented-sting halves; 1 ACCRUED: F015's dated-allowlist rot 30->34 days MEASURED, the :312 self-annotation + the :307-331 roster, the validation protocol STILL-ABSENT - the rot accrued on schedule, unwatched; 1 RECOUNTED: F016's manual-parity count 1->2 - this lane's 72/72+diff census = the second, the fixture STILL-ABSENT; 2 VERBATIM: ds-F005's retired vocabulary at graph-metadata:113/:124 + the SKILL:10 5-term block, ds-F010's leaf-manifest:68 with the ROUTER at ZERO; 1 CODA: ds-F006's :58 scoring-class membership line READ - the verdict STILL-TRUE, the 2 aliases unscored); (3) the whole-system, three additions: F016 - the TWO-AUTHORITY pattern = the packet's governance disease (FOUR measured instances: the 25:3 canonicality, the pack:69-vs-reducer:1847 verdict, the 4-vs-11-surface severity, the receipts-privilege; ZERO reconciled; ONE enforced consequence = the parent's merge; the supervision = TRUST + POST-HOC-MERGE; the uniform 3-step repair-shape = ONE remediation workstream, 4 rows) + F017 - the coverage gap (the 7 = the BETWEEN-ANGLES class by DESIGN; the REQ-003's bind-or-refute = the ONLY remaining disposition; the merge = the LAST chance; the 6+1 gap-classes = the NEXT wave's angle-design SEEDS - the PROVEN mechanism: this lane's 16-20 = all born of wave1's deferrals) + F018 - the attestation asymmetry (the merge trusts BOTH dispatch-grades equally; the trust-model = executor-DEPENDENT and UNDOCUMENTED; the self-attestation stack = THREE unaudited layers; the 34-day-allowlist = the proof-the-pattern-bites). Dimension coverage CLOSES 4/4 (maintainability's primary pass = THIS).",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "research-confirm omits 18 steps of its own auto (55 of 73), functional ones included, while both research variants render the same prompt pack",
+      "file": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "line": null,
+      "description": "step-key diff: apply_divergent_pivot_result, compose_save_payload, detect_resource_map, emit_min_iterations_guard_pass, enrich_strategy_resource_map, ideas_backlog_lifecycle, init_complete, marker_scan, refresh_lineage_context, rejected_pattern_cache, run_now_check, run_now_restore_check, telemetry_heartbeat_progress/started/terminal, validate_post_synthesis_spec_doc, validate_preinit_spec_doc; functional consequences: no in-workflow derivation for its own :353-354/:369 resource-map tokens, no completion marker, no marker_scan/compose_save_payload, no spec-doc gates, no heartbeat, no run_now; both variants render the SAME prompt pack (confirm:978-979 = auto:1087-1088, same template_path + prompt-pack.ts#renderPromptPack); research-auto's minIterations warning pair :663/:666 has no confirm-side counterpart beyond the :561 convergenceMode warning, so its thin :369 interacts with a needed key silently; no in-YAML rationale marks any of the 18",
+      "findingClass": "confirm-variant-step-omissions",
+      "deltaStatus": "active",
+      "scopeProof": "the omission census computed from this session's step-key extraction; the review-pair precedent (the recorded 12-omission F008) shows the divergence-becomes-defect mechanism via the same rendered pack",
+      "affectedSurfaceHints": [
+        "deep-research-confirm"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "Gateway mandate vs wiring: all four packs mandate gateway-only state writes, no variant wires them all; the research loop's salvation is the research-only legacy branch",
+      "file": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "line": null,
+      "description": "state_write_protocol applies_to = every append_to_jsonl and append_jsonl directive in all four variants (review-auto:100 = review-confirm:99; research-auto:108-109 = research-confirm:124-125); actual wiring: research-auto 2 sites (in-loop :637-641, synthesis :1749-1753, both fail-closed), research-confirm 1 site (synthesis :1613-1620, fail-closed, rm -rf EVENT_DIR cleanup) against dozens of inline emissions each; the precedent's review counts (12x/2x) complete the matrix; the qualified difference: the research variant's shortfall is wiring-count only because the gateway's legacy acceptance is research-gated (append-mode-event.cjs:398-408) and upcasts bare records, where the review-confirm records hit the :445 throw; residual: research-confirm's in-loop iteration records travel inline despite its pack :54-62 mandate, and its 7-key synthesis_complete (:1601-1608: no mode/sessionId/generation/verdict/activeP*/dimensionCoverage) is its own reducer's dialect",
+      "findingClass": "gateway-mandate-wiring-matrix",
+      "deltaStatus": "active",
+      "scopeProof": "the 4-variant wiring census + the gateway acceptance branches read this session (:355-484); the precedent F019 = the review-confirm half, this finding completes the four-variant matrix and adds the research-branch salvation",
+      "affectedSurfaceHints": [
+        "all four variant workflows",
+        "append-mode-event.cjs legacy branch",
+        "research-confirm synthesis-side records"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "The in-lineage fanout resource-map emission exists only in the research variant's contract",
+      "file": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "line": null,
+      "description": "research-confirm:1342-1360 = the only narrow mode: reduce-state.cjs --emit-resource-map --fanout-resource-map-only, output pinned to artifact_dir (:176), guarantee: reads lineage deltas in place, writes only resource-map.md, never rewrites merged registries/strategy/dashboard; the review pair passes --emit-resource-map to the FULL reducer (auto:2176 with the artifact arg, confirm:1546 without) with no narrow mode, so a review-side fanout lane either reruns the full reduce in-lane (what the precedent lane's recorded invocation did) or skips (its recorded resourceMapSkipped outcome); both work, only one loop documents its fanout posture",
+      "findingClass": "fanout-resource-map-posture-asymmetry",
+      "deltaStatus": "active",
+      "scopeProof": "the 4-variant reducer-invocation census + the resourceMap emission path in the review reducer (reduce-state.cjs:2090, :2160-2168, read at setup) — the emission targets the packet reviewDir without the narrow mode the research variant carries",
+      "affectedSurfaceHints": [
+        "deep-research-confirm",
+        "the review variant pair",
+        "reduce-state.cjs of both loops"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "The unstaged invariant is review-auto-only; the other three variants stage the artifact dir by a recorded contract fix — closes the precedent's 0.6-confidence git-policy question",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "review-auto:2453 = the only unstaged-variant step; review-confirm:1620, research-auto:2372-2375 and research-confirm:1681-1686 all stage; the research pair stages the SAME tree because research-auto:144 defines packet_dir = artifact_dir; both research variants carry the note: Skill-owned contract fix (028) — without this stage step, operators who git add the report lose the iteration trail; failure non-fatal, restorable via git restore --staged; research-auto additionally runs a second git-add list at :2474 (iterations, state log, strategy, research output) inside its save-phase verification",
+      "findingClass": "git-policy-variant-conditional-resolved",
+      "deltaStatus": "active",
+      "scopeProof": "all four stage/leave step bodies read this session (the precedent's F007 read none); the packet_dir alias :144 reconciles the two research stage targets; the precedent's 0.6 confidence retired",
+      "affectedSurfaceHints": [
+        "deep-review-auto",
+        "deep-review-confirm",
+        "deep-research-auto",
+        "deep-research-confirm",
+        "the unstaged-invariant documentation"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "The 61-spelling registered ledger vocabulary is 92% authorless: 27 of 31 review-canonical stems AND 28-or-29 of 29 research spellings have no mechanical producer, the reference prose never names the vocabulary, and the unregistered-variant framing needs one clarification",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+      "line": null,
+      "description": "10-surface census (4 variant YAMLs, fanout-run.cjs, append-mode-event.cjs, BOTH reduce-state.cjs, verify-iteration.cjs) over 61 dotted spellings extracted from BOTH schemas: spoken = deep_review.claim_adjudication (2, review-auto:1938/:1954), deep_review.migration (2, review-auto+confirm), deep_review.iteration_error (1, review-auto), deep_review.recovery_baseline (1, review-auto), deep_research.run_now_restored (1, research-auto); 56 of 61 (92%) spoken by NO mechanical writer; the gateway, both reducers, verifier and runner contribute ZERO dotted literals (the gateway is vocabulary-generic, imports the schemas :112-157); review-canonical: 27 of 31 authorless, the 32nd spelling (claim_adjudication, :452, flat required fields ['runId','sessionId'] at :548) reading as the legacy-alias key — coherent with wave1's F019/F020 wording and the research schema's own legacy-compatibility.ts — so what nothing speaks canonically is claim_adjudication_recorded (:240, :510, :885); the reverse matrix: only review-auto (4 stems), review-confirm (1: migration), research-auto (1) speak ANY registered vocabulary; references/state/*.md (4 docs): zero dotted-stem mentions",
+      "findingClass": "registry-authorlessness-both-modes",
+      "deltaStatus": "active",
+      "scopeProof": "both directions of the angle-17 census executed for both modes (61 spellings x 10 surfaces + the 5-stem reverse matrix); the 32-spelling/29-spelling universes extracted from the schemas themselves; the reference-prose check closes the documentation half; boundary: the :452-object role and the research canonical/legacy split at 0.8 confidence (dead ends 1-2)",
+      "affectedSurfaceHints": [
+        "deep-review-ledger-schema (all registrations)",
+        "deep-research-ledger-schema",
+        "deep-review-projections-contract consumption arms",
+        "the four variants' state_write_protocol",
+        "references/state/*.md (zero vocabulary)"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "The sanctioned future's state-log richness has a registration-bounded ceiling: the projection consumes exactly the registered stems (whose spoken half is 5 of 61), EMIT_ITERATION_ROWS is currently true, and the anticipated suppression is a one-constant flip",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts",
+      "line": null,
+      "description": "the consumption arms consume registered stems ONLY: :283-294 shows the evidence/claim/finding arms (buildEvidenceRecord; buildAdjudicationRecord for deep_review.claim_adjudication_recorded; the finding_lineage_recorded arm), :450-464 the same; the state contract: EMIT_ITERATION_ROWS = true (deep-review-state-contract.ts:32) so wave1-F020's suppression is ANTICIPATED, not present, the :148 guard currently dead code; the gateway refuses review-mode rich records (append-mode-event.cjs:445, wave1 F019, re-confirmed) so the sanctioned review path = stem-shaped closed records whose projection rows carry only the arms' fields; the scissors: producers speak 5 of 61 (F006), the consumer speaks 61, and the mandated rich record sits in NEITHER spoken set's intersection with the arms — a cutover'd review lane loses exactly the attribution wave1 F020 documented, and no enforcement step would notice (F007's not-enforced)",
+      "findingClass": "projection-ceiling-arms-bounded",
+      "deltaStatus": "active",
+      "scopeProof": "the consumption arms read at :283-294 and :450-464; the flag+guard read at :32/:148; the acceptance-throw re-confirmed (:445) and cross-checked against the F006 registration census",
+      "affectedSurfaceHints": [
+        "deep-review-projections-contract.ts",
+        "deep-review-state-contract.ts",
+        "any future review lane adopting the gateway path",
+        "wave1 F020's collapse documentation"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "title": "Three carried questions closed: the {AUTO_SESSION_ID} token is declared twice and bound nowhere (research-auto's literal-fallback guard is dead-on-arrival for token-populated configs); research-auto:2474's second git-add is reference-only appendix; F001's downgradeTrigger adjudicates NOT-collapsed and its 8-key census corrects to nine",
+      "file": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "line": null,
+      "description": "(1) the token: declared at research-confirm:358 (step_create_config populate) and research-auto:332 (session_id_init); read ONCE at research-auto:477 — String(config.lineage?.sessionId ?? '{AUTO_SESSION_ID}') — where a token-populated config yields the truthy 16-char literal so the ?? fallback can never fire; zero occurrences in either command markdown or the runner: the VALUE is defined nowhere; research-confirm has no read machinery at all (its :561 warning is convergenceMode-only); (2) research-auto:2465-2485: the second git-add list lives in reference_only_appendix.checkpoint_commit, whose own note excludes it from workflow.steps — no owning step exists; (3) F001's trigger: NOT-collapsed — the token is unbound AND the state-log record drops the lineage block entirely (step_create_state_log's :365 content: nine keys — type, topic, maxIterations, convergenceThreshold, antiConvergence, resource_map_present, resource_map, createdAt, specFolder — no lineage/mode/stopPolicy/executor), so F001 stands P1; its recorded 8-key count was one short (the type key), the substantive divergence unaffected",
+      "findingClass": "carried-question-closure-triptych",
+      "deltaStatus": "active",
+      "scopeProof": "4-asset + 2-markdown + runner token census; the two owning steps read (research-confirm:344-375, research-auto:332/:477/:2465-2485); F001's recorded downgradeTrigger evaluated against the resolution; the F001 key-count self-correction recorded",
+      "affectedSurfaceHints": [
+        "deep-research-confirm:344-368",
+        "deep-research-auto:332, :477, :2465-2485",
+        "F001 (this lane)",
+        "wave1 F019/F020 wording (SC-001 merge)"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "title": "The permission deny-half translates FIVE ways, not three: enforced keys, prose (byte-identical twins), the .pi # Unmapped comments + omission, the .codex sandbox_mode mechanism, and .devin by-reference — the .pi # Unmapped mechanism PROVEN, correcting wave1's F010/F011 on the precise halves",
+      "file": ".pi/agents/ai-council.md",
+      "line": null,
+      "description": "the five treatments: (1) .opencode permission:Map, runtime-ENFORCED, PER-AGENT vocabulary (12 keys: ai-council, code; 10: orchestrate; 8-9: context/prompt-improver/review — review keeps bash:allow while denying write/edit); (2) .claude ≡ .cursor: PROSE (never runs shell commands / NEVER performs nested delegation / read-only); (3) .pi: # Unmapped OpenCode permission keys comments (11/12) + implied-by-omission for denied keys; (4) .codex: sandbox_mode = read-only 12/12 — a MECHANISM, not prose; (5) .devin: by-reference. The mechanism PROVEN 5/5: # Unmapped = {k in .opencode permission : value=allow AND k not in pi's toolset} — ai-council: webfetch+task+external_directory (all :allow), code: patch (:allow), context: external_directory (:allow), orchestrate: task ONLY (its webfetch:deny correctly absent), deep-review: NO comment (its allows are all pi-mappable, its 2 denies vanish) — BOTH exceptions mechanized. Wave1-F010's .pi silent = true ONLY for the denied half; wave1-F011's provenance 1-of-4 = undercount (the .pi register + the .codex Converted-from + SYNC.md); the mtimes (Sep 5 / Sep 15 06:49) PRE-DATE wave1's 10:15Z read — genuinely missed, not post-review. Also: .cursor has NO README (wave1's 2/4 = .opencode+.claude, confirmed); the .opencode mode key (10x subagent + 1x all + 1x primary) translates NOWHERE as a key — description-prose in .claude/.cursor, vanished into the .codex/.pi bodies: the sixth translation loss",
+      "findingClass": "deny-half-five-treatments-unmapped-mechanism-proven",
+      "deltaStatus": "active",
+      "scopeProof": "the five treatments evidenced across all six trees (the .opencode 3-block completions, the .claude/.cursor prose + 3x diff, the .pi 11/12 register + the 5/5 mechanism consistency, the .codex 12/12 sandbox, the .devin symlinks); the premise deltas counted against spec:105's three-ways and wave1-F010/F011",
+      "affectedSurfaceHints": [
+        "the 72+ files' permission/role layers",
+        "the .opencode sparse permission vocabulary",
+        "the .pi generator's unmapped-key register",
+        "the .codex sandbox mechanism",
+        "the .devin 12 symlinks"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F012",
+      "severity": "P2",
+      "title": "The .pi consumption contract resolves wave1's body-order question: .pi/agents = generated compiler output, the pi harness parses NOTHING, the dispatch INLINES the persona, and the 25-50KB persona rides every pi dispatch",
+      "file": ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      "line": null,
+      "description": "three walls: (1) GENERATION — .pi/SYNC.md: the .pi/agents trees are generated, compiler output, never hand-edit; the generator sync-agents-pi.cjs transforms the canonical .opencode/agents into Pi's dialect (a .pi/agents/*.md never byte-matches either parent); the recorded live drift mode: a retired command's stale prompt; (2) NO PARSER — the pi harness's own docs: 35 files, 5 mentioning agents (json/development/skills/settings/security, none an agents-parsing contract), the pi README: ZERO .pi/agents references, and the dispatch contract's own words: Core Pi has no native persona surface on pi -p; (3) CONSUMPTION-BY-INLINE — SKILL.md:207: INLINE the persona block into the payload (the child cannot resolve agent paths by reference); compose every dispatch as {resolved agent persona + task prompt}; a persona-less leaf runs as a generic assistant dropping its tool-scope, verification gates, and output contract; the persona source: the ACTIVE runtime's agent directory (AGENTS.md section 9; never hardcode a runtime). THEREFORE: (a) the .pi bodies' section ORDER is unconstrained by any parser — the only order-semantics is prompt-attention (the persona precedes the task); the actual order = the .opencode serialization, mechanically inherited — RESOLVED: no order contract exists to violate; (b) the prompt-bloat is STRUCTURAL: .pi/ai-council.md = 50,476B, .pi/review.md = 25,599B, inlined WHOLE per dispatch (noted, unmeasured — no dispatch-log evidence: telemetry); (c) the .pi-vs-.opencode size delta (review: 127B) = the sanctioned transformation delta, trackable by --check",
+      "findingClass": "pi-generated-unparsed-inlined-persona-order-resolved",
+      "deltaStatus": "active",
+      "scopeProof": "the three walls read at their loci (SYNC.md's generation+canonicality clauses, the 35-doc pi inventory + the README, SKILL:207); the order question closed against the consumption mechanism rather than assumed; the 50KB/25.6KB body sizes measured",
+      "affectedSurfaceHints": [
+        ".pi/agents/*.md (the 12 generated bodies)",
+        "sync-agents-pi.cjs",
+        "the cli-pi dispatch contract (SKILL:207)",
+        "AGENTS.md section 9 persona-resolution",
+        "every pi dispatch of the 12 personas"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F013",
+      "severity": "P2",
+      "title": "The sampling translation loss is GRADED, not binary, and ai-council alone crosses every grade: the .claude fork dropped the mechanism key but kept the prose sentence — demoted, not lost — while the .codex trio (model + reasoning-effort + sandbox) remains the fleet's only other mechanism-bearing column",
+      "file": ".claude/agents/ai-council.md",
+      "line": null,
+      "description": "the 6-tree sampling ladder: (1) .opencode — the MECHANISM: temperature fronts 9x0.1 + 3x0.2 (debug, deep-improvement, design) + the ai-council body-prose; (2) .codex — its OWN mechanism trio 12/12: model = gpt-5.5, model_reasoning_effort = high, sandbox_mode = read-only; (3) .pi — fronts: NO temperature (the generator's dialect: name/description/tools/comment — the omission is GENERATOR-AUTHORED, not fork-authorial), 1/12 body-prose: ai-council (the .opencode prose, generator-inherited); (4) .claude — fronts: NO temperature, 1/12 PROSE: ai-council (the fork dropped the key, kept the sentence); (5) .cursor — byte-identical to .claude: the same 1/12 prose; (6) .devin — = .claude by reference. So: mechanism x2 (.opencode fronts, the .codex trio), prose x1 (ai-council, across 4 trees + the .codex inheritance), silence 11/12. Wave1-F009's premise (sampling .opencode-only; three mirrors substitute nothing or a different knob) extends precisely; wave1-F013's model-attraction (three trees silent, the fourth pins gpt-5.5) extends: the 5th/6th trees silent by INHERITANCE — 5 mechanism-silent, 1 pinned 12/12. Plus the ROLE key (.opencode mode: 10x subagent + 1x all + 1x primary) translates NOWHERE as a key — description-prose or vanished: the sixth translation loss, recorded for the F011 crosswalk",
+      "findingClass": "sampling-graded-loss-ai-council-prose-residue",
+      "deltaStatus": "active",
+      "scopeProof": "the 6-tree ladder: the .opencode 12+3 fronts, the .codex 12/12 trio, the .pi fronts + the 2-hit temperature census (.claude/ai-council.md + .pi/ai-council.md, BOTH prose), the 3x diffs, the .devin resolutions; the README rescue ruled out (no temperature in 1,608B)",
+      "affectedSurfaceHints": [
+        "the 12x6 temperature/model/mode cells",
+        "the .pi generator's key-drop list",
+        "the .claude fork's ai-council prose",
+        "wave1-F009/F013 premise wording at the SC-001 merge"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F015",
+      "severity": "P2",
+      "title": "The severity scale: four promise-sites — now including a REQUIREMENT — against an all-3-tier machinery, the spec's own wording cites the 3-tier meaning, the P3-to-P2 collapse remains undocumented convention, the authoritative tier-set is 3, and wave1's F006 is STILL-TRUE post-rewrite with its citation stale by +3 lines and its recorded fix unapplied",
+      "file": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/spec.md",
+      "line": null,
+      "description": "(1) the FOUR promise-sites: goal.md:47 (P0 through P3), goal.md:57 (D3: rated P0 to P3), spec.md:83 (P0 to P3 WITH THE REPO'S SEVERITY MEANING — the 4-symbol/3-meaning drift INTERNAL to the promise's own sentence, since the repo's meaning = the SKILL:323-325 three-row table), spec.md:138 (REQ-003: Every finding, P0 to P3, is verified against the tree and bound to a parent phase or recorded as refuted) — the wave-two 14:31 rewrite KEPT :83's wording AND ADDED the :138 requirement; (2) the ALL-3-TIER machinery, 11 surfaces: the SKILL:323-325/:331-333, the SKILL keywords :108, the pack:69 verdict-mapping (P2-only = PASS, no P3 case), review-core.md 1.5.0.11, the state schema's 3-key findingsSummary validation, the reducer SEVERITY_KEYS [P0,P1,P2] + SEVERITY_WEIGHTS {10/5/1}, the 9-gate severity-WEIGHTED signals, the .codex failure_type (p0|p1|p2|low_confidence), the merge SEVERITY_RANK {P0:3,P1:2,P2:1}; (3) the collapse UNDOCUMENTED: the lanes rate P0/P1/P2 (wave1: the spec's P3 is orphaned; this lane: the recorded convention any packet-P3 collapses to record-P2 with the intent noted — an in-lane convention, in NO governing document); (4) THE RULING: the 3-TIER EXECUTABLE CONTRACTS are authoritative; the P3 exists only in the promise-text, already half-retracted by :83's own wording; the binding layer (REQ-003's bound to a parent phase) = OUTSIDE this packet's contract-set, so the P3 = representable THERE, orphaned HERE — the defect is precise: packet-INTERNAL records 3-tier, packet-BOUNDARY obligation 4-tier-worded; (5) wave1-F006 STILL-TRUE AND HARDENED: the +3 shift (:135-to-:138, the verified requirement-table), the wording kept, the REQ added, the recorded fix (amend the spec's wording) NOT applied — the 4-tier promise survived its own amendment-window and gained binding force; wave1's scope (2 promise-sites) undercounts by 2 (goal:47, :57) and 1 severity-class (a requirement)",
+      "findingClass": "severity-four-promise-sites-vs-three-tier-machinery",
+      "deltaStatus": "active",
+      "scopeProof": "the 4 promise-sites read verbatim (incl. the :135-to-:138 shift verification); the 11 3-tier machinery surfaces cited; the collapse = the documented-in-lane convention, absent from every governing document; the ruling grounded in the computational/validating/gating/merging/verdict-mapping surfaces, not preference; the binding-layer question scoped out (outside the packet's write surface)",
+      "affectedSurfaceHints": [
+        "goal.md:47, :57",
+        "spec.md:83, :138 (REQ-003)",
+        "the SKILL :323-325/:331-333",
+        "the pack:69",
+        "the state schema's 3-key validation",
+        "the reducer SEVERITY_KEYS/WEIGHTS",
+        "the merge SEVERITY_RANK",
+        "the .codex failure_type",
+        "wave1-F006 (the SC-001 wording)"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F017",
+      "severity": "P2",
+      "title": "The coverage gap: seven wave-one findings have NO wave-two angle by design; seven/seven STILL-TRUE; the REQ-003's bind-or-refute = their ONLY remaining disposition mechanism; the merge = the last chance; the NEXT wave's angle-design inherits the gap-classes as seeds",
+      "file": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/spec.md",
+      "line": null,
+      "description": "(1) the SEVEN (the # The-Orphan-Verdicts, this iteration): the 4-w1-glm (F005-DOUBLY-STALE: :454 -> deep-review.md:71 TODAY renders the verify-cross-references bullet; F014-REFINED: the :551-553 JSDoc = documented-AT-BIRTH, 0.65->0.85; F015-ACCRUED: the rot 30->34-DAYS MEASURED, the :312-annotation + the :307-331-dated-roster, the protocol STILL-ABSENT; F016-RECOUNTED: the MANUAL-count = 2 - w1's + THIS-LANE'S 72/72+diff, the FIXTURE STILL-ABSENT, the doctor's-4-hits + the lifecycle-taxonomy-test = DIFFERENT-parities) + the 3-w1-ds (F005-VERBATIM: graph-metadata:113/:124 + the SKILL:10 5-term-block; F006-THE-CODA: the :58-membership-line READ this iteration, the verdict STILL-TRUE, the 2-aliases unscored; F010-VERBATIM: leaf-manifest:68, the ROUTER = ZERO) - 7/7-STILL-TRUE, 0-REFUTED, 1-REFINED, 1-ACCRUED, 1-RECOUNTED; (2) the DESIGN-GAP: the 10-angles (11-20) = the CENTER-OF-MASS-CHOSEN (variant-drift/ledger/mirror/chain/whole-system), the 7-orphans = the BETWEEN (a provenance-comment, a permission-compression, an allowlist-rot, a parity-fixture, 2-hub-vocabularies, 1-hermes-leaf = NO-ANGLE'S-center) - this iteration = the FIRST-EXAMINATION-ANY; (3) the DISPOSITION-MACHINE: the REQ-003 (spec:138: verified-against-the-tree-AND-BOUND-to-a-parent-phase-OR-REFUTED-with-the-reason) = the ONLY mechanism the packet SHIPS post-lane; the SC-001-merge = the LAST-CHANCE (the 7-ENTER-as-ACTIVE-with-the-2nd-look; the-parent = BIND-or-REFUTE; NO-4th-path); (4) the SEEDS: the 6+1-GAP-CLASSES (the provenance-POINTER-DRIFT; the approval-COMPRESSION-claims; the UNDATED-allowlists; the UNMECHANIZED-parities; the REGISTRY-MINUS-VOCABULARY-sets; the HERMES-lane-unique-refs; + the w1-ds-F013-0.1.*-version-SKEW) = the NEXT-wave's ANGLE-DESIGN-INPUT - the PROVEN-MECHANISM: THIS-LANE'S-16-20 = ALL-BORN-OF-WAVE1'S-DEFERRALS; (5) the SISTER-UNCERTAINTY: the 3-w1-ds-orphans = ADJACENT-the-sister's-11/13/15 (CONCURRENT) - the-SC-001 = the ATTRIBUTION-CONVENTION (this-lane's = the CORROBORATING-SECOND-LOOK). FULL-EVIDENCE: iterations/iteration-005.md # The-Orphan-Verdicts + # The-Coverage-Adjudication",
+      "findingClass": "orphan-coverage-gap-design-intake",
+      "deltaStatus": "active",
+      "scopeProof": "7/7-READ-at-their-TODAY-loci (the 11-Files-Reviewed: the 2-reports + the 2-registries + the 7-loci + the lane's-1-4); the NO-ANGLE-COVERS = the 5x5-adjudication (the Ruled-Out-1); the REQ-003 = the :138-WORDING; the SEEDS = the 6+1-CLASSES-NAMED (the 7th = the cited-F013); the SISTER = the ANGLE-MAP-ONLY (the-INTO-their-iterations = the covenant-NO); the FIRST-EXAMINATION = the-REGISTRIES'-own-ACTIVE-dispositions = the-UNTOUCHED-BY-ANY-ANGLE-UNTIL-NOW",
+      "affectedSurfaceHints": [
+        "the 7-orphan-registry-entries (the 2 wave-one lanes)",
+        "the SC-001-merge (the ADDITIVE-carry + the ATTRIBUTION-convention)",
+        "the REQ-003-verification-pass (the 7-ROWS-FOREMOST)",
+        "the NEXT-wave's spec.md (the 6+1-SEED-CLASSES)",
+        "the sister-lane's angles-11-15 (the COORDINATE-ONLY)"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F018",
+      "severity": "P2",
+      "title": "The attestation asymmetry: the merge trusts BOTH dispatch-grades equally while the trust-model is executor-DEPENDENT and undocumented; the self-attestation stack = THREE unaudited layers, and the 34-day-allowlist-rot = its proof-the-pattern-bites",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "(1) the GRADES: the-CODEX-dispatch = the-DOUBLE-ATTESTED (the-child's-own-rows + the-COMMAND-LEVEL-INTENT/COMPLETION-receipts + the-CODEX_SESSION_ID-GUARD + the-ENV-ALLOWLIST + the---sandbox-OS-CONFINEMENT-FORWARDED (executor-config.ts:136: 'cli-codex': true, // --sandbox is forwarded straight to codex's own OS-level confinement)); the-NATIVE-PI = the-SINGLE (the-child's-rows + the-RUNNER'S-ENVELOPE: the-invocation-metadata + the-audit/effect-LEDGER-frames = the-LANE-LEVEL, NOT-the-COMMAND-LEVEL; THIS-LANE = the-3x-RECEIPTLESS-AT-COMMAND-LEVEL, the-RUNNING-PRECEDENT); the-w1-DS (the-deepseek-CLI) + the-w1-GLM (the-glm-5.3-flash) = the-UNDOCUMENTED-GRADES; (2) the-MERGE = the-TRUSTS-BOTH-EQUALLY: fanout-merge.cjs:751-823 = the-STRONGEST-RESTRICTION-ON-THE-FINDINGS'-SEVERITY, the-ATTESTATION-GRADE = the-UNWEIGHTED (NO-TRUST-TIER-IN-THE-ALGORITHM; the :781 = the-STATUS-ONLY-guard = the-ONLY-check); (3) the-SELF-ATTESTATION-STACK = the-3-UNAUDITED-LAYERS-THE-MERGE-TRUSTS: (a) the-CHILD'S-OWN-FINDING-ROWS (the :1847-RECOMPUTE = the-INPUT = the-CHILD'S-CLAIMS: the-COMPUTE = the-ARITHMETIC-OVER-THE-CLAIMS, the-CLAIMS = the-UNAUDITED), (b) the-UNDATED-VALIDATION (the-ALLOWLIST: the :312-SELF-ANNOTATION + the :307-331-DATED-COMMENTS = the-LAST-LIVE-CHECK = 2026-08-12 = the-34-DAYS-MEASURED, the-ZERO-PROTOCOL), (c) the-TWICE-MANUAL-PARITY (the-w1's + the-MINE = the-2-POINT-IN-TIMES, the-FIXTURE = the-ABSENT); (4) the-SECURITY-READ: the-NON-REPUDIATION = the-GRADED (the-codex = the-UN-REPUDIABLE-AT-COMMAND-LEVEL; the-pi = the-REPUDIABLE-'the-child-did-WHAT?') + the-ROT = the-SAME-DISEASE (the-SELF-ASSERTION, the-UNVERIFIED, the-ACCRUING) - the-4-LANE-WAVE'S-OUTPUT = the-TRUSTED-BY-THE-F016-PATTERN (trust + post-hoc-merge), the-ATTESTATION = the-5TH-EXAMPLE. FULL-EVIDENCE: iterations/iteration-005.md -> F018",
+      "findingClass": "attestation-grades-undocumented-merge-trust-equal",
+      "deltaStatus": "active",
+      "scopeProof": "the-GRADES = the-2-IMPLEMENTATIONS'-DIFF (the :1554-1558-branch vs the-RUNNER'S-frames) + the :136-137-CREDIT-MAP; the-34d = the-MEASURED-ACCRUAL (the-w1's-30 -> the-TODAY-34, the-SAME-LOCUS); the-3-LAYERS = the-THIS-LANE'S-OWN-ARTIFACTS (the-INSIDER: the-3x-RECEIPTLESS-RUNNING, the-:1847-Derivable-5x); the-MERGE-ALGORITHM = the-READ (:751-823, the-NO-TRUST-TIER); the-4-LANE-IDENTITIES = the-UNDOCUMENTED (the-NEGATIVE-CENSUS: NO-GRADE-PROSE-ANYWHERE)",
+      "affectedSurfaceHints": [
+        "the AUTO-YAMLs' codex-branch-receipt-machinery (:1554-1558)",
+        "the RUNNER'S-lane-level-LEDGERS (the INTENT/COMPLETION-frames)",
+        "the invocation-metadata.json (the-RECEIPT-SHAPED, LANE-LEVEL)",
+        "the MERGE'S-TRUST-ALGORITHM (fanout-merge.cjs:751-823)",
+        "the EXECUTOR-CONFIG-ALLOWLIST (:307-331) + the :312-ANNOTATION",
+        "the it4-F016-FIXTURE-ABSENCE",
+        "the 4-LANE-WAVE'S-EXECUTOR-IDENTITIES (the-UNDOCUMENTED-GRADES)"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-002",
+      "severity": "P2",
+      "title": "Summary P2 finding 2",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-007",
+      "severity": "P2",
+      "title": "Summary P2 finding 7",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-008",
+      "severity": "P2",
+      "title": "Summary P2 finding 8",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-009",
+      "severity": "P2",
+      "title": "Summary P2 finding 9",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-010",
+      "severity": "P2",
+      "title": "Summary P2 finding 10",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-011",
+      "severity": "P2",
+      "title": "Summary P2 finding 11",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-012",
+      "severity": "P2",
+      "title": "Summary P2 finding 12",
+      "file": null,
+      "line": null,
+      "description": "Angle 20 - what wave one surfaced that angles 11-20 do not cover (spec.md:107; the lane's FINAL iteration - the covenant stop = THIS iteration completing, stopReason: maxIterationsReached at the synthesis; the recorded stabilization pair 4-5 completes here, the evidence re-verification = the fix-completeness replay, nothing fixed in-review). Duties: (1) BOTH wave-one reports + BOTH findings-registries read - the orphan dispositions = ACTIVE, untouched by their own lanes: this iteration = the FIRST second-look; (2) the 7 no-angle-covers orphans (w1-glm F005/F014/F015/F016 + w1-ds F005/F006/F010) EXAMINED 7/7 at their TODAY-loci - STILL-TRUE 7/7 (0 refuted; 1 DOUBLY-STALE: the :454 pointer's target drifted THROUGH two states, now rendering the verify-cross-references bullet; 1 REFINED: F014's 3->2 approval compression = documented-AT-BIRTH in the :551-553 JSDoc, confidence 0.65->0.85, the claim's substance stands, its undocumented-sting halves; 1 ACCRUED: F015's dated-allowlist rot 30->34 days MEASURED, the :312 self-annotation + the :307-331 roster, the validation protocol STILL-ABSENT - the rot accrued on schedule, unwatched; 1 RECOUNTED: F016's manual-parity count 1->2 - this lane's 72/72+diff census = the second, the fixture STILL-ABSENT; 2 VERBATIM: ds-F005's retired vocabulary at graph-metadata:113/:124 + the SKILL:10 5-term block, ds-F010's leaf-manifest:68 with the ROUTER at ZERO; 1 CODA: ds-F006's :58 scoring-class membership line READ - the verdict STILL-TRUE, the 2 aliases unscored); (3) the whole-system, three additions: F016 - the TWO-AUTHORITY pattern = the packet's governance disease (FOUR measured instances: the 25:3 canonicality, the pack:69-vs-reducer:1847 verdict, the 4-vs-11-surface severity, the receipts-privilege; ZERO reconciled; ONE enforced consequence = the parent's merge; the supervision = TRUST + POST-HOC-MERGE; the uniform 3-step repair-shape = ONE remediation workstream, 4 rows) + F017 - the coverage gap (the 7 = the BETWEEN-ANGLES class by DESIGN; the REQ-003's bind-or-refute = the ONLY remaining disposition; the merge = the LAST chance; the 6+1 gap-classes = the NEXT wave's angle-design SEEDS - the PROVEN mechanism: this lane's 16-20 = all born of wave1's deferrals) + F018 - the attestation asymmetry (the merge trusts BOTH dispatch-grades equally; the trust-model = executor-DEPENDENT and UNDOCUMENTED; the self-attestation stack = THREE unaudited layers; the 34-day-allowlist = the proof-the-pattern-bites). Dimension coverage CLOSES 4/4 (maintainability's primary pass = THIS).",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-013",
+      "severity": "P2",
+      "title": "Summary P2 finding 13",
+      "file": null,
+      "line": null,
+      "description": "Angle 20 - what wave one surfaced that angles 11-20 do not cover (spec.md:107; the lane's FINAL iteration - the covenant stop = THIS iteration completing, stopReason: maxIterationsReached at the synthesis; the recorded stabilization pair 4-5 completes here, the evidence re-verification = the fix-completeness replay, nothing fixed in-review). Duties: (1) BOTH wave-one reports + BOTH findings-registries read - the orphan dispositions = ACTIVE, untouched by their own lanes: this iteration = the FIRST second-look; (2) the 7 no-angle-covers orphans (w1-glm F005/F014/F015/F016 + w1-ds F005/F006/F010) EXAMINED 7/7 at their TODAY-loci - STILL-TRUE 7/7 (0 refuted; 1 DOUBLY-STALE: the :454 pointer's target drifted THROUGH two states, now rendering the verify-cross-references bullet; 1 REFINED: F014's 3->2 approval compression = documented-AT-BIRTH in the :551-553 JSDoc, confidence 0.65->0.85, the claim's substance stands, its undocumented-sting halves; 1 ACCRUED: F015's dated-allowlist rot 30->34 days MEASURED, the :312 self-annotation + the :307-331 roster, the validation protocol STILL-ABSENT - the rot accrued on schedule, unwatched; 1 RECOUNTED: F016's manual-parity count 1->2 - this lane's 72/72+diff census = the second, the fixture STILL-ABSENT; 2 VERBATIM: ds-F005's retired vocabulary at graph-metadata:113/:124 + the SKILL:10 5-term block, ds-F010's leaf-manifest:68 with the ROUTER at ZERO; 1 CODA: ds-F006's :58 scoring-class membership line READ - the verdict STILL-TRUE, the 2 aliases unscored); (3) the whole-system, three additions: F016 - the TWO-AUTHORITY pattern = the packet's governance disease (FOUR measured instances: the 25:3 canonicality, the pack:69-vs-reducer:1847 verdict, the 4-vs-11-surface severity, the receipts-privilege; ZERO reconciled; ONE enforced consequence = the parent's merge; the supervision = TRUST + POST-HOC-MERGE; the uniform 3-step repair-shape = ONE remediation workstream, 4 rows) + F017 - the coverage gap (the 7 = the BETWEEN-ANGLES class by DESIGN; the REQ-003's bind-or-refute = the ONLY remaining disposition; the merge = the LAST chance; the 6+1 gap-classes = the NEXT wave's angle-design SEEDS - the PROVEN mechanism: this lane's 16-20 = all born of wave1's deferrals) + F018 - the attestation asymmetry (the merge trusts BOTH dispatch-grades equally; the trust-model = executor-DEPENDENT and UNDOCUMENTED; the self-attestation stack = THREE unaudited layers; the 34-day-allowlist = the proof-the-pattern-bites). Dimension coverage CLOSES 4/4 (maintainability's primary pass = THIS).",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-007",
+      "severity": "P2",
+      "title": "Summary P2 finding 7",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-008",
+      "severity": "P2",
+      "title": "Summary P2 finding 8",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-009",
+      "severity": "P2",
+      "title": "Summary P2 finding 9",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-010",
+      "severity": "P2",
+      "title": "Summary P2 finding 10",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-011",
+      "severity": "P2",
+      "title": "Summary P2 finding 11",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-007",
+      "severity": "P2",
+      "title": "Summary P2 finding 7",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-008",
+      "severity": "P2",
+      "title": "Summary P2 finding 8",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-009",
+      "severity": "P2",
+      "title": "Summary P2 finding 9",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-010",
+      "severity": "P2",
+      "title": "Summary P2 finding 10",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-011",
+      "severity": "P2",
+      "title": "Summary P2 finding 11",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 9,
+    "P2": 25
+  },
+  "openFindingsCount": 34,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.83,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 1,
+      "executed": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "required": 2,
+          "executed": 1,
+          "pass": 1,
+          "partial": 0,
+          "fail": 0,
+          "blocked": 0,
+          "notApplicable": 1,
+          "gatingFailures": 0
+        },
+        "evidence": [
+          "spec.md:107 (angle 20: read both wave-one reports and registries, examine uncovered findings, add what the whole-system read makes visible only now)",
+          "the-2-REPORTS + the-2-REGISTRIES-READ; the-7-ORPHANS = the-LISTED (the phase_init) + the-EXAMINED (7/7-STILL-TRUE: 1-doubly-stale, 1-refined, 1-accrued, 1-recounted, 2-verbatim, 1-coda); the-WHOLE-SYSTEM = the-3-FINDINGS (F016-the-4-INSTANCE-PATTERN, F017-THE-GAP + the-SEEDS, F018-THE-GRADED-TRUST); the-MAINTAINABILITY-PRIMARY = the-COVERAGE-CLOSE-4/4"
+        ],
+        "summary": "all-3-ANGLE-DUTIES-delivered (the-READS, the-7/7-EXAMINATION, the-3-ADDITIONS); the-boundary: the-F006-membership = the-1-LINE-CODA (the-VERDICT = STILL-TRUE, recorded); the-2-RECONCILERS (.claude/SYNC.md, the-CI-parser) = the-UNREAD-HANDOFFS (the-Dead-Ends-1-2, the-2-iterations-running); the-215B-composition = the-UNRESOLVED-3rd-iteration"
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "gateClass": "hard",
+        "applicable": false,
+        "counts": {
+          "required": 2,
+          "executed": 0,
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "blocked": 0,
+          "notApplicable": 1,
+          "gatingFailures": 0
+        },
+        "summary": "unchanged: no checklist.md; the-AC-001-SCAFFOLD; completion_pct-0; the-EXEMPTION-PREDICATE-INACTIVE; the-FINAL-ASSESSMENT = the-SYNTHESIS (the-REPORT's-Traceability-Status-OWNED-THERE-AFTER)"
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -101,6 +101,14 @@ Every surface of the deep-loop system says the same thing as every other and as 
 |-------|--------|-------|--------|
 <!-- [PHASE_ROW] — Replaced by create.sh with full 4-column table rows -->
 
+| 2 | 002-roster-completeness/ | [Phase 2 scope] | Pending |
+| 3 | 003-version-authority/ | [Phase 3 scope] | Pending |
+| 4 | 004-leaf-manifest-and-doctrine-reachability/ | [Phase 4 scope] | Pending |
+| 5 | 005-catalog-and-readme-truth/ | [Phase 5 scope] | Pending |
+| 6 | 006-confirm-variant-parity/ | [Phase 6 scope] | Pending |
+| 7 | 007-ledger-stem-producers/ | [Phase 7 scope] | Pending |
+| 8 | 008-agent-mirror-parity/ | [Phase 8 scope] | Pending |
+| 9 | 009-containment-promise-and-severity-scale/ | [Phase 9 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -113,6 +121,14 @@ Every surface of the deep-loop system says the same thing as every other and as 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 <!-- [HANDOFF_ROW] — Replaced by create.sh with full 4-column table rows -->
+| 001-angle-driven-review | 002-roster-completeness | [Criteria TBD] | [Verification TBD] |
+| 002-roster-completeness | 003-version-authority | [Criteria TBD] | [Verification TBD] |
+| 003-version-authority | 004-leaf-manifest-and-doctrine-reachability | [Criteria TBD] | [Verification TBD] |
+| 004-leaf-manifest-and-doctrine-reachability | 005-catalog-and-readme-truth | [Criteria TBD] | [Verification TBD] |
+| 005-catalog-and-readme-truth | 006-confirm-variant-parity | [Criteria TBD] | [Verification TBD] |
+| 006-confirm-variant-parity | 007-ledger-stem-producers | [Criteria TBD] | [Verification TBD] |
+| 007-ledger-stem-producers | 008-agent-mirror-parity | [Criteria TBD] | [Verification TBD] |
+| 008-agent-mirror-parity | 009-containment-promise-and-severity-scale | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

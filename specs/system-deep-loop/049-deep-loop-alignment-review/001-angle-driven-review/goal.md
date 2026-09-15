@@ -12,7 +12,7 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review"
     last_updated_at: "2026-09-15T09:48:34Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "claude-opus-5"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,9 +73,9 @@ to the parent: apply it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Twenty iterations completed across four lanes in two waves, each numbered record carrying the route-proof fields
-- [ ] The wave-two angles in the spec differ from the seeds, rewritten from wave-one findings, and the rewrite is committed before wave two ran
-- [ ] Every finding verified against the tree and bound to a parent phase or recorded as refuted with the reason
+- [x] Twenty iterations completed across four lanes in two waves, each numbered record carrying the route-proof fields
+- [x] The wave-two angles in the spec differ from the seeds, rewritten from wave-one findings, and the rewrite is committed before wave two ran
+- [x] Every finding verified against the tree and bound to a parent phase or recorded as refuted with the reason
 <!-- /ANCHOR:completion -->
 
 ---
@@ -91,11 +91,15 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Wave one | Done | DeepSeek and GLM lanes, angles 1 to 10, 40 findings: 1 P0, 14 P1, 25 P2 |
+| Angle rewrite | Done | Angles 11 to 20 rewritten from wave one and committed before wave two ran |
+| Wave two | Done | DeepSeek and GLM lanes, angles 11 to 20, 58 findings including wave-one carries; merged 4 lanes, verdict FAIL, P0 2, P1 34 |
+| Binding | Done | Eight phases scaffolded under the parent, one per finding class |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| One retry | The wave2-deepseek lane exited zero without its report on the first attempt; the retry produced it, and the runner's artifact gate caught the miss |
+| Memory pressure | Three desktop applications held six gigabytes during wave two; the run was unaffected, only the orchestrator's waiters were reclaimed |
 <!-- /ANCHOR:log -->
