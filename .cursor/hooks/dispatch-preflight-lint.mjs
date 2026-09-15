@@ -1,0 +1,1 @@
+../../.opencode/hooks/dispatch/cursor/dispatch-preflight-lint.mjs

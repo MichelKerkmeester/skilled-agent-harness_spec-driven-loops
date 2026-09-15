@@ -45,7 +45,12 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/cursor/dispatch-preflight-lint.mjs",
+      ".opencode/plugins/cli-dispatch-audit.js",
+      ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"
     ],
     "entities": [
       {
@@ -79,6 +84,36 @@
         "source": "derived"
       },
       {
+        "name": "dispatch-preflight-lint.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/cursor/dispatch-preflight-lint.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-audit.js",
+        "kind": "code",
+        "path": ".opencode/plugins/cli-dispatch-audit.js",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -109,7 +144,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -161,41 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Phase 1 made the preflight enforce, but two runtimes could not reach it and several predicates could be walked past",
     "created_at": "2026-09-15T16:29:32Z",
-    "last_save_at": "2026-09-15T16:43:01.281Z",
+    "last_save_at": "2026-09-15T17:31:56.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +210,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0e7f6db1ca904450452d2d464b9d5789d00877af494e49ad00c24ceb65c9279",
+    "source_fingerprint": "sha256:3aa80131d70ae80cdbbd98016b18c81e9e6d1e83e72eedc11084b161929d7629",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "daa95974a98f8d0fde18d7996ec0dab7b4052bd43c489eed8d988a305baa37aa",
+      "spec.md": "23555e296bce078af7c006b439a7cf11b8028792f4dda26f57efd2ca93595dff",
       "plan.md": "ea8e7e0db6b64e78e284f915269657f9fedad130ef807243464e0b055afe1e36",
       "tasks.md": "d696f5c9ebfc2be98b141ad46dcf167ce7549771caf2f624b97ee43c7543d89d",
       "implementation-summary.md": "abdc18ccefc3652eaa01df54a7fb7626ced13b859df46c4b1dca7fe84c68d366"

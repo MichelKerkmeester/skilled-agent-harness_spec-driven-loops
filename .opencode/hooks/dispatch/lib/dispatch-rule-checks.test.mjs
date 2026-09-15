@@ -96,6 +96,62 @@ test('other checks discriminate correctly', () => {
   assert.deepEqual(ids('git status && ls -la'), []); // non-dispatch bash never fires
 });
 
+// A runtime with no pre-execution adapter records a wrong dispatch after it ran and never
+// stops it, and nothing failed loudly while two runtimes sat in that state. Assert the
+// adapter file AND its registration, because either alone leaves the guard unreachable.
+test('every runtime with a preflight adapter has it registered', () => {
+  const REPO = path.resolve(HERE, '../../../..');
+  const adapters = {
+    claude: '.opencode/hooks/dispatch/claude/dispatch-preflight-lint.mjs',
+    codex: '.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs',
+    devin: '.opencode/hooks/dispatch/devin/dispatch-preflight-lint.mjs',
+    cursor: '.opencode/hooks/dispatch/cursor/dispatch-preflight-lint.mjs',
+  };
+  for (const [runtime, rel] of Object.entries(adapters)) {
+    assert.ok(fs.existsSync(path.join(REPO, rel)), `${runtime} preflight adapter missing: ${rel}`);
+  }
+  const registry = JSON.parse(fs.readFileSync(
+    path.join(REPO, '.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json'), 'utf8'));
+  const entry = registry.hooks.find((h) => h.id === 'dispatch-preflight-lint');
+  assert.ok(entry, 'dispatch-preflight-lint is absent from the hook registry');
+  for (const runtime of Object.keys(adapters)) {
+    const bindings = entry.bindings[runtime];
+    assert.ok(Array.isArray(bindings) && bindings.length > 0, `${runtime} has no preflight binding`);
+    assert.equal(bindings[0].script, adapters[runtime], `${runtime} binding points elsewhere`);
+  }
+  // OpenCode enforces in-process rather than through a registered command hook.
+  const ocPlugin = fs.readFileSync(path.join(REPO, '.opencode/plugins/cli-dispatch-audit.js'), 'utf8');
+  assert.match(ocPlugin, /tool\.execute\.before/, 'the opencode plugin has no pre-execution hook');
+});
+
+test('pi dispatches need --offline and a provider-qualified model', () => {
+  const CP = path.join(CLI_ORCHESTRATION, 'cli-pi/SKILL.md');
+  const rules = readHardRules(CP).filter((r) => r.check !== 'command-v-pi-required');
+  const ids = (cmd) => evaluate(cmd, rules).map((v) => v.id).sort();
+  assert.deepEqual(ids('pi -p --offline --model llmgateway/glm-5.3-flash "task" </dev/null'), []);
+  assert.deepEqual(ids('pi -p --model llmgateway/glm-5.3-flash "task" </dev/null'), ['pi-offline-required']);
+  assert.deepEqual(ids('pi -p --offline --model glm-5.3-flash "task" </dev/null'), ['pi-provider-qualified-model']);
+  // No --model at all is the model rule's silence, not a qualification failure.
+  assert.deepEqual(ids('pi -p --offline "task" </dev/null'), []);
+  assert.deepEqual(ids('git status'), []); // not a pi dispatch
+});
+
+// Each of these spellings reached the runtime unflagged while its sibling was caught, so the
+// rule read as enforced while the equals form and the unquoted prompt walked straight past.
+test('predicate bypasses: equals-form flags and unquoted slash prompts are caught', () => {
+  const rules = readHardRules(CO);
+  const ids = (cmd) => evaluate(cmd, rules).map((v) => v.id).sort();
+  assert.deepEqual(ids('opencode run -m p/m --agent=general "x" </dev/null'), ['no-bare-agent-general']);
+  assert.deepEqual(ids('opencode run -m p/m "x" --share=public </dev/null'), ['share-requires-confirmation']);
+  assert.deepEqual(ids('opencode run -m p/m /memory:search q </dev/null'), ['command-flag-for-slash-prompt']);
+  // The correct forms still pass, so the widened patterns discriminate rather than blanket-fire.
+  assert.deepEqual(ids('opencode run -m p/m --agent=build "x" </dev/null'), []);
+  assert.deepEqual(ids('opencode run -m p/m --command memory/search /memory:search q </dev/null'), []);
+  // Negative control: a URL and a POSIX path must not read as a slash prompt.
+  assert.deepEqual(ids('opencode run -m p/m "see https://example.com/a:b" </dev/null'), []);
+  assert.deepEqual(ids('opencode run -m p/m "read /tmp/x:y" </dev/null'), []);
+});
+
 test('hermes headless shapes need stdin handled: --query-file counts, a bare -q does not', () => {
   const stdin = CHECKS['stdin-redirect-required'];
   assert.equal(stdin('hermes chat -Q --oneshot -q "task"'), false);
