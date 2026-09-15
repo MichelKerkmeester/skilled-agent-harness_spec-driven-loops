@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: leaf-manifest-and-doctrine-reachability"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The leaf-manifest generator resolves symlinked references, so the twelve sk-code doctrine leaves it skipped are typed and reachable, and a link that cannot become a leaf is reported rather than dropped."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-15 |
-| **Branch** | `scaffold/004-leaf-manifest-and-doctrine-reachability` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 9 |
 | **Predecessor** | 003-version-authority |
@@ -57,10 +57,10 @@ This is **Phase 4** of the Remediate the alignment review findings specification
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The generator skipped any directory entry that was not a plain file, and a symlink never reports as one, so every symlinked reference was invisible. Twelve sk-code doctrine files, the implement, debug and verify workflow docs shared across four surface packets, were absent from the manifest. The freshness gate walked with the same rule, so it regenerated the same incomplete output and passed green over the gap.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+A symlinked reference is a leaf like any other, and a link that cannot be one is reported.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,22 @@ This is **Phase 4** of the Remediate the alignment review findings specification
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Symlink resolution in the generator, with the traversal owned by the generator so the gate cannot diverge from it
+- Reported errors for a broken link, a link escaping the skill root and a link targeting a directory
+- The regenerated sk-code manifest and five tests over the traversal
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- The manifest contract's shape - a link is emitted as the path a consumer stats, which needs no contract change
+- The other twelve manifests - byte-identical after regeneration
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` | Modify | Links resolve to the link's own packet-relative path; three unreachable-link classes reported |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs` | Modify | Traversal delegated to the generator, so a second walk cannot diverge |
+| `.opencode/skills/sk-code/leaf-manifest.json` | Regenerate | Twelve doctrine leaves added |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/tests/ci-leaf-manifest-freshness.test.cjs` | Modify | Five traversal tests |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +96,14 @@ This is **Phase 4** of the Remediate the alignment review findings specification
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | A symlinked reference pointing at a file inside the skill tree is emitted as a leaf under the link's own path |
+| REQ-002 | A broken link, a link escaping the skill root and a link targeting a directory are each reported with a named error, never skipped |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | The generator and the freshness gate share one traversal, so the gate cannot pass on output the generator would not produce |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +114,8 @@ This is **Phase 4** of the Remediate the alignment review findings specification
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The four sk-code surface packets each gain their three doctrine leaves, twelve in total, and a consumer-style stat resolves all twelve
+- **SC-002**: The freshness and metadata gates pass, and the deep-loop suite exits zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +125,8 @@ This is **Phase 4** of the Remediate the alignment review findings specification
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A link marker would need a contract bump | Avoided | Consumers resolve leaves by path with a follow-stat, so an in-tree link is transparent and needs no new shape |
+| Risk | The gate diverging from the generator again | Closed | The gate now calls the generator's traversal |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -135,16 +139,13 @@ This is **Phase 4** of the Remediate the alignment review findings specification
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: One realpath per skill root; link resolution is per entry
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: A link escaping the skill root is refused, so a manifest cannot name a file outside its skill
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: An unreadable link target still produces a message rather than an exception
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -153,18 +154,15 @@ This is **Phase 4** of the Remediate the alignment review findings specification
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- In-tree link: a leaf under the link's own path
+- Link to a directory: reported as unsupported
+- Broken link: reported
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Link escaping the skill root: reported, not emitted
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -174,18 +172,17 @@ This is **Phase 4** of the Remediate the alignment review findings specification
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 8/25 | Two scripts, one manifest, one test file |
+| Risk | 10/25 | Every hub's leaf manifest passes through this walker |
+| Research | 4/20 | The consumer resolution style had to be read before choosing the entry shape |
+| **Total** | **22/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---

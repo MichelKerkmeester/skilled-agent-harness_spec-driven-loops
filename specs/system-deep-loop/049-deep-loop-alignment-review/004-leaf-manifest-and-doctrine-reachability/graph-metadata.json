@@ -39,14 +39,18 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+      ".opencode/skills/sk-code/leaf-manifest.json",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/ci-leaf-manifest-freshness.test.cjs"
     ],
     "entities": [
       {
@@ -86,6 +90,30 @@
         "source": "derived"
       },
       {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-leaf-manifest-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "ci-leaf-manifest-freshness.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/ci-leaf-manifest-freshness.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +144,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +162,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,13 +180,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Directory",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -168,35 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The generator skipped any directory entry that was not a plain file, and a symlink never reports as one, so every symlinked reference was invisible",
     "created_at": "2026-09-15T14:23:11Z",
-    "last_save_at": "2026-09-15T14:24:30.920Z",
+    "last_save_at": "2026-09-15T17:04:09.780Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:417de1de321c95c2e621d05c6f531aefd85828a63b0e4bb2bed25ce14a0b7680",
+    "source_fingerprint": "sha256:d7737e3a320d277dd3d7701fb088d338a4aae9bd19dd7716f81d438adba142b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3c6723616bc42b7b8e173abcc30e4731a615495b7abca63d83490cbce6132fa7",
-      "plan.md": "03ba15a2ede599a78c350dd86828fb1441fc5e537c6ceb12683914963c814f2b",
-      "tasks.md": "3b3d0ab06d3e975bf7306605c97f142fd345ededddf889319a8bc78087569a2b",
-      "implementation-summary.md": "2dd55b3e6bc0e067f8e138d0d5b318bd464bc805b79890ee88fb1c3ba2edfedd"
+      "spec.md": "ef91072ba360cdaed1f8044e4ce20d61add7e2a2e9c6decab8b76deb7190813f",
+      "plan.md": "ca63cf8369130d27a2d725c1f620075aa8f51c081c0bc35eba53a25def146126",
+      "tasks.md": "f345a4e3cd41c47c4fd6551788bf29a10250305b97330f35caaf2321d066d7a9",
+      "implementation-summary.md": "9f5edce09f59f978e9a246919449fb80b74f8905e6424a6e7a3c6f145f6a4d88"
     },
     "last_active_at": null
   }

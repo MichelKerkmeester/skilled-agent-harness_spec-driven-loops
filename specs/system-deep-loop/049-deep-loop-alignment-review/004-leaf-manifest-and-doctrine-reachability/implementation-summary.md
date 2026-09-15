@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Symlinked references are leaves like any other, twelve doctrine files are reachable, and unreachable links are reported."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/049-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability"
     last_updated_at: "2026-09-15T14:23:12Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Made the manifest walker see symlinks and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 3: leaf-manifest-and-doctrine-reachability
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Twelve sk-code doctrine leaves that no manifest could see are now typed and reachable. `sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` skipped any entry that was not a plain file, and a symlink never reports as one, so the implement, debug and verify workflow docs shared across four surface packets were invisible; the freshness gate walked by the same rule and passed green over the gap. A symlinked reference is now emitted under the link's own packet-relative path, which is what every consumer stats, and a link that cannot become a reachable leaf, broken, escaping the skill root, or targeting a directory, is reported under a named error rather than dropped. `ci-leaf-manifest-freshness.cjs` delegates its traversal to the generator, so the two can no longer disagree.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi, relaunched once after the machine killed the first attempt for memory before it wrote anything. The delegate read how consumers resolve a leaf before choosing the entry shape, and reported a route-guard failure it proved belonged to another session by stashing its own files and seeing the failure persist. The orchestrator verified that independently, reviewed the diff and ran the whole suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Emit the link's own path, not a link marker | Consumers resolve by follow-stat, so an in-tree link is already transparent; a marker would need a contract bump and consumer changes |
+| Report rather than skip an unreachable link | A dropped leaf is invisible to every downstream reachability check |
+| Give the gate the generator's traversal | Two copies of one rule is how the gap stayed green |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +78,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Doctrine leaves | zero to four occurrences of the implement doc, twelve entries added across four packets |
+| Consumer-style follow-stat on the new leaves | twelve of twelve resolve |
+| Leaf-manifest freshness and skill-root metadata | 13 checked, 13 fresh, 13 passed |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 2644 passed, 8 skipped, exit 0, 1322 s |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +90,8 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Another session's hub.** The compiled route guard reports one hub needing a re-mint because a concurrent session has twelve of its packet files uncommitted; minting it here would publish their in-flight edits, so it is left to them.
+2. **A pre-existing test failure.** One create-skill metadata test expects a retired skill and fails identically at baseline.
 <!-- /ANCHOR:limitations -->
 
 ---

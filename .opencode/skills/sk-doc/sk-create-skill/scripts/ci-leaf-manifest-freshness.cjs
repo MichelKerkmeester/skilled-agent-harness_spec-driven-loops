@@ -15,6 +15,10 @@
  * is the same byte-compare `generate-leaf-manifest --check` runs, applied to
  * every manifest-bearing skill at once instead of one at a time.
  *
+ * Regeneration stays owned by the generator, including how leaf symlinks are
+ * resolved: this gate reads that walk's output rather than repeating the walk, so
+ * it cannot pass a corpus the generator would have typed differently.
+ *
  * Usage:
  *   node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
  *        [--skills-dir <dir>]   default: the repo .opencode/skills (resolved from

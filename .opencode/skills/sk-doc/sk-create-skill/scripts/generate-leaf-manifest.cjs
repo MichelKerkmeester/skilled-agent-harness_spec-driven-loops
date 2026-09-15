@@ -70,10 +70,29 @@ function readAliasEntries(skillDir) {
   return entries;
 }
 
+// Read a link's authored target for diagnostics only; a link whose target cannot
+// even be read still deserves a message rather than an exception from the reporter.
+function symlinkTarget(linkPath) {
+  try {
+    return fs.readlinkSync(linkPath);
+  } catch {
+    return '<unreadable>';
+  }
+}
+
 // Recursively collect packet-root-relative file paths under <packetRoot>/<rootName>.
-function walkLeafFiles(packetRoot, rootName) {
+//
+// A symlinked entry is emitted under the link's own packet-relative path, exactly
+// as a real file of that name would be: the manifest's identity is the path a
+// consumer resolves, and every consumer resolves a leaf with a follow-stat, so an
+// in-tree link is transparent. A link that cannot become a reachable leaf
+// (broken, escaping the skill root, or targeting a directory) is reported instead
+// of dropped, because a dropped leaf is invisible to every downstream
+// reachability check.
+function walkLeafFiles(skillDir, packetRoot, rootName) {
   const start = path.join(packetRoot, rootName);
   if (!fs.existsSync(start)) return [];
+  const skillRoot = fs.realpathSync(skillDir);
   const out = [];
   const stack = [start];
   while (stack.length) {
@@ -81,7 +100,25 @@ function walkLeafFiles(packetRoot, rootName) {
     for (const entry of fs.readdirSync(cur, { withFileTypes: true })) {
       const full = path.join(cur, entry.name);
       if (entry.isDirectory()) { stack.push(full); continue; }
-      if (!entry.isFile()) continue;
+      if (entry.isFile()) {
+        out.push(path.relative(packetRoot, full).split(path.sep).join('/'));
+        continue;
+      }
+      if (!entry.isSymbolicLink()) continue;
+      const label = path.relative(skillDir, full).split(path.sep).join('/');
+      const target = symlinkTarget(full);
+      let resolved;
+      try {
+        resolved = fs.realpathSync(full);
+      } catch {
+        throw new contract.ContractError('BROKEN_LEAF_SYMLINK', `leaf symlink is broken: ${label} -> ${target}`);
+      }
+      if (resolved !== skillRoot && !resolved.startsWith(`${skillRoot}${path.sep}`)) {
+        throw new contract.ContractError('LEAF_SYMLINK_OUT_OF_ROOT', `leaf symlink escapes the skill root: ${label} -> ${target}`);
+      }
+      if (!fs.statSync(resolved).isFile()) {
+        throw new contract.ContractError('UNSUPPORTED_LEAF_SYMLINK', `leaf symlink must target a file: ${label} -> ${target}`);
+      }
       out.push(path.relative(packetRoot, full).split(path.sep).join('/'));
     }
   }
@@ -147,7 +184,7 @@ function collectStandaloneLeaves(skillDir, cfg) {
   const packetRoot = path.join(skillDir, cfg.packet);
   const leaves = [];
   for (const root of cfg.leafRoots) {
-    for (const rel of walkLeafFiles(packetRoot, root)) {
+    for (const rel of walkLeafFiles(skillDir, packetRoot, root)) {
       if (cfg.excludeIndexFiles) {
         const base = rel.split('/').pop();
         if (INDEX_BASENAMES.has(base) && rel === `${root}/${base}`) continue;
@@ -176,8 +213,8 @@ function collectModeEntries(skillDir, registryModes, aliasEntries) {
     }
     const packetRoot = path.join(skillDir, mode.packet);
     const diskLeaves = [
-      ...walkLeafFiles(packetRoot, 'references'),
-      ...walkLeafFiles(packetRoot, 'assets'),
+      ...walkLeafFiles(skillDir, packetRoot, 'references'),
+      ...walkLeafFiles(skillDir, packetRoot, 'assets'),
     ];
     const aliasLeaves = (aliasEntries || [])
       .filter((alias) => alias.workflowMode === mode.workflowMode)

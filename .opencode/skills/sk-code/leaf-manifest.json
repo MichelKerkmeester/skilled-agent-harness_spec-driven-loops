@@ -40,7 +40,10 @@
         "references/storybook/storybook.md",
         "references/svelte/svelte.md",
         "references/verification/skill-reference-integrity.md",
-        "references/verification/verification.md"
+        "references/verification/verification.md",
+        "references/workflow-debug.md",
+        "references/workflow-implement.md",
+        "references/workflow-verify.md"
       ],
       "packet": "sk-code-mobile-cli",
       "workflowMode": "sk-code-mobile-cli"
@@ -72,7 +75,10 @@
         "references/stylesheet-ownership.md",
         "references/theme-variables.md",
         "references/verification.md",
-        "references/view-renderer-architecture.md"
+        "references/view-renderer-architecture.md",
+        "references/workflow-debug.md",
+        "references/workflow-implement.md",
+        "references/workflow-verify.md"
       ],
       "packet": "sk-code-obsidian",
       "workflowMode": "sk-code-obsidian"
@@ -143,7 +149,10 @@
         "references/typescript/quick-reference/imports-errors-and-tsconfig.md",
         "references/typescript/quick-reference/template-naming-and-types.md",
         "references/typescript/style-guide/formatting-imports-and-coexistence.md",
-        "references/typescript/style-guide/overview-strict-and-naming.md"
+        "references/typescript/style-guide/overview-strict-and-naming.md",
+        "references/workflow-debug.md",
+        "references/workflow-implement.md",
+        "references/workflow-verify.md"
       ],
       "packet": "sk-code-opencode",
       "workflowMode": "sk-code-opencode"
@@ -290,7 +299,10 @@
         "references/shared/enforcement.md",
         "references/verification/performance-checklist.md",
         "references/verification/verification-workflows/gate-and-automated-options.md",
-        "references/verification/verification-workflows/requirements-rules-and-checklist.md"
+        "references/verification/verification-workflows/requirements-rules-and-checklist.md",
+        "references/workflow-debug.md",
+        "references/workflow-implement.md",
+        "references/workflow-verify.md"
       ],
       "packet": "sk-code-webflow",
       "workflowMode": "sk-code-webflow"
