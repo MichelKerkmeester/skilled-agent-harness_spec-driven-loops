@@ -44,7 +44,7 @@ runtime, and every runtime's dispatch preflight actually enforces the rules it d
 |----|----------|
 | D1 | Evidence base: the three research phases; nothing deferred, broken or untested |
 | D2 | Contract pinned live via the LLM Gateway; roster `deepseek-v4.1-flash`, `glm-5.3-flash`, fail-closed |
-| D3 | Dispatch: `hermes chat -Q --query-file --yolo --ignore-rules --run-budget --max-turns -t <toolsets> --source tool </dev/null`; never the top-level oneshot or the worktree flag; `--ignore-rules` ALWAYS, including alongside `-s` (a live A/B disproved the old preload exception); `-t` must include `file`; read-only is `-t file,todo` plus the plugin marker |
+| D3 | Dispatch: quiet oneshot chat, prompt on stdin, explicit toolsets, stdin closed; never the top-level oneshot or the worktree flag; `--ignore-rules` ALWAYS, including alongside `-s` (a live A/B disproved the old preload exception); `-t` must include `file`; read-only is `-t file,todo` plus the plugin marker |
 | D4 | Docs via sk-create-* skills; code via `sk-code` on `cli-pi` |
 | D5 | No routing without a working binary; one hub advisor identity |
 | D6 | Config, hooks, MCP stay user-level; `.hermes/` carries generated skill and agent copies, plugins, prompts |
@@ -67,15 +67,6 @@ runtime, and every runtime's dispatch preflight actually enforces the rules it d
 
 Each phase has its own `goal.md`; a child that changes a decision here amends it.
 
-### Completion criteria
-
-1. `cli-hermes` is a registered hub mode and deep-loop executor kind, proven by checkers and tests.
-2. A Hermes session reaches the shared agents, commands, skills and MCP servers, shown live.
-3. Every phase is Complete with every acceptance row Met; no live finding is open.
-4. Every documented headless dispatch resolves to its own runtime's rules.
-5. Every runtime that can host a dispatch refuses a violating one before it runs.
-6. Each closed hole has a test that fails when that fix alone is reverted.
-7. The parent passes `validate.sh --recursive --strict`.
 
 ### Open operator decisions
 
