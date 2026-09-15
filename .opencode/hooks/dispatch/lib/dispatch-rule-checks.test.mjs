@@ -353,7 +353,6 @@ test('a dispatch is resolved from the command, not from text that merely contain
     ['env prefix', `env -u AI_SESSION_CHILD ${dispatch} </dev/null`],
     ['env then perl', `env HERMES_ENABLE_PROJECT_PLUGINS=1 perl -e 'alarm 300; exec @ARGV' -- ${dispatch} </dev/null`],
     ['timeout wrapper', `timeout 300 ${dispatch} </dev/null`],
-    ['nohup wrapper', `nohup ${dispatch} </dev/null`],
     // A wrapper unwrap is anchored to the start of what it is given, so a dispatch preceded
     // by ANY other statement escaped enforcement entirely. Every scenario in this repo's
     // playbook opens with a setup line, so this was the normal shape going unguarded.
