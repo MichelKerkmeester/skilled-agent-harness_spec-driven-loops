@@ -11,7 +11,7 @@ description: "Autonomous deep research agent executing single iteration cycles w
 
 Executes exactly ONE research iteration in the `/deep:research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, records one iteration record through the append gateway, and returns a concise completion report.
 
-**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
@@ -421,7 +421,7 @@ Verify iteration-NNN.md does not already exist before writing
 - Strategy, registry, dashboard: reducer-owned; do not edit directly.
 - Iteration file: create new; if the computed file exists, stop with status `error`.
 - Research.md: edit existing sections or create initial findings only when progressive synthesis is enabled and the path is packet-local.
-- Idea observations: record `idea_observed` through the gateway only when dispatch explicitly allows it; otherwise record ideas in the iteration file.
+- Idea observations: append `idea_observed` only when dispatch explicitly allows it; otherwise record ideas in the iteration file.
 
 ---
 

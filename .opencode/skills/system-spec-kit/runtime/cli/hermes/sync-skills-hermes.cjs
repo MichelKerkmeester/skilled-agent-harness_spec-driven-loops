@@ -22,7 +22,9 @@ const OUTPUT_DIR = process.env.HERMES_SKILLS_OUTPUT_DIR || path.join(REPO_ROOT, 
 // Hermes has no flag that loads an agent file, and a plugin prompt section is capped at 4000
 // characters, so each shared agent persona is also mirrored as a preloadable skill named
 // `agent-<name>`: `-s agent-<name>` carries the whole persona into the session.
-const AGENTS_DIR = process.env.HERMES_AGENTS_SOURCE_DIR || path.join(REPO_ROOT, '.claude', 'agents');
+// Agents are authored in .opencode/agents and mirrored to the other runtimes, so the mirror for
+// Hermes reads the source, not a sibling's copy.
+const AGENTS_DIR = process.env.HERMES_AGENTS_SOURCE_DIR || path.join(REPO_ROOT, '.opencode', 'agents');
 const AGENT_SKILL_PREFIX = 'agent-';
 // Hermes scans every project skill directory with its static security scanner at session start,
 // so the generated folder holds one markdown file per skill and nothing the scanner would walk:

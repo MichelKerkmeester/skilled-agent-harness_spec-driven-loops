@@ -13,7 +13,7 @@ Read-only context retrieval agent. The **exclusive entry point for exploration t
 
 For prior-work recovery, this agent follows the same canonical continuity order as `/speckit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. Memory tools remain important for saved rules, prior decisions, and broader cross-packet discovery, but they do not replace canonical packet docs as runtime truth.
 
-**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
@@ -414,7 +414,7 @@ Use exact tools when the query gives exact evidence handles. When it does not, G
 
 ## 11. RELATED RESOURCES
 
-- `.claude/agents/orchestrate.md` — the orchestrator that routes ALL exploration through @context (Rules 1 and 4).
+- `.opencode/agents/orchestrate.md` — the orchestrator that routes ALL exploration through @context (Rules 1 and 4).
 - `.opencode/skills/system-spec-kit/SKILL.md` — the continuity-ladder discipline behind the Query Routing Matrix.
 - `.opencode/commands/speckit/plan.md` — dispatches @context to ground a spec folder before planning.
 - `.opencode/commands/create/agent.md` — dispatches @context before scaffolding a new agent.

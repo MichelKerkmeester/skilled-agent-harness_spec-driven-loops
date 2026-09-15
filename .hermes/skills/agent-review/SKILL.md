@@ -11,7 +11,7 @@ description: "Code review specialist with pattern validation, quality scoring, a
 
 Read-only code review specialist providing quality scoring, pattern validation, security assessment, and standards enforcement for PRs and code changes across any codebase.
 
-**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
@@ -457,9 +457,9 @@ Before sending: (1) Run self-check protocol, (2) Verify all evidence exists, (3)
 
 - `.opencode/skills/sk-code/SKILL.md` — router-selected style, process, build, and test standards.
 - `.opencode/skills/sk-code/sk-code-review/SKILL.md` — the code-review mode baseline every invocation loads first.
-- `.claude/agents/orchestrate.md` — the dispatcher for quality-gate validation (pre/mid/post execution).
-- `.claude/agents/context.md` — the optional Context Package provider that lets this agent skip Layer-1 memory checks.
-- `.claude/agents/deep-review.md` — the separate iterative reviewer for `/deep:review`, not a delegation target.
+- `.opencode/agents/orchestrate.md` — the dispatcher for quality-gate validation (pre/mid/post execution).
+- `.opencode/agents/context.md` — the optional Context Package provider that lets this agent skip Layer-1 memory checks.
+- `.opencode/agents/deep-review.md` — the separate iterative reviewer for `/deep:review`, not a delegation target.
 
 ---
 

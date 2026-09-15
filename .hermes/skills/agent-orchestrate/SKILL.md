@@ -19,7 +19,7 @@ You are **THE SENIOR ORCHESTRATION AGENT** with **FULL AUTHORITY** over:
 
 You are the **single point of accountability**. The user receives ONE coherent response from you, not fragments from multiple agents.
 
-**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **Runtime Directory Resolution**: OpenCode profile reads `.opencode/agents/`; Claude profile reads `.claude/agents/`. Choose the active runtime directory once per workflow and keep dispatches within it.
 
@@ -144,21 +144,21 @@ Before every Task tool dispatch, compare the selected route, loaded agent defini
 1. The `Agent:` line in the task prompt MUST match the route selected in §2 Agent Selection.
 2. The loaded `Agent Definition` MUST be the file for that same agent.
 3. `subagent_type: "general-purpose"` is only the runtime wrapper; it does not make a mismatched prompt safe.
-4. If a prompt says `Agent: @code`, the selected route MUST be @code, `.claude/agents/code.md` MUST be loaded, and the work MUST pass @code's component-authoring gate.
+4. If a prompt says `Agent: @code`, the selected route MUST be @code, `.opencode/agents/code.md` MUST be loaded, and the work MUST pass @code's component-authoring gate.
 5. If any field disagrees, STOP before dispatch and rewrite the task package; do not send a general worker with contradictory embedded agent instructions.
 
 ### Agent Files
 
 | Agent     | File                          | Notes                                                                                  |
 | --------- | ----------------------------- | -------------------------------------------------------------------------------------- |
-| @context  | `.claude/agents/context.md`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
-| @markdown | `.claude/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
-| @deep-research | `.claude/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
-| @deep-review | `.claude/agents/deep-review.md` | LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state |
-| @ai-council | `.claude/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). If the LEAF's returned report shows `max_rounds` reached without a converged plan (check `current_round >= max_rounds` in `ai-council-config.json`), add `--not-converged` to that invocation — the helper cannot detect max-round exhaustion on its own and defaults to `convergence:true` otherwise. |
-| @review   | `.claude/agents/review.md`   | Codebase-agnostic quality scoring                                                      |
-| @debug    | `.claude/agents/debug.md`    | Isolated by design (no conversation context)                                           |
-| @code     | `.claude/agents/code.md`     | Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify |
+| @context  | `.opencode/agents/context.md`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
+| @markdown | `.opencode/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
+| @deep-research | `.opencode/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
+| @deep-review | `.opencode/agents/deep-review.md` | LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state |
+| @ai-council | `.opencode/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). If the LEAF's returned report shows `max_rounds` reached without a converged plan (check `current_round >= max_rounds` in `ai-council-config.json`), add `--not-converged` to that invocation — the helper cannot detect max-round exhaustion on its own and defaults to `convergence:true` otherwise. |
+| @review   | `.opencode/agents/review.md`   | Codebase-agnostic quality scoring                                                      |
+| @debug    | `.opencode/agents/debug.md`    | Isolated by design (no conversation context)                                           |
+| @code     | `.opencode/agents/code.md`     | Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify |
 
 > **Note**: ALL exploration tasks route through `@context` exclusively. @context executes retrieval directly (no nested sub-agent dispatch).
 
@@ -179,7 +179,7 @@ TASK #N: [Descriptive Title]
 ├─ Agent: @code | @context | @markdown | @deep-research | @deep-review | @ai-council | @review | @debug
 ├─ Deep Route: [for deep routes only: mode=<workflowMode>; target_agent=@<agent>; execution=<single_iteration|loop|session>; source_of_truth=.opencode/skills/system-deep-loop/mode-registry.json | none]
 ├─ Subagent Type: "general" (ALL dispatches use "general" — exploration routes through @context)
-├─ Agent Definition: [.claude/agents/<name>.md — MUST be read and included in prompt | "built-in" for @general-purpose]
+├─ Agent Definition: [.opencode/agents/<name>.md — MUST be read and included in prompt | "built-in" for @general-purpose]
 ├─ Skills: [Specific skills the agent should use]
 ├─ Output Format: [Structured format with example]
 ├─ Output Size: [full | summary-only (30 lines) | minimal (3 lines)] ← CWB §8
@@ -263,7 +263,7 @@ PRE-DELEGATION REASONING [Task #N]:
 ├─ Intent: [What does this task accomplish?]
 ├─ Complexity: [low/medium/high] → Because: [cite criteria below]
 ├─ Agent: @[agent] → Because: [cite §2 (Agent Routing)]
-├─ Agent Def: [loaded | built-in | prior-session] → [.claude/agents/<name>.md]
+├─ Agent Def: [loaded | built-in | prior-session] → [.opencode/agents/<name>.md]
 ├─ Depth: [N] → Tier: [ORCHESTRATOR|LEAF] (§2 NDP)
 ├─ Parallel: [Yes/No] → Because: [data dependency]
 ├─ Risk: [Low/Medium/High] → [If High: fallback agent]
@@ -817,7 +817,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | Dispatch 5+ agents without a CWB check | Unconstrained parallel dispatch floods the orchestrator's context window, causing irrecoverable "Context limit reached" errors — all work lost despite agents completing successfully | §8 |
 | Use sub-orchestrator delegation | Creates illegal nesting chains under single-hop NDP; run additional waves directly from the top-level orchestrator instead | §3 |
 | Dispatch a single agent for 13+ estimated tool calls | Exceeds system execution limits, returns "Tool execution aborted," loses all progress; split at 12+ | §8 |
-| Improvise custom agent instructions instead of loading the definition file | Every custom agent has a definition file in `.claude/agents/` (this runtime's mirror; the canonical source lives in `.opencode/agents/`) with specialized templates, enforcement rules, and quality standards; "you are @debug" in a prompt loses the actual debugging workflow | §2 |
+| Improvise custom agent instructions instead of loading the definition file | Every custom agent has a definition file in `.opencode/agents/` with specialized templates, enforcement rules, and quality standards; "you are @debug" in a prompt loses the actual debugging workflow | §2 |
 | Dispatch beyond maximum depth 2 | Nested chains are illegal; if a task can't complete at depth 1, return partial results and escalate to the parent | §2 |
 | Let LEAF agents dispatch sub-agents | Violates NDP; always include the LEAF Enforcement Instruction when dispatching a LEAF agent | §2 |
 | Read 3+ large files back-to-back in main context | Floods the orchestrator's context window; delegate bulk reads to `@context` for a summarized Context Package | §8 |
@@ -829,13 +829,13 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 
 ## 10. RELATED RESOURCES
 
-- `.claude/agents/context.md` — the LEAF that routes ALL exploration, file search, and pattern discovery.
-- `.claude/agents/code.md` — the LEAF for implementation and testing, gated by a `Depth: 1` marker.
-- `.claude/agents/review.md` — the LEAF for code review and security scoring.
-- `.claude/agents/debug.md` — the LEAF offered only after repeated failures, and only with operator opt-in.
-- `.claude/agents/markdown.md` — the LEAF for `/create:*` documentation and component-authoring commands.
-- `.claude/agents/ai-council.md` — the LEAF for multi-strategy planning and architecture synthesis.
-- `.claude/agents/deep-research.md` — the LEAF for evidence-first iterative investigation.
-- `.claude/agents/deep-review.md` — the LEAF for `/deep:review` iterative code-audit passes.
+- `.opencode/agents/context.md` — the LEAF that routes ALL exploration, file search, and pattern discovery.
+- `.opencode/agents/code.md` — the LEAF for implementation and testing, gated by a `Depth: 1` marker.
+- `.opencode/agents/review.md` — the LEAF for code review and security scoring.
+- `.opencode/agents/debug.md` — the LEAF offered only after repeated failures, and only with operator opt-in.
+- `.opencode/agents/markdown.md` — the LEAF for `/create:*` documentation and component-authoring commands.
+- `.opencode/agents/ai-council.md` — the LEAF for multi-strategy planning and architecture synthesis.
+- `.opencode/agents/deep-research.md` — the LEAF for evidence-first iterative investigation.
+- `.opencode/agents/deep-review.md` — the LEAF for `/deep:review` iterative code-audit passes.
 - `.opencode/skills/cli-external-orchestration/SKILL.md` — the hub that routes the seven external CLI executor modes, and owns their invariants (§4 Rule 7).
 - `repo-rules/delegation-and-orchestration.md` — the orchestrating posture: what a brief must carry, and why a delegate's return is unverified.

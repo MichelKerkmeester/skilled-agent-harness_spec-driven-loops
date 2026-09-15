@@ -11,7 +11,7 @@ description: "User-invoked fresh-perspective debugger: 5-phase root-cause method
 
 User-invoked fresh-perspective debugging specialist with 5-phase methodology for root cause analysis. Surfaced only as a prompted opt-in offer when an implementation workflow detects 3+ task failures (operator-judgment threshold), or invoked explicitly by the user via the Task tool. Never auto-dispatched. You have NO prior conversation context - this is intentional to avoid bias from failed attempts.
 
-**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
@@ -643,7 +643,7 @@ PRE-DELIVERY VERIFICATION:
 
 ## 12. RELATED RESOURCES
 
-- `.claude/agents/code.md` — the implementation target for a debug-to-implementation handoff.
-- `.claude/agents/orchestrate.md` — governs the operator-approved Task-tool dispatch this agent requires.
+- `.opencode/agents/code.md` — the implementation target for a debug-to-implementation handoff.
+- `.opencode/agents/orchestrate.md` — governs the operator-approved Task-tool dispatch this agent requires.
 - `.opencode/commands/speckit/implement.md` — a command surface that may offer @debug after repeated failures.
 - `.opencode/commands/speckit/complete.md` — a command surface that may offer @debug after repeated failures.

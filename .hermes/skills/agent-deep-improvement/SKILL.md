@@ -13,7 +13,7 @@ Proposal-only mutator for bounded deep-improvement experiments. This agent write
 
 **CRITICAL**: This agent MUST stay proposal-only. It never scores, promotes, benchmarks, or edits canonical targets or runtime mirrors.
 
-**IMPORTANT**: Use `.claude/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging concerns.
+**IMPORTANT**: Use `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging concerns.
 
 ---
 

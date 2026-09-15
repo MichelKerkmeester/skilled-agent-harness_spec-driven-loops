@@ -61,7 +61,7 @@ You get `skills/<name>/SKILL.md` as a generated markdown-only copy of every cano
 | File | Action | Purpose |
 |------|--------|---------|
 | `.hermes/skills/<name>/SKILL.md` | Generated (56 + 12 `agent-<name>`) | markdown-only copies naming their canonical source |
-| `.hermes/agents` | Created (symlink) | `../.claude/agents`, the shared runtime-neutral agent files |
+| `.hermes/agents` | Created (symlink) | `../.opencode/agents`, the authored agent files |
 | `.opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` | Created | generator with `--check`; 3 node tests |
 | `.hermes/manual-testing-playbook` | Created (symlink) | `../.opencode/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook` |
 | `.hermes/prompts/*.md` | Generated | 33 pointer stubs, one per canonical command |

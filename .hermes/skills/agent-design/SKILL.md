@@ -11,7 +11,7 @@ description: "Design specialist across the four sk-design modes: decides values 
 
 Design specialist across four modes of one hub. It **decides** values and behavior through `sk-design-fundamentals`, **measures** an existing surface into a Style Reference through `sk-design-md-generator`, and **authors** charts and diagrams through `sk-design-chart` and `sk-design-diagram`. The agent's first job is knowing which of the four a request is.
 
-**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as
 routing hints only. They never override explicit user instructions, active command workflow,

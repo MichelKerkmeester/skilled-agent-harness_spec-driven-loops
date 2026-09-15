@@ -20,7 +20,7 @@ This reference prevents a category error: Hermes profiles and `delegate_task` su
 
 ### Core Principle
 
-The repo's thirteen agents (`.claude/agents/*.md`) reach a Hermes dispatch only inside the prompt. Hermes has no flag that loads an agent file, its profiles are whole-home islands, and `delegate_task` children receive a goal and context, never an agent definition.
+The repo's agents (`.opencode/agents/*.md`, the authored source) reach a Hermes dispatch only inside the prompt. Hermes has no flag that loads an agent file, its profiles are whole-home islands, and `delegate_task` children receive a goal and context, never an agent definition.
 
 ---
 
