@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/015-symlink-contained-paths"
+    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/015-symlink-contained-paths"
     last_updated_at: "2026-09-15T00:02:08Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "claude-fable-5-1"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-14-015-symlink-contained-paths"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** system-deep-loop/045-fanout-write-containment-hardening/015-symlink-contained-paths
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given a symlinked parent on restore or a symlinked component on a baseline path, When the guard acts, Then nothing is written or read through the link and the result names the refusal | `write-containment.vitest.ts:2503`, `:2528`, `:2571`; each wrote or read through the link against the unmodified module | Met | - |
+| AC-002 | REQ-002 | Given a link swapped in between the quarantine check and its create, When the writer runs, Then it refuses and nothing lands at the target | `write-containment.vitest.ts:2587` | Met | - |
+| AC-003 | REQ-003 | Given any refusal, When the result is read, Then the baseline entry, revert action or quarantine list carries it | `write-containment.vitest.ts:2503` and `:2587` | Met | - |
 
 ### Status values
 
