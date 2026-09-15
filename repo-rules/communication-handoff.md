@@ -124,7 +124,7 @@ you need is a choice between named alternatives, present it as a choice.
 
 - The alternatives are nameable, not open-ended.
 - The answer changes what you do next. A question that changes nothing is a delay, per
-  [`communication-presenting-decisions.md`](communication-presenting-decisions.md) §3.
+  [`communication-decisions.md`](communication-decisions.md) §3.
 - You cannot resolve it from the request, the code, or a sensible default.
 
 **Otherwise put it in prose and keep going.** A structured choice for something you could have

@@ -1,5 +1,5 @@
 ---
-title: "Rule: Communication presenting decisions"
+title: "Rule: Communication decisions"
 description: "When the reader has to decide or act on what you found, lead with the verdict, recommend one path, and say where you are going before a long stretch of work."
 trigger_phrases:
   - "which option should i pick"
@@ -27,10 +27,10 @@ trigger_phrases:
   - "how long will this take"
 importance_tier: important
 contextType: reference
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
-# Rule: Communication presenting decisions
+# Rule: Communication decisions
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before presenting a recommendation, a fork, a plan, or the result of a long run.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
