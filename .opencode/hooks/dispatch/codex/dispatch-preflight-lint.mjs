@@ -19,7 +19,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { readHardRules, evaluate } from '../lib/dispatch-rule-checks.mjs';
-import { DISPATCH_SHAPES } from '../lib/dispatch-audit.mjs';
+import { resolveDispatchPacket } from '../lib/dispatch-audit.mjs';
 import path from 'node:path';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
@@ -56,7 +56,7 @@ async function main() {
   if (typeof command !== 'string' || command.length === 0) return approve();
 
   // Fast-exit unless the command is a known dispatch shape.
-  const match = DISPATCH_SHAPES.find((d) => d.test.test(command));
+  const match = resolveDispatchPacket(command);
   if (!match) return approve();
 
   const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();

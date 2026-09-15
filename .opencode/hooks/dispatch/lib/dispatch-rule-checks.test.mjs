@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseHardRules, readHardRules, evaluate, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
-import { DISPATCH_SHAPES, matchDispatchShape } from './dispatch-audit.mjs';
+import { DISPATCH_SHAPES, matchDispatchShape, resolveDispatchPacket } from './dispatch-audit.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const CLI_ORCHESTRATION = path.resolve(HERE, '../../../skills/cli-external-orchestration');
@@ -333,6 +333,35 @@ const CHECK_FIXTURES = {
   'command-v-pi-required': { satisfied: 'npm test', violated: 'pi -p "task"', emptyPath: true },
   'command-v-hermes-required': { satisfied: 'npm test', violated: 'hermes chat -q "task"', emptyPath: true },
 };
+
+// The shape list matches its pattern anywhere in the command string, so a command that
+// only CONTAINS a dispatch -- a grep for one, a heredoc documenting one, a prose line
+// quoting one -- was refused as if it were one. Enforcement must read the command, not
+// the characters in it, while still seeing a dispatch a shell wrapper hides.
+test('a dispatch is resolved from the command, not from text that merely contains one', () => {
+  const dispatch = `${HERMES_BASE} -t file,todo`;
+  const govern = [
+    ['plain', `${dispatch} </dev/null`],
+    ['wrapped in bash -c', `bash -c "${dispatch} </dev/null"`],
+    ['wrapped in sh -c', `sh -c '${dispatch} </dev/null'`],
+    ['prompt piped in', 'cat p.md | hermes chat -Q --oneshot --query-file - --ignore-rules -t file,todo'],
+  ];
+  for (const [label, cmd] of govern) {
+    assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-hermes', `should govern (${label}): ${cmd}`);
+  }
+
+  const doNotGovern = [
+    ['heredoc documenting it', `python3 - <<'PY'\nshape = "${dispatch}"\nPY`],
+    ['prose quoting it', `echo "the ${dispatch} form is auditable"`],
+    ['grep for the text', `grep -rn "${dispatch}" docs/`],
+    ['node printing it', `node -e 'console.log("${dispatch}")'`],
+    ['sed writing it into a file', `sed -i '' 's|old|${dispatch}|' file.md`],
+    ['not a dispatch at all', 'git status && ls -la'],
+  ];
+  for (const [label, cmd] of doNotGovern) {
+    assert.equal(resolveDispatchPacket(cmd), null, `should not govern (${label}): ${cmd}`);
+  }
+});
 
 test('ENFORCEMENT GUARD: every check names a command it accepts and one it refuses', () => {
   const missing = KNOWN_CHECKS.filter((id) => !CHECK_FIXTURES[id]);
