@@ -18,7 +18,8 @@
     "sk-communication/006-sk-communication-clarity/012-reply-rule-delegation-repair",
     "sk-communication/006-sk-communication-clarity/013-shorten-handoff-rule-name",
     "sk-communication/006-sk-communication-clarity/014-shorten-decision-rule-name",
-    "sk-communication/006-sk-communication-clarity/015-evidence-rule-seam-links"
+    "sk-communication/006-sk-communication-clarity/015-evidence-rule-seam-links",
+    "sk-communication/006-sk-communication-clarity/016-code-standards-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -223,7 +224,7 @@
     ],
     "causal_summary": "The repository governs how a reply reads across three layers: `AGENTS.md` keeps the two clauses",
     "created_at": "2026-09-12T12:44:34Z",
-    "last_save_at": "2026-09-15T20:26:52.774Z",
+    "last_save_at": "2026-09-15T20:43:25.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,10 +232,10 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:6fc685e7f685aed2f555f56313bd050731afeca9c95772a937bbecb411cbb447",
+    "source_fingerprint": "sha256:2a90605c2b235ee7a4e62257fcef57bc6a38881817cdd7cc95f56921334596ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "115901dad29bab99b16886e02472b36b7d72487d4c810ea4e087de96416dc248",
+      "spec.md": "8ffeb5a1ee4d6583435358c831d9554961650ddc2aca63a6eb2e57bb51e3203e",
       "handover.md": "d0ae87ad26f6c34966e683adb938024d050846e13a78da6694c6753f8e204dbd"
     },
     "last_active_child_id": "sk-communication/006-sk-communication-clarity/001-research-communication-context",

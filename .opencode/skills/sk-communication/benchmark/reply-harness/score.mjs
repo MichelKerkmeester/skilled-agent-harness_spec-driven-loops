@@ -122,6 +122,8 @@ function pCap(reply, caseEntry) {
   // when it names them, else from the backticked tokens in its prompt.
   // An expected item may carry alternative names. A rule file renamed between the two
   // conditions is one item under either name, so a frozen reply set stays scorable.
+  // Every dimension mechanic runs against every case, so a case that does not name its
+  // items still reaches here and falls back to the backticked tokens in its own prompt.
   const expected = Array.isArray(caseEntry.expectedItems) && caseEntry.expectedItems.length
     ? caseEntry.expectedItems.map(t => (Array.isArray(t) ? t.map(String) : [String(t)]))
     : [...new Set((String(caseEntry.prompt).match(/`([^`\n]+)`/g) ?? []).map(t => t.slice(1, -1)))].map(t => [t])
@@ -254,6 +256,8 @@ for (const c of cases) {
     if (c[field] !== undefined && typeof c[field] !== "string") die(`${casesFile} case ${c.id} field ${field} must be a string when present`)
   }
   const namedItem = t => typeof t === "string" && t.trim()
+  const capCase = OWN[c.id] === "allItemsRetainedCapAdvisory"
+  if (capCase && (!Array.isArray(c.expectedItems) || !c.expectedItems.length)) die(`${casesFile} case ${c.id} scores retention, so it must name the items it expects in expectedItems`)
   if (c.expectedItems !== undefined && (!Array.isArray(c.expectedItems) || c.expectedItems.some(t => !(namedItem(t) || (Array.isArray(t) && t.length && t.every(namedItem)))))) die(`${casesFile} case ${c.id} expectedItems must be a list of non-empty strings, or lists of alternative names, when present`)
 }
 const controls = cases.filter(c => c.control)

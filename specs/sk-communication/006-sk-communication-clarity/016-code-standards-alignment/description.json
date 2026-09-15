@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-communication/006-sk-communication-clarity/016-code-standards-alignment",
+  "description": "Phase 1: code-standards-alignment",
+  "keywords": [
+    "phase",
+    "code-standards-alignment"
+  ],
+  "lastUpdated": "2026-09-15T20:39:52.934Z",
+  "specId": "016",
+  "folderSlug": "code-standards-alignment",
+  "parentChain": [
+    "sk-communication",
+    "006-sk-communication-clarity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

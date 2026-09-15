@@ -337,6 +337,18 @@ interface CausalPair {
   readonly effect: ReadonlySet<string>;
 }
 
+/**
+ * Compare the direction of every causal claim the source states.
+ *
+ * A rewrite that keeps both clauses and swaps which one is the cause keeps every
+ * content word, so the claim check passes it. Direction has to be compared on its own.
+ *
+ * @param sourceText - The author's original text
+ * @param candidateText - The rewritten candidate
+ * @returns A CAUSE_INVERTED difference when the candidate states a source pair the other
+ * way round, or null when every pair survives or the candidate dropped it entirely,
+ * which {@link compareClaimCoverage} owns.
+ */
 export function compareCausalDirection(
   sourceText: string,
   candidateText: string,
