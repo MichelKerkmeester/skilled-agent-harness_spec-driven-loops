@@ -1,6 +1,6 @@
 {
   "condition": "after",
-  "generatedAt": "2026-09-15T18:06:36.374Z",
+  "generatedAt": "2026-09-15T19:39:24.872Z",
   "repliesDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/after-replies",
   "casesFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
   "weights": {
@@ -191,6 +191,7 @@
               "evidence-and-proof.md"
             ],
             [
+              "communication-handoff.md",
               "communication-handoff-and-questions.md",
               "handoff-and-questions.md"
             ],

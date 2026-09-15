@@ -165,6 +165,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 10 | 010-review-remediation/ | Close all six deep-review findings, the two P1 and the four P2, with Sonnet 5 | 9th | Complete |
 | 11 | 011-communication-rule-naming/ | The two unprefixed reply rules take the communication prefix, and every live reference follows | 10th, last | Complete |
 | 12 | 012-reply-rule-delegation-repair/ | The reply rule stops stating a sentence mechanic it delegates, found by sweeping every directive in all twelve rules | 11th, last | Complete |
+| 13 | 013-shorten-handoff-rule-name/ | The handoff rule takes the shortest name that still says what it governs, after the split it was offered was assessed and declined | 12th, last | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -190,6 +191,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 009-adjacent-surface-rules | 010-review-remediation | Every finding carries a verdict and an owner | Read the 010 tasks and the review report side by side |
 | 010-review-remediation | 011-communication-rule-naming | Every review finding is closed, so a rename touches nothing still in flight | Read the 010 checklist, then the corpus checker's link count before and after |
 | 011-communication-rule-naming | 012-reply-rule-delegation-repair | The four reply rules share one name shape, so the set they form can be compared as a set | Sweep every bolded directive across the corpus, cross-file only |
+| 012-reply-rule-delegation-repair | 013-shorten-handoff-rule-name | No directive is stated twice, so the file's contents are settled before its name changes again | Rerun the directive sweep, then read the file's length against the ceiling |
 <!-- /ANCHOR:phase-map -->
 
 ---

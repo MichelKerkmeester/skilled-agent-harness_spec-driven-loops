@@ -121,7 +121,7 @@ the examples below are rules whose surface reading permits *less* work:
 | `delegation-and-orchestration.md` | "orchestrate it" becoming licence to delegate everything |
 | `communication.md` | "match length to the question" becoming licence to omit what the reader needs |
 | `communication-presenting-decisions.md` | "verdict first" becoming licence to reason less before writing |
-| `communication-handoff-and-questions.md` | "name what is left" becoming licence to ask more, or to hand back your own unfinished work |
+| `communication-handoff.md` | "name what is left" becoming licence to ask more, or to hand back your own unfinished work |
 
 Rules without one are rules that only ever demand *more* rigour — nobody misreads
 "fix the producer, not the symptom" as permission to do less.
