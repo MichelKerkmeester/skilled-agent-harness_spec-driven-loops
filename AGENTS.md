@@ -244,7 +244,7 @@ One rule stays here because it is prompt-time discipline no script enforces: **b
 
 ---
 
-## 7. 🧑‍🏫 ESCALATION & CONFLICT
+## 7. 🧭 ESCALATION & CONFLICT
 
 #### Logic-Sync Protocol
 

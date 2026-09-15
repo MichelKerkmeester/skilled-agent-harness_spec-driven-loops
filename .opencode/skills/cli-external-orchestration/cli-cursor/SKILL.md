@@ -7,7 +7,7 @@ hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
     message: "Any non-interactive `cursor-agent -p` MUST close/redirect stdin (`</dev/null`) — not only inside a read loop. Omitting it can hang with zero output, which is indistinguishable from a slow model."
-    severity: warn
+    severity: error
   - id: cursor-availability-required
     check: command-v-cursor-agent-required
     message: "Run `command -v cursor-agent` before every dispatch; if it fails, refuse the route without constructing or launching a command."

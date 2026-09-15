@@ -52,9 +52,9 @@ Operators run the exact prompt and command sequence for `HERMES-016` and confirm
 ```bash
 ls -la .hermes/skills/
 
-# note: --ignore-rules is omitted here under the hard rule's documented exception: the flag
-# suppresses preloaded-skill injection along with the rules files, which would defeat -s
-perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --source tool -s cli-hermes \
+# note: --ignore-rules travels with -s; an A/B under the flag showed the preload still
+# reaching the model, so omitting it only bled the rules files into the leaf
+perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool -s cli-hermes \
   --provider llmgateway --model glm-5.3-flash --reasoning none \
   -t file,todo --max-turns 4 --run-budget 150 \
   -q "Using only the cli-hermes skill that was preloaded into this session, quote its Core principle sentence verbatim and then name the two model ids on its closed roster. If no such skill is loaded, reply exactly SKILL_NOT_LOADED." \

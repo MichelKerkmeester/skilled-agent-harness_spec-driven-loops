@@ -1,0 +1,26 @@
+The deepseek fanout lineage is complete and frozen. Final state:
+
+## Lineage completion report — `deepseek` (fanout-deepseek-1789487309899-tyhai6)
+
+**Executed inline in this session** (no nested dispatch), all 10 angles from the charter, one per iteration:
+
+| Artifact | State |
+|---|---|
+| `iterations/iteration-001..010.md` | ✅ all 10, file:line citations throughout |
+| `deltas/iter-001..010.jsonl` | ✅ 72 `finding` records |
+| `deep-research-state.jsonl` | ✅ 13 records: config → lineage_initialized → 10×iteration (all with route-proof fields) → `synthesis_complete` / `maxIterationsReached` |
+| `findings-registry.json` | ✅ 27 keyFindings, status `complete` |
+| `research.md` | ✅ synthesis: severity table, defect table, parity table, ranked plan, phase decomposition |
+
+**Headline results** (all under `research/lineages/deepseek/`):
+1. **Severity survey** — 23 `hard_rules` declarations across the 7 `cli-*` skills (7 error / 16 warn); recommend flipping all seven `stdin-redirect-required` rules warn→error (violation = indistinguishable silent hang); the two zero-error skills are cli-claude-code and cli-opencode.
+2. **Two new defects found beyond the four confirmed** — (a) the codex `DISPATCH_SHAPES` regex requires a `-p/--print` flag `codex exec` doesn't have, so *no* codex dispatch ever matches its preflight/audit; (b) the Hermes fanout builder never sets `HERMES_ENABLE_PROJECT_PLUGINS=1`, so `SPECKIT_HERMES_READ_ONLY` and the goal/persona sections are inert unless the operator exported it.
+3. **False preload exemption** — traced to one enforcement site (`dispatch-rule-checks.mjs:186` + constant ~:101); fix plan covers SKILL.md, tests (2 assertions must flip), the generated `.hermes` mirror (regen, not hand-edit), and both reference docs.
+4. **Parity gaps** — Cursor: live `preToolUse` surface already exists (Shell matcher), smallest adapter is the existing translation-shim pattern; OpenCode: `tool.execute.before` throw = deny signal, smallest adapter rides on the existing audit plugin.
+5. **Fail-open audit** — enumerated all silent-disable paths (missing SKILL.md, unknown check id, throwing check, broken symlinks, persisted kill switches); noted the CI bijection test passes *vacuously* if frontmatter parsing dies, needs a rule-count>0 assertion.
+
+**Verification** — runner-mirror checks passed: delta files 10, delta findings 72, iteration records 1..10 with route-proof, synthesis event with `maxIterationsReached`. No writes outside the lineage dir by this session (the 18:07:31 status-log/observability touches are the orchestrator recording completion; other flagged files belong to concurrent processes and hooks).
+
+**Git state**: the entire lineage dir is untracked (`??`) — research output, not committed. Nothing committed or pushed.
+
+**Operator action**: none for this seat. Campaign-level work (merging seat findings into the parent `research/`, or applying the ranked defect fixes) is outside this lineage's charter.

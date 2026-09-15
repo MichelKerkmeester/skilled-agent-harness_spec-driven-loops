@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage",
+  "description": "Phase 2: extend-dispatch-coverage",
+  "keywords": [
+    "phase",
+    "extend-dispatch-coverage"
+  ],
+  "lastUpdated": "2026-09-15T16:29:32.962Z",
+  "specId": "014",
+  "folderSlug": "extend-dispatch-coverage",
+  "parentChain": [
+    "cli-external-orchestration",
+    "071-cli-hermes-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

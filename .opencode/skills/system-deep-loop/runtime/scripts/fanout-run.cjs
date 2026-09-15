@@ -2618,6 +2618,9 @@ const HERMES_READ_ONLY_TOOLSETS = ['file', 'todo'];
 const HERMES_READ_ONLY_ENV = 'SPECKIT_HERMES_READ_ONLY';
 // The plugin renders the bound packet's goal slice into the session prompt from this path.
 const HERMES_SPEC_FOLDER_ENV = 'HERMES_SPEC_FOLDER';
+// Hermes reads a repo's plugins only when this opt-in is set, so every marker the plugin
+// consumes is inert without it.
+const HERMES_PROJECT_PLUGINS_ENV = 'HERMES_ENABLE_PROJECT_PLUGINS';
 // Names that may never enter a leaf's toolset list through the MCP door: see the toolset
 // comment above for `delegation` and `memory`; `clarify` waits on a user who is not there.
 const HERMES_MCP_RESERVED_NAMES = new Set(['delegation', 'memory', 'clarify']);
@@ -3267,6 +3270,9 @@ async function main() {
         // a read-only Hermes leaf keeps the `file` toolset (Hermes has no read-only file
         // toolset), so the plugin needs the marker to refuse the write tools.
         ...(lineage.kind === 'cli-hermes' ? {
+          // Hermes loads a project plugin only behind this opt-in. Without it the plugin
+          // never loads, and the two markers below reach a session that cannot read them.
+          [HERMES_PROJECT_PLUGINS_ENV]: '1',
           [HERMES_SPEC_FOLDER_ENV]: specFolder,
           ...(resolveSandboxMode(lineage.sandboxMode) === 'read-only' ? { [HERMES_READ_ONLY_ENV]: '1' } : {}),
         } : {}),

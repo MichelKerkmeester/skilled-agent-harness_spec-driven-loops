@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes",
+  "description": "Phase 1: close-silent-preflight-holes",
+  "keywords": [
+    "phase",
+    "close-silent-preflight-holes"
+  ],
+  "lastUpdated": "2026-09-15T16:29:32.277Z",
+  "specId": "013",
+  "folderSlug": "close-silent-preflight-holes",
+  "parentChain": [
+    "cli-external-orchestration",
+    "071-cli-hermes-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

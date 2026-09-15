@@ -1,0 +1,557 @@
+{
+  "specFolder": "specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research",
+  "sessionId": "fanout-deepseek-1789487610012-kymuxs",
+  "lineage": "deepseek",
+  "iterationsRecorded": 10,
+  "findings": [
+    {
+      "id": "f1-authored-command-count",
+      "iteration": 1,
+      "kind": "finding",
+      "statement": "The authored command surface is 35 markdown command files, not 46; the raw 46 count includes 11 non-command asset/contract/README files under assets/ and scripts/.",
+      "confidence": "high"
+    },
+    {
+      "id": "f2-exclusion-and-native-sets",
+      "iteration": 1,
+      "kind": "finding",
+      "statement": "Every mirror count difference is policy-driven: CANONICAL_MIRROR_EXCLUDES={goal-opencode.md,vision.md} makes 35-2=33, and RUNTIME_NATIVE_COMMANDS re-adds two native entries for .cursor/commands and .pi/prompts, making 35.",
+      "confidence": "high"
+    },
+    {
+      "id": "f3-command-matrix",
+      "iteration": 1,
+      "kind": "finding",
+      "statement": "Matrix: Claude 33 symlinks, Codex 33 copies, Cursor 33 symlinks + 2 native files, Pi 35 copies, Hermes 33 copies, Devin 0 with no commands or prompts directory.",
+      "confidence": "high"
+    },
+    {
+      "id": "f4-enumeration-trap",
+      "iteration": 1,
+      "kind": "finding",
+      "statement": "find -type f reports .claude/commands as 0 entries because all 33 mirrored commands are symlinks; census method must count symlinks explicitly.",
+      "confidence": "high"
+    },
+    {
+      "id": "f5-vision-native-per-host",
+      "iteration": 1,
+      "kind": "finding",
+      "statement": "vision.md is three distinct files (three md5 hashes) across .opencode, .cursor and .pi; it is per-host native by construction, not a mirrored artifact.",
+      "confidence": "high"
+    },
+    {
+      "id": "f6-devin-zero-is-decision",
+      "iteration": 1,
+      "kind": "finding",
+      "statement": "Devin's zero-command surface is a documented operator decision whose replacement affordance is native skill discovery (/sk-doc, /sk-git); the retired mirror previously held 36 commands and failed silently under strict YAML.",
+      "confidence": "high"
+    },
+    {
+      "id": "f7-generators-and-unwired-checks",
+      "iteration": 1,
+      "kind": "finding",
+      "statement": "Five mirrors are generator-produced and every generator implements --check, but sync-prompts-hermes.cjs --check and sync-prompts-pi.cjs --check are invoked by neither the pre-commit hook nor any workflow; the wired set is sync-runtime-mirrors.cjs --check, codex sync-prompts.cjs --check, agent-roster-mirror-check and validate-command-tree-parity.sh.",
+      "confidence": "high"
+    },
+    {
+      "id": "d1-charter-count-corrected",
+      "iteration": 1,
+      "kind": "discrepancy",
+      "statement": "Charter starting fact 1 ('46 authored markdown command files') is corrected to 35 authored commands plus 11 non-command markdown files.",
+      "confidence": "high"
+    },
+    {
+      "id": "f8-devin-no-command-loader",
+      "iteration": 2,
+      "kind": "finding",
+      "statement": "The installed Devin binary has no command surface: devin --help lists no commands subcommand, and devin skills is documented as 'Manage agent skills (slash commands and agent-triggered context blobs)' \u2014 Devin's slash commands ARE skills.",
+      "confidence": "high"
+    },
+    {
+      "id": "f9-devin-prompt-injection-surfaces",
+      "iteration": 2,
+      "kind": "finding",
+      "statement": "Devin's only non-skill prompt-injection surfaces are --prompt-file <FILE> and the [PROMPT]... argument after --; neither registers a discoverable command entry point.",
+      "confidence": "high"
+    },
+    {
+      "id": "f10-devin-mirror-was-skill-shaped",
+      "iteration": 2,
+      "kind": "finding",
+      "statement": "Devin's retired command mirror lived at .devin/skills/<cmd>/SKILL.md (35 entries at removal), not .devin/commands; a Devin command mirror is loadable only in skill shape.",
+      "confidence": "high"
+    },
+    {
+      "id": "f11-removal-was-operator-directive",
+      "iteration": 2,
+      "kind": "finding",
+      "statement": "Removal of the Devin command surface was an explicit operator directive with a BREAKING CHANGE note, reversing an earlier goal-hook packet; it is a decision, not drift.",
+      "confidence": "high"
+    },
+    {
+      "id": "f12-goal-restored-commands-not",
+      "iteration": 2,
+      "kind": "finding",
+      "statement": "The July decommission was partially reversed for the goal surface: .opencode/hooks/goal/devin/ and .devin/hooks/goal-inject.mjs exist again and are registered on SessionStart and UserPromptSubmit, while .devin/skills remains absent.",
+      "confidence": "high"
+    },
+    {
+      "id": "f13-devin-affordance-cost",
+      "iteration": 2,
+      "kind": "finding",
+      "statement": "Devin's replacement affordance is native discovery of the 12 .opencode/skills/* packets as slash commands; none of the 35 authored .opencode/commands entry points (speckit, deep, create, doctor) has any Devin representation, so the /speckit:* lifecycle is unavailable in Devin.",
+      "confidence": "high"
+    },
+    {
+      "id": "f14-stale-devin-docs",
+      "iteration": 2,
+      "kind": "finding",
+      "statement": "Two Devin artifacts still describe the removed command surface: SYNC.md:74 uses '36 commands' as a present-tense teaching example, and the decommission commit explicitly deferred playbook scenarios DV-014..DV-016 for rewrite.",
+      "confidence": "high"
+    },
+    {
+      "id": "f15-skills-mirror-shapes",
+      "iteration": 3,
+      "kind": "finding",
+      "statement": "Three runtimes carry a skills mirror and each shape is runtime-constrained: .claude/skills and .pi/skills are whole-dir symlinks to ../.opencode/skills, while .hermes/skills holds 68 generated markdown-only copies because Hermes's static scanner quarantines symlinked directories (a whole-tree link cost ten minutes per session and quarantined every hub).",
+      "confidence": "high"
+    },
+    {
+      "id": "f16-hermes-68-reconciles",
+      "iteration": 3,
+      "kind": "finding",
+      "statement": "Hermes's 68 skill directories are 56 canonical SKILL.md copies plus 12 agent-<name> persona skills; the 56 reconciles exactly against a live count, because Hermes has no agent-file flag and a plugin prompt section is capped at 4000 characters.",
+      "confidence": "high"
+    },
+    {
+      "id": "f17-hermes-seven-quarantined",
+      "iteration": 3,
+      "kind": "finding",
+      "statement": "Hermes has a live partial failure inside its generated mirror: only 61 of 68 skills load, because Hermes's own prose scanner quarantines 7 and excludes them from both 'skills list' and '-s'; the generator's --check cannot detect this, so green --check does not imply loadable skills.",
+      "confidence": "high"
+    },
+    {
+      "id": "f18-cursor-skills-correct-absence-plus-gap",
+      "iteration": 3,
+      "kind": "finding",
+      "statement": "Cursor's missing .cursor/skills is correct by nature (Cursor's skills live in ~/.cursor/skills-cursor/ and are Cursor-managed); the compensating affordance is the hand-authored .cursor/rules/skill-routing.md, whose packet list has no generator and will not pick up a new skill packet automatically.",
+      "confidence": "high"
+    },
+    {
+      "id": "f19-codex-no-skills-equivalent",
+      "iteration": 3,
+      "kind": "finding",
+      "statement": "Codex has no .codex/skills and no .codex/commands; its surface inventory enumerates seven surfaces with no skills row, and the equivalent affordance is 35 generated pointer-stub prompts plus a hand-authored AGENTS.md. Correct by nature, with the causal half inferred: the manifest asserts the absent directory without naming a missing loader capability.",
+      "confidence": "moderate"
+    },
+    {
+      "id": "f20-devin-skills-native",
+      "iteration": 3,
+      "kind": "finding",
+      "statement": "Devin needs no skills mirror: it discovers .opencode/skills/* natively as slash commands, recorded in iteration 2 and re-confirmed at .devin/SYNC.md:20.",
+      "confidence": "high"
+    },
+    {
+      "id": "f21-cursor-sync-overcount",
+      "iteration": 3,
+      "kind": "finding",
+      "statement": "Documentation drift: .cursor/SYNC.md:32 claims commands/*.md (36); the live tree holds 35 (33 symlinks + goal-cursor.md + vision.md). The manifest a maintainer would trust overstates its own mirror.",
+      "confidence": "high"
+    },
+    {
+      "id": "f22-hermes-skills-check-unwired",
+      "iteration": 3,
+      "kind": "finding",
+      "statement": "sync-skills-hermes.cjs --check exists and is documented but is invoked by neither the pre-commit hook nor any workflow, joining sync-prompts-hermes.cjs --check and sync-prompts-pi.cjs --check as the third unwired drift mode.",
+      "confidence": "high"
+    },
+    {
+      "id": "f23-goal-parity-classification",
+      "iteration": 4,
+      "kind": "finding",
+      "statement": "Goal parity against the hub's own bar (injection and management bound to the same native identity): full = OpenCode and Pi; injection-only = Cursor and Devin; read-only projection = Hermes via the repo plugin; native-equivalent = Claude and Codex with no repo-side path.",
+      "confidence": "high"
+    },
+    {
+      "id": "f24-goal-hub-omits-hermes",
+      "iteration": 4,
+      "kind": "finding",
+      "statement": "The goal hub's per-runtime delivery table lists six runtimes and omits Hermes, which has a working binding (repo-guards-goal section, GOAL_RUNTIME=hermes, _goal_slice fallback); an auditor reading the hub would report a false gap or rebuild an existing path.",
+      "confidence": "high"
+    },
+    {
+      "id": "f25-injection-is-a-write",
+      "iteration": 4,
+      "kind": "finding",
+      "statement": "Cursor's and Devin's injection-only adapters are not read-only: both record a turn on the bound record, which is the one write they make.",
+      "confidence": "high"
+    },
+    {
+      "id": "f26-cursor-limit-is-identity",
+      "iteration": 4,
+      "kind": "finding",
+      "statement": "Cursor's partial goal support is an identity limit, not an adapter limit: management needs a native session identity the prompt command does not carry, so /goal-cursor fails closed for every management action and answers only a session-free packet read. No adapter should be added.",
+      "confidence": "high"
+    },
+    {
+      "id": "f27-claude-codex-fallback-vs-host-claim",
+      "iteration": 4,
+      "kind": "finding",
+      "statement": "Repo-side coverage for Claude/Codex exists and is wired (speckit YAML goal handover across plan/resume/implement/complete plus the always-on goal posture row at AGENTS.md:185 and CLAUDE.md:185), but the host goal command itself is only operator-confirmed and neither .claude/settings.json nor .codex/hooks.json carries a goal registration that would break if the host changed; Codex's coverage rests on a parity assumption derived from Claude's confirmation, and there is no goal-codex.md prompt stub.",
+      "confidence": "moderate"
+    },
+    {
+      "id": "f28-missing-goal-path-cost",
+      "iteration": 4,
+      "kind": "finding",
+      "statement": "Operator cost by runtime: Cursor/Devin do not re-read a mid-session bind (no refresh, no verify/continue); Claude/Codex fail silently if the host command is absent or renamed; Hermes's cost falls on maintainers through the missing doc row; OpenCode/Pi have none.",
+      "confidence": "moderate"
+    },
+    {
+      "id": "f29-roster-is-12-not-13",
+      "iteration": 5,
+      "kind": "finding",
+      "statement": "The agent roster is 12, not 13: .opencode/agents holds 12 md + README.txt, .codex/agents 12 toml, .pi/agents 12 md, .devin/agents 12 dirs. Each manifest's '(13)' counts the source tree's README.txt; the roster checker's own filter excludes it, and the off-by-one also reached a commit message ('PASS 13/13').",
+      "confidence": "high"
+    },
+    {
+      "id": "f30-two-agent-upstreams",
+      "iteration": 5,
+      "kind": "finding",
+      "statement": "Two agent upstreams exist and two scripts each call a different one canonical: .opencode/agents is the authoring source for Codex/Pi generators and the Hermes symlink, while .claude/agents is what Cursor and Devin symlink into. check-agent-mirror-sync.cjs:5-9 and agent-roster-mirror-check.cjs:24 use the word 'canonical' for opposite trees.",
+      "confidence": "high"
+    },
+    {
+      "id": "f31-agent-gate-passes-observed",
+      "iteration": 5,
+      "kind": "finding",
+      "statement": "Observed: check-agent-mirror-sync.cjs --all reports '12 agent(s) checked - all mirrors in sync - OK' with exit 0, so the OpenCode-Claude pairs are in sync under the gate's own contract today.",
+      "confidence": "high"
+    },
+    {
+      "id": "f32-token-set-blind-spot",
+      "iteration": 5,
+      "kind": "finding",
+      "statement": "The agent mirror gate compares EXACT normalized token sets, not order or semantics; a live instance shows the blind spot: deep-research.md differs in body (37091 vs 37109 bytes) with one copy saying 'append idea_observed' and the other 'record idea_observed through the gateway', yet both token sets are 1188 tokens and identical after path normalization, so the gate passes. Token-set equality is not semantic equality.",
+      "confidence": "high"
+    },
+    {
+      "id": "f33-agent-gate-is-change-scoped",
+      "iteration": 5,
+      "kind": "finding",
+      "statement": "Both executions of the mirror gate are change-scoped and skip when no agent file changed: pre-commit builds STAGED_AGENTS from git diff --cached for .opencode|.claude/agents only, and the PR workflow collects PR-range changed files only, exiting 0 when none changed.",
+      "confidence": "high"
+    },
+    {
+      "id": "f34-pi-agent-tree-ungated",
+      "iteration": 5,
+      "kind": "finding",
+      "statement": "Pi is the only uncovered generated agent tree: sync-agents-pi.cjs --check runs in neither the pre-commit MIRROR_CHECKS list nor the CI mirror-parity step, while Codex's equivalent is wired in both. Nothing would notice a Pi agent falling behind .opencode/agents.",
+      "confidence": "high"
+    },
+    {
+      "id": "f35-symlink-trees-need-no-content-gate",
+      "iteration": 5,
+      "kind": "finding",
+      "statement": "Cursor, Devin and Hermes agent trees are symlinks (links into .claude/agents and .opencode/agents), so content drift is impossible and the only failure mode is a broken or replaced link, which agent-roster-mirror-check.cjs already resolves and catches.",
+      "confidence": "high"
+    },
+    {
+      "id": "f36-codex-agent-derivation-lossy",
+      "iteration": 5,
+      "kind": "finding",
+      "statement": "Codex agent generation is a one-way lossy derivation: sandbox_mode, model and model_reasoning_effort cannot round-trip back to .opencode/agents.",
+      "confidence": "high"
+    },
+    {
+      "id": "f37-generator-inventory",
+      "iteration": 6,
+      "kind": "finding",
+      "statement": "Ten mirror generators exist (sync-runtime-mirrors, codex sync-prompts/sync-agents/generate-command-routers, hermes sync-prompts/sync-skills, pi sync-prompts/sync-agents, sync-hook-registrations, sync-gate1-pointers) plus check-agent-mirror-sync.cjs as a content gate; every generator implements --check.",
+      "confidence": "high"
+    },
+    {
+      "id": "f38-hook-registrations-are-generated",
+      "iteration": 6,
+      "kind": "finding",
+      "statement": "The four hook registration files (.claude/settings.json, .codex/hooks.json, .cursor/hooks.json, .devin/hooks.v1.json) are GENERATED from hook-registry.json by sync-hook-registrations.cjs (render the hooks key, keep other keys), and --check runs at pre-commit and in CI.",
+      "confidence": "high"
+    },
+    {
+      "id": "d2-three-manifests-false-hand-authored-claims",
+      "iteration": 6,
+      "kind": "discrepancy",
+      "statement": "Three manifest claims are false as written: .codex/SYNC.md:120 'hooks.json and config.toml are hand-authored. No generator produces them'; .devin/SYNC.md:31 'hooks.v1.json hand-authored'; .devin/SYNC.md:126 'hooks.v1.json is hand-authored and unmirrorable'. .devin/SYNC.md also contradicts itself at :46 ('re-run the generator'). A maintainer following :120 would hand-edit a generated file and be contradicted by the pre-commit gate.",
+      "confidence": "high"
+    },
+    {
+      "id": "f39-four-unwired-checks",
+      "iteration": 6,
+      "kind": "finding",
+      "statement": "Four working --check modes run in neither pre-commit nor CI: pi/sync-agents-pi.cjs, pi/sync-prompts-pi.cjs, hermes/sync-prompts-hermes.cjs, hermes/sync-skills-hermes.cjs \u2014 concentrated on the two translation-heavy runtimes. The pre-commit set is also one entry short of CI's (sync-gate1-pointers.cjs --check is CI-only).",
+      "confidence": "high"
+    },
+    {
+      "id": "f40-hand-maintained-inventory",
+      "iteration": 6,
+      "kind": "finding",
+      "statement": "Genuinely hand-maintained: .claude/mcp.json and settings.json non-hooks keys and statusline-command.sh; .codex/config.toml and AGENTS.md prose; .cursor/mcp.json and rules/skill-routing.md packet list; .pi/mcp.json, models.json, settings.json, statusline.sh and three pi-*config.json; .devin/config.local.json and mcp_config.json; .hermes holds only .gitkeep.",
+      "confidence": "high"
+    },
+    {
+      "id": "f41-cursor-mcp-symlink-claim-false",
+      "iteration": 6,
+      "kind": "finding",
+      "statement": "Drift instance (a): .cursor/SYNC.md:36 documents .cursor/mcp.json as a symlink with a double hop; it is a real file. Three independent copies exist (.claude, .cursor, .devin) and are currently byte-identical (md5 ae5cfafa...), while .pi/mcp.json differs by design (adds transport: stdio, lifecycle: lazy). Nothing would notice the first three diverging.",
+      "confidence": "high"
+    },
+    {
+      "id": "f42-cursor-packet-list-gap",
+      "iteration": 6,
+      "kind": "finding",
+      "statement": "Drift instance (b): .cursor/rules/skill-routing.md names 8 of the 13 top-level skill packets; missing are mcp-code-mode, mcp-tooling, sk-communication, sk-vision and system-skill-advisor. This quantifies the known gap at .cursor/SYNC.md:114 and matters doubly because Devin reads the same rules file.",
+      "confidence": "high"
+    },
+    {
+      "id": "f43-generator-cost-ranks",
+      "iteration": 6,
+      "kind": "finding",
+      "statement": "Cost ranks for the two worthwhile generators: extending sync-gate1-pointers.cjs to render the skill-routing packet list is low (machinery, canonical source, --check and two render targets all exist); a four-dialect MCP config generator is medium (claude/cursor/devin byte-identical today, pi needs a dialect map, pattern already proven by sync-hook-registrations.cjs). A .codex/config.toml generator is high cost and not recommended.",
+      "confidence": "medium"
+    },
+    {
+      "id": "f44-hook-architecture",
+      "iteration": 7,
+      "kind": "finding",
+      "statement": "Hook architecture: 20 concern packages under .opencode/hooks/<concern>/<runtime>/, 29 hooks in hook-registry.json bound across four JSON runtimes (claude 21, codex 18, cursor 17, devin 21), with pi carrying a registry entry and no file at all.",
+      "confidence": "high"
+    },
+    {
+      "id": "f45-hook-matrix",
+      "iteration": 7,
+      "kind": "finding",
+      "statement": "Six concerns reach every runtime (completion, dispatch, mcp-route-guard, post-edit-quality, skill-advisor, spec-gate); three reach five of six (session-lifecycle lacks opencode, session-cleanup lacks pi, task-dispatch lacks codex).",
+      "confidence": "high"
+    },
+    {
+      "id": "f46-runtime-specific-by-nature",
+      "iteration": 7,
+      "kind": "finding",
+      "statement": "Four hook absences are correct by nature and were already named by the Hermes parity work: codex-watchdog (OpenCode), directive-lifecycle (Claude), permission-policy (Devin, the only PermissionRequest host), hook-install; sk-vision absent for Claude is likewise documented ('Claude has no sk-vision integration').",
+      "confidence": "high"
+    },
+    {
+      "id": "f47-no-unported-hooks",
+      "iteration": 7,
+      "kind": "finding",
+      "statement": "Hook parity is the most complete surface in this research: after correcting two mechanism differences (Cursor reaches sk-vision through .cursor/rules/sk-vision.md rather than an adapter dir; Pi bundles dist-freshness, git-hooks-check, git-worktree-guard and git-primary-reconcile inside session-start-advisories.ts), the set of unported hooks is empty.",
+      "confidence": "moderate"
+    },
+    {
+      "id": "f48-pi-hook-layer-least-protected",
+      "iteration": 7,
+      "kind": "finding",
+      "statement": "Pi's hook layer is the least protected surface: 'native code, not config' hand-authored extensions/*.ts, no hooks.json dialect, no registry bindings, and no drift checker \u2014 a shared-core behavior change surfaces only at runtime or in the manual-testing playbook. This compounds the two unwired Pi --check modes from iteration 6.",
+      "confidence": "high"
+    },
+    {
+      "id": "f49-hermes-bridge-table",
+      "iteration": 7,
+      "kind": "finding",
+      "statement": "Hermes answers hook parity with a six-point bridge table in its plugin (pre_llm_call, pre_tool_call, transform_tool_result, pre_verify, on_session_start, four system-prompt sections, on_session_end) onto repo guard cores; every hook fails open, and the post-edit core deliberately runs in transform_tool_result because both hooks run on bounded worker threads and a post-hook stage would race the transform.",
+      "confidence": "high"
+    },
+    {
+      "id": "f50-shared-flag-vocabulary",
+      "iteration": 7,
+      "kind": "finding",
+      "statement": "One flag vocabulary spans every runtime's hook adapter: hook-flags.env documents a master switch plus 22 per-concern switches read by shared hook-flags.{cjs,mjs,ts,sh}, with env overriding file. It is the only cross-runtime hook contract shared verbatim rather than translated.",
+      "confidence": "high"
+    },
+    {
+      "id": "f51-devin-inventory",
+      "iteration": 8,
+      "kind": "finding",
+      "statement": ".devin holds six entries in three ownership classes: real files (SYNC.md, mcp_config.json, config.local.json, generated hooks.v1.json), symlink trees (agents/ 12 dirs, hooks/ 21 links) and one whole-dir symlink (manual-testing-playbook).",
+      "confidence": "high"
+    },
+    {
+      "id": "f52-devin-mirror-parity-verified",
+      "iteration": 8,
+      "kind": "finding",
+      "statement": "Verified, not asserted: all 21 distinct .opencode/** scripts invoked by hooks.v1.json have a resolving symlink in .devin/hooks/ (0 missing, 0 broken) and all 12 .devin/agents/<name>/AGENT.md symlinks resolve (0 broken).",
+      "confidence": "high"
+    },
+    {
+      "id": "f53-devin-carriable-boundary",
+      "iteration": 8,
+      "kind": "finding",
+      "statement": "Devin can carry agents (nested AGENT.md symlinks), 8 hook events, MCP config (Devin-owned), skill-derived slash commands, one-shot prompts via --prompt-file/--, vision, 8 permission modes, playbook, subagents, plugins/cloud/ssh/acp. It cannot carry a mirrored command tree, a .devin/skills/ mirror (native discovery makes it unnecessary), a local .devin/rules/ directory (rules are inherited from Cursor/Claude/AGENTS.md), or goal management.",
+      "confidence": "high"
+    },
+    {
+      "id": "f54-devin-unique-events",
+      "iteration": 8,
+      "kind": "finding",
+      "statement": "Devin is the only runtime with PermissionRequest and PostCompaction, but under the mode this repo dispatches with (--permission-mode bypass) PermissionRequest never fires so its adapter is inert, and PostCompaction has never been observed firing; PreToolUse still fires under bypass so guard coverage is intact.",
+      "confidence": "high"
+    },
+    {
+      "id": "f55-strict-yaml-silent-failure",
+      "iteration": 8,
+      "kind": "finding",
+      "statement": "Devin's strict frontmatter parser silently drops any file whose unquoted description contains a colon \u2014 historically hiding 12 of 36 commands with no warning \u2014 and no strict-YAML gate exists; it is the cheapest and most broadly protective detector available, because the files it checks are canonical for every runtime.",
+      "confidence": "high"
+    },
+    {
+      "id": "f56-playbook-stale-pass-rows",
+      "iteration": 8,
+      "kind": "finding",
+      "statement": "The cli-devin playbook's results table still shows unmarked PASS rows for superseded counts (DV-012 'all 13 roster agents', DV-014 '36/36 mirrored commands', DV-016 'all 36 command frontmatters'), mitigated only by a supersession note in the header; the same two numbers (13 agents, 36 commands) now appear in a third artifact.",
+      "confidence": "high"
+    },
+    {
+      "id": "f57-devin-shape-rule",
+      "iteration": 8,
+      "kind": "finding",
+      "statement": "A repo-authored surface can reach Devin in only four shapes: nested symlink, a generated entry in a Devin-owned registry (hooks.v1.json), a skill-shaped directory .devin/skills/<name>/SKILL.md (the shape the retired command mirror used, still supported because skills ARE the slash surface), or nothing at all (native discovery/inheritance/host-owned file). Shape 3 is the mechanism if the 35 commands should ever become Devin-reachable again.",
+      "confidence": "high"
+    },
+    {
+      "id": "f58-no-single-gate",
+      "iteration": 9,
+      "kind": "finding",
+      "statement": "There is no single parity gate: four automated entry points (pre-commit agent-mirror block + 6 checkers; spec-kit-check.yml with the same 6 plus sync-gate1-pointers; agent-mirror-sync.yml; command-tree-parity.yml) plus one manual read-only route (/doctor runtime-mirrors). Seventeen other workflows guard quality, not runtime parity.",
+      "confidence": "high"
+    },
+    {
+      "id": "f59-manual-route-is-strongest",
+      "iteration": 9,
+      "kind": "finding",
+      "statement": "The manual /doctor runtime-mirrors route covers strictly more than either automated gate: its upstream_assets include pi_agents and pi_prompts, which pre-commit and CI never run, and it carries a per-host hook-adapter fallback health table (file_exists per adapter behind every mkHookDrift chain) that detects degraded adapters rather than mirror shape.",
+      "confidence": "high"
+    },
+    {
+      "id": "f60-gate-blind-spot-table",
+      "iteration": 9,
+      "kind": "finding",
+      "statement": "Gate-by-gate blind spots: every existing checker asks 'is this mirror equal to its source?' and none asks 'does this runtime have a mirror for every surface that should reach it?' \u2014 so a whole surface can be absent while every gate passes, which is exactly the Devin command case. Additional named blind spots: token-set equality (agent bodies), change-scoped execution, Devin absent from command-tree parity, four --check modes invoked nowhere automatically, and no strict-YAML or Pi-extension checker.",
+      "confidence": "high"
+    },
+    {
+      "id": "f61-catalog-checker-confirms-35",
+      "iteration": 9,
+      "kind": "finding",
+      "statement": "Observed: command-catalog-mirror-check.cjs reports 'canonical: .opencode/commands frontmatter (35 commands)', 35/35 listed, STATUS=OK, exit 0 \u2014 independently confirming the iteration-1 correction to 35. Its own header comment still says 'the metadata covers 20 of the 39 shipped commands', so the checkers' prose drifts too.",
+      "confidence": "high"
+    },
+    {
+      "id": "f62-cheapest-detector",
+      "iteration": 9,
+      "kind": "finding",
+      "statement": "Cheapest detector for the Devin command class: a surface-coverage assertion table (runtime x surface -> mirror | recorded exemption reason). The pattern already exists in agent-roster-mirror-check.cjs for the agents surface and in command-scope.cjs as the exemption registry for commands \u2014 but the latter is wired to generators, never used to assert coverage. Cost: one file walk, no new dependency, within the noise of the six checkers pre-commit already runs.",
+      "confidence": "moderate"
+    },
+    {
+      "id": "f63-second-cheapest-detector",
+      "iteration": 9,
+      "kind": "finding",
+      "statement": "Second cheapest and broader: a strict-YAML frontmatter parse over every canonical agent and command file would catch the only silent failure class found in this research (Devin dropping files whose unquoted description contains a colon) and protects all seven runtimes at once.",
+      "confidence": "moderate"
+    },
+    {
+      "id": "f64-not-a-script-class",
+      "iteration": 9,
+      "kind": "finding",
+      "statement": "The semantic agent-body divergence (deep-research.md) should not be automated: a similarity score would either fire constantly or miss it; the correct control is a review step.",
+      "confidence": "moderate"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1-command-matrix",
+      "status": "answered",
+      "iteration": 1
+    },
+    {
+      "id": "q2-devin-command-surface",
+      "status": "answered",
+      "iteration": 2
+    },
+    {
+      "id": "q3-skills-surface",
+      "status": "answered",
+      "iteration": 3
+    },
+    {
+      "id": "q4-goal-parity",
+      "status": "answered",
+      "iteration": 4
+    },
+    {
+      "id": "q5-agents-parity",
+      "status": "answered",
+      "iteration": 5
+    },
+    {
+      "id": "q6-generator-coverage",
+      "status": "answered",
+      "iteration": 6
+    },
+    {
+      "id": "q7-hook-parity",
+      "status": "answered",
+      "iteration": 7
+    },
+    {
+      "id": "q8-devin-boundary",
+      "status": "answered",
+      "iteration": 8
+    },
+    {
+      "id": "q9-drift-detection",
+      "status": "answered",
+      "iteration": 9
+    },
+    {
+      "id": "q10-synthesis",
+      "status": "answered",
+      "iteration": 10
+    }
+  ],
+  "blockedStops": [],
+  "rejectedPatterns": [],
+  "lastUpdatedIteration": 1,
+  "discrepancies": [
+    "d1-charter-count-corrected",
+    "d2-three-manifests-false-hand-authored-claims"
+  ],
+  "openQuestions": [
+    {
+      "id": "q-devin-roster-mapping",
+      "iteration": 2,
+      "statement": "The 35 removed .devin/skills/<cmd>/ entries are stated as a count, not a roster; whether it maps one-to-one onto today's 35 authored commands is unconfirmed. Confirming check: list deleted paths in a2241041b0 and diff against the current command tree.",
+      "confidence": "moderate"
+    },
+    {
+      "id": "q-codex-skill-loader",
+      "iteration": 3,
+      "statement": "Whether the Codex CLI has any skill loader at all is inferred from an absence assertion in its SYNC manifest, not from the runtime's own contract. Confirming check: enumerate Codex's loader surfaces (config keys, --help, documentation).",
+      "confidence": "moderate"
+    },
+    {
+      "id": "q-claude-codex-native-goal",
+      "iteration": 4,
+      "statement": "Whether the Claude and Codex hosts actually expose a native goal command is unverified in-repo; the hub says operator-confirmed 2026-09-12 and re-checkable only against a live host. Confirming check: a live host probe.",
+      "confidence": "low"
+    }
+  ],
+  "synthesis": {
+    "stopReason": "maxIterationsReached",
+    "averageNewInfoRatio": 0.85,
+    "artifacts": [
+      "research.md",
+      "resource-map.md"
+    ]
+  }
+}

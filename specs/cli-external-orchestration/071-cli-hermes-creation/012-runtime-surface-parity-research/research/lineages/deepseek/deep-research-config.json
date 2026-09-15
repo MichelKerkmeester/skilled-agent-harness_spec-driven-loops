@@ -1,0 +1,29 @@
+{
+  "type": "config",
+  "topic": "Runtime surface parity across the seven runtimes: commands, skills, agents, goal and hooks",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "specFolder": "specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research",
+  "artifactDir": "specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/research/lineages/deepseek",
+  "sessionId": "fanout-deepseek-1789487610012-kymuxs",
+  "lineage": "deepseek",
+  "loopType": "research",
+  "executor": { "kind": "cli-pi", "model": "deepseek-v4.1-flash", "reasoningEffort": "max" },
+  "stopPolicy": "max-iterations",
+  "resource_map_present": false,
+  "convergenceEarlyStopAllowed": false,
+  "createdAt": "2026-09-15T15:54:31Z",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "iterations/iteration-NNN.md": "write-once",
+    "deltas/iter-NNN.jsonl": "write-once",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "research.md": "workflow-owned",
+    "resource-map.md": "workflow-owned"
+  },
+  "notes": "Fan-out lineage executor writes state directly inside the lineage directory; the append gateway is not invoked because it resolves run-directory paths outside the lineage write surface. Documented deviation, recorded in dashboard.md."
+}

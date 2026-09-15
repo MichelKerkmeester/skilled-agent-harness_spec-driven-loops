@@ -1,0 +1,72 @@
+{
+  "run_id": "1789487309899-tyhai6",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research",
+  "base_artifact_dir": "specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": "specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research/research/lineages/deepseek/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-15T15:48:29.909Z",
+        "end_at_iso": "2026-09-15T16:08:10.740Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 9,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 13
+      },
+      "sample": [
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T16:20:00Z",
+          "deltaMs": 589260
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T16:40:00Z",
+          "deltaMs": 1789260
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T16:55:00Z",
+          "deltaMs": 2689260
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T17:10:00Z",
+          "deltaMs": 3589260
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T17:30:00Z",
+          "deltaMs": 4789260
+        }
+      ]
+    }
+  ]
+}

@@ -306,7 +306,7 @@ This category covers project-skill preloading with its negative control, the del
 
 Operator-owned management commands are a hard boundary: the trust grant, the MCP server registration, the provider block, the `plugins.enabled` entry and any config write belong to the operator and are never performed by a dispatch. A scenario that would need one records SKIP with that exact step named. `hermes config get` is a read and stays in scope.
 
-Two behaviours shape how a dispatch is written rather than blocking it. `--ignore-rules` suppresses preloaded-skill injection, so a `-s` dispatch omits it under the hard rule's own documented exception, which `HERMES-016` exercises. And exit 0 does not imply a delivered answer, so every caller gates on stdout content as well, which `HERMES-022` asserts and `HERMES-009` was the original casualty of.
+Two behaviours shape how a dispatch is written rather than blocking it. A live A/B proved the skill preload survives `--ignore-rules`, so a `-s` dispatch passes the flag like every other, which `HERMES-016` exercises. And exit 0 does not imply a delivered answer, so every caller gates on stdout content as well, which `HERMES-022` asserts and `HERMES-009` was the original casualty of.
 
 ---
 

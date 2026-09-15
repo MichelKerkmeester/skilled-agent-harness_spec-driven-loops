@@ -30,7 +30,9 @@ export const DISPATCH_SHAPES = [
   // Intervening flags (e.g. pi's required `--offline`, devin's `--model`) may sit
   // between the binary and the print flag, so allow any chars EXCEPT a shell
   // separator -- a `-p` after `&&`/`;`/`|` belongs to a different command.
-  { test: /\bcodex\s+exec\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-codex', packetPath: 'cli-external-orchestration/cli-codex' },
+  // Codex has no print flag: `exec` IS its headless subcommand, so requiring one here
+  // matched no real dispatch and left every cli-codex rule unevaluated.
+  { test: /\bcodex\s+exec\b/, skill: 'cli-codex', packetPath: 'cli-external-orchestration/cli-codex' },
   { test: /\bdevin\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-devin', packetPath: 'cli-external-orchestration/cli-devin' },
   { test: /\bcursor-agent\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-cursor', packetPath: 'cli-external-orchestration/cli-cursor' },
   { test: /\bpi\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-pi', packetPath: 'cli-external-orchestration/cli-pi' },
@@ -204,9 +206,9 @@ function directExecutor(tokens) {
   if (!EXECUTOR_BASENAMES.has(binary)) return null;
 
   if (binary === 'opencode' && tokens[start.index + 1]?.value === 'run') return 'cli-opencode';
-  if (binary === 'codex' && tokens[start.index + 1]?.value === 'exec') {
-    return tokens.slice(start.index + 2).some((token) => PRINT_FLAGS.has(token.value)) ? 'cli-codex' : null;
-  }
+  // `exec` is Codex's headless subcommand and takes no print flag, so its presence alone
+  // is the dispatch evidence; demanding a print flag here recorded no codex run at all.
+  if (binary === 'codex' && tokens[start.index + 1]?.value === 'exec') return 'cli-codex';
   if (binary === 'claude' || binary === 'devin' || binary === 'cursor-agent' || binary === 'pi') {
     return tokens.slice(start.index + 1).some((token) => PRINT_FLAGS.has(token.value))
       ? `cli-${binary === 'cursor-agent' ? 'cursor' : binary === 'claude' ? 'claude-code' : binary}`

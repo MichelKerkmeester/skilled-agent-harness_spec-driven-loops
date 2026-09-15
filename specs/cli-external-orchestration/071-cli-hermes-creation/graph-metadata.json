@@ -13,7 +13,13 @@
     "cli-external-orchestration/071-cli-hermes-creation/007-hermes-model-registry-and-routing",
     "cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog",
     "cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout",
-    "cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity"
+    "cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity",
+    "cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research",
+    "cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research",
+    "cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes",
+    "cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage",
+    "cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders",
+    "cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard"
   ],
   "manual": {
     "depends_on": [],
@@ -168,17 +174,17 @@
     ],
     "causal_summary": "This repository dispatches work to six external coding CLIs as `cli-external-orchestration` modes (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`)",
     "created_at": "2026-09-14T16:04:01Z",
-    "last_save_at": "2026-09-15T06:36:18.088Z",
+    "last_save_at": "2026-09-15T16:43:01.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:3cd8f8313ff66b5443a2d55065b766647e60fdbc8d30f2d0c9e5580fa7023df1",
+    "source_fingerprint": "sha256:63358cb061fcffcf29b4966232108f67d8d24a0450cba19c0cb2f19760083a29",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7899d59034ecf705191034c22ba483d3619a68ab1ae078bf73baaa11d0052d94"
+      "spec.md": "a84a1a15ec6930979a4fb50dcd3abe8e2230aeddf1a3e5754900cf74abf42fa3"
     },
     "last_active_at": null
   }
