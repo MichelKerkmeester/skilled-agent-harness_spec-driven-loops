@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/049-deep-loop-alignment-review",
+  "spec_folder": "system-deep-loop/049-deep-loop-alignment-review",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "[Trigger phrase 1]",
+      "[Trigger phrase 2]",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "trigger",
+      "phrase",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding",
+      "one-paragraph",
+      "problem",
+      "statement"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
+    "created_at": "2026-09-15T09:48:33Z",
+    "last_save_at": "2026-09-15T09:50:12.709Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:ad6902602b4bbd4c930b932783491e17cb1200ea17c7d18b35ccf75d36f3418f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ec5b91c573080cbebdeb820081fb06c511a23e9ac7d9d5cebb88bff987ec6696"
+    },
+    "last_active_at": null
+  }
+}
