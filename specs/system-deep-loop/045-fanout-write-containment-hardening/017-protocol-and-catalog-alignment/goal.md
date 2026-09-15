@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "scaffold/017-protocol-and-catalog-alignment"
     last_updated_at: "2026-09-15T00:55:23Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -78,9 +78,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] The deep-review loop protocol states the containment rules, and a test or grep shows both protocols carry them
-- [ ] The hub feature catalog's mode list and count match the registry exactly
-- [ ] Contract drift tests and the deep-loop suite exit zero
+- [x] The deep-review loop protocol states the containment rules, and a test or grep shows both protocols carry them
+- [x] The hub feature catalog's mode list and count match the registry exactly
+- [x] Contract drift tests and the deep-loop suite exit zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -96,11 +96,12 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; protocol paragraph, three catalog lines, contract regenerated; contract tests exit 0; the hub-cohort line corrected by the orchestrator |
+| Full suite | Green | `npm test` in the runtime: 152 files, 2631 passed, 8 skipped, exit 0, 1229 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Hub cohort line | The delegate flagged `feature-catalog.md:71` (seven hubs, actually five) as outside its list; corrected by the orchestrator in this phase |
 <!-- /ANCHOR:log -->

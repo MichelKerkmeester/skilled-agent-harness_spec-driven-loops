@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/017-protocol-and-catalog-alignment"
+    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/017-protocol-and-catalog-alignment"
     last_updated_at: "2026-09-15T00:55:23Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "claude-fable-5-1"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-14-017-protocol-and-catalog-alignment"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** system-deep-loop/045-fanout-write-containment-hardening/017-protocol-and-catalog-alignment
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the deep-review protocol, When read beside the deep-research one, Then both carry the containment paragraph | `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:1` contains the paragraph; `grep -c preserve` returns 3 | Met | - |
+| AC-002 | REQ-002 | Given the catalog and the registry, When compared, Then the mode list and count are equal | `.opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md:15` enumerates the registry's five | Met | - |
+| AC-003 | REQ-003 | Given the catalog's hub-cohort line, When compared with the compiled-routing manifest test, Then both say five | `.opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md:71` and `.opencode/bin/tests/compiled-route-manifest.test.cjs:1127` | Met | - |
 
 ### Status values
 

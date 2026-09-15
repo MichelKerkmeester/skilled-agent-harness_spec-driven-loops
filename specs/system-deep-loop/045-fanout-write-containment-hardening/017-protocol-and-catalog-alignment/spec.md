@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 2: protocol-and-catalog-alignment"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The deep-review loop protocol carries the same write-containment rules as the deep-research protocol, and the hub feature catalog names exactly the five modes the registry holds."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-15 |
-| **Branch** | `scaffold/017-protocol-and-catalog-alignment` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 17 of 19 |
 | **Predecessor** | 016-command-yaml-alignment |
@@ -57,10 +57,10 @@ This is **Phase 17** of the Remediate the alignment review findings specificatio
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The parent required both loop protocols to describe the containment model, but only the deep-research protocol did; the deep-review protocol's only containment mention was an unrelated executor flag. The hub feature catalog described seven workflow modes including an `alignment` mode that the registry never held, against a registry of five, and called the cohort of activated hubs seven where there are five.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Both protocols state the same containment rules, and the catalog describes the hub the registry defines.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,21 @@ This is **Phase 17** of the Remediate the alignment review findings specificatio
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The containment paragraph added to the deep-review protocol beside its executor section, adapted only in loop-type wording
+- The catalog's mode count, mode list, improvement-lane count and hub-cohort count corrected to the registry and the compiled-routing manifest
+- The deep/review compiled contract regenerated
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Runtime code - none changes
+- Catalog leaf-level warnings that predate this phase - recorded, not in scope
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Modify | Containment paragraph added, matching the deep-research protocol |
+| `.opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md` | Modify | Five modes enumerated, two improvement lanes, five activated hubs |
+| `.opencode/commands/deep/assets/compiled/deep-review.contract.md` | Regenerate | Digests the edited protocol |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +95,14 @@ This is **Phase 17** of the Remediate the alignment review findings specificatio
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | The deep-review loop protocol states preserve by default, the per-pass quarantine layout, the opt-in restore to baseline bytes, never-delete for untracked paths, the sibling-lineage lock exemption and advisory settlement |
+| REQ-002 | The catalog's mode list and count equal the registry's five modes and its two improvement lanes |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | The catalog's hub-cohort count matches the compiled-routing manifest's five |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +113,8 @@ This is **Phase 17** of the Remediate the alignment review findings specificatio
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: Both protocols carry the containment paragraph and the catalog matches the registry
+- **SC-002**: Contract drift tests and the deep-loop suite exit zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +124,8 @@ This is **Phase 17** of the Remediate the alignment review findings specificatio
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | The two protocol paragraphs drift apart later | Low | Same wording, one adaptation; a future edit lands on both or the drift test names the contract |
+| Dependency | Compiled contract regeneration | Green | Done in the same change |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -135,16 +138,13 @@ This is **Phase 17** of the Remediate the alignment review findings specificatio
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: Not applicable
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: Not applicable
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: The recorded contract digest equals the protocol bytes
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -153,18 +153,13 @@ This is **Phase 17** of the Remediate the alignment review findings specificatio
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- A mode added to the registry: the catalog count is stated in place and must follow
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Contract stale after the protocol edit: the drift test fails until recompiled
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -174,18 +169,17 @@ This is **Phase 17** of the Remediate the alignment review findings specificatio
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 4/25 | Two documents, one contract |
+| Risk | 4/25 | Documentation of shipped behaviour |
+| Research | 2/20 | Findings from the alignment review |
+| **Total** | **10/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---

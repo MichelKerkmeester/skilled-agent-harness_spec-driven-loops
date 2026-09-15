@@ -39,14 +39,18 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "feature-catalog/feature-catalog.md",
+      ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      ".opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+      ".opencode/commands/deep/assets/compiled/deep-review.contract.md"
     ],
     "entities": [
       {
@@ -86,6 +90,24 @@
         "source": "derived"
       },
       {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +138,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +156,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,13 +174,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Registry",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -174,29 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The parent required both loop protocols to describe the containment model, but only the deep-research protocol did; the deep-review protocol's only containment mention was an unrelated executor flag",
     "created_at": "2026-09-15T00:55:22Z",
-    "last_save_at": "2026-09-15T00:56:46.275Z",
+    "last_save_at": "2026-09-15T02:36:47.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1024223cc8362c316af3fb65ddfc522493aaf9cfc9f8c9d0732b9f81d82eb3d4",
+    "source_fingerprint": "sha256:02ff975693a28cc73169a9f2ee6d3ce4d7d70debc3efc2f04994cda92913d984",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5efc0f16818620d702035533ba7c15d2d5466f0d7ec1fe6f09b2beb69fc7f82a",
-      "plan.md": "e324165e83a5841d1ab68ce4d072f366ce3b611071198d3455b0d679d70b5c53",
-      "tasks.md": "6328f8df1fb305c9f05cdf4c4dc2b3dfb28ee00a1d7d1040c4a68a2f57c8b3ac",
-      "implementation-summary.md": "d745bbaa95060d9f1bceee586d81f46091c8585cfb348bcd187ef821256d9497"
+      "spec.md": "fbf2a531a1b1a0943b204c6c333b67bb45048f0966caa7d0fec41fdd09b06a41",
+      "plan.md": "3287df60643173e47f9183edaf2b0f63c49e72d8d852bbc1a948a3156e958234",
+      "tasks.md": "f1d28ae662d4361c1daa905dc3eaeb161c46b01a4eb767c15e9ae43470cb6bd4",
+      "implementation-summary.md": "b74431fd1e8f28825a5c040a6ca79715fb3acfce0123f842b1dbf5758f549191"
     },
     "last_active_at": null
   }
