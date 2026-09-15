@@ -1,7 +1,7 @@
 ---
 title: "cli-hermes: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance, and per-scenario validation files for the cli-hermes skill."
-version: 1.2.0.0
+version: 1.4.0.0
 ---
 
 # cli-hermes: Manual Testing Playbook
@@ -40,7 +40,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 37 deterministic scenarios across 11 categories validating the `cli-hermes` skill surface. Each scenario keeps its `HERMES-NNN` identifier (or `cli-hermes-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
+This playbook provides 44 deterministic scenarios across 11 categories validating the `cli-hermes` skill surface. Each scenario keeps its `HERMES-NNN` identifier (or `cli-hermes-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
 
 Coverage note: the ten operator categories cover the sanctioned headless shape, the provider preflight, prompt transport, the closed model roster, the approval boundary and the read-only contract, persona and template delivery, empty-response detection, cross-model validation, MCP reach, session resumption, the two run bounds, the project plugin's advisory, goal and blocking surfaces, and project-skill loading. The eleventh category is the shared hermetic stress matrix, executed by the runtime suite rather than by an operator.
 
@@ -118,7 +118,7 @@ Coverage note: the ten operator categories cover the sanctioned headless shape, 
 ### Inputs Required
 
 1. `manual-testing-playbook.md`
-2. All 37 linked scenario files under the eleven category folders
+2. All 44 linked scenario files under the eleven category folders
 3. Real command transcripts or cited captured evidence for every executable scenario
 4. The scenario-to-feature coverage map in §18
 5. Triage notes for every FAIL or SKIP result
@@ -150,7 +150,7 @@ Release is `READY` only when:
 
 1. No scenario has an unresolved FAIL.
 2. The critical baseline scenarios `HERMES-001`, `HERMES-002`, `HERMES-004`, `HERMES-005`, `HERMES-006`, `HERMES-007`, `HERMES-018` and `HERMES-021` have evidence or a still-valid named blocker.
-3. Coverage is 100%: all 37 root-index IDs map to exactly one scenario file.
+3. Coverage is 100%: all 44 root-index IDs map to exactly one scenario file.
 4. Every SKIP carries a specific blocker and a safe re-run condition.
 5. The root document and all scenario files pass the required document and link checks.
 
@@ -276,22 +276,29 @@ This category proves the repo's sk-git preflight advisory reaches a Hermes sessi
 
 ---
 
-## 15. GOAL HOOK (`HERMES-015`, `HERMES-020`)
+## 15. GOAL HOOK (`HERMES-015`, `HERMES-020`, `HERMES-028`, `HERMES-030`)
 
 This category checks the plugin's system-prompt section surface, which is how the repo's session-start context reaches a Hermes session given that Hermes ignores an `on_session_start` callback's return value. With `HERMES_SPEC_FOLDER` set, that section also carries the bound packet's path and its durable goal slice.
 
 - `HERMES-015`: [Plugin session-context section](goal-hook/plugin-session-context-section.md)
 - `HERMES-020`: [Bound packet goal slice](goal-hook/bound-packet-goal-slice.md)
+- `HERMES-028`: [Prompt-time advisor brief and spec-folder question](goal-hook/prompt-time-advisor-brief-and-gate-question.md)
+- `HERMES-030`: [Shared goal core bound by Hermes session id](goal-hook/goal-core-binding-by-session-id.md)
 
 ---
 
-## 16. SKILLS AND PLUGINS (`HERMES-016..HERMES-018`)
+## 16. SKILLS AND PLUGINS (`HERMES-016..HERMES-018`, `HERMES-024`, `HERMES-025`, `HERMES-026`, `HERMES-027`, `HERMES-029`)
 
 This category covers project-skill preloading with its negative control, the deliberate absence of project rows from `hermes skills list`, and the plugin's self-dispatch refusal.
 
 - `HERMES-016`: [Project skill preload](skills-and-plugins/project-skill-preload.md)
 - `HERMES-017`: [Skills list omits project skills](skills-and-plugins/skills-list-omits-project-skills.md)
 - `HERMES-018`: [Plugin self-dispatch refusal](skills-and-plugins/plugin-self-dispatch-refusal.md)
+- `HERMES-024`: [Post-edit quality advisory on a write result](skills-and-plugins/post-edit-quality-advisory-on-write-result.md)
+- `HERMES-025`: [Task-dispatch guard blocks a mismatched delegation](skills-and-plugins/task-dispatch-guard-blocks-delegation.md)
+- `HERMES-026`: [MCP route guard stays silent for the Code Mode server](skills-and-plugins/mcp-route-guard-negative-control.md)
+- `HERMES-027`: [Session-start advisories reach the session prompt](skills-and-plugins/session-start-advisories-section.md)
+- `HERMES-029`: [Vision evidence appended to an image analysis](skills-and-plugins/vision-evidence-on-image-analysis.md)
 
 ---
 
@@ -375,12 +382,19 @@ No `feature-catalog/` package exists for `cli-hermes`, so no scenario carries a 
 
 - HERMES-015: [Plugin session-context section](goal-hook/plugin-session-context-section.md)
 - HERMES-020: [Bound packet goal slice](goal-hook/bound-packet-goal-slice.md)
+- HERMES-028: [Prompt-time advisor brief and spec-folder question](goal-hook/prompt-time-advisor-brief-and-gate-question.md)
+- HERMES-030: [Shared goal core bound by Hermes session id](goal-hook/goal-core-binding-by-session-id.md)
 
 ### SKILLS AND PLUGINS
 
 - HERMES-016: [Project skill preload](skills-and-plugins/project-skill-preload.md)
 - HERMES-017: [Skills list omits project skills](skills-and-plugins/skills-list-omits-project-skills.md)
 - HERMES-018: [Plugin self-dispatch refusal](skills-and-plugins/plugin-self-dispatch-refusal.md)
+- HERMES-024: [Post-edit quality advisory on a write result](skills-and-plugins/post-edit-quality-advisory-on-write-result.md)
+- HERMES-025: [Task-dispatch guard blocks a mismatched delegation](skills-and-plugins/task-dispatch-guard-blocks-delegation.md)
+- HERMES-026: [MCP route guard stays silent for the Code Mode server](skills-and-plugins/mcp-route-guard-negative-control.md)
+- HERMES-027: [Session-start advisories reach the session prompt](skills-and-plugins/session-start-advisories-section.md)
+- HERMES-029: [Vision evidence appended to an image analysis](skills-and-plugins/vision-evidence-on-image-analysis.md)
 
 ---
 

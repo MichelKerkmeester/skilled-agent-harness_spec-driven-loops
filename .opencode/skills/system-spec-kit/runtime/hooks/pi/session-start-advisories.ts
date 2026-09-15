@@ -38,7 +38,8 @@ const CHECKS: AdvisoryCheck[] = [
   {
     label: "check-dist-staleness",
     concern: "dist-freshness",
-    command: "bash",
+    // A Python program behind a `.sh` name: bash would print parse errors instead of a verdict.
+    command: "python3",
     args: [".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh", "--all"],
   },
   { label: "install-codex-hooks", concern: "hook-install", command: "node", args: [".opencode/bin/install-codex-hooks.mjs", "--check"] },

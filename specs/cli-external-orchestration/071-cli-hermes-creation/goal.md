@@ -46,7 +46,7 @@ repo's agents, commands, skills, hooks and MCP servers.
 | D1 | Evidence base: `001-deep-research/research/research.md`; plan R1 to R8 confirmed 2026-09-14; all nine phases required (operator: nothing deferred) |
 | D2 | Contract pinned live via the LLM Gateway; roster `deepseek-v4.1-flash`, `glm-5.3-flash`, fail-closed |
 | D3 | Dispatch: `hermes chat -Q --query-file --yolo --ignore-rules --run-budget --max-turns -t <toolsets> --source tool </dev/null`; never `-z` or `--worktree`; `--yolo` lifts only the dangerous-action gate; read-only is `-t file,todo` plus the plugin marker |
-| D4 | Docs via sk-create-* skills; code via `sk-code` |
+| D4 | Docs via sk-create-* skills; code via `sk-code` on `cli-pi` |
 | D5 | No routing without a working `hermes` binary; one hub advisor identity |
 | D6 | Config, hooks, MCP stay user-level; `.hermes/` carries skill and agent copies, plugins, prompts |
 | D7 | Branch `skilled/v4.0.0.0` |
@@ -56,16 +56,17 @@ repo's agents, commands, skills, hooks and MCP servers.
 | # | Phase | Outcome |
 |---|-------|---------|
 | 1 | `001-deep-research` | Research |
-| 2 | `002-hermes-contract-pin` | Contract pin |
-| 3 | `003-deep-loop-executor-support` | Executor kind |
-| 4 | `004-cli-hermes-skill-packet` | Seventh hub mode |
-| 5 | `005-hermes-runtime-folder` | Repo-root `.hermes/` |
-| 6 | `006-hermes-hook-and-plugin-layer` | Guard-core plugin |
-| 7 | `007-hermes-model-registry-and-routing` | Roster enforced |
-| 8 | `008-hermes-playbook-and-catalog` | Playbook and catalog |
-| 9 | `009-docs-governance-and-closeout` | Roster docs, closeout |
+| 2 | `002-hermes-contract-pin` | Pin |
+| 3 | `003-deep-loop-executor-support` | Executor |
+| 4 | `004-cli-hermes-skill-packet` | Hub mode |
+| 5 | `005-hermes-runtime-folder` | `.hermes/` folder |
+| 6 | `006-hermes-hook-and-plugin-layer` | Plugin |
+| 7 | `007-hermes-model-registry-and-routing` | Roster |
+| 8 | `008-hermes-playbook-and-catalog` | Playbook, catalog |
+| 9 | `009-docs-governance-and-closeout` | Docs, closeout |
+| 10 | `010-hermes-hook-parity` | Hook parity |
 
-Each phase has its own `goal.md`; a child that changes a decision here amends this file.
+Each phase has its own `goal.md`; a child that changes a decision here amends it.
 
 ### Completion criteria
 
@@ -127,6 +128,7 @@ The operator's copy of this directive is the session objective; any change above
 | 2026-09-14 | Deviation, recorded not silent: phases 003 and 004 started before phase 002's smoke because no provider is configured and the session goal binds criterion 4, which the hub checkers and unit tests can prove without one. Every claim only the smoke can confirm stays marked pending in 002; the live lineage test in 003 waits for it. |
 | 2026-09-14 | Phases 005 and 006 built ahead of the operator steps: `.hermes/` (skills and playbook symlinks, 33 generated prompt stubs, `SYNC.md`) and the `repo-guards` project plugin (validate passed; self-dispatch and preflight blocks proven in-process). Criterion 5 now waits only on the operator: provider, `hermes skills trust`, `HERMES_ENABLE_PROJECT_PLUGINS=1`, `hermes mcp add`. |
 | 2026-09-14 | Amendment to D6 and phase 002 P1, P4, P5, authorized by the operator in chat: this session performs the four user-level Hermes steps (provider block with `key_env` only, `hermes skills trust`, `HERMES_ENABLE_PROJECT_PLUGINS=1` for test sessions, `hermes mcp add`). Rollback: `~/.hermes/config.yaml.bak-20260914-hermes-071`, `hermes skills untrust`, `hermes mcp remove`. No secret is written; the key stays in the shell environment. |
+| 2026-09-15 | Operator asked for 1:1 hook parity, implemented on cli-pi with DeepSeek V4.1 Flash max via the LLM Gateway: phase 010 added; ten bridges landed over six Pi dispatches (two fix loops from live-only defects), 42 harness tests, seven live scenarios PASS; the pi collector's dist-checker interpreter fixed on the way; vision provider set at the operator level under a fresh backup. Roadmap gains phase 10. |
 | 2026-09-15 | Operator asked for agents too. `.hermes/agents` links the shared agent files; the generator mirrors each as the skill `agent-<name>` (a plugin prompt section is capped at 4000 characters, which skipped a 22k persona outright); the plugin now runs three capped sections and binds `HERMES_AGENT_PERSONA` to the preloaded skill. Live: `PERSONA=markdown` with the H1 quoted. |
 | 2026-09-15 | Operator asked for all skills in `.hermes/skills`, symlinked like `.claude/skills`. Symlinks cannot work: Hermes scans a linked directory in full and quarantined even the single `cli-hermes` link (37 findings). Replaced with `sync-skills-hermes.cjs`: 56 generated markdown-only copies, session start 17 s, `-s` preload proven live for three skills, 3 generator tests; seven copies quarantined on prose and still preloadable. D6 amended. |
 | 2026-09-14 | Phases 008 and 009 closed. The playbook's first pass found two defects (a read-only leaf had no file tools because Hermes's `search` toolset is web search only; the git advisory never reached a session) and four boundaries (`-s` cancels `--ignore-rules`, `hermes status` is not a provider probe, exit 0 with empty stdout, no goal in the session prompt). All six fixed: toolset rosters corrected with `SPECKIT_HERMES_READ_ONLY` and `HERMES_SPEC_FOLDER` injected by the runner; the plugin refuses write tools on a read-only leaf, appends the sk-git advisory to the tool result and renders the bound packet's goal slice; the ignore-rules rule carries the `-s` exception; the probe is `hermes config get providers.llmgateway.base_url`. Second pass 22 of 22 live; roster surfaces and READMEs done; every phase Complete. |

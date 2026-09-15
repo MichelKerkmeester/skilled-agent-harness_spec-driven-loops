@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity",
+  "description": "Phase 1: hermes-hook-parity",
+  "keywords": [
+    "phase",
+    "hermes-hook-parity"
+  ],
+  "lastUpdated": "2026-09-15T05:17:37.372Z",
+  "specId": "010",
+  "folderSlug": "hermes-hook-parity",
+  "parentChain": [
+    "cli-external-orchestration",
+    "071-cli-hermes-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity",
+  "spec_folder": "cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity",
+  "parent_id": "cli-external-orchestration/071-cli-hermes-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".hermes/plugins/repo-guards/__init__.py",
+      ".hermes/plugins/repo-guards/plugin.yaml",
+      ".hermes/plugins/repo-guards/tests/test_repo_guards.py",
+      ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
+      ".hermes/SYNC.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "__init__.py",
+        "kind": "file",
+        "path": ".hermes/plugins/repo-guards/__init__.py",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.yaml",
+        "kind": "config",
+        "path": ".hermes/plugins/repo-guards/plugin.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "test_repo_guards.py",
+        "kind": "file",
+        "path": ".hermes/plugins/repo-guards/tests/test_repo_guards.py",
+        "source": "derived"
+      },
+      {
+        "name": "session-start-advisories.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".hermes/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Hermes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Hermes session ran seven of the repo's twenty-two hook packages",
+    "created_at": "2026-09-15T05:17:36Z",
+    "last_save_at": "2026-09-15T06:35:29.778Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4d63e6e1f63aba0156bb84db7160df3a119b85618f2b582e5586bbee459377ef",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e94ea110522aa3f0e63cf9b89f393971ce262f0810918473fc7f83b13d29add0",
+      "plan.md": "31115ca874faaac899625087e7492f81d3bf8698355b8a8761effd1c78cc6926",
+      "tasks.md": "09e9e030bca0ad0665917f19ad40f102ad5eb7e166942e743f08bfbacd2e3bfa",
+      "implementation-summary.md": "299dde876afad55c3f4a25804a21313ef998ca587ef77440b1e3cd919f0cf730"
+    },
+    "last_active_at": null
+  }
+}

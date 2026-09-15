@@ -12,7 +12,8 @@
     "cli-external-orchestration/071-cli-hermes-creation/006-hermes-hook-and-plugin-layer",
     "cli-external-orchestration/071-cli-hermes-creation/007-hermes-model-registry-and-routing",
     "cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog",
-    "cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout"
+    "cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout",
+    "cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity"
   ],
   "manual": {
     "depends_on": [],
@@ -167,17 +168,17 @@
     ],
     "causal_summary": "This repository dispatches work to six external coding CLIs as `cli-external-orchestration` modes (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`)",
     "created_at": "2026-09-14T16:04:01Z",
-    "last_save_at": "2026-09-15T05:08:23.238Z",
+    "last_save_at": "2026-09-15T06:36:18.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d23d958c894eb6060447465c75cf1684692c6b3f73499b39530dcd7d7b567bab",
+    "source_fingerprint": "sha256:3cd8f8313ff66b5443a2d55065b766647e60fdbc8d30f2d0c9e5580fa7023df1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a2944892fdf134ef6009e90644f4458e1b1e2e242fdb7b2880df392c5fb85da8"
+      "spec.md": "7899d59034ecf705191034c22ba483d3619a68ab1ae078bf73baaa11d0052d94"
     },
     "last_active_at": null
   }
