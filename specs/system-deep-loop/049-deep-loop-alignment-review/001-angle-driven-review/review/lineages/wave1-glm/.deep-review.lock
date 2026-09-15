@@ -1,0 +1,11 @@
+{
+  "owner_pid": 14126,
+  "started_at_iso": "2026-09-15T10:15:12.272Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-09-15T10:15:12.272Z",
+  "packet_id": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-09-15T10:15:12.272Z",
+  "acquire_nonce": "14126-1789467312272-b395c637-191c-4867-87ef-47d527a63189"
+}

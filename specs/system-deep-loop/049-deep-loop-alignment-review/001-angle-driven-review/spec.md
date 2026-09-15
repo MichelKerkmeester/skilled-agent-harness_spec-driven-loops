@@ -80,7 +80,7 @@ Twenty review iterations, each on a named angle, expanded between waves from wha
 ## 3. SCOPE
 
 ### How a lane reads this
-Each lane runs five iterations. Its label names its angle block below: lane `wave1-deepseek` takes angles 1 to 5 in order, one per iteration; `wave1-glm` takes 6 to 10; `wave2-deepseek` takes 11 to 15; `wave2-glm` takes 16 to 20. An iteration reads only its angle, cites file and line for every claim, and rates each finding P0 to P3 with the repo's severity meaning. Angles 11 to 20 are rewritten after wave one lands, so a wave-two lane reads this file fresh.
+Each lane runs five iterations. Its label names its angle block below: lane `wave1-deepseek` took angles 1 to 5, one per iteration; `wave1-glm` took 6 to 10; `wave2-deepseek` takes 11 to 15; `wave2-glm` takes 16 to 20. An iteration reads only its angle, cites file and line for every claim, and rates each finding P0 to P3 with the repo's severity meaning. Angles 11 to 20 are rewritten after wave one lands, so a wave-two lane reads this file fresh.
 
 ### Wave one angles
 1. **Routing artifact parity, system-deep-loop hub**: the SKILL.md mode table, `mode-registry.json`, `hub-router.json`, `ROUTER.md`, `leaf-manifest.json`, `graph-metadata.json` and `description.json` must agree on mode names, counts, routing classes, versions and leaf sets. Every disagreement is a finding.
@@ -94,14 +94,17 @@ Each lane runs five iterations. Its label names its angle block below: lane `wav
 9. **Architecture, containment**: detect, quarantine, remedy, ledger, merge, read as one system for contradictions, dead paths, duplicated rules (the inline containment blocks in the YAMLs beside the runner's), and validators with more than one call site.
 10. **Architecture, state and ledger**: the gateway, ledger schemas, projections and reducers as one write path; exemptions, stems without producers, producers without stems, and the projection's replace semantics.
 
-### Wave two angles (seeds; rewritten from wave-one findings before wave two runs)
-11. Repo-rule alignment, restraint: helpers, options or tests the containment packet added that a simpler existing thing would have served; abstractions no current requirement earns.
-12. Repo-rule alignment, scope and evidence: phase commits against their specs, packet claims against cited lines, comment hygiene and the durable why.
-13. Dead code and duplication across the runtime after the worktree removal.
-14. Test floor: coverage per public surface, and tests that mirror the implementation instead of failing for a real reason.
-15. Hooks and gates: pre-commit and pre-push gates against what their docs claim, including the mirror-parity and route gates the last packet had to bypass.
-16. The containment packet's own health: twenty phases, statuses, ADR chain, metadata, acceptance evidence.
-17. to 20. Reserved for what wave one surfaces.
+### Wave two angles (rewritten from wave one's forty findings)
+11. **Version authority across routing artifacts**: wave one found seven system-deep-loop routing artifacts carrying six disagreeing version values, two with no version key, and cli-external-orchestration splitting the registry/router version pair that sk-code keeps paired. Name the version authority per hub, list every disagreement across all three hubs and their modes, and state the one rule that would keep them paired.
+12. **Leaf-manifest generation and doctrine reachability**: the generator skips symlinks, leaving twelve sk-code doctrine files untyped and unreachable, and doctrine is reachable only by prose citation in four surfaces. Trace how each hub's leaf manifest is produced, which files it cannot see, and which sentences are the only path to a file.
+13. **Preamble and leaf-set policy contradictions**: hub-router.json and ROUTER.md state opposite always-loaded-preamble policies fleet-wide, and both improvement lanes receive byte-identical sixty-one-leaf sets. Determine from the router code which policy the runtime enforces and whether identical leaf sets are defect or design.
+14. **Roster completeness for the seventh executor**: ROUTER.md omits cli-hermes from all three roster statements, SKILL.md says six modes in one line and seven in another, and the catalogs name three of seven executor kinds. Enumerate every roster statement across the three hubs, their catalogs, playbooks and protocols, and every place a kind is missing.
+15. **Stale references in catalogs and READMEs**: eight catalog entries cite absent files, the compiled-routing catalog cites a superseded runtime layout four times, the compiled-contracts README's headline count is wrong three times, the runtime catalog claims fifty-five entries against fifty-four, and the deep-review playbook claims no test suite against eighteen test files. Sweep every catalog, README and playbook under the three hubs for a cited path, count or claim the tree contradicts.
+16. **Confirm-against-auto variant drift**: the confirm variants drop the stop policy from their config record, omit twelve auto steps including functional ones, stage artifacts where auto leaves them unstaged, drop the reducer artifact argument, never invoke the mechanical post-dispatch gate, and persist adjudication in a shape the review gateway refuses. Census both variant pairs step by step and name every divergence with its consequence.
+17. **Ledger stem producers and the cutover cliff**: twenty-eight of thirty-one registered stems have no producer and the operative dialect never reaches the ledger. Census every stem against its producers and every producer against its stems, for both modes, and say what breaks at the cutover.
+18. **Agent mirror dialects**: sampling configuration is OpenCode-only, the permission deny half translates three ways, the tool lexicon speaks three dialects with no crosswalk, model attraction is unowned in three trees and pinned in the fourth, and the leaf contract disagrees across agent file, workflow and state schema. Map every agent's declarations across the four runtimes and name each translation loss.
+19. **The containment promise chain and the severity scale**: the promise diverges at three levels, comments promise fail-closed, inline code advises, the runner preserves, with copy-pasted codex residue in three non-codex branches; and this packet's spec promises a four-tier severity scale where every governing contract is three-tier. Trace both chains end to end and say which level is authoritative.
+20. **What wave one surfaced that angles 11 to 19 do not cover**: read both wave-one reports and registries, list every finding no angle above re-examines, examine those, and add anything the whole-system read makes visible only now.
 
 ### Out of Scope
 - Fixing anything inside the review; every fix is a phase of the parent
