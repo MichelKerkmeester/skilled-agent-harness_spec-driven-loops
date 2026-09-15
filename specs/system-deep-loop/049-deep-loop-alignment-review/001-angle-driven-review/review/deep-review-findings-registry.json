@@ -1,0 +1,4240 @@
+{
+  "mergedFrom": [
+    "wave1-deepseek",
+    "wave1-glm",
+    "wave2-deepseek",
+    "wave2-glm"
+  ],
+  "lineageExecutors": {
+    "wave1-deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "wave1-glm": {
+      "kind": "cli-pi",
+      "model": "glm-5.3-flash",
+      "reasoningEffort": "max"
+    },
+    "wave2-deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "wave2-glm": {
+      "kind": "cli-pi",
+      "model": "glm-5.3-flash",
+      "reasoningEffort": "max"
+    }
+  },
+  "mergedVerdict": "FAIL",
+  "openFindings": [
+    {
+      "findingId": "F020--41ab46cdb2fd",
+      "severity": "P2",
+      "title": "28 of 31 registered stems have no producer, the operative dialect never reaches the ledger, and the cutover cliff is pre-armed",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts",
+      "line": null,
+      "description": "the producer census across all four workflow YAMLs plus the runner finds dotted emission for exactly four stems (migration x2, claim_adjudication x2 — the UNREGISTERED variant, the schema'd name is claim_adjudication_recorded —, recovery_baseline x1, iteration_error x1) and ZERO in the runner; the 31-stem closed-shape vocabulary (exact-fields, 64-hex payloadDigest, sha256 chaining — the throw at deep-review-ledger-schema.ts:995) guards a four-stem yield; the ledger-backing gate returns not-enforced until authority flips (verify-iteration.cjs:152-153, :193-213, the :280 bypass detail) — BOTH wave-one lanes passed 4-5 iterations with no mode ledger on disk; the authorization ceremony armed the ledger story exactly once (the audit frame: authorization.decision.recorded, actor fanout-effect-writer, decision allow, fence_token 1, legacy_authoritative, occurred_at 2026-09-15T09:52:29.841Z; the effect twin's authorization_ref binds that record) and both ceremony ledgers froze at 1 frame through 4 iterations of unfenced lane writes; the security-primary observation: the AUTHORITATIVE store is the unvalidated one — flat rows, no digest, no chain, no fence — while the strongly-validated one is prefabricated and unemployed; the cliff: at flip, (a) every legacy iteration fails ledger_backing_missing (:280) unless migrated, and (b) the gateway's Phase-5 projection refresh REPLACES the state file from the ledger (append-mode-event.ts:288, :457-459; the receipt even distinguishes ledger-committed/projection-failed, :133-149) so this lane's line-1 config record — the SC-001 executor/model attribution — collapses to the thin run_initialized projection (topic/maxIterations/generation/timestamp only)",
+      "findingClass": "ledger-authority-cutover-cliff",
+      "deltaStatus": "active",
+      "scopeProof": "the lineage's own two ceremony frames and 9-row state log as the live specimen plus the mode gateway/gate/schema sources; dormant today (4x2 clean iterations, zero corruption warnings in either lane), the WHEN bounded by the untraced flip trigger (dead end 1); also closes F017's ownership question — the ceremony answers who authorizes (the runner, once) and the frozen frames prove the runtime advisory is the recorded design, not a broken promise",
+      "affectedSurfaceHints": [
+        "both wave-one lanes' state logs at cutover",
+        "the mode-append-gateway projection phase",
+        "the authority-flip activation path"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F020",
+      "_conflict_id": "F020--41ab46cdb2fd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F020",
+          "peerId": "F020--9c12304ef1ea",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F033",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "All three hubs' compiled-routing catalog entries cite a superseded runtime-layout generation in nine places",
+      "file": ".opencode/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
+      "line": 28,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "536f971d2480e6a33eda4693f627bf5cc4b85b2bb43e6156c96fca06cfdae0c0",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F014 expanded from one hub and four citations to three hubs and nine"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F017--c775b479738b",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Catalogs name three of the runtime seven cli executor kinds, omitting cli-hermes, cli-codex and cli-pi",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      "line": 11,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; coverage thinness against the runtime roster"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F017",
+      "_conflict_id": "F017--c775b479738b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F017",
+          "peerId": "F017--4dd8e5373858",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F017",
+          "peerId": "F017--543d53570b22",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F032",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "cli-* packet sibling lists froze at each packet’s authoring date, leaving the newest siblings out of six files",
+      "file": ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
+      "line": 381,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "31c21665c12a60c19955cae866cd89ccca7e7958f84a48e9893f25b3460876bd",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "New; monotonic freeze pattern across the cli-* packet family"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F007--fb119d2405c2",
+      "severity": "P0",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "cli-external-orchestration ROUTER.md omits the seventh registered mode cli-hermes in all three roster statements",
+      "file": ".opencode/skills/cli-external-orchestration/ROUTER.md",
+      "line": 24,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "b7e7cafe6f5d9b4a8e2c4d6f1a3b5c7d9e1f3a5b7c9d1e3f5a7b9c1d3e5f7a81",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F007",
+      "_conflict_id": "F007--fb119d2405c2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F007",
+          "peerId": "F007--0577af37f655",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F007",
+          "peerId": "F007--d0847835fc7e",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F008--a8ffed1ad343",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "cli-external-orchestration SKILL.md:74 says all six modes against seven in the same file and five other statements",
+      "file": ".opencode/skills/cli-external-orchestration/SKILL.md",
+      "line": 74,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "c8f8dbfa7a6e1c5b9f3d5e8a2b4c6d8e1f3a5b7c9d2e4f6a8b1c3d5e7f9a2b82",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F008",
+      "_conflict_id": "F008--a8ffed1ad343",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F008",
+          "peerId": "F008--4b304748407f",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F008",
+          "peerId": "F008--361f3770a99e",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F009--3e43167d4c5c",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "cli-external-orchestration splits the mode-registry/hub-router version pair that sk-code keeps in parity",
+      "file": ".opencode/skills/cli-external-orchestration/mode-registry.json",
+      "line": 3,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "d9a9ecab8b7f2d6c1a4e6f9b3c5d7e9a2f4b6c8d1e3f5a7b9c2d4e6f8a1b3c93",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F009",
+      "_conflict_id": "F009--3e43167d4c5c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F009",
+          "peerId": "F009--4aacaa28082e",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F009",
+          "peerId": "F009--756feecdbdd5",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F028",
+      "severity": "P0",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "cli-external-orchestration/ROUTER.md omits cli-hermes from all three prose roster statements while its own machine block and the compiled router carry the mode",
+      "file": ".opencode/skills/cli-external-orchestration/ROUTER.md",
+      "line": 24,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "6f9e68b9a7ef0ef198cf79b0ff29bdd2bb0238efb75eb62eba9a47734dc2ee1e",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial wave-two re-verification adjudicated on prose-only impact"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P0",
+          "reason": "Re-adjudicated against wave-one F007's (P0) unmet downgrade trigger: no supersession or non-authoritative marking exists"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F010--933be0113e5b",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "cli-hermes leaf set carries a lane-unique reference no ROUTER.md sentence describes",
+      "file": ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
+      "line": 1,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "eabafdbc9c8a3e7d2b5f7a1c4d6e8b1f3a5c7e9d2b4f6a8c1e3d5b7f9a2c4d04",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F010",
+      "_conflict_id": "F010--933be0113e5b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F010",
+          "peerId": "F010--d7226379ebaa",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F010",
+          "peerId": "F010--d3d1862f9e6c",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F018--c3a1995c08a2",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Compiled-contracts README headline count is wrong and the same error appears twice more in the legacy README",
+      "file": ".opencode/commands/deep/assets/compiled/README.md",
+      "line": 19,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "a1c1d4e70f2b3a9c5e8d1b4f7a2c6e9d3b8f5a1c4e7d2b9f6a3c8e5d1b4f7a290",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; the document self-refutes at :23 and in its own tree block"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F018",
+      "_conflict_id": "F018--c3a1995c08a2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F018",
+          "peerId": "F018--85dca5c201d9",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F018",
+          "peerId": "F018--85b9b44da885",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F036",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Compiled-contracts README says four flattened contracts where three exist and the legacy README repeats the four-claim twice",
+      "file": ".opencode/commands/deep/assets/compiled/README.md",
+      "line": 19,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "452a74676cf81005341f53d7dc7d0701c9bc85d59d6a648114f6df5f073d3981",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F018; the four-claim appears three times across the README pair"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F014--f728d7d1a404",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Compiled-routing catalog cites a superseded runtime layout generation in four places",
+      "file": ".opencode/skills/system-deep-loop/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
+      "line": 28,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "d4e5f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef01020304",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; live layout is 013-live-activation and 014-runtime-engine"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F014",
+      "_conflict_id": "F014--f728d7d1a404",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F014",
+          "peerId": "F014--40f251b98d00",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F014",
+          "peerId": "F014--63b8e0130161",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F002--4b34311746c8",
+      "severity": "P2",
+      "title": "Confirm reducer invocation drops reducer_artifact_arg; artifact root silently defaults",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "confirm.yaml:1546 invokes reduce-state.cjs without the artifact-dir argument; auto.yaml:2176 passes the reducer artifact argument after step_bind_reducer_artifact_arg (census 2d1); the string reducer_artifact_arg occurs zero times in confirm",
+      "findingClass": "reducer-artifact-arg-omission",
+      "deltaStatus": "active",
+      "scopeProof": "Angle-6 confirm-variant invocation locus; prompt-001:28; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--4b34311746c8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--318fe9112dd0",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--d70679041eb0",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F008--4b304748407f",
+      "severity": "P2",
+      "title": "Confirm step-graph omits 12 auto steps including functional ones, with no in-YAML rationale",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "census diff 2,3d1, 9d6, 21d17, 23,24d18, 42d35, 44,45d36, 62d52, 68d57; both variants render the same iteration prompt pack (confirm:1040-1041 = auto:1037-1038, same template_path and prompt-pack.ts#renderPromptPack) whose STATE summary needs generated inputs, yet step_generate_state_summary and step_marker_scan exist only in auto; confirm also lacks step_init_complete and resource-map detection while its config record consumes resource_map_present (see F001)",
+      "findingClass": "confirm-variant-step-omissions",
+      "deltaStatus": "active",
+      "scopeProof": "Angle-6 auto-versus-confirm step parity question, answered by the census diff; prompt-001:28; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F008",
+      "_conflict_id": "F008--4b304748407f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F008",
+          "peerId": "F008--a8ffed1ad343",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F008",
+          "peerId": "F008--361f3770a99e",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F001--fbb4a7f5a9e2",
+      "severity": "P1",
+      "title": "Confirm variant line-1 config record diverges from auto: flag ignored, stopPolicy dropped, resource_map_present unbound",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "confirm.yaml:412 hardcodes resource_map.emit true; confirm.yaml:422 renders the line-1 config without stopPolicy and references {resource_map_present}; auto.yaml:454-456 honors the parsed --no-resource-map flag; auto.yaml:466-467 states the agree-from-line-1 invariant and persists stopPolicy; census diff 2,3d1 and 9d6 (step_bind_reducer_artifact_arg, step_apply_lifecycle_request, step_detect_resource_map absent in confirm); grep resource[-_ ]?map over confirm yields only usage lines 99,143,412,422,1545,1546,1551,1552 — no binding",
+      "findingClass": "confirm-variant-config-record-drift",
+      "deltaStatus": "active",
+      "scopeProof": "In scope: angle 6 owns the deep-loop command YAMLs and their presentation assets (spec.md:83); this artifact is the confirm-variant half of the bound review-variant pair (prompt-001:28; strategy section 13); inside the system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--fbb4a7f5a9e2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--f36be81f5a90",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--5d53f1d57c43",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F039",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Current-state docs across all three hubs still advertise skill-benchmark artifacts removed by the deprecation packet",
+      "file": ".opencode/skills/sk-code/ROUTER.md",
+      "line": 311,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "38cdf16fb91b42ae862d3567ce3df48b40838673c87bd484250e5e561fce16e0",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "New; the spec-047 deprecation left its removal surface cited across all three hubs"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F043",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Deep-ai-council catalog cites rollback.js where the library is rollback.cjs",
+      "file": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md",
+      "line": 31,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "6ec98b16a58df2d623625c54a558925c576f91fabb01736cb4c62fed96dfcd69",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "New; single-file extension slip in the council rollback catalog"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F040",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-ai-council playbook section 16 names five test files that exist only under their renamed multi- prefix",
+      "file": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 403,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "9a8ddb890b52c0800b3fa4ee2e29af80bb37744f4dc158776dbe2f9ae04e3534",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "New; five of eight council test-cross-reference rows lack the multi- prefix that exists on disk"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F031",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-loop catalogs describe the executor dispatcher as three kinds (twice with a duplicated kind name) against a driver that implements eight",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+      "line": 42,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "3fa17d25aaf2081746d2d4ffea5f59d7f578eedf3e2813b08da9c1aa76abe960",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "New; catalog claims measured against subject source, two sites carry a duplicated-kind substitution"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F030",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-loop protocol and packet prose under-describes the executor set, and the council packet’s prose contradicts its own resolver",
+      "file": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      "line": 281,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "648aba7033241c2dcef06616574c8d60012e37175590bb5a070e561ffaff118e",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "New; two protocol omissions plus one prose-vs-code divergence in the council packet"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F041",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-research catalog and playbook cite a command path that no longer exists and a section anchor the successor lacks",
+      "file": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/research-output/progressive-synthesis.md",
+      "line": 43,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "4af3e6c98a66ed35ee690f5f018d905f2d713e3786beae10d454e642f5981198",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "New; the deep-research catalog and playbook cite a speckit command path that does not exist"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F019--ba9761c12c78",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-review playbook asserts no automated test suite exists while 18 deep-review test files do",
+      "file": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 610,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "b2d2e5f81a3c4b0d6f9e2c5a8b1d4f7e3c6a9b2d5f8e1c4a7b3d6f9e2c5a8b13b",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; verified against the tree and against the sibling playbooks intended form"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F019",
+      "_conflict_id": "F019--ba9761c12c78",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F019",
+          "peerId": "F019--ddfde86f6860",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F037",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-review playbook still asserts no automated test suite exists while eighteen deep-review test files do",
+      "file": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 610,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "3bea41669855e90c5716ab78c1f0f31dcde073ee117785e7545647c724972df5",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F019; the eighteen-file population re-located and the packet's own test re-run"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F015--107df66a82b0",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Eight catalog entries cite files absent at the cited path across four verified stale-reference classes",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/validation/mk-deep-loop-guard.md",
+      "line": 77,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "e5f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef0102030405",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; four classes each hand-verified against the live tree"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F015",
+      "_conflict_id": "F015--107df66a82b0",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F015",
+          "peerId": "F015--28a9afb0547d",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F015",
+          "peerId": "F015--73a72cb404cd",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F016--4e96e9bd0378",
+      "severity": "P2",
+      "title": "Five-surface kind/flag parity holds, but its only verification is manual (this review)",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      "line": null,
+      "description": "the 8-kind canon (:11) mirrors the seven-tree directory census (7/7 matching cli- dirs, no missing, no extra); the aggregate SKILL.md token census yields 14 tokens = 8 canon + 6 self-explained artifacts (cli-copilot: no skill exists, annotated with a mitigation, cli-opencode/changelog/v1.3.15.2.md:60; hermes-creation/pi-creation: spec-packet paths; cli-guards/update-cli-config: prose fragments, cli-cursor/SKILL.md:242 :282); the flags-support differences are all justified, live-verified and dated in-place (cursor 2026-07-24, devin 2026-07-27, the pi/ hermes reasoning-idiom notes); the stress/ scenario canon is 14-identical where verified; the protocol references cover all 7 kinds; no test, script, or CI assertion guards the continued agreement — the divergence detector is this manual census",
+      "findingClass": "parity-agreement-unmechanized",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 8 core question (the same kinds, flags, limits across five surfaces — strategy section 13); the surfaces are in-scope trees; the 049 commission aligns to exactly this",
+      "affectedSurfaceHints": [
+        "system-deep-loop",
+        "cli-external-orchestration"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F016",
+      "_conflict_id": "F016--4e96e9bd0378",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F016",
+          "peerId": "F016--dc496693b31a",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F016",
+          "peerId": "F016--31f78550f0b8",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F026",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Fleet documents two mutually exclusive always-loaded-preamble policies and the compiled runtime enforces neither",
+      "file": ".opencode/skills/system-deep-loop/hub-router.json",
+      "line": 13,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "content_hash": "ffd3832f0caea166922302bea5e657b92b59e59f5c7ae408d1638a6e431150a8",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Extends wave-one F003 fleet-wide with the enforcement question answered by executing the runtime and loading live policy snapshots"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F004--7428e967457c",
+      "severity": "P2",
+      "title": "Four copy-pasted containment comments: codex residue in three non-codex branches; promised fail-closed resolves to advisory-only at these call sites",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "the identical 5-line comment repeats at auto.yaml:1515-1519, 1565-1572, 1655-1662, 1745-1752 naming a workspace-write codex leaf in the cursor, devin and pi branches too; the violation branch at 1528-1532 only console.errors an advisory (paths left on disk) and 1538 exits with the dispatch exit code; write-containment.ts:221 confirms the TS itself appends the containment_violation event when given the stateLogPath; fail-closed semantics live in the runner (fanout-run.cjs:2452-2458)",
+      "findingClass": "stale-containment-branch-comment",
+      "deltaStatus": "active",
+      "scopeProof": "Angle-6 question, stale inline containment comments in executor branches (spec.md:83); these are those blocks; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--7428e967457c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--443dcc26a4ab",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--415e5a93bade",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F003--133df358a2e4",
+      "severity": "P2",
+      "title": "Gateway mandate vs wiring: all four packs mandate gateway-only state writes, no variant wires them all; the research loop's salvation is the research-only legacy branch",
+      "file": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "line": null,
+      "description": "state_write_protocol applies_to = every append_to_jsonl and append_jsonl directive in all four variants (review-auto:100 = review-confirm:99; research-auto:108-109 = research-confirm:124-125); actual wiring: research-auto 2 sites (in-loop :637-641, synthesis :1749-1753, both fail-closed), research-confirm 1 site (synthesis :1613-1620, fail-closed, rm -rf EVENT_DIR cleanup) against dozens of inline emissions each; the precedent's review counts (12x/2x) complete the matrix; the qualified difference: the research variant's shortfall is wiring-count only because the gateway's legacy acceptance is research-gated (append-mode-event.cjs:398-408) and upcasts bare records, where the review-confirm records hit the :445 throw; residual: research-confirm's in-loop iteration records travel inline despite its pack :54-62 mandate, and its 7-key synthesis_complete (:1601-1608: no mode/sessionId/generation/verdict/activeP*/dimensionCoverage) is its own reducer's dialect",
+      "findingClass": "gateway-mandate-wiring-matrix",
+      "deltaStatus": "active",
+      "scopeProof": "the 4-variant wiring census + the gateway acceptance branches read this session (:355-484); the precedent F019 = the review-confirm half, this finding completes the four-variant matrix and adds the research-branch salvation",
+      "affectedSurfaceHints": [
+        "all four variant workflows",
+        "append-mode-event.cjs legacy branch",
+        "research-confirm synthesis-side records"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--133df358a2e4",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--a31a7ddd2996",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--8113e7b4e681",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F007--0577af37f655",
+      "severity": "P2",
+      "title": "Git policy swap at synthesis: auto leaves artifacts unstaged, confirm stages them; documented invariant is unqualified",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "census diff 66c56: step_leave_artifacts_unstaged (auto) corresponds to step_stage_artifact_dir (confirm); the loop documentation states unqualified that synthesis must not mutate the shared Git index; the confirm step body was not read (confidence 0.6)",
+      "findingClass": "cross-variant-git-policy-swap",
+      "deltaStatus": "active",
+      "scopeProof": "Synthesis-tail step of the bound confirm-variant YAML; prompt-001:28; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F007",
+      "_conflict_id": "F007--0577af37f655",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F007",
+          "peerId": "F007--fb119d2405c2",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F007",
+          "peerId": "F007--d0847835fc7e",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F029",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Hub SKILL.md files carry hand-written mode counts their own registries contradict",
+      "file": ".opencode/skills/cli-external-orchestration/SKILL.md",
+      "line": 74,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "780eadc3e8be76ed4290f946240b25afaf67749448d9c135f8b54d034b88c58a",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "New; three count-drift sites across two hub front doors, no machine consumer"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F023",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "hub-router schema doc defines version as either router schema or artifact version in one sentence, and nothing validates it",
+      "file": ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+      "line": 53,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "f8056070a90b906072b215bf8dbf441c78f80db1b20af74b5d3f1ba2e7b7ccee",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; the documented ambiguity that licenses every version disagreement"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F003--a31a7ddd2996",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "hub-router.json and ROUTER.md state opposite always-loaded-preamble policies",
+      "file": ".opencode/skills/system-deep-loop/hub-router.json",
+      "line": 13,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "d3a3e6fc2b1f5d9c4a8b1e3f7c2d6b9a5e4f8c1d2b7a3e9f6c4d8b1a5e2f7c35",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; two artifacts state opposite policies"
+        },
+        {
+          "iteration": 2,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Scope corrected: the divergence is fleet-wide across all three hubs, not hub-local to system-deep-loop; severity unchanged, the hub-local claim withdrawn."
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--a31a7ddd2996",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--133df358a2e4",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--8113e7b4e681",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F004--443dcc26a4ab",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Identical 61-leaf sets for both improvement lanes against a two-leaf ROUTER.md scope",
+      "file": ".opencode/skills/system-deep-loop/leaf-manifest.json",
+      "line": 96,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "e4b4f7ad3c2a6e1d5b9c2f4a8d3e7c1b6f5a9d2e3c8b4f1a7d5e9c2b6f3a8d46",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; generator contract and hub sync rule both disagree"
+        },
+        {
+          "iteration": 2,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Claim narrowed: the 2-vs-61 arm is withdrawn because a sibling ROUTER.md declares RESOURCE_MAP as a first slice. Only the N-to-1 non-distinctness arm stands."
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--443dcc26a4ab",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--7428e967457c",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--415e5a93bade",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F012--83687f3cf10a",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Implement-debug-verify doctrine reachable only by prose citation in four surfaces",
+      "file": ".opencode/skills/sk-code/SKILL.md",
+      "line": 39,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "content_hash": "b2c3d4e5f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef0102",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; the shared control root is deliberately non-leaf and the surface copies are symlinks"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F012",
+      "_conflict_id": "F012--83687f3cf10a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F012",
+          "peerId": "F012--bff1a0367e11",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F012",
+          "peerId": "F012--24eabbbd6722",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F027",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Improvement lanes receive byte-identical 61-leaf sets against the generator's N-to-1 distinctness contract and no consumer needs the distinction",
+      "file": ".opencode/skills/system-deep-loop/leaf-manifest.json",
+      "line": 96,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "content_hash": "dbf34d92e2337ac493c186068483b313b2240443d195423dfd619b4315bafda0",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Re-adjudication of wave-one F004 with the consumer question answered: the generator contract is unmet but no live consumer requires distinct sets"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F012--bff1a0367e11",
+      "severity": "P2",
+      "title": "Leaf contract triple-licensed: agent file, workflow, and state schema disagree on budgetProfile/edgeCases",
+      "file": ".opencode/agents/deep-review.md",
+      "line": null,
+      "description": "the agent body, verbatim across all four trees, demands choosing and recording one budget profile (deep-review.md:167: scan 9-11, verify 11-13, adjudicate 8-10), recording edge cases (line 14) and self-certifying the JSONL matches budgetProfile and edgeCases (line 520); the dispatch layer speaks a flat band (prompt packs line 97: Target 9, soft max 12, hard max 13) with no profile concept; the pack output-contract fieldlist and the state-record required/optional lists contain neither key; iteration-001 of this lane recorded neither; verify-iteration.cjs checks neither so the gate cannot see the drift",
+      "findingClass": "leaf-contract-schema-drift",
+      "deltaStatus": "active",
+      "scopeProof": "The contract split binds this very lane (the pack restates the workflow agent block); the state schema reference is the deep-review contract; all inside system-deep-loop",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F012",
+      "_conflict_id": "F012--bff1a0367e11",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F012",
+          "peerId": "F012--83687f3cf10a",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F012",
+          "peerId": "F012--24eabbbd6722",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F011--72ef0b0340ba",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Leaf-manifest generator skips symlinks, leaving 12 sk-code workflow doctrine files untyped",
+      "file": ".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      "line": 73,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "content_hash": "a1b2c3d4e5f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef01",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; root cause traced to fs.Dirent.isFile() returning false for symlinks"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F011",
+      "_conflict_id": "F011--72ef0b0340ba",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F011",
+          "peerId": "F011--aa2cc3aa05ee",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F011",
+          "peerId": "F011--058cb53a0759",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F024",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Leaf-manifest walker skips symlinks and both freshness gates regenerate with the same walker, leaving twelve sk-code doctrine leaves invisible behind green gates",
+      "file": ".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      "line": 84,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "2a3c4607e9693ec9ecfa9b7aadd30dfc14b1dc72a4fc381bc6f2e6628816f029",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F011 against the live tree with the gate-blindness arm proved by execution"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F038",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Legacy README presents a repository-wide checker as a local acceptance test and the checker currently fails",
+      "file": ".opencode/commands/deep/assets/legacy/README.md",
+      "line": 108,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "f73cfe5165552ffa04c510224942cd8d4008f3655d75d8d2364928b4364f1b6a",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Re-verification of wave-one F020 with the checker re-executed: exit 1, ten unresolved references"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F020--9c12304ef1ea",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Legacy README presents a repository-wide command-reference checker as a local acceptance test",
+      "file": ".opencode/commands/deep/assets/legacy/README.md",
+      "line": 108,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "c3e3f6a92b4d5c1e7a0f3d6b9c2e5a8f4d7b0e3c6a9f2d5b8e1c4a7d0f3b6c24c",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; filed at P2 because the ten failures sit outside this document subject tree"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F020",
+      "_conflict_id": "F020--9c12304ef1ea",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F020",
+          "peerId": "F020--41ab46cdb2fd",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F013--b7ae74d9f3e1",
+      "severity": "P2",
+      "title": "Model attraction structurally unowned: three trees silent, the fourth pins gpt-5.5",
+      "file": ".codex/agents/deep-review.toml",
+      "line": null,
+      "description": "no .opencode, .claude or .pi agent file declares a model (frontmatter census, 36 files); the whole-file grep for opus over .opencode/agents/deep-review.md returned zero hits, so the runs-model-opus property lives in the workflow dispatch configuration, not any agent artifact; .codex/agents/deep-review.toml:6-7 = model gpt-5.5 + reasoning effort high; dispatched routes override at dispatch time so the promise holds there; direct invocation inherits the runtime default, undocumented as needing agreement",
+      "findingClass": "model-attraction-unowned",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 7 cross-runtime vocabulary question; the TOML pin vs the three silences is the parity gap; system-deep-loop plus the runner",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F013",
+      "_conflict_id": "F013--b7ae74d9f3e1",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F013",
+          "peerId": "F013--e9fe376471a8",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F013",
+          "peerId": "F013--e077a27355eb",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F034",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Nine catalog references across four verified classes still cite files absent at the cited path",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/validation/mk-deep-loop-guard.md",
+      "line": 77,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "b3cc5ecc56c81e8a0e4159573e91115f590119933af4575d49c45e1e0202d136",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F015; nine sites across four reference classes re-located at their live lines"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F010--d7226379ebaa",
+      "severity": "P2",
+      "title": "Permission deny-half translates three ways: runtime-enforced, prose-remembered, silent",
+      "file": ".opencode/agents/deep-review.md",
+      "line": null,
+      "description": "allow-to-present / deny-to-absent translation verified 12/12 (context = Read,Grep,Glob in .claude and read,grep,find,ls in .pi; prompt-improver likewise; review keeps Bash not Write/Edit); the deny enforcement differs: .opencode/agents/deep-review.md:6-17 denies task/webfetch/patch/chrome_devtools at the runtime layer (the mechanism .claude/agents/code.md:40 itself documents); .claude mirrors carry instructional prose reminders (deep-review.md:80, deep-improvement.md:21); .pi mirrors carry no prose trail — the spec hint that permission mappings drop to comments is confirmed at .claude/agents/code.md:40",
+      "findingClass": "permission-deny-translation-dialects",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 7 permission-mapping question, the exact spec wording (spec.md Angle 7; strategy section 13); the 48-block matrix backs it",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F010",
+      "_conflict_id": "F010--d7226379ebaa",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F010",
+          "peerId": "F010--933be0113e5b",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F010",
+          "peerId": "F010--d3d1862f9e6c",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F022",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Registry/router version fields match neither their hub release nor each other in 2 of 3 hubs, and sk-code's paired value lags its release",
+      "file": ".opencode/skills/system-deep-loop/mode-registry.json",
+      "line": 3,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "6549bad3f5e0a0144edb786faefb87c218e3512a309251d634fa1dd8466f334e",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; expands wave-one F009 across the registry/router/ROUTER.md family"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F002--318fe9112dd0",
+      "severity": "P2",
+      "title": "research-confirm omits 18 steps of its own auto (55 of 73), functional ones included, while both research variants render the same prompt pack",
+      "file": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "line": null,
+      "description": "step-key diff: apply_divergent_pivot_result, compose_save_payload, detect_resource_map, emit_min_iterations_guard_pass, enrich_strategy_resource_map, ideas_backlog_lifecycle, init_complete, marker_scan, refresh_lineage_context, rejected_pattern_cache, run_now_check, run_now_restore_check, telemetry_heartbeat_progress/started/terminal, validate_post_synthesis_spec_doc, validate_preinit_spec_doc; functional consequences: no in-workflow derivation for its own :353-354/:369 resource-map tokens, no completion marker, no marker_scan/compose_save_payload, no spec-doc gates, no heartbeat, no run_now; both variants render the SAME prompt pack (confirm:978-979 = auto:1087-1088, same template_path + prompt-pack.ts#renderPromptPack); research-auto's minIterations warning pair :663/:666 has no confirm-side counterpart beyond the :561 convergenceMode warning, so its thin :369 interacts with a needed key silently; no in-YAML rationale marks any of the 18",
+      "findingClass": "confirm-variant-step-omissions",
+      "deltaStatus": "active",
+      "scopeProof": "the omission census computed from this session's step-key extraction; the review-pair precedent (the recorded 12-omission F008) shows the divergence-becomes-defect mechanism via the same rendered pack",
+      "affectedSurfaceHints": [
+        "deep-research-confirm"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--318fe9112dd0",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--4b34311746c8",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--d70679041eb0",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F005--3b743e6487c3",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Retired families still present in hub keyword block and graph-metadata discovery terms",
+      "file": ".opencode/skills/system-deep-loop/graph-metadata.json",
+      "line": 124,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "f5c5a8be4d3b7f2e6c1d3a5b9e4f8d2c7a6b1e4f5d9c6a3b8e1f4d7c3a9b5e57",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; advisory discovery text, not a control path"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F005",
+      "_conflict_id": "F005--3b743e6487c3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--0d911a71808d",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--23647bcbc10e",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F016--dc496693b31a",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Runtime catalog prose claims 55 entries while four independent counts all give 54",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      "line": 19,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef010203040506",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; four agreeing counts against one sentence"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F016",
+      "_conflict_id": "F016--dc496693b31a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F016",
+          "peerId": "F016--4e96e9bd0378",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F016",
+          "peerId": "F016--31f78550f0b8",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F035",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Runtime catalog still advertises fifty-five entries where headings, links and disk all give fifty-four",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      "line": 19,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "2c10be393f2701aee318ee08c0f04308bd71fdc89288ab95249f16dd73025d50",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Re-verification of wave-one F016; three independent counts plus the category table all give 54"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F003--8113e7b4e681",
+      "severity": "P2",
+      "title": "Same claim_adjudication event persisted through two mechanisms with different shapes; scanner contract names only the flat-row shape",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "auto.yaml:1938,1954 write the ledger-stem event pushed via the gateway shell loop at 1539-1540; confirm.yaml:1270,1276 write flat legacy rows via inline append_to_jsonl; the gate scanner contract auto.yaml:560 = confirm.yaml:513 scans state.jsonl for the most recent claim_adjudication event; whether the gateway projection of the stem event carries that event discriminator is unspecified in either YAML",
+      "findingClass": "cross-variant-persistence-mechanism-divergence",
+      "deltaStatus": "active",
+      "scopeProof": "The persistence mechanism of every angle-6 append directive is the angle question; prompt-001:28; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--8113e7b4e681",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--133df358a2e4",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--a31a7ddd2996",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F009--4aacaa28082e",
+      "severity": "P2",
+      "title": "Sampling configuration is .opencode-only; three mirrors substitute either nothing or a different knob",
+      "file": ".opencode/agents/deep-review.md",
+      "line": null,
+      "description": "source fleet tunes temperature per agent (deep-review.md:5 = 0.1; debug.md:5, deep-improvement.md:5, design.md:5 = 0.2); no .claude or .pi mirror carries a temperature key (census, 24 files); .codex/agents/deep-review.toml:8 = model_reasoning_effort high, a different knob; dispatched routes pass model/effort flags explicitly so the drift surface is the manual invocation route",
+      "findingClass": "sampling-config-translation-loss",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 7 = the agent trees and their mirrors (strategy section 13 pointer); all four trees inside the sanctioned unless-clause crossing",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F009",
+      "_conflict_id": "F009--4aacaa28082e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F009",
+          "peerId": "F009--3e43167d4c5c",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F009",
+          "peerId": "F009--756feecdbdd5",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F001--f36be81f5a90",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Seven hub routing artifacts carry six disagreeing version values, two with no version key",
+      "file": ".opencode/skills/system-deep-loop/SKILL.md",
+      "line": 3,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "b1e1c4da0f9d3b7a6e8c2f4a1b5d7e9c3a6f8b2d4e1c7a9f5b3d8e6c2a4f7b19",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; sibling-hub control makes this a hub-local defect"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--f36be81f5a90",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--fbb4a7f5a9e2",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--5d53f1d57c43",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F006--c13aa1bbc795",
+      "severity": "P2",
+      "title": "Severity-scale vocabulary mismatch: target spec promises P0 to P3, every governing contract is 3-tier P0/P1/P2",
+      "file": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/spec.md",
+      "line": null,
+      "description": "spec.md:83 rates findings P0 to P3; spec.md:135 (REQ-003) repeats it; review-core.md:32-34 defines exactly P0, P1, P2 and :95 constrains severity to One of P0, P1, P2; the state record findingsSummary/findingsNew admit only P0/P1/P2 keys so a spec-P3 rating is unrepresentable in loop records",
+      "findingClass": "severity-scale-vocabulary-mismatch",
+      "deltaStatus": "active",
+      "scopeProof": "Binds the reviewed target spec (read-only) against the sk-code severity contract; both inside the four-tree blast radius (system-deep-loop, sk-code)",
+      "affectedSurfaceHints": [
+        "system-deep-loop",
+        "sk-code"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F006",
+      "_conflict_id": "F006--c13aa1bbc795",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F006",
+          "peerId": "F006--c54e3bddd5b5",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F006",
+          "peerId": "F006--6e3cd1781110",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F002--d70679041eb0",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "SKILL.md states two improvement-lane counts and a six-mode roster no artifact supports",
+      "file": ".opencode/skills/system-deep-loop/SKILL.md",
+      "line": 161,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "c2f2d5eb1a0e4c8b3f7a9d2e6b1c5a8f4d3e7b9c1a6f2d8e4b7c3a9f5d1e6b24",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; five artifacts agree against one self-contradicting document"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--d70679041eb0",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--4b34311746c8",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--318fe9112dd0",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F005--0d911a71808d",
+      "severity": "P2",
+      "title": "Stale provenance reference: auto:454 cites deep-review.md:71 which now renders the table separator",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "auto.yaml:454 cites deep-review.md:71 for the --no-resource-map flag; review.md:71 is the rule |------|-------|--------| — the flag row moved",
+      "findingClass": "stale-provenance-line-reference",
+      "deltaStatus": "active",
+      "scopeProof": "Angle-6 presentation and provenance crosscheck; prompt-001:28; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F005",
+      "_conflict_id": "F005--0d911a71808d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--3b743e6487c3",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--23647bcbc10e",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P1-005",
+      "severity": "P1",
+      "title": "Summary P1 finding 5",
+      "file": null,
+      "line": null,
+      "description": "Angle 20 - what wave one surfaced that angles 11-20 do not cover (spec.md:107; the lane's FINAL iteration - the covenant stop = THIS iteration completing, stopReason: maxIterationsReached at the synthesis; the recorded stabilization pair 4-5 completes here, the evidence re-verification = the fix-completeness replay, nothing fixed in-review). Duties: (1) BOTH wave-one reports + BOTH findings-registries read - the orphan dispositions = ACTIVE, untouched by their own lanes: this iteration = the FIRST second-look; (2) the 7 no-angle-covers orphans (w1-glm F005/F014/F015/F016 + w1-ds F005/F006/F010) EXAMINED 7/7 at their TODAY-loci - STILL-TRUE 7/7 (0 refuted; 1 DOUBLY-STALE: the :454 pointer's target drifted THROUGH two states, now rendering the verify-cross-references bullet; 1 REFINED: F014's 3->2 approval compression = documented-AT-BIRTH in the :551-553 JSDoc, confidence 0.65->0.85, the claim's substance stands, its undocumented-sting halves; 1 ACCRUED: F015's dated-allowlist rot 30->34 days MEASURED, the :312 self-annotation + the :307-331 roster, the validation protocol STILL-ABSENT - the rot accrued on schedule, unwatched; 1 RECOUNTED: F016's manual-parity count 1->2 - this lane's 72/72+diff census = the second, the fixture STILL-ABSENT; 2 VERBATIM: ds-F005's retired vocabulary at graph-metadata:113/:124 + the SKILL:10 5-term block, ds-F010's leaf-manifest:68 with the ROUTER at ZERO; 1 CODA: ds-F006's :58 scoring-class membership line READ - the verdict STILL-TRUE, the 2 aliases unscored); (3) the whole-system, three additions: F016 - the TWO-AUTHORITY pattern = the packet's governance disease (FOUR measured instances: the 25:3 canonicality, the pack:69-vs-reducer:1847 verdict, the 4-vs-11-surface severity, the receipts-privilege; ZERO reconciled; ONE enforced consequence = the parent's merge; the supervision = TRUST + POST-HOC-MERGE; the uniform 3-step repair-shape = ONE remediation workstream, 4 rows) + F017 - the coverage gap (the 7 = the BETWEEN-ANGLES class by DESIGN; the REQ-003's bind-or-refute = the ONLY remaining disposition; the merge = the LAST chance; the 6+1 gap-classes = the NEXT wave's angle-design SEEDS - the PROVEN mechanism: this lane's 16-20 = all born of wave1's deferrals) + F018 - the attestation asymmetry (the merge trusts BOTH dispatch-grades equally; the trust-model = executor-DEPENDENT and UNDOCUMENTED; the self-attestation stack = THREE unaudited layers; the 34-day-allowlist = the proof-the-pattern-bites). Dimension coverage CLOSES 4/4 (maintainability's primary pass = THIS).",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-010",
+      "severity": "P2",
+      "title": "Summary P2 finding 10",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-011",
+      "severity": "P2",
+      "title": "Summary P2 finding 11",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-012",
+      "severity": "P2",
+      "title": "Summary P2 finding 12",
+      "file": null,
+      "line": null,
+      "description": "Angle 20 - what wave one surfaced that angles 11-20 do not cover (spec.md:107; the lane's FINAL iteration - the covenant stop = THIS iteration completing, stopReason: maxIterationsReached at the synthesis; the recorded stabilization pair 4-5 completes here, the evidence re-verification = the fix-completeness replay, nothing fixed in-review). Duties: (1) BOTH wave-one reports + BOTH findings-registries read - the orphan dispositions = ACTIVE, untouched by their own lanes: this iteration = the FIRST second-look; (2) the 7 no-angle-covers orphans (w1-glm F005/F014/F015/F016 + w1-ds F005/F006/F010) EXAMINED 7/7 at their TODAY-loci - STILL-TRUE 7/7 (0 refuted; 1 DOUBLY-STALE: the :454 pointer's target drifted THROUGH two states, now rendering the verify-cross-references bullet; 1 REFINED: F014's 3->2 approval compression = documented-AT-BIRTH in the :551-553 JSDoc, confidence 0.65->0.85, the claim's substance stands, its undocumented-sting halves; 1 ACCRUED: F015's dated-allowlist rot 30->34 days MEASURED, the :312 self-annotation + the :307-331 roster, the validation protocol STILL-ABSENT - the rot accrued on schedule, unwatched; 1 RECOUNTED: F016's manual-parity count 1->2 - this lane's 72/72+diff census = the second, the fixture STILL-ABSENT; 2 VERBATIM: ds-F005's retired vocabulary at graph-metadata:113/:124 + the SKILL:10 5-term block, ds-F010's leaf-manifest:68 with the ROUTER at ZERO; 1 CODA: ds-F006's :58 scoring-class membership line READ - the verdict STILL-TRUE, the 2 aliases unscored); (3) the whole-system, three additions: F016 - the TWO-AUTHORITY pattern = the packet's governance disease (FOUR measured instances: the 25:3 canonicality, the pack:69-vs-reducer:1847 verdict, the 4-vs-11-surface severity, the receipts-privilege; ZERO reconciled; ONE enforced consequence = the parent's merge; the supervision = TRUST + POST-HOC-MERGE; the uniform 3-step repair-shape = ONE remediation workstream, 4 rows) + F017 - the coverage gap (the 7 = the BETWEEN-ANGLES class by DESIGN; the REQ-003's bind-or-refute = the ONLY remaining disposition; the merge = the LAST chance; the 6+1 gap-classes = the NEXT wave's angle-design SEEDS - the PROVEN mechanism: this lane's 16-20 = all born of wave1's deferrals) + F018 - the attestation asymmetry (the merge trusts BOTH dispatch-grades equally; the trust-model = executor-DEPENDENT and UNDOCUMENTED; the self-attestation stack = THREE unaudited layers; the 34-day-allowlist = the proof-the-pattern-bites). Dimension coverage CLOSES 4/4 (maintainability's primary pass = THIS).",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-013",
+      "severity": "P2",
+      "title": "Summary P2 finding 13",
+      "file": null,
+      "line": null,
+      "description": "Angle 20 - what wave one surfaced that angles 11-20 do not cover (spec.md:107; the lane's FINAL iteration - the covenant stop = THIS iteration completing, stopReason: maxIterationsReached at the synthesis; the recorded stabilization pair 4-5 completes here, the evidence re-verification = the fix-completeness replay, nothing fixed in-review). Duties: (1) BOTH wave-one reports + BOTH findings-registries read - the orphan dispositions = ACTIVE, untouched by their own lanes: this iteration = the FIRST second-look; (2) the 7 no-angle-covers orphans (w1-glm F005/F014/F015/F016 + w1-ds F005/F006/F010) EXAMINED 7/7 at their TODAY-loci - STILL-TRUE 7/7 (0 refuted; 1 DOUBLY-STALE: the :454 pointer's target drifted THROUGH two states, now rendering the verify-cross-references bullet; 1 REFINED: F014's 3->2 approval compression = documented-AT-BIRTH in the :551-553 JSDoc, confidence 0.65->0.85, the claim's substance stands, its undocumented-sting halves; 1 ACCRUED: F015's dated-allowlist rot 30->34 days MEASURED, the :312 self-annotation + the :307-331 roster, the validation protocol STILL-ABSENT - the rot accrued on schedule, unwatched; 1 RECOUNTED: F016's manual-parity count 1->2 - this lane's 72/72+diff census = the second, the fixture STILL-ABSENT; 2 VERBATIM: ds-F005's retired vocabulary at graph-metadata:113/:124 + the SKILL:10 5-term block, ds-F010's leaf-manifest:68 with the ROUTER at ZERO; 1 CODA: ds-F006's :58 scoring-class membership line READ - the verdict STILL-TRUE, the 2 aliases unscored); (3) the whole-system, three additions: F016 - the TWO-AUTHORITY pattern = the packet's governance disease (FOUR measured instances: the 25:3 canonicality, the pack:69-vs-reducer:1847 verdict, the 4-vs-11-surface severity, the receipts-privilege; ZERO reconciled; ONE enforced consequence = the parent's merge; the supervision = TRUST + POST-HOC-MERGE; the uniform 3-step repair-shape = ONE remediation workstream, 4 rows) + F017 - the coverage gap (the 7 = the BETWEEN-ANGLES class by DESIGN; the REQ-003's bind-or-refute = the ONLY remaining disposition; the merge = the LAST chance; the 6+1 gap-classes = the NEXT wave's angle-design SEEDS - the PROVEN mechanism: this lane's 16-20 = all born of wave1's deferrals) + F018 - the attestation asymmetry (the merge trusts BOTH dispatch-grades equally; the trust-model = executor-DEPENDENT and UNDOCUMENTED; the self-attestation stack = THREE unaudited layers; the 34-day-allowlist = the proof-the-pattern-bites). Dimension coverage CLOSES 4/4 (maintainability's primary pass = THIS).",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-002",
+      "severity": "P2",
+      "title": "Summary P2 finding 2",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "Angle 19 — the containment promise chain and the severity scale: the promise traced as a SEVEN-stage relay (the promise-comments fail-closed, the inline code advises, the verifier checks the verdict's FORMAT only, the lane self-reports, the reducer labels its compute PROVISIONAL, the runner preserves, and the ONE hard consequence = the strongest-restriction at the PARENT's merge), the receipts-privilege (INTENT/COMPLETION receipts + the recursion guard + the env allowlist = the codex-branch ONLY, 17+17-vs-0+0+0+0+1; this lane = the receiptless-command-level precedent, RUNNING), the 9+6 non-codex hub-mentions adjudicated COMPARATIVE (the residue = the promise-text without the non-codex enforcer), the TWO unreconciled verdict authorities (the pack:69's downstream-automation parses the SELF-REPORTED line; the reducer:1847 computes + :1896 prints PROVISIONAL — the same 2-authority disease as F010's 23:3), and the severity scale: FOUR promise-sites (goal:47, goal:57-D3, spec:83, spec:138-REQ-003 — the +3-shifted, HARDENED-into-a-requirement, wave1-F006's fix STILL unapplied) against the 11-surface ALL-3-TIER machinery, the spec:83 internal 4-symbol/3-meaning self-citation, the undocumented P3-to-P2 collapse, and the ruling: 3-TIER AUTHORITATIVE",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-007",
+      "severity": "P2",
+      "title": "Summary P2 finding 7",
+      "file": null,
+      "line": null,
+      "description": "Angle 17 — ledger stem producers and the cutover cliff: the both-modes 61-spelling x 10-surface producer census (27/31 review-canonical + 28-or-29/29 research authorless; 56/61 = 92% spoken by no mechanical writer) with the reverse producer-coverage matrix, the located authority-flip write side (shadow-projection-store.ts, sole watermark writer, via the gateway's tsx child), the emergent triple-split enforcement (receipt-gated not-enforced, the 1/0/1/0 + runner-never invocation matrix, both source-comment-only escape switches, the unwired inspection toolchain), the projection's registration-bounded ceiling (consumption arms + EMIT_ITERATION_ROWS currently true), the MEASURED exit-0 not-enforced pass of this lane's iteration-1 record, and three carried-question closures",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-008",
+      "severity": "P2",
+      "title": "Summary P2 finding 8",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-009",
+      "severity": "P2",
+      "title": "Summary P2 finding 9",
+      "file": null,
+      "line": null,
+      "description": "Angle 18 — agent mirror dialects: the 12-agent x 6-tree declaration matrix (72/72 presence; the .codex column read at FULL depth — 12 TOMLs, ~6,400 lines of developer_instructions; .cursor ≡ .claude byte-identical 3x diff; .devin = 12x1 symlink to .claude), the two-tiara governance finding (SYNC.md: .opencode-canonical vs the checker's CANONICAL_DIR=.claude; 23:3 canonicality vote; the 215B uncompared .opencode-claude seam, already diverged), the deny-half's FIVE treatments (the .pi # Unmapped mechanism PROVEN 5/5: allowed-unmappable=commented, denied=omitted, both exceptions mechanized; the .codex sandbox_mode mechanism; mtimes prove the comments predate wave1's read), the .pi consumption contract (generated, unconsumed-by-parser, INLINED per dispatch — wave1's body-order question RESOLVED), the graded sampling ladder (the ai-council prose residue: the key dropped, the sentence kept), and the wave1-F012 budget finding insider-confirmed from this lane's own gate runs",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ]
+    },
+    {
+      "findingId": "F021",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "system-deep-loop description.json advertises the previous release against SKILL.md and both sibling hubs",
+      "file": ".opencode/skills/system-deep-loop/description.json",
+      "line": 4,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "210ea7c13beaeae0d92cc6608ba85711260d2ea14d30ecdefbe6b989420f4766",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; changelog-authority test isolates the identity-pair break"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F012--24eabbbd6722",
+      "severity": "P2",
+      "title": "The .pi consumption contract resolves wave1's body-order question: .pi/agents = generated compiler output, the pi harness parses NOTHING, the dispatch INLINES the persona, and the 25-50KB persona rides every pi dispatch",
+      "file": ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      "line": null,
+      "description": "three walls: (1) GENERATION — .pi/SYNC.md: the .pi/agents trees are generated, compiler output, never hand-edit; the generator sync-agents-pi.cjs transforms the canonical .opencode/agents into Pi's dialect (a .pi/agents/*.md never byte-matches either parent); the recorded live drift mode: a retired command's stale prompt; (2) NO PARSER — the pi harness's own docs: 35 files, 5 mentioning agents (json/development/skills/settings/security, none an agents-parsing contract), the pi README: ZERO .pi/agents references, and the dispatch contract's own words: Core Pi has no native persona surface on pi -p; (3) CONSUMPTION-BY-INLINE — SKILL.md:207: INLINE the persona block into the payload (the child cannot resolve agent paths by reference); compose every dispatch as {resolved agent persona + task prompt}; a persona-less leaf runs as a generic assistant dropping its tool-scope, verification gates, and output contract; the persona source: the ACTIVE runtime's agent directory (AGENTS.md section 9; never hardcode a runtime). THEREFORE: (a) the .pi bodies' section ORDER is unconstrained by any parser — the only order-semantics is prompt-attention (the persona precedes the task); the actual order = the .opencode serialization, mechanically inherited — RESOLVED: no order contract exists to violate; (b) the prompt-bloat is STRUCTURAL: .pi/ai-council.md = 50,476B, .pi/review.md = 25,599B, inlined WHOLE per dispatch (noted, unmeasured — no dispatch-log evidence: telemetry); (c) the .pi-vs-.opencode size delta (review: 127B) = the sanctioned transformation delta, trackable by --check",
+      "findingClass": "pi-generated-unparsed-inlined-persona-order-resolved",
+      "deltaStatus": "active",
+      "scopeProof": "the three walls read at their loci (SYNC.md's generation+canonicality clauses, the 35-doc pi inventory + the README, SKILL:207); the order question closed against the consumption mechanism rather than assumed; the 50KB/25.6KB body sizes measured",
+      "affectedSurfaceHints": [
+        ".pi/agents/*.md (the 12 generated bodies)",
+        "sync-agents-pi.cjs",
+        "the cli-pi dispatch contract (SKILL:207)",
+        "AGENTS.md section 9 persona-resolution",
+        "every pi dispatch of the 12 personas"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F012",
+      "_conflict_id": "F012--24eabbbd6722",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F012",
+          "peerId": "F012--83687f3cf10a",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F012",
+          "peerId": "F012--bff1a0367e11",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F006--c54e3bddd5b5",
+      "severity": "P2",
+      "title": "The 61-spelling registered ledger vocabulary is 92% authorless: 27 of 31 review-canonical stems AND 28-or-29 of 29 research spellings have no mechanical producer, the reference prose never names the vocabulary, and the unregistered-variant framing needs one clarification",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts",
+      "line": null,
+      "description": "10-surface census (4 variant YAMLs, fanout-run.cjs, append-mode-event.cjs, BOTH reduce-state.cjs, verify-iteration.cjs) over 61 dotted spellings extracted from BOTH schemas: spoken = deep_review.claim_adjudication (2, review-auto:1938/:1954), deep_review.migration (2, review-auto+confirm), deep_review.iteration_error (1, review-auto), deep_review.recovery_baseline (1, review-auto), deep_research.run_now_restored (1, research-auto); 56 of 61 (92%) spoken by NO mechanical writer; the gateway, both reducers, verifier and runner contribute ZERO dotted literals (the gateway is vocabulary-generic, imports the schemas :112-157); review-canonical: 27 of 31 authorless, the 32nd spelling (claim_adjudication, :452, flat required fields ['runId','sessionId'] at :548) reading as the legacy-alias key — coherent with wave1's F019/F020 wording and the research schema's own legacy-compatibility.ts — so what nothing speaks canonically is claim_adjudication_recorded (:240, :510, :885); the reverse matrix: only review-auto (4 stems), review-confirm (1: migration), research-auto (1) speak ANY registered vocabulary; references/state/*.md (4 docs): zero dotted-stem mentions",
+      "findingClass": "registry-authorlessness-both-modes",
+      "deltaStatus": "active",
+      "scopeProof": "both directions of the angle-17 census executed for both modes (61 spellings x 10 surfaces + the 5-stem reverse matrix); the 32-spelling/29-spelling universes extracted from the schemas themselves; the reference-prose check closes the documentation half; boundary: the :452-object role and the research canonical/legacy split at 0.8 confidence (dead ends 1-2)",
+      "affectedSurfaceHints": [
+        "deep-review-ledger-schema (all registrations)",
+        "deep-research-ledger-schema",
+        "deep-review-projections-contract consumption arms",
+        "the four variants' state_write_protocol",
+        "references/state/*.md (zero vocabulary)"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F006",
+      "_conflict_id": "F006--c54e3bddd5b5",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F006",
+          "peerId": "F006--c13aa1bbc795",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F006",
+          "peerId": "F006--6e3cd1781110",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F018--85dca5c201d9",
+      "severity": "P2",
+      "title": "The attestation asymmetry: the merge trusts BOTH dispatch-grades equally while the trust-model is executor-DEPENDENT and undocumented; the self-attestation stack = THREE unaudited layers, and the 34-day-allowlist-rot = its proof-the-pattern-bites",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "(1) the GRADES: the-CODEX-dispatch = the-DOUBLE-ATTESTED (the-child's-own-rows + the-COMMAND-LEVEL-INTENT/COMPLETION-receipts + the-CODEX_SESSION_ID-GUARD + the-ENV-ALLOWLIST + the---sandbox-OS-CONFINEMENT-FORWARDED (executor-config.ts:136: 'cli-codex': true, // --sandbox is forwarded straight to codex's own OS-level confinement)); the-NATIVE-PI = the-SINGLE (the-child's-rows + the-RUNNER'S-ENVELOPE: the-invocation-metadata + the-audit/effect-LEDGER-frames = the-LANE-LEVEL, NOT-the-COMMAND-LEVEL; THIS-LANE = the-3x-RECEIPTLESS-AT-COMMAND-LEVEL, the-RUNNING-PRECEDENT); the-w1-DS (the-deepseek-CLI) + the-w1-GLM (the-glm-5.3-flash) = the-UNDOCUMENTED-GRADES; (2) the-MERGE = the-TRUSTS-BOTH-EQUALLY: fanout-merge.cjs:751-823 = the-STRONGEST-RESTRICTION-ON-THE-FINDINGS'-SEVERITY, the-ATTESTATION-GRADE = the-UNWEIGHTED (NO-TRUST-TIER-IN-THE-ALGORITHM; the :781 = the-STATUS-ONLY-guard = the-ONLY-check); (3) the-SELF-ATTESTATION-STACK = the-3-UNAUDITED-LAYERS-THE-MERGE-TRUSTS: (a) the-CHILD'S-OWN-FINDING-ROWS (the :1847-RECOMPUTE = the-INPUT = the-CHILD'S-CLAIMS: the-COMPUTE = the-ARITHMETIC-OVER-THE-CLAIMS, the-CLAIMS = the-UNAUDITED), (b) the-UNDATED-VALIDATION (the-ALLOWLIST: the :312-SELF-ANNOTATION + the :307-331-DATED-COMMENTS = the-LAST-LIVE-CHECK = 2026-08-12 = the-34-DAYS-MEASURED, the-ZERO-PROTOCOL), (c) the-TWICE-MANUAL-PARITY (the-w1's + the-MINE = the-2-POINT-IN-TIMES, the-FIXTURE = the-ABSENT); (4) the-SECURITY-READ: the-NON-REPUDIATION = the-GRADED (the-codex = the-UN-REPUDIABLE-AT-COMMAND-LEVEL; the-pi = the-REPUDIABLE-'the-child-did-WHAT?') + the-ROT = the-SAME-DISEASE (the-SELF-ASSERTION, the-UNVERIFIED, the-ACCRUING) - the-4-LANE-WAVE'S-OUTPUT = the-TRUSTED-BY-THE-F016-PATTERN (trust + post-hoc-merge), the-ATTESTATION = the-5TH-EXAMPLE. FULL-EVIDENCE: iterations/iteration-005.md -> F018",
+      "findingClass": "attestation-grades-undocumented-merge-trust-equal",
+      "deltaStatus": "active",
+      "scopeProof": "the-GRADES = the-2-IMPLEMENTATIONS'-DIFF (the :1554-1558-branch vs the-RUNNER'S-frames) + the :136-137-CREDIT-MAP; the-34d = the-MEASURED-ACCRUAL (the-w1's-30 -> the-TODAY-34, the-SAME-LOCUS); the-3-LAYERS = the-THIS-LANE'S-OWN-ARTIFACTS (the-INSIDER: the-3x-RECEIPTLESS-RUNNING, the-:1847-Derivable-5x); the-MERGE-ALGORITHM = the-READ (:751-823, the-NO-TRUST-TIER); the-4-LANE-IDENTITIES = the-UNDOCUMENTED (the-NEGATIVE-CENSUS: NO-GRADE-PROSE-ANYWHERE)",
+      "affectedSurfaceHints": [
+        "the AUTO-YAMLs' codex-branch-receipt-machinery (:1554-1558)",
+        "the RUNNER'S-lane-level-LEDGERS (the INTENT/COMPLETION-frames)",
+        "the invocation-metadata.json (the-RECEIPT-SHAPED, LANE-LEVEL)",
+        "the MERGE'S-TRUST-ALGORITHM (fanout-merge.cjs:751-823)",
+        "the EXECUTOR-CONFIG-ALLOWLIST (:307-331) + the :312-ANNOTATION",
+        "the it4-F016-FIXTURE-ABSENCE",
+        "the 4-LANE-WAVE'S-EXECUTOR-IDENTITIES (the-UNDOCUMENTED-GRADES)"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F018",
+      "_conflict_id": "F018--85dca5c201d9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F018",
+          "peerId": "F018--c3a1995c08a2",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F018",
+          "peerId": "F018--85b9b44da885",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F019--ddfde86f6860",
+      "severity": "P1",
+      "title": "The confirm variant persists its adjudication as a flat legacy record the review-mode gateway refuses: the shared protocol's own mandate fails mechanically",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "the two variants persist the SAME event in two dialects — auto:1938/:1954 as the dotted stem deep_review.claim_adjudication (the form the gateway's stem path admits, append-mode-event.cjs:369-377) versus confirm:1276/:1282 as a flat row {type:event, event:claim_adjudication, ...} with no stem, no event_type, no envelope; the gateway's legacy-record acceptance is gated to deep-research ONLY (append-mode-event.cjs:398-408, its own comment: Non-research modes never enter here, so they keep the original unrecognized-format rejection) and everything else throws at :445; BOTH variants declare state_write_protocol.applies_to: every append_to_jsonl and append_jsonl directive in this workflow (confirm:99, auto:100) while the invocation census wires the gateway 12x in auto against 2x in confirm (iteration-4 census), the adjudication among confirm's unwired; empirically both wave-one lanes wrote flat rows directly — the operative dialect, unadmitted by the review-mode gateway's acceptance",
+      "findingClass": "gateway-legacy-acceptance-variant-split",
+      "deltaStatus": "active",
+      "scopeProof": "the review-variant pair only, this lane's bound scope; the research variant holds the legacy branch (:398-408) and is the exemption's beneficiary, not covered; seven cited loci across three files plus the four-YAML/runner producer census; terminates F003's mechanism-split question (cross-variant-persistence-mechanism-divergence) — recorded as linkage, not refinement; the registry transition belongs to the synthesis/parent binding",
+      "affectedSurfaceHints": [
+        "deep-review confirm-variant runs",
+        "review-mode append-gateway acceptance (append-mode-event.cjs)",
+        "the state_write_protocol clauses of both review variants"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F019",
+      "_conflict_id": "F019--ddfde86f6860",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F019",
+          "peerId": "F019--ba9761c12c78",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F017--4dd8e5373858",
+      "severity": "P2",
+      "title": "The containment promise diverges at three story levels: the comments promise, the inline code advises, the runner preserves",
+      "file": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": null,
+      "description": "level 1: the YAML comments, copied x16 per auto variant across four trees, promise revert + containment_violation event + fail the iteration fail-closed (deep-review-auto.yaml:1515-1519); level 2: the YAML inline code at those sites ships console.error advisory plus process.exit(dispatchExit) (:1528-1538); level 3: the runner, the actual enforcement surface, defaults containmentMode to preserve (fanout-run.cjs:2984, the chain CLI override then parsed config then the literal), which detects, records, and quarantines a copy under the lineage (write-containment.ts:19, :318) but does not revert and does not fail; restore is the opt-in (:2452 commentary) and the second-writer latch locks preserve for good (:3424); the remediation contract (unrecoverable as the one outcome that is not a remedy :73-83, the quarantine-time git-blob hash :275, recoveryHint :256-266) describes machinery the default mode does not exercise; the review and research variants are copy-identical at the census (16/4/4/4) so the drift risk is inter-surface, not inter-loop",
+      "findingClass": "containment-promise-chain-divergence",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 9 duplicated-rules question, the spec's own example (the inline containment blocks beside the runner's); all five surfaces census-counted; extends F004 (the comment-promise) to the architecture level with the ownership question newly identified — recorded as new, not a refinement",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F017",
+      "_conflict_id": "F017--4dd8e5373858",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F017",
+          "peerId": "F017--c775b479738b",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F017",
+          "peerId": "F017--543d53570b22",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F014--40f251b98d00",
+      "severity": "P1",
+      "title": "The containment promise is a seven-stage relay held by convention: comments promise fail-closed, the inline code advises, the verifier checks only the verdict's FORMAT, the lane self-reports, the reducer labels its own compute PROVISIONAL, the runner preserves, and the ONE hard consequence lives at the PARENT's merge — while the receipt/recursion/allowlist machinery is codex-branch-ONLY and the pack's downstream-automation clause gives the verdict TWO unreconciled authorities",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "the relay: (1) PROMISE — review-auto:1446 Fail closed; :1556 Fails closed when the codex binary is absent, never degrades to native; the pack:148 exit 2 = refused, STOP, never fall back to a direct write; the pack:69 never relabel, the downstream automation parses this final line via exact string match, do not vary the format; the 2b comment Fail the iteration loudly; (2) ADVISE — verify-iteration.cjs:286-292 the 2c advisory-only-never-fail; checkLedgerBacking :200-201 not-enforced until ledger authority; the (028) failure-is-non-fatal staging; review-auto:823 the pivot failure binds rejected then PROCEEDS; (3) FORMAT-ONLY — :178-183 the verdictPattern, exactly one line, the FINAL: the SHAPE never the truth (a PASS over three active P1s passes); (4) SELF-REPORT — the narrative's final line = the verdict's only in-iteration carrier (this lane: 3x self-issued CONDITIONAL, each reducer-derivable); (5) RECOMPUTE — reduce-state.cjs:1847-1852 the ternary from the FINDINGS, :1896 - Provisional Verdict, :2050 the v2 caveat; (6) RUNNER-PRESERVES — zero verify-iteration references; the acceptance = records+disk+cap+stopReason; :1436 = another PROMISE; (7) THE ONE HARD — fanout-merge.cjs:751-823 the strongest-restriction, any lineage active P0 = merged FAIL, SEVERITY_RANK {P0:3,P1:2,P2:1}, the :781 empty-PASS guard — in the PARENT's step. The receipts-privilege: the INTENT/COMPLETION receipts + CODEX_SESSION_ID + the CODEX_/OPENAI_/AZURE_OPENAI_ allowlist = the AUTO YAMLs' cli-codex branch ONLY (:1554-1555, 17+17 mentions) vs the confirms+commands+SKILL 0+0+0+0+1; the runner-level receipts = UNIVERSAL (the audit/effect-ledger intent+completion+hash-frames) but the COMMAND-level = codex-branch-only — this lane (native-pi) produced NO command-level receipt; its invocation-metadata = receipt-SHAPED, lane-level, runner-authored. The residue: the 9+6 hub-mentions = COMPARATIVE prose (sibling-roster, provider-roster, keyword-weights, the ~/.codex/state/lock contrast, the symlink/canonical/never-drift sentences, the PID-kill family) — NONE copies the receipt machinery; the residue that IS = the PROMISE-text circulating without its non-codex ENFORCER. The two verdict authorities: the pack:69's downstream (synthesis phase, CI gate parser — NOT LOCATED) parses the SELF-REPORTED line; the reducer:1847 computes from the findings and :1896 prints PROVISIONAL; the merge enforces the COMPUTED; a divergence = recorded-not-repaired (the state-log keeps the false self-report, the registry carries the reducer's)",
+      "findingClass": "seven-stage-containment-relay-two-verdict-authorities",
+      "deltaStatus": "active",
+      "scopeProof": "all seven stages cited at their code/doc loci; the receipt-coverage census 17+17-vs-0+0+0+0+1; the 15 comparative-loci adjudication; the insider evidence: this lane's 3 dispatched, receiptless-at-the-command-level, gate-passed-not-enforced, self-reported-then-derivable iterations = the relay RUNNING end to end; the 3-lane latent-clean record (5/5 published verdicts convention-held)",
+      "affectedSurfaceHints": [
+        "the pack's verdict/gateway clauses",
+        "verify-iteration.cjs 2b/2c/verdictPattern",
+        "reduce-state.cjs :1847-1852/:1896",
+        "the runner's acceptance+prompt",
+        "fanout-merge.cjs :751-823",
+        "the AUTO YAMLs' codex-branch receipt machinery",
+        "the 9+6 comparative loci",
+        "this lane's invocation-metadata and 3 self-reported verdicts"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F014",
+      "_conflict_id": "F014--40f251b98d00",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F014",
+          "peerId": "F014--f728d7d1a404",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F014",
+          "peerId": "F014--63b8e0130161",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F017--543d53570b22",
+      "severity": "P2",
+      "title": "The coverage gap: seven wave-one findings have NO wave-two angle by design; seven/seven STILL-TRUE; the REQ-003's bind-or-refute = their ONLY remaining disposition mechanism; the merge = the last chance; the NEXT wave's angle-design inherits the gap-classes as seeds",
+      "file": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/spec.md",
+      "line": null,
+      "description": "(1) the SEVEN (the # The-Orphan-Verdicts, this iteration): the 4-w1-glm (F005-DOUBLY-STALE: :454 -> deep-review.md:71 TODAY renders the verify-cross-references bullet; F014-REFINED: the :551-553 JSDoc = documented-AT-BIRTH, 0.65->0.85; F015-ACCRUED: the rot 30->34-DAYS MEASURED, the :312-annotation + the :307-331-dated-roster, the protocol STILL-ABSENT; F016-RECOUNTED: the MANUAL-count = 2 - w1's + THIS-LANE'S 72/72+diff, the FIXTURE STILL-ABSENT, the doctor's-4-hits + the lifecycle-taxonomy-test = DIFFERENT-parities) + the 3-w1-ds (F005-VERBATIM: graph-metadata:113/:124 + the SKILL:10 5-term-block; F006-THE-CODA: the :58-membership-line READ this iteration, the verdict STILL-TRUE, the 2-aliases unscored; F010-VERBATIM: leaf-manifest:68, the ROUTER = ZERO) - 7/7-STILL-TRUE, 0-REFUTED, 1-REFINED, 1-ACCRUED, 1-RECOUNTED; (2) the DESIGN-GAP: the 10-angles (11-20) = the CENTER-OF-MASS-CHOSEN (variant-drift/ledger/mirror/chain/whole-system), the 7-orphans = the BETWEEN (a provenance-comment, a permission-compression, an allowlist-rot, a parity-fixture, 2-hub-vocabularies, 1-hermes-leaf = NO-ANGLE'S-center) - this iteration = the FIRST-EXAMINATION-ANY; (3) the DISPOSITION-MACHINE: the REQ-003 (spec:138: verified-against-the-tree-AND-BOUND-to-a-parent-phase-OR-REFUTED-with-the-reason) = the ONLY mechanism the packet SHIPS post-lane; the SC-001-merge = the LAST-CHANCE (the 7-ENTER-as-ACTIVE-with-the-2nd-look; the-parent = BIND-or-REFUTE; NO-4th-path); (4) the SEEDS: the 6+1-GAP-CLASSES (the provenance-POINTER-DRIFT; the approval-COMPRESSION-claims; the UNDATED-allowlists; the UNMECHANIZED-parities; the REGISTRY-MINUS-VOCABULARY-sets; the HERMES-lane-unique-refs; + the w1-ds-F013-0.1.*-version-SKEW) = the NEXT-wave's ANGLE-DESIGN-INPUT - the PROVEN-MECHANISM: THIS-LANE'S-16-20 = ALL-BORN-OF-WAVE1'S-DEFERRALS; (5) the SISTER-UNCERTAINTY: the 3-w1-ds-orphans = ADJACENT-the-sister's-11/13/15 (CONCURRENT) - the-SC-001 = the ATTRIBUTION-CONVENTION (this-lane's = the CORROBORATING-SECOND-LOOK). FULL-EVIDENCE: iterations/iteration-005.md # The-Orphan-Verdicts + # The-Coverage-Adjudication",
+      "findingClass": "orphan-coverage-gap-design-intake",
+      "deltaStatus": "active",
+      "scopeProof": "7/7-READ-at-their-TODAY-loci (the 11-Files-Reviewed: the 2-reports + the 2-registries + the 7-loci + the lane's-1-4); the NO-ANGLE-COVERS = the 5x5-adjudication (the Ruled-Out-1); the REQ-003 = the :138-WORDING; the SEEDS = the 6+1-CLASSES-NAMED (the 7th = the cited-F013); the SISTER = the ANGLE-MAP-ONLY (the-INTO-their-iterations = the covenant-NO); the FIRST-EXAMINATION = the-REGISTRIES'-own-ACTIVE-dispositions = the-UNTOUCHED-BY-ANY-ANGLE-UNTIL-NOW",
+      "affectedSurfaceHints": [
+        "the 7-orphan-registry-entries (the 2 wave-one lanes)",
+        "the SC-001-merge (the ADDITIVE-carry + the ATTRIBUTION-convention)",
+        "the REQ-003-verification-pass (the 7-ROWS-FOREMOST)",
+        "the NEXT-wave's spec.md (the 6+1-SEED-CLASSES)",
+        "the sister-lane's angles-11-15 (the COORDINATE-ONLY)"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F017",
+      "_conflict_id": "F017--543d53570b22",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F017",
+          "peerId": "F017--c775b479738b",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F017",
+          "peerId": "F017--4dd8e5373858",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F015--28a9afb0547d",
+      "severity": "P2",
+      "title": "The enforced model allowlists are hand-maintained, dated-comment rosters with no validation-date protocol",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      "line": null,
+      "description": "the cursor allowlist grows by dated additions: Grok 4.6 (2026-08-12), GPT-5.6 Luna Max (2026-08-14), Gemini 3.7 Flash High (2026-08-15) (:303-331); the devin allowlist repeats the pattern (:374-394); the design self-documents its failure mode — the silent resolution to a model outside the allowlist defeats the enforced-allowlist purpose (:312); no validation date, freshness check, or test guards the lists; the newest entry was 30 days old at review time",
+      "findingClass": "allowlist-rotation-unguarded",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 8 flags-and-limits leg: the allowlists are the enforcement edge of the same-flags promise (executor-config.ts:243-264, :303-331, :368-394); in-scope tree",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F015",
+      "_conflict_id": "F015--28a9afb0547d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F015",
+          "peerId": "F015--107df66a82b0",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F015",
+          "peerId": "F015--73a72cb404cd",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F001--5d53f1d57c43",
+      "severity": "P1",
+      "title": "The four variant line-1 config literals are four different record shapes; only review-auto's can agree with its config from line 1",
+      "file": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "line": null,
+      "description": "review-auto:466-467 = the 16-key literal with the full lineage/mode/stopPolicy block plus the agree-from-line-1 invariant; research-auto:368 = 12 keys, no lineage/mode/stopPolicy/executor; research-confirm:369 = 8 keys, additionally dropping minIterations/minIdeaObservations/nextRunAt/remainingDelayMs that its own auto declares, while its config populate :344-368 carries stuckThreshold/status/executionMode/lineage.* (sessionId AUTO_SESSION_ID) so its config file and its state-log line 1 disagree from line 1; all four detached lanes' actual line-1 records (this lane's = state-log line 1) carry topic+executor that NO workflow literal emits",
+      "findingClass": "line-1-config-record-shape-quartet",
+      "deltaStatus": "active",
+      "scopeProof": "both variant pairs read (the precedent lane covered the review pair only, the research pair restored by the wave-two rewrite as this angle); the four shapes + the four published detached line-1 records compared; precedent F001 = the same defect class on the review-confirm half",
+      "affectedSurfaceHints": [
+        "deep-review-auto",
+        "deep-review-confirm",
+        "deep-research-auto",
+        "deep-research-confirm",
+        "the detached lanes' line-1 records"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--5d53f1d57c43",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--fbb4a7f5a9e2",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--f36be81f5a90",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F004--415e5a93bade",
+      "severity": "P2",
+      "title": "The in-lineage fanout resource-map emission exists only in the research variant's contract",
+      "file": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "line": null,
+      "description": "research-confirm:1342-1360 = the only narrow mode: reduce-state.cjs --emit-resource-map --fanout-resource-map-only, output pinned to artifact_dir (:176), guarantee: reads lineage deltas in place, writes only resource-map.md, never rewrites merged registries/strategy/dashboard; the review pair passes --emit-resource-map to the FULL reducer (auto:2176 with the artifact arg, confirm:1546 without) with no narrow mode, so a review-side fanout lane either reruns the full reduce in-lane (what the precedent lane's recorded invocation did) or skips (its recorded resourceMapSkipped outcome); both work, only one loop documents its fanout posture",
+      "findingClass": "fanout-resource-map-posture-asymmetry",
+      "deltaStatus": "active",
+      "scopeProof": "the 4-variant reducer-invocation census + the resourceMap emission path in the review reducer (reduce-state.cjs:2090, :2160-2168, read at setup) — the emission targets the packet reviewDir without the narrow mode the research variant carries",
+      "affectedSurfaceHints": [
+        "deep-research-confirm",
+        "the review variant pair",
+        "reduce-state.cjs of both loops"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--415e5a93bade",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--7428e967457c",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--443dcc26a4ab",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F007--d0847835fc7e",
+      "severity": "P1",
+      "title": "The ledger-authority flip is emergent, its write side is the gateway's shadow projection store, and enforcement is triple-split: receipt-gated not-enforced, a 1/0/1/0 invocation matrix, and a runner acceptance that never calls the verifier — the containment promise activates for no published mechanical writer",
+      "file": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+      "line": null,
+      "description": "(1) checkLedgerBacking (:202-219) consults checkGatewayReceipt FIRST and returns not-enforced without an ok/violation authority (:152-153, :200-201: a deliberate no-op while a mode runs the legacy writer); (2) the WRITE side: rg -ln legacy-projection-watermarks across runtime/lib = exactly ONE hit, shadow-projection-store.ts, reached via the gateway's tsx child (append-mode-event.cjs:27, :112-157, :207) — the flip is the FIRST receipt+frames existence, not an event, flag or migration step; (3) frames roots = [artifactDir, dirname(artifactDir)]/<leaf>-ledger/frames (:209-211): the secondary root reaches OUTSIDE the lineage and the producing root is not reported; (4) invocation matrix (rg -c verify-iteration, 7 surfaces): review-auto 1x (:1663), research-auto 1x (:1663), review-confirm 0x, research-confirm 0x, review.md 0x, research.md 0x, fanout-run.cjs 0x — the detached acceptance authority (:976-1028) parses records and counts files, it never gates; (5) both escape switches are source-comment-only: DEEP_LOOP_LEDGER_BACKING_GATE=0 (:269-270) kills 2b; DEEP_LOOP_VERIFY_GATEWAY_RECEIPT=1 (:286-292), documented advisory-only for 2c, ALSO hardens 2b via the unconditional receipt consultation (receipt disagreement -> violation -> unbacked -> loud failure); (6) the inspection toolchain (verify-authority.cjs, check-projection-coverage.cjs, check-protocol-append-sites.cjs, all in runtime/scripts/) is referenced by NO variant, neither markdown, nor the runner (census: 0); (7) OPERATIONAL: this lane's legacy-direct iteration-1 record gated TODAY: {ok:true, detail: iteration 1 complete: narrative + route-proof + delta} exit=0 — the 2b not-enforced path measured live",
+      "findingClass": "ledger-authority-emergent-triple-split",
+      "deltaStatus": "active",
+      "scopeProof": "the verifier's gate+receipt+watermark machinery read at the cited loci; the sole-writer rg across runtime/lib; the 7-surface invocation census; the unwired-tool census; the live exit-0 measurement — the affected class (bypass detection, append-only integrity, cutover enforcement) is exactly the state_write_protocol promise all four variants declare over every append directive; this resolves wave1's dead end (the flip's WRITE side and WHEN) and extends wave1's F018 (1x/0x review pair) to the full 1/0/1/0 + runner-never matrix",
+      "affectedSurfaceHints": [
+        "verify-iteration.cjs 2b/2c",
+        "check-direct-append.cjs watermark contract",
+        "shadow-projection-store.ts (sole watermark writer)",
+        "fanout-run.cjs:976-1028 acceptance",
+        "all four variants' gate steps",
+        ".legacy-projection-watermarks/ + <deep-review-ledger>/frames/"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F007",
+      "_conflict_id": "F007--d0847835fc7e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F007",
+          "peerId": "F007--fb119d2405c2",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F007",
+          "peerId": "F007--0577af37f655",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F018--85b9b44da885",
+      "severity": "P2",
+      "title": "The mechanical post-dispatch gate is promised to both leaves but invoked by neither confirm-variant surface",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "the verify-iteration.cjs invocation census: review-auto x1, review-confirm x0; both variants render the same prompt pack whose OUTPUT CONTRACT tells the dispatched leaf the gate (verify-iteration.cjs --loop-type review --artifact-dir <lineage> --iteration N) exits 0 only when all three artifacts hold (pack-001:113 = pack-002:113 = pack-004:113); the confirm-variant count of zero means its post-dispatch validation either runs under a different mechanism (prose delegation to the interactive operator) or does not invoke the binary; the auto-variant leaf is mechanically gated (this lane's iterations 1-3 each passed it) while the confirm-variant leaf's equivalent claims are self-certified; this is the validation-leg instance of the confirm-variant divergence pattern already noted in F008",
+      "findingClass": "mechanical-gate-invocation-asymmetry",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 9 validator-multiplicity leg; the gate promised in the shared pack, invoked in exactly one of the two variant surfaces; in-scope trees",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F018",
+      "_conflict_id": "F018--85b9b44da885",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F018",
+          "peerId": "F018--c3a1995c08a2",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F018",
+          "peerId": "F018--85dca5c201d9",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F010--d3d1862f9e6c",
+      "severity": "P1",
+      "title": "The mirror fleet is a two-tiara topology with no bridge: .codex+.pi derive from .opencode while .cursor+.devin mirror .claude, no mechanism ever compares the two tiaras, they already differ by 215 bytes on review.md, and the fleet's own governance voices disagree 23:3 on WHICH tree is canonical",
+      "file": ".pi/SYNC.md",
+      "line": null,
+      "description": "(1) the two documented chains: .pi/SYNC.md — Canonical for agents is .opencode/agents/ (the same upstream Codex uses), NOT the .claude/agents/ fork that Cursor and Devin symlink; the roster-check — CANONICAL_DIR = .claude/agents, The Claude tree is canonical, LINKED = cursor/devin, AUTHORED = opencode/codex/pi; (2) the comparative enforcement: symlink RESOLUTION for cursor/devin (a real file there = a silent fork) but for the three authored/generated trees ONLY PRESENCE, never content equality (the checker's own comment); the .pi content guard = the SECOND, unreconciled mechanism (sync-agents-pi.cjs --check); NOTHING compares .opencode against .claude; (3) the measured divergence: .opencode/agents/review.md = 25,726B vs .claude = 25,511B — the uncompared seam ALREADY differs, while .claude ≡ .cursor (diff -q x3) and .devin = .claude: the fork-side perfectly faithful, the .opencode-side faithfully serving ITS derivatives (.pi 25,599, .codex 25,659) — the 215B sits AT the seam; (4) the canonicality vote: 26 assertions — 23x .claude-canonical (11+11 copied notes + the checker) vs 3x .opencode-canonical (the deep-review note pair + SYNC.md; the .codex conversions point at .opencode too) — TWO answers, 23:3, no recorded reconciliation, and SYNC.md explicitly calls .claude the fork",
+      "findingClass": "two-tiara-topology-no-bridge",
+      "deltaStatus": "active",
+      "scopeProof": "both derivation chains read at their documentation+code loci; the 3x diff + the 6-entry size row; the 26-assertion vote; the 12-reference-site governance census; the 215B divergence measured at the uncompared seam",
+      "affectedSurfaceHints": [
+        "the 72+ declaration files",
+        ".pi/SYNC.md",
+        "agent-roster-mirror-check.cjs",
+        "sync-agents-pi.cjs --check",
+        "the pre-commit hook",
+        "the doctor's mirror-asset"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F010",
+      "_conflict_id": "F010--d3d1862f9e6c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F010",
+          "peerId": "F010--933be0113e5b",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F010",
+          "peerId": "F010--d7226379ebaa",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F011--aa2cc3aa05ee",
+      "severity": "P2",
+      "title": "The permission deny-half translates FIVE ways, not three: enforced keys, prose (byte-identical twins), the .pi # Unmapped comments + omission, the .codex sandbox_mode mechanism, and .devin by-reference — the .pi # Unmapped mechanism PROVEN, correcting wave1's F010/F011 on the precise halves",
+      "file": ".pi/agents/ai-council.md",
+      "line": null,
+      "description": "the five treatments: (1) .opencode permission:Map, runtime-ENFORCED, PER-AGENT vocabulary (12 keys: ai-council, code; 10: orchestrate; 8-9: context/prompt-improver/review — review keeps bash:allow while denying write/edit); (2) .claude ≡ .cursor: PROSE (never runs shell commands / NEVER performs nested delegation / read-only); (3) .pi: # Unmapped OpenCode permission keys comments (11/12) + implied-by-omission for denied keys; (4) .codex: sandbox_mode = read-only 12/12 — a MECHANISM, not prose; (5) .devin: by-reference. The mechanism PROVEN 5/5: # Unmapped = {k in .opencode permission : value=allow AND k not in pi's toolset} — ai-council: webfetch+task+external_directory (all :allow), code: patch (:allow), context: external_directory (:allow), orchestrate: task ONLY (its webfetch:deny correctly absent), deep-review: NO comment (its allows are all pi-mappable, its 2 denies vanish) — BOTH exceptions mechanized. Wave1-F010's .pi silent = true ONLY for the denied half; wave1-F011's provenance 1-of-4 = undercount (the .pi register + the .codex Converted-from + SYNC.md); the mtimes (Sep 5 / Sep 15 06:49) PRE-DATE wave1's 10:15Z read — genuinely missed, not post-review. Also: .cursor has NO README (wave1's 2/4 = .opencode+.claude, confirmed); the .opencode mode key (10x subagent + 1x all + 1x primary) translates NOWHERE as a key — description-prose in .claude/.cursor, vanished into the .codex/.pi bodies: the sixth translation loss",
+      "findingClass": "deny-half-five-treatments-unmapped-mechanism-proven",
+      "deltaStatus": "active",
+      "scopeProof": "the five treatments evidenced across all six trees (the .opencode 3-block completions, the .claude/.cursor prose + 3x diff, the .pi 11/12 register + the 5/5 mechanism consistency, the .codex 12/12 sandbox, the .devin symlinks); the premise deltas counted against spec:105's three-ways and wave1-F010/F011",
+      "affectedSurfaceHints": [
+        "the 72+ files' permission/role layers",
+        "the .opencode sparse permission vocabulary",
+        "the .pi generator's unmapped-key register",
+        "the .codex sandbox mechanism",
+        "the .devin 12 symlinks"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F011",
+      "_conflict_id": "F011--aa2cc3aa05ee",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F011",
+          "peerId": "F011--72ef0b0340ba",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F011",
+          "peerId": "F011--058cb53a0759",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F013--e9fe376471a8",
+      "severity": "P2",
+      "title": "The sampling translation loss is GRADED, not binary, and ai-council alone crosses every grade: the .claude fork dropped the mechanism key but kept the prose sentence — demoted, not lost — while the .codex trio (model + reasoning-effort + sandbox) remains the fleet's only other mechanism-bearing column",
+      "file": ".claude/agents/ai-council.md",
+      "line": null,
+      "description": "the 6-tree sampling ladder: (1) .opencode — the MECHANISM: temperature fronts 9x0.1 + 3x0.2 (debug, deep-improvement, design) + the ai-council body-prose; (2) .codex — its OWN mechanism trio 12/12: model = gpt-5.5, model_reasoning_effort = high, sandbox_mode = read-only; (3) .pi — fronts: NO temperature (the generator's dialect: name/description/tools/comment — the omission is GENERATOR-AUTHORED, not fork-authorial), 1/12 body-prose: ai-council (the .opencode prose, generator-inherited); (4) .claude — fronts: NO temperature, 1/12 PROSE: ai-council (the fork dropped the key, kept the sentence); (5) .cursor — byte-identical to .claude: the same 1/12 prose; (6) .devin — = .claude by reference. So: mechanism x2 (.opencode fronts, the .codex trio), prose x1 (ai-council, across 4 trees + the .codex inheritance), silence 11/12. Wave1-F009's premise (sampling .opencode-only; three mirrors substitute nothing or a different knob) extends precisely; wave1-F013's model-attraction (three trees silent, the fourth pins gpt-5.5) extends: the 5th/6th trees silent by INHERITANCE — 5 mechanism-silent, 1 pinned 12/12. Plus the ROLE key (.opencode mode: 10x subagent + 1x all + 1x primary) translates NOWHERE as a key — description-prose or vanished: the sixth translation loss, recorded for the F011 crosswalk",
+      "findingClass": "sampling-graded-loss-ai-council-prose-residue",
+      "deltaStatus": "active",
+      "scopeProof": "the 6-tree ladder: the .opencode 12+3 fronts, the .codex 12/12 trio, the .pi fronts + the 2-hit temperature census (.claude/ai-council.md + .pi/ai-council.md, BOTH prose), the 3x diffs, the .devin resolutions; the README rescue ruled out (no temperature in 1,608B)",
+      "affectedSurfaceHints": [
+        "the 12x6 temperature/model/mode cells",
+        "the .pi generator's key-drop list",
+        "the .claude fork's ai-council prose",
+        "wave1-F009/F013 premise wording at the SC-001 merge"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F013",
+      "_conflict_id": "F013--e9fe376471a8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F013",
+          "peerId": "F013--b7ae74d9f3e1",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F013",
+          "peerId": "F013--e077a27355eb",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F008--361f3770a99e",
+      "severity": "P2",
+      "title": "The sanctioned future's state-log richness has a registration-bounded ceiling: the projection consumes exactly the registered stems (whose spoken half is 5 of 61), EMIT_ITERATION_ROWS is currently true, and the anticipated suppression is a one-constant flip",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-projections-contract.ts",
+      "line": null,
+      "description": "the consumption arms consume registered stems ONLY: :283-294 shows the evidence/claim/finding arms (buildEvidenceRecord; buildAdjudicationRecord for deep_review.claim_adjudication_recorded; the finding_lineage_recorded arm), :450-464 the same; the state contract: EMIT_ITERATION_ROWS = true (deep-review-state-contract.ts:32) so wave1-F020's suppression is ANTICIPATED, not present, the :148 guard currently dead code; the gateway refuses review-mode rich records (append-mode-event.cjs:445, wave1 F019, re-confirmed) so the sanctioned review path = stem-shaped closed records whose projection rows carry only the arms' fields; the scissors: producers speak 5 of 61 (F006), the consumer speaks 61, and the mandated rich record sits in NEITHER spoken set's intersection with the arms — a cutover'd review lane loses exactly the attribution wave1 F020 documented, and no enforcement step would notice (F007's not-enforced)",
+      "findingClass": "projection-ceiling-arms-bounded",
+      "deltaStatus": "active",
+      "scopeProof": "the consumption arms read at :283-294 and :450-464; the flag+guard read at :32/:148; the acceptance-throw re-confirmed (:445) and cross-checked against the F006 registration census",
+      "affectedSurfaceHints": [
+        "deep-review-projections-contract.ts",
+        "deep-review-state-contract.ts",
+        "any future review lane adopting the gateway path",
+        "wave1 F020's collapse documentation"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F008",
+      "_conflict_id": "F008--361f3770a99e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F008",
+          "peerId": "F008--a8ffed1ad343",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F008",
+          "peerId": "F008--4b304748407f",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F014--63b8e0130161",
+      "severity": "P2",
+      "title": "The sandbox-to-permission-mode compression at the Claude-Code branch dilutes the OS-preventive claim, while the prevents-map credits it",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      "line": null,
+      "description": "SANDBOX_MODES = read-only, workspace-write, danger-full-access with workspace-write the default (:37, :74, :488); sandboxPreventsOS scores cli-claude-code true (:135-142, order: native false, codex true, claude-code true, opencode false, cursor true, devin true, pi false, hermes false); the claude branch translates both workspace-write AND danger-full-access to force (:547-570, :3208, plumbing :2022 :2051 :2935); the hermes contrast entry applies the scrutiny that would demote force — that --yolo is an approval bypass, not confinement (:142)",
+      "findingClass": "sandbox-claim-vs-mechanism-asymmetry",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 8 security posture: the prevents-map is the parity system's single truth source for containment classes (executor-config.ts:120-132 doctrine); both trees in scope",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F014",
+      "_conflict_id": "F014--63b8e0130161",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F014",
+          "peerId": "F014--f728d7d1a404",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F014",
+          "peerId": "F014--40f251b98d00",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F015--73a72cb404cd",
+      "severity": "P2",
+      "title": "The severity scale: four promise-sites — now including a REQUIREMENT — against an all-3-tier machinery, the spec's own wording cites the 3-tier meaning, the P3-to-P2 collapse remains undocumented convention, the authoritative tier-set is 3, and wave1's F006 is STILL-TRUE post-rewrite with its citation stale by +3 lines and its recorded fix unapplied",
+      "file": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/spec.md",
+      "line": null,
+      "description": "(1) the FOUR promise-sites: goal.md:47 (P0 through P3), goal.md:57 (D3: rated P0 to P3), spec.md:83 (P0 to P3 WITH THE REPO'S SEVERITY MEANING — the 4-symbol/3-meaning drift INTERNAL to the promise's own sentence, since the repo's meaning = the SKILL:323-325 three-row table), spec.md:138 (REQ-003: Every finding, P0 to P3, is verified against the tree and bound to a parent phase or recorded as refuted) — the wave-two 14:31 rewrite KEPT :83's wording AND ADDED the :138 requirement; (2) the ALL-3-TIER machinery, 11 surfaces: the SKILL:323-325/:331-333, the SKILL keywords :108, the pack:69 verdict-mapping (P2-only = PASS, no P3 case), review-core.md 1.5.0.11, the state schema's 3-key findingsSummary validation, the reducer SEVERITY_KEYS [P0,P1,P2] + SEVERITY_WEIGHTS {10/5/1}, the 9-gate severity-WEIGHTED signals, the .codex failure_type (p0|p1|p2|low_confidence), the merge SEVERITY_RANK {P0:3,P1:2,P2:1}; (3) the collapse UNDOCUMENTED: the lanes rate P0/P1/P2 (wave1: the spec's P3 is orphaned; this lane: the recorded convention any packet-P3 collapses to record-P2 with the intent noted — an in-lane convention, in NO governing document); (4) THE RULING: the 3-TIER EXECUTABLE CONTRACTS are authoritative; the P3 exists only in the promise-text, already half-retracted by :83's own wording; the binding layer (REQ-003's bound to a parent phase) = OUTSIDE this packet's contract-set, so the P3 = representable THERE, orphaned HERE — the defect is precise: packet-INTERNAL records 3-tier, packet-BOUNDARY obligation 4-tier-worded; (5) wave1-F006 STILL-TRUE AND HARDENED: the +3 shift (:135-to-:138, the verified requirement-table), the wording kept, the REQ added, the recorded fix (amend the spec's wording) NOT applied — the 4-tier promise survived its own amendment-window and gained binding force; wave1's scope (2 promise-sites) undercounts by 2 (goal:47, :57) and 1 severity-class (a requirement)",
+      "findingClass": "severity-four-promise-sites-vs-three-tier-machinery",
+      "deltaStatus": "active",
+      "scopeProof": "the 4 promise-sites read verbatim (incl. the :135-to-:138 shift verification); the 11 3-tier machinery surfaces cited; the collapse = the documented-in-lane convention, absent from every governing document; the ruling grounded in the computational/validating/gating/merging/verdict-mapping surfaces, not preference; the binding-layer question scoped out (outside the packet's write surface)",
+      "affectedSurfaceHints": [
+        "goal.md:47, :57",
+        "spec.md:83, :138 (REQ-003)",
+        "the SKILL :323-325/:331-333",
+        "the pack:69",
+        "the state schema's 3-key validation",
+        "the reducer SEVERITY_KEYS/WEIGHTS",
+        "the merge SEVERITY_RANK",
+        "the .codex failure_type",
+        "wave1-F006 (the SC-001 wording)"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F015",
+      "_conflict_id": "F015--73a72cb404cd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F015",
+          "peerId": "F015--107df66a82b0",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F015",
+          "peerId": "F015--28a9afb0547d",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F016--31f78550f0b8",
+      "severity": "P1",
+      "title": "The two-authority pattern is the packet's whole-system governance disease: FOUR measured instances, ZERO reconciled, ONE enforced consequence, and the supervision model = trust + post-hoc-merge, uniformly",
+      "file": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/spec.md",
+      "line": null,
+      "description": "(1) the FLEET's canonicality (this lane's F010, angle 18): the 25:3 vote (11+11 copied Path-Convention notes + the roster-check's CANONICAL_DIR=.claude vs .pi/SYNC.md + the deep-review note-pair + the .codex conversions), the 215B UNCOMPARED seam (.opencode/agents/review.md 25,726B vs .claude 25,511B), the 0-RECONCILED - TWO answers, convention-held; (2) the VERDICT's truth (this lane's F014, angle 19): the pack:69's downstream-automation parses the SELF-REPORTED final line, the reducer:1847-1852 computes from the findings + :1896 prints PROVISIONAL, the runner PRESERVES (zero verifier references), the ONLY enforcement = the merge's strongest-restriction (fanout-merge.cjs:751-823) - TWO answers, convention-held (the 5/5 published: w1-glm CONDITIONAL/P1-2, w1-ds FAIL/P0-1, this lane's 5x-CONDITIONAL-derivable - ZERO divergences, ZERO enforcement); (3) the SEVERITY scale (this lane's F015, angle 19): the 4 promise-sites (ONE a REQUIREMENT, spec:138-REQ-003) vs the 11-surface 3-tier machinery - TWO tier-sets, convention-held (every lane rates 3-tier; the P3 = orphaned-AT-PROMISE; wave1-F006's recorded fix = UNAPPLIED through its own amendment-window); (4) the RECEIPTS-PRIVILEGE (this lane's F014, angle 19): the command-level receipts/recursion/allowlist = the codex-branch ONLY (17+17), the native-pi = the runner's LANE-LEVEL envelope, the merge TRUSTS BOTH lanes' findings EQUALLY - TWO attestation-grades, convention-held (the 4-lane wave: 2x-cli-pi receiptless-AT-COMMAND-LEVEL, w1-ds = the deepseek-CLI, w1-glm = glm-5.3-flash - the grades = UNDOCUMENTED per executor = F018's finding). THE PATTERN: in every governed domain the packet ships (the agent fleet, the review verdict, the severity vocabulary, the dispatch receipts): TWO authorities pronounce, ZERO mechanism reconciles, the divergence = LATENT (held by REVIEWER DISCIPLINE: 5/5 verdicts, 34-days-allowlist, 2x-manual-parity, the 215B-frozen seam), the ONE hard consequence (the merge's strongest-restriction, the PARENT'S step) = the LAST-LINK-ONLY. The SUPERVISION MODEL: TRUST + POST-HOC-MERGE - the packet's correctness = the reviewers' honesty + the parent's single P0-filter, NOTHING between. The UNIFORM REPAIR-SHAPE: (i) name ONE authority (the losers: the 22 copied notes, the pack:69 clause, the 4-tier wording, the :1556 parity-claim), (ii) record the SANCTIONED-DELTA (the permission-Map-vs-tools-CSV, the PROVISIONAL-then-merge, the 4-to-3 collapse rule, the receipts-grades), (iii) the BRIDGE-CHECK (the .opencode-vs-.claude comparison, the self-report-vs-compute consistency, the P3 pointer, the receipts-for-all-or-graded) - 4 instances, 4 repairs, ONE shape = ONE parent workstream, 4 rows. FULL-EVIDENCE: iterations/iteration-005.md # Findings by Severity -> F016 (the claim-adjudication packet: the 5th-single-authority search = the state-log's 1-mechanical-JSON-parse EXCEPTION; the ALTERNATIVE = the intentional-REDUNDANCY/drift-DETECTION reading, compatible, the COST = unstated; the DOWNGRADE-TRIGGER = any-1-of-4-reconciled-ANYWHERE -> P2 / all-4-in-an-UNREAD-doc -> the 0.5-confidence-verify)",
+      "findingClass": "two-authority-whole-system-governance-disease",
+      "deltaStatus": "active",
+      "scopeProof": "the 4 instances = this lane's OWN findings RE-CITED as instances (F010/F014/F015 + the receipts-CLUSTER), EACH cited at its loci (the 25:3, the :1847/:1896, the 4-vs-11, the 17+17); the 5/5-and-1-ENFORCED census = the 3 lanes' PUBLISHED verdicts + the merge's SEVERITY_RANK; the 34d + the 215B = the proof-BOTH-ways (the divergence HAPPENS, the rot ACCRUES); the P1 adjudication packet (claim/counterevidence/alternative/downgradeTrigger) = the narrative's-F016; the INSIDER: this lane = the 4th-INSTANCE-RUNNING (receiptless-3x, computed-derivable-5x)",
+      "affectedSurfaceHints": [
+        "the fleet's canonicality (F010's: the 6 trees, the SYNC/checker pair, the 215B seam)",
+        "the verdict stack (the pack:69, the reducer:1847-1852/:1896, the runner's acceptance, the merge:751-823)",
+        "the severity vocabulary (goal:47/:57, spec:83/:138, the 11 3-tier surfaces)",
+        "the receipts-privilege (the AUTO codex-branches, the runner's frames, the invocation-metadata)",
+        "the SC-001 merge (the ADDITIVE 4-instance carry)",
+        "the parent's remediation workstream (the NEW, 4 rows)"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F016",
+      "_conflict_id": "F016--31f78550f0b8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F016",
+          "peerId": "F016--4e96e9bd0378",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F016",
+          "peerId": "F016--dc496693b31a",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F005--23647bcbc10e",
+      "severity": "P2",
+      "title": "The unstaged invariant is review-auto-only; the other three variants stage the artifact dir by a recorded contract fix — closes the precedent's 0.6-confidence git-policy question",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "review-auto:2453 = the only unstaged-variant step; review-confirm:1620, research-auto:2372-2375 and research-confirm:1681-1686 all stage; the research pair stages the SAME tree because research-auto:144 defines packet_dir = artifact_dir; both research variants carry the note: Skill-owned contract fix (028) — without this stage step, operators who git add the report lose the iteration trail; failure non-fatal, restorable via git restore --staged; research-auto additionally runs a second git-add list at :2474 (iterations, state log, strategy, research output) inside its save-phase verification",
+      "findingClass": "git-policy-variant-conditional-resolved",
+      "deltaStatus": "active",
+      "scopeProof": "all four stage/leave step bodies read this session (the precedent's F007 read none); the packet_dir alias :144 reconciles the two research stage targets; the precedent's 0.6 confidence retired",
+      "affectedSurfaceHints": [
+        "deep-review-auto",
+        "deep-review-confirm",
+        "deep-research-auto",
+        "deep-research-confirm",
+        "the unstaged-invariant documentation"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F005",
+      "_conflict_id": "F005--23647bcbc10e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--3b743e6487c3",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--0d911a71808d",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F044",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Three agent-discipline stress scenarios and their setup script depend on a fixture root that does not exist",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup-cp-sandbox.sh",
+      "line": 7,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "4dec93191f8e9190cada78f5ae8de1fb4dad909827d7556ca677654b9622bbbd",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "New; the stress-scenario fixture root is absent and the setup script fails closed on it"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F009--756feecdbdd5",
+      "severity": "P2",
+      "title": "Three carried questions closed: the {AUTO_SESSION_ID} token is declared twice and bound nowhere (research-auto's literal-fallback guard is dead-on-arrival for token-populated configs); research-auto:2474's second git-add is reference-only appendix; F001's downgradeTrigger adjudicates NOT-collapsed and its 8-key census corrects to nine",
+      "file": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "line": null,
+      "description": "(1) the token: declared at research-confirm:358 (step_create_config populate) and research-auto:332 (session_id_init); read ONCE at research-auto:477 — String(config.lineage?.sessionId ?? '{AUTO_SESSION_ID}') — where a token-populated config yields the truthy 16-char literal so the ?? fallback can never fire; zero occurrences in either command markdown or the runner: the VALUE is defined nowhere; research-confirm has no read machinery at all (its :561 warning is convergenceMode-only); (2) research-auto:2465-2485: the second git-add list lives in reference_only_appendix.checkpoint_commit, whose own note excludes it from workflow.steps — no owning step exists; (3) F001's trigger: NOT-collapsed — the token is unbound AND the state-log record drops the lineage block entirely (step_create_state_log's :365 content: nine keys — type, topic, maxIterations, convergenceThreshold, antiConvergence, resource_map_present, resource_map, createdAt, specFolder — no lineage/mode/stopPolicy/executor), so F001 stands P1; its recorded 8-key count was one short (the type key), the substantive divergence unaffected",
+      "findingClass": "carried-question-closure-triptych",
+      "deltaStatus": "active",
+      "scopeProof": "4-asset + 2-markdown + runner token census; the two owning steps read (research-confirm:344-375, research-auto:332/:477/:2465-2485); F001's recorded downgradeTrigger evaluated against the resolution; the F001 key-count self-correction recorded",
+      "affectedSurfaceHints": [
+        "deep-research-confirm:344-368",
+        "deep-research-auto:332, :477, :2465-2485",
+        "F001 (this lane)",
+        "wave1 F019/F020 wording (SC-001 merge)"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave2-glm"
+      ],
+      "_conflictOf": "F009",
+      "_conflict_id": "F009--756feecdbdd5",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F009",
+          "peerId": "F009--3e43167d4c5c",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F009",
+          "peerId": "F009--4aacaa28082e",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F025",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Three shared workflow doctrine files project as no typed resource and are reachable only through prose sentences",
+      "file": ".opencode/skills/sk-code/SKILL.md",
+      "line": 39,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "14092d82e46b56f2ab7ad497c75fa5e26b1960f9a6cf617562b6015a587c016b",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F012; bounded impact (humans reach the files, typed consumers do not) keeps it at the lower edge of P1"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F011--058cb53a0759",
+      "severity": "P2",
+      "title": "Tool lexicon: three spoken dialects, no documented crosswalk, provenance marking in one of four trees",
+      "file": ".pi/agents/",
+      "line": null,
+      "description": "three spoken lexicons: .claude TitleCase CSV with delegation by Agent-tool membership (ai-council.md:4, orchestrate.md:4 only); .pi lowercase block with find+ls and no glob, systematic across all 12; .codex declares no tools (deep-review.toml:5, sandbox_mode workspace-write + prose); provenance markers only in .codex (deep-review.toml:2, Converted-from); no README in .codex/agents/ or .pi/agents/",
+      "findingClass": "tool-lexicon-crosswalk-undocumented",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 7 tool-vocabulary question (strategy section 13: the vocabulary the mirrors must preserve); the lexicon delta observed across all 12 .pi mirrors",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "wave1-glm"
+      ],
+      "_conflictOf": "F011",
+      "_conflict_id": "F011--058cb53a0759",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F011",
+          "peerId": "F011--72ef0b0340ba",
+          "peerLineages": [
+            "wave1-deepseek"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F011",
+          "peerId": "F011--aa2cc3aa05ee",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F006--6e3cd1781110",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Two model-benchmark registry aliases are absent from the hub scoring vocabulary",
+      "file": ".opencode/skills/system-deep-loop/mode-registry.json",
+      "line": 147,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "a6d6b9cf5e4c8a3f7d2e4b6c1f5a9e3d8b7c2f5a6e1d7b4c9f2a5e8d4b1c6f68",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; real recall gap with lowest consequence"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F006",
+      "_conflict_id": "F006--6e3cd1781110",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F006",
+          "peerId": "F006--c13aa1bbc795",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F006",
+          "peerId": "F006--c54e3bddd5b5",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F042",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Two sk-code packet READMEs reference the parent hub and shared doctrine one directory level too high",
+      "file": ".opencode/skills/sk-code/sk-code-obsidian/README.md",
+      "line": 161,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "61772607ea6eef8acd6f2111a0dc1baa80df9c1fd5ad111fda227cde9350f8aa",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "New; two packet READMEs use a one-level-too-high relative prefix across six references"
+        }
+      ],
+      "_lineages": [
+        "wave2-deepseek"
+      ]
+    },
+    {
+      "findingId": "F013--e077a27355eb",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Two sk-code surfaces sit at 0.1.* against 1.0.0.2 or above with no changelog explanation",
+      "file": ".opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md",
+      "line": 3,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "content_hash": "c3d4e5f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef010203",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; confidence 0.55, version skew without a documented reason"
+        }
+      ],
+      "_lineages": [
+        "wave1-deepseek"
+      ],
+      "_conflictOf": "F013",
+      "_conflict_id": "F013--e077a27355eb",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F013",
+          "peerId": "F013--b7ae74d9f3e1",
+          "peerLineages": [
+            "wave1-glm"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F013",
+          "peerId": "F013--e9fe376471a8",
+          "peerLineages": [
+            "wave2-glm"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 2,
+    "P1": 34,
+    "P2": 62
+  },
+  "openFindingsCount": 98,
+  "resolvedFindingsCount": 0,
+  "activeP0": 2,
+  "activeP1": 34,
+  "activeP2": 62
+}

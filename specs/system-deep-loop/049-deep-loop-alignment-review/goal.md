@@ -52,9 +52,9 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Phase 001 runs twenty review iterations in angle-driven waves: four lanes of five, two waves of two at concurrency two, stop policy max-iterations, convergence off. Wave-two angles are rewritten in the phase spec from what wave one found. |
-| D2 | Executors via the gateway on cli-pi: DeepSeek V4.1 Flash at max for ten iterations and GLM 5.3 Flash at max for ten, one lane of each per wave. |
-| D3 | Nothing is deferred. Every confirmed finding, P0 to P3, becomes a phase under this packet, fixed by DeepSeek V4.1 Flash at max on cli-pi, one dispatch per phase, suite-verified before the next; a refuted finding is recorded with the reason. |
+| D1 | Phase 001 ran twenty review iterations as four lanes of five in two waves, max-iterations, convergence off, with wave-two angles rewritten from wave one. |
+| D2 | Executors via the gateway on cli-pi: DeepSeek V4.1 Flash max for ten iterations, GLM 5.3 Flash max for ten, one lane of each per wave. |
+| D3 | Nothing is deferred: every confirmed finding, P0 to P3, becomes a phase, fixed by DeepSeek V4.1 Flash max on cli-pi, one dispatch per phase, suite-verified before the next; a refuted finding is recorded with its reason. |
 | D4 | Routing artifacts agree exactly per hub: SKILL.md, mode-registry.json, hub-router.json, ROUTER.md, leaf-manifest.json, graph-metadata.json and description.json. |
 | D5 | The repo rules bind the fixes: the smallest change that closes a finding, no abstraction a current requirement does not earn, comments carrying the durable why. |
 
@@ -76,7 +76,7 @@ to the parent: apply it there first, then resend the parent.
 
 **Read the child goal before working a phase**; decisions above outrank it.
 
-Phase 001 is the review; phases 002 onward are its findings, one per finding class, each with its own `goal.md`.
+Phase 001 is the review. Its eighty findings bind to phases 002 to 009: rosters, version authority, leaf manifests and doctrine reachability, catalog and README truth, confirm-variant parity, ledger stem producers, agent mirror parity, and the containment promise with the severity scale.
 <!-- /ANCHOR:binding -->
 
 ---
@@ -85,10 +85,10 @@ Phase 001 is the review; phases 002 onward are its findings, one per finding cla
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Phase 001's twenty iterations ran across four lanes on the two executors, each numbered record carrying the route-proof fields
-- [ ] Wave-two angles were rewritten in the phase spec from wave-one findings before wave two ran
-- [ ] Every P0 to P3 finding is verified against the tree and bound to a phase or recorded as refuted with the reason
-- [ ] Every bound phase validates PASSED with its criteria checked and its full suite green
+- [x] Phase 001's twenty iterations ran across four lanes on both executors, each numbered record carrying the route-proof fields
+- [x] Wave-two angles were rewritten in the phase spec from wave-one findings before wave two ran
+- [x] Every P0 to P3 finding is verified against the tree and bound to a phase or recorded as refuted with the reason
+- [ ] Every bound phase validates PASSED with its criteria checked and its suite green
 - [ ] The routing artifacts of every hub in scope agree exactly at the end
 - [ ] The deep-loop suite exits zero after the last phase lands
 <!-- /ANCHOR:completion -->

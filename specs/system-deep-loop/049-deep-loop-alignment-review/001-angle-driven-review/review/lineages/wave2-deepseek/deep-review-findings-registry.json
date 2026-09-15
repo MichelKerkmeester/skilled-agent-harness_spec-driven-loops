@@ -1,0 +1,540 @@
+{
+  "sessionId": "fanout-wave2-deepseek-1789475514883-p58bmd",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F021",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "system-deep-loop description.json advertises the previous release against SKILL.md and both sibling hubs",
+      "file": ".opencode/skills/system-deep-loop/description.json",
+      "line": 4,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "210ea7c13beaeae0d92cc6608ba85711260d2ea14d30ecdefbe6b989420f4766",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; changelog-authority test isolates the identity-pair break"
+        }
+      ]
+    },
+    {
+      "findingId": "F022",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Registry/router version fields match neither their hub release nor each other in 2 of 3 hubs, and sk-code's paired value lags its release",
+      "file": ".opencode/skills/system-deep-loop/mode-registry.json",
+      "line": 3,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "6549bad3f5e0a0144edb786faefb87c218e3512a309251d634fa1dd8466f334e",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; expands wave-one F009 across the registry/router/ROUTER.md family"
+        }
+      ]
+    },
+    {
+      "findingId": "F023",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "hub-router schema doc defines version as either router schema or artifact version in one sentence, and nothing validates it",
+      "file": ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+      "line": 53,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "f8056070a90b906072b215bf8dbf441c78f80db1b20af74b5d3f1ba2e7b7ccee",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; the documented ambiguity that licenses every version disagreement"
+        }
+      ]
+    },
+    {
+      "findingId": "F024",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Leaf-manifest walker skips symlinks and both freshness gates regenerate with the same walker, leaving twelve sk-code doctrine leaves invisible behind green gates",
+      "file": ".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      "line": 84,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "2a3c4607e9693ec9ecfa9b7aadd30dfc14b1dc72a4fc381bc6f2e6628816f029",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F011 against the live tree with the gate-blindness arm proved by execution"
+        }
+      ]
+    },
+    {
+      "findingId": "F025",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Three shared workflow doctrine files project as no typed resource and are reachable only through prose sentences",
+      "file": ".opencode/skills/sk-code/SKILL.md",
+      "line": 39,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "14092d82e46b56f2ab7ad497c75fa5e26b1960f9a6cf617562b6015a587c016b",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F012; bounded impact (humans reach the files, typed consumers do not) keeps it at the lower edge of P1"
+        }
+      ]
+    },
+    {
+      "findingId": "F026",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Fleet documents two mutually exclusive always-loaded-preamble policies and the compiled runtime enforces neither",
+      "file": ".opencode/skills/system-deep-loop/hub-router.json",
+      "line": 13,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "content_hash": "ffd3832f0caea166922302bea5e657b92b59e59f5c7ae408d1638a6e431150a8",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Extends wave-one F003 fleet-wide with the enforcement question answered by executing the runtime and loading live policy snapshots"
+        }
+      ]
+    },
+    {
+      "findingId": "F027",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Improvement lanes receive byte-identical 61-leaf sets against the generator's N-to-1 distinctness contract and no consumer needs the distinction",
+      "file": ".opencode/skills/system-deep-loop/leaf-manifest.json",
+      "line": 96,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "content_hash": "dbf34d92e2337ac493c186068483b313b2240443d195423dfd619b4315bafda0",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Re-adjudication of wave-one F004 with the consumer question answered: the generator contract is unmet but no live consumer requires distinct sets"
+        }
+      ]
+    },
+    {
+      "findingId": "F028",
+      "severity": "P0",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "cli-external-orchestration/ROUTER.md omits cli-hermes from all three prose roster statements while its own machine block and the compiled router carry the mode",
+      "file": ".opencode/skills/cli-external-orchestration/ROUTER.md",
+      "line": 24,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "6f9e68b9a7ef0ef198cf79b0ff29bdd2bb0238efb75eb62eba9a47734dc2ee1e",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial wave-two re-verification adjudicated on prose-only impact"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P0",
+          "reason": "Re-adjudicated against wave-one F007's (P0) unmet downgrade trigger: no supersession or non-authoritative marking exists"
+        }
+      ]
+    },
+    {
+      "findingId": "F029",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Hub SKILL.md files carry hand-written mode counts their own registries contradict",
+      "file": ".opencode/skills/cli-external-orchestration/SKILL.md",
+      "line": 74,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "780eadc3e8be76ed4290f946240b25afaf67749448d9c135f8b54d034b88c58a",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "New; three count-drift sites across two hub front doors, no machine consumer"
+        }
+      ]
+    },
+    {
+      "findingId": "F030",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-loop protocol and packet prose under-describes the executor set, and the council packet’s prose contradicts its own resolver",
+      "file": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      "line": 281,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "648aba7033241c2dcef06616574c8d60012e37175590bb5a070e561ffaff118e",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "New; two protocol omissions plus one prose-vs-code divergence in the council packet"
+        }
+      ]
+    },
+    {
+      "findingId": "F031",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-loop catalogs describe the executor dispatcher as three kinds (twice with a duplicated kind name) against a driver that implements eight",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+      "line": 42,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "3fa17d25aaf2081746d2d4ffea5f59d7f578eedf3e2813b08da9c1aa76abe960",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "New; catalog claims measured against subject source, two sites carry a duplicated-kind substitution"
+        }
+      ]
+    },
+    {
+      "findingId": "F032",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "cli-* packet sibling lists froze at each packet’s authoring date, leaving the newest siblings out of six files",
+      "file": ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
+      "line": 381,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "31c21665c12a60c19955cae866cd89ccca7e7958f84a48e9893f25b3460876bd",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "New; monotonic freeze pattern across the cli-* packet family"
+        }
+      ]
+    },
+    {
+      "findingId": "F033",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "All three hubs' compiled-routing catalog entries cite a superseded runtime-layout generation in nine places",
+      "file": ".opencode/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
+      "line": 28,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "536f971d2480e6a33eda4693f627bf5cc4b85b2bb43e6156c96fca06cfdae0c0",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F014 expanded from one hub and four citations to three hubs and nine"
+        }
+      ]
+    },
+    {
+      "findingId": "F034",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Nine catalog references across four verified classes still cite files absent at the cited path",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/validation/mk-deep-loop-guard.md",
+      "line": 77,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "b3cc5ecc56c81e8a0e4159573e91115f590119933af4575d49c45e1e0202d136",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F015; nine sites across four reference classes re-located at their live lines"
+        }
+      ]
+    },
+    {
+      "findingId": "F035",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Runtime catalog still advertises fifty-five entries where headings, links and disk all give fifty-four",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      "line": 19,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "2c10be393f2701aee318ee08c0f04308bd71fdc89288ab95249f16dd73025d50",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Re-verification of wave-one F016; three independent counts plus the category table all give 54"
+        }
+      ]
+    },
+    {
+      "findingId": "F036",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Compiled-contracts README says four flattened contracts where three exist and the legacy README repeats the four-claim twice",
+      "file": ".opencode/commands/deep/assets/compiled/README.md",
+      "line": 19,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "452a74676cf81005341f53d7dc7d0701c9bc85d59d6a648114f6df5f073d3981",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F018; the four-claim appears three times across the README pair"
+        }
+      ]
+    },
+    {
+      "findingId": "F037",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-review playbook still asserts no automated test suite exists while eighteen deep-review test files do",
+      "file": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 610,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "3bea41669855e90c5716ab78c1f0f31dcde073ee117785e7545647c724972df5",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Re-verification of wave-one F019; the eighteen-file population re-located and the packet's own test re-run"
+        }
+      ]
+    },
+    {
+      "findingId": "F038",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Legacy README presents a repository-wide checker as a local acceptance test and the checker currently fails",
+      "file": ".opencode/commands/deep/assets/legacy/README.md",
+      "line": 108,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "f73cfe5165552ffa04c510224942cd8d4008f3655d75d8d2364928b4364f1b6a",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Re-verification of wave-one F020 with the checker re-executed: exit 1, ten unresolved references"
+        }
+      ]
+    },
+    {
+      "findingId": "F039",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Current-state docs across all three hubs still advertise skill-benchmark artifacts removed by the deprecation packet",
+      "file": ".opencode/skills/sk-code/ROUTER.md",
+      "line": 311,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "38cdf16fb91b42ae862d3567ce3df48b40838673c87bd484250e5e561fce16e0",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "New; the spec-047 deprecation left its removal surface cited across all three hubs"
+        }
+      ]
+    },
+    {
+      "findingId": "F040",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-ai-council playbook section 16 names five test files that exist only under their renamed multi- prefix",
+      "file": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 403,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "9a8ddb890b52c0800b3fa4ee2e29af80bb37744f4dc158776dbe2f9ae04e3534",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "New; five of eight council test-cross-reference rows lack the multi- prefix that exists on disk"
+        }
+      ]
+    },
+    {
+      "findingId": "F041",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-research catalog and playbook cite a command path that no longer exists and a section anchor the successor lacks",
+      "file": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/research-output/progressive-synthesis.md",
+      "line": 43,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "4af3e6c98a66ed35ee690f5f018d905f2d713e3786beae10d454e642f5981198",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "New; the deep-research catalog and playbook cite a speckit command path that does not exist"
+        }
+      ]
+    },
+    {
+      "findingId": "F042",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Two sk-code packet READMEs reference the parent hub and shared doctrine one directory level too high",
+      "file": ".opencode/skills/sk-code/sk-code-obsidian/README.md",
+      "line": 161,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "61772607ea6eef8acd6f2111a0dc1baa80df9c1fd5ad111fda227cde9350f8aa",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "New; two packet READMEs use a one-level-too-high relative prefix across six references"
+        }
+      ]
+    },
+    {
+      "findingId": "F043",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Deep-ai-council catalog cites rollback.js where the library is rollback.cjs",
+      "file": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md",
+      "line": 31,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "6ec98b16a58df2d623625c54a558925c576f91fabb01736cb4c62fed96dfcd69",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "New; single-file extension slip in the council rollback catalog"
+        }
+      ]
+    },
+    {
+      "findingId": "F044",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Three agent-discipline stress scenarios and their setup script depend on a fixture root that does not exist",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup-cp-sandbox.sh",
+      "line": 7,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "4dec93191f8e9190cada78f5ae8de1fb4dad909827d7556ca677654b9622bbbd",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "New; the stress-scenario fixture root is absent and the setup script fails closed on it"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 11,
+    "P2": 12
+  },
+  "openFindingsCount": 24,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

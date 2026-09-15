@@ -1,0 +1,14 @@
+**ACCEPTANCE: PASS.** Lane wave2-glm complete — 5/5 iterations, the covenant discharged end to end.
+
+**What ran, what it returned:**
+- **Iteration 5 (angle 20)**: record trio written (delta 22,688B + sidecar + 2 appended state rows → 11), mechanical gate `ok:true, "iteration 5 complete: narrative + route-proof + delta"`, exit 0. 18 cumulative (0/5/13), 3 new (F016 P1 whole-system two-authority, F017 P2 orphan-coverage-gap, F018 P2 attestation-grades), ratio 0.17 — the 1.00→0.44→0.31→0.13→0.17 terminal band.
+- **Synthesis**: the `synthesis_complete` event (row 12, stopReason `maxIterationsReached`, verdict CONDITIONAL, coverage 1.0) → the reducer, the :2177-EXACT invocation with `--artifact-dir` + `--create-missing-anchors --emit-resource-map` → **exit 0**: registry (34 entries = the 18 F-ids + 16 reducer `SUMMARY-*` mirrors — same binary rendered wave1's clean, input-shape difference, deferral #7, 0 corruption), dashboard, 5 strategy ANCHOR-pairs filled (its own COMPLETED-DIMENSIONS = 4/4, agreeing with my closure), `resourceMapSkipped: true, reason: config.resource_map.emit=false` — exactly the recorded expectation. Then review-report.md (40,743B, the wave1 §1-10 skeleton + Dimension-Expansion-Map), then the config flip `initialized → complete`.
+- **Final verification, by the runner's own contract**: the verifier ×5 — **5/5 exit 0**; 12/12 rows valid; stopReason normalized-✓; totalIterations 5 == 5 disk, sequential 1-5; the 5 narrative verdict lines == the reducer-ternary-derivable (CONDITIONAL ×5, the two authorities agree); the adjudication ladder 1→2→3→4→5, passed 5/5. One transient: two self-inflicted Py2-isms (the heredoc's UTF-8 declaration, the walrus) — both repaired in-place, no state touched.
+
+**Inferred (not proven here):** the SUMMARY-*/34-vs-20 trigger = input-shape, unpinned (the reducer's emitter branch unread); the CI-gate parser = still unlocated (deferral #1).
+
+**Only the operator can verify:** nothing in-lane — the acceptance gates were run and read here; the residual judgment = the parent's.
+
+**Edited vs committed:** everything in the lineage, deliberately **UNSTAGED and uncommitted** (the review-auto git semantics, F005's recorded end-state); continuity save deferred to the parent orchestrator per the strategy's recorded covenant.
+
+The one thing: **SC-001** — the merge waits on the wave2-deepseek sister; this lane's handoffs are recorded in the report (§8's eight deferrals, §2's WS-A..H; the 7 orphan second-look verdicts enter ADDITIVELY, sessionId-namespaced, and WS-A's first action = the `.claude/SYNC.md` read).

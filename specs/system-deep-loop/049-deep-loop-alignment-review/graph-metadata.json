@@ -4,7 +4,15 @@
   "spec_folder": "system-deep-loop/049-deep-loop-alignment-review",
   "parent_id": null,
   "children_ids": [
-    "system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review"
+    "system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review",
+    "system-deep-loop/049-deep-loop-alignment-review/002-roster-completeness",
+    "system-deep-loop/049-deep-loop-alignment-review/003-version-authority",
+    "system-deep-loop/049-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability",
+    "system-deep-loop/049-deep-loop-alignment-review/005-catalog-and-readme-truth",
+    "system-deep-loop/049-deep-loop-alignment-review/006-confirm-variant-parity",
+    "system-deep-loop/049-deep-loop-alignment-review/007-ledger-stem-producers",
+    "system-deep-loop/049-deep-loop-alignment-review/008-agent-mirror-parity",
+    "system-deep-loop/049-deep-loop-alignment-review/009-containment-promise-and-severity-scale"
   ],
   "manual": {
     "depends_on": [],
@@ -108,31 +116,31 @@
         "source": "derived"
       },
       {
-        "name": "its",
+        "name": "wave-two",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
+        "name": "its",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs across twenty phases",
     "created_at": "2026-09-15T09:48:33Z",
-    "last_save_at": "2026-09-15T09:51:55.768Z",
+    "last_save_at": "2026-09-15T14:25:57.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:13aeab78c47d2b8af79b8232fbaa47602775681c601c15d2736b1b5d5786694b",
+    "source_fingerprint": "sha256:36c9d489abc2966a64d9545b2f16335a1c13a09631f00ab1f330e83fa724552a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "18da5b3c1dcba27c0b945a6d488ec31a74413b7a0c3ea0dee317d41c376e9a22"
+      "spec.md": "0066164849d9dbdf78079aefabfc9da4045afb688528d0bdd20073651f2538f8"
     },
     "last_active_at": null
   }
