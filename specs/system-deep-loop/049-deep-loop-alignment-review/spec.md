@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -62,12 +62,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[One-paragraph problem statement — what needs solving and why]
+The containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs across twenty phases. Its closing review found the surfaces still disagree in places it rated below P1 and left unbound: hub SKILL.md files against their registries and routers, catalogs against the runtime, READMEs against the code, executor rosters against the seven CLI kinds now registered. Nobody has read the whole system as one architecture, or against the repo rules that say how it should have been built.
 
 ### Purpose
-[One-paragraph purpose — what this phased decomposition achieves]
-
-> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
+Every surface of the deep-loop system says the same thing as every other and as the code, proven by an angle-driven review whose every finding, of any severity, becomes a phase here.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -76,17 +74,20 @@ _memory:
 ## 3. SCOPE
 
 ### In Scope
-[Bullet list of what this phase decomposition covers]
+- Phase 001: twenty review iterations in two angle-driven waves, half on DeepSeek V4.1 Flash max and half on GLM 5.3 Flash max via the gateway on cli-pi, with wave-two angles rewritten from wave-one findings
+- Phases 002 onward: one phase per confirmed finding class at any severity, P0 to P3, each fixed by DeepSeek V4.1 Flash max on cli-pi and suite-verified before the next
+- The hubs system-deep-loop, sk-code and cli-external-orchestration, their modes, routing artifacts, references, assets, catalogs, playbooks, READMEs, commands, agents and mirrors, the runtime as one architecture, and the repo rules as the standard the fixes are held to
 
 ### Out of Scope
-[Bullet list of what is explicitly excluded]
+- Fixing inside the review phase - findings become phases, nothing else
+- Surfaces outside those hubs and sk-doc, unless an angle crosses into them
 
 ### Files to Change
-[Summary table of files touched across all phases — for audit trail only; per-phase detail lives in each child's plan.md]
 
-| File Path | Change Type | Phase | Description |
-|-----------|-------------|-------|-------------|
-| [Path] | [Modify/Create] | [Phase-name] | [Description] |
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `001-angle-driven-review/` | Create | The review, its angles and its four lineages |
+| phases 002 onward | Create | One per confirmed finding class |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -119,8 +120,7 @@ _memory:
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- [Open question 1]
-- [Open question 2]
+- Which wave-one findings reshape the wave-two angles: answered in the phase 001 spec before wave two runs.
 <!-- /ANCHOR:questions -->
 
 ---

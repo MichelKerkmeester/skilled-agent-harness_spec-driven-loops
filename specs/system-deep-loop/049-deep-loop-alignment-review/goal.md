@@ -58,8 +58,6 @@ Frozen choices. Changing one is an amendment.
 | D4 | Routing artifacts agree exactly per hub: SKILL.md, mode-registry.json, hub-router.json, ROUTER.md, leaf-manifest.json, graph-metadata.json and description.json. |
 | D5 | The repo rules bind the fixes: the smallest change that closes a finding, no abstraction a current requirement does not earn, comments carrying the durable why. |
 
-**Phase 001 is the review; phases 002 onward are its findings, one per finding class, each with its own `goal.md`. Read the child goal before working a phase; decisions above outrank it.**
-
 ### Operator copy
 
 The operator holds this directive as the session objective, and that copy is
@@ -73,13 +71,19 @@ to the parent: apply it there first, then resend the parent.
 
 ---
 
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+**Read the child goal before working a phase**; decisions above outrank it.
+
+Phase 001 is the review; phases 002 onward are its findings, one per finding class, each with its own `goal.md`.
+<!-- /ANCHOR:binding -->
+
+---
+
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
-
-Three to seven bullets, each checkable without opening another file. Copy them
-verbatim into the objective: nothing dereferences a path, so criteria left only
-here are invisible to whatever judges completion.
 
 - [ ] Phase 001's twenty iterations ran across four lanes on the two executors, each numbered record carrying the route-proof fields
 - [ ] Wave-two angles were rewritten in the phase spec from wave-one findings before wave two ran
