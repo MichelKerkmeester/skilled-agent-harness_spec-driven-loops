@@ -74,7 +74,7 @@ export default async function MkCliDispatchAuditPlugin(ctx) {
         const command = args && typeof args === 'object' ? args.command : undefined;
         if (typeof command !== 'string' || command.length === 0) return;
 
-        const match = dispatchAuditCore.DISPATCH_SHAPES.find((d) => d.test.test(command));
+        const match = dispatchAuditCore.resolveDispatchPacket(command);
         if (!match) return; // not a dispatch shape → nothing this hook governs
 
         const rules = readHardRules(join(projectDir, '.opencode', 'skills', match.packetPath, 'SKILL.md'));

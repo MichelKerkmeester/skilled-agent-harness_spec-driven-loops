@@ -290,6 +290,43 @@ export function matchDispatchShape(command) {
   return inspected.kind === 'direct' ? { skill: inspected.executor } : null;
 }
 
+// A shell wrapper hides a real dispatch inside a quoted argument, where the tokenizer
+// correctly refuses to read it as an executor. Only these four wrappers are unwrapped,
+// and only their `-c` payload, so ordinary quoted text stays text.
+const SHELL_WRAPPER = /(?:^|[\s;&|])(?:\/[^\s;&|]*\/)?(?:bash|sh|zsh|dash)\s+(?:-[a-z]*c|--command)\s+(['"])([\s\S]*?)\1/;
+const MAX_UNWRAP_DEPTH = 2;
+
+/**
+ * Resolve a command to the packet whose rules govern it, or null when nothing does.
+ *
+ * The regex shape list matches its pattern anywhere in the command string, so a command
+ * that merely CONTAINS a dispatch -- a grep for one, a heredoc documenting one, a prose
+ * line quoting one -- read as a real dispatch and was refused. The tokenizer knows a
+ * quoted argument is not an executor, so it decides; unwrapping a shell -c payload keeps
+ * the one case the tokenizer would otherwise miss.
+ *
+ * @param {string} command - raw command text.
+ * @returns {{skill: string, packetPath: string} | null}
+ */
+export function resolveDispatchPacket(command) {
+  const entryFor = (skill) => DISPATCH_SHAPES.find((d) => d.skill === skill) || null;
+  let current = typeof command === 'string' ? command : '';
+  for (let depth = 0; depth <= MAX_UNWRAP_DEPTH; depth += 1) {
+    const inspected = inspectDispatch(current);
+    if (inspected.kind === 'direct') return entryFor(inspected.executor);
+    // Ambiguous means the tokenizer saw dispatch evidence it could not pin to one
+    // executor. Enforcement must not be the thing that guesses, so fall back to the
+    // shape list for the packet and let the rules decide.
+    if (inspected.kind === 'ambiguous') {
+      return DISPATCH_SHAPES.find((d) => d.test.test(current)) || null;
+    }
+    const wrapped = current.match(SHELL_WRAPPER);
+    if (!wrapped) return null;
+    current = wrapped[2];
+  }
+  return null;
+}
+
 // ── Metadata extraction ──────────────────────────────────────────────────────────────────────
 
 const MODEL_FLAG_REGEX = /--model[=\s]+("([^"]+)"|'([^']+)'|(\S+))/;

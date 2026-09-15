@@ -103,7 +103,8 @@ The operator's copy of this directive is the session objective; any change above
 - [x] Each closed hole has a test that fails when that fix alone is reverted
 - [x] Phase 016 guard green on the tree and red under each of four hand mutations
 - [x] Parent passes recursive strict validation across all 17 folders
-- [ ] No live finding is open - THREE REMAIN, each an operator decision or a recorded defect
+- [x] The preflight's quoted-payload false positive is fixed and regression-tested
+- [ ] No live finding is open - ONE REMAINS, an operator decision on model defaults
 <!-- /ANCHOR:completion -->
 
 ---
@@ -136,4 +137,5 @@ The operator's copy of this directive is the session objective; any change above
 | 2026-09-15 | A stop gate caught two real gaps in a completion claim. The four phases had shipped with scaffolded acceptance criteria, so 21 rows were written with the evidence actually produced, and one evidence line that claimed more than had been run was replaced after running it: the two new binary probes refuse against an empty PATH and build against a real one. |
 | 2026-09-15 | Criterion 2 re-proven live in this session rather than cited from an earlier one. A single Hermes run (session `20260915_202204_acdefd`, exit 0, 50 s) reached all four surfaces at once: the persona bound from the environment, the first hard rule quoted from the preloaded `cli-hermes` skill, the first word of a repo command file read from disk, and the `code_mode` MCP server returning ten results for a tool search. |
 | 2026-09-15 | Criterion 3 is NOT met and the packet is NOT closeable. Three findings stay open: the three builder model defaults that disagree with their packets and the codex service tier, all operator decisions on cost; and the preflight's quoted-payload false positive, where text shaped like a dispatch inside a quoted payload reads as a real one (it refused two edit commands in this session). |
+| 2026-09-15 | The quoted-payload false positive is closed. The shape list matched its pattern anywhere in a command string, so a grep for a dispatch, a heredoc documenting one, or prose quoting one was refused as if it were one; it blocked three of this session's own edit commands. Enforcement now resolves the dispatch through the quote-aware tokenizer, which knows a quoted argument is not an executor, and unwraps a shell `-c` payload so a genuinely wrapped dispatch is still caught. Eleven shapes verified: four that must be governed including wrapped and piped forms, and six that must not. Reverting the resolver to the raw pattern turns the regression red. All five real violations are still denied end to end. |
 <!-- /ANCHOR:log -->
