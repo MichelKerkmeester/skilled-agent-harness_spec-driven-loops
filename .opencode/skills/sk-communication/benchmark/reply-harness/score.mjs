@@ -120,10 +120,12 @@ function pCap(reply, caseEntry) {
   // The operator accepted the flat list on the measured models, so the cap is recorded for
   // the reader and only a dropped item fails the case. Expected items come from the case
   // when it names them, else from the backticked tokens in its prompt.
+  // An expected item may carry alternative names. A rule file renamed between the two
+  // conditions is one item under either name, so a frozen reply set stays scorable.
   const expected = Array.isArray(caseEntry.expectedItems) && caseEntry.expectedItems.length
-    ? [...new Set(caseEntry.expectedItems.map(String))]
-    : [...new Set((String(caseEntry.prompt).match(/`([^`\n]+)`/g) ?? []).map(t => t.slice(1, -1)))]
-  const missingItems = expected.filter(t => !reply.includes(t))
+    ? caseEntry.expectedItems.map(t => (Array.isArray(t) ? t.map(String) : [String(t)]))
+    : [...new Set((String(caseEntry.prompt).match(/`([^`\n]+)`/g) ?? []).map(t => t.slice(1, -1)))].map(t => [t])
+  const missingItems = expected.filter(names => !names.some(name => reply.includes(name))).map(names => names[0])
   return {
     pass: !missingItems.length,
     detail: { groupSizes: groups, overFive, capHeld: !overFive.length, expectedItems: expected, missingItems }
@@ -251,7 +253,8 @@ for (const c of cases) {
   for (const field of ["keyedRule", "passObservable", "failObservable"]) {
     if (c[field] !== undefined && typeof c[field] !== "string") die(`${casesFile} case ${c.id} field ${field} must be a string when present`)
   }
-  if (c.expectedItems !== undefined && (!Array.isArray(c.expectedItems) || c.expectedItems.some(t => typeof t !== "string" || !t.trim()))) die(`${casesFile} case ${c.id} expectedItems must be a list of non-empty strings when present`)
+  const namedItem = t => typeof t === "string" && t.trim()
+  if (c.expectedItems !== undefined && (!Array.isArray(c.expectedItems) || c.expectedItems.some(t => !(namedItem(t) || (Array.isArray(t) && t.length && t.every(namedItem)))))) die(`${casesFile} case ${c.id} expectedItems must be a list of non-empty strings, or lists of alternative names, when present`)
 }
 const controls = cases.filter(c => c.control)
 if (controls.length !== 1 || controls[0].id !== "NC1") die(`${casesFile} needs control true on NC1 and nowhere else`)

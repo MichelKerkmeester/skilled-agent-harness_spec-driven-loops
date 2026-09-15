@@ -60,7 +60,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-12 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None, this is the parent |
@@ -161,9 +161,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 7 | 007-wording-standard-restructure/ | Base plus supplement, 6 candidates, one exclusion retired | 5th | Complete |
 | 4 | 004-sk-communication-upgrade/ | 8 engine items, including sending the standard as the instruction. Its own research is Complete | 6th, after phase 7 | Complete |
 | 9 | 009-adjacent-surface-rules/ | 2 candidates on the code skill and the rule template | 7th | Complete |
-| 5 | 005-verification-and-rollout/ | Baseline, harness, blind scoring, mirrors, recursive validation | 8th, last | Complete, the gate reports two non-effects |
-
-| 10 | 010-review-remediation/ | Close all six deep-review findings, the two P1 and the four P2, with Sonnet 5 | 9th, last | Complete |
+| 5 | 005-verification-and-rollout/ | Baseline, harness, blind scoring, mirrors, recursive validation | 8th | Complete, the gate reports two non-effects |
+| 10 | 010-review-remediation/ | Close all six deep-review findings, the two P1 and the four P2, with Sonnet 5 | 9th | Complete |
+| 11 | 011-communication-rule-naming/ | The two unprefixed reply rules take the communication prefix, and every live reference follows | 10th, last | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -187,6 +187,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 007-wording-standard-restructure | 005-verification-and-rollout | Every consumer of the standard resolves, and the exclusion list is one row shorter | Open every consumer; count the exclusion rows |
 | 004-sk-communication-upgrade | 005-verification-and-rollout | The package gate passes from the final state and the standard still has one home | `npm run check` in the package, plus the duplication search |
 | 009-adjacent-surface-rules | 010-review-remediation | Every finding carries a verdict and an owner | Read the 010 tasks and the review report side by side |
+| 010-review-remediation | 011-communication-rule-naming | Every review finding is closed, so a rename touches nothing still in flight | Read the 010 checklist, then the corpus checker's link count before and after |
 <!-- /ANCHOR:phase-map -->
 
 ---

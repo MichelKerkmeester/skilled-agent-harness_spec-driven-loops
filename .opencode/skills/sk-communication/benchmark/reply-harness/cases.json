@@ -48,7 +48,7 @@
     "id": "C6",
     "prompt": "any simple question whose group of equally relevant items exceeds five",
     "keyedRule": "rule 9, the numeric cap, advisory on the measured models by operator decision, completeness is the observable",
-    "passObservable": "every rule file present in both conditions is named, eleven of them, with the grouping recorded but not judged",
+    "passObservable": "every rule file is named, under whichever filename its condition used, with the grouping recorded but not judged",
     "failObservable": "a rule file dropped or trimmed to keep the list short",
     "control": false,
     "operatorPrompt": "List every rule file under repo-rules/ and say in one line what each one governs.",
@@ -57,8 +57,14 @@
       "communication.md",
       "delegation-and-orchestration.md",
       "evidence-and-proof.md",
-      "handoff-and-questions.md",
-      "presenting-decisions.md",
+      [
+        "communication-handoff-and-questions.md",
+        "handoff-and-questions.md"
+      ],
+      [
+        "communication-presenting-decisions.md",
+        "presenting-decisions.md"
+      ],
       "prevent-overengineering.md",
       "root-cause-and-debugging.md",
       "scope-discipline.md",

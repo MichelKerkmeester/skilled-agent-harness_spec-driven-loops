@@ -46,8 +46,8 @@ is not.
 | Answer without certainty · contradict the operator · fill a gap with a plausible guess · hit a contradiction between two things that must both be true · name a path, flag, function, version, or number you have not verified | [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md) | Confidence bands, UNKNOWN, contradiction halts |
 | Write any substantive reply · the reader says they did not follow | [`communication.md`](repo-rules/communication.md) | How a reply reads: length, filler, and no table in a reply |
 | Draft or edit any sentence a reader will read · choose a word · place a dash, colon or semicolon · split or join sentences | [`communication-prose.md`](repo-rules/communication-prose.md) | How a sentence reads: sentence and paragraph shape, plain words, punctuation |
-| Present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · start a multi-step stretch the reader cannot see inside · report what a long run found · list every option you considered | [`presenting-decisions.md`](repo-rules/presenting-decisions.md) | Verdict first, one recommended path, saying where you are going before a long stretch |
-| End a turn · report work done, blocked, or partly done · ask the operator anything · end a turn on a fork or two acceptable paths · continue past a decision nobody made | [`handoff-and-questions.md`](repo-rules/handoff-and-questions.md) | What is the operator's to do next, and when a question becomes a structured choice |
+| Present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · start a multi-step stretch the reader cannot see inside · report what a long run found · list every option you considered | [`communication-presenting-decisions.md`](repo-rules/communication-presenting-decisions.md) | Verdict first, one recommended path, saying where you are going before a long stretch |
+| End a turn · report work done, blocked, or partly done · ask the operator anything · end a turn on a fork or two acceptable paths · continue past a decision nobody made | [`communication-handoff-and-questions.md`](repo-rules/communication-handoff-and-questions.md) | What is the operator's to do next, and when a question becomes a structured choice |
 | Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed, reachable or integrated · quote a per-hub gate result · create a new skill under a hub, or refactor one that already lives there | [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
 
 ---
@@ -65,8 +65,8 @@ is not.
 | [Uncertainty and honesty](repo-rules/uncertainty-and-honesty.md) | Never fabricate; mark the confidence you actually have and halt on a contradiction. |
 | [Communication](repo-rules/communication.md) | Write so the reader can act after one pass: no table in a reply, nothing that does not carry information. |
 | [Communication prose](repo-rules/communication-prose.md) | How a sentence reads: sentence and paragraph shape, plain words, punctuation. |
-| [Presenting decisions](repo-rules/presenting-decisions.md) | When the reader has to decide or act on what you found, lead with the verdict, recommend one path, and say where you are going before a long stretch of work. |
-| [Handoff and questions](repo-rules/handoff-and-questions.md) | End every turn by naming what is now the operator's to do, in the form that lets them do it. |
+| [Communication presenting decisions](repo-rules/communication-presenting-decisions.md) | When the reader has to decide or act on what you found, lead with the verdict, recommend one path, and say where you are going before a long stretch of work. |
+| [Communication handoff and questions](repo-rules/communication-handoff-and-questions.md) | End every turn by naming what is now the operator's to do, in the form that lets them do it. |
 | [Hub routing](repo-rules/skill-hub-routing.md) | A hub routes in two stages, so a mode registered on one surface is not reachable, and a gate run without its hub argument reports on a hub you did not touch. |
 
 Each file expands `AGENTS.md` and is bounded by it: where a rule file appears to
@@ -106,7 +106,7 @@ and what follows is the narrowing that keeps the boundary standing. *Choosing be
 runtimes, agents, commands, models or flags* stays Out, unchanged. *Naming the surface that
 asks the operator a question, in the runtime you are already running in*, is In. That is not
 a selection, because nothing is being selected: the runtime is a given, and the rule records
-which of its surfaces carries an obligation the rule already imposes. `handoff-and-questions.md`
+which of its surfaces carries an obligation the rule already imposes. `communication-handoff-and-questions.md`
 is the one rule on this side of that line, its §5 is the only place a tool name appears, and
 it names only what this repository confirms. A fifth widening that let a rule pick between
 runtimes would be the dissolution this one avoids.

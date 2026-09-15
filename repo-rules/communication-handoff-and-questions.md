@@ -1,5 +1,5 @@
 ---
-title: "Rule: Handoff and questions"
+title: "Rule: Communication handoff and questions"
 description: "End every turn by naming what is now the operator's to do, in the form that lets them do it."
 trigger_phrases:
   - "what do i do now"
@@ -27,10 +27,10 @@ trigger_phrases:
   - "one concrete next action"
 importance_tier: important
 contextType: reference
-version: 1.3.0.0
+version: 1.4.0.0
 ---
 
-# Rule: Handoff and questions
+# Rule: Communication handoff and questions
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before ending a turn that leaves the operator anything to do.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
@@ -124,7 +124,7 @@ you need is a choice between named alternatives, present it as a choice.
 
 - The alternatives are nameable, not open-ended.
 - The answer changes what you do next. A question that changes nothing is a delay, per
-  [`presenting-decisions.md`](presenting-decisions.md) §3.
+  [`communication-presenting-decisions.md`](communication-presenting-decisions.md) §3.
 - You cannot resolve it from the request, the code, or a sensible default.
 
 **Otherwise put it in prose and keep going.** A structured choice for something you could have
