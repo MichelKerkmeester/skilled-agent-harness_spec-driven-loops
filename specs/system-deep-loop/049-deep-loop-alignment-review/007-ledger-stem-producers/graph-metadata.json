@@ -184,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The ledger schemas register 61 dotted event stems, and a census of the nine producer surfaces found 56 of them written by no mechanical producer at all",
     "created_at": "2026-09-15T14:23:14Z",
-    "last_save_at": "2026-09-15T21:01:26.515Z",
+    "last_save_at": "2026-09-15T21:25:24.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0522136cd97c94e14ae2996a0c8205aa722abbd11268b5705cb5d79f27876a9",
+    "source_fingerprint": "sha256:fbfb57ce90853a3e2f603e384a128c0bbfd6e01aa5c75b5c05b9029577af0709",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "12bba4247c4da6cfc928c183bac83fb4bd938429a880dd71e64eec3040a2fb65",
+      "spec.md": "7b15a7d05c61f1cd89a45c9698509e687c69dff8d181db0874d0a147ed4efc94",
       "plan.md": "1ba294c3c8173afa64d22c5f6b29ebf93e12299c9cfb859161227f0e6bcda6eb",
       "tasks.md": "ee6084d6d134248351a4d56a1cf9ae469b34ff316bdd45c8cd1669ff2c502b77",
-      "implementation-summary.md": "a73fc84e9fe5a4480b562f81e19aedc6ab73b276140929d16dd46285bb8bdf60"
+      "implementation-summary.md": "0f17d41a297095b98b36bff0812840d8efaf40b374e728f063c6c484210511eb"
     },
     "last_active_at": null
   }

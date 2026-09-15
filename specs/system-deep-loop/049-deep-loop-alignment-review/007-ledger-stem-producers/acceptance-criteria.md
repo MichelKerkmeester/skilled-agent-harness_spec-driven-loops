@@ -59,7 +59,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given both lanes' frozen stem arrays, When the census is read, Then every registered stem is either spoken by a named producer or reserved with its reason | `node scripts/check-ledger-stem-producers.cjs` exits 0 reporting registered 61, spoken 5, reserved 56 and zero violations; the census consts are at runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:586 and runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts:426 | Met | - |
 | AC-002 | REQ-002 | Given a producer that writes an unregistered spelling, When the checker runs, Then it exits 2 naming the rule instead of passing | fixture cases at runtime/tests/unit/check-ledger-stem-producers.vitest.ts:177 (reserved stem emitted) and runtime/tests/unit/check-ledger-stem-producers.vitest.ts:188 (unregistered emitter), plus the real-tree run | Met | - |
-| AC-003 | REQ-003 | Given this change set, When the deep-loop suite runs, Then it exits zero | `npx vitest run --no-coverage`: 153 of 154 files and 2676 of 2685 tests pass; the one red asserts at runtime/tests/stress/cli-adapter/fanout.vitest.ts:521 and is stale against the executor probe added by commit `2a84717ed3` in another track, the same external red the sibling packet logs already record | Unmet | - |
+| AC-003 | REQ-003 | Given this change set, When the deep-loop suite runs, Then it exits zero | `npx vitest run --no-coverage`: 154 files and 2677 of 2685 tests pass, 8 skipped, exit 0 | Met | - |
 | AC-004 | REQ-004 | Given the flat gate summary and the typed per-finding record, When either payload is posted under the other's stem, Then both are rejected | cross-post case at runtime/tests/unit/deep-review-ledger-schema.vitest.ts:915, and the fold case at runtime/tests/unit/deep-review-projections-contract.vitest.ts:299 asserting the typed adjudication array stays empty | Met | - |
 | AC-005 | REQ-005 | Given a shadow output whose config row carries keys the projection does not rebuild, When a replace is attempted, Then it is refused and the published bytes are unchanged | guard call site at runtime/lib/legacy-projections/shadow-projection-store.ts:573 and its refusal case at runtime/tests/unit/legacy-projections.test.ts:661 | Met | - |
 | AC-006 | REQ-006 | Given frames reachable at either root, When the ledger-backing gate runs, Then the result names the root that backed the run | runtime/scripts/verify-iteration.cjs:202 returns the frames root and kind; cases at runtime/tests/unit/verify-iteration.vitest.ts:355 cover the parent root, the artifact-dir root, the kill switch and pre-authority | Met | - |
@@ -89,7 +89,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001, AC-002 and AC-004 through AC-008 carry the packet: the census is declared and enforced, the adjudication split is settled with proofs, and a lossy projection replace is refused loudly. AC-003 is unmet and the packet stays open, because the suite's single red belongs to another track's executor preflight and this packet must not repair a boundary it does not own.
+AC-001, AC-002 and AC-004 through AC-008 carry the packet: the census is declared and enforced, the adjudication split is settled with proofs, and a lossy projection replace is refused loudly. AC-003 is met: the suite's single red was a stress assertion left stale by another track's executor probe, corrected in its own change outside this packet, after which the whole suite exits zero.
 <!-- /ANCHOR:closure -->
