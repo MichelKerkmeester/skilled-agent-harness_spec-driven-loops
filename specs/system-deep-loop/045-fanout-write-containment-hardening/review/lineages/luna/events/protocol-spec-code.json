@@ -1,0 +1,17 @@
+{
+  "stem": "deep_review.protocol_plan_recorded",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57",
+    "protocolId": "spec_code"
+  },
+  "data": {
+    "coreProtocolIds": ["spec_code"],
+    "overlayProtocolIds": [],
+    "applicability": "applicable",
+    "gateClass": "blocking",
+    "contractVersion": "2.0.0",
+    "plannedEvidenceSourceRefs": ["spec.md:133-149", "write-containment.ts:820-835", "fanout-run.cjs:3476-3541"],
+    "protocolPlanDigest": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

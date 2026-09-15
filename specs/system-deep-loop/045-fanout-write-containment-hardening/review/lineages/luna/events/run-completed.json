@@ -1,0 +1,29 @@
+{
+  "stem": "deep_review.run_completed",
+  "eventId": "run-completed",
+  "streamId": "deep-review-ledger",
+  "streamSequence": 23,
+  "prevEventHash": "0bd23e763d0b18d4afbb6ee4a739d26abd73bc309b6ec1e1602a7afd4d0b6225",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57"
+  },
+  "data": {
+    "terminalStatus": "incomplete",
+    "convergenceEventId": "event-cd31fde5-b32d-4222-8c7a-47b05bf2a4a7",
+    "synthesisEventId": "event-7dcc6f41-09bf-404b-9e10-8e463b83cfd8",
+    "reportEventId": "event-a99b62a9-378c-4ad4-87d2-1c9ca5e2bc31",
+    "continuityEventId": "event-71c7a736-20a1-4b4b-badd-fe3b477f174a",
+    "finalLedgerTailHash": "0bd23e763d0b18d4afbb6ee4a739d26abd73bc309b6ec1e1602a7afd4d0b6225",
+    "counts": {
+      "dimensions": 3,
+      "iterations": 3,
+      "candidates": 7,
+      "findings": 7,
+      "evidence": 7
+    },
+    "verdict": "incomplete",
+    "completionReason": null,
+    "incompleteReason": "Maximum iterations reached with maintainability coverage deferred and active P1 findings remaining; detached-lineage continuity was not written outside this lineage."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "stem": "deep_review.dimension_pass_started",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57",
+    "generation": 2,
+    "iterationId": "iter-003",
+    "dimensionId": "traceability"
+  },
+  "data": {
+    "passNumber": 3,
+    "targetRefs": [
+      "packet-045"
+    ],
+    "filesReviewed": [
+      "spec.md:20-39",
+      "spec.md:65-72",
+      "spec.md:103-149",
+      "spec.md:160-165",
+      "spec.md:187-207",
+      "plan.md:61-76",
+      "plan.md:186-201",
+      "acceptance-criteria.md:48-108",
+      "tasks.md:85-103",
+      "tasks.md:301-340",
+      "decision-record.md:532-553",
+      "goal.md:49-95",
+      "handover.md:23-44",
+      "deep-review-auto.yaml:1267-1429",
+      "deep-review-confirm.yaml:1138-1217",
+      "fanout-run.cjs:3213-3231",
+      "executor-config.ts:789-824",
+      "fanout-run.vitest.ts:4380-4575"
+    ],
+    "searchCoverageDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "passStatus": "started",
+    "nextFocusRef": "maintainability-coverage-not-run"
+  }
+}

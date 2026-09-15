@@ -1,0 +1,22 @@
+{
+  "stem": "deep_review.run_initialized",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57",
+    "generation": 2
+  },
+  "data": {
+    "target": {
+      "targetId": "packet-045",
+      "targetType": "directory",
+      "artifactRef": "specs/system-deep-loop/045-fanout-write-containment-hardening",
+      "sourceDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+      "contentDigest": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "lineageMode": "fresh",
+    "maxIterations": 3,
+    "convergencePolicyVersion": "review-v2",
+    "reviewModeContractDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "initialReleaseReadinessState": "not-assessed"
+  }
+}

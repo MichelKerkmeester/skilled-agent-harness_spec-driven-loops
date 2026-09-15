@@ -1,11 +1,11 @@
 {
-  "topic": "Review of the fan-out write containment hardening change set (commits 5340e39233 through 63b633c62f)",
+  "topic": "Fresh review of the remediated fan-out write containment tree after phases 008 to 013",
   "mode": "review",
   "reviewTarget": "specs/system-deep-loop/045-fanout-write-containment-hardening",
   "reviewTargetType": "spec-folder",
   "reviewDimensions": "all",
   "specFolder": "specs/system-deep-loop/045-fanout-write-containment-hardening",
-  "maxIterations": 10,
+  "maxIterations": 6,
   "convergenceThreshold": 0.1,
   "antiConvergence": {
     "convergenceMode": "off",
@@ -14,7 +14,7 @@
   "stopPolicy": "max-iterations",
   "executionMode": "auto",
   "lineageMode": "restart",
-  "archivedPath": "specs/system-deep-loop/045-fanout-write-containment-hardening/review-archive/20260914T165140Z",
+  "archivedPath": "specs/system-deep-loop/045-fanout-write-containment-hardening/review-archive/20260914T231749Z",
   "resource_map": {
     "emit": true
   },
@@ -26,17 +26,17 @@
         "reasoningEffort": "max",
         "serviceTier": "fast",
         "label": "luna",
-        "iterations": 5
+        "iterations": 3
       },
       {
         "kind": "cli-pi",
         "model": "deepseek-v4.1-flash",
         "reasoningEffort": "max",
         "label": "deepseek",
-        "iterations": 5
+        "iterations": 3
       }
     ],
     "concurrency": 2
   },
-  "createdAt": "2026-09-14T16:51:40.494840+00:00"
+  "createdAt": "2026-09-14T23:17:49.347171+00:00"
 }

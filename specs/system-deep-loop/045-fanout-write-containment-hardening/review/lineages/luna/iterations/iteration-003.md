@@ -1,77 +1,87 @@
-# Deep Review Iteration 003
+# Review Iteration 3
 
-## Focus
+## Dimension
 
-Traceability across command callers, phase-007 removal decisions, executable defaults, and canonical packet records.
+Traceability: caller reachability, packet/ADR alignment, checklist evidence, current test citations, and threshold contract integrity.
 
 ## Files Reviewed
 
-- `.opencode/commands/deep/assets/deep-review-auto.yaml:1293-1369`
-- `.opencode/commands/deep/assets/deep-review-confirm.yaml:1164-1213`
-- `.opencode/commands/deep/assets/deep-research-auto.yaml:1475-1521`
-- `.opencode/commands/deep/assets/deep-research-confirm.yaml:1092-1126,1523-1525`
-- `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:695-709`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/spec.md:38-90`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/acceptance-criteria.md:57-59`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md:57-64`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md:528-548`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:139,192`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md:48-50,79,102-108`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:55-61,83-112`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md:23-37`
+- specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:20-26,65-72,103-149,160-165,187-207
+- specs/system-deep-loop/045-fanout-write-containment-hardening/plan.md:61-76,186-201
+- specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md:48-108
+- specs/system-deep-loop/045-fanout-write-containment-hardening/tasks.md:85-103,301-340
+- specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md:532-553
+- .opencode/commands/deep/assets/deep-review-auto.yaml:1267-1429
+- .opencode/commands/deep/assets/deep-review-confirm.yaml:1138-1217
+- .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3213-3231
+- .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:789-824
+- .opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:4380-4575
 
-## Findings
+## Findings by Severity
 
 ### P0
 
-- **LUNA-F003**: Quarantine destinations are not canonicalized before trusted writes — `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:943` — carried from iteration 2; the trusted writer still has no destination boundary check.
+None.
 
 ### P1
 
-- **LUNA-F001**: Pre-existing untracked deletions disappear from the baseline diff — `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:823` — carried from iteration 1.
-- **LUNA-F002**: Failed or incomplete lanes skip containment entirely — `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3381` — carried from iteration 1.
-- **LUNA-F004**: Command caller migration still contains removed worktree assumptions and raw state writes — `.opencode/commands/deep/assets/deep-review-auto.yaml:1307` — the auto review branch rejects a shared checkout and appends a recovery record directly, while the four command surfaces retain divergent inline containment/gateway paths after phase 007 removed worktree isolation.
-- **LUNA-F005**: Canonical packet records disagree about whether isolation exists and is default — `specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md:62` — the goal and ADR-006/ADR-007 say off-by-default and removed, while the parent requirements, acceptance metadata, summary, and handover still require or report worktree default-on behavior.
-- **LUNA-F006**: Churn threshold rationale contradicts the executable defaults — `specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:192` — the rationale says twelve per heartbeat and forty cumulative, while REQ-004 and the schema ship three and twelve, leaving operators without one authoritative safety threshold contract.
+#### LUNA-T-001 [P1] Auto review cli-opencode dispatch still requires a removed linked worktree
+
+- File: .opencode/commands/deep/assets/deep-review-auto.yaml:1304-1321
+- Evidence: The cli-opencode branch throws when gitDir equals git-common-dir, then requires a primary main/master worktree and a clean primary checkout. The current fanout runner uses unique artifact directories and contains no worktree lifecycle; ADR-007 says the mechanism was removed.
+- Finding class: cross-consumer
+- Scope proof: The workflow guard and current runner dispatch path were read together; the current runner has no worktree creation/handoff while the auto YAML guard is unconditional for this executor branch.
+- Claim adjudication: claim is that a supported cli-opencode auto run from the current checkout is rejected before dispatch; evidence refs are deep-review-auto.yaml:1304-1321,1379-1406, fanout-run.cjs:3213-3231 and decision-record.md:544-553; counterevidence sought is an outer runner that always supplies a linked worktree or a current caller test proving the no-worktree topology; alternative explanation is that a manually pre-created linked worktree can satisfy the guard but that is not the current default; final severity P1; confidence 0.99; downgrade trigger counterevidence.
+- Recommendation: Remove the stale linked-worktree and clean-primary preflight or route it through the current preserve-and-contain contract and add a caller-level test.
+
+#### LUNA-T-002 [P1] Canonical packet requirements still describe removed worktree behavior
+
+- File: specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:20-26
+- Evidence: Summary, scope, REQ-005/REQ-007, and SC-003/SC-005/SC-006 retain worktree creation, publication, isolation, and checkout-watch behavior, while ADR-007 accepts removal of worktrees, the cone, and worktree-only phases.
+- Finding class: matrix/evidence
+- Scope proof: Packet summary, scope, requirements, and success criteria were compared with ADR-007 and current runner comments identifying unique artifact directories rather than worktrees.
+- Claim adjudication: claim is that the canonical packet is internally contradictory; evidence refs are spec.md:20-26,65-72,133-165, decision-record.md:544-553 and fanout-run.cjs:3213-3231; counterevidence sought is packet-wide supersession of all worktree rows or a later decision reinstating worktrees; alternative explanation is that some rows carry superseded labels but their normative bodies remain; final severity P1; confidence 0.98; downgrade trigger counterevidence.
+- Recommendation: Supersede or rewrite retained worktree requirements and success criteria, then align status and phase-map metadata with ADR-007.
+
+#### LUNA-T-003 [P1] Acceptance evidence marks removed behavior as met and cites absent or mismatched tests
+
+- File: specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md:63-108
+- Evidence: AC-012 through AC-018 remain Met despite removed worktree behavior; AC-015 cites the absent worktree-lifecycle.vitest.ts, while cited current fanout-run lines cover metadata refresh or index-lock behavior. Packet status and closure/signoff text also conflict.
+- Finding class: matrix/evidence
+- Scope proof: Acceptance rows, closure text, current test inventory, and cited fanout-run ranges were compared; the named lifecycle test is absent and the current runner suite has no corresponding lifecycle block.
+- Claim adjudication: claim is that the acceptance artifact overstates completion and cannot serve as a reliable closure gate; evidence refs are acceptance-criteria.md:48-50,71-80,103-108, tasks.md:301-340 and fanout-run.vitest.ts:4380-4575; counterevidence sought is the named test at the cited path, current lines asserting the claimed behavior, and reconciled closure metadata; alternative explanation is that some rows are superseded but remaining Met rows and closure fields still overclaim; final severity P1; confidence 0.97; downgrade trigger counterevidence.
+- Recommendation: Mark removed rows superseded with ADR-007, replace stale citations with current evidence, and reconcile In Progress/Complete/Closeable/signoff metadata.
 
 ### P2
 
-None.
+#### LUNA-T-004 [P2] Plan churn thresholds disagree with the shipped defaults
 
-## Claim Adjudication Packets
-
-```json
-{"findingId":"LUNA-F004","claim":"The command-level migration is incomplete: deep-review-auto still requires an isolated linked worktree and directly appends a recovery record, while the review and research command surfaces retain separate inline containment paths after phase 007 removed worktree isolation.","evidenceRefs":[".opencode/commands/deep/assets/deep-review-auto.yaml:1304-1308",".opencode/commands/deep/assets/deep-review-auto.yaml:1365-1369",".opencode/commands/deep/assets/deep-review-confirm.yaml:1164-1198",".opencode/commands/deep/assets/deep-research-auto.yaml:1475-1521",".opencode/commands/deep/assets/deep-research-confirm.yaml:1092-1126,1523-1525","specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/spec.md:50-71","specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/acceptance-criteria.md:57-59"],"counterevidenceSought":["A shared-checkout-compatible, gateway-only caller path in every one of the four command YAMLs, with no removed worktree preflight or direct state-log append."],"alternativeExplanation":"Some executor branches already use shared checkout inputs, but that does not remove the explicit isolated-worktree rejection or the raw append in the auto review branch.","finalSeverity":"P1","confidence":0.98,"downgradeTrigger":"A repository-wide caller sweep showing all four YAMLs use the current shared-checkout/gateway contract would invalidate this finding."}
-```
-
-```json
-{"findingId":"LUNA-F005","claim":"The packet's current-state records are mutually inconsistent: goal and accepted ADRs remove worktrees and make isolation opt-in, while parent requirements and closure records still describe worktree default-on behavior.","evidenceRefs":["specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md:62-63","specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md:528-548","specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:133,141","specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md:48-50,79,102-108","specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:83-112","specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md:35-37"],"counterevidenceSought":["A supersession marker or reconciled current-state section that removes the obsolete requirement and acceptance claims from the packet closure surface."],"alternativeExplanation":"The documents may be historical records, but the parent requirement and acceptance closure still present the obsolete behavior as current and met.","finalSeverity":"P1","confidence":0.99,"downgradeTrigger":"Marking the obsolete rows superseded and publishing one authoritative current-state contract would invalidate the inconsistency finding."}
-```
-
-```json
-{"findingId":"LUNA-F006","claim":"The safety rationale states different churn defaults from the requirement and schema, so an operator cannot tell whether the shipped thresholds are 3/12 or 12/40.","evidenceRefs":["specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:139","specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:192",".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:701-706"],"counterevidenceSought":["A current threshold table or amendment that explicitly supersedes the rationale's 12/40 values."],"alternativeExplanation":"The executable schema is unambiguous at 3/12, but the rationale is part of the operator-facing safety contract and is not marked obsolete.","finalSeverity":"P1","confidence":0.96,"downgradeTrigger":"A documented supersession tying the rationale to 3/12, or changing the rationale and acceptance evidence to the shipped values, would invalidate this finding."}
-```
-
-## Ruled Out
-
-- The feature-catalog surface itself describes shared-checkout churn and does not add a new worktree requirement at `.opencode/skills/system-deep-loop/feature-catalog/fanout-write-containment/fanout-write-containment.md:8-28`.
-- The manual testing playbook points to shared-checkout preservation at `.opencode/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md:176`; the caller YAML and parent packet contradictions remain separate.
+- File: specs/system-deep-loop/045-fanout-write-containment-hardening/plan.md:61-70
+- Evidence: The plan says twelve per window or forty cumulative, while the current parser and requirement use three newly dirty paths and twelve cumulative; the runner consumes the parsed config thresholds.
+- Finding class: matrix/evidence
+- Scope proof: Plan, requirement, config parser, and runner threshold plumbing were compared in this pass.
+- Recommendation: Update the plan rationale to the shipped 3/12 values or record a deliberate versioned change.
 
 ## Traceability Checks
 
-- `spec_code`: fail. Accepted goal/ADR decisions, parent requirements, executable caller branches, and closure records do not describe one current contract.
-- `checklist_evidence`: partial. Acceptance rows assert both removed worktrees and default-on worktrees as met, so the evidence is internally non-authoritative.
-- `feature_catalog_code`: pass for the reviewed fan-out feature entry; it describes shared-checkout behavior.
-- `playbook_capability`: pass for the reviewed shared-checkout preservation entry; no removed worktree capability was found there.
-- `skill_agent`: notApplicable; the target is a spec folder.
-- `agent_cross_runtime`: notApplicable; this lineage is inline cli-codex.
+- spec_code: partial. ADR-007 and current runner behavior contradict retained worktree claims, and the cli-opencode caller rejects the current topology.
+- checklist_evidence: partial. Several Met rows rely on absent or mismatched worktree evidence and conflicting closure metadata.
+- feature_catalog_code: partial. Current feature references were checked only at the runner boundary; no separate feature-catalog sweep was needed to establish the P1 contract drift.
+- playbook_capability: pending. A maintainability/playbook deepening pass was not available after the configured cap.
 
-## Next Focus
+## Ruled-Out Directions
 
-Maintainability: retention, test gaps, duplicate contract seams, and whether the remediation remains operable over repeated passes.
+- strict-config-worktree-key-rejection: current executor config explicitly rejects the removed containment.worktrees key (executor-config.ts:803-817).
+- Correctness and security pivots from iterations 1 and 2 were not re-entered; this pass followed caller and evidence contracts.
 
-## Assessment
+## Deferred Frontier
 
-Dimensions addressed: traceability. Three new P1 contract findings are independently supported; the P0 and two earlier P1s remain active. Convergence remains telemetry only until iteration 5.
+- Maintainability was not executed because the configured maximum is three iterations. No maintainability PASS is implied; synthesis must preserve this coverage gap.
 
-Review verdict: FAIL
+## Verdict
+
+Review verdict: CONDITIONAL
+
+## Next Dimension
+
+Maintainability was not run; synthesis is required now because stopPolicy is max-iterations.

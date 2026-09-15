@@ -1,282 +1,143 @@
+---
+title: Deep Review Report — fanout write containment hardening
+description: Final synthesis for the detached luna fan-out review lineage.
+trigger_phrases: []
+---
+
 # Deep Review Report
 
-## Executive Summary
+## 1. Executive Summary
 
-- Target: `specs/system-deep-loop/045-fanout-write-containment-hardening`
-- Session: `fanout-luna-1789404700951-8xtlnk`
-- Executor: `cli-codex model=gpt-5.6-luna`
-- Execution: autonomous inline executor; no nested agent, CLI, or subprocess dispatched an iteration.
-- Review dimensions: all configured dimensions, with five passes executed.
-- Verdict: **FAIL**
-- Active findings: **P0=1, P1=6, P2=1**
-- Terminal stop reason: `maxIterationsReached`
+- Verdict: CONDITIONAL
+- hasAdvisories: false
+- Active findings: P0=0, P1=6, P2=1
+- Stop reason: maxIterationsReached after 3 of 3 iterations
+- Dimension coverage: 3/4; correctness, security, and traceability were reviewed, while maintainability was deferred by the cap
+- Release-readiness state: in-progress
+- Scope: read-only review of the packet, containment and fan-out runtime, executor configuration, review callers, and cited evidence surfaces
 
-The review cannot sign off the target. The P0 finding shows that a pre-existing symlink in the trusted quarantine destination can redirect containment evidence outside the artifact root. The remaining findings identify correctness gaps on baseline deletion and failed lanes, caller migration drift, contradictory packet contracts, an executable-threshold mismatch, mutable retry evidence, and missing regression tests.
+The correctness pass found no release-blocking state-transition defect. The security pass found three P1 trust-boundary gaps: baseline capture/read paths are not fully symlink-contained, restore checks do not protect parent components, and quarantine validation is check-then-create rather than atomic. The traceability pass found three P1 contract/evidence failures and one P2 documentation mismatch: the auto cli-opencode caller still requires a removed worktree, the packet retains superseded worktree requirements, acceptance evidence overstates completion, and plan churn thresholds disagree with effective defaults.
 
-The review read the target packet, the containment implementation and tests, the fan-out runner and pool, command callers, executor configuration, the relevant phase packet, and the deep-review artifacts. No target or repository file was changed. All files created by this lineage are under the configured lineage artifact directory.
+No implementation, packet, workflow, or test files were changed by this lineage. The review stopped at the configured iteration cap; the conditional verdict therefore remains provisional until the active findings are remediated and maintainability coverage is run.
 
-## Planning Trigger
+The target had no resource-map.md at initialization, so the Resource Map Coverage Gate does not apply.
 
-`/speckit:plan` is required before remediation because the review has an active P0 and multiple P1 findings spanning a security boundary, runner control flow, command callers, executable configuration, and canonical packet records. This review produced a remediation seed only; it did not implement fixes.
+## 2. Planning Trigger
 
-```json
-{
-  "triggered": true,
-  "verdict": "FAIL",
-  "hasAdvisories": false,
-  "activeFindings": ["LUNA-F003", "LUNA-F001", "LUNA-F002", "LUNA-F004", "LUNA-F005", "LUNA-F006", "LUNA-F007", "LUNA-F008"],
-  "remediationWorkstreams": [
-    "secure trusted quarantine destinations and preserve evidence across retries",
-    "make containment run for failed and incomplete lanes and detect baseline-only deletions",
-    "migrate command callers and reconcile packet contracts with the shipped isolation decision",
-    "align churn-threshold rationale, executable defaults, and boundary regression tests"
-  ],
-  "specSeed": [
-    "Define canonicalization and symlink rejection for every trusted quarantine write.",
-    "Define containment coverage and evidence retention for failed, incomplete, and repeated lanes.",
-    "Declare one authoritative isolation state and one authoritative churn-threshold policy across code and packet records."
-  ],
-  "planSeed": [
-    "Add destination-side symlink and canonical-root checks before mkdir and every quarantine write.",
-    "Move containment into the runner's failure-safe lifecycle and diff the complete baseline path set, including untracked deletions.",
-    "Remove stale worktree and raw-state assumptions from all deep command callers.",
-    "Reconcile goal, specification, ADR, acceptance, summary, handover, and phase-007 records.",
-    "Add tests for all three uncovered boundary seams and replay containment after repeated passes."
-  ],
-  "findingClasses": ["security-boundary", "algorithmic", "control-flow", "cross-consumer", "documentation-contract", "contract-mismatch", "retention", "test-coverage"],
-  "affectedSurfacesSeed": [
-    ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-    ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-    ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-    ".opencode/commands/deep/assets/deep-review-auto.yaml",
-    ".opencode/commands/deep/assets/deep-review-confirm.yaml",
-    ".opencode/commands/deep/assets/deep-research-auto.yaml",
-    ".opencode/commands/deep/assets/deep-research-confirm.yaml",
-    "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
-    "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-    "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
-    "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
-    "specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md",
-    "specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/spec.md"
-  ],
-  "fixCompletenessRequired": true
-}
-```
+The CONDITIONAL verdict routes to /speckit:plan. Remediation should first close the three security trust-boundary findings, then reconcile the cli-opencode caller and the canonical packet/acceptance evidence with ADR-007. The plan threshold mismatch can be corrected in the same documentation lane. After those changes, run the deferred maintainability dimension and the required verification gates before treating the packet as closeable.
 
-## Active Finding Registry
+## 3. Active Finding Registry
 
-All eight findings remain active after the fifth pass. The registry digest used for synthesis is `b9847c69c3e84f833b4d45670a58c322b0bc827ab9a8a8e3bf3bbbf29c5a9a18`.
+| Final ID | Iteration ID | Severity | Dimension | Status | Primary evidence | First seen | Last seen |
+|---|---|---|---|---|---|---:|---:|
+| F001 | LUNA-S-001 | P1 | security | active | write-containment.ts:820-835, 1048-1063 | 2 | 2 |
+| F002 | LUNA-S-002 | P1 | security | active | write-containment.ts:1427-1450, 1491-1495 | 2 | 2 |
+| F003 | LUNA-S-003 | P1 | security | active | write-containment.ts:1066-1137, 1145-1355 | 2 | 2 |
+| F004 | LUNA-T-001 | P1 | traceability | active | deep-review-auto.yaml:1304-1321 | 3 | 3 |
+| F005 | LUNA-T-002 | P1 | traceability | active | spec.md:20-26, 133-165 | 3 | 3 |
+| F006 | LUNA-T-003 | P1 | traceability | active | acceptance-criteria.md:63-108 | 3 | 3 |
+| F007 | LUNA-T-004 | P2 | traceability | active | plan.md:61-70 | 3 | 3 |
 
-### LUNA-F003 — P0 — Security boundary
+### F001 — Baseline capture and read paths are not symlink-contained
 
-- Location: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:943-950`
-- Evidence: The trusted quarantine helper creates directories and writes through paths that are not canonicalized against the artifact root. Content, HEAD patch, baseline patch, fixed quarantine, and manifest writes occur at `:988-991`, `:1014-1017`, `:1037-1040`, `:1078-1087`, and `:1110-1113`. A pre-existing symlink in the trusted destination can redirect those writes outside the artifact root.
-- Impact: The containment mechanism can preserve evidence in an attacker-selected location while reporting a successful quarantine, violating the packet's NFR-S01 promise at `spec.md:194-196`.
-- Recommendation: Resolve and validate the trusted destination and its existing ancestors before any mkdir or write; reject symlinked destination components and verify every final path remains beneath the canonical artifact root. Add destination-side symlink fixtures, including manifest and patch writes.
-- Disposition: Release-blocking active finding.
+captureBaselineFile creates parent directories and copies baseline bytes by path without a destination refusal or no-follow guard. readBaselineContent later consumes the recorded path without revalidating ancestry. The runner passes the lineage directory as the capture root. Recommendation: validate every baseline destination and read path against the lineage root and use an atomic no-follow open strategy.
 
-### LUNA-F001 — P1 — Correctness
+### F002 — Restore checks only the final component
 
-- Location: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:823-835`
-- Evidence: The detector iterates current status entries. A path that was untracked in the baseline and deleted before the post-dispatch sample is absent from current status and therefore absent from the containment diff. Existing tests around `write-containment.vitest.ts:1625-1715` do not cover this baseline-only deletion.
-- Impact: A stated baseline-preservation guarantee can be bypassed by deleting an untracked baseline path.
-- Recommendation: Snapshot the full baseline path set, including untracked entries, and compare it with the post-dispatch path set before applying containment. Add a regression test for a baseline-only untracked deletion.
-- Disposition: Active P1; must be fixed before sign-off.
+Tracked restore performs an lstat check on the final path before a path-based write, while the not-in-HEAD branch recreates parents and writes without an ancestor guard. A replaced parent directory can redirect restore bytes outside the repository. Recommendation: protect every component and use an atomic directory/file-handle strategy for both restore branches.
 
-### LUNA-F002 — P1 — Control flow
+### F003 — Quarantine refusal and creation have a replacement race
 
-- Location: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3381-3420`
-- Evidence: Failure, missing-artifact, stop-policy, and salvage gates throw before `enforceWriteContainment` at `:3422-3436` is reached. A failed or incomplete lane can therefore leave an out-of-scope write unreported.
-- Impact: Failure paths have weaker write containment than successful paths, precisely where cleanup and evidence handling are most important. The limitation is acknowledged at `implementation-summary.md:120-123`.
-- Recommendation: Put containment in a failure-safe `finally` or equivalent outer lifecycle, record the lane outcome, and rethrow only after containment and evidence persistence have completed. Add failed-lane and incomplete-lane tests.
-- Disposition: Active P1; must be fixed before sign-off.
+quarantineDestinationRefusal checks current ancestors before writeQuarantineFile recursively creates directories and opens the destination by path. An ancestor can be replaced between those operations. Recommendation: anchor creation to a verified directory handle, use an equivalent atomic no-follow primitive, or serialize validation and creation together.
 
-### LUNA-F004 — P1 — Cross-consumer migration
+### F004 — Auto review cli-opencode dispatch still requires a removed linked worktree
 
-- Location: `.opencode/commands/deep/assets/deep-review-auto.yaml:1304-1308`
-- Evidence: The caller still rejects shared checkout and retains a direct `appendFileSync` state write at `:1365-1369`. Related assumptions remain in `deep-review-confirm.yaml:1164-1198`, `deep-research-auto.yaml:1475-1521`, and `deep-research-confirm.yaml:1092-1126,1523-1525`. Phase 007 states that worktree wiring and its flag/config must be removed at `007-worktree-removal/spec.md:50-71`, with acceptance coverage at `007-worktree-removal/acceptance-criteria.md:57-59`.
-- Impact: A caller can reject the intended shared-checkout mode or bypass the canonical state gateway after the isolation migration.
-- Recommendation: Migrate every listed command caller to the current shared-checkout and gateway contract, then verify the command-level acceptance rows against the actual runtime path.
-- Disposition: Active P1; must be fixed before sign-off.
+The auto workflow rejects a normal checkout when gitDir equals git-common-dir and then requires a clean primary main/master worktree. The current fan-out runner uses unique artifact directories and contains no worktree lifecycle, while ADR-007 records that worktrees were removed. Recommendation: remove or replace the stale preflight and add a caller-level test for the current preserve-and-contain topology.
 
-### LUNA-F005 — P1 — Documentation contract
+### F005 — Canonical packet requirements still describe removed worktree behavior
 
-- Location: `specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md:62-63`
-- Evidence: The goal and accepted ADR-006/ADR-007 decision records at `decision-record.md:528-548` say isolation is off or removed. The parent specification at `spec.md:133,141`, acceptance rows at `acceptance-criteria.md:79,102-108`, implementation summary at `implementation-summary.md:83-112`, and handover at `handover.md:35-37` still describe worktree/default-on behavior.
-- Impact: Operators and later agents cannot reliably determine the isolation contract or the expected execution surface.
-- Recommendation: Select one shipped isolation state, update every canonical packet surface and acceptance/closure record to that state, and rerun the acceptance evidence check.
-- Disposition: Active P1; must be fixed before sign-off.
+The summary, scope, REQ-005/REQ-007 bodies, and SC-003/SC-005/SC-006 retain worktree creation, isolation, publication, and checkout-watch claims after ADR-007 accepted their removal. Recommendation: supersede or rewrite the retained normative rows and align the phase and status metadata.
 
-### LUNA-F006 — P1 — Executable contract mismatch
+### F006 — Acceptance evidence overstates completion
 
-- Location: `specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:192`
-- Evidence: The safety rationale states thresholds of 12 per heartbeat and 40 cumulative, while REQ-004 at `spec.md:139` and executable defaults in `executor-config.ts:701-706` ship 3 and 12.
-- Impact: The documented safety envelope and the runtime behavior disagree, so operators cannot know which churn policy is actually enforced.
-- Recommendation: Align the rationale, REQ-004, schema defaults, tests, and any user-facing configuration documentation; preserve the chosen values as one executable contract.
-- Disposition: Active P1; must be fixed before sign-off.
+Multiple acceptance rows remain Met although they describe removed worktree behavior. AC-015 cites an absent worktree-lifecycle test, current fanout-run line ranges now cover unrelated metadata/index-lock code, and the packet status, closeability, and sign-off fields disagree. Recommendation: mark removed rows superseded, replace stale citations, and reconcile closure metadata.
 
-### LUNA-F007 — P1 — Retention
+### F007 — Plan churn thresholds disagree with effective defaults
 
-- Location: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:1050-1059`
-- Evidence: The implementation states that a later containment pass replaces the manifest and named files. The fixed quarantine path and fixed nested paths are created or written at `:1078-1113`, `:988`, `:1014`, and `:1037`, without an attempt or iteration identity.
-- Impact: A repeated containment pass can overwrite earlier out-of-scope evidence, weakening auditability and replay diagnosis.
-- Recommendation: Use unique, append-only attempt/iteration directories or immutable evidence records, and test that repeated passes retain every prior manifest and patch.
-- Disposition: Active P1; must be fixed before sign-off.
+The plan describes twelve paths per window or forty cumulative, while the current requirement/configuration and runner use three per window and twelve cumulative. Recommendation: update the plan rationale to 3/12 or record a deliberate versioned change.
 
-### LUNA-F008 — P2 — Test coverage
+## 4. Remediation Workstreams
 
-- Location: `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1714-1970`
-- Evidence: The boundary suite covers target-side symlink behavior and quarantine size, but omits a trusted destination symlink, a baseline-only untracked deletion, and failed-lane containment.
-- Impact: The missing tests allow the P0/P1 seams to regress without a focused boundary failure.
-- Recommendation: Add one regression test per omitted seam and a replay-retention assertion. Keep the tests at the containment and runner boundaries so they fail for the actual failure mode.
-- Disposition: Active P2 advisory; it becomes part of the remediation completion proof for the related P0/P1 fixes.
+1. Security containment — F001-F003. Harden baseline capture/read, restore ancestor handling, and quarantine creation; add regression coverage for parent symlinks, baseline links, and replacement races.
+2. Caller and packet contract — F004-F005. Remove the stale linked-worktree preflight and rewrite the packet's retained worktree requirements and success criteria to the ADR-007 topology.
+3. Acceptance evidence — F006. Re-anchor or supersede affected rows, restore valid test citations, and make status, closeability, task completion, and sign-off agree.
+4. Planning hygiene — F007. Reconcile the plan's churn thresholds with the shipped 3/12 defaults.
+5. Deferred verification — run maintainability coverage and the required full verification gates after the P1 workstreams land.
 
-## Remediation Workstreams
+## 5. Spec Seed
 
-### Workstream 1 — Secure trusted evidence writes (P0 first)
+- Define the shared-checkout contract: unique artifact directories provide lane isolation; worktree creation and checkout-watch are superseded by ADR-007.
+- Require baseline, quarantine, and restore evidence writes to refuse symlinked ancestors and use atomic no-follow semantics.
+- Define acceptance evidence as a current file and line-level proof, with superseded criteria explicitly labeled and excluded from Met counts.
+- Make the effective churn thresholds 3 newly dirty paths per window and 12 cumulatively, or document a versioned alternative.
+- Keep release readiness separate from iteration completion: a max-iterations terminal state with active P1 findings is incomplete for release.
 
-1. Define the canonical trusted destination and reject symlinked ancestors or final paths that resolve outside the artifact root.
-2. Apply the check before directory creation and before content, patch, baseline, and manifest writes.
-3. Add destination-side symlink tests and verify an attempted escape fails closed.
+## 6. Plan Seed
 
-### Workstream 2 — Contain every lane outcome
-
-1. Make containment execute for success, failure, incomplete, missing-artifact, and salvage paths.
-2. Expand the baseline diff to include untracked paths that disappear before the final sample.
-3. Preserve each retry's evidence in an immutable attempt-specific location.
-4. Add failed-lane, baseline-deletion, and repeated-pass tests.
-
-### Workstream 3 — Complete the caller and contract migration
-
-1. Remove stale worktree rejection and direct state writes from all deep command callers.
-2. Reconcile goal, specification, ADR, acceptance, summary, handover, and phase-007 statements about isolation.
-3. Align the churn rationale with the executable 3/12 defaults, or change all surfaces to the selected values together.
-
-### Workstream 4 — Close the verification loop
-
-1. Update the acceptance and task evidence for each corrected seam.
-2. Rerun the focused containment and runner tests, then the authoritative workspace gate outside this detached lineage when operator policy permits.
-3. Re-run the review after remediation; do not treat the current P2 test gap as independently closed while its related P0/P1 behavior remains open.
-
-## Spec Seed
-
-- Security invariant: every trusted quarantine destination must resolve inside the canonical artifact root, with no symlink escape at any existing or newly created component.
-- Lifecycle invariant: containment is attempted and its result is recorded for every lane outcome, including thrown failure and incomplete evidence paths.
-- Baseline invariant: the detector compares the complete baseline path set with the final path set, including disappearing untracked paths.
-- Retention invariant: evidence from separate containment attempts is immutable and independently addressable.
-- Contract invariant: isolation mode and churn thresholds have one authoritative value across executable configuration and packet records.
-- Verification invariant: each invariant has an explicit negative test at the seam that enforces it.
-
-## Plan Seed
-
-1. Add a canonical trusted-path validator in the containment writer and route every trusted write through it.
-2. Refactor fan-out runner cleanup so containment runs before failure propagation and record preservation is guaranteed.
-3. Extend baseline capture/diff and add the baseline-only deletion regression.
-4. Change quarantine layout to unique attempt-scoped paths and add replay-retention coverage.
-5. Migrate four command workflow surfaces from worktree/raw-state assumptions to the current gateway contract.
-6. Reconcile packet records and threshold documentation, then refresh acceptance evidence.
-7. Run focused tests and a fresh review with the P0 replay explicitly recorded.
-
-## Traceability Status
-
-| Protocol or surface | Status | Evidence and unresolved drift |
-|---|---|---|
-| `spec_code` | partial/fail for release | The implementation and tests expose F001, F002, F003, F006, and F007; caller migration exposes F004. |
-| `checklist_evidence` | partial/fail for release | Acceptance and closure records still conflict with implementation and phase-007 decisions (F005 and F006); the three missing seam tests are F008. |
-| `feature_catalog_code` | no actionable finding in this review | The catalog surface was read; no separate defect was retained beyond the stale worktree/caller surfaces already represented by F004. |
-| `playbook_capability` | not executed | No additional playbook claim is made inside this five-pass detached budget. |
-| `AC_COVERAGE` | advisory shortfall | The focused negative cases for destination symlink, baseline deletion, and failed-lane containment are not represented in the boundary suite. |
-
-The four configured review dimensions were each examined in a full pass: correctness, security, traceability, and maintainability. A fifth stabilization/replay pass rechecked the highest-risk seams and introduced no additional finding. The legacy projection records the next focus reference on completed dimension rows; the per-iteration narratives and deltas are the authoritative dimension evidence for this inline run.
-
-## Deferred Items
-
-- Enumerate the playbook capability corpus and reconcile any operator-facing wording after the core contract is chosen.
-- Re-run the full repository validation and canonical packet completion checks after remediation; those commands were intentionally not run because they can write outside this detached lineage.
-- Rebuild graph-backed coverage and semantic-search telemetry in an environment where those services are available. The current run records `graphStatus: unavailable` and `semanticSearchStatus: unavailable`.
-
-## Dimension Expansion Map
-
-| Pass | Focus | Result | Expansion or replay |
+| Order | Task | Findings | Evidence to close |
 |---:|---|---|---|
-| 1 | correctness | 2 new P1 findings | Baseline deletion and failed-lane control flow. |
-| 2 | security | 1 new P0 finding | Trusted destination canonicalization and symlink escape. |
-| 3 | traceability | 3 new P1 findings | Caller migration, isolation contract, and threshold rationale. |
-| 4 | maintainability | 2 new findings | Quarantine retention and boundary-test gaps. |
-| 5 | stabilization/replay | no new findings | Replayed baseline traversal, outcome counting, target-side symlink detection, and quarantine-size bound; all were ruled out as the current root cause. |
+| 1 | Harden baseline capture/read and restore ancestor handling. | F001, F002 | Symlinked baseline and parent-component tests show no outside write or read. |
+| 2 | Make quarantine validation and creation atomic or directory-handle anchored. | F003 | Replacement-race regression proves the quarantine boundary cannot be redirected. |
+| 3 | Replace the stale cli-opencode worktree preflight. | F004 | Current-checkout caller test reaches dispatch under the preserve-and-contain contract. |
+| 4 | Reconcile spec, ADR, phase, and success-criteria text. | F005 | No retained normative worktree claim conflicts with ADR-007. |
+| 5 | Re-anchor acceptance and task evidence, then reconcile closure metadata. | F006 | Every Met row has an existing, matching citation and consistent status fields. |
+| 6 | Update plan thresholds and run the deferred maintainability pass. | F007 | Plan and effective config agree; all four review dimensions have evidence. |
 
-Graph-backed expansion was unavailable. No divergent pivot or nested Council dispatch was used; convergence was configured off and the loop continued to the hard iteration cap as required.
+## 7. Traceability Status
 
-## Search Ledger
+| Protocol | Class | Status | Evidence |
+|---|---|---|---|
+| spec_code | blocking | partial | spec.md:20-26, 133-165 conflicts with ADR-007 and current fanout-run.cjs:3213-3231; see F005 |
+| checklist_evidence | blocking | partial | acceptance-criteria.md:63-108 contains stale or unsupported evidence; see F006 |
+| feature_catalog_code | informational | partial | fanout-run.cjs:3213-3231 was checked, but no separate feature-catalog sweep was completed |
+| playbook_capability | informational | pending | Maintainability/playbook coverage was deferred by the three-iteration cap |
+| skill_agent | informational | not applicable | The target is a spec folder, not a standalone skill |
+| agent_cross_runtime | informational | not applicable | The target is a spec folder, not an agent definition |
 
-- Search coverage: direct source reads and exact lexical searches across the target implementation, callers, tests, packet records, and phase-007 materials.
-- Search debt: none recorded by the reducer.
-- Ruled-out directions: baseline content traversal, outcome counting, target-side symlink detector, and quarantine size bound.
-- Graph search: unavailable; no graph coverage claim is made.
-- Semantic search: unavailable; no semantic coverage claim is made.
+The required core protocols are not complete. The traceability dimension is covered, but its contract checks remain partial because the packet and acceptance evidence have not been reconciled with the shipped topology.
 
-## Audit Appendix
+## 8. Deferred Items
 
-### Convergence Report
+- Maintainability was not run. No maintainability PASS is implied.
+- F001-F006 remain active P1 findings; F007 remains an active P2 advisory.
+- No resource-map.md existed at initialization, so resource-map coverage was not evaluated.
+- The continuity writer was not run in this detached lineage. State and synthesis artifacts remain under the lineage directory as the durable handoff.
+- Tests, validators, continuity writers, and Git write commands were not run under the lineage execution constraints.
 
-```text
-Stop reason: maxIterationsReached
-Total iterations: 5
-Provisional verdict: FAIL
-hasAdvisories: false
-Active findings: P0=1 P1=6 P2=1
-Configured convergence mode: off
-Configured threshold: 0.1
-Convergence telemetry score: 0
-Graph convergence score: 0
-Graph status: unavailable
-Semantic search status: unavailable
-Decision: continue through all five passes; synthesize only at the cap
-```
+## 9. Audit Appendix
 
-New-finding counts by pass were 2, 1, 3, 2, and 0. Open-finding counts were 2, 3, 6, 8, and 8. The cap, rather than early convergence, controlled the terminal transition.
+### Iteration replay
 
-### Core Protocols
+| Iteration | Focus | Verdict | New P0/P1/P2 | New-finding ratio | Stop telemetry |
+|---:|---|---|---|---:|---|
+| 1 | correctness | PASS | 0/0/0 | 0.00 | continue; max-iterations policy |
+| 2 | security | CONDITIONAL | 0/3/0 | 1.00 | continue; convergence telemetry only |
+| 3 | traceability | CONDITIONAL | 0/3/1 | 1.00 | continue; max-iterations policy |
 
-- `spec_code`: partial; the active findings are linked to executable source and tests, but the security, failure-path, baseline, caller, and threshold contracts are not all satisfied.
-- `checklist_evidence`: partial; canonical packet records and missing boundary tests prevent a clean closure claim.
+The loop deliberately ran all three iterations even though convergence mode was off. The terminal stop reason is maxIterationsReached, not convergence.
 
-### Overlay Protocols
+### Coverage and evidence
 
-- `feature_catalog_code`: no separate actionable finding retained.
-- `playbook_capability`: not executed in this detached budget.
+- Three iteration narratives and three JSONL delta files are present under the lineage.
+- The gateway state projection contains the initialization, scope, dimension, protocol, iteration, depth, and convergence records for all three passes.
+- Seven active findings are represented in the registry. Each P1 finding has a typed claim-adjudication packet with evidence references, counterevidence sought, an alternative explanation, final severity, confidence, and downgrade trigger.
+- Dimensions covered: correctness, security, traceability. Maintainability is deferred. Coverage is therefore 3/4.
+- Graph and semantic-search status were unavailable; the review used direct reads and exact searches, recorded as graphless fallback.
+- Replay of the stored iteration records agrees with the final finding counts and conditional verdict. Formal tests and validators were intentionally not executed under the detached lineage constraint.
+- No implementation or target files were modified. The immutable configuration snapshot remains unchanged; terminal status and stop reason are carried by the synthesis record and gateway terminal event.
 
-### Sources Reviewed
+### Terminal handoff
 
-- `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts`
-- `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`
-- `.opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs`
-- `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts`
-- `.opencode/commands/deep/assets/deep-review-auto.yaml`
-- `.opencode/commands/deep/assets/deep-review-confirm.yaml`
-- `.opencode/commands/deep/assets/deep-research-auto.yaml`
-- `.opencode/commands/deep/assets/deep-research-confirm.yaml`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/spec.md`
-- `specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/acceptance-criteria.md`
+The terminal synthesis record is synthesis.record.json. Its stopReason is maxIterationsReached and its ledger terminal status is incomplete because the cap was reached with maintainability coverage deferred and active P1 findings remaining.
 
-### Lineage Receipts
-
-- Registry: `deep-review-findings-registry.json`
-- Dashboard: `deep-review-dashboard.md`
-- Strategy: `deep-review-strategy.md`
-- Resource map: `resource-map.md`
-- Iteration narratives: `iterations/iteration-001.md` through `iterations/iteration-005.md`
-- Iteration deltas: `deltas/iter-001.jsonl` through `deltas/iter-005.jsonl`
-- Terminal synthesis record: `deltas/synthesis.record.json`
-
-## Resource Map Coverage Gate
-
-`resource-map.md` was emitted in the lineage by the reducer. It is a deterministic artifact map for the captured lineage inputs. The graph service was unavailable, so structural graph coverage is not asserted and no graph-backed stop vote was used.
-
+Review verdict: CONDITIONAL

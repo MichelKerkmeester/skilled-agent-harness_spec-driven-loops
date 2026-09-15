@@ -1,120 +1,75 @@
 ---
-title: Deep Review Dashboard
-description: Auto-generated reducer view over the review packet.
+title: Deep Review Dashboard - fanout write containment hardening
+sessionId: fanout-luna-1789427869613-2bzg57
+generation: 2
 ---
 
 # Deep Review Dashboard - Session Overview
 
-Auto-generated from JSONL state log, iteration files, findings registry, and strategy state. Never manually edited.
-
-<!-- ANCHOR:overview -->
-## 1. OVERVIEW
-
-Reducer-generated observability surface for the active review packet.
-
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:status -->
-## 2. STATUS
-- Review Target: specs/system-deep-loop/045-fanout-write-containment-hardening (spec-folder)
-- Started: 2026-09-14T17:10:00.000Z
-- Status: COMPLETE
-- Iteration: 5 of 5
-- Provisional Verdict: FAIL
-- hasSearchDebt: false
+## 1. STATUS
+<!-- MACHINE-OWNED: START -->
+- Target: `specs/system-deep-loop/045-fanout-write-containment-hardening`
+- Target Type: `spec-folder`
+- Started: `2026-09-14T23:29:16.000Z`
+- Session: `fanout-luna-1789427869613-2bzg57` (generation 2, lineage new)
+- Status: SYNTHESIZED
+- Release Readiness: in-progress
+- Iteration: 3 of 3
+- Provisional Verdict: CONDITIONAL
 - hasAdvisories: false
-- Session ID: fanout-luna-1789404700951-8xtlnk
-- Parent Session: none
-- Lifecycle Mode: new
-- Generation: 1
-- continuedFromRun: none
-- stopReason: maxIterationsReached
+<!-- MACHINE-OWNED: END -->
 
-<!-- /ANCHOR:status -->
-<!-- ANCHOR:dimension-expansion -->
-## 2A. DIMENSION EXPANSION
-- Completed pivots: 0
+## 2. DIMENSION EXPANSION
+<!-- MACHINE-OWNED: START -->
+- Completed pivots: 3
 - Failed pivots: 0
 - Audited overrides: 0
-- Swept: none yet
-- Pivot lineage: none yet
-- Remaining frontier: none recorded
+- Swept: correctness state transitions; security trusted writes
+- Pivot lineage: correctness -> security trust-boundary writes -> traceability caller/evidence contracts
+- Remaining frontier: maintainability; synthesis complete at max-iterations cap
+<!-- MACHINE-OWNED: END -->
 
-<!-- /ANCHOR:dimension-expansion -->
-<!-- ANCHOR:findings-summary -->
 ## 3. FINDINGS SUMMARY
+<!-- MACHINE-OWNED: START -->
+- **P0 (Critical):** 0 active, 0 new, 0 upgrades, 0 resolved
+- **P1 (Major):** 6 active, 6 new, 0 upgrades, 0 resolved
+- **P2 (Minor):** 1 active, 1 new, 0 upgrades, 0 resolved
+- **Repeated findings:** 0
+- **Dimensions covered:** correctness, security, traceability
+- **Convergence score:** 0.00 (telemetry only; convergence mode off)
+<!-- MACHINE-OWNED: END -->
 
-| Severity | Count |
-|----------|------:|
-| P0 (Blockers) | 1 |
-| P1 (Required) | 6 |
-| P2 (Suggestions) | 1 |
-| Resolved | 0 |
-
-<!-- /ANCHOR:findings-summary -->
-<!-- ANCHOR:progress -->
 ## 4. PROGRESS
+<!-- MACHINE-OWNED: START -->
 
-| # | Focus | Dimensions | Ratio | P0/P1/P2 | Status |
-|---|-------|------------|-------|----------|--------|
-| 1 | security | - | 0.00 | 0/0/0 | complete |
-| 2 | traceability | - | 0.00 | 0/0/0 | complete |
-| 3 | maintainability | - | 0.00 | 0/0/0 | complete |
-| 4 | stabilization | - | 0.00 | 0/0/0 | complete |
-| 5 | synthesis | - | 0.00 | 0/0/0 | complete |
+| # | Focus | Files | Dimensions | New P0/P1/P2 | Ratio | Status |
+|---|-------|-------|------------|---------------|-------|--------|
+| 1 | correctness | 11 | correctness | 0/0/0 | 0.00 | PASS |
+| 2 | security | 7 | security | 0/3/0 | 1.00 | CONDITIONAL |
+| 3 | traceability | 19 | traceability | 0/3/1 | 1.00 | CONDITIONAL |
+<!-- MACHINE-OWNED: END -->
 
-<!-- /ANCHOR:progress -->
-<!-- ANCHOR:dimension-coverage -->
-## 5. DIMENSION COVERAGE
+## 5. COVERAGE
+<!-- MACHINE-OWNED: START -->
+- Files reviewed: 35 / 15 declared pointers
+- Dimensions complete: 3 / 4
+- Core protocols complete: 0 / 2
+- Overlay protocols complete: 0 / 4 applicable/conditional
+<!-- MACHINE-OWNED: END -->
 
-| Dimension | Status | Open findings |
-|-----------|--------|--------------:|
-| correctness | pending | 2 |
-| security | pending | 1 |
-| traceability | pending | 3 |
-| maintainability | pending | 2 |
+## 6. TRACEABILITY TREND
+<!-- MACHINE-OWNED: START -->
+- Core protocols: spec_code=partial, checklist_evidence=partial
+- Overlay protocols: feature_catalog_code=partial, playbook_capability=pending; agent overlays not applicable
+- Traceability trend: partial
+<!-- MACHINE-OWNED: END -->
 
-<!-- /ANCHOR:dimension-coverage -->
-<!-- ANCHOR:blocked-stops -->
-## 6. BLOCKED STOPS
-No blocked-stop events recorded.
+## 7. NEXT FOCUS
+<!-- MACHINE-OWNED: START -->
+Synthesis complete: maintainability was not run; active P1 findings keep release readiness in-progress.
+<!-- MACHINE-OWNED: END -->
 
-<!-- /ANCHOR:blocked-stops -->
-<!-- ANCHOR:graph-convergence -->
-## 7. GRAPH CONVERGENCE
-- graphConvergenceScore: 0.00
-- graphDecision: continue
-- graphBlockers: none
-
-<!-- /ANCHOR:graph-convergence -->
-<!-- ANCHOR:trend -->
-## 8. TREND
-- Last 3 ratios: N/A
-- convergenceScore: 0.00
-- openFindings: 8
-- persistentSameSeverity: 8
-- severityChanged: 0
-- repeatedFindings (deprecated combined bucket): 8
-
-<!-- /ANCHOR:trend -->
-<!-- ANCHOR:corruption-warnings -->
-## 9. CORRUPTION WARNINGS
-No corrupt JSONL lines detected.
-
-<!-- /ANCHOR:corruption-warnings -->
-<!-- ANCHOR:search-debt -->
-## 10. SEARCH DEBT
-- No search-depth state captured (legacy v1 record).
-- graphCoverageMode: none
-
-<!-- /ANCHOR:search-debt -->
-<!-- ANCHOR:next-focus -->
-## 11. NEXT FOCUS
-Synthesis at the hard five-iteration cap; preserve all eight open findings and record `maxIterationsReached`.
-
-<!-- /ANCHOR:next-focus -->
-<!-- ANCHOR:active-risks -->
-## 12. ACTIVE RISKS
-- 1 active P0 finding(s) blocking release.
-- 6 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
-
-<!-- /ANCHOR:active-risks -->
+## 8. ACTIVE RISKS
+<!-- MACHINE-OWNED: START -->
+- Six P1 findings and one P2 advisory are active; maintainability remains unreviewed. Convergence was telemetry only and the lineage stopped at maxIterationsReached.
+<!-- MACHINE-OWNED: END -->

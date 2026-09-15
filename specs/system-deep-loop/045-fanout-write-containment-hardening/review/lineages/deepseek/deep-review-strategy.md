@@ -1,6 +1,6 @@
 ---
-title: "Deep Review Strategy: fan-out write containment hardening (lineage deepseek)"
-description: "Externalized strategy for the deepseek fan-out lineage reviewing packet 045 and its change set."
+title: "Deep Review Strategy: fan-out write containment remediation (lineage deepseek)"
+description: "Externalized strategy for the deepseek fan-out lineage reviewing the remediated containment tree after phases 008 to 013."
 ---
 
 # Deep Review Strategy
@@ -8,22 +8,20 @@ description: "Externalized strategy for the deepseek fan-out lineage reviewing p
 <!-- ANCHOR:topic -->
 ## Topic
 
-Review of the fan-out write containment hardening change set (commits `5340e39233` through `63b633c62f`) against packet `specs/system-deep-loop/045-fanout-write-containment-hardening`. Target type: spec-folder. Dimensions: all four, plus the traceability protocols `spec_code` (hard) and `checklist_evidence` (hard); overlays `feature_catalog_code` and `playbook_capability`.
+Fresh review of the remediated fan-out write containment tree after phases 008 to 013, against packet `specs/system-deep-loop/045-fanout-write-containment-hardening`. Target type: spec-folder. Dimensions: correctness, security, traceability, maintainability. Traceability protocols: `spec_code` (hard) and `checklist_evidence` (hard, not applicable — the packet has no `checklist.md`); overlays `feature_catalog_code` and `playbook_capability`.
 
-The change set under review is eight commits:
+The remediation under review is six commits on top of the seven-phase change set:
 
-| Commit | Subject |
-|--------|---------|
-| `5340e39233` | never fail a lane for a neighbour's untracked file under preserve |
-| `bcb1333560` | tolerate an iteration recorded twice and name the append gateway |
-| `4581feb2bd` | name each lineage's executor in the attribution table and merged registry |
-| `65ea476de3` | wait out a neighbour's index.lock and report an exhausted retry |
-| `a766c23a8f` | trip the shared-checkout churn detector on slow cumulative churn |
-| `cbb1e4ae53` | write the findings registry past a strategy file without anchors |
-| `ca713e3478` | remove per-lineage worktree isolation from the fan-out runtime |
-| `63b633c62f` | close the containment packet with all seven fix phases landed |
+| Commit | Phase | Subject |
+|--------|-------|---------|
+| `47bdca586a` | 008 | never write quarantine evidence through a symlink |
+| `efe974e6f0` | 009 | detect a baseline untracked file the lane deleted |
+| `df7a1a2cf4` | 010 | run write containment for failed lanes too |
+| `2ba05e1a28` | 011 | never write a baseline restore through a symlink |
+| `52959f1065` | 012 | keep every containment pass's quarantine evidence |
+| `57c02b8592` | 013 | read the right registry field per loop and reject unknown containment keys |
 
-Diff scope (`git diff 5340e39233^ 63b633c62f`, `.opencode` only): 31 files, +1126/-5876.
+Reviewed read-only against HEAD `57c02b8592c8b74b9972525dde932be333c4c562`.
 <!-- /ANCHOR:topic -->
 
 ---
@@ -34,8 +32,7 @@ Diff scope (`git diff 5340e39233^ 63b633c62f`, `.opencode` only): 31 files, +112
 - [x] correctness — D1, iteration 1
 - [x] security — D2, iteration 2
 - [x] traceability — D3, iteration 3
-- [x] maintainability — D4, iteration 4
-- [x] coverage/cross-cutting — D5, iteration 5
+- [x] maintainability — D4, iteration 3 (joint pass)
 <!-- /ANCHOR:review-dimensions -->
 
 ---
@@ -45,11 +42,9 @@ Diff scope (`git diff 5340e39233^ 63b633c62f`, `.opencode` only): 31 files, +112
 
 | Iteration | Dimension | Verdict | Summary |
 |-----------|-----------|---------|---------|
-| 1 | correctness | PASS | 4 P2 detection/cost findings, no P0/P1 |
-| 2 | security | CONDITIONAL | 1 P1 (baseline restore follows a symlink), 3 P2 |
-| 3 | traceability | FAIL | 1 P0 (spec still mandates removed worktrees), 2 P1 (stale closure gate, broken cli-opencode guard), 7 P2 |
-| 4 | maintainability | PASS | 5 P2 duplication/residue/document-hygiene findings |
-| 5 | completeness | PASS | 1 P2 (empty-registry check misfires on review); remaining phases verified clean |
+| 1 | correctness | PASS | 2 P2 evidence/detection findings |
+| 2 | security | CONDITIONAL | 1 P1 (restore through a symlinked ancestor), 1 P2 (subdirectory repo root on the write path) |
+| 3 | traceability + maintainability | CONDITIONAL | 2 P1 (spec worktree residue, stale closure gate), 3 P2 (phase map, parent docs, unswept residue) |
 <!-- /ANCHOR:completed-dimensions -->
 
 ---
@@ -59,11 +54,11 @@ Diff scope (`git diff 5340e39233^ 63b633c62f`, `.opencode` only): 31 files, +112
 
 | Severity | Count | Note |
 |----------|-------|------|
-| P0 | 1 | F-009: spec still mandates the removed worktree mechanism while reading Complete |
-| P1 | 3 | F-005 (restore follows a symlink), F-010 (closure gate stale with deleted evidence), F-017 (cli-opencode guard now always throws) |
-| P2 | 20 | F-001..F-004, F-006..F-008, F-011..F-016, F-018..F-024 |
+| P0 | 0 | none |
+| P1 | 3 | F-201 (restore ancestor symlink), F-301 (spec still mandates removed worktrees), F-302 (closure gate stale) |
+| P2 | 6 | F-101, F-102, F-202, F-303, F-304, F-305 |
 
-Final verdict: **FAIL** — one active P0; per the verdict rule an active P0 can never be relabelled.
+Final verdict: **CONDITIONAL** — three active P1 findings, no P0.
 <!-- /ANCHOR:running-findings -->
 
 ---
@@ -71,10 +66,9 @@ Final verdict: **FAIL** — one active P0; per the verdict rule an active P0 can
 <!-- ANCHOR:what-worked -->
 ## What Worked
 
-- Reading the shipped modules first, then the packet docs, then the change-set diff: the code/doc contradictions (F-009, F-010, F-015) only became visible once both sides were in hand.
-- Checking every cited test line number against the files' current length (`wc -l`) and path existence to prove stale evidence mechanically rather than by impression.
-- Using the child phase `007-worktree-removal` as a control: its evidence (151 test files, the live-run summary) resolved against HEAD, which proved the parent's staleness is real and not an artifact of the review's own reading.
-- Aggregating the five deltas into the registry programmatically, so the report's counts cannot drift from the state log.
+- Reading each remediation commit's diff before the current file: the guard's residual gaps (empty-hash sentinel, final-component-only lstat) are only visible against what the fix claimed.
+- Mechanical evidence checks: `ls` for a deleted suite, `wc -l` for line drift against cited test lines, and `git log --name-only` to establish which packet docs the remediation actually touched.
+- Keeping the pass-identity contract (`iteration` plus `attempt`) next to the runner call site, which passes the retry counter as `iteration`.
 <!-- /ANCHOR:what-worked -->
 
 ---
@@ -82,8 +76,9 @@ Final verdict: **FAIL** — one active P0; per the verdict rule an active P0 can
 <!-- ANCHOR:what-failed -->
 ## What Failed
 
-- Executing any test command: the lineage write surface forbids commands that write outside the lineage directory, so the runtime Vitest suite could not be run. All findings in this lineage are static (code reading plus git history); none is a re-run of the suite.
-- Reading a sibling lineage's artifacts: none was present while this lineage ran, so no cross-check was possible.
+- Running the runtime Vitest suite: the lineage write surface forbids commands that write outside the lineage directory, so every finding here is static (file:line reads plus git history). No suite result is re-verified.
+- Invoking the append gateway `append-mode-event.cjs`: it is the workflow's canonical state writer, but it may write to shared runtime stores outside the lineage directory. Per this lineage's containment contract the state log is written directly, inside the lineage, and the deviation is recorded in the report's audit appendix.
+- Executing `git checkout` experiments to pin the HEAD-restore branch's parent-symlink behaviour: git write commands are banned for this lineage.
 <!-- /ANCHOR:what-failed -->
 
 ---
@@ -91,9 +86,9 @@ Final verdict: **FAIL** — one active P0; per the verdict rule an active P0 can
 <!-- ANCHOR:exhausted-approaches -->
 ## Exhausted Approaches
 
-- Running the append-mode-event gateway in this lineage: not attempted beyond inspection. Every write of this lineage was made directly inside the lineage directory per the dispatch contract, and the runner's own reader consumes the log directly.
-- Executing `validate.sh`: explicitly out of scope for this lineage.
-- Searching for a dormant worktree flag or module: none remains in the runtime; the only surviving residue is in the command YAML guard (F-017) and documentation (F-009..F-016).
+- Verifying the remediation's suite counts by running tests: banned by the write surface.
+- Emitting `resource-map.md` through `reduce-state.cjs --emit-resource-map`: the reducer may write outside the lineage; the packet has no resource map at init, so the coverage gate is skipped and the emission is recorded as not run.
+- Sibling-lineage cross-check: the `luna` lineage runs concurrently; its artifacts were not read.
 <!-- /ANCHOR:exhausted-approaches -->
 
 ---
@@ -103,13 +98,12 @@ Final verdict: **FAIL** — one active P0; per the verdict rule an active P0 can
 
 | Direction | Why ruled out |
 |-----------|---------------|
-| Symlink-escape detection narrowing | The detector's canonicalization (`isContainedInArtifact`) was verified correct; the finding is on the restore *writer* (F-005), not the detector. |
-| Quarantine size-bound enforcement | Bounds are present and enforced (`BASELINE_MAX_FILE_BYTES`, `BASELINE_MAX_LANE_BYTES`); no finding. |
-| `spawnGit` retry correctness | Retry only on `index.lock` with bounded backoff; the failure mode is visibility (F-020), not retry logic. |
-| Review-reducer anchor handling | The runtime reducer already carries the `MISSING_ANCHOR` path and surfaces `strategyWarning`; phase 6's scope was the research reducer only. |
-| `mergedVerdict` strongest-restriction logic | Verified: any active P0 forces FAIL; the merge reads `openFindings` correctly. |
-| Stress worktree fixture | Live harness infrastructure for isolated adapter runs, unrelated to the removed per-lineage mechanism. |
-| Integration coverage of restore mode | The runner tests cover `--containment-mode restore` and the flag-over-config case; no finding. |
+| Quarantine destination canonicality (phase 008) | The refusal walks every component below the artifact root and resolves the deepest existing ancestor; refusal is recorded, not thrown. Verified correct. |
+| Quarantine pass-directory collisions within one run | Pass identity is the retry attempt, and the pool restores retry counts from the ledger, so a resume continues numbering rather than restarting it. |
+| Union-issue normalization (phase 013) | The closest-branch heuristic names the offending key for the removed-key shapes it was written for; a tie still throws `ExecutorConfigError`. |
+| `containment.worktrees` silent drop (prior F-008) | Fixed: the block is `z.strictObject` and the union error is unwrapped, so the key is rejected by name. |
+| Review registry field (prior F-024) | Fixed: `LINEAGE_REGISTRY_FINDINGS_FIELDS` maps review to `openFindings`, which the review reducer writes. |
+| Quarantine TOCTOU | The lane process has ended before containment runs; only a concurrent third party could race, which is outside this guard's attribution model. |
 <!-- /ANCHOR:ruled-out-directions -->
 
 ---
@@ -117,62 +111,5 @@ Final verdict: **FAIL** — one active P0; per the verdict rule an active P0 can
 <!-- ANCHOR:next-focus -->
 ## Next Focus
 
-Loop complete. All five iterations ran; synthesis compiled `review-report.md` and the aggregated registry.
+Loop complete. Three iterations ran on the max-iterations policy; synthesis compiled `review-report.md` and the aggregated registry.
 <!-- /ANCHOR:next-focus -->
-
----
-
-<!-- ANCHOR:known-context -->
-## Known Context
-
-- `resource-map.md` not present. Coverage gate not applicable (`resource_map_present: false`), so the report omits that section by contract.
-- Packet `spec.md` status: Complete; `implementation-summary.md` status: Complete; `acceptance-criteria.md` metadata status: In Progress.
-- `checklist.md` does not exist in the packet (nor in any child phase), so `checklist_evidence` is not applicable; the packet's checklist lives inside `tasks.md` (91 checked boxes).
-- The packet's `decision-record.md` carries ADR-001..ADR-007; ADR-007 supersedes the worktree mechanism, but ADR-003/ADR-005 were not marked superseded (F-021).
-- No test execution was possible in this lineage (write-surface constraint); evidence is static.
-<!-- /ANCHOR:known-context -->
-
----
-
-<!-- ANCHOR:cross-reference-status -->
-## Cross-Reference Status
-
-| Protocol | Level | Status | Evidence | Notes |
-|----------|-------|--------|----------|-------|
-| spec_code | core (hard) | fail | `spec.md:133,141,142` vs the worktree deletion in `ca713e3478` | REQ-005/007/008 still normative; mechanism removed (F-009) |
-| checklist_evidence | core (hard) | not_applicable | packet has no `checklist.md` | recorded in iteration 3's cross-reference table |
-| feature_catalog_code | overlay | partial | hub catalog migrated by `ca713e3478`; runtime `fanout-run.md:3,42` stale | F-023 |
-| playbook_capability | overlay | pass | `manual-testing-playbook/write-containment/shared-checkout-run.md` | scenario matches shipped preserve behavior |
-<!-- /ANCHOR:cross-reference-status -->
-
----
-
-<!-- ANCHOR:files-under-review -->
-## Files Under Review
-
-| File | Iteration | State |
-|------|-----------|-------|
-| `runtime/lib/deep-loop/write-containment.ts` | 1, 2, 4 | reviewed |
-| `runtime/scripts/fanout-run.cjs` | 1, 2, 4, 5 | reviewed |
-| `runtime/lib/deep-loop/executor-config.ts` | 2, 3 | reviewed |
-| `runtime/scripts/fanout-pool.cjs` | 1, 5 | reviewed |
-| `runtime/scripts/fanout-merge.cjs` | 5 | reviewed |
-| `runtime/scripts/reduce-state.cjs`, `deep-research/scripts/reduce-state.cjs` | 5 | reviewed |
-| `runtime/scripts/runtime-bootstrap.cjs` | 1 | reviewed |
-| `runtime/tests/unit/write-containment.vitest.ts` | 1, 2, 5 | reviewed (static) |
-| `runtime/tests/unit/fanout-run.vitest.ts` | 2, 5 | reviewed (static) |
-| `.opencode/commands/deep/assets/deep-{research,review}-{auto,confirm}.yaml` | 3, 4 | reviewed |
-| `specs/.../045-.../{spec,acceptance-criteria,implementation-summary,goal,handover,tasks,decision-record}.md` | 3, 4 | reviewed |
-| deleted `runtime/lib/deep-loop/worktree-*.ts` and their vitest suites | 3 | reviewed via git history |
-<!-- /ANCHOR:files-under-review -->
-
----
-
-<!-- ANCHOR:review-boundaries -->
-## Review Boundaries
-
-- maxIterations: 5, stopPolicy: max-iterations, convergenceThreshold: 0.1 (convergence mode off).
-- Writes confined to `specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/deepseek`.
-- No test execution, no repo tooling, no git writes.
-- Review target is read-only.
-<!-- /ANCHOR:review-boundaries -->

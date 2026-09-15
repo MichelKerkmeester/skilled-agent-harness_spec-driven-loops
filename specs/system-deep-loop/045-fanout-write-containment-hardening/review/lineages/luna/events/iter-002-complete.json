@@ -1,0 +1,35 @@
+{
+  "stem": "deep_review.dimension_pass_completed",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57",
+    "generation": 2,
+    "iterationId": "iter-002",
+    "dimensionId": "security"
+  },
+  "data": {
+    "passNumber": 2,
+    "targetRefs": [
+      "packet-045"
+    ],
+    "filesReviewed": [
+      "write-containment.ts:820-835",
+      "write-containment.ts:1048-1137",
+      "write-containment.ts:1357-1508",
+      "write-containment.vitest.ts:2202-2432",
+      "fanout-run.cjs:3340-3382",
+      "spec.md:187-207",
+      "acceptance-criteria.md:63-80"
+    ],
+    "searchCoverageDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "passStatus": "complete",
+    "rawFindingCounts": {
+      "candidates": 3,
+      "adjudicated": 3,
+      "p0": 0,
+      "p1": 3,
+      "p2": 0
+    },
+    "nextFocusRef": "traceability-caller-and-packet-contract-drift"
+  }
+}
