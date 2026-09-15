@@ -181,7 +181,7 @@ Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile
 - Keep every `RESOURCE_MAP` path packet-qualified (`<packet>/references|assets/…`) and resolving on disk.
 - Treat the installed binary as the authority for flags and enum values, and `--help` as an incomplete summary of it. A value this skill documents but help omits is not thereby fabricated — several CLIs here accept aliases and legacy names their help text never prints. Before changing or reporting a documented flag value as invalid, probe the binary with an argument that forces parse-time validation without starting a billable session (e.g. pointing a file-taking flag at a nonexistent path: a rejected enum fails first, an accepted one reaches the file error). Enums also move between releases, so re-probe after an upgrade instead of trusting a recorded result.
 - Read the target mode's `SKILL.md` before composing any dispatch prompt (constitutional cli-dispatch-skill-preload rule) — the advisor recommendation alone does not waive this.
-- Attach the resolved agent persona to every external-CLI dispatch (AGENTS.md §7 runtime agent dir; the right agent per subtask, never a bare task) — each mode's `SKILL.md` carries the native-surface-vs-inline mechanic, and the canonical contract is `../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
+- Attach the resolved agent persona to every external-CLI dispatch (AGENTS.md §9 runtime agent dir; the right agent per subtask, never a bare task) — each mode's `SKILL.md` carries the native-surface-vs-inline mechanic, and the canonical contract is `../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
 
 ### ⛔ NEVER
 
