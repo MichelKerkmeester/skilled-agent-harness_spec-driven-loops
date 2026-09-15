@@ -128,6 +128,7 @@ Follow-on work the alternatives research surfaced. Each phase is one fix, dispat
 | 016-command-yaml-alignment | 017-protocol-and-catalog-alignment | [Criteria TBD] | [Verification TBD] |
 | 017-protocol-and-catalog-alignment | 018-orchestrate-mirror-alignment | [Criteria TBD] | [Verification TBD] |
 | 018-orchestrate-mirror-alignment | 019-forced-depth-empty-records | [Criteria TBD] | [Verification TBD] |
+| 019-forced-depth-empty-records | 020-direct-append-sites-through-gateway | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

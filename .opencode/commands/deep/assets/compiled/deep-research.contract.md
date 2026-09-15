@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "3d22023bc3500c8ae3336ed24cf6b9466ffff013f16e21a206a3d8ccf7828e29",
+      "sha256": "2382b0ccda02b68892ab84a03fbe67edb9c94e124dfaab6cb277d9e13855f9a6",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "b5aa73b66d903091cc0467f242f45ec977255c8f00244ed39f723068459e150a",
+      "sha256": "f960e8407a0486477b1b3166e2eea8e36d30ecd7d81f9633e609319948e7c173",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "fcfc3408e81ea6c260ad5b02881137b86b45c4885281216b828843186995c2a5",
+      "sha256": "1ef99b8f32db30d789fa0be213930ee267b1ab00ec0ffd5b886b33b1727fa51a",
       "section": "full"
     },
     {

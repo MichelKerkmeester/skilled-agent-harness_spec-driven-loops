@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-deep-loop/045-fanout-write-containment-hardening/020-direct-append-sites-through-gateway",
+  "description": "Phase 1: direct-append-sites-through-gateway",
+  "keywords": [
+    "phase",
+    "direct-append-sites-through-gateway"
+  ],
+  "lastUpdated": "2026-09-15T01:34:53.477Z",
+  "specId": "020",
+  "folderSlug": "direct-append-sites-through-gateway",
+  "parentChain": [
+    "system-deep-loop",
+    "045-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

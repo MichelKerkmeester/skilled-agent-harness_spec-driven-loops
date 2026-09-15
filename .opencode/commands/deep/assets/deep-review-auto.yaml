@@ -102,22 +102,11 @@ state_write_protocol:
   migration_exception: "the one-shot legacy-state migration command appends a legacy-shaped migration marker directly; it predates the canonical log and is not a workflow record"
   exempt_append_sites: 3
   contract: |
-    Every canonical record named by an append_to_jsonl or append_jsonl directive below is
-    intended to reach the log by invoking the command above with that record as the event JSON.
-    Those directives specify WHAT to record; this block specifies the mechanism they are moving
-    to, so it is stated once rather than repeated at each site where it could drift.
-
-    The gateway authorizes the write against the mode's durable authority record, serialises it
-    behind the ledger fence, and returns a receipt. It does NOT refresh this mode's legacy state
-    file: no projection contract is registered for this mode, so `projectionRefreshed` comes back
-    false and the legacy file is left untouched. Exit 0 therefore means the event is durable in
-    the ledger, and nothing more. Exit 2 means it was refused and the refusal names the check
-    that failed.
-
-    Because the legacy file is what this workflow's existing readers consume, this block declares
-    the mechanism these records are INTENDED to move to. It is not yet a live cutover for this
-    mode, and the existing direct writes must stay until a projection contract exists for it.
-    Switching them over before then would leave the legacy file silently stale.
+    The directives below specify WHAT to record; this block specifies the mechanism. The gateway
+    authorizes the write against the mode's durable authority record, serialises it behind the
+    ledger fence, returns a receipt, and refreshes state_log from the ledger. Exit 0 means the
+    record is durable in the ledger and the refreshed state_log carries it. Exit 2 means it was
+    refused, and the refusal names the check that failed.
 
     Writing state_log directly bypasses ordering, authorization, and the receipt. Two writers
     can then interleave with no shared ordering, and a record nobody authorized carries no
@@ -239,7 +228,8 @@ workflow:
             --fanout-config-json '{config.fanout_json}' \
             --base-artifact-dir {artifact_dir} \
             --convergence-threshold {convergence_threshold} \
-            --stop-policy {stop_policy}
+            --stop-policy {stop_policy} \
+            --convergence-mode {convergence_mode}
         working_directory: "{repo_root}"
         wait_for_completion: true
 

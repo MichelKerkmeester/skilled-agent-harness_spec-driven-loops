@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Phase 1: command-yaml-alignment"
-description: "Bind the same three loop flags on every fan-out call, drop the leaf-as-loop native branch, fix the prompt-pack wording and prove it with a rendered-call contract test."
+title: "Implementation Plan: Phase 1: direct-append-sites-through-gateway"
+description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: command-yaml-alignment
+# Implementation Plan: Phase 1: direct-append-sites-through-gateway
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | TypeScript (ESM) plus a CommonJS runner script |
-| **Framework** | None |
-| **Storage** | Git working tree, JSONL state and status ledgers |
-| **Testing** | Vitest |
+| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
+| **Framework** | [e.g., React, FastAPI] |
+| **Storage** | [e.g., PostgreSQL, None] |
+| **Testing** | [e.g., Jest, pytest] |
 
 ### Overview
-Each YAML's fan-out step now passes threshold, stop policy and mode from the same placeholders the single-executor path binds. The confirm review YAML's native branch is gone; native lineages go through the runner as the auto YAML documents. The prompt packs name the gateway as the state log's only writer. Contracts are recompiled and a parameterized test renders each call site.
+[2-3 sentences: what this implements and the technical approach]
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ Each YAML's fan-out step now passes threshold, stop policy and mode from the sam
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Problem statement clear and scope documented
-- [x] Success criteria measurable
-- [x] Dependencies identified
+- [ ] Problem statement clear and scope documented
+- [ ] Success criteria measurable
+- [ ] Dependencies identified
 
 ### Definition of Done
-- [x] All acceptance criteria met
-- [x] Tests passing (if applicable)
-- [x] Docs updated (spec/plan/tasks)
+- [ ] All acceptance criteria met
+- [ ] Tests passing (if applicable)
+- [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,15 +54,14 @@ Each YAML's fan-out step now passes threshold, stop policy and mode from the sam
 ## 3. ARCHITECTURE
 
 ### Pattern
-Contract test over rendered YAML call sites
+[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
 
 ### Key Components
-- **Fan-out call sites**: Three flags each, four YAMLs
-- **Prompt packs**: Gateway wording
-- **Call-site contract test**: Renders and asserts each YAML
+- **[Component 1]**: [Purpose]
+- **[Component 2]**: [Purpose]
 
 ### Data Flow
-Config placeholders → YAML fan-out call → runner args → lineage prompt; the test renders the call and asserts the flags.
+[Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -70,16 +69,18 @@ Config placeholders → YAML fan-out call → runner args → lineage prompt; th
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
+Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| Four fan-out call sites | Inconsistent flags | update | render-command-contract.vitest.ts:223 |
-| Confirm review native branch | Leaf as full loop | removed | render-command-contract.vitest.ts:232 |
-| Prompt packs | Projection wording | update | contract drift test green after recompile |
+| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
 
 Required inventories:
-- Same-class producers: four call sites, one native branch.
-- Consumers: the runner's argument parser; the compiled contracts; the render tests.
-- Matrix axes: command (review, research) x variant (auto, confirm) x flag (threshold, stop policy, mode).
+- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
+- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
+- Matrix axes: list every independent input axis and the required rows before implementation.
+- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -98,9 +99,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Contract | Eight rendered call-site cases | Vitest |
-| Drift | Recompiled contracts | Vitest |
-| Suite | Whole runtime | Vitest |
+| Unit | [Components/functions] | [Jest/pytest/etc.] |
+| Integration | [API endpoints/flows] | [Tools] |
+| Manual | [User journeys] | Browser |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -110,7 +111,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Compile script for contracts | Internal | Green | - |
+| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -118,8 +119,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: A command needs the old branch
-- **Procedure**: Revert this phase's commit
+- **Trigger**: [Conditions requiring rollback]
+- **Procedure**: [How to revert changes]
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -151,10 +152,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | Low | minutes |
-| Core Implementation | Low | one dispatch |
-| Verification | Med | full suite run |
-| **Total** | | **one dispatch plus one suite run** |
+| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
+| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
+| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
+| **Total** | | **[e.g., 6-12 hours]** |
 <!-- /ANCHOR:effort -->
 
 ---

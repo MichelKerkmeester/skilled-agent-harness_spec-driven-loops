@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/045-fanout-write-containment-hardening/016-command-yaml-alignment",
-  "spec_folder": "system-deep-loop/045-fanout-write-containment-hardening/016-command-yaml-alignment",
+  "packet_id": "system-deep-loop/045-fanout-write-containment-hardening/020-direct-append-sites-through-gateway",
+  "spec_folder": "system-deep-loop/045-fanout-write-containment-hardening/020-direct-append-sites-through-gateway",
   "parent_id": "system-deep-loop/045-fanout-write-containment-hardening",
   "children_ids": [],
   "manual": {
@@ -39,15 +39,14 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "draft",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -87,12 +86,6 @@
         "source": "derived"
       },
       {
-        "name": "render-command-contract.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -123,7 +116,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -141,13 +134,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Contract",
+        "name": "Clean Architecture",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -159,7 +146,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Config",
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The four command YAMLs drove the fan-out runner with different loop flags: none passed the convergence mode the runner reads, and the confirm review YAML passed neither threshold nor stop policy",
-    "created_at": "2026-09-15T00:55:22Z",
-    "last_save_at": "2026-09-15T01:54:41.857Z",
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-09-15T01:34:52Z",
+    "last_save_at": "2026-09-15T01:34:55.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02810ce77c9b2a226aeb627bde4f26087b96e0423f8d9a05451fbb5aa330b0a1",
+    "source_fingerprint": "sha256:883b2a853162adc8fea08278e27eca719747f94ce32102d3d2850bdb3f7425ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "85c668ee5231a32dc2dc310c76fb895d93e738ce6b2d392603a380d08c417b3a",
-      "plan.md": "afde75bac69ef079d9257b98523ab64ac00a0ebb99396d3f195112a69325b225",
-      "tasks.md": "7b21af8feff277ed9fcdba07b03a6085f5c7130d83bd52a28a228d84554d3f5a",
-      "implementation-summary.md": "7cf359eb6deeca49c60df89def5b8674de04353f6ef9b9f160bc15717cbc986d"
+      "spec.md": "33531f65250b0b76f2fc2c1c147c2ba88c9006cb59fe0e1d922ccabbb5917804",
+      "plan.md": "d390b947d96ed6e346847371a480180ff7243039eba5bad32ed279d66a7fc90c",
+      "tasks.md": "29b955f7938b888d1343008e5f64adc04bec0dc007d8eb314bcb544e7caee58f",
+      "implementation-summary.md": "3436c9f285d2397ca094d4168b3297cc81bae52dc43a5080aaab7c522592d773"
     },
     "last_active_at": null
   }

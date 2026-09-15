@@ -224,7 +224,8 @@ workflow:
             --fanout-config-json '{config.fanout_json}' \
             --base-artifact-dir {artifact_dir} \
             --convergence-threshold {convergence_threshold} \
-            --stop-policy {stop_policy}
+            --stop-policy {stop_policy} \
+            --convergence-mode {convergence_mode}
         working_directory: "{repo_root}"
         wait_for_completion: true
 

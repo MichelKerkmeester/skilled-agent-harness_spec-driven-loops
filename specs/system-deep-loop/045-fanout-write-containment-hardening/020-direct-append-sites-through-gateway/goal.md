@@ -1,5 +1,5 @@
 ---
-title: "Goal: command yaml alignment"
+title: "Goal: direct append sites through gateway"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
   - "packet goal"
@@ -10,23 +10,23 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/016-command-yaml-alignment"
-    last_updated_at: "2026-09-15T00:55:22Z"
-    last_updated_by: "claude-fable-5-1"
-    recent_action: "Phase fix landed and criteria checked"
-    next_safe_action: "Commit once the full suite exits zero"
+    packet_pointer: "scaffold/020-direct-append-sites-through-gateway"
+    last_updated_at: "2026-09-15T01:34:53Z"
+    last_updated_by: "scaffold"
+    recent_action: "Authored the durable directive"
+    next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
-# Goal: command yaml alignment
+# Goal: direct append sites through gateway
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Make the four deep-loop command YAMLs drive the fan-out runner with the same flags and the same native path, and make the prompt pack describe the state-log mechanism the runtime actually implements.
+**Objective:** Stop a projection refresh from dropping state-log rows the command YAMLs still append directly: every remaining direct append goes through the gateway, and the exemptions that allowed them are retired.
 
 ### Decisions
 
@@ -52,10 +52,9 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Every fan-out call site in the four command YAMLs passes the convergence threshold, the stop policy and the convergence mode to the runner; the confirm review YAML's native fan-out branch runs native lineages through the runner like the auto YAML, never by dispatching the leaf agent as a full-loop sub-agent. |
-| D2 | The prompt-pack templates and the YAML state-log contract say the same thing about how a record reaches the state log, matching what the append gateway does; wording that claims a mechanism the runtime lacks is corrected on whichever side is wrong. |
-| D3 | The compiled contracts are regenerated in the same change and the contract drift tests pass. |
-| D4 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
+| D1 | The projection store appends only when the current state log is a durable prefix of the folded projection and otherwise replaces the file, so any row appended outside the ledger is lost on the next gateway write; therefore no command YAML appends to a state log directly. Each exempt site records its event through the gateway, with a ledger event stem added where one is missing. |
+| D2 | The append-site checker's exemption counts drop to zero for every mode, and a test proves a direct row is no longer needed for the events those sites recorded. |
+| D3 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
 
 ### Operator copy
 
@@ -78,10 +77,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [x] Each of the four YAML fan-out call sites passes convergence threshold, stop policy and convergence mode, proven by a contract test that renders the call and asserts the flags
-- [x] The confirm review YAML has no native fan-out branch that dispatches the leaf agent as a full-loop executor
-- [x] The prompt pack and the YAML agree on the state-log mechanism, and the gateway script does what they describe
-- [x] Contract drift and render tests exit zero and the deep-loop suite exits zero
+- [ ] No command YAML invokes the direct state-record appender; the append-site checker reports zero exempt sites for research and review
+- [ ] Each event those sites recorded (iteration error, claim adjudication, run-now, pause) reaches the state log through the gateway and survives a subsequent gateway append, proven by a test that fails against the current YAMLs
+- [ ] Contract drift tests and the deep-loop suite exit zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -97,13 +95,11 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; four YAMLs, two prompt packs, two contracts, eight contract cases; contract tests and typecheck exit 0 |
-| Full suite | Green | `npm test` in the runtime: 152 files, 2631 passed, 8 skipped, exit 0, 1222 s |
+| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Premise corrected | The brief said the gateway has no projection; the delegate found the projection contract in the gateway library and fixed the wording rather than the mechanism |
-| Observed, bound separately | The review auto YAML still direct-appends error and adjudication records that the projection rewrite could replace |
+| [What diverged from the directive] | [Why, and what was done instead] |
 <!-- /ANCHOR:log -->
