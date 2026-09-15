@@ -56,7 +56,8 @@ carries its receipt, or is explicitly labeled as inferred.**
 | **INFERRED** | Plausible, unverified | Say so, and say what would confirm it |
 
 Prose that mixes the three without marking them reads as if all of it were observed.
-That is how a confident summary certifies work nobody checked.
+That is how a confident summary certifies work nobody checked. What to do when a claim
+cannot be resolved is [`uncertainty-and-honesty.md`](uncertainty-and-honesty.md).
 
 **A receipt confirms only what could have contradicted it.** If the claim being false would
 have left the receipt unchanged, the receipt is not an observation of that claim, whatever
@@ -155,7 +156,9 @@ Three task shapes fail in ways the checks above do not catch:
 A sub-agent's "COMPLETE", a reviewer's "P0", a linter's error, a bot's suggestion: each
 is a **claim to confirm against the real symptom**, not a fact to act on. Acting on an
 unconfirmed finding produces a fix for a bug that was never there, plus a diff nobody
-can explain.
+can explain. Confirming against the real symptom is
+[`root-cause-and-debugging.md`](root-cause-and-debugging.md), and what a delegate hands
+back is [`delegation-and-orchestration.md`](delegation-and-orchestration.md).
 
 ---
 
@@ -196,7 +199,9 @@ Every substantive turn ends with an honest status. Four things, briefly:
 And plainly: **what is not done.** If tests fail, say so and show the output. If a step
 was skipped, say it was skipped. If scope was left out, name it and why. Work that is
 done and verified is stated plainly, without hedging, the hedging habit devalues the
-honest report when it matters.
+honest report when it matters. This section covers what happened. What is now the
+operator's to do is a separate report, see
+[`communication-handoff.md`](communication-handoff.md) §1.
 
 ---
 
