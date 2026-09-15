@@ -80,7 +80,7 @@ Twenty review iterations, each on a named angle, expanded between waves from wha
 ## 3. SCOPE
 
 ### How a lane reads this
-Each lane runs five iterations. Its label names its angle block below: lane `wave1-deepseek` took angles 1 to 5, one per iteration; `wave1-glm` took 6 to 10; `wave2-deepseek` takes 11 to 15; `wave2-glm` takes 16 to 20. An iteration reads only its angle, cites file and line for every claim, and rates each finding P0 to P3 with the repo's severity meaning. Angles 11 to 20 are rewritten after wave one lands, so a wave-two lane reads this file fresh.
+Each lane runs five iterations. Its label names its angle block below: lane `wave1-deepseek` took angles 1 to 5, one per iteration; `wave1-glm` took 6 to 10; `wave2-deepseek` takes 11 to 15; `wave2-glm` takes 16 to 20. An iteration reads only its angle, cites file and line for every claim, and rates each finding P0, P1 or P2, the three tiers every executable contract carries. Angles 11 to 20 are rewritten after wave one lands, so a wave-two lane reads this file fresh.
 
 ### Wave one angles
 1. **Routing artifact parity, system-deep-loop hub**: the SKILL.md mode table, `mode-registry.json`, `hub-router.json`, `ROUTER.md`, `leaf-manifest.json`, `graph-metadata.json` and `description.json` must agree on mode names, counts, routing classes, versions and leaf sets. Every disagreement is a finding.
@@ -135,7 +135,7 @@ Each lane runs five iterations. Its label names its angle block below: lane `wav
 
 | ID | Requirement |
 |----|-------------|
-| REQ-003 | Every finding, P0 to P3, is verified against the tree and bound to a parent phase or recorded as refuted with the reason |
+| REQ-003 | Every finding, P0 through P2, is verified against the tree and bound to a parent phase or recorded as refuted with the reason |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
