@@ -1,6 +1,6 @@
 ---
 title: "Fan-out CLI lineage driver"
-description: "CLI lineage pool driver: TSX-bootstrapped entry point that spawns N headless CLI subprocesses (claude-code, opencode, cursor, codex, devin, pi), each running the full loop in its own lineages/{label}/ sub-packet of the shared checkout, with per-kind state-dir isolation and a post-subprocess salvage sweep."
+description: "CLI lineage pool driver: TSX-bootstrapped entry point that spawns N headless CLI subprocesses (claude-code, opencode, cursor, codex, devin, pi, hermes), each running the full loop in its own lineages/{label}/ sub-packet of the shared checkout, with per-kind state-dir isolation and a post-subprocess salvage sweep."
 trigger_phrases:
   - "fan-out cli lineage driver"
   - "fanout-run.cjs"
@@ -39,7 +39,7 @@ the post-subprocess salvage step.
 
 ## 2. HOW IT WORKS
 
-Fully shipped. Supports all 3 CLI kinds: `cli-opencode`, `cli-claude-code`, `cli-opencode`.
+Fully shipped. Supports every CLI executor kind (`EXECUTOR_KINDS` in `lib/deep-loop/executor-config.ts`): `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes`.
 Per-lineage subprocess timeout = `min(iterations *
 timeoutSeconds * 2, 4h)`. TSX bootstrap (mirrors `convergence.cjs` pattern) ensures
 TypeScript imports (`parseFanoutConfig`, `expandLineages`) resolve in the CJS context. Exit
