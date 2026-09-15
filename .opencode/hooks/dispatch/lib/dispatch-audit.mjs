@@ -298,20 +298,21 @@ const SHELL_WRAPPER = /(?:^|[\s;&|])(?:\/[^\s;&|]*\/)?(?:bash|sh|zsh|dash)\s+(?:
 // An exec wrapper runs the real command in its own process, so the tokenizer reads the
 // wrapper as the executor and stops. These are the wrappers this repo actually dispatches
 // through, and missing them meant a guard that enforced nothing on the standard shape:
-//   perl -e 'alarm N; exec @ARGV' -- <cmd>      the portable timeout this repo uses
-//   env [VAR=V ...] <cmd>                        used to clear or set a marker
-//   timeout|gtimeout [flags] <seconds> <cmd>
-//   nohup|stdbuf|setsid|nice|ionice [flags] <cmd>
+// These three, and only these three: a repo-wide count found 38 perl, 64 env and 13 timeout
+// dispatches, and zero for every other wrapper. Add one when a dispatch actually uses it.
+//   perl -e 'alarm N; exec @ARGV' -- <cmd>   the portable timeout, macOS has no `timeout`
+//   env [VAR=V ...] <cmd>                    sets or clears a marker for the child
+//   timeout [flags] <seconds> <cmd>
 const EXEC_WRAPPERS = [
   // Everything after a bare `--` is the wrapped command.
   /^\s*(?:\/[^\s]*\/)?perl\s+[\s\S]*?\s--\s+([\s\S]+)$/,
   /^\s*(?:\/[^\s]*\/)?env\s+(?:-[a-zA-Z]\s+\S+\s+|-[a-zA-Z]+\s+|\w+=[^\s]*\s+)*([\s\S]+)$/,
-  /^\s*(?:\/[^\s]*\/)?g?timeout\s+(?:-[^\s]+\s+)*[\d.]+[smhd]?\s+([\s\S]+)$/,
-  /^\s*(?:\/[^\s]*\/)?(?:nohup|stdbuf|setsid|nice|ionice)\s+(?:-[^\s]+\s+)*([\s\S]+)$/,
+  /^\s*(?:\/[^\s]*\/)?timeout\s+(?:-[^\s]+\s+)*[\d.]+[smhd]?\s+([\s\S]+)$/,
 ];
 
-// Wrappers nest in practice (`env VAR=1 perl -e ... -- cmd`), so allow a few passes.
-const MAX_UNWRAP_DEPTH = 4;
+// The deepest real nesting is two unwraps (`env VAR=1 perl -e ... -- cmd`), and the loop
+// spends one pass inspecting before each. Three is that depth, not a margin.
+const MAX_UNWRAP_DEPTH = 3;
 
 /**
  * Resolve a command to the packet whose rules govern it, or null when nothing does.
@@ -335,6 +336,11 @@ function stripHeredocBodies(command) {
 // Split on shell separators that sit outside quotes. A wrapper unwrap is anchored to the
 // start of what it is given, so it only works once each segment is considered on its own:
 // `cd /tmp && perl ... -- hermes chat ...` has the dispatch in the second segment.
+//
+// `tokenizeShell` above already segments quote-aware, and reusing it was the cheaper move.
+// It fails here because it returns each segment as an array of parsed TOKENS with quoting
+// removed, while the wrapper patterns below have to re-match against the original text:
+// `perl -e 'alarm 300; exec @ARGV' -- ...` is unrecognisable once its quotes are gone.
 function shellSegments(command) {
   const segments = [];
   let buf = '';
