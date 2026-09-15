@@ -36,47 +36,50 @@ _memory:
 ## 1. DURABLE DIRECTIVE
 
 **Objective:** Hermes Agent is integrated as `cli-hermes`, the seventh `cli-external-orchestration`
-runtime: a deep-loop executor, a skill packet, a repo-root `.hermes/` folder, and bridges to this
-repo's agents, commands, skills, hooks and MCP servers.
+runtime, and every runtime's dispatch preflight actually enforces the rules it declares.
 
 ### Decisions
 
 | ID | Decision |
 |----|----------|
-| D1 | Evidence base: `001-deep-research/research/research.md`; plan R1 to R8 confirmed 2026-09-14; all nine phases required (operator: nothing deferred) |
+| D1 | Evidence base: the three research phases; nothing deferred, broken or untested |
 | D2 | Contract pinned live via the LLM Gateway; roster `deepseek-v4.1-flash`, `glm-5.3-flash`, fail-closed |
-| D3 | Dispatch: `hermes chat -Q --query-file --yolo --ignore-rules --run-budget --max-turns -t <toolsets> --source tool </dev/null`; never `-z` or `--worktree`; `--yolo` lifts only the dangerous-action gate; read-only is `-t file,todo` plus the plugin marker |
+| D3 | Dispatch: `hermes chat -Q --query-file --yolo --ignore-rules --run-budget --max-turns -t <toolsets> --source tool </dev/null`; never the top-level oneshot or the worktree flag; `--ignore-rules` ALWAYS, including alongside `-s` (a live A/B disproved the old preload exception); `-t` must include `file`; read-only is `-t file,todo` plus the plugin marker |
 | D4 | Docs via sk-create-* skills; code via `sk-code` on `cli-pi` |
-| D5 | No routing without a working `hermes` binary; one hub advisor identity |
-| D6 | Config, hooks, MCP stay user-level; `.hermes/` carries skill and agent copies, plugins, prompts |
-| D7 | Branch `skilled/v4.0.0.0` |
+| D5 | No routing without a working binary; one hub advisor identity |
+| D6 | Config, hooks, MCP stay user-level; `.hermes/` carries generated skill and agent copies, plugins, prompts |
+| D7 | Branch `skilled/v4.0.0.0`, pushed to `main` too |
+| D8 | A rule that must not be violated is declared `error`; `warn` is advice an agent may ignore |
+| D9 | Devin's command surface stays retired per the July operator directive; only its stale docs are corrected |
 
 ### Roadmap
 
 | # | Phase | Outcome |
 |---|-------|---------|
-| 1 | `001-deep-research` | Research |
-| 2 | `002-hermes-contract-pin` | Pin |
-| 3 | `003-deep-loop-executor-support` | Executor |
-| 4 | `004-cli-hermes-skill-packet` | Hub mode |
-| 5 | `005-hermes-runtime-folder` | `.hermes/` folder |
-| 6 | `006-hermes-hook-and-plugin-layer` | Plugin |
-| 7 | `007-hermes-model-registry-and-routing` | Roster |
-| 8 | `008-hermes-playbook-and-catalog` | Playbook, catalog |
-| 9 | `009-docs-governance-and-closeout` | Docs, closeout |
-| 10 | `010-hermes-hook-parity` | Hook parity |
+| 1-9 | `001`-`009` | Research, pin, executor, hub mode, `.hermes/`, plugin, roster, playbook, closeout |
+| 10 | `010-hermes-hook-parity` | 18 of 22 hook packages bridged |
+| 11 | `011-dispatch-preflight-parity-research` | 10 iterations on preflight defects |
+| 12 | `012-runtime-surface-parity-research` | 10 iterations on commands, skills, goal, hooks |
+| 13 | `013-close-silent-preflight-holes` | Six silent-approval holes closed |
+| 14 | `014-extend-dispatch-coverage` | Cursor and OpenCode adapters, predicate fixes |
+| 15 | `015-wire-executor-builders` | Binary probes, Hermes personas |
+| 16 | `016-dispatch-enforcement-ci-guard` | One guard so a runtime cannot go inert silently |
 
 Each phase has its own `goal.md`; a child that changes a decision here amends it.
 
 ### Completion criteria
 
-1. Both research lineages ran to their caps (10 and 5 iterations) and the merged synthesis names its findings.
-2. Findings were presented and the confirmed phase plan is recorded in this file's log.
-3. Every phase is a child with its own `goal.md` passing `validate.sh --strict`.
-4. `cli-hermes` is a registered hub mode and a deep-loop executor kind, proven by checkers and tests.
-5. A Hermes session in this repo reaches the shared agents, commands, skills and MCP servers, shown live.
-6. The parent passes `validate.sh --recursive --strict`.
-7. Every phase is Complete with every acceptance row Met; no live finding is open.
+1. `cli-hermes` is a registered hub mode and deep-loop executor kind, proven by checkers and tests.
+2. A Hermes session reaches the shared agents, commands, skills and MCP servers, shown live.
+3. Every phase is Complete with every acceptance row Met; no live finding is open.
+4. Every documented headless dispatch resolves to its own runtime's rules.
+5. Every runtime that can host a dispatch refuses a violating one before it runs.
+6. Each closed hole has a test that fails when that fix alone is reverted.
+7. The parent passes `validate.sh --recursive --strict`.
+
+### Open operator decisions
+
+- Three builders default to a different model than their packet documents (codex, claude, opencode), and the codex service tier is only set on request. Changing them alters cost and behaviour for every unpinned lineage.
 
 ### Operator copy
 
@@ -90,15 +93,9 @@ The operator's copy of this directive is the session objective; any change above
 
 | Phase | Goal document |
 |-------|---------------|
-| 001 | `001-deep-research/goal.md` |
-| 002 | `002-hermes-contract-pin/goal.md` |
-| 003 | `003-deep-loop-executor-support/goal.md` |
-| 004 | `004-cli-hermes-skill-packet/goal.md` |
-| 005 | `005-hermes-runtime-folder/goal.md` |
-| 006 | `006-hermes-hook-and-plugin-layer/goal.md` |
-| 007 | `007-hermes-model-registry-and-routing/goal.md` |
-| 008 | `008-hermes-playbook-and-catalog/goal.md` |
-| 009 | `009-docs-governance-and-closeout/goal.md` |
+| 001-009 | each child's `goal.md` |
+| 010 | `010-hermes-hook-parity/goal.md` |
+| 011-016 | each child's packet docs; the dispatch-parity phases carry no separate `goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -106,13 +103,14 @@ The operator's copy of this directive is the session objective; any change above
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] Research lineages ran to caps; synthesis names its findings
-- [x] Findings presented; confirmed plan logged
-- [x] Every phase has its own `goal.md` and passes strict validation
 - [x] `cli-hermes` is a hub mode and executor kind, proven by checkers and tests
 - [x] A Hermes session here reaches the shared agents, commands, skills and MCP servers
-- [x] Parent passes recursive strict validation
-- [x] Every phase 002 to 009 Complete, every acceptance row Met, no pin finding open or deferred
+- [x] Phases 002 to 010 Complete, every acceptance row Met
+- [x] Every documented headless dispatch resolves to its own runtime's rules
+- [x] Cursor and OpenCode refuse a violating dispatch before it runs
+- [x] Each closed hole has a test that fails when that fix alone is reverted
+- [ ] Phase 016 guard green on main and red under any single hand mutation
+- [ ] Parent passes recursive strict validation with phases 011 to 016 included
 <!-- /ANCHOR:completion -->
 
 ---
@@ -136,4 +134,9 @@ The operator's copy of this directive is the session objective; any change above
 | 2026-09-14 | Phase 003 live lineage fulfilled (exit 0, 1042 s, correct synthesis, full artifact set) and phase 007 closed: runner refused an off-roster id in 12 ms, sync guard extended, eligibility and persona rows landed, four reasoning levels answered live. Finding: a Hermes research iteration ran 1042 s at `max`, inside the runner's 2× ceiling; give it `timeoutSeconds` 900 or more. |
 | 2026-09-14 | Criterion 5 met live after the authorized operator steps: persona honored and a command template executed (`agent-router`, `PERSONA=markdown`), a repo skill reached (`-s cli-hermes`), the `code_mode` MCP server reached (`search_tools`, 10 results), and the project plugin blocked a nested `hermes chat` inside a session. Smoke: exit 0, `OK`, session id on stderr. Findings: whole-tree skills symlink rejected on evidence (ten-minute scan, every hub quarantined) and replaced by per-skill links; `-Q` stdout carries model reasoning; `--run-budget` does not bound a stalled stream; MCP servers must be named in `-t`; project plugins need the `plugins.enabled` line by hand. |
 | 2026-09-14 | Criterion 4 met: `cli-hermes` is the eighth `ExecutorKind` (typecheck clean, 318 tests passing, 108 hook tests, 11 rule-check tests) and the seventh hub mode (`parent-skill-check` OK, package validator PASS, compiled routing fresh, both routing stages replayed). Phase 004 Complete; phase 003 In Progress on its live-lineage criterion; phase 002 blocked on the operator's provider step. |
+| 2026-09-15 | Operator asked whether natural prompts work for commands, agents, skills and reading the instruction file. All four work; three caveats found. Then two 10-iteration research lanes ran on cli-pi with DeepSeek V4.1 Flash max, stop policy max-iterations. The parity lane finished all ten and was rejected on a field-name mismatch between the documented state schema (`run`) and the forced-depth validator (`iteration`); its artifacts were salvaged. |
+| 2026-09-15 | Research overturned two premises of its own charter: the authored command surface is 35, not 46 (a policy file explains every mirror count as deliberate exclusion, so only Devin's zero is a real gap), and Devin's commands were removed by operator directive in July rather than never built. D9 added. |
+| 2026-09-15 | Phase 013: six silent-approval holes closed. The two largest were unknown before the research. Codex resolved to no dispatch shape at all, so every cli-codex rule had been inert since the shape was written. And Hermes fan-out lineages never set the project-plugin opt-in, so the read-only refusal, goal binding and advisories were dead in exactly the runs they were built for. Also the stdin severity flip across all seven skills, the `file` toolset requirement, removal of the `-s` preload exemption (D3 amended), and the zero-width joiner that made Hermes refuse the instruction file. Each fix proven by reverting it and watching its own test fail. |
+| 2026-09-15 | Phase 014: Cursor and OpenCode gained pre-execution refusal, both calling the shared engine rather than copying it. Three predicates widened after live probes showed each matched one spelling and missed another. Two Pi checks added for the mandatory offline flag and the provider-qualified model. A registration assertion now fails if an adapter file or its binding disappears. |
+| 2026-09-15 | Phase 015: the Claude and OpenCode builders gained the binary probe the other five had. Hermes personas were built and unreachable, with no lineage field able to name one; a lineage may now name a persona, sequenced after the exemption fix so the preload and the rules flag travel together. Three model-default divergences and the codex service tier left as operator decisions. |
 <!-- /ANCHOR:log -->
