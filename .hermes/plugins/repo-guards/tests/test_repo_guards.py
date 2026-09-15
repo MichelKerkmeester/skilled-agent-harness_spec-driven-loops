@@ -165,15 +165,21 @@ class RepoGuardsTests(unittest.TestCase):
             self.assertIsNone(self.plugin.pre_llm_call(user_message="create src/app.py", is_first_turn=True))
         core.assert_not_called()
 
-    def test_an_orchestrated_leaf_gets_no_prompt_time_briefs(self):
+    def test_an_orchestrated_leaf_gets_the_brief_but_never_the_gate_question(self):
+        # A leaf still chooses HOW to do its work, so the routing brief is as useful there as
+        # anywhere. The spec-folder question is different: the leaf's write authority is
+        # already bound to a lineage directory and nobody is at the prompt to answer, so a
+        # leaf that answers its own gate question spends the turn on that instead of the task.
         leaf = {"SYSTEM_SPEC_GATE_DISABLED": "1", "AI_SESSION_CHILD": "1"}
         with mock.patch.dict(os.environ, leaf), \
-             mock.patch.object(self.plugin.subprocess, "run") as run, \
+             mock.patch.object(self.plugin.subprocess, "run",
+                               return_value=mock.Mock(stdout=advisor_stdout([recommendation()]))), \
              mock.patch.object(self.plugin, "_run_core") as core:
-            self.assertIsNone(
-                self.plugin.pre_llm_call(user_message="create src/app.py", is_first_turn=True, session_id="s1")
+            out = self.plugin.pre_llm_call(
+                user_message="create src/app.py", is_first_turn=True, session_id="s1"
             )
-        run.assert_not_called()
+        self.assertIn("Advisor:", out["context"])
+        # The gate classifier is never even consulted for a leaf, so it cannot leak a question.
         core.assert_not_called()
 
         # Either switch alone is still an interactive session, and it gets its briefs.

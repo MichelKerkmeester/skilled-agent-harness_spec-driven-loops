@@ -10,7 +10,7 @@ version: 1.4.0.0
 
 > **RECURSION BOUNDS**: This playbook must be run from a non-Hermes runtime. Hermes has in-process delegation of its own, so a Hermes session hands work out through `delegate_task` and never by re-dispatching this CLI; the `repo-guards` project plugin enforces that refusal, and `HERMES-018` proves it live. A dispatch from inside a fan-out lineage, or one whose kind already appears in the dispatch stack, is refused by the shared runtime and must be recorded as such if it fires.
 
-This document is the operator directory and package-level validation contract for the `cli-hermes` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 36 canonical scenario files.
+This document is the operator directory and package-level validation contract for the `cli-hermes` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 44 canonical scenario files.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
@@ -68,7 +68,7 @@ Coverage note: the ten operator categories cover the sanctioned headless shape, 
 1. The working directory is the repository root and contains `.git/`.
 2. Hermes is installed and available: `command -v hermes` returns a path and `hermes --version` returns a non-empty current runtime version.
 3. The provider preflight is `hermes config get providers.llmgateway.base_url`, which prints the base URL and exits 0. **`hermes status` is not a usable preflight**: it reads the built-in provider catalog only, so on a correctly configured machine it reports `Model: (not set)` and `Provider: Auto` while every dispatch works. `HERMES-021` records both readings side by side.
-4. Dispatches use only the two roster model ids. An off-roster id fails with exit 1 and a gateway diagnostic on stdout, which `HERMES-003` proves deliberately.
+4. Dispatches use only roster model ids. The roster is the seven the gateway serves for Hermes, matching Pi's minus `mimo-v2.5-pro-ultraspeed`, which answers HTTP 400 on this route. An off-roster id fails with exit 1 and a gateway diagnostic on stdout, which `HERMES-003` proves deliberately.
 5. Every dispatch closes stdin with `</dev/null` or feeds it through `--query-file -`. An inherited terminal stdin can hang with zero output.
 6. Every dispatch is bounded by an outer wall-clock alarm. macOS has no `timeout`; use `perl -e 'alarm N; exec @ARGV' -- hermes ...`. The package's standard bound is 300 seconds per dispatch.
 7. Every dispatch is judged on stdout content, not on its exit code. A run that exits 0 with empty or fragmentary stdout has failed, and the caller's byte-and-content gate is what catches it.
@@ -103,7 +103,7 @@ Coverage note: the ten operator categories cover the sanctioned headless shape, 
 - **The read-only shape is `-t file,todo`**, plus `web` when web search is wanted, with no `--yolo` and with `SPECKIT_HERMES_READ_ONLY=1` in the environment. Hermes's `search` toolset is web search, and `read_file` and `search_files` ship inside `file` alongside the write tools, so no toolset list expresses read-only on its own; the `repo-guards` plugin supplies the refusal.
 - **The write shape is `-t terminal,file,skills,todo,web --yolo`.** `--yolo` is required exactly when `terminal` is in the list.
 - The toolset list is always explicit and never contains `delegation` or `memory`.
-- `--ignore-rules` is passed on every dispatch except one that preloads a project skill with `-s`, because the flag also suppresses the preload.
+- `--ignore-rules` is passed on EVERY dispatch, including one that preloads a project skill with `-s`. A live A/B showed the preload surviving the flag, so the old exception only bled the rules files, memories and session search into the leaf.
 - Every dispatch is wrapped as `perl -e 'alarm 300; exec @ARGV' -- hermes ...` because macOS provides no `timeout`.
 - Availability and provider checks are written as `bash: command -v hermes` and `bash: hermes config get providers.llmgateway.base_url`.
 - A scenario's sequential steps are separated by `->` in a command-sequence cell.

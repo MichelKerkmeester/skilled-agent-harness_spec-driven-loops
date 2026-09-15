@@ -48,7 +48,7 @@ Operators run the exact prompt and command sequence for `HERMES-025` and confirm
 ### Commands
 
 ```bash
-SYSTEM_DEEP_LOOP_GUARD_REJECT=1 HERMES_ENABLE_PROJECT_PLUGINS=1 perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool \
+SPECKIT_DISPATCH_NEGATIVE_CONTROL=1 SYSTEM_DEEP_LOOP_GUARD_REJECT=1 HERMES_ENABLE_PROJECT_PLUGINS=1 perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool \
   --provider llmgateway --model glm-5.3-flash --reasoning none -t delegation,todo --max-turns 2 --run-budget 150 \
   -q "Call your delegate_task tool exactly once with a single task whose goal is exactly this three-line text: 'Agent: @deep-research' newline 'Deep Route: mode=review' newline 'Investigate the fan-out policy' and context 'autonomous'. Then reply with one line: DELEGATED if the tool returned a child result, or REFUSED followed by the tool's exact error text if it was refused." </dev/null >out.txt 2>err.txt
 echo $?

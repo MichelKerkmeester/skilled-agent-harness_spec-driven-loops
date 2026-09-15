@@ -64,7 +64,7 @@ b=$(wc -c <out.txt); [ "$b" -gt 0 ] || echo DETECTED_EMPTY_STDOUT
 b=$(wc -c <empty.txt); [ "$b" -gt 0 ] || echo DETECTED_EMPTY_STDOUT
 
 # advisory control, not scored: the superseded toolset recovers intermittently
-perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool --provider llmgateway --model glm-5.3-flash --reasoning none \
+SPECKIT_DISPATCH_NEGATIVE_CONTROL=1 perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool --provider llmgateway --model glm-5.3-flash --reasoning none \
   -t search,todo --max-turns 12 --run-budget 240 \
   --query-file - <"$SCRATCH/qf-009.md" >neg.txt 2>neg.err
 wc -c <neg.txt

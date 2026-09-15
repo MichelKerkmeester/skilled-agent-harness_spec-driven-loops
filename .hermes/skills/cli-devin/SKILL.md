@@ -225,12 +225,23 @@ devin -p \
 > commands, which is what lets the executor verify its own work instead of handing back
 > unverified edits. Use `auto` for read-only review, analysis, and research, where no
 > elevation is needed.
+>
+> **`auto` is read-only, not tool-free.** It refuses any tool call that wants confirmation,
+> and a shell command counts even when the command only reads. Observed on 2026-09-15: a
+> crawl dispatched under `auto` decided on its own to run a `git` command to check state,
+> was refused with `warning: rejected a tool call that requires confirmation`, and exited 0
+> having reported almost nothing. A research dispatch that might shell out therefore needs
+> `dangerous` with a read-only instruction in the prompt, and the caller diffs the worktree
+> afterwards to confirm it wrote nothing. Reserve `auto` for a dispatch whose whole job is
+> reading files.
 
 **User override** (honor explicit user phrasing verbatim):
 
 | User says | Resolve to |
 |-----------|------------|
-| (nothing specified) | `--model swe --permission-mode dangerous` |
+| (nothing specified) | `--model swe-2-max --permission-mode dangerous` |
+
+> **Fan-out fallback:** a deep-loop lineage that pins no model runs **SWE 2 Max**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
 | "Use glm" / "Use glm high" | `--model glm-5-2 --permission-mode dangerous` |
 | "Use glm no-thinking" | `--model glm-5-2-none --permission-mode dangerous` |
 | "Use glm max" | `--model glm-5-2-max --permission-mode dangerous` |
