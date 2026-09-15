@@ -24,10 +24,11 @@ Most of this does not change how you call the system. The `/deep:*`, `/create:*`
 - **A spec kit that tells the truth.** The runtime was renamed and nested under `runtime/cli/`. The completion gate returns one verdict everywhere with forty registered rules. Acceptance criteria and a goal file joined the packet contract. Three research rounds cut the kit back to what a machine reads, and every finding they recorded was closed.
 - **Your edits stay yours.** Reindexing and the daemon's startup scan no longer write auto-fixes or trim content back into documents you wrote.
 - **Deep loops, one home.** Research, review, ai-council, agent-improvement and the two benchmarks run as one `system-deep-loop` skill with six `/deep:*` commands.
-- **Loops run on any model, in parallel.** A deep loop dispatches to Codex, Devin, Cursor, Pi, OpenCode or Claude Code, and fans several out at once for independent perspectives.
+- **Loops run on any model, in parallel.** A deep loop dispatches to Codex, Devin, Cursor, Pi, Hermes, OpenCode or Claude Code, and fans several out at once for independent perspectives.
 - **Every run replayable.** A typed evidence ledger is the authoritative record for every loop mode. Runs replay from it, every state transition is authorized, and the legacy files are projections of it.
-- **Executors that only run when installed.** Codex, Devin, Cursor and Pi show up as routable only when their binary is present, so a missing tool never fails halfway through a run.
+- **Executors that only run when installed.** Codex, Devin, Cursor, Pi and Hermes show up as routable only when their binary is present, so a missing tool never fails halfway through a run.
 - **Pi hosts the framework natively.** `cli-pi` gained bridges for the repo's skills, commands, agents, MCP servers and hooks. It is the deepest runtime integration of the six.
+- **Hermes joins as the seventh runtime.** `cli-hermes` dispatches Nous Research's Hermes Agent through the LLM Gateway, mirrors every skill and agent into `.hermes/`, and runs the repo's guards through one project plugin that bridges eighteen of the twenty-two hook packages.
 - **Sign in, not API keys.** Codex and Claude Code dispatch through the account you are already signed in to. `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` are no longer read.
 - **A local vision skill.** `sk-vision` reads screenshots for text-only models through a private Moondream runtime, off by default, on demand through `/vision`.
 - **Design becomes a hub.** `sk-design` went from one skill to a parent of four modes. Fundamentals decides values for any laid-out surface, the md generator measures a live site into a Style Reference, and chart and diagram moved in from sk-doc under `/design:*`.
@@ -208,17 +209,17 @@ Because the runtime holds live in-flight state, it could not be swapped in one m
 
 ## Orchestrating Other AIs
 
-The way the framework talks to other AI coding tools settled into one honest shape. Six separate CLI-orchestrator skills became one hub. Every executor refuses to start unless its own binary is installed. The surfaces no longer worth keeping were turned off for good.
+The way the framework talks to other AI coding tools settled into one honest shape. Seven separate CLI-orchestrator skills became one hub. Every executor refuses to start unless its own binary is installed. The surfaces no longer worth keeping were turned off for good.
 
 #### One Hub for the External CLIs
 
-The six CLI-orchestrator skills live under one `cli-external-orchestration` hub, renamed from `cli-external` during the cycle. The hub holds no logic of its own and routes to a mode per executor. The change is invisible where it counts, because the concrete executor names like `cli-opencode` keep working. Two of them stop being independently routable top-level identities, so anything that pointed at `cli-opencode` or `cli-claude-code` as standalone skills now resolves through the hub.
+The seven CLI-orchestrator skills live under one `cli-external-orchestration` hub, renamed from `cli-external` during the cycle. The hub holds no logic of its own and routes to a mode per executor. The change is invisible where it counts, because the concrete executor names like `cli-opencode` keep working. Two of them stop being independently routable top-level identities, so anything that pointed at `cli-opencode` or `cli-claude-code` as standalone skills now resolves through the hub.
 
 &nbsp;
 
 #### Executors That Only Run When Installed
 
-Codex and Devin are back. Cursor and Pi are new. All four join as deep-loop executors, and every one is gated fail-closed on its own binary being present, with a check like `command -v codex`, `cursor-agent`, `devin` or `pi`. A missing tool never shows up as routable or dispatchable, so it cannot fail partway through a run. This reverses an earlier quiet removal. Codex and Devin had been deprecated and stripped out, then brought back this same way, so the roster you can use now matches what is installed on your machine.
+Codex and Devin are back. Cursor, Pi and Hermes are new. All five join as deep-loop executors, and every one is gated fail-closed on its own binary being present, with a check like `command -v codex`, `cursor-agent`, `devin`, `pi` or `hermes`. A missing tool never shows up as routable or dispatchable, so it cannot fail partway through a run. This reverses an earlier quiet removal. Codex and Devin had been deprecated and stripped out, then brought back this same way, so the roster you can use now matches what is installed on your machine.
 
 &nbsp;
 
@@ -239,6 +240,13 @@ Of the runtimes the framework can hand work to, Pi went the deepest. `cli-pi` is
 - two vendored extensions, a cache optimizer and a fast-mode toggle, described below
 
 Where the other executors receive a dispatched prompt and run it, Pi loads the repo's skills, commands, agents, MCP servers and hooks and runs them itself. It is the most complete runtime integration of the six.
+
+&nbsp;
+
+
+#### Hermes Runs It Too
+
+Hermes Agent (Nous Research, a Python agent CLI) is the seventh runtime, as `cli-hermes`. It dispatches as a quiet oneshot chat with the prompt on stdin, through the operator's LLM Gateway provider and a closed two-model roster, and it is the eighth deep-loop executor kind. The repo-root `.hermes/` folder carries generated markdown-only copies of every skill and every agent persona (Hermes scans a linked directory in full, so symlinks were rejected on evidence), generated prompt templates, and one project plugin. That plugin bridges eighteen of the twenty-two hook packages into a Hermes session: the skill advisor and spec gate at prompt time, the dispatch, task-dispatch, MCP-route, git and vision guards before a tool call, post-edit quality on a write result, the shared goal core at session start, the session-start advisories, and session cleanup. The four that stay out are runtime-specific by nature. Every bridge has a live playbook scenario; the packet is `cli-external-orchestration/071-cli-hermes-creation`.
 
 &nbsp;
 
@@ -319,6 +327,7 @@ The whole hook layer became one browsable, switchable library.
 - **Assembled from source by symlink.** The `.opencode/hooks/` directory gathers every hook through 102 relative symlinks that point back to each hook's real home. A git hook lives in `sk-git`'s scripts, the advisor hook in the advisor package, and so on. It is one place to read without duplicating a line of code.
 - **One switch, or twenty-two.** A master `SYSTEM_HOOKS_DISABLED` flag turns the entire cross-runtime layer off at once, with a `SYSTEM_<concern>_DISABLED` flag for each of the twenty-two concerns beneath it. The older `MK_` names are still honored as aliases.
 - **See what's on, disable what you want.** The README carries a kill-switch index with every concern, its flag, aliases, default and effect. A gitignored `hook-flags.env`, copied from `hook-flags.env.example`, holds your personal defaults. Live environment values win, and a missing file fails open.
+- **Hermes gets the same guards through one plugin.** `.hermes/plugins/repo-guards` runs the shared hook cores from inside a Hermes session, so the rules reach a seventh runtime without a second implementation.
 
 The Gate-3 spec question also stays quiet on read-only turns, and the hook reference docs moved into their owning trees. Small things, no behavior change.
 

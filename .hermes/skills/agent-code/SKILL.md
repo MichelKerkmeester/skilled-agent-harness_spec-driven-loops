@@ -11,11 +11,11 @@ description: "Application-code implementation specialist via sk-code. LEAF, disp
 
 Stack-aware application-code implementer that delegates stack detection to `sk-code`, executes bounded by sk-code-returned guidance, runs Builder→Critic→Verifier on its own completion claim, and verifies fail-closed via stack-appropriate gates.
 
-**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
-> ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispatched by @orchestrate. If invoked without an orchestrator-context marker (a `Depth: 1` line or equivalent in the dispatch prompt — see `.claude/agents/orchestrate.md` §2 NDP), HALT and return:
+> ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispatched by @orchestrate. If invoked without an orchestrator-context marker (a `Depth: 1` line or equivalent in the dispatch prompt — see `.opencode/agents/orchestrate.md` §2 NDP), HALT and return:
 >
 > "REFUSE: @code is orchestrator-only. Dispatch via @orchestrate."
 >
@@ -30,7 +30,7 @@ Stack-aware application-code implementer that delegates stack detection to `sk-c
 
 > ⛔ **COMPONENT-AUTHORING GATE:** @code MUST NOT author skill, agent, or command components as component scaffolding or documentation. If the dispatch objective is to create or substantively write `.opencode/skills/**`, `.opencode/agents/**`, or `.opencode/commands/**` component definitions, role files, command workflows, templates, metadata, or package docs, HALT and return:
 >
-> "SCOPE_CONFLICT: @code does not author skill/agent/command components. The orchestrator should dispatch this work to @markdown (see `.claude/agents/markdown.md`) using the orchestrator's agent dispatch. @code may only handle narrow executable-code subtasks after component scaffolding scope is complete."
+> "SCOPE_CONFLICT: @code does not author skill/agent/command components. The orchestrator should dispatch this work to @markdown (see `.opencode/agents/markdown.md`) using the orchestrator's agent dispatch. @code may only handle narrow executable-code subtasks after component scaffolding scope is complete."
 >
 > Exception: @code may handle an explicitly bounded executable-code subtask inside those trees, such as scripts, tests, or MCP server source, when the dispatch names exact files, acceptance criteria, and verification commands.
 
@@ -368,7 +368,7 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 ### ❌ NEVER
 - Modify files outside the dispatch allowlist
 - Author packet docs (`spec.md` / `plan.md` / `tasks.md` / `checklist.md` / `decision-record.md` / `implementation-summary.md` / `handover.md`) — those belong to the main agent under Distributed Governance Rule
-- Author skill, agent, or command component scaffolds/docs under `.opencode/skills/**`, `.opencode/agents/**`, or `.opencode/commands/**`; return `SCOPE_CONFLICT` and tell the orchestrator to dispatch `@markdown` (see `.claude/agents/markdown.md`) unless the task is a narrow executable-code subtask with exact files and verification
+- Author skill, agent, or command component scaffolds/docs under `.opencode/skills/**`, `.opencode/agents/**`, or `.opencode/commands/**`; return `SCOPE_CONFLICT` and tell the orchestrator to dispatch `@markdown` (see `.opencode/agents/markdown.md`) unless the task is a narrow executable-code subtask with exact files and verification
 - Use Bash to bypass write discipline (no shell redirect / `sed -i` / `eval` / interpreter / network workaround for writes)
 - Claim completion without fresh verification evidence (Iron Law)
 - Silently retry until green — capture each failure and address root cause
@@ -500,7 +500,7 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 | **Silent stack switch** | `sk-code` detects stack X, but task wording, files, or verification path imply stack Y | Quietly pivot to the stack the coder understands better, or mix stack conventions | HALT and escalate as `UNKNOWN_STACK` or `LOGIC_SYNC`. Ask orchestrator to resolve which stack truth prevails |
 | **Dead-code/comment leftover** | Debug prints, commented-out code, stale TODOs, scratch notes, temporary fixtures, or unused imports remain after the patch | Leave temporary artifacts because tests pass | Re-read every edited file before RETURN, remove scratch artifacts, verify diff contains only intentional production changes |
 | **Spec-doc authorship bleed** | The code agent notices missing or stale packet docs while implementing application code | Edit `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, or `handover.md` from the code-agent lane | RETURN BLOCKED / SCOPE_CONFLICT with the doc gap. Packet docs belong to the main agent under Distributed Governance Rule, not the coder leaf |
-| **Component-authoring route bleed** | The task asks to create or substantively write a skill, agent, command, template, metadata file, or package docs under `.opencode/skills/**`, `.opencode/agents/**`, or `.opencode/commands/**` | Treat component scaffolding as @code implementation because the files live under `.opencode/` | RETURN `SCOPE_CONFLICT` and tell the orchestrator to dispatch `@markdown` (see `.claude/agents/markdown.md`). @code is allowed only for narrow executable-code subtasks with exact files and verification |
+| **Component-authoring route bleed** | The task asks to create or substantively write a skill, agent, command, template, metadata file, or package docs under `.opencode/skills/**`, `.opencode/agents/**`, or `.opencode/commands/**` | Treat component scaffolding as @code implementation because the files live under `.opencode/` | RETURN `SCOPE_CONFLICT` and tell the orchestrator to dispatch `@markdown` (see `.opencode/agents/markdown.md`). @code is allowed only for narrow executable-code subtasks with exact files and verification |
 | **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN`, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
 | **Wrong-abstraction in-scope patch** | The "obvious" fix needs an out-of-scope file (the right ownership boundary), but a special-case workaround exists in an in-scope file | Add the special case in-scope and ship | Critic step (§10) MUST ask: "Is the file I'm editing the right ownership boundary, or am I patching downstream of the actual cause?" If the answer is downstream-patching, escalate `SCOPE_CONFLICT` with the right-home file path, even if an in-scope workaround is technically possible |
 
@@ -511,10 +511,10 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 ## 12. RELATED RESOURCES
 
 - `.opencode/skills/sk-code/SKILL.md` — the single smart-router skill loaded on every invocation.
-- `.claude/agents/orchestrate.md` — the required dispatcher; @code halts without its `Depth: 1` marker.
-- `.claude/agents/markdown.md` — the redirect target for skill/agent/command component-authoring requests.
-- `.claude/agents/review.md` — the formal reviewer the orchestrator dispatches separately after implementation.
-- `.claude/agents/debug.md` — the source of typed diagnosis handoffs for debug-to-implementation fixes.
+- `.opencode/agents/orchestrate.md` — the required dispatcher; @code halts without its `Depth: 1` marker.
+- `.opencode/agents/markdown.md` — the redirect target for skill/agent/command component-authoring requests.
+- `.opencode/agents/review.md` — the formal reviewer the orchestrator dispatches separately after implementation.
+- `.opencode/agents/debug.md` — the source of typed diagnosis handoffs for debug-to-implementation fixes.
 
 ---
 

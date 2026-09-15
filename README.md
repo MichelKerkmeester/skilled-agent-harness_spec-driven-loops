@@ -487,7 +487,7 @@ Every loop keeps its progress in files, not in the chat, and those files are the
 #### Cross-AI fan-out
 
 A loop can spread its iterations across several AI models at once, then merge what they find. Bind executors on the command and each one becomes its own lineage.
-- **Many models, one loop:** run the same review or research across native agents and CLI bridges (Codex, Claude Code, OpenCode, Cursor, Devin, Pi) in parallel, each lineage on its own state, with a pool that caps how many run at once
+- **Many models, one loop:** run the same review or research across native agents and CLI bridges (Codex, Claude Code, OpenCode, Cursor, Devin, Pi, Hermes) in parallel, each lineage on its own state, with a pool that caps how many run at once
 - **Strongest-restriction merge:** for a review, any lineage that reports an active P0 pulls the merged verdict to FAIL, so the safest reading wins rather than the average one
 - **Supervised, not unattended:** a stall watchdog aborts a lineage that stops emitting progress, a per-lineage cost cap bounds spend, and a dead or rate-limited lineage is tolerated without failing the whole run
 - **One adapter:** every executor kind dispatches through the same shared runner, selected per lineage, so adding a model is a config choice rather than new plumbing
@@ -861,7 +861,7 @@ The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self
 Gives a session a durable completion objective that survives across turns, instead of losing intent to context resets. The packet's `goal.md` is the goal. A session binds to a spec packet, and the runtime injects that file's durable slice, frontmatter stripped, with its completion criteria as their own `criteria:` list, one per line, on every turn where that runtime injects at all: OpenCode, Pi and Devin inject per turn, Cursor injects at session start. The agent resends the slice in chat whenever a decision or criterion changes, reminding you to set it, and never stops working while it waits.
 - **Claude Code and Codex:** use the built-in native `/goal <condition>`. The speckit workflows hand you the stripped slice of the parent `goal.md` to paste. Do not route through `opencode_goal` (that tool does not exist in those sessions)
 - **OpenCode:** `/goal-opencode bind <packet-path>` makes the packet goal the session goal. `resent` clears the reminder, `packet <path>` reads a packet, and `set <condition>` still sets a plain text goal. Show, pause, clear and complete run through the `opencode_goal` tools
-- **Pi, Cursor, Devin:** the shared core under `.opencode/hooks/goal/` injects the same slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, and Devin injects without a management surface. Cursor and Devin still record a turn on the bound record, so neither is read-only
+- **Pi, Cursor, Devin, Hermes:** the shared core under `.opencode/hooks/goal/` injects the same slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin injects without a management surface, and Hermes binds the packet named by `HERMES_SPEC_FOLDER` under its session id through the repo plugin. Cursor and Devin still record a turn on the bound record, so neither is read-only
 - **Guarded by the validator:** a phase parent or top-level packet goal warns past 3,000 characters and fails past 4,000, and a binding row naming a child goal that does not exist fails
 - **Autonomous continuation is default-off** and gated (caps, cooldown, kill-switch). See `.opencode/hooks/goal/README.md` for the model and `.opencode/hooks/goal/goal-plugin.md` for the OpenCode plugin contract
 
@@ -993,7 +993,7 @@ A: No. Skills are loaded on demand by Gate 2. You only need the ones relevant to
 &nbsp;
 **Q: Is this only for OpenCode or does it work with other runtimes?**
 
-A: It works with OpenCode and Claude Code. OpenCode uses plugin surfaces; Claude Code uses hook adapters.
+A: It works with OpenCode and Claude Code, and the same rules reach Codex, Cursor, Devin, Pi and Hermes through their own adapters. OpenCode uses plugin surfaces; Claude Code uses hook adapters; Hermes runs the repo's guards through the `.hermes/plugins/repo-guards` project plugin.
 &nbsp;
 **Q: What happens if I do not use a spec folder?**
 

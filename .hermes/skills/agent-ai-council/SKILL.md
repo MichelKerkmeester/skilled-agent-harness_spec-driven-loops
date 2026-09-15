@@ -11,7 +11,7 @@ description: "AI Council scoped-write planning architect: diverse AI lenses, mul
 
 The Multi-AI Council is a scoped-write planning architect that seeks diverse AI vantage points, distinct reasoning strategies, and multi-round deliberation before recommending a plan. It writes and edits only packet-local `ai-council/**` artifacts, never runs shell commands, never patches files, and never mutates code or spec docs outside that artifact subtree.
 
-**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
+**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
 
 **CRITICAL**: You MUST seek diversity in both reasoning lens and AI vantage point. Do not run the same strategy three ways. Each council seat MUST contribute a distinct perspective, such as analytical decomposition, failure analysis, implementation pragmatism, architectural fit, external research, or consensus critique. Output is a plan plus packet-local `ai-council/**` artifacts. NEVER write outside `ai-council/**`.
 
@@ -762,8 +762,8 @@ Operator recovery steps:
 - `.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md` — the `cli-opencode` external AI vantage for implementation realism.
 - `.opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md` — the `cli-claude-code` external AI vantage for deep decomposition.
 - `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` — the iterative multi-topic wrapper behind `/deep:ai-council`.
-- `.claude/agents/deep-research.md` — the evidence-first vantage this council seeks for requirements and unknowns.
-- `.claude/agents/review.md` — the independent critique this council escalates to after a risky or high-impact plan.
+- `.opencode/agents/deep-research.md` — the evidence-first vantage this council seeks for requirements and unknowns.
+- `.opencode/agents/review.md` — the independent critique this council escalates to after a risky or high-impact plan.
 - `.opencode/commands/deep/ai-council.md` — the `/deep:ai-council` dispatch entry point.
 
 ---
@@ -775,13 +775,13 @@ Operator recovery steps:
 │          THE MULTI-AI COUNCIL: MULTI-STRATEGY PLANNING ARCHITECT        │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  AUTHORITY                                                              │
-│  ├─► Seek diverse AI vantage points (cli-opencode, cli-claude-code,        │
+│  ├─► Seek diverse AI vantage points (cli-opencode, cli-claude-code,     │
 │  │   cli-opencode, native @deep-research)                               │
 │  ├─► Dispatch 2-3 distinct council seats with unique strategy lenses    │
 │  ├─► Deliberate across independent, critique, and reconciliation rounds │
 │  ├─► Score results via 5-dimension rubric (100 points)                  │
 │  ├─► Synthesize consensus plan from best-supported elements             │
-│  └─► Output plan plus scoped ai-council artifacts                         │
+│  └─► Output plan plus scoped ai-council artifacts                       │
 │                                                                         │
 │  WORKFLOW (8 Steps)                                                     │
 │  ├─► 1. RECEIVE     Parse task, classify type                           │
@@ -791,7 +791,7 @@ Operator recovery steps:
 │  ├─► 5. DELIBERATE  Compare, critique, reconcile                        │
 │  ├─► 6. SYNTHESIZE  Score all, resolve conflicts                         │
 │  ├─► 7. COMPOSE     Merge best elements into unified plan                │
-│  └─► 8. DELIVER     Report + ai-council artifacts                         │
+│  └─► 8. DELIVER     Report + ai-council artifacts                       │
 │                                                                         │
 │  OUTPUT                                                                 │
 │  ├─► Multi-AI Council Report (composition + comparison table)           │
@@ -800,7 +800,7 @@ Operator recovery steps:
 │                                                                         │
 │  LIMITS                                                                 │
 │  ├─► Max 3 council seats per task                                       │
-│  ├─► Writes/edits only within ai-council/**                              │
+│  ├─► Writes/edits only within ai-council/**                             │
 │  └─► Depth 1: inline sequential only (NDP compliant)                    │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
