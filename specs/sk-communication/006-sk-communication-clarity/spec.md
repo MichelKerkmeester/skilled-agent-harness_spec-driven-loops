@@ -167,6 +167,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 12 | 012-reply-rule-delegation-repair/ | The reply rule stops stating a sentence mechanic it delegates, found by sweeping every directive in all twelve rules | 11th, last | Complete |
 | 13 | 013-shorten-handoff-rule-name/ | The handoff rule takes the shortest name that still says what it governs, after the split it was offered was assessed and declined | 12th, last | Complete |
 | 14 | 014-shorten-decision-rule-name/ | The longest rule name is trimmed from 37 to 26, after the file was checked for the meaning the shorter name gives up | 13th, last | Complete |
+| 15 | 015-evidence-rule-seam-links/ | The corpus hub names a neighbour at each seam it already reached, making two of its four inbound links reciprocal | 14th, last | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -194,6 +195,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 011-communication-rule-naming | 012-reply-rule-delegation-repair | The four reply rules share one name shape, so the set they form can be compared as a set | Sweep every bolded directive across the corpus, cross-file only |
 | 012-reply-rule-delegation-repair | 013-shorten-handoff-rule-name | No directive is stated twice, so the file's contents are settled before its name changes again | Rerun the directive sweep, then read the file's length against the ceiling |
 | 013-shorten-handoff-rule-name | 014-shorten-decision-rule-name | One long name is already trimmed, so the band the corpus should sit in is set rather than argued | Measure every rule filename before and after |
+| 014-shorten-decision-rule-name | 015-evidence-rule-seam-links | The naming pass is finished, so the corpus can be read as a graph rather than as a list of names | Derive the cross-reference graph across all twelve rules |
 <!-- /ANCHOR:phase-map -->
 
 ---
