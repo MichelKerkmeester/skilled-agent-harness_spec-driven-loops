@@ -29,7 +29,7 @@ trigger_phrases:
   - "offer once at the end"
 importance_tier: important
 contextType: reference
-version: 1.4.0.0
+version: 1.4.1.0
 ---
 
 # Rule: Communication
@@ -48,7 +48,7 @@ being written, or it silently stops applying to the short answers that need it m
 
 ## The rule
 
-**Write so the reader can act after one pass: one idea per sentence, nothing in the reply
+**Write so the reader can act after one pass: the answer first, and nothing in the reply
 that does not carry information.**
 
 This file governs how a reply reads. The shape of a decision you hand over, the verdict-first
