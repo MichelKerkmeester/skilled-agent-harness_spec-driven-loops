@@ -341,6 +341,47 @@ function digestManifestBytes(bytes) {
 }
 
 /**
+ * Digest of one mode's leaf set as a set: normalized, deduped, sorted. Two
+ * modes that resolve the same leaves in a different order, or with repeats,
+ * produce the same digest; a mode that resolves even one different leaf does
+ * not. Comparing digests is how a generator detects that two typed routes were
+ * handed one physical packet's whole corpus instead of their own subsets.
+ *
+ * @param {{workflowMode: string, leaves: string[]}} entry - Mode entry to digest.
+ * @returns {string} Hex SHA-256 digest of the canonical leaf list.
+ */
+function modeLeafSetDigest(entry) {
+  const leaves = [...new Set(((entry && entry.leaves) || []).map((leaf) => normalizeLeafResourceId(leaf)))].sort();
+  return digestManifestBytes(Buffer.from(JSON.stringify(leaves), 'utf8'));
+}
+
+/**
+ * Find groups of workflow modes whose leaf sets are hash-equal. One mode per
+ * leaf set is the norm: a mode is an independently addressable route, so two
+ * modes resolving the identical set means neither is scoping its leaves — the
+ * usual cause is an N-to-1 packet fan-out where the generator walked the whole
+ * shared packet for every mode. Returns one group per colliding digest, each
+ * naming every mode that resolved it, so a caller can fail with all offenders
+ * rather than just the first pair.
+ *
+ * @param {Array<{workflowMode: string, leaves: string[]}>} modeEntries - Mode entries.
+ * @returns {Array<{digest: string, workflowModes: string[]}>} Colliding groups (empty when all distinct).
+ */
+function findCollidingModeLeafSets(modeEntries) {
+  const byDigest = new Map();
+  for (const entry of modeEntries || []) {
+    if (!entry || typeof entry.workflowMode !== 'string' || entry.workflowMode.length === 0) continue;
+    const digest = modeLeafSetDigest(entry);
+    const group = byDigest.get(digest);
+    if (group) group.push(entry.workflowMode);
+    else byDigest.set(digest, [entry.workflowMode]);
+  }
+  return [...byDigest.entries()]
+    .filter(([, workflowModes]) => workflowModes.length > 1)
+    .map(([digest, workflowModes]) => ({ digest, workflowModes }));
+}
+
+/**
  * Assemble a canonical manifest object from raw per-mode leaf lists: dedupes
  * and validates each mode's leaves through normalizeLeafResourceId, sorts
  * leaves within a mode and sorts modes by workflowMode. Pure; does not touch
@@ -441,6 +482,8 @@ module.exports = {
   dualReadLegacyResource,
   canonicalManifestBytes,
   digestManifestBytes,
+  modeLeafSetDigest,
+  findCollidingModeLeafSets,
   buildManifest,
   qualifiedIdToLeaf,
 };

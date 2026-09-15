@@ -77,7 +77,7 @@
     },
     {
       "path": ".opencode/agents/deep-review.md",
-      "sha256": "4010eabb5b03ee1a241f25e1f7bb8913207d72abbbec3040e5f0f6c793ca3e92",
+      "sha256": "f074e5a108a4982fd1a71fea2c4045c7de6e98301ea0911730a2083bfb7346e2",
       "section": "full"
     },
     {

@@ -203,6 +203,7 @@ The `feature-catalog/` covers every capability across four categories: evaluatio
 | [`references/shared/loop-protocol.md`](./references/shared/loop-protocol.md) | End-to-end operator workflow across setup, proposal, scoring and stop |
 | [`references/shared/promotion-rules.md`](./references/shared/promotion-rules.md) | Keep, reject and promote decision rules |
 | [`references/shared/rollback-runbook.md`](./references/shared/rollback-runbook.md) | The promotion rollback procedure |
+| [`references/shared/agent-mirror-crosswalk.md`](./references/shared/agent-mirror-crosswalk.md) | How each agent frontmatter declaration translates into the six runtime agent trees |
 | [`references/agent-improvement/integration-scanning.md`](./references/agent-improvement/integration-scanning.md) | Integration scanner documentation and surface inventory |
 | [`references/agent-improvement/score-dimensions.md`](./references/agent-improvement/score-dimensions.md) | Per-dimension checker detail |
 | [`references/model-benchmark/benchmark-operator-guide.md`](./references/model-benchmark/benchmark-operator-guide.md) | Fixture benchmark execution |

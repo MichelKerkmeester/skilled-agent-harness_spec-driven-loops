@@ -18,8 +18,11 @@
  *                 registered in leaf-manifest.json, unless the path is
  *                 deliberately declared in SHARED_CONTROL_RESOURCES as a
  *                 hub-shared control document and thus exempted from the
- *                 typed-pair check. Every RESOURCE_MAP key must own at least
- *                 one resource path.
+ *                 typed-pair check. A path whose packet maps to several modes
+ *                 (an N-to-1 fan-out) is registered when the mode that
+ *                 actually owns the leaf declares it, not merely when the
+ *                 first packet-prefixed mode does. Every RESOURCE_MAP key must
+ *                 own at least one resource path.
  *   stage1-only — the hub owns no second stage. INTENT_SIGNALS, RESOURCE_MAP,
  *                 the stage-two DEFAULT_RESOURCE and SHARED_CONTROL_RESOURCES
  *                 must all be declared and empty, and routing delegates to
@@ -350,6 +353,57 @@ function manifestPairKeys(manifest) {
 }
 
 /**
+ * leafResourceId -> the set of workflowModes whose manifest entry declares
+ * that leaf. A packet-qualified ROUTER path names a packet, not a mode, so
+ * when several modes fan out from one packet the manifest's per-mode leaf
+ * ownership is the authority on which mode actually routes the leaf.
+ */
+function manifestLeafOwners(manifest) {
+  const owners = new Map();
+  if (manifest && Array.isArray(manifest.modes)) {
+    for (const mode of manifest.modes) {
+      if (!mode || typeof mode.workflowMode !== 'string') continue;
+      for (const leaf of (Array.isArray(mode.leaves) ? mode.leaves : [])) {
+        if (typeof leaf !== 'string') continue;
+        let set = owners.get(leaf);
+        if (!set) {
+          set = new Set();
+          owners.set(leaf, set);
+        }
+        set.add(mode.workflowMode);
+      }
+    }
+  }
+  return owners;
+}
+
+/**
+ * Whether a leaf resolved through a packet prefix is registered under its own
+ * mode when that packet maps to several modes. The prefix names the
+ * first-declared mode, which is not necessarily the mode whose manifest entry
+ * scopes the leaf; a same-packet owner is the registration that matters.
+ * Returns false when the resolved mode, its packet, or every candidate owner
+ * is unknown, so an unregistered leaf still fails the check.
+ *
+ * @param {Object} args - Resolution inputs.
+ * @param {{workflowMode:string, leafResourceId:string}} args.pair - Pair the prefix resolved to.
+ * @param {Array<{workflowMode:string, packet:string}>} args.declaredModes - mode-registry.json modes.
+ * @param {Map<string, Set<string>>} args.leafOwners - manifestLeafOwners() index.
+ * @returns {boolean} True when a mode of the same packet declares the leaf.
+ */
+function manifestOwnsLeafForPacket({ pair, declaredModes = [], leafOwners }) {
+  const declared = (declaredModes || []).find((mode) => mode && mode.workflowMode === pair.workflowMode);
+  if (!declared || !declared.packet) return false;
+  const owners = leafOwners.get(pair.leafResourceId);
+  if (!owners) return false;
+  for (const owner of owners) {
+    const ownerMode = (declaredModes || []).find((mode) => mode && mode.workflowMode === owner);
+    if (ownerMode && ownerMode.packet === declared.packet) return true;
+  }
+  return false;
+}
+
+/**
  * Report every default-resource entry — hub-router defaultResource plus the
  * router's own stage-two DEFAULT_RESOURCE — that literally names a legacy
  * smart-router path. Zero-signal fallback semantics are otherwise untouched:
@@ -604,8 +658,11 @@ function validateRootRouter({
     // directory. The manifest's typed membership is what keeps a control
     // document from ever being treated as a routable leaf — a declared
     // hub-shared control resource is the one path deliberately outside that
-    // rule.
+    // rule. For a packet shared by several modes, the prefix names only the
+    // first-declared mode; registration follows the manifest's owner, so a
+    // lane-scoped leaf in a fan-out packet is still registered.
     const manifestKeys = manifestPairKeys(manifest);
+    const leafOwners = manifestLeafOwners(manifest);
     for (const key of resourceKeys) {
       for (const raw of resourceMap[key] || []) {
         if (!isHubContainedPath(raw)) {
@@ -632,7 +689,8 @@ function validateRootRouter({
           continue;
         }
         const pairKey = leafContract.compositeKey(dual.pair);
-        if (!manifestKeys.has(pairKey)) {
+        if (!manifestKeys.has(pairKey)
+            && !manifestOwnsLeafForPacket({ pair: dual.pair, declaredModes, leafOwners })) {
           violations.push({
             code: CODES.UNRESOLVED_LEAF,
             message: `resource path ${JSON.stringify(raw)} (intent ${key}) maps to typed pair ${pairKey} that is not present in leaf-manifest.json`,

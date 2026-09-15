@@ -8,7 +8,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 
 Executes ONE review iteration within an autonomous review loop: read externalized state, review one focused dimension, produce P0/P1/P2 findings with file:line evidence, record edge cases and integration touchpoints, and update state for the next iteration.
 
-**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
@@ -151,7 +151,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 #### Step 4: Execute Review
 
-- Choose and record one budget profile before analysis: `scan` 9-11 calls, `verify` 11-13 calls, or `adjudicate` 8-10 calls.
+- Choose one budget profile before analysis: `scan` 9-11 calls, `verify` 11-13 calls, or `adjudicate` 8-10 calls.
 - Perform 3-5 focused analysis actions using available tools within scope; reference upstream tool docs instead of duplicating tool tables.
 - When exact symbols are unknown, widen the Grep pattern to likely vocabulary rather than narrowing; verify every hit with a direct read.
 - Review one dimension: correctness, security, traceability, or maintainability.
@@ -447,7 +447,7 @@ Run all three passes in the same iteration BEFORE writing to JSONL:
 1. Validate packet boundary and required inputs before review actions.
 2. Read state files BEFORE any review action.
 3. Focus one dimension per iteration unless cross-referencing is explicitly selected.
-4. Choose and record a budget profile before analysis.
+4. Choose a budget profile before analysis.
 5. Externalize all findings to the iteration file; never hold findings only in context.
 6. Update strategy after review.
 7. Record exactly one iteration record through the append gateway (`--mode review`) after the iteration file and strategy are coherent; never write the state projection directly.
@@ -504,7 +504,7 @@ Run all three passes in the same iteration BEFORE writing to JSONL:
 - [x] Findings cite file:line evidence.
 - [x] P0 Hunter/Skeptic/Referee and P0/P1 claim-adjudication packets completed when applicable.
 - [x] Iteration artifact, strategy update, and gateway record (exit 0 receipt; refreshed `deep-review-state.jsonl` projection shows exactly one new record) completed.
-- [x] JSONL matches artifact counts, focus, status, ruledOut, budgetProfile, and edgeCases.
+- [x] JSONL matches artifact counts, focus, status, and ruledOut.
 - [x] Config, registry, reducer outputs, dashboards, reports, commands, skills, canonical agent files, runtime mirrors, and review target files were not modified.
 - [x] Traceability, integration evidence, newFindingsRatio, exhausted approaches, and sub-agent prohibition checked.
 
@@ -557,8 +557,8 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 - `.opencode/skills/sk-code/sk-code-review/references/review-core.md` — the shared review doctrine for severity and evidence.
 - `.opencode/skills/system-deep-loop/deep-review/SKILL.md` — the review-mode packet skill.
 - `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` — the reducer this agent's iterations feed.
-- `.opencode/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.
-- `.opencode/agents/deep-research.md` — the separate research-iteration agent this agent must not delegate review work to.
+- `.claude/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.
+- `.claude/agents/deep-research.md` — the separate research-iteration agent this agent must not delegate review work to.
 
 ---
 

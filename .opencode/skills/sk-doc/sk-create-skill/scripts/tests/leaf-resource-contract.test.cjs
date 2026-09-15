@@ -9,8 +9,9 @@
  * pair, composite-key stability (including the legitimate cross-mode
  * same-filename case versus a real within-mode collision), the containment
  * invariant (including a rejection case for an out-of-root / prefix-stripped
- * input), canonical-byte determinism, and dual-read of a real legacy sk-doc
- * fixture string.
+ * input), canonical-byte determinism, per-mode leaf-set digests (including
+ * order/repeat insensitivity and collision grouping), and dual-read of a real
+ * legacy sk-doc fixture string.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -314,7 +315,39 @@ function testHubModeRejectsPacketEscapingRoot() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 9. TESTS: QUALIFIED-ID BRIDGE
+// 9. TESTS: MODE LEAF-SET DIGESTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A mode's leaf set digests as a set: the same leaves in a different order,
+// or with repeats, are the same set; one different leaf is a different set.
+function testModeLeafSetDigestIsOrderAndRepeatInsensitive() {
+  const base = contract.modeLeafSetDigest({ workflowMode: 'lane-a', leaves: ['references/x.md', 'assets/y.md'] });
+  const reordered = contract.modeLeafSetDigest({ workflowMode: 'lane-b', leaves: ['assets/y.md', 'references/x.md', 'references/x.md'] });
+  assert.equal(base, reordered);
+  assert.equal(base.length, 64);
+  assert.notEqual(base, contract.modeLeafSetDigest({ workflowMode: 'lane-c', leaves: ['references/x.md'] }));
+}
+
+// Distinct lanes do not collide; two modes resolving one shared set do, and
+// the group names every offender rather than only the first pair.
+function testCollidingModeLeafSetsAreGrouped() {
+  assert.deepEqual(contract.findCollidingModeLeafSets([
+    { workflowMode: 'lane-a', leaves: ['references/a.md', 'references/shared.md'] },
+    { workflowMode: 'lane-b', leaves: ['references/b.md', 'references/shared.md'] },
+  ]), []);
+
+  const collisions = contract.findCollidingModeLeafSets([
+    { workflowMode: 'lane-a', leaves: ['references/a.md', 'references/shared.md'] },
+    { workflowMode: 'lane-b', leaves: ['references/shared.md', 'references/a.md'] },
+    { workflowMode: 'lane-c', leaves: ['references/c.md'] },
+  ]);
+  assert.equal(collisions.length, 1);
+  assert.deepEqual(collisions[0].workflowModes, ['lane-a', 'lane-b']);
+  assert.equal(collisions[0].digest.length, 64);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. TESTS: QUALIFIED-ID BRIDGE
 // ─────────────────────────────────────────────────────────────────────────────
 
 function testQualifiedIdToLeafParsesAndResolves() {
@@ -366,7 +399,8 @@ function testQualifiedIdToLeafFailsClosedOnOrphansAndMismatch() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 10. RUN
+// 11. RUN
+// ─────────────────────────────────────────────────────────────────────────────
 // ─────────────────────────────────────────────────────────────────────────────
 
 testNormalizationToTypedPair();
@@ -381,6 +415,8 @@ testStandaloneConfigRejectsPacketEscapingRoot();
 testHubModeRejectsPacketEscapingRoot();
 testDualReadOfRealLegacyFixtureString();
 testDualReadOfSharedAliasRequiresAuthoredEntry();
+testModeLeafSetDigestIsOrderAndRepeatInsensitive();
+testCollidingModeLeafSetsAreGrouped();
 testQualifiedIdToLeafParsesAndResolves();
 testQualifiedIdToLeafFailsClosedOnOrphansAndMismatch();
 console.log('[sk-doc] leaf-resource-contract unit coverage passed');
