@@ -70,6 +70,12 @@ render projection or exact original
 
 Every rejection, timeout, incompatible capability or failed fidelity check returns the exact original path.
 
+### Rewrite contract
+
+- **The instruction is the wording standard.** The provider prompt is read at call time from the human-voice mode's `hvr-rules.md`, the same base the document scanner enforces. No packed copy, no detector set and no second rubric exist in this package, so a change to the standard reaches the engine on the next call and a missing standard fails the call rather than falling back to stale text.
+- **A copy edit that loses a claim is refused.** After the structure, fact, polarity, strength and priority checks, the validator confirms that every claim sentence of the source survives in the candidate and that every stated cause still points the same way. A dropped claim returns `claim-omitted`, a swapped cause returns `cause-inverted`, and both fall back to the exact original.
+- **An unchanged candidate is a distinct outcome.** A candidate that restores to the source byte for byte is accepted with change kind `no-op`, apart from `reworded`, so a run that changed nothing is counted as such rather than as a projection.
+
 ---
 
 ## 5. PUBLIC ENTRYPOINTS

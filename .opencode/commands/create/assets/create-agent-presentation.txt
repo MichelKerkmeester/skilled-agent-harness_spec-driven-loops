@@ -89,7 +89,7 @@ Format: kebab-case, for example quality-gate or security-audit.
 Q1. Spec Folder
 A) Use existing: [suggest if related found]
 B) Create new spec folder
-C) Update related spec: [if partial match found]
+C) Related spec: [if partial match found]
 D) Skip documentation
 
 Q2. Execution Mode (if no :auto/:confirm suffix)

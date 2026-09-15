@@ -244,7 +244,7 @@ workflow_overview:
 # ─────────────────────────────────────────────────────────────────
 context_loading:
   trigger: "During UNIFIED SETUP PHASE, non-interactive resolution before Step 1"
-  applies_when: "spec_path resolves to an existing spec folder (Q1 choice A - Use existing, or C - Update related) that contains handover.md or _memory.continuity in implementation-summary.md; not applicable to a freshly created spec folder (Q1 choice B) or when spec_choice is D (Skip)"
+  applies_when: "spec_path resolves to an existing spec folder (Q1 choice A - Use existing, or C - Related) that contains handover.md or _memory.continuity in implementation-summary.md; not applicable to a freshly created spec folder (Q1 choice B) or when spec_choice is D (Skip)"
   auto_resolution:
     default: "If prior context exists (handover.md <24h old, or _memory.continuity present in {spec_path}), load it automatically via the continuity ladder in this file (handover.md, then _memory.continuity, then packet-first spec docs); sets memory_loaded: handover+continuity. Otherwise skip; sets memory_loaded: skipped."
     override: "Honor memory_choice if explicitly supplied as a command argument or pre-bound setup answer (A/B/C)"

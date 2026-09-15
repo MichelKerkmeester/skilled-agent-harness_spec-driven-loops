@@ -1,6 +1,7 @@
 import fs from "node:fs"
 import os from "node:os"
 import path from "node:path"
+import crypto from "node:crypto"
 import { execFileSync } from "node:child_process"
 import { fileURLToPath } from "node:url"
 
@@ -19,6 +20,7 @@ function parseArgs(argv) {
     if (argv[i] === "--condition") out.condition = argv[++i]
     else if (argv[i] === "--replies") out.replies = argv[++i]
     else if (argv[i] === "--out") out.out = argv[++i]
+    else if (argv[i] === "--prompts") out.prompts = argv[++i]
   }
   return out
 }
@@ -180,7 +182,7 @@ function scanReply(replyFile, reply) {
   try {
     let stdout
     try {
-      stdout = execFileSync("python3", [scannerPath, target, "--json"], { encoding: "utf8" })
+      stdout = execFileSync("python3", [scannerPath, target, "--json"], { encoding: "utf8", timeout: 120000 })
     } catch (error) {
       if (error && error.status === 1 && typeof error.stdout === "string" && error.stdout.trim()) stdout = error.stdout
       else die(`the scanner failed on ${replyFile}: ${String(error.stderr || error.message).trim().slice(0, 300)}`)
@@ -221,13 +223,15 @@ function scanReply(replyFile, reply) {
 }
 
 const args = parseArgs(process.argv.slice(2))
-if (args.condition !== "before" && args.condition !== "after") die("usage: node score.mjs --condition before|after --replies <dir> --out <file>")
-if (!args.replies || !args.out) die("usage: node score.mjs --condition before|after --replies <dir> --out <file>")
+if (args.condition !== "before" && args.condition !== "after") die("usage: node score.mjs --condition before|after --replies <dir> --out <file> [--prompts <dir>]")
+if (!args.replies || !args.out) die("usage: node score.mjs --condition before|after --replies <dir> --out <file> [--prompts <dir>]")
 
 const casesFile = path.join(here, "cases.json")
 let cases
+let casesRaw
 try {
-  cases = JSON.parse(fs.readFileSync(casesFile, "utf8"))
+  casesRaw = fs.readFileSync(casesFile, "utf8")
+  cases = JSON.parse(casesRaw)
 } catch (error) {
   die(`${casesFile} is not readable JSON: ${error.message}`)
 }
@@ -245,6 +249,24 @@ for (const c of cases) {
 }
 const controls = cases.filter(c => c.control)
 if (controls.length !== 1 || controls[0].id !== "NC1") die(`${casesFile} needs control true on NC1 and nowhere else`)
+
+// The prompts were generated from one copy of the case set. A case edited after that copy
+// would be scored against a prompt it never produced, so the hash recorded at generation
+// time has to match the file on disk before a single reply is read.
+if (args.prompts) {
+  const manifestFile = path.resolve(args.prompts, "manifest.json")
+  if (!fs.existsSync(manifestFile)) die(`${manifestFile} is missing, generate the prompts before scoring against them`)
+  let manifest
+  try {
+    manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8"))
+  } catch (error) {
+    die(`${manifestFile} is not readable JSON: ${error.message}`)
+  }
+  if (typeof manifest.casesHash !== "string" || !manifest.casesHash) die(`${manifestFile} records no casesHash, regenerate the prompts with the current generator`)
+  const currentHash = crypto.createHash("sha256").update(casesRaw).digest("hex")
+  if (manifest.casesHash !== currentHash) die(`the case set changed after the prompts were generated: manifest ${manifest.casesHash.slice(0, 12)} versus cases.json ${currentHash.slice(0, 12)}, regenerate the prompts and the replies`)
+  if (manifest.condition !== args.condition) die(`${manifestFile} was generated for condition ${manifest.condition}, not ${args.condition}`)
+}
 
 const rubricFile = path.join(here, "rubric.json")
 let rubric

@@ -112,6 +112,7 @@ Research first, then two batches. The router batch ran body, then description, t
 ## Known Limitations
 
 1. **The read-only review of the swarm's twelve documents did not run.** It was superseded by execution evidence, recorded above. A reader who wants the prose review can dispatch it against commit `1de403dc53` and its successors.
-2. **Two class-one root-doc findings remain inferred.** Whether a sk-git playbook carries the worktree ask, and whether the MCP availability clause has a delegate. Both are recorded in the root-doc synthesis with the command that would confirm them.
-3. **The advisor exit-code behavior on a bare tree was not reproduced.** The compiled runtime was present here.
+2. **Two class-one root-doc findings, now confirmed rather than inferred.** No sk-git feature catalog, playbook or reference carries the worktree-versus-branch ask, so the root keeps it as the binding clause. The MCP availability clause has no delegate either, confirmed by the second independent review, so the root keeps it.
+3. **The advisor exit-code behavior on a bare tree was not reproduced.** The compiled runtime was present here, and removing it to reproduce would break every live session on this checkout.
+4. **The quick reference table's removal holds for every runtime.** Six runtimes carry their own command inventory, and Devin has no mirrored command surface by operator decision, recorded in `.devin/SYNC.md`, discovering skills on its own instead. No line is needed there.
 <!-- /ANCHOR:limitations -->

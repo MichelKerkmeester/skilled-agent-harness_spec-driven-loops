@@ -3,6 +3,7 @@
   "packet_id": "sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade",
   "spec_folder": "sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade",
   "parent_id": "sk-communication/006-sk-communication-clarity",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "skill"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -199,7 +200,7 @@
     ],
     "causal_summary": "This phase's own research run replaced its premise",
     "created_at": "2026-09-12T12:44:37Z",
-    "last_save_at": "2026-09-14T15:57:56.795Z",
+    "last_save_at": "2026-09-15T05:35:09.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +211,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5f7611c5387abafa65b22439a3bf381bb1c5c0efb2ec0468b44ec208b868f5b3",
+    "source_fingerprint": "sha256:6cfc1d7974ffdf6799fe5e86c69fb1dc7318915011ce380e75803feb2401682f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "515cfc107a5b987974bf4c06477722ced273d24e3d5a92d82cf608984f36fe67",
       "plan.md": "c40bb9e89fc39620fcfaaadfb259cd417c70931eecb6d7949a545df0ce35f128",
-      "tasks.md": "bde65bc1735de07732288125604cfa40c8e9e765b078d6a72c4ff2169c17b48c",
-      "implementation-summary.md": "60088a29eb906633dbb58a436e3a4bcbcb0ec385a76e5ba989309d3b7a33e45e",
+      "tasks.md": "6d124cead3b9f90c285e3457a63765384f4836b391dccbe1b31dae20b4869821",
+      "implementation-summary.md": "54de58f6982939716aa2abd8f47f1b4472975998b6db4cc4f3aaadec20b55c1e",
       "research/research.md": "f6de0c65bd242a0acce50a7d77c475b80fad64b01afdd4cd81cf6b25c17fb4f3"
     },
     "last_active_at": null

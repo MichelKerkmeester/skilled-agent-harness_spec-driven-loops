@@ -29,7 +29,7 @@ trigger_phrases:
   - "offer once at the end"
 importance_tier: important
 contextType: reference
-version: 1.2.1.0
+version: 1.4.0.0
 ---
 
 # Rule: Communication
@@ -109,6 +109,9 @@ content and is not:
   If it is worth a warning it is worth naming what goes wrong.
 - **Corporate and marketing register:** "robust", "seamless", "leverage", "best-in-class".
 - **Narrating the obvious:** announcing a tool call the reader can see the result of.
+- **Leaked scaffolding:** a runtime line that tells you to plan privately, list what you
+  need next or batch your calls is answered in reasoning, never in the reply. A reply that
+  opens "Privately, what I need next" has copied its own instructions to the reader.
 
 Cutting these stops at the joints too, same floor, see [`communication-prose.md`](communication-prose.md) §4.
 
@@ -162,7 +165,9 @@ so the reader assembles the order themselves.
 **Number the steps when there is more than one.** Multi-step work, anything the reader
 must run, check or answer, gets its own number, 1, 2, 3. The numbers stop where the work
 stops. The number is the reader's bookmark: it says which step they are on and which ones
-they have done.
+they have done. Numbered means a numbered list: one step per line, the number at the
+start of the line. Numbers bracketed inside a sentence, (1) then (2) then (3), are a
+paragraph wearing numbers, and fail the same way.
 
 The failure this prevents: the steps are all present, in one paragraph, and the reader
 cannot track which they have done.
@@ -171,11 +176,11 @@ cannot track which they have done.
 
 ## 8. THE VISIBLE ITEM CAP
 
-**Cap what the list shows, not what the reader learns.** Aim for five items, group what
-relates, rank the relevant first. The rest is retained, not discarded: the cap says what
-it holds back, "the first five of nine", and shows it when the reader asks or when it
-becomes what comes next. The cap is a cut too, it answers to the same floor, see
-[`communication-prose.md`](communication-prose.md) §4.
+**No group shows more than five items.** When a set runs longer, split it into labelled
+groups of five or fewer, or show the five that matter most and say in one line how many
+are held back, "the first five of nine". The rest is retained, not discarded, and appears
+when the reader asks or when it becomes what comes next. The cap is a cut too, it answers
+to the same floor, see [`communication-prose.md`](communication-prose.md) §4.
 
 The failure this prevents: a list that buries item six, or a cap that hides it, so the
 reader mistakes a shortened list for the complete one.
@@ -226,7 +231,8 @@ asked waits.
 
 - [ ] The first line carries the answer or the action, not a label, an announcement or a setup.
 - [ ] Each paragraph carries the reader forward and says what changed, what it implies and what comes next.
-- [ ] Multi-step work reads as a numbered path with a bounded number of steps.
+- [ ] Multi-step work reads as a numbered list, one step per line, with a bounded number of steps.
+- [ ] No runtime instruction to plan or list privately was copied into the reply.
 - [ ] The outcome sits in the first two lines, and nothing after them is a farewell.
 - [ ] No group runs past five items, and nothing was dropped to keep it under.
 - [ ] A tangent appears once, at the end, on a line that says it is deferred, or not at all.

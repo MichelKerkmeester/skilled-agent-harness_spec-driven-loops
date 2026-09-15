@@ -4,7 +4,7 @@ Recorded after this phase's last edit to the rule halves. Every reference is the
 
 ## Sizes
 
-Before the first edit, both halves matched the 003 SIZE AFTER SPLIT record exactly (003/scratch/seam-assignment.md:105-106):
+Before the first edit, both halves matched the 003 SIZE AFTER SPLIT record exactly (003/baselines/seam-assignment.md:105-106):
 
 ```
      135    5658 repo-rules/communication.md
@@ -26,7 +26,7 @@ Recorded before the first edit, by the unit each candidate governs. 3, 6 and 7 w
 
 ## Per-mark rescan
 
-Repeated against 003/scratch/per-mark-baseline.md. Every governed instruction survived, none gained a second instruction, positions moved because earlier sections grew:
+Repeated against 003/baselines/per-mark-baseline.md. Every governed instruction survived, none gained a second instruction, positions moved because earlier sections grew:
 
 - Em dash: prose-mechanics.md:92, wording unchanged. The self-check echo at :140 is the pre-existing one.
 - Semicolon: prose-mechanics.md:98, unchanged. Serial comma: :99, unchanged.

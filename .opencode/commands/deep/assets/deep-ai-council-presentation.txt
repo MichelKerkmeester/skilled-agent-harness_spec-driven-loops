@@ -130,8 +130,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]
      B) Create new under `specs/[track]/[###]-[slug]/` (accept `.opencode/specs/` alias roots when already in use)
-     C) Update related [if match found]
-     D) Phase folder (e.g., `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias)
+     C) Related [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous - run setup, topic loops, synthesis, and save without approval
@@ -160,7 +159,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 8. Parse response and store ALL results:
    - deliberation_topic = [from Q0 or $ARGUMENTS]
    - topics = [from Q0, $ARGUMENTS, or derived single-item list]
-   - spec_choice = [A/B/C/D from Q1]
+   - spec_choice = [A/B/C from Q1]
    - spec_path = [derived path]
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
    - max_rounds_per_topic = [from Q3 or flag or default 3]

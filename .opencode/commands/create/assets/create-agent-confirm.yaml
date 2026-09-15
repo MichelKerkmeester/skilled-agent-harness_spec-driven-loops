@@ -194,7 +194,7 @@ checkpoint_options:
 # ─────────────────────────────────────────────────────────────────
 context_loading:
   trigger: "During UNIFIED SETUP PHASE, when memory_choice is answered (Q3 if applicable) and prior context exists"
-  applies_when: "spec_path resolves to an existing spec folder (Q1 choice A - Use existing, or C - Update related) that contains handover.md or _memory.continuity in implementation-summary.md; not applicable to a freshly created spec folder (Q1 choice B) or when spec_choice is D (Skip)"
+  applies_when: "spec_path resolves to an existing spec folder (Q1 choice A - Use existing, or C - Related) that contains handover.md or _memory.continuity in implementation-summary.md; not applicable to a freshly created spec folder (Q1 choice B) or when spec_choice is D (Skip)"
   continuity_ladder:
     note: "Read the packet's own files in order. No background service is involved."
     order:

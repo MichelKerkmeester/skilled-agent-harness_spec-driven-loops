@@ -149,13 +149,13 @@ test('enforce-env unset returns advise, not deny', () => {
   }
 });
 
-test('E / skip closes the gate without a binding', () => {
+test('D / skip closes the gate without a binding', () => {
   const { root } = makeWorkspace();
   try {
     const sessionID = nextSessionID();
     core.classifyIntent({ prompt: 'refactor the parser module', sessionID, projectDir: root });
 
-    const skipped = core.classifyIntent({ prompt: 'E, no spec folder needed', sessionID, projectDir: root });
+    const skipped = core.classifyIntent({ prompt: 'D, no spec folder needed', sessionID, projectDir: root });
     assert.equal(skipped.status, 'skipped');
 
     const allowed = core.evaluateMutation({
@@ -473,7 +473,7 @@ test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for
 
   const { root, folderRel } = makeWorkspace();
   try {
-    for (const [letter, expectedStatus] of [['A', 'satisfied'], ['B', 'satisfied'], ['C', 'satisfied'], ['D', 'satisfied'], ['E', 'skipped']]) {
+    for (const [letter, expectedStatus] of [['A', 'satisfied'], ['B', 'satisfied'], ['C', 'satisfied'], ['D', 'skipped']]) {
       const sessionID = nextSessionID();
       const interactiveEnv = { [core.CHILD_SESSION_ENV]: '0' };
       const opened = core.classifyIntent({
@@ -483,11 +483,11 @@ test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for
         env: interactiveEnv,
       });
       assert.equal(opened.status, 'open');
-      const answer = letter === 'E' ? 'E' : `${letter}, use ${folderRel}`;
+      const answer = letter === 'D' ? 'D' : `${letter}, use ${folderRel}`;
       const answered = core.classifyIntent({ prompt: answer, sessionID, projectDir: root, env: interactiveEnv });
       assert.equal(answered.status, expectedStatus);
     }
-    record('valid A-E', core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({ question: null })), null);
+    record('valid A-D', core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({ question: null })), null);
   } finally {
     cleanup(root);
   }
@@ -666,7 +666,6 @@ test('isAnswerAttempt: answer-shaped turns are attempts, ordinary prose is not',
   assert.equal(core.isAnswerAttempt('B create a new folder'), true);
   assert.equal(core.isAnswerAttempt('option C'), true);
   assert.equal(core.isAnswerAttempt('skip'), true);
-  assert.equal(core.isAnswerAttempt('E, no spec folder needed'), true);
   assert.equal(core.isAnswerAttempt('D, no spec folder needed'), true);
   // Ordinary prose that merely starts with a letter must not read as an
   // answer attempt on an open gate.
@@ -674,6 +673,9 @@ test('isAnswerAttempt: answer-shaped turns are attempts, ordinary prose is not',
   assert.equal(core.isAnswerAttempt('D is the wrong option, use A instead'), false);
   assert.equal(core.isAnswerAttempt('review the auth module'), false);
   assert.equal(core.isAnswerAttempt(''), false);
+  // The menu dropped to four letters (A-D): a bare fifth letter no longer
+  // has a meaning to attempt, so it must not register as an answer attempt.
+  assert.equal(core.isAnswerAttempt('E, no spec folder needed'), false);
 });
 
 test('resolveSessionKey: session file wins, id and unknown token are fallbacks', () => {
@@ -1097,31 +1099,30 @@ test('static shape: evaluateMutation never calls validateSpecFolderBinding', () 
 const POSITIVE_ANSWER_CORPUS = [
   { prompt: 'B, use .opencode/specs/059-login', expect: 'binding' },
   { prompt: 'C, .opencode/specs/track/042-foo', expect: 'binding' },
-  { prompt: 'E - .opencode/specs/parent/003-phase', expect: 'binding' },
-  // E is the question menu's Skip letter: standalone E (and punctuation
+  // A path binds unconditionally, even behind a token with no menu meaning
+  // at all -- pathMatch never gates on letter recognition.
+  { prompt: 'Z - .opencode/specs/parent/003-phase', expect: 'binding' },
+  // D is the question menu's Skip letter: standalone D (and punctuation
   // forms) closes the gate without a binding.
-  { prompt: 'E', expect: 'skip' },
-  { prompt: 'e', expect: 'skip' },
+  { prompt: 'D', expect: 'skip' },
+  { prompt: 'd', expect: 'skip' },
   { prompt: 'skip', expect: 'skip' },
   { prompt: 'Skip - handled elsewhere', expect: 'skip' },
   { prompt: 'A, 059-login-fix', expect: 'binding' },
   { prompt: 'C: specs/legacy-042-bar', expect: 'binding' },
-  // standalone-E immediately followed by punctuation still skips.
-  { prompt: 'E, no spec folder needed', expect: 'skip' },
-  { prompt: 'E) no spec folder needed', expect: 'skip' },
+  // standalone-D immediately followed by punctuation still skips.
+  { prompt: 'D, no spec folder needed', expect: 'skip' },
+  { prompt: 'D) no spec folder needed', expect: 'skip' },
   // WS5: "skip it" natural form, separated cleanly from any trailing aside.
   { prompt: 'skip it, no folder needed', expect: 'skip' },
   // WS5: closed-set natural lead-ins register the letter for a bare-token bind.
   { prompt: 'option B, 042-foo', expect: 'binding' },
   { prompt: 'go with C, 099-bar-baz', expect: 'binding' },
-  // A natural-lead-in letter E is ALWAYS the skip choice, never a
+  // A natural-lead-in letter D is ALWAYS the skip choice, never a
   // stalled/no-folder-named binding attempt -- even with a trailing
-  // folder-shaped token, E wins as skip.
-  { prompt: 'option E', expect: 'skip' },
-  { prompt: 'option E, 999-valid', expect: 'skip' },
-  // D is a folder option in the menu, so a D answer with a folder token
-  // binds; without one it stays open (see the negative corpus).
-  { prompt: 'option D, 999-valid', expect: 'binding' },
+  // folder-shaped token, D wins as skip.
+  { prompt: 'option D', expect: 'skip' },
+  { prompt: 'option D, 999-valid', expect: 'skip' },
   // A full named path always binds, even when the turn also carries a skip
   // shape (standalone letter, skip word) -- naming a real folder outranks
   // the default skip reading.
@@ -1145,16 +1146,10 @@ const NEGATIVE_PROMPT_CORPUS = [
   // WS5: a bare "skip" running straight into a full sentence is prose ABOUT
   // skipping something else, not an answer to Gate 3 -- must not false-close.
   'skip the lint errors for now, just fix the parser bug',
-  // WS5: a bare "D" running into ordinary prose about option D, not a chosen skip.
+  // WS5: a bare "D" running into ordinary prose about option D, not a
+  // chosen skip -- D means skip only in its strict standalone shape.
   'D is the wrong option, use A instead',
-  // D is a folder option in the menu, not the skip letter: pathless D
-  // answers stay open (re-ask) rather than closing the gate.
-  'D',
-  'd',
-  'D, no spec folder needed',
-  'D) no spec folder needed',
-  'option D',
-  // E-prose is not a chosen skip either.
+  // D-prose is not a chosen skip either.
   'E is the wrong option, use A instead',
   // fix 5: "D-danger" is a compound word fused directly onto the letter (no
   // separating whitespace before the hyphen) -- prose ABOUT danger, not a
@@ -1164,6 +1159,11 @@ const NEGATIVE_PROMPT_CORPUS = [
   // different lettered option in the same breath. Ambiguous: must return
   // null (stay open, re-ask), never guess toward either reading.
   'D: do not skip; use A instead',
+  // The menu dropped to four letters (A-D): a bare fifth letter no longer
+  // has a meaning to attempt, so it must parse to nothing at all.
+  'E',
+  'e',
+  'option E',
 ];
 
 test('answerParse() corpus: recognized answers parse correctly (false-negative rate)', () => {
@@ -1485,12 +1485,12 @@ test('symlink sanity: an in-repo symlink whose real target stays in-repo is stil
 
 test('answerParse() never parses an answer when isOpen is explicitly false', () => {
   assert.equal(core.answerParse('B, .opencode/specs/059-login', false), null);
-  assert.equal(core.answerParse('E', false), null);
+  assert.equal(core.answerParse('D', false), null);
   assert.equal(core.answerParse('skip', false), null);
   // Omitting isOpen preserves the raw-parser contract the answerParse()
   // corpus tests above rely on (default true).
-  assert.notEqual(core.answerParse('E'), null);
-  assert.equal(core.answerParse('D'), null);
+  assert.notEqual(core.answerParse('D'), null);
+  assert.equal(core.answerParse('A'), null);
   assert.notEqual(core.answerParse('B, .opencode/specs/059-login', true), null);
 });
 
@@ -1570,7 +1570,7 @@ test('HIGHEST BLAST proof: with SYSTEM_SPEC_GATE_ENFORCE unset, no tool/target/g
       (sessionID) => { core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root }); }, // -> open
       (sessionID) => {
         core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });
-        core.classifyIntent({ prompt: 'E', sessionID, projectDir: root });
+        core.classifyIntent({ prompt: 'D', sessionID, projectDir: root });
       }, // -> skipped
       (sessionID) => {
         core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });

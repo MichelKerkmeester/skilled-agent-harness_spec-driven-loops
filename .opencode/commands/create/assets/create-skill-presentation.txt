@@ -86,9 +86,8 @@ For asset-only: template | lookup | example | guide
 Q3. Spec Folder (required for full-create/full-update)
 A) Existing
 B) New
-C) Update related
-D) Extend phased packet
-E) Skip
+C) Related
+D) Skip
 
 For reference-only/asset-only:
 A) Attach existing spec path for continuity tracking
@@ -121,7 +120,7 @@ Hard stops:
 | `skill_path` | Yes | default if omitted | `[value]` |
 | `execution_mode` | Yes | `:auto` or `:confirm` | `[value]` |
 | `spec_choice` | Conditional | required for full-create and full-update | `[value]` |
-| `spec_path` | Conditional | required for A/B/C/E | `[value]` |
+| `spec_path` | Conditional | required for A/B/C/D | `[value]` |
 | `memory_choice` | No | prior-work choice or skip | `[value]` |
 
 Proceed only when every required field validates.

@@ -322,6 +322,95 @@ function totalCount(map: ReadonlyMap<string, number>): number {
   return [...map.values()].reduce((total, count) => total + count, 0);
 }
 
+// A causal connective orders two clauses. A rewrite that keeps both clauses and swaps
+// which one is the cause keeps every content word, so the claim check passes it and the
+// direction has to be compared on its own. Only the connectives whose order is fixed are
+// read, and a pair counts as inverted only when the candidate states the same two clauses
+// the other way round.
+
+const EFFECT_THEN_CAUSE_PATTERN = /^(.+?)\s+(?:because|since|due to|as a result of)\s+(.+)$/iu;
+
+const CAUSE_THEN_EFFECT_PATTERN = /^(.+?)\s+(?:therefore|hence|which is why|leads to|led to|causes|caused|results in|resulted in)\s+(.+)$/iu;
+
+interface CausalPair {
+  readonly cause: ReadonlySet<string>;
+  readonly effect: ReadonlySet<string>;
+}
+
+export function compareCausalDirection(
+  sourceText: string,
+  candidateText: string,
+): SemanticDifference | null {
+  const sourcePairs = extractCausalPairs(sourceText);
+  if (sourcePairs.length === 0) {
+    return null;
+  }
+  const candidatePairs = extractCausalPairs(candidateText);
+  let inverted = 0;
+  for (const pair of sourcePairs) {
+    const preserved = candidatePairs.some(
+      (candidate) => stemsCovered(pair.cause, candidate.cause)
+        && stemsCovered(pair.effect, candidate.effect),
+    );
+    if (preserved) {
+      continue;
+    }
+    const swapped = candidatePairs.some(
+      (candidate) => stemsCovered(pair.cause, candidate.effect)
+        && stemsCovered(pair.effect, candidate.cause),
+    );
+    if (swapped) {
+      inverted += 1;
+    }
+  }
+  if (inverted === 0) {
+    return null;
+  }
+  return {
+    reasonCode: FidelityReasonCodes.CAUSE_INVERTED,
+    expectedCount: sourcePairs.length,
+    actualCount: sourcePairs.length - inverted,
+  };
+}
+
+function extractCausalPairs(text: string): CausalPair[] {
+  const sentences = text.match(/[^.!?]+[.!?]*/gu) ?? [];
+  const pairs: CausalPair[] = [];
+  for (const sentence of sentences) {
+    const trimmed = sentence.trim();
+    const effectFirst = EFFECT_THEN_CAUSE_PATTERN.exec(trimmed);
+    if (effectFirst !== null) {
+      pairs.push({ effect: contentStems(effectFirst[1] ?? ''), cause: contentStems(effectFirst[2] ?? '') });
+      continue;
+    }
+    const causeFirst = CAUSE_THEN_EFFECT_PATTERN.exec(trimmed);
+    if (causeFirst !== null) {
+      pairs.push({ cause: contentStems(causeFirst[1] ?? ''), effect: contentStems(causeFirst[2] ?? '') });
+    }
+  }
+  return pairs.filter((pair) => pair.cause.size > 0 && pair.effect.size > 0);
+}
+
+function contentStems(clause: string): Set<string> {
+  const stems = new Set<string>();
+  for (const word of lowercaseWords(clause)) {
+    if (word.length < 2 || CLAIM_FUNCTION_WORDS.has(word)) {
+      continue;
+    }
+    stems.add(stemWord(word));
+  }
+  return stems;
+}
+
+function stemsCovered(expected: ReadonlySet<string>, actual: ReadonlySet<string>): boolean {
+  for (const stem of expected) {
+    if (!actual.has(stem) && !actual.has(`${stem}e`)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 function extractClaimSentences(sourceText: string): string[] {
   const sentences = sourceText.match(/[^.!?]+[.!?]*/gu) ?? [];
   return sentences.filter((sentence) => CLAIM_MARKER_PATTERN.test(sentence));

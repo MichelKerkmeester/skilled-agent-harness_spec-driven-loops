@@ -95,9 +95,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Baseline of what the three files say about close-outs and causes, captured before the first edit
+- [x] CHK-001 [P0] Requirements documented in spec.md (spec.md:116-126, REQ-001 through REQ-006)
+- [x] CHK-002 [P0] Technical approach defined in plan.md (plan.md Architecture and Implementation Phases sections)
+- [x] CHK-003 [P1] Baseline of what the three files say about close-outs and causes, captured before the first edit (T002, scratch/baseline.md BEFORE section)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -105,10 +105,10 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Every clause traces to one of the five allocation rows
-- [ ] CHK-011 [P0] The qualifier leaves the evidence rule's three tiers governing, verified by reading them together
-- [ ] CHK-012 [P1] No file gained a section where a sentence in an existing section would do
-- [ ] CHK-013 [P1] Each clause follows its host file's existing shape
+- [x] CHK-010 [P0] Every clause traces to one of the five allocation rows (T003, allocation-table.md:27,39,40,44,45; T005-T009)
+- [x] CHK-011 [P0] The qualifier leaves the evidence rule's three tiers governing, verified by reading them together (T010, T012)
+- [x] CHK-012 [P1] No file gained a section where a sentence in an existing section would do (how-delivered: "No section was added and the router was not widened"; T007, T008 evidence, no section added)
+- [x] CHK-013 [P1] Each clause follows its host file's existing shape (T005-T009, each clause cites the existing section or paragraph it lands beside)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -116,10 +116,10 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Duplication scan run across all three files together, not one at a time
-- [ ] CHK-022 [P1] The handback change confirmed as an edit rather than an append
-- [ ] CHK-023 [P1] Adversarial readings of the qualifier attempted: a cause with no status, a status that reads as confirmation, a fix with no cause
+- [x] CHK-020 [P0] All acceptance criteria met (acceptance-criteria.md, AC-001 through AC-007 all Met)
+- [x] CHK-021 [P0] Duplication scan run across all three files together, not one at a time (T011, scratch/baseline.md AFTER)
+- [x] CHK-022 [P1] The handback change confirmed as an edit rather than an append (T013)
+- [x] CHK-023 [P1] Adversarial readings of the qualifier attempted: a cause with no status, a status that reads as confirmation, a fix with no cause (implementation-summary, the three adversarial readings section, all three fail)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -127,13 +127,13 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each candidate carries a finding class, and the evidence-rule clause is treated as cross-consumer
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory run over every file stating close-out content
-- [ ] CHK-FIX-003 [P0] Consumer inventory run for every document citing the three files
-- [ ] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope
-- [ ] CHK-FIX-005 [P1] Matrix axes listed: file by candidate, five rows
-- [ ] CHK-FIX-006 [P1] Not applicable, no code reads process-wide state in this phase
-- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range
+- [x] CHK-FIX-001 [P0] Each candidate carries a finding class, and the evidence-rule clause is treated as cross-consumer (T003, allocation-table.md adopt rows classify each candidate; T011's duplication scan treats the evidence-rule clause as cross-consumer, run across all three files)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory run over every file stating close-out content (T002, scratch/baseline.md BEFORE section records what each of the three files says about close-outs)
+- [x] CHK-FIX-003 [P0] Consumer inventory run for every document citing the three files (rerun repo grep: 5 citers of presenting-decisions.md, 3 of handoff-and-questions.md, 11 of evidence-and-proof.md, outside specs/)
+- [x] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope (not applicable: rule-file wording only)
+- [x] CHK-FIX-005 [P1] Matrix axes listed: file by candidate, five rows (plan.md FIX ADDENDUM: "file by candidate. Five rows, three files.")
+- [x] CHK-FIX-006 [P1] Not applicable, no code reads process-wide state in this phase (not applicable: no code changed this phase)
+- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range (open: work is uncommitted, all evidence cites file:line and scratch files, not a commit hash)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -141,9 +141,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential or private identifier enters a rule file
-- [ ] CHK-031 [P0] No verification standard is weakened; the qualifier narrows a reporting shape only
-- [ ] CHK-032 [P1] Not applicable, no auth or authorization surface in scope
+- [x] CHK-030 [P0] No credential or private identifier enters a rule file (rerun secret-pattern grep over the three changed files, no matches)
+- [x] CHK-031 [P0] No verification standard is weakened; the qualifier narrows a reporting shape only (T010, T012; implementation-summary: "adds a reporting shape and takes nothing from the proof")
+- [x] CHK-032 [P1] Not applicable, no auth or authorization surface in scope (not applicable)
 <!-- /ANCHOR:security -->
 
 ---
@@ -151,9 +151,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Not applicable, no code comments are written in this phase
-- [ ] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (spec.md REQ-001 through REQ-006, plan.md phases and T001-T016 all describe the same five candidates across the three files)
+- [x] CHK-041 [P1] Not applicable, no code comments are written in this phase (not applicable: doc-only phase)
+- [x] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes (parent spec.md:160, phase 8 row reads Complete)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -161,8 +161,8 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only (scratch/ holds only .gitkeep and baseline.md, verified by listing)
+- [x] CHK-051 [P1] scratch/ cleaned before completion (baseline.md is retained by design as the evidence T002 and T011 cite, not stray output; no other file present)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -172,11 +172,11 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 0/13 |
-| P1 Items | 11 | 0/11 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 12/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Pending, this phase has not run
+**Verification Date**: 2026-09-14, the consumer-citer grep, the credential scan and the parent Phase Documentation Map read all ran from the final state; the one open P1 is the commit-pinning row
 <!-- /ANCHOR:summary -->
 
 ---

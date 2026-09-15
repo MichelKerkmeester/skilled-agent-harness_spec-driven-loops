@@ -39,20 +39,26 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".codex/AGENTS.md",
       ".opencode/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
       ".opencode/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
+      ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      ".opencode/hooks/injection-contract.md",
+      "runtime/hooks/pi/README.md",
+      ".opencode/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
+      ".codex/AGENTS.md",
       ".opencode/commands/deep/assets/compiled/deep-research.contract.md",
       ".opencode/skills/system-spec-kit/references/workflows/worked-examples.md",
       ".opencode/skills/system-spec-kit/references/memory/trigger-config.md",
-      ".opencode/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json"
+      "hooks/pi/README.md",
+      ".opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md"
     ],
     "entities": [
       {
@@ -86,12 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "AGENTS.md",
-        "kind": "doc",
-        "path": ".codex/AGENTS.md",
-        "source": "derived"
-      },
-      {
         "name": "spec-gate-core.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
@@ -101,6 +101,42 @@
         "name": "spec-gate-core.test.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/hooks/pi/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-contexts.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
         "source": "derived"
       },
       {
@@ -122,9 +158,9 @@
         "source": "derived"
       },
       {
-        "name": "baseline-contexts.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
+        "name": "codex-hook-parity.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
         "source": "derived"
       },
       {
@@ -168,41 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Merge Gate",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Not",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Gate 3 offers five options today",
     "created_at": "2026-09-14T20:22:06Z",
-    "last_save_at": "2026-09-14T20:29:29.593Z",
+    "last_save_at": "2026-09-15T05:30:23.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +218,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c488ff931c4219f0a9547b9626edacddb3ac43683361c20a77ba40233efd8dec",
+    "source_fingerprint": "sha256:4b039ca3fa61bc378d2be1742c62c7464a771970141499a436743f3fdd82b810",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4c979f3e6a0802f6d57847be10d6160e168976d44cbfdbc11c65d2a3e1cd6f91",
+      "spec.md": "3fdfb75e0e8e2df2e4ff97bff66141dff013f6f5274d9a54c7d53a681a9e8687",
       "plan.md": "024037c2661249e7b72e2cee9d77ff10bbc9e8be37fdd90b788bc2d8fbccadaf",
-      "tasks.md": "51efe5dd46e376e7087419c9acad035e67f114e5dcb234de50fe512a7aed8f29",
-      "implementation-summary.md": "8a8afbbe99074340061d25750df226fdddac4693ee855b7c4195fc99114c7945"
+      "tasks.md": "5a4023be6e9399137dc17189602288980cde3d08159dff205853831a253a1f08",
+      "implementation-summary.md": "7a8bf982edd06b502cb02a41566e1c3cabeed27a6afe7f74e672aba6710f2457"
     },
     "last_active_at": null
   }

@@ -92,6 +92,23 @@ describe('fidelity claim omission and change kind', () => {
     });
   });
 
+  it('rejects a candidate that keeps every word and inverts the cause', async () => {
+    const protection = createProtectedDocument(
+      'each editor must sign the note. the deploy failed because the cache was stale.',
+    );
+    const result = await validateProjectionCandidate(createValidationInput(
+      protection,
+      protection.encodedText.replace(
+        'the deploy failed because the cache was stale.',
+        'the cache was stale because the deploy failed.',
+      ),
+    ));
+    expect(result).toMatchObject({
+      status: 'exact-original',
+      reasonCode: FidelityReasonCodes.CAUSE_INVERTED,
+    });
+  });
+
   it('rejects a candidate that drops the caveat claim sentence', async () => {
     const protection = createProtectedDocument(
       'each editor must sign the note. however, always keep the note dry.',

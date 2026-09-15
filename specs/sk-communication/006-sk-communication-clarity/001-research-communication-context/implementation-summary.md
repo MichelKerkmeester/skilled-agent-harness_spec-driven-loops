@@ -96,7 +96,6 @@ Explain what the user gains, not what files you touched.]
 ## Known Limitations
 
 1. **The second lineage read the stack after the build.** The GPT-5.6 LUNA lineage ran on 2026-09-14 against the current rule files, after phases 003 to 009 had landed the adopted candidates. Six of its eight disagreements with the DeepSeek synthesis mark a candidate as already-covered because this program had by then placed it, which reads as confirmation that the placement landed rather than as a classification dispute. The two remaining disagreements, root ownership and the ADHD contract shape, are recorded in its section 6 for the operator.
-1. **[Limitation]** [Specific detail with workaround if one exists.]
 <!-- /ANCHOR:limitations -->
 
 ---

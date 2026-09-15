@@ -131,7 +131,7 @@ The Gate 3 enforcement trigger set uses 33 trigger phrases to detect file modifi
 node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "refactor the authentication module"
 # Returns: Gate 3 file-modification trigger match, phrases: ["refactor"]
-# AI then asks: "Spec Folder (required): A) Existing | B) New | C) Update related | D) Skip"
+# AI then asks: "Spec Folder (required): A) Existing | B) New | C) Related | D) Skip"
 ```
 
 **Trigger Design Guidelines for Enforcement Trigger Sets:**

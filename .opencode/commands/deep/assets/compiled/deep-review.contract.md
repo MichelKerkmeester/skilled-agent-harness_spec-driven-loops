@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/review.md",
-      "sha256": "f393dd66638fb02fb5f21fbc4ee7cb4d1e34a5dcbfce71104948b54f827aa189",
+      "sha256": "c29f6895322d19bce734e4312173d0d342733bb7fcc9334f9419d7a0d888d9a8",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "9b1d4229fef922d9c59e2cadbd240bbefbddb5781094ec1aae04dfb75ec85718",
+      "sha256": "805ffb4720a6d5a4c2029efb011c99b87e2d91d297d53888aa2b2405806de308",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "9a484cd576e24b5e37a9625808e79c64941078dd51708d00eb503a7fcaa244f7",
+      "sha256": "d22eec8de84cc877afabff8a727e498f00ecec34f98fd02ccd3973e390c0aab8",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "66a38675c04b571d42adafc20a0f06500f5da7253f66ea5ae72a4fdbe252ef3b"
+  "compiledBodyDigest": "4c286d641e39cd725adc86bde80b35a21c57cee45d7fd504a3cc00f0933699a3"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -99,7 +99,7 @@ This generated contract collapses the maintained command authority chain into on
 
 You were invoked via `opencode run --command deep/review` with the `:auto` suffix and a bound spec_folder and target in your message. The `:auto` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:
 
-- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
+- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).
 - PROCEED immediately: load the auto workflow YAML and dispatch the `deep-review` agent to run ONE iteration of the review loop over the bound target.
 - DISPATCH ONLY: you dispatch `deep-review` to run one iteration; you do NOT read, edit, patch, or run the review loop over the target yourself. The auto workflow YAML owns the loop itself — setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis, and all loop-level artifact writes; the `deep-review` leaf owns only its own single-iteration artifacts — mixing your own inline work with the dispatch is a route violation.
@@ -333,8 +333,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]
      B) Create new under `specs/[track]/[###]-[slug]/` (accept `.opencode/specs/` alias roots when already in use)
-     C) Update related [if match found]
-     D) Phase folder (e.g., `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias)
+     C) Related [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous -- all iterations without approval
@@ -366,7 +365,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - review_target = [from Q0 or $ARGUMENTS]
    - review_target_type = [from Q1_type, auto-detected]
    - review_dimensions = [from Q_dims or default "all"]
-   - spec_choice = [A/B/C/D from Q1]
+   - spec_choice = [A/B/C from Q1]
    - spec_path = [derived path]
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
    - lineage_mode = [auto/resume/restart from flag, marker, or default auto]

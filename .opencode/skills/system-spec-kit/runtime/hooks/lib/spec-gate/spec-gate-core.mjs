@@ -132,9 +132,8 @@ export const GATE_3_QUESTION = [
   'SPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit, pick one:',
   'A) Use an existing spec folder (reply with its path, e.g. specs/<track>/<NNN-name>)',
   'B) Create a new spec folder (reply with a new path, e.g. specs/<track>/<NNN-name>)',
-  'C) Update a related spec folder (reply with its path, e.g. specs/<track>/<NNN-name>)',
-  'D) Use a phase folder (reply with the child path, e.g. specs/<parent>/<NNN-phase>)',
-  'E) Skip (no spec folder needed for this change)',
+  'C) Use a related spec folder, including a phase child (reply with its path, e.g. specs/<track>/<NNN-name> or specs/<parent>/<NNN-phase>)',
+  'D) Skip (no spec folder needed for this change)',
 ].join('\n');
 
 // The human-facing relay question above and the model-facing deny reason
@@ -142,7 +141,7 @@ export const GATE_3_QUESTION = [
 // sees (a menu to answer); GATE_3_DENY_DETAIL is what the MODEL sees when a
 // Write/Edit is actually blocked -- an instruction to go get that answer from
 // the user, not a menu the model itself could try to resolve alone.
-export const GATE_3_DENY_DETAIL = 'DENIED: this Write/Edit needs a bound spec folder first. Ask the USER to reply with a letter A-E naming an existing (or new) spec folder, then retry.';
+export const GATE_3_DENY_DETAIL = 'DENIED: this Write/Edit needs a bound spec folder first. Ask the USER to reply with a letter A-D naming an existing (or new) spec folder, then retry.';
 
 const GATE_3_DELIVERY_KIND = 'gate-question';
 const GATE_3_DELIVERY_HASH_ALGORITHM = 'sha256';
@@ -887,32 +886,32 @@ export function sweepStaleGateStates(stateDir, runtimeState) {
 // a full sentence ("skip the lint errors ... fix the parser"), which is
 // prose ABOUT skipping something else, not an answer to Gate 3.
 const SKIP_WORD_REGEX = /^\s*skip\b(?:\s+it\b)?\s*(?:[-:,.]|$)/i;
-// A standalone "E"/"e" immediately followed by punctuation or end of
+// A standalone "D"/"d" immediately followed by punctuation or end of
 // string. A bare hyphen is deliberately EXCLUDED from the immediate-adjacency
-// class (only comma/period/colon/close-paren qualify there): "E-danger" is a
+// class (only comma/period/colon/close-paren qualify there): "D-danger" is a
 // compound word fused directly onto the letter with no separating
-// whitespace, not the dash-separator convention ("E - clarification"), so a
+// whitespace, not the dash-separator convention ("D - clarification"), so a
 // hyphen only counts as a separator when preceded by whitespace (`\s+-`).
-// Never a bare letter running into ordinary prose ("E is the wrong option,
-// use A instead"), which is prose ABOUT option E, not a chosen skip.
-const STANDALONE_LETTER_E_REGEX = /^\s*[eE](?:[,.:)]|\s+-|$)/;
-const ANSWER_LETTER_PREFIX_REGEX = /^\s*([a-eA-E])(?=[\s,.:)\-]|$)/;
+// Never a bare letter running into ordinary prose ("D is the wrong option,
+// use A instead"), which is prose ABOUT option D, not a chosen skip.
+const STANDALONE_LETTER_D_REGEX = /^\s*[dD](?:[,.:)]|\s+-|$)/;
+const ANSWER_LETTER_PREFIX_REGEX = /^\s*([a-dA-D])(?=[\s,.:)\-]|$)/;
 // A closed set of natural lead-ins ("option B", "go with C", ...) so the
 // letter still registers when the bare-token bind below needs it, without
 // opening the grammar to arbitrary prose that happens to contain a letter.
-// E is special-cased in answerParse() below: through this lead-in grammar it
-// is the SKIP option (matching the question menu's E = Skip) unless the turn
+// D is special-cased in answerParse() below: through this lead-in grammar it
+// is the SKIP option (matching the question menu's D = Skip) unless the turn
 // names a full spec-folder path, which binds instead.
-const NATURAL_LEAD_IN_LETTER_REGEX = /^\s*(?:option|choice|answer|go with|use option)\s+([a-eA-E])(?=[\s,.:)\-]|$)/i;
+const NATURAL_LEAD_IN_LETTER_REGEX = /^\s*(?:option|choice|answer|go with|use option)\s+([a-dA-D])(?=[\s,.:)\-]|$)/i;
 // A skip answer must be a COMPLETE, unambiguous standalone reply. A trailing
 // clause that either negates the skip itself ("do not skip", "not a skip",
 // "isn't a skip") or names a DIFFERENT lettered option ("use A instead", "go
 // with C") is prose ABOUT the skip grammar, not a chosen skip -- when either
 // signals, answerParse() returns null (stays open, re-asks) rather than
-// guess which reading was meant. E is excluded from the alternative-option
-// half: naming E again is consistent with, not contradictory to, a skip.
+// guess which reading was meant. D is excluded from the alternative-option
+// half: naming D again is consistent with, not contradictory to, a skip.
 const SKIP_NEGATION_REGEX = /\b(?:not|n't|isn't|is not|never)\b[^.;]{0,30}\bskip\b|\bskip\b[^.;]{0,30}\b(?:not|n't|isn't|is not)\b/i;
-const SKIP_ALTERNATIVE_OPTION_REGEX = /\b(?:use|go with|choose|pick|option|choice|answer)\s+[a-dA-D]\b/;
+const SKIP_ALTERNATIVE_OPTION_REGEX = /\b(?:use|go with|choose|pick|option|choice|answer)\s+[a-cA-C]\b/;
 const SPEC_PATH_REGEX = /(?:\.opencode\/specs|specs)\/[a-zA-Z0-9][\w./-]*/;
 const BARE_FOLDER_TOKEN_REGEX = /\b\d{3}-[a-z0-9][a-z0-9-]*\b/i;
 const TRAILING_PUNCTUATION_REGEX = /[.,;:)]+$/;
@@ -922,11 +921,11 @@ const TRAILING_PUNCTUATION_REGEX = /[.,;:)]+$/;
 // running into more words is ordinary prose ("A pretty big problem"), not an
 // answer attempt -- answerParse keeps the space case because it also accepts
 // "A <slug>" bindings.
-const ANSWER_LETTER_ATTEMPT_REGEX = /^\s*[a-eA-E](?=[,.:)]|\s+-|$)/;
+const ANSWER_LETTER_ATTEMPT_REGEX = /^\s*[a-dA-D](?=[,.:)]|\s+-|$)/;
 // A letter followed by menu vocabulary ("A use an existing folder") is an
 // answer echo of the question menu, not prose -- letter + whitespace is
 // ambiguous, only the vocabulary distinguishes the two.
-const ANSWER_LETTER_VOCAB_REGEX = /^\s*[a-eA-E]\s+(?:use|create|update|extend|skip|pick|choose|go with|existing|new|related|phase|folder|spec|option|child|path|packet)\b/i;
+const ANSWER_LETTER_VOCAB_REGEX = /^\s*[a-dA-D]\s+(?:use|create|update|extend|skip|pick|choose|go with|existing|new|related|phase|folder|spec|option|child|path|packet)\b/i;
 
 function hasSkipContradiction(text) {
   return SKIP_NEGATION_REGEX.test(text) || SKIP_ALTERNATIVE_OPTION_REGEX.test(text);
@@ -950,7 +949,7 @@ export function isAnswerAttempt(promptText) {
     ANSWER_LETTER_VOCAB_REGEX.test(text) ||
     NATURAL_LEAD_IN_LETTER_REGEX.test(text) ||
     SKIP_WORD_REGEX.test(text) ||
-    STANDALONE_LETTER_E_REGEX.test(text)
+    STANDALONE_LETTER_D_REGEX.test(text)
   );
 }
 
@@ -959,7 +958,7 @@ export function isAnswerAttempt(promptText) {
  * enforced HERE, not merely by convention at the call site, so a future
  * caller (or a refactor of classifyIntent) cannot accidentally treat an
  * ordinary prompt as a gate-closing answer just because it happens to start
- * with an A-E letter -- only a session whose persisted gate status is
+ * with an A-D letter -- only a session whose persisted gate status is
  * literally 'open' may have its prompt read as an answer.
  *
  * Returns null immediately when isOpen is falsy, and also when the text does
@@ -980,17 +979,17 @@ export function answerParse(promptText, isOpen = true) {
 
   // Computed once and reused below (natural-lead-in letters are never
   // re-derived) -- a full named spec-folder path always binds, even when the
-  // turn also carries a skip shape; only WITHOUT a path does E read as the
-  // skip choice ("option E" / "answer E" / "E, no spec folder needed").
+  // turn also carries a skip shape; only WITHOUT a path does D read as the
+  // skip choice ("option D" / "answer D" / "D, no spec folder needed").
   const naturalLeadInMatch = NATURAL_LEAD_IN_LETTER_REGEX.exec(text);
-  const naturalLeadInIsSkipLetter = naturalLeadInMatch !== null && /^[eE]$/.test(naturalLeadInMatch[1]);
+  const naturalLeadInIsSkipLetter = naturalLeadInMatch !== null && /^[dD]$/.test(naturalLeadInMatch[1]);
 
   const pathMatch = SPEC_PATH_REGEX.exec(text);
   if (pathMatch) {
     return { type: 'binding', path: pathMatch[0].replace(TRAILING_PUNCTUATION_REGEX, '') };
   }
 
-  if (SKIP_WORD_REGEX.test(text) || STANDALONE_LETTER_E_REGEX.test(text) || naturalLeadInIsSkipLetter) {
+  if (SKIP_WORD_REGEX.test(text) || STANDALONE_LETTER_D_REGEX.test(text) || naturalLeadInIsSkipLetter) {
     // A COMPLETE, unambiguous standalone answer only -- reject (return null,
     // stay open) when the rest of the turn contradicts the skip itself. See
     // hasSkipContradiction() / SKIP_NEGATION_REGEX / SKIP_ALTERNATIVE_OPTION_REGEX above.

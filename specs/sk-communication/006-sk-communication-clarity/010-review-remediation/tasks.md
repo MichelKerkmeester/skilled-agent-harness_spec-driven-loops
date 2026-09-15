@@ -98,9 +98,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md (spec.md:108-118, REQ-001 through REQ-006)
+- [x] CHK-002 [P0] Technical approach defined in plan.md (plan.md Architecture and Implementation Phases sections)
+- [x] CHK-003 [P1] Dependencies identified and available (plan.md §6 Dependencies table, all three rows read Green)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -108,10 +108,10 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks (T007, npm run check exit 0 includes typecheck and build; the package defines no separate lint script)
+- [x] CHK-011 [P0] No console errors or warnings (T007, exit 0, 83 test files and 459 tests passed with no errors reported)
+- [x] CHK-012 [P1] Error handling implemented (not applicable: T004-T006 add a test file and two comments, no new error-handling logic)
+- [x] CHK-013 [P1] Code follows project patterns (T004 uses the existing test-file pattern, T005-T006 follow the existing doc-comment convention)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -119,10 +119,10 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met (acceptance-criteria.md, AC-001 through AC-006 all Met, closure statement confirms)
+- [x] CHK-021 [P0] Manual testing complete (not applicable: verification here is automated, npm run check plus the freshness gate plus a grep, per T007-T009; no manual test step is in scope)
+- [x] CHK-022 [P1] Edge cases tested (T004, the reworded-claim case and the unrelated-sentence-drop case both return null)
+- [x] CHK-023 [P1] Error scenarios validated (T004, the dropped-claim case fires CLAIM_OMITTED)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -130,13 +130,13 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each finding carries a finding class. F003, F004, and F006 are `test-isolation` (confirm only, no code change). F005 is `test-isolation` (add direct coverage). F001 and F002 are `instance-only` (a comment, no behavior change)
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory: `rg -n "AcceptedProjection\(" src test` confirms no construction call site exists, before or after
-- [ ] CHK-FIX-003 [P0] Consumer inventory: `rg -n "compareClaimCoverage" --glob '*.ts'` lists `validator.ts` and the new test file only
-- [ ] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction, or security logic is in scope
-- [ ] CHK-FIX-005 [P1] Matrix axes listed: finding by verdict, two axes (confirmed-fixed, code-item), three findings each
-- [ ] CHK-FIX-006 [P1] Not applicable, no code in scope reads process-wide state
-- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range
+- [x] CHK-FIX-001 [P0] Each finding carries a finding class. F003, F004, and F006 are `test-isolation` (confirm only, no code change). F005 is `test-isolation` (add direct coverage). F001 and F002 are `instance-only` (a comment, no behavior change) (T001-T003 confirm F003/F004/F006 by reading, T004 adds the test for F005, T005-T006 add the two comments for F001/F002, exactly matching each class)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory: `rg -n "AcceptedProjection\(" src test` confirms no construction call site exists, before or after (rerun in cli-communication-projection, no matches, exit 1; matches Known Limitations item 1 and review-report F002)
+- [x] CHK-FIX-003 [P0] Consumer inventory: `rg -n "compareClaimCoverage" --glob '*.ts'` lists `validator.ts` and the new test file only (rerun, hits validator.ts, its own definition in semantics.ts, and test/fidelity/semantics.test.ts, no other caller)
+- [x] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction, or security logic is in scope (not applicable: a test file and two doc comments)
+- [x] CHK-FIX-005 [P1] Matrix axes listed: finding by verdict, two axes (confirmed-fixed, code-item), three findings each (plan.md FIX ADDENDUM states this matrix verbatim)
+- [x] CHK-FIX-006 [P1] Not applicable, no code in scope reads process-wide state (not applicable)
+- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range (open: work is uncommitted, all evidence cites file:line, not a commit hash)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -144,9 +144,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Not applicable, no auth or authorization surface in scope
+- [x] CHK-030 [P0] No hardcoded secrets (rerun secret-pattern grep over the three changed files, no matches)
+- [x] CHK-031 [P0] Input validation implemented (not applicable: no new input-handling code, T004-T006 add a test file and two doc comments only)
+- [x] CHK-032 [P1] Not applicable, no auth or authorization surface in scope (not applicable)
 <!-- /ANCHOR:security -->
 
 ---
@@ -154,9 +154,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Both new comments state present behavior, not the history of the review that prompted them
-- [ ] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (spec.md REQ-001 through REQ-006, plan.md FIX ADDENDUM and T001-T010 all describe the same six findings)
+- [x] CHK-041 [P1] Both new comments state present behavior, not the history of the review that prompted them (T009, the ADR/REQ/task/packet-id grep over src and test returned no matches)
+- [x] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes (parent spec.md:166, phase 10 row reads Complete)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -164,8 +164,8 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only (scratch/ holds only .gitkeep, verified by listing)
+- [x] CHK-051 [P1] scratch/ cleaned before completion (scratch/ is empty aside from .gitkeep, verified by listing)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -175,11 +175,11 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 12/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-09-14
+**Verification Date**: 2026-09-14, npm run check, both rg reruns, the credential scan and the parent Phase Documentation Map read all ran from the final state; the one open P1 is the commit-pinning row
 <!-- /ANCHOR:summary -->
 
 ---

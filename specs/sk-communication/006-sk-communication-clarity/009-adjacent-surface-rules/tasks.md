@@ -148,7 +148,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope
 - [x] CHK-FIX-005 [P1] Matrix axes listed: surface by candidate, two rows, two gates
 - [x] CHK-FIX-006 [P1] Not applicable, no code reads process-wide state in this phase
-- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range
+- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range (open: work is uncommitted, all evidence cites file:line, not a commit hash, per Known Limitations item 1)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -168,7 +168,7 @@ contextType: "general"
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
 - [x] CHK-041 [P1] Any code comment touched states present behaviour rather than past approaches, which is the rule this phase adds
-- [ ] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes
+- [x] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes (parent spec.md:163, phase 9 row reads Complete)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -189,9 +189,9 @@ contextType: "general"
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
 | P1 Items | 13 | 12/13 |
-| P2 Items | 1 | 0/1 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-09-14, both owning gates ran from the changed state, the one open P1 is the evidence pin, the packet validator result is recorded in the implementation summary
+**Verification Date**: 2026-09-14, both owning gates and the parent Phase Documentation Map read ran from the changed state; the one open P1 is the evidence pin, the packet validator result is recorded in the implementation summary
 <!-- /ANCHOR:summary -->
 
 ---

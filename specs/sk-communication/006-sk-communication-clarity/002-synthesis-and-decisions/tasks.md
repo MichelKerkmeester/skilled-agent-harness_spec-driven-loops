@@ -40,13 +40,14 @@ candidates no surface can carry and record what was rejected and why.
 
 - [x] T001 Confirm both research syntheses exist at their exact paths and are non-empty (`001-research-communication-context/research/research.md`, `004-sk-communication-upgrade/research/research.md`)
   - Evidence: both synthesis paths listed this session and both are non-empty. The 001 synthesis was read in full. The 004 synthesis was size-checked only.
-- [ ] T002 Read each synthesis rather than its dashboard or its own summary. Record the iteration counts the handoff criteria name, ten and five
+- [x] T002 Read each synthesis rather than its dashboard or its own summary. Record the iteration counts the handoff criteria name, ten and five (both synthesis docs read in full this session. DeepSeek `001-research-communication-context/research/research.md`: 10 iterations, 10 files iteration-001 through iteration-010 counted in its `research/iterations/`; concludes 47 raw recommendations merge to 29 failure-keyed candidates across `communication.md`'s split, the wording standard's base-plus-supplement shape and the benchmark folder, with the ADHD contract split into 7 unconditional and 3 reader-conditional rules. LUNA `research/luna-fanout/lineages/luna/research.md`: 5 iterations, 5 files iteration-001 through iteration-005 counted in its own `iterations/`, run record section 8 confirms all five ran under the max-iterations policy; concludes the stack already covers most sentence-level clarity, directness, actionability, list, tangent, handoff and evidence rules, with new material limited to pre-draft content choice, a strongest-objection paragraph, section-question transitions, document thresholds, code-comment style and ADHD reader framing plus its runtime and eval mechanism, and names three scope-sensitive contradictions)
 - [x] T003 Confirm each of the eight ADRs in `decision-record.md` reads Accepted, because a row cites an ADR as its verdict source (`decision-record.md`)
   - Evidence: decision-record.md read in full this session. ADR-001 through ADR-009 all read Accepted.
-- [ ] T004 [P] Re-read the current stack so an already-covered verdict is checked against the rule text rather than against memory of it
+- [x] T004 [P] Re-read the current stack so an already-covered verdict is checked against the rule text rather than against memory of it (allocation-table.md Section 1 re-read in full: 29 rows read either adopt, 25, or non-work, 4; zero rows read already-covered, matching Note 5's own count of the 34 source rows excluded before the merge. Cross-checked the current-stack text that exclusion rests on by reading repo-rules/communication-prose.md in full, the 2026-09-14 rename of prose-mechanics.md: its content at the cited line numbers, 60-65 state-the-relation, 67-72 name-the-mechanism, 118-127 concise-is-not-compressed, still matches the already-covered claims the source syntheses cite under the old filename. 0 already-covered rows found, 0 needed further confirmation, none failed to hold)
 - [x] T005 Take the candidate union and its arithmetic from the phase 001 synthesis: 44 candidate rows merged into 29 candidates by the failure each one prevents
   - Evidence: the union taken verbatim from iteration-004.md F1 this session. 81 = 34 + 47, 47 - 3 = 44, 44 - 15 = 29.
-- [ ] T006 [P] Take the engine synthesis's four decision-free changes and its five decisions. Confirm each decision maps to an Accepted ADR
+- [x] T006 [P] Take the engine synthesis's four decision-free changes and its five decisions. Confirm each decision maps to an Accepted ADR
+  - Evidence: 004 research.md section 4 lists five decisions. Content-loss floor maps to ADR-006, the unchanged candidate to ADR-007, thinking mode to ADR-008, the detector channel to ADR-005 which builds none, the cut-and-reorder lane to ADR-004 which keeps the smoothing pass. All five Accepted in decision-record.md. The four decision-free changes in section 3 needed no ADR and landed in phase 004
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -130,10 +131,10 @@ candidates no surface can carry and record what was rejected and why.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P0] The eight ADRs read as Accepted before any row cites one as a verdict source
-- [ ] CHK-004 [P1] Both research syntheses verified by inspection rather than by their own summaries
+- [x] CHK-001 [P0] Requirements documented in spec.md (spec.md REQ-001 through REQ-007)
+- [x] CHK-002 [P0] Technical approach defined in plan.md (plan.md defines the allocation approach)
+- [x] CHK-003 [P0] The eight ADRs read as Accepted before any row cites one as a verdict source (T003, T020: ADR-001 through ADR-009 read Accepted)
+- [x] CHK-004 [P1] Both research syntheses verified by inspection rather than by their own summaries (T002: DeepSeek research.md and LUNA research.md both read in full this session, 10 and 5 iterations respectively confirmed against their iterations/ directories)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -141,11 +142,11 @@ candidates no surface can carry and record what was rejected and why.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Not applicable, this phase writes documents and runs no build
-- [ ] CHK-011 [P0] Every adopted row names a failure specific enough to argue with
-- [ ] CHK-012 [P0] Each of the eight ADRs is reachable from the packet and reads Accepted
-- [ ] CHK-013 [P1] Every verdict traces to the synthesis finding or the ADR it came from
-- [ ] CHK-014 [P1] ADR numbering is stable and a changed decision supersedes rather than edits
+- [x] CHK-010 [P0] Not applicable, this phase writes documents and runs no build (not applicable: this phase writes documents and runs no build)
+- [x] CHK-011 [P0] Every adopted row names a failure specific enough to argue with (T010: all 25 adopted rows carry the failure wording)
+- [x] CHK-012 [P0] Each of the eight ADRs is reachable from the packet and reads Accepted (T003, T011, T020)
+- [x] CHK-013 [P1] Every verdict traces to the synthesis finding or the ADR it came from (T007-T011, T021)
+- [x] CHK-014 [P1] ADR numbering is stable and a changed decision supersedes rather than edits (decision-record.md ADR-001 through ADR-009, sequential and unique, none superseded)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -153,12 +154,12 @@ candidates no surface can carry and record what was rejected and why.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Duplicate-assignment scan run over the owning-document column
-- [ ] CHK-022 [P0] The row count equals the candidate union, with the four non-work rows present
-- [ ] CHK-023 [P0] The rejection list carries a reason per rejection
-- [ ] CHK-024 [P1] Already-covered rows checked against the actual document text, not its summary
-- [ ] CHK-025 [P1] Each lineage disagreement carries a diagnosis rather than a count
+- [x] CHK-020 [P0] All acceptance criteria met (acceptance-criteria.md AC-001 through AC-009 all Met)
+- [x] CHK-021 [P0] Duplicate-assignment scan run over the owning-document column (T018: owner counts sum to 25, no duplicate)
+- [x] CHK-022 [P0] The row count equals the candidate union, with the four non-work rows present (T019: 29 rows against the 29-candidate union, 4 non-work rows present)
+- [x] CHK-023 [P0] The rejection list carries a reason per rejection (T013, T022: 14 rejected rows, one reason each)
+- [x] CHK-024 [P1] Already-covered rows checked against the actual document text, not its summary (T004: allocation-table.md Section 1 carries zero already-covered verdict rows, confirmed by direct inspection of all 29 rows and cross-checked against the renamed repo-rules/communication-prose.md text underlying that exclusion)
+- [x] CHK-025 [P1] Each lineage disagreement carries a diagnosis rather than a count (T024: one disagreement diagnosed as thin evidence, not averaged)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -166,13 +167,13 @@ candidates no surface can carry and record what was rejected and why.
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Not applicable, this phase fixes nothing
-- [ ] CHK-FIX-002 [P0] Not applicable, no producer class changes
-- [ ] CHK-FIX-003 [P0] Not applicable, no helper, policy or schema field changes
-- [ ] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic in scope
-- [ ] CHK-FIX-005 [P1] The allocation table's axes are candidate and owning document. The rows are the table itself
-- [ ] CHK-FIX-006 [P1] Not applicable, nothing here reads process-wide state
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the phase 001 and phase 004 lineage directories, which are immutable once settled
+- [x] CHK-FIX-001 [P0] Not applicable, this phase fixes nothing (not applicable: this phase fixes nothing)
+- [x] CHK-FIX-002 [P0] Not applicable, no producer class changes (not applicable: no producer class changes)
+- [x] CHK-FIX-003 [P0] Not applicable, no helper, policy or schema field changes (not applicable: no helper, policy or schema field changes)
+- [x] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic in scope (not applicable: no path, parser, redaction or security logic in scope)
+- [x] CHK-FIX-005 [P1] The allocation table's axes are candidate and owning document. The rows are the table itself (allocation-table.md section 1, T007: candidate by owning document)
+- [x] CHK-FIX-006 [P1] Not applicable, nothing here reads process-wide state (not applicable: nothing here reads process-wide state)
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the phase 001 and phase 004 lineage directories, which are immutable once settled (T001: evidence pinned to the phase 001 and phase 004 lineage directories)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -180,9 +181,9 @@ candidates no surface can carry and record what was rejected and why.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential or key value enters the allocation table or the rejection list
-- [ ] CHK-031 [P0] Delegate findings treated as claims to check, not facts to transcribe
-- [ ] CHK-032 [P1] Not applicable, no auth or authorization surface in scope
+- [x] CHK-030 [P0] No credential or key value enters the allocation table or the rejection list (credential scan of allocation-table.md and decision-record.md clean, no matches)
+- [x] CHK-031 [P0] Delegate findings treated as claims to check, not facts to transcribe (T017, T018, T020, T021, T022: independent verification steps, not transcription)
+- [x] CHK-032 [P1] Not applicable, no auth or authorization surface in scope (not applicable: no auth or authorization surface in scope)
 <!-- /ANCHOR:security -->
 
 ---
@@ -190,9 +191,9 @@ candidates no surface can carry and record what was rejected and why.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized and each document treats the eight decisions as recorded rather than open
-- [ ] CHK-041 [P1] Not applicable, no code comments written in this phase
-- [ ] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized and each document treats the eight decisions as recorded rather than open (spec.md, tasks.md notation section, acceptance-criteria.md intro: the eight decisions recorded as Accepted, not open)
+- [x] CHK-041 [P1] Not applicable, no code comments written in this phase (not applicable: no code comments written in this phase)
+- [x] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes (parent spec.md Phase Documentation Map row 2, Status Complete)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -200,8 +201,8 @@ candidates no surface can carry and record what was rejected and why.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only (scratch/ holds only .gitkeep)
+- [x] CHK-051 [P1] scratch/ cleaned before completion (scratch/ empty except .gitkeep)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -211,11 +212,13 @@ candidates no surface can carry and record what was rejected and why.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 16 | 0/16 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 16 | 16/16 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Pending, this phase has not run
+**Verification Date**: 2026-09-15, T002 and T004 completed (both research syntheses read in full and the allocation table's already-covered verdict count re-verified against current repo-rules text), CHK-004 and CHK-024 closed, then validate.sh --strict rerun
+**Validate RESULT (strict)**: RESULT: PASSED, errors 0, warnings 1, exit 0
+**Metadata repair**: the first strict run reported 2 errors, a stale graph-metadata.json source_fingerprint and a drifted description field against the edited tasks.md, repair-derived.cjs regenerated both, the rerun above is the final state
 <!-- /ANCHOR:summary -->
 
 ---

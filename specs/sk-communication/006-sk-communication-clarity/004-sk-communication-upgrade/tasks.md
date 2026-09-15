@@ -135,10 +135,10 @@ The eight engine items land in rising risk order inside `.opencode/skills/sk-com
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Baseline package gate result and duplication-search result captured
-- [ ] CHK-004 [P0] Phase 007's reply base exists before the instruction item starts
+- [x] CHK-001 [P0] Requirements documented in spec.md (spec.md carries REQ-001 through REQ-009, cited across AC-001 to AC-017 in acceptance-criteria.md)
+- [x] CHK-002 [P0] Technical approach defined in plan.md (plan.md, ~15KB, orders the eight engine items by rising risk, matched by T006-T013)
+- [x] CHK-003 [P1] Baseline package gate result and duplication-search result captured (T002 scratch/gate-before.txt exit 0, T005 scratch/duplication-search.txt three copies before)
+- [x] CHK-004 [P0] Phase 007's reply base exists before the instruction item starts (T004, .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md named by src/config/copy-editing-instruction.ts:9)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -146,11 +146,11 @@ The eight engine items land in rising risk order inside `.opencode/skills/sk-com
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The package gate passes from the final state, with output and exit status read
-- [ ] CHK-011 [P0] No voice or tone rubric is written into a command, an asset or a presentation contract
-- [ ] CHK-012 [P1] Each engine change describes behavior the code actually has
-- [ ] CHK-013 [P1] The two provider profiles read one declaration for the instruction and its temperature
-- [ ] CHK-014 [P1] The skill keeps its existing routing shape rather than gaining a second one
+- [x] CHK-010 [P0] The package gate passes from the final state, with output and exit status read (T027, scratch/check-after.out, 82 test files, 455 tests, exit status 0)
+- [x] CHK-011 [P0] No voice or tone rubric is written into a command, an asset or a presentation contract (T014, T015, both commands declare the pass in their own PURPOSE text with no rubric; decision-record.md ADR-005, "the provider receives the label alone")
+- [x] CHK-012 [P1] Each engine change describes behavior the code actually has (T001 re-read the four frozen invariants at their source; AC-002 traces every change to the eight authorised items)
+- [x] CHK-013 [P1] The two provider profiles read one declaration for the instruction and its temperature (T006, AC-003, both profiles and the fixture resolve to src/config/copy-editing-instruction.ts:33)
+- [x] CHK-014 [P1] The skill keeps its existing routing shape rather than gaining a second one (T026, the advisor route exclusion unchanged, confirmed by search)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -158,13 +158,13 @@ The eight engine items land in rising risk order inside `.opencode/skills/sk-com
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] A rewrite of a caveated reply checked for claim preservation
-- [ ] CHK-022 [P0] An unchanged candidate recorded as a no-op rather than as a pass carrying five unearned markers
-- [ ] CHK-023 [P1] Both runtime mirrors diffed against their source
-- [ ] CHK-024 [P1] Every failed path still returns the exact original bytes
-- [ ] CHK-025 [P1] A dropped caveat and a compressed pair of claims both exercised against the omission comparison
-- [ ] CHK-026 [P1] Both provider profiles read provider-default thinking mode
+- [x] CHK-020 [P0] All acceptance criteria met (acceptance-criteria.md, AC-001 through AC-017 all Met)
+- [x] CHK-021 [P0] A rewrite of a caveated reply checked for claim preservation (T011, T022, AC-008, test/config/copy-editing-instruction.test.ts:89,105,133)
+- [x] CHK-022 [P0] An unchanged candidate recorded as a no-op rather than as a pass carrying five unearned markers (T010, T023, AC-007, test/config/copy-editing-instruction.test.ts:59,70)
+- [x] CHK-023 [P1] Both runtime mirrors diffed against their source (T016, T021, AC-011, both mirror diffs printed nothing)
+- [x] CHK-024 [P1] Every failed path still returns the exact original bytes (T025, AC-014, test/config/copy-editing-instruction.test.ts:128,166)
+- [x] CHK-025 [P1] A dropped caveat and a compressed pair of claims both exercised against the omission comparison (T011, T022, AC-008)
+- [x] CHK-026 [P1] Both provider profiles read provider-default thinking mode (T012, T024, AC-009, test/config/copy-editing-instruction.test.ts:36,45)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -172,13 +172,13 @@ The eight engine items land in rising risk order inside `.opencode/skills/sk-com
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each of the eight items carries an adopted row while the four engine rows cite their decision record entry
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory run: every place the instruction literal or a rubric could have been copied
-- [ ] CHK-FIX-003 [P0] Consumer inventory run: every reader of the changed symbols and every document pointing at the wording standard
-- [ ] CHK-FIX-004 [P0] Adversarial cases exercised: a dropped caveat, a compressed pair of claims and a reorder that inverts a cause
-- [ ] CHK-FIX-005 [P1] Matrix axes listed: provider profile by runtime mirror, four rows
-- [ ] CHK-FIX-006 [P1] The enablement flag read from a hostile default, confirming off stays off
-- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not to a moving branch-relative range
+- [x] CHK-FIX-001 [P0] Each of the eight items carries an adopted row while the four engine rows cite their decision record entry (T003 scratch/allocated-items.md lists all eight items; decision-record.md ADR-005, ADR-006, ADR-007, ADR-008 record the four engine decisions)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory run: every place the instruction literal or a rubric could have been copied (T005, T020, duplication search, one hit after the edits)
+- [x] CHK-FIX-003 [P0] Consumer inventory run: every reader of the changed symbols and every document pointing at the wording standard (implementation-summary.md "How It Was Delivered", the 29-line rg sweep over the skill and the commands, no file restates the standard's rules)
+- [x] CHK-FIX-004 [P0] Adversarial cases exercised: a dropped caveat, a compressed pair of claims and a reorder that inverts a cause (dropped caveat and compressed claims at test/config/copy-editing-instruction.test.ts, the inverted cause added 2026-09-15: compareCausalDirection in src/fidelity/semantics.ts reads the ordered causal connectives and returns cause-inverted when the candidate states the same two clauses the other way round, hooked after the claim check in validator.ts, five unit tests in test/fidelity/semantics.test.ts plus one validator test, npm run check 83 files 465 tests exit 0)
+- [x] CHK-FIX-005 [P1] Matrix axes listed: provider profile by runtime mirror, four rows (T006, T012, T024 confirm both provider profiles; T016, T021 confirm both runtime mirrors diffed clean; 2 profiles x 2 mirrors)
+- [x] CHK-FIX-006 [P1] The enablement flag read from a hostile default, confirming off stays off (T026, plus test/config/enablement.test.ts covers an unset env var and a malformed local override staying disabled, included in T027's 455-test pass)
+- [x] CHK-FIX-007 [P1] Evidence pinned to a commit, not to a moving branch-relative range (all evidence cites absolute file:line in the shipped source tree; a fresh grep for "HEAD~", "branch-relative" or "git diff" across tasks.md and implementation-summary.md found none, and the cited source files are not in the current working-tree diff)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -186,9 +186,9 @@ The eight engine items land in rising risk order inside `.opencode/skills/sk-com
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential value appears in any document or in the package source while credentials stay references
-- [ ] CHK-031 [P0] Protected spans stay unmodifiable: a quotation, an error string, a command, a path, an identifier
-- [ ] CHK-032 [P1] Telemetry stays content-free, unchanged by this phase
+- [x] CHK-030 [P0] No credential value appears in any document or in the package source while credentials stay references (grep for api-key/secret/password/bearer/token patterns across the changed files found only `credentialReference: 'env:GENERIC_TEST_API_KEY'` and a `providerSecretCanary` test string, both references, no literal value)
+- [x] CHK-031 [P0] Protected spans stay unmodifiable: a quotation, an error string, a command, a path, an identifier (T001 re-read the frozen invariant at its source; T027's 455-test pass includes the unmodified protected-spans suite)
+- [x] CHK-032 [P1] Telemetry stays content-free, unchanged by this phase (T026; SKILL.md:246 "Telemetry is content-free and passes secret and content canaries", unchanged by this phase's scope)
 <!-- /ANCHOR:security -->
 
 ---
@@ -196,10 +196,10 @@ The eight engine items land in rising risk order inside `.opencode/skills/sk-com
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Any touched code comment states present behavior rather than past approaches
-- [ ] CHK-042 [P1] The feature catalog and changelog describe the shipped behavior
-- [ ] CHK-043 [P2] The skill README reflects the changed rewrite contract
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (spec.md's REQ-001 through REQ-009 match acceptance-criteria.md's REQ column; plan.md orders the same eight engine items)
+- [x] CHK-041 [P1] Any touched code comment states present behavior rather than past approaches (grep for "previously/used to/legacy/no longer/deprecated" across the eight changed src files found no matches)
+- [x] CHK-042 [P1] The feature catalog and changelog describe the shipped behavior (T018, T019, feature-catalog.md and v1.3.0.0.md record the shipped changes)
+- [x] CHK-043 [P2] The skill README reflects the changed rewrite contract (2026-09-15: cli-communication-projection/README.md section 4 gained a Rewrite contract subsection naming the call-time instruction from hvr-rules.md, the claim-omitted and cause-inverted vetoes and the no-op change kind, each checked against the source line that implements it)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -207,8 +207,8 @@ The eight engine items land in rising risk order inside `.opencode/skills/sk-com
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only (scratch/ holds allocated-items.md, check-after.out, check-before.out, duplication-search.txt, gate-before.txt, no stray files at the folder's top level)
+- [x] CHK-051 [P1] scratch/ cleaned before completion (not applicable: every scratch/ file is cited as evidence by T002, T005, T020 and T027, kept intentionally rather than deleted)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -218,11 +218,11 @@ The eight engine items land in rising risk order inside `.opencode/skills/sk-com
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 14 | 0/14 |
-| P1 Items | 17 | 0/17 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 17 | 17/17 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Pending, this phase has not run
+**Verification Date**: 2026-09-15, ran the CHK-row evidence pass against T001-T027, AC-001-AC-017 and implementation-summary.md, plus fresh grep checks for credentials, stale comments and duplication, and a `validate.sh --strict` rerun
 <!-- /ANCHOR:summary -->
 
 ---

@@ -209,8 +209,10 @@ untouched by either.
 
 ## 10. OPEN QUESTIONS
 
-- Which file in the code skill's quality checklist actually owns comment guidance, since the research deferred that verification for read budget?
-- Does the template change need a companion note in the rule router, so a future author sees the new ingredient without opening the template?
+Both answered during the build.
+
+- The code skill's own routing names `sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md` as the owner of comment guidance, and the rule landed there.
+- No router note is needed: the template's own overview states when a rule earns the example line, and the rule anatomy reference carries the same ingredient, so an author reaches it on the create path.
 <!-- /ANCHOR:questions -->
 
 ---

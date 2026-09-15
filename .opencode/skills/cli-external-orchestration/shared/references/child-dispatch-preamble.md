@@ -57,7 +57,7 @@ and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
 Your write authority is already bound. The spec folder is:
   <path>
 
-Proceed directly to the work. Do not print A/B/C/D/E options. Do not stop to confirm anything.
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 Your task is complete only when files exist on disk and the verification command has been run.
 ```
 

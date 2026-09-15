@@ -45,6 +45,7 @@ export type ProtectedSpanKind =
 export const FidelityReasonCodes = {
   ACCEPTED: 'accepted',
   CANCELLED: 'cancelled',
+  CAUSE_INVERTED: 'cause-inverted',
   CAVEAT_CHANGED: 'caveat-changed',
   CLAIM_OMITTED: 'claim-omitted',
   EMPTY_OUTPUT: 'empty-output',

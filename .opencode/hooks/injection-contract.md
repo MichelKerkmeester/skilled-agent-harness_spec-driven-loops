@@ -69,7 +69,7 @@ gate blocks violations.
 
 ### Spec-Gate Gate-3 Question
 
-**Injects:** the A/B/C/D/E spec-folder documentation question, appended to the user's own turn when the shared classifier flags the prompt as a likely mutation.
+**Injects:** the A/B/C/D spec-folder documentation question, appended to the user's own turn when the shared classifier flags the prompt as a likely mutation.
 
 ```text
 SPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit,

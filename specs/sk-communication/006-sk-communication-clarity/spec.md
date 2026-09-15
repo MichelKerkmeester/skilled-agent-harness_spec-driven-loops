@@ -194,9 +194,11 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Does the colon-clause ban survive contact with this repository's own prose, where `communication.md` currently offers the colon as the em-dash replacement?
-- Is a reader-profile rule such as the ADHD output contract a repo rule at all, or an operator-selected mode that should stay off by default?
-- Should the wording standard split into a document half and a reply half, or stay one document that two consumers read with stated exclusions?
+All three answered in phase 002's decision record and carried through the build.
+
+- The colon-clause ban does not survive: rejected as ADR-001, the colon stays the dash replacement.
+- The ADHD contract is neither a rule nor a mode as a whole: seven delivery rules bind always and three reader-conditional rules need an operator-selected mode that stays off by default. The second research lineage argued for a whole opt-in mode, recorded as a disagreement in phase 001, no action taken by operator decision.
+- The wording standard is a base plus a publish supplement, ratified as ADR-009 and landed in phase 007, not a document half and a reply half.
 <!-- /ANCHOR:questions -->
 
 ---

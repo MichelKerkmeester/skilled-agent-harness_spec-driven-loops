@@ -200,7 +200,7 @@
     ],
     "causal_summary": "A five-iteration deep review of the whole sk-communication clarity program returned a CONDITIONAL verdict with two P1 findings and four P2 findings",
     "created_at": "2026-09-14T15:52:21Z",
-    "last_save_at": "2026-09-14T16:05:39.549Z",
+    "last_save_at": "2026-09-15T05:17:55.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5ced3b10a91323c13fefed34fe12968de21b45a97bb9ee21425f91bbfb2ff02",
+    "source_fingerprint": "sha256:4a062e0d0c3a699980da2e18c2d317284dd895a1fe01c7e03fa4492a22449ee5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9fa062f7b7f16fc19488adbe96b5c573a7816a84b17f574e7a7a8f3c12cdca4",
       "plan.md": "5ac29493a7aaabac99c57eb4a7af8e3c85c455b6e0e0bec06120db29e90159c9",
-      "tasks.md": "3f27211dde3b53184d539f8c1f50c8ab3d88806c098b41b88ed7196054e05de7",
+      "tasks.md": "5124a8b8c5deb7116d504df632599c078aaf89aa32bf4b69fa253e581b164a5b",
       "implementation-summary.md": "eb278facd84f304e5a2d5181d48a3019cfa74ccb0eb88cd960a457335cc83f6d"
     },
     "last_active_at": null

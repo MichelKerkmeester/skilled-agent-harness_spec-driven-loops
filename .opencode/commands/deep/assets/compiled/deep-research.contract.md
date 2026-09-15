@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/research.md",
-      "sha256": "00b1f16a23835d37e884efc476557bdfd8d23bf10990f6adf9d064e6b3b3099d",
+      "sha256": "a501728b01c2017c5b67e20e27a108b747d8b6d94dc56a7b3767d71711c73b4c",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "3806f9d124863e6cf23005bae8cadd5a0d34e0f6a9137b7458af8b1aa5341766",
+      "sha256": "14c462b86bbe8d529e63e7b6823ea69743a460299313802bc8c52cd709e23d97",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "191fd3b4620c62438576770a34f3f47344b391180262ca990bbcc9ead72885a9"
+  "compiledBodyDigest": "f5991336137bae698a83572c78f4bb4b73dfa789ebad33e933f400b077f10f08"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -104,7 +104,7 @@ This generated contract collapses the maintained command authority chain into on
 
 You were invoked via `opencode run --command deep/research` with the `:auto` suffix and a bound spec_folder and target in your message. The `:auto` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:
 
-- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
+- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).
 - PROCEED immediately: load the auto workflow YAML and dispatch the `deep-research` agent to run ONE iteration of the research loop over the bound target.
 - DISPATCH ONLY: you dispatch `deep-research` to run one iteration; you do NOT read, edit, patch, or run the research loop over the target yourself. The auto workflow YAML owns the loop itself — setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis, and all loop-level artifact writes; the `deep-research` leaf owns only its own single-iteration artifacts — mixing your own inline work with the dispatch is a route violation.
@@ -301,8 +301,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]
      B) Create new under `specs/[track]/[###]-[slug]/` (accept `.opencode/specs/` alias roots when already in use)
-     C) Update related [if match found]
-     D) Phase folder (e.g., `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias)
+     C) Related [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous -- all iterations without approval
@@ -332,7 +331,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 8. Parse response and store ALL results:
    - research_topic = [from Q0 or $ARGUMENTS]
-   - spec_choice = [A/B/C/D from Q1]
+   - spec_choice = [A/B/C from Q1]
    - spec_path = [derived path]
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
    - maxIterations = [from Q3 or flag or default 10]

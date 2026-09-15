@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/sk-communication/benchmark/reply-harness"
       - "specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/scratch/harness-smoke.md"
-      - "specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/scratch/measurement-baseline.md"
+      - "specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/baselines/measurement-baseline.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-005-verification-and-rollout"
@@ -127,6 +127,10 @@ A five-iteration deep review ran on Sonnet 5 at xhigh effort through the claude 
 - F006, P2, no playbook scenario for the phase 004 additions: confirmed and fixed, COMM-010 added with its feature file.
 - F001, P2, the checks array shrinks on the no-op path: confirmed as designed, recorded in the phase 004 summary.
 - F002, P2, an unconstructed contract type gained a field: confirmed as pre-existing shape, recorded in the phase 004 summary.
+
+## Harness Hardening, 2026-09-15
+
+The checklist pass named two adversarial runs the phase had not exercised, and one bound it had not coded. Every subprocess the harness starts now carries a timeout, 60 seconds for the two git calls in `generate-prompts.mjs` and 120 seconds for the scanner in `score.mjs`. The prompt manifest records `casesHash`, the digest of `cases.json` at generation time, and `score.mjs --prompts <dir>` refuses to score when the digest on disk differs or when the manifest was generated for the other condition. Four runs exercised it: the frozen before replies rescored through the new path with rows identical to `runs/results/before.json`, a manifest from the other condition refused with exit 1, a forged digest refused with exit 1 and no result file, and `blind.mjs` over both reply sets, whose 14 masked files carry no baseline commit, reply directory, change kind or condition label. The prompt generator also follows the rule-set baseline to `003/baselines/`, where the three phase 003 baselines now live.
 
 ## Known Limitations
 
