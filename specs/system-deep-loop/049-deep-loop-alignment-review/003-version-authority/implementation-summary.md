@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "One version per hub across all five routing artifacts, declared in SKILL.md, with the compiled manifests re-minted."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/049-deep-loop-alignment-review/003-version-authority"
     last_updated_at: "2026-09-15T14:23:11Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Unified the hub versions and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 2: version-authority
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Each hub now declares its SKILL.md as the release authority and its five routing artifacts carry that one version: system-deep-loop at 3.0.0.0, sk-code at 4.2.2.0, cli-external-orchestration at 1.5.0.0, where before they spanned six disagreeing values. SKILL.md earns the role because its version already matches the newest changelog entry in every skill root, and each file now says so. The hub-router schema doc, which defined version as either the router schema version or the artifact version in one sentence, gives it one meaning. Six compiled activation manifests are re-minted in the same change, because three of the edited files are raw-byte inputs to the compiled policy hash, and the three compiled command contracts are regenerated for the same reason.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi. The delegate measured the staling relationship rather than assuming it: a version-only edit to one hub-router file flipped that hub from compiled to legacy serving, so it re-minted both manifest copies and reported the extra files as a deviation. The first full suite then failed on three command contracts the same edits staled, which the orchestrator regenerated. The orchestrator verified all fifteen values, ran the compiled route guard and ran the whole suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| SKILL.md as the authority | Its version already matches the newest changelog entry in every skill root; the repository already treats it as the release |
+| Re-mint the manifests in the same change | Three edited files are SHA inputs to the policy; leaving them stale makes a hub serve legacy routing silently |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +77,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Fifteen version values | three values, one per hub, all agreeing with the declared authority |
+| Compiled route guard | all hubs fresh, exit 0 |
+| Skill-root metadata | 13 checked, 13 passed |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 2644 passed, 8 skipped, exit 0, 1286 s, after regenerating the three command contracts the version edits staled |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +89,8 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **No parity gate.** Nothing validates version parity semantically, so the next release bump must re-mint again; recorded rather than built, since a gate is more than this finding earns.
+2. **Two hubs out of scope.** mcp-tooling and sk-doc carry the same registry/router split.
 <!-- /ANCHOR:limitations -->
 
 ---

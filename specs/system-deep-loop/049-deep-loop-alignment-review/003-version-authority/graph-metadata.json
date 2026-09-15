@@ -39,14 +39,15 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md"
     ],
     "entities": [
       {
@@ -86,6 +87,12 @@
         "source": "derived"
       },
       {
+        "name": "parent-hub-router-schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +123,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +141,7 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Pattern One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,7 +153,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Changelog",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The three hubs carried six disagreeing version values across their routing artifacts: system-deep-loop spanned 1.0.1.0 to 3.0.0.0 across five files, sk-code's registry and router lagged its release by a minor version, and cli-external-orchestration split the registry/router pair that sk-code kept paired",
     "created_at": "2026-09-15T14:23:10Z",
-    "last_save_at": "2026-09-15T14:24:27.394Z",
+    "last_save_at": "2026-09-15T16:21:13.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f865636f0ea3dd0bce1c7b2c780ba0f7a7604b9b7ada4fbcd58188abfb74222b",
+    "source_fingerprint": "sha256:bd217e3258aa0d450c37b3752551c2f1b528e5b2abc06ef2f7fd2dda93949f0e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1538f39d56d4da5bc4ff10e04d1c4d51be2f0f4f60564141ae6fe3dae9ef49a2",
-      "plan.md": "95c0809df4b049f0bf90c185a74c550df0ac92a7a12d3e17cd7477432afc1b7e",
-      "tasks.md": "9efea3df8a0cdcfda67e7c46df98ce2eb42113bdce9d6a8fb479f465d61f3e66",
-      "implementation-summary.md": "7abe5360a7e0c459f9ec60a84ba315625873990249959705a62de30b58fb1b87"
+      "spec.md": "14f0c2173fcade4734778d4d3ba89f01a5f07d5e33324df3cdcf8603862a8114",
+      "plan.md": "aaacf4da571b925070382d5e844ebd6e7eaeab07c103fb87f4f050bb5a0e9f23",
+      "tasks.md": "58b3269500630258f803801733e1b37077e3ceb6907e918d3539d048cbe587fb",
+      "implementation-summary.md": "9d349d17020b10c73f3a12f9369330a45a83df7a0ce3218af2685d0ca3ff1b5a"
     },
     "last_active_at": null
   }

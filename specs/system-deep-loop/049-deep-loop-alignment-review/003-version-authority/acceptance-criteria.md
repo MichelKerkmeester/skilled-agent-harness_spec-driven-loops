@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-version-authority"
+    packet_pointer: "system-deep-loop/049-deep-loop-alignment-review/003-version-authority"
     last_updated_at: "2026-09-15T14:23:11Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "claude-fable-5-1"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-14-003-version-authority"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** system-deep-loop/049-deep-loop-alignment-review/003-version-authority
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given each hub, When its five routing artifacts are read, Then all carry the authority's version | measured: 3.0.0.0, 4.2.2.0 and 1.5.0.0, five values each | Met | - |
+| AC-002 | REQ-002 | Given each hub, When registry and router are compared, Then they match | the same measurement | Met | - |
+| AC-003 | REQ-003 | Given the edits, When the compiled route guard runs, Then every hub is fresh | `.opencode/bin/compiled-route-guard.cjs:1`, exit 0 | Met | - |
 
 ### Status values
 
