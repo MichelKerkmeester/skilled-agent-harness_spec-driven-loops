@@ -30,12 +30,12 @@
       "completion",
       "criteria",
       "binding",
-      "one-paragraph",
-      "problem",
-      "statement"
+      "containment",
+      "changed",
+      "deep-loop"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md"
@@ -60,6 +60,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -78,25 +84,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Documentation Map",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -126,19 +120,19 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
+    "causal_summary": "The containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs across twenty phases",
     "created_at": "2026-09-15T09:48:33Z",
-    "last_save_at": "2026-09-15T09:50:12.709Z",
+    "last_save_at": "2026-09-15T09:51:55.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:ad6902602b4bbd4c930b932783491e17cb1200ea17c7d18b35ccf75d36f3418f",
+    "source_fingerprint": "sha256:13aeab78c47d2b8af79b8232fbaa47602775681c601c15d2736b1b5d5786694b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ec5b91c573080cbebdeb820081fb06c511a23e9ac7d9d5cebb88bff987ec6696"
+      "spec.md": "18da5b3c1dcba27c0b945a6d488ec31a74413b7a0c3ea0dee317d41c376e9a22"
     },
     "last_active_at": null
   }

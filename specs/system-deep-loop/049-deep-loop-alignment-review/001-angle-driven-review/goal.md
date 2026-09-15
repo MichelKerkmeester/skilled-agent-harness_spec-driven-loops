@@ -73,10 +73,6 @@ to the parent: apply it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-Three to seven bullets, each checkable without opening another file. Copy them
-verbatim into the objective: nothing dereferences a path, so criteria left only
-here are invisible to whatever judges completion.
-
 - [ ] Twenty iterations completed across four lanes in two waves, each numbered record carrying the route-proof fields
 - [ ] The wave-two angles in the spec differ from the seeds, rewritten from wave-one findings, and the rewrite is committed before wave two ran
 - [ ] Every finding verified against the tree and bound to a parent phase or recorded as refuted with the reason

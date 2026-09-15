@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Twenty phases of the containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs",
     "created_at": "2026-09-15T09:48:34Z",
-    "last_save_at": "2026-09-15T09:50:09.454Z",
+    "last_save_at": "2026-09-15T09:51:10.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aea235c57dbd128d2e4b16328c476aadf16b2edd0ba0bb057786d9575c3de69f",
+    "source_fingerprint": "sha256:9ab2e7c14ca5eb5962a3d262e0fd9d1a8058401b77e7be0f3450bc7a40cb32c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b1f0d0d804676f0bcd250d89d6a96e15b76e484096595b2348517da0060b03ff",
