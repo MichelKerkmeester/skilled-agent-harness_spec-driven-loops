@@ -249,7 +249,7 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 7. Validate Hermes-generated changes with the repository's code and test gates.
 8. Keep the current runtime as conductor and Hermes as delegated executor.
 9. Treat source-read claims as confirmed only when the contract pin records the live run.
-10. Compose every dispatch as `{resolved agent persona + task prompt}`, never a bare task. Resolve the persona from the ACTIVE runtime's agent directory (AGENTS.md §7) and INLINE it: Hermes profiles are whole-home islands and `delegate_task` children cannot read agent files, so no native persona surface exists. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
+10. Compose every dispatch as `{resolved agent persona + task prompt}`, never a bare task. Resolve the persona from the CALLING runtime's agent directory (AGENTS.md §9), because Hermes carries no agent directory of its own, and INLINE it: Hermes profiles are whole-home islands and `delegate_task` children cannot read agent files, so no native persona surface exists. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
 11. Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt, copying the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
 
 ### ⛔ NEVER
