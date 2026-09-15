@@ -199,12 +199,17 @@ function ledgerEvents(baseArtifactDir: string): readonly Record<string, unknown>
   return readJsonLines(join(baseArtifactDir, 'orchestration-status.log'));
 }
 
+// A missing executor binary is now refused by the pre-dispatch probe, before any
+// adapter is spawned, so the failure carries the probe's own wording and no exit
+// code rather than a spawn failure. Matching the probe's phrase keeps the negative
+// control meaningful: a lineage that did start and then failed for some other
+// reason carries a real exit code and must not satisfy this.
 function expectTransportMissingFailure(events: readonly Record<string, unknown>[]): void {
   const failure = events.find((event) => event.event === 'failed' && event.terminal === true);
   expect(failure).toMatchObject({
     error: {
-      message: 'lineage adapter exited with code -2',
-      exit_code: -2,
+      message: expect.stringContaining('executor unavailable'),
+      exit_code: null,
     },
   });
 }
