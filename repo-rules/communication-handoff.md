@@ -1,5 +1,5 @@
 ---
-title: "Rule: Communication handoff and questions"
+title: "Rule: Communication handoff"
 description: "End every turn by naming what is now the operator's to do, in the form that lets them do it."
 trigger_phrases:
   - "what do i do now"
@@ -27,10 +27,10 @@ trigger_phrases:
   - "one concrete next action"
 importance_tier: important
 contextType: reference
-version: 1.4.0.0
+version: 1.5.0.0
 ---
 
-# Rule: Communication handoff and questions
+# Rule: Communication handoff
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before ending a turn that leaves the operator anything to do.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.

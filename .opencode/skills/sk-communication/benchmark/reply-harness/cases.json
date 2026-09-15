@@ -58,6 +58,7 @@
       "delegation-and-orchestration.md",
       "evidence-and-proof.md",
       [
+        "communication-handoff.md",
         "communication-handoff-and-questions.md",
         "handoff-and-questions.md"
       ],
