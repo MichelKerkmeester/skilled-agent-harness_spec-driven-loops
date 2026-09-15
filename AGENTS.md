@@ -73,7 +73,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 | **<40%**     | Ask for clarification or mark "UNKNOWN"      |
 | **Override** | Blockers/conflicts → ask regardless of score |
 
-####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
+#### GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
 1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md`.
 2. B) Direct call: run `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --format json` when no hook brief is present or when diagnosing hook behavior.
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
@@ -133,7 +133,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 | "best practice", "always should" | a pattern imported without checking fit | Name the specific failure it prevents here, or drop it |
 | "while we're here", "also add", "might as well" | work outside the frozen scope | Note it separately; do not fold it into this change |
 | "DRY this up" across two instances | similarity mistaken for sameness | Two is not a pattern; wait for the third before abstracting |
-| The change touches callers or a shared contract | the blast radius is wider than the file | Name owner, callers, and the frozen contract before editing — the pre-write pass above |
+| The change touches callers or a shared contract | the blast radius is wider than the file | Name owner, callers, and the frozen contract before editing, the touch check in [`prevent-overengineering.md`](repo-rules/prevent-overengineering.md) §2 |
 | The fix works only where the bug surfaced | the symptom was treated, not the cause | Trace to the producer and fix at source |
 
 ---
@@ -193,20 +193,11 @@ Trigger: a session bound to a spec packet, on every turn.
 | **Trigger index + retrieval conventions** | Gate 1 answers from the committed trigger index. Free text uses the ripgrep recipes in `references/retrieval/retrieval-conventions.md`, over spec docs and skill docs only. A miss is a clean no-hit. Scope and declared losses: `system-spec-kit` SKILL.md §3. |
 | **Git (sk-git)** | Worktree setup, conventional commits and PR creation. Mechanics: `.opencode/skills/sk-git/`. |
 
-##### Git Workspace Safety
+#### Git Workspace Safety
 
-> Publishing and reversibility are expanded by [`blast-radius.md`](repo-rules/blast-radius.md); `sk-git` owns the mechanics.
-
-| Rule                                                         | Requirement                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| --------------------------------------------------------------| -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ask-first worktree vs. branch**                            | The AI must NEVER autonomously decide between creating a git worktree and working on the current branch. When a git workspace trigger fires (new feature, worktree, isolated workspace), ask the operator to explicitly choose **A) Create a git worktree** or **B) Work on current branch**, then wait for that choice before proceeding.                                                                                              |
-| **Branch naming**                                            | sk-git owns the naming grammar for branches and worktrees. Do not invent a name.                                                                                                                                                        |
-| **Allocate, never count**                                    | Only sk-git's allocator issues the next number. Never hand-count or hand-pick one.                                                                                                                                                                                                                                                                      |
-| **No direct branch creation**                                | Never create a branch with `git branch`, `git checkout -b`, or `git switch -c`. Branches are created only through sk-git's worktree and dedicated-branch commands.                                                                                                                                                                                                                                                                      |
-| **Commit identity**                                          | Every commit ends with a trailer paragraph carrying `Spec:` for packet work and a stamped seven-digit `Commit-Id:`. The commit-msg hook enforces it and refuses a malformed, misplaced or duplicate id, while sk-git owns the grammar, the allocator and the stamper.                                                                                                                                                                           |
-| **Ask before every push to a non-allowlisted remote branch** | Local branch and worktree creation stays unrestricted, but `origin` only ever receives release and reserved branches plus anything sk-git's allowlist permits, without asking. Every other push — new branch or update — needs a fresh, in-the-moment go-ahead; an explicit user push instruction counts as that go-ahead, a prior approval for an earlier push does not. sk-git documents the allowlist and the one-invocation bypass. |
-| **Live-sync in the main checkout**                           | sk-git can auto-publish, reconcile clean drift at session start, and follow the live branch. Each leg has a disable flag; sk-git documents them.                                                                                                                                                                                                               |
-| **Git hooks enforce these rules**                            | The push policy and live-sync are not just conventions: sk-git installs and verifies git hooks that back them — a pre-push hook is the technical backstop for the remote-push policy, and commit-time and session-start hooks drive the live-sync legs. sk-git owns installing, checking, and disabling them.                                                                                                                           |
+- **Never choose the workspace yourself and never create a branch yourself.** When a git workspace trigger fires, ask the operator to choose **A) Create a git worktree** or **B) Work on current branch**, and wait.
+- **Ask before every push to a branch outside sk-git's remote allowlist.** A prior approval never carries forward. An explicit push instruction is itself the go-ahead.
+- Naming, numbering, commit identity, live-sync and the hooks that back all of it are `sk-git`'s. Publishing and reversibility are [`blast-radius.md`](repo-rules/blast-radius.md)'s.
 
 #### Code Search Decision Tree
 
