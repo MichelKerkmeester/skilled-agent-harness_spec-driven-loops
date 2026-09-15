@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Forced-depth validation fails on an empty usable record set and the appender refuses an unnumbered iteration record."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/019-forced-depth-empty-records"
     last_updated_at: "2026-09-15T00:55:24Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Closed the empty-record hole and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 4: forced-depth-empty-records
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+A lane can no longer pass forced-depth validation on records the runner cannot use. `runtime/scripts/fanout-run.cjs` now treats an empty collapsed iteration set under the max-iterations policy with a positive cap as a violation naming the state log and the count of unnumbered iteration records, at both call sites; `runtime/scripts/append-state-record.cjs` refuses an iteration record whose `iteration` is not a positive integer, naming the field, before appending anything. Against the unmodified validator the test with five files numbered under `run` passed with a null violation, which is the hole; against the unmodified appender an unnumbered record appended with exit zero.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi. The delegate proved the hole against the pristine runner restored from HEAD, ran the two required files plus the unit, integration and lifecycle suites, and attributed one timestamp-window timeout to load by reproducing green in isolation and on rerun. It flagged the research YAML directive that still emits `run`, which the orchestrator bound to phase 020. The orchestrator reviewed the diff and ran the whole suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Fail an empty usable set rather than tolerate it | Forced depth means every iteration ran and was recorded; zero usable records cannot satisfy that |
+| Refuse at the appender | A refusal names the field at write time; a validation failure hours later names only the log |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +77,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Unnumbered-records test against unmodified validator | passed with null violation, proving the hole |
+| Refusal tests against unmodified appender | FAIL, three of nine |
+| Both touched files plus typecheck; unit, integration, lifecycle suites | PASS, exit 0 |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 2639 passed, 8 skipped, exit 0, 1201 s |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +89,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Research directive.** The research auto YAML still emits an iteration record numbered under `run` through the mode gateway; phase 020 adds the iteration number at the source.
 <!-- /ANCHOR:limitations -->
 
 ---

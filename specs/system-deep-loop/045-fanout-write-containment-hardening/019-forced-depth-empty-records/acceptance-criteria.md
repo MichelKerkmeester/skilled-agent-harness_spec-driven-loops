@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/019-forced-depth-empty-records"
+    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/019-forced-depth-empty-records"
     last_updated_at: "2026-09-15T00:55:24Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "claude-fable-5-1"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-14-019-forced-depth-empty-records"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** system-deep-loop/045-fanout-write-containment-hardening/019-forced-depth-empty-records
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given five iteration files and records numbered under run, When forced-depth validation runs, Then the lane fails naming the state log | `fanout-run.vitest.ts:623` and `:637`; passed with null against the unmodified validator | Met | - |
+| AC-002 | REQ-002 | Given an iteration record without an integer iteration, When appended, Then it is refused naming the field and nothing is written | `trustworthy-state-records.vitest.ts:127` | Met | - |
+| AC-003 | REQ-003 | Given a numbered iteration record or a non-iteration record, When appended, Then it lands as before | `trustworthy-state-records.vitest.ts:155` | Met | - |
 
 ### Status values
 

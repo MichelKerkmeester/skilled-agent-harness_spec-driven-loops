@@ -18,7 +18,7 @@
 // fixtures below use those exact strings.
 
 import { describe, it, expect, afterAll } from 'vitest';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -39,6 +39,15 @@ function append(logPath: string, record: unknown): void {
 }
 function readRecords(logPath: string): Record<string, unknown>[] {
   return fs.readFileSync(logPath, 'utf8').trim().split('\n').map((l) => JSON.parse(l));
+}
+
+function appendExpectingRefusal(logPath: string, record: unknown): { status: number | null; stderr: string } {
+  const result = spawnSync('node', [APPENDER, logPath], { input: JSON.stringify(record), encoding: 'utf8' });
+  return { status: result.status, stderr: result.stderr };
+}
+
+function logBytes(logPath: string): string {
+  return fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8') : '';
 }
 
 describe('state records carry an observed time, not a claimed one', () => {
@@ -107,5 +116,57 @@ describe('a completed lineage is not failed over the word it chose', () => {
     // silently never fire.
     expect(src).toContain('completionFromArtifacts({ lineageDir');
     expect(src).toContain('stopPolicy,\n        lineageDir,');
+  });
+});
+
+describe('an iteration record the log cannot use is refused at the gateway', () => {
+  // Numbering is the whole contract here: forced-depth validation collapses records
+  // by `iteration`, so a record numbered under another key appends a line that no
+  // consumer can check and the lane's own depth proof disappears.
+
+  it('refuses an iteration record written without an iteration number', () => {
+    const log = path.join(tempDir('state-'), 'state.jsonl');
+    const { status, stderr } = appendExpectingRefusal(log, { type: 'iteration', run: 3, mode: 'research' });
+
+    expect(status).toBe(1);
+    expect(stderr).toContain('missing an integer iteration');
+  });
+
+  it('appends nothing when it refuses', () => {
+    const log = path.join(tempDir('state-'), 'state.jsonl');
+    fs.writeFileSync(log, `${JSON.stringify({ type: 'config' })}\n`);
+    const before = logBytes(log);
+
+    appendExpectingRefusal(log, { type: 'iteration', run: 3 });
+
+    expect(logBytes(log)).toBe(before);
+    expect(readRecords(log)).toHaveLength(1);
+  });
+
+  it('refuses an iteration number that is not a positive integer', () => {
+    for (const iteration of [undefined, null, 0, -1, 2.5, '3']) {
+      const log = path.join(tempDir('state-'), 'state.jsonl');
+      const { status } = appendExpectingRefusal(log, { type: 'iteration', iteration });
+      expect(status).toBe(1);
+      expect(logBytes(log)).toBe('');
+    }
+  });
+
+  it('appends a numbered iteration record as before', () => {
+    const log = path.join(tempDir('state-'), 'state.jsonl');
+    append(log, { type: 'iteration', iteration: 2, run: 2, mode: 'research' });
+
+    const [rec] = readRecords(log);
+    expect(rec.iteration).toBe(2);
+    expect(rec.run).toBe(2);
+  });
+
+  it('leaves non-iteration records alone', () => {
+    const log = path.join(tempDir('state-'), 'state.jsonl');
+    append(log, { type: 'event', event: 'maxIterationsReached', run: 5, stopReason: 'maxIterationsReached' });
+
+    const [rec] = readRecords(log);
+    expect(rec.event).toBe('maxIterationsReached');
+    expect(rec.run).toBe(5);
   });
 });
