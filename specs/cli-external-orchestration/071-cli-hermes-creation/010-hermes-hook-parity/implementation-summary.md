@@ -102,6 +102,7 @@ Four dispatch groups went to `cli-pi` with `llmgateway/deepseek-v4.1-flash` at m
 | `python3 .hermes/plugins/repo-guards/tests/test_repo_guards.py` | `Ran 42 tests ... OK` |
 | `hermes plugins validate .hermes/plugins/repo-guards` | `Validation passed.` |
 | HERMES-024 post-edit advisory | live, `COMMENT HYGIENE WARNING` on the write result |
+| Post-run hardening | The full playbook run found the sk-git advisory never reaching a live result and the vision core on the fail-closed hook; all three staged advisories moved into `transform_tool_result` and vision got a 25-second budget, re-verified live |
 | HERMES-025 delegation block | live, `REFUSED: system-deep-loop-guard: Deep Route mode mismatch ...` |
 | HERMES-026 MCP route guard | in-process advisory for a ClickUp-shaped call; live Code Mode call silent |
 | HERMES-027 session advisories | live, section 572 chars, worktree-guard line quoted |

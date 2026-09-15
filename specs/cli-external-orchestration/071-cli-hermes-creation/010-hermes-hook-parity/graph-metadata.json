@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A Hermes session ran seven of the repo's twenty-two hook packages",
     "created_at": "2026-09-15T05:17:36Z",
-    "last_save_at": "2026-09-15T06:35:29.778Z",
+    "last_save_at": "2026-09-15T13:18:34.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d63e6e1f63aba0156bb84db7160df3a119b85618f2b582e5586bbee459377ef",
+    "source_fingerprint": "sha256:72dd33a484c26a30a91db460d5b79f3efc1a7102355fda8e63cd4a36843c0bca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e94ea110522aa3f0e63cf9b89f393971ce262f0810918473fc7f83b13d29add0",
       "plan.md": "31115ca874faaac899625087e7492f81d3bf8698355b8a8761effd1c78cc6926",
       "tasks.md": "09e9e030bca0ad0665917f19ad40f102ad5eb7e166942e743f08bfbacd2e3bfa",
-      "implementation-summary.md": "299dde876afad55c3f4a25804a21313ef998ca587ef77440b1e3cd919f0cf730"
+      "implementation-summary.md": "f689eac3606da4ee5470aa2e664dc44131a0895607b41ec133966c411782e840"
     },
     "last_active_at": null
   }

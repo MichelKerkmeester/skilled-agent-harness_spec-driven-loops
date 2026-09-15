@@ -6,9 +6,11 @@ guard core this repository already runs for the other runtimes. This plugin re-i
 of them: each hook shells out to the existing core under ``.opencode/`` with the same JSON payload
 the Devin adapters use, and maps the core's answer onto Hermes's directive shapes.
 
-Every hook fails open. A guard that cannot run must not block a session, because the cost of a
-false block is a stalled dispatch while the cost of a false pass is the failure the caller would
-have seen anyway.
+No callback here raises into the session, so a guard that cannot run cannot block a session: the
+cost of a false block is a stalled dispatch while the cost of a false pass is the failure the
+caller would have seen anyway. The one hook Hermes itself fails closed on carries only the
+verdicts that have to stop a call before it runs; everything else is guidance, and guidance is
+appended to a result that has already happened.
 
 Loads only when ``HERMES_ENABLE_PROJECT_PLUGINS`` is set and the working directory is this
 repository, which is Hermes's own opt-in for project plugins.
@@ -133,11 +135,9 @@ AGENTS_DIR = REPO_ROOT / ".hermes" / "agents"
 PERSONA_NAME = re.compile(r"^[a-z0-9][a-z0-9-]{0,63}$")
 AGENT_SKILL_PREFIX = "agent-"
 
-# An advisory a synchronous pre hook stages for one tool call -- the sk-git line, the MCP route
-# guard, the dispatch guard, the vision guidance -- and the transform appends to that call's result.
-# It travels on the result because Hermes's pre_tool_call directive can only block, approve or modify.
+# A git-shaped command invokes the binary at a command boundary, so a path or an argument that
+# merely mentions git is not a git call.
 GIT_SHAPE = re.compile(r"(?:^|[\s;&|(])git\s")
-_pending_advisories: Dict[str, str] = {}
 
 # The Hermes file-write tools. The post-edit quality core recognizes the edit-tool name of its own
 # runtime and stays silent for any other, so a Hermes write is reported under that name; the core
@@ -151,8 +151,8 @@ DELEGATE_TOOL = "delegate_task"
 DELEGATE_CORE_TOOL = "run_subagent"
 
 # Hermes's vision tool takes its image as `image_url` -- a URL, a local path or a data URL -- and
-# the shared vision core reads the image path from its prompt, so the guard payload carries the
-# same value and the advisory is staged and read back under it.
+# the shared vision core reads the image path from its prompt, so the guard payload carries the same
+# value the call did.
 VISION_TOOL = "vision_analyze"
 VISION_IMAGE_ARG = "image_url"
 
@@ -198,9 +198,14 @@ SELF_DISPATCH_MESSAGE = (
 
 # Bounded so a hung core cannot stall a tool call; the cores themselves finish in well under this.
 CORE_TIMEOUT_SECONDS = 15
+# The vision core answers through a model call and takes tens of seconds on a loaded machine, so it
+# carries a budget of its own rather than the one the verdict cores finish inside.
+VISION_CORE_TIMEOUT_SECONDS = 25
 
 
-def _run_core(script: Path, payload: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+def _run_core(
+    script: Path, payload: Dict[str, Any], timeout: int = CORE_TIMEOUT_SECONDS
+) -> Optional[Dict[str, Any]]:
     """Run one guard core with a JSON payload on stdin and return its parsed JSON stdout, or None."""
     if not script.exists():
         return None
@@ -211,7 +216,7 @@ def _run_core(script: Path, payload: Dict[str, Any]) -> Optional[Dict[str, Any]]
             capture_output=True,
             text=True,
             cwd=str(REPO_ROOT),
-            timeout=CORE_TIMEOUT_SECONDS,
+            timeout=timeout,
             check=False,
         )
     except (OSError, subprocess.SubprocessError):
@@ -244,18 +249,6 @@ def _path_of(tool_name: str, args: Dict[str, Any]) -> Optional[str]:
         return None
     path = args.get("path")
     return path if isinstance(path, str) and path.strip() else None
-
-
-def _advisory_key(tool_name: str, args: Dict[str, Any]) -> Optional[str]:
-    """The staging key this call's result reads: its command, its image path or its tool name."""
-    command = _command_of(tool_name, args)
-    if command is not None:
-        return command
-    if tool_name == VISION_TOOL:
-        return _vision_image(args)
-    if tool_name == DELEGATE_TOOL or tool_name not in HERMES_BUILTIN_TOOLS:
-        return tool_name or None
-    return None
 
 
 def _read_only_leaf() -> bool:
@@ -296,7 +289,7 @@ def _vision_image(args: Dict[str, Any]) -> Optional[str]:
 def _vision_advisory(image: str) -> Optional[str]:
     """The shared vision core's guidance for one image path, or None when it stays silent."""
     payload = {"prompt": image, "cwd": os.getcwd()}
-    context = _hook_output(_run_core(SK_VISION, payload)).get("additionalContext")
+    context = _hook_output(_run_core(SK_VISION, payload, VISION_CORE_TIMEOUT_SECONDS)).get("additionalContext")
     return context.strip() if isinstance(context, str) and context.strip() else None
 
 
@@ -335,40 +328,58 @@ def _dispatch_targets(args: Dict[str, Any]) -> List[Tuple[str, Optional[str]]]:
     return [(_task_prompt(args), _task_role(args, None))]
 
 
-def _dispatch_guard(tool_name: str, args: Dict[str, Any], session_id: str) -> Optional[Dict[str, Any]]:
+def _dispatch_payload(prompt: str, role: Optional[str], session_id: str) -> Dict[str, Any]:
+    """One child of a delegate_task call in the payload shape the shared dispatch guard reads."""
+    tool_input: Dict[str, Any] = {"prompt": prompt}
+    if role is not None and role.lower() != DELEGATE_GENERIC_ROLE:
+        tool_input["subagent_type"] = role
+    return {
+        "tool_name": DELEGATE_CORE_TOOL,
+        "tool_input": tool_input,
+        "session_id": session_id,
+        "cwd": os.getcwd(),
+    }
+
+
+def _dispatch_guard(args: Dict[str, Any], session_id: str) -> Optional[Dict[str, Any]]:
     """Guard one delegate_task call: each child it spawns is a dispatch of its own, so a block when
-    any one of them is denied, else None after staging the advisories for the result."""
-    advisories = []
+    any one of them is denied, else None.
+
+    A denial has to stop the call, so it is decided before the call runs while the guard's guidance
+    for the children that pass reaches the result afterwards.
+    """
     for prompt, role in _dispatch_targets(args):
-        tool_input: Dict[str, Any] = {"prompt": prompt}
-        if role is not None and role.lower() != DELEGATE_GENERIC_ROLE:
-            tool_input["subagent_type"] = role
-        payload = {
-            "tool_name": DELEGATE_CORE_TOOL,
-            "tool_input": tool_input,
-            "session_id": session_id,
-            "cwd": os.getcwd(),
-        }
-        output = _hook_output(_run_core(TASK_DISPATCH_GUARD, payload))
+        output = _hook_output(_run_core(TASK_DISPATCH_GUARD, _dispatch_payload(prompt, role, session_id)))
         if output.get("permissionDecision") == "deny":
             reason = output.get("permissionDecisionReason")
             if isinstance(reason, str) and reason.strip():
                 return {"action": "block", "message": reason.strip()}
             return None
+    return None
+
+
+def _dispatch_advisory(args: Dict[str, Any], session_id: str) -> Optional[str]:
+    """The shared dispatch guard's guidance for the children of one delegate_task call, in the order
+    the call spawns them, or None when the guard says nothing about any child."""
+    advisories = []
+    for prompt, role in _dispatch_targets(args):
+        output = _hook_output(_run_core(TASK_DISPATCH_GUARD, _dispatch_payload(prompt, role, session_id)))
         context = output.get("additionalContext")
         if isinstance(context, str) and context.strip():
             advisories.append(context.strip())
-    if advisories:
-        _pending_advisories[tool_name] = "\n\n".join(advisories)
-    return None
+    return "\n\n".join(advisories) if advisories else None
 
 
 def pre_tool_call(
     tool_name: str = "", args: Optional[Dict[str, Any]] = None, session_id: str = "", **_: Any
 ) -> Optional[Dict[str, Any]]:
-    """Refuse a self-dispatch or a read-only leaf's write; run the dispatch preflight and stage any
-    git advisory; guard a subagent dispatch and a native external MCP call; stage the vision core's
-    guidance for an image call."""
+    """Refuse a self-dispatch or a read-only leaf's write, run the dispatch preflight, and block a
+    denied `delegate_task` batch.
+
+    Only a verdict that has to stop the call belongs here. This is the one hook Hermes blocks the
+    tool on when the callback overruns its budget, so a core that answers with guidance rather than
+    a verdict would spend that budget for a line that can arrive after the call just as well.
+    """
     try:
         if _read_only_leaf() and tool_name in READ_ONLY_TOOLS:
             return {"action": "block", "message": READ_ONLY_MESSAGE}
@@ -383,44 +394,50 @@ def pre_tool_call(
                 reason = output.get("permissionDecisionReason")
                 if isinstance(reason, str) and reason.strip():
                     return {"action": "block", "message": reason.strip()}
-            advisory = _git_advisory(command)
-            if advisory:
-                _pending_advisories[command] = advisory
             return None
         if tool_name == DELEGATE_TOOL:
-            return _dispatch_guard(tool_name, tool_args, session_id)
-        if tool_name == VISION_TOOL:
-            image = _vision_image(tool_args)
-            if image is not None:
-                advisory = _vision_advisory(image)
-                if advisory:
-                    _pending_advisories[image] = advisory
-            return None
-        route_advisory = _mcp_route_advisory(tool_name, tool_args)
-        if route_advisory:
-            _pending_advisories[tool_name] = route_advisory
+            return _dispatch_guard(tool_args, session_id)
         return None
     except Exception:
         return None
 
 
 # Hermes runs `post_tool_call` and `transform_tool_result` on bounded worker threads it abandons on
-# timeout, and a callback is skipped outright after an earlier timeout, so state staged by the post
-# hook can be missing when the transform runs. The post-edit core runs here instead, where the
-# result is already final; the pre hook stages safely because its directive is awaited before the
-# tool call proceeds.
-def transform_tool_result(tool_name: str = "", args: Optional[Dict[str, Any]] = None, result: Any = None, **_: Any) -> Optional[str]:
-    """Append this call's advisory to its result: the post-edit quality pass for a file write, or
-    the advisory the pre hook staged for it -- git, dispatch, MCP route or vision; None leaves it alone."""
+# timeout, and a callback is skipped outright after an earlier timeout, so anything the two halves
+# of a tool call would hand to each other can go missing between them. Every advisory is therefore
+# computed here, from the call's own arguments, where the result is already final and a slow core
+# costs a late advisory rather than a blocked tool. The pre hook fails closed, so only a verdict
+# that has to stop the call earns its time; this hook fails open, and the longest core it runs is
+# the one with a model call behind it.
+def _result_advisory(tool_name: str, args: Dict[str, Any], session_id: str) -> Optional[str]:
+    """The guidance this call's own arguments earn, or None when no core speaks for it."""
+    path = _path_of(tool_name, args)
+    if path is not None:
+        return _post_edit_advisory(path)
+    command = _command_of(tool_name, args)
+    if command is not None:
+        return _git_advisory(command)
+    if tool_name == VISION_TOOL:
+        image = _vision_image(args)
+        return _vision_advisory(image) if image is not None else None
+    if tool_name == DELEGATE_TOOL:
+        return _dispatch_advisory(args, session_id)
+    return _mcp_route_advisory(tool_name, args)
+
+
+def transform_tool_result(
+    tool_name: str = "",
+    args: Optional[Dict[str, Any]] = None,
+    result: Any = None,
+    session_id: str = "",
+    **_: Any,
+) -> Optional[str]:
+    """Append this call's advisory to its result: the post-edit quality pass for a file write, the
+    sk-git line for a git command, the vision guidance for an image, the dispatch guard's notes for
+    a delegated batch, or the MCP route guard for an external server's tool. None leaves the result
+    as it came in, which is also what a silent or failing core does."""
     try:
-        tool_args = args or {}
-        path = _path_of(tool_name, tool_args)
-        advisory = _post_edit_advisory(path) if path is not None else None
-        if not advisory:
-            key = _advisory_key(tool_name, tool_args)
-            if key is None:
-                return None
-            advisory = _pending_advisories.pop(key, None)
+        advisory = _result_advisory(tool_name, args or {}, session_id)
         if not advisory:
             return None
         text = result if isinstance(result, str) else json.dumps(result) if result is not None else ""

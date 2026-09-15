@@ -64,6 +64,8 @@ cat out.txt
 
 **Executed 2026-09-15**: exit 0 after 87 s, `EVIDENCE` then `The image is a simple, solid rectangle of uniform color ...`, session `20260915_082637_0f75f1`, `vision_analyze completed (22.12s)`. Two earlier runs found no `vision_analyze` in the session because no vision provider resolved; setting `auxiliary.vision.provider` to the gateway fixed that.
 
+
+**Third pass 2026-09-15**: exit 0 after 56 s, `EVIDENCE` with the model's description of a solid red rectangle, session `20260915_151426_ba137d`. A first attempt in this pass returned `NO_EVIDENCE`, which exposed two faults in the bridge rather than in the tool. The sk-vision core makes a real vision-model call and takes about 12.5 s against the plugin's 15-second core budget, so under concurrent load it lost the advisory; and it ran on `pre_tool_call`, the one hook Hermes fails closed on timeout, so a slow core risked blocking the vision tool outright. The core now runs inside `transform_tool_result`, which fails open, on its own 25-second budget.
 ---
 
 ## 4. SOURCE FILES

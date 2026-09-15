@@ -99,7 +99,7 @@ Symlinks were created with the same relative targets the Pi and Devin folders us
 | `ls -la .hermes` | Symlinks resolve; `prompts/`, `plugins/`, `SYNC.md` present |
 | `sync-prompts-hermes.cjs` then `--check` | Wrote 33 of 33; PASS, 33 in sync |
 | Duplicate content | None; stubs point at canonical files |
-| Live skill reach with the repo trusted | `-s cli-hermes` quoted `stdin-redirect-required`; `hermes skills list` shows no project rows |
+| Live skill reach with the repo trusted | `-s cli-hermes` quoted `stdin-redirect-required`; `hermes skills list` enumerates 61 of the 68 copies as `local` rows, the seven absences being the quarantined ones (2026-09-15) |
 | One template dispatched end to end | `agent-router` template via `--query-file`: `PERSONA=markdown`, exit 0, 91 s |
 <!-- /ANCHOR:verification -->
 

@@ -263,12 +263,34 @@ class RepoGuardsTests(unittest.TestCase):
 
     def test_git_advisory_reaches_the_tool_result(self):
         # Force the advisory core's answer so the test does not depend on the repo's git state.
-        with mock.patch.object(self.plugin, "_git_advisory", return_value="⚠ sk-git advisory — test"):
-            self.assertIsNone(self.plugin.pre_tool_call("terminal", {"command": "git push origin feature"}))
+        seen = []
+
+        def fake_core(script, payload, timeout=None):
+            seen.append((script, payload))
+            return {"hookSpecificOutput": {"additionalContext": "⚠ sk-git advisory — test"}}
+
+        with mock.patch.object(self.plugin, "_run_core", side_effect=fake_core):
             out = self.plugin.transform_tool_result("terminal", {"command": "git push origin feature"}, "pushed")
-            self.assertEqual(out, "pushed\n\n⚠ sk-git advisory — test")
-        # A command without a staged advisory leaves the result untouched.
-        self.assertIsNone(self.plugin.transform_tool_result("terminal", {"command": "git status"}, "clean"))
+        self.assertEqual(out, "pushed\n\n⚠ sk-git advisory — test")
+        self.assertEqual(seen[0][0], self.plugin.GIT_PREFLIGHT_ADVISORY)
+        self.assertEqual(
+            seen[0][1],
+            {"tool_name": "exec", "tool_input": {"command": "git push origin feature"}, "cwd": os.getcwd()},
+        )
+
+        # A core that stays silent leaves the result untouched, and a shell command the guard does
+        # not answer for never reaches the core at all.
+        with mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}):
+            self.assertIsNone(self.plugin.transform_tool_result("terminal", {"command": "git status"}, "clean"))
+        with mock.patch.object(self.plugin, "_run_core") as core:
+            self.assertIsNone(self.plugin.transform_tool_result("terminal", {"command": "ls -la"}, "listed"))
+            core.assert_not_called()
+
+        # The pre hook keeps only its blocking duties: a git command reaches the dispatch preflight
+        # core and never the advisory core, whose line would otherwise wait on the fail-closed hook.
+        with mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}) as core:
+            self.assertIsNone(self.plugin.pre_tool_call("terminal", {"command": "git status"}))
+        self.assertEqual([call.args[0] for call in core.call_args_list], [self.plugin.DISPATCH_PREFLIGHT])
 
     def test_git_advisory_core_is_wired_to_the_shared_script(self):
         self.assertTrue(self.plugin.GIT_PREFLIGHT_ADVISORY.is_file(), self.plugin.GIT_PREFLIGHT_ADVISORY)
@@ -310,13 +332,12 @@ class RepoGuardsTests(unittest.TestCase):
     def test_mcp_route_advisory_reaches_the_native_result(self):
         seen = {}
 
-        def fake_core(script, payload):
+        def fake_core(script, payload, timeout=None):
             seen["script"] = script
             seen["payload"] = payload
             return {"hookSpecificOutput": {"additionalContext": "mcp-route-guard: route via Code Mode"}}
 
         with mock.patch.object(self.plugin, "_run_core", side_effect=fake_core):
-            self.assertIsNone(self.plugin.pre_tool_call("acme_add_row", {"row": 1}))
             out = self.plugin.transform_tool_result("acme_add_row", {"row": 1}, "added")
         self.assertEqual(out, "added\n\nmcp-route-guard: route via Code Mode")
         self.assertEqual(seen["script"], self.plugin.MCP_ROUTE_GUARD)
@@ -324,12 +345,27 @@ class RepoGuardsTests(unittest.TestCase):
             seen["payload"], {"tool_name": "acme_add_row", "tool_input": {"row": 1}, "cwd": os.getcwd()}
         )
 
+        # A guard that stays silent leaves the result untouched.
+        with mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}):
+            self.assertIsNone(self.plugin.transform_tool_result("acme_add_row", {"row": 1}, "added"))
+
     def test_builtin_tools_never_reach_the_mcp_route_guard(self):
         self.assertIn("read_file", self.plugin.HERMES_BUILTIN_TOOLS)
-        with mock.patch.object(self.plugin, "_run_core") as core:
-            self.assertIsNone(self.plugin.pre_tool_call("read_file", {"path": "README.md"}))
-            self.assertIsNone(self.plugin.pre_tool_call("write_file", {"path": "x", "content": "y"}))
-            core.assert_not_called()
+        scripts = []
+
+        def fake_core(script, payload, timeout=None):
+            scripts.append(script)
+            return {"hookSpecificOutput": {"additionalContext": "advisory"}}
+
+        with mock.patch.object(self.plugin, "_run_core", side_effect=fake_core):
+            self.assertIsNone(self.plugin.transform_tool_result("read_file", {"path": "README.md"}, "read"))
+            self.assertIsNone(self.plugin.transform_tool_result("search_files", {"pattern": "x"}, "found"))
+            self.assertEqual(
+                self.plugin.transform_tool_result("write_file", {"path": "x", "content": "y"}, "wrote"),
+                "wrote\n\nadvisory",
+            )
+        # The only core a built-in tool reaches is the post-edit pass behind a write.
+        self.assertEqual(scripts, [self.plugin.POST_EDIT_QUALITY])
 
     def test_delegate_task_denial_blocks_the_call(self):
         seen = {}
@@ -356,12 +392,30 @@ class RepoGuardsTests(unittest.TestCase):
         self.assertEqual(seen["payload"]["session_id"], "s1")
 
     def test_dispatch_advisory_reaches_the_delegate_result(self):
-        with mock.patch.object(
-            self.plugin, "_run_core", return_value={"hookSpecificOutput": {"additionalContext": "mode mismatch"}}
-        ):
-            self.assertIsNone(self.plugin.pre_tool_call("delegate_task", {"goal": "run the loop"}))
-            out = self.plugin.transform_tool_result("delegate_task", {"goal": "run the loop"}, "delegated")
+        seen = {}
+
+        def fake_core(script, payload, timeout=None):
+            seen["script"] = script
+            seen["payload"] = payload
+            return {"hookSpecificOutput": {"additionalContext": "mode mismatch"}}
+
+        with mock.patch.object(self.plugin, "_run_core", side_effect=fake_core):
+            out = self.plugin.transform_tool_result(
+                "delegate_task", {"goal": "run the loop"}, "delegated", session_id="s1"
+            )
         self.assertEqual(out, "delegated\n\nmode mismatch")
+        self.assertEqual(seen["script"], self.plugin.TASK_DISPATCH_GUARD)
+        self.assertEqual(seen["payload"]["tool_name"], "run_subagent")
+        self.assertIn("run the loop", seen["payload"]["tool_input"]["prompt"])
+        self.assertEqual(seen["payload"]["session_id"], "s1")
+
+        # A guard that stays silent leaves the result untouched.
+        with mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}):
+            self.assertIsNone(
+                self.plugin.transform_tool_result(
+                    "delegate_task", {"goal": "run the loop"}, "delegated", session_id="s1"
+                )
+            )
 
     def test_delegate_task_tasks_batch_is_evaluated_task_by_task(self):
         seen = []
@@ -398,15 +452,20 @@ class RepoGuardsTests(unittest.TestCase):
         self.assertIn("run the loop", second["tool_input"]["prompt"])
         self.assertNotIn("subagent_type", second["tool_input"])
 
-        # Every task allowed: the call passes, and each task's advisory rides on the result.
-        def allow_with_advisory(script, payload):
+        # Every task allowed: each task's advisory is computed from the batch itself when the result
+        # comes back, in the order the batch spawns them. This runs before the pre hook below so the
+        # transform cannot be reading guidance the pre hook left behind for it.
+        def allow_with_advisory(script, payload, timeout=None):
             goal = payload["tool_input"]["prompt"].splitlines()[0]
             return {"hookSpecificOutput": {"additionalContext": f"advisory for {goal}"}}
 
         with mock.patch.object(self.plugin, "_run_core", side_effect=allow_with_advisory):
-            self.assertIsNone(self.plugin.pre_tool_call("delegate_task", batch, session_id="s2"))
-            out = self.plugin.transform_tool_result("delegate_task", batch, "delegated")
+            out = self.plugin.transform_tool_result("delegate_task", batch, "delegated", session_id="s2")
         self.assertEqual(out, "delegated\n\nadvisory for ship the reduction\n\nadvisory for run the loop")
+
+        # The call itself passes when no task in the batch is denied.
+        with mock.patch.object(self.plugin, "_run_core", side_effect=allow_with_advisory):
+            self.assertIsNone(self.plugin.pre_tool_call("delegate_task", batch, session_id="s2"))
 
     def test_goal_slice_comes_from_the_bound_packet(self):
         with mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": "specs/cli-external-orchestration/071-cli-hermes-creation"}):
@@ -666,27 +725,33 @@ class RepoGuardsTests(unittest.TestCase):
     def test_vision_advisory_reaches_the_result_under_the_image_path(self):
         seen = {}
 
-        def fake_core(script, payload):
+        def fake_core(script, payload, timeout=None):
             seen["script"] = script
             seen["payload"] = payload
+            seen["timeout"] = timeout
             return {"hookSpecificOutput": {"additionalContext": "sk-vision: zoom the error text and OCR it"}}
 
         args = {"image_url": "screens/error.png", "question": "what failed?"}
         with mock.patch.object(self.plugin, "_run_core", side_effect=fake_core):
-            self.assertIsNone(self.plugin.pre_tool_call("vision_analyze", args, session_id="s3"))
             out = self.plugin.transform_tool_result("vision_analyze", args, "native analysis")
         self.assertEqual(out, "native analysis\n\nsk-vision: zoom the error text and OCR it")
         self.assertEqual(seen["script"], self.plugin.SK_VISION)
         self.assertEqual(seen["payload"], {"prompt": "screens/error.png", "cwd": os.getcwd()})
+        # The model call behind this core earns a budget of its own: it runs on the fail-open
+        # result hook rather than the one that blocks the tool on an overrun.
+        self.assertEqual(seen["timeout"], self.plugin.VISION_CORE_TIMEOUT_SECONDS)
+        self.assertGreater(self.plugin.VISION_CORE_TIMEOUT_SECONDS, self.plugin.CORE_TIMEOUT_SECONDS)
 
     def test_vision_advisory_stays_quiet_when_the_core_stays_silent_or_fails(self):
         args = {"image_url": "screens/error.png", "question": "what failed?"}
         with mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}):
-            self.assertIsNone(self.plugin.pre_tool_call("vision_analyze", args))
             self.assertIsNone(self.plugin.transform_tool_result("vision_analyze", args, "native analysis"))
         with mock.patch.object(self.plugin, "_run_core", side_effect=RuntimeError("boom")):
-            self.assertIsNone(self.plugin.pre_tool_call("vision_analyze", args))
             self.assertIsNone(self.plugin.transform_tool_result("vision_analyze", args, "native analysis"))
+        # The blocking pre hook spends nothing on a core whose answer is guidance.
+        with mock.patch.object(self.plugin, "_run_core") as core:
+            self.assertIsNone(self.plugin.pre_tool_call("vision_analyze", args, session_id="s3"))
+            core.assert_not_called()
 
     def test_vision_call_without_an_image_never_reaches_the_core(self):
         with mock.patch.object(self.plugin, "_run_core") as core:
@@ -702,6 +767,10 @@ class RepoGuardsTests(unittest.TestCase):
             self.assertIsNone(self.plugin.pre_tool_call("acme_add_row", {"row": 1}))
             self.assertIsNone(self.plugin.pre_tool_call("vision_analyze", {"image_url": "x.png"}))
             self.assertIsNone(self.plugin.transform_tool_result("write_file", {"path": "x"}, "wrote x"))
+            self.assertIsNone(self.plugin.transform_tool_result("terminal", {"command": "git status"}, "clean"))
+            self.assertIsNone(self.plugin.transform_tool_result("vision_analyze", {"image_url": "x.png"}, "seen"))
+            self.assertIsNone(self.plugin.transform_tool_result("acme_add_row", {"row": 1}, "added"))
+            self.assertIsNone(self.plugin.transform_tool_result("delegate_task", {"goal": "x"}, "delegated"))
             self.assertIsNone(self.plugin.pre_verify("s", "done"))
             self.assertEqual(self.ctx.sections["repo-guards-session-context"]({}), "")
         with mock.patch.object(self.plugin.subprocess, "run", side_effect=OSError("no node")), \

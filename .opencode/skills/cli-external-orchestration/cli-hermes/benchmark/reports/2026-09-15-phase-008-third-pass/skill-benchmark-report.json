@@ -1,0 +1,427 @@
+{
+  "targetSkill": {
+    "id": "cli-hermes",
+    "rootRel": ".opencode/skills/cli-external-orchestration/cli-hermes"
+  },
+  "traceMode": "live+hermetic",
+  "executor": "cli-pi",
+  "orchestratorModel": "llmgateway/deepseek-v4.1-flash (--thinking high)",
+  "sessionModel": "glm-5.3-flash (llmgateway)",
+  "variant": "phase-008-third-pass",
+  "verdict": "PASS",
+  "supersedes": [
+    "2026-09-14-phase-008-second-pass"
+  ],
+  "tally": {
+    "live": {
+      "total": 30,
+      "pass": 29,
+      "fail": 1,
+      "skip": 0
+    },
+    "hermetic": {
+      "total": 14,
+      "pass": 14,
+      "fail": 0,
+      "skip": 0
+    }
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "HERMES-001",
+      "stage": "cli-invocation",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 14,
+      "sessionId": "20260915_143234_c1d880",
+      "reason": "sanctioned shape answered ALIVE on -t file,todo"
+    },
+    {
+      "scenarioId": "HERMES-002",
+      "stage": "cli-invocation",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 9,
+      "sessionId": "20260915_143247_bb87bf",
+      "reason": "--query-file - delivered quotes, $(...), backticks and $HOME verbatim"
+    },
+    {
+      "scenarioId": "HERMES-003",
+      "stage": "cli-invocation",
+      "verdict": "PASS",
+      "exitCode": 1,
+      "elapsedSeconds": 7,
+      "sessionId": "20260915_143306_a6da88",
+      "reason": "off-roster id exited 1 with the gateway HTTP 400 on stdout"
+    },
+    {
+      "scenarioId": "HERMES-021",
+      "stage": "cli-invocation",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 0,
+      "sessionId": "-",
+      "reason": "hermes config get printed the gateway base_url; hermes status still hides custom providers"
+    },
+    {
+      "scenarioId": "HERMES-004",
+      "stage": "permission-modes",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 29,
+      "sessionId": "20260915_143306_f2d357",
+      "reason": "flagged rm -rf refused without --yolo; scratch directory survived"
+    },
+    {
+      "scenarioId": "HERMES-005",
+      "stage": "permission-modes",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 18,
+      "sessionId": "20260915_143344_057c09",
+      "reason": "same command with --yolo ran; directory gone, no refusal text"
+    },
+    {
+      "scenarioId": "HERMES-006",
+      "stage": "permission-modes",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 19,
+      "sessionId": "20260915_143409_6617e3",
+      "reason": "ordinary write without --yolo produced the file and FINISHED"
+    },
+    {
+      "scenarioId": "HERMES-007",
+      "stage": "permission-modes",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 137,
+      "sessionId": "20260915_143437_e86a28",
+      "reason": "read succeeded; write_file returned the read-only refusal and the target stayed absent"
+    },
+    {
+      "scenarioId": "HERMES-008",
+      "stage": "agent-routing",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "20260915_143351_aa6e51",
+      "reason": "agent-router template returned ROUTER_OK and the canonical command path"
+    },
+    {
+      "scenarioId": "HERMES-023",
+      "stage": "agent-routing",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "20260915_143416_4dcc7d",
+      "reason": "PERSONA=markdown with the agent's H1 quoted from the preloaded agent skill"
+    },
+    {
+      "scenarioId": "HERMES-009",
+      "stage": "prompt-templates",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 14,
+      "sessionId": "20260915_143322_332aca",
+      "reason": "template round trip returned TEMPLATE_OK and the canonical path"
+    },
+    {
+      "scenarioId": "HERMES-022",
+      "stage": "prompt-templates",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 22,
+      "sessionId": "20260915_143343_e6e5a9",
+      "reason": "gate passed the 65-byte capture and tripped on a known-empty one; self-healing control demoted to advisory"
+    },
+    {
+      "scenarioId": "HERMES-011",
+      "stage": "session-continuity",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 13,
+      "sessionId": "20260915_143234_c1d880",
+      "reason": "--resume recalled the prior turn and re-emitted the same session id"
+    },
+    {
+      "scenarioId": "HERMES-012",
+      "stage": "cost-and-background",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 179,
+      "sessionId": "20260915_143640_779c50",
+      "reason": "run-budget wrap-up notice logged; answer carried a budget-acknowledging caveat"
+    },
+    {
+      "scenarioId": "HERMES-013",
+      "stage": "cost-and-background",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 48,
+      "sessionId": "20260915_145406_4ed2c8",
+      "reason": "serial rerun: cap fired and max_iterations_reached(1/1) logged; first attempt stalled under three-way gateway concurrency"
+    },
+    {
+      "scenarioId": "HERMES-014",
+      "stage": "git-preflight-advisory",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 52,
+      "sessionId": "20260915_151323_3141f2",
+      "reason": "sk-git advisory naming commit-scope-drops-untracked appended to the terminal result after the advisories moved to the transform hook"
+    },
+    {
+      "scenarioId": "HERMES-015",
+      "stage": "goal-hook",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "20260915_143550_9487aa",
+      "reason": "session quoted the frozen repo-guards-session-context section"
+    },
+    {
+      "scenarioId": "HERMES-020",
+      "stage": "goal-hook",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "20260915_143630_a703ee",
+      "reason": "bound packet path and objective quoted from the goal section"
+    },
+    {
+      "scenarioId": "HERMES-028",
+      "stage": "goal-hook",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "20260915_143941_51aedf",
+      "reason": "write-intent first turn carried ADVISOR and GATE; a read-only-worded probe correctly carried no gate"
+    },
+    {
+      "scenarioId": "HERMES-030",
+      "stage": "goal-hook",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "20260915_144032_1c0635",
+      "reason": "shared goal core reported the packet goal under the Hermes session id"
+    },
+    {
+      "scenarioId": "HERMES-010",
+      "stage": "integration-patterns",
+      "verdict": "FAIL",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "20260915_144107_4c8c71 / 20260915_144156_997acb",
+      "reason": "pair disagreed: deepseek-v4.1-flash answered --yolo, glm-5.3-flash answered --dangerously-skip-permissions; transport healthy on both, so this is the model signal the scenario exists to surface"
+    },
+    {
+      "scenarioId": "HERMES-019",
+      "stage": "integration-patterns",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "20260915_144224_18b9f2",
+      "reason": "code_mode search_tools returned ten tools; control without the server named NO_CODE_MODE"
+    },
+    {
+      "scenarioId": "HERMES-016",
+      "stage": "skills-and-plugins",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 22,
+      "sessionId": "20260915_143708_55b8e9",
+      "reason": "-s cli-hermes quoted the skill; control without it reported the skill absent"
+    },
+    {
+      "scenarioId": "HERMES-017",
+      "stage": "skills-and-plugins",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 1,
+      "sessionId": "-",
+      "reason": "listing enumerates 61 of 68 copies as local rows, the seven absences each carrying a quarantine line; contract corrected from the superseded no-project-rows reading"
+    },
+    {
+      "scenarioId": "HERMES-018",
+      "stage": "skills-and-plugins",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 171,
+      "sessionId": "20260915_143851_6c1108",
+      "reason": "nested hermes chat refused with the plugin's self-invocation message"
+    },
+    {
+      "scenarioId": "HERMES-024",
+      "stage": "skills-and-plugins",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 32,
+      "sessionId": "20260915_144442_0ea2d4",
+      "reason": "COMMENT HYGIENE WARNING appended to the write_file result"
+    },
+    {
+      "scenarioId": "HERMES-025",
+      "stage": "skills-and-plugins",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "20260915_144433_405865",
+      "reason": "delegate_task refused with the Deep Route mode mismatch under the guard's reject switch"
+    },
+    {
+      "scenarioId": "HERMES-026",
+      "stage": "skills-and-plugins",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "20260915_144506_d044eb",
+      "reason": "TOOLS=10 with NO_ADVISORY: the guard stays silent for the Code Mode server"
+    },
+    {
+      "scenarioId": "HERMES-027",
+      "stage": "skills-and-plugins",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 24,
+      "sessionId": "20260915_145503_21df2a",
+      "reason": "advisories section carried the worktree-guard line; the guards correctly self-suppress under an orchestrated-child marker"
+    },
+    {
+      "scenarioId": "HERMES-029",
+      "stage": "skills-and-plugins",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 56,
+      "sessionId": "20260915_151426_ba137d",
+      "reason": "vision evidence appended after the core moved off the fail-closed hook onto a 25-second budget"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-001",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell auth-failure passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-002",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell model-or-balance passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-003",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell rate-limit passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-004",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell timeout passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-005",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell stdin-hang passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-006",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell child-spec-gate passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-007",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell sandbox-permission passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-008",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell transport-missing passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-009",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell budget-rejection passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-010",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell partial-lineage-death passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-011",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell orphan-cleanup passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-012",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell worktree-collision passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-013",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell node-modules-integrity passed in the runtime stress suite"
+    },
+    {
+      "scenarioId": "cli-hermes-EC-014",
+      "stage": "stress",
+      "verdict": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": null,
+      "sessionId": "-",
+      "reason": "hermetic cell self-invocation passed in the runtime stress suite"
+    }
+  ]
+}

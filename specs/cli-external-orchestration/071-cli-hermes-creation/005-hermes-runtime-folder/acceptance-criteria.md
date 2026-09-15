@@ -55,7 +55,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the repo root, When `ls -la .hermes` runs, Then the playbook symlink and the generated files resolve and the real files are present | Observed 2026-09-14: `skills`, `manual-testing-playbook` symlinks; `prompts/` 33 files; `plugins/repo-guards/`; `SYNC.md` | Met | - |
-| AC-002 | REQ-002 | Given a trusted repo, When a live session preloads a repo skill, Then the skill text is reachable | `-s cli-hermes` quoted the first hard rule id; `hermes skills list` shows no project rows, so the listing form is superseded by the preload form | Met | - |
+| AC-002 | REQ-002 | Given a trusted repo, When a live session preloads a repo skill, Then the skill text is reachable | `-s cli-hermes` quoted the first hard rule id; `hermes skills list` enumerates the loadable copies as `local` rows (61 of 68 on 2026-09-15), so both the listing and the preload form report the mirror | Met | - |
 | AC-003 | REQ-003 | Given a prompt template, When it is dispatched through `--query-file`, Then one repo command runs end to end | `agent-router` template: read the canonical command, answered with the persona token, exit 0 | Met | - |
 | AC-004 | REQ-004 | Given the folder, When its files are compared with the repo, Then nothing is duplicated except by symlink | Prompts are generated pointer stubs; `SYNC.md` and the plugin are unique to Hermes | Met | - |
 

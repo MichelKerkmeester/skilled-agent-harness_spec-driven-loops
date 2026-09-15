@@ -95,13 +95,14 @@ The parent directive in the packet root `goal.md` binds above this file. Evidenc
 | Item | State | Evidence |
 |------|-------|----------|
 | Playbook | Done | 36 scenarios, 11 categories; validator PASS; stress bijection PASS |
-| Executed | Done | first pass 17 of 19 (two failures became fixes); second pass 22 of 22 on the corrected contract |
+| Executed | Done | first pass 17 of 19 (two failures became fixes); second pass 22 of 22 on the corrected contract; third pass 2026-09-15 ran all 44 in one sitting on cli-pi with `llmgateway/deepseek-v4.1-flash` at high thinking, 43 PASS and 1 FAIL (`HERMES-010`, a model disagreement the scenario exists to surface) |
 | Catalog | Done | cli-hermes `PASS: 0 violations`; hub counts seven packets |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| Third pass found two plugin defects and two false doc claims | Advisories staged across bounded hooks never reached a live result, and the vision core sat on the fail-closed hook; both fixed in phase 010 and re-verified live. `hermes skills list` does enumerate project skills and a quarantined copy is not reachable through `-s`; both corrected. Two scenarios that could not fail honestly (`HERMES-014`, `HERMES-022`) were rewritten. |
 | First-pass failures fed back | The read-only toolset had no file tools and the git advisory never reached a session; fixed in phases 003 and 006, re-verified live here. |
 | `-t search,todo` failure is intermittent | Zero bytes once, a fragment another time; the empty-stdout scenario gates on content. |
 <!-- /ANCHOR:log -->

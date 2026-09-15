@@ -30,10 +30,10 @@ Operators run the exact prompt and command sequence for `HERMES-022` and confirm
 - Real user request: `Make sure we notice when a Hermes run comes back with nothing.`
 - Prompt: `Do not author anything. Read the canonical command file named above, then reply with exactly two lines: line 1 = TEMPLATE_OK, line 2 = the canonical command file path you were told to read.`
 - Expected execution process: run the command sequence in §3 from the repository root with a 300-second alarm on each dispatch, capture stdout, stderr, exit code and elapsed seconds separately, then judge the result against the pass/fail criteria below.
-- Expected signals: The corrected run exits `0` with a non-zero byte count and the two requested lines; the control exits `0` as well, but either trips the byte gate or returns a fragment that is not the requested two lines, with `is not a deferrable tool` in the agent log for its session.
+- Expected signals: The corrected run exits `0` with a non-zero byte count and the two requested lines, and the gate passes it; the same gate applied to a known-empty capture prints `DETECTED_EMPTY_STDOUT`, which is what proves the gate discriminates. The superseded-toolset control is advisory only: it logs `is not a deferrable tool` and costs several times the latency, but it recovers intermittently, so its stdout is recorded and never scored. Superseded wording in the agent log for its session.
 - Evidence: Both byte counts, both exit codes, both elapsed times, both session ids, the corrected run's two lines, the control's returned bytes in full, and the matching agent-log lines for the control.
 - Desired user-visible outcome: a concise verdict naming the observed signal and the evidence behind it.
-- Pass/fail: PASS when the corrected run returns the two requested lines and the gate distinguishes it from the control; FAIL when the corrected run itself returns empty or fragmentary stdout, in which case record the exact agent-log lines and the located cause; SKIP only when a named environment blocker prevents the check, such as an unreachable provider.
+- Pass/fail: PASS when the corrected run returns the two requested lines, the gate passes that capture and trips on the known-empty one; FAIL when the corrected run itself returns empty or fragmentary stdout, or when the gate fails to trip on the empty capture, in which case record the exact agent-log lines and the located cause; SKIP only when a named environment blocker prevents the check, such as an unreachable provider.
 
 ---
 
@@ -59,11 +59,15 @@ perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --sou
 echo $?
 b=$(wc -c <out.txt); [ "$b" -gt 0 ] || echo DETECTED_EMPTY_STDOUT
 
-# control: the superseded toolset, same gate
+# gate discrimination, deterministic: the same check against a known-empty capture
+: >empty.txt
+b=$(wc -c <empty.txt); [ "$b" -gt 0 ] || echo DETECTED_EMPTY_STDOUT
+
+# advisory control, not scored: the superseded toolset recovers intermittently
 perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool --provider llmgateway --model glm-5.3-flash --reasoning none \
   -t search,todo --max-turns 12 --run-budget 240 \
   --query-file - <"$SCRATCH/qf-009.md" >neg.txt 2>neg.err
-b=$(wc -c <neg.txt); [ "$b" -gt 0 ] || echo DETECTED_EMPTY_STDOUT
+wc -c <neg.txt
 sid=$(grep -o 'session_id: .*' neg.err | awk '{print $2}')
 grep "$sid" ~/.hermes/logs/agent.log | grep -E 'deferrable|pending tool result'
 ```
@@ -74,7 +78,7 @@ grep "$sid" ~/.hermes/logs/agent.log | grep -E 'deferrable|pending tool result'
 
 ### Recorded Result
 
-**Executed 2026-09-14**: the corrected run on `-t file,todo` exited 0 in 21 s with 65 bytes and both requested lines (session `20260914_225022_582426`). The control on `-t search,todo` exited 0 in 114 s with 103 bytes (session `20260914_225506_19e0af`), and those bytes are a mid-work fragment, `read_file, search_files, and terminal are direct tools (not deferrable) — calling them directly now.`, not the requested two lines; its agent log carries `Tool tool_call returned error (0.00s): {"error": "'read_file' is not a deferrable tool ...`. The first pass saw the same control return **zero** bytes twice. Verdict PASS: the corrected shape answers, and the failure mode is real but intermittent, so the gate must test content as well as byte count.
+**Executed 2026-09-15**: the corrected run (`-t file,todo`) exited 0 in 22 s with 65 bytes and the two requested lines, session `20260915_143343_e6e5a9`, and the gate passed it; the gate applied to a known-empty capture printed `DETECTED_EMPTY_STDOUT`. The advisory control (`-t search,todo`) logged three `'read_file' is not a deferrable tool` errors and took 120 s, but recovered and returned the identical correct two lines, session `20260915_143409_5d5ae3`. That recovery is why the control was demoted to advisory in this revision: the deferred-tool loop self-heals often enough that it cannot serve as the gate's discriminator, though its latency cost and log signature remain reproducible.
 
 ---
 

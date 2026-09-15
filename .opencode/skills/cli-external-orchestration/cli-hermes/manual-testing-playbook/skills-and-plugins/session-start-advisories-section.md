@@ -64,6 +64,8 @@ grep "repo-guards-session-advisories" ~/.hermes/logs/agent.log | tail -1
 
 **Executed 2026-09-15**: exit 0 after 21 s, stdout quoted `worktree-guard: [worktree-guard] This top-level session is running on the shared 'skilled/v4.0.0.0' checkout ...`, section logged at 572 characters, session `20260915_080054_2ae5e2`. Before the interpreter fix the section carried about 700 characters of bash parse errors from the dist checker; the pi collector had the same defect and was corrected in the same pass. The primary-reconcile guard reported `SKIP: uncommitted tracked changes` on this dirty tree.
 
+
+**Third pass 2026-09-15**: exit 0 after 24 s quoting the same worktree-guard line, session `20260915_145503_21df2a`, but only with `AI_SESSION_CHILD` unset. A first attempt inside an orchestrated child dispatch answered `NO_ADVISORIES`, which is correct behavior rather than a defect: the worktree guard deliberately stays silent for an orchestrated child, since such a session is expected to share its parent's tree. Run this scenario outside a child dispatch, or every guard that keys on that marker will self-suppress.
 ---
 
 ## 4. SOURCE FILES
