@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 2: version-authority"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Declare SKILL.md the authority per hub, raise the other four artifacts to it, define the schema field once, and re-mint the manifests the edits stale."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (ESM) plus a CommonJS runner script |
+| **Framework** | None |
+| **Storage** | Git working tree, JSONL state and status ledgers |
+| **Testing** | Vitest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+SKILL.md is the release authority because its version already matches the newest changelog entry in every skill root and already agrees with description.json in five of six hubs. Each SKILL.md now says so. The other four artifacts carry that version, and the compiled activation manifests are re-minted because three of the edited files are raw-byte inputs to the policy hash.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+One declared authority, derived followers
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **SKILL.md**: Release authority, tied to the changelog
+- **Four routing artifacts**: Carry the authority's version
+- **Activation manifests**: Re-minted for the new policy hash
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Changelog to SKILL.md version to the four artifacts; the three SHA-input files to the compiled policy hash to the activation manifests.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,18 +70,16 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Fifteen routing artifacts | Six disagreeing values | update | three values, one per hub |
+| Schema doc | Two meanings in one sentence | update | one meaning, stated |
+| Compiled policy | Staled by the edits | re-mint | route guard reports every hub fresh |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: five artifacts per hub across three hubs.
+- Consumers measured: the compiled policy hash reads SKILL.md, hub-router.json and mode-registry.json as raw bytes.
+- Out of scope, same defect: mcp-tooling and sk-doc registry/router pairs.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -99,9 +98,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Gate | Route guard, route status, parent-skill-check, leaf-manifest and derived freshness | node |
+| Metadata | Skill-root metadata across thirteen roots | node |
+| Suite | Whole runtime | Vitest |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +110,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| The repository's re-mint procedure | Internal | Green | - |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +118,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A hub serves legacy after the change
+- **Procedure**: Revert this phase's commit, which carries both the artifacts and their manifests
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +151,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | minutes |
+| Core Implementation | Low | one dispatch |
+| Verification | Med | full suite run |
+| **Total** | | **one dispatch plus one suite run** |
 <!-- /ANCHOR:effort -->
 
 ---

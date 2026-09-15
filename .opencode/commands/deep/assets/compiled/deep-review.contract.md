@@ -32,12 +32,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "9d48716d1b4acd63e117770ebed7120808fa0c22cb3a6233875df95d81192ebc",
+      "sha256": "be93642be72b6ca2f214216fc8977225f1a75b4a40bf4d893cd14c34b61f74b0",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "dea97cddb5bbc646f2f3bf9e3886026693e1fbe692e984014703e141be665216",
+      "sha256": "db573b833398d3c7d629e6f23598573ee8c10f4c702d7d1676016ed8f2068f20",
       "section": "full"
     },
     {

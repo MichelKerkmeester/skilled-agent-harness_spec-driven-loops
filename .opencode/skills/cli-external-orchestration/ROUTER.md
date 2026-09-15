@@ -8,7 +8,7 @@ trigger_phrases:
   - "cli dispatch resource map"
 importance_tier: important
 contextType: general
-version: 1.1.0.0
+version: 1.5.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---

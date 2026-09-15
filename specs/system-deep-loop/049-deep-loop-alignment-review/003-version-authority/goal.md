@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "scaffold/003-version-authority"
     last_updated_at: "2026-09-15T14:23:11Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,9 +73,9 @@ to the parent: apply it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Each hub's seven routing artifacts carry versions that agree with its declared authority
-- [ ] The registry and router version pair matches in all three hubs
-- [ ] The deep-loop suite exits zero
+- [x] Each hub's seven routing artifacts carry versions that agree with its declared authority
+- [x] The registry and router version pair matches in all three hubs
+- [x] The deep-loop suite exits zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -91,11 +91,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; fifteen artifacts, one schema doc, six manifests re-minted; route guard, metadata and freshness gates exit 0 |
+| Full suite | Green | `npm test` in the runtime: 152 files, 2644 passed, 8 skipped, exit 0, 1286 s, after regenerating the three command contracts the version edits staled |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Measured dependency | A version-only edit stales two generated sets: the compiled routing policy, which the delegate re-minted, and the three compiled command contracts, which the orchestrator regenerated after the first suite run failed on them |
+| Same split elsewhere | mcp-tooling and sk-doc carry the same registry/router version split, outside this phase |
 <!-- /ANCHOR:log -->

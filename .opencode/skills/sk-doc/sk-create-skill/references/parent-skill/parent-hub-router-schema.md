@@ -40,7 +40,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 ```json
 {
   "skill": "sk-code",
-  "version": "1.0.0",
+  "version": "1.0.0.0",
   "routerPolicy": {},
   "routerSignals": {},
   "vocabularyClasses": {}
@@ -50,7 +50,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 | Field | Required | Purpose |
 | --- | --- | --- |
 | `skill` | Yes | Parent hub id; usually the containing skill folder name. |
-| `version` | Yes | Router schema or artifact version for the hub. |
+| `version` | Yes | The hub's release version: the same four-part value the hub's `SKILL.md` carries and its newest changelog entry names. One meaning only — the router tracks the hub release, it does not carry an independent schema generation. |
 | `routerPolicy` | Yes | Global routing defaults, tie-breaks, outcomes, and optional bundle rules. |
 | `routerSignals` | Yes | Per-mode scoring weights, vocabulary class references, and loadable resources. |
 | `vocabularyClasses` | Yes | Keyword classes referenced by `routerSignals`. |
