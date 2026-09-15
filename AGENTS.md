@@ -15,6 +15,8 @@ Where a rule file expands a clause here, `REPO RULES.md`'s trigger table routes 
 3. **VERIFY** — Syntax checks and tests **MUST** pass before claiming completion. **NO** blind commits.
 4. **HALT** — Stop immediately if uncertain, if line numbers don't match, or if tests fail. A failing check may be repaired, but forward progress and completion stay blocked until the authoritative gate passes.
 
+**The Iron Law:** NO completion claims without running stack-appropriate verification.
+
 #### PLAN-WORKFLOW LOCK — HARD BLOCKER (cannot be overridden)
 
 When an approved plan names a specific workflow, command, agent or skill (e.g., `/deep:research`, `@ai-council`, `sk-code`), that named workflow is **FROZEN like scope**.
@@ -24,6 +26,8 @@ When an approved plan names a specific workflow, command, agent or skill (e.g., 
 2. **FLAG deviations** — If it genuinely blocks the task, STATE the deviation to the user ("plan says X, I propose Y because Z") and get approval before proceeding.
 3. **NEVER silently hand-roll a substitute** for a plan-named purpose-built workflow.
 4. **PROPOSE the amendment, don't absorb it** — when the contract does not block the task but is wrong for this case, follow it for this task and name the fix in the same response: the file, the rule, the one-line replacement. The difference from step 2 is whether you can comply. The adjacent case, a frozen scope you believe is wrong, is [`scope-discipline.md`](repo-rules/scope-discipline.md) §5 and §6.
+
+> Reinventing a workflow's core feature because you assumed friction you never checked against its contract is a HARD violation.
 
 #### Comment Hygiene — HARD BLOCK (cannot be overridden)
 
@@ -109,10 +113,15 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 
 #### Blast-Radius Management
 
+- **Open non-trivial work with a stakes read**, low-blast and reversible or high-blast and what it touches, and size the effort to it.
 - **Name the rollback, stop for yes** — before delete, overwrite, migrate, deploy, send or install, write how to undo and wait for confirmation. This wait is mandatory and no rule file relaxes it. The ladder and the rest are [`blast-radius.md`](repo-rules/blast-radius.md).
 
 #### Execution Behavior
 
+- **Spend lavishly where confirmation is cheapest to skip.** The expensive failures hide in the gap between green and reality, and between a doc and the truth.
+- **Follow the brief's intent, not just its letter.** When you deviate, record why. The undocumented deviation is the sin, not the deviation.
+- **Produce the smallest complete result early.** A complete in-scope artifact beats scaffolding or fallback paths the target does not need.
+- **Use frequent self-checks and reasoning loops** to catch your own mistakes before asking for help.
 - **Plan before acting** on multi-step work: name the files, the tools and the observable check before the first edit.
 - **Do not stop early.** No "natural checkpoint" or "future work" on incomplete work when a safe path forward exists.
 - **Do not ask permission to continue an already-approved, in-scope step.** This never waives a mandatory wait: Gate 3, PLAN-WORKFLOW LOCK approval, the worktree-versus-branch choice, the remote-push go-ahead and the blast-radius stop-for-yes all still block.
@@ -176,7 +185,7 @@ Trigger: "save context", "save memory", `/speckit:save`
 
 #### GOAL POSTURE RULE [ALWAYS ON]
 Trigger: a session bound to a spec packet, on every turn.
-- The bound packet's `goal.md` is the only source of goal state. Read the file, never a remembered summary, never send its frontmatter anywhere, resend the stripped durable slice unprompted when it changes, and never stop work for an unset goal. Mechanics are `system-spec-kit`'s.
+- The bound packet's `goal.md` is the only source of goal state. Read the file, never a remembered summary, never send its frontmatter anywhere, resend the stripped durable slice unprompted when it changes, and never stop work for an unset goal. Once a goal is set, acknowledge it in one line and continue, without restating it or asking whether to proceed. Mechanics are `system-spec-kit`'s.
 
 #### Self-Check (before ANY tool-using response):
 - [ ] File modification? Asked spec folder question?
