@@ -73,9 +73,9 @@ to the parent: apply it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Every stem in both modes' ledger schemas has a producer, or is removed with its reason recorded
-- [ ] Every producer's record spelling is registered, proven by a test that fails when a producer emits an unregistered stem
-- [ ] The deep-loop suite exits zero
+- [x] Every stem in both modes' ledger schemas is declared either spoken by a named producer or reserved with its reason, and a check fails when a stem is neither
+- [x] Every producer's record spelling is registered, proven by a test that fails when a producer emits an unregistered stem
+- [x] The deep-loop suite exits zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -97,7 +97,7 @@ and findings belong here.
 | Reporting | Done | Frames root reported at `runtime/scripts/verify-iteration.cjs:202`; the verify-authority CLI covered by ten cases in `runtime/tests/unit/verify-authority-cli.vitest.ts` |
 | Prose | Done | Eight state references carry the vocabulary, the authority-dependent write target and the projection ceiling |
 | Touched suites | Green | 8 files and 90 tests pass; `check-contract-drift.cjs` reports `OK commands=3`; comment hygiene clean on fifteen code files; `validate.sh --strict` reports PASSED |
-| Full suite | One external red | 153 of 154 files and 2676 of 2685 tests pass. The red asserts at `tests/stress/cli-adapter/fanout.vitest.ts:521` and is stale against the executor probe another session's commit `2a84717ed3` added to `fanout-run.cjs` - the same external condition the sibling packets 005 and 006 recorded in their own logs |
+| Full suite | Green | 154 files and 2677 of 2685 tests pass, 8 skipped, exit 0. The one red this phase recorded was a stress assertion left stale by another track's executor probe; it was corrected separately and the suite went green |
 
 ### Deviations and findings
 

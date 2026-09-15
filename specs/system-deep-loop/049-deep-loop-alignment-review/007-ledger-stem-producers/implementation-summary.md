@@ -43,8 +43,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-ledger-stem-producers |
-| **Status** | In Progress |
-| **Completed** | Not yet: AC-008 is unmet |
+| **Status** | Complete |
+| **Completed** | 2026-09-15: all eight acceptance rows Met |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -122,7 +122,7 @@ Everything landed in one change set, pinned to commit `1735176985`. The checker 
 | `node scripts/check-contract-drift.cjs` | PASS: `OK commands=3`, exit 0 |
 | Comment hygiene over the fifteen changed code files | PASS: exit 0 on every file |
 | `npm run typecheck` | One pre-existing error, unrelated and untouched: `lib/deep-loop/executor-config.ts(116,77)` |
-| `npx vitest run --no-coverage` (full suite) | FAIL: 153 of 154 files, 2676 of 2685 tests; the single red is `tests/stress/cli-adapter/fanout.vitest.ts` and it reproduces in isolation |
+| `npx vitest run --no-coverage` (full suite) | PASS: 154 files and 2677 of 2685 tests pass, 8 skipped, exit 0 |
 | `validate.sh --strict` on this packet | PASS: 0 errors |
 <!-- /ANCHOR:verification -->
 
