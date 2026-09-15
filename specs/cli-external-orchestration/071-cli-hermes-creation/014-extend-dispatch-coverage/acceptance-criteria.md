@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/014-extend-dispatch-coverage"
+    packet_pointer: "cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage"
     last_updated_at: "2026-09-15T16:29:32Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Every criterion met with its evidence recorded"
+    next_safe_action: "None; the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "spec-071-014-extend-dispatch-coverage"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given a violating dispatch in a Cursor session, When the adapter evaluates it, Then it returns a deny envelope before the command runs | Adapter exercised directly: deny envelope with exit 2 on the unredirected codex dispatch, allow on the corrected one and on plain shell | Met | - |
+| AC-002 | REQ-002 | Given a violating dispatch in an OpenCode session, When the pre-execution hook evaluates it, Then it throws and the call is denied | Plugin hook exercised directly: DENIED on the unredirected codex dispatch, ALLOWED on the corrected one and on plain shell | Met | - |
+| AC-003 | REQ-003 | Given both spellings of each widened condition, When each predicate evaluates them, Then both are caught and the correct forms still pass | `node --test .opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` test "predicate bypasses"; negative controls assert a URL and a POSIX path are not slash prompts | Met | - |
+| AC-004 | REQ-004 | Given a Pi dispatch without the offline flag or with an unqualified model, When the preflight evaluates it, Then it is denied | `node --test .opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` test "pi dispatches need --offline and a provider-qualified model", including the no-model case | Met | - |
+| AC-005 | REQ-005 | Given a missing adapter file or binding, When the suite runs, Then it fails rather than passing silently | Removing the Cursor binding fails the registration test with "cursor has no preflight binding" | Met | - |
 
 ### Status values
 

@@ -48,18 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 1: close-silent-preflight-holes
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Closed six silent-approval conditions. `.opencode/hooks/dispatch/lib/dispatch-audit.mjs` had the codex dispatch shape wrong in two places, so no cli-codex rule ever loaded. `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` never set the Hermes project-plugin opt-in, leaving the packet and read-only markers unreadable. `.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs` gained a reader-toolset requirement and lost the preload exemption, and the seven `cli-*` packets moved their stdin rule to blocking. `AGENTS.md` lost the joiner that made the Hermes scanner refuse it.
 <!-- /ANCHOR:what-built -->
 
 ---

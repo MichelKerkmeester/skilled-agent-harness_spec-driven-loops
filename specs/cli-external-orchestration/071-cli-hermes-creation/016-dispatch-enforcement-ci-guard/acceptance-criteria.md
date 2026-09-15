@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/016-dispatch-enforcement-ci-guard"
+    packet_pointer: "cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard"
     last_updated_at: "2026-09-15T16:29:34Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Every criterion met with its evidence recorded"
+    next_safe_action: "None; the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "spec-071-016-dispatch-enforcement-ci-guard"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given a check added with no fixture pair, When the guard runs, Then it fails | Mutation run: a new check inserted into the registry turns the suite red, green again once restored | Met | - |
+| AC-002 | REQ-002 | Given a predicate loosened to accept its own violation, When the guard runs, Then it fails | Mutation run: the Pi offline predicate replaced with an always-true function turns the suite red | Met | - |
+| AC-003 | REQ-003 | Given a packet that drops a declared rule, When the guard runs, Then it fails | Mutation run: removing the Pi offline rule from its packet turns the suite red via the bijection assertion | Met | - |
+| AC-004 | REQ-004 | Given the suite, When the workflow runs it, Then a failure fails the build and a deleted suite fails closed | Blocking workflow added; both of its steps verified from the repository root, and the missing-file branch exits 1 by construction | Met | - |
+| AC-005 | REQ-005 | Given a rule declared at an unknown severity, When the guard runs, Then it fails | Mutation run: changing a severity to an unrecognised level turns the suite red | Met | - |
 
 ### Status values
 

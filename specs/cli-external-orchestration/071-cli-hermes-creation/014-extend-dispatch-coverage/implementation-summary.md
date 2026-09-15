@@ -48,18 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 2: extend-dispatch-coverage
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Added `.opencode/hooks/dispatch/cursor/dispatch-preflight-lint.mjs` and a pre-execution hook in `.opencode/plugins/cli-dispatch-audit.js`, both calling the shared engine in `.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs` rather than copying it. Widened three predicates there, added two Pi checks declared in the cli-pi packet, and registered the Cursor binding in the hook registry.
 <!-- /ANCHOR:what-built -->
 
 ---
