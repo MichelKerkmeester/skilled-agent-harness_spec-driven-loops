@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/006-sk-communication-clarity/014-shorten-decision-rule-name",
+  "spec_folder": "sk-communication/006-sk-communication-clarity/014-shorten-decision-rule-name",
+  "parent_id": "sk-communication/006-sk-communication-clarity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "repo-rules/communication-decisions.md",
+      "repo-rules/communication.md",
+      "repo-rules/communication-handoff.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-decisions.md",
+        "kind": "doc",
+        "path": "repo-rules/communication-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-handoff.md",
+        "kind": "doc",
+        "path": "repo-rules/communication-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. APPROACH",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. WORK BREAKDOWN",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The decision rule carried the last long name in the corpus at 37 characters, so it was shortened to communication-decisions after checking the file itself says what the shorter name leaves out.",
+    "created_at": "2026-09-15T20:10:11Z",
+    "last_save_at": "2026-09-15T20:13:33.962Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd6a67dce1d243b74d3262f874b027bb9463fd59163e56be4a03e01002fe1633",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f118b52d054ad5df0a9e8485a8980fa637a96070571d8176bf2154a41304c65c",
+      "plan.md": "71053f227a0f25cae3d6516550f7e66c4cccd9fe1d172a117a2388f064cf49af",
+      "tasks.md": "6e678760a1aeb4557f45ef586349b920e2619d1a3fedbac363154af6866caf49",
+      "implementation-summary.md": "c5c1fe5cd8fed95d283594e4297310f49693ac107c70fc5df3a5a4b452f3d827"
+    },
+    "last_active_at": null
+  }
+}

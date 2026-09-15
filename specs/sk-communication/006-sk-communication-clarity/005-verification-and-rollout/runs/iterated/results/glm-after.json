@@ -1,6 +1,6 @@
 {
   "condition": "after",
-  "generatedAt": "2026-09-15T19:39:25.965Z",
+  "generatedAt": "2026-09-15T20:10:52.032Z",
   "repliesDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/iterated/glm-after-replies",
   "casesFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
   "weights": {
@@ -194,6 +194,7 @@
               "handoff-and-questions.md"
             ],
             [
+              "communication-decisions.md",
               "communication-presenting-decisions.md",
               "presenting-decisions.md"
             ],

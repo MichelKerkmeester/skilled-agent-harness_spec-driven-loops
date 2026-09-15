@@ -16,7 +16,8 @@
     "sk-communication/006-sk-communication-clarity/010-review-remediation",
     "sk-communication/006-sk-communication-clarity/011-communication-rule-naming",
     "sk-communication/006-sk-communication-clarity/012-reply-rule-delegation-repair",
-    "sk-communication/006-sk-communication-clarity/013-shorten-handoff-rule-name"
+    "sk-communication/006-sk-communication-clarity/013-shorten-handoff-rule-name",
+    "sk-communication/006-sk-communication-clarity/014-shorten-decision-rule-name"
   ],
   "manual": {
     "depends_on": [],
@@ -221,7 +222,7 @@
     ],
     "causal_summary": "The repository governs how a reply reads across three layers: `AGENTS.md` keeps the two clauses",
     "created_at": "2026-09-12T12:44:34Z",
-    "last_save_at": "2026-09-15T19:41:14.746Z",
+    "last_save_at": "2026-09-15T20:13:36.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,10 +230,10 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:8ec1ec1074b212b0de7e012e57befa58803d0bc3692a5d4c8f2b7224bb521110",
+    "source_fingerprint": "sha256:a4e4bab1911f970b658a1482b94f5fc556f3ea6401de35146ed451419edc8daf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3656838d5fbbfea224567ed6d04d3f56a4e1be36af6d4e56a839e9a253430d9",
+      "spec.md": "efee2ee6cf959b23f55400db2af00339a77aad6a3853db0ebd713cbcb05b093a",
       "handover.md": "d0ae87ad26f6c34966e683adb938024d050846e13a78da6694c6753f8e204dbd"
     },
     "last_active_child_id": "sk-communication/006-sk-communication-clarity/001-research-communication-context",
