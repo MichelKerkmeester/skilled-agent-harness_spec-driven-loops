@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-confirm-variant-parity"
+    packet_pointer: "system-deep-loop/049-deep-loop-alignment-review/006-confirm-variant-parity"
     last_updated_at: "2026-09-15T14:23:14Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "claude-fable-5-1"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-14-006-confirm-variant-parity"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** system-deep-loop/049-deep-loop-alignment-review/006-confirm-variant-parity
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the seven measured divergences, When each confirm variant is read, Then the divergence is closed or a reason stands at that point | config record, gateway writes, resource map, staging, mechanical gate and session id all present; census carries the rest | Met | - |
+| AC-002 | REQ-002 | Given every auto step, When matched against its confirm twin, Then it is present or censused | auto-only steps without a census entry: zero for review, zero for research | Met | - |
+| AC-003 | REQ-003 | Given a divergence where the auto variant was wrong, When it is closed, Then the auto variant is corrected | three auto-side corrections: lineage fields read against a flat config, artifacts left unstaged, session-id token unbound | Met | - |
+| AC-004 | REQ-004 | Given a future edit that adds an auto step without a confirm step or census entry, When the suite runs, Then it fails | four parity tests in the render-command-contract suite | Met | - |
 
 ### Status values
 

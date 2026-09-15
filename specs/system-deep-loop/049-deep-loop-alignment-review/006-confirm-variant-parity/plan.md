@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 5: confirm-variant-parity"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Restore each auto step into its confirm twin where the interactive flow reaches it, correct the auto variant where the auto side held the defect, and write a machine-checked census for every remaining difference."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (ESM) plus a CommonJS runner script |
+| **Framework** | None |
+| **Storage** | Git working tree, JSONL state and status ledgers |
+| **Testing** | Vitest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Each divergence was checked against both files before editing. Where the confirm variant was missing behaviour the interactive flow can reach, the step was restored from its auto twin along with the machinery that makes it functional. Where the auto variant was the incorrect one, the auto variant was corrected rather than copied. Everything left over is written into a census block inside the confirm file itself, and four tests now fail if that census stops matching the files.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,16 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Restore, correct or census, with the census machine-checked
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Confirm workflow YAMLs**: The interactive surfaces that had been diverging
+- **Auto workflow YAMLs**: The reference twins, corrected where they were themselves wrong
+- **Census block**: Per-file record of every remaining difference and its reason
+- **Parity tests**: Four assertions binding the census to the files
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Each auto step is matched against its confirm twin; the unmatched set is restored or censused; the census is then asserted against the file pair by test.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,18 +71,19 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| deep-review confirm and auto | Sixty-seven auto steps against fifty-five confirm | restore and census | four auto-only steps, four census entries, zero uncensused |
+| deep-research confirm and auto | Sixty-nine auto steps against fifty-nine confirm | restore and census | ten auto-only steps, ten census entries, zero uncensused |
+| Gateway state writes | Mandated by four prompt packs, wired by none | restore | canonical events staged through the append gateway in all four variants |
+| Mechanical post-dispatch gate | Invoked by review-auto only | restore | the verifier is invoked once in each of the four variants |
+| Artifact staging | Review-auto left artifacts unstaged against an unqualified documented invariant | correct auto | all four variants stage, commit authority stays with the operator |
+| Compiled contracts | Staled by the YAML edits | regenerate | drift check reports OK for three commands |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: four workflow YAMLs, both command families.
+- Consumers: the orchestrating agent that executes the YAML, and the compiled contract readers.
+- Residuals enumerated: fourteen censused steps, one auto-only gateway site inside a censused step, and the ai-council pair which the review measured as non-divergent.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -99,9 +102,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Parity | Auto-step coverage or census, census integrity, config and record placeholder parity, gateway wiring | Vitest |
+| Drift | Compiled contracts against their sources | node |
+| Suite | Whole deep-loop runtime | Vitest |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +114,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| None | - | Green | - |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +122,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A restored step misbehaves on an interactive run
+- **Procedure**: Revert this phase's commit; the census records what each restore was for
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +155,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | minutes |
+| Core Implementation | Low | one dispatch |
+| Verification | Med | full suite run |
+| **Total** | | **one dispatch plus one suite run** |
 <!-- /ANCHOR:effort -->
 
 ---

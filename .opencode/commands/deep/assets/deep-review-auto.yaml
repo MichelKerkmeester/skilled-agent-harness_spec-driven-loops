@@ -1911,7 +1911,7 @@ workflow:
             [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
             EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-iteration-error.XXXXXX")"
             cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
-            {"stem":"deep_review.iteration_error","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation},"lineageMode":"{config.lineage.lineageMode}"}}
+            {"stem":"deep_review.iteration_error","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"sessionId":"{config.sessionId}","generation":{config.generation},"lineageMode":"{config.lineageMode}"}}
             DEEP_LOOP_STATE_RECORD
             node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
             RECORD_STATUS=$?
@@ -2450,9 +2450,11 @@ workflow:
         edit: "{state_paths.config}"
         set_field: { status: "complete" }
 
-      step_leave_artifacts_unstaged:
-        action: "Leave all synthesized artifacts unstaged for explicit operator review"
-        note: "Synthesis must not mutate the shared Git index. The operator retains staging and commit authority after reviewing the complete artifact directory."
+      step_stage_artifact_dir:
+        action: "Stage all skill-owned artifacts under artifact_dir for the operator's next git commit"
+        command: "git add {state_paths.artifact_dir}"
+        note: "Staging the whole artifact_dir keeps the iteration trail (iterations/, deltas/, state.jsonl, strategy, findings-registry, and the report) together; the operator keeps commit authority and can `git restore --staged {path}` before committing. Failure is non-fatal -- log warning and continue."
+        on_fail: "Log warning. Do not block synthesis. The artifact_dir may be outside a git repo (e.g., temp test fixture) which is a valid case."
 
   # ═══════════════════════════════════════════════════════════════
   # PHASE 4: SAVE
