@@ -97,11 +97,13 @@ The operator's copy of this directive is the session objective; any change above
 - [x] `cli-hermes` is a hub mode and executor kind, proven by checkers and tests
 - [x] A Hermes session here reaches the shared agents, commands, skills and MCP servers
 - [x] Phases 002 to 010 Complete, every acceptance row Met
+- [x] Phases 013 to 016 Complete, all 21 acceptance rows Met, none waived
 - [x] Every documented headless dispatch resolves to its own runtime's rules
 - [x] Cursor and OpenCode refuse a violating dispatch before it runs
 - [x] Each closed hole has a test that fails when that fix alone is reverted
-- [ ] Phase 016 guard green on main and red under any single hand mutation
-- [ ] Parent passes recursive strict validation with phases 011 to 016 included
+- [x] Phase 016 guard green on the tree and red under each of four hand mutations
+- [x] Parent passes recursive strict validation across all 17 folders
+- [ ] No live finding is open - THREE REMAIN, each an operator decision or a recorded defect
 <!-- /ANCHOR:completion -->
 
 ---
@@ -130,4 +132,8 @@ The operator's copy of this directive is the session objective; any change above
 | 2026-09-15 | Phase 013: six silent-approval holes closed. The two largest were unknown before the research. Codex resolved to no dispatch shape at all, so every cli-codex rule had been inert since the shape was written. And Hermes fan-out lineages never set the project-plugin opt-in, so the read-only refusal, goal binding and advisories were dead in exactly the runs they were built for. Also the stdin severity flip across all seven skills, the `file` toolset requirement, removal of the `-s` preload exemption (D3 amended), and the zero-width joiner that made Hermes refuse the instruction file. Each fix proven by reverting it and watching its own test fail. |
 | 2026-09-15 | Phase 014: Cursor and OpenCode gained pre-execution refusal, both calling the shared engine rather than copying it. Three predicates widened after live probes showed each matched one spelling and missed another. Two Pi checks added for the mandatory offline flag and the provider-qualified model. A registration assertion now fails if an adapter file or its binding disappears. |
 | 2026-09-15 | Phase 015: the Claude and OpenCode builders gained the binary probe the other five had. Hermes personas were built and unreachable, with no lineage field able to name one; a lineage may now name a persona, sequenced after the exemption fix so the preload and the rules flag travel together. Three model-default divergences and the codex service tier left as operator decisions. |
+| 2026-09-15 | Phase 016 and closure. Three guards added so a rule that stops enforcing fails a build: a fixture pair per check, a bijection between declared rules and implemented checks, and a per-packet rule assertion. Proven by four mutations, each turning the suite red and green again once restored. The suite itself ran in no gate, only a report-only runner, so it gained a blocking workflow that fails closed if the suite is deleted. |
+| 2026-09-15 | A stop gate caught two real gaps in a completion claim. The four phases had shipped with scaffolded acceptance criteria, so 21 rows were written with the evidence actually produced, and one evidence line that claimed more than had been run was replaced after running it: the two new binary probes refuse against an empty PATH and build against a real one. |
+| 2026-09-15 | Criterion 2 re-proven live in this session rather than cited from an earlier one. A single Hermes run (session `20260915_202204_acdefd`, exit 0, 50 s) reached all four surfaces at once: the persona bound from the environment, the first hard rule quoted from the preloaded `cli-hermes` skill, the first word of a repo command file read from disk, and the `code_mode` MCP server returning ten results for a tool search. |
+| 2026-09-15 | Criterion 3 is NOT met and the packet is NOT closeable. Three findings stay open: the three builder model defaults that disagree with their packets and the codex service tier, all operator decisions on cost; and the preflight's quoted-payload false positive, where text shaped like a dispatch inside a quoted payload reads as a real one (it refused two edit commands in this session). |
 <!-- /ANCHOR:log -->

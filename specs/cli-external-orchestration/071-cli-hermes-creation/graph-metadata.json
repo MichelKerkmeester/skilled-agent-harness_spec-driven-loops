@@ -166,18 +166,19 @@
     ],
     "causal_summary": "This repository dispatches work to six external coding CLIs as `cli-external-orchestration` modes (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`)",
     "created_at": "2026-09-14T16:04:01Z",
-    "last_save_at": "2026-09-15T18:08:53.277Z",
+    "last_save_at": "2026-09-15T18:23:23.183Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:eb752a2f487b93143bb332fc99ec0622a06ba4e7e8431cad6025f4a44c636b6c",
+    "source_fingerprint": "sha256:533901abfb62dbeec096886d10c4de5d410f94ac645669995ff3ae86cb80453d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a84a1a15ec6930979a4fb50dcd3abe8e2230aeddf1a3e5754900cf74abf42fa3"
     },
-    "last_active_at": null
+    "last_active_child_id": "cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes",
+    "last_active_at": "2026-09-15T18:21:30.646Z"
   }
 }
