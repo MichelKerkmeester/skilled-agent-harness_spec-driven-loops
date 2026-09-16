@@ -39,7 +39,7 @@
       "rehearsal"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,10 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "probes/probe-environment.md",
+      "probes/runtime-root-configurability.md",
+      "probes/runtime-symlink-resolution.md",
+      "probes/dangling-hook-behavior.md",
+      "probes/gate-filters-under-linked-root.md",
+      "probes/rename-rehearsal.md",
+      "probes/council-graph-rebuild.md",
+      "probes/fixture-path-assertions.md",
+      "probes/home-state-enumeration.md",
+      "probes/untracked-ignored-files.md",
+      ".pi/models.json",
       ".opencode/package.json",
       ".opencode/bun.lock",
-      ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts",
-      ".opencode/skills/system-deep-loop/runtime/database/README.md"
+      ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts"
     ],
     "entities": [
       {
@@ -90,6 +100,72 @@
         "source": "derived"
       },
       {
+        "name": "probe-environment.md",
+        "kind": "doc",
+        "path": "probes/probe-environment.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-root-configurability.md",
+        "kind": "doc",
+        "path": "probes/runtime-root-configurability.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-symlink-resolution.md",
+        "kind": "doc",
+        "path": "probes/runtime-symlink-resolution.md",
+        "source": "derived"
+      },
+      {
+        "name": "dangling-hook-behavior.md",
+        "kind": "doc",
+        "path": "probes/dangling-hook-behavior.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-filters-under-linked-root.md",
+        "kind": "doc",
+        "path": "probes/gate-filters-under-linked-root.md",
+        "source": "derived"
+      },
+      {
+        "name": "rename-rehearsal.md",
+        "kind": "doc",
+        "path": "probes/rename-rehearsal.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph-rebuild.md",
+        "kind": "doc",
+        "path": "probes/council-graph-rebuild.md",
+        "source": "derived"
+      },
+      {
+        "name": "fixture-path-assertions.md",
+        "kind": "doc",
+        "path": "probes/fixture-path-assertions.md",
+        "source": "derived"
+      },
+      {
+        "name": "home-state-enumeration.md",
+        "kind": "doc",
+        "path": "probes/home-state-enumeration.md",
+        "source": "derived"
+      },
+      {
+        "name": "untracked-ignored-files.md",
+        "kind": "doc",
+        "path": "probes/untracked-ignored-files.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
         "name": "package.json",
         "kind": "config",
         "path": ".opencode/package.json",
@@ -105,12 +181,6 @@
         "name": "session-start-context.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/runtime/database/README.md",
         "source": "derived"
       },
       {
@@ -136,71 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Apple Git",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Verification",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 004 cannot choose what `.opencode/` becomes until nine runtime and git behaviors are measured, and the two research phases left every one of them open",
     "created_at": "2026-09-16T17:54:06Z",
-    "last_save_at": "2026-09-16T18:43:44.874Z",
+    "last_save_at": "2026-09-16T20:08:44.874Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:046e733759384f46fc4f36f1afae0b1c107b213c9d01014ad11cc81a830f7642",
+    "source_fingerprint": "sha256:b19cb34433297e07b84b7fd795003e54876b30f47a17938955b34096c4b15c20",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8c72182f891a58817970eb03394987100ac6f899eb0f3f83a7ed5e9b6e5f8f96",
+      "spec.md": "24038cf0165d6e2b00908092d3f07038441254e225729ab32c84c9ba8bc9f62f",
       "plan.md": "2ff366ec5a28c871c14ee76fcec9e6d6ebd02ee66cc5b352f267a42890c8987d",
-      "tasks.md": "08fc573610ac499733cb11c3d30348c5962728751676b0aeceaaf800051b084e",
-      "implementation-summary.md": "9f75965e4d4ad85a0a9d03e1623cddbff859fa7610c4693b96ee330a957ef4f7"
+      "tasks.md": "b3416f23600c894119047cbfd7c3b03618ed26650a07e755102f7fa2646bb660",
+      "implementation-summary.md": "71b8af641174d699de03b0199663745c84ce0ea0de20d3079117f49fd9b39025"
     },
     "last_active_at": null
   }

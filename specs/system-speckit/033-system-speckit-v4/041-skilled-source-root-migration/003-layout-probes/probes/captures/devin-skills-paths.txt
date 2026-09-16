@@ -1,0 +1,11 @@
+Skill Directory Locations
+
+User skills (global):
+  /tmp/skilled-probes-003/iso/devin/config/devin/skills/<skill-name>/SKILL.md
+  /tmp/skilled-probes-003/iso/devin/config/cognition/skills/<skill-name>/SKILL.md
+  /Users/michelkerkmeester/.agents/skills/<skill-name>/SKILL.md
+
+Project skills:
+  .devin/skills/<skill-name>/SKILL.md
+  .cognition/skills/<skill-name>/SKILL.md
+  .agents/skills/<skill-name>/SKILL.md

@@ -23,7 +23,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-16 |
 | **Branch** | `worktrees/055-skilled-source-root-migration` |
 | **Parent Spec** | ../spec.md |

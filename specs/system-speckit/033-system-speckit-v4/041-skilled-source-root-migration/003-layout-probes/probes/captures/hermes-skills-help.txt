@@ -1,0 +1,40 @@
+usage: hermes skills [-h]
+                     {trust,untrust,browse,search,install,inspect,list,check,update,audit,uninstall,reset,list-modified,diff,opt-out,opt-in,repair-official,publish,snapshot,tap,config}
+                     ...
+
+Search, install, inspect, audit, configure, and manage skills from skills.sh,
+well-known agent skill endpoints, GitHub, ClawHub, and other registries.
+
+positional arguments:
+  {trust,untrust,browse,search,install,inspect,list,check,update,audit,uninstall,reset,list-modified,diff,opt-out,opt-in,repair-official,publish,snapshot,tap,config}
+    trust               Trust a project so its repo-local skills
+                        (./.hermes/skills, ./.agents/skills) load
+    untrust             Revoke project-skill trust for a repo
+    browse              Browse all available skills (paginated)
+    search              Search skill registries
+    install             Install a skill
+    inspect             Preview a skill without installing
+    list                List installed skills
+    check               Check installed hub skills for updates
+    update              Update installed hub skills
+    audit               Re-scan installed hub skills
+    uninstall           Remove a hub-installed skill
+    reset               Reset a bundled skill — clears 'user-modified'
+                        tracking so updates work again
+    list-modified       List bundled skills you've edited (which `hermes
+                        update` keeps)
+    diff                Show how your copy of a bundled skill differs from the
+                        stock version
+    opt-out             Stop bundled skills from being seeded into this
+                        profile
+    opt-in              Re-enable bundled-skill seeding (undo opt-out)
+    repair-official     Backfill or restore official optional skills from repo
+                        source
+    publish             Publish a skill to a registry
+    snapshot            Export/import skill configurations
+    tap                 Manage skill sources
+    config              Interactive skill configuration — enable/disable
+                        individual skills
+
+options:
+  -h, --help            show this help message and exit

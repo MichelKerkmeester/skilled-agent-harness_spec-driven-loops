@@ -1,0 +1,12 @@
+Manage agent skills (slash commands and agent-triggered context blobs)
+
+Usage: devin skills <COMMAND>
+
+Commands:
+  list   List all available skills
+  show   Show details for a specific skill
+  paths  Show skill directory locations
+  help   Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help  Print help
