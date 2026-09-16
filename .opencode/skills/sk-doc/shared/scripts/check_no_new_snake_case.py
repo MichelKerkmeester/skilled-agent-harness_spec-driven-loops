@@ -139,8 +139,14 @@ def _all_ref_paths(repo_root: Path, ref: str) -> set[PurePosixPath]:
     return paths
 
 
-def _changed_destinations(repo_root: Path, ref: str) -> set[PurePosixPath]:
-    """Return added, copied, renamed, and untracked destinations since ``ref``."""
+def _changed_destinations(
+    repo_root: Path, ref: str
+) -> tuple[set[PurePosixPath], set[PurePosixPath]]:
+    """Return added, copied, renamed, and untracked destinations since ``ref``.
+
+    The second set holds the rename and copy destinations that keep their source
+    basename: those moved an existing name rather than introducing one.
+    """
     raw = _git(
         repo_root,
         [
@@ -156,6 +162,7 @@ def _changed_destinations(repo_root: Path, ref: str) -> set[PurePosixPath]:
     )
     fields = raw.split(b"\0")
     changed: set[PurePosixPath] = set()
+    kept_names: set[PurePosixPath] = set()
     index = 0
     while index < len(fields) and fields[index]:
         status = fields[index].decode("ascii", errors="replace")
@@ -163,8 +170,12 @@ def _changed_destinations(repo_root: Path, ref: str) -> set[PurePosixPath]:
         if status.startswith(("R", "C")):
             if index + 1 >= len(fields):
                 raise GuardError("git returned a truncated rename/copy record")
+            source = _decode_path(fields[index])
             index += 1
-            changed.add(_decode_path(fields[index]))
+            destination = _decode_path(fields[index])
+            changed.add(destination)
+            if destination.name == source.name:
+                kept_names.add(destination)
             index += 1
             continue
         if index >= len(fields):
@@ -174,7 +185,7 @@ def _changed_destinations(repo_root: Path, ref: str) -> set[PurePosixPath]:
 
     untracked = _git(repo_root, ["ls-files", "--others", "--exclude-standard", "-z"])
     changed.update(_decode_path(raw_path) for raw_path in untracked.split(b"\0") if raw_path)
-    return changed
+    return changed, kept_names
 
 
 def _completed_spec_roots(paths: Iterable[PurePosixPath]) -> set[PurePosixPath]:
@@ -270,9 +281,14 @@ def changed_since_offenders(repo_root: Path, ref: str) -> list[PurePosixPath]:
     completed_at_base = _completed_spec_roots(base_paths)
     offenders: set[PurePosixPath] = set()
 
-    for changed_path in _changed_destinations(repo_root, ref):
+    changed, kept_names = _changed_destinations(repo_root, ref)
+    for changed_path in changed:
         for candidate in _candidate_prefixes(changed_path):
             if candidate in base_paths or _is_tree_exempt(candidate, completed_at_base):
+                continue
+            # A pure move keeps a grandfathered basename, so only the directories it
+            # moved into can introduce a new name.
+            if candidate == changed_path and changed_path in kept_names:
                 continue
             physical_path = repo_root.joinpath(*candidate.parts)
             is_dir = candidate != changed_path or physical_path.is_dir()
