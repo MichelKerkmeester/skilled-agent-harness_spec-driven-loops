@@ -18,7 +18,9 @@
     "system-deep-loop/049-deep-loop-alignment-review/012-missing-stress-fixture-root",
     "system-deep-loop/049-deep-loop-alignment-review/013-recorded-adjacent-defects",
     "system-deep-loop/049-deep-loop-alignment-review/014-post-work-review",
-    "system-deep-loop/049-deep-loop-alignment-review/015-review-confirmed-findings"
+    "system-deep-loop/049-deep-loop-alignment-review/015-review-confirmed-findings",
+    "system-deep-loop/049-deep-loop-alignment-review/016-iteration-state-record-contract",
+    "system-deep-loop/049-deep-loop-alignment-review/017-guard-index-and-parent-doc-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -27,26 +29,27 @@
   },
   "derived": {
     "trigger_phrases": [
-      "[Trigger phrase 1]",
-      "[Trigger phrase 2]",
+      "deep-loop alignment review",
+      "angle-driven review phases",
+      "deep-loop surface agreement",
       "packet goal",
       "durable directive",
       "completion criteria",
       "goal binding"
     ],
     "key_topics": [
-      "trigger",
-      "phrase",
+      "deep-loop",
+      "alignment",
+      "review",
+      "angle-driven",
+      "phases",
+      "surface",
+      "agreement",
       "packet",
       "goal",
       "durable",
       "directive",
-      "completion",
-      "criteria",
-      "binding",
-      "containment",
-      "changed",
-      "deep-loop"
+      "completion"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -116,6 +119,12 @@
         "source": "derived"
       },
       {
+        "name": "Claude Opus",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "every",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -128,31 +137,25 @@
         "source": "derived"
       },
       {
-        "name": "its",
+        "name": "convergence",
         "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
         "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs across twenty phases",
     "created_at": "2026-09-15T09:48:33Z",
-    "last_save_at": "2026-09-16T10:34:08.087Z",
+    "last_save_at": "2026-09-16T17:16:11.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:de39c86d062236f741495503775bab5cf5453eb80924c62566048ad509c5deba",
+    "source_fingerprint": "sha256:c8f431e6d0422b7a0045636f1ef7337eda559bbff099890d5d96320d3b86136a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0334a6872df9a4ce4645f1522118d982786ef983aae1ef920e1199637a2114a6"
+      "spec.md": "e9732c21e55fee004e183a407aac9d119adcac083295634a0019147fa4e863ea"
     },
     "last_active_at": null
   }
