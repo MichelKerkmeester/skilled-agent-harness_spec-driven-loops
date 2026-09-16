@@ -1,0 +1,13 @@
+{
+  "type": "iteration_complete",
+  "run": 8,
+  "iteration": 8,
+  "timestamp": "2026-09-16T13:18:36Z",
+  "focus": "Map C six skills",
+  "artifacts": [
+    "iterations/iteration-008.md",
+    "deltas/iter-008.jsonl"
+  ],
+  "reconciled": "552/552",
+  "next": "Map C opencode areas + root + ci"
+}

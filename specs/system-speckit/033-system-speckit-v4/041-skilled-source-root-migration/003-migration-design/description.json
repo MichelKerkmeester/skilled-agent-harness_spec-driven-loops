@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-migration-design",
+  "description": "A move of this size fails in the ordering, not the rename",
+  "keywords": [
+    "move",
+    "size",
+    "fails",
+    "ordering",
+    "rename"
+  ],
+  "lastUpdated": "2026-09-16T12:27:48.459Z",
+  "specId": "003",
+  "folderSlug": "migration-design",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

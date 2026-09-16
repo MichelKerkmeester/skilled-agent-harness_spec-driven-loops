@@ -1,0 +1,232 @@
+path	hit_lines	area	subarea	ext	md_fenced_lines	md_inline_lines
+.claude/SYNC.md	21	runtime:claude	SYNC.md	md	4	17
+.claude/agents/README.txt	2	runtime:claude	agents	txt		
+.claude/agents/ai-council.md	18	runtime:claude	agents	md	3	15
+.claude/agents/code.md	7	runtime:claude	agents	md	0	7
+.claude/agents/context.md	7	runtime:claude	agents	md	0	7
+.claude/agents/debug.md	3	runtime:claude	agents	md	0	3
+.claude/agents/deep-improvement.md	6	runtime:claude	agents	md	0	6
+.claude/agents/deep-research.md	7	runtime:claude	agents	md	1	6
+.claude/agents/deep-review.md	13	runtime:claude	agents	md	1	12
+.claude/agents/design.md	13	runtime:claude	agents	md	0	13
+.claude/agents/markdown.md	23	runtime:claude	agents	md	0	23
+.claude/agents/orchestrate.md	9	runtime:claude	agents	md	1	8
+.claude/agents/prompt-improver.md	8	runtime:claude	agents	md	0	8
+.claude/agents/review.md	3	runtime:claude	agents	md	0	3
+.claude/hooks/README.md	5	runtime:claude	hooks	md	1	4
+.claude/mcp.json	1	runtime:claude	mcp.json	json		
+.claude/settings.json	22	runtime:claude	settings.json	json		
+.codex/AGENTS.md	3	runtime:codex	AGENTS.md	md	0	3
+.codex/SYNC.md	24	runtime:codex	SYNC.md	md	6	18
+.codex/agents/ai-council.toml	22	runtime:codex	agents	toml		
+.codex/agents/code.toml	15	runtime:codex	agents	toml		
+.codex/agents/context.toml	10	runtime:codex	agents	toml		
+.codex/agents/debug.toml	7	runtime:codex	agents	toml		
+.codex/agents/deep-improvement.toml	8	runtime:codex	agents	toml		
+.codex/agents/deep-research.toml	9	runtime:codex	agents	toml		
+.codex/agents/deep-review.toml	17	runtime:codex	agents	toml		
+.codex/agents/design.toml	15	runtime:codex	agents	toml		
+.codex/agents/markdown.toml	25	runtime:codex	agents	toml		
+.codex/agents/orchestrate.toml	29	runtime:codex	agents	toml		
+.codex/agents/prompt-improver.toml	10	runtime:codex	agents	toml		
+.codex/agents/review.toml	8	runtime:codex	agents	toml		
+.codex/config.toml	1	runtime:codex	config.toml	toml		
+.codex/hooks.json	18	runtime:codex	hooks.json	json		
+.codex/hooks/README.md	6	runtime:codex	hooks	md	2	4
+.codex/prompts/agent-router.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-agent.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-benchmark.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-changelog.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-command.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-diff.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-feature-catalog.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-manual-testing-playbook.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-readme.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-repo-rule.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-skill-parent.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-skill.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/create-with-human-voice.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/deep-agent-improvement.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/deep-ai-council.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/deep-model-benchmark.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/deep-research.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/deep-review.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/design-chart.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/design-diagram.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/design-extract.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/doctor-mcp.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/doctor-speckit.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/doctor-update.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/prompt-improve.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/rewrite-response-by-external-agent.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/rewrite-response.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/speckit-complete.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/speckit-implement.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/speckit-plan.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/speckit-resume.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/speckit-save.md	2	runtime:codex	prompts	md	0	2
+.codex/prompts/speckit-search.md	2	runtime:codex	prompts	md	0	2
+.cursor/SYNC.md	12	runtime:cursor	SYNC.md	md	2	10
+.cursor/commands/goal-cursor.md	2	runtime:cursor	commands	md	1	1
+.cursor/commands/vision.md	1	runtime:cursor	commands	md	1	0
+.cursor/hooks.json	18	runtime:cursor	hooks.json	json		
+.cursor/hooks/README.md	6	runtime:cursor	hooks	md	1	5
+.cursor/mcp.json	1	runtime:cursor	mcp.json	json		
+.cursor/rules/skill-routing.md	10	runtime:cursor	rules	md	0	10
+.devin/SYNC.md	12	runtime:devin	SYNC.md	md	2	10
+.devin/hooks.v1.json	23	runtime:devin	hooks.v1.json	json		
+.devin/hooks/README.md	5	runtime:devin	hooks	md	1	4
+.devin/mcp_config.json	1	runtime:devin	mcp_config.json	json		
+.hermes/SYNC.md	14	runtime:hermes	SYNC.md	md	4	10
+.hermes/plugins/repo-guards/__init__.py	18	runtime:hermes	plugins	py		
+.hermes/prompts/agent-router.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-agent.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-benchmark.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-changelog.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-command.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-diff.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-feature-catalog.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-manual-testing-playbook.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-readme.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-repo-rule.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-skill-parent.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-skill.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/create-with-human-voice.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/deep-agent-improvement.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/deep-ai-council.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/deep-model-benchmark.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/deep-research.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/deep-review.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/design-chart.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/design-diagram.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/design-extract.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/doctor-mcp.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/doctor-speckit.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/doctor-update.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/prompt-improve.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/rewrite-response-by-external-agent.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/rewrite-response.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/speckit-complete.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/speckit-implement.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/speckit-plan.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/speckit-resume.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/speckit-save.md	2	runtime:hermes	prompts	md	0	2
+.hermes/prompts/speckit-search.md	2	runtime:hermes	prompts	md	0	2
+.hermes/skills/agent-ai-council/SKILL.md	21	runtime:hermes	skills	md	3	18
+.hermes/skills/agent-code/SKILL.md	14	runtime:hermes	skills	md	0	14
+.hermes/skills/agent-context/SKILL.md	9	runtime:hermes	skills	md	0	9
+.hermes/skills/agent-debug/SKILL.md	6	runtime:hermes	skills	md	0	6
+.hermes/skills/agent-deep-improvement/SKILL.md	7	runtime:hermes	skills	md	0	7
+.hermes/skills/agent-deep-research/SKILL.md	8	runtime:hermes	skills	md	1	7
+.hermes/skills/agent-deep-review/SKILL.md	16	runtime:hermes	skills	md	1	15
+.hermes/skills/agent-design/SKILL.md	14	runtime:hermes	skills	md	0	14
+.hermes/skills/agent-markdown/SKILL.md	24	runtime:hermes	skills	md	0	24
+.hermes/skills/agent-orchestrate/SKILL.md	28	runtime:hermes	skills	md	3	25
+.hermes/skills/agent-prompt-improver/SKILL.md	9	runtime:hermes	skills	md	0	9
+.hermes/skills/agent-review/SKILL.md	7	runtime:hermes	skills	md	0	7
+.hermes/skills/cli-claude-code/SKILL.md	4	runtime:hermes	skills	md	1	3
+.hermes/skills/cli-codex/SKILL.md	4	runtime:hermes	skills	md	1	3
+.hermes/skills/cli-cursor/SKILL.md	6	runtime:hermes	skills	md	1	5
+.hermes/skills/cli-devin/SKILL.md	16	runtime:hermes	skills	md	12	4
+.hermes/skills/cli-external-orchestration/SKILL.md	2	runtime:hermes	skills	md	0	2
+.hermes/skills/cli-hermes/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/cli-opencode/SKILL.md	11	runtime:hermes	skills	md	1	10
+.hermes/skills/cli-pi/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/deep-ai-council/SKILL.md	5	runtime:hermes	skills	md	2	3
+.hermes/skills/deep-improvement/SKILL.md	4	runtime:hermes	skills	md	0	4
+.hermes/skills/deep-research/SKILL.md	3	runtime:hermes	skills	md	0	3
+.hermes/skills/deep-review/SKILL.md	5	runtime:hermes	skills	md	0	5
+.hermes/skills/mcp-aside-devtools/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/mcp-chrome-devtools/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/mcp-click-up/SKILL.md	2	runtime:hermes	skills	md	1	1
+.hermes/skills/mcp-code-mode/SKILL.md	2	runtime:hermes	skills	md	0	2
+.hermes/skills/mcp-figma/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/mcp-magicpath/SKILL.md	5	runtime:hermes	skills	md	0	5
+.hermes/skills/mcp-mobbin/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/mcp-notion/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/mcp-obsidian/SKILL.md	2	runtime:hermes	skills	md	1	1
+.hermes/skills/mcp-refero/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/mcp-tooling/SKILL.md	2	runtime:hermes	skills	md	0	2
+.hermes/skills/sk-code-mobile-cli/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/sk-code-obsidian/SKILL.md	2	runtime:hermes	skills	md	0	2
+.hermes/skills/sk-code-opencode/SKILL.md	6	runtime:hermes	skills	md	0	6
+.hermes/skills/sk-code-quality/SKILL.md	13	runtime:hermes	skills	md	0	13
+.hermes/skills/sk-code-review/SKILL.md	5	runtime:hermes	skills	md	1	4
+.hermes/skills/sk-code-webflow/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/sk-code/SKILL.md	4	runtime:hermes	skills	md	0	4
+.hermes/skills/sk-communication/SKILL.md	8	runtime:hermes	skills	md	0	8
+.hermes/skills/sk-create-agent/SKILL.md	15	runtime:hermes	skills	md	6	9
+.hermes/skills/sk-create-benchmark/SKILL.md	3	runtime:hermes	skills	md	1	2
+.hermes/skills/sk-create-changelog/SKILL.md	24	runtime:hermes	skills	md	7	17
+.hermes/skills/sk-create-command/SKILL.md	14	runtime:hermes	skills	md	9	5
+.hermes/skills/sk-create-diff/SKILL.md	3	runtime:hermes	skills	md	0	3
+.hermes/skills/sk-create-feature-catalog/SKILL.md	7	runtime:hermes	skills	md	4	3
+.hermes/skills/sk-create-frontmatter/SKILL.md	3	runtime:hermes	skills	md	0	3
+.hermes/skills/sk-create-manual-testing-playbook/SKILL.md	10	runtime:hermes	skills	md	6	4
+.hermes/skills/sk-create-quality-control/SKILL.md	18	runtime:hermes	skills	md	7	11
+.hermes/skills/sk-create-readme/SKILL.md	7	runtime:hermes	skills	md	5	2
+.hermes/skills/sk-create-repo-rule/SKILL.md	2	runtime:hermes	skills	md	0	2
+.hermes/skills/sk-create-skill/SKILL.md	6	runtime:hermes	skills	md	0	6
+.hermes/skills/sk-create-with-human-voice/SKILL.md	2	runtime:hermes	skills	md	1	1
+.hermes/skills/sk-design-chart/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/sk-design-diagram/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/sk-design-fundamentals/SKILL.md	1	runtime:hermes	skills	md	0	1
+.hermes/skills/sk-design-md-generator/SKILL.md	6	runtime:hermes	skills	md	4	2
+.hermes/skills/sk-design/SKILL.md	2	runtime:hermes	skills	md	0	2
+.hermes/skills/sk-doc/SKILL.md	2	runtime:hermes	skills	md	0	2
+.hermes/skills/sk-git/SKILL.md	11	runtime:hermes	skills	md	1	10
+.hermes/skills/sk-prompt/SKILL.md	2	runtime:hermes	skills	md	0	2
+.hermes/skills/sk-vision/SKILL.md	6	runtime:hermes	skills	md	0	6
+.hermes/skills/system-deep-loop/SKILL.md	6	runtime:hermes	skills	md	0	6
+.hermes/skills/system-skill-advisor/SKILL.md	10	runtime:hermes	skills	md	0	10
+.hermes/skills/system-spec-kit/SKILL.md	19	runtime:hermes	skills	md	0	19
+.pi/SYNC.md	20	runtime:pi	SYNC.md	md	4	16
+.pi/agents/ai-council.md	21	runtime:pi	agents	md	3	18
+.pi/agents/code.md	14	runtime:pi	agents	md	0	14
+.pi/agents/context.md	9	runtime:pi	agents	md	0	9
+.pi/agents/debug.md	6	runtime:pi	agents	md	0	6
+.pi/agents/deep-improvement.md	7	runtime:pi	agents	md	0	7
+.pi/agents/deep-research.md	8	runtime:pi	agents	md	1	7
+.pi/agents/deep-review.md	16	runtime:pi	agents	md	1	15
+.pi/agents/design.md	14	runtime:pi	agents	md	0	14
+.pi/agents/markdown.md	24	runtime:pi	agents	md	0	24
+.pi/agents/orchestrate.md	28	runtime:pi	agents	md	3	25
+.pi/agents/prompt-improver.md	9	runtime:pi	agents	md	0	9
+.pi/agents/review.md	7	runtime:pi	agents	md	0	7
+.pi/extensions/README.md	20	runtime:pi	extensions	md	0	20
+.pi/extensions/lib/README.md	1	runtime:pi	extensions	md	0	1
+.pi/mcp.json	1	runtime:pi	mcp.json	json		
+.pi/prompts/agent-router.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-agent.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-benchmark.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-changelog.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-command.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-diff.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-feature-catalog.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-manual-testing-playbook.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-readme.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-repo-rule.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-skill-parent.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-skill.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/create-with-human-voice.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/deep-agent-improvement.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/deep-ai-council.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/deep-model-benchmark.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/deep-research.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/deep-review.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/design-chart.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/design-diagram.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/design-extract.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/doctor-mcp.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/doctor-speckit.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/doctor-update.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/goal-pi.md	1	runtime:pi	prompts	md	0	1
+.pi/prompts/prompt-improve.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/rewrite-response-by-external-agent.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/rewrite-response.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/speckit-complete.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/speckit-implement.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/speckit-plan.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/speckit-resume.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/speckit-save.md	2	runtime:pi	prompts	md	0	2
+.pi/prompts/speckit-search.md	2	runtime:pi	prompts	md	0	2

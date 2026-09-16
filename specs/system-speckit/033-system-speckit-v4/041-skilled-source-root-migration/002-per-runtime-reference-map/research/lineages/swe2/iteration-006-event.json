@@ -1,0 +1,13 @@
+{
+  "type": "iteration_complete",
+  "run": 6,
+  "iteration": 6,
+  "timestamp": "2026-09-16T13:14:52Z",
+  "focus": "Map C deep-loop + ext-orch",
+  "artifacts": [
+    "iterations/iteration-006.md",
+    "deltas/iter-006.jsonl"
+  ],
+  "reconciled": "1543/1543",
+  "next": "Map C advisor + sk-code + sk-doc"
+}

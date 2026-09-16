@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-migration-design"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled source root",
+      "move opencode to skilled",
+      "source parent migration",
+      "runtime symlink inversion",
+      "dot-skilled migration"
+    ],
+    "key_topics": [
+      "skilled",
+      "source",
+      "root",
+      "move",
+      "opencode",
+      "parent",
+      "migration",
+      "runtime",
+      "symlink",
+      "inversion",
+      "dot-skilled",
+      "authoring"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-deep-research/spec.md",
+      "002-per-runtime-reference-map/spec.md",
+      "003-migration-design/spec.md",
+      ".opencode/bin/mcp-code-mode-launcher.cjs",
+      "001-deep-research/research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mcp-code-mode-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skilled Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
+    "created_at": "2026-09-16T08:35:04Z",
+    "last_save_at": "2026-09-16T13:57:40.961Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:edfc991d20aaba548047608e77e6a6a659d439d1f010fa48fd2e0ea80fd33e25",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "331e126fc84ce87d0d63b4a8e528c30b04bf70ed5e388e4291cb2b3d6d9a19f7"
+    },
+    "last_active_at": null
+  }
+}

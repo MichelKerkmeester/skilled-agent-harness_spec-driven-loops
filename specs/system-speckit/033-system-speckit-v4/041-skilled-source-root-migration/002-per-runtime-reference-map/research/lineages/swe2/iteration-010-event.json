@@ -1,0 +1,13 @@
+{
+  "type": "convergence",
+  "run": 10,
+  "iteration": 10,
+  "timestamp": "2026-09-16T13:26:50Z",
+  "reason": "exact seed closure \u2014 a further iteration adds no rows",
+  "coverage": {
+    "map_a": "435/435",
+    "map_b": "267/267",
+    "map_c": "4027/4027"
+  },
+  "unknowns": 7
+}

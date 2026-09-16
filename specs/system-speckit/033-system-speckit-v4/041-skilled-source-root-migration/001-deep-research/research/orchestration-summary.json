@@ -1,0 +1,23 @@
+{
+  "run_id": "1789548196115-9qchey",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

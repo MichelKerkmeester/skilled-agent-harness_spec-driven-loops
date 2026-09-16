@@ -1,0 +1,14 @@
+{
+  "type": "iteration_complete",
+  "run": 5,
+  "iteration": 5,
+  "timestamp": "2026-09-16T13:10:22Z",
+  "focus": "Map C skill:system-spec-kit",
+  "artifacts": [
+    "iterations/iteration-005.md",
+    "deltas/iter-005.jsonl",
+    "working/map-c--skill_system-spec-kit--*.md"
+  ],
+  "reconciled": "729/729",
+  "next": "Map C system-deep-loop + cli-external-orchestration"
+}

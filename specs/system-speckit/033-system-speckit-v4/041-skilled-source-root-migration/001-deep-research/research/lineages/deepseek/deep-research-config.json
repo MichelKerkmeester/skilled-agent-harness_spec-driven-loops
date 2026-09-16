@@ -1,0 +1,65 @@
+{
+  "topic": "Skilled source-root migration: what would actually have to change if .skilled/ replaced .opencode/ as the directory holding the real skill, command, agent, hook, plugin, bin and runtime files, and every runtime directory (.opencode/ included) became a consumer linking into .skilled/ — and what would break? Produce the inventory and blocker list a cutover design can be built from.",
+  "maxIterations": 5,
+  "convergenceThreshold": 3,
+  "antiConvergence": {
+    "minIterations": 5,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research",
+  "fanoutLineageArtifactDir": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/research/lineages/deepseek",
+  "createdAt": "2026-09-16T08:50:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-1-flash-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1789548196115-9qchey",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resource_map_present": false,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

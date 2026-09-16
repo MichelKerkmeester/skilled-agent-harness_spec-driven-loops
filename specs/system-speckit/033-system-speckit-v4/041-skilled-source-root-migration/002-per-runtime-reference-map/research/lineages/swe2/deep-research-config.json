@@ -1,0 +1,70 @@
+{
+  "topic": "GATE PRE-RESOLUTION: per-runtime reference map for moving the shared AI asset source root from .opencode to .skilled (Map A symlinks, Map B runtime files, Map C all other tracked areas)",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 1,
+    "convergenceMode": "default",
+    "stopPolicy": "convergence",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map",
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/lineages/swe2",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-09-16T12:38:00Z",
+  "status": "running",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "swe-2-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "webSearch": "inherit",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-swe2-1789561902822-scse4p",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

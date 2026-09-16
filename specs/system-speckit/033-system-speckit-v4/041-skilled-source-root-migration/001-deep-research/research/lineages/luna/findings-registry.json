@@ -1,0 +1,42 @@
+{
+  "openQuestions": [
+    "Which installed versions of the seven runtimes can consume .skilled directly?",
+    "What complete external home-level configuration and hook state exists on each operator machine?",
+    "Can the full rename preserve acceptable history and pass as one commit with installed hooks?"
+  ],
+  "resolvedQuestions": [
+    "Complete symlink topology and consumer resolution",
+    "Seven runtime resolution contracts as published by this repository",
+    "Required .opencode compatibility surface and regeneration owners",
+    "Repository gates, CI, documentation and external reference classes",
+    "Migration mechanics and path-identity constraints"
+  ],
+  "keyFindings": [
+    {"id":"topology-classes","surface":"symlink topology","finding":"The repository uses direct links, generated native-runtime outputs and real dialect forks; the recorded resolved-link set is broader than the supplied 200-link scope.","classification":"mechanical","citations":["iterations/iteration-001.md:11-19",".claude/SYNC.md:24-41",".hermes/SYNC.md:12-31"]},
+    {"id":"runtime-contracts","surface":"runtime contracts","finding":"Runtime positions and generators are not uniform; upstream direct .skilled configurability remains unknown.","classification":"manual","citations":[".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:36-47",".codex/SYNC.md:16-18",".hermes/SYNC.md:8-16"]},
+    {"id":"opencode-namespace","surface":"OpenCode compatibility","finding":"The launcher, project loaders and root sentinel require a resolvable .opencode namespace.","classification":"blocker","citations":["opencode.json:10-19",".opencode/bin/mcp-code-mode-launcher.cjs:19-28",".opencode/skills/system-spec-kit/shared/workspace/repo-root.mjs:26-69"]},
+    {"id":"derived-state","surface":"derived state","finding":"Indexes, manifests, compiled contracts, runtime state and MCP build output have separate owners and regeneration contracts.","classification":"regenerate","citations":[".opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:26-31",".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:8-23",".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs:691-706"]},
+    {"id":"gates-ci","surface":"gates and CI","finding":"Pre-commit, pre-push and path-filtered workflows scope checks to .opencode and can reject or miss a .skilled-only change.","classification":"blocker","citations":[".opencode/scripts/git-hooks/pre-commit:14-27",".opencode/scripts/git-hooks/pre-push:121-123",".github/workflows/spec-kit-check.yml:5-20"]},
+    {"id":"external-state","surface":"external references","finding":"Codex, Hermes, Pi, OpenCode and Git integrations have user-level state outside the repository.","classification":"manual","citations":[".codex/SYNC.md:16-18",".hermes/SYNC.md:8-16",".pi/SYNC.md:30-35",".opencode/hooks/git/install-hooks.sh:5-18"]},
+    {"id":"mechanics","surface":"migration mechanics","finding":"Relative links can be regenerated, but fixed root identities, generated path data and history/one-commit safety require separate treatment.","classification":"manual","citations":[".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:145-160",".opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:189-213",".opencode/skills/system-deep-loop/runtime/changelog/v1.3.0.0.md:21-27"]},
+    {"id":"documentation","surface":"documentation","finding":"Live instructions, packaging contracts, generated prompts and historical records have different rewrite policies.","classification":"manual","citations":["AGENTS.md:45-65","PUBLIC-RELEASE.md:10-36",".codex/prompts/create-agent.md:1-6",".opencode/skills/system-deep-loop/runtime/changelog/v1.3.0.0.md:21-27"]}
+  ],
+  "ruledOutDirections": [
+    {"direction":"barter/","reason":"Operator-supplied evidence says its links resolve to another checkout."},
+    {"direction":"uniform direct-link topology","reason":"Hermes scanning, OpenCode launcher/root identity and split runtime dialects contradict it.","evidence":".hermes/SYNC.md:12-18; opencode.json:10-19; .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:36-47"},
+    {"direction":"symlink-only rewrite","reason":"Generators and gates embed or search for .opencode independently of link targets.","evidence":".opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs:82-99; .opencode/scripts/git-hooks/pre-commit:14-27"}
+  ],
+  "metrics": {
+    "sourceFindings": 8,
+    "reconstructionGaps": 0,
+    "iterations": 10,
+    "newInfoRatios": [1,0.95,0.9,0.92,0.94,0.88,0.85,0.8,0.72,0.65]
+  },
+  "divergence": {
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": ["barter/", "uniform direct-link topology", "symlink-only rewrite"],
+    "remainingFrontier": ["upstream runtime configurability", "external home-state enumeration", "history/one-commit rehearsal"]
+  }
+}
