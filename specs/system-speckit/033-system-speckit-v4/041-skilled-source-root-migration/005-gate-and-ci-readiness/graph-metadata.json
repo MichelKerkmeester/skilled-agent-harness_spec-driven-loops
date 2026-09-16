@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The repository's gates look for their own scripts at one literal root, `$REPOROOT/.opencode/`, and most of them read a missing script as a reason to skip",
     "created_at": "2026-09-16T17:54:07Z",
-    "last_save_at": "2026-09-16T22:34:09.097Z",
+    "last_save_at": "2026-09-16T23:19:37.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7badddfd20cca3e919b219642f3ba7b3465701d49ba7561da518bad7b86e5430",
+    "source_fingerprint": "sha256:f21b8b4cc33e9e0a38c75019ecc8e6bf98f73d423b2c1dc76a003c4867d6761a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae8e02d8531af7590c5949bb44c8aea5c65751d7327cad2884a024f93a50be35",
       "plan.md": "81f9cf23b93016c77477543421c249ed6576c076a40de4bf7d03365207f16994",
       "tasks.md": "245fa9a39ecc38f9c72869198f614a6db622fdd05f5062d3d91d89364b762038",
-      "implementation-summary.md": "cd298a7930a3c9483db69b272b6d31dec007e4ddd39d5e6808486e20302e4f3e"
+      "implementation-summary.md": "e31c3d4e24d43b246540dce2c7155c3baf6e95953c01bb49d1cd039f4257ced9"
     },
     "last_active_at": null
   }
