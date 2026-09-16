@@ -1,0 +1,19 @@
+## skill:sk-design / sk-design-fundamentals — 15 files
+
+| file | `.opencode` lines | what it is | origin | needed change | class |
+|---|---|---|---|---|---|
+| `.opencode/skills/sk-design/sk-design-fundamentals/README.md` | :71,79,87,177,178,179 | documentation (3 fenced (runnable); 3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/benchmark/README.md` | :37 | documentation (1 fenced (runnable)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/boundary/extraction-defers-to-md-generator.md` | :51,53,74 | documentation (3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/boundary/implementation-defers-to-sk-code.md` | :51,53,74 | documentation (3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md` | :51,53,74 | documentation (3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/project-system-precedence.md` | :52,73 | documentation (2 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md` | :51,53,74 | documentation (3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md` | :49 | documentation (1 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/diagnose-entry.md` | :51,53,74 | documentation (3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/motion-entry.md` | :51,53,74 | documentation (3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/procedure-entry.md` | :51,53,74 | documentation (3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/review-entry.md` | :51,53,74 | documentation (3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/no-runtime-shades.md` | :51,53,74 | documentation (3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/on-scale-values.md` | :51,53,74 | documentation (3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/unit-discipline.md` | :51,53,74 | documentation (3 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |

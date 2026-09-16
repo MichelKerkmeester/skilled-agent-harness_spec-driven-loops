@@ -1,0 +1,1 @@
+{"type": "finding", "iteration": 8, "area": "map-c:six-skills", "summary": "552/552 classified: mechanical 412, freeze 140 \u2014 zero contract-bearing code; mcp-code-mode install.sh mutates repo opencode.json in place", "evidence": "iterations/iteration-008.md", "confidence": "high", "novelty": "new"}

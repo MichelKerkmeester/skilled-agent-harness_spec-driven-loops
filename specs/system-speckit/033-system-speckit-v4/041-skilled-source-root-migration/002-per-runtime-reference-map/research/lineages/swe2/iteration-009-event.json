@@ -1,0 +1,13 @@
+{
+  "type": "iteration_complete",
+  "run": 9,
+  "iteration": 9,
+  "timestamp": "2026-09-16T13:25:12Z",
+  "focus": "Map C final sweep",
+  "artifacts": [
+    "iterations/iteration-009.md",
+    "deltas/iter-009.jsonl"
+  ],
+  "reconciled": "335/335; Map C 4027/4027",
+  "next": "convergence check + synthesis"
+}

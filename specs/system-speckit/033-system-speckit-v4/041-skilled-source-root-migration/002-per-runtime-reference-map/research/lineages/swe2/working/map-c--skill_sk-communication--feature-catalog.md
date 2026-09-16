@@ -1,0 +1,17 @@
+## skill:sk-communication / feature-catalog — 13 files
+
+| file | `.opencode` lines | what it is | origin | needed change | class |
+|---|---|---|---|---|---|
+| `.opencode/skills/sk-communication/feature-catalog/assembly-and-context/bounded-context-selection.md` | :38,39,40,46,47 | documentation (5 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/assembly-and-context/generation-keyed-message-assembly.md` | :38,39,40,46,47,48 | documentation (6 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/evaluation-and-observability/blind-non-inferiority-evaluation.md` | :38,39,40,41,47,48,49,50 | documentation (8 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/evaluation-and-observability/content-free-observability.md` | :38,39,40,41,42,48,49,50 (+1) | documentation (9 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/feature-catalog.md` | :21 | documentation (1 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/fidelity-and-render/capability-aware-presentation.md` | :38,39,40,46,47,48 | documentation (6 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/fidelity-and-render/protected-span-fidelity-validation.md` | :38,39,40,41,47,48,49 | documentation (7 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/packaging-and-release/compatibility-doctor.md` | :38,39,40,46,47 | documentation (5 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/packaging-and-release/release-readiness-and-rollback.md` | :38,39,40,41,47,48,49,50 | documentation (8 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/provider-and-privacy/external-cli-provider.md` | :40,41,42,43,49,50 | documentation (6 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/provider-and-privacy/privacy-first-provider-routing.md` | :38,39,40,46,47,48 | documentation (6 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/provider-and-privacy/provider-adapters-and-execution.md` | :40,41,42,43,44,50,51,52 (+1) | documentation (9 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/feature-catalog/runtime-adapters/six-runtime-adapter-matrix.md` | :38,39,40,41,42,43,44,45 (+5) | documentation (13 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |

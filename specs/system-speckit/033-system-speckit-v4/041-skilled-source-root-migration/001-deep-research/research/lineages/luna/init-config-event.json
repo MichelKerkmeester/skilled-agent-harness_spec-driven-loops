@@ -1,0 +1,11 @@
+{
+  "type": "config",
+  "topic": "GATE PRE-RESOLUTION: inventory what must change and what would break when the shared AI asset source moves from .opencode to .skilled",
+  "maxIterations": 10,
+  "convergenceThreshold": 3,
+  "stuckThreshold": 3,
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research",
+  "sessionId": "fanout-luna-1789548196115-9qchey",
+  "generation": 1,
+  "timestamp": "2026-09-16T08:45:44Z"
+}

@@ -1,0 +1,9 @@
+### Map A section: opencode-internal-install-guides (5 links)
+
+| link | raw target | resolves into .opencode | required raw target — `.opencode` compat link survives | required raw target — no `.opencode` compat link | origin | class |
+|---|---|---|---|---|---|---|
+| `.opencode/install-guides/MCP - Chrome Dev Tools.md` | `../skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md` | yes | `unchanged (resolves through .opencode compatibility link)` | `unchanged (link and target travel together into .skilled/)` | hand-made index symlink (no generator found) | mechanical |
+| `.opencode/install-guides/MCP - Code Mode.md` | `../skills/mcp-code-mode/INSTALL-GUIDE.md` | yes | `unchanged (resolves through .opencode compatibility link)` | `unchanged (link and target travel together into .skilled/)` | hand-made index symlink (no generator found) | mechanical |
+| `.opencode/install-guides/MCP - Skill Advisor.md` | `../skills/system-skill-advisor/INSTALL-GUIDE.md` | yes | `unchanged (resolves through .opencode compatibility link)` | `unchanged (link and target travel together into .skilled/)` | hand-made index symlink (no generator found) | mechanical |
+| `.opencode/install-guides/install-scripts/install-chrome-devtools.sh` | `../../skills/mcp-tooling/mcp-chrome-devtools/scripts/install.sh` | yes | `unchanged (resolves through .opencode compatibility link)` | `unchanged (link and target travel together into .skilled/)` | hand-made index symlink (no generator found) | mechanical |
+| `.opencode/install-guides/install-scripts/install-code-mode.sh` | `../../skills/mcp-code-mode/scripts/install.sh` | yes | `unchanged (resolves through .opencode compatibility link)` | `unchanged (link and target travel together into .skilled/)` | hand-made index symlink (no generator found) | mechanical |

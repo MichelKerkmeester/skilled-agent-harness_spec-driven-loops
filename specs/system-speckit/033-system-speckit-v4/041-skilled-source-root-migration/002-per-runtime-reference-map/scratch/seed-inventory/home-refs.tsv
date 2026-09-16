@@ -1,0 +1,37 @@
+path	exists	is_symlink	link_target	opencode_occurrences	names_main_checkout
+~/.codex/hooks.json	yes	no		18	yes
+~/.codex/config.toml	yes	no		1	yes
+~/.codex/AGENTS.md	yes	yes	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/AGENTS.md	3	no
+~/.hermes/config.yaml	yes	no		1	yes
+~/.claude/settings.json	yes	no		0	no
+~/.claude.json	yes	no		1	yes
+~/.claude/CLAUDE.md	yes	no		0	no
+~/.zshrc	yes	no		2	no
+~/.zshenv	yes	no		0	no
+~/.gitconfig	yes	no		0	no
+~/.config/git/config	no	no			
+~/.config/devin/config.json	yes	no		0	no
+~/.config/devin/config.json.bak	yes	no		0	no
+~/.config/devin/config.json.pre-deepresearch.bak	yes	no		0	no
+~/.config/devin/mcp_config.json	yes	no		0	no
+~/.pi/agent/SYNC.md	yes	no		2	no
+~/.pi/agent/auth.json	yes	no		0	no
+~/.pi/agent/models-store.json	yes	no		0	no
+~/.pi/agent/models.json	yes	yes	../../MEGA/Development/Code_Environment/Public/.pi/models.json	0	no
+~/.pi/agent/modes.json	yes	yes	../../MEGA/Development/Code_Environment/Public/.pi/modes.json		
+~/.pi/agent/pi-cache-optimizer-config.json	yes	yes	../../MEGA/Development/Code_Environment/Public/.pi/pi-cache-optimizer-config.json	0	no
+~/.pi/agent/pi-cache-optimizer-stats.json	yes	no		0	no
+~/.pi/agent/pi-cache-optimizer-stats.json.32175.1788503687557.tmp	yes	no		0	no
+~/.pi/agent/pi-crash.log	yes	no		989	yes
+~/.pi/agent/run-history.jsonl	yes	no		0	no
+~/.pi/agent/settings.json	yes	yes	../../MEGA/Development/Code_Environment/Public/.pi/settings.json	0	no
+~/.pi/agent/statusline.sh	yes	yes	../../MEGA/Development/Code_Environment/Public/.pi/statusline.sh	0	no
+~/.pi/agent/sync-pi-configs.sh	yes	no		0	no
+~/.pi/agent/trust.json	yes	no		0	yes
+~/.config/git/hooks/commit-msg	yes	yes	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/commit-msg		
+~/.config/git/hooks/post-commit	yes	yes	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-commit		
+~/.config/git/hooks/post-merge	yes	yes	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-merge		
+~/.config/git/hooks/post-rewrite	yes	yes	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-rewrite		
+~/.config/git/hooks/pre-commit	yes	yes	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/pre-commit		
+~/.config/git/hooks/pre-push	yes	yes	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/pre-push		
+~/.config/git/hooks/prepare-commit-msg	yes	yes	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/prepare-commit-msg		

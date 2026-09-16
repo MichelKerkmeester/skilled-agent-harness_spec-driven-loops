@@ -1,0 +1,11 @@
+### Map C documentation classes: skill:sk-design (87 markdown files)
+
+| documentation class | files | fenced lines (runnable-ish) | inline lines (prose) | class | note | example files |
+|---|---:|---:|---:|---|---|---|
+| manual testing playbook | 46 | 2 | 158 | mechanical | runnable steps; rewrite paths, review by hand | `.opencode/skills/sk-design/manual-testing-playbook/holdout/flowchart-natural.md`; `.opencode/skills/sk-design/manual-testing-playbook/holdout/ind-flowchart.md`; `.opencode/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md` |
+| benchmark material | 18 | 1 | 17 | freeze | recorded measurements from past runs | `.opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--create-diagram-command/source.md`; `.opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--drawio-import/source.md`; `.opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-08-12--manual-testing-playbook--editorial-style-and-connectors/source.md` |
+| top-level skill doc | 10 | 34 | 13 | mechanical | load-bearing doc; rewrite paths | `.opencode/skills/sk-design/SKILL.md`; `.opencode/skills/sk-design/sk-design-chart/README.md`; `.opencode/skills/sk-design/sk-design-chart/scripts/README.md` |
+| references | 7 | 6 | 6 | mechanical | mixed prose and runnable snippets; rewrite paths | `.opencode/skills/sk-design/sk-design-chart/references/design-md-theming.md`; `.opencode/skills/sk-design/sk-design-diagram/references/design-md-theming.md`; `.opencode/skills/sk-design/sk-design-diagram/references/foundations/onboarding.md` |
+| feature catalog | 4 | 0 | 13 | mechanical | prose describing current behavior; rewrite paths | `.opencode/skills/sk-design/sk-design-diagram/feature-catalog/command-and-hub-integration/design-diagram-command.md`; `.opencode/skills/sk-design/sk-design-diagram/feature-catalog/command-and-hub-integration/hub-registration.md`; `.opencode/skills/sk-design/sk-design-diagram/feature-catalog/diagram-generation/type-selection-and-routing.md` |
+| historical record (changelog) | 1 | 0 | 1 | freeze | may keep historical paths | `.opencode/skills/sk-design/sk-design-chart/changelog/v0.23.0.0.md` |
+| other documentation | 1 | 5 | 0 | manual | classify by hand | `.opencode/skills/sk-design/sk-design-md-generator/INSTALL-GUIDE.md` |

@@ -1,0 +1,15 @@
+## skill:sk-communication / manual-testing-playbook — 11 files
+
+| file | `.opencode` lines | what it is | origin | needed change | class |
+|---|---|---|---|---|---|
+| `.opencode/skills/sk-communication/manual-testing-playbook/advisor-routing/advisor-routes-projection-request.md` | :40,46 | documentation (2 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/manual-testing-playbook/fidelity-and-privacy/claim-omission-and-no-op.md` | :40 | documentation (1 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md` | :40,47,68,69,70,71 | documentation (6 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/manual-testing-playbook/fidelity-and-privacy/external-cli-provider-fallback.md` | :40,47,68,69,70,71 | documentation (6 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/manual-testing-playbook/fidelity-and-privacy/privacy-precedes-provider-ranking.md` | :40,46,67,68,69 | documentation (5 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md` | :68,230,235,236,237,238,239,240 (+2) | documentation (10 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/manual-testing-playbook/presentation-tiers/full-projection-requires-atomic-ownership.md` | :40,46,67,68,69 | documentation (5 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/manual-testing-playbook/presentation-tiers/safe-native-preserves-original-visibility.md` | :40,47,68,69,70,71 | documentation (6 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/manual-testing-playbook/release-gating/compatibility-doctor-selects-original-only.md` | :40,46,67,68,69 | documentation (5 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/manual-testing-playbook/release-gating/human-certified-bundle-gates-release.md` | :40,46,67,68,69 | documentation (5 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |
+| `.opencode/skills/sk-communication/manual-testing-playbook/release-gating/provisional-evaluation-blocks-release.md` | :40,47,69,70,71,72 | documentation (6 inline (prose)) | authored doc | rewrite refs — fenced lines are runnable, inline are prose | mechanical |

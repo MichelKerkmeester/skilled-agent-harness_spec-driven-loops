@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "description": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes",
+  "keywords": [
+    "opencode",
+    "authoring",
+    "home",
+    "every",
+    "skill",
+    "command",
+    "agent",
+    "hook",
+    "plugin",
+    "runtime",
+    "script",
+    "repository",
+    "six",
+    "cli",
+    "runtimes"
+  ],
+  "lastUpdated": "2026-09-16T13:51:48.241Z",
+  "specId": "041",
+  "folderSlug": "skilled-source-root-migration",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

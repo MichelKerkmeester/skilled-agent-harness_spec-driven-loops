@@ -1,0 +1,57 @@
+{
+  "rows": {
+    "A": 435,
+    "B": 231,
+    "C": 4029,
+    "home": 36
+  },
+  "class_totals": {
+    "A": {
+      "none": 252,
+      "regenerate": 146,
+      "mechanical": 27,
+      "manual": 3,
+      "freeze": 7
+    },
+    "B": {
+      "manual": 6,
+      "mechanical": 27,
+      "regenerate": 198
+    },
+    "C": {
+      "mechanical": 2938,
+      "manual": 98,
+      "regenerate": 25,
+      "freeze": 968
+    },
+    "home": {
+      "manual": 6,
+      "none": 23,
+      "blocker": 7
+    }
+  },
+  "basis": {
+    "A:both-lanes": 206,
+    "A:rule:contract-or-ci": 3,
+    "A:rule:dist-link-travels-intact": 2,
+    "A:rule:internal-relative-link": 201,
+    "A:rule:layout-dependent": 1,
+    "A:rule:specs-link-needs-no-change": 22,
+    "B:both-lanes": 229,
+    "B:rule:generated": 2,
+    "C:both-lanes": 1084,
+    "C:orchestrator (seed gap)": 1,
+    "C:rule:benchmark-input-not-report": 1,
+    "C:rule:contract-or-ci": 53,
+    "C:rule:false-freeze": 2,
+    "C:rule:fixture-not-generated": 5,
+    "C:rule:generated": 16,
+    "C:rule:hand-kept-registry": 5,
+    "C:rule:recorded-fixture (judgment)": 35,
+    "C:swe2 only": 2827,
+    "home:rule:log-not-config": 1,
+    "home:rule:root-keyed-trust": 1,
+    "home:swe2 only": 34
+  },
+  "unresolved": []
+}

@@ -1,0 +1,12 @@
+{"type":"config","topic":"fanout-luna-1789548196115-9qchey","maxIterations":10,"generation":1,"timestamp":"2026-09-16T08:46:23.129Z"}
+{"type":"iteration","iteration":1,"run":1,"status":"complete","newInfoRatio":1,"ruledOut":[],"timestamp":"2026-09-16T08:48:22.625Z"}
+{"type":"iteration","iteration":2,"run":2,"status":"complete","newInfoRatio":0.95,"ruledOut":[],"timestamp":"2026-09-16T08:50:08.381Z"}
+{"type":"iteration","iteration":3,"run":3,"status":"complete","newInfoRatio":0.9,"ruledOut":[],"timestamp":"2026-09-16T08:53:06.590Z"}
+{"type":"iteration","iteration":4,"run":4,"status":"complete","newInfoRatio":0.92,"ruledOut":[],"timestamp":"2026-09-16T08:55:02.289Z"}
+{"type":"iteration","iteration":5,"run":5,"status":"complete","newInfoRatio":0.94,"ruledOut":[],"timestamp":"2026-09-16T08:56:34.794Z"}
+{"type":"iteration","iteration":6,"run":6,"status":"complete","newInfoRatio":0.88,"ruledOut":[],"timestamp":"2026-09-16T08:57:49.227Z"}
+{"type":"iteration","iteration":7,"run":7,"status":"complete","newInfoRatio":0.85,"ruledOut":[],"timestamp":"2026-09-16T09:01:46.323Z"}
+{"type":"iteration","iteration":8,"run":8,"status":"complete","newInfoRatio":0.8,"ruledOut":[],"timestamp":"2026-09-16T09:02:53.451Z"}
+{"type":"iteration","iteration":9,"run":9,"status":"complete","newInfoRatio":0.72,"ruledOut":[],"timestamp":"2026-09-16T09:03:55.207Z"}
+{"type":"iteration","iteration":10,"run":10,"status":"complete","newInfoRatio":0.65,"ruledOut":[],"timestamp":"2026-09-16T09:04:48.284Z"}
+{"type":"event","event":"synthesis_complete","stem":"deep_research.synthesis_complete","lineageId":"fanout-luna-1789548196115-9qchey","runId":"fanout-luna-1789548196115-9qchey","answeredCount":5,"stopReason":"maxIterationsReached","totalIterations":10,"totalQuestions":5,"timestamp":"2026-09-16T09:08:46.596Z"}

@@ -1,0 +1,64 @@
+{
+  "openQuestions": [
+    "Can each runtime be pointed at a root other than its own directory name? Settles with version-specific loader documentation or source.",
+    "Does OpenCode's flat plugin glob and Devin's native skill scan follow a symlinked directory? Settles with per-runtime probes.",
+    "Does a dangling hook under core.hooksPath fail loudly or skip silently? Settles with a one-line probe.",
+    "With .opencode as a consumer, do gate scripts run while their staged-path filters miss .skilled changes? Settles with a probe commit.",
+    "Which .opencode subpaths will the compatibility surface cover? Phase 003 layout decision; both answers are in the map.",
+    "Is there an external bootstrap owner for the hand-made whole-directory links? Settles with a machine-level search, excluding secrets.",
+    "Do the 129 system-spec-kit test files assert absolute repository paths or path fragments? Settles by reading the assertions.",
+    "Are the benchmark artifacts consumed by live tooling or only read by humans? Settles by reading benchmark script inputs.",
+    "Is the .opencode/skill matcher bug recorded in the smart-router-telemetry README still live? Settles with a one-command probe.",
+    "Does the .pi/extensions import base survive a relocated symlink? Settles with a Pi probe."
+  ],
+  "resolvedQuestions": [
+    "Map A: complete symlink topology for all 435 links with both required-target answers and generator ownership",
+    "Map B: all 231 runtime files plus the home-level configuration surface, with per-file generator ownership",
+    "Map C: all 4,028 remaining tracked files by area, with every code file's first matching line",
+    "Live reconciliation: symlink census, runtime file census, tracked-file delta (one post-seed file)",
+    "Citation verification for every synthesis-critical claim (gates, launcher, contract, hooks)"
+  ],
+  "keyFindings": [
+    {"id":"map-a-dual-answer","surface":"Map A","finding":"With an .opencode compatibility link no raw target changes; without it the .opencode segment swaps to .skilled at unchanged relative depth. 147 regenerate, 231 mechanical, 28 none, 29 freeze.","classification":"mechanical","citations":["iterations/iteration-001.md","iterations/iteration-002.md","iterations/iteration-003.md"]},
+    {"id":"map-a-generator-cascade","surface":"Map A generators","finding":"One generator, sync-runtime-mirrors.cjs, owns 168 links; it hardcodes .opencode/commands and matches .opencode hook paths in configs, so link regeneration must follow generator retargeting.","classification":"regenerate","citations":[".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:41,110,126-140"]},
+    {"id":"map-a-agent-mirrors","surface":"Map A cursor/devin","finding":"24 Cursor/Devin agent mirrors target .claude/agents and need no change under either compatibility assumption.","classification":"none","citations":[".cursor/agents/*.md",".devin/agents/*/AGENT.md"]},
+    {"id":"map-b-generated","surface":"Map B","finding":"197 of 231 runtime files are generator output; hook-registry.json is the single edit point for the four hook registration files; pi extensions and browsability links are hand-made and have no regenerator.","classification":"regenerate","citations":[".opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",".pi/extensions/README.md:19-32"]},
+    {"id":"map-b-mcp","surface":"Map B MCP","finding":"Five hand-authored MCP registrations plus ~/.hermes/config.yaml name .opencode/bin/mcp-code-mode-launcher.cjs; .cursor/mcp.json is a real file though its manifest says symlink.","classification":"mechanical","citations":[".claude/mcp.json",".cursor/mcp.json:6",".devin/mcp_config.json:6",".pi/mcp.json:5",".codex/config.toml:13"]},
+    {"id":"map-b-home-blocker","surface":"Map B home","finding":"Seven absolute git-hook symlinks under ~/.config/git/hooks plus codex/hermes/pi/claude home configuration; no repository validator covers this class.","classification":"blocker","citations":["home-refs.tsv","~/.config/git/hooks/"]},
+    {"id":"map-c-freeze-mass","surface":"Map C","finding":"1,008 files are historical records (changelogs, benchmarks, recorded runs, specs history) that must not be rewritten; the freeze class makes a blanket sed unsafe.","classification":"freeze","citations":["iterations/iteration-005.md","iterations/iteration-006.md","iterations/iteration-007.md"]},
+    {"id":"map-c-root-sentinel","surface":"Map C blocker","finding":"repo-root.mjs keeps the .opencode/skills/system-spec-kit/SKILL.md sentinel and a literal .opencode segment match; PUBLIC-RELEASE.md publishes the consumer symlink contract; the launcher builds paths from a literal .opencode segment.","classification":"blocker","citations":[".opencode/skills/system-spec-kit/shared/workspace/repo-root.mjs:26-45","PUBLIC-RELEASE.md:10-36",".opencode/bin/mcp-code-mode-launcher.cjs:22"]},
+    {"id":"map-c-gates","surface":"Map C gates/CI","finding":"The seven global git hooks are symlinks to .opencode/scripts; pre-commit's mirror checks skip on missing scripts; pre-push filters on .opencode/skills; 12 of 19 CI workflows skip on a missing guard.","classification":"manual","citations":[".opencode/scripts/git-hooks/pre-commit:49,95,114-182",".opencode/scripts/git-hooks/pre-push:121-123",".github/workflows/spec-kit-check.yml:7"]},
+    {"id":"map-c-generated-owners","surface":"Map C derived state","finding":"Trigger index, graph metadata, leaf manifests, compiled contracts, runtime mirrors, hook registrations, prompt/agent trees and Hermes copies each have a named generator; regenerate rather than edit.","classification":"regenerate","citations":[".opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:61-88",".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs:14"]},
+    {"id":"live-reconciliation","surface":"verification","finding":"Live symlink census matches the seed per root; tracked files are 4,259 with exactly one post-seed addition; all synthesis-critical citations resolve.","classification":"none","citations":["iterations/iteration-009.md",".opencode/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:48"]}
+  ],
+  "ruledOutDirections": [
+    {"direction":"barter/","reason":"Operator-supplied evidence: its links resolve into a different checkout."},
+    {"direction":"leading-space specs/","reason":"Stray duplicate from an earlier run, per the frozen brief."},
+    {"direction":"blanket .opencode -> .skilled sed over the repository","reason":"1,008 freeze-class files and 24 agent mirrors would be corrupted; internal links never spell the path.","evidence":"iterations/iteration-003.md; iterations/iteration-009.md"},
+    {"direction":"Treat runtime SYNC.md manifests as the link census","reason":"Three manifests disagree with the tree on counts and file types (claude specs/changelog links, cursor mcp.json, agent counts).","evidence":".claude/SYNC.md:24-41; .cursor/SYNC.md:12-23"}
+  ],
+  "metrics": {
+    "sourceFindings": 11,
+    "reconstructionGaps": 0,
+    "iterations": 10,
+    "newInfoRatios": [1.0, 0.9, 0.8, 0.85, 0.75, 0.7, 0.65, 0.6, 0.15, 0.05]
+  },
+  "divergence": {
+    "completed": [
+      "Map A 435/435 links",
+      "Map B 231/231 files + home surface",
+      "Map C 4,028/4,028 tracked files",
+      "Live reconciliation and citation verification"
+    ],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": ["seed inventory", "runtime manifests as census", "blanket rewrite"],
+    "remainingFrontier": [
+      "runtime root-configurability probes",
+      "symlink-following loader probes (plugins/devin/pi)",
+      "dangling-hook behavior probe",
+      "gate-filter probe under a .skilled change",
+      "machine-level bootstrap-owner search"
+    ]
+  }
+}

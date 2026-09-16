@@ -1,0 +1,133 @@
+GATE PRE-RESOLUTION (read first, do not stop to ask)
+
+The documentation-scope question is already answered for you. Your spec folder is
+specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research
+and it is pre-approved. Do not ask the operator anything: nobody is at your prompt.
+Write ONLY under that folder's research/ directory. Do not edit any file elsewhere in
+the repository — not to fix something you notice, not to prove a claim. Changes outside
+your lineage directory are reverted and fail the run.
+
+---
+
+RESEARCH QUESTION
+
+This repository roots its shared AI asset library at `.opencode/`: every skill, command,
+agent, hook, plugin, bin script and runtime script is authored there, and six other CLI
+runtimes reach it through symlinks. A proposal exists to make `.skilled/` the directory
+that holds those real files, and to turn every runtime directory — `.opencode/` included —
+into a consumer that links into `.skilled/`.
+
+Your question is: **what would actually have to change, and what would break?**
+
+Not whether the move is a good idea. That decision is made. Your job is to produce the
+inventory and the blocker list that a cutover design can be built from.
+
+---
+
+WHAT IS ALREADY MEASURED (do not re-count these; extend and correct them)
+
+These come from `git grep` and `find` over the current tree. Treat them as a starting
+map, and say so if you find one of them wrong.
+
+- 200 symlinks point into `.opencode/`, from `.claude/` (56), `.cursor/` (53),
+  `.devin/` (22), `.pi/` (19), `.codex/` (19), `.hermes/` (2), `specs/` (4),
+  `.pytest_cache/` (1) and `.opencode/` itself (1).
+- 4,258 tracked files contain the literal string `.opencode`, 85,769 occurrences total,
+  excluding `specs/` and `node_modules/`.
+- 1,223 of those are non-markdown, i.e. code and configuration: 405 `.json`, 371 `.ts`,
+  111 `.cjs`, 69 `.sh`, 64 `.yaml`, 44 `.mjs`, 40 `.py`, 29 `.txt`, 23 `.js`, 20 `.yml`,
+  14 `.toml`, 10 `.tmpl`, 4 `.jsonl`, plus the three git hooks under
+  `.opencode/scripts/git-hooks/`.
+- 20 GitHub Actions workflows under `.github/workflows/` reference the path.
+- `.gitignore` carries 62 lines mentioning opencode.
+- The repository already contains 3,328 symlinks in total (excluding `node_modules/`,
+  `.git/` and `.worktrees/`).
+- `.skilled/` already exists and holds one empty placeholder directory named
+  `future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back`.
+- `~/.codex/config.toml`, outside this repository, references this repository's
+  `.opencode` path.
+
+ALREADY RULED OUT, with the reason:
+
+- `barter/` is out of scope. Its `.opencode` symlinks resolve to a different checkout
+  (`/Users/michelkerkmeester/MEGA/Development/Code_Environment/Barter/ai-speckit/coder/.opencode`),
+  so this repository's move does not reach them. Verified by reading the link targets.
+
+---
+
+WHAT TO INVESTIGATE
+
+Work through these. Each iteration should take one or two and go deep, rather than
+skimming all of them.
+
+1. **Symlink topology.** For each of the 200 links: what it points at, whether the target
+   is relative or absolute, and whether the consuming runtime resolves that position at
+   all. Pay attention to the asymmetry: `.claude/skills` and `.pi/skills` are symlinks to
+   `../.opencode/skills`, but `.hermes/skills/` is a real directory, and `.hermes/agents`
+   is a link while `.claude/agents/` is a real directory. Find out why, because the
+   difference is either a deliberate constraint or an accident, and the two have opposite
+   consequences for the move.
+
+2. **Runtime resolution contracts.** For each of the seven runtimes — Claude Code, Codex,
+   Cursor, Devin, Pi, Hermes, opencode — where does it read its skills, commands, agents,
+   hooks and plugins from, and is that path configurable or hardcoded to the runtime's own
+   directory name? Name the file and line that decides it. A runtime that cannot be pointed
+   anywhere else is a constraint the design must accept, not a bug to fix.
+
+3. **What `.opencode/` must keep.** opencode itself still runs here. Root `opencode.json`
+   launches `.opencode/bin/mcp-code-mode-launcher.cjs`. Determine the minimum that must
+   remain resolvable at `.opencode/` for the opencode runtime to work, and whether a
+   symlink satisfies each case or whether some need a real file.
+
+4. **Derived and generated state.** Find every artifact that stores a `.opencode` path as
+   data rather than as source text: compiled routing tables, registries, `descriptions.json`,
+   trigger indexes, leaf manifests, SQLite databases, `dist/` output, build attestations,
+   graph metadata. These cannot be fixed by a text rewrite; they have to be regenerated, and
+   the design needs to know which command regenerates each one. Distinguish absolute paths
+   from repo-relative ones, because they fail differently.
+
+5. **The repository's own gates.** The pre-commit, pre-push and prepare-commit-msg hooks,
+   the validators, the naming guards, the 20 CI workflows. Which of them would reject the
+   migration commit itself, and what order must they be taught the new path in? A gate that
+   has to pass before it can be updated is a real ordering constraint.
+
+6. **References from outside the repository.** `~/.codex/config.toml` is one. Find the rest:
+   home-level runtime configs, installed hooks, launch wrappers, anything in `~/.claude/`,
+   `~/.config/devin/`, `~/.pi/`, `~/.hermes/`. These do not move with a `git mv` and will
+   silently keep pointing at the old path.
+
+7. **Migration mechanics.** Whether `git mv` preserves history at this size; what happens to
+   existing symlinks whose targets traverse the moved directory; whether the change can land
+   as one commit or must be staged; and whether any tooling caches an absolute path that
+   survives the move.
+
+8. **The documentation surface.** Roughly 3,000 tracked markdown files name the path,
+   including `AGENTS.md`, `REPO RULES.md`, `README.md`, `CONTRIBUTING.md` and
+   `PUBLIC-RELEASE.md`. Determine which mentions are load-bearing instructions that would
+   become wrong, and which are prose that merely reads stale. They need different treatment
+   and the counts matter.
+
+---
+
+HOW TO ANSWER
+
+Every claim carries a `file:line` citation from this repository. A claim you cannot cite
+is written down as a claim you could not verify, not dropped and not softened.
+
+Structure each iteration's findings as:
+
+- **Surface**: which of the eight areas above.
+- **Finding**: what is true, with citations.
+- **Classification**: one of
+  - `mechanical` — a scripted path rewrite handles it,
+  - `regenerate` — the artifact must be rebuilt by a named command, not edited,
+  - `manual` — a human has to decide something,
+  - `blocker` — it cannot be done as proposed, and why.
+- **Consequence for the cutover**: what this forces about ordering, or nothing.
+
+Where two surfaces contradict each other, say so and name both citations rather than
+picking one. Where you could not determine something, write UNKNOWN and name what would
+settle it.
+
+Do not propose the cutover sequence. That is the next phase's work, and a sequence written
+from a partial inventory is worse than none.

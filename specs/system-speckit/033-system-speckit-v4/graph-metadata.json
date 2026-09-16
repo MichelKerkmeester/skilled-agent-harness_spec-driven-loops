@@ -43,7 +43,8 @@
     "system-speckit/033-system-speckit-v4/037-derived-artifact-registry",
     "system-speckit/033-system-speckit-v4/038-goal-unification",
     "system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution",
-    "system-speckit/033-system-speckit-v4/040-gate-3-option-merge"
+    "system-speckit/033-system-speckit-v4/040-gate-3-option-merge",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration"
   ],
   "manual": {
     "depends_on": [],
@@ -123,16 +124,16 @@
     ],
     "causal_summary": "Thirty-eight packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-12 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-15T05:35:09.314Z",
+    "last_save_at": "2026-09-16T09:37:42.236Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d0692a2342a6a6fdef6df028c53c14a2c518ac16c0a7169ae68cb8d94ecde582",
+    "source_fingerprint": "sha256:2b6f12fc9ae710696c61dfc48fb0d040b0ab83b8c919ef4815295ef193f3bcf7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9e9409b80481eea0cc3038e8bb8ff57ed3f3e23b5746510ba66adaeb823b491f"
+      "spec.md": "43b08e7a1a5dfa5461db2732ac0c0b97e443b78ab0c4ce288b558402181bab64"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/036-spec-doc-healer",
     "last_active_at": "2026-09-12T17:07:47.188Z"

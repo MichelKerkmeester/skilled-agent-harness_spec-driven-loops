@@ -1,0 +1,40 @@
+{
+  "type": "synthesis",
+  "timestamp": "2026-09-16T13:39:54Z",
+  "run": 10,
+  "iteration": 10,
+  "session_id": "fanout-swe2-1789561902822-scse4p",
+  "lineage": "swe2",
+  "stop_reason": "convergence \u2014 exact seed closure; a further iteration adds no rows",
+  "coverage": {
+    "map_a": {
+      "seed": 435,
+      "mapped": 435
+    },
+    "map_b": {
+      "seed": 267,
+      "mapped": 267
+    },
+    "map_c": {
+      "seed": 4027,
+      "mapped": 4027
+    },
+    "total": 4729
+  },
+  "classes": {
+    "mechanical": 3041,
+    "regenerate": 351,
+    "freeze": 978,
+    "none": 274,
+    "manual": 78,
+    "blocker": 7
+  },
+  "unknowns": 7,
+  "artifacts": {
+    "research": "research.md",
+    "convergence": "convergence-report.md",
+    "resources": "resource-map.md",
+    "iterations": 10,
+    "deltas": 10
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "per runtime symlink map",
+      "stale opencode path references",
+      "skilled reference map",
+      "runtime file path inventory",
+      "skilled reference map findings",
+      "stale opencode references map",
+      "reconciled migration map"
+    ],
+    "key_topics": [
+      "per",
+      "runtime",
+      "symlink",
+      "map",
+      "stale",
+      "opencode",
+      "path",
+      "references",
+      "skilled",
+      "reference",
+      "file",
+      "inventory"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "scratch/topic.txt",
+      "research/maps/map-a-symlinks.tsv",
+      "research/maps/map-c-references.tsv",
+      "scratch/build-seed-inventory.py",
+      ".claude/settings.json",
+      ".codex/AGENTS.md",
+      ".cursor/rules/skill-routing.md",
+      ".hermes/plugins/repo-guards/__init__.py",
+      ".cursor/mcp.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "topic.txt",
+        "kind": "file",
+        "path": "scratch/topic.txt",
+        "source": "derived"
+      },
+      {
+        "name": "map-a-symlinks.tsv",
+        "kind": "file",
+        "path": "research/maps/map-a-symlinks.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "map-c-references.tsv",
+        "kind": "file",
+        "path": "research/maps/map-c-references.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "build-seed-inventory.py",
+        "kind": "file",
+        "path": "scratch/build-seed-inventory.py",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-routing.md",
+        "kind": "doc",
+        "path": ".cursor/rules/skill-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "__init__.py",
+        "kind": "file",
+        "path": ".hermes/plugins/repo-guards/__init__.py",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".cursor/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "Research Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Reference Map",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skilled Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Merged Findings",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "How To Use The Maps",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Files And Home",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 established what kinds of thing the move breaks and which of them cannot be fixed by a rewrite",
+    "created_at": "2026-09-16T12:30:38.836Z",
+    "last_save_at": "2026-09-16T13:51:48.580Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:eaa7e54db895f7ef19e710fb70c746e10f88aec451d223a133af2b5a7e4db26c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c81403bd8b1c2b08319c7247425566e2efb55f956bee7791e48184a605cb5681",
+      "research/research.md": "a26a95c7776e48f588b913200d1a04b3c3f42c1fd6ff9ccab1f7c5ae94b8c174"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

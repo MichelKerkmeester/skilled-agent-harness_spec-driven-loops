@@ -1,0 +1,13 @@
+### Map C code rows: skill:sk-git (9 non-markdown files)
+
+| file | line | matching lines | first matching construct (truncated) | origin | class |
+|---|---|---:|---|---|---|
+| `.opencode/skills/sk-git/benchmark/reports/2026-07-10--live--glm-5-2-high/skill-benchmark-report.json` | `.opencode/skills/sk-git/benchmark/reports/2026-07-10--live--glm-5-2-high/skill-benchmark-report.json:9` | 1 | `"root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-git"` | historical record: benchmark report data | freeze |
+| `.opencode/skills/sk-git/benchmark/reports/2026-07-10--live--kimi-2-7/skill-benchmark-report.json` | `.opencode/skills/sk-git/benchmark/reports/2026-07-10--live--kimi-2-7/skill-benchmark-report.json:9` | 1 | `"root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-git"` | historical record: benchmark report data | freeze |
+| `.opencode/skills/sk-git/graph-metadata.json` | `.opencode/skills/sk-git/graph-metadata.json:156` | 18 | `".opencode/skills/sk-git/SKILL.md",` | generated: regenerate-skill-derived.cjs | regenerate |
+| `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:112` | 1 | `const rules = readHardRules(path.join(projectDir, '.opencode', 'skills', 'sk-git', 'SKILL.md'))` | source code (authored) | mechanical |
+| `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs` | `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs:83` | 1 | `const skillDir = path.join(dir, '.opencode', 'skills', 'sk-git');` | test code | mechanical |
+| `.opencode/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts` | `.opencode/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts:7` | 5 | `import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";` | source code (authored) | mechanical |
+| `.opencode/skills/sk-git/scripts/lib/advisory-noise-audit.mjs` | `.opencode/skills/sk-git/scripts/lib/advisory-noise-audit.mjs:105` | 1 | `const rules = readHardRules(path.join(repo, '.opencode', 'skills', 'sk-git', 'SKILL.md'))` | source code (authored) | mechanical |
+| `.opencode/skills/sk-git/scripts/worktree-naming.sh` | `.opencode/skills/sk-git/scripts/worktree-naming.sh:145` | 2 | `echo "$top/.opencode/skills/sk-git/scripts/remote-branch-allowlist.txt"` | source code (authored) | mechanical |
+| `.opencode/skills/sk-git/scripts/worktree-provision-paths.txt` | `.opencode/skills/sk-git/scripts/worktree-provision-paths.txt:16` | 8 | `.opencode` | source code (authored) | mechanical |

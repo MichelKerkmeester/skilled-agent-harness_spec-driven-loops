@@ -1,0 +1,13 @@
+{
+  "type": "iteration_complete",
+  "run": 7,
+  "iteration": 7,
+  "timestamp": "2026-09-16T13:16:44Z",
+  "focus": "Map C advisor/sk-code/sk-doc",
+  "artifacts": [
+    "iterations/iteration-007.md",
+    "deltas/iter-007.jsonl"
+  ],
+  "reconciled": "868/868",
+  "next": "Map C mcp-tooling + sk-design + sk-vision + sk-git + sk-prompt + mcp-code-mode + sk-communication"
+}
