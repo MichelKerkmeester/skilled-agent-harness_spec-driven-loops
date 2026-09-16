@@ -79,8 +79,31 @@ function isFiniteNumber(value) {
   return typeof value === 'number' && Number.isFinite(value);
 }
 
+// Severities already reported as outside the scale, so a registry that repeats one
+// across many findings produces one line per distinct value rather than per finding.
+const reportedUnrankedSeverities = new Set();
+
+/**
+ * Maps a severity onto the three-tier scale, and says so when it cannot.
+ *
+ * Callers drop a finding whose severity does not normalize, which is the right
+ * handling -- the reducer has no tier to file it under and inventing one would
+ * guess. What it must not do is drop it quietly: a finding that vanishes between
+ * the lane that wrote it and the report that reads it is indistinguishable from a
+ * finding nobody wrote, and only the producer can fix the word it stamped. An
+ * absent severity is a different defect that the record-shape warnings cover, so
+ * only a present-but-unrecognised value is reported here.
+ */
 function normalizeSeverity(value) {
-  return SEVERITY_KEYS.includes(value) ? value : null;
+  if (SEVERITY_KEYS.includes(value)) return value;
+  if (typeof value === 'string' && value.trim() !== '' && !reportedUnrankedSeverities.has(value)) {
+    reportedUnrankedSeverities.add(value);
+    process.stderr.write(
+      `[deep-review] warning: severity "${value}" is outside the ${SEVERITY_KEYS.join('/')} scale; `
+      + 'findings carrying it are dropped from the reduced state\n',
+    );
+  }
+  return null;
 }
 
 function normalizeLineageMode(value) {

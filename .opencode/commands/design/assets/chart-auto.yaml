@@ -28,7 +28,7 @@ skill_reference:
     colour_systems: .opencode/skills/sk-design/sk-design-chart/references/color-system.md
   assets:
     forms: .opencode/skills/sk-design/sk-design-chart/assets/templates/
-    palettes: .opencode/skills/sk-design/sk-design-chart/assets/color/palettes.json
+    palettes: .opencode/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/palettes.json
   scripts:
     corpus_check: .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs
 

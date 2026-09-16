@@ -73,6 +73,7 @@ fi
 REJECTED=0
 AUTOSYNC_LIVE_PUSH=0
 SKILL_CHANGES_PUSHED=0
+PUSHED_SHAS=""
 
 while read -r _ local_sha remote_ref remote_sha; do
   [[ -n "$remote_ref" ]] || continue
@@ -120,6 +121,8 @@ while read -r _ local_sha remote_ref remote_sha; do
   if [[ "$is_new" -eq 0 ]] && ! git -C "$REPO_ROOT" diff --quiet "$remote_sha" "$local_sha" -- .opencode/skills 2>/dev/null; then
     SKILL_CHANGES_PUSHED=1
   fi
+
+  PUSHED_SHAS="${PUSHED_SHAS} ${local_sha}"
 
   # Release branches are the one namespace the naming/permission gates never touch.
   case "$branch_name" in
@@ -263,6 +266,44 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
       exit 1
     fi
   fi
+
+  # The guard above reads the WORKING TREE. That is the tree the author can fix, so
+  # it is the right thing to validate -- but it is not the tree that reaches anyone
+  # else. When a commit carries minted manifests whose source edits are still
+  # uncommitted, the working tree is coherent and the published commit is not: a
+  # fresh clone recomputes different hashes and those hubs fall back to legacy.
+  # That has happened here, and neither this gate nor the commit-time one saw it,
+  # because the commit gate keys on staged inputs and manifests alone do not trigger
+  # it. So assert the pushed commit carries the same routing bytes the guard just
+  # approved. Anything git cannot resolve is skipped rather than blocked: a hook
+  # that guesses is worse than one that misses.
+  ROUTING_BYTES=(
+    '.opencode/bin/lib/compiled-routing/013-live-activation/activation/*/manifest.json'
+    '.opencode/skills/*/hub-router.json'
+    '.opencode/skills/*/mode-registry.json'
+    '.opencode/skills/*/leaf-manifest.json'
+    '.opencode/skills/*/ROUTER.md'
+    '.opencode/skills/*/SKILL.md'
+  )
+  for pushed_sha in $PUSHED_SHAS; do
+    git -C "$REPO_ROOT" cat-file -e "${pushed_sha}^{commit}" 2>/dev/null || continue
+    if ! git -C "$REPO_ROOT" diff --quiet "$pushed_sha" -- "${ROUTING_BYTES[@]}" 2>/dev/null; then
+      {
+        echo ""
+        echo "BLOCKED [gate:routing-commit-parity]: the routing bytes you are pushing are"
+        echo "not the ones just validated. The guard passed against your working tree, and"
+        echo "commit ${pushed_sha:0:10} differs from it in a routing input or a minted manifest."
+        echo "A clone of that commit recomputes different policy hashes and serves legacy."
+        echo "Fix: commit the routing sources and manifests together, then push again."
+        echo "See what differs:"
+        echo "  git diff ${pushed_sha:0:10} -- '.opencode/skills/*/hub-router.json' \\"
+        echo "      '.opencode/bin/lib/compiled-routing/013-live-activation/activation/*/manifest.json'"
+        echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 git push ..."
+        echo ""
+      } >&2
+      exit 1
+    fi
+  done
 fi
 
 exit 0

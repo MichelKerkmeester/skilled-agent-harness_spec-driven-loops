@@ -112,6 +112,7 @@ Every surface of the deep-loop system says the same thing as every other and as 
 | 11 | 011-routing-doctrine-and-discovery/ | One always-loaded policy per hub, and no dead discovery vocabulary | Complete |
 | 12 | 012-missing-stress-fixture-root/ | The stress fixture three scenarios name, restored to current tree shapes | Complete |
 
+| 13 | 013-recorded-adjacent-defects/ | The seven defects earlier phases recorded but did not fix | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -135,6 +136,7 @@ Every surface of the deep-loop system says the same thing as every other and as 
 | 009-containment-promise-and-severity-scale | 010-version-authority-completion | [Criteria TBD] | [Verification TBD] |
 | 010-version-authority-completion | 011-routing-doctrine-and-discovery | [Criteria TBD] | [Verification TBD] |
 | 011-routing-doctrine-and-discovery | 012-missing-stress-fixture-root | [Criteria TBD] | [Verification TBD] |
+| 012-missing-stress-fixture-root | 013-recorded-adjacent-defects | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

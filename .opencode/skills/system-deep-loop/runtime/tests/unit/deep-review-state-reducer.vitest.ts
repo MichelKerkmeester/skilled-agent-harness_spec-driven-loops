@@ -136,4 +136,35 @@ describe('reduceReviewState — degrades gracefully on warning-class problems', 
     const files = result.registry.openFindings.map((f) => f.file).sort();
     expect(files).toEqual(['src/bar.ts', 'src/foo.ts']);
   });
+
+  it('names a severity outside the scale instead of dropping its finding in silence', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'out-of-scale-severity-proof' }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), '');
+    const deltasDir = join(reviewDir, 'deltas');
+    mkdirSync(deltasDir, { recursive: true });
+    writeFileSync(
+      join(deltasDir, 'iter-001.jsonl'),
+      `${JSON.stringify({ type: 'finding', iteration: 1, id: 'F010', severity: 'P1', title: 'In scale', file: 'src/a.ts:1' })}\n`
+      + `${JSON.stringify({ type: 'finding', iteration: 1, id: 'F011', severity: 'P3', title: 'Out of scale', file: 'src/b.ts:2' })}\n`,
+    );
+
+    const lines: string[] = [];
+    const originalWrite = process.stderr.write.bind(process.stderr);
+    (process.stderr as unknown as { write: (chunk: string) => boolean }).write = (chunk: string) => {
+      lines.push(String(chunk));
+      return true;
+    };
+    let result;
+    try {
+      result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    } finally {
+      (process.stderr as unknown as { write: typeof originalWrite }).write = originalWrite;
+    }
+
+    // The reducer still has no tier to file it under, so the finding is dropped.
+    // What changed is that the drop is now attributable to the value that caused it.
+    expect(result.registry.openFindings.map((f) => f.findingId)).toEqual(['F010']);
+    expect(lines.join('')).toMatch(/severity "P3" is outside the P0\/P1\/P2 scale/);
+  });
 });

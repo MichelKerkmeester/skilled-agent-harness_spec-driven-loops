@@ -2467,14 +2467,17 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
   // IGNORES --permission-mode dangerous and, in non-interactive print mode, rejects
   // every write tool call (there is no one to confirm with). A leaf that must write
   // therefore cannot be given --sandbox. Confinement for write-lineages comes from
-  // the fan-out software write-containment guard — which reverts any out-of-scope
-  // path a lineage touched — not from an OS sandbox. So:
+  // the fan-out software write-containment guard, not from an OS sandbox. That guard
+  // detects an out-of-scope path, records it and quarantines a copy under the lineage;
+  // it leaves the bytes in place unless the run opts into restoring, because a path it
+  // cannot attribute may belong to a concurrent writer. So the confinement here is
+  // after the fact and reported, never prevented. So:
   //   - read-only uses "auto" WITHOUT --sandbox: non-interactive devin auto-approves
   //     native file reads while rejecting shell/exec and write tools, giving genuine
   //     read-only. --sandbox must NOT be added here.
   //   - workspace-write uses "dangerous" WITHOUT --sandbox: writes must be
   //     auto-approved, which --sandbox's autonomous mode refuses; the write-containment
-  //     guard confines the leaf to its lineage dir instead.
+  //     guard reports anything it writes outside its lineage dir instead.
   //   - full access uses "dangerous" WITHOUT --sandbox: autonomous and unconfined.
   const args = ['-p', prompt, '--model', model];
   if (resolvedSandbox === 'read-only') {
