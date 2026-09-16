@@ -109,6 +109,9 @@ Every surface of the deep-loop system says the same thing as every other and as 
 | 7 | 007-ledger-stem-producers/ | [Phase 7 scope] | Pending |
 | 8 | 008-agent-mirror-parity/ | [Phase 8 scope] | Pending |
 | 9 | 009-containment-promise-and-severity-scale/ | [Phase 9 scope] | Pending |
+| 10 | 010-version-authority-completion/ | [Phase 10 scope] | Pending |
+| 11 | 011-routing-doctrine-and-discovery/ | [Phase 11 scope] | Pending |
+| 12 | 012-missing-stress-fixture-root/ | [Phase 12 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -129,6 +132,9 @@ Every surface of the deep-loop system says the same thing as every other and as 
 | 006-confirm-variant-parity | 007-ledger-stem-producers | [Criteria TBD] | [Verification TBD] |
 | 007-ledger-stem-producers | 008-agent-mirror-parity | [Criteria TBD] | [Verification TBD] |
 | 008-agent-mirror-parity | 009-containment-promise-and-severity-scale | [Criteria TBD] | [Verification TBD] |
+| 009-containment-promise-and-severity-scale | 010-version-authority-completion | [Criteria TBD] | [Verification TBD] |
+| 010-version-authority-completion | 011-routing-doctrine-and-discovery | [Criteria TBD] | [Verification TBD] |
+| 011-routing-doctrine-and-discovery | 012-missing-stress-fixture-root | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

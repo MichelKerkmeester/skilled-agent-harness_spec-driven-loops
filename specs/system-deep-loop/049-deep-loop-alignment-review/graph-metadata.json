@@ -12,7 +12,10 @@
     "system-deep-loop/049-deep-loop-alignment-review/006-confirm-variant-parity",
     "system-deep-loop/049-deep-loop-alignment-review/007-ledger-stem-producers",
     "system-deep-loop/049-deep-loop-alignment-review/008-agent-mirror-parity",
-    "system-deep-loop/049-deep-loop-alignment-review/009-containment-promise-and-severity-scale"
+    "system-deep-loop/049-deep-loop-alignment-review/009-containment-promise-and-severity-scale",
+    "system-deep-loop/049-deep-loop-alignment-review/010-version-authority-completion",
+    "system-deep-loop/049-deep-loop-alignment-review/011-routing-doctrine-and-discovery",
+    "system-deep-loop/049-deep-loop-alignment-review/012-missing-stress-fixture-root"
   ],
   "manual": {
     "depends_on": [],
@@ -116,31 +119,31 @@
         "source": "derived"
       },
       {
-        "name": "wave-two",
+        "name": "its",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "its",
-        "kind": "key_phrase",
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
         "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs across twenty phases",
     "created_at": "2026-09-15T09:48:33Z",
-    "last_save_at": "2026-09-15T19:49:37.212Z",
+    "last_save_at": "2026-09-16T01:25:52.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9de760dcb2b04ee37addf139906bbb6c9d728abb17c017cc4206b2dbea6f1ca0",
+    "source_fingerprint": "sha256:aa8649a7e4ffa8529c4b1cf6de5e2e3b68ae63d80dcc42301b69aff81be05f8d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0066164849d9dbdf78079aefabfc9da4045afb688528d0bdd20073651f2538f8"
+      "spec.md": "15329e8b2f362e36f8151bbdfd12ac92fa7f60ec5f6fad2fdc628a32cb405a80"
     },
     "last_active_at": null
   }
