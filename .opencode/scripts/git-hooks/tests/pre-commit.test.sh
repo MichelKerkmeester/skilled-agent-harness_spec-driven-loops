@@ -383,6 +383,18 @@ stage_new "notes.md" "note"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a missing comment checker blocks" 1 "$RC" "checker is missing or not executable: "
 
+# ── 25. a missing agent mirror checker blocks where the toolchain ships ──
+setup_gate_fixture toolchain
+stage_new ".opencode/agents/probe.md" "agent"
+run_hook; RC=$?
+check "a missing agent mirror checker blocks" 1 "$RC" "agent-mirror-sync]: checker is missing"
+
+# ── 26. a missing mirror parity script blocks where the toolchain ships ──
+setup_gate_fixture toolchain
+stage_new "notes.md" "note"
+SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
+check "a missing mirror parity script blocks" 1 "$RC" "mirror-parity]: script is missing"
+
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]
