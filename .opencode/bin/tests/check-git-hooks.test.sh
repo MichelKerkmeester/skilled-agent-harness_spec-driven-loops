@@ -25,6 +25,8 @@ trap 'rm -rf "$TMP"' EXIT
 setup_repo() { # setup_repo [toolchain]
   rm -rf "$TMP"; mkdir -p "$TMP"
   git -C "$TMP" init -q
+  # A hooks path set in any config layer would move the directory the check inspects.
+  git -C "$TMP" config core.hooksPath "$TMP/.git/hooks"
   if [[ "${1:-}" == "toolchain" ]]; then
     mkdir -p "$TMP/.opencode/skills/system-spec-kit"
     echo sentinel > "$TMP/.opencode/skills/system-spec-kit/SKILL.md"
