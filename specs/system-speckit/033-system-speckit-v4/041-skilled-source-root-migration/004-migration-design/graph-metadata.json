@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled migration design",
+      "opencode layout decision",
+      "skilled cutover sequence",
+      "source root rollback plan",
+      "skilled layout options",
+      "opencode link decision tree",
+      "skilled cutover steps",
+      "second family design review",
+      "skilled design tasks",
+      "migration design checklist",
+      "design review adjudication tasks",
+      "migration design acceptance criteria"
+    ],
+    "key_topics": [
+      "skilled",
+      "migration",
+      "design",
+      "opencode",
+      "layout",
+      "decision",
+      "cutover",
+      "sequence",
+      "source",
+      "root",
+      "rollback",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/bin/mcp-code-mode-launcher.cjs",
+      ".opencode/bin/lib/compiled-routing/serving-closure.manifest.json",
+      ".opencode/bin/install-codex-hooks.mjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+      "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/maps/map-a-symlinks.tsv",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/package.json",
+      ".opencode/bun.lock"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mcp-code-mode-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "serving-closure.manifest.json",
+        "kind": "config",
+        "path": ".opencode/bin/lib/compiled-routing/serving-closure.manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks.mjs",
+        "kind": "file",
+        "path": ".opencode/bin/install-codex-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-leaf-manifest-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "map-a-symlinks.tsv",
+        "kind": "file",
+        "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/maps/map-a-symlinks.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "bun.lock",
+        "kind": "file",
+        "path": ".opencode/bun.lock",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A move of this size fails in the ordering, not the rename",
+    "created_at": "2026-09-16T08:35:23Z",
+    "last_save_at": "2026-09-16T18:43:44.995Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5815becbf7b40ec2ea3bf273c668ea54af939bf1fcb025573186bebb70bb2e8a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6ebd861508f8434ffb4454013b497d0c1205d7314eb710c22716ca72ab007c0b",
+      "plan.md": "924b501c849173e7cdc9ab555299b67bcfff690129157081e7ab7b9f6342fbdb",
+      "tasks.md": "d75a8eab8b1c8fb9e1a9ed9608f23d88510b7e0d763fb23733b5e4a0257ea67e",
+      "decision-record.md": "b8069a5bf3d00241e6d46b46b0324ecf7967052cc933c70e0402f58d961d8605",
+      "implementation-summary.md": "1979faa5b58cbe9d53fd06b38ee2103372ef5c5537d6db096c0ffc99306e343f"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled gate readiness",
+      "two root gate resolution",
+      "silent gate skip fix",
+      "independent gate input check",
+      "broken move dry run",
+      "gate readiness plan",
+      "source root block plan",
+      "gate input check design",
+      "hook and ci delegation plan",
+      "gate readiness tasks",
+      "gate readiness verification checklist",
+      "hook and workflow unit tasks"
+    ],
+    "key_topics": [
+      "skilled",
+      "gate",
+      "readiness",
+      "two",
+      "root",
+      "resolution",
+      "silent",
+      "skip",
+      "independent",
+      "input",
+      "check",
+      "broken"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/bin/check-git-hooks.sh",
+      ".github/dependabot.yml",
+      ".opencode/scripts/git-hooks/README.md",
+      "tests/README.md",
+      ".github/workflows/README.md",
+      ".opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh",
+      ".opencode/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back/.gitkeep",
+      ".opencode/hooks/shared/hook-flags.sh",
+      ".opencode/scripts/install-git-hooks.sh",
+      ".opencode/scripts/git-hooks/tests/README.md",
+      ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
+      ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/bin/check-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "dependabot.yml",
+        "kind": "config",
+        "path": ".github/dependabot.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/scripts/git-hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "autostash-orphan-guard.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": ".skilled/future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back/.gitkeep",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.sh",
+        "kind": "script",
+        "path": ".opencode/hooks/shared/hook-flags.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test_no_new_snake_case_guard.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
+        "source": "derived"
+      },
+      {
+        "name": "check_no_new_snake_case.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository's gates look for their own scripts at one literal root, `$REPOROOT/.opencode/`, and most of them read a missing script as a reason to skip",
+    "created_at": "2026-09-16T17:54:07Z",
+    "last_save_at": "2026-09-16T18:43:45.114Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e6a90b100bfcc527328ce394086e285c7963fbe46090fbcac1c0abc7cff40753",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8d9c45d0cc30a1e3f5c4e362cdef422939ff5bb07c76566f1229989cd918f0de",
+      "plan.md": "a540b620b1b7727ef94cff4bb185ea64850a75f00f51b1b95b779d67164f6c54",
+      "tasks.md": "b0ba734fc57d9702341ab07275e0ea0c00637d55def94dd6a8d86d7f149e451b",
+      "implementation-summary.md": "dd2e4d9f3db275c891afcb37b464a7bebe63d1c2f1a0cb797512e8b8cd4de03b"
+    },
+    "last_active_at": null
+  }
+}

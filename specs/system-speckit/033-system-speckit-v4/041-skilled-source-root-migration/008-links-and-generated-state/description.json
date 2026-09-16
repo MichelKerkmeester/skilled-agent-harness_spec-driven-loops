@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/008-links-and-generated-state",
+  "description": "Phase 007 moves the files, and nothing that points at them moves along",
+  "keywords": [
+    "phase",
+    "moves",
+    "files",
+    "nothing",
+    "points",
+    "them",
+    "along"
+  ],
+  "lastUpdated": "2026-09-16T18:30:11.242Z",
+  "specId": "008",
+  "folderSlug": "links-and-generated-state",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

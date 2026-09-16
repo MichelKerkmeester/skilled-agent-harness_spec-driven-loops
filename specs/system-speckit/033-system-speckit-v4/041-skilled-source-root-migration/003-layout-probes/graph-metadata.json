@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled layout probes",
+      "runtime symlink resolution probe",
+      "dangling git hook probe",
+      "skilled rename rehearsal",
+      "opencode compat link shape",
+      "skilled layout probe plan",
+      "probe delegation deepseek pi",
+      "skilled rename rehearsal plan",
+      "gate filter trace plan",
+      "skilled layout probe tasks",
+      "layout probe verification checklist",
+      "probe executor assignment"
+    ],
+    "key_topics": [
+      "skilled",
+      "layout",
+      "probes",
+      "runtime",
+      "symlink",
+      "resolution",
+      "probe",
+      "dangling",
+      "git",
+      "hook",
+      "rename",
+      "rehearsal"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/package.json",
+      ".opencode/bun.lock",
+      ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts",
+      ".opencode/skills/system-deep-loop/runtime/database/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "bun.lock",
+        "kind": "file",
+        "path": ".opencode/bun.lock",
+        "source": "derived"
+      },
+      {
+        "name": "session-start-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/runtime/database/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Layout Probes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skilled Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Git",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 004 cannot choose what `.opencode/` becomes until nine runtime and git behaviors are measured, and the two research phases left every one of them open",
+    "created_at": "2026-09-16T17:54:06Z",
+    "last_save_at": "2026-09-16T18:43:44.874Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:046e733759384f46fc4f36f1afae0b1c107b213c9d01014ad11cc81a830f7642",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8c72182f891a58817970eb03394987100ac6f899eb0f3f83a7ed5e9b6e5f8f96",
+      "plan.md": "2ff366ec5a28c871c14ee76fcec9e6d6ebd02ee66cc5b352f267a42890c8987d",
+      "tasks.md": "08fc573610ac499733cb11c3d30348c5962728751676b0aeceaaf800051b084e",
+      "implementation-summary.md": "9f75965e4d4ad85a0a9d03e1623cddbff859fa7610c4693b96ee330a957ef4f7"
+    },
+    "last_active_at": null
+  }
+}

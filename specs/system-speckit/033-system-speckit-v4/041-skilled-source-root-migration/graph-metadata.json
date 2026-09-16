@@ -6,7 +6,15 @@
   "children_ids": [
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research",
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map",
-    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-migration-design"
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/008-links-and-generated-state",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout"
   ],
   "manual": {
     "depends_on": [],
@@ -19,7 +27,11 @@
       "move opencode to skilled",
       "source parent migration",
       "runtime symlink inversion",
-      "dot-skilled migration"
+      "dot-skilled migration",
+      "skilled migration goal",
+      "source root migration directive",
+      "skilled migration completion criteria",
+      "skilled migration binding"
     ],
     "key_topics": [
       "skilled",
@@ -33,23 +45,40 @@
       "symlink",
       "inversion",
       "dot-skilled",
-      "authoring"
+      "goal"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "001-deep-research/spec.md",
       "002-per-runtime-reference-map/spec.md",
-      "003-migration-design/spec.md",
       ".opencode/bin/mcp-code-mode-launcher.cjs",
-      "001-deep-research/research/research.md"
+      "001-deep-research/research/research.md",
+      "001-deep-research/goal.md",
+      "002-per-runtime-reference-map/goal.md",
+      "003-layout-probes/goal.md",
+      "004-migration-design/goal.md",
+      "005-gate-and-ci-readiness/goal.md",
+      "006-dual-root-code-and-contracts/goal.md",
+      "007-source-root-move/goal.md",
+      "008-links-and-generated-state/goal.md",
+      "009-reference-rewrite/goal.md",
+      "010-machine-and-consumer-cutover/goal.md",
+      "011-verification-and-rollout/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -93,20 +122,57 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Nine Opus",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Operator Contract",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
     "created_at": "2026-09-16T08:35:04Z",
-    "last_save_at": "2026-09-16T13:57:40.961Z",
+    "last_save_at": "2026-09-16T18:46:37.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:edfc991d20aaba548047608e77e6a6a659d439d1f010fa48fd2e0ea80fd33e25",
+    "source_fingerprint": "sha256:1d60413040887464d4f2c3b5310bb3c3aa35e2efce3e451343f070d6898dbd01",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "331e126fc84ce87d0d63b4a8e528c30b04bf70ed5e388e4291cb2b3d6d9a19f7"
+      "spec.md": "a7c244e4c6dcbce6f3906dce2158a8d92329d6848e9a69c0a561a46c77839956"
     },
     "last_active_at": null
   }

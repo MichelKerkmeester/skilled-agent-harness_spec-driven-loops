@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled migration verification",
+      "skilled rollout push plan",
+      "runtime canary smoke test",
+      "skilled residue scan",
+      "skilled migration closeout",
+      "skilled verification plan",
+      "skilled gate matrix",
+      "skilled push and ci census",
+      "skilled canary smoke plan",
+      "skilled verification tasks",
+      "skilled rollout checklist",
+      "skilled push tasks"
+    ],
+    "key_topics": [
+      "skilled",
+      "migration",
+      "verification",
+      "rollout",
+      "push",
+      "plan",
+      "runtime",
+      "canary",
+      "smoke",
+      "test",
+      "residue",
+      "scan"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
+      ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite",
+      ".claude/agents/context.md",
+      ".claude/skills/sk-git/SKILL.md",
+      ".pi/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".claude/commands/speckit/search.md",
+      ".cursor/commands/speckit-search.md",
+      ".opencode/commands/speckit/search.md",
+      ".hermes/agents/context.md",
+      ".opencode/agents/context.md",
+      ".cursor/agents/context.md",
+      ".devin/agents/context/AGENT.md",
+      ".codex/prompts/speckit-search.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "test_verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".claude/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".claude/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".claude/commands/speckit/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-search.md",
+        "kind": "doc",
+        "path": ".cursor/commands/speckit-search.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENT.md",
+        "kind": "doc",
+        "path": ".devin/agents/context/AGENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nothing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nothing yet proves that the `.skilled` source root works on the seven runtimes, in the local gates and in CI",
+    "created_at": "2026-09-16T17:54:10Z",
+    "last_save_at": "2026-09-16T18:43:45.830Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3a9dcfddbb905c7a05072701230dc9f1a6f4164c9b267878632dbdde9eb9fd57",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "877dd8e3ff0e0bf893f4aeaea53f2962a8c0dedebe6ae6a2d485667232955cf7",
+      "plan.md": "c7dd6c178d4a4b6a5c662f472156cf0cffbb1b9f7eb76febe26159696b0d8a59",
+      "tasks.md": "a99fa36b6d891686b4cd7f2d178cd99964ee0caf2868a7a1b140463820dbedfe",
+      "implementation-summary.md": "37f2d22c5847bd494f142a3539c106317497af97d3fb337b01ff17a95dcb517a"
+    },
+    "last_active_at": null
+  }
+}

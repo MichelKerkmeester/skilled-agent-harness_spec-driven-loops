@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/008-links-and-generated-state",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/008-links-and-generated-state",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled links and generated state",
+      "retarget runtime symlinks to skilled",
+      "regenerate runtime mirrors after move",
+      "link census zero dangling",
+      "generator freshness sweep",
+      "skilled regeneration runbook",
+      "generator source constants order",
+      "broken link retire or restore",
+      "link census command",
+      "cli-pi deepseek flash delegation",
+      "skilled links task list",
+      "generator rerun tasks"
+    ],
+    "key_topics": [
+      "skilled",
+      "links",
+      "state",
+      "retarget",
+      "runtime",
+      "symlinks",
+      "regenerate",
+      "mirrors",
+      "move",
+      "link",
+      "census",
+      "zero"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".codex/hooks.json",
+      ".pi/extensions/lib/claude-hook-adapter.ts",
+      ".cursor/rules/sk-vision.md",
+      ".claude/settings.json",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      "codex/sync-agents.cjs",
+      "pi/sync-prompts-pi.cjs",
+      "pi/sync-agents-pi.cjs",
+      "hermes/sync-prompts-hermes.cjs",
+      "hermes/sync-skills-hermes.cjs",
+      ".codex/AGENTS.md",
+      ".cursor/rules/skill-routing.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "claude-hook-adapter.ts",
+        "kind": "code",
+        "path": ".pi/extensions/lib/claude-hook-adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.md",
+        "kind": "doc",
+        "path": ".cursor/rules/sk-vision.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": "codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-pi.cjs",
+        "kind": "file",
+        "path": "pi/sync-prompts-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-pi.cjs",
+        "kind": "file",
+        "path": "pi/sync-agents-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-hermes.cjs",
+        "kind": "file",
+        "path": "hermes/sync-prompts-hermes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-hermes.cjs",
+        "kind": "file",
+        "path": "hermes/sync-skills-hermes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-routing.md",
+        "kind": "doc",
+        "path": ".cursor/rules/skill-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 007 moves the files, and nothing that points at them moves along",
+    "created_at": "2026-09-16T17:54:08Z",
+    "last_save_at": "2026-09-16T18:43:45.474Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2ad79afb0238415decf6f55c1e6bf74793276b4851cee61a800c7f2a0990fcec",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "75ab44c3180136e11fd12900b3835b33222c0064e99c480d52c5ebb13d12f10d",
+      "plan.md": "423c4aacf3893acc178ffdf700b9cc77522a06a8520b2aac9c3c213f18e4e5ed",
+      "tasks.md": "5ef9a76e319f987679d78e30b347386f0d3da849d56d7faa791304cceb2f6fb2",
+      "implementation-summary.md": "3ef65c8faeebde1b90a2980e2199d332d57c886aa38f56573800231d5c68e337"
+    },
+    "last_active_at": null
+  }
+}

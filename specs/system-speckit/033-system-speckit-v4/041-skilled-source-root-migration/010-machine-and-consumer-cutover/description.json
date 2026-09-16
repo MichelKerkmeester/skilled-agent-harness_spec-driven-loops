@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover",
+  "description": "Git cannot move what lives outside it",
+  "keywords": [
+    "git",
+    "cannot",
+    "move",
+    "lives",
+    "outside"
+  ],
+  "lastUpdated": "2026-09-16T18:37:00.080Z",
+  "specId": "010",
+  "folderSlug": "machine-and-consumer-cutover",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
