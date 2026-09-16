@@ -44,8 +44,19 @@ if [[ -z "$REPO_ROOT" ]]; then
   exit 0
 fi
 
+# A checkout that ships the toolchain, marked by the spec-kit sentinel under either
+# source root, should have the allocator, so its absence is said out loud there.
+# The hook still never blocks.
+_in_toolchain_repo() {
+  [[ -f "$REPO_ROOT/.opencode/skills/system-spec-kit/SKILL.md" \
+     || -f "$REPO_ROOT/.skilled/skills/system-spec-kit/SKILL.md" ]]
+}
+
 ALLOCATOR="$REPO_ROOT/.opencode/skills/sk-git/scripts/commit-id-naming.sh"
 if [[ ! -f "$ALLOCATOR" ]]; then
+  if _in_toolchain_repo; then
+    printf 'prepare-commit-msg: allocator is missing: %s; leaving the message unstamped.\n' "$ALLOCATOR" >&2
+  fi
   exit 0
 fi
 
