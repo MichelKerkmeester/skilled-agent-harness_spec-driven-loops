@@ -1881,7 +1881,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
       const ratio = typeof record.newFindingsRatio === 'number' ? record.newFindingsRatio.toFixed(2) : '0.00';
       const summary = record.findingsSummary || {};
       const findings = `${summary.P0 ?? 0}/${summary.P1 ?? 0}/${summary.P2 ?? 0}`;
-      return `| ${record.run} | ${record.focus || 'unknown'} | ${dimensions} | ${ratio} | ${findings} | ${record.status || 'complete'} |`;
+      return `| ${getIterationRun(record)} | ${record.focus || 'unknown'} | ${dimensions} | ${ratio} | ${findings} | ${record.status || 'complete'} |`;
     })
     .join('\n') || '| 0 | none yet | - | 0.00 | 0/0/0 | initialized |';
 

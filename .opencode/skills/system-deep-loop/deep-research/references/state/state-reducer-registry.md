@@ -127,7 +127,7 @@ Safe recovery order:
 Example reconstructed record:
 
 ```json
-{"type":"iteration","run":3,"status":"reconstructed","focus":"extracted focus","findingsCount":0,"newInfoRatio":0.0}
+{"type":"iteration","iteration":3,"status":"reconstructed","focus":"extracted focus","findingsCount":0,"newInfoRatio":0.0}
 ```
 
 ---
