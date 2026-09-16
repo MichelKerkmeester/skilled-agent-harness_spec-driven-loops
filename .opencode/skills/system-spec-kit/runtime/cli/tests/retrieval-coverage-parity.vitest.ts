@@ -76,9 +76,10 @@ const SCOPED_DIVERGENCES: ReadonlyArray<{
   triggerIndexExcludes: boolean;
 }> = Object.freeze([
   {
-    name: 'research/lineages (directly under a research parent)',
+    name: 'lineages (under specs/ whatever the parent, or directly under a research parent)',
     reason:
-      'the trigger index protects its curated phrase index from unauthored transcript noise; '
+      'the trigger index protects its curated phrase index from unauthored transcript noise and from '
+      + 'containment snapshots that copy real documents, wherever the fan-out runner wrote the lineage; '
       + 'ripgrep is a raw evidence lane with no ranking to protect and must still reach lineage evidence',
     ripgrepExcludes: false,
     triggerIndexExcludes: true,
@@ -153,8 +154,11 @@ describe('exclusion coverage parity', () => {
   });
 
   it('keeps the two named scoped divergences exactly as documented, no more and no fewer', () => {
-    // research/lineages: excluded by the trigger index only under a research parent.
+    // lineages: excluded by the trigger index under a research parent anywhere, and
+    // under specs/ whatever artifact directory the fan-out runner wrote it into.
     expect(isExcludedDirectory('lineages', 'research', 'track/research/lineages')).toBe(true);
+    expect(isExcludedDirectory('lineages', 'review', 'specs/track/review/lineages')).toBe(true);
+    expect(isExcludedDirectory('lineages', 'luna-fanout', 'specs/track/research/luna-fanout/lineages')).toBe(true);
     expect(isExcludedDirectory('lineages', 'not-research', 'track/not-research/lineages')).toBe(false);
 
     // fixture-named directories: excluded by the trigger index only outside specs/.
