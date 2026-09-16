@@ -43,7 +43,7 @@ The live workflow uses a single segment by default. Earlier designs allowed `sta
 Reference shape:
 
 ```json
-{"type":"iteration","run":3,"segment":1,"status":"complete","newInfoRatio":0.4}
+{"type":"iteration","iteration":3,"segment":1,"status":"complete","newInfoRatio":0.4}
 ```
 
 If segment support is revived, convergence must define how segment-local stops interact with whole-packet legal-stop gates.

@@ -168,3 +168,27 @@ describe('reduceReviewState — degrades gracefully on warning-class problems', 
     expect(lines.join('')).toMatch(/severity "P3" is outside the P0\/P1\/P2 scale/);
   });
 });
+
+describe('reduceReviewState — iteration numbering', () => {
+  it('numbers a dashboard progress row from `iteration` when the record carries no `run`', () => {
+    // `iteration` is the canonical iteration-record field and the fan-out validator
+    // accepts nothing else, so a record that honours the contract must still render
+    // its number in the progress table rather than the word "undefined".
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'iteration-numbering-proof' }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${JSON.stringify({
+      type: 'iteration',
+      iteration: 2,
+      status: 'complete',
+      focus: 'dim-iteration-only',
+      newFindingsRatio: 0.5,
+      findingsSummary: { P0: 0, P1: 0, P2: 0 },
+    })}\n`);
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), '# Deep Review Strategy\n\nNo machine sections here at all.\n');
+
+    const result = reduceReviewState(specFolder, { write: true, artifactDir: reviewDir });
+
+    expect(result.dashboard).toContain('| 2 | dim-iteration-only |');
+    expect(result.dashboard).not.toContain('| undefined |');
+  });
+});

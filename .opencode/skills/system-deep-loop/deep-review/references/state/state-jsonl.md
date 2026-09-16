@@ -60,7 +60,7 @@ The projected variant of this row is thin: only `type`, `topic`, `maxIterations`
 
 ```json
 {
-  "type": "iteration", "mode": "review", "run": 3, "status": "complete",
+  "type": "iteration", "mode": "review", "iteration": 3, "status": "complete",
   "focus": "D3 Traceability - skill/runtime alignment",
   "dimensions": ["traceability", "maintainability"],
   "filesReviewed": [".opencode/skills/system-deep-loop/deep-research/README.md"],
@@ -92,7 +92,9 @@ The projected variant of this row is thin: only `type`, `topic`, `maxIterations`
 }
 ```
 
-**Required fields:** `type`, `mode`, `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `findingDetails`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, `durationMs`
+**Required fields:** `type`, `mode`, `iteration`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `findingDetails`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, `durationMs`
+
+**Legacy field:** `run`, the older name for `iteration`. Readers still accept it and the fan-out stop-policy validator does not; new records write `iteration`. Event records keep their own `run` field.
 
 **Optional fields:** `parentSessionId`, `continuedFromRun`, `findingsRefined`, `findingRefs`, `traceabilityChecks`, `coverage`, `noveltyJustification`, `ruledOut`, `focusTrack`, `scoreEstimate`, `segment`, `convergenceSignals`, `graphEvents`
 
@@ -126,7 +128,7 @@ The optional `graphEvents` array records coverage graph mutations emitted by a r
 
 ```json
 {
-  "type": "iteration", "mode": "review", "run": 4, "status": "complete",
+  "type": "iteration", "mode": "review", "iteration": 4, "status": "complete",
   "focus": "correctness",
   "dimensions": ["correctness"],
   "filesReviewed": ["src/api/session.ts"],
@@ -343,7 +345,7 @@ When `activeP2 > 0` on PASS, set `hasAdvisories: true`.
 
 - Each line must be valid JSON with a `type` field
 - `mode` must be `"review"` on all iteration and synthesis records
-- `run` values must be sequential. `newFindingsRatio` must be 0.0-1.0
+- `iteration` values must be sequential. `newFindingsRatio` must be 0.0-1.0
 - `findingsSummary` and `findingsNew` must each contain `P0`, `P1`, `P2` keys
 - `findingDetails` must be an array. Each active item must include `findingClass`, `scopeProof`, and `affectedSurfaceHints`
 

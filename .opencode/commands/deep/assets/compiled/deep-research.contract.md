@@ -22,7 +22,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "ebf2bfdd8aa8fcbec0c6195a141768c7d8abd39a13808e1dae2146b04cb31274",
+      "sha256": "f0908fabc4587782708363d1838a7217df63187d545731f76c2e4cb6feb29ef4",
       "section": "full"
     },
     {

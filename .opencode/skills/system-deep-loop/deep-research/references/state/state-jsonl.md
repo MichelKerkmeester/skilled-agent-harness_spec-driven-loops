@@ -91,7 +91,7 @@ A ledger projection rebuilds this row thin — only `type`, `topic`, `maxIterati
 ```json
 {
   "type": "iteration",
-  "run": 1,
+  "iteration": 1,
   "status": "complete",
   "focus": "Initial broad survey",
   "findingsCount": 5,
@@ -107,7 +107,8 @@ A ledger projection rebuilds this row thin — only `type`, `topic`, `maxIterati
 | Field | Required | Notes |
 |-------|----------|-------|
 | `type` | Yes | `iteration` |
-| `run` | Yes | 1-indexed iteration number |
+| `iteration` | Yes | 1-indexed iteration number. The fan-out stop-policy validator reads only this field |
+| `run` | Legacy | Older name for `iteration`. Readers still accept it; new records write `iteration` |
 | `status` | Yes | See status values below |
 | `focus` | Yes | Single focus investigated |
 | `findingsCount` | Yes | Number of findings reported |
@@ -117,6 +118,8 @@ A ledger projection rebuilds this row thin — only `type`, `topic`, `maxIterati
 | `answeredQuestions` | Recommended | Questions answered by evidence |
 | `ruledOut` | Optional | Negative knowledge entries |
 | `graphEvents` | Optional | Coverage graph mutations |
+
+Event records in §7 keep their own `run` field, which names the iteration the event occurred in.
 
 Status values:
 
@@ -138,7 +141,7 @@ When the composite algorithm runs, the iteration may include signal values:
 ```json
 {
   "type": "iteration",
-  "run": 5,
+  "iteration": 5,
   "convergenceSignals": {
     "rollingAvg": 0.12,
     "madScore": 0.08,
@@ -159,7 +162,7 @@ Use `ruledOut` to preserve eliminated approaches.
 ```json
 {
   "type": "iteration",
-  "run": 3,
+  "iteration": 3,
   "status": "complete",
   "ruledOut": [
     {
@@ -182,7 +185,7 @@ Ruled-out directions should also appear in strategy and synthesis outputs.
 ```json
 {
   "type": "iteration",
-  "run": 4,
+  "iteration": 4,
   "graphEvents": [
     {"type": "question", "id": "q-reconnect", "label": "How should reconnect work?"},
     {"type": "finding", "id": "f-backoff", "label": "Exponential backoff is required"},

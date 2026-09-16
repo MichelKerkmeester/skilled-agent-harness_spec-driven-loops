@@ -1833,7 +1833,7 @@ workflow:
           action: "Mark iteration as 'error', continue to next"
           # Canonical iteration record: include mode, sessionId, generation, durationMs, keyQuestions, answeredQuestions
           # so the reducer can persist the failure without dropping the iteration. Schema source: state-format.md §Iteration Records.
-          append_jsonl: '{"type":"iteration","run":{current_iteration},"mode":"research","status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"keyQuestions":[],"answeredQuestions":[],"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          append_jsonl: '{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"research","status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"keyQuestions":[],"answeredQuestions":[],"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
 
       step_telemetry_heartbeat_progress:
         action: "Emit a single-loop progress row when iteration state changes"
