@@ -16,10 +16,20 @@ if [ -z "$REPO_ROOT" ]; then
   exit 0
 fi
 
+# The hook is installed globally, so a script it calls can be missing for two reasons:
+# this repository does not ship the toolchain, or it does and the install is broken.
+# The spec-kit sentinel tells the two apart, under either source root.
+_in_toolchain_repo() {
+  [[ -f "$REPO_ROOT/.opencode/skills/system-spec-kit/SKILL.md" \
+     || -f "$REPO_ROOT/.skilled/skills/system-spec-kit/SKILL.md" ]]
+}
+
 if [ -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh" ]; then
   # shellcheck source=/dev/null
   source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh"
   autostash_orphan_guard || true
+elif _in_toolchain_repo; then
+  echo "WARNING [gate:autostash-guard]: guard library is missing: $REPO_ROOT/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh (post-rewrite)" >&2
 fi
 
 exit 0
