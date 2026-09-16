@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/049-deep-loop-alignment-review/006-confirm-variant-parity",
-  "description": "Phase 5: confirm-variant-parity",
+  "description": "The review measured seven divergences between the confirm and auto variants of the two deep commands",
   "keywords": [
-    "phase",
-    "confirm-variant-parity"
+    "review",
+    "measured",
+    "seven",
+    "divergences",
+    "between",
+    "confirm",
+    "auto",
+    "variants",
+    "two",
+    "deep",
+    "commands"
   ],
-  "lastUpdated": "2026-09-15T14:23:14.535Z",
+  "lastUpdated": "2026-09-16T11:54:50.744Z",
   "specId": "006",
   "folderSlug": "confirm-variant-parity",
   "parentChain": [
@@ -13,6 +23,5 @@
     "049-deep-loop-alignment-review"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }
