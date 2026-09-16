@@ -8,6 +8,14 @@ set -euo pipefail
 CHECKER=".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 
+# A missing checker means nothing to check in a repository that does not ship the
+# toolchain, and a broken install in one that does. The spec-kit sentinel, under
+# either source root, tells the two apart.
+_in_toolchain_repo() {
+  [[ -f "$REPO_ROOT/.opencode/skills/system-spec-kit/SKILL.md" \
+     || -f "$REPO_ROOT/.skilled/skills/system-spec-kit/SKILL.md" ]]
+}
+
 # shared hook kill-switch (master + per-concern); fail-open if guard absent
 if [ -n "$REPO_ROOT" ] && [ -r "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" ]; then
   . "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh"
@@ -17,6 +25,10 @@ fi
 CHECKER_PATH="$REPO_ROOT/$CHECKER"
 
 if [[ ! -x "$CHECKER_PATH" ]]; then
+  if _in_toolchain_repo; then
+    echo "BLOCKED: comment hygiene checker is missing or not executable: $CHECKER_PATH" >&2
+    exit 1
+  fi
   echo "WARNING: comment hygiene checker not found at $CHECKER — skipping check" >&2
   exit 0
 fi
@@ -50,10 +62,13 @@ MIRROR_CHECKER="$REPO_ROOT/.opencode/skills/system-deep-loop/deep-improvement/sc
 STAGED_AGENTS=()
 while IFS= read -r file; do
   [[ -n "$file" ]] && STAGED_AGENTS+=("$file")
-done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|claude)/agents/' || true)
+done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|skilled|claude)/agents/' || true)
 
 if [[ ${#STAGED_AGENTS[@]} -gt 0 ]]; then
-  if ! command -v node >/dev/null 2>&1 || [[ ! -f "$MIRROR_CHECKER" ]]; then
+  if [[ ! -f "$MIRROR_CHECKER" ]] && _in_toolchain_repo; then
+    echo "BLOCKED: agent mirror-sync checker is missing: $MIRROR_CHECKER" >&2
+    exit 1
+  elif ! command -v node >/dev/null 2>&1 || [[ ! -f "$MIRROR_CHECKER" ]]; then
     echo "WARNING: node or agent mirror-sync checker unavailable — skipping mirror gate" >&2
   elif ! node "$MIRROR_CHECKER" "${STAGED_AGENTS[@]}"; then
     echo ""
