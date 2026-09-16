@@ -365,7 +365,7 @@ test('WS4: AI_SESSION_CHILD=1 never opens, advises, logs, or denies through the 
     '..',
     'skills',
     'system-spec-kit',
-    'mcp-server',
+    'runtime',
     'hooks',
     'lib',
     'spec-gate',

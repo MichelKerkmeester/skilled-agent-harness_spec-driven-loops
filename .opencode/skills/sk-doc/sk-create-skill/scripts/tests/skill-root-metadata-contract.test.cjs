@@ -41,8 +41,10 @@ const EXPECTED_CLASSES = {
   'mcp-code-mode': contract.CLASS_STANDALONE,
   'mcp-tooling': contract.CLASS_HUB,
   'sk-code': contract.CLASS_HUB,
-  'sk-design': contract.CLASS_STANDALONE,
-  'sk-design-md-generator': contract.CLASS_STANDALONE,
+  'sk-design': contract.CLASS_HUB,
+  // sk-design-md-generator is a MODE under sk-design, not a root. It carries no
+  // graph-metadata.json, which is the authored marker discovery keys on, so listing it
+  // here expected a second skill identity the hub canon forbids.
   'sk-doc': contract.CLASS_HUB,
   'sk-git': contract.CLASS_STANDALONE,
   'sk-prompt': contract.CLASS_STANDALONE,

@@ -31,7 +31,6 @@ const DEEP_LOOP_ROLE = 'actor';
 const IMPROVEMENT_MODES = Object.freeze([
   'agent-improvement',
   'model-benchmark',
-  'skill-benchmark',
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -184,8 +183,8 @@ function assertNoCollapse(rows, registry) {
 
   const improvementRows = IMPROVEMENT_MODES.map((mode) => rowByMode.get(mode));
   if (improvementRows.some((row) => !row)
-    || new Set(improvementRows.map((row) => row.workflowMode)).size !== 3
-    || new Set(improvementRows.map((row) => canonicalize(row.identityTuple))).size !== 3
+    || new Set(improvementRows.map((row) => row.workflowMode)).size !== IMPROVEMENT_MODES.length
+    || new Set(improvementRows.map((row) => canonicalize(row.identityTuple))).size !== IMPROVEMENT_MODES.length
     || improvementRows.some((row) => row.packetRef !== 'deep-improvement')
     || new Set(improvementRows.map((row) => row.routingClass)).size !== 2
     || improvementRows[0].routingClass !== 'alias-fold'

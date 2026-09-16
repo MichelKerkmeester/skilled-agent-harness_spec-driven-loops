@@ -7,7 +7,8 @@
 // adapter must emit an empty object and exit 0, so a vision problem can never
 // cost the operator a turn.
 
-import { describe, expect, it } from "bun:test";
+import { describe, it } from "node:test";
+import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -42,14 +43,14 @@ function runAdapter(stdin, env = {}) {
 describe("devin sk-vision adapter", () => {
   it("fails open on malformed stdin", async () => {
     const { code, stdout } = await runAdapter("{not json");
-    expect(code).toBe(0);
-    expect(JSON.parse(stdout)).toEqual({});
+    assert.strictEqual(code, 0);
+    assert.deepStrictEqual(JSON.parse(stdout), {});
   });
 
   it("fails open on an empty payload", async () => {
     const { code, stdout } = await runAdapter("{}");
-    expect(code).toBe(0);
-    expect(JSON.parse(stdout)).toEqual({});
+    assert.strictEqual(code, 0);
+    assert.deepStrictEqual(JSON.parse(stdout), {});
   });
 
   it("stays silent when the prompt names no image", async () => {
@@ -59,8 +60,8 @@ describe("devin sk-vision adapter", () => {
       hook_event_name: "UserPromptSubmit",
     });
     const { code, stdout } = await runAdapter(payload);
-    expect(code).toBe(0);
-    expect(JSON.parse(stdout)).toEqual({});
+    assert.strictEqual(code, 0);
+    assert.deepStrictEqual(JSON.parse(stdout), {});
   });
 
   it("stays silent when the named image does not exist", async () => {
@@ -70,27 +71,27 @@ describe("devin sk-vision adapter", () => {
       hook_event_name: "UserPromptSubmit",
     });
     const { code, stdout } = await runAdapter(payload);
-    expect(code).toBe(0);
-    expect(JSON.parse(stdout)).toEqual({});
+    assert.strictEqual(code, 0);
+    assert.deepStrictEqual(JSON.parse(stdout), {});
   });
 
   it("honors its own kill-switch", async () => {
     const payload = JSON.stringify({ prompt: "look at a.png", cwd: HERE });
     const { code, stdout } = await runAdapter(payload, { SYSTEM_SK_VISION_DISABLED: "1" });
-    expect(code).toBe(0);
-    expect(JSON.parse(stdout)).toEqual({});
+    assert.strictEqual(code, 0);
+    assert.deepStrictEqual(JSON.parse(stdout), {});
   });
 
   it("honors the master hooks kill-switch", async () => {
     const payload = JSON.stringify({ prompt: "look at a.png", cwd: HERE });
     const { code, stdout } = await runAdapter(payload, { SYSTEM_HOOKS_DISABLED: "1" });
-    expect(code).toBe(0);
-    expect(JSON.parse(stdout)).toEqual({});
+    assert.strictEqual(code, 0);
+    assert.deepStrictEqual(JSON.parse(stdout), {});
   });
 
   it("never writes to stderr, which Devin would surface into the session", async () => {
     const { stderr } = await runAdapter("{not json");
-    expect(stderr).toBe("");
+    assert.strictEqual(stderr, "");
   });
 });
 
@@ -102,8 +103,8 @@ describe("evidence entry wiring", () => {
   // assertion on the dependency itself can catch a silent no-op.
   it("resolves a built entry that exports what the adapter calls", async () => {
     const entry = join(HERE, "../../vision-runtime/dist/prompt-evidence.js");
-    expect(existsSync(entry)).toBe(true);
+    assert.strictEqual(existsSync(entry), true);
     const mod = await import(pathToFileURL(entry).href);
-    expect(typeof mod.evidenceForPrompt).toBe("function");
+    assert.strictEqual(typeof mod.evidenceForPrompt, "function");
   });
 });
