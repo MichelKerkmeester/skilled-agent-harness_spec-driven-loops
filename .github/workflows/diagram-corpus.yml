@@ -5,10 +5,12 @@ on:
     branches: [main, 'skilled/**']
     paths:
       - '.opencode/skills/sk-design/sk-design-diagram/**'
+      - '.skilled/skills/sk-design/sk-design-diagram/**'
       - '.github/workflows/diagram-corpus.yml'
   pull_request:
     paths:
       - '.opencode/skills/sk-design/sk-design-diagram/**'
+      - '.skilled/skills/sk-design/sk-design-diagram/**'
       - '.github/workflows/diagram-corpus.yml'
   workflow_dispatch:
 

@@ -6,6 +6,7 @@ on:
       - 'REPO RULES.md'
       - 'repo-rules/**'
       - '.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
+      - '.skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
 
 jobs:
   repo-rules-corpus:
