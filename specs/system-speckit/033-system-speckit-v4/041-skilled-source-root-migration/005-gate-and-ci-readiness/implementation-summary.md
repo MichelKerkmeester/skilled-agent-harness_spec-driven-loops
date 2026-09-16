@@ -162,7 +162,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 | Independent check and workflow (T012) | Not started | Blocked on the same limit. A supplementary GLM-5.3-Flash review of the CI changes confirmed one P2 finding, a filter shape the check could not read, fixed in `07039dea39` (`scratch/delegation/supplementary-ci-review-verdict.md`) |
 | Fail-closed workflow steps (T031) | Not started | Blocked on the same limit |
 | Broken-move drill (T034) | Not started | Blocked on the same limit |
-| Naming guard rule (T047) | Not started | Blocked on the same limit |
+| Naming guard rule (T047) | Not started | Blocked on the same limit. A supplementary GLM-5.3-Flash review found that a copy whose source also changed lets a new snake_case name through, which awaits an operator decision on REQ-012, and two handoff gaps, since recorded (`scratch/delegation/supplementary-naming-review-verdict.md`) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -187,6 +187,7 @@ These scripts, called by the gates, keep their own root literals:
 | `compiled-route-manifest.cjs` | `--skill-root` | How the tool treats a skill root under either spelling |
 | `install-git-hooks.sh` | 30 | The hook source directory |
 | `hooks/git/install-hooks.sh` | 15 | The legacy hook source directory |
+| `sk-doc/shared/scripts/check_no_new_snake_case.py` | 199 and 304 | The completed-spec exemption looks under `.opencode/specs` |
 
 Any tool that stages or diffs a `.opencode/` path also needs the real `.skilled/` path once the link exists, as the route re-mint gate now does.
 <!-- /ANCHOR:limitations -->
