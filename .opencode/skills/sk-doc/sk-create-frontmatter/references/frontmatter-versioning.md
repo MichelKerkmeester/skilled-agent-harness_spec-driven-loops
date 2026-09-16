@@ -167,6 +167,10 @@ Edit **line-wise**. Never run a YAML re-serializer — it reflows and corrupts m
 2. **Required:** the same validators error on an absent `version` for skills (commands keep it optional).
 3. **Corpus gate:** `shared/scripts/check-frontmatter-versions.sh` (a wrapper for `frontmatter-version.mjs gate`) discovers every in-scope doc git-free and exits non-zero on any missing/malformed version. Run it in CI or pre-commit. Frontmatter-less docs are skipped, not failed.
 
+### What nothing enforces
+
+Every check above is per-document: presence and format. No gate compares a hub's routing artifacts against each other, so nothing fails when `SKILL.md`, `ROUTER.md`, `description.json`, `hub-router.json` and `mode-registry.json` state five different values. Version parity across a hub's own artifacts is upheld by convention and review, not by tooling. A hub that drifts apart keeps passing every gate, which is why the shared value is restated in each hub's `SKILL.md` rather than merely recorded here. A packet version is likewise unconstrained: nested `SKILL.md` files resolve their own anchors and are never compared against their hub's.
+
 ---
 
 ## 8. EXAMPLES

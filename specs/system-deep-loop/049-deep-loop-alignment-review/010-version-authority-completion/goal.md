@@ -1,5 +1,5 @@
 ---
-title: "Goal: Phase 1: version-authority-completion"
+title: "Goal: Phase 10: version-authority-completion"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
   - "packet goal"
@@ -10,23 +10,23 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-version-authority-completion"
-    last_updated_at: "2026-09-16T01:24:31Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    packet_pointer: "system-deep-loop/049-deep-loop-alignment-review/010-version-authority-completion"
+    last_updated_at: "2026-09-16T04:35:00Z"
+    last_updated_by: "claude-opus-5"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
-# Goal: Phase 1: version-authority-completion
+# Goal: version authority completion
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** [One sentence. What this packet is for. Not how, not progress.]
+**Objective:** Finish the version-authority work by bringing the two deferred hubs to one version each and resolving every exception from evidence.
 
 ### Decisions
 
@@ -52,7 +52,10 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | [The decision, stated so a reader can tell whether work honors it] |
+| D1 | Each hub declares its `SKILL.md` as the release authority, and `SKILL.md`, `ROUTER.md`, `description.json`, `hub-router.json` and `mode-registry.json` carry that one version. |
+| D2 | Where a hub's `SKILL.md` names a release its changelog does not, the release is real and the changelog entry is missing: author the entry, never roll the version back. |
+| D3 | A packet version is independent of its hub's by design. A `0.x` packet is recorded with its reason, never raised to match the hub. |
+| D4 | The activation manifest is re-minted in the same change, in both the runtime and authored copies. |
 
 ### Operator copy
 
@@ -71,13 +74,11 @@ to the parent: apply it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-Three to seven bullets, each checkable without opening another file. Copy them
-verbatim into the objective: nothing dereferences a path, so criteria left only
-here are invisible to whatever judges completion.
-
-- [ ] [A check whose answer is an exit code, a count, or a named artifact]
-- [ ] [Another]
-- [ ] [Another]
+- [x] Each hub's five routing artifacts carry one version, and it equals that hub's newest changelog entry
+- [x] The missing `sk-doc` release entry exists, so the authority rule holds for that hub
+- [x] The two `sk-code` `0.x` packet versions are recorded as independent, with their reason
+- [x] The compiled route guard reports every hub fresh
+- [x] The deep-loop suite exits zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,11 +94,17 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| `sk-doc` authority resolved | Done | `2.1.0.0` shipped in the same commit that added `sk-create-with-human-voice`; no `v2.1*` entry exists in any branch, so the entry is authored |
+| Both hubs at one version | Done | `sk-doc` 2.1.0.0 and `mcp-tooling` 1.6.1.0 across five artifacts each |
+| `sk-code` `0.x` surfaces | Done | Recorded as independent: the standard gives nested packets their own anchors, and all six packets differ from the hub |
+| Parity-gate absence recorded | Done | `frontmatter-versioning.md` §7 names what nothing enforces |
+| Manifests re-minted | Done | Three hubs re-minted, authored twins byte-identical, guard exits 0 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| The task expected the `sk-code` `0.1.*` surfaces to be outliers, either aligned or justified as exceptions | Measured otherwise: **all six** `sk-code` packets differ from the hub's `4.2.2.0` and from each other, and the frontmatter standard gives every nested packet its own anchor. The `0.1.*` pair is one of two deliberate lines, not a gap against a hub-tracking majority. Nothing was aligned; the independence is recorded in `sk-code/SKILL.md`. |
+| The task states no changelog entry explains the `sk-code` `0.1.*` gap | Measured otherwise for one of the two: `sk-code-mobile-cli/changelog/v0.1.7.1.md` §Versioning records the renumber explicitly. Only `sk-code-obsidian` lacked a statement, and it opened directly at `0.1.0.0` as an unreleased surface, which its changelog already describes. |
+| A version bump was expected in `mcp-tooling`'s history to explain its registry/router lag | None found and none needed: the registry and router are followers here, not authorities, so raising them to the release is the whole fix. |
 <!-- /ANCHOR:log -->

@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Phase 1: version-authority-completion"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 10: version-authority-completion"
+description: "Resolve the sk-doc release question, raise both deferred hubs' followers to their authority, record the packet-version independence, and re-mint the manifests the edits stale."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 1: version-authority-completion
+# Implementation Plan: Phase 10: version-authority-completion
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | JSON, YAML frontmatter and Markdown; no runtime code |
+| **Framework** | None |
+| **Storage** | Git working tree, compiled activation manifests |
+| **Testing** | Vitest plus the compiled route guard and the document validators |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Two hubs carry four and three disagreeing versions across five routing artifacts each. Phase 003 fixed three hubs with the same defect and deferred these two, so the rule and the re-mint procedure already exist and this phase repeats them. `sk-doc` adds one question the earlier hubs did not raise: its `SKILL.md` claims a version its changelog does not name, which undermines the rule that made `SKILL.md` the authority. That question is settled first, from git history, because aligning anything to a fictional release would propagate the error to four more files.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+One declared authority, derived followers
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`SKILL.md`**: Release authority, tied to the newest changelog entry
+- **Four routing artifacts**: Carry the authority's version
+- **Activation manifests**: Re-minted for the new policy hash, runtime and authored copies
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Changelog to `SKILL.md` version to the four followers; the three SHA-input files to the compiled policy hash to the activation manifests.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,18 +70,17 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Ten routing artifacts | Four and three disagreeing values | update | one value per hub, five artifacts each |
+| `sk-doc` changelog | Missing the entry its version names | create | newest entry equals `SKILL.md` |
+| `sk-code` packet versions | Suspected drift | record | independence documented; no version moved |
+| Compiled policy | Staled by the edits | re-mint | route guard reports every hub fresh |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: five artifacts per hub across two hubs, the same class phase 003 closed for three.
+- Consumers measured: the compiled policy hash reads `SKILL.md`, `hub-router.json` and `mode-registry.json` as raw bytes; nothing reads the version semantically.
+- Out of scope, same defect: none remaining after this phase.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -99,9 +99,11 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Gate | Compiled route guard across five hubs | node |
+| Metadata | Skill-root metadata across thirteen roots | node |
+| Document | The new changelog entry and the edited reference, against their templates | validate_document.py |
+| Corpus | Frontmatter version gate across all in-scope docs | check-frontmatter-versions.sh |
+| Suite | Whole runtime | Vitest |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +113,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| The re-mint procedure phase 003 established | Internal | Green | - |
+| Git history for the `sk-doc` question | Internal | Green | The authority would have to stay ambiguous |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +122,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A hub serves legacy after the change, or the authored and runtime manifests diverge
+- **Procedure**: Revert this phase's commit, which carries the artifacts, the changelog entry and the manifests together
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +155,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Med | git archaeology across the two hubs |
+| Core Implementation | Low | ten artifacts, two reference docs, one entry |
+| Verification | Med | full suite run |
+| **Total** | | **one dispatch plus one suite run** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -180,4 +183,3 @@ Phase 1.5 (Config) ───┘
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
-
