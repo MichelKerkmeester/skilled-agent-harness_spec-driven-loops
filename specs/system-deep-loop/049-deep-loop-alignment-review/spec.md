@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -99,19 +99,19 @@ Every surface of the deep-loop system says the same thing as every other and as 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-<!-- [PHASE_ROW] — Replaced by create.sh with full 4-column table rows -->
+| 1 | 001-angle-driven-review/ | Twenty angle-driven review iterations across four lanes in two waves | Complete |
+| 2 | 002-roster-completeness/ | Every roster names all seven CLI executor kinds | Complete |
+| 3 | 003-version-authority/ | One version authority per hub, carried by its routing artifacts | Complete |
+| 4 | 004-leaf-manifest-and-doctrine-reachability/ | Leaf manifests see symlinked leaves, and doctrine is reachable | Complete |
+| 5 | 005-catalog-and-readme-truth/ | Ten classes of documentation that contradicted the tree | Complete |
+| 6 | 006-confirm-variant-parity/ | The interactive command variants match their unattended twins or say why not | Complete |
+| 7 | 007-ledger-stem-producers/ | Every registered ledger stem is spoken or reserved with its reason | Complete |
+| 8 | 008-agent-mirror-parity/ | One crosswalk for how a declaration reaches all six agent trees | Complete |
+| 9 | 009-containment-promise-and-severity-scale/ | The containment promise and the verdict contract describe their mechanisms | Complete |
+| 10 | 010-version-authority-completion/ | The two hubs the version-authority phase left out | Complete |
+| 11 | 011-routing-doctrine-and-discovery/ | One always-loaded policy per hub, and no dead discovery vocabulary | Complete |
+| 12 | 012-missing-stress-fixture-root/ | The stress fixture three scenarios name, restored to current tree shapes | Complete |
 
-| 2 | 002-roster-completeness/ | [Phase 2 scope] | Pending |
-| 3 | 003-version-authority/ | [Phase 3 scope] | Pending |
-| 4 | 004-leaf-manifest-and-doctrine-reachability/ | [Phase 4 scope] | Pending |
-| 5 | 005-catalog-and-readme-truth/ | [Phase 5 scope] | Pending |
-| 6 | 006-confirm-variant-parity/ | [Phase 6 scope] | Pending |
-| 7 | 007-ledger-stem-producers/ | [Phase 7 scope] | Pending |
-| 8 | 008-agent-mirror-parity/ | [Phase 8 scope] | Pending |
-| 9 | 009-containment-promise-and-severity-scale/ | [Phase 9 scope] | Pending |
-| 10 | 010-version-authority-completion/ | [Phase 10 scope] | Pending |
-| 11 | 011-routing-doctrine-and-discovery/ | [Phase 11 scope] | Pending |
-| 12 | 012-missing-stress-fixture-root/ | [Phase 12 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

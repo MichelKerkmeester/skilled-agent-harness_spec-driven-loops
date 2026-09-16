@@ -71,12 +71,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -101,7 +95,19 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -133,17 +139,17 @@
     ],
     "causal_summary": "The containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs across twenty phases",
     "created_at": "2026-09-15T09:48:33Z",
-    "last_save_at": "2026-09-16T01:25:52.811Z",
+    "last_save_at": "2026-09-16T06:38:44.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:aa8649a7e4ffa8529c4b1cf6de5e2e3b68ae63d80dcc42301b69aff81be05f8d",
+    "source_fingerprint": "sha256:830f9526f01e8c4938384354994fd49d973b55b0a98fb21da6e4834cc6bf2690",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "15329e8b2f362e36f8151bbdfd12ac92fa7f60ec5f6fad2fdc628a32cb405a80"
+      "spec.md": "9ff467b36aefa531f27b56c12632da782e1a77eed645fa2379f3187733d653ef"
     },
     "last_active_at": null
   }

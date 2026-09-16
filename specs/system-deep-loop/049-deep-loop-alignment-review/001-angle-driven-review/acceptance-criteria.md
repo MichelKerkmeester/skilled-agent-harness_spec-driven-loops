@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** [PACKET-ID]
 **Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the four review lanes, When their iteration records are counted, Then twenty exist across the four lanes and every one carries the route-proof fields | five iteration files and five route-proof records in each of the four lineage directories, twenty in total; the registry records all four lanes as cli-pi, two on DeepSeek V4.1 Flash at max and two on GLM 5.3 Flash at max | Met | - |
+| AC-002 | REQ-002 | Given the wave-two angles in this spec, When their rewrite is dated against the first wave-two iteration, Then the rewrite came first | the rewrite commit is timestamped 14:31 and the first wave-two iteration file enters history at 16:26 on the same day | Met | - |
+| AC-003 | REQ-003 | Given every finding the merged registry carries, When each is checked against the tree, Then it is bound to a parent phase or recorded as refuted with its reason | ninety-eight open findings bind to phases 002 through 012; the sixteen summary-only entries restate angles already bound; two claims were refuted with measurements, the independently versioned code packets and the hub whose two routing artifacts describe different things | Met | - |
 
 ### Status values
 

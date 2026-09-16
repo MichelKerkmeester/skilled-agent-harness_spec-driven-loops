@@ -87,9 +87,9 @@ Phase 001 is the review. Its findings bind to phases 002 to 012: rosters, versio
 - [x] Phase 001's twenty iterations ran across four lanes on both executors, each record carrying the route-proof fields
 - [x] Wave-two angles were rewritten in the phase spec from wave-one findings before wave two ran
 - [x] Every finding at every tier is verified against the tree and bound to a phase or recorded as refuted with the reason
-- [ ] Every bound phase validates PASSED with its criteria checked and the suite green
-- [ ] The routing artifacts of every hub in scope agree exactly at the end
-- [ ] The deep-loop suite exits zero after the last phase lands
+- [x] Every bound phase validates PASSED with its criteria checked and the suite green
+- [x] The routing artifacts of every hub in scope agree exactly at the end
+- [x] The deep-loop suite exits zero after the last phase lands
 <!-- /ANCHOR:completion -->
 
 ---
