@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration"
-    last_updated_at: "2026-09-16T18:41:00Z"
+    last_updated_at: "2026-09-16T20:35:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Verified the phase 003 to 011 plans and amended criteria 3 and 5"
+    recent_action: "Amended criterion 6 for the ADR-003 keep-list after the phase 004 review"
     next_safe_action: "Regenerate metadata, validate the packet recursively, then execute phase 003"
     blockers: []
     key_files: []
@@ -83,12 +83,12 @@ while unset, without stopping work.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] All eleven phases validate PASSED with acceptance criteria met
+- [ ] All eleven phases validate PASSED, acceptance criteria met
 - [ ] `.skilled/` holds the authored tree; `.opencode/` keeps only what 004 chose
 - [ ] Each runtime live-loads its skill, command and agent surfaces from `.skilled/` or a synced copy
 - [ ] Drift guards, retrieval and deep-loop suites pass; pushed-tip CI adds no failure to the pre-005 baseline
 - [ ] No tracked file outside changelogs, reports and specs names a dropped `.opencode` path
-- [ ] This machine's global hooks and home configs point at `.skilled/`, rollback recorded
+- [ ] Global hooks and home configs here point at `.skilled/` or an ADR-003 kept path, rollback recorded
 <!-- /ANCHOR:completion -->
 
 ---
@@ -105,8 +105,10 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phases 001 and 002 | Done | Committed and pushed at `728c4f3efc` |
-| Goal, 11-phase map, goals for 001 and 002 | Done, uncommitted | Worktree 055 |
-| Phases 003 to 011 planned | Done, uncommitted | Nine Opus agents, 17:57Z to 18:36Z; each wrote only its own five or six files; 746 `file:line` citations resolve inside their files, none out of range |
+| Goal, 11-phase map, goals for 001 and 002 | Done, committed locally `d26f0c60ca` | Worktree 055 |
+| Phases 003 to 011 planned | Done, committed locally `d26f0c60ca` | Nine Opus agents, 17:57Z to 18:36Z; each wrote only its own five or six files; 746 `file:line` citations resolve inside their files, none out of range |
+| Phase 003 layout probes | Done, committed locally `951f4fae18` | Nine records, strict validation PASSED; not pushed |
+| Phase 004 migration design | Done | L1 accepted; 25-step cutover amended by 7 GPT-5.6 findings; strict validation PASSED |
 | CI on the pushed tip | Checked | All 22 runs for `1d198996ca` and `728c4f3efc` completed; the naming guard went red, then green at `728c4f3efc` |
 
 ### Deviations and findings
@@ -125,4 +127,8 @@ and findings belong here.
 | The naming guard fails a pure move | It checks rename destinations against base paths, so four grandfathered names fail once under `.skilled/`. 005 REQ-012 makes a basename-preserving rename pass; the fixture `Spec_Draft.md` keeps its name because the name is its purpose |
 | Criteria 3 and 5 amended | Codex agents are TUI-only, `pi -p` has no persona and Devin has no commands, and three runtimes read agents from the synced `.claude/agents` copy, so criterion 3 names each runtime's own surfaces. `specs/**` is history under D4, so criterion 5 names the frozen classes |
 | Spec-folder renames commit with their content | The `spec-remint` pre-commit gate blocks a spec folder whose documents are partly staged, so the 003-to-004 renumber committed together with its rewritten documents. D4's rename-only rule keeps applying to the authored tree in 007 |
+| Probes point at the whole-directory link | Every probed loader works through `.opencode -> .skilled`. Per-entry links break the three opencode plugins that import `@opencode-ai/plugin/tool`, so phase 004's tree selects L1 |
+| Pi's DevPass route for DeepSeek broke at 19:21Z | The gateway rejects `developer`-role messages for DeepSeek V4.1 Flash with HTTP 400. Lanes run through `/tmp/skilled-pi-agent` with `llmgateway.compat.supportsDeveloperRole: false`. The shared `.pi/models.json` needs the same key for every Pi session on the machine |
+| The repository is public | Phase 003 kept its 668-row home scan out of the repository because it names private repositories. Later phases apply the same rule to anything read from the home directory |
+| Criterion 6 allows ADR-003 kept paths | The phase 004 review (F-02) showed the global Hermes `code_mode` launcher argument must stay `.opencode/bin/...`, because consumer projects expose only `.opencode`. ADR-003 K13 keeps it |
 <!-- /ANCHOR:log -->

@@ -191,7 +191,7 @@ The contract files the cutover changes, which the second-family review covers.
 Required inventories:
 - Same-class producers: evidence unit E1 lists every hook line naming `.opencode`, E2 every workflow line and E3 every `.gitignore` line.
 - Consumers of changed symbols: map A (435 links), map B (231 runtime files and 36 home-level paths), map C (4,029 references), the ten consumer links and the seven global hooks.
-- Matrix axes: layout (L1, L2) by checkout kind (the worktree, the main checkout, another linked worktree on an old branch, a consumer project), eight rows in step 22's proof.
+- Matrix axes: the resolved layout L1 by checkout kind (the worktree, the main checkout, another linked worktree on an old branch, a consumer project), four rows in step 22's proof. The L2 rows fell away when ADR-001 resolved.
 - Algorithm invariant: a path that resolved before the move resolves after it for every reader in the layout table, and git records changes only under `.skilled/`. Adversarial cases for step 6: a nested `.opencode/` planted under a wrong root (`repo-root.mjs:4-7`), a consumer link chained through `Public/.opencode`, a start path under each root, and a walker that meets a link as a child entry.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -200,7 +200,7 @@ Required inventories:
 <!-- ANCHOR:cutover-sequence -->
 ## CUTOVER SEQUENCE
 
-Frozen once ADR-002 is Accepted. A step starts only after the previous step's check passed. `<L1>` and `<L2>` mark the only layout-dependent lines, which T008 fixes once ADR-001 resolves.
+Frozen once ADR-002 is Accepted. A step starts only after the previous step's check passed. ADR-001 resolved the layout to L1, and T008 removed the step 11 line for L2.
 
 ### Ordering constraints
 
@@ -263,8 +263,8 @@ Frozen once ADR-002 is Accepted. A step starts only after the previous step's ch
     - **Check**: `git ls-files .skilled | wc -l` prints `0`, and `test ! -e .skilled && echo absent` prints `absent`.
     - **Rollback**: `git revert <step-10 commit>`.
 11. **Move the tree in one rename-only commit.**
-    - **Does**: `<L1>` `git mv .opencode .skilled`, move any entry from step 9's ignored list that stayed behind into `.skilled/`, remove the emptied `.opencode/`, then `ln -s .skilled .opencode` and `git add .opencode`. `<L2>` `mkdir .skilled`, then for each moved entry `git mv .opencode/<entry> .skilled/<entry>`, `ln -s ../.skilled/<entry> .opencode/<entry>` and `git add .opencode/<entry>`. ADR-003 names what stays in `.opencode/` under L2. No file content changes in this commit.
-    - **Check**: `git diff --cached -M --name-status | grep -c '^R'` prints step 9's recorded count for L1, or the per-entry total for L2. `git diff --cached -M --name-status | grep -E '^[ADM]'` lists only the new link or links. `test -e .opencode/skills/system-spec-kit/SKILL.md` exits 0, and step 3's check exits 0.
+    - **Does**: `git mv .opencode .skilled`, move any entry from step 9's ignored list that stayed behind into `.skilled/`, remove the emptied `.opencode/`, then `ln -s .skilled .opencode` and `git add .opencode`. No file content changes in this commit.
+    - **Check**: `git diff --cached -M --name-status | grep -c '^R'` prints step 9's recorded count (17,767 renames in the phase 003 rehearsal). `git diff --cached -M --name-status | grep -E '^[ADM]'` lists only `A .opencode`, the new link. `test -e .opencode/skills/system-spec-kit/SKILL.md` exits 0, and step 3's check exits 0. After the commit, `git show -M --name-status --format= <step-11 SHA>` prints the same rename count and `A .opencode`, and `git show <step-11 SHA>:.opencode` prints `.skilled`, so the commit carries what the index held.
     - **Rollback**: Before step 12, `git reset --hard <step-10 commit>`, move step 9's ignored entries from `.skilled/` back into `.opencode/`, and confirm `test ! -e .skilled`. After a later commit, `git revert <step-11 commit>` followed by the same move.
 12. **Prove the rename kept history.**
     - **Does**: A read-only proof on the committed move.
@@ -301,35 +301,35 @@ Frozen once ADR-002 is Accepted. A step starts only after the previous step's ch
 
 18. **Capture the main checkout's state.**
     - **Does**: Record `git -C <main checkout> rev-parse HEAD`. Stop the processes that hold files under `.opencode/`, including the `code_mode` launcher and the skill advisor daemon, whose lease sits at `.opencode/skills/.state/advisor/skill-graph-daemon-lease.sqlite`. Archive the ignored entries under `.opencode/` (184 on 2026-09-16, four of them SQLite databases) to a timestamped directory outside the repository. Save `ls -l ~/.config/git/hooks` and copies of `~/.codex/hooks.json`, `~/.codex/config.toml`, `~/.hermes/config.yaml`, `~/.claude.json`, `~/.zshrc` and `~/.pi/agent/SYNC.md`. Settle the modified `council-graph.sqlite` with its owner.
-    - **Check**: The archive's entry count equals `git -C <main checkout> ls-files -o -i --exclude-standard --directory .opencode | wc -l`, each SQLite file's `shasum` matches its copy, and `git -C <main checkout> status --porcelain --untracked-files=no` prints nothing.
+    - **Check**: The archive's entry count equals `git -C <main checkout> ls-files -o -i --exclude-standard --directory .opencode | wc -l`, and each SQLite file's `shasum` matches its copy. A backup manifest lists the seven hook links with their `readlink` targets, and every home file with a `cmp` against its copy. `git -C <main checkout> status --porcelain --untracked-files=no` prints nothing.
     - **Rollback**: Restart the stopped processes. The step only copies files.
 19. **Check drift, relocate ignored state, fast-forward.**
-    - **Does**: Confirm no live-branch commit touched `.opencode/` since step 9, and if one did, rebase the worktree branch and repeat the checks of steps 11, 12 and 14 to 17. Move each archived ignored entry that sits under a moved entry from `.opencode/<path>` to `.skilled/<path>`, where step 7's twins ignore it. Then run `git -C <main checkout> merge --ff-only worktrees/055-skilled-source-root-migration`.
-    - **Check**: `git log <step-9 base>..origin/skilled/v4.0.0.0 -- .opencode` prints nothing before the merge. After it, `git -C <main checkout> rev-parse HEAD` equals the worktree tip, `test -e <main checkout>/.opencode/skills/system-spec-kit/SKILL.md` exits 0, and the SQLite checksums under `.skilled/` match step 18's.
-    - **Rollback**: `git -C <main checkout> reset --hard <step-18 SHA>`, restore the archive into `.opencode/`, and restart the processes.
+    - **Does**: Confirm no live-branch commit touched `.opencode/` since step 9, and if one did, rebase the worktree branch and repeat the checks of steps 11, 12 and 14 to 17. Move each archived ignored entry that sits under a moved entry from `.opencode/<path>` to `.skilled/<path>`, where step 7's twins ignore it. Before the merge, copy the seven hook scripts as regular files into `~/.config/git/hooks-bridge/` and point `core.hooksPath` there, because the landing replaces the hook targets file by file and git skips a dangling hook silently (`../003-layout-probes/probes/dangling-hook-behavior.md`). Then run `git -C <main checkout> merge --ff-only worktrees/055-skilled-source-root-migration`.
+    - **Check**: `git config --global core.hooksPath` prints the bridge directory and a commit in a scratch repository shows the bridged `pre-commit` running, both before the merge. `git log <step-9 base>..origin/skilled/v4.0.0.0 -- .opencode` prints nothing before the merge. After it, `git -C <main checkout> rev-parse HEAD` equals the worktree tip, `git -C <main checkout> ls-files .opencode` prints only `.opencode` (the link, no old path left tracked, as the large-reorg runbook's post-merge check requires), `test -e <main checkout>/.opencode/skills/system-spec-kit/SKILL.md` exits 0, and the SQLite checksums under `.skilled/` match step 18's.
+    - **Rollback**: `git -C <main checkout> reset --hard <step-18 SHA>`, restore the archive into `.opencode/`, restart the processes, and point `core.hooksPath` back at `~/.config/git/hooks` once the old targets resolve.
 20. **Reinstall the seven global hooks at that moment.**
-    - **Does**: From the moved main checkout, run `bash .skilled/scripts/install-git-hooks.sh`. If P5 showed git skips a dangling hook silently, also make a proof commit in a scratch repository whose hook prints a marker.
+    - **Does**: From the moved main checkout, run `bash .skilled/scripts/install-git-hooks.sh`, then point `core.hooksPath` back at `~/.config/git/hooks`. Git skips a dangling hook silently (P5, `../003-layout-probes/probes/dangling-hook-behavior.md`), so a proof commit is required: in a scratch repository, commit once and read the reinstalled `pre-commit` hook's own output.
     - **Check**: `readlink ~/.config/git/hooks/<hook>` names `<main checkout>/.skilled/scripts/git-hooks/<hook>` for all seven hooks, and `bash .skilled/scripts/install-git-hooks.sh --status` prints no `SHADOWED` line.
     - **Rollback**: Recreate each link from step 18's listing with `ln -sf <old target> ~/.config/git/hooks/<hook>`. The old targets resolve for as long as `.opencode` does.
 21. **Update the home configs.**
-    - **Does**: Run `install-codex-hooks.mjs`, which writes a timestamped backup when it changes an existing file (`.opencode/bin/install-codex-hooks.mjs:414-421`). Edit `~/.hermes/config.yaml:17`, `~/.codex/config.toml:21`, the one match in `~/.claude.json`, `~/.zshrc:3` and `:32`, and `~/.pi/agent/SYNC.md`.
+    - **Does**: Run `install-codex-hooks.mjs`, which writes a timestamped backup when it changes an existing file (`.opencode/bin/install-codex-hooks.mjs:414-421`). Leave the Hermes `code_mode` launcher argument in `~/.hermes/config.yaml` on `.opencode/bin/mcp-code-mode-launcher.cjs`, because it is resolved relative to every project and consumer projects expose only `.opencode` (ADR-003 K13). Edit `~/.codex/config.toml:21`, the one match in `~/.claude.json`, `~/.zshrc:3` and `:32`, and `~/.pi/agent/SYNC.md`.
     - **Check**: `grep -c '\.opencode' <file>` prints, for each file, the count ADR-003 keeps, and Codex, Hermes and Pi each start a session that loads a skill.
     - **Rollback**: Copy each file back from step 18's backups.
 22. **Prove the consumers and re-validate on the main checkout's toolchain.**
     - **Does**: Walk the ten consumer links and re-run every check from steps 2 to 17 on the moved main checkout.
     - **Check**: For each link printed by `find ~/MEGA/Development -maxdepth 5 -name .opencode -type l`, `test -e <link>/skills/system-spec-kit/SKILL.md` exits 0. On the main checkout every generator `--check` exits 0, and `validate.sh --strict` prints `RESULT: PASSED` for each phase of this packet.
-    - **Rollback**: Step 19's rollback. Consumer projects carry no change of their own under L1 or L2.
+    - **Rollback**: Step 21 in reverse, then step 20 in reverse, then step 19's rollback, followed by a per-file count check on the restored home files and a scratch-repository commit that shows a hook running. Consumer projects carry no change of their own under L1.
 
 ### Phase 011: verification and rollout
 
 23. **Prove every runtime on `.skilled/`.**
     - **Does**: In each of the seven runtimes, load one skill, one command and one agent that resolve into `.skilled/`, and start opencode's `code_mode` launcher.
     - **Check**: Each runtime's transcript names the loaded skill, command and agent, and `realpath` of each loaded file starts with `<main checkout>/.skilled/`.
-    - **Rollback**: Step 19's rollback, while nothing is pushed.
+    - **Rollback**: Step 21 in reverse, then step 20 in reverse, then step 19's rollback, while nothing is pushed.
 24. **Push the moved tree. This is the point of no return.**
-    - **Does**: Push to `skilled/v4.0.0.0`, then to `main` (parent D2). If P6 showed Gate 0 counts deletions in the push range, push once with `SPECKIT_ALLOW_MASS_DELETION=1`, and only after step 12's list shows every deletion is expected.
+    - **Does**: Push to `skilled/v4.0.0.0`, then to `main` (parent D2). P6 showed 0 deletions for the rename and 1 for the whole push range (`../003-layout-probes/probes/rename-rehearsal.md`), so the push runs with no bypass. If Gate 0 still counts more than 100 deletions for the real range, stop and compare that list with step 12's before any bypass.
     - **Check**: `git ls-remote origin` shows both branches at the tip, and CI on the tip adds no failure to the per-workflow failure sets phase 005 recorded before its first change, and step 3's independent check passes.
-    - **Rollback**: None restores the earlier state. Recovery is a forward fix: a revert range pushed as new commits, then steps 21 and 20 in reverse on every machine that pulled the moved tree.
+    - **Rollback**: None restores the earlier state. Recovery is a forward fix: a revert range pushed as new commits. On each affected checkout, archive the ignored state under `.skilled/` first, apply the revert, restore that state under `.opencode/` and check it against the archive checksums, and only then run steps 21 and 20 in reverse on every machine that pulled the moved tree.
 25. **Clean up.**
     - **Does**: Once `git log origin/skilled/v4.0.0.0..worktrees/055-skilled-source-root-migration` prints nothing, remove this packet's untracked `containment/` directories and worktree 055, then run the runbook's leftover scan (`large-reorg-playbook.md:112-127`) on the main checkout.
     - **Check**: `git worktree list` no longer lists 055, and a second run of the leftover scan prints nothing.
@@ -352,7 +352,7 @@ Frozen once ADR-002 is Accepted. A step starts only after the previous step's ch
 | The `.skilled/` placeholder | `001-deep-research/research/research.md:73` | 10 |
 | The authored tree (17,767 tracked files) | `001-deep-research/research/research.md:112` | 11 |
 | Global git hooks (7) | `001-deep-research/research/research.md:59` | 20 |
-| Home configs (6 manual rows) | `reconciliation.json:28` | 21 |
+| Home configuration: 60 live files, including the 38 `~/.codex/prompts` stubs and `~/.codex/rules/default.rules` that phase 002's map lacked | `reconciliation.json:28`, `../003-layout-probes/probes/home-state-enumeration.md` | 21 |
 | Consumer contract | `001-deep-research/research/research.md:57` | 22 |
 | Ignored state in the main checkout (184 entries) | `git ls-files -o -i --exclude-standard --directory .opencode` on 2026-09-16 | 19 |
 | Code and documentation references (2,938 mechanical, 98 manual, 968 frozen) | `reconciliation.json:22-25` | 17 |
@@ -364,7 +364,7 @@ Frozen once ADR-002 is Accepted. A step starts only after the previous step's ch
 | B1, `.opencode` is a published contract | Routed around: `.opencode` stays a resolvable name under L1 or L2, so consumer links need no edit | ADR-001, step 22 |
 | B2, the global hooks dangle when the main checkout moves | Routed around by the layout, since the absolute targets resolve through `.opencode`. Resolved by a reinstall with a dual-root installer | Steps 6 and 20 |
 | B3, four external references | Resolved outside Git, with backups and a per-file count check | Steps 18 and 21 |
-| B4, runtime behavior through links is unproven | Routed to probes P1 to P3, which select the layout | Decision tree |
+| B4, runtime behavior through links is unproven | Resolved by probes P1 to P3, which pass for the whole-directory link and select L1 (`../003-layout-probes/probes/runtime-symlink-resolution.md`) | Decision tree, ADR-001 |
 | B5, a one-commit landing breaks the rename doctrine | Resolved: placeholder, rename and content land in separate commits | Steps 10, 11 and 13 to 17 |
 | B6, `git mv` nests into the existing `.skilled/` | Resolved: the placeholder goes first and step 10 requires `.skilled` to be absent | Steps 10 and 11 |
 <!-- /ANCHOR:cutover-sequence -->
@@ -446,11 +446,11 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 003 records for P1 to P3 | Internal | Red | ADR-001 stays Proposed and phase 005 cannot start |
-| Phase 003 records for P4 to P9 | Internal | Yellow | The order stands, and steps 2, 20 and 24 record "not probed" |
+| Phase 003 records for P1 to P3 | Internal | Green | Done: ADR-001 resolved to L1 |
+| Phase 003 records for P4 to P9 | Internal | Green | Done: steps 11, 20 and 24 carry the results |
 | Phase 001 and 002 research and maps | Internal | Green | None, both are committed at `728c4f3efc` |
-| cli-codex with `gpt-5.6-sol` | External | Yellow | R2 waits and the ADRs stay Proposed |
-| cli-pi through the LLM Gateway | External | Yellow | The orchestrator runs E1 to E4 directly and logs the deviation |
+| cli-codex with `gpt-5.6-sol` | External | Green | Done: seven findings, all accepted |
+| cli-pi through the LLM Gateway | External | Yellow | E1, E3 and E4 ran; E2 returned empty twice for the first ten workflows, and the orchestrator derived those rows from source (logged in `evidence/ci-workflow-root-surface.md`) |
 | The main checkout's `validate.sh` | Internal | Green | No validation result can be claimed |
 <!-- /ANCHOR:dependencies -->
 
@@ -555,13 +555,13 @@ Phase 1 (Setup: phase 003 records, E1 to E4) ──► Phase 2 (Resolve ADRs, re
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **Phase 003 records for P1 to P3** - UNKNOWN duration - CRITICAL
+1. **Phase 003 records for P1 to P3** - done 2026-09-16 in about 1.5 hours - CRITICAL
 2. **Steps 2 to 5, gates published to the main checkout** - one session - CRITICAL
 3. **Steps 10 and 11, placeholder and rename commits** - one session - CRITICAL
 4. **Steps 18 to 20, the main checkout moves and the hooks are reinstalled with no break between 19 and 20** - one sitting - CRITICAL
 5. **Step 24, the push** - one sitting - CRITICAL
 
-**Total Critical Path**: UNKNOWN until phase 003 reports. The held window from step 9 to step 19 is planned as one continuous working session (NFR-P01).
+**Total Critical Path**: the rehearsed rename commit took about 1 s, and the rename plus link about 8 s (`../003-layout-probes/probes/rename-rehearsal.md`), so the move itself is not the long pole. Step 22's full re-run of generators, suites and strict validation is estimated at 1 to 2 hours, an inferred figure dominated by the test suites and to be measured in phase 010. The held window from step 9 to step 19 is planned as one continuous working session (NFR-P01).
 
 **Parallel Opportunities**:
 - The review brief (R1) can be drafted while evidence units E1 to E4 run one after another
@@ -616,11 +616,11 @@ Full records live in `decision-record.md`.
 
 ### ADR-001: What `.opencode` becomes
 
-**Status**: Proposed
+**Status**: Accepted
 
 **Context**: `.skilled/` takes the real files, and parent D5 requires `.opencode/` to stay resolvable for opencode, root discovery and consumers.
 
-**Decision**: L1, one relative link, when P1 and P3 pass for the whole-directory shape. Otherwise L2, one relative link per moved entry, when P2 and P3 pass for per-entry links. Otherwise stop and escalate.
+**Decision**: L1, one relative link `.opencode -> .skilled`. Probes P1 and P3 passed for the whole-directory shape, and P2a and P2b failed for plugins that import packages (`../003-layout-probes/probes/runtime-symlink-resolution.md`).
 
 **Consequences**:
 - Every path that works today keeps working on the day of the move
@@ -632,7 +632,7 @@ Full records live in `decision-record.md`.
 
 ### ADR-002: The cutover order and its point of no return
 
-**Status**: Proposed
+**Status**: Accepted
 
 **Context**: Gates skip when their filters miss, hook drivers run from the main checkout, and the main checkout holds ignored state no commit carries.
 
@@ -648,7 +648,7 @@ Full records live in `decision-record.md`.
 
 ### ADR-003: Which `.opencode` references survive
 
-**Status**: Proposed
+**Status**: Accepted
 
 **Context**: The parent criteria require that no tracked non-frozen file names an `.opencode` path the design did not keep (`../goal.md:90`).
 

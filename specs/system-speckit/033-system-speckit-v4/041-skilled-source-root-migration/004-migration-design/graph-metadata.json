@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,14 +48,19 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "evidence/hook-opencode-lines.md",
+      "review/design-review-brief.md",
+      "review/gpt-5-6-sol-design-review.md",
       ".opencode/bin/mcp-code-mode-launcher.cjs",
       ".opencode/bin/lib/compiled-routing/serving-closure.manifest.json",
       ".opencode/bin/install-codex-hooks.mjs",
       ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+      "evidence/ci-workflow-root-surface.md",
+      "evidence/gitignore-root-rules.md",
       "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/maps/map-a-symlinks.tsv",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/package.json",
-      ".opencode/bun.lock"
+      "evidence/hand-made-link-targets.md",
+      "scratch/briefs/e1-hook-opencode-lines.md",
+      "scratch/briefs/e2-ci-workflow-root-surface.md"
     ],
     "entities": [
       {
@@ -101,6 +106,24 @@
         "source": "derived"
       },
       {
+        "name": "hook-opencode-lines.md",
+        "kind": "doc",
+        "path": "evidence/hook-opencode-lines.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-review-brief.md",
+        "kind": "doc",
+        "path": "review/design-review-brief.md",
+        "source": "derived"
+      },
+      {
+        "name": "gpt-5-6-sol-design-review.md",
+        "kind": "doc",
+        "path": "review/gpt-5-6-sol-design-review.md",
+        "source": "derived"
+      },
+      {
         "name": "mcp-code-mode-launcher.cjs",
         "kind": "file",
         "path": ".opencode/bin/mcp-code-mode-launcher.cjs",
@@ -125,27 +148,39 @@
         "source": "derived"
       },
       {
+        "name": "ci-workflow-root-surface.md",
+        "kind": "doc",
+        "path": "evidence/ci-workflow-root-surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "gitignore-root-rules.md",
+        "kind": "doc",
+        "path": "evidence/gitignore-root-rules.md",
+        "source": "derived"
+      },
+      {
         "name": "map-a-symlinks.tsv",
         "kind": "file",
         "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/maps/map-a-symlinks.tsv",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "hand-made-link-targets.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "path": "evidence/hand-made-link-targets.md",
         "source": "derived"
       },
       {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/package.json",
+        "name": "e1-hook-opencode-lines.md",
+        "kind": "doc",
+        "path": "scratch/briefs/e1-hook-opencode-lines.md",
         "source": "derived"
       },
       {
-        "name": "bun.lock",
-        "kind": "file",
-        "path": ".opencode/bun.lock",
+        "name": "e2-ci-workflow-root-surface.md",
+        "kind": "doc",
+        "path": "scratch/briefs/e2-ci-workflow-root-surface.md",
         "source": "derived"
       },
       {
@@ -171,41 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A move of this size fails in the ordering, not the rename",
     "created_at": "2026-09-16T08:35:23Z",
-    "last_save_at": "2026-09-16T18:43:44.995Z",
+    "last_save_at": "2026-09-16T20:24:41.684Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5815becbf7b40ec2ea3bf273c668ea54af939bf1fcb025573186bebb70bb2e8a",
+    "source_fingerprint": "sha256:800530e6260eca52608059786618c2a3699696a0760162baf149e984874ab15e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ebd861508f8434ffb4454013b497d0c1205d7314eb710c22716ca72ab007c0b",
-      "plan.md": "924b501c849173e7cdc9ab555299b67bcfff690129157081e7ab7b9f6342fbdb",
-      "tasks.md": "d75a8eab8b1c8fb9e1a9ed9608f23d88510b7e0d763fb23733b5e4a0257ea67e",
-      "decision-record.md": "b8069a5bf3d00241e6d46b46b0324ecf7967052cc933c70e0402f58d961d8605",
-      "implementation-summary.md": "1979faa5b58cbe9d53fd06b38ee2103372ef5c5537d6db096c0ffc99306e343f"
+      "spec.md": "e6f87b122d9c70afc3c662795fc261de049ffc5789491e66bbaffd30b7ace55c",
+      "plan.md": "4a56c458e68a979a5027577cc28ce9afa04e4f337f7b2c38d40fff197b30ebd3",
+      "tasks.md": "45b60a85f13915eecdf640ce330eee7be5a16e6abc7ccdfb2900db93df1f15a3",
+      "decision-record.md": "a74d027094e2c30340d5fbd9268d4882311c7f80a61e466931fb91de2df7d22f",
+      "implementation-summary.md": "e88a1615553c591c2c71817ac99f4897abe84e80249c9ec3fdaa766ee22f948d"
     },
     "last_active_at": null
   }

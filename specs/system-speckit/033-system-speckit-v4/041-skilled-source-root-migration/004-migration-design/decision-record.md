@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design"
     last_updated_at: "2026-09-16T22:00:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Proposed the layout, cutover order and keep-list decisions"
+    recent_action: "Accepted ADR-001 to ADR-003 after the GPT-5.6 review"
     next_safe_action: "Resolve ADR-001 from the phase 003 probe records"
     blockers:
       - "Phase 003 probe records for P1 to P3 do not exist yet"
@@ -42,9 +42,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-09-16 |
-| **Deciders** | Orchestrator on Opus, pending the phase 003 probe records and the GPT-5.6 review |
+| **Deciders** | Orchestrator on Opus, from the phase 003 probe records, after the GPT-5.6 review (`review/gpt-5-6-sol-design-review.md`) |
 
 ---
 
@@ -59,7 +59,7 @@ _memory:
 - Root discovery keys on `.opencode/skills/system-spec-kit/SKILL.md` and hoists above a literal `.opencode` segment (`.opencode/skills/system-spec-kit/shared/workspace/repo-root.mjs:27`, `:38-46`).
 - Ten consumer links on this machine and seven global hooks name `.opencode` by absolute path (`find` census and `ls -l ~/.config/git/hooks`, both run 2026-09-16).
 - Plugins import `@opencode-ai/plugin` (`.opencode/plugins/opencode-goal.js:16`, `.opencode/plugins/system-speckit-completion.js:28`), and CommonJS resolves its own location to the real path (`PUBLIC-RELEASE.md:32`), so where `node_modules` lives matters under any link.
-- Whether opencode or Devin follows a link at the directory level is UNKNOWN until probes P1 to P3 report (`001-deep-research/research/research.md:69`).
+- Whether opencode or Devin follows a link at the directory level was UNKNOWN until probes P1 to P3 (`001-deep-research/research/research.md:69`). Phase 003 answered it.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -67,9 +67,26 @@ _memory:
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: a conditional layout. If P1 and P3 pass for a whole-directory link, `.opencode` becomes one tracked relative link to `.skilled` (L1). Otherwise, if P2 and P3 pass for per-entry links, `.opencode/` stays a real directory holding one relative link per moved entry (L2), with opencode's install files where the passing P2 variant put them. Otherwise the packet stops and escalates under parent D2.
+**We chose**: L1. `.opencode` becomes one tracked relative link to `.skilled`, created in the same commit as the rename.
 
-**How it works**: The links are relative, `.opencode -> .skilled` or `.opencode/<entry> -> ../.skilled/<entry>`, so a checkout at any path resolves them. The placeholder's own name asks for the same thing (`.skilled/future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back`). Runtime directories stop depending on the compatibility name in phase 008, when their links retarget to `.skilled/`, so what still reads `.opencode` afterwards is exactly ADR-003's keep-list.
+**Probe verdicts behind it** (records under `../003-layout-probes/probes/`, run 2026-09-16 at base `d26f0c60ca`):
+
+| Input | Verdict | Record |
+|-------|---------|--------|
+| P1 | Pass. Through the whole-directory link, opencode loaded a probe plugin (with and without a package import), a command, an agent, a skill, and the `code_mode` launcher's server manifest | `runtime-symlink-resolution.md` rows R1, R1-dep, R2, R3, R12, R13 |
+| P2a | Fail. With per-entry links and install files in `.opencode/`, a plugin importing `@opencode-ai/plugin/tool` did not load | same record, row R1-dep shape B |
+| P2b | Fail. With the install files moved to `.skilled/`, the same plugin still did not load, because opencode kept installing into `.opencode/node_modules` | same record, row R1-dep shape B2 |
+| P3 | Pass for both shapes. Devin listed all 13 repository skills through the whole-directory link and through per-entry links | same record, row R4 |
+| P4 | Scripts are found through either shape. Seven path filters miss `.skilled/` changes silently | `gate-filters-under-linked-root.md` |
+| P5 | Git skips a dangling hook silently for commit and push | `dangling-hook-behavior.md` |
+| P6 | 17,767 renames and 0 deletions at every rename limit, 1 deletion over the whole push range, Gate 0 passes | `rename-rehearsal.md` |
+| P7 | A checkout of the moved tree deletes ignored files under `.opencode/` without a word | `rename-rehearsal.md` |
+| P8 | No runtime can rename its own project directory. Relocation flags are additive only | `runtime-root-configurability.md` |
+| P9 | Pi extensions resolve their relative `.opencode` imports through both shapes and a retargeted second hop | `runtime-symlink-resolution.md` row R5 |
+
+The tree's first branch holds: P1 and P3 pass for the whole-directory link. L2 is also ruled out on its own evidence: P2a and P2b both fail for the three repository plugins that import `@opencode-ai/plugin/tool` (`opencode-goal.js`, `system-skill-advisor.js`, `system-speckit-completion.js`).
+
+**How it works**: The link is relative (`.opencode -> .skilled`), so a checkout at any path resolves it. opencode installs its plugin dependencies through the link into `.skilled/node_modules`, which is an ancestor of the plugins' real path, so package imports resolve. Runtime directories stop depending on the compatibility name in phase 008, when their links retarget to `.skilled/`. After that, what still reads `.opencode` is exactly ADR-003's keep-list.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -79,12 +96,12 @@ _memory:
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **L1, one link (chosen when P1 and P3 pass)** | Every reader keeps working on the day of the move. One tree, so dependency resolution never splits. Walkers below `.opencode` never meet a link | opencode's install files live in `.skilled/`. Git filters naming `.opencode/` see nothing | 8/10 |
-| **L2, one link per entry (chosen when only P2 and P3 pass)** | The same readers keep working, and opencode's install files can stay in `.opencode/` | A plugin reached through a linked entry may resolve imports from `.skilled/`. Walkers that start at `.opencode/` meet child links (`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:104-111`) | 6/10 |
+| **L1, one link (chosen: P1 and P3 pass)** | Every reader keeps working on the day of the move. One tree, so dependency resolution never splits. Walkers below `.opencode` never meet a link | opencode's install files live in `.skilled/`. Git filters naming `.opencode/` see nothing | 8/10 |
+| L2, one link per entry (rejected: P2a and P2b fail) | The same readers keep working, and opencode's install files can stay in `.opencode/` | Probed: a plugin reached through a linked entry cannot resolve its package imports, whichever directory holds the install files. Walkers that start at `.opencode/` meet child links (`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs:104-111`) | 6/10 |
 | L3, thin namespace of opencode-mandated entries | Smallest `.opencode/` | The global hooks dangle when the main checkout moves (`001-deep-research/research/research.md:59`), consumer paths into dropped entries break, and references must be rewritten before the rename | 4/10 |
 | L4, removal | Nothing left to maintain | Violates parent D5: opencode, root discovery and ten consumer links stop resolving | 1/10 |
 
-**Why this one**: L1 is the smallest shape that keeps every reader working without a precondition on the rewrite, and L2 is the fallback when a runtime refuses a linked top-level directory but follows linked entries. The probes decide between them, so neither is picked on preference.
+**Why this one**: L1 is the smallest shape that keeps every reader working with no precondition on the rewrite, and the probes confirmed it for every runtime they could reach. L2 fails outright for plugins that import packages.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -147,7 +164,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-09-16 |
 | **Deciders** | Orchestrator on Opus, pending the phase 003 probe records and the GPT-5.6 review |
 
@@ -174,9 +191,9 @@ The inventory says what moves, not in which order. Four verified facts decide th
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: the 25-step sequence in `plan.md`, in three bands. Backward-compatible changes publish first (steps 1 to 8: the autosync guard, hooks, the independent check, CI, dual-root code and ignore twins). Layout-changing commits stay held in the worktree (steps 9 to 17: placeholder, rename, links, regeneration and rewrite). The main checkout moves once, in phase 010 (steps 18 to 22), with the global hooks reinstalled directly after its fast-forward, and the push in step 24 is the point after which rollback becomes a forward fix.
+**We chose**: the 25-step sequence in `plan.md`, in three bands. Backward-compatible changes publish first (steps 1 to 8: the autosync guard, hooks, the independent check, CI, dual-root code and ignore twins). Layout-changing commits stay held in the worktree (steps 9 to 17: placeholder, rename, links, regeneration and rewrite). The main checkout moves once, in phase 010 (steps 18 to 22), with the global hooks bridged through regular-file copies for the whole landing and reinstalled before the bridge is removed. Two boundaries matter. Step 5 is the first distributed boundary: from there, undoing a published backward-compatible change needs pushed revert commits. Step 24 is the moved-layout publication boundary: from there, undoing the move is a forward fix on every clone.
 
-**How it works**: Publishing the compatible bands early puts dual-root hook drivers into the main checkout, which is where every commit's hooks run from, so each gate that could catch a mistake in step 11 is already live when step 11 happens. Holding the layout bands keeps rollback local: until step 24 every step reverts in the worktree or in the main checkout from recorded SHAs, an archive and backups. After step 24, other clones, CI and consumer projects may already act on the moved tree, so a revert is a new forward change rather than a return to the earlier state.
+**How it works**: Publishing the compatible bands early puts dual-root hook drivers into the main checkout, which is where every commit's hooks run from, so each gate that could catch a mistake in step 11 is already live when step 11 happens. Holding the layout bands keeps the layout rollback local: until step 24 every layout step reverts in the worktree or in the main checkout from recorded SHAs, an archive and backups. The published bands 1 to 8 are backward compatible, so a revert there restores behavior but still travels as a push. After step 24, other clones, CI and consumer projects may already act on the moved tree, so a revert is a new forward change rather than a return to the earlier state.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -186,7 +203,7 @@ The inventory says what moves, not in which order. Four verified facts decide th
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Publish compatible bands, hold layout bands, move the main checkout once** | Gates run dual-root logic before any file moves. The machine-wide state changes once. Rollback stays local until step 24 | A held window in which the live branch can move, handled by the drift check in step 19 | 8/10 |
+| **Publish compatible bands, hold layout bands, move the main checkout once** | Gates run dual-root logic before any file moves. The machine-wide state changes once. The layout rollback stays local until step 24, while the published compatible bands revert by push from step 5 | A held window in which the live branch can move, handled by the drift check in step 19 | 8/10 |
 | Publish every phase as it validates | No held window and no drift | The main checkout and 28 other worktrees run on a half-moved tree for days, and the hook reinstall falls at step 11 instead of a planned cutover | 5/10 |
 | Move the main checkout first, then fix references | An early real-world test | Every reader that the layout does not route around breaks until the rewrite lands | 3/10 |
 | One commit for everything | One revert undoes it | Breaks the rename doctrine, and passes only because the gates skip | 2/10 |
@@ -241,7 +258,7 @@ The inventory says what moves, not in which order. Four verified facts decide th
 - Phases 005 to 011 take their steps verbatim from `plan.md`, each phase owning the steps its heading names
 - Each executing phase records the SHAs, counts, archives and backups its later rollbacks read
 
-**How to roll back**: For the design, revert this folder's document commit and set this record back to Proposed. For the cutover, run the failing step's rollback line in `plan.md`. Past step 24 there is no rollback, only a forward fix: push a revert range as new commits, then run steps 21 and 20 in reverse on every machine that pulled the moved tree.
+**How to roll back**: For the design, revert this folder's document commit and set this record back to Proposed. For the cutover, run the failing step's rollback line in `plan.md`. Past step 24 there is no rollback, only a forward fix: push a revert range as new commits, archive and restore the ignored state around the revert on each affected checkout, then run steps 21 and 20 in reverse on every machine that pulled the moved tree.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 
@@ -254,7 +271,7 @@ The inventory says what moves, not in which order. Four verified facts decide th
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-09-16 |
 | **Deciders** | Orchestrator on Opus, pending ADR-001's resolution and the GPT-5.6 review |
 
@@ -280,7 +297,7 @@ The parent's completion criteria require that `.opencode/` holds only what this 
 
 **We chose**: keep `.opencode` only where the reader is opencode itself, root discovery, the consumer contract, the spec compatibility link, a dual-root alternate or a frozen record, and rewrite every other reference to `.skilled`.
 
-**How it works**: The keep-list below is the exclusion set for step 17's rescan. T009 completes it for the resolved layout, adding a file:line for each entry that the layout introduces.
+**How it works**: The keep-list below is the exclusion set for step 17's rescan. T009 completed it for L1: K10 no longer applies, and K11 and K12 are the entries L1 introduces.
 
 | ID | Kept reference | Where | Why |
 |----|----------------|-------|-----|
@@ -293,7 +310,10 @@ The parent's completion criteria require that `.opencode/` holds only what this 
 | K7 | The `.opencode` alternates inside dual-root filters, installers, ignore twins and workflow path filters | Steps 2, 4, 6 and 7 in `plan.md` | Linked worktrees on older branches still carry a real `.opencode/` |
 | K8 | The negation of the global `/.opencode/` ignore | `.gitignore:7-10`, `~/.gitignore_global:16` | Harmless under both layouts, and removing it is a separate cleanup |
 | K9 | The 968 frozen rows | `reconciliation.json:25` | Records of runs at the old path (parent D4) |
-| K10 | Under L2 with P2a only: `.opencode/package.json`, `.opencode/bun.lock` and `.opencode/node_modules` | `.opencode/package.json:3-5`, `.opencode/bun.lock:1-12` | opencode's plugin dependency is declared there |
+| K10 | Not applicable. It applied only under L2, and ADR-001 chose L1, so `package.json`, `bun.lock` and `node_modules` move into `.skilled/` with the tree | - | Phase 003 saw opencode install through the link into `.skilled/node_modules` (`../003-layout-probes/probes/runtime-symlink-resolution.md` row notes) |
+| K11 | The tracked relative link `.opencode -> .skilled` | created by step 11 in `plan.md` | It is the compatibility shape itself (parent D5) |
+| K12 | Where Devin finds skills: `.opencode/skills/` through its compiled provider roster | `.devin/SYNC.md:20` | Devin's roster (`devin,agents_standard,cursor,windsurf,claude,opencode,zed,copilot`) has no `.skilled` entry, so the link is what keeps Devin's skills (`../003-layout-probes/probes/runtime-root-configurability.md`) |
+| K13 | The Hermes `code_mode` launcher argument `.opencode/bin/mcp-code-mode-launcher.cjs` in `~/.hermes/config.yaml` | `.hermes/SYNC.md:42` | It resolves relative to every project, and consumer projects expose only `.opencode`. Changing it would break `code_mode` outside this repository (review finding F-02) |
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -360,3 +380,21 @@ The parent's completion criteria require that `.opencode/` holds only what this 
 <!-- /ANCHOR:adr-003 -->
 
 ---
+
+---
+
+<!-- ANCHOR:review-adjudication -->
+## Review Adjudication
+
+GPT-5.6 sol at `xhigh` on cli-codex reviewed the resolved design read-only on 2026-09-16 (428 s, exit 0; brief `review/design-review-brief.md`, output `review/gpt-5-6-sol-design-review.md`). The orchestrator opened each finding's evidence before ruling.
+
+| Finding | Severity | Ruling | Evidence checked | Amendment |
+|---------|----------|--------|------------------|-----------|
+| F-01 hooks unguarded while the landing rewrites their targets | P0 | Accepted | `dangling-hook-behavior.md` (silent skip), `010-machine-and-consumer-cutover/plan.md` "Why A Bridge" | Step 19 bridges `core.hooksPath` through regular-file copies before the merge, and step 20 points it back after the reinstall |
+| F-02 Hermes launcher argument breaks consumer projects | P0 | Accepted | `.hermes/SYNC.md:42` (relative `.opencode/bin/...` argument), `PUBLIC-RELEASE.md:22` (consumers link `.opencode` only) | Step 21 leaves the argument on `.opencode`, and ADR-003 adds K13 |
+| F-03 forward fix strands ignored state | P0 | Accepted | `rename-rehearsal.md` (checkout across the shape change deletes ignored files) | Step 24's recovery archives ignored state before a revert and restores it after |
+| F-04 step 18's check misses the backups its rollbacks need | P1 | Accepted | step 18 checked only the archive and a clean tree | The check now requires a manifest of the seven hook links and a `cmp` for every home file |
+| F-05 steps 22 and 23 roll back only step 19 | P1 | Accepted | steps 20 and 21 change hooks and home files before 22 and 23 run | Both rollbacks reverse 21, then 20, then 19, with a hook-execution proof |
+| F-06 step 11 checks the index, not the commit | P1 | Accepted | the check read `git diff --cached` | A post-commit check reads `git show -M --name-status` and the link blob from the recorded SHA |
+| F-07 step 5 already needs pushed reverts | P1 | Accepted | step 5 publishes to both branches | ADR-002 records step 5 as the distributed boundary and step 24 as the layout publication boundary |
+<!-- /ANCHOR:review-adjudication -->
