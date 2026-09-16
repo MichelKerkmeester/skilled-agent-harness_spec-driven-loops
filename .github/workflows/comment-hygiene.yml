@@ -15,9 +15,11 @@ jobs:
         run: |
           set -euo pipefail
           CHECKER=".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+          # Fail closed in CI: a required guard must exist. A PR that deletes or
+          # moves the checker must not silently disable its own gate.
           if [ ! -x "$CHECKER" ]; then
-            echo "::warning::Comment hygiene checker not found at $CHECKER — skipping"
-            exit 0
+            echo "::error::Comment hygiene checker not found at $CHECKER — failing closed."
+            exit 1
           fi
           VIOLATIONS=0
           BASE="${{ github.event.pull_request.base.sha }}"

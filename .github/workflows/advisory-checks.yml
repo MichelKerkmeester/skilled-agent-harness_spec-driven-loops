@@ -28,9 +28,12 @@ jobs:
         run: |
           set -uo pipefail
           RUNNER=".opencode/scripts/run-node-tests.mjs"
+          # Fail closed: a missing script is a moved or deleted file, not an empty
+          # report. The step keeps continue-on-error, so the job stays green by design
+          # while this step shows the error.
           if [ ! -f "$RUNNER" ]; then
-            echo "runner not present at $RUNNER — nothing to report"
-            exit 0
+            echo "::error::Node test runner not found at $RUNNER — failing closed."
+            exit 1
           fi
           node "$RUNNER" || true
 
@@ -39,8 +42,11 @@ jobs:
         run: |
           set -uo pipefail
           VALIDATOR=".opencode/skills/sk-doc/scripts/validate-doc-model-refs.js"
+          # Fail closed: a missing script is a moved or deleted file, not an empty
+          # report. The step keeps continue-on-error, so the job stays green by design
+          # while this step shows the error.
           if [ ! -f "$VALIDATOR" ]; then
-            echo "validator not present at $VALIDATOR — nothing to report"
-            exit 0
+            echo "::error::Doc-model validator not found at $VALIDATOR — failing closed."
+            exit 1
           fi
           node "$VALIDATOR" || echo "doc-model drift reported above; fix by citing canonical model names from registry.ts"

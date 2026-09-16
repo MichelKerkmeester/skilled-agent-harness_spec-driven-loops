@@ -30,9 +30,11 @@ jobs:
         run: |
           set -euo pipefail
           GUARD=".opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs"
+          # Fail closed in CI: a required guard must exist. A PR that deletes or
+          # moves the checker must not silently disable its own gate.
           if [ ! -f "$GUARD" ]; then
-            echo "::warning::markdown-link guard not found at $GUARD — skipping"
-            exit 0
+            echo "::error::markdown-link guard not found at $GUARD — failing closed."
+            exit 1
           fi
           # The guard walks the active skills/commands/agents docs itself (whole-repo, not
           # changed-files) because a deleted target breaks unchanged referrers. It prints any
