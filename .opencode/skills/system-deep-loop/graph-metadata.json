@@ -109,8 +109,7 @@
       "score agent candidate",
       "deep-improvement",
       "agent-improvement",
-      "model benchmark",
-      "skill benchmark"
+      "model benchmark"
     ],
     "key_topics": [
       "system-deep-loop",
@@ -121,7 +120,6 @@
       "research-mode",
       "review-mode",
       "ai-council-mode",
-      "standard-authority",
       "improvement-mode",
       "agent-improvement",
       "model-benchmark",

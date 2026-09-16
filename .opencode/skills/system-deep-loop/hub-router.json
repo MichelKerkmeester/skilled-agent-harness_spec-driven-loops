@@ -11,6 +11,8 @@
       "defer": "unclear or contradictory deep-loop intent asks for disambiguation"
     },
     "defaultResource": ["ROUTER.md", "mode-registry.json"],
+    "defaultResourceSemantics": "fallback-only",
+    "defaultResourceContract": "A scored route assembles exactly the selected mode's declared resources. defaultResource is consulted only when no mode scores (zero-signal branch), and then only as the defer-time suggestion offered with the disambiguation checklist. It is never a stage-two preamble loaded on every route, and never unioned into a scored route's resource set.",
     "launcherVocabularyClasses": [],
     "discoveryClasses": ["hub-identity"],
     "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: a prompt naming only the hub (including its former identity) scores zero modes and takes the defer outcome instead of guessing a loop."
