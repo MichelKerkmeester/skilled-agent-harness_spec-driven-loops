@@ -503,7 +503,10 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
       done <<< "$SPEC_STAGED_DOCS" | sort -u
     )"
 
-    if [[ -n "$SPEC_PACKETS" ]]; then
+    # A repository that does not ship the toolchain has no re-derive tool and nothing
+    # to re-derive with, so it passes. Inside one that ships it, a missing tool blocks.
+    SPEC_TOOL="$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs"
+    if [[ -n "$SPEC_PACKETS" ]] && { [[ -f "$SPEC_TOOL" ]] || _in_toolchain_repo; }; then
       # git runs this hook against a throwaway index when a pathspec narrows the
       # commit. Anything staged there is discarded, so the metadata would reach the
       # commit while the real index keeps the old blob, and the next commit would
@@ -556,8 +559,14 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
       # packet is already fresh, so per-packet spawning was the entire cost: a
       # no-op packet measures about 1.5s wall against 0.7s of work, and a commit
       # touching scores of packets paid that startup once each.
+      if [[ ! -f "$SPEC_TOOL" ]]; then
+        echo "" >&2
+        echo "BLOCKED [gate:spec-remint]: re-derive tool is missing: $SPEC_TOOL" >&2
+        echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
+        exit 1
+      fi
       SPEC_RC=0
-      SPEC_OUT="$(node "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs" \
+      SPEC_OUT="$(node "$SPEC_TOOL" \
             ${SPEC_ARGS[@]+"${SPEC_ARGS[@]}"} --apply 2>&1)" || SPEC_RC=$?
 
       # One call now covers every packet, so a failure can leave earlier packets

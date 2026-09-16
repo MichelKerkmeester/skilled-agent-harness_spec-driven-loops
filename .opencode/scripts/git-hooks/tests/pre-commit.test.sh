@@ -473,6 +473,31 @@ git -C "$TMP" add ".opencode/skills/$HUB/SKILL.md"
 run_hook; RC=$?
 check "a missing route module blocks where the toolchain ships" 1 "$RC" "could not read the hub list"
 
+# ── 34. a missing re-derive tool blocks a staged spec doc where the toolchain ships ──
+setup_spec_fixture
+mkdir -p "$TMP/.opencode/skills/system-spec-kit"
+echo "sentinel" > "$TMP/.opencode/skills/system-spec-kit/SKILL.md"
+rm "$TMP/.opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs"
+echo "# edited" > "$TMP/$PKT/spec.md"; git -C "$TMP" add "$PKT/spec.md"
+run_hook; RC=$?
+check "a missing re-derive tool blocks" 1 "$RC" "re-derive tool is missing"
+
+# ── 35. a repository that does not ship the toolchain is never blocked by a missing gate script ──
+# Every trigger staged at once, every bypass lifted and no gate script present: the
+# globally installed hook must leave such a repository committable.
+setup_gate_fixture
+mkdir -p "$TMP/.opencode/skills/sk-code"
+echo "a skill of its own" > "$TMP/.opencode/skills/sk-code/SKILL.md"
+stage_new ".opencode/agents/probe.md" "agent"
+stage_new ".opencode/skills/cli-external-orchestration/cli-x/SKILL.md" "cli"
+stage_new ".opencode/skills/mcp-tooling/mcp-x/scripts/doctor.sh" "doctor"
+stage_new "specs/demo/001-demo/spec.md" "# spec"
+stage_new "specs/demo/001-demo/graph-metadata.json" '{"fingerprint":"old"}'
+SPECKIT_SKIP_COMMENT_HYGIENE=0 SPECKIT_SKIP_MIRROR_PARITY=0 SPECKIT_SKIP_CARD_SYNC=0 \
+  SPECKIT_SKIP_MCP_MUTATION_CLASS=0 run_hook; RC=$?
+check "a repository without the toolchain stays committable" 0 "$RC"
+grep -q 'BLOCKED' "$TMP/out.log" && { echo "FAIL  a gate blocked a repository without the toolchain"; FAIL=$((FAIL + 1)); }
+
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]
