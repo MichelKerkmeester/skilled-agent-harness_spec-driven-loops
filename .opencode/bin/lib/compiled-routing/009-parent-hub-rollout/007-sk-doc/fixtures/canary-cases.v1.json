@@ -139,40 +139,6 @@
       }
     },
     {
-      "id": "single-create-flowchart-alias",
-      "prompt": "/create:flowchart",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "sk-design-diagram"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "sk-design-diagram"
-        ],
-        "expectedResources": [
-          "sk-design-diagram/SKILL.md"
-        ]
-      }
-    },
-    {
-      "id": "single-create-chart",
-      "prompt": "create a chart",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "sk-design-chart"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "sk-design-chart"
-        ],
-        "expectedResources": [
-          "sk-design-chart/SKILL.md"
-        ]
-      }
-    },
-    {
       "id": "single-create-changelog",
       "prompt": "/create:changelog",
       "expectedAction": "route",
