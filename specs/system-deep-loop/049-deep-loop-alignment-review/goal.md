@@ -75,7 +75,7 @@ to the parent: apply it there first, then resend the parent.
 
 **Read the child goal before working a phase**; decisions above outrank it.
 
-Phase 001 is the review. Its findings bind to phases 002 to 012: rosters, version authority, leaf manifests and doctrine reachability, catalog and README truth, confirm-variant parity, ledger stem producers, agent mirror parity, the containment promise with the severity scale, the three an audit found unbound, and the defects earlier phases recorded but did not fix.
+Phase 001 is the review. Its findings bind to phases 002 to 012: rosters, version authority, leaf manifests and doctrine reachability, catalog and README truth, confirm-variant parity, ledger stem producers, agent mirror parity, the containment promise with the severity scale, the three an audit found unbound, the defects earlier phases recorded but did not fix, and what an adversarial review of the whole program then found.
 <!-- /ANCHOR:binding -->
 
 ---

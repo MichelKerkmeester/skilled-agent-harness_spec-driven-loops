@@ -19,7 +19,7 @@ This scenario verifies mixed-marker precedence. A `.opencode/` TypeScript tool m
 Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion demo, how should sk-code route the request?
 ```
 
-**Expected detection markers** (verbatim from `references/stack-detection.md`):
+**Expected detection markers** (verbatim from `shared/references/stack-detection.md`):
 ```bash
 # 1. OPENCODE (highest precedence — disambiguates mixed-marker workspaces)
 # CWD under .opencode/ OR any changed/target file under .opencode/
@@ -28,7 +28,7 @@ Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion de
 **Expected surface**: `OPENCODE`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/stack-detection.md`
+- `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
 - `sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md`

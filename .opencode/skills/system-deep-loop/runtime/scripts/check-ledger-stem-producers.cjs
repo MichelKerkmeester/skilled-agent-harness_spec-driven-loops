@@ -66,6 +66,25 @@ const PRODUCER_SURFACE = Object.freeze([
 // it; a bare prose mention has no key and never matches.
 const EMITTED_STEM_PATTERN = /(?:^|[^A-Za-z0-9_])stem\\?['"]?\s*:\s*\\?['"]([A-Za-z0-9_]+\.[A-Za-z0-9_]+)\\?['"]/g;
 
+// A producer may build the stem instead of writing it whole, as `deep_x.${event}`
+// inside a helper every call site passes a name to. Matching only the literal form
+// reports those stems as spoken by nobody, which is the exact false confidence this
+// checker exists to prevent -- and it reports it as a clean pass. The suffix cannot
+// be read off the interpolation, so the call sites supply it: the two shapes a
+// producer uses to name the event are a first positional string argument and a
+// structured `event` key. Matching those and not a bare token keeps the rule above
+// true, that a prose mention is never an emitter -- a doc string naming an event in
+// backticks would otherwise credit a stem no call site can reach.
+const INTERPOLATED_STEM_PATTERN = /(?:^|[^A-Za-z0-9_])stem\\?['"]?\s*:\s*`([A-Za-z0-9_]+)\.\$\{/g;
+
+// The two shapes that name the event at a call site feeding an interpolated stem:
+// `record("name"` and a structured `event: 'name'` key. A bare backticked mention
+// in prose matches neither.
+const EVENT_NAME_FORMS = (suffix) => [
+  new RegExp(`\\(\\s*['"]${suffix}['"]`),
+  new RegExp(`(?:^|[^A-Za-z0-9_])event\\s*:\\s*['"]${suffix}['"]`, 'm'),
+];
+
 function emit(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
@@ -176,6 +195,7 @@ function parseCensus(text, declaration) {
 
 function scanEmitters(repoRoot) {
   const emitters = [];
+  const interpolated = [];
   const missingFiles = [];
   for (const relativePath of PRODUCER_SURFACE) {
     let text;
@@ -188,11 +208,42 @@ function scanEmitters(repoRoot) {
     for (const match of text.matchAll(EMITTED_STEM_PATTERN)) {
       emitters.push({ file: relativePath, stem: match[1] });
     }
+    for (const match of text.matchAll(INTERPOLATED_STEM_PATTERN)) {
+      interpolated.push({ file: relativePath, prefix: match[1], text });
+    }
   }
-  return { emitters, missingFiles };
+  return { emitters, interpolated, missingFiles };
 }
 
-function evaluateMode(spec, repoRoot, emitters, missingFiles) {
+/**
+ * Resolves the stems an interpolating producer emits, against the registered set.
+ *
+ * The interpolation hides the suffix, so the call sites supply it: for each
+ * registered stem sharing the built prefix, the file is emitting it when the suffix
+ * appears in one of the two shapes that name an event at a call site. The match is
+ * per file rather than per site, so a file holding two interpolating helpers credits
+ * both with every name either one passes. That over-reports rather than under-reports,
+ * which is the safe direction here: a stem wrongly counted spoken fails loudly against
+ * its declared producer, while one wrongly counted silent is the failure this checker
+ * exists to catch.
+ */
+function resolveInterpolatedEmitters(interpolated, registered, stemPrefix) {
+  const resolved = [];
+  const builtPrefix = stemPrefix.slice(0, -1);
+  for (const site of interpolated) {
+    if (site.prefix !== builtPrefix) continue;
+    for (const stem of registered) {
+      const suffix = stem.slice(stemPrefix.length);
+      if (!suffix) continue;
+      if (EVENT_NAME_FORMS(suffix).some((form) => form.test(site.text))) {
+        resolved.push({ file: site.file, stem, viaInterpolation: true });
+      }
+    }
+  }
+  return resolved;
+}
+
+function evaluateMode(spec, repoRoot, emitters, missingFiles, interpolated = []) {
   const violations = [];
   const typesPath = path.join(repoRoot, spec.typesRel);
   let text;
@@ -207,7 +258,9 @@ function evaluateMode(spec, repoRoot, emitters, missingFiles) {
   const registered = new Set(stems);
   const missing = new Set(missingFiles);
   const stemPrefix = `${spec.mode.replace('-', '_')}.`;
-  const modeEmitters = emitters.filter((entry) => entry.stem.startsWith(stemPrefix));
+  const modeEmitters = emitters
+    .filter((entry) => entry.stem.startsWith(stemPrefix))
+    .concat(resolveInterpolatedEmitters(interpolated, registered, stemPrefix));
 
   for (const relativePath of PRODUCER_SURFACE) {
     if (missing.has(relativePath)) {
@@ -326,8 +379,8 @@ function main(argv = process.argv.slice(2)) {
     return 1;
   }
 
-  const { emitters, missingFiles } = scanEmitters(repoRoot);
-  const results = MODES.map((spec) => evaluateMode(spec, repoRoot, emitters, missingFiles));
+  const { emitters, interpolated, missingFiles } = scanEmitters(repoRoot);
+  const results = MODES.map((spec) => evaluateMode(spec, repoRoot, emitters, missingFiles, interpolated));
   const violations = results
     .flatMap((result) => result.violations.map((violation) => ({ mode: result.mode, ...violation })))
     .sort((left, right) => {

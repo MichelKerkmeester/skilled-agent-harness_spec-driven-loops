@@ -31,7 +31,7 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 Prompt: `Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for the local preview index page.`
 
 **Markers present**:
-- WEBFLOW library marker: `Lenis` (matches `references/stack-detection.md:30-37`)
+- WEBFLOW library marker: `Lenis` (matches `shared/references/stack-detection.md:30-37`)
 - OPENCODE path marker: `.opencode/skills/sk-doc/scripts/preview-server.js`
 
 **Expected behavior** (one of two acceptable outcomes):
@@ -49,7 +49,7 @@ Prompt: `Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-serv
 ### Preconditions
 
 1. SKILL.md is at HEAD-of-main.
-2. `references/stack-detection.md` precedence section is intact.
+2. `shared/references/stack-detection.md` precedence section is intact.
 3. Either remediation for F-NEW-001 has landed (then test for Outcome A) OR has not (then test for either A or B; document which behavior the AI exhibits).
 
 ### Exact Command Sequence

@@ -16,7 +16,9 @@
     "system-deep-loop/049-deep-loop-alignment-review/010-version-authority-completion",
     "system-deep-loop/049-deep-loop-alignment-review/011-routing-doctrine-and-discovery",
     "system-deep-loop/049-deep-loop-alignment-review/012-missing-stress-fixture-root",
-    "system-deep-loop/049-deep-loop-alignment-review/013-recorded-adjacent-defects"
+    "system-deep-loop/049-deep-loop-alignment-review/013-recorded-adjacent-defects",
+    "system-deep-loop/049-deep-loop-alignment-review/014-post-work-review",
+    "system-deep-loop/049-deep-loop-alignment-review/015-review-confirmed-findings"
   ],
   "manual": {
     "depends_on": [],
@@ -140,17 +142,17 @@
     ],
     "causal_summary": "The containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs across twenty phases",
     "created_at": "2026-09-15T09:48:33Z",
-    "last_save_at": "2026-09-16T07:47:40.866Z",
+    "last_save_at": "2026-09-16T10:34:08.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:2d6ba14daf7294db776a2408bc6c730b88a54e3d913d9a7f3d23ab0641243a2f",
+    "source_fingerprint": "sha256:de39c86d062236f741495503775bab5cf5453eb80924c62566048ad509c5deba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "39f2ac4f2d2eb98d985403fd06c547c5d0bf5c4d04e5045dcbc57fb7a0875db0"
+      "spec.md": "0334a6872df9a4ce4645f1522118d982786ef983aae1ef920e1199637a2114a6"
     },
     "last_active_at": null
   }

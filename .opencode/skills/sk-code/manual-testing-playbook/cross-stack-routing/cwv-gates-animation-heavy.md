@@ -19,7 +19,7 @@ This scenario verifies dual performance loading. A Webflow page with Motion.dev-
 Our Webflow landing page in src/2_javascript/hero.js uses motion.dev for scroll reveals and hover cards. LCP and INP regressed. Which sk-code references would you load before advising fixes?
 ```
 
-**Expected detection markers** (verbatim from `references/stack-detection.md`):
+**Expected detection markers** (verbatim from `shared/references/stack-detection.md`):
 ```bash
 # 2. WEBFLOW
 [ -d "src/2_javascript" ]
@@ -33,7 +33,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 **Expected surface**: `WEBFLOW`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/stack-detection.md`
+- `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
 - `sk-code-webflow/references/performance/cwv-remediation.md`

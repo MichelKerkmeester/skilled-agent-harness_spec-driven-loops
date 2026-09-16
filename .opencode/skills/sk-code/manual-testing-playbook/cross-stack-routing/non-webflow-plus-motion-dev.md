@@ -19,7 +19,7 @@ This scenario protects the generic-node guard. A bare Motion.dev prompt outside 
 For a non-Webflow vanilla JS page, which Motion.dev references and snippets should sk-code load for hover cards and in-view reveal?
 ```
 
-**Expected detection markers** (verbatim from `references/stack-detection.md`):
+**Expected detection markers** (verbatim from `shared/references/stack-detection.md`):
 ```text
 Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor globals, Webflow paths, `wrangler.toml`, `src/2_javascript/`). Bare Motion package imports and generic Motion documentation mentions are MOTION_DEV intent signals after surface selection, not WEBFLOW surface markers. Generic Node.js outside `.opencode/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
 ```
@@ -27,7 +27,7 @@ Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor 
 **Expected surface**: `UNKNOWN` or `N/A`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/stack-detection.md`
+- `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
 - `sk-code-webflow/references/animation/quick-start.md`

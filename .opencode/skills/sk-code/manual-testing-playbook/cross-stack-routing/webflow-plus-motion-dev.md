@@ -19,7 +19,7 @@ This scenario verifies the primary cross-stack route: a Webflow frontend request
 For a Webflow hero in src/2_javascript/hero.js, show the pinned Motion CDN pattern and in-view animation snippet.
 ```
 
-**Expected detection markers** (verbatim from `references/stack-detection.md`):
+**Expected detection markers** (verbatim from `shared/references/stack-detection.md`):
 ```bash
 # 2. WEBFLOW
 [ -d "src/2_javascript" ]
@@ -33,7 +33,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 **Expected surface**: `WEBFLOW`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/stack-detection.md`
+- `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
 - `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
