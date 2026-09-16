@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Repo guard bridge for Hermes Agent.
 
 Hermes keeps shell hooks in the operator's user-level config, so a repository cannot carry them.
