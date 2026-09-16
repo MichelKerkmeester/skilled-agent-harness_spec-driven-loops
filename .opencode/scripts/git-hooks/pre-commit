@@ -130,13 +130,35 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && command -v node >/dev/null
     .pi/agents .pi/extensions
     .opencode/commands/README.txt
   )
+  # The trees a mirror is generated FROM. A commit that stages none of these, and no
+  # mirror output either, cannot make any mirror staler than it already is, so a dirty
+  # mirror left by another session is not that commit's to answer for. Scoping the block
+  # this way keeps the protection exactly where it bites -- regenerate mirrors, commit
+  # only the source, ship a stale copy -- because that commit always stages a source.
+  MIRROR_SOURCES=(
+    .opencode/agents .opencode/commands .opencode/hooks
+    .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors
+    .opencode/skills/system-spec-kit/runtime/cli/codex
+  )
   UNSTAGED_MIRROR="$( { git diff --name-only -- "${MIRROR_OUTPUTS[@]}" '.opencode/commands/*/README.txt' '.opencode/skills/*/command-metadata.json'; git ls-files --others --exclude-standard -- "${MIRROR_OUTPUTS[@]}"; } 2>/dev/null )"
   if [[ -n "$UNSTAGED_MIRROR" ]]; then
+    STAGED_MIRROR_RELATED="$(git diff --cached --name-only -- "${MIRROR_OUTPUTS[@]}" "${MIRROR_SOURCES[@]}" '.opencode/skills/*/command-metadata.json' 2>/dev/null)"
+    if [[ -n "$STAGED_MIRROR_RELATED" ]]; then
+      echo "" >&2
+      echo "BLOCKED [gate:mirror-parity]: a generated mirror has changes that are not staged:" >&2
+      printf '%s\n' "$UNSTAGED_MIRROR" | sed 's/^/  /' >&2
+      echo "This commit stages a mirror source or output, so leaving those out ships a stale mirror:" >&2
+      printf '%s\n' "$STAGED_MIRROR_RELATED" | sed 's/^/  staged: /' >&2
+      echo "Fix: git add the unstaged paths above and re-commit." >&2
+      exit 1
+    fi
+    # Not blocked, but never silent: an unreported dirty mirror is how a stale copy
+    # rode along for fifteen pushes, and the next commit that does touch a source
+    # will be blocked by these same files.
     echo "" >&2
-    echo "BLOCKED [gate:mirror-parity]: a generated mirror has changes that are not staged:" >&2
+    echo "WARNING [gate:mirror-parity]: a generated mirror is dirty but this commit touches no mirror source:" >&2
     printf '%s\n' "$UNSTAGED_MIRROR" | sed 's/^/  /' >&2
-    echo "Fix: git add those paths and re-commit. Leaving them out ships a stale mirror." >&2
-    exit 1
+    echo "Not blocking, because this commit cannot make them staler. Whoever owns them still has to land them." >&2
   fi
   # Script and flag are kept apart rather than split out of one string: zsh does
   # not word-split an unquoted expansion, so "path --check" reaches node as a single
