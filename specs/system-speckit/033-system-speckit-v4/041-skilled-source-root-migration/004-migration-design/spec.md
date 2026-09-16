@@ -33,7 +33,7 @@ Phases 001 and 002 measured what the move touches. This phase decides what `.ope
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-16 |
 | **Branch** | `worktrees/055-skilled-source-root-migration` |
 | **Parent Spec** | ../spec.md |
@@ -160,7 +160,7 @@ Produce a cutover sequence that can be executed without judgment calls mid-fligh
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 003 probe records | ADR-001 to ADR-003 stay Proposed and phase 005 cannot start | Every layout-dependent line is written as a branch, so the records resolve the design without a rewrite |
+| Dependency | Phase 003 probe records (done) | Without them ADR-001 to ADR-003 would stay Proposed and phase 005 could not start | Every layout-dependent line is written as a branch, so the records resolve the design without a rewrite |
 | Risk | A generated artifact is rewritten rather than regenerated | High | Steps 14 and 16 regenerate through the owning command and check for a non-empty diff and no absolute worktree path |
 | Constraint | Work stays in the dedicated worktree by operator decision, while the large-reorg runbook runs toolchain validation and metadata regeneration on main (`.opencode/skills/sk-git/references/large-reorg-playbook.md:129-141`) | Medium | Validation calls the main checkout's scripts against worktree paths, regeneration in the worktree carries a no-op check and an absolute-path check, and step 22 re-runs every check on the main checkout after its fast-forward |
 | Risk | The gates pass the migration commit because they skip, not because it is correct | High | Steps 2 to 5 teach hooks and CI both roots and add an independent check before step 11 moves anything |
@@ -230,6 +230,8 @@ Produce a cutover sequence that can be executed without judgment calls mid-fligh
 | R-013 | The live branch moves under the held commits and a rebase hits rename conflicts across 17,767 paths | H | M | Rebase in step 9, drift check in step 19 with a rebase and re-check when it finds drift |
 | R-014 | The rebuild owner of the tracked `council-graph.sqlite` is unknown (`002-per-runtime-reference-map/research/research.md:173`), and the main checkout holds it modified | M | H | Step 16 holds that one artifact until an owner is named, and step 18 settles the modified file before the fast-forward |
 
+Risk and blocker classes (CHK-FIX-001): R-001 class-of-bug, R-002 cross-consumer, R-003 instance-only, R-004 class-of-bug, R-005 algorithmic, R-006 cross-consumer, R-007 class-of-bug, R-008 instance-only, R-009 instance-only, R-010 instance-only, R-011 class-of-bug, R-012 algorithmic (retired by probe P6: one deletion over the push range), R-013 cross-consumer, R-014 instance-only (retired by the phase 003 council-graph record); B1 cross-consumer, B2 cross-consumer, B3 cross-consumer, B4 algorithmic (retired by probes P1 to P3), B5 instance-only, B6 algorithmic.
+
 ---
 
 ## 11. USER STORIES
@@ -252,10 +254,10 @@ Produce a cutover sequence that can be executed without judgment calls mid-fligh
 
 ## 12. OPEN QUESTIONS
 
-- Which layout do probes P1 to P3 select? Pending the phase 003 records.
-- Which command rebuilds the tracked `council-graph.sqlite`, and are its stored paths regenerated or migrated? UNKNOWN (`002-per-runtime-reference-map/research/research.md:173`). Settled by reading the deep-loop council graph writer.
-- Does opencode resolve `@opencode-ai/plugin` for a plugin reached through a link from the link path or from the real path? UNKNOWN (`.opencode/plugins/opencode-goal.js:16`). Folded into probes P1 and P2.
-- Does a fast-forward over a real `.opencode/` holding ignored files refuse, remove them or leave them? UNKNOWN, probe P7. Steps 18 and 19 are ordered to be safe under each answer.
+- Which layout do probes P1 to P3 select? Answered: L1 (`decision-record.md` ADR-001, `../003-layout-probes/probes/runtime-symlink-resolution.md`).
+- Which command rebuilds the tracked `council-graph.sqlite`, and are its stored paths regenerated or migrated? Answered: `replay-graph-from-artifacts.cjs` rebuilds per session, `artifact_path` is regenerated and `spec_folder` is copied, and no migration is needed (`../003-layout-probes/probes/council-graph-rebuild.md`). Previously UNKNOWN (`002-per-runtime-reference-map/research/research.md:173`), settled by reading the deep-loop council graph writer.
+- Does opencode resolve `@opencode-ai/plugin` for a plugin reached through a link from the link path or from the real path? Answered: from the real path, so a plugin resolves packages only when `node_modules` is an ancestor of its real location. That holds under L1 and fails under per-entry links (`../003-layout-probes/probes/runtime-symlink-resolution.md` row R1-dep).
+- Does a fast-forward over a real `.opencode/` holding ignored files refuse, remove them or leave them? Answered: it removes them silently (`../003-layout-probes/probes/rename-rehearsal.md`), so step 18's archive is the only copy and step 19 relocates before the merge.
 - Should the Codex project trust entry at `~/.codex/config.toml:21` name the checkout root or `.skilled`? UNKNOWN until step 21 starts Codex against each.
 - What home-level state exists on machines other than this one? UNKNOWN (`001-deep-research/research/research.md:167`).
 <!-- /ANCHOR:questions -->

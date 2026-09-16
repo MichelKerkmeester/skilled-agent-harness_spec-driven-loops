@@ -47,7 +47,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | The phase 003 probe records choose the layout through the decision tree in `plan.md`, never preference. A record that voids every link shape stops the packet under parent D2. |
 | D2 | Gates, CI and dual-root code publish before any file moves. The moved tree reaches the main checkout once, in phase 010, and the global hooks are reinstalled at that moment. |
-| D3 | Rollback stays local until step 24 pushes the moved tree. After that push, recovery is a forward fix. |
+| D3 | The layout rollback stays local until step 24 pushes the moved tree; after that push, recovery is a forward fix. The compatible bands published from step 5 revert by push. |
 | D4 | GPT-5.6 sol on cli-codex reviews the layout, the order and the contract-file changes, and the orchestrator rules on every finding before an ADR is Accepted. |
 
 ### Operator copy
@@ -60,12 +60,12 @@ A change here that alters a parent decision or criterion is applied to the paren
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `decision-record.md` ADR-001 names L1, L2 or a named stop, and every probe verdict it rests on cites a phase 003 record
-- [ ] `plan.md` holds 25 cutover steps, `grep -c '\*\*Check\*\*' plan.md` and `grep -c '\*\*Rollback\*\*' plan.md` each print 25, and step 24 is named the point of no return
-- [ ] Every surface class and blockers B1 to B6 map to a step in the traceability and blocker tables of `plan.md`
-- [ ] `review/gpt-5-6-sol-design-review.md` exists, and every finding in it has an accept, reject or defer ruling in `decision-record.md`
-- [ ] ADR-001, ADR-002 and ADR-003 read Accepted
-- [ ] `validate.sh --strict` on this phase, run from the main checkout, prints `RESULT: PASSED`
+- [x] `decision-record.md` ADR-001 names L1, L2 or a named stop, and every probe verdict it rests on cites a phase 003 record
+- [x] `plan.md` holds 25 cutover steps, `grep -c '\*\*Check\*\*' plan.md` and `grep -c '\*\*Rollback\*\*' plan.md` each print 25, and step 24 is named the point of no return
+- [x] Every surface class and blockers B1 to B6 map to a step in the traceability and blocker tables of `plan.md`
+- [x] `review/gpt-5-6-sol-design-review.md` exists, and every finding in it has an accept, reject or defer ruling in `decision-record.md`
+- [x] ADR-001, ADR-002 and ADR-003 read Accepted
+- [x] `validate.sh --strict` on this phase, run from the main checkout, prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,7 +82,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Folder renumbered from 003 to 004, spec kept and extended | Done | `spec.md` metadata reads phase 4 of 11, predecessor 003-layout-probes, successor 005-gate-and-ci-readiness |
-| Layout options, decision tree, 25-step cutover, review plan and delegation | Done, conditional | `plan.md`, ADRs Proposed in `decision-record.md` |
+| Layout options, decision tree, 25-step cutover, review plan and delegation | Done | `plan.md`; ADR-001 to ADR-003 Accepted in `decision-record.md` after the GPT-5.6 review |
 | Phase 003 probe records | Pending | `003-layout-probes/` held only scaffold templates at authoring time (`003-layout-probes/spec.md:60`) |
 | Evidence units E1 to E4 | Pending | Briefs and outputs named in `plan.md` delegation |
 | GPT-5.6 review | Pending | Runs after ADR-001 resolves |
@@ -99,4 +99,5 @@ and findings belong here.
 | Ten consumer links exist on this machine | `find ~/MEGA/Development -maxdepth 5 -name .opencode -type l` printed ten absolute links to `Public/.opencode`: four projects and six worktrees of one project |
 | The main checkout holds ignored state no commit carries | 184 ignored entries under `.opencode/`, four of them SQLite databases, and a modified tracked `council-graph.sqlite`, so steps 18 and 19 archive and relocate before the fast-forward |
 | Gate 0 diffs the whole push range | The shared git config sets `diff.renames` true and `diff.renameLimit` 60000, and Gate 0 compares the remote tip with the local tip in one diff (`mass-deletion-guard.sh:45-47`), so probe P6 is measured over the whole push range rather than the rename commit alone |
+| Phase closed | ADR-001 to ADR-003 Accepted after the GPT-5.6 review (7 findings, all accepted and applied); strict validation `Errors: 0  Warnings: 0`, `RESULT: PASSED`, 2026-09-16 |
 <!-- /ANCHOR:log -->

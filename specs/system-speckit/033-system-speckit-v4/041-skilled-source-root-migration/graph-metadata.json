@@ -66,7 +66,8 @@
       "008-links-and-generated-state/goal.md",
       "009-reference-rewrite/goal.md",
       "010-machine-and-consumer-cutover/goal.md",
-      "011-verification-and-rollout/goal.md"
+      "011-verification-and-rollout/goal.md",
+      ".pi/models.json"
     ],
     "entities": [
       {
@@ -85,6 +86,12 @@
         "name": "mcp-code-mode-launcher.cjs",
         "kind": "file",
         "path": ".opencode/bin/mcp-code-mode-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
         "source": "derived"
       },
       {
@@ -148,13 +155,13 @@
         "source": "derived"
       },
       {
-        "name": "acceptance",
+        "name": "the",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "their",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -162,17 +169,17 @@
     ],
     "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
     "created_at": "2026-09-16T08:35:04Z",
-    "last_save_at": "2026-09-16T18:46:37.066Z",
+    "last_save_at": "2026-09-16T20:24:41.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:1d60413040887464d4f2c3b5310bb3c3aa35e2efce3e451343f070d6898dbd01",
+    "source_fingerprint": "sha256:d667c2202606a91e2c85b6d8071a60f2a5ce0d3aeb19e5f535576c68a5a83bf9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a7c244e4c6dcbce6f3906dce2158a8d92329d6848e9a69c0a561a46c77839956"
+      "spec.md": "c3e9b048377f1761bfd53907c22fc15855bbc5fd8e3309ac6ab0800112d5065c"
     },
     "last_active_at": null
   }
