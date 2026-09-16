@@ -114,7 +114,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 
 ### Commits
 
-`259f4f6cf4`, `a17d8ab9ce`, `50eca95e28`, `f7165195e2`, `b5f179bd0e`, `576ac3c930` (pre-commit), `5fa1f39da8`, `5ae40d3c1a` (pre-push), `4866bc8eea`, `6ad37a5a13`, `ae007f51a2`, `8ffe7e8dc3` (other hooks), `5cad25db6b`, `fc6305eb69`, `ecf3812ea1` (check, test, workflow), `60605917a9`, `f4f6ea659e`, `9f009e8dd3` (workflows), `be0c3974ab` (drill), `33f2d87531`, `60635ffca5` (naming guard), `0e60909b2e`, `452cc9b6dc` (READMEs), `27dd545510` (mass-deletion harness), `610374769a` (SessionStart harness pin). None is pushed.
+`259f4f6cf4`, `a17d8ab9ce`, `50eca95e28`, `f7165195e2`, `b5f179bd0e`, `576ac3c930` (pre-commit), `5fa1f39da8`, `5ae40d3c1a` (pre-push), `4866bc8eea`, `6ad37a5a13`, `ae007f51a2`, `8ffe7e8dc3` (other hooks), `5cad25db6b`, `fc6305eb69`, `ecf3812ea1` (check, test, workflow), `60605917a9`, `f4f6ea659e`, `9f009e8dd3` (workflows), `be0c3974ab` (drill), `33f2d87531`, `60635ffca5` (naming guard), `0e60909b2e`, `452cc9b6dc` (READMEs), `27dd545510` (mass-deletion harness), `610374769a` (SessionStart harness pin), `fcc0b50028`, `07039dea39` (filter shapes). None is pushed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -142,10 +142,10 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 | Check | Result |
 |-------|--------|
 | Hook harnesses from the tip, `/bin/bash` 3.2.57 | PASS: autostash-orphan-guard 9, commit-msg 17, mass-deletion-guard 12, pre-commit 49, pre-push 32, prepare-commit-msg 56. That is 175 against the 126 baseline, with no case removed |
-| New harnesses | PASS: `check-git-hooks.test.sh` 4 of 4, `check-gate-inputs.test.sh` 8 of 8 |
+| New harnesses | PASS: `check-git-hooks.test.sh` 4 of 4, `check-gate-inputs.test.sh` 12 of 12 |
 | New cases seen failing first | Each unit's new assertions failed against the files before it. Controls that guard an exemption pass both before and after, and are named as controls in `goal.md` |
 | Hostile caller and spaced paths | PASS: every harness with `GIT_DIR`, `GIT_INDEX_FILE` and a global `core.hooksPath` set, and with temporary paths containing a space |
-| `bash .github/scripts/check-gate-inputs.sh` | PASS: 32 files, 137 inputs resolved, 8 dynamic, 167 twin pairs, `RESULT: PASSED` in 0.6 s |
+| `bash .github/scripts/check-gate-inputs.sh` | PASS: 32 files, 137 inputs resolved, 8 dynamic, 167 twin pairs, `RESULT: PASSED` in 0.6 s. Its fixture test passes 12 of 12 |
 | `bash .github/scripts/tests/broken-move-drill.sh` | PASS: 48 expectations, `RESULT: PASSED` in 49 s, including the earlier hooks passing every silent break without a word |
 | Other repositories | PASS: in a clean repository and one with a dangling `.opencode` link, every hook exits 0 and prints nothing beyond two warnings the earlier hooks also printed |
 | Naming guard | PASS: suite 7 of 7 with `-p no:cacheprovider`. `--changed-since 7085ec3290` prints `PASS:`, and on a rehearsal clone with the move staged the changed guard passes where the earlier one reports the four names |
@@ -159,7 +159,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 | Unit | Findings | Disposition |
 |------|----------|-------------|
 | Missing-script rule in the hooks (T025) | None recorded | Blocked: the review stopped at Codex's usage limit. A supplementary GLM-5.3-Flash review raised two P2 findings: F1 was left to the phase 006 handoff and F2 was fixed in `610374769a` (`scratch/delegation/supplementary-hook-review-verdict.md`) |
-| Independent check and workflow (T012) | Not started | Blocked on the same limit |
+| Independent check and workflow (T012) | Not started | Blocked on the same limit. A supplementary GLM-5.3-Flash review of the CI changes confirmed one P2 finding, a filter shape the check could not read, fixed in `07039dea39` (`scratch/delegation/supplementary-ci-review-verdict.md`) |
 | Fail-closed workflow steps (T031) | Not started | Blocked on the same limit |
 | Broken-move drill (T034) | Not started | Blocked on the same limit |
 | Naming guard rule (T047) | Not started | Blocked on the same limit |
