@@ -48,7 +48,7 @@ This is **Phase 5** of the Plan and execute the .skilled source-root migration s
 - Phase 001 names the silent-failure class this phase removes (`../001-deep-research/research/research.md` §6 and §12).
 
 **Deliverables**:
-- One two-root rule, canonical in `.github/scripts/source-root.sh` and copied as a marked block into each gate file.
+- A missing-script rule in each gate file, keyed on `_in_toolchain_repo` (amended under L1; the copied two-root block is withdrawn).
 - Hooks and workflows that look up every script and match every staged or changed path under both roots.
 - A missing-script rule: blocking gates block, gates that cannot block warn and a repository that does not ship the toolchain stays untouched.
 - The independent check `.github/scripts/check-gate-inputs.sh` with its always-on workflow, and a broken-move drill.
@@ -113,7 +113,7 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.github/scripts/source-root.sh` | Create | Canonical two-root block and the CI `export` mode |
+| `.github/scripts/source-root.sh` | Not created | Withdrawn by the L1 amendment |
 | `.github/scripts/check-gate-inputs.sh` | Create | Independent check that fails when a gate names an input that exists under neither root |
 | `.github/workflows/gate-inputs.yml` | Create | Runs the check and its tests on every push to `main` and `skilled/**` and on every pull request, with no path filter |
 | `.github/scripts/tests/source-root.test.sh` | Create | Layout-matrix test for the block |
@@ -142,20 +142,20 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | Every script path the seven hooks, the autostash library, the legacy hygiene helper and the SessionStart hook check use is looked up under `.skilled/` first and `.opencode/` second, per path. |
+| REQ-001 | Every script path the seven hooks, the autostash library, the legacy hygiene helper and the SessionStart hook check use resolves in this repository before and after the move, through the tracked `.opencode -> .skilled` link that phase 004 chose (amended under L1: the two-root lookup is withdrawn). |
 | REQ-002 | Every staged-name filter and pathspec in those files admits both roots: `pre-commit:95`, `:131`, `:139-141`, `:143`, `:145`, `:202`, `:224`, `:259-260`, `:302-305`, `pre-push:121`, `:281-286` and `.opencode/hooks/git/pre-commit:53`. |
 | REQ-003 | In a repository whose spec-kit sentinel resolves under either root, a gate script missing under both roots is never silent. A blocking gate exits 1 naming the path, and a gate that cannot block prints a warning naming the path and keeps its exit status. A repository with no sentinel under either root sees no new output and no new block. |
 | REQ-004 | Every workflow `paths:` entry naming `.opencode/` has a `.skilled/` twin (56 entries in 8 workflows) and so does `.github/dependabot.yml:13`. The name filter at `agent-mirror-sync.yml:29` admits `skilled`. |
-| REQ-005 | Every workflow job resolves the source root in one step and uses it for every executable path, and the six missing-guard skip conditionals fail closed. |
-| REQ-006 | One independent check outside `.opencode/` and `.skilled/` fails when a gate names an input that exists under neither root, when a filter lacks its twin or when a gate builds a root path outside the shared block. It runs in CI on every push to `main` and `skilled/**` and every pull request, with no path filter. |
-| REQ-007 | A deliberately broken dry run fails as designed: in a disposable clone with the tree renamed to `.skilled/`, deleting any one gate input makes the check exit 1 and its hook block or warn, and the same break under the pre-change hooks reproduces today's silent pass. |
+| REQ-005 | The six missing-guard skip conditionals in the workflows fail closed. Amended under L1: the per-job export step and `$SOURCE_ROOT` paths are withdrawn, because CI checkouts carry the tracked link. |
+| REQ-006 | One independent check outside `.opencode/` and `.skilled/` fails when a gate file is missing, when a literal gate or workflow input resolves nowhere, when a filter lacks its `.skilled/` twin, or when a file naming a root yields no extracted input. It runs in CI on every push to `main` and `skilled/**` and on every pull request, with no path filter. |
+| REQ-007 | A deliberately broken dry run fails as designed. In a disposable L1 clone, the check passes on the whole tree. Deleting a gate input makes the check exit 1 and its hook block or warn. The same break under the pre-change hooks reproduces today's silent pass, and a foreign repository stays silent. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
 | REQ-008 | Every gate change has test coverage. The six existing hook test scripts keep their 126 passing cases, and each new case is seen failing against the unchanged file before its change lands. |
-| REQ-009 | Every contract change, meaning the shared block, the missing-script rule, the fail-closed workflows, the check and the drill, carries a GPT-5.6 review with each finding fixed or answered before its commit. |
+| REQ-009 | Every contract change carries a GPT-5.6 review, with each finding fixed or answered before its commit. The contract changes are the missing-script rule, the fail-closed workflows, the independent check, the drill and the naming guard rule. |
 | REQ-010 | No new code comment carries a spec path, packet or phase number or task id, and every new file name is kebab-case. |
 | REQ-011 | The handoff to phase 006 names each script the gates call whose own root literal this phase leaves in place, with its line. |
 | REQ-012 | The naming guard's changed-since mode reports no offender for a rename or copy that keeps its basename, so a pure move of a grandfathered name passes. A new snake_case basename, and a new snake_case directory on the destination path, still fail. Today four tracked names would fail once moved: `commands/prompt/assets/prompt_improve_auto.yaml`, `prompt_improve_confirm.yaml`, `prompt_improve_presentation.txt` and the grep-convention fixture `naming-exception/Spec_Draft.md`, whose name is the fixture's purpose (`.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py:143-176`, `:266-282`). |
@@ -205,7 +205,7 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 
 ### Security
 - **NFR-S01**: No gate gains a new bypass variable and no existing bypass name changes. Two pre-push gates without a skip variable accept their existing approval variable instead (plan §3, rows H11 and H12).
-- **NFR-S02**: The block and the independent check only read. The one write is the CI `export` step appending `SOURCE_ROOT` to `$GITHUB_ENV`.
+- **NFR-S02**: The independent check only reads. No gate change writes outside the paths the gate already writes.
 
 ### Reliability
 - **NFR-R01**: Every shell change runs under macOS `/bin/bash` 3.2.57, the version observed on this machine.

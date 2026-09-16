@@ -35,11 +35,11 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read phase 004's frozen layout and record in `goal.md` what `.opencode/` keeps, the move's commit shape and the hook log root. Halt with a LOGIC-SYNC report if it contradicts this plan (`../004-migration-design/`) [Orchestrator]
-- [ ] T002 Re-open every line cited in plan §3 at the phase start commit and record any drift in `goal.md` (`.opencode/scripts/git-hooks/`, `.opencode/hooks/git/pre-commit`, `.opencode/bin/check-git-hooks.sh`, `.github/`) [Orchestrator]
-- [ ] T003 Record baselines: the six hook test scripts (126 cases at `728c4f3efc`), `bash -n` on each hook, the latest CI conclusion per workflow with the failing test or violation lines of every red workflow, and the median of ten no-op pre-commit runs [Orchestrator]
-- [ ] T004 Reproduce today's silent pass: in a disposable clone with `.opencode/` renamed to `.skilled/`, today's pre-commit with a staged `.skilled/agents/` file exits 0 with no gate output, and today's `comment-hygiene.yml` guard step exits 0 with its checker missing [Orchestrator]
-- [ ] T005 Read `cli-pi/SKILL.md` and `cli-codex/SKILL.md`, probe `llmgateway/deepseek-v4.1-flash` and `gpt-5.6-sol`, and record availability in `goal.md` [Orchestrator]
+- [x] T001 Read phase 004's frozen layout and record in `goal.md` what `.opencode/` keeps, the move's commit shape and the hook log root. Halt with a LOGIC-SYNC report if it contradicts this plan (`../004-migration-design/`) [Orchestrator]
+- [x] T002 Re-open every line cited in plan §3 at the phase start commit and record any drift in `goal.md` (`.opencode/scripts/git-hooks/`, `.opencode/hooks/git/pre-commit`, `.opencode/bin/check-git-hooks.sh`, `.github/`) [Orchestrator]
+- [x] T003 Record baselines: the six hook test scripts (126 cases at `728c4f3efc`), `bash -n` on each hook, the latest CI conclusion per workflow with the failing test or violation lines of every red workflow, and the median of ten no-op pre-commit runs [Orchestrator]
+- [x] T004 Reproduce today's silent pass: in a disposable clone with `.opencode/` renamed to `.skilled/`, today's pre-commit with a staged `.skilled/agents/` file exits 0 with no gate output, and today's `comment-hygiene.yml` guard step exits 0 with its checker missing [Orchestrator]
+- [x] T005 Read `cli-pi/SKILL.md` and `cli-codex/SKILL.md`, probe `llmgateway/deepseek-v4.1-flash` and `gpt-5.6-sol`, and record availability in `goal.md` [Orchestrator]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -48,16 +48,16 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 ## Phase 2: Implementation
 
 ### Two-root block and independent check
-- [ ] T006 Draft the canonical block with `source_root_resolve`, `source_root_toolchain`, `source_root_report` and the `export` mode (`.github/scripts/source-root.sh`) [DeepSeek]
-- [ ] T007 Write the layout-matrix test and watch it fail against an empty stub before it passes (`.github/scripts/tests/source-root.test.sh`) [DeepSeek]
-- [ ] T008 Review T006 and T007, and fix or answer every finding [GPT-5.6, then Orchestrator]
-- [ ] T009 Draft the independent check with its seven rules (`.github/scripts/check-gate-inputs.sh`) [Orchestrator]
+- T006 withdrawn by the L1 amendment (plan §AMENDMENT): Draft the canonical block with `source_root_resolve`, `source_root_toolchain`, `source_root_report` and the `export` mode (`.github/scripts/source-root.sh`) [DeepSeek]
+- T007 withdrawn by the L1 amendment: Write the layout-matrix test and watch it fail against an empty stub before it passes (`.github/scripts/tests/source-root.test.sh`) [DeepSeek]
+- T008 withdrawn by the L1 amendment: Review T006 and T007, and fix or answer every finding [GPT-5.6, then Orchestrator]
+- [ ] T009 Draft the independent check with the five rules in plan §AMENDMENT (`.github/scripts/check-gate-inputs.sh`) [Orchestrator]
 - [ ] T010 Write the check's fixture test: one failing case per rule and a whole-tree rename that passes (`.github/scripts/tests/check-gate-inputs.test.sh`) [DeepSeek]
 - [ ] T011 Create the always-on workflow for the check and both tests (`.github/workflows/gate-inputs.yml`) [DeepSeek]
 - [ ] T012 Review T009 to T011, and fix or answer every finding [GPT-5.6, then Orchestrator]
 
 ### Hooks, one section per brief with its test cases
-- [ ] T013 H04 and H05: agent filter and mirror pathspec twins (`.opencode/scripts/git-hooks/pre-commit:95`, `:125-145`) [DeepSeek]
+- [x] T013 H04 and H05: agent filter and mirror pathspec twins (`.opencode/scripts/git-hooks/pre-commit:95`, `:125-145`) [DeepSeek]
 - [ ] T014 H01 and H02: kill switch and comment hygiene (`pre-commit:17-28`, `:45-54`) [DeepSeek]
 - [ ] T015 H03 and H06: agent mirror-sync checker and mirror parity scripts (`pre-commit:90-106`, `:167-191`) [DeepSeek]
 - [ ] T016 H07 and H08: card-sync and mutation-class triggers and guards (`pre-commit:199-234`) [DeepSeek]
@@ -75,7 +75,7 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 ### CI, one workflow per brief
 - [ ] T027 [P] C01: `.skilled/` twins for the 56 `paths:` entries, eight briefs (`chart-corpus.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml`) [DeepSeek]
 - [ ] T028 [P] C02 and C03: dependabot twin and agent name filter (`.github/dependabot.yml:13`, `.github/workflows/agent-mirror-sync.yml:29`) [DeepSeek]
-- [ ] T029 C04: export step and `$SOURCE_ROOT` paths in all 21 jobs, nineteen briefs (`.github/workflows/*.yml`) [DeepSeek]
+- T029 withdrawn by the L1 amendment: C04: export step and `$SOURCE_ROOT` paths in all 21 jobs, nineteen briefs (`.github/workflows/*.yml`) [DeepSeek]
 - [ ] T030 C05: fail-closed replacements for the six skip conditionals (`advisory-checks.yml`, `comment-hygiene.yml`, `markdown-link-integrity.yml`, `prompt-card-sync.yml`, `skill-doc-frontmatter.yml`) [Orchestrator]
 - [ ] T031 Review T030, and fix or answer every finding [GPT-5.6, then Orchestrator]
 - [ ] T032 Add the `gate-inputs.yml` row and the trigger notes (`.github/workflows/README.md`) [DeepSeek]
@@ -148,10 +148,10 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 004's layout read, with what `.opencode/` keeps, the move's commit shape and the log root recorded in `goal.md`
-- [ ] CHK-002 [P0] Every line cited in plan §3 re-opened at the phase start commit
-- [ ] CHK-003 [P0] Baselines recorded: 126 hook test cases, CI conclusion and failure set per workflow, no-op pre-commit median
-- [ ] CHK-004 [P1] Today's silent pass reproduced in a renamed-tree clone before any change
+- [x] CHK-001 [P0] Phase 004's layout read, with what `.opencode/` keeps, the move's commit shape and the log root recorded in `goal.md`
+- [x] CHK-002 [P0] Every line cited in plan §3 re-opened at the phase start commit
+- [x] CHK-003 [P0] Baselines recorded: 126 hook test cases, CI conclusion and failure set per workflow, no-op pre-commit median
+- [x] CHK-004 [P1] Today's silent pass reproduced in a renamed-tree clone before any change
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -184,7 +184,7 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 ## Fix Completeness
 
 - [ ] CHK-FIX-001 [P0] Every change row carries its class: the silent skip is `class-of-bug`, a gate that looks its script up at one root, and every instance appears in plan §3.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory rerun at the phase start: the `grep -n '\.opencode'` counts match plan §3 (43 lines in `pre-commit`, 19 in `pre-push`, 148 across the workflows) or the drift is recorded.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory rerun at the phase start: the `grep -n '\.opencode'` counts match plan §3 (43 lines in `pre-commit`, 19 in `pre-push`, 148 across the workflows) or the drift is recorded.
 - [ ] CHK-FIX-003 [P0] Consumer inventory for the block complete: `grep -rn 'source_root_'` lists exactly the nine gate files, the check and the drill.
 - [ ] CHK-FIX-004 [P0] The block's matrix test covers the adversarial cases: dangling `.opencode` link, a path present under both roots, a space in the path or root, a pattern character and neither root.
 - [ ] CHK-FIX-005 [P1] Matrix axes and row count listed in `goal.md` before completion is claimed: layout by script state by identity.
