@@ -10,6 +10,12 @@
 
 set -uo pipefail
 
+# git resolves its repository from these in preference to -C/cwd. Clear them so the
+# fixture stays hermetic even when the caller sits inside a worktree.
+unset GIT_DIR GIT_WORK_TREE GIT_COMMON_DIR GIT_INDEX_FILE GIT_OBJECT_DIRECTORY \
+      GIT_ALTERNATE_OBJECT_DIRECTORIES GIT_CONFIG GIT_CONFIG_SYSTEM \
+      GIT_CONFIG_COUNT GIT_NAMESPACE GIT_CEILING_DIRECTORIES
+
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GUARD="$HERE/../lib/mass-deletion-guard.sh"
 
