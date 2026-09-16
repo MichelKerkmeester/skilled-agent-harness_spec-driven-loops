@@ -346,7 +346,7 @@ Review verdict: CONDITIONAL
 Review verdict: FAIL
 ```
 
-Mapping: PASS if no P0 or P1 findings this iteration; CONDITIONAL if any P1 (no P0); FAIL if any P0. P2-only findings → PASS. An active P0 forces `Review verdict: FAIL` -- never relabel it as conditional, partial, mixed, or advisory. Downstream automation (synthesis phase, CI gate parser) parses this final line via exact string match.
+Mapping, over findings ACTIVE at this iteration rather than only the ones it raised: PASS when no active P0 or P1 remains; CONDITIONAL when an active P1 remains and no P0; FAIL when any active P0 remains. P2-only → PASS. Carrying a finding forward does not downgrade it, so an active P0 raised three iterations ago still forces `Review verdict: FAIL` -- never relabel that state as conditional, partial, mixed, or advisory. The synthesis phase parses this final line by exact string match; no CI job reads it, and the gate that decides release is the cross-lineage merge, which recomputes the verdict from the findings registry and never reads this line.
 
 ### Promotion Gate Logic
 

@@ -222,10 +222,13 @@ function scanEmitters(repoRoot) {
  * registered stem sharing the built prefix, the file is emitting it when the suffix
  * appears in one of the two shapes that name an event at a call site. The match is
  * per file rather than per site, so a file holding two interpolating helpers credits
- * both with every name either one passes. That over-reports rather than under-reports,
- * which is the safe direction here: a stem wrongly counted spoken fails loudly against
- * its declared producer, while one wrongly counted silent is the failure this checker
- * exists to catch.
+ * both with every name either one passes. That over-reports, and over-reporting is not
+ * uniformly safe: a reserved stem wrongly credited fails loudly, but a spoken one
+ * wrongly credited satisfies its declared producer and passes in silence, which is the
+ * very gap this checker exists to close. It is tolerable only because the census keys
+ * on (stem, file) and the one file with two interpolating helpers names its events in
+ * two disjoint shapes, so no stem lands on the wrong one. A second such file, or one
+ * helper adopting the other's shape, would need per-site resolution instead.
  */
 function resolveInterpolatedEmitters(interpolated, registered, stemPrefix) {
   const resolved = [];
