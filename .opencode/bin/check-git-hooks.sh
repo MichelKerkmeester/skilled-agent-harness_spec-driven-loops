@@ -47,6 +47,14 @@ REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 # Not a git repo: nothing to guard.
 [ -z "$REPO_ROOT" ] && exit 0
 
+# A missing hook source or installer means nothing to guard in a repository that does
+# not ship the toolchain, and a broken install in one that does. The spec-kit
+# sentinel, under either source root, tells the two apart.
+_in_toolchain_repo() {
+  [[ -f "$REPO_ROOT/.opencode/skills/system-spec-kit/SKILL.md" \
+     || -f "$REPO_ROOT/.skilled/skills/system-spec-kit/SKILL.md" ]]
+}
+
 HOOK_SOURCE_DIR="$REPO_ROOT/.opencode/scripts/git-hooks"
 HOOK_TARGET_DIR="$(git -C "$REPO_ROOT" rev-parse --git-path hooks 2>/dev/null || true)"
 [ -n "$HOOK_TARGET_DIR" ] || exit 0
@@ -55,8 +63,14 @@ case "$HOOK_TARGET_DIR" in
   *) HOOK_TARGET_DIR="$REPO_ROOT/$HOOK_TARGET_DIR" ;;
 esac
 
-# No versioned hook source in this checkout: nothing to guard.
-[ -d "$HOOK_SOURCE_DIR" ] || exit 0
+# No versioned hook source in this checkout: nothing to guard, unless the checkout
+# ships the toolchain, where the missing directory is itself worth a warning.
+if [ ! -d "$HOOK_SOURCE_DIR" ]; then
+  if _in_toolchain_repo; then
+    printf '%s\n' "[check-git-hooks] WARNING: hook source directory is missing: $HOOK_SOURCE_DIR" >&2
+  fi
+  exit 0
+fi
 
 # ───────────────────────────────────────────────────────────────
 # 2. HELPER FUNCTIONS
@@ -134,6 +148,8 @@ if [ "${#INVALID[@]}" -gt 0 ]; then
         else
           printf '%s\n' "[check-git-hooks] self-heal install failed; run it manually" >&2
         fi
+      elif _in_toolchain_repo; then
+        printf '%s\n' "[check-git-hooks] WARNING: self-heal skipped, installer is missing: $REPO_ROOT/.opencode/scripts/install-git-hooks.sh" >&2
       fi
     fi
   fi
