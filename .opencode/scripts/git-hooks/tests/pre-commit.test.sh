@@ -435,6 +435,44 @@ stage_new ".opencode/skills/mcp-tooling/mcp-x/scripts/doctor.sh" "doctor"
 SPECKIT_SKIP_MCP_MUTATION_CLASS=0 run_hook; RC=$?
 check "a missing mutation-class guard blocks" 1 "$RC" "contract guard is missing"
 
+# The route fixture laid out the way the tree ships once it moves: the files under
+# .skilled/, and .opencode a tracked relative link to it.
+setup_linked_fixture() {
+  setup_fixture
+  git -C "$TMP" mv .opencode .skilled
+  ln -s .skilled "$TMP/.opencode"
+  git -C "$TMP" add .opencode
+  git -C "$TMP" commit -qm "move the source root"
+}
+
+# ── 31. a hub under a linked source root re-mints and stages through the real directory ──
+setup_linked_fixture
+echo "edited" > "$TMP/.skilled/skills/$HUB/SKILL.md"
+git -C "$TMP" add ".skilled/skills/$HUB/SKILL.md"
+run_hook; RC=$?
+check "a .skilled hub re-mints through the link" 0 "$RC" "re-minted $HUB"
+STAGED="$(git -C "$TMP" diff --cached --name-only | grep -c 'manifest.json')"
+if [[ "$STAGED" == "2" ]]; then echo "PASS  both manifests reached the index under the real root"; PASS=$((PASS + 1))
+else echo "FAIL  expected 2 staged manifests under the real root, got $STAGED"; FAIL=$((FAIL + 1)); fi
+
+# ── 32. a partly staged input under a linked source root is still refused ──
+setup_linked_fixture
+echo "staged" > "$TMP/.skilled/skills/$HUB/SKILL.md"
+git -C "$TMP" add ".skilled/skills/$HUB/SKILL.md"
+echo "unstaged too" > "$TMP/.skilled/skills/$HUB/SKILL.md"
+run_hook; RC=$?
+check "a partly staged .skilled input is refused" 1 "$RC" "staged and unstaged at once"
+
+# ── 33. a missing route module still blocks where the toolchain ships ──
+setup_fixture
+mkdir -p "$TMP/.opencode/skills/system-spec-kit"
+echo "sentinel" > "$TMP/.opencode/skills/system-spec-kit/SKILL.md"
+rm "$TMP/.opencode/bin/compiled-route-guard.cjs"
+echo "edited" > "$TMP/.opencode/skills/$HUB/SKILL.md"
+git -C "$TMP" add ".opencode/skills/$HUB/SKILL.md"
+run_hook; RC=$?
+check "a missing route module blocks where the toolchain ships" 1 "$RC" "could not read the hub list"
+
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]
