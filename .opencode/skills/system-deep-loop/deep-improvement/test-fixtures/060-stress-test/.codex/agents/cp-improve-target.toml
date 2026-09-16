@@ -1,0 +1,15 @@
+# Agent: cp-improve-target
+# Converted from: .opencode/agents/cp-improve-target.md
+name = "cp-improve-target"
+description = "Generated-shape mirror for the deep-improvement stress-test fixture target"
+sandbox_mode = "workspace-write"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+
+developer_instructions = '''
+# CP Improve Target Mirror
+
+# FLAW: TOML mirror exists for runtime parity but must not be edited by proposal-only runs.
+
+Use `.codex/agents/*.toml` as the runtime mirror path.
+'''

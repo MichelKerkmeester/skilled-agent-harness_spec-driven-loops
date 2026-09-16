@@ -39,14 +39,18 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup-cp-sandbox.sh",
+      ".opencode/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md",
+      ".opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/test-fixtures/060-stress-test/README.md"
     ],
     "entities": [
       {
@@ -86,6 +90,30 @@
         "source": "derived"
       },
       {
+        "name": "setup-cp-sandbox.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup-cp-sandbox.sh",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-roster-mirror-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/test-fixtures/060-stress-test/README.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +144,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Review",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +162,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Static",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,13 +180,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -168,35 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Review finding F044 records that `active-critic-overfit.md`, `proposal-only-boundary.md` and `skill-load-not-protocol.md` list `deep-improvement/test-fixtures/060-stress-test/` as their fixture source, and that `setup-cp-sandbox.sh` hard-requires paths under it, while no `test-fixtures/` directory exists: the corpus was pruned by a bulk checkpoint commit that never repointed its consumers",
     "created_at": "2026-09-16T01:24:32Z",
-    "last_save_at": "2026-09-16T01:26:54.696Z",
+    "last_save_at": "2026-09-16T06:16:46.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd86abe18c405cc45f57415a4b1ba0055225e75e3d6b3dc45a22e8d849dbedad",
+    "source_fingerprint": "sha256:65c8dfd7e410f27d74eeaed25896ea9a6597b6827e92a557e0fc652c98eb607f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a803052aa073785b19803c6177fd19f24969592378783fdb589f16b3d29c9746",
-      "plan.md": "dc7e5eacc35957bcd936bde296f721744e30915c37a891987d7960baba725fd0",
-      "tasks.md": "fd000bc238f017ba1eb3445bda4ebee0dc186c0cd7c79bd2a80eb065b52c6d90",
-      "implementation-summary.md": "56189a2e7a2e676a75ade73e1ec9c6c79a6b35c589e756593ce4cb4429db9755"
+      "spec.md": "1f026e85af360779fa1a9b2da1f3383c51022286023f91d847fbbad6a7324034",
+      "plan.md": "1689f9de5ce84254eeb9a56443bc13ca983695d38d3db5fb938e8d0cc73cdba2",
+      "tasks.md": "53902944b4c0a1045e0e1fefb1b143441edf88cc9d04d54933c30463dee4a187",
+      "implementation-summary.md": "f448a53164939638746580572e1286ca4550fbd080120403de196249360871ad"
     },
     "last_active_at": null
   }
