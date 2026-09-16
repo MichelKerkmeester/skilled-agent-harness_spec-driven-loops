@@ -51,6 +51,10 @@ class FixtureRepository:
         for path in paths:
             self.write(path)
 
+    def move(self, source: str, destination: str) -> None:
+        (self.root / destination).parent.mkdir(parents=True, exist_ok=True)
+        self._git("mv", source, destination)
+
     def commit(self, message: str) -> str:
         self._git("add", ".")
         self._git("commit", "--quiet", "-m", message)
@@ -108,6 +112,33 @@ class NoNewSnakeCaseGuardTests(unittest.TestCase):
         result = self.repo.guard("--changed-since", base)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertNotIn("pre_existing_debt.md", result.stdout)
+
+    def test_changed_since_accepts_a_move_that_keeps_its_basename(self) -> None:
+        self.repo.write("config/legacy_name.yaml")
+        base = self.repo.commit("base with a grandfathered name")
+
+        self.repo.move("config/legacy_name.yaml", "moved-config/legacy_name.yaml")
+        result = self.repo.guard("--changed-since", base)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_changed_since_still_rejects_a_rename_to_a_new_snake_name(self) -> None:
+        self.repo.write("config/legacy_name.yaml")
+        base = self.repo.commit("base with a grandfathered name")
+
+        self.repo.move("config/legacy_name.yaml", "config/other_name.yaml")
+        result = self.repo.guard("--changed-since", base)
+        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+        self.assertIn("config/other_name.yaml", result.stdout)
+
+    def test_changed_since_still_rejects_a_move_into_a_new_snake_directory(self) -> None:
+        self.repo.write("config/legacy_name.yaml")
+        base = self.repo.commit("base with a grandfathered name")
+
+        self.repo.move("config/legacy_name.yaml", "new_dir_x/legacy_name.yaml")
+        result = self.repo.guard("--changed-since", base)
+        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+        self.assertIn("new_dir_x", result.stdout)
+        self.assertNotIn("new_dir_x/legacy_name.yaml", result.stdout)
 
     def test_every_exemption_passes_both_modes(self) -> None:
         self.repo.write_many(
