@@ -19,7 +19,7 @@ This scenario verifies that design-choice prompts load the decision matrix. The 
 For a hover state on cards, should I use motion.dev or plain CSS? I need the routing decision and the references you would load, not an implementation.
 ```
 
-**Expected detection markers** (verbatim from `references/stack-detection.md`):
+**Expected detection markers** (verbatim from `shared/references/stack-detection.md`):
 ```text
 `motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses WEBFLOW, OPENCODE, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
 ```
@@ -27,7 +27,7 @@ For a hover state on cards, should I use motion.dev or plain CSS? I need the rou
 **Expected surface**: `UNKNOWN` or `N/A`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/stack-detection.md`
+- `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
 - `sk-code-webflow/references/animation/decision-matrix.md`

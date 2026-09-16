@@ -10,7 +10,7 @@ version: 3.5.0.3
 
 This scenario verifies the language sub-detection layer within OPENCODE. When the target file extension is `.ts`, `.tsx`, `.mts`, or `.d.ts`, sk-code MUST load the `sk-code-opencode/references/typescript/*` set and corresponding `sk-code-opencode/assets/checklists/typescript-checklist.md`, while excluding python, shell, and config sub-language references.
 
-Sub-detection rules are defined in SKILL.md lines 78-90 and `references/stack-detection.md:50-62`.
+Sub-detection rules are defined in SKILL.md lines 78-90 and `shared/references/stack-detection.md:50-62`.
 
 ---
 

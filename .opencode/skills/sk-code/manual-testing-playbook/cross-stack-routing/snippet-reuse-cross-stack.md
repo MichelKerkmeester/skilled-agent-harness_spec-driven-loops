@@ -19,7 +19,7 @@ This scenario verifies that Motion.dev snippets can be reused outside Webflow wh
 Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla JS page? Tell me which snippet and references you would load, and call out any naming-convention caveat.
 ```
 
-**Expected detection markers** (verbatim from `references/stack-detection.md`):
+**Expected detection markers** (verbatim from `shared/references/stack-detection.md`):
 ```text
 `motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses WEBFLOW, OPENCODE, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
 ```
@@ -27,7 +27,7 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 **Expected surface**: `UNKNOWN` or `N/A`
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/stack-detection.md`
+- `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `sk-code-webflow/references/animation/quick-start.md`
 - `sk-code-webflow/references/animation/integration-patterns.md`

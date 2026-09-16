@@ -1,0 +1,72 @@
+{
+  "run_id": "1789545454777-ovj9lz",
+  "loop_type": "review",
+  "spec_folder": "specs/system-deep-loop/049-deep-loop-alignment-review/014-post-work-review",
+  "base_artifact_dir": "specs/system-deep-loop/049-deep-loop-alignment-review/014-post-work-review/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "swe2",
+      "state_log": "specs/system-deep-loop/049-deep-loop-alignment-review/014-post-work-review/review/lineages/swe2/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-16T07:57:34.782Z",
+        "end_at_iso": "2026-09-16T09:10:12.744Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 7,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-16T09:38:00Z",
+          "deltaMs": 1547256
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-09-16T10:05:00Z",
+          "deltaMs": 3167256
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-09-16T10:25:00Z",
+          "deltaMs": 4367256
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-09-16T10:45:00Z",
+          "deltaMs": 5567256
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-09-16T11:05:00Z",
+          "deltaMs": 6767256
+        }
+      ]
+    }
+  ]
+}

@@ -12,7 +12,7 @@ This scenario verifies that for an implementation-intent request, sk-code climbs
 
 The ladder is a post-read reflex that runs AFTER surface and intent routing, so it consumes the detected surface but changes neither surface precedence (OPENCODE over WEBFLOW over UNKNOWN) nor the Iron Law (Phase 3 verification is still required). It is gated to the Phase 0 to Phase 1 transition and named in the SKILL.md Phase Overview.
 
-The ladder is defined in `references/universal/code-quality-standards.md`, and the Phase 0 to 1 gate that requires the laziest viable rung is in `references/phase-detection.md`.
+The ladder is defined in `shared/references/universal/code-quality-standards.md`, and the Phase 0 to 1 gate that requires the laziest viable rung is in `shared/references/phase-detection.md`.
 
 ---
 
@@ -33,10 +33,10 @@ Prompt: `Add a helper to .opencode/skills/system-spec-kit/runtime/lib/util/uniqu
 - Sub-language: `TYPESCRIPT` (target file extension `.ts`)
 
 **Expected references loaded**:
-- `references/stack-detection.md`
+- `shared/references/stack-detection.md`
 - `ROUTER.md`
-- `references/universal/code-quality-standards.md`
-- `references/phase-detection.md`
+- `shared/references/universal/code-quality-standards.md`
+- `shared/references/phase-detection.md`
 - `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
 
 **Expected ladder behavior**:
@@ -79,14 +79,14 @@ Prompt: `Add a helper to .opencode/skills/system-spec-kit/runtime/lib/util/uniqu
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: surface == OPENCODE AND the ladder runs after routing AND the selected rung is the laziest viable one (stdlib / native / one-liner over custom) per `references/universal/code-quality-standards.md` AND the Phase 0 to 1 gate in `references/phase-detection.md` is honored.
+- **PASS** iff: surface == OPENCODE AND the ladder runs after routing AND the selected rung is the laziest viable one (stdlib / native / one-liner over custom) per `shared/references/universal/code-quality-standards.md` AND the Phase 0 to 1 gate in `shared/references/phase-detection.md` is honored.
 - **FAIL** iff: the AI jumps straight to custom code, runs the ladder before routing, overrides surface precedence, or picks a lazy rung without citing the Phase 0 to 1 gate.
 
 Evidence: `/tmp/skc-DR001-advisor.txt` (advisor probe output) and `/tmp/skc-DR001-ladder.txt` (ladder trace).
 
 ### Failure Triage
 
-1. If the AI writes a custom loop: verify the ladder rungs and ordering in `references/universal/code-quality-standards.md`.
+1. If the AI writes a custom loop: verify the ladder rungs and ordering in `shared/references/universal/code-quality-standards.md`.
 2. If the ladder runs before routing: verify the Phase Overview ordering in SKILL.md places the ladder at the Phase 0 to 1 transition.
 3. If surface precedence shifts: confirm the ladder text states it consumes, but does not change, the detected surface.
 

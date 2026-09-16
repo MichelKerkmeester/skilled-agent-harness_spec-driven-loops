@@ -1,0 +1,135 @@
+{
+  "sessionId": "fanout-swe2-1789545454777-ovj9lz",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Auto-only gateway-site count wrong for research pair in phase record",
+      "file": "specs/system-deep-loop/049-deep-loop-alignment-review/006-confirm-variant-parity/implementation-summary.md",
+      "line": 97,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Research confirm census lacks auto_only_sites enumeration (asymmetric with review)",
+      "file": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "line": 1950,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Literal-spelling stem scan cannot see computed stem emissions",
+      "file": ".opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs",
+      "line": 67,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "REQ-001 sweep-to-zero fails: ~19 playbook files + obsidian README + feature catalog still cite absent paths",
+      "file": ".opencode/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 105,
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "transitions": [
+        { "iteration": 6, "from": null, "to": "P1", "reason": "Initial discovery — surviving dead-citation class" }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Citations resolvable only through unstated foreign roots; one uncreated write-target",
+      "file": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 55,
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "transitions": [
+        { "iteration": 6, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Fixed stress scenario's Objective still carries the duplicated tree enumeration it replaced",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/proposal-only-boundary.md",
+      "line": 27,
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "transitions": [
+        { "iteration": 9, "from": null, "to": "P2", "reason": "Initial discovery — prose residue of a fixed check" }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "mode-registry.json field glossary still states 'six' against its own seven-entry modes array",
+      "file": ".opencode/skills/cli-external-orchestration/mode-registry.json",
+      "line": 9,
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "transitions": [
+        { "iteration": 10, "from": null, "to": "P1", "reason": "Initial discovery — stale count prose inside the named file" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 5
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.18,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

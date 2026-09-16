@@ -100,7 +100,7 @@ Prompt: `Edit .opencode/skills/system-spec-kit/runtime/lib/validation/orchestrat
 - `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` — Dist-staleness checker (Python, `.sh` extension); ships executable (see §1 for the historical missing-bit gap and its fix, §3 Failure Triage for the regression check).
 - `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs` — Shared `checkFileFreshness()` / `DIST_PACKAGES` registry the checker calls.
 
-**Related**: `claude-posttooluse.sh` also runs the pre-existing comment-hygiene check (`check-comment-hygiene.sh`, see `references/universal/code-style-guide.md` §4) on the same edit. That checker's hook branch is covered by its own scenario `TH-002` (see `comment-hygiene-hook.md` in this same category).
+**Related**: `claude-posttooluse.sh` also runs the pre-existing comment-hygiene check (`check-comment-hygiene.sh`, see `shared/references/universal/code-style-guide.md` §4) on the same edit. That checker's hook branch is covered by its own scenario `TH-002` (see `comment-hygiene-hook.md` in this same category).
 
 ---
 

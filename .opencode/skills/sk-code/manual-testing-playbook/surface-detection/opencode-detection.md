@@ -12,7 +12,7 @@ This scenario verifies that sk-code's smart router identifies OPENCODE as the ac
 
 When OPENCODE is detected, the router proceeds to language sub-detection (handled separately by LS-* scenarios) and loads the appropriate sub-language reference set.
 
-Detection markers are defined verbatim in `references/stack-detection.md:39-40` and SKILL.md smart router pseudocode lines 62-64.
+Detection markers are defined verbatim in `shared/references/stack-detection.md:39-40` and SKILL.md smart router pseudocode lines 62-64.
 
 ---
 
@@ -32,10 +32,10 @@ Prompt: `Handle empty prompts in .opencode/skills/system-skill-advisor/runtime/l
 - Sub-language: `TYPESCRIPT` (target file extension `.ts`)
 
 **Expected references loaded**:
-- `references/stack-detection.md`
+- `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
-- `references/universal/code-quality-standards.md`
+- `shared/references/universal/code-quality-standards.md`
 - `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
 - `sk-code-opencode/references/typescript/quality-standards/overview-and-type-system.md`
 - `sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md`
@@ -92,7 +92,7 @@ Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-re
 ### Failure Triage
 
 1. If advisor doesn't win sk-code: check `skill-graph.json` for sk-code signals "opencode", "system code", "typescript".
-2. If surface != OPENCODE: verify target path detection in `references/stack-detection.md:39-40`. The path `.opencode/...` should match.
+2. If surface != OPENCODE: verify target path detection in `shared/references/stack-detection.md:39-40`. The path `.opencode/...` should match.
 3. If sub-language != TYPESCRIPT: verify `.ts` extension is in the TYPESCRIPT extension list in SKILL.md sub-detection table (lines 78-90).
 4. If `sk-code-webflow/references/*` is loaded: the router has a leak — the WEBFLOW markers (motion.dev, GSAP, etc.) MUST NOT match this prompt. Verify the marker grep patterns are anchored correctly.
 

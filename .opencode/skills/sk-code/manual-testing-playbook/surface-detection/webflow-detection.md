@@ -12,7 +12,7 @@ This scenario verifies that sk-code's smart router correctly identifies WEBFLOW 
 
 WEBFLOW is the frontend HTML/CSS/JS surface for Webflow / vanilla-animation projects. When detected, sk-code MUST load `sk-code-webflow/references/*` and `sk-code-webflow/assets/*` and SHOULD NOT load any `sk-code-opencode/references/*` resources.
 
-Detection markers are defined verbatim in `references/stack-detection.md:30-37`.
+Detection markers are defined verbatim in `shared/references/stack-detection.md:30-37`.
 
 ---
 
@@ -32,11 +32,11 @@ Prompt: `Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by Interse
 - Triggering markers: `src/2_javascript/` (path marker) AND `Lenis` (library marker) → either alone is sufficient per `code_surface_detection.md:30-37`.
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
-- `references/stack-detection.md` (always loaded for router decision)
+- `shared/references/stack-detection.md` (always loaded for router decision)
 - `ROUTER.md`
 - `ROUTER.md`
-- `references/phase-detection.md`
-- `references/universal/code-quality-standards.md`
+- `shared/references/phase-detection.md`
+- `shared/references/universal/code-quality-standards.md`
 - `sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
 - `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
 - `sk-code-webflow/references/implementation/observer-patterns/mutation-and-intersection.md`
@@ -58,7 +58,7 @@ Prompt: `Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by Interse
 ### Preconditions
 
 1. `.opencode/skills/sk-code/SKILL.md` is at HEAD-of-main.
-2. `references/stack-detection.md:30-37` contains the WEBFLOW marker block (verify with `head -40 .opencode/skills/sk-code/shared/references/stack-detection.md`).
+2. `shared/references/stack-detection.md:30-37` contains the WEBFLOW marker block (verify with `head -40 .opencode/skills/sk-code/shared/references/stack-detection.md`).
 3. Sandbox: create `/tmp/skc-SD001-sandbox/src/2_javascript/scroll.js` with placeholder content (the AI doesn't need to actually write — we're testing routing).
 4. Skill advisor binary callable: `python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --help` exits 0.
 
@@ -99,7 +99,7 @@ Evidence: `/tmp/skc-SD001-loaded-refs.txt` (AI response, surface-detection log l
 ### Failure Triage
 
 1. If advisor doesn't win sk-code: check `skill-graph.json` `sk-code.signals` array — ensure "webflow", "frontend", "animation" are present.
-2. If surface != WEBFLOW: re-read `references/stack-detection.md:30-37` and verify the markers in the prompt actually match the regex/grep patterns.
+2. If surface != WEBFLOW: re-read `shared/references/stack-detection.md:30-37` and verify the markers in the prompt actually match the regex/grep patterns.
 3. If `sk-code-opencode/references/*` is loaded: the router is mis-classifying. Check whether the CWD shell variable (`PWD`) accidentally contains `/.opencode/` (would trigger OPENCODE) — the marker priority is documented in SKILL.md smart router pseudocode.
 
 ---

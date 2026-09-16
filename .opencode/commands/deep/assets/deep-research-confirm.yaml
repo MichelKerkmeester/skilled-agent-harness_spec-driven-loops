@@ -1949,6 +1949,8 @@ confirm_parity:
     step_telemetry_heartbeat_terminal: "Counterpart of step_telemetry_heartbeat_started for the unattended status ledger."
   gateway_wiring:
     note: "Both variants stage the synthesis record through append-mode-event.cjs; the declarative append_jsonl/append_to_jsonl rows that remain are identical in both files."
+    auto_only_sites:
+      - "deep_research.run_now_requested, run_now_rejected and run_now_accepted are staged inside step_run_now_check, and the restore twin inside step_run_now_restore_check. Both steps are censused above as omitted: an interactive run has an operator to ask, so it never consults a run-now sentinel. The sites are absent here because their steps are, not because the wiring was dropped."
   step_addenda:
     dispatch_lineage_guard: "The auto twin's dispatch branch carries a PRE-DISPATCH RULE telling a detached fan-out lineage to execute the iteration in-process instead of re-entering the dispatch script. The fan-out runner only hands lineages the auto contract, so the interactive confirm surface never runs as a lineage executor and has nothing to guard."
     dispatch_log_offsets: "The auto twin's post-dispatch validation records optional_jsonl_fields (logOffset, logSize, logPath, skippedCount, slotDurationMs) so a fixed-rate unattended schedule can account for missed slots. The interactive surface has no fixed-rate schedule, so the fields are not recorded."

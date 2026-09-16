@@ -1,0 +1,31 @@
+{
+  "topic": "Deep review of the whole deep-loop alignment program: thirteen phases, 150 changed files, 21 commits",
+  "mode": "review",
+  "reviewTarget": "specs/system-deep-loop/049-deep-loop-alignment-review",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": "all",
+  "specFolder": "specs/system-deep-loop/049-deep-loop-alignment-review/014-post-work-review",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "convergenceMode": "off",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "lineageMode": "new",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-devin",
+        "model": "swe-2-max",
+        "label": "swe2",
+        "iterations": 10
+      }
+    ],
+    "concurrency": 1
+  }
+}

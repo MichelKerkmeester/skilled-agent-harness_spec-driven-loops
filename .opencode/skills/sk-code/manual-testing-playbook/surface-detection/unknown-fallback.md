@@ -33,9 +33,9 @@ Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and
 **Expected behavior**: sk-code recognizes the absence of supported markers and asks for explicit runtime/verification disambiguation.
 
 **Expected references loaded**:
-- `references/stack-detection.md` (always loaded for router decision)
+- `shared/references/stack-detection.md` (always loaded for router decision)
 - `ROUTER.md`
-- `references/universal/code-quality-standards.md` (universal baseline ALWAYS loads)
+- `shared/references/universal/code-quality-standards.md` (universal baseline ALWAYS loads)
 
 **Expected NOT loaded**: any `sk-code-webflow/references/*`, any `sk-code-opencode/references/*`, any `sk-code-webflow/assets/*`, any `sk-code-opencode/assets/*`. Only universal-tier resources are permitted.
 
@@ -72,7 +72,7 @@ Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and
 | 1 | Advisor returns a result (sk-code may or may not win — both are acceptable). |
 | 4 | sk-code emits `SURFACE: UNKNOWN`. |
 | 5 | AI response contains both "what runtime" AND "what verification commands" (or semantically equivalent). |
-| 6 | No surface-specific refs loaded; only `references/*` and `references/universal/code-quality-standards.md`. |
+| 6 | No surface-specific refs loaded; only `references/*` and `shared/references/universal/code-quality-standards.md`. |
 
 ### Pass/Fail Criteria
 

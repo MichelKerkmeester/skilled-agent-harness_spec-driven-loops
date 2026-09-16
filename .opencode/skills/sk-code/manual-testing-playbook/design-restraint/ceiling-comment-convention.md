@@ -8,7 +8,7 @@ version: 3.5.0.1
 
 ## 1. OVERVIEW
 
-This scenario verifies the `ceiling:` comment convention added to `references/universal/code-style-guide.md` §4. When a simplification is deliberate — a known shortcut chosen on purpose, not an oversight — it should read as intent. The convention introduces a neutral `ceiling:` comment that names the shortcut, its known ceiling, and the upgrade path or trigger.
+This scenario verifies the `ceiling:` comment convention added to `shared/references/universal/code-style-guide.md` §4. When a simplification is deliberate — a known shortcut chosen on purpose, not an oversight — it should read as intent. The convention introduces a neutral `ceiling:` comment that names the shortcut, its known ceiling, and the upgrade path or trigger.
 
 It is a durable WHY, not a brand or tool prefix (a brand prefix reads as a perishable, cargo-cult label), and it is explicitly NOT added to the comment-hygiene checker's allowed-pattern list — it already passes because it carries no forbidden id, and allow-listing it would let a forbidden id on the same line slip through. This is the producer-side companion to the reviewer-side downgrade rule (sk-code-review CR-022).
 
@@ -69,7 +69,7 @@ Prompt: `Add a small in-memory rate limiter to the sk-doc local preview server a
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: the ceiling comment follows `references/universal/code-style-guide.md` §4 (neutral WHY, not allow-listed), names the shortcut, ceiling, and upgrade trigger, AND comment-hygiene exits 0 on the file.
+- **PASS** iff: the ceiling comment follows `shared/references/universal/code-style-guide.md` §4 (neutral WHY, not allow-listed), names the shortcut, ceiling, and upgrade trigger, AND comment-hygiene exits 0 on the file.
 - **FAIL** iff: the comment brands the prefix, embeds a forbidden id, gets added to the allowed-pattern list, fails the hygiene checker, or omits the ceiling or the upgrade trigger.
 
 Evidence: `/tmp/skc-DR003-hygiene.txt` (comment-hygiene checker output).

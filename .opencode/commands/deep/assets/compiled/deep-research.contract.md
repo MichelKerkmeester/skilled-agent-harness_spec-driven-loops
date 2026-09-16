@@ -27,7 +27,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "4edbf9b9a13e9b2877013c9a53a5f9132b8f939e1cd446d5f789f8bbbe16a419",
+      "sha256": "2139e178a03cca2faf2c5330f150c45d166ffd56c9e7a471298e4e8ab5e6a739",
       "section": "full"
     },
     {
