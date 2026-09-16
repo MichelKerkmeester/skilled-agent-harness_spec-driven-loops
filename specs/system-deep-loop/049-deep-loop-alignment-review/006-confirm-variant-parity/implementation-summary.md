@@ -94,7 +94,7 @@ One dispatch to DeepSeek V4.1 Flash at max thinking through the gateway on cli-p
 ## Known Limitations
 
 1. **The census is a promise in prose.** The tests assert that every auto-only step has a census entry and that the entries name real steps; nothing machine-checks that a reason is true. A wrong reason passes.
-2. **One auto-only gateway site remains in each research variant pair.** Both sit inside steps that are themselves censused, so they are accounted for transitively rather than named on their own line.
+2. **Auto-only gateway sites cannot be exercised from the confirm surface.** The research variant has four of them — `deep_research.run_now_requested`, `run_now_rejected` and `run_now_accepted` in `step_run_now_check`, and the restore twin in `step_run_now_restore_check` — against one in the review variant, `deep_review.recovery_baseline`. Each variant's `auto_only_sites` entry names its own, so the gap is recorded rather than silent, but no confirm-surface test can reach them.
 3. **Shared branch break.** A neighbouring session's commit added executor binary probing to the runner, which changed the failure message a cli-adapter stress test asserts. That test now fails and belongs to that session's change, not this one. This phase touches command assets and one contract test only. The failure is recorded as the baseline every later phase is measured against, not fixed here.
 <!-- /ANCHOR:limitations -->
 

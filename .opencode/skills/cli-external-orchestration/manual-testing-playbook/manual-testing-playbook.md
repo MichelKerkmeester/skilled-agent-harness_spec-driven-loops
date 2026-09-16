@@ -44,7 +44,7 @@ Commands are shown from the repository root. Replace angle-bracket placeholders 
 
 ## 5. SCENARIOS
 
-Scenarios live as per-file YAML-frontmatter typed gold under `hub-routing/`:
+Scenarios live as per-file YAML-frontmatter typed gold under `hub-routing/`. Each scenario's `expected_resources` paths are written relative to the hub root, `.opencode/skills/cli-external-orchestration/` — not to the repository root §4 uses for commands, and not to the scenario's own directory:
 
 | ID | File | Expected `workflowMode` |
 |----|------|--------------------------|
@@ -60,10 +60,10 @@ Unscored, directly-run manual scenarios validating shared `cli-external-orchestr
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| cli-dispatch-audit-trail | CLI Dispatch Audit Trail | [cli-dispatch-audit-trail.md](../manual-testing-playbook/plugins-and-hooks/cli-dispatch-audit-trail.md) |
-| cli-dispatch-preflight-authorization | CLI Dispatch Preflight Authorization | [cli-dispatch-preflight-authorization.md](../manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md) |
-| codex-hook-parity | Codex Hook/Plugin Parity | [codex-hook-parity.md](../manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md) |
-| goal-manage-cli | Goal Manage CLI: Session Isolation And Legacy Cutover | [goal-manage-cli.md](../manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md) |
+| cli-dispatch-audit-trail | CLI Dispatch Audit Trail | [cli-dispatch-audit-trail.md](plugins-and-hooks/cli-dispatch-audit-trail.md) |
+| cli-dispatch-preflight-authorization | CLI Dispatch Preflight Authorization | [cli-dispatch-preflight-authorization.md](plugins-and-hooks/cli-dispatch-preflight-authorization.md) |
+| codex-hook-parity | Codex Hook/Plugin Parity | [codex-hook-parity.md](plugins-and-hooks/codex-hook-parity.md) |
+| goal-manage-cli | Goal Manage CLI: Session Isolation And Legacy Cutover | [goal-manage-cli.md](plugins-and-hooks/goal-manage-cli.md) |
 
 ---
 
