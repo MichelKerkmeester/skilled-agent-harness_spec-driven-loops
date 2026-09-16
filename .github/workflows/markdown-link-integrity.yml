@@ -5,8 +5,11 @@ on:
     branches: [main]
     paths:
       - '.opencode/skills/**'
+      - '.skilled/skills/**'
       - '.opencode/commands/**'
+      - '.skilled/commands/**'
       - '.opencode/agents/**'
+      - '.skilled/agents/**'
       - '.claude/agents/**'
       - '.claude/commands/**'
       - '.codex/agents/**'
