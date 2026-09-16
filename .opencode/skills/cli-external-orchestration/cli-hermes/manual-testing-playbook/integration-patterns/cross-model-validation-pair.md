@@ -30,7 +30,7 @@ Operators run the exact prompt and command sequence for `HERMES-010` and confirm
 - Real user request: `Ask both of our Hermes models the same question and tell me whether they agree.`
 - Prompt: `In one sentence: which flag makes a headless hermes chat auto-approve tool calls Hermes flags as dangerous? Answer with the flag only.`
 - Expected execution process: run the command sequence in §3 from the repository root with a 300-second alarm on each dispatch, capture stdout, stderr, exit code and elapsed seconds separately, then judge the result against the pass/fail criteria below.
-- Expected signals: Both dispatches exit `0`; the tail of each stdout names `--yolo`; each stderr carries its own distinct `session_id:` line.
+- Expected signals: Both dispatches exit `0`; each stdout names `--yolo` somewhere in its body; each stderr carries its own distinct `session_id:` line.
 - Evidence: Both complete stdout captures, both exit codes, both elapsed times, both session ids, and an explicit statement of which flags were held constant across the pair.
 - Desired user-visible outcome: a concise verdict naming the observed signal and the evidence behind it.
 - Pass/fail: PASS when both runs exit 0 and both answers name the same flag; FAIL when the two answers disagree on the flag, or when either run returns no answer; SKIP only when a named environment blocker prevents the check, such as an unreachable provider or a missing credential, naming which model was unavailable.
@@ -61,7 +61,9 @@ perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --sou
   -t file,todo --max-turns 4 --run-budget 150 -q "$Q" </dev/null >b.txt 2>b.err
 echo $?
 
-tail -1 a.txt; tail -1 b.txt
+# Count the answer rather than reading one end: a model that appends a warning line pushes
+# the answer off the tail, and a verbose one pushes it off the head.
+grep -c -- --yolo a.txt; grep -c -- --yolo b.txt
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

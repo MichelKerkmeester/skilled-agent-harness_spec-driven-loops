@@ -10,7 +10,7 @@ version: 1.4.0.0
 
 > **RECURSION BOUNDS**: This playbook must be run from a non-Hermes runtime. Hermes has in-process delegation of its own, so a Hermes session hands work out through `delegate_task` and never by re-dispatching this CLI; the `repo-guards` project plugin enforces that refusal, and `HERMES-018` proves it live. A dispatch from inside a fan-out lineage, or one whose kind already appears in the dispatch stack, is refused by the shared runtime and must be recorded as such if it fires.
 
-This document is the operator directory and package-level validation contract for the `cli-hermes` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 44 canonical scenario files.
+This document is the operator directory and package-level validation contract for the `cli-hermes` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 45 canonical scenario files.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
@@ -40,7 +40,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 44 deterministic scenarios across 11 categories validating the `cli-hermes` skill surface. Each scenario keeps its `HERMES-NNN` identifier (or `cli-hermes-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
+This playbook provides 45 deterministic scenarios across 11 categories validating the `cli-hermes` skill surface. Each scenario keeps its `HERMES-NNN` identifier (or `cli-hermes-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
 
 Coverage note: the ten operator categories cover the sanctioned headless shape, the provider preflight, prompt transport, the closed model roster, the approval boundary and the read-only contract, persona and template delivery, empty-response detection, cross-model validation, MCP reach, session resumption, the two run bounds, the project plugin's advisory, goal and blocking surfaces, and project-skill loading. The eleventh category is the shared hermetic stress matrix, executed by the runtime suite rather than by an operator.
 
@@ -420,3 +420,4 @@ external Hermes process; there is no operator-facing prompt beyond the run-this-
 - `cli-hermes-EC-012`: [Worktree collision](stress/worktree-collision.md)
 - `cli-hermes-EC-013`: [Node modules integrity](stress/node-modules-integrity.md)
 - `cli-hermes-EC-014`: [Self invocation](stress/self-invocation.md)
+- `cli-hermes-EC-015`: [Suite integrity and the live probe](stress/suite-integrity-and-live-probe.md)
