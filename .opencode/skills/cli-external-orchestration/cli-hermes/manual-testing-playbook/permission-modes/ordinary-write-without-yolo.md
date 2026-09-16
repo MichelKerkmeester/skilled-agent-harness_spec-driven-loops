@@ -56,7 +56,9 @@ rm -f "$SCRATCH/ordinary-write.txt"
 # write-shaped `hermes chat` command line without --yolo
 cat > "$SCRATCH/run-006.sh" <<'EOF'
 perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool --provider llmgateway --model glm-5.3-flash --reasoning none \
-  -t terminal,file,skills,todo,web --max-turns 6 --run-budget 150 \
+  # An ordinary write needs only the file tools; `terminal` and `web` are what the approval
+  # gate reacts to, so naming them here tested a different thing than the objective states.
+  -t file,skills,todo --max-turns 6 --run-budget 150 \
   -q "Create the file $SCRATCH/ordinary-write.txt containing exactly the single line DONE, then reply with the single word FINISHED." \
   </dev/null >out.txt 2>err.txt
 EOF
