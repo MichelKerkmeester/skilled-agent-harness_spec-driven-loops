@@ -39,14 +39,17 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/changelog/v2.1.0.0.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md"
     ],
     "entities": [
       {
@@ -86,6 +89,24 @@
         "source": "derived"
       },
       {
+        "name": "v2.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/changelog/v2.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-versioning.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +137,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +155,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,13 +173,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Changelog",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Phase 003 gave three hubs one version authority and wrote the remaining two into its own out-of-scope list, so `sk-doc` and `mcp-tooling` still carry four and three disagreeing values across their five routing artifacts",
     "created_at": "2026-09-16T01:24:30Z",
-    "last_save_at": "2026-09-16T01:26:52.353Z",
+    "last_save_at": "2026-09-16T02:39:18.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73c0a26e36193cab99bc08c589fa8eeda9bfcce4954a46772b91b7915577f7a4",
+    "source_fingerprint": "sha256:cb7e6574614fc8aaad20c36e1e329917f292174438de08f1d35ac7fcdf176004",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2f633178bcbfdb7ce65056d830d417097f2047b4c350cb97129114b4e74be74",
-      "plan.md": "9a09b9de10e94a6cb6c0c5b57d0227c898fa16f7f8d137b7b1cabc03f4171a7e",
-      "tasks.md": "c668364ce64e31e9b979d7fb02a2771e6d2ae045105ab822ceb828a5b04d7d19",
-      "implementation-summary.md": "dec502027e90bbd22c022a6e62a96e951880ce06436b0b3a3dabff0c8bc9789f"
+      "spec.md": "e7b24a80d1952b161411648c3f885b6c376308eec6524d51238aecb88f391810",
+      "plan.md": "892b3f12723ae0fb02c42e255dacf31780c6b4fc726a4f3276cf131ef0dc4344",
+      "tasks.md": "4eb4be1b909b3afde94ec828fe5feff1e8bc60bbaea3a351accb4f18c0afbcf2",
+      "implementation-summary.md": "6a1f80964dfa03a6343b1228555adb0f4f5c4b0a397a564bcf894a24b2d7e229"
     },
     "last_active_at": null
   }

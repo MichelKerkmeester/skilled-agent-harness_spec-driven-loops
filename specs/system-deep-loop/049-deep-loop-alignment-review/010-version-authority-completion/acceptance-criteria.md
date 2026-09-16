@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 1: version-authority-completion"
+title: "Acceptance Criteria: Phase 10: version-authority-completion"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -8,25 +8,9 @@ trigger_phrases:
   - "waiver adr"
 importance_tier: "important"
 contextType: "implementation"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/010-version-authority-completion"
-    last_updated_at: "2026-09-16T01:24:31Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Phase 1: version-authority-completion
+# Acceptance Criteria: Phase 10: version-authority-completion
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -39,9 +23,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** system-deep-loop/049-deep-loop-alignment-review/010-version-authority-completion
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-16
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +38,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given `sk-doc`, When its `SKILL.md` version and its newest changelog entry are compared, Then they name the same release | `changelog/v2.1.0.0.md` created; both read `2.1.0.0` | Met | - |
+| AC-002 | REQ-002 | Given each hub, When its five routing artifacts are read, Then all carry the authority's version | `sk-doc` 2.1.0.0 and `mcp-tooling` 1.6.1.0, five values each | Met | - |
+| AC-003 | REQ-003 | Given the two `sk-code` `0.x` surfaces, When the alignment decision is read, Then it names why they are versioned independently | `sk-code/SKILL.md` Version authority paragraph; all six packets measured as independent | Met | - |
+| AC-004 | REQ-004 | Given the version standard's enforcement section, When it is read, Then it names the parity checks that do not exist | `frontmatter-versioning.md` §7 "What nothing enforces" | Met | - |
+| AC-005 | REQ-005 | Given the edits, When the compiled route guard runs, Then every hub is fresh | `node .opencode/bin/compiled-route-guard.cjs`, exit 0, five hubs fresh, authored twins byte-identical | Met | - |
+| AC-006 | REQ-005 | Given the change, When the runtime suite runs, Then it exits zero | `npx vitest run --no-coverage` in `runtime/`: 154 files, 2678 passed, 8 skipped, exit 0 | Met | - |
 
 ### Status values
 
@@ -79,8 +68,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+AC-001 carried this packet: the two deferred hubs could not be aligned until the question of which release they were being aligned to was settled, and `sk-doc`'s `SKILL.md` named one its changelog did not. AC-002 and AC-005 prove the alignment landed and still serves. AC-003 and AC-004 record the two things deliberately not built: the `sk-code` `0.x` packet versions are independent by design, so nothing was raised to match the hub, and no parity gate was written, so the absence itself is documented where the standard states its enforcement.
 <!-- /ANCHOR:closure -->
