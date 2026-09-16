@@ -1468,6 +1468,74 @@ function main() {
   }
 
   // ───────────────────────────────────────────────────────────────
+  // 13. Release-version parity (canon: soft, one authority per hub)
+  //
+  // A hub declares its version in five routing artifacts, and SKILL.md is the
+  // release authority whose value must equal the newest changelog entry. Nothing
+  // enforced that, and the two drifts it allowed each ran over a fortnight before
+  // a human audit caught them: a hub claiming a release with no entry behind it,
+  // and a sibling reconciled late in a batch. Every input is already parsed above,
+  // so the check costs a comparison rather than a pass over the tree.
+  // ───────────────────────────────────────────────────────────────
+  {
+    const versionOf = (file, kind) => {
+      const filePath = path.join(target, file);
+      if (!fs.existsSync(filePath)) return null;
+      const body = fs.readFileSync(filePath, 'utf8');
+      const match = kind === 'json'
+        ? body.match(/"version"\s*:\s*"([0-9]+(?:\.[0-9]+){3})"/)
+        : body.match(/^version:\s*"?([0-9]+(?:\.[0-9]+){3})"?/m);
+      return match ? match[1] : null;
+    };
+    const authority = versionOf('SKILL.md', 'md');
+    if (!authority) {
+      softFail('13a-version: SKILL.md declares no four-part version, so the hub has no release authority to compare against');
+    } else {
+      const followers = [
+        ['ROUTER.md', 'md'],
+        ['description.json', 'json'],
+        ['hub-router.json', 'json'],
+        ['mode-registry.json', 'json'],
+      ];
+      const split = followers
+        .map(([file, kind]) => [file, versionOf(file, kind)])
+        .filter(([, value]) => value !== null && value !== authority);
+      if (split.length === 0) {
+        pass(`13a-version: all routing artifacts carry the SKILL.md version ${authority}`);
+      } else {
+        for (const [file, value] of split) {
+          softFail(`13a-version: ${file} carries ${value} but SKILL.md, the release authority, carries ${authority}`);
+        }
+      }
+
+      // The authority is only authoritative because it names a release that shipped.
+      // A version ahead of its own changelog is the drift that ran sixteen days here.
+      const changelogDir = path.join(target, 'changelog');
+      if (!fs.existsSync(changelogDir)) {
+        pass('13b-version: no changelog directory, so there is no release to compare the authority against');
+      } else {
+        const entries = fs.readdirSync(changelogDir)
+          .map((name) => (name.match(/^v([0-9]+(?:\.[0-9]+){3})\.md$/) || [])[1])
+          .filter(Boolean)
+          .sort((left, right) => {
+            const a = left.split('.').map(Number);
+            const b = right.split('.').map(Number);
+            for (let i = 0; i < 4; i += 1) if (a[i] !== b[i]) return a[i] - b[i];
+            return 0;
+          });
+        const newest = entries[entries.length - 1] || null;
+        if (!newest) {
+          pass('13b-version: changelog directory holds no versioned entry to compare');
+        } else if (newest === authority) {
+          pass(`13b-version: SKILL.md version ${authority} matches the newest changelog entry`);
+        } else {
+          softFail(`13b-version: SKILL.md claims ${authority} but the newest changelog entry is v${newest}`);
+        }
+      }
+    }
+  }
+
+  // ───────────────────────────────────────────────────────────────
   // SUMMARY
   // ───────────────────────────────────────────────────────────────
   console.log('');
