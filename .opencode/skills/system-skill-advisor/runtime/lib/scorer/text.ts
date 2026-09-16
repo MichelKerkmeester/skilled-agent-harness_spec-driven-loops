@@ -30,7 +30,7 @@ export function tokenize(value: string, includeStopWords = false): string[] {
   const tokens = Array.from(value.toLowerCase().matchAll(/\b\w+\b/g), (match) => match[0]);
   return includeStopWords
     ? tokens
-    : tokens.filter((token) => token.length > 2 && !STOP_WORDS.has(token));
+    : tokens.filter((token) => token.length > 1 && !STOP_WORDS.has(token));
 }
 
 export function unique<T>(values: readonly T[]): T[] {
