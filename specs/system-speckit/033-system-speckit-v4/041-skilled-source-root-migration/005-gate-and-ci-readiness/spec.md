@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-09-16 |
 | **Branch** | `worktrees/055-skilled-source-root-migration` |
 | **Parent Spec** | ../spec.md |
@@ -48,7 +48,7 @@ This is **Phase 5** of the Plan and execute the .skilled source-root migration s
 - Phase 001 names the silent-failure class this phase removes (`../001-deep-research/research/research.md` §6 and §12).
 
 **Deliverables**:
-- A missing-script rule in each gate file, keyed on `_in_toolchain_repo` (amended under L1; the copied two-root block is withdrawn).
+- A missing-script rule in each gate file, keyed on `_in_toolchain_repo` (amended under L1, which withdrew the copied two-root block).
 - Hooks and workflows that look up every script and match every staged or changed path under both roots.
 - A missing-script rule: blocking gates block, gates that cannot block warn and a repository that does not ship the toolchain stays untouched.
 - The independent check `.github/scripts/check-gate-inputs.sh` with its always-on workflow, and a broken-move drill.
@@ -89,14 +89,15 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 ## 3. SCOPE
 
 ### In Scope
-- A two-root lookup for every script path the seven hooks, the autostash library, the legacy hygiene helper and the SessionStart hook check use (plan §3, rows H01 to H24).
+- The missing-script rule, keyed on `_in_toolchain_repo`, for every script the seven hooks, the legacy hygiene helper and the SessionStart hook check call. Their `.opencode/` literals stay and resolve through the tracked link (plan §AMENDMENT).
 - Both roots in every staged-name filter and pathspec those files match on.
 - The missing-script rule for those files, keeping the global-hook allowance for repositories that do not ship the toolchain (`pre-commit:46-49`, `prepare-commit-msg:39-41`).
 - `.skilled/` twins for the 56 workflow `paths:` entries and for `.github/dependabot.yml:13`, and `skilled` in the name filter at `agent-mirror-sync.yml:29`.
-- A source-root step in each of the 21 workflow jobs, with the 87 executable `.opencode/` references moved onto it.
+- No source-root step in the workflow jobs: the L1 amendment withdrew it, because the 87 executable `.opencode/` references resolve through the link and the independent check proves they do.
 - Fail-closed replacements for the six skip conditionals.
 - The independent check with its workflow and test script, plus the broken-move drill.
-- New cases in the four hook test scripts whose files change, plus a new test script for the SessionStart hook check.
+- New cases in the four hook test scripts whose files change, a new test script for the SessionStart hook check, and the environment scrub the mass-deletion harness lacked.
+- The naming guard's rule for a rename or copy that keeps its basename (REQ-012).
 - Behavior notes in `.opencode/scripts/git-hooks/README.md`, its `tests/README.md` and `.github/workflows/README.md`.
 
 ### Out of Scope
@@ -116,19 +117,21 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 | `.github/scripts/source-root.sh` | Not created | Withdrawn by the L1 amendment |
 | `.github/scripts/check-gate-inputs.sh` | Create | Independent check that fails when a gate names an input that exists under neither root |
 | `.github/workflows/gate-inputs.yml` | Create | Runs the check and its tests on every push to `main` and `skilled/**` and on every pull request, with no path filter |
-| `.github/scripts/tests/source-root.test.sh` | Create | Layout-matrix test for the block |
+| `.github/scripts/tests/source-root.test.sh` | Not created | Withdrawn with the block by the L1 amendment |
 | `.github/scripts/tests/check-gate-inputs.test.sh` | Create | Fixture test for the check |
 | `.github/scripts/tests/broken-move-drill.sh` | Create | Deliberately broken dry run in a disposable clone |
 | `.opencode/scripts/git-hooks/pre-commit` | Modify | Eight gates: filter twins, script lookup, missing-script rule |
 | `.opencode/scripts/git-hooks/pre-push` | Modify | Five gates: skill detector, routing-byte twins, script lookup, missing-script rule |
 | `.opencode/scripts/git-hooks/prepare-commit-msg` | Modify | Allocator lookup and a warning when it is missing |
-| `.opencode/scripts/git-hooks/post-commit`, `post-merge`, `post-rewrite` | Modify | Autostash library, kill switch and `git-sync.sh` lookup |
-| `.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh` | Modify | Block copy and the log root phase 004 names |
+| `.opencode/scripts/git-hooks/post-commit`, `post-merge`, `post-rewrite` | Modify | Warnings for a missing autostash library, kill switch or `git-sync.sh` |
+| `.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh` | Unchanged | Its log root resolves through the link, so the L1 amendment withdrew H20 |
 | `.opencode/hooks/git/pre-commit` | Modify | Legacy hygiene helper under the same rules |
-| `.opencode/bin/check-git-hooks.sh` | Modify | Hook source directory, kill switch and installer lookup |
+| `.opencode/bin/check-git-hooks.sh` | Modify | Warnings for a missing hook source directory or installer |
 | `.opencode/scripts/git-hooks/tests/pre-commit.test.sh`, `pre-push.test.sh`, `prepare-commit-msg.test.sh`, `autostash-orphan-guard.test.sh` | Modify | Cases for `.skilled/` layouts, missing scripts and foreign repositories |
+| `.opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh` | Modify | Clears a caller's git environment so the harness stays hermetic |
 | `.opencode/bin/tests/check-git-hooks.test.sh` | Create | Test script for the SessionStart hook check |
-| `.github/workflows/*.yml` (19 files) | Modify | Filter twins in 8, source-root step and paths in all 19, fail-closed guards in 5 |
+| `.github/workflows/*.yml` (19 files) | Modify | Filter twins in 8, the agent name filter in 1 and fail-closed guards in 5 |
+| `.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py` and `scripts/tests/test_no_new_snake_case_guard.py` | Modify | A rename or copy that keeps its basename passes, with three cases |
 | `.github/dependabot.yml` | Modify | `.skilled/**` twin of line 13 |
 | `.opencode/scripts/git-hooks/README.md`, `tests/README.md`, `.github/workflows/README.md` | Modify | The missing-script rule, the new cases and the new workflow |
 <!-- /ANCHOR:scope -->
@@ -200,7 +203,7 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: The shared block adds under 50 ms to a pre-commit run that stages no gate trigger, measured as the median of ten runs against a baseline taken before the change.
+- **NFR-P01**: The phase's hook changes add under 50 ms to a pre-commit run that stages no gate trigger, measured as the median of ten runs against a baseline taken before the change.
 - **NFR-P02**: `check-gate-inputs.sh` finishes in under 10 seconds on this repository.
 
 ### Security
@@ -219,19 +222,19 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 
 ### Data Boundaries
 - `.skilled/` holding only its placeholder, as it does today (`.skilled/future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back/.gitkeep`): every path resolves under `.opencode/`.
-- `.opencode` as a symlink to `.skilled`: both lookups reach the same file, and the block reports the `.skilled/` path.
-- The same path present as a real file under both roots: `.skilled/` wins, so a stale `.opencode/` copy never shadows the moved file.
+- `.opencode` as a symlink to `.skilled`: every literal `.opencode/` script path reaches the moved file, and whatever a gate stages goes through the real `.skilled/` path, because git refuses to stage a path through a symbolic link.
+- Both roots as real directories: phase 004 allows no such layout, so no gate chooses between them.
 - A path pattern such as `skills/*/mode-registry.json` in a workflow: the independent check requires at least one match.
 
 ### Error Scenarios
 - `node` missing: node-based gates keep today's warning and skip (`pre-commit:98`, `:120`, `:253`), because a missing runtime is an environment gap rather than a moved script.
 - The kill switch `hooks/shared/hook-flags.sh` missing inside this repository: gates stay enabled as today, and one warning names the file.
 - A dangling `.opencode` link in a consumer project: no sentinel resolves, so the global-hook allowance applies.
-- The shared block itself absent from a gate file: the independent check's `block-copies` rule fails, and so does the gate's own test script.
+- `_in_toolchain_repo` absent from a gate file: that file's missing-script harness cases fail.
 
 ### State Transitions
-- A partly moved tree during phase 007's rename-only commits: hooks resolve per path, so each of those commits is still checked. CI resolves one root per job, so a partly moved tip that gets pushed fails loudly.
-- A hook copied rather than linked, as the autostash test script does (`tests/autostash-orphan-guard.test.sh:43-48`): the block travels inside the file, so nothing has to be sourced from elsewhere.
+- A partly moved tree: phase 004 lands the move as one rename-only commit plus the link, so no partly moved tip is committed. If one were, the independent check would fail on every input left unresolved.
+- A hook copied rather than linked, as the autostash test script does (`tests/autostash-orphan-guard.test.sh:43-48`): `_in_toolchain_repo` travels inside the file, so nothing has to be sourced from elsewhere.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -241,9 +244,9 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 18/25 | About 40 files: 9 gate files, 19 workflows, dependabot, 6 new files under `.github/scripts/` and 5 test scripts |
+| Scope | 18/25 | About 45 files: 9 gate files, 19 workflows, dependabot, 3 new files under `.github/scripts/`, 6 test scripts and the naming guard with its tests |
 | Risk | 20/25 | Changes a shared gate contract that runs machine-wide through the global hooks, and changes CI |
-| Research | 8/20 | Phases 001 and 002 mapped the surface. The block location and the missing-script rule are design choices under review |
+| Research | 8/20 | Phases 001 and 002 mapped the surface. The missing-script rule is a design choice under review |
 | **Total** | **46/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
@@ -252,10 +255,10 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Which executable paths does phase 004 keep literal under `.opencode/`, such as the `npm --prefix .opencode ci` installs at `spec-kit-check.yml:64` and `dispatch-enforcement-guard.yml:44-45`? UNKNOWN until phase 004 freezes its layout.
-- Does `compiled-route-manifest.cjs refresh` accept `--skill-root .skilled/skills/<hub>`? UNKNOWN, because this phase did not open that code. The pre-commit test script stubs the mint tool (`tests/pre-commit.test.sh:62-70`), and phase 006 owns the real answer.
-- Should a missing mass-deletion library block pushes in this repository, reversing the documented fail-open at `pre-push:34-36`? Proposed yes. The GPT-5.6 review and the orchestrator decide.
-- When the kill switch cannot be read, should live-sync publishing stay enabled as it does today (`post-commit:36-49`)? Proposed: keep today's behavior and warn. The GPT-5.6 review decides.
+- Which executable paths does phase 004 keep literal under `.opencode/`? Answered by the L1 amendment: every workflow keeps its `.opencode/` literals, which resolve through the link.
+- Does `compiled-route-manifest.cjs refresh` accept `--skill-root .skilled/skills/<hub>`? Not needed here: the gate keeps `--skill-root .opencode/skills/<hub>`, which reads through the link. Phase 006 still owns how the tool treats the flag.
+- Should a missing mass-deletion library block pushes in this repository, reversing the documented fail-open at `pre-push:34-36`? Implemented as proposed, with `SPECKIT_ALLOW_MASS_DELETION=1` as the approval. The GPT-5.6 review is pending.
+- When the kill switch cannot be read, should live-sync publishing stay enabled as it does today (`post-commit:36-49`)? Kept enabled, with a warning. The GPT-5.6 review is pending.
 - Which pushed tip first carries this phase, so its CI runs can be read? UNKNOWN. The parent goal pre-authorizes pushes to `skilled/v4.0.0.0` and `main` (`../goal.md`, decision D2).
 <!-- /ANCHOR:questions -->
 

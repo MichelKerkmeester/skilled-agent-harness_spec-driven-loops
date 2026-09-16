@@ -39,7 +39,7 @@
       "broken"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".github/scripts/check-gate-inputs.sh",
+      ".github/scripts/tests/broken-move-drill.sh",
       ".opencode/bin/check-git-hooks.sh",
+      ".opencode/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh",
+      ".opencode/bin/tests/check-git-hooks.test.sh",
+      ".github/scripts/tests/check-gate-inputs.test.sh",
+      ".github/workflows/gate-inputs.yml",
       ".github/dependabot.yml",
+      ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
       ".opencode/scripts/git-hooks/README.md",
       "tests/README.md",
       ".github/workflows/README.md",
-      ".opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh",
-      ".opencode/scripts/git-hooks/tests/pre-commit.test.sh",
-      ".skilled/future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back/.gitkeep",
-      "review/gpt-5-6-sol-scope-under-l1.md",
-      "review/scope-under-l1-brief.md",
-      ".opencode/hooks/shared/hook-flags.sh",
-      ".opencode/scripts/install-git-hooks.sh",
-      ".opencode/scripts/git-hooks/tests/README.md",
-      ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py"
+      ".opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh"
     ],
     "entities": [
       {
@@ -100,15 +100,63 @@
         "source": "derived"
       },
       {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "broken-move-drill.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/broken-move-drill.sh",
+        "source": "derived"
+      },
+      {
         "name": "check-git-hooks.sh",
         "kind": "script",
         "path": ".opencode/bin/check-git-hooks.sh",
         "source": "derived"
       },
       {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mass-deletion-guard.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-git-hooks.test.sh",
+        "kind": "script",
+        "path": ".opencode/bin/tests/check-git-hooks.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.test.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/check-gate-inputs.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "gate-inputs.yml",
+        "kind": "config",
+        "path": ".github/workflows/gate-inputs.yml",
+        "source": "derived"
+      },
+      {
         "name": "dependabot.yml",
         "kind": "config",
         "path": ".github/dependabot.yml",
+        "source": "derived"
+      },
+      {
+        "name": "check_no_new_snake_case.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
         "source": "derived"
       },
       {
@@ -124,49 +172,13 @@
         "source": "derived"
       },
       {
-        "name": "pre-commit.test.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/git-hooks/tests/pre-commit.test.sh",
-        "source": "derived"
-      },
-      {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": ".skilled/future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back/.gitkeep",
-        "source": "derived"
-      },
-      {
-        "name": "gpt-5-6-sol-scope-under-l1.md",
-        "kind": "doc",
-        "path": "review/gpt-5-6-sol-scope-under-l1.md",
-        "source": "derived"
-      },
-      {
-        "name": "scope-under-l1-brief.md",
-        "kind": "doc",
-        "path": "review/scope-under-l1-brief.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook-flags.sh",
-        "kind": "script",
-        "path": ".opencode/hooks/shared/hook-flags.sh",
-        "source": "derived"
-      },
-      {
-        "name": "install-git-hooks.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/install-git-hooks.sh",
-        "source": "derived"
-      },
-      {
-        "name": "test_no_new_snake_case_guard.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repository's gates look for their own scripts at one literal root, `$REPOROOT/.opencode/`, and most of them read a missing script as a reason to skip",
     "created_at": "2026-09-16T17:54:07Z",
-    "last_save_at": "2026-09-16T20:58:45.651Z",
+    "last_save_at": "2026-09-16T22:03:44.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd68e54ab0688e8f44032d90ef50a3594c77c22c9c052522661c37d9b66d6938",
+    "source_fingerprint": "sha256:3234afdac895c27631dd85839db033038a546e0fadc66d0fb8051805729035b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "56735b3f89f9db28cdc71c169093f13c3a57ce5d34a299926bf8c35b81be9bf4",
+      "spec.md": "ae8e02d8531af7590c5949bb44c8aea5c65751d7327cad2884a024f93a50be35",
       "plan.md": "81f9cf23b93016c77477543421c249ed6576c076a40de4bf7d03365207f16994",
-      "tasks.md": "e5b986395ae572f93aebf41f77041b4b2f4bda2b97432202a3c4cdb6d25aabe3",
-      "implementation-summary.md": "12049fda20fdf9bea638dcf232a3ca5cc23bf7b57cbe1242788157f610785a8f"
+      "tasks.md": "245fa9a39ecc38f9c72869198f614a6db622fdd05f5062d3d91d89364b762038",
+      "implementation-summary.md": "daaa8efd4f4125a64a28958ef546d0c6e12c2ea8ce2eaa5c3b9c13cc7bd3a89a"
     },
     "last_active_at": null
   }

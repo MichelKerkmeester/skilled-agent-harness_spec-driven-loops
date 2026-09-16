@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration"
-    last_updated_at: "2026-09-16T20:35:00Z"
+    last_updated_at: "2026-09-17T00:30:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Amended criterion 6 for the ADR-003 keep-list after the phase 004 review"
-    next_safe_action: "Regenerate metadata, validate the packet recursively, then execute phase 003"
+    recent_action: "Phase 005 implemented locally; its contract reviews wait for Codex quota"
+    next_safe_action: "Run phase 005 contract reviews, publish via step 5, validate, then start phase 006"
     blockers: []
     key_files: []
     session_dedup:
@@ -108,7 +108,8 @@ and findings belong here.
 | Goal, 11-phase map, goals for 001 and 002 | Done, committed locally `d26f0c60ca` | Worktree 055 |
 | Phases 003 to 011 planned | Done, committed locally `d26f0c60ca` | Nine Opus agents, 17:57Z to 18:36Z; each wrote only its own five or six files; 746 `file:line` citations resolve inside their files, none out of range |
 | Phase 003 layout probes | Done, committed locally `951f4fae18` | Nine records, strict validation PASSED; not pushed |
-| Phase 004 migration design | Done | L1 accepted; 25-step cutover amended by 7 GPT-5.6 findings; strict validation PASSED |
+| Phase 004 migration design | Done, committed locally `7085ec3290` | L1 accepted; 25-step cutover amended by 7 GPT-5.6 findings; strict validation PASSED |
+| Phase 005 gate and CI readiness | Implemented and verified locally, 25 commits, none pushed | The check and the drill print `RESULT: PASSED`, the hook harnesses pass 175 cases against the 126 baseline, and 10 of 12 acceptance criteria are met. AC-006 and AC-009 wait for the GPT-5.6 contract reviews, which Codex's usage limit blocks until 2026-09-19 10:29 |
 | CI on the pushed tip | Checked | All 22 runs for `1d198996ca` and `728c4f3efc` completed; the naming guard went red, then green at `728c4f3efc` |
 
 ### Deviations and findings
@@ -132,4 +133,5 @@ and findings belong here.
 | The repository is public | Phase 003 kept its 668-row home scan out of the repository because it names private repositories. Later phases apply the same rule to anything read from the home directory |
 | Criterion 6 allows ADR-003 kept paths | The phase 004 review (F-02) showed the global Hermes `code_mode` launcher argument must stay `.opencode/bin/...`, because consumer projects expose only `.opencode`. ADR-003 K13 keeps it |
 | Git cannot stage through the link | Under L1, `git add .opencode/<path>` fails with "beyond a symbolic link" and `git diff --quiet` through the link exits 0 on a changed file (phase 005, observed in a scratch repository). Whatever stages or diffs a `.opencode/` path must use the `.skilled/` path: 005 fixes the route re-mint gate, and 006 and 008 check their own tools that stage |
+| Codex quota blocks the contract reviews | Phase 005's first GPT-5.6 review stopped at "You've hit your usage limit ... try again at Sep 19th, 2026 10:29 AM". The plan's contingency is that contract changes wait and are never merged unreviewed, so phase 005 stays unpublished and phase 006 cannot start (D1). A substitute second-family reviewer would amend D3 of phase 005, which needs the operator |
 <!-- /ANCHOR:log -->
