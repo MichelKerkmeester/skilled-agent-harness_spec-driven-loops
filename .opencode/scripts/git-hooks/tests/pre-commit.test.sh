@@ -371,6 +371,18 @@ stage_new ".skilled/hooks/probe.sh" "hook"
 SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
 check "a dirty .skilled mirror blocks its source" 1 "$RC" "a generated mirror has changes that are not staged"
 
+# ── 23. a missing kill switch warns where the toolchain ships, and gates stay on ──
+setup_gate_fixture toolchain
+stage_new "notes.md" "note"
+run_hook; RC=$?
+check "a missing kill switch warns and leaves gates on" 0 "$RC" "hook-flags.sh is missing"
+
+# ── 24. a missing comment checker blocks where the toolchain ships ──
+setup_gate_fixture toolchain
+stage_new "notes.md" "note"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "a missing comment checker blocks" 1 "$RC" "checker is missing or not executable: "
+
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]
