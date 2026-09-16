@@ -114,7 +114,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 
 ### Commits
 
-`259f4f6cf4`, `a17d8ab9ce`, `50eca95e28`, `f7165195e2`, `b5f179bd0e`, `576ac3c930` (pre-commit), `5fa1f39da8`, `5ae40d3c1a` (pre-push), `4866bc8eea`, `6ad37a5a13`, `ae007f51a2`, `8ffe7e8dc3` (other hooks), `5cad25db6b`, `fc6305eb69`, `ecf3812ea1` (check, test, workflow), `60605917a9`, `f4f6ea659e`, `9f009e8dd3` (workflows), `be0c3974ab` (drill), `33f2d87531`, `60635ffca5` (naming guard), `0e60909b2e`, `452cc9b6dc` (READMEs), `27dd545510` (mass-deletion harness). None is pushed.
+`259f4f6cf4`, `a17d8ab9ce`, `50eca95e28`, `f7165195e2`, `b5f179bd0e`, `576ac3c930` (pre-commit), `5fa1f39da8`, `5ae40d3c1a` (pre-push), `4866bc8eea`, `6ad37a5a13`, `ae007f51a2`, `8ffe7e8dc3` (other hooks), `5cad25db6b`, `fc6305eb69`, `ecf3812ea1` (check, test, workflow), `60605917a9`, `f4f6ea659e`, `9f009e8dd3` (workflows), `be0c3974ab` (drill), `33f2d87531`, `60635ffca5` (naming guard), `0e60909b2e`, `452cc9b6dc` (READMEs), `27dd545510` (mass-deletion harness), `610374769a` (SessionStart harness pin). None is pushed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -158,7 +158,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 
 | Unit | Findings | Disposition |
 |------|----------|-------------|
-| Missing-script rule in the hooks (T025) | None recorded | Blocked: the review stopped at Codex's usage limit |
+| Missing-script rule in the hooks (T025) | None recorded | Blocked: the review stopped at Codex's usage limit. A supplementary GLM-5.3-Flash review raised two P2 findings: F1 was left to the phase 006 handoff and F2 was fixed in `610374769a` (`scratch/delegation/supplementary-hook-review-verdict.md`) |
 | Independent check and workflow (T012) | Not started | Blocked on the same limit |
 | Fail-closed workflow steps (T031) | Not started | Blocked on the same limit |
 | Broken-move drill (T034) | Not started | Blocked on the same limit |
