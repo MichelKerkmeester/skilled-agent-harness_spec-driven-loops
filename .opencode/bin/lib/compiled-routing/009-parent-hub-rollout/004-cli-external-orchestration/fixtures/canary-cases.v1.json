@@ -180,6 +180,22 @@
         ],
         "expectedResources": []
       }
+    },
+    {
+      "id": "hermes-alias-with-intervening-word",
+      "prompt": "delegate this to hermes",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "cli-hermes"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "cli-hermes"
+        ],
+        "expectedResources": []
+      },
+      "legacyExact": false
     }
   ],
   "advisorCases": [

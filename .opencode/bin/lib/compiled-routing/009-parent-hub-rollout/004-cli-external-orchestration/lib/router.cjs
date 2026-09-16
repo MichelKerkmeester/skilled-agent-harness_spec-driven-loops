@@ -90,8 +90,29 @@ function route(snapshot, workflowModes, selectionKind) {
   return parseRouteDecision(decision, snapshot.policy);
 }
 
+// How many words may sit between two words of a multi-word detector. Two covers the way
+// people actually write these ("delegate this to hermes", "delegate the build to codex")
+// without letting a detector span a whole sentence and match two unrelated clauses.
+const DETECTOR_MAX_GAP_WORDS = 2;
+
+function escapeDetectorWord(word) {
+  return word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// A single-word detector keeps plain substring semantics, unchanged.
+//
+// A multi-word detector used to need its words contiguous, so an operator writing
+// "delegate this to hermes" got no route while "delegate to hermes" did. One intervening
+// word is ordinary English, not a different intent, and every vocabulary here is phrased in
+// the bare form. Matching the words as an ordered sequence with a bounded gap keeps the
+// intent test the vocabulary intends while still refusing two unrelated clauses.
 function detectorMatches(text, detector) {
-  return text.includes(String(detector.value).toLowerCase());
+  const value = String(detector.value).toLowerCase();
+  const words = value.split(/\s+/).filter(Boolean);
+  if (words.length < 2) return text.includes(value);
+  const gap = `(?:\\s+\\S+){0,${DETECTOR_MAX_GAP_WORDS}}\\s+`;
+  const pattern = words.map(escapeDetectorWord).join(gap);
+  return new RegExp(`\\b${pattern}`, 'i').test(text);
 }
 
 function scoredModes(snapshot, matchedDetectorIds) {
