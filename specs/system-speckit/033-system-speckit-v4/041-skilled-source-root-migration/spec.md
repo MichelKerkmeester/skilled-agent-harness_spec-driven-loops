@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-09-16T08:35:04Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Phase 001 research landed and verified; figures corrected against the live tree"
-    next_safe_action: "Design the cutover in phase 003"
+    next_safe_action: "Plan phases 003 to 011, then execute them in order"
     blockers: []
     key_files:
       - "001-deep-research/spec.md"
@@ -115,9 +115,15 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 |-------|--------|-------|--------|
 | 1 | `001-deep-research/` | Map every surface the move touches, and find the ones that break | complete |
 | 2 | `002-per-runtime-reference-map/` | Map every symlink and stale path reference per runtime, and across skills, code and docs | complete |
-| 3 | `003-migration-design/` | Turn the findings into a frozen cutover sequence with a rollback | draft |
-
-Phases beyond 003 are deliberately unscaffolded. The execution split depends on what phase 001 finds, and inventing those boundaries now would commit the packet to a shape the evidence has not yet justified.
+| 3 | `003-layout-probes/` | Settle the runtime and git behaviors that decide the layout, each by a live probe | draft |
+| 4 | `004-migration-design/` | Choose what `.opencode/` becomes, and freeze the cutover sequence and its rollback | draft |
+| 5 | `005-gate-and-ci-readiness/` | Teach hooks and CI the new root, and add a check that does not live under the moved tree | draft |
+| 6 | `006-dual-root-code-and-contracts/` | Make root discovery, launchers and installers work under either root | draft |
+| 7 | `007-source-root-move/` | Move the authored tree into `.skilled/` in rename-only commits | draft |
+| 8 | `008-links-and-generated-state/` | Retarget hand-made links, and regenerate mirrors and every derived artifact | draft |
+| 9 | `009-reference-rewrite/` | Rewrite the mechanical path references, leaving frozen records alone | draft |
+| 10 | `010-machine-and-consumer-cutover/` | Reinstall the global hooks, update home configs, and keep consumer projects working | draft |
+| 11 | `011-verification-and-rollout/` | Prove every runtime and gate on the new root, push, and clean up | draft |
 
 ### Phase Transition Rules
 
@@ -132,8 +138,15 @@ Phases beyond 003 are deliberately unscaffolded. The execution split depends on 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-deep-research | 002-per-runtime-reference-map | Findings name every category of reference with a file count, and every blocker carries a `file:line` citation | `research/research.md` exists and each claim resolves |
-| 002-per-runtime-reference-map | 003-migration-design | Every runtime has a symlink map and a stale-reference list, and skills, code and root docs are mapped by area | `research/research.md` exists and its counts reconcile with the seed inventory |
-| 003-migration-design | execution | Cutover sequence is ordered, each step has an observable check, and the rollback is written before the first step | Design review passes and the rollback is rehearsed |
+| 002-per-runtime-reference-map | 003-layout-probes | Every symlink, runtime file and reference the move touches is mapped and classified | The reconciled maps and `research/research.md` |
+| 003-layout-probes | 004-migration-design | Every question that decides the layout has a probe result, or a recorded reason it cannot be probed | The probe records in phase 003 |
+| 004-migration-design | 005-gate-and-ci-readiness | The layout, cutover order and rollback are frozen and reviewed by a second model family | Phase 004's decisions and review record |
+| 005-gate-and-ci-readiness | 006-dual-root-code-and-contracts | Hooks and CI accept both roots, and an independent check catches a broken move | Gate tests and a deliberately broken dry run |
+| 006-dual-root-code-and-contracts | 007-source-root-move | Root discovery, launchers and installers resolve under either root | Suites pass against both roots |
+| 007-source-root-move | 008-links-and-generated-state | The authored tree sits under `.skilled/` in rename-only commits with history intact | `git log --follow` samples and no tracked file left at a moved path |
+| 008-links-and-generated-state | 009-reference-rewrite | Every link resolves and every generated artifact is rebuilt by its owner | A link census with no dangling link and fresh generator checks |
+| 009-reference-rewrite | 010-machine-and-consumer-cutover | No non-frozen tracked file names an `.opencode` path the design did not keep | A rescan against the reconciled maps |
+| 010-machine-and-consumer-cutover | 011-verification-and-rollout | This machine's hooks and home configs point at the new root, with rollback recorded | Hook and config probes |
 <!-- /ANCHOR:phase-map -->
 
 ---

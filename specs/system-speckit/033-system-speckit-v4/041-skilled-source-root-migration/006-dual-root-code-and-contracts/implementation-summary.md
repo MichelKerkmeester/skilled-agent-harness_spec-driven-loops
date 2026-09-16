@@ -10,16 +10,16 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-migration-design"
-    last_updated_at: "2026-09-16T08:35:24Z"
+    packet_pointer: "scaffold/006-dual-root-code-and-contracts"
+    last_updated_at: "2026-09-16T17:54:08Z"
     last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 template"
+    recent_action: "Initialized Level 2 template"
     next_safe_action: "Replace continuity placeholders"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-003-migration-design"
+      session_id: "scaffold-006-dual-root-code-and-contracts"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
@@ -38,9 +38,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 003-migration-design |
+| **Spec Folder** | 006-dual-root-code-and-contracts |
 | **Completed** | 2026-09-16 |
-| **Level** | 3 |
+| **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,7 +50,7 @@ _memory:
 
 [Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
-### Phase 3: migration-design
+### Phase 3: dual-root-code-and-contracts
 
 [What this feature does and why it exists. 1-2 paragraphs. Use direct address.
 Explain what the user gains, not what files you touched.]

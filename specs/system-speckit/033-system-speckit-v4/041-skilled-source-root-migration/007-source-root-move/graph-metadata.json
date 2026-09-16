@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled source root move",
+      "rename-only tree move",
+      "opencode compatibility shape commit",
+      "skilled placeholder removal",
+      "rename push deletion ceiling",
+      "source root move plan",
+      "per entry git mv verification",
+      "rename commit deletion ceiling",
+      "opencode compatibility commit",
+      "source root move rollback",
+      "source root move tasks",
+      "per entry git mv tasks"
+    ],
+    "key_topics": [
+      "skilled",
+      "source",
+      "root",
+      "move",
+      "rename-only",
+      "tree",
+      "opencode",
+      "compatibility",
+      "shape",
+      "commit",
+      "placeholder",
+      "removal"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back/.gitkeep",
+      ".opencode/skills/sk-git/references/large-reorg-playbook.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/node_modules/.package-lock.json",
+      ".opencode/package-lock.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": ".skilled/future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back/.gitkeep",
+        "source": "derived"
+      },
+      {
+        "name": "large-reorg-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/large-reorg-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": ".package-lock.json",
+        "kind": "config",
+        "path": ".opencode/node_modules/.package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Git",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The authored tree has to change roots without losing its history, without a gate run that passes because the gates could not find themselves, and without breaking seven machine-wide hooks that point into the main checkout",
+    "created_at": "2026-09-16T17:54:08Z",
+    "last_save_at": "2026-09-16T18:43:45.351Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b385711b569267d0e2c765e83ef8195efd8dc84eea6c76949ab4e80146a9c72e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9acbf036a45a4693b5081398cbef05d8a0b7745eb8841d366aa81050ec912630",
+      "plan.md": "d810cdf569da22377f3c0854e2b7d42063f5a9ef8da396349605311b417befb6",
+      "tasks.md": "66ac144842453d2fde06f82b1ab699c41deb255f7a144d6e7547d1e03abf8e40",
+      "implementation-summary.md": "a58a131cb1f1a2f416844cd3ac4a2f1e5a4a37f81aa17d051bc9213e0c79d627"
+    },
+    "last_active_at": null
+  }
+}

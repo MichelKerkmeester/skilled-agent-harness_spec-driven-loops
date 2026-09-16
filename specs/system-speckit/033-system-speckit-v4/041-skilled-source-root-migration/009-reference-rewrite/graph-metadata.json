@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled reference rewrite",
+      "opencode path reference rewrite",
+      "reference rewrite batch plan",
+      "freeze exclusion globs",
+      "reference rewrite rescan",
+      "reference rewrite rule",
+      "reference rewrite batches",
+      "rewrite batch verification",
+      "reference rewrite delegation",
+      "reference rewrite tasks",
+      "rewrite batch task order",
+      "reference rewrite verification checklist"
+    ],
+    "key_topics": [
+      "skilled",
+      "reference",
+      "rewrite",
+      "opencode",
+      "path",
+      "batch",
+      "plan",
+      "freeze",
+      "exclusion",
+      "globs",
+      "rescan",
+      "rule"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".github/dependabot.yml",
+      ".github/workflows/README.md",
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
+      ".opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md",
+      "templates/changelog/README.md",
+      ".opencode/skills/sk-doc/shared/scripts/reference_checker.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dependabot.yml",
+        "kind": "config",
+        "path": ".github/dependabot.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-capabilities.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook-validation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md",
+        "source": "derived"
+      },
+      {
+        "name": "reference_checker.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/reference_checker.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Manifest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Map",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 007 moves the authored tree, 2,963 tracked files still name it by its old path: 2,938 mechanical rows in map C carrying 15,648 matching lines plus 27 authored runtime files in map B",
+    "created_at": "2026-09-16T17:54:09Z",
+    "last_save_at": "2026-09-16T18:43:45.596Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f4d2ec4fc0e5bf6880fa4fe63c717aa90ba273058dedff2405954fb42bcf584b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a8c30cb10c4d3c7ad5756a1e1ce527aa1e56b6d68a8df8971dedc6a5b2cb5dcc",
+      "plan.md": "ff558a811be475bb48854438861ce25256e7e58ef479903a1702c1d0b937e75c",
+      "tasks.md": "ea9bbacbb85dad99ff0c37ae2ab0a5ae2410aa61e3d29a15745cb5990046077b",
+      "implementation-summary.md": "9742e707eebb2d6df276d9e20e30875644231a16097d75241df0da06d8c68ca5"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes",
+  "description": "Phase 004 cannot choose what `.opencode/` becomes until nine runtime and git behaviors are measured, and the two research phases left every one of",
+  "keywords": [
+    "phase",
+    "cannot",
+    "choose",
+    "opencode",
+    "becomes",
+    "until",
+    "nine",
+    "runtime",
+    "git",
+    "behaviors",
+    "measured",
+    "two",
+    "research",
+    "phases",
+    "left",
+    "every",
+    "one"
+  ],
+  "lastUpdated": "2026-09-16T18:36:00.736Z",
+  "specId": "003",
+  "folderSlug": "layout-probes",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

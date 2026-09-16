@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness",
+  "description": "The repository's gates look for their own scripts at one literal root, `$REPOROOT/.opencode/`, and most of them read a missing script as a reason to",
+  "keywords": [
+    "repository",
+    "gates",
+    "look",
+    "own",
+    "scripts",
+    "one",
+    "literal",
+    "root",
+    "reporoot",
+    "opencode",
+    "them",
+    "read",
+    "missing",
+    "script",
+    "reason"
+  ],
+  "lastUpdated": "2026-09-16T18:40:32.423Z",
+  "specId": "005",
+  "folderSlug": "gate-and-ci-readiness",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

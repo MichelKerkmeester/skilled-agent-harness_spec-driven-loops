@@ -15,6 +15,8 @@
       "opencode path inventory",
       "source root move implications",
       "runtime symlink retarget research",
+      "skilled research phase goal",
+      "source root move blockers goal",
       "skilled migration findings",
       "opencode source root blockers",
       "silent gate disengagement",
@@ -38,6 +40,7 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "research/research.md",
       "scratch/topic.txt",
       ".opencode/bin/mcp-code-mode-launcher.cjs",
@@ -50,6 +53,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -125,6 +134,42 @@
         "source": "derived"
       },
       {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator copy",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "Deep Research",
         "kind": "proper_noun",
         "path": "research/research.md",
@@ -147,24 +192,19 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Research Question",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The parent packet proposes rooting the shared asset library at `.skilled/` instead of `.opencode/`",
     "created_at": "2026-09-16T08:35:23Z",
-    "last_save_at": "2026-09-16T16:27:24.602Z",
+    "last_save_at": "2026-09-16T18:44:29.440Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:696883da71c853bfc76a4a66bebff373619f01bc64ef2690bd96630f50f33862",
+    "source_fingerprint": "sha256:ff191cc70b25ce5309a7e1600e081afe29a15a24405ffe652facfd32a54d64f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2026b46ab3f207cfd961d425cb955fd76f9f44c2b52aed9a9094729c1ed6f1d4",

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-migration-design",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design",
   "description": "A move of this size fails in the ordering, not the rename",
   "keywords": [
     "move",
@@ -9,8 +9,8 @@
     "ordering",
     "rename"
   ],
-  "lastUpdated": "2026-09-16T12:27:48.459Z",
-  "specId": "003",
+  "lastUpdated": "2026-09-16T18:35:53.814Z",
+  "specId": "004",
   "folderSlug": "migration-design",
   "parentChain": [
     "system-speckit",

@@ -15,6 +15,8 @@
       "stale opencode path references",
       "skilled reference map",
       "runtime file path inventory",
+      "skilled reference map phase goal",
+      "per runtime map goal",
       "skilled reference map findings",
       "stale opencode references map",
       "reconciled migration map"
@@ -37,6 +39,7 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "research/research.md",
       "scratch/topic.txt",
       "research/maps/map-a-symlinks.tsv",
@@ -53,6 +56,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -152,46 +161,53 @@
         "source": "derived"
       },
       {
-        "name": "Deep Research",
+        "name": "Decisions Frozen",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Merged Findings",
-        "kind": "proper_noun",
-        "path": "research/research.md",
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Executive Summary The",
-        "kind": "proper_noun",
-        "path": "research/research.md",
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "How To Use The Maps",
-        "kind": "proper_noun",
-        "path": "research/research.md",
+        "name": "Operator copy",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Runtime Files And Home",
-        "kind": "proper_noun",
-        "path": "research/research.md",
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. LOG",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 established what kinds of thing the move breaks and which of them cannot be fixed by a rewrite",
     "created_at": "2026-09-16T12:30:38.836Z",
-    "last_save_at": "2026-09-16T13:51:48.580Z",
+    "last_save_at": "2026-09-16T18:44:29.512Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:eaa7e54db895f7ef19e710fb70c746e10f88aec451d223a133af2b5a7e4db26c",
+    "source_fingerprint": "sha256:d0ca7ff7b4814b096979c983a7949aad92bbb656f910555b810c96373b752cfd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c81403bd8b1c2b08319c7247425566e2efb55f956bee7791e48184a605cb5681",
