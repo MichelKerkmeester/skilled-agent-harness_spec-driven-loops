@@ -53,6 +53,26 @@ Each gate file gets one marked block that looks up a root-relative path under `.
 
 ---
 
+<!-- ANCHOR:amendment-l1 -->
+## AMENDMENT: SMALLER CHANGE UNDER L1
+
+Phase 004 accepted L1: `.opencode` becomes one tracked relative link to `.skilled` (`../004-migration-design/decision-record.md` ADR-001). Phase 003 showed that under that link every gate still finds its script and that only path filters miss `.skilled/` changes (`../003-layout-probes/probes/gate-filters-under-linked-root.md`). So the two-root lookup this plan designed for a layout without a link no longer earns its size. GPT-5.6 sol, asked whether a smaller change suffices under L1, answered that it does and found no case the smaller change misses (`review/gpt-5-6-sol-scope-under-l1.md`, brief `review/scope-under-l1-brief.md`). This amendment takes precedence over the sections below wherever they differ.
+
+| Part of this plan | Status under the amendment |
+|-------------------|----------------------------|
+| Two-root block `.github/scripts/source-root.sh`, copied into nine gate files, with `source_root_resolve` (T006 to T008) | Withdrawn. Gate scripts keep their literal `.opencode/` paths, which resolve through the link |
+| C04, export step and `$SOURCE_ROOT` in 21 CI jobs (T029) | Withdrawn. CI checkouts carry the tracked link, and phase 009 leaves phase-005-owned hooks and workflows to keep their literals |
+| H20, autostash log root | Withdrawn. `.opencode/logs` resolves into `.skilled/logs` through the link |
+| Missing-script rule L1 to L4 | Kept. Identity becomes one small function per gate file, `_in_toolchain_repo`, true when `skills/system-spec-kit/SKILL.md` is a regular file under `.opencode/` or `.skilled/`. A missing script then blocks or warns as L2 and L3 say, and a foreign repository stays silent |
+| Filter twins H04, H05, H07, H08, H09 (pathspecs), H13, H16, H22 and C01 to C03 | Kept unchanged |
+| C05 fail-closed conditionals | Kept unchanged |
+| Independent check | Kept, with five rules: gate-files, hook-inputs (every literal `$REPO_ROOT/.opencode/<path>` or `${REPO_ROOT}/.opencode/<path>` in a gate file resolves), workflow-inputs (every literal executable `.opencode/<path>` in a workflow resolves, a glob needs a match), filter-twins and parser-miss. The block-copies and escaped-roots rules go with the block |
+| Broken-move drill | Kept, with three sections: an L1 clone where the check passes, a broken input in that clone that the check reports and the hook blocks or warns on, and the pre-change control plus the foreign control |
+| REQ-012 naming guard | Kept unchanged |
+<!-- /ANCHOR:amendment-l1 -->
+
+---
+
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 

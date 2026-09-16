@@ -55,11 +55,12 @@
       ".opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh",
       ".opencode/scripts/git-hooks/tests/pre-commit.test.sh",
       ".skilled/future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back/.gitkeep",
+      "review/gpt-5-6-sol-scope-under-l1.md",
+      "review/scope-under-l1-brief.md",
       ".opencode/hooks/shared/hook-flags.sh",
       ".opencode/scripts/install-git-hooks.sh",
       ".opencode/scripts/git-hooks/tests/README.md",
-      ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
-      ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py"
+      ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py"
     ],
     "entities": [
       {
@@ -135,6 +136,18 @@
         "source": "derived"
       },
       {
+        "name": "gpt-5-6-sol-scope-under-l1.md",
+        "kind": "doc",
+        "path": "review/gpt-5-6-sol-scope-under-l1.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope-under-l1-brief.md",
+        "kind": "doc",
+        "path": "review/scope-under-l1-brief.md",
+        "source": "derived"
+      },
+      {
         "name": "hook-flags.sh",
         "kind": "script",
         "path": ".opencode/hooks/shared/hook-flags.sh",
@@ -150,12 +163,6 @@
         "name": "test_no_new_snake_case_guard.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
-        "source": "derived"
-      },
-      {
-        "name": "check_no_new_snake_case.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
         "source": "derived"
       },
       {
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repository's gates look for their own scripts at one literal root, `$REPOROOT/.opencode/`, and most of them read a missing script as a reason to skip",
     "created_at": "2026-09-16T17:54:07Z",
-    "last_save_at": "2026-09-16T18:43:45.114Z",
+    "last_save_at": "2026-09-16T20:58:45.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6a90b100bfcc527328ce394086e285c7963fbe46090fbcac1c0abc7cff40753",
+    "source_fingerprint": "sha256:fd68e54ab0688e8f44032d90ef50a3594c77c22c9c052522661c37d9b66d6938",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8d9c45d0cc30a1e3f5c4e362cdef422939ff5bb07c76566f1229989cd918f0de",
-      "plan.md": "a540b620b1b7727ef94cff4bb185ea64850a75f00f51b1b95b779d67164f6c54",
-      "tasks.md": "b0ba734fc57d9702341ab07275e0ea0c00637d55def94dd6a8d86d7f149e451b",
-      "implementation-summary.md": "dd2e4d9f3db275c891afcb37b464a7bebe63d1c2f1a0cb797512e8b8cd4de03b"
+      "spec.md": "56735b3f89f9db28cdc71c169093f13c3a57ce5d34a299926bf8c35b81be9bf4",
+      "plan.md": "81f9cf23b93016c77477543421c249ed6576c076a40de4bf7d03365207f16994",
+      "tasks.md": "e5b986395ae572f93aebf41f77041b4b2f4bda2b97432202a3c4cdb6d25aabe3",
+      "implementation-summary.md": "12049fda20fdf9bea638dcf232a3ca5cc23bf7b57cbe1242788157f610785a8f"
     },
     "last_active_at": null
   }

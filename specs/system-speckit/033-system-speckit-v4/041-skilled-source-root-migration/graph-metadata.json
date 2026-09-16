@@ -169,14 +169,14 @@
     ],
     "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
     "created_at": "2026-09-16T08:35:04Z",
-    "last_save_at": "2026-09-16T20:24:41.840Z",
+    "last_save_at": "2026-09-16T20:58:45.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d667c2202606a91e2c85b6d8071a60f2a5ce0d3aeb19e5f535576c68a5a83bf9",
+    "source_fingerprint": "sha256:cc2af063b9c236f50f2cc7a4ab275a04204f1d0a28d28964d7da248a1da51c80",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c3e9b048377f1761bfd53907c22fc15855bbc5fd8e3309ac6ab0800112d5065c"
