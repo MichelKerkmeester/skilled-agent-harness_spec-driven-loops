@@ -584,6 +584,34 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     expect(result.activeP1).toBe(0);
   });
 
+  it('reports an out-of-scale severity instead of letting it rank below every P2 in silence', () => {
+    const result = mergeReviewRegistries([
+      {
+        label: 'a',
+        registry: {
+          // The same finding appears in both lists, so the check has to collapse its own
+          // duplicate report the way the merge collapses the duplicate finding.
+          openFindings: [
+            { findingId: 'F1', severity: 'P3', status: 'active', title: 'Out-of-scale rating' },
+            { findingId: 'F2', severity: 'P2', status: 'active', title: 'In-scale advisory' },
+          ],
+          resolvedFindings: [{ findingId: 'F1', severity: 'P3', status: 'resolved_fixed', title: 'Out-of-scale rating' }],
+        },
+      },
+      { label: 'b', registry: { openFindings: [] } },
+    ]);
+
+    const warnings = result.schema_mismatch as Array<{ unknownSeverity: string; findingId: string; lineage: string }>;
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0].unknownSeverity).toBe('P3');
+    expect(warnings[0].findingId).toBe('F1');
+    expect(warnings[0].lineage).toBe('a');
+    // Loud is not re-ranked: the merge does not invent the tier the scale lacks, so the
+    // out-of-scale finding still raises nothing and the in-scale P2 still decides the count.
+    expect(result.activeP2).toBe(1);
+    expect(result.mergedVerdict).toBe('PASS');
+  });
+
   it('collects a finding whose active state is under `disposition` (real lineage shape), not `status`', () => {
     // Live lineage registries emit the active flag as `disposition`; a status-only filter
     // dropped every such finding and merged an empty PASS over an active P0.

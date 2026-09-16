@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "scaffold/009-containment-promise-and-severity-scale"
     last_updated_at: "2026-09-15T14:23:17Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,9 +73,9 @@ to the parent: apply it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The containment promise reads the same in the comments, the inline blocks, the verifier and the runner, with no executor residue in a branch it does not apply to
-- [ ] No document promises a severity tier the state schema and review contracts do not implement
-- [ ] The deep-loop suite exits zero
+- [x] The containment promise reads the same in the comments, the inline blocks, the verifier and the runner, with no executor residue in a branch it does not apply to
+- [x] No document promises a severity tier the state schema and review contracts do not implement
+- [x] The deep-loop suite exits zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -91,11 +91,14 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; eleven source files, two domains given one authority each, four brief measurements corrected against the tree |
+| Full suite | Green | 154 files, 2678 passed, 8 skipped, exit 0 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Four measurements wrong | The delegate checked the brief against the tree first: the promise comment occurs once per auto variant not four times, was never copied into three branches, totals four sites once the confirm notes count, and the four-tier promise sites had already been corrected elsewhere |
+| Preserve stayed the default | Changing it is a destructive behaviour change on shared checkouts, and the runner latches preserve permanently once a second writer is detected, so a restore default would not hold where it matters |
+| Three adjacent defects recorded | The runner's devin branch, the reducer's severity normalizer and the agent mirrors each carry a related defect on a surface this phase does not own |
 <!-- /ANCHOR:log -->

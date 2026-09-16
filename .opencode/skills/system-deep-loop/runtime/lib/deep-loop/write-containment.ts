@@ -1783,7 +1783,10 @@ function appendContainmentEvent(stateLogPath: string, event: ContainmentViolatio
  * patch for the caller's fatal message, and `quarantinePath` naming the durable record. The
  * record is per pass: pass the iteration (and the attempt, for a caller that retries one) and
  * a second pass over the same lane adds a second manifest and a second set of patches rather
- * than replacing the first. The caller fails the iteration fail-closed when `violations.length > 0`.
+ * than replacing the first. Fatality is the caller's decision, not this module's: a preserved
+ * path is reported and left in place, so the remedy never fails a run by itself. A breach turns
+ * fatal downstream -- through the findings verdict the caller records, or the cross-lineage
+ * merge that makes any active P0 a merged FAIL.
  */
 export function enforceWriteContainment(input: EnforceInput): EnforceResult {
   const detected = detectNewOutOfScopeViolations(input);

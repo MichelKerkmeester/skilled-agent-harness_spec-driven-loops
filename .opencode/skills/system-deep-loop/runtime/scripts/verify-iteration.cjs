@@ -241,6 +241,10 @@ function verify(loopType, artifactDir, iteration) {
   }
   // Review narratives must end on exactly one machine-readable verdict; research/context
   // use a different closing shape, so only review enforces the verdict line here.
+  // Shape only: this reads the line's format, never whether it agrees with the findings, so a
+  // PASS written above active P1 findings passes here. The line is the leaf's own report; the
+  // verdict that governs a release is recomputed from the findings registry, and in a fan-out
+  // run the cross-lineage merge turns any active P0 into a merged FAIL.
   if (loopType === 'review') {
     const verdictPattern = /^Review verdict:\s*(PASS|CONDITIONAL|FAIL)\s*$/i;
     const verdictLines = narrative.split(/\r?\n/).filter((line) => verdictPattern.test(line));

@@ -22,6 +22,31 @@ const { spawnSync } = require('node:child_process');
 
 const SEVERITY_RANK = { P0: 3, P1: 2, P2: 1 };
 
+/**
+ * Collects findings whose `severity` is outside the three-tier scale of SEVERITY_RANK.
+ *
+ * The review scale has exactly three tiers, so no value outside it carries a rank: the merge
+ * would sort it below every P2 and let it raise nothing, and a finding that raises nothing is
+ * indistinguishable from a finding nobody wrote. Only the producer can fix the word it stamped,
+ * so the value is reported and attributed instead of absorbed -- the merge cannot invent a tier
+ * the scale does not have, and guessing one would hide the defect a second way.
+ */
+function collectUnrankedSeverities(findings, lineage, out) {
+  for (const finding of findings || []) {
+    const severity = finding && finding.severity;
+    // An absent severity is a different defect and the registry-shape warnings already cover a
+    // missing field, so only a present-but-unranked value is reported here.
+    if (severity === undefined || severity === null || severity === '') continue;
+    if (Object.prototype.hasOwnProperty.call(SEVERITY_RANK, severity)) continue;
+    const findingId = finding.findingId || finding.id || finding.title || '(unidentified)';
+    const alreadyReported = out.some(
+      (entry) => entry.lineage === lineage && entry.findingId === findingId && entry.severity === severity,
+    );
+    if (alreadyReported) continue;
+    out.push({ severity: String(severity), lineage, findingId });
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. TSX BOOTSTRAP
 // ─────────────────────────────────────────────────────────────────────────────
@@ -760,6 +785,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
   const mergeOptions = resolveMergeOptions(options);
   const findingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();
   const schemaWarnings = [];
+  const unrankedSeverities = [];
   // A finding still active in at least one lineage must not also surface as resolved —
   // some other lineage having closed it doesn't mean the finding is closed overall.
   const activeFindingIds = new Set();
@@ -775,6 +801,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
       process.stderr.write(JSON.stringify(w) + '\n');
     }
     if (!registry || !Array.isArray(registry.openFindings)) continue;
+    collectUnrankedSeverities(registry.openFindings, label, unrankedSeverities);
     for (const finding of registry.openFindings) {
       // Lineage registries emit the active-state under `disposition`; older reduced
       // shapes used `status`. Accept either so a live finding is never silently dropped
@@ -798,6 +825,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
   const resolvedFindingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();
   for (const { label, registry } of lineageData) {
     if (!registry || !Array.isArray(registry.resolvedFindings)) continue;
+    collectUnrankedSeverities(registry.resolvedFindings, label, unrankedSeverities);
     for (const finding of registry.resolvedFindings) {
       const id = finding.findingId || finding.title;
       if (!id) continue;
@@ -832,6 +860,21 @@ function mergeReviewRegistries(lineageData, options = {}) {
     mergedVerdict = 'CONDITIONAL';
   } else {
     mergedVerdict = 'PASS';
+  }
+
+  // Same channel the registry-shape mismatches already use, so an unranked severity reaches
+  // both the run's stderr and the merged registry a release decision reads.
+  for (const entry of unrankedSeverities) {
+    const warning = {
+      type: 'schema_mismatch',
+      severity: 'warn',
+      lineage: entry.lineage,
+      findingId: entry.findingId,
+      unknownSeverity: entry.severity,
+      message: `Finding "${entry.findingId}" from lineage "${entry.lineage}" carries severity "${entry.severity}", which is outside the review severity scale (P0|P1|P2). It is unranked, sorts below every P2, and cannot raise the merged verdict; collapse it to P2 where the finding is rated.`,
+    };
+    schemaWarnings.push(warning);
+    process.stderr.write(JSON.stringify(warning) + '\n');
   }
 
   return {

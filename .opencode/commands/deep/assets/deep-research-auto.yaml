@@ -1628,11 +1628,17 @@ workflow:
               receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
               dispatchId,
             });
-            // Structural write-containment: a workspace-write codex leaf can write
-            // anywhere in the repo. Revert any NEW out-of-artifact-dir change it
-            // made, append a containment_violation event to the state log, and
-            // fail the iteration fail-closed. The leaf's own writes under
-            // artifactDir (iteration file/delta/state record) are never flagged.
+            // Structural write-containment: the artifact-dir boundary is prompt-only, so a
+            // workspace-write leaf can write anywhere in the repo. The guard diffs the tree
+            // after the dispatch and reports every NEW out-of-artifact-dir path. Its remedy
+            // PRESERVES by default -- event recorded, copy quarantined, bytes left on disk --
+            // because a path it cannot attribute may belong to a concurrent writer, so a
+            // revert here would destroy work this lane never wrote; reverting is opt-in per
+            // run and is not implied by this call. Remedy authority, both modes:
+            // runtime/lib/deep-loop/write-containment.ts. A violation is reported below and
+            // left on disk, never made fatal here: what the run does about it is the
+            // verdict's to decide. The leaf's own writes under artifactDir (iteration
+            // file/delta/state record) are never flagged.
             const containment = enforceWriteContainment({
               repoRoot,
               artifactDir,

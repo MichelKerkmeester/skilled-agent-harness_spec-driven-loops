@@ -324,6 +324,8 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 | **P1** | Degraded behavior, incomplete implementation, missing validation | Conditional, triggers CONDITIONAL verdict |
 | **P2** | Style, naming, minor improvements, documentation gaps | No, PASS with advisories |
 
+The scale has exactly three tiers; no fourth is reserved. A severity outside P0/P1/P2 -- a `P3` inherited from an older four-level convention, or any unlisted word -- is not a fourth tier: collapse it to the tier its impact actually matches (a `P3` becomes `P2`) and keep the original rating visible in the finding, so the rating is converted rather than lost. An unconverted out-of-scale severity reaches the cross-lineage merge unranked, where it sorts below every P2 and cannot raise the merged verdict.
+
 ### Verdicts
 
 | Verdict | Condition |
@@ -357,6 +359,8 @@ Review verdict: FAIL
 **VERDICT_LOCK:** Any confirmed active P0 forces the exact final line `Review verdict: FAIL` -- never relabel that state as conditional, partial, mixed, or advisory, and truncated/partial output is not a valid substitute for the final line. An optional advisory `riskScore` may appear in narratives/JSONL for relative risk calibration but never changes the `PASS|CONDITIONAL|FAIL` mapping.
 
 Downstream automation (including the synthesis phase and CI gate parser) parses this final line via exact string match, do not vary the format.
+
+**What the check proves:** the post-dispatch verifier validates the *shape* of this line -- exactly one well-formed verdict line, and it is final. It does not read findings, so a `PASS` written above active P1 findings satisfies it, and no parser here makes the line true. The verdict a release decision reads is recomputed from the findings registry, and in a fan-out run the cross-lineage merge -- any active P0 becomes a merged FAIL -- is the authoritative rollup. Treat the final line as the leaf's self-report and the registry as the record.
 
 ### Executor Selection Contract
 

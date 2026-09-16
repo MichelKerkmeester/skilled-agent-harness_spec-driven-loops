@@ -39,14 +39,24 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts"
     ],
     "entities": [
       {
@@ -86,6 +96,66 @@
         "source": "derived"
       },
       {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack-iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +186,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Two",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -132,71 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Two governed domains each had two authorities pronouncing and nothing reconciling them",
     "created_at": "2026-09-15T14:23:16Z",
-    "last_save_at": "2026-09-15T14:24:49.115Z",
+    "last_save_at": "2026-09-16T01:23:52.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7581e3ab789dba840c450857bf38f7b993bf4df6af9aed6121b7507d8464b54a",
+    "source_fingerprint": "sha256:39e48ab5a13f284268d4bad153746f246d088784f5f3795b6e6584b041e3ae6d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7cc372dce775486f4077f5ed44c4b1eefc89dbdb2dabfdbd35fda4b92e2a25fe",
-      "plan.md": "3f458b4f47e13bedf8b09e1101d42bc1ca08c0b8099848ee7f47452ef49f61b7",
-      "tasks.md": "072949dcfb56c5cd62f2658486b546fed82fe17ea6683af377cfb33a73f06943",
-      "implementation-summary.md": "298ec149efaf5eddce8ed2d8b6a5b9c800b4e6ddb9340a9dd81ced4a2cfcf784"
+      "spec.md": "1c0841a4b7bc2e77cc98284772c424edd3e0bf09fcb867f94bbd7a659dc74d8f",
+      "plan.md": "a56d88d3d1b8dd6df2984cce508751d676f42b055e22943a109a4ec0d79e9a6a",
+      "tasks.md": "f0caf16be9ee1c0a34045c7131f14f51fe191f7310975ea2dbd3e9643d3285b6",
+      "implementation-summary.md": "ea19bf346c6f226dd0f4bbe6ade110652b09cf768b1456f525d3c5da205aff5a"
     },
     "last_active_at": null
   }
