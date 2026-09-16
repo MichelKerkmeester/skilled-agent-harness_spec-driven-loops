@@ -50,6 +50,8 @@ evidence, scope, coverage
 
 `FAIL | CONDITIONAL | PASS`, PASS may set `hasAdvisories=true` when only P2 remain.
 
+Severity scale: `P0`, `P1`, `P2`, and nothing else -- no fourth tier is reserved. A `P3` or any other unlisted rating is not a tier: collapse it to the tier its impact matches (a `P3` becomes `P2`) and keep the original rating visible in the finding. An out-of-scale severity is unranked downstream, sorts below every P2, and cannot raise the verdict, so leaving it unconverted loses the finding.
+
 ### Iteration Final-Line Contract (MANDATORY)
 
 `{state_paths_iteration_pattern}` MUST end with exactly one of these plain-text lines as the **absolute final line** (no trailing whitespace, no variation), and every iteration MUST emit exactly one parseable verdict:
@@ -66,7 +68,7 @@ Review verdict: CONDITIONAL
 Review verdict: FAIL
 ```
 
-Mapping: PASS if no P0 or P1 findings this iteration; CONDITIONAL if any P1 (no P0); FAIL if any P0. P2-only findings → PASS. An active P0 forces `Review verdict: FAIL` -- never relabel it as conditional, partial, mixed, or advisory, and truncated/partial output is not a valid substitute for the final line. Downstream automation (synthesis phase, CI gate parser) parses this final line via exact string match -- do not vary the format.
+Mapping: PASS if no P0 or P1 findings this iteration; CONDITIONAL if any P1 (no P0); FAIL if any P0. P2-only findings → PASS. An active P0 forces `Review verdict: FAIL` -- never relabel it as conditional, partial, mixed, or advisory, and truncated/partial output is not a valid substitute for the final line. Downstream automation (synthesis phase, CI gate parser) parses this final line via exact string match -- do not vary the format. This line is your self-report: the verifier checks its shape only, never whether it agrees with the findings, and the verdict a release decision reads is recomputed from the findings registry, where a fan-out merge turns any active P0 into FAIL.
 
 ## CLAIM ADJUDICATION
 

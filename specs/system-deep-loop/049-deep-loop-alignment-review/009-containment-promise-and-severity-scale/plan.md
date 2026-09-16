@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 8: containment-promise-and-severity-scale"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Correct each promise to what the code does, state the shape-only contract where three different readers meet it, and report an out-of-scale severity instead of absorbing it."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (ESM) plus a CommonJS runner script |
+| **Framework** | None |
+| **Storage** | Git working tree, JSONL state and status ledgers |
+| **Testing** | Vitest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Each claim was checked against the code before editing. Where the promise and the mechanism disagreed, the promise was corrected, because the mechanism is load-bearing and changing it is a destructive behaviour change on shared checkouts. Where a check is weaker than a reader would assume, the contract now says so and names where the governing answer is computed. Where a value fell through a lookup, it is reported and attributed rather than given a rank the scale does not have.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,16 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Name one authority, make the losing site point at it
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Containment promise sites**: Four, plus the guard's own docstring
+- **Verdict contract**: Stated at the check, the hub document and the rendered prompt
+- **Merge severity report**: Per lineage, finding and value, through the existing mismatch channel
+- **Collapse rule**: Written where a rater reads it
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Each promise is matched against the mechanism it describes; the mismatched half is rewritten to point at the mechanism, and the one silent fallthrough becomes a reported one.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,18 +71,19 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Containment comments | Promised revert, event and loud failure | correct the promise | no site claims a revert; the remedy authority is named |
+| Confirm notes | Carried the same claim | correct the promise | the claim is gone from both |
+| Guard docstring | Asserted a caller obligation no caller meets | correct | the assertion is gone |
+| Verdict check | Shape-only, undocumented | state the contract | stated at three sites with different readers |
+| Merge rank lookup | Zero default absorbed an out-of-scale value | report | warning emitted where the pre-change module emitted none |
+| Compiled contracts | Staled by the edits | regenerate | the digest test accepts them |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: four promise sites plus one docstring, one rank lookup, three contract statements.
+- Consumers: the orchestrating agent reading the YAML, the rater reading the prompt pack, and the release decision reading the merged registry.
+- Residuals recorded not fixed: the runner's devin branch repeating the revert claim inside another session's executor tables, the reducer's severity normalizer dropping an out-of-scale finding silently, and the agent mirrors which the collapse rule does not reach yet.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -99,9 +102,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | The out-of-scale report, its duplicate collapse, and an in-scale value still deciding the verdict | Vitest |
+| Drift | Compiled contracts against their sources | node |
+| Suite | Whole deep-loop runtime | Vitest |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +114,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| None | - | Green | - |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +122,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A corrected promise turns out to describe the wrong mode
+- **Procedure**: Revert this phase's commit; the mechanism was never changed, only what is said about it
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +155,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | minutes |
+| Core Implementation | Low | one dispatch |
+| Verification | Med | full suite run |
+| **Total** | | **one dispatch plus one suite run** |
 <!-- /ANCHOR:effort -->
 
 ---

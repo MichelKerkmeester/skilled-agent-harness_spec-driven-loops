@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "420cf0ab9f8847b930268f32a3f90335556ebc92a8a57986353fedd70778543f",
+      "sha256": "32b349e663f0846f85c866f83974461ad038927ce169018c342f1a8a4b92078f",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "fd3fa3ae3a469810cdd9919b8092f7abda673b8987352ad380fe32891c6f05b1",
+      "sha256": "48a9e114000b9ded677b52f38947bf92a6b1f14fe1e92f863721a75bea2a6693",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "f188b2349bc682286de941c242ac8adec3db0dc75e002585eafb9ec52bbf0c8c",
+      "sha256": "bf4eef7ec4dd0e28965c7ddce203222a8e5b0256b9f368d05eee834ffb7894be",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "d22eec8de84cc877afabff8a727e498f00ecec34f98fd02ccd3973e390c0aab8",
+      "sha256": "65fb7e3dfaff17ddbbf7c8ec4811e6957caaa2160d7ca260a6f70c709666562f",
       "section": "full"
     },
     {
