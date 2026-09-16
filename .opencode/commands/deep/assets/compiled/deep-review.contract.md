@@ -37,7 +37,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "db573b833398d3c7d629e6f23598573ee8c10f4c702d7d1676016ed8f2068f20",
+      "sha256": "50ec2328086ca97d4002f0f0e5ecfac3600488aa0fc178a05334b579a3d86b46",
       "section": "full"
     },
     {

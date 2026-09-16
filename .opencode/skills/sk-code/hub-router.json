@@ -12,6 +12,8 @@
       "defer": "unclear or contradictory code intent asks for disambiguation"
     },
     "defaultResource": ["shared/README.md"],
+    "defaultResourceSemantics": "fallback-only",
+    "defaultResourceContract": "A scored route assembles exactly the selected mode's declared resources. defaultResource is consulted only when no mode scores (zero-signal branch), and then only as the defer-time suggestion offered with the disambiguation checklist. It is a distinct concept from the stage-two DEFAULT_RESOURCE preamble ROUTER.md declares: this array is the zero-signal fallback, that one is the always-loaded preamble.",
     "discoveryClasses": ["hub-identity"],
     "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: hub-identity vocabulary describes the router itself, so a prompt carrying only it scores zero modes and defers instead of bundling every workflow mode and surface at once."
   },
