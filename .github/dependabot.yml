@@ -11,6 +11,7 @@ updates:
     directories:
       - "/"
       - "/.opencode/**"
+      - "/.skilled/**"
       - "/.pi/extensions/**"
     schedule:
       interval: "weekly"

@@ -26,7 +26,7 @@ jobs:
           CHANGED=()
           while IFS= read -r file; do
             [ -n "$file" ] && CHANGED+=("$file")
-          done < <(git diff --name-only --diff-filter=ACMD "$BASE" "$HEAD" | grep -E '^\.(opencode|claude|codex)/agents/' || true)
+          done < <(git diff --name-only --diff-filter=ACMD "$BASE" "$HEAD" | grep -E '^\.(opencode|skilled|claude|codex)/agents/' || true)
           if [ "${#CHANGED[@]}" -eq 0 ]; then
             echo "No agent files changed — nothing to verify."
             exit 0
