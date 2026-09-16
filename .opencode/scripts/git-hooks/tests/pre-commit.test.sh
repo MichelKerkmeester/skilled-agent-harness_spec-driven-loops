@@ -395,6 +395,46 @@ stage_new "notes.md" "note"
 SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
 check "a missing mirror parity script blocks" 1 "$RC" "mirror-parity]: script is missing"
 
+# ── 27. a staged .skilled prompt surface reaches the card-sync guard ──
+setup_gate_fixture
+mkdir -p "$TMP/.opencode/skills/system-skill-advisor/runtime/scripts"
+printf '%s\n' 'echo called >> "$1/guard-calls.log"' \
+  > "$TMP/.opencode/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh"
+stage_new ".skilled/skills/cli-external-orchestration/cli-x/SKILL.md" "cli"
+SPECKIT_SKIP_CARD_SYNC=0 run_hook; RC=$?
+check "a .skilled prompt surface passes the card-sync gate" 0 "$RC"
+if [[ -s "$TMP/guard-calls.log" ]]; then
+  echo "PASS  the card-sync guard ran for the .skilled surface"; PASS=$((PASS + 1))
+else
+  echo "FAIL  the card-sync guard never ran for the .skilled surface"; FAIL=$((FAIL + 1))
+fi
+
+# ── 28. a missing card-sync guard blocks a staged prompt surface where the toolchain ships ──
+setup_gate_fixture toolchain
+stage_new ".opencode/skills/cli-external-orchestration/cli-x/SKILL.md" "cli"
+SPECKIT_SKIP_CARD_SYNC=0 run_hook; RC=$?
+check "a missing card-sync guard blocks" 1 "$RC" "drift guard is missing"
+
+# ── 29. a staged .skilled MCP doctor script reaches the mutation-class guard ──
+setup_gate_fixture
+mkdir -p "$TMP/.opencode/commands/doctor/scripts"
+printf '%s\n' 'echo called >> "$1/guard-calls.log"' \
+  > "$TMP/.opencode/commands/doctor/scripts/check-mcp-mutation-class.sh"
+stage_new ".skilled/skills/mcp-tooling/mcp-x/scripts/doctor.sh" "doctor"
+SPECKIT_SKIP_MCP_MUTATION_CLASS=0 run_hook; RC=$?
+check "a .skilled doctor script passes the mutation-class gate" 0 "$RC"
+if [[ -s "$TMP/guard-calls.log" ]]; then
+  echo "PASS  the mutation-class guard ran for the .skilled script"; PASS=$((PASS + 1))
+else
+  echo "FAIL  the mutation-class guard never ran for the .skilled script"; FAIL=$((FAIL + 1))
+fi
+
+# ── 30. a missing mutation-class guard blocks a staged doctor script where the toolchain ships ──
+setup_gate_fixture toolchain
+stage_new ".opencode/skills/mcp-tooling/mcp-x/scripts/doctor.sh" "doctor"
+SPECKIT_SKIP_MCP_MUTATION_CLASS=0 run_hook; RC=$?
+check "a missing mutation-class guard blocks" 1 "$RC" "contract guard is missing"
+
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]
