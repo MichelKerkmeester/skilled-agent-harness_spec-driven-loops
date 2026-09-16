@@ -339,6 +339,27 @@ run_hook message; RC=$?
 check_rc "a second run still exits 0" 0 "$RC"
 check_same "a second run changes nothing" "$TMP/after-strip.txt" "$TMP/message.txt"
 
+# ── 16. a missing allocator warns where the toolchain ships, and never blocks ──
+setup_repo
+rm -rf "$TMP/.opencode/skills/sk-git/scripts"
+mkdir -p "$TMP/.opencode/skills/system-spec-kit"
+echo sentinel > "$TMP/.opencode/skills/system-spec-kit/SKILL.md"
+printf 'feat(sk-git): stamp without an allocator\n\nBody text.\n' > "$TMP/message.txt"
+cp "$TMP/message.txt" "$TMP/before.txt"
+run_hook message; RC=$?
+check_rc "a missing allocator still exits 0" 0 "$RC"
+check_count "a missing allocator warns once" 'allocator is missing' 1 "$TMP/out.log"
+check_same "a missing allocator leaves the message unstamped" "$TMP/before.txt" "$TMP/message.txt"
+
+# ── 17. an allocator under a linked source root still stamps ──
+setup_repo
+mv "$TMP/.opencode" "$TMP/.skilled"
+ln -s .skilled "$TMP/.opencode"
+printf 'feat(sk-git): stamp through the link\n\nBody text.\n' > "$TMP/message.txt"
+run_hook message; RC=$?
+check_rc "an allocator under .skilled exits 0" 0 "$RC"
+check_count "an allocator under .skilled mints one id" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
+
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"
 [[ "$FAIL" -eq 0 ]]
