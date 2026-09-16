@@ -30,6 +30,7 @@ Most of this does not change how you call the system. The `/deep:*`, `/create:*`
 - **Fan-outs never rewind your files.** A lane that writes outside its own directory leaves your tree exactly as it was and drops a copy of what it wrote into a quarantine you can read. Per-lane worktrees were built, measured and switched off.
 - **Pi hosts the framework natively.** `cli-pi` gained bridges for the repo's skills, commands, agents, MCP servers and hooks. It is the deepest runtime integration of the six.
 - **Hermes joins as the seventh runtime.** `cli-hermes` dispatches Nous Research's Hermes Agent through the LLM Gateway, mirrors every skill and agent into `.hermes/`, and runs the repo's guards through one project plugin that bridges eighteen of the twenty-two hook packages.
+- **The dispatch guards stop approving what they forbid.** Six silent-approval conditions closed, including a shape bug that left every Codex dispatch unchecked. Cursor gained a preflight adapter, OpenCode began enforcing before the call rather than recording after it, and a CI guard now fails the build when a declared rule has no implemented check.
 - **Sign in, not API keys.** Codex and Claude Code dispatch through the account you are already signed in to. `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` are no longer read.
 - **A local vision skill.** `sk-vision` reads screenshots for text-only models through a private Moondream runtime, off by default, on demand through `/vision`. Its MCP transport is gone: OpenCode and Pi load it as a plugin, Devin through a prompt hook and Cursor through a CLI.
 - **Design becomes a hub.** `sk-design` went from one skill to a parent of four modes. Fundamentals decides values for any laid-out surface, the md generator measures a live site into a Style Reference, and chart and diagram moved in from sk-doc under `/design:*`.
@@ -131,6 +132,12 @@ The advisor had been leaving litter in spec folders, writing its `.advisor-state
 **Breaking:** the CLI front door is fail-closed and untrusted by default now too. A mutation through the CLI needs `--trusted`, or it is refused. The native MCP registration that once carried the same setting is gone with the transport.
 
 The reciprocal-rank-fusion spine and the conflict rerank graduated from dark flags to shipping defaults, and the separate self-recommendation guard was cut as redundant once the penalty covered the same ground. A document's `trigger_phrases` now feed the advisor too. Doc-trigger harvesting reads them into a new `skill_docs` table behind `SPECKIT_ADVISOR_DOC_TRIGGERS`.
+
+&nbsp;
+
+#### Short Names Reach the Scorer
+
+The scorer discarded any word of two characters or fewer before the token lanes ever saw it, which made `pi` invisible to every one of them. The hub scored only where an authored phrase happened to spell the wording out, so `delegate to pi` resolved and `delegate this to pi` returned nothing at all. Short filler was already handled by the stop-word list, so the length floor was rejecting short content words and nothing else. Lowering it one character restores the lanes for names like `pi` without letting filler back in, measured against the labelled corpus at no change in accuracy.
 
 &nbsp;
 
@@ -268,7 +275,17 @@ Where the other executors receive a dispatched prompt and run it, Pi loads the r
 
 #### Hermes Runs It Too
 
-Hermes Agent (Nous Research, a Python agent CLI) is the seventh runtime, as `cli-hermes`. It dispatches as a quiet oneshot chat with the prompt on stdin, through the operator's LLM Gateway provider and a closed two-model roster, and it is the eighth deep-loop executor kind. The repo-root `.hermes/` folder carries generated markdown-only copies of every skill and every agent persona (Hermes scans a linked directory in full, so symlinks were rejected on evidence), generated prompt templates, and one project plugin. That plugin bridges eighteen of the twenty-two hook packages into a Hermes session: the skill advisor and spec gate at prompt time, the dispatch, task-dispatch, MCP-route, git and vision guards before a tool call, post-edit quality on a write result, the shared goal core at session start, the session-start advisories, and session cleanup. The four that stay out are runtime-specific by nature. Every bridge has a live playbook scenario; the packet is `cli-external-orchestration/071-cli-hermes-creation`.
+Hermes Agent (Nous Research, a Python agent CLI) is the seventh runtime, as `cli-hermes`. It dispatches as a quiet oneshot chat with the prompt on stdin, through the operator's LLM Gateway provider and a closed seven-id roster, and it is the eighth deep-loop executor kind. The repo-root `.hermes/` folder carries generated markdown-only copies of every skill and every agent persona (Hermes scans a linked directory in full, so symlinks were rejected on evidence), generated prompt templates, and one project plugin. That plugin bridges eighteen of the twenty-two hook packages into a Hermes session: the skill advisor and spec gate at prompt time, the dispatch, task-dispatch, MCP-route, git and vision guards before a tool call, post-edit quality on a write result, the shared goal core at session start, the session-start advisories, and session cleanup. The four that stay out are runtime-specific by nature. Every bridge has a live playbook scenario; the packet is `cli-external-orchestration/071-cli-hermes-creation`.
+
+&nbsp;
+
+#### The Dispatch Guards Now Actually Guard
+
+Adding a seventh runtime meant reading the preflight that is supposed to stop a bad dispatch, and it was approving things it declared forbidden. Six conditions were silently passing. The worst was Codex: the dispatch shape that recognises a `codex exec` command was wrong in two places, so no `cli-codex` rule ever loaded and every Codex dispatch went out unchecked. Hermes fan-out lineages were unguarded for a different reason, the runner never set the project-plugin opt-in, so the packet and read-only markers the guards read were never visible. The seven `cli-*` packets moved their stdin rule from advice to blocking, a reader-toolset requirement was added, and a preload exemption that excused too much was removed.
+
+Coverage then widened past the runtimes that had an adapter. Cursor gained one, and OpenCode began enforcing in-process before a tool call rather than only recording after it. Both call the same shared rule engine rather than carrying a copy, so a rule cannot mean one thing in one runtime and something else in another.
+
+The last piece is the one that keeps this from rotting. A guard asserts a bijection between the rules the packets declare and the checks the engine implements, with a fixture pair per check, and a workflow runs it on every change and fails closed when the suite is missing. A declared rule with no check, which is exactly how all six holes opened, now fails the build instead of passing quietly.
 
 &nbsp;
 
