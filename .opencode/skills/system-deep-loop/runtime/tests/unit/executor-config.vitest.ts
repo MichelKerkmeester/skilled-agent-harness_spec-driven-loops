@@ -82,6 +82,7 @@ describe('executor-config', () => {
       sandboxMode: null,
       timeoutSeconds: 900,
       governor: null,
+      agentPersona: null,
       liveTools: { webSearch: 'inherit', mcpServers: [] },
     });
   });
@@ -383,6 +384,22 @@ describe('executor web-search policy', () => {
     expect(() => parseExecutorConfig({ kind: 'native', model: 'still-unsupported' })).toThrowError(
       /model.*not supported by executor kind 'native'/,
     );
+  });
+
+  it('carries an agent persona only for the kind that declares it', () => {
+    expect(parseExecutorConfig({
+      kind: 'cli-hermes',
+      model: 'glm-5.3-flash',
+      agentPersona: 'markdown',
+    }).agentPersona).toBe('markdown');
+    // Every other kind ignores the field at dispatch, so accepting it silently would
+    // let a lineage believe it runs as a persona it never gets.
+    expect(() => parseExecutorConfig({
+      kind: 'cli-pi',
+      model: 'deepseek-v4.1-flash',
+      agentPersona: 'markdown',
+    })).toThrowError(/agentPersona.*not supported by executor kind 'cli-pi'/);
+    expect(parseExecutorConfig({ kind: 'cli-hermes', model: 'glm-5.3-flash' }).agentPersona).toBeNull();
   });
 
   it('declares every executor-kind by policy cell explicitly', () => {

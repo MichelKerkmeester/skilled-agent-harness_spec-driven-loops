@@ -79,6 +79,12 @@ export const executorConfigSchema = z.object({
   // kind-agnostic on purpose: intentionally absent from EXECUTOR_KIND_FLAG_SUPPORT
   // and the unsupported-field scan, so any executor kind may carry it. null = none.
   governor: z.string().min(1).nullable().default(null),
+  // Names the agent persona a hermes lineage runs as. Only the kind that declares it
+  // in EXECUTOR_KIND_FLAG_SUPPORT may carry it, so the unsupported-field scan below
+  // rejects it on every other kind. The name grammar is deliberately not restated
+  // here: the dispatcher validates it against the persona naming rule it also uses to
+  // build the skill argument, and two copies of that rule would drift apart.
+  agentPersona: z.string().trim().min(1).nullable().default(null),
   liveTools: liveToolsSchema,
 });
 
@@ -621,6 +627,7 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
     'sandboxMode',
     'timeoutSeconds',
     'liveTools',
+    'agentPersona',
   ];
 
   for (const field of allOptionalFields) {

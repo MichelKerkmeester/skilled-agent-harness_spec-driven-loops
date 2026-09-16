@@ -199,11 +199,6 @@ ascii_patterns:
   approval: .opencode/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md
   swimlane: .opencode/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md
   journey: .opencode/skills/sk-design/sk-design-diagram/assets/ascii-patterns/user-onboarding.md
-diagram_templates:
-  minimal_light: .opencode/skills/sk-design/sk-design-diagram/assets/templates/template.html
-  minimal_dark: .opencode/skills/sk-design/sk-design-diagram/assets/templates/template-dark.html
-  full_editorial: .opencode/skills/sk-design/sk-design-diagram/assets/templates/template-full.html
-  terminal: .opencode/skills/sk-design/sk-design-diagram/assets/templates/template-terminal.html
 
 # -----------------------------------------------------------------
 # WORKFLOW ENFORCEMENT (CRITICAL)

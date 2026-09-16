@@ -186,6 +186,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 - **P0 candidate** -- run full Hunter/Skeptic/Referee in THIS iteration BEFORE writing to JSONL.
 - **Gate-relevant P1** -- run compact skeptic/referee pass in-iteration and document it in the finding.
 - **P2** -- no self-check required; document evidence and move on.
+- The scale has exactly three tiers and no fourth is reserved. A rating outside P0/P1/P2, such as a `P3` carried over from an older four-level convention, is not a fourth tier: collapse it to the tier its impact matches and keep the original rating visible in the finding, so it is converted rather than lost. An unconverted value is dropped by the reducer and reaches the cross-lineage merge unranked, where it sorts below every P2 and cannot raise the merged verdict.
 
 #### Verification Discipline
 
