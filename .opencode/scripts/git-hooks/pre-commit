@@ -92,7 +92,7 @@ MIRROR_CHECKER="$REPO_ROOT/.opencode/skills/system-deep-loop/deep-improvement/sc
 STAGED_AGENTS=()
 while IFS= read -r file; do
   [[ -n "$file" ]] && STAGED_AGENTS+=("$file")
-done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|claude)/agents/' || true)
+done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|skilled|claude)/agents/' || true)
 
 if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
   if ! command -v node >/dev/null 2>&1 || [[ ! -f "$MIRROR_CHECKER" ]]; then
@@ -128,7 +128,7 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && command -v node >/dev/null
     .cursor/agents .cursor/commands .cursor/hooks .cursor/hooks.json
     .devin/agents .devin/hooks .devin/hooks.v1.json
     .pi/agents .pi/extensions
-    .opencode/commands/README.txt
+    .opencode/commands/README.txt .skilled/commands/README.txt
   )
   # The trees a mirror is generated FROM. A commit that stages none of these, and no
   # mirror output either, cannot make any mirror staler than it already is, so a dirty
@@ -139,10 +139,13 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && command -v node >/dev/null
     .opencode/agents .opencode/commands .opencode/hooks
     .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors
     .opencode/skills/system-spec-kit/runtime/cli/codex
+    .skilled/agents .skilled/commands .skilled/hooks
+    .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors
+    .skilled/skills/system-spec-kit/runtime/cli/codex
   )
-  UNSTAGED_MIRROR="$( { git diff --name-only -- "${MIRROR_OUTPUTS[@]}" '.opencode/commands/*/README.txt' '.opencode/skills/*/command-metadata.json'; git ls-files --others --exclude-standard -- "${MIRROR_OUTPUTS[@]}"; } 2>/dev/null )"
+  UNSTAGED_MIRROR="$( { git diff --name-only -- "${MIRROR_OUTPUTS[@]}" '.opencode/commands/*/README.txt' '.opencode/skills/*/command-metadata.json' '.skilled/commands/*/README.txt' '.skilled/skills/*/command-metadata.json'; git ls-files --others --exclude-standard -- "${MIRROR_OUTPUTS[@]}"; } 2>/dev/null )"
   if [[ -n "$UNSTAGED_MIRROR" ]]; then
-    STAGED_MIRROR_RELATED="$(git diff --cached --name-only -- "${MIRROR_OUTPUTS[@]}" "${MIRROR_SOURCES[@]}" '.opencode/skills/*/command-metadata.json' 2>/dev/null)"
+    STAGED_MIRROR_RELATED="$(git diff --cached --name-only -- "${MIRROR_OUTPUTS[@]}" "${MIRROR_SOURCES[@]}" '.opencode/skills/*/command-metadata.json' '.skilled/skills/*/command-metadata.json' 2>/dev/null)"
     if [[ -n "$STAGED_MIRROR_RELATED" ]]; then
       echo "" >&2
       echo "BLOCKED [gate:mirror-parity]: a generated mirror has changes that are not staged:" >&2
