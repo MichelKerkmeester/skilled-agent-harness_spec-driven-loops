@@ -43,6 +43,7 @@ export const EXCLUSIONS = Object.freeze([
   '**/scratch/**',
   '**/dist/**',
   '**/research/lineages/**',
+  'specs/**/lineages/**',
   '**/tests/fixtures/**',
   '**/{fixtures,__fixtures__,test-fixtures,*-fixtures}/** outside specs/',
   '.git',
@@ -119,10 +120,13 @@ export function canonicalRelativePath(relativePath) {
 }
 
 /**
- * Directory pruning rule. `research/lineages` is pruned only under a `research`
- * parent so an unrelated directory named `lineages` still gets walked, and a
- * fixture directory is pruned only outside the document root for the reason
- * recorded at DOCUMENT_ROOT.
+ * Directory pruning rule. `lineages` is pruned under a `research` parent anywhere,
+ * and under the document root whatever its parent: the fan-out runner writes
+ * lineage transcripts and containment snapshots into any artifact directory it is
+ * given, so a research-parent rule alone let review and custom-directory lineages
+ * into the index. Outside the document root an unrelated directory named
+ * `lineages` still gets walked. A fixture directory is pruned only outside the
+ * document root for the reason recorded at DOCUMENT_ROOT.
  *
  * @param {string} name Directory name.
  * @param {string} parentName Parent directory name.
@@ -131,7 +135,7 @@ export function canonicalRelativePath(relativePath) {
  */
 export function isExcludedDirectory(name, parentName, relativePath = '') {
   if (EXCLUDED_DIR_NAMES.has(name)) return true;
-  if (name === 'lineages' && parentName === 'research') return true;
+  if (name === 'lineages' && (parentName === 'research' || relativePath.split('/')[0] === DOCUMENT_ROOT)) return true;
   return FIXTURE_DIR_PATTERN.test(name) && relativePath.split('/')[0] !== DOCUMENT_ROOT;
 }
 
