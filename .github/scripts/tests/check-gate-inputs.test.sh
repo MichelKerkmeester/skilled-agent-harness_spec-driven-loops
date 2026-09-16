@@ -1,0 +1,121 @@
+#!/usr/bin/env bash
+# Fixture test for the independent gate-input check.
+#
+# Builds a small repository that satisfies every rule, then breaks one rule per case
+# and expects the check to exit 1 naming that rule. The same repository with its
+# source tree moved under .skilled/ and linked back must still pass, because that is
+# the layout the check exists to approve.
+set -uo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+CHECK="${CHECK_GATE_INPUTS:-$SCRIPT_DIR/../check-gate-inputs.sh}"
+
+PASS=0; FAIL=0
+TMP="$(mktemp -d)"
+trap 'rm -rf "$TMP"' EXIT
+
+GATES="scripts/git-hooks/pre-commit scripts/git-hooks/pre-push scripts/git-hooks/prepare-commit-msg
+scripts/git-hooks/commit-msg scripts/git-hooks/post-commit scripts/git-hooks/post-merge
+scripts/git-hooks/post-rewrite scripts/git-hooks/lib/autostash-orphan-guard.sh
+scripts/git-hooks/lib/mass-deletion-guard.sh hooks/git/pre-commit bin/check-git-hooks.sh"
+
+setup_fixture() {
+  rm -rf "$TMP/repo"
+  mkdir -p "$TMP/repo/.github/workflows" "$TMP/repo/.opencode/bin" "$TMP/repo/.opencode/skills/demo"
+  for gate in $GATES; do
+    mkdir -p "$TMP/repo/.opencode/$(dirname "$gate")"
+    printf '#!/usr/bin/env bash\n' > "$TMP/repo/.opencode/$gate"
+  done
+  echo "tool" > "$TMP/repo/.opencode/bin/tool.sh"
+  echo "skill" > "$TMP/repo/.opencode/skills/demo/SKILL.md"
+  cat >> "$TMP/repo/.opencode/scripts/git-hooks/pre-commit" <<'HOOK'
+TOOL="$REPO_ROOT/.opencode/bin/tool.sh"
+git diff --cached --name-only -- '.opencode/skills/*/SKILL.md' '.skilled/skills/*/SKILL.md'
+HOOK
+  cat > "$TMP/repo/.github/workflows/demo.yml" <<'WORKFLOW'
+name: demo
+on:
+  push:
+    paths:
+      - '.opencode/skills/**'
+      - '.skilled/skills/**'
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: bash .opencode/bin/tool.sh
+WORKFLOW
+  cat > "$TMP/repo/.github/dependabot.yml" <<'DEPENDABOT'
+version: 2
+updates:
+  - package-ecosystem: npm
+    directories:
+      - "/.opencode/**"
+      - "/.skilled/**"
+DEPENDABOT
+}
+
+run_check() { bash "$CHECK" "$TMP/repo" >"$TMP/out.log" 2>&1; }
+
+expect() { # expect <label> <expected-rc> <actual-rc> <substring the output must carry>
+  if [[ "$3" == "$2" ]] && grep -qF -- "$4" "$TMP/out.log"; then
+    echo "PASS  $1"; PASS=$((PASS + 1))
+  else
+    echo "FAIL  $1: expected rc $2 with '$4', got rc $3"
+    sed 's/^/        /' "$TMP/out.log" | tail -6
+    FAIL=$((FAIL + 1))
+  fi
+}
+
+# ── 1. a repository that satisfies every rule passes ──
+setup_fixture
+run_check; RC=$?
+expect "a clean repository passes" 0 "$RC" "RESULT: PASSED"
+
+# ── 2. a missing gate file fails gate-files ──
+setup_fixture
+rm "$TMP/repo/.opencode/scripts/git-hooks/pre-push"
+run_check; RC=$?
+expect "a missing gate file fails gate-files" 1 "$RC" "FAIL gate-files: .opencode/scripts/git-hooks/pre-push"
+
+# ── 3. a hook input that resolves nowhere fails hook-inputs ──
+setup_fixture
+echo 'GONE="$REPO_ROOT/.opencode/bin/gone.sh"' >> "$TMP/repo/.opencode/scripts/git-hooks/pre-commit"
+run_check; RC=$?
+expect "an unresolved hook input fails hook-inputs" 1 "$RC" "FAIL hook-inputs: .opencode/scripts/git-hooks/pre-commit:4"
+
+# ── 4. a workflow path that resolves nowhere fails workflow-inputs ──
+setup_fixture
+echo '      - run: node .opencode/bin/gone.cjs' >> "$TMP/repo/.github/workflows/demo.yml"
+run_check; RC=$?
+expect "an unresolved workflow input fails workflow-inputs" 1 "$RC" "FAIL workflow-inputs: .github/workflows/demo.yml:12 .opencode/bin/gone.cjs"
+
+# ── 5. a path filter without its twin fails filter-twins ──
+setup_fixture
+grep -vF "'.skilled/skills/**'" "$TMP/repo/.github/workflows/demo.yml" > "$TMP/demo.yml"
+mv "$TMP/demo.yml" "$TMP/repo/.github/workflows/demo.yml"
+run_check; RC=$?
+expect "a path filter without its twin fails filter-twins" 1 "$RC" "FAIL filter-twins: .github/workflows/demo.yml:5 path filter .opencode/skills/** has no twin"
+
+# ── 6. a regex that admits one root fails filter-twins ──
+setup_fixture
+echo "git diff --cached --name-only | grep -E '^\.(opencode|claude)/agents/'" >> "$TMP/repo/.opencode/scripts/git-hooks/pre-commit"
+run_check; RC=$?
+expect "a one-root regex fails filter-twins" 1 "$RC" "regex (opencode|claude) matches one source root"
+
+# ── 7. a file that names a root but yields no input fails parser-miss ──
+setup_fixture
+echo 'echo "see .opencode/README.md"' >> "$TMP/repo/.opencode/scripts/git-hooks/post-merge"
+run_check; RC=$?
+expect "a root mention with no input fails parser-miss" 1 "$RC" "FAIL parser-miss: .opencode/scripts/git-hooks/post-merge"
+
+# ── 8. the whole tree moved under .skilled/ and linked back still passes ──
+setup_fixture
+mv "$TMP/repo/.opencode" "$TMP/repo/.skilled"
+ln -s .skilled "$TMP/repo/.opencode"
+run_check; RC=$?
+expect "a tree moved under .skilled with a link back passes" 0 "$RC" "RESULT: PASSED"
+
+echo ""
+echo "check-gate-inputs: $PASS passed, $FAIL failed"
+[[ "$FAIL" -eq 0 ]]
