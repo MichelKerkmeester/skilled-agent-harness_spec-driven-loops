@@ -141,7 +141,9 @@ scan_hook() { # scan_hook <relpath>
 }
 
 # Workflow tokens: path filters, executable paths, and bare root mentions such as
-# `npm --prefix .opencode`, which carry no path to resolve.
+# `npm --prefix .opencode`, which carry no path to resolve. A path filter may list its
+# entries below the key at any indent or inline on one line, and any other shape fails
+# closed, because a filter the parser cannot read would otherwise pass unchecked.
 WORKFLOW_AWK='
 function emit(kind, tok) { print FNR "\t" kind "\t" tok }
 {
@@ -149,7 +151,7 @@ function emit(kind, tok) { print FNR "\t" kind "\t" tok }
   if (raw ~ /^[[:space:]]*#/) next
   match(raw, /^[ ]*/); ind = RLENGTH
   if (inpaths) {
-    if (raw ~ /^[ ]*-[ ]/ && ind > pind) {
+    if (raw ~ /^[ ]*-[ ]/ && ind >= pind) {
       val = raw; sub(/^[ ]*-[ ]*/, "", val); gsub(/[\047"]/, "", val); sub(/[ ]+#.*$/, "", val)
       if (val ~ /^\.(opencode|skilled)\//) emit("filter", val)
       next
@@ -157,6 +159,19 @@ function emit(kind, tok) { print FNR "\t" kind "\t" tok }
     inpaths = 0
   }
   if (raw ~ /^[ ]*(paths|paths-ignore):[ ]*$/) { inpaths = 1; pind = ind; next }
+  if (raw ~ /^[ ]*(paths|paths-ignore):/) {
+    val = raw; sub(/^[ ]*(paths|paths-ignore):[ ]*/, "", val); sub(/[ ]+#.*$/, "", val)
+    if (val ~ /^\[.*\]$/) {
+      gsub(/^\[|\]$/, "", val); n = split(val, items, ",")
+      for (i = 1; i <= n; i++) {
+        item = items[i]; gsub(/[\047" ]/, "", item)
+        if (item ~ /^\.(opencode|skilled)\//) emit("filter", item)
+      }
+    } else {
+      emit("shape", val)
+    }
+    next
+  }
   if (raw ~ /^[ ]*-?[ ]*name:/) next
   line = raw
   while (match(line, /(^|[^A-Za-z0-9_])\.opencode\/[A-Za-z0-9._*\/-]*/)) {
@@ -191,6 +206,7 @@ scan_workflow() { # scan_workflow <relpath>
             else fail workflow-inputs "$rel:$ln" "$tok resolves nowhere"; fi ;;
         esac ;;
       bare) DYNAMIC=$((DYNAMIC + 1)) ;;
+      shape) fail parser-miss "$rel:$ln" "path filter shape not recognized: $tok" ;;
     esac
   done < <(awk "$WORKFLOW_AWK" "$ROOT/$rel")
   check_regex "$rel"; items=$((items + REGEX_ITEMS))
