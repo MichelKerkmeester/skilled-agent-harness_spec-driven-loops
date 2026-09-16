@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b1346c47bab4f518a78086920e2f675a735a643f81943fed396cc54913368a86",
+  "manifestHash": "1e326eeb55887a74f688d0eb7d53eb4e980091fc5582f9dfcde34d23651a7558",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1804,6 +1804,9 @@
     "006 research rollup": [
       "006-research rollup"
     ],
+    "006 resume queue": [
+      "006 resume queue"
+    ],
     "006 review research": [
       "006 review research"
     ],
@@ -3245,12 +3248,6 @@
     "013 pass verdict": [
       "013 PASS verdict"
     ],
-    "013 phase 001 research checklist": [
-      "013 phase 001 research checklist"
-    ],
-    "013 phase 001 research plan": [
-      "013 phase 001 research plan"
-    ],
     "013 pre existing failures classification": [
       "013 pre-existing failures classification"
     ],
@@ -3289,12 +3286,6 @@
     ],
     "013 routing regression diagnosis decision record": [
       "013-routing-regression-diagnosis decision record"
-    ],
-    "013 rust skill advisor rewrite": [
-      "013 rust skill advisor rewrite"
-    ],
-    "013 scoring core research": [
-      "013 scoring core research"
     ],
     "013 skdoc legacy template cleanup summary": [
       "013-skdoc legacy template cleanup summary"
@@ -4239,9 +4230,6 @@
     ],
     "016 runtime hook plugin testing resource map": [
       "016-runtime-hook-plugin-testing resource map"
-    ],
-    "016 session shipped work": [
-      "016 session shipped work"
     ],
     "016 seven phases s1 s5 o1 o2": [
       "016 seven phases S1 S5 O1 O2"
@@ -7920,6 +7908,9 @@
     "054 tasks": [
       "054 tasks"
     ],
+    "055 decision record": [
+      "055 decision record"
+    ],
     "056 implementation": [
       "056 implementation"
     ],
@@ -8294,9 +8285,6 @@
     ],
     "16 optimization patterns": [
       "16 optimization patterns"
-    ],
-    "16 round scorer research": [
-      "16 round scorer research"
     ],
     "17 modals no scenario": [
       "17 modals no scenario"
@@ -10097,15 +10085,6 @@
     "advisor ranking coverage": [
       "advisor ranking coverage"
     ],
-    "advisor ranking deep research tasks": [
-      "advisor ranking deep research tasks"
-    ],
-    "advisor ranking rewrite allocation": [
-      "advisor ranking rewrite allocation"
-    ],
-    "advisor ranking rust rewrite": [
-      "advisor ranking rust rewrite"
-    ],
     "advisor readme rewrite": [
       "advisor readme rewrite"
     ],
@@ -10157,9 +10136,6 @@
     ],
     "advisor recommend handler": [
       "advisor recommend handler"
-    ],
-    "advisor recommend performance research": [
-      "advisor recommend performance research"
     ],
     "advisor recommend tests": [
       "advisor recommend tests"
@@ -10620,9 +10596,6 @@
     "aesthetics retirement tasks": [
       "aesthetics retirement tasks"
     ],
-    "affinity advice consumer path": [
-      "affinity advice consumer path"
-    ],
     "affordance evidence display": [
       "affordance evidence display"
     ],
@@ -10692,6 +10665,9 @@
     "agent decision rule": [
       "agent decision rule"
     ],
+    "agent declaration parity": [
+      "agent declaration parity"
+    ],
     "agent definition drift": [
       "agent definition drift"
     ],
@@ -10712,6 +10688,9 @@
     ],
     "agent frontmatter scaffold": [
       "agent frontmatter scaffold"
+    ],
+    "agent frontmatter translation": [
+      "agent frontmatter translation"
     ],
     "agent handoff group": [
       "agent handoff group"
@@ -11013,6 +10992,9 @@
     ],
     "agent mirror alignment": [
       "agent mirror alignment"
+    ],
+    "agent mirror crosswalk": [
+      "agent mirror crosswalk"
     ],
     "agent mirror drift": [
       "agent mirror drift"
@@ -11852,6 +11834,9 @@
     "always loaded framework document": [
       "always-loaded framework document"
     ],
+    "always loaded preamble": [
+      "always-loaded preamble"
+    ],
     "always loaded routing compression": [
       "always-loaded routing compression"
     ],
@@ -11995,6 +11980,9 @@
     ],
     "android health data files": [
       "android health data files"
+    ],
+    "angle driven review phases": [
+      "angle-driven review phases"
     ],
     "animate keyframes options": [
       "animate keyframes options"
@@ -15982,6 +15970,9 @@
     "builddevinlineagecommand fix": [
       "buildDevinLineageCommand fix"
     ],
+    "buildhermeslineagecommand": [
+      "buildHermesLineageCommand"
+    ],
     "buildlineagecommand delegation plan": [
       "buildLineageCommand delegation plan"
     ],
@@ -16527,6 +16518,9 @@
     ],
     "candidate scoring rubric": [
       "candidate scoring rubric"
+    ],
+    "candidate verdicts": [
+      "candidate verdicts"
     ],
     "candidate verification": [
       "candidate verification"
@@ -17732,9 +17726,6 @@
     "channel suppression grounded precision delta": [
       "channel suppression grounded precision delta"
     ],
-    "chart aesthetics": [
-      "chart aesthetics"
-    ],
     "chart aesthetics research": [
       "chart aesthetics research"
     ],
@@ -18486,6 +18477,9 @@
     "check prerequisites override tasks": [
       "check-prerequisites override tasks"
     ],
+    "check prompt quality card sync": [
+      "check-prompt-quality-card-sync"
+    ],
     "check review convergence": [
       "check review convergence"
     ],
@@ -19175,6 +19169,9 @@
     ],
     "clarity program decisions": [
       "clarity program decisions"
+    ],
+    "clarity program resume": [
+      "clarity program resume"
     ],
     "clarity research": [
       "clarity research"
@@ -20115,9 +20112,6 @@
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
     ],
-    "cli detection defaulted": [
-      "cli detection-defaulted"
-    ],
     "cli detection defaulted vs pure defer": [
       "cli detection-defaulted vs pure-defer"
     ],
@@ -20743,6 +20737,9 @@
     "cli guards": [
       "CLI guards"
     ],
+    "cli hard rule severity audit": [
+      "cli hard rule severity audit"
+    ],
     "cli hardening tests": [
       "cli hardening tests"
     ],
@@ -20766,6 +20763,63 @@
     ],
     "cli help under reports enum": [
       "cli help under-reports enum"
+    ],
+    "cli hermes benchmark": [
+      "cli-hermes benchmark"
+    ],
+    "cli hermes benchmark index": [
+      "cli-hermes benchmark index"
+    ],
+    "cli hermes benchmark reports": [
+      "cli-hermes benchmark reports"
+    ],
+    "cli hermes capabilities": [
+      "cli-hermes capabilities"
+    ],
+    "cli hermes creation": [
+      "cli-hermes creation"
+    ],
+    "cli hermes deep research": [
+      "cli-hermes deep research"
+    ],
+    "cli hermes dispatch": [
+      "cli-hermes dispatch"
+    ],
+    "cli hermes executor kind": [
+      "cli-hermes executor kind"
+    ],
+    "cli hermes executorkind": [
+      "cli-hermes ExecutorKind"
+    ],
+    "cli hermes feature catalog": [
+      "cli-hermes feature catalog"
+    ],
+    "cli hermes findings": [
+      "cli-hermes findings"
+    ],
+    "cli hermes hub mode": [
+      "cli-hermes hub mode"
+    ],
+    "cli hermes manual testing playbook benchmark": [
+      "cli-hermes manual testing playbook benchmark"
+    ],
+    "cli hermes mode registry entry": [
+      "cli-hermes mode registry entry"
+    ],
+    "cli hermes prompt card": [
+      "cli-hermes prompt card"
+    ],
+    "cli hermes research scope": [
+      "cli-hermes research scope"
+    ],
+    "cli hermes skill packet": [
+      "cli-hermes skill packet"
+    ],
+    "cli hermes validation report": [
+      "cli-hermes validation report"
+    ],
+    "cli hermes workflowmode": [
+      "cli-hermes workflowMode"
     ],
     "cli hook runner results": [
       "cli hook runner results"
@@ -21389,6 +21443,9 @@
     "cli runtime integration plan": [
       "cli runtime integration plan"
     ],
+    "cli runtime integration surface": [
+      "cli runtime integration surface"
+    ],
     "cli runtime integration tasks": [
       "cli runtime integration tasks"
     ],
@@ -21964,6 +22021,9 @@
     ],
     "closed status discovery": [
       "closed status discovery"
+    ],
+    "closed two model gateway roster": [
+      "closed two-model gateway roster"
     ],
     "closedb lifecycle enforcement": [
       "closeDb lifecycle enforcement"
@@ -25068,6 +25128,9 @@
     "command metadata template": [
       "command metadata template"
     ],
+    "command mirror matrix": [
+      "command mirror matrix"
+    ],
     "command mirror restoration": [
       "command mirror restoration"
     ],
@@ -25592,6 +25655,9 @@
     "communication candidate map": [
       "communication candidate map"
     ],
+    "communication clarity goal": [
+      "communication clarity goal"
+    ],
     "communication documentation review": [
       "communication documentation review"
     ],
@@ -25657,6 +25723,9 @@
     ],
     "communication rule": [
       "communication rule"
+    ],
+    "communication rule iteration": [
+      "communication rule iteration"
     ],
     "communication rule plan": [
       "communication rule plan"
@@ -25786,15 +25855,6 @@
     ],
     "compat index": [
       "compat index"
-    ],
-    "compat opt in review": [
-      "compat opt-in review"
-    ],
-    "compat opt in review findings": [
-      "compat opt-in review findings"
-    ],
-    "compat opt in review state": [
-      "compat opt-in review state"
     ],
     "compat override": [
       "compat override"
@@ -30034,9 +30094,6 @@
     "cross reference integrity": [
       "cross-reference integrity"
     ],
-    "cross reference review report": [
-      "cross-reference review report"
-    ],
     "cross repo drift guard": [
       "cross-repo drift guard"
     ],
@@ -30874,6 +30931,9 @@
     ],
     "cursor model selection": [
       "cursor model selection"
+    ],
+    "cursor opencode preflight parity": [
+      "cursor opencode preflight parity"
     ],
     "cursor orchestration patterns": [
       "cursor orchestration patterns"
@@ -33608,6 +33668,9 @@
     "deep loop alignment plan": [
       "deep-loop alignment plan"
     ],
+    "deep loop alignment review": [
+      "deep-loop alignment review"
+    ],
     "deep loop alignment status": [
       "deep-loop alignment status"
     ],
@@ -34418,6 +34481,9 @@
     "deep loop subtree rollup tasks": [
       "deep loop subtree rollup tasks"
     ],
+    "deep loop surface agreement": [
+      "deep-loop surface agreement"
+    ],
     "deep loop surface router": [
       "deep-loop surface router"
     ],
@@ -34822,6 +34888,9 @@
     ],
     "deep research executor split": [
       "deep research executor split"
+    ],
+    "deep research fan out cli devin": [
+      "deep research fan-out cli-devin"
     ],
     "deep research fan out lineage": [
       "deep research fan-out lineage"
@@ -35367,9 +35436,6 @@
     "deep review codex timeout": [
       "deep review codex timeout"
     ],
-    "deep review compat opt in": [
-      "deep review compat opt-in"
-    ],
     "deep review conditional to pass": [
       "deep-review conditional to pass"
     ],
@@ -35411,9 +35477,6 @@
     ],
     "deep review dashboard": [
       "deep review dashboard"
-    ],
-    "deep review dashboard glm 5 2": [
-      "deep review dashboard glm-5-2"
     ],
     "deep review dashboard md": [
       "deep-review-dashboard.md"
@@ -35712,9 +35775,6 @@
     "deep review replay idempotency tasks": [
       "deep-review replay idempotency tasks"
     ],
-    "deep review report": [
-      "deep review report"
-    ],
     "deep review research skill contract fixes": [
       "deep-review research skill contract fixes"
     ],
@@ -35860,9 +35920,6 @@
     ],
     "deep review strategy 045": [
       "deep review strategy 045"
-    ],
-    "deep review strategy glm 53 flash": [
-      "deep review strategy glm-53-flash"
     ],
     "deep review strategy md": [
       "deep-review-strategy.md"
@@ -36239,20 +36296,14 @@
     "defaultmode commitment smell": [
       "defaultMode commitment smell"
     ],
-    "defaultmode divergent glm max synthesis": [
-      "defaultmode divergent glm-max synthesis"
-    ],
-    "defaultmode divergent strategy glm": [
-      "defaultmode divergent strategy glm"
-    ],
-    "defaultmode divergent strategy terra": [
-      "defaultMode divergent strategy terra"
-    ],
     "defaultmode is one corner": [
       "defaultMode is one corner"
     ],
     "defaultmode migration rollback": [
       "defaultMode migration rollback"
+    ],
+    "defaultresource policy": [
+      "defaultResource policy"
     ],
     "defaultresource semantics": [
       "defaultResource semantics"
@@ -36419,6 +36470,9 @@
     "degradedreadinesstelemetry mapper": [
       "DegradedReadinessTelemetry mapper"
     ],
+    "delegate from hermes": [
+      "delegate from hermes"
+    ],
     "delegate from pi": [
       "delegate from pi"
     ],
@@ -36442,6 +36496,9 @@
     ],
     "delegate to devin": [
       "delegate to devin"
+    ],
+    "delegate to hermes": [
+      "delegate to hermes"
     ],
     "delegate to opencode": [
       "delegate to opencode"
@@ -37987,9 +38044,6 @@
     "detached experiment worktree": [
       "detached experiment worktree"
     ],
-    "detached fan out review": [
-      "detached fan-out review"
-    ],
     "detached head recovery": [
       "detached head recovery"
     ],
@@ -38280,6 +38334,9 @@
     ],
     "devin code generation template": [
       "devin code generation template"
+    ],
+    "devin commands gap": [
+      "devin commands gap"
     ],
     "devin compact recovery": [
       "devin compact recovery"
@@ -39529,6 +39586,9 @@
     "discovery seam": [
       "discovery seam"
     ],
+    "discovery terms": [
+      "discovery terms"
+    ],
     "disjoint agent lanes": [
       "disjoint agent lanes"
     ],
@@ -39622,11 +39682,17 @@
     "dispatch preflight authorization": [
       "dispatch preflight authorization"
     ],
+    "dispatch preflight defect table": [
+      "dispatch preflight defect table"
+    ],
     "dispatch preflight hook repoint": [
       "dispatch preflight hook repoint"
     ],
     "dispatch preflight lint": [
       "dispatch preflight lint"
+    ],
+    "dispatch preflight parity research": [
+      "dispatch preflight parity research"
     ],
     "dispatch preflight suite": [
       "dispatch preflight suite"
@@ -39642,6 +39708,9 @@
     ],
     "dispatch review iteration": [
       "dispatch review iteration"
+    ],
+    "dispatch rule checks hermes": [
+      "dispatch rule checks hermes"
     ],
     "dispatch script tasks": [
       "dispatch script tasks"
@@ -39663,6 +39732,9 @@
     ],
     "dispatch shapes deny": [
       "dispatch shapes deny"
+    ],
+    "dispatch shapes hermes entry": [
+      "DISPATCH_SHAPES hermes entry"
     ],
     "dispatch tokenizer plan": [
       "dispatch tokenizer plan"
@@ -40752,6 +40824,9 @@
     "document quality workflows": [
       "document quality workflows"
     ],
+    "document score": [
+      "document score"
+    ],
     "document sub page creation": [
       "document sub-page creation"
     ],
@@ -40895,6 +40970,9 @@
     ],
     "dos and donts": [
       "dos and donts"
+    ],
+    "dot skilled migration": [
+      "dot-skilled migration"
     ],
     "dot state directories": [
       "dot state directories"
@@ -41066,6 +41144,18 @@
     ],
     "drift gate inert nine in ten": [
       "drift gate inert nine in ten"
+    ],
+    "drift guard acceptance criteria": [
+      "drift guard acceptance criteria"
+    ],
+    "drift guard fix tasks": [
+      "drift guard fix tasks"
+    ],
+    "drift guard generated copy": [
+      "drift guard generated copy"
+    ],
+    "drift guard passes again": [
+      "drift guard passes again"
     ],
     "drift guard scripts path fixed": [
       "drift guard scripts path fixed"
@@ -42688,6 +42778,9 @@
     "enforcement path restore": [
       "enforcement path restore"
     ],
+    "enforcement trace": [
+      "enforcement trace"
+    ],
     "enforcerelationwindowcap": [
       "enforceRelationWindowCap"
     ],
@@ -43532,9 +43625,6 @@
     "evilcharts research summary": [
       "evilcharts research summary"
     ],
-    "evilcharts strategy": [
-      "evilcharts strategy"
-    ],
     "evilcharts style reference": [
       "evilcharts style reference"
     ],
@@ -43670,6 +43760,9 @@
     "executeproviderroute": [
       "executeProviderRoute"
     ],
+    "execution evidence over prose review": [
+      "execution evidence over prose review"
+    ],
     "execution methods reference": [
       "execution methods reference"
     ],
@@ -43756,6 +43849,9 @@
     ],
     "executor audit exemption evidence": [
       "executor audit exemption evidence"
+    ],
+    "executor audit identity and environment scoping": [
+      "executor audit identity and environment scoping"
     ],
     "executor audit provenance": [
       "executor audit provenance"
@@ -45222,17 +45318,11 @@
     "fanout lineage": [
       "fanout lineage"
     ],
-    "fanout lineage dashboard": [
-      "fanout lineage dashboard"
-    ],
     "fanout lineage err retention": [
       "fanout lineage err retention"
     ],
     "fanout lineage in process": [
       "fanout lineage in-process"
-    ],
-    "fanout lineage strategy": [
-      "fanout lineage strategy"
     ],
     "fanout live search shipped": [
       "fanout live search shipped"
@@ -45245,9 +45335,6 @@
     ],
     "fanout merge cjs": [
       "fanout-merge.cjs"
-    ],
-    "fanout minimax m3 review": [
-      "fanout minimax m3 review"
     ],
     "fanout mirror parity test": [
       "fanout mirror parity test"
@@ -47389,15 +47476,6 @@
     "fold in worklist": [
       "fold-in worklist"
     ],
-    "folder boost review finding": [
-      "folder boost review finding"
-    ],
-    "folder boost similarity scale": [
-      "folder boost similarity scale"
-    ],
-    "folder boost similarity scale finding": [
-      "folder boost similarity scale finding"
-    ],
     "folder detector": [
       "folder-detector"
     ],
@@ -47565,6 +47643,9 @@
     ],
     "forced depth five iterations": [
       "forced depth five iterations"
+    ],
+    "forced depth two lineages": [
+      "forced depth two lineages"
     ],
     "forced iterations": [
       "forced iterations"
@@ -47844,9 +47925,6 @@
     ],
     "four registration files": [
       "four registration files"
-    ],
-    "four shape defaultmode rule": [
-      "four-shape defaultmode rule"
     ],
     "four source build chronology": [
       "four source build chronology"
@@ -49201,6 +49279,9 @@
     "generated sample": [
       "generated sample"
     ],
+    "generated skill copy skip": [
+      "generated skill copy skip"
+    ],
     "generatedocumentembedding catch swallow": [
       "generateDocumentEmbedding catch swallow"
     ],
@@ -49360,6 +49441,9 @@
     "gethotnodes": [
       "getHotNodes"
     ],
+    "getiterationrun dashboard row": [
+      "getIterationRun dashboard row"
+    ],
     "getprefixfor": [
       "getPrefixFor"
     ],
@@ -49473,9 +49557,6 @@
     ],
     "git hook fail open": [
       "git hook fail open"
-    ],
-    "git hook files inventory": [
-      "git hook files inventory"
     ],
     "git hook gate hardening": [
       "git hook gate hardening"
@@ -49752,12 +49833,6 @@
     ],
     "glm 5 2 lateral routing ideas": [
       "glm-5.2 lateral routing ideas"
-    ],
-    "glm 5 2 review lineage": [
-      "glm-5-2 review lineage"
-    ],
-    "glm 5 2 review report": [
-      "glm-5-2 review report"
     ],
     "glm 5 3 deep research decommission": [
       "glm 5.3 deep research decommission"
@@ -50467,6 +50542,9 @@
     "governance boundary": [
       "governance boundary"
     ],
+    "governance doc alignment": [
+      "governance-doc-alignment"
+    ],
     "governance enforcement review": [
       "governance enforcement review"
     ],
@@ -50622,24 +50700,6 @@
     ],
     "gpt followup audit t2 remediation": [
       "gpt followup audit T2 remediation"
-    ],
-    "gpt55r2 a 6 dashboard": [
-      "gpt55r2-a-6 dashboard"
-    ],
-    "gpt55r2 a 6 resource map": [
-      "gpt55r2-a-6 resource map"
-    ],
-    "gpt55r2 a 6 review report": [
-      "gpt55r2-a-6 review report"
-    ],
-    "gpt55r2 a 6 search retrieval review": [
-      "gpt55r2-a-6 search retrieval review"
-    ],
-    "gpt55r2 b 8 deep review dashboard": [
-      "gpt55r2-b-8 deep review dashboard"
-    ],
-    "gpt55r2 b 8 deep review strategy": [
-      "gpt55r2-b-8 deep review strategy"
     ],
     "gpu accelerated properties": [
       "gpu accelerated properties"
@@ -51246,6 +51306,18 @@
     "gtm delay requestidlecallback": [
       "gtm delay requestidlecallback"
     ],
+    "guard index fixes acceptance": [
+      "guard index fixes acceptance"
+    ],
+    "guard index fixes plan": [
+      "guard index fixes plan"
+    ],
+    "guard index fixes summary": [
+      "guard index fixes summary"
+    ],
+    "guard index fixes tasks": [
+      "guard index fixes tasks"
+    ],
     "guard layer split decision": [
       "guard layer split decision"
     ],
@@ -51372,12 +51444,6 @@
     "hallmark design system remaining work": [
       "hallmark design system remaining work"
     ],
-    "hallmark design system review": [
-      "hallmark design system review"
-    ],
-    "hallmark design system review report": [
-      "hallmark design system review report"
-    ],
     "hallmark evidence envelopes": [
       "hallmark evidence envelopes"
     ],
@@ -51390,14 +51456,8 @@
     "hallmark objective and status": [
       "hallmark objective and status"
     ],
-    "hallmark phase parent review": [
-      "hallmark phase parent review"
-    ],
     "hallmark reuse research": [
       "hallmark reuse research"
-    ],
-    "hallmark review report": [
-      "hallmark review report"
     ],
     "hallmark sk design modes learnings": [
       "hallmark sk-design modes learnings"
@@ -51909,6 +51969,259 @@
     ],
     "help printer test": [
       "help printer test"
+    ],
+    "hermes agent": [
+      "hermes agent"
+    ],
+    "hermes agent delegation": [
+      "hermes agent delegation"
+    ],
+    "hermes agent integration": [
+      "hermes agent integration"
+    ],
+    "hermes chat": [
+      "hermes chat"
+    ],
+    "hermes chat oneshot dispatch shape": [
+      "hermes chat oneshot dispatch shape"
+    ],
+    "hermes clear check": [
+      "hermes clear check"
+    ],
+    "hermes cli": [
+      "hermes cli"
+    ],
+    "hermes cli executor": [
+      "hermes cli executor"
+    ],
+    "hermes cli flags": [
+      "hermes cli flags"
+    ],
+    "hermes code mode server": [
+      "hermes code mode server"
+    ],
+    "hermes constraints versus other runtimes": [
+      "hermes constraints versus other runtimes"
+    ],
+    "hermes cross ai dispatch": [
+      "hermes cross-ai dispatch"
+    ],
+    "hermes delegate task": [
+      "hermes delegate_task"
+    ],
+    "hermes dispatch audit trail": [
+      "hermes dispatch audit trail"
+    ],
+    "hermes dispatch environment prefixes": [
+      "hermes dispatch environment prefixes"
+    ],
+    "hermes dispatch guards": [
+      "hermes dispatch guards"
+    ],
+    "hermes dispatch prompt discipline": [
+      "hermes dispatch prompt discipline"
+    ],
+    "hermes dispatch shape recognition": [
+      "hermes dispatch-shape recognition"
+    ],
+    "hermes enable project plugins": [
+      "HERMES_ENABLE_PROJECT_PLUGINS"
+    ],
+    "hermes executor kind": [
+      "hermes executor kind"
+    ],
+    "hermes executor kind and lineage command": [
+      "hermes executor kind and lineage command"
+    ],
+    "hermes exit codes": [
+      "hermes exit codes"
+    ],
+    "hermes explicit toolsets required": [
+      "hermes-explicit-toolsets-required"
+    ],
+    "hermes fan out lineage": [
+      "hermes fan-out lineage"
+    ],
+    "hermes fan out template": [
+      "hermes fan-out template"
+    ],
+    "hermes folder": [
+      ".hermes folder"
+    ],
+    "hermes folder research": [
+      ".hermes folder research"
+    ],
+    "hermes hard rule preflight checks": [
+      "hermes hard-rule preflight checks"
+    ],
+    "hermes hard rules": [
+      "hermes hard rules"
+    ],
+    "hermes headless dispatch": [
+      "hermes headless dispatch"
+    ],
+    "hermes help": [
+      "hermes help"
+    ],
+    "hermes hooks": [
+      "hermes hooks"
+    ],
+    "hermes hub routing": [
+      "hermes hub routing"
+    ],
+    "hermes integration pattern": [
+      "hermes integration pattern"
+    ],
+    "hermes known context": [
+      "hermes known context"
+    ],
+    "hermes leaf toolsets": [
+      "HERMES_LEAF_TOOLSETS"
+    ],
+    "hermes lineage command": [
+      "hermes lineage command"
+    ],
+    "hermes llmgateway provider": [
+      "hermes llmgateway provider"
+    ],
+    "hermes max turns": [
+      "hermes max turns"
+    ],
+    "hermes mcp": [
+      "hermes mcp"
+    ],
+    "hermes mcp add": [
+      "hermes mcp add"
+    ],
+    "hermes mcp deny by default": [
+      "hermes mcp deny by default"
+    ],
+    "hermes oneshot": [
+      "hermes oneshot"
+    ],
+    "hermes persona": [
+      "hermes persona"
+    ],
+    "hermes plugin hooks": [
+      "hermes plugin hooks"
+    ],
+    "hermes plugins": [
+      "hermes plugins"
+    ],
+    "hermes pre verify": [
+      "hermes pre_verify"
+    ],
+    "hermes pre verify guard": [
+      "hermes pre_verify guard"
+    ],
+    "hermes project plugin hooks": [
+      "hermes project plugin hooks"
+    ],
+    "hermes project skills": [
+      "hermes project skills"
+    ],
+    "hermes project skills trust": [
+      "hermes project skills trust"
+    ],
+    "hermes prompt framework selection": [
+      "hermes prompt framework selection"
+    ],
+    "hermes prompt quality card": [
+      "hermes prompt quality card"
+    ],
+    "hermes prompt templates": [
+      "hermes prompt templates"
+    ],
+    "hermes prompt templates commands": [
+      "hermes prompt templates commands"
+    ],
+    "hermes providers and models": [
+      "hermes providers and models"
+    ],
+    "hermes query file": [
+      "hermes query-file"
+    ],
+    "hermes query flags": [
+      "HERMES_QUERY_FLAGS"
+    ],
+    "hermes quiet mode": [
+      "hermes quiet mode"
+    ],
+    "hermes read only toolsets": [
+      "HERMES_READ_ONLY_TOOLSETS"
+    ],
+    "hermes reasoning level": [
+      "hermes reasoning level"
+    ],
+    "hermes repo guards plugin": [
+      "hermes repo-guards plugin"
+    ],
+    "hermes research angles": [
+      "hermes research angles"
+    ],
+    "hermes research plan": [
+      "hermes research plan"
+    ],
+    "hermes research synthesis": [
+      "hermes research synthesis"
+    ],
+    "hermes review template": [
+      "hermes review template"
+    ],
+    "hermes roster": [
+      "hermes roster"
+    ],
+    "hermes run budget margin seconds": [
+      "HERMES_RUN_BUDGET_MARGIN_SECONDS"
+    ],
+    "hermes runtime folder": [
+      "hermes runtime folder"
+    ],
+    "hermes runtime folder and prompt sync": [
+      "hermes runtime folder and prompt sync"
+    ],
+    "hermes runtime research": [
+      "hermes runtime research"
+    ],
+    "hermes session id self presence": [
+      "HERMES_SESSION_ID self presence"
+    ],
+    "hermes shell hooks": [
+      "hermes shell hooks"
+    ],
+    "hermes skills hooks mcp": [
+      "hermes skills hooks mcp"
+    ],
+    "hermes skills trust": [
+      "hermes skills trust"
+    ],
+    "hermes supported models": [
+      "HERMES_SUPPORTED_MODELS",
+      "hermes supported models"
+    ],
+    "hermes sync manifest": [
+      "hermes SYNC manifest"
+    ],
+    "hermes toolsets": [
+      "hermes toolsets"
+    ],
+    "hermes validation handback": [
+      "hermes validation handback"
+    ],
+    "hermes versus six runtimes": [
+      "hermes versus six runtimes"
+    ],
+    "hermes web search policy": [
+      "hermes web search policy"
+    ],
+    "hermes write guard": [
+      "hermes write guard"
+    ],
+    "hermes write template": [
+      "hermes write template"
+    ],
+    "hermes yolo required for writes": [
+      "hermes-yolo-required-for-writes"
     ],
     "hermetic code graph db cleanup": [
       "hermetic code graph db cleanup"
@@ -52764,6 +53077,9 @@
     ],
     "hub migration task ledger": [
       "hub migration task ledger"
+    ],
+    "hub mode registration": [
+      "hub mode registration"
     ],
     "hub only routing hit": [
       "hub-only routing hit"
@@ -53763,6 +54079,9 @@
     ],
     "implement packet 011": [
       "implement packet 011"
+    ],
+    "implement remaining phases": [
+      "implement remaining phases"
     ],
     "implement the 178 deep loop recs": [
       "implement the 178 deep-loop recs"
@@ -55258,6 +55577,9 @@
     "isglmflashxhighpinnedmodel": [
       "isGlmFlashXhighPinnedModel"
     ],
+    "ishermesmodelallowed": [
+      "isHermesModelAllowed"
+    ],
     "ishookenabled architecture": [
       "isHookEnabled architecture"
     ],
@@ -55384,6 +55706,18 @@
     "iteration binding": [
       "iteration binding"
     ],
+    "iteration contract acceptance": [
+      "iteration contract acceptance"
+    ],
+    "iteration contract summary": [
+      "iteration contract summary"
+    ],
+    "iteration contract verification": [
+      "iteration contract verification"
+    ],
+    "iteration contract verification checklist": [
+      "iteration contract verification checklist"
+    ],
     "iteration dispatch": [
       "iteration dispatch"
     ],
@@ -55407,6 +55741,24 @@
     ],
     "iteration protocol": [
       "iteration protocol"
+    ],
+    "iteration record closure gate": [
+      "iteration record closure gate"
+    ],
+    "iteration record field name": [
+      "iteration record field name"
+    ],
+    "iteration record fix plan": [
+      "iteration record fix plan"
+    ],
+    "iteration record tasks": [
+      "iteration record tasks"
+    ],
+    "iteration record verification evidence": [
+      "iteration record verification evidence"
+    ],
+    "iteration state record contract": [
+      "iteration state record contract"
     ],
     "iteration tasks": [
       "iteration tasks"
@@ -57656,6 +58008,9 @@
     "lineage dispatch tasks": [
       "lineage dispatch tasks"
     ],
+    "lineage exclusion closure gate": [
+      "lineage exclusion closure gate"
+    ],
     "lineage executor schema": [
       "lineage executor schema"
     ],
@@ -57680,8 +58035,14 @@
     "lineage path verbatim": [
       "lineage path verbatim"
     ],
+    "lineage pruning rule plan": [
+      "lineage pruning rule plan"
+    ],
     "lineage registry merge plan": [
       "lineage registry merge plan"
+    ],
+    "lineage rule verification checklist": [
+      "lineage rule verification checklist"
     ],
     "lineage worktree architecture": [
       "lineage worktree architecture"
@@ -61140,9 +61501,6 @@
     "mcp obsidian playbook validation": [
       "mcp-obsidian playbook validation"
     ],
-    "mcp obsidian plugin coverage review": [
-      "mcp-obsidian plugin coverage review"
-    ],
     "mcp obsidian plugin docs remediation": [
       "mcp-obsidian plugin docs remediation"
     ],
@@ -63921,9 +64279,6 @@
     "minimax dispatch scaffold": [
       "minimax dispatch scaffold"
     ],
-    "minimax m3 lineage": [
-      "minimax m3 lineage"
-    ],
     "miniterations convergence": [
       "minIterations convergence"
     ],
@@ -65796,6 +66151,9 @@
     "move opencode specs": [
       "move .opencode/specs"
     ],
+    "move opencode to skilled": [
+      "move opencode to skilled"
+    ],
     "move or rename a note": [
       "Move or rename a note"
     ],
@@ -67000,6 +67358,9 @@
     "non streaming executor fanout": [
       "non-streaming executor fanout"
     ],
+    "non work register": [
+      "non-work register"
+    ],
     "normal file still writes": [
       "normal file still writes"
     ],
@@ -67478,6 +67839,12 @@
     ],
     "notion workspace inventory": [
       "notion workspace inventory"
+    ],
+    "nous hermes": [
+      "nous hermes"
+    ],
+    "nous research hermes": [
+      "nous research hermes"
     ],
     "novel finding 5 cocoindex telemetry": [
       "novel finding 5 cocoindex telemetry"
@@ -69055,6 +69422,9 @@
     "opencode parallel detached session": [
       "opencode parallel detached session"
     ],
+    "opencode path inventory": [
+      "opencode path inventory"
+    ],
     "opencode path key boundary": [
       "opencode path key boundary"
     ],
@@ -69270,6 +69640,9 @@
     ],
     "opencode skill to skills test fixtures": [
       "opencode skill to skills test fixtures"
+    ],
+    "opencode source root blockers": [
+      "opencode source root blockers"
     ],
     "opencode stdin dev null rule": [
       "opencode stdin dev null rule"
@@ -70805,8 +71178,20 @@
     "parent doctor integration plan": [
       "parent doctor integration plan"
     ],
+    "parent document fix tasks": [
+      "parent document fix tasks"
+    ],
     "parent documentation drift": [
       "parent documentation drift"
+    ],
+    "parent documents acceptance": [
+      "parent documents acceptance"
+    ],
+    "parent documents filled": [
+      "parent documents filled"
+    ],
+    "parent goal budget plan": [
+      "parent goal budget plan"
     ],
     "parent goal child phases": [
       "parent goal child phases"
@@ -70948,6 +71333,9 @@
     ],
     "parent map repair tasks": [
       "parent map repair tasks"
+    ],
+    "parent packet template leftovers": [
+      "parent packet template leftovers"
     ],
     "parent release decision": [
       "parent release decision"
@@ -71705,12 +72093,6 @@
     "per kind state dir isolation": [
       "per-kind state-dir isolation"
     ],
-    "per lineage worktree containment": [
-      "per-lineage worktree containment"
-    ],
-    "per lineage worktree isolation": [
-      "per-lineage worktree isolation"
-    ],
     "per mode authority cutover contract": [
       "per-mode authority cutover contract"
     ],
@@ -71836,6 +72218,9 @@
     ],
     "per runtime setup docs": [
       "per-runtime setup docs"
+    ],
+    "per runtime symlink map": [
+      "per runtime symlink map"
     ],
     "per seat outcome aggregation": [
       "per-seat outcome aggregation"
@@ -75701,6 +76086,9 @@
     "point location sk vision point": [
       "Point location (sk_vision_point)"
     ],
+    "point table": [
+      "point table"
+    ],
     "pointed band readout": [
       "pointed band readout"
     ],
@@ -77467,6 +77855,9 @@
     "prompt improver filename verification": [
       "prompt-improver filename verification"
     ],
+    "prompt improver hermes eligibility row": [
+      "prompt-improver hermes eligibility row"
+    ],
     "prompt improver model eligibility": [
       "prompt improver model eligibility"
     ],
@@ -77587,6 +77978,9 @@
     "prompt policy invariant": [
       "prompt policy invariant"
     ],
+    "prompt quality card sync and prompt improver eligibility": [
+      "prompt-quality card sync and prompt-improver eligibility"
+    ],
     "prompt readme rewrite": [
       "prompt readme rewrite"
     ],
@@ -77670,9 +78064,6 @@
     ],
     "proof over appearance removed": [
       "proof over appearance removed"
-    ],
-    "proof run after run failure adjustments": [
-      "proof run after run-failure adjustments"
     ],
     "proof through output metadata": [
       "proof through output metadata"
@@ -77940,6 +78331,12 @@
     ],
     "publish language search": [
       "publish language search"
+    ],
+    "publish readiness": [
+      "publish readiness"
+    ],
+    "publish side": [
+      "publish side"
     ],
     "pull design context example": [
       "pull design context example"
@@ -78892,6 +79289,9 @@
     "reader normalization tasks": [
       "reader normalization tasks"
     ],
+    "reader profile split": [
+      "reader profile split"
+    ],
     "reader table computed": [
       "reader table computed"
     ],
@@ -79657,6 +80057,9 @@
     "reconciled fact base": [
       "reconciled fact base"
     ],
+    "reconciled migration map": [
+      "reconciled migration map"
+    ],
     "reconcilemoves spec folder omission": [
       "reconcileMoves spec_folder omission"
     ],
@@ -79911,6 +80314,9 @@
     ],
     "reducer fault tolerance": [
       "reducer fault tolerance"
+    ],
+    "reducer iteration numbering tasks": [
+      "reducer iteration numbering tasks"
     ],
     "reducer owned findings": [
       "reducer-owned findings"
@@ -80671,6 +81077,9 @@
     "register child identity rule": [
       "register child identity rule"
     ],
+    "register cli hermes": [
+      "register cli-hermes"
+    ],
     "register cli reference leaves": [
       "register cli reference leaves"
     ],
@@ -80992,6 +81401,9 @@
     ],
     "rejectedpatternindex": [
       "rejectedPatternIndex"
+    ],
+    "rejection list": [
+      "rejection list"
     ],
     "rejects unsafe packet pointer shapes": [
       "rejects unsafe packet_pointer shapes"
@@ -81970,6 +82382,9 @@
     "replayable deep loop observability": [
       "replayable deep-loop observability"
     ],
+    "reply harness rerun": [
+      "reply harness rerun"
+    ],
     "reply scoring harness": [
       "reply scoring harness"
     ],
@@ -81990,6 +82405,9 @@
     ],
     "repo convention audit": [
       "repo convention audit"
+    ],
+    "repo guards project plugin": [
+      "repo-guards project plugin"
     ],
     "repo hygiene and residue": [
       "repo hygiene and residue"
@@ -83786,6 +84204,9 @@
     "retired vector search docs cleanup": [
       "retired vector search docs cleanup"
     ],
+    "retired vocabulary": [
+      "retired vocabulary"
+    ],
     "retirement audit to planner first": [
       "retirement audit to planner-first"
     ],
@@ -84968,6 +85389,9 @@
     "rollback child deep loop packet placement": [
       "rollback child deep-loop packet placement"
     ],
+    "rollback cjs": [
+      "rollback.cjs"
+    ],
     "rollback count authorization binding": [
       "rollback count authorization binding"
     ],
@@ -84991,9 +85415,6 @@
     ],
     "rollback identity verification tasks": [
       "rollback identity verification tasks"
-    ],
-    "rollback js": [
-      "rollback.js"
     ],
     "rollback policy completion receipt": [
       "rollback policy completion receipt"
@@ -85114,6 +85535,12 @@
     ],
     "root doc clause tasks": [
       "root doc clause tasks"
+    ],
+    "root doc cut": [
+      "root doc cut"
+    ],
+    "root doc staleness": [
+      "root doc staleness"
     ],
     "root gate closeout": [
       "root gate closeout"
@@ -85460,6 +85887,9 @@
     "router activation verification": [
       "router activation verification"
     ],
+    "router alignment": [
+      "router alignment"
+    ],
     "router alignment plan": [
       "router alignment plan"
     ],
@@ -85786,6 +86216,9 @@
     ],
     "routing delta": [
       "routing delta"
+    ],
+    "routing doctrine": [
+      "routing doctrine"
     ],
     "routing drift remediation": [
       "routing drift remediation"
@@ -86153,6 +86586,9 @@
     "run benchmarks": [
       "run benchmarks"
     ],
+    "run budget margin and reasoning pin": [
+      "run-budget margin and reasoning pin"
+    ],
     "run capped pool": [
       "run capped pool"
     ],
@@ -86188,6 +86624,15 @@
     ],
     "run failed emails stopped": [
       "run failed emails stopped"
+    ],
+    "run field acceptance criteria": [
+      "run field acceptance criteria"
+    ],
+    "run field fix shipped": [
+      "run field fix shipped"
+    ],
+    "run field migration tasks": [
+      "run field migration tasks"
     ],
     "run generate context at close": [
       "run generate-context at close"
@@ -86257,6 +86702,9 @@
     ],
     "run validation rules": [
       "run validation rules"
+    ],
+    "run versus iteration field": [
+      "run versus iteration field"
     ],
     "runauditedexecutorcommandasync": [
       "runAuditedExecutorCommandAsync"
@@ -86492,6 +86940,9 @@
     "runtime feature catalog": [
       "runtime/ feature catalog"
     ],
+    "runtime file path inventory": [
+      "runtime file path inventory"
+    ],
     "runtime fork drift guard gap": [
       "runtime fork drift guard gap"
     ],
@@ -86597,8 +87048,14 @@
     "runtime mirror and mcp config": [
       "runtime mirror and mcp config"
     ],
+    "runtime mirror drift": [
+      "runtime mirror drift"
+    ],
     "runtime mirror drift design commands": [
       "runtime mirror drift design commands"
+    ],
+    "runtime mirror drift detection": [
+      "runtime mirror drift detection"
     ],
     "runtime mirror hook parity": [
       "runtime mirror hook parity"
@@ -86765,6 +87222,15 @@
     "runtime surface coverage": [
       "runtime surface coverage"
     ],
+    "runtime surface parity research": [
+      "runtime surface parity research"
+    ],
+    "runtime symlink inversion": [
+      "runtime symlink inversion"
+    ],
+    "runtime symlink retarget research": [
+      "runtime symlink retarget research"
+    ],
     "runtime sync manifest template": [
       "runtime sync manifest template"
     ],
@@ -86924,9 +87390,6 @@
     "rust review resources": [
       "rust review resources"
     ],
-    "rust rewrite skill advisor": [
-      "rust rewrite skill advisor"
-    ],
     "rust rustdoc and cargo": [
       "rust rustdoc and cargo"
     ],
@@ -86935,9 +87398,6 @@
     ],
     "rust safety boundary discipline": [
       "rust safety boundary discipline"
-    ],
-    "rust scorer feasibility": [
-      "rust scorer feasibility"
     ],
     "rust standard docs checklist": [
       "rust standard docs checklist"
@@ -86989,9 +87449,6 @@
     ],
     "rust validation commands": [
       "rust validation commands"
-    ],
-    "rust vs typescript skill advisor": [
-      "rust vs typescript skill advisor"
     ],
     "rustdoc error panic translation async patterns": [
       "rustdoc error panic translation async patterns"
@@ -87725,6 +88182,9 @@
     "scoped style vs app css": [
       "scoped style vs app css"
     ],
+    "score a document": [
+      "score a document"
+    ],
     "score adjustment role": [
       "score adjustment role"
     ],
@@ -88388,9 +88848,6 @@
     ],
     "search reindex maintenance remediation tasks": [
       "search reindex maintenance remediation tasks"
-    ],
-    "search retrieval folder boost evidence": [
-      "search retrieval folder boost evidence"
     ],
     "search scenario design changelog": [
       "search scenario design changelog"
@@ -89454,6 +89911,9 @@
     "seventeen stage sequence": [
       "seventeen stage sequence"
     ],
+    "seventh cli runtime": [
+      "seventh cli runtime"
+    ],
     "seventy one commits ahead": [
       "seventy one commits ahead"
     ],
@@ -89705,6 +90165,9 @@
     ],
     "shared checkout concurrent editor": [
       "shared checkout concurrent editor"
+    ],
+    "shared checkout containment": [
+      "shared-checkout containment"
     ],
     "shared checkout warning": [
       "shared checkout warning"
@@ -90546,6 +91009,9 @@
     ],
     "silent failure harness repair implementation": [
       "silent failure harness repair implementation"
+    ],
+    "silent gate disengagement": [
+      "silent gate disengagement"
     ],
     "silent hook catch stderr": [
       "silent hook catch stderr"
@@ -91957,9 +92423,6 @@
     "sk create chart redesign": [
       "sk-create-chart redesign"
     ],
-    "sk create chart research": [
-      "sk-create-chart research"
-    ],
     "sk create chart routing": [
       "sk-create-chart routing"
     ],
@@ -92022,9 +92485,6 @@
     ],
     "sk create diagram resource reorganization": [
       "sk-create-diagram resource reorganization"
-    ],
-    "sk create diagram review": [
-      "sk-create-diagram review"
     ],
     "sk create diagram review conditional": [
       "sk-create-diagram review CONDITIONAL"
@@ -93169,6 +93629,9 @@
     "sk doc hub shared tasks": [
       "sk-doc hub shared tasks"
     ],
+    "sk doc human voice mode": [
+      "sk-doc human voice mode"
+    ],
     "sk doc implementation summary": [
       "sk-doc implementation summary"
     ],
@@ -93575,6 +94038,9 @@
     "sk doc v2 0 1 0": [
       "sk-doc v2.0.1.0"
     ],
+    "sk doc v2 1 0 0": [
+      "sk-doc v2.1.0.0"
+    ],
     "sk doc validator findings obsidian surface": [
       "sk-doc validator findings obsidian surface"
     ],
@@ -93853,9 +94319,6 @@
     ],
     "sk git scripts folder": [
       "sk-git scripts folder"
-    ],
-    "sk git scripts inventory": [
-      "sk-git scripts inventory"
     ],
     "sk git scripts tests": [
       "sk-git scripts tests"
@@ -95390,12 +95853,6 @@
     "skill advisor runtime state": [
       "skill advisor runtime state"
     ],
-    "skill advisor rust backend research": [
-      "skill advisor rust backend research"
-    ],
-    "skill advisor rust deep research": [
-      "skill advisor rust deep research"
-    ],
     "skill advisor schema tests": [
       "skill advisor schema tests"
     ],
@@ -95407,15 +95864,6 @@
     ],
     "skill advisor scorer projection fallback": [
       "skill advisor scorer projection-fallback"
-    ],
-    "skill advisor scorer rust research": [
-      "skill advisor scorer rust research"
-    ],
-    "skill advisor scorer rust research plan": [
-      "skill advisor scorer rust research plan"
-    ],
-    "skill advisor scorer rust research tasks": [
-      "skill advisor scorer rust research tasks"
     ],
     "skill advisor scorer tests": [
       "skill advisor scorer tests"
@@ -96714,6 +97162,24 @@
     "skilled branch alias": [
       "skilled branch alias"
     ],
+    "skilled cutover constraints": [
+      "skilled cutover constraints"
+    ],
+    "skilled migration findings": [
+      "skilled migration findings"
+    ],
+    "skilled migration research": [
+      "skilled migration research"
+    ],
+    "skilled reference map": [
+      "skilled reference map"
+    ],
+    "skilled reference map findings": [
+      "skilled reference map findings"
+    ],
+    "skilled source root": [
+      "skilled source root"
+    ],
     "skillmd references assets cleanup phase": [
       "skillmd references assets cleanup phase"
     ],
@@ -97234,8 +97700,14 @@
     "source of truth router card": [
       "source of truth router card"
     ],
+    "source parent migration": [
+      "source parent migration"
+    ],
     "source phase metadata cleanup": [
       "source phase metadata cleanup"
+    ],
+    "source root move implications": [
+      "source root move implications"
     ],
     "source to target map": [
       "source to target map"
@@ -98427,6 +98899,9 @@
     "speckit goal auto update": [
       "speckit goal auto update"
     ],
+    "speckit hermes state dir": [
+      "SPECKIT_HERMES_STATE_DIR"
+    ],
     "speckit ipc socket dir runtime configs": [
       "speckit_ipc_socket_dir runtime configs"
     ],
@@ -99130,6 +99605,12 @@
     "stale memory index rows": [
       "stale memory index rows"
     ],
+    "stale opencode path references": [
+      "stale opencode path references"
+    ],
+    "stale opencode references map": [
+      "stale opencode references map"
+    ],
     "stale phase documentation map": [
       "stale phase documentation map"
     ],
@@ -99485,6 +99966,9 @@
     "state ignore rules rewrite": [
       "state ignore rules rewrite"
     ],
+    "state jsonl iteration field": [
+      "state jsonl iteration field"
+    ],
     "state jsonl records council complete event": [
       "state jsonl records council_complete event"
     ],
@@ -99517,6 +100001,15 @@
     ],
     "state path rewrite": [
       "state path rewrite"
+    ],
+    "state record contract criteria": [
+      "state record contract criteria"
+    ],
+    "state record field continuation": [
+      "state record field continuation"
+    ],
+    "state record field migration": [
+      "state record field migration"
     ],
     "state relocation tasks": [
       "state relocation tasks"
@@ -101152,6 +101645,9 @@
     "swapped path refusal test": [
       "swapped path refusal test"
     ],
+    "swarm review superseded": [
+      "swarm review superseded"
+    ],
     "swe 1 6": [
       "swe-1.6"
     ],
@@ -101331,6 +101827,9 @@
     ],
     "sync md template": [
       "sync md template"
+    ],
+    "sync prompts hermes": [
+      "sync-prompts-hermes"
     ],
     "sync runtime mirrors": [
       "sync runtime mirrors"
@@ -104032,6 +104531,9 @@
     "tools per mcp server": [
       "tools per mcp server"
     ],
+    "toolset selection and web search policy": [
+      "toolset selection and web-search policy"
+    ],
     "tooltip card": [
       "tooltip card"
     ],
@@ -104516,6 +105018,9 @@
     "trigger index generator": [
       "trigger index generator"
     ],
+    "trigger index lineage exclusion": [
+      "trigger index lineage exclusion"
+    ],
     "trigger index location": [
       "trigger index location"
     ],
@@ -104533,6 +105038,9 @@
     ],
     "trigger index reader fails closed": [
       "trigger index reader fails closed"
+    ],
+    "trigger index regenerated lineages": [
+      "trigger index regenerated lineages"
     ],
     "trigger index replacement": [
       "trigger index replacement"
@@ -105274,6 +105782,9 @@
     ],
     "unattributabledirs implementation summary": [
       "unattributableDirs implementation summary"
+    ],
+    "unattributed out of scope writes": [
+      "unattributed out-of-scope writes"
     ],
     "unavailable": [
       "unavailable"
@@ -108293,6 +108804,9 @@
     ],
     "which model for devin dispatch": [
       "which model for devin dispatch"
+    ],
+    "which model for hermes dispatch": [
+      "which model for hermes dispatch"
     ],
     "which model for opencode dispatch": [
       "which model for opencode dispatch"
