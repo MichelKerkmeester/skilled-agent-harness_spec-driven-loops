@@ -1,0 +1,9 @@
+home       /Users/michelkerkmeester
+data       /tmp/skilled-probes-003/iso/opencode/xdg-data/opencode
+bin        /tmp/skilled-probes-003/iso/opencode/xdg-cache/opencode/bin
+log        /tmp/skilled-probes-003/iso/opencode/xdg-data/opencode/log
+repos      /tmp/skilled-probes-003/iso/opencode/xdg-data/opencode/repos
+cache      /tmp/skilled-probes-003/iso/opencode/xdg-cache/opencode
+config     /tmp/skilled-probes-003/iso/opencode/xdg-config/opencode
+state      /tmp/skilled-probes-003/iso/opencode/xdg-state/opencode
+tmp        /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode
