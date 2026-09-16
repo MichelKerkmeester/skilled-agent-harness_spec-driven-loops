@@ -1,15 +1,16 @@
 ---
 title: "Feature Specification: Angle-driven alignment review of the deep-loop system, its routers, skills, catalogs, commands, agents, executors and architecture against the repo rules"
-description: "[One-line description]"
+description: "Every surface of the deep-loop system, from routers and skills to catalogs, commands, agents and executors, brought into agreement with every other and with the code, through an angle-driven review whose confirmed findings each became a phase."
 trigger_phrases:
-  - "[Trigger phrase 1]"
-  - "[Trigger phrase 2]"
+  - "deep-loop alignment review"
+  - "angle-driven review phases"
+  - "deep-loop surface agreement"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/049-deep-loop-alignment-review"
-    last_updated_at: "2026-04-11T00:00:00Z"
+    last_updated_at: "2026-09-16T20:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"
     next_safe_action: "Plan or resume a child phase folder"
@@ -47,13 +48,13 @@ _memory:
 | **Level** | 2 |
 | **Priority** | P1 |
 | **Status** | Complete |
-| **Created** | [YYYY-MM-DD] |
-| **Branch** | `main` |
-| **Parent Spec** | `../spec.md` |
-| **Parent Packet** | scaffold/049-deep-loop-alignment-review |
-| **Predecessor** | [Predecessor-packet] |
-| **Successor** | [Successor-packet, or "None"] |
-| **Handoff Criteria** | Validator + template + generator changes ship so parent validates under tolerant policy |
+| **Created** | 2026-09-15 |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | None |
+| **Parent Packet** | None |
+| **Predecessor** | 048-fanout-convergence-mode-flag |
+| **Successor** | None |
+| **Handoff Criteria** | Every phase validates PASSED with its criteria checked and the deep-loop suite green |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -115,6 +116,8 @@ Every surface of the deep-loop system says the same thing as every other and as 
 | 13 | 013-recorded-adjacent-defects/ | The seven defects earlier phases recorded but did not fix | Complete |
 | 14 | 014-post-work-review/ | Ten adversarial review iterations over the whole program | Complete |
 | 15 | 015-review-confirmed-findings/ | The six findings that review confirmed | Complete |
+| 16 | 016-iteration-state-record-contract/ | `iteration` as the canonical iteration-record field across the reducers, templates and state documents | Complete |
+| 17 | 017-guard-index-and-parent-doc-fixes/ | The drift guard, trigger index and parent-document defects found while closing phase 16 | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -127,20 +130,22 @@ Every surface of the deep-loop system says the same thing as every other and as 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 <!-- [HANDOFF_ROW] — Replaced by create.sh with full 4-column table rows -->
-| 001-angle-driven-review | 002-roster-completeness | [Criteria TBD] | [Verification TBD] |
-| 002-roster-completeness | 003-version-authority | [Criteria TBD] | [Verification TBD] |
-| 003-version-authority | 004-leaf-manifest-and-doctrine-reachability | [Criteria TBD] | [Verification TBD] |
-| 004-leaf-manifest-and-doctrine-reachability | 005-catalog-and-readme-truth | [Criteria TBD] | [Verification TBD] |
-| 005-catalog-and-readme-truth | 006-confirm-variant-parity | [Criteria TBD] | [Verification TBD] |
-| 006-confirm-variant-parity | 007-ledger-stem-producers | [Criteria TBD] | [Verification TBD] |
-| 007-ledger-stem-producers | 008-agent-mirror-parity | [Criteria TBD] | [Verification TBD] |
-| 008-agent-mirror-parity | 009-containment-promise-and-severity-scale | [Criteria TBD] | [Verification TBD] |
-| 009-containment-promise-and-severity-scale | 010-version-authority-completion | [Criteria TBD] | [Verification TBD] |
-| 010-version-authority-completion | 011-routing-doctrine-and-discovery | [Criteria TBD] | [Verification TBD] |
-| 011-routing-doctrine-and-discovery | 012-missing-stress-fixture-root | [Criteria TBD] | [Verification TBD] |
-| 012-missing-stress-fixture-root | 013-recorded-adjacent-defects | [Criteria TBD] | [Verification TBD] |
-| 013-recorded-adjacent-defects | 014-post-work-review | [Criteria TBD] | [Verification TBD] |
-| 014-post-work-review | 015-review-confirmed-findings | [Criteria TBD] | [Verification TBD] |
+| 001-angle-driven-review | 002-roster-completeness | Every finding at every tier is verified against the tree and bound to a phase or recorded as refuted with its reason | The phase 001 synthesis and the Phase Documentation Map |
+| 002-roster-completeness | 003-version-authority | Phase 002 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 003 starts | `validate.sh --strict` on phase 002 and the deep-loop runtime suite |
+| 003-version-authority | 004-leaf-manifest-and-doctrine-reachability | Phase 003 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 004 starts | `validate.sh --strict` on phase 003 and the deep-loop runtime suite |
+| 004-leaf-manifest-and-doctrine-reachability | 005-catalog-and-readme-truth | Phase 004 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 005 starts | `validate.sh --strict` on phase 004 and the deep-loop runtime suite |
+| 005-catalog-and-readme-truth | 006-confirm-variant-parity | Phase 005 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 006 starts | `validate.sh --strict` on phase 005 and the deep-loop runtime suite |
+| 006-confirm-variant-parity | 007-ledger-stem-producers | Phase 006 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 007 starts | `validate.sh --strict` on phase 006 and the deep-loop runtime suite |
+| 007-ledger-stem-producers | 008-agent-mirror-parity | Phase 007 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 008 starts | `validate.sh --strict` on phase 007 and the deep-loop runtime suite |
+| 008-agent-mirror-parity | 009-containment-promise-and-severity-scale | Phase 008 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 009 starts | `validate.sh --strict` on phase 008 and the deep-loop runtime suite |
+| 009-containment-promise-and-severity-scale | 010-version-authority-completion | Phase 009 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 010 starts | `validate.sh --strict` on phase 009 and the deep-loop runtime suite |
+| 010-version-authority-completion | 011-routing-doctrine-and-discovery | Phase 010 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 011 starts | `validate.sh --strict` on phase 010 and the deep-loop runtime suite |
+| 011-routing-doctrine-and-discovery | 012-missing-stress-fixture-root | Phase 011 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 012 starts | `validate.sh --strict` on phase 011 and the deep-loop runtime suite |
+| 012-missing-stress-fixture-root | 013-recorded-adjacent-defects | Phase 012 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 013 starts | `validate.sh --strict` on phase 012 and the deep-loop runtime suite |
+| 013-recorded-adjacent-defects | 014-post-work-review | Phase 013 validates PASSED with its criteria checked, and the deep-loop suite is green before phase 014 starts | `validate.sh --strict` on phase 013 and the deep-loop runtime suite |
+| 014-post-work-review | 015-review-confirmed-findings | Every review finding is verified against the tree and bound to phase 015 or recorded as refuted with its reason | The phase 014 findings and phase 015 acceptance criteria |
+| 015-review-confirmed-findings | 016-iteration-state-record-contract | An `iteration`-only record passes validation and renders in every reducer | The regression test in `deep-review-state-reducer.vitest.ts` and the runtime suite |
+| 016-iteration-state-record-contract | 017-guard-index-and-parent-doc-fixes | Phase 016 validates PASSED with its five acceptance criteria met | `validate.sh --strict` on phase 016 |
 <!-- /ANCHOR:phase-map -->
 
 ---
