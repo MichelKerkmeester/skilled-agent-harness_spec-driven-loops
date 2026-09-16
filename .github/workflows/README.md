@@ -30,6 +30,7 @@ isolation-check.yml
 | `agent-mirror-sync.yml` | Keeps the `.opencode` and `.claude` agent mirrors aligned. |
 | `changed-packet-validation.yml` | Validates the spec packets a pull request changed. |
 | `comment-hygiene.yml` | Rejects forbidden ephemeral-artifact pointers in code comments. |
+| `gate-inputs.yml` | Checks that every hook and workflow input resolves and that every path filter names both `.opencode/` and `.skilled/`. |
 | `markdown-link-integrity.yml` | Checks repository Markdown link integrity. |
 | `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
 | `prompt-card-sync.yml` | Checks prompt and knowledge-card synchronization. |
@@ -46,6 +47,7 @@ The repository's documented flow pushes release lines directly, so a gate that r
 | Workflow | Push | Pull request | Why |
 |---|---|---|---|
 | `advisory-checks.yml`, `command-tree-parity.yml`, `naming-standard-guard.yml`, `playbook-operator-contract.yml` | yes | yes | Cheap guards over the whole tree |
+| `gate-inputs.yml` | yes, no path filter | yes, no path filter | Guards a move of the source tree, the one change a path filter could miss |
 | `routing-registry-drift.yml`, `runtime-no-spec-import.yml` | yes, path-filtered | yes, path-filtered | Expensive; run only when their inputs change |
 | `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Six suites; path-filtered to the skill so unrelated pushes stay cheap |
 | `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed; on push it diffs against the previous tip |
@@ -58,6 +60,8 @@ The repository's documented flow pushes release lines directly, so a gate that r
 ## 3. GUARD ENTRYPOINTS
 
 The naming guard runs the naming checker and its focused tests. The runtime-import guard runs the real-tree check plus clean and failing fixtures. The spec-root matrix installs its script dependencies, verifies collection and runs the configured resolution rows.
+
+The gate-input workflow runs `.github/scripts/tests/check-gate-inputs.test.sh` against its fixtures, then `.github/scripts/check-gate-inputs.sh` over the real tree. The broken-move drill, `.github/scripts/tests/broken-move-drill.sh`, runs locally rather than in CI because it clones the whole repository. A workflow whose guard script is missing fails that step instead of skipping it.
 
 ---
 
