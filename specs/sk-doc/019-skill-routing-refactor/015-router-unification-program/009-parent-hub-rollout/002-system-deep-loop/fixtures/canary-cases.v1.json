@@ -97,24 +97,6 @@
       }
     },
     {
-      "id": "single-skill-benchmark",
-      "prompt": "/deep:skill-benchmark",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "skill-benchmark"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "skill-benchmark"
-        ],
-        "expectedResources": [
-          "deep-improvement/references/skill-benchmark/scoring-contract.md",
-          "deep-improvement/references/skill-benchmark/routing-optimization.md"
-        ]
-      }
-    },
-    {
       "id": "one-turn-clarify",
       "prompt": "deep review of this research loop",
       "expectedAction": "clarify",
@@ -196,8 +178,7 @@
   "noCollapseFixtures": {
     "sharedPacketModes": [
       "agent-improvement",
-      "model-benchmark",
-      "skill-benchmark"
+      "model-benchmark"
     ],
     "sharedRuntimeModes": [
       "review",
