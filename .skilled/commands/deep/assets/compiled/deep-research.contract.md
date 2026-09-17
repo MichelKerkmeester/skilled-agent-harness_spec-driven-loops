@@ -3,95 +3,95 @@
   "id": "deep/research",
   "command": "/deep:research",
   "version": 1,
-  "generatedBy": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+  "generatedBy": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
   "sourceDigests": [
     {
-      "path": ".opencode/commands/deep/research.md",
+      "path": ".skilled/commands/deep/research.md",
       "sha256": "a501728b01c2017c5b67e20e27a108b747d8b6d94dc56a7b3767d71711c73b4c",
       "section": "full"
     },
     {
-      "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
+      "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
       "sha256": "14c462b86bbe8d529e63e7b6823ea69743a460299313802bc8c52cd709e23d97",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
+      "path": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
       "sha256": "d5ca47fd46e04117e305e95b33ba3cf47ff6afb92131bfb1980f4fee2990c260",
       "section": "full"
     },
     {
-      "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
       "sha256": "f0908fabc4587782708363d1838a7217df63187d545731f76c2e4cb6feb29ef4",
       "section": "full"
     },
     {
-      "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
       "sha256": "2139e178a03cca2faf2c5330f150c45d166ffd56c9e7a471298e4e8ab5e6a739",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+      "path": ".skilled/skills/system-deep-loop/mode-registry.json",
       "sha256": "be93642be72b6ca2f214216fc8977225f1a75b4a40bf4d893cd14c34b61f74b0",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/SKILL.md",
+      "path": ".skilled/skills/system-deep-loop/SKILL.md",
       "sha256": "50ec2328086ca97d4002f0f0e5ecfac3600488aa0fc178a05334b579a3d86b46",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
+      "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
       "sha256": "2fc344cf5a9f73e4c30719fd3ff4eb537ac565aaabe74b7f7e34c5f36856f676",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
       "sha256": "806d45dc3c53f9dea8e025f7e1ebf8ca663db9051582d63ada5cb17a3059ce1c",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md",
+      "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md",
       "sha256": "e18f790991b647bc7003a4877ca6ecdf3fad48a2edc7b6b962f85deb89224dce",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-research/references/state/state-format.md",
+      "path": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
       "sha256": "64bf38e9adeb4b217f18a83d4e544f6f887e5aeeb5d89f55dd4c1e7aa38f45bd",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+      "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
       "sha256": "84f5caf5450d6c1102da8d618b61896485b32f464e968b2713bb3f038edef7bb",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
+      "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
       "sha256": "5b22fdc84bc64ca6bd3ddab185f9d62bfd5e402057adb064d40eba3c4a455b6c",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+      "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
       "sha256": "07c877f1fbde3c6e95f0d8ff9c12aa0c11fd14da28eac1f20e9b066e3ac9e50b",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+      "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
       "sha256": "1ef99b8f32db30d789fa0be213930ee267b1ab00ec0ffd5b886b33b1727fa51a",
       "section": "full"
     },
     {
-      "path": ".opencode/agents/deep-research.md",
+      "path": ".skilled/agents/deep-research.md",
       "sha256": "c3bf110fda4c5ddde30dfd796c13a1ca81005b6ec5f635ecad730bbc74a43b1f",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
+      "path": ".skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
       "sha256": "8bb0a8d7cd4c37218ea9ad246eb9675e59fba897d13df8230ea2c4383a4faa9e",
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "f5991336137bae698a83572c78f4bb4b73dfa789ebad33e933f400b077f10f08"
+  "compiledBodyDigest": "de95338fe6fa2e2f78f82859c6eb897325ce6e97c33241265cb372062c7e42b6"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -114,29 +114,29 @@ Your job is to DISPATCH `deep-research` to run ONE iteration of the research loo
 
 ## sourceAuthority
 
-1. `.opencode/commands/deep/research.md`
-2. `.opencode/commands/deep/assets/deep-research-presentation.txt`
-3. `.opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md`
-4. `.opencode/commands/deep/assets/deep-research-auto.yaml`
-5. `.opencode/commands/deep/assets/deep-research-confirm.yaml`
-6. `.opencode/skills/system-deep-loop/mode-registry.json`
-7. `.opencode/skills/system-deep-loop/SKILL.md`
-8. `.opencode/skills/system-deep-loop/deep-research/SKILL.md`
-9. `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-10. `.opencode/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md`
-11. `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md`
-12. `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-13. `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json`
-14. `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
-15. `.opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl`
-16. `.opencode/agents/deep-research.md`
-17. `.opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
+1. `.skilled/commands/deep/research.md`
+2. `.skilled/commands/deep/assets/deep-research-presentation.txt`
+3. `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`
+4. `.skilled/commands/deep/assets/deep-research-auto.yaml`
+5. `.skilled/commands/deep/assets/deep-research-confirm.yaml`
+6. `.skilled/skills/system-deep-loop/mode-registry.json`
+7. `.skilled/skills/system-deep-loop/SKILL.md`
+8. `.skilled/skills/system-deep-loop/deep-research/SKILL.md`
+9. `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+10. `.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md`
+11. `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
+12. `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+13. `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json`
+14. `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
+15. `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl`
+16. `.skilled/agents/deep-research.md`
+17. `.skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
 
 ## gate3Precedence
 
 ```yaml
 block: gate3Precedence
-classifierPath: .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts
+classifierPath: .skilled/skills/system-spec-kit/shared/gate-3-classifier.ts
 classifierLines:
   commandContractShape: "67-72"
   autonomousSatisfaction: "653-680"
@@ -376,15 +376,15 @@ optionalFields:
   - "resource_map_emit"
   - "fanout_executors"
   - "fanout_concurrency"
-autoWorkflow: .opencode/commands/deep/assets/deep-research-auto.yaml
-confirmWorkflow: .opencode/commands/deep/assets/deep-research-confirm.yaml
+autoWorkflow: .skilled/commands/deep/assets/deep-research-auto.yaml
+confirmWorkflow: .skilled/commands/deep/assets/deep-research-confirm.yaml
 ```
 
 ## outputTemplate
 
 ```yaml
 block: outputTemplate
-promptPackPath: .opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl
+promptPackPath: .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl
 requiredArtifacts:
   - "{state_paths_iteration_pattern} iteration narrative markdown"
   - "{state_paths_state_log} append-only canonical JSONL iteration record"
@@ -437,11 +437,11 @@ rules:
 ```yaml
 block: refs
 dispatchReceipt:
-  writer: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts
-  validator: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts
+  writer: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts
+  validator: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts
   rule: "Reference the existing intent/completion receipt pair and validator; do not copy receipt logic into the command contract."
 progressRecord:
-  writer: .opencode/skills/system-deep-loop/shared/progress/progress-record.cjs
+  writer: .skilled/skills/system-deep-loop/shared/progress/progress-record.cjs
   rule: "Reference additive started/completed progress records as liveness evidence; progress records are not iteration, convergence, or completion records."
 ```
 
