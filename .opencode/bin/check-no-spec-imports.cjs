@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 'use strict';
 
-// Durable guard: no runtime code may require or import from `.opencode/specs`.
+// Durable guard: no runtime code may require or import from the spec tree.
 //
 // The compiled-routing runtime once read its resolver, engine, and bundles from
 // the mutable spec tree, so a single spec renumber could sever routing fleet-wide.
 // That closure was promoted to a stable runtime path. This check keeps it there:
 // it fails if any scanned runtime file requires/imports a target that resolves
-// under `.opencode/specs`, or embeds the compiled-routing spec-tree path in a
+// under the spec tree, or embeds the compiled-routing spec-tree path in a
 // require/import-adjacent literal, so the coupling cannot silently return.
 //
 // The single sanctioned exception is the build bridge that copies the authored
@@ -18,9 +18,9 @@
 //   check-no-spec-imports.cjs            scan the default runtime dirs
 //   check-no-spec-imports.cjs <dir...>   scan explicit dirs (used by fixtures)
 // Exit 0 = clean, 1 = at least one violation (each named on stderr), 2 = the scan
-// read no file. A scan that reads nothing proves nothing, and it must not share the
-// violation code: a caller that expects a violation from a fixture would otherwise
-// accept a fixture that moved away.
+// found no file or could not read one. A file the scan never read proves nothing,
+// and that outcome must not share the violation code: a caller that expects a
+// violation from a fixture would otherwise accept a fixture that moved away.
 
 const fs = require('fs');
 const path = require('path');
@@ -105,11 +105,13 @@ function targetResolvesUnderSpecs(fileDir, target) {
   return underSpecs(resolved);
 }
 
-function scanFile(file) {
+// A file that cannot be read is collected apart from violations: its imports are
+// unknown, so the scan fails with the no-proof code instead of passing it.
+function scanFile(file, unreadable = []) {
   const violations = [];
   if (ALLOWLIST_BASENAMES.has(path.basename(file))) return violations;
   let source;
-  try { source = fs.readFileSync(file, 'utf8'); } catch { return violations; }
+  try { source = fs.readFileSync(file, 'utf8'); } catch { unreadable.push(file); return violations; }
   const lines = source.split('\n');
   const fileDir = path.dirname(file);
 
@@ -120,7 +122,7 @@ function scanFile(file) {
       while ((match = pattern.exec(line)) !== null) {
         const target = match[1];
         if (targetResolvesUnderSpecs(fileDir, target)) {
-          violations.push({ file, line: index + 1, target, reason: 'import/require resolves under .opencode/specs' });
+          violations.push({ file, line: index + 1, target, reason: 'import/require resolves under the spec tree' });
         }
       }
     }
@@ -146,14 +148,20 @@ function main() {
   }
 
   const violations = [];
-  for (const file of files) violations.push(...scanFile(file));
+  const unreadable = [];
+  for (const file of files) violations.push(...scanFile(file, unreadable));
 
   if (violations.length > 0) {
-    process.stderr.write('FAIL: runtime code imports from .opencode/specs:\n');
+    process.stderr.write('FAIL: runtime code imports from the spec tree:\n');
     for (const v of violations) {
       process.stderr.write(`  ${path.relative(REPO_ROOT, v.file)}:${v.line} -> ${v.target} (${v.reason})\n`);
     }
     process.exit(1);
+  }
+  if (unreadable.length > 0) {
+    process.stderr.write(`FAIL: could not read ${unreadable.length} runtime file(s); an unread file proves nothing:\n`);
+    for (const file of unreadable) process.stderr.write(`  ${path.relative(REPO_ROOT, file)}\n`);
+    process.exit(2);
   }
   process.stdout.write(`ok: no spec-tree imports in ${files.length} runtime file(s) across ${roots.length} dir(s)\n`);
 }
