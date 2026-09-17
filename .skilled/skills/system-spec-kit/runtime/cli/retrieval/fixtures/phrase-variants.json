@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fa351eb7530a076142761a64c5358171cc4b6b486ad31c847d10e29141a7f426",
+  "manifestHash": "d14037d08acb589b4ed6c31299c8686178f540914e27ae6846808913e67adeaa",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9206,6 +9206,9 @@
     ],
     "add task to multiple lists": [
       "add task to multiple lists"
+    ],
+    "add union alpha": [
+      "add union alpha"
     ],
     "adding new mcp server": [
       "adding new mcp server"
@@ -69965,6 +69968,9 @@
     "openrouter allowlist glm gemini cli": [
       "openrouter allowlist glm gemini cli"
     ],
+    "openrouter back on the roster": [
+      "openrouter back on the roster"
+    ],
     "openrouter compat": [
       "openrouter compat"
     ],
@@ -69983,8 +69989,14 @@
     "openrouter removed from both rosters": [
       "openrouter removed from both rosters"
     ],
+    "openrouter restore checklist": [
+      "openrouter restore checklist"
+    ],
     "openrouter roster retirement": [
       "openrouter roster retirement"
+    ],
+    "openrouter section restore": [
+      "openrouter section restore"
     ],
     "openrouter session affinity fix": [
       "openrouter session affinity fix"
@@ -74748,6 +74760,9 @@
     ],
     "pi docs and closeout": [
       "pi docs and closeout"
+    ],
+    "pi enabledmodels union alpha": [
+      "pi enabledModels union alpha"
     ],
     "pi env placeholder apikey syntax": [
       "pi env placeholder apiKey syntax"
@@ -100698,6 +100713,9 @@
     "stdio transport survival": [
       "stdio transport survival"
     ],
+    "stealth union alpha": [
+      "stealth union alpha"
+    ],
     "steering parity root docs": [
       "steering parity root docs"
     ],
@@ -106454,6 +106472,30 @@
     ],
     "unify studies s1 s5 deep loop": [
       "unify studies s1 s5 deep loop"
+    ],
+    "union alpha implementation plan": [
+      "union alpha implementation plan"
+    ],
+    "union alpha pi settings": [
+      "union alpha pi settings"
+    ],
+    "union alpha roster": [
+      "union alpha roster"
+    ],
+    "union alpha roster approach": [
+      "union alpha roster approach"
+    ],
+    "union alpha roster tasks": [
+      "union alpha roster tasks"
+    ],
+    "union alpha task breakdown": [
+      "union alpha task breakdown"
+    ],
+    "union alpha two providers": [
+      "union alpha two providers"
+    ],
+    "union alpha verification tasks": [
+      "union alpha verification tasks"
     ],
     "union projection drift guard": [
       "union projection drift guard"
