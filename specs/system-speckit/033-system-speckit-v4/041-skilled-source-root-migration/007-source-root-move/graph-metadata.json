@@ -39,7 +39,7 @@
       "removal"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,11 +47,13 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back/.gitkeep",
       ".opencode/skills/sk-git/references/large-reorg-playbook.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/node_modules/.package-lock.json",
-      ".opencode/package-lock.json"
+      ".opencode/package-lock.json",
+      ".skilled/bin/README.md",
+      ".skilled/vitest.config.bin.ts",
+      ".opencode/bin/system-skill-advisor-launcher.cjs"
     ],
     "entities": [
       {
@@ -91,12 +93,6 @@
         "source": "derived"
       },
       {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": ".skilled/future-task-placeholder-move-opencode-contents-to-here-and-relative-symlink-back/.gitkeep",
-        "source": "derived"
-      },
-      {
         "name": "large-reorg-playbook.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/references/large-reorg-playbook.md",
@@ -118,6 +114,24 @@
         "name": "package-lock.json",
         "kind": "config",
         "path": ".opencode/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.bin.ts",
+        "kind": "code",
+        "path": ".skilled/vitest.config.bin.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/system-skill-advisor-launcher.cjs",
         "source": "derived"
       },
       {
@@ -185,23 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The authored tree has to change roots without losing its history, without a gate run that passes because the gates could not find themselves, and without breaking seven machine-wide hooks that point into the main checkout",
     "created_at": "2026-09-16T17:54:08Z",
-    "last_save_at": "2026-09-16T18:43:45.351Z",
+    "last_save_at": "2026-09-17T13:55:35.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b385711b569267d0e2c765e83ef8195efd8dc84eea6c76949ab4e80146a9c72e",
+    "source_fingerprint": "sha256:a44668f42de4e0f6f0ab31d9432ac82198d696fe91a6d021b171619d02a77be4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9acbf036a45a4693b5081398cbef05d8a0b7745eb8841d366aa81050ec912630",
-      "plan.md": "d810cdf569da22377f3c0854e2b7d42063f5a9ef8da396349605311b417befb6",
-      "tasks.md": "66ac144842453d2fde06f82b1ab699c41deb255f7a144d6e7547d1e03abf8e40",
-      "implementation-summary.md": "a58a131cb1f1a2f416844cd3ac4a2f1e5a4a37f81aa17d051bc9213e0c79d627"
+      "spec.md": "7389481ac01b15b9ecf48207e4a27c8a93e80fd45717ce9874be3e952c9b765f",
+      "plan.md": "5a505f12b8553858fb56ed4d27977c8da6d97d681b4106cc98fcaf71932008fe",
+      "tasks.md": "4b324ccb382ab917fb89364b129f51faf82e2289cc59873774c39a4a135f41b7",
+      "implementation-summary.md": "7650e43df9a8c554f29d0019b3e2816b30eb04746e68d7eb806675b9ea397bfe"
     },
     "last_active_at": null
   }
