@@ -216,8 +216,8 @@ describe('spec root matrix under each source-root layout', () => {
       materializedFixtures.push(fixture);
       const { canonicalRoot, legacyRoot } = getRoots(fixture);
       const skilledEntry = path.join(fixture.workspaceDir, '.skilled', 'specs');
-      // A workspace with no .opencode path hides the legacy entry from every resolver,
-      // so each fixture reads as canonical-only there.
+      // Root enumeration finds no legacy root in a workspace with no .opencode path, so
+      // each fixture classifies as canonical-only there.
       const expected = layout === 'skilled-only' ? EXPECTED_RESULTS.R1 : EXPECTED_RESULTS[rootFixture.id];
       const resolverRoots: PhysicalRoot[] = [
         { rootPath: canonicalRoot, kind: 'canonical' },
