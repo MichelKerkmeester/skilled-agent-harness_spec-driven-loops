@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration"
-    last_updated_at: "2026-09-17T09:30:00Z"
+    last_updated_at: "2026-09-17T12:05:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Phase 005 published and closed"
-    next_safe_action: "Start phase 006 per its goal"
+    recent_action: "Widened D3 to three parallel DeepSeek lanes and parallel Luna reviews"
+    next_safe_action: "Close phase 006 per its goal"
     blockers: []
     key_files: []
     session_dedup:
@@ -45,7 +45,7 @@ Frozen; changing one is an amendment.
 |----|----------|
 | D1 | Phases run in binding order; none starts until its predecessor validates. |
 | D2 | Autonomous from A to Z; stop only for a regression still red after three repairs, contradicting findings, or a probe voiding the design. Pushes to skilled/v4.0.0.0 and main, the global hook reinstall and this machine's home configs are pre-authorized, rollback first. |
-| D3 | Opus agents plan. DeepSeek V4.1 Flash max (cli-pi, LLM Gateway) executes: one short literal brief per unit, kebab-case outputs, suite-verified before the next. Layout, cutover order and contract files get a second model family; the orchestrator verifies every return. |
+| D3 | Opus plans and verifies every return. DeepSeek V4.1 Flash runs a literal brief per unit on parallel lanes (Pi Gateway max, Pi Cline xhigh, Devin max), kebab-case, suite-verified before commit. GPT-5.6 Luna xhigh fast reviews layout, cutover order and contracts. |
 | D4 | Work stays in worktree 055; renames get rename-only commits, generated files are regenerated not edited, historical records stay frozen. |
 | D5 | `.opencode/` stays resolvable for opencode, root discovery and consumers; 004 decides its final shape. |
 
@@ -110,6 +110,7 @@ and findings belong here.
 | Phase 003 layout probes | Done, committed locally `951f4fae18` | Nine records, strict validation PASSED; not pushed |
 | Phase 004 migration design | Done, committed locally `7085ec3290` | L1 accepted; 25-step cutover amended by 7 GPT-5.6 findings; strict validation PASSED |
 | Phase 005 gate and CI readiness | Done, pushed at `c22d1b63c9` | GPT-5.6 Luna reviewed the hook rules, the naming guard, the agent mirror checker and the CI check in five rounds on 2026-09-17. The operator chose to close the check's review loop after the fifth round and to run the hook test scripts in CI. From `9bc50c4ce8` the check and the drill print `RESULT: PASSED`, the hook harnesses pass 175 cases against the 126 baseline and the check's fixture test 42. Pushed to `skilled/v4.0.0.0` and `main` with the other session's commit `0aa71350e4` at the operator's request, plus an sk-doc manifest re-mint that commit needed. The main checkout is fast-forwarded, so the global hooks run the new hooks, and CI on the tip adds no failure to the pre-005 baseline |
+| Phase 006 dual-root code and contracts | Done, pushed at `dadf2d19dd` | Every contract component resolves under a real `.opencode/`, a real `.skilled/` and the link, proven by layout rows that fail on the start commit and by a three-layout rehearsal with no failure. GPT-5.6 Luna ran 23 reviews, every finding was fixed or answered with evidence, and the last round was clean. On 2026-09-17 the operator widened D3 to three parallel DeepSeek lanes. The main checkout and both remotes sit on `dadf2d19dd`, a fresh `code_mode` launcher answers from the main checkout, and a commit at `7085ec3290` passes the global hooks |
 | CI on the pushed tip | Checked | All 22 runs for `1d198996ca` and `728c4f3efc` completed; the naming guard went red, then green at `728c4f3efc` |
 
 ### Deviations and findings
@@ -135,5 +136,6 @@ and findings belong here.
 | Git cannot stage through the link | Under L1, `git add .opencode/<path>` fails with "beyond a symbolic link" and `git diff --quiet` through the link exits 0 on a changed file (phase 005, observed in a scratch repository). Whatever stages or diffs a `.opencode/` path must use the `.skilled/` path: 005 fixes the route re-mint gate, and 006 and 008 check their own tools that stage |
 | Codex quota blocks the contract reviews | Phase 005's first GPT-5.6 review stopped at "You've hit your usage limit ... try again at Sep 19th, 2026 10:29 AM". The plan's contingency is that contract changes wait and are never merged unreviewed, so phase 005 stays unpublished and phase 006 cannot start (D1). A substitute second-family reviewer would amend D3 of phase 005, which needs the operator. Resolved on 2026-09-17: after a brief SWE-2 interim, the operator chose GPT-5.6 Luna at xhigh on the fast tier, and from then on Luna reviews and DeepSeek V4.1 Flash max executes, with no other model |
 | The agent mirror checker had no owner | Phase 005 handed `check-agent-mirror-sync.cjs:32`, which drops `.skilled/agents/` paths, to phase 006, while `006-dual-root-code-and-contracts/spec.md:105` excludes the checker as hook work. The operator placed the fix in phase 005 on 2026-09-17, so 006's exclusion now matches |
+| D3 widened to parallel lanes | On 2026-09-17 the operator asked for more parallelism and named three DeepSeek V4.1 Flash routes plus GPT-5.6 at xhigh or max. Read-only probes that day: the Cline route answered `PONG7` in 4 s, and Devin 3000.10.31 applied a scratch edit in 15 s under `accept-edits` with `--respect-workspace-trust false`, so no lane needs `dangerous`. Cline has no `max` tier, so its lane runs at `xhigh`. Units run one worker per lane in the worktree, each on its own file, and a batch passes only when the changed set equals the queued files and every file matches its expected bytes |
 | Phase 007's naming-guard rehearsal expects four names | Phase 005 changed the guard so a rename that keeps its basename passes, so a byte-identical move now reports none. Phase 007's T043 still expects four names and its spec's risk row still routes them to 005. Re-derive both before 007 runs |
 <!-- /ANCHOR:log -->
