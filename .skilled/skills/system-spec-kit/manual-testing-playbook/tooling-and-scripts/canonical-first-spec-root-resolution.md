@@ -58,7 +58,7 @@ Validate canonical-first spec-root resolution in an operating-system temporary w
 2. Run the branch implementation against only that temporary playground. The script intentionally leaves the playground available for evidence inspection; it performs no checkout cleanup and has no path to the live spec roots.
 
    ```bash
-   cd .opencode/skills/system-spec-kit/runtime/cli
+   cd .skilled/skills/system-spec-kit/runtime/cli
    npx tsx <<'TS'
    import * as fs from 'node:fs';
    import * as path from 'node:path';
@@ -142,7 +142,7 @@ Validate canonical-first spec-root resolution in an operating-system temporary w
 3. From the repository root, run the existing focused regression set as corroborating evidence. It uses its own operating-system temp fixtures and does not target the checkout's spec roots.
 
    ```bash
-   cd .opencode/skills/system-spec-kit
+   cd .skilled/skills/system-spec-kit
    npx vitest run runtime/cli/tests/spec-root-canonical-resolver.vitest.ts runtime/cli/tests/spec-root-collision-classifier.vitest.ts runtime/cli/tests/spec-root-write-guard.vitest.ts runtime/cli/tests/spec-root-validation-matrix.vitest.ts --config runtime/vitest.config.ts --root .
    ```
 
@@ -183,10 +183,10 @@ Inspect `runtime/cli/core/spec-root-canonical-resolver.ts` first for precedence 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-canonical-resolver.ts:43-72` | Canonical-first bare-name resolution, explicit-path preservation, and legacy-only read fallback |
-| `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-write-guard.ts:14-38` | Writer-freeze enforcement and divergent-duplicate rejection |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/spec-root-canonical-resolver.vitest.ts:35-79` | Focused tests for the resolver contract |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/spec-root-validation-matrix.vitest.ts:185-205` | No-alias guarded write with no plain `specs/` root materialized |
+| `.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-canonical-resolver.ts:43-72` | Canonical-first bare-name resolution, explicit-path preservation, and legacy-only read fallback |
+| `.skilled/skills/system-spec-kit/runtime/cli/core/spec-root-write-guard.ts:14-38` | Writer-freeze enforcement and divergent-duplicate rejection |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-canonical-resolver.vitest.ts:35-79` | Focused tests for the resolver contract |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-validation-matrix.vitest.ts:185-205` | No-alias guarded write with no plain `specs/` root materialized |
 | `.opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/research.md:138-147` | Deployment and alias-retirement gates; not evidence of production execution |
 
 Provenance: runtime/cli/tests/spec-root-canonical-resolver.vitest.ts

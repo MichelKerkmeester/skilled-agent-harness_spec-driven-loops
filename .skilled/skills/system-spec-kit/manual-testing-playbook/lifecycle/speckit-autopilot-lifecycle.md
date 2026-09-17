@@ -37,8 +37,8 @@ Validate the SpecKit autopilot lifecycle, including mode routing, task metadata,
 
 ### Commands
 
-1. Inspect `.opencode/commands/speckit/complete.md`, `.opencode/commands/speckit/plan.md`, `.opencode/commands/speckit/implement.md`, and `.opencode/commands/speckit/assets/speckit-complete.yaml`.
-2. Run `bash: cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/speckit-autopilot-contract.vitest.ts` and require EXIT 0.
+1. Inspect `.skilled/commands/speckit/complete.md`, `.skilled/commands/speckit/plan.md`, `.skilled/commands/speckit/implement.md`, and `.skilled/commands/speckit/assets/speckit-complete.yaml`.
+2. Run `bash: cd .skilled/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/speckit-autopilot-contract.vitest.ts` and require EXIT 0.
 3. In a disposable branch-backed packet, invoke `/speckit:plan <request> --unattended` and confirm executable task rows include `agent`, `deps`, and `touched-files` metadata.
 4. Invoke `/speckit:implement <packet> --unattended` or `/speckit:complete <request> --unattended` with a controlled verification failure.
 5. Capture the terminal result line and verify the prefix is `SPECKIT_AUTOPILOT_RESULT`.
@@ -68,13 +68,13 @@ Inspect the three Speckit command routers first. If they route correctly, inspec
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [lifecycle/speckit-autopilot-lifecycle.md](../../feature-catalog/lifecycle/speckit-autopilot-lifecycle.md)
-- Source: `.opencode/commands/speckit/complete.md`
-- Source: `.opencode/commands/speckit/plan.md`
-- Source: `.opencode/commands/speckit/implement.md`
-- Source: `.opencode/commands/speckit/assets/speckit-complete.yaml`
-- Test: `.opencode/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts`
+- Source: `.skilled/commands/speckit/complete.md`
+- Source: `.skilled/commands/speckit/plan.md`
+- Source: `.skilled/commands/speckit/implement.md`
+- Source: `.skilled/commands/speckit/assets/speckit-complete.yaml`
+- Test: `.skilled/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts`
 
-Provenance: .opencode/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts
+Provenance: .skilled/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts
 
 ---
 

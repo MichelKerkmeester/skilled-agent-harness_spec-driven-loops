@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest';
 
 const thisDir = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(thisDir, '../../../../..');
-const pluginsDir = resolve(repoRoot, '.opencode/plugins');
+const pluginsDir = resolve(repoRoot, '.skilled/plugins');
 const pluginExtensions = new Set(['.js', '.mjs', '.ts']);
 const hookKeys = new Set([
   'event',

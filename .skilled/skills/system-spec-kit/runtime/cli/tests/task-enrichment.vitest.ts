@@ -1060,12 +1060,12 @@ describe('workflow seam guardrail', () => {
         {
           title: 'Workflow hardening',
           narrative: 'Updated stateless alignment handling for perfect session capturing.',
-          files: ['.opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts'],
+          files: ['.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts'],
         },
       ],
       FILES: [
         {
-          FILE_PATH: '.opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts',
+          FILE_PATH: '.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts',
           DESCRIPTION: 'Adjusted stateless alignment guards for the target spec.',
         },
       ],
@@ -1119,12 +1119,12 @@ describe('workflow seam guardrail', () => {
         {
           title: 'Prepare media editor flow',
           narrative: 'Queued the image conversion workflow for hero assets.',
-          files: ['.opencode/skills/system-spec-kit/runtime/cli/core/config.ts'],
+          files: ['.skilled/skills/system-spec-kit/runtime/cli/core/config.ts'],
         },
       ],
       FILES: [
         {
-          FILE_PATH: '.opencode/skills/system-spec-kit/runtime/cli/core/config.ts',
+          FILE_PATH: '.skilled/skills/system-spec-kit/runtime/cli/core/config.ts',
           DESCRIPTION: 'Generic infrastructure path touched during unrelated media workflow.',
         },
       ],

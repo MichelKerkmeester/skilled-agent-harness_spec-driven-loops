@@ -48,7 +48,7 @@ Files below the 150-token small-file threshold merge into consolidated output; n
 
 ### Evidence
 
-Command run from `.opencode/skills/system-spec-kit/runtime/cli`:
+Command run from `.skilled/skills/system-spec-kit/runtime/cli`:
 
 ```bash
 npm exec --no -- tsx --eval '

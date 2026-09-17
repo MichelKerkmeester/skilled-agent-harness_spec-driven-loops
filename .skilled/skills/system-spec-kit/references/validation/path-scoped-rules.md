@@ -56,7 +56,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 | ---------------------------------------------- | ---------------------------- |
 | `**/scratch/**`                                | Skip all validation          |
 | `**/memory/**`                                 | Minimal validation (generated continuity support artifacts validated by ANCHORS_VALID only) |
-| `.opencode/skills/system-spec-kit/templates/**` | Skip content validation      |
+| `.skilled/skills/system-spec-kit/templates/**` | Skip content validation      |
 | `specs/**/`                                    | Level-appropriate validation (recursive through nested packet families) |
 | `<active-spec-folder>/**/`                          | Level-appropriate validation (recursive through nested packet families) |
 
@@ -106,13 +106,13 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ```bash
 # Validate a spec folder
-.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
+.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
 
 # JSON output for tooling
-.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/ --json
+.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/ --json
 
 # Strict mode (strict-only rules run; warnings stay advice)
-.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/ --strict
+.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/ --strict
 ```
 
 ### Environment Variables
@@ -145,7 +145,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 The Completion Verification Rule requires running validation before claiming completion:
 
 ```bash
-.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder>
+.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder>
 ```
 
 ### /speckit:complete Step 11

@@ -20,7 +20,7 @@ Current state:
 - TypeScript modules cover rendering, semantic extraction, frontmatter, memory quality, trigger-phrase safety and activity signals.
 - Shell helpers centralize branch detection, template operations, boolean-flag parsing and shared validation utilities.
 - Runtime JavaScript output for TypeScript sources is generated from those sources and should not be edited by hand.
-- `dist-freshness.cjs` and `completion-state.cjs` are directly-executable CommonJS modules (no build step). `dist-freshness.cjs` is shared by four independent consumers: the three `.opencode/bin/*.cjs` CLI shims, `validate.sh`'s hard staleness backstop, the `sk-code` `claude-posttooluse.sh` hook, and the `system-dist-freshness-guard` OpenCode plugin.
+- `dist-freshness.cjs` and `completion-state.cjs` are directly-executable CommonJS modules (no build step). `dist-freshness.cjs` is shared by four independent consumers: the three `.skilled/bin/*.cjs` CLI shims, `validate.sh`'s hard staleness backstop, the `sk-code` `claude-posttooluse.sh` hook, and the `system-dist-freshness-guard` OpenCode plugin.
 
 ---
 
@@ -173,13 +173,13 @@ Shell helper flow:
 Example import after build:
 
 ```bash
-node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/lib/anchor-generator.js').then(m => console.log(typeof m.generateAnchorId))"
+node -e "import('./.skilled/skills/system-spec-kit/runtime/cli/dist/lib/anchor-generator.js').then(m => console.log(typeof m.generateAnchorId))"
 ```
 
 Example require of the standalone CommonJS modules (no build step):
 
 ```bash
-node -e "console.log(typeof require('./.opencode/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs').computeCompletionState)"
+node -e "console.log(typeof require('./.skilled/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs').computeCompletionState)"
 ```
 
 ---
@@ -189,8 +189,8 @@ node -e "console.log(typeof require('./.opencode/skills/system-spec-kit/runtime/
 Use repository-root commands:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
-node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/lib/anchor-generator.js').then(m => console.log(typeof m.generateAnchorId))"
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
+node -e "import('./.skilled/skills/system-spec-kit/runtime/cli/dist/lib/anchor-generator.js').then(m => console.log(typeof m.generateAnchorId))"
 ```
 
 Shell helper behavior is covered through the spec and rule validation scripts that source it. `completion-state.test.mjs` imports Vitest but its `lib/*.test.mjs` path sits outside every configured Vitest `include` glob, so it currently runs under neither `npm test` nor `node --test`.

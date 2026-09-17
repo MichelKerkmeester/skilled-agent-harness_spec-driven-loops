@@ -90,7 +90,7 @@ function detectTrigger(userMessage: string): boolean {
 Trigger matching is a keyed lookup over the generated index. It runs from a cold Node process, needs no service and no embeddings:
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "I want to save context for this session"
 ```
 
@@ -128,7 +128,7 @@ The Gate 3 enforcement trigger set uses 33 trigger phrases to detect file modifi
 
 ```bash
 # User says: "refactor the authentication module"
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "refactor the authentication module"
 # Returns: Gate 3 file-modification trigger match, phrases: ["refactor"]
 # AI then asks: "Spec Folder (required): A) Existing | B) New | C) Related | D) Skip"

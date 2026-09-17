@@ -9,14 +9,14 @@ This suite validates the documented local embedding runtime behavior against exe
 Functional tests:
 
 ```bash
-cd .opencode/skills/system-spec-kit
+cd .skilled/skills/system-spec-kit
 npx vitest run runtime/tests/local-llm-features
 ```
 
 Performance benchmarks:
 
 ```bash
-cd .opencode/skills/system-spec-kit
+cd .skilled/skills/system-spec-kit
 SPECKIT_RUN_BENCHMARKS=true npx vitest bench runtime/tests/local-llm-features/performance
 ```
 

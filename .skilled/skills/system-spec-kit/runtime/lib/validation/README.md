@@ -84,7 +84,7 @@ This folder decides whether a spec folder's structure and generated metadata are
 
 ## 7. VALIDATION
 
-Run focused tests from `.opencode/skills/system-spec-kit/runtime`:
+Run focused tests from `.skilled/skills/system-spec-kit/runtime`:
 
 ```bash
 npx vitest run tests/spec-doc-structure.vitest.ts tests/generated-metadata-integrity.vitest.ts
@@ -93,7 +93,7 @@ npx vitest run tests/spec-doc-structure.vitest.ts tests/generated-metadata-integ
 Run document validation after README edits:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/lib/validation/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/lib/validation/README.md
 ```
 
 ---

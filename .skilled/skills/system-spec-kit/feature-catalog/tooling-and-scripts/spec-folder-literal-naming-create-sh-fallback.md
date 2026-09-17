@@ -39,13 +39,13 @@ Exit code remains 0 to keep scaffolding non-blocking. Downstream consumers (work
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Script | Generates phase children, emits PROVIDE-DESCRIPTIVE-SLUG placeholders, and writes one stderr warning per child when --phase-names is omitted |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` | Script | Generates phase children, emits PROVIDE-DESCRIPTIVE-SLUG placeholders, and writes one stderr warning per child when --phase-names is omitted |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md` | Manual playbook | Playbook scenario PHASE-006 covering placeholder emission, stderr warning count, and exit-code expectation |
+| `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md` | Manual playbook | Playbook scenario PHASE-006 covering placeholder emission, stderr warning count, and exit-code expectation |
 
 ---
 

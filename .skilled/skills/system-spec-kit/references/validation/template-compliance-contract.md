@@ -41,7 +41,7 @@ Defines the exact heading hierarchy, required anchors, and content minimums for 
 After writing ANY spec folder `.md` file, immediately run:
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <SPEC_FOLDER> --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <SPEC_FOLDER> --strict
 ```
 
 Fix ALL errors before proceeding to the next file or workflow step.
@@ -244,7 +244,7 @@ Phase-parent `spec.md` content discipline is a template convention, not a valida
 Before authoring (or fixing) a spec folder to pass `validate.sh --strict`, ask the contract engine directly rather than copying `templates/examples/level_N/` (whose anchor ids and section order **differ** from what the validator enforces). Two checks are independent: **required anchors** (presence) and **header order** — a doc can have every anchor yet still fail on ordering.
 
 ```bash
-cd .opencode/skills/system-spec-kit/runtime/cli/utils
+cd .skilled/skills/system-spec-kit/runtime/cli/utils
 
 # Required anchors + section gates for a level (the ANCHORS_VALID source of truth):
 node template-structure.js level-contract 3

@@ -310,7 +310,7 @@ describe('key_files derivation honors frontmatter continuity references', () => 
   it('includes a real file only named in spec.md frontmatter key_files, not in doc prose', () => {
     const trackRoot = makeTrackRoot();
     const repoRoot = path.dirname(path.dirname(path.dirname(trackRoot)));
-    const runtimeFilePath = path.join(repoRoot, '.opencode', 'skills', 'fake-runtime', 'real-file.cjs');
+    const runtimeFilePath = path.join(repoRoot, '.skilled', 'skills', 'fake-runtime', 'real-file.cjs');
     fs.mkdirSync(path.dirname(runtimeFilePath), { recursive: true });
     fs.writeFileSync(runtimeFilePath, 'module.exports = {};\n', 'utf-8');
 
@@ -325,7 +325,7 @@ describe('key_files derivation honors frontmatter continuity references', () => 
       '_memory:',
       '  continuity:',
       '    key_files:',
-      '      - ".opencode/skills/fake-runtime/real-file.cjs"',
+      '      - ".skilled/skills/fake-runtime/real-file.cjs"',
       '---',
       '',
       '# Fixture',
@@ -336,6 +336,6 @@ describe('key_files derivation honors frontmatter continuity references', () => 
 
     const graph = deriveGraphMetadata(folder, null, { now: NOW });
 
-    expect(graph.derived.key_files).toContain('.opencode/skills/fake-runtime/real-file.cjs');
+    expect(graph.derived.key_files).toContain('.skilled/skills/fake-runtime/real-file.cjs');
   });
 });

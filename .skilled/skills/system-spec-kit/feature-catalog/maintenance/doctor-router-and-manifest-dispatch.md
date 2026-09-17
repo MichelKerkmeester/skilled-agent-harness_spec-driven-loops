@@ -16,7 +16,7 @@ version: 3.6.0.12
 
 ## 1. OVERVIEW
 
-`/doctor <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of nine subsystem YAML workflows (speckit-retrieval, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors) by reading the canonical route manifest `.opencode/commands/doctor/_routes.yaml`. Two companion commands round out the surface: `/doctor:mcp <install|debug>` for MCP-server infrastructure repair, and `/doctor:update` for the cross-subsystem rebuild orchestrator.
+`/doctor <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of nine subsystem YAML workflows (speckit-retrieval, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors) by reading the canonical route manifest `.skilled/commands/doctor/_routes.yaml`. Two companion commands round out the surface: `/doctor:mcp <install|debug>` for MCP-server infrastructure repair, and `/doctor:update` for the cross-subsystem rebuild orchestrator.
 
 The router shipped as a hard cutover in `010-doctor-update-orchestrator` phases 004 + 005, replacing 10 standalone `/doctor:<name>` commands with 3 markdown files (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`). Each subsystem keeps its existing YAML workflow under `assets/doctor_<target>.yaml` — only the markdown command surface was consolidated.
 
@@ -52,20 +52,20 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 
 | File | Role |
 |------|------|
-| `.opencode/commands/doctor/speckit.md` | Router entry point: target resolution, per-target flag parser, YAML handoff |
-| `.opencode/commands/doctor/mcp.md` | MCP infrastructure command: `install` / `debug` sub-action dispatch |
-| `.opencode/commands/doctor/update.md` | Multi-subsystem orchestrator (unchanged from 013) |
-| `.opencode/commands/doctor/_routes.yaml` | Canonical route manifest (7 routes + 2 MCP sub-routes) |
-| `.opencode/commands/doctor/scripts/route-validate.sh` | CI assertion bash wrapper |
-| `.opencode/commands/doctor/scripts/route-validate.py` | Python core asserting manifest consistency |
-| `.opencode/commands/doctor/assets/doctor_*.yaml` | 10 per-target / per-subsystem YAML workflows (unchanged) |
+| `.skilled/commands/doctor/speckit.md` | Router entry point: target resolution, per-target flag parser, YAML handoff |
+| `.skilled/commands/doctor/mcp.md` | MCP infrastructure command: `install` / `debug` sub-action dispatch |
+| `.skilled/commands/doctor/update.md` | Multi-subsystem orchestrator (unchanged from 013) |
+| `.skilled/commands/doctor/_routes.yaml` | Canonical route manifest (7 routes + 2 MCP sub-routes) |
+| `.skilled/commands/doctor/scripts/route-validate.sh` | CI assertion bash wrapper |
+| `.skilled/commands/doctor/scripts/route-validate.py` | Python core asserting manifest consistency |
+| `.skilled/commands/doctor/assets/doctor_*.yaml` | 10 per-target / per-subsystem YAML workflows (unchanged) |
 
 ### Cross-runtime mirrors
 
 | Path | Role |
 |------|------|
-| `.claude/commands/doctor/speckit.md` + `.claude/commands/doctor/{mcp,update}.md` | Auto-synced from `.opencode` (APFS clone) |
-| `.opencode/prompts` | Symlink to `.opencode/commands` |
+| `.claude/commands/doctor/speckit.md` + `.claude/commands/doctor/{mcp,update}.md` | Auto-synced from `.skilled` (APFS clone) |
+| `.skilled/prompts` | Symlink to `.skilled/commands` |
 
 ### Specification
 

@@ -13,7 +13,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import * as hookFlags from "../../.opencode/hooks/shared/hook-flags.mjs";
+import * as hookFlags from "../../.skilled/hooks/shared/hook-flags.mjs";
 
 const MAX_CONTEXT_BYTES = 4_096;
 

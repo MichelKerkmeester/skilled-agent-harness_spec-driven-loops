@@ -55,7 +55,7 @@ Current state:
 Run from the repository root.
 
 ```bash
-cd .opencode/skills/system-spec-kit/runtime && npx vitest run tests/validation/evidence-marker-audit.vitest.ts
+cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/validation/evidence-marker-audit.vitest.ts
 ```
 
 Expected result: exit code 0, all 4 tests pass.

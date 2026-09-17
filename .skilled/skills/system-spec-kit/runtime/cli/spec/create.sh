@@ -316,7 +316,7 @@ while [[ $i -le $# ]]; do
             echo "Template Composition:"
             echo "  Core templates (~270 LOC) are shared across all levels."
             echo "  Higher levels ADD value, not just length."
-            echo "  Templates located in: .opencode/skills/system-spec-kit/templates/"
+            echo "  Templates located in: .skilled/skills/system-spec-kit/templates/"
             echo ""
             echo "All levels include: scratch/ (working files; NOT git-ignored, add a scratch/.gitignore for anything you do not want committed)"
             echo ""
@@ -922,7 +922,7 @@ if [[ "$SUBFOLDER_MODE" = true ]]; then
     SUBFOLDER_NAME=$(basename "$SUBFOLDER_PATH")
     
     # Copy templates based on documentation level from the resolver contract
-    TEMPLATES_BASE="${SPECKIT_TEMPLATES_BASE:-$REPO_ROOT/.opencode/skills/system-spec-kit/templates}"
+    TEMPLATES_BASE="${SPECKIT_TEMPLATES_BASE:-$REPO_ROOT/.skilled/skills/system-spec-kit/templates}"
     LEVEL_CONTRACT="$(resolve_level_contract "$DOC_LEVEL")"
     CREATED_FILES=()
 
@@ -1059,9 +1059,9 @@ if [[ "$PHASE_MODE" = true ]]; then
     # Parent gets the lean phase-parent trio
     # Each child gets level 1 templates + parent back-reference injection
 
-    TEMPLATES_BASE="${SPECKIT_TEMPLATES_BASE:-$REPO_ROOT/.opencode/skills/system-spec-kit/templates}"
+    TEMPLATES_BASE="${SPECKIT_TEMPLATES_BASE:-$REPO_ROOT/.skilled/skills/system-spec-kit/templates}"
     readonly LEAN_PHASE_PARENT_TEMPLATE="$TEMPLATES_BASE/packet-types/phase-parent.spec.md.tmpl"
-    readonly INLINE_GATE_RENDERER="$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh"
+    readonly INLINE_GATE_RENDERER="$REPO_ROOT/.skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh"
 
     # Trap for temp file cleanup on error exit
     PHASE_TMP_FILES=()
@@ -1627,7 +1627,7 @@ if [[ -z "$EXPLICIT_PATH" ]]; then
     FEATURE_DIR="$SPECS_DIR/$BRANCH_NAME"
 fi
 
-TEMPLATES_BASE="${SPECKIT_TEMPLATES_BASE:-$REPO_ROOT/.opencode/skills/system-spec-kit/templates}"
+TEMPLATES_BASE="${SPECKIT_TEMPLATES_BASE:-$REPO_ROOT/.skilled/skills/system-spec-kit/templates}"
 
 LEVEL_CONTRACT="$(resolve_level_contract "$DOC_LEVEL")"
 CREATED_FILES=()

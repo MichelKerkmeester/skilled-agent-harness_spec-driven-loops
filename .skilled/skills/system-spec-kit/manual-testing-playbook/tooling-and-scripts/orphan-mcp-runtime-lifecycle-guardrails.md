@@ -39,10 +39,10 @@ Validate orphan MCP runtime lifecycle guardrails in dry-run mode and report cite
 
 ### Commands
 
-1. `bash -n .opencode/scripts/orphan-mcp-sweeper.sh`
-2. `bash -n .opencode/scripts/claude-session-cleanup.sh`
-3. `plutil -lint .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist`
-4. `bash .opencode/scripts/orphan-mcp-sweeper.sh --dry-run --verbose --log-path /tmp/orphan-sweeper-review.log`
+1. `bash -n .skilled/scripts/orphan-mcp-sweeper.sh`
+2. `bash -n .skilled/scripts/claude-session-cleanup.sh`
+3. `plutil -lint .skilled/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist`
+4. `bash .skilled/scripts/orphan-mcp-sweeper.sh --dry-run --verbose --log-path /tmp/orphan-sweeper-review.log`
 6. `test ! -f ~/Library/LaunchAgents/com.michelkerkmeester.orphan-sweep.plist || echo "operator-installed copy exists outside repo"`
 
 ### Expected
@@ -54,25 +54,25 @@ Syntax checks exit `0`; plist lint reports OK; dry-run output contains summary l
 Command 1:
 
 ```text
-$ bash -n .opencode/scripts/orphan-mcp-sweeper.sh
+$ bash -n .skilled/scripts/orphan-mcp-sweeper.sh
 (no output)
 ```
 
 Command 2:
 
 ```text
-$ bash -n .opencode/scripts/claude-session-cleanup.sh
+$ bash -n .skilled/scripts/claude-session-cleanup.sh
 (no output)
 ```
 
 Command 3:
 
 ```text
-$ plutil -lint .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist
-.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist: OK
+$ plutil -lint .skilled/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist
+.skilled/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist: OK
 ```
 
-Command 4 was not executed because the scenario command requires writing `/tmp/orphan-sweeper-review.log`, but the execution request allowed writes only to `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` and explicitly banned modifying, creating, or deleting any other file.
+Command 4 was not executed because the scenario command requires writing `/tmp/orphan-sweeper-review.log`, but the execution request allowed writes only to `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` and explicitly banned modifying, creating, or deleting any other file.
 
 ### Pass / Fail
 
@@ -80,7 +80,7 @@ Command 4 was not executed because the scenario command requires writing `/tmp/o
 
 ### Failure Triage
 
-If syntax or plist lint fails, inspect the exact script/template before rerunning. If dry-run mutates anything, block rollout and inspect `log_action`, `remove_tmp_path`, and `terminate_candidates`. If documentation drift appears, update `.opencode/scripts/README.md`, `runtime/ENV-REFERENCE.md`, and the affected runtime README before repeating the grep.
+If syntax or plist lint fails, inspect the exact script/template before rerunning. If dry-run mutates anything, block rollout and inspect `log_action`, `remove_tmp_path`, and `terminate_candidates`. If documentation drift appears, update `.skilled/scripts/README.md`, `runtime/ENV-REFERENCE.md`, and the affected runtime README before repeating the grep.
 
 ---
 
@@ -92,7 +92,7 @@ If syntax or plist lint fails, inspect the exact script/template before rerunnin
 - Runbook: [../../runtime/cli/README.md](../../runtime/cli/README.md)
 - Spec packet: [../../../../specs/system-speckit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md](../../../../specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
 
-Provenance: manual only - bash -n .opencode/scripts/orphan-mcp-sweeper.sh
+Provenance: manual only - bash -n .skilled/scripts/orphan-mcp-sweeper.sh
 
 ---
 

@@ -19,8 +19,8 @@ This scenario validates spec-folder detection and description metadata for `242`
 
 
 - Objective: Confirm folder detection, alignment safety, subfolder resolution, and description generation.
-- Real user request: `Please validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and tell me whether the expected signals are present: folder-detector and alignment tests pass; subfolder resolution test passes; description generation completes without path-safety errors.`
-- Prompt: `Validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.`
+- Real user request: `Please validate Spec-Folder Detection and Description Metadata against cd .skilled/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and tell me whether the expected signals are present: folder-detector and alignment tests pass; subfolder resolution test passes; description generation completes without path-safety errors.`
+- Prompt: `Validate Spec-Folder Detection and Description Metadata against cd .skilled/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: folder-detector and alignment tests pass; subfolder resolution test passes; description generation completes without path-safety errors
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -33,15 +33,15 @@ This scenario validates spec-folder detection and description metadata for `242`
 ### Prompt
 
 ```
-Validate Spec-Folder Detection and Description Metadata against cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.
+Validate Spec-Folder Detection and Description Metadata against cd .skilled/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. `cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js`
-2. `cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-alignment-validator.js`
-3. `cd .opencode/skills/system-spec-kit/runtime/cli && node tests/test-subfolder-resolution.js`
-4. `npx tsx .opencode/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"`
+1. `cd .skilled/skills/system-spec-kit/runtime/cli && node tests/test-folder-detector-functional.js`
+2. `cd .skilled/skills/system-spec-kit/runtime/cli && node tests/test-alignment-validator.js`
+3. `cd .skilled/skills/system-spec-kit/runtime/cli && node tests/test-subfolder-resolution.js`
+4. `npx tsx .skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"`
 
 ### Expected
 
@@ -49,7 +49,7 @@ Functional tests pass; subfolder resolution stays green; description generation 
 
 ### Evidence
 
-Command 1: `cd .opencode/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js`
+Command 1: `cd .skilled/skills/system-spec-kit/scripts && node tests/test-folder-detector-functional.js`
 
 ```text
 ═══════════════════════════════════════════════════════════════
@@ -74,7 +74,7 @@ TEST: Folder Detector Functional Tests (Priority 2.5 Focus)
 RESULTS: 33 passed, 0 failed, 2 skipped
 ```
 
-Command 2: `cd .opencode/skills/system-spec-kit/scripts && node tests/test-alignment-validator.js`
+Command 2: `cd .skilled/skills/system-spec-kit/scripts && node tests/test-alignment-validator.js`
 
 ```text
 Running alignment-validator drift checks (ESM)...
@@ -91,7 +91,7 @@ Summary:
    Failed: 0
 ```
 
-Command 3: `cd .opencode/skills/system-spec-kit/scripts && node tests/test-subfolder-resolution.js`
+Command 3: `cd .skilled/skills/system-spec-kit/scripts && node tests/test-subfolder-resolution.js`
 
 ```text
 ═══════════════════════════════════════════════════════════════
@@ -113,7 +113,7 @@ TEST: Subfolder Resolution (subfolder-utils + core/index)
 RESULTS: 32 passed, 0 failed, 0 skipped
 ```
 
-Command 4 was not executed: `npx tsx .opencode/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"` would update `description.json` under the target spec folder, but this run's allowed write paths permit only `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-detection-and-description.md`. The required `description.json` output or timestamp under the target spec folder is therefore missing for this execution.
+Command 4 was not executed: `npx tsx .skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"` would update `description.json` under the target spec folder, but this run's allowed write paths permit only `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-detection-and-description.md`. The required `description.json` output or timestamp under the target spec folder is therefore missing for this execution.
 
 ### Pass / Fail
 
@@ -130,7 +130,7 @@ Inspect `runtime/cli/spec-folder/folder-detector.ts`, `alignment-validator.ts`, 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/spec-folder-detection-and-description.md](../../feature-catalog/tooling-and-scripts/spec-folder-detection-and-description.md)
 
-Provenance: manual only - npx tsx .opencode/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"
+Provenance: manual only - npx tsx .skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts <spec-folder> .opencode/specs --description "Manual scenario description"
 
 ---
 

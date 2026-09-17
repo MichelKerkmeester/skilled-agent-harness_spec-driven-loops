@@ -29,8 +29,8 @@ describe('008 search fusion and reranker remediation docs', () => {
       '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/004-smart-router-context-efficacy/001-initial-research/research/research-validation.md',
     );
 
-    expect(validation).toContain('.opencode/plugins/spec-kit-skill-advisor.manifest.json');
-    expect(validation).toContain('`bridgeCommand`: `node .opencode/plugins/spec-kit-skill-advisor-bridge.mjs`');
+    expect(validation).toContain('.skilled/plugins/spec-kit-skill-advisor.manifest.json');
+    expect(validation).toContain('`bridgeCommand`: `node .skilled/plugins/spec-kit-skill-advisor-bridge.mjs`');
     expect(validation).toContain('`hooks`: `onSessionStart`, `onUserPromptSubmitted`, `onSessionEnd`');
     expect(validation).toContain('`tools`: `spec_kit_skill_advisor_status`');
     expect(validation).toContain('Register `onUserPromptSubmitted(input)` as the prompt hook.');

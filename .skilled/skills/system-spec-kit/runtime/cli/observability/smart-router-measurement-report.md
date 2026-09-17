@@ -55,5 +55,5 @@ Generated: 2026-05-03T17:41:26.550Z
 - This report measures advisor output and the predicted SMART ROUTING resource route only.
 - It does not measure actual AI tool reads, skipped SKILL.md behavior, or whether a model followed a route.
 - Compliance JSONL records emitted by this static harness intentionally stay on the static stream and classify as `unknown_unparsed` to avoid implying live-session compliance.
-- Readiness stays blocked until the live wrapper captures actual reads in `.opencode/skills/.state/smart-router-telemetry/compliance.jsonl`.
+- Readiness stays blocked until the live wrapper captures actual reads in `.skilled/skills/.state/smart-router-telemetry/compliance.jsonl`.
 

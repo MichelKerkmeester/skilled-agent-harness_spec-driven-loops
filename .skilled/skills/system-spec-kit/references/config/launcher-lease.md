@@ -85,6 +85,6 @@ If the OS has reused the recorded PID for another live process, the launcher tre
 
 ## 5. RELATED
 
-- `.opencode/bin/system-skill-advisor-launcher.cjs` owns the inline PID-file primitive.
-- `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` covers spec-folder retrieval, which needs no launcher and no lease.
+- `.skilled/bin/system-skill-advisor-launcher.cjs` owns the inline PID-file primitive.
+- `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` covers spec-folder retrieval, which needs no launcher and no lease.
 - Internal design notes define the propagation contract.

@@ -636,7 +636,7 @@ describe('graph metadata schema and parser', () => {
     expect(graphMetadataParserTestables.keepKeyFile('Summary: not a file path')).toBe(false);
     expect(graphMetadataParserTestables.keepKeyFile('`node scripts/build.js --watch`')).toBe(false);
     expect(graphMetadataParserTestables.keepKeyFile('src/a.ts | src/b.ts')).toBe(false);
-    expect(graphMetadataParserTestables.keepKeyFile('cd .opencode/skills/system-spec-kit')).toBe(false);
+    expect(graphMetadataParserTestables.keepKeyFile('cd .skilled/skills/system-spec-kit')).toBe(false);
     expect(graphMetadataParserTestables.keepKeyFile('node tool.js --flag-a --flag-b --flag-c')).toBe(false);
     expect(graphMetadataParserTestables.keepKeyFile('spec.md && plan.md')).toBe(false);
     expect(graphMetadataParserTestables.keepKeyFile('spec.md || plan.md')).toBe(false);
@@ -692,7 +692,7 @@ describe('graph metadata schema and parser', () => {
     const specFolder = createSpecFolder({
       materializeImplementationSummaryReferences: false,
       implementationSummaryReferences: [
-        'safe/../../.opencode/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts',
+        'safe/../../.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts',
       ],
       extraFiles: [
         'runtime/lib/graph/graph-metadata-parser.ts',
@@ -702,7 +702,7 @@ describe('graph metadata schema and parser', () => {
     const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
 
     expect(metadata.derived.key_files).not.toContain(
-      'safe/../../.opencode/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts',
+      'safe/../../.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts',
     );
     expect(metadata.derived.key_files).toEqual(expect.arrayContaining([
       'spec.md',

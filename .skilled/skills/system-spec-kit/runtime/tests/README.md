@@ -148,7 +148,7 @@ Prefer `npm test` over a bare `vitest run`: the bounded runner applies a process
 
 ## 7. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 npm test

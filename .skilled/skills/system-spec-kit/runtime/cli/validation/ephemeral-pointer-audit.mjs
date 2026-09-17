@@ -23,11 +23,11 @@
  * so CI / pre-commit / sk-code verification can gate on it.
  *
  * Authoritative rule source:
- *   .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
+ *   .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
  *
  * Usage:
  *   node ephemeral-pointer-audit.mjs <path> [<path> ...] [--json]
- *   node ephemeral-pointer-audit.mjs .opencode/skills .opencode/bin
+ *   node ephemeral-pointer-audit.mjs .skilled/skills .skilled/bin
  *   node ephemeral-pointer-audit.mjs <path> --json
  *
  * Exit codes: 0 = clean, 1 = violations found, 2 = bad invocation.

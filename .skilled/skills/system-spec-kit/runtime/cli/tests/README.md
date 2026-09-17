@@ -72,13 +72,13 @@ Not owned here:
 Run from the repository root unless a command changes into `runtime/cli/` explicitly:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
-node .opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
-bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
-bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
-(cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run \
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
+node .skilled/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
+bash .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
+bash .skilled/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
+(cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run \
   --config ../../vitest.config.ts --project cli tests/test-integration.vitest.ts)
-python3 .opencode/skills/system-spec-kit/runtime/cli/tests/test_dual_threshold.py
+python3 .skilled/skills/system-spec-kit/runtime/cli/tests/test_dual_threshold.py
 ```
 
 ---
@@ -88,11 +88,11 @@ python3 .opencode/skills/system-spec-kit/runtime/cli/tests/test_dual_threshold.p
 Recommended targeted order after script changes:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
-node .opencode/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
-bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
-bash .opencode/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
-(cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run \
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
+node .skilled/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js
+bash .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
+bash .skilled/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
+(cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run \
   --config ../../vitest.config.ts --project cli tests/test-integration.vitest.ts)
 ```
 

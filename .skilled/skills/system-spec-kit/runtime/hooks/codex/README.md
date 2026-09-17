@@ -36,7 +36,7 @@ description: "Codex CLI hook adapters that normalize Codex lifecycle payloads an
 
 ## 4. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 npx vitest run tests/directive-lifecycle-adapter-parity.vitest.ts tests/hook-completion-evidence-stop.vitest.ts

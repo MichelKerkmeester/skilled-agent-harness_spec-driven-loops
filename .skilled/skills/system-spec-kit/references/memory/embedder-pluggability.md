@@ -16,7 +16,7 @@ version: 3.6.0.14
 
 # Embedder Pluggability
 
-Canonical reference for the shared embedding stack at `.opencode/skills/system-spec-kit/shared/embeddings/`. Read this when a new user asks "which embedder do you use", before swapping embedders, or when triaging vector retrieval-quality regressions.
+Canonical reference for the shared embedding stack at `.skilled/skills/system-spec-kit/shared/embeddings/`. Read this when a new user asks "which embedder do you use", before swapping embedders, or when triaging vector retrieval-quality regressions.
 
 > **Scope.** Spec-folder retrieval does not use any of this. It is lexical: a trigger-index lookup plus the ripgrep recipes in `../retrieval/retrieval-conventions.md`. Embedders serve the skill advisor and the retained model-server consumers, and an embedder problem can never explain a spec-folder retrieval miss.
 
@@ -78,7 +78,7 @@ maxInputChars        -> 8000
 
 ### MANIFESTS registry pattern
 
-Source of truth: `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts`. A consumer's local `mcp-server/lib/embedders/registry.ts` — the skill advisor keeps one — is only a re-export shim pointing at `@spec-kit/shared`. The `MANIFESTS` constant is a frozen `ReadonlyArray<EmbedderManifest>`. Each manifest declares:
+Source of truth: `.skilled/skills/system-spec-kit/shared/embeddings/registry.ts`. A consumer's local `mcp-server/lib/embedders/registry.ts` — the skill advisor keeps one — is only a re-export shim pointing at `@spec-kit/shared`. The `MANIFESTS` constant is a frozen `ReadonlyArray<EmbedderManifest>`. Each manifest declares:
 
 ```typescript
 {
@@ -96,7 +96,7 @@ Source of truth: `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts
 
 One candidate is registered today: `nomic-embed-text-v1.5` (`ollama` backend, 768d). `getManifest()` returns `undefined` for any other name, and the caller refuses the swap. Additional models can be added by appending manifests to `shared/embeddings/registry.ts`.
 
-Adding a new candidate is a single registry row plus, if the backend is new, a single adapter file under `.opencode/skills/system-spec-kit/shared/embeddings/adapters/`. No call sites change. The adapter contract is small (see §2: EmbedderAdapter interface).
+Adding a new candidate is a single registry row plus, if the backend is new, a single adapter file under `.skilled/skills/system-spec-kit/shared/embeddings/adapters/`. No call sites change. The adapter contract is small (see §2: EmbedderAdapter interface).
 
 ### Administration surface
 
@@ -110,7 +110,7 @@ Three operations wrap the registry: list the registered manifests with their `re
 
 Operator flow is "list, set, watch." The set operation is asynchronous: it returns a job ID, the orchestrator re-embeds every row through the new adapter, and the active pointer flips only when the job reaches `completed`.
 
-**The spec kit exposes no tool for any of this, and `shared/` owns no store.** The stack produces vectors; the consuming service owns the pointer, the tables, and the swap. The skill advisor is that consumer today, holding the registry shim, the dim-tagged schema and its `skill-graph.sqlite`. Configure the stack through the environment variables in `../config/environment-variables.md`, and read health from the advisor's own status surface: `node .opencode/bin/skill-advisor.cjs advisor_status --format json`.
+**The spec kit exposes no tool for any of this, and `shared/` owns no store.** The stack produces vectors; the consuming service owns the pointer, the tables, and the swap. The skill advisor is that consumer today, holding the registry shim, the dim-tagged schema and its `skill-graph.sqlite`. Configure the stack through the environment variables in `../config/environment-variables.md`, and read health from the advisor's own status surface: `node .skilled/bin/skill-advisor.cjs advisor_status --format json`.
 
 ### EmbedderAdapter interface
 
@@ -174,7 +174,7 @@ Per-row empirical results live in `evidence/embedder-comparison-with-rescue.json
 | 1 | Install the consuming service (per its install guide). |
 | 2 | Pull the default Ollama model: `ollama pull nomic-embed-text:v1.5`. |
 | 3 | Start the consumer; the active profile reads back as `nomic-embed-text-v1.5`. |
-| 4 | Confirm health: `node .opencode/bin/skill-advisor.cjs advisor_status --format json`. |
+| 4 | Confirm health: `node .skilled/bin/skill-advisor.cjs advisor_status --format json`. |
 
 No code changes. No schema migrations. A fresh clone reaches a ready state from the documented commands above.
 
@@ -235,9 +235,9 @@ This document was authored against the following source files. If they drift, th
 
 | Source | Path |
 |---|---|
-| Adapter interface | `.opencode/skills/system-spec-kit/shared/embeddings/adapter.ts` |
-| MANIFESTS registry | `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts` |
-| Provider cascade | `.opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts` |
+| Adapter interface | `.skilled/skills/system-spec-kit/shared/embeddings/adapter.ts` |
+| MANIFESTS registry | `.skilled/skills/system-spec-kit/shared/embeddings/registry.ts` |
+| Provider cascade | `.skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts` |
 | ADR trail (001–012) | Internal design notes, commit `1aa46e523` |
 
 ### Cross-links

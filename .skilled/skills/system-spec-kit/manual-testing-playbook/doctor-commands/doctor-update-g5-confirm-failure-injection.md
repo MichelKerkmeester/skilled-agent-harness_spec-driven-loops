@@ -78,8 +78,8 @@ The command loads `doctor-update.yaml`, snapshots the in-scope SQLite DBs, reach
 - The in-scope SQLite DBs exist in the active repository, but running `/doctor:update` here would mutate and roll back these production workspace DBs rather than a disposable copy.
 
   ```text
-  dcb47b324816dce37fe09d591666f9aecc6d278e1c9410efcef676578e99a863  .opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite
-  f94ba30ef11a715e9c52df479b1cd303d533a33531e9aa1a150a43c856795190  .opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite
+  dcb47b324816dce37fe09d591666f9aecc6d278e1c9410efcef676578e99a863  .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite
+  f94ba30ef11a715e9c52df479b1cd303d533a33531e9aa1a150a43c856795190  .skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite
   ```
 
 - The prompt transcript, rollback log entry, snapshot path, `.doctor-update.last-run.json`, and post-rollback checksum comparison were not produced because the destructive scenario was blocked before `/doctor:update` execution by the missing disposable workspace precondition.
@@ -98,8 +98,8 @@ If the failure is not injected, verify the runtime propagates `SPECKIT_FAIL_STEP
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Command entrypoint: [.opencode/commands/doctor/update.md](../../../../commands/doctor/update.md)
-- Matching YAML asset: [.opencode/commands/doctor/assets/doctor-update.yaml](../../../../commands/doctor/assets/doctor-update.yaml)
+- Command entrypoint: [.skilled/commands/doctor/update.md](../../../../commands/doctor/update.md)
+- Matching YAML asset: [.skilled/commands/doctor/assets/doctor-update.yaml](../../../../commands/doctor/assets/doctor-update.yaml)
 - Migration manifest: [specs/system-speckit/026-graph-and-context-optimization/.../scratch/migration-manifest.json](../../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
 - Decision context: local doctor command ADRs
 

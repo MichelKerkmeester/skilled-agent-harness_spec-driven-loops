@@ -18,8 +18,8 @@ This scenario validates the check-source-dist-alignment.ts script for `150`. It 
 ## 2. SCENARIO CONTRACT
 
 - Objective: Verify source-dist alignment passes with 0 violations.
-- Real user request: `Please validate Source-dist alignment validation against cd .opencode/skills/system-spec-kit and tell me whether the expected signals are present: 0 violations, all dist files aligned.`
-- Prompt: `Validate Source-dist alignment validation against cd .opencode/skills/system-spec-kit and report cited pass/fail evidence.`
+- Real user request: `Please validate Source-dist alignment validation against cd .skilled/skills/system-spec-kit and tell me whether the expected signals are present: 0 violations, all dist files aligned.`
+- Prompt: `Validate Source-dist alignment validation against cd .skilled/skills/system-spec-kit and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: 0 violations, all dist files aligned
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -32,12 +32,12 @@ This scenario validates the check-source-dist-alignment.ts script for `150`. It 
 ### Prompt
 
 ```
-Validate Source-dist alignment validation against cd .opencode/skills/system-spec-kit and report cited pass/fail evidence.
+Validate Source-dist alignment validation against cd .skilled/skills/system-spec-kit and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. `cd .opencode/skills/system-spec-kit`
+1. `cd .skilled/skills/system-spec-kit`
 2. `npx ts-node --transpile-only runtime/cli/evals/check-source-dist-alignment.ts`
 3. Check exit code is 0
 4. Verify "violations: 0" in output

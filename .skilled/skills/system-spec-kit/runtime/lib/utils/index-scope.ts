@@ -12,7 +12,7 @@ const SEGMENT_END = '(/|$)';
 export type IndexScopePolicySource = 'default' | 'scan-argument';
 export type IncludedSkillsList = 'all' | 'none' | string[];
 
-/** Resolved code-graph inclusion policy: which `.opencode/` folders and globs are indexed. */
+/** Resolved code-graph inclusion policy: which `.skilled/` folders and globs are indexed. */
 export interface IndexScopePolicy {
   includeSkills: boolean;
   includedSkillsList: IncludedSkillsList;
@@ -44,11 +44,11 @@ export interface ResolveIndexScopePolicyInput {
 }
 
 const CODE_GRAPH_DEFAULT_EXCLUDE_GLOBS = {
-  skill: ['**/.opencode/skills/**'],
-  agent: ['**/.opencode/agents/**'],
-  command: ['**/.opencode/commands/**'],
+  skill: ['**/.skilled/skills/**'],
+  agent: ['**/.skilled/agents/**'],
+  command: ['**/.skilled/commands/**'],
   specs: ['**/.opencode/specs/**', '**/specs/**'],
-  plugins: ['**/.opencode/plugins/**'],
+  plugins: ['**/.skilled/plugins/**'],
 } as const;
 
 // ───────────────────────────────────────────────────────────────────
@@ -127,8 +127,8 @@ function buildLabel(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'>): st
     policy.includePlugins ? 'plugins' : null,
   ].filter(Boolean);
   const includedSuffix = includedFolders.length > 0
-    ? `; opted-in .opencode folders: ${includedFolders.join(', ')}`
-    : '; .opencode skill, agent, command, specs and plugins excluded';
+    ? `; opted-in .skilled folders: ${includedFolders.join(', ')}`
+    : '; .skilled skill, agent, command, specs and plugins excluded';
   return `end-user code only${includedSuffix}`;
 }
 
@@ -212,7 +212,7 @@ function getCodeGraphPolicy(
 
 function matchOpencodeSkillPath(filePath: string): string | null | undefined {
   const normalizedPath = normalizeIndexScopePath(filePath);
-  const match = normalizedPath.match(/(?:^|\/)\.opencode\/skills(?:\/([^/]+))?(?:\/|$)/i);
+  const match = normalizedPath.match(/(?:^|\/)\.(?:skilled|opencode)\/skills(?:\/([^/]+))?(?:\/|$)/i);
   return match ? (match[1] ?? null) : undefined;
 }
 
@@ -220,7 +220,7 @@ function matchesOpencodeFolder(filePath: string, folder: string): boolean {
   const normalizedPath = normalizeIndexScopePath(filePath);
   const folderRoots = folder === 'specs'
     ? ['\\.opencode/specs', 'specs']
-    : [`\\.opencode/${folder}`];
+    : [`\\.(?:skilled|opencode)/${folder}`];
   return folderRoots.some(root =>
     new RegExp(`(?:^|/)${root}(?:/|$)`, 'i').test(normalizedPath),
   );

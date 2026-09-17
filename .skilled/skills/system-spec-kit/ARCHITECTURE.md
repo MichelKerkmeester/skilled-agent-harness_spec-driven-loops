@@ -152,10 +152,10 @@ disagrees with it is the thing to fix.
 | Surface | Owner today | What it is |
 |---------|-------------|------------|
 | `runtime/data/trigger-index.json` | `runtime/cli/retrieval/generate-trigger-index.mjs` (writer), `lookup-trigger-index.mjs` (reader) | The committed Gate 1 retrieval index over author-declared trigger phrases |
-| `runtime/database/` | The HF model server in `.opencode/bin` | Its sockets, leases and logs; no index, no database of ours |
+| `runtime/database/` | The HF model server in `.skilled/bin` | Its sockets, leases and logs; no index, no database of ours |
 | `MEMORY_DB_PATH`, `SPEC_KIT_DB_DIR` | `shared/config.ts` and `shared/embeddings/` for the skill advisor | The advisor's own embedding store location; nothing in this skill opens a database |
-| `.opencode/skills/system-skill-advisor/runtime/database/` | The skill advisor | Its routing graph and doctor state, served by the advisor's resident daemon over its own socket protocol |
-| `.opencode/skills/system-deep-loop/runtime/database/` | The deep-loop runtime | Coverage and council graphs for research, review and council loops |
+| `.skilled/skills/system-skill-advisor/runtime/database/` | The skill advisor | Its routing graph and doctor state, served by the advisor's resident daemon over its own socket protocol |
+| `.skilled/skills/system-deep-loop/runtime/database/` | The deep-loop runtime | Coverage and council graphs for research, review and council loops |
 | `runtime/cli/dist/continuity/generate-context.js`, `/speckit:save`, `/speckit:search` | The scripts workspace | The continuity writer and the retrieval commands; "memory" here is the command family's literal name, not a store |
 | `shared/ipc/`, `@modelcontextprotocol/sdk` in `shared/` | The skill advisor daemon through `shared/ipc` | The IPC seam the advisor's daemon is built on. The SDK stays here for the bridge's liveness probe, which parses JSON-RPC frames; the advisor itself no longer depends on it |
 
@@ -167,7 +167,7 @@ Spec-kit ships a runtime hook surface that wires into each AI client's session l
 
 **Hook matrix.** Claude Code injects prompt-time briefs directly. OpenCode supports native `SessionStart` and `UserPromptSubmit` hooks when `[features].opencode_hooks = true` in `~/opencode.json` and `~/.opencode/hooks.json` is wired. OpenCode delivers context through local plugins under `.opencode/plugins/`.
 
-**Plugin bridges and local plugins.** Bridge-backed OpenCode plugin entrypoints live under `.opencode/plugins/` and import thin helpers that call into `runtime/lib/hooks/` or sibling daemon surfaces. Standalone local plugins such as `.opencode/plugins/opencode-goal.js` stay in the same plugin directory but own their state and hooks directly instead of using a daemon bridge.
+**Plugin bridges and local plugins.** Bridge-backed OpenCode plugin entrypoints live under `.skilled/plugins/` and import thin helpers that call into `runtime/lib/hooks/` or sibling daemon surfaces. Standalone local plugins such as `.skilled/plugins/opencode-goal.js` stay in the same plugin directory but own their state and hooks directly instead of using a daemon bridge.
 
 **Payload shape.** Hooks share the same compact JSON payload (`bootstrap.json` style) across runtimes so callers can rely on consistent fields regardless of transport.
 

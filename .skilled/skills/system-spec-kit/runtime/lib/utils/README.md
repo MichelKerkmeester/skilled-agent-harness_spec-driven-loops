@@ -21,7 +21,7 @@ trigger_phrases:
 Current state:
 
 - `canonical-path.ts` resolves a path to its realpath-based canonical identity, falling back to a resolved absolute path when the target does not exist yet (the atomic-save case).
-- `index-scope.ts` is the single source of truth for what is in scope for memory indexing, generated-metadata derivation, and code-graph scanning, and for the code-graph inclusion policy that gates `.opencode/` skills, agents, commands, specs, and plugins.
+- `index-scope.ts` is the single source of truth for what is in scope for memory indexing, generated-metadata derivation, and code-graph scanning, and for the code-graph inclusion policy that gates `.skilled/` skills, agents, commands, specs, and plugins.
 - `skill-label-sanitizer.ts` strips instruction-shaped labels and control characters before a label reaches a prompt, so a hostile skill name cannot smuggle an instruction across the shared-payload transport boundary.
 - `exhaustiveness.ts` provides `assertNever()` for statically unreachable switch branches.
 
@@ -65,7 +65,7 @@ Current state:
 
 ## 5. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 npx vitest run tests/index-scope.vitest.ts tests/exhaustiveness.vitest.ts tests/architecture-seam.vitest.ts

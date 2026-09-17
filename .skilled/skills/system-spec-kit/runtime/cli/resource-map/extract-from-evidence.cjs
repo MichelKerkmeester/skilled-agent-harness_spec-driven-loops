@@ -25,17 +25,17 @@ const CATEGORY_ORDER = [
   {
     key: 'Commands',
     heading: '## 3. Commands',
-    description: '> `.opencode/commands/**` and any runtime-specific command surfaces.',
+    description: '> `.skilled/commands/**` and any runtime-specific command surfaces.',
   },
   {
     key: 'Agents',
     heading: '## 4. Agents',
-    description: '> `.opencode/agents/**`, `.claude/agents/**`, `.opencode/agents/**`.',
+    description: '> `.skilled/agents/**`, `.claude/agents/**`, `.skilled/agents/**`.',
   },
   {
     key: 'Skills',
     heading: '## 5. Skills',
-    description: '> `.opencode/skills/**` including `SKILL.md`, `references/`, `assets/`, `feature-catalog/`, `manual-testing-playbook/`, `scripts/`, `shared/`, `runtime/`.',
+    description: '> `.skilled/skills/**` including `SKILL.md`, `references/`, `assets/`, `feature-catalog/`, `manual-testing-playbook/`, `scripts/`, `shared/`, `runtime/`.',
   },
   {
     key: 'Specs',
@@ -479,19 +479,19 @@ function classifyPath(resourcePath) {
     return 'Meta';
   }
 
-  if (normalized.startsWith('.opencode/commands/')) {
+  if (normalized.startsWith('.skilled/commands/') || normalized.startsWith('.opencode/commands/')) {
     return 'Commands';
   }
 
   if (
-    normalized.startsWith('.opencode/agents/')
+    normalized.startsWith('.skilled/agents/') || normalized.startsWith('.opencode/agents/')
     || normalized.startsWith('.claude/agents/')
-    || normalized.startsWith('.opencode/agents/')
+    || normalized.startsWith('.skilled/agents/')
   ) {
     return 'Agents';
   }
 
-  if (normalized.startsWith('.opencode/skills/')) {
+  if (normalized.startsWith('.skilled/skills/') || normalized.startsWith('.opencode/skills/')) {
     return 'Skills';
   }
 

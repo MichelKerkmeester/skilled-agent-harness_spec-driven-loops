@@ -51,10 +51,10 @@ function writeAllowlist(root: string, entries: Array<{ pathPrefixOrGlob: string;
  */
 function makeFixtureTree(): { allowlistPath: string; root: string } {
   const root = makeTempDir('residue-sweep-');
-  writeFile(root, '.opencode/commands/demo/run.md', 'Call memory_search before answering.\n');
+  writeFile(root, '.skilled/commands/demo/run.md', 'Call memory_search before answering.\n');
   writeFile(root, 'specs/demo/research/notes.md', 'The old loop called memory_context here.\n');
   writeFile(root, 'docs/exempt-note.md', 'Historic note about memory_save.\n');
-  writeFile(root, '.opencode/skills/system-spec-kit/runtime/handler.ts', 'export const tool = "memory_stats";\n');
+  writeFile(root, '.skilled/skills/system-spec-kit/runtime/handler.ts', 'export const tool = "memory_stats";\n');
   const allowlistPath = writeAllowlist(root, [
     { pathPrefixOrGlob: 'docs/exempt-note.md', reason: 'deliberate survivor for this fixture' },
   ]);
@@ -98,27 +98,27 @@ describe('classifyLifecycle', () => {
   });
 
   it('treats a JSONL file as historical wherever it sits', () => {
-    expect(classifyLifecycle('.opencode/state/session.jsonl')).toBe('historical');
+    expect(classifyLifecycle('.skilled/state/session.jsonl')).toBe('historical');
   });
 
   it('treats an ordinary instruction path as live', () => {
-    expect(classifyLifecycle('.opencode/commands/demo/run.md')).toBe('live');
+    expect(classifyLifecycle('.skilled/commands/demo/run.md')).toBe('live');
   });
 });
 
 describe('classifySurface', () => {
   it.each([
     ['.env.example', 'env'],
-    ['.opencode/skills/system-spec-kit/runtime/cli/tests/x.vitest.ts', 'tests'],
-    ['.opencode/hooks/session-prime.sh', 'hooks'],
-    ['.opencode/plugins/demo.js', 'plugins'],
-    ['.opencode/bin/demo.cjs', 'bin'],
+    ['.skilled/skills/system-spec-kit/runtime/cli/tests/x.vitest.ts', 'tests'],
+    ['.skilled/hooks/session-prime.sh', 'hooks'],
+    ['.skilled/plugins/demo.js', 'plugins'],
+    ['.skilled/bin/demo.cjs', 'bin'],
     ['.claude/agents/code.md', 'agents'],
-    ['.opencode/commands/demo/run.md', 'commands'],
+    ['.skilled/commands/demo/run.md', 'commands'],
     ['.claude/mcp.json', 'config'],
     ['opencode.json', 'config'],
-    ['.opencode/skills/system-spec-kit/shared/embeddings.ts', 'code'],
-    ['.opencode/skills/sk-code/SKILL.md', 'skills'],
+    ['.skilled/skills/system-spec-kit/shared/embeddings.ts', 'code'],
+    ['.skilled/skills/sk-code/SKILL.md', 'skills'],
     ['specs/demo/spec.md', 'docs'],
     ['specs/demo/evidence/out.json', 'other'],
   ])('routes %s to %s', (candidate, surface) => {
@@ -134,8 +134,8 @@ describe('globToRegExp', () => {
   it('lets a leading double star match at any depth including none', () => {
     const regex = globToRegExp('**/changelog/**');
     expect(regex.test('changelog/v1.0.0.md')).toBe(true);
-    expect(regex.test('.opencode/skills/demo/changelog/v1.0.0.md')).toBe(true);
-    expect(regex.test('.opencode/skills/demo/changelog-notes.md')).toBe(false);
+    expect(regex.test('.skilled/skills/demo/changelog/v1.0.0.md')).toBe(true);
+    expect(regex.test('.skilled/skills/demo/changelog-notes.md')).toBe(false);
   });
 
   it('keeps a single star inside one path segment', () => {
@@ -177,7 +177,7 @@ describe('sweep', () => {
 
     const byPath = new Map(report.records.map((record: any) => [record.path, record]));
 
-    expect(byPath.get('.opencode/commands/demo/run.md')).toMatchObject({
+    expect(byPath.get('.skilled/commands/demo/run.md')).toMatchObject({
       allowlistReason: null,
       class: 'live',
       surfaceType: 'commands',
@@ -188,14 +188,14 @@ describe('sweep', () => {
       allowlistReason: 'deliberate survivor for this fixture',
       class: 'allowlisted',
     });
-    expect(byPath.get('.opencode/skills/system-spec-kit/runtime/handler.ts')).toMatchObject({ class: 'live', term: 'memory_stats' });
+    expect(byPath.get('.skilled/skills/system-spec-kit/runtime/handler.ts')).toMatchObject({ class: 'live', term: 'memory_stats' });
 
     expect(report.counts).toMatchObject({ allowlisted: 1, historical: 1, live: 2 });
     expect(report.liveBySurface.commands).toBe(1);
     expect(report.unparsedLines).toBe(0);
     expect(report.topLivePaths).toEqual([
-      { path: '.opencode/commands/demo/run.md', records: 1 },
-      { path: '.opencode/skills/system-spec-kit/runtime/handler.ts', records: 1 },
+      { path: '.skilled/commands/demo/run.md', records: 1 },
+      { path: '.skilled/skills/system-spec-kit/runtime/handler.ts', records: 1 },
     ]);
   });
 
@@ -222,8 +222,8 @@ describe('sweep CLI', () => {
 
   it('exits 0 once nothing live remains and writes the report where asked', () => {
     const { allowlistPath, root } = makeFixtureTree();
-    fs.rmSync(path.join(root, '.opencode/commands'), { force: true, recursive: true });
-    fs.rmSync(path.join(root, '.opencode/skills'), { force: true, recursive: true });
+    fs.rmSync(path.join(root, '.skilled/commands'), { force: true, recursive: true });
+    fs.rmSync(path.join(root, '.skilled/skills'), { force: true, recursive: true });
     const reportPath = path.join(root, 'out', 'residue.json');
 
     const run = runCli(['--root', root, '--allowlist', allowlistPath, '--report', reportPath]);

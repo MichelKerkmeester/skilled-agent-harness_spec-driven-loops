@@ -39,12 +39,12 @@ const roots = new Set<string>();
 function tempWorkspace(): string {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'smart-router-measurement-'));
   roots.add(root);
-  fs.mkdirSync(path.join(root, '.opencode', 'skill'), { recursive: true });
+  fs.mkdirSync(path.join(root, '.skilled', 'skill'), { recursive: true });
   return root;
 }
 
 function writeSkill(root: string, skill: string, content: string, resources: readonly string[] = []): void {
-  const skillDir = path.join(root, '.opencode', 'skill', skill);
+  const skillDir = path.join(root, '.skilled', 'skill', skill);
   fs.mkdirSync(skillDir, { recursive: true });
   fs.writeFileSync(path.join(skillDir, 'SKILL.md'), content, 'utf8');
   for (const resource of resources) {
@@ -182,8 +182,8 @@ describe('smart-router static measurement harness', () => {
       buildBrief: async () => advisorResult('sk-code'),
     });
 
-    const staticStream = path.join(root, '.opencode', 'reports', 'smart-router-static', 'compliance.jsonl');
-    const liveStream = path.join(root, '.opencode', 'skill', '.state/smart-router-telemetry', 'compliance.jsonl');
+    const staticStream = path.join(root, '.skilled', 'reports', 'smart-router-static', 'compliance.jsonl');
+    const liveStream = path.join(root, '.skilled', 'skill', '.state/smart-router-telemetry', 'compliance.jsonl');
     expect(fs.existsSync(staticStream)).toBe(true);
     expect(fs.existsSync(liveStream)).toBe(false);
     expect(fs.readFileSync(staticStream, 'utf8')).toContain('"promptId":"p1"');

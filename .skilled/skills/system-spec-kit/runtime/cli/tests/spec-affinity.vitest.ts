@@ -82,7 +82,7 @@ describe('spec affinity evaluation', () => {
     const targets = buildSpecAffinityTargets(specRoot);
 
     expect(matchesSpecAffinityText(
-      "sed -n '680,760p' .opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+      "sed -n '680,760p' .skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
       targets,
     )).toBe(true);
   });
@@ -113,12 +113,12 @@ describe('spec affinity evaluation', () => {
         {
           title: 'Prepare media editor flow',
           narrative: 'Queued unrelated asset conversion work.',
-          files: ['.opencode/skills/system-spec-kit/runtime/cli/core/config.ts'],
+          files: ['.skilled/skills/system-spec-kit/runtime/cli/core/config.ts'],
         },
       ],
       FILES: [
         {
-          FILE_PATH: '.opencode/skills/system-spec-kit/runtime/cli/core/config.ts',
+          FILE_PATH: '.skilled/skills/system-spec-kit/runtime/cli/core/config.ts',
           DESCRIPTION: 'Generic infrastructure file touched during unrelated work.',
         },
       ],

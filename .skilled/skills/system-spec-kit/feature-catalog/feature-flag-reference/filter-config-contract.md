@@ -48,9 +48,9 @@ The live contract is therefore both file-driven and code-guarded: `filters.jsonc
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/config/filters.jsonc` | Config Contract | Editable JSONC source for pipeline ordering, stage enablement, and threshold values |
-| `.opencode/skills/system-spec-kit/runtime/cli/lib/content-filter.ts` | Runtime | Loads and merges filter config, applies noise filtering, deduplication, quality scoring, and fallback defaults |
-| `.opencode/skills/system-spec-kit/config/README.md` | Documentation | Describes the three-stage filter pipeline and notes that `filters.jsonc` is loaded directly by the content-filter module |
+| `.skilled/skills/system-spec-kit/config/filters.jsonc` | Config Contract | Editable JSONC source for pipeline ordering, stage enablement, and threshold values |
+| `.skilled/skills/system-spec-kit/runtime/cli/lib/content-filter.ts` | Runtime | Loads and merges filter config, applies noise filtering, deduplication, quality scoring, and fallback defaults |
+| `.skilled/skills/system-spec-kit/config/README.md` | Documentation | Describes the three-stage filter pipeline and notes that `filters.jsonc` is loaded directly by the content-filter module |
 
 ---
 

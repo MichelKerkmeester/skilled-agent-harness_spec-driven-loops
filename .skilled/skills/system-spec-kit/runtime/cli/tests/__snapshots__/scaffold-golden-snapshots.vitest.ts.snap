@@ -15,7 +15,7 @@ contextType: "general"
 # Before/After Record: [NAME]
 
 <!-- SPECKIT_TEMPLATE_SOURCE: before-after | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 > [One line: what this record compares and why it matters.]
 
@@ -108,7 +108,7 @@ _memory:
 # Decision Record: [NAME]
 
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 
@@ -242,12 +242,16 @@ _memory:
 # Goal: [NAME]
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> Everything above the log is DURABLE: it is what an operator sets as the session
-> objective, and it must stay true for the life of the packet. Keep it short:
-> the runtime goal surfaces cap what they will hold, and a truncated objective
-> loses its tail, which is where the completion criteria live.
+> Everything between the frontmatter and the log is the DURABLE SLICE: it is
+> what an operator sets as the session objective, and it must stay true for the
+> life of the packet. The frontmatter above it is bookkeeping and never leaves
+> this file: it is not sent in chat, not injected, not stored in an objective.
+> Keep the slice short. A phase parent or top-level packet warns past 3000
+> characters and fails past 4000, measured from the frontmatter's closing fence
+> to the log anchor; the runtime goal surfaces cap what they hold, and a
+> truncated objective loses its tail, which is where the criteria live.
 
 ---
 
@@ -268,10 +272,11 @@ Frozen choices. Changing one is an amendment.
 
 The operator holds this directive as the session objective, and that copy is
 what judges completion, not this file. Whenever anything above the log changes
-(objective, a decision, the binding table, a criterion), resend the full text
-of this file in chat so the operator can update their copy. A child goal change
-that alters a parent decision or criterion is an amendment to the parent: apply
-it there first, then resend the parent.
+(objective, a decision, the binding table, a criterion), resend the durable
+slice of this file in chat, frontmatter excluded, so the operator can update
+their copy. Keep reminding while it stays unset; never stop work for it. A
+child goal change that alters a parent decision or criterion is an amendment
+to the parent: apply it there first, then resend the parent.
 <!-- /ANCHOR:directive -->
 
 ---
@@ -327,7 +332,7 @@ contextType: "general"
 # Roadmap: [NAME]
 
 <!-- SPECKIT_TEMPLATE_SOURCE: roadmap | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 > [One line: what this roadmap plans and over what horizon.]
 
@@ -389,7 +394,7 @@ contextType: "general"
 # Timeline: [NAME]
 
 <!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 > [One line: what this timeline tracks.]
 
@@ -458,7 +463,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 
@@ -863,7 +868,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 
@@ -1510,7 +1515,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 
@@ -2331,7 +2336,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 

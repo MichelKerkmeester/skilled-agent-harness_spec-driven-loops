@@ -31,14 +31,14 @@ import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 // Repo-root-relative (this file's real home is under system-spec-kit; Node
 // resolves relative imports against the realpath, not the hub symlink).
-import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
+import { isHookEnabled } from '../../../../../../.skilled/hooks/shared/hook-flags.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const CLAUDE_POST_TOOL_USE_RELATIVE = '.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs';
-const DISPATCH_AUDIT_RELATIVE = '.opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs';
+const CLAUDE_POST_TOOL_USE_RELATIVE = '.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs';
+const DISPATCH_AUDIT_RELATIVE = '.skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs';
 const CHILD_TIMEOUT_MS = 8_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 

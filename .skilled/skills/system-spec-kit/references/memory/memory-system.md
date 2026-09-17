@@ -48,7 +48,7 @@ The index reads frontmatter from two active source families, plus a retired-comp
 | Source | Location Pattern | Field read | Default Tier |
 |--------|-----------------|------------|--------------|
 | **Spec Documents** | `specs/**/*.md` and `<active-spec-folder>/**/*.md` | `trigger_phrases`, `title`, `description` | `normal` |
-| **Skill Documents** | `.opencode/skills/**/*.md` | `trigger_phrases`, `title`, `description` | `normal` |
+| **Skill Documents** | `.skilled/skills/**/*.md` | `trigger_phrases`, `title`, `description` | `normal` |
 | **Retired Compatibility Artifacts** | Older `specs/*/memory/*.{md,txt}` files already present in historical packets | Varies | `normal` |
 
 **Content Source Behavior:**
@@ -81,7 +81,7 @@ The tier is a human signal about a document's weight. It is not a search boost: 
 ### Gate 1 trigger lookup
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "<prompt>"
 ```
 
@@ -167,7 +167,7 @@ There is no session inference at any step. Each rung is a file read, and a missi
 `/speckit:save` composes structured JSON and hands it to the writer:
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   /tmp/save-context-data-<session-id>.json \
   specs/<track>/<NNN-name>
 ```
@@ -181,7 +181,7 @@ An explicit spec-folder target on the command line is authoritative and wins ove
 ## 7. REGENERATING THE INDEX
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ```
 
 Run it when a document's `trigger_phrases` changed. The artifact is committed, so regeneration belongs in the same commit as the frontmatter edit that motivated it; a stale index is the single most common cause of a lookup that "should" have matched.
@@ -226,16 +226,16 @@ The required behavior on a no-hit is to say so. A caller that degrades to an app
 
 ```bash
 # The index exists and resolves a known phrase
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "spec folder"; echo "exit=$?"
 
 # The free-text lane agrees the content is where you think it is
 rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
-  -- 'spec folder' specs .opencode
+  -- 'spec folder' specs .skilled
 
 # A packet still validates after a continuity save
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<track>/<NNN-name> --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<track>/<NNN-name> --strict
 ```
 
 ---

@@ -13,7 +13,7 @@
       "title": "",
       "narrative": "Blank observation title should never create a generic heading.",
       "files": [
-        ".opencode/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts"
+        ".skilled/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts"
       ]
     },
     {
@@ -21,7 +21,7 @@
       "title": "Observation",
       "narrative": "Generic placeholder titles should be suppressed before the template renders headings.",
       "files": [
-        ".opencode/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts"
+        ".skilled/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts"
       ]
     },
     {
@@ -29,7 +29,7 @@
       "title": "   ",
       "narrative": "Whitespace-only observation titles should also be suppressed.",
       "files": [
-        ".opencode/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts"
+        ".skilled/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts"
       ]
     },
     {
@@ -37,13 +37,13 @@
       "title": "Real extractor signal",
       "narrative": "A substantive observation title should still render normally after the generic-title filter lands.",
       "files": [
-        ".opencode/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts"
+        ".skilled/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts"
       ]
     }
   ],
   "filesModified": [
     {
-      "path": ".opencode/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts",
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/extractors/file-extractor.ts",
       "changes_summary": "Filter generic non-decision observation titles before rendering."
     }
   ]

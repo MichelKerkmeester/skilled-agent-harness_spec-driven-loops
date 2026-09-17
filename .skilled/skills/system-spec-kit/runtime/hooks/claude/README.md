@@ -53,7 +53,7 @@ Advisor registration snippet:
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js'",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js'",
             "timeout": 3
           }
         ]
@@ -83,7 +83,7 @@ This folder also holds the Claude Code side of the Gate-3 spec-folder discipline
 
 ## 6. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 npx vitest run tests/hook-*.vitest.ts tests/hooks-*.vitest.ts tests/user-prompt-submit-shim.vitest.ts tests/directive-lifecycle-*.vitest.ts

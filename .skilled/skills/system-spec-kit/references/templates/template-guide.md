@@ -33,7 +33,7 @@ Level 3+ (Extended):    Level 3 + governance/AI protocol content
 
 ### Core Principles
 
-1. **Never create from scratch** - Always scaffold through `create.sh` or render from `.opencode/skills/system-spec-kit/templates/`
+1. **Never create from scratch** - Always scaffold through `create.sh` or render from `.skilled/skills/system-spec-kit/templates/`
 2. **Always adapt to feature** - Templates are starting points, not final documents
 3. **Preserve structure** - Preserve section structure and numbering; emojis are optional
 4. **Remove placeholders** - Replace ALL `[PLACEHOLDER]` text with actual content
@@ -58,11 +58,11 @@ Level 3+ (Extended):    Level 3 + governance/AI protocol content
 Templates are rendered from manifest-backed `*.md.tmpl` files. The same Level contract drives scaffolding and validation:
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir /tmp/spec-kit-render \
-  .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl \
-  .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
+  .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl \
+  .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
 ```
 
 **Composition Rules:**
@@ -79,7 +79,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer
 **Why render, not open:** A raw manifest `*.md.tmpl` is the full ungated file (hundreds of lines). Rendering it to a level yields only that level's content — much smaller and exactly what the agent needs. Reading the raw file re-introduces the token wall the level gate exists to avoid.
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh --level <1|2|3|3+|phase> <path-to-template.md.tmpl>
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh --level <1|2|3|3+|phase> <path-to-template.md.tmpl>
 ```
 
 Omit `--out-dir` to print the level-rendered content to STDOUT. Do not open raw `*.md.tmpl` files to read their content; render them to the target level instead.
@@ -96,7 +96,7 @@ Omit `--out-dir` to print the level-rendered content to STDOUT. Do not open raw 
 
 **Scaffold command:**
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/###-name --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/###-name --name feature-name
 ```
 
 **When to use:**
@@ -143,7 +143,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --pat
 
 **Scaffold command:**
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path specs/###-name --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path specs/###-name --name feature-name
 ```
 
 **When to use:**
@@ -181,7 +181,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --pat
 
 **Scaffold command:**
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path specs/###-name --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path specs/###-name --name feature-name
 ```
 
 Add `--with-lazy-addons` to scaffold `before-after.md`, `timeline.md`, `roadmap.md` and `decision-record.md`, and `--with-goal` to scaffold `goal.md`; both work at every level.
@@ -189,15 +189,15 @@ Add `--with-lazy-addons` to scaffold `before-after.md`, `timeline.md`, `roadmap.
 **Optional Templates:**
 ```bash
 mkdir -p specs/###-name/research
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name/research \
-  .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
+  .skilled/skills/system-spec-kit/templates/addons/research.md.tmpl
 
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name \
-  .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
+  .skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
 ```
 
 **When to use:**
@@ -234,7 +234,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer
 
 **Scaffold command:**
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --path specs/###-name --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --path specs/###-name --name feature-name
 ```
 
 **When to use:**
@@ -350,7 +350,7 @@ submissions are duplicates.
 
 **Step 1: Scaffold or Render Template**
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level <N> --path specs/###-name --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level <N> --path specs/###-name --name feature-name
 # Where <N> is 1, 2, 3, or 3+ matching your documentation level
 ```
 
@@ -412,10 +412,10 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level <N> --p
 **Copy command:**
 ```bash
 mkdir -p specs/###-name/research
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name/research \
-  .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
+  .skilled/skills/system-spec-kit/templates/addons/research.md.tmpl
 ```
 
 **Sections to fill:**
@@ -452,10 +452,10 @@ bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer
 
 **Copy command:**
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 1 \
   --out-dir specs/###-name \
-  .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+  .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
 # Or render with --level 3 when the packet is Level 3
 ```
 
@@ -482,10 +482,10 @@ bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer
 
 **Copy command:**
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 2 \
   --out-dir specs/###-name \
-  .opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
+  .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
 # Or render with --level 3+ when the packet is Level 3+
 ```
 
@@ -513,10 +513,10 @@ bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer
 
 **Copy command:**
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name \
-  .opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+  .skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
 ```
 
 **Required filename:** `decision-record.md` (topic-specific ADR files are supplemental)
@@ -560,10 +560,10 @@ These templates support session continuity, temporary workspaces, and context pr
 
 **Copy command:**
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name \
-  .opencode/skills/system-spec-kit/templates/addons/handover.md.tmpl
+  .skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl
 ```
 
 **Sections to fill:**
@@ -620,13 +620,13 @@ mkdir -p specs/###-name/scratch
 
 Continuity is no longer a standalone `memory/*.md` template surface. `generate-context.js` updates the target packet's canonical continuity surfaces, centered on `_memory.continuity` in `implementation-summary.md`. Recovery reads those docs directly; nothing is re-indexed and no database marker is touched.
 
-**Creation (JSON mode — preferred):** `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"###-name","sessionSummary":"..."}' specs/###-name/`
+**Creation (JSON mode — preferred):** `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"###-name","sessionSummary":"..."}' specs/###-name/`
 
 **Primary surface:** `_memory.continuity` frontmatter in `implementation-summary.md`
 
 **Example creation:**
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature
 ```
 
 **Typical continuity fields:**
@@ -638,7 +638,7 @@ node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-conte
 - `key_files`
 
 **IMPORTANT:**
-- **NEVER author continuity surfaces manually** - always use `generate-context.js` via the runtime `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` entrypoint
+- **NEVER author continuity surfaces manually** - always use `generate-context.js` via the runtime `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` entrypoint
 - The save path is packet-first: recovery should start with `handover.md -> _memory.continuity -> spec docs`
 - Manual editing bypasses the routed save/index flow and makes recovery evidence less trustworthy
 
@@ -731,7 +731,7 @@ Task tool -> @debug for specs/007-feature/
 
 **Non-negotiable:**
 
-1. **Always scaffold or render from `.opencode/skills/system-spec-kit/templates/`** - Never freehand
+1. **Always scaffold or render from `.skilled/skills/system-spec-kit/templates/`** - Never freehand
 2. **Preserve numbering and emojis** - Maintain visual scanning pattern
 3. **Fill every placeholder** - Replace `[PLACEHOLDER]` with actual content
 4. **Remove instructional comments** - Delete `<!-- SAMPLE -->` blocks
@@ -747,7 +747,7 @@ Task tool -> @debug for specs/007-feature/
 
 Before presenting documentation to user, verify:
 
-- [ ] All templates copied from `.opencode/skills/system-spec-kit/templates/` (not created from scratch)
+- [ ] All templates copied from `.skilled/skills/system-spec-kit/templates/` (not created from scratch)
 - [ ] All placeholders replaced (`[PLACEHOLDER]`, `[NEEDS CLARIFICATION: ...]`)
 - [ ] All sample content removed (`<!-- SAMPLE CONTENT -->`)
 - [ ] Template footer deleted
@@ -769,10 +769,10 @@ When scope grows during implementation and a level upgrade is needed, use `upgra
 
 ```bash
 # Upgrade spec folder to a higher level (auto-detects current level)
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 2
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 2
 
 # Preview changes without modifying files
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 3 --dry-run
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 3 --dry-run
 ```
 
 The script handles structural changes (new files, addendum injection, backups). After it runs, the AI agent **must** auto-populate all `[placeholder]` text in newly injected sections by reading existing spec context and deriving appropriate content.
@@ -780,7 +780,7 @@ The script handles structural changes (new files, addendum injection, backups). 
 Verify placeholder cleanup before completion:
 
 ```bash
-.opencode/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/042-feature/
+.skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/042-feature/
 ```
 
 For manual upgrades (fallback), render the required manifest template for the target level and adapt it following the standard adaptation process above.
@@ -798,7 +798,7 @@ echo "# Spec" > specs/042-feature/spec.md
 
 **Right:**
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/042-feature --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/042-feature --name feature-name
 ```
 
 **Why wrong:** Loses structure, misses sections, inconsistent format
@@ -1127,7 +1127,7 @@ When a specification is decomposed into phases, templates are applied at two lev
 
 ```bash
 # Create phase child folder with templates
-.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh \
+.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh \
   --phase \
   --phases 3 \
   --phase-names foundation,implementation,integration \
@@ -1139,7 +1139,7 @@ When a specification is decomposed into phases, templates are applied at two lev
 Validate all phases recursively from the parent:
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/###-parent-feature/ --recursive
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/###-parent-feature/ --recursive
 ```
 
 This validates the parent and each child phase folder independently.

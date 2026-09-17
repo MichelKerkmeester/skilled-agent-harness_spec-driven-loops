@@ -45,7 +45,7 @@ Confirm SKILL.md rule 20 is present before dispatching any CLI:
 
 ```bash
 grep -F "REMEDIATION PACKET NAMING" \
-  .opencode/skills/system-spec-kit/SKILL.md
+  .skilled/skills/system-spec-kit/SKILL.md
 ```
 
 Expected: at least 1 match. If the grep returns nothing, Packet 012 REQ-006 is not implemented; stop and fix before continuing.
@@ -54,7 +54,7 @@ Also confirm rule 20 references both source and target requirements:
 
 ```bash
 grep -F "Literal naming for AI-derived" \
-  .opencode/skills/system-spec-kit/SKILL.md
+  .skilled/skills/system-spec-kit/SKILL.md
 ```
 
 Expected: at least 1 match.
@@ -221,7 +221,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-- If a CLI returns a bare stoplist slug: confirm rule 20 is surfaced to that CLI's session. Run `grep -F "Literal naming for AI-derived" .opencode/skills/system-spec-kit/SKILL.md` and expect at least 1 match. If the match is absent, the Packet 012 implementation is incomplete.
+- If a CLI returns a bare stoplist slug: confirm rule 20 is surfaced to that CLI's session. Run `grep -F "Literal naming for AI-derived" .skilled/skills/system-spec-kit/SKILL.md` and expect at least 1 match. If the match is absent, the Packet 012 implementation is incomplete.
 - If the rule is present but the CLI ignored it: the rule wording may have insufficient weight in the SKILL.md context. Flag this as a behavioral failure of the rule instruction and record it in the test report. Consider adding an explicit `ALWAYS:` enforcement prefix to rule 20 text in a follow-on packet.
 - If `cli-claude-code` blocks with a self-invocation error: this is expected behavior. Record the error as expected and substitute another CLI from the rotation.
 - If `cli-opencode` returns a direct-provider auth or quota error: verify the DeepSeek provider setup with `opencode providers list`, then rerun or substitute another configured direct provider.

@@ -307,7 +307,7 @@ async function loadTriggerIndexRetrievalLibrary(): Promise<TriggerIndexRetrieval
       readTriggerPhrases: frontmatterModule.readTriggerPhrases,
       canonicalRelativePath: corpusModule.canonicalRelativePath,
       // scripts/retrieval sits five levels under the repo root: retrieval → scripts →
-      // system-spec-kit → skills → .opencode → repo root.
+      // system-spec-kit → skills → .skilled → repo root.
       repoRoot: path.resolve(retrievalDir, '..', '..', '..', '..', '..'),
     };
   } catch {
@@ -1717,13 +1717,13 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   // Retrieval is source-owned: the trigger index is a generated artifact, not a
   // save-time side effect, so the save only reads the committed index and
   // points at the generator when it no longer matches this packet.
-  const triggerIndexRegenerateHint = '   Trigger index: run node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs when trigger phrases changed';
+  const triggerIndexRegenerateHint = '   Trigger index: run node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs when trigger phrases changed';
   try {
     const freshness = await checkTriggerIndexFreshness(validatedSpecFolderPath);
     if (freshness.status === 'stale') {
       const staleMessage = `   Trigger index: STALE for ${freshness.documentPath ?? 'spec.md'}`
         + ` (added: ${freshness.added?.join(', ') || 'none'}; removed: ${freshness.removed?.join(', ') || 'none'});`
-        + ' run node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs';
+        + ' run node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs';
       warn(staleMessage);
       workflowWarnings.push(staleMessage);
     } else if (freshness.status === 'fresh') {

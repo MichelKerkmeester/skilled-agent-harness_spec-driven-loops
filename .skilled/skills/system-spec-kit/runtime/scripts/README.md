@@ -58,7 +58,7 @@ This folder holds scripts only; its one test suite (`resource-map-extractor.vite
 ## 4. USAGE
 
 ```bash
-# From .opencode/skills/system-spec-kit/runtime
+# From .skilled/skills/system-spec-kit/runtime
 npm run build          # tsc --build, then finalize-dist.mjs
 npm test               # bounded default lane
 npm run test:sharded   # full suite, sharded serially

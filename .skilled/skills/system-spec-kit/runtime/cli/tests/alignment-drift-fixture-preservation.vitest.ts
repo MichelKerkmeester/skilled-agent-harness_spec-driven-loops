@@ -13,7 +13,7 @@ const SKILL_ROOT = path.resolve(__dirname, '..', '..', '..');
 const WORKSPACE_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..');
 const VERIFIER_PATH = path.join(
   WORKSPACE_ROOT,
-  '.opencode',
+  '.skilled',
   'skill',
   'sk-code',
   'scripts',

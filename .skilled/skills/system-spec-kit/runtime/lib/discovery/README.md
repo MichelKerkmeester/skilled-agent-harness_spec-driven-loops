@@ -52,7 +52,7 @@ discovery/
 
 ## 5. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 npx vitest run tests/architecture-seam.vitest.ts

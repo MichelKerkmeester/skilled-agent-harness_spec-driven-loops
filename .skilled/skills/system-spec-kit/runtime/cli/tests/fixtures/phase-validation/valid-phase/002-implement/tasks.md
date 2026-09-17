@@ -40,8 +40,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read current Level 1 templates (`.opencode/skills/system-spec-kit/templates/examples/level-1/`)
-- [x] T002 Read existing implementation child files (`.opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/`)
+- [x] T001 Read current Level 1 templates (`.skilled/skills/system-spec-kit/templates/examples/level-1/`)
+- [x] T002 Read existing implementation child files (`.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/`)
 
 <!-- /ANCHOR:phase-1 -->
 ---
@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T007 Validate parent and children recursively (`bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase --recursive`)
+- [x] T007 Validate parent and children recursively (`bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase --recursive`)
 
 <!-- /ANCHOR:phase-3 -->
 ---

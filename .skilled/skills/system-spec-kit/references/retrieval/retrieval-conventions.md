@@ -34,7 +34,7 @@ Retrieval splits into a keyed lane and a free-text lane, and the two share no re
 
 | Lane | Mechanism | Used for |
 |------|-----------|----------|
-| **Gate 1 trigger lookup** | The generated index at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`, read by `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` | Matching a prompt against author-declared `trigger_phrases` |
+| **Gate 1 trigger lookup** | The generated index at `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, read by `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` | Matching a prompt against author-declared `trigger_phrases` |
 | **Free-text evidence** | The ripgrep recipes in Section 2 | Finding a phrase anywhere in the corpus, with no index at all |
 
 The two answer different questions. Prompt-to-declared-phrase matching is a keyed lookup over an author-controlled field. Grepping prose is a scan. Neither ranks by meaning: a phrase that no document spells literally is a clean no-hit, never a nearest guess.
@@ -72,7 +72,7 @@ Nothing in this document may be read as a claim that the two index lanes plus gr
 Every recipe below is literal. Copy the flags rather than paraphrasing them, because `--no-config`, the exclusion globs and the `--` separator each close a specific failure.
 
 - `--no-config` is mandatory. Without it `RIPGREP_CONFIG_PATH` can inject arguments the caller never wrote.
-- `--hidden` is mandatory. The `.opencode` root holds dotted directories with live documentation, and without the flag ripgrep skips them without a word, so a miss there reads as a clean no-match. The `.git` exclusion glob keeps the flag from reaching repository internals.
+- `--hidden` is mandatory. The `.skilled` root holds dotted directories with live documentation, and without the flag ripgrep skips them without a word, so a miss there reads as a clean no-match. The `.git` exclusion glob keeps the flag from reaching repository internals.
 - `--glob '!**/z_archive/**'`, `--glob '!**/node_modules/**'` and `--glob '!**/.git/**'` keep archived packets, vendored trees and repository internals out of the result set; the last one exists because `--hidden` would otherwise let ripgrep into `.git`.
 - `--glob '!**/scratch/**'` keeps ephemeral working files out of the result set. The trigger-index corpus walker already excludes `scratch/` unconditionally, and this repository's own convention treats every `scratch/` tree as temporary output cleaned before completion, never canonical content — see Section 9 for the full coverage decision.
 - `-- 'phrase'` separates the pattern from the flags, so a phrase beginning with a hyphen is a pattern and not a parse error.
@@ -85,7 +85,7 @@ Line-addressable evidence, one JSON object per line.
 ```text
 rg --no-config --hidden --json --fixed-strings --ignore-case \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
-  -- 'phrase' specs .opencode
+  -- 'phrase' specs .skilled
 ```
 
 ### 2.2 Path-only, replacing `memory_quick_search`
@@ -96,7 +96,7 @@ One path per matching file, at most one match read per file.
 rg --no-config --hidden --fixed-strings --ignore-case \
   --files-with-matches --max-count 1 \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
-  -- 'phrase' specs .opencode
+  -- 'phrase' specs .skilled
 ```
 
 ### 2.3 Count
@@ -106,7 +106,7 @@ A separate recipe, because counting is its own output mode.
 ```text
 rg --no-config --hidden --fixed-strings --ignore-case --count \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
-  -- 'phrase' specs .opencode
+  -- 'phrase' specs .skilled
 ```
 
 ### 2.4 Context and anchor, replacing `memory_context`
@@ -116,7 +116,7 @@ The structured recipe from Section 2.1 plus a bounded context option. Keep the b
 ```text
 rg --no-config --hidden --json --fixed-strings --ignore-case -C 2 \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
-  -- 'phrase' specs .opencode
+  -- 'phrase' specs .skilled
 ```
 
 Label every returned line as anchor evidence or body evidence. Anchor evidence is a line inside an anchor block, and the caller establishes that by searching for the marker itself.
@@ -139,11 +139,11 @@ The grammar is an exact pair. An opening `<!-- ANCHOR:id -->` and a closing `<!-
 
 ## 3. SCOPING BY TRACK AND PACKET
 
-Narrow by positional path, not by pattern. The trailing positional arguments are the search roots, so replacing `specs .opencode` with a deeper path is the whole mechanism.
+Narrow by positional path, not by pattern. The trailing positional arguments are the search roots, so replacing `specs .skilled` with a deeper path is the whole mechanism.
 
 | Scope | Positional argument |
 |-------|---------------------|
-| Everything | `specs .opencode` |
+| Everything | `specs .skilled` |
 | One track | `specs/<track>` |
 | One packet | `specs/<track>/<NNN-name>` |
 | One phase child | `specs/<track>/<NNN-name>/<NNN-child-name>` |
@@ -174,7 +174,7 @@ Three outcomes, and a wrapper must branch on all three. Treating a non-zero exit
 
 ### Worked Example
 
-Run against this repository at ripgrep 14.1.1, with the phrase `trigger index generator` and the roots `specs .opencode`.
+Run against this repository at ripgrep 14.1.1, with the phrase `trigger index generator` and the roots `specs .skilled`.
 
 | Recipe | Observed exit | Observed output |
 |--------|---------------|-----------------|
@@ -274,14 +274,14 @@ The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep r
 | Root | Trigger index | Ripgrep | Reason |
 |------|:---:|:---:|--------|
 | `specs` | Yes | Yes | Shared |
-| `.opencode/skills` | Yes | Yes (subset of `.opencode`) | Shared |
+| `.skilled/skills` | Yes | Yes (subset of `.skilled`) | Shared |
 | `.opencode/specs` (a symlink to `specs`) | Folded onto `specs` | Yes, under the path it was given | The corpus walker canonicalizes the alias so one document never owns a phrase twice; ripgrep reports whichever spelling the caller passed. |
-| `.opencode/install-guides` | Yes | Yes (subset of `.opencode`) | Converged in the retrieval-coverage-alignment phase — it already carries `trigger_phrases` frontmatter and ripgrep already reached it; the trigger index missing it was a pure asymmetry |
-| `.opencode/hooks` | Yes | Yes (subset of `.opencode`) | The goal contract documents live here and describe behaviour an operator asks for by name, such as binding a session to a packet or resending a changed goal. No skill document restates them in full, so without this root a lookup for that vocabulary reached a summary instead of the contract |
-| Rest of `.opencode` (`commands`, `agents`, `bin`, `rules`, …) | No | Yes | Deliberate divergence. Every trigger-index root becomes part of a committed, size-tracked, fail-closed-on-malformed generated artifact that every Gate 1 lookup parses cold; the ripgrep lane carries no such artifact, so widening its reach costs nothing. The trigger index stays scoped to the `trigger_phrases`-governed corpus |
+| `.skilled/install-guides` | Yes | Yes (subset of `.skilled`) | Converged in the retrieval-coverage-alignment phase — it already carries `trigger_phrases` frontmatter and ripgrep already reached it; the trigger index missing it was a pure asymmetry |
+| `.skilled/hooks` | Yes | Yes (subset of `.skilled`) | The goal contract documents live here and describe behaviour an operator asks for by name, such as binding a session to a packet or resending a changed goal. No skill document restates them in full, so without this root a lookup for that vocabulary reached a summary instead of the contract |
+| Rest of `.skilled` (`commands`, `agents`, `bin`, `rules`, …) | No | Yes | Deliberate divergence. Every trigger-index root becomes part of a committed, size-tracked, fail-closed-on-malformed generated artifact that every Gate 1 lookup parses cold; the ripgrep lane carries no such artifact, so widening its reach costs nothing. The trigger index stays scoped to the `trigger_phrases`-governed corpus |
 | Repository-root `README.md` | No | No | Decided against for both lanes. It is public-facing project marketing content with no `trigger_phrases` convention, not spec or skill documentation |
 | `repo-rules` | No | No, unless passed as a root | Decided against. The rule documents carry the same frontmatter as spec docs, but they are loaded at Gate 5 through the trigger table in `REPO RULES.md`, not retrieved at Gate 1; indexing them would surface a rule as a context candidate. Their `trigger_phrases` still serve `sk-create-repo-rule`'s own collision check |
-| The five runtime mirrors (`.claude`, `.codex`, `.cursor`, `.devin`, `.pi`) | No | No | Decided against for both lanes. Most of their content is symlinks onto documents already indexed under `.opencode`; the handful of unique files (`SYNC.md`, `AGENTS.md`, `PLUGINS.md`) document CLI-specific sync mechanics rather than retrieval content, and walking the mirrors would mostly add duplicate-skip noise |
+| The five runtime mirrors (`.claude`, `.codex`, `.cursor`, `.devin`, `.pi`) | No | No | Decided against for both lanes. Most of their content is symlinks onto documents already indexed under `.skilled`; the handful of unique files (`SYNC.md`, `AGENTS.md`, `PLUGINS.md`) document CLI-specific sync mechanics rather than retrieval content, and walking the mirrors would mostly add duplicate-skip noise |
 
 ### Exclusion coverage
 
@@ -311,7 +311,7 @@ The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep r
 
 ### Scripts
 
-- `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` - Gate 1 trigger lookup over the generated index
-- `.opencode/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs` - The Section 2 recipes behind one front door, with the Section 5 rank applied
+- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` - Gate 1 trigger lookup over the generated index
+- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs` - The Section 2 recipes behind one front door, with the Section 5 rank applied
 
 ---

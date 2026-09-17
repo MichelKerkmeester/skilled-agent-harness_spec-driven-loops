@@ -44,7 +44,7 @@ This scenario validates interrupted-session recovery via `/speckit:resume` for `
 2. Confirm the workflow then consults `_memory.continuity` in `implementation-summary.md` and the supporting spec docs before it reaches helper fallback paths
 3. If the packet is thin, verify the workflow reads the bounded anchors directly out of the packet documents (`<!-- ANCHOR:state -->`, `next-steps`, `summary`, `blockers`) rather than calling any retrieval service
 4. If still thin, verify the free-text fallback is the ripgrep recipe from `references/retrieval/retrieval-conventions.md` §2.4, with the result ranked caller-side per §5
-5. If no clear candidate exists, verify prompt-to-packet routing through `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"`
+5. If no clear candidate exists, verify prompt-to-packet routing through `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"`
 6. Invoke confirm mode or force an ambiguous case and confirm the workflow presents the detected session plus 2-3 alternatives
 7. Verify the final recovery response includes actionable state and next steps, then routes appropriately to continued `/speckit:resume` work or to a direct read of the packet's `changelog/` and `implementation-summary.md` depending on user need
 
@@ -63,7 +63,7 @@ Command transcript; the ripgrep invocations and the trigger-index lookup output 
 
 ### Failure Triage
 
-Verify `/speckit:resume` command routing against `.opencode/commands/speckit/resume.md`; confirm the anchor names the workflow reads match the packet templates; re-run the ripgrep recipe by hand to see whether the miss is the recipe or the corpus; check `runtime/data/trigger-index.json` is present and current when the trigger lane returns nothing
+Verify `/speckit:resume` command routing against `.skilled/commands/speckit/resume.md`; confirm the anchor names the workflow reads match the packet templates; re-run the ripgrep recipe by hand to see whether the miss is the recipe or the corpus; check `runtime/data/trigger-index.json` is present and current when the trigger lane returns nothing
 
 ---
 

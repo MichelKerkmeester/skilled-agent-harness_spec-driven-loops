@@ -326,7 +326,7 @@ This decision matrix addresses the following spec requirements:
 | REQ-009     | §2.4    | Level 3+ extended documentation (governance)    |
 | REQ-010     | §3      | LOC as one scored input to the level recommender |
 
-**Source**: `.opencode/skills/system-spec-kit/SKILL.md`
+**Source**: `.skilled/skills/system-spec-kit/SKILL.md`
 
 ---
 

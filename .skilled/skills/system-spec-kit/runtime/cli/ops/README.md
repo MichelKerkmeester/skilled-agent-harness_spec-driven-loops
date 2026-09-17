@@ -39,9 +39,9 @@ trigger_phrases:
 Run ops validation from the repository root:
 
 ```bash
-npx tsx .opencode/skills/system-spec-kit/runtime/cli/ops/process-sweep.ts dry-run
-node .opencode/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs --help
-python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/runtime/cli/ops
+npx tsx .skilled/skills/system-spec-kit/runtime/cli/ops/process-sweep.ts dry-run
+node .skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs --help
+python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli/ops
 ```
 
 ---

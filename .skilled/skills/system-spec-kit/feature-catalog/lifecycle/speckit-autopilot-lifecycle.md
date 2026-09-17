@@ -48,18 +48,18 @@ When planning in autopilot mode, executable `tasks.md` rows must include `agent`
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/speckit/complete.md` | Command router | Parses autopilot aliases, defines result contract and routes to the complete workflow asset |
-| `.opencode/commands/speckit/plan.md` | Command router | Requires unattended task metadata for autopilot planning |
-| `.opencode/commands/speckit/implement.md` | Command router | Defines branch-preserved failure semantics and terminal reason codes for implementation |
-| `.opencode/commands/speckit/assets/speckit-complete.yaml` | Workflow asset | Defines the unattended autopilot sequence, result schema, reason codes and task metadata contract |
+| `.skilled/commands/speckit/complete.md` | Command router | Parses autopilot aliases, defines result contract and routes to the complete workflow asset |
+| `.skilled/commands/speckit/plan.md` | Command router | Requires unattended task metadata for autopilot planning |
+| `.skilled/commands/speckit/implement.md` | Command router | Defines branch-preserved failure semantics and terminal reason codes for implementation |
+| `.skilled/commands/speckit/assets/speckit-complete.yaml` | Workflow asset | Defines the unattended autopilot sequence, result schema, reason codes and task metadata contract |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/commands/speckit/complete.md` | Manual validation anchor | Router contract and terminal reason-code source |
-| `.opencode/commands/speckit/plan.md` | Manual validation anchor | Metadata requirement source |
-| `.opencode/commands/speckit/implement.md` | Manual validation anchor | Branch-preserved failure source |
+| `.skilled/commands/speckit/complete.md` | Manual validation anchor | Router contract and terminal reason-code source |
+| `.skilled/commands/speckit/plan.md` | Manual validation anchor | Metadata requirement source |
+| `.skilled/commands/speckit/implement.md` | Manual validation anchor | Branch-preserved failure source |
 | `manual-testing-playbook/lifecycle/speckit-autopilot-lifecycle.md` | Manual playbook | Operator scenario for unattended lifecycle validation |
 
 ---

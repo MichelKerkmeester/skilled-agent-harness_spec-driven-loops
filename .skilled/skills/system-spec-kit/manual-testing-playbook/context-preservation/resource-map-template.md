@@ -40,8 +40,8 @@ Validate 270a resource-map template exists on disk
 ### Commands
 
 1. `TMPDIR=$(mktemp -d)`
-2. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path "$TMPDIR/test-resource-map" --name "test-resource-map"`
-3. `RESOURCE_TEMPLATE=$(find .opencode/skills/system-spec-kit/templates -path "*/resource-map.md.tmpl" -print -quit)`
+2. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path "$TMPDIR/test-resource-map" --name "test-resource-map"`
+3. `RESOURCE_TEMPLATE=$(find .skilled/skills/system-spec-kit/templates -path "*/resource-map.md.tmpl" -print -quit)`
 4. `cp "$RESOURCE_TEMPLATE" "$TMPDIR/test-resource-map/resource-map.md"`
 5. `test -f "$TMPDIR/test-resource-map/resource-map.md" && echo PRESENT`
 6. `rm -rf "$TMPDIR"`
@@ -73,7 +73,7 @@ Validate 270b every discovery surface references resource-map.md
 
 ### Commands
 
-1. `rg -n "resource-map\\.md" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/system-spec-kit/README.md .opencode/skills/system-spec-kit/references/templates/level-specifications.md .opencode/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts`
+1. `rg -n "resource-map\\.md" .skilled/skills/system-spec-kit/SKILL.md .skilled/skills/system-spec-kit/README.md .skilled/skills/system-spec-kit/references/templates/level-specifications.md .skilled/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts`
 
 ### Expected
 
@@ -98,7 +98,7 @@ Patch whichever documentation or config surface drifted, then rerun the grep to 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/resource-map-template.md](../../feature-catalog/context-preservation/resource-map-template.md)
 
-Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path "$TMPDIR/test-resource-map" --name "test-resource-map"
+Provenance: manual only - bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path "$TMPDIR/test-resource-map" --name "test-resource-map"
 
 ---
 

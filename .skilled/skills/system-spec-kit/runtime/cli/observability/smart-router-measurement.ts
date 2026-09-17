@@ -132,10 +132,10 @@ interface RouterModel {
 }
 
 const DEFAULT_CORPUS_PATH = '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-executor-hardening/003-system-hardening/001-initial-research/005-routing-accuracy/research/019-system-hardening-pt-03/corpus/labeled-prompts.jsonl';
-const DEFAULT_REPORT_PATH = '.opencode/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-report.md';
-const DEFAULT_JSONL_PATH = '.opencode/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl';
-const DEFAULT_STATIC_COMPLIANCE_PATH = '.opencode/reports/smart-router-static/compliance.jsonl';
-const DEFAULT_LIVE_COMPLIANCE_PATH = '.opencode/skills/.state/smart-router-telemetry/compliance.jsonl';
+const DEFAULT_REPORT_PATH = '.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-report.md';
+const DEFAULT_JSONL_PATH = '.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl';
+const DEFAULT_STATIC_COMPLIANCE_PATH = '.skilled/reports/smart-router-static/compliance.jsonl';
+const DEFAULT_LIVE_COMPLIANCE_PATH = '.skilled/skills/.state/smart-router-telemetry/compliance.jsonl';
 const UNKNOWN_RESOURCE = '__unknown_unparsed__';
 const IS_CLI_ENTRY = isMainModule(import.meta.url);
 
@@ -146,7 +146,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function locateWorkspaceRoot(startDir = process.cwd()): string {
   let current = path.resolve(startDir);
   while (true) {
-    if (fs.existsSync(path.join(current, '.opencode', 'skill'))) {
+    if (fs.existsSync(path.join(current, '.skilled', 'skill'))) {
       return current;
     }
     const parent = path.dirname(current);
@@ -555,7 +555,7 @@ export function predictSmartRouterRoute(args: {
   readonly prompt: string;
   readonly briefBytes?: number;
 }): RoutePrediction {
-  const skillDir = path.join(args.workspaceRoot, '.opencode', 'skill', args.skill);
+  const skillDir = path.join(args.workspaceRoot, '.skilled', 'skill', args.skill);
   const model = parseRouterModel(skillDir);
   if (model.unknown) {
     return {
@@ -809,7 +809,7 @@ export function formatMeasurementReport(summary: MeasurementSummary): string {
     '- This report measures advisor output and the predicted SMART ROUTING resource route only.',
     '- It does not measure actual AI tool reads, skipped SKILL.md behavior, or whether a model followed a route.',
     '- Compliance JSONL records emitted by this static harness intentionally stay on the static stream and classify as `unknown_unparsed` to avoid implying live-session compliance.',
-    '- Readiness stays blocked until the live wrapper captures actual reads in `.opencode/skills/.state/smart-router-telemetry/compliance.jsonl`.',
+    '- Readiness stays blocked until the live wrapper captures actual reads in `.skilled/skills/.state/smart-router-telemetry/compliance.jsonl`.',
     '',
   );
 

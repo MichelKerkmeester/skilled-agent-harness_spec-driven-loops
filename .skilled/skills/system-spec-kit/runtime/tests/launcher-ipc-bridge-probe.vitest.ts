@@ -10,8 +10,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
-const bridgeModulePath = join(repoRoot, '.opencode/bin/lib/launcher-ipc-bridge.cjs');
-const supervisionModulePath = join(repoRoot, '.opencode/bin/lib/model-server-supervision.cjs');
+const bridgeModulePath = join(repoRoot, '.skilled/bin/lib/launcher-ipc-bridge.cjs');
+const supervisionModulePath = join(repoRoot, '.skilled/bin/lib/model-server-supervision.cjs');
 const { getIpcSocketPath, resolveIpcSocketDir, maybeBridgeLeaseHolder, probeDaemon, probeModelServer } = require(bridgeModulePath) as {
   getIpcSocketPath: (serviceName: string, options?: { dbDir?: string }) => string;
   maybeBridgeLeaseHolder: (options: Record<string, unknown>) => Promise<{ action: string; reason?: string; socketPath?: string }>;

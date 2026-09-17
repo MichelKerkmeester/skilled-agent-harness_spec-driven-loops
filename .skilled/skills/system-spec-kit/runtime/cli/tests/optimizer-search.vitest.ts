@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 
 const search = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/runtime/cli/optimizer/search.cjs',
+  '.skilled/skills/system-spec-kit/runtime/cli/optimizer/search.cjs',
 )) as {
   DEFAULT_PARAM_SPACE: Record<string, { min: number; max: number; step: number }>;
   createRNG: (seed: number) => () => number;
@@ -53,14 +53,14 @@ const search = require(path.join(
 
 const replayCorpus = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/runtime/cli/optimizer/replay-corpus.cjs',
+  '.skilled/skills/system-spec-kit/runtime/cli/optimizer/replay-corpus.cjs',
 )) as {
   buildCorpus: (family: string, options: { jsonlContent?: string }) => { corpus: any[] };
 };
 
 const rubricModule = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/runtime/cli/optimizer/rubric.cjs',
+  '.skilled/skills/system-spec-kit/runtime/cli/optimizer/rubric.cjs',
 )) as {
   defineRubric: (dimensions?: Record<string, number>) => { dimensions: Record<string, number>; totalWeight: number };
 };

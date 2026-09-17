@@ -43,10 +43,10 @@ Regenerated the implementation child fixture as a current-template Level 1 packe
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/spec.md` | Regenerated | Current Level 1 specification fixture |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/plan.md` | Regenerated | Current Level 1 plan fixture |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/tasks.md` | Regenerated | Current Level 1 task fixture |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/implementation-summary.md` | Created | Current Level 1 implementation evidence |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/spec.md` | Regenerated | Current Level 1 specification fixture |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/plan.md` | Regenerated | Current Level 1 plan fixture |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/tasks.md` | Regenerated | Current Level 1 task fixture |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/implementation-summary.md` | Created | Current Level 1 implementation evidence |
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -75,7 +75,7 @@ The fixture was delivered by reading the current Level 1 templates, regenerating
 
 | Test Type | Status | Notes |
 |-----------|--------|-------|
-| Recursive validation | Pass | `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase --recursive` |
+| Recursive validation | Pass | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase --recursive` |
 
 <!-- /ANCHOR:verification -->
 ---

@@ -41,7 +41,7 @@ As an OpenCode runtime validation operator, restart OpenCode if plugin files cha
 
 ### Commands
 
-1. Restart OpenCode after any `.opencode/plugins/opencode-goal.js` or `.opencode/commands/goal-opencode.md` edit.
+1. Restart OpenCode after any `.skilled/plugins/opencode-goal.js` or `.skilled/commands/goal-opencode.md` edit.
 1a. `/goal-opencode bind specs/<track>/<packet>` for a packet that carries a `goal.md`, then `/goal-opencode show`, `/goal-opencode resent`, `/goal-opencode packet specs/<track>/<packet>`.
 2. `/goal-opencode set Finish the goal plugin docs integration and validate it`
 3. `/goal-opencode show`
@@ -51,8 +51,8 @@ As an OpenCode runtime validation operator, restart OpenCode if plugin files cha
 7. `/goal-opencode health`
 8. `/goal-opencode pause waiting for manual verification`
 9. `/goal-opencode resume`
-10. If a live OpenCode restart is unavailable, run `node .opencode/plugins/tests/opencode-goal-state.test.cjs`, `node .opencode/plugins/tests/opencode-goal-tool-path.test.cjs`, and `node .opencode/plugins/tests/opencode-goal-capabilities.test.cjs` as fallback evidence.
-11. Run `node .opencode/plugins/tests/opencode-goal-supervisor.test.cjs` and confirm the default heuristic positive case, eight negative adversarial cases, LLM unavailable path, LLM success path, and `verifier_source` provenance assertions pass.
+10. If a live OpenCode restart is unavailable, run `node .skilled/plugins/tests/opencode-goal-state.test.cjs`, `node .skilled/plugins/tests/opencode-goal-tool-path.test.cjs`, and `node .skilled/plugins/tests/opencode-goal-capabilities.test.cjs` as fallback evidence.
+11. Run `node .skilled/plugins/tests/opencode-goal-supervisor.test.cjs` and confirm the default heuristic positive case, eight negative adversarial cases, LLM unavailable path, LLM success path, and `verifier_source` provenance assertions pass.
 
 ### Expected
 
@@ -182,7 +182,7 @@ injection_preview="[active_goal:goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894]\nstat
 
 ### Failure Triage
 
-Confirm OpenCode was restarted -> inspect `.opencode/plugins/opencode-goal.js` plugin load -> inspect `.opencode/commands/goal-opencode.md` allowed tools -> run `opencode-goal-state` and `opencode-goal-tool-path` tests -> inspect `.opencode/skills/.state/goal/` only as runtime evidence, not as command-owned state.
+Confirm OpenCode was restarted -> inspect `.skilled/plugins/opencode-goal.js` plugin load -> inspect `.skilled/commands/goal-opencode.md` allowed tools -> run `opencode-goal-state` and `opencode-goal-tool-path` tests -> inspect `.skilled/skills/.state/goal/` only as runtime evidence, not as command-owned state.
 
 ---
 
@@ -191,10 +191,10 @@ Confirm OpenCode was restarted -> inspect `.opencode/plugins/opencode-goal.js` p
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/goal-opencode-plugin.md](../../feature-catalog/ux-hooks/goal-opencode-plugin.md)
 - Operator reference: [goal-plugin.md](../../../../hooks/goal/goal-plugin.md)
-- Source file: `.opencode/plugins/opencode-goal.js`
-- Command file: `.opencode/commands/goal-opencode.md`
+- Source file: `.skilled/plugins/opencode-goal.js`
+- Command file: `.skilled/commands/goal-opencode.md`
 
-Provenance: .opencode/plugins/tests/opencode-goal-state.test.cjs
+Provenance: .skilled/plugins/tests/opencode-goal-state.test.cjs
 
 ---
 

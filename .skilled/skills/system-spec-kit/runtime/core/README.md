@@ -53,7 +53,7 @@ Current responsibilities:
 
 ## 5. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`:
+Run from `.skilled/skills/system-spec-kit/runtime`:
 
 ```bash
 npx vitest run tests/unit-path-security.vitest.ts tests/production-db-isolation.vitest.ts tests/memory-roadmap-flags.vitest.ts

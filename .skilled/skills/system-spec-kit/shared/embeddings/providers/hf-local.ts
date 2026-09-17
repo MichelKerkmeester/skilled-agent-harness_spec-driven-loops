@@ -38,14 +38,14 @@ const SOCKET_FILE_NAME = 'hf-embed.sock';
 // directory: the resident model server outlives and is shared by every database consumer,
 // and a checkout-dependent database path can exceed the 104-byte sun_path limit.
 // MUST stay byte-identical to DEFAULT_MODEL_SERVER_SOCKET_DIR in
-// .opencode/bin/lib/model-server-supervision.cjs, which is the process that binds it.
+// .skilled/bin/lib/model-server-supervision.cjs, which is the process that binds it.
 const DEFAULT_MODEL_SERVER_SOCKET_DIR = '/tmp/system-hf-embed';
 
 // Owner lease written by the launcher that spawns the model server. Reading it is how
 // this client tells "a launcher is bringing the server up" apart from "nothing is
 // coming", so it must name the file the live launcher actually writes.
 // MUST stay byte-identical to OWNER_LEASE_FILE_NAME in
-// .opencode/bin/system-skill-advisor-launcher.cjs, which is the process that writes it.
+// .skilled/bin/system-skill-advisor-launcher.cjs, which is the process that writes it.
 const ADVISOR_OWNER_LEASE_FILE_NAME = '.skill-advisor-owner.json';
 
 // Task prefixes required by nomic-embed-text-v1.5
@@ -325,7 +325,7 @@ function systemSpecKitRoot(): string {
   const cwdCandidates = [
     process.cwd(),
     path.resolve(process.cwd(), '..'),
-    path.resolve(process.cwd(), '.opencode', 'skills', 'system-spec-kit'),
+    path.resolve(process.cwd(), '.skilled', 'skills', 'system-spec-kit'),
   ];
   for (const candidate of cwdCandidates) {
     if (existsSync(path.join(candidate, 'runtime')) && existsSync(path.join(candidate, 'shared'))) {

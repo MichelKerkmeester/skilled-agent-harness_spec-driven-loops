@@ -115,7 +115,7 @@ Main flow:
 
 ## 6. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 npx vitest run tests/resume-ladder.vitest.ts

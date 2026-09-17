@@ -161,8 +161,8 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 
 ### VERIFICATION SOURCES
 
-- `cd .opencode/skills/system-spec-kit/runtime/cli && npm run lint`
-- `cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run --config ../runtime/vitest.config.ts --root . tests/generate-context-cli-authority.vitest.ts tests/input-normalizer-unit.vitest.ts tests/post-save-review.vitest.ts tests/project-phase-e2e.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/trigger-phrase-filter.vitest.ts tests/validation-v13-v14-v12.vitest.ts`
+- `cd .skilled/skills/system-spec-kit/runtime/cli && npm run lint`
+- `cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../runtime/vitest.config.ts --root . tests/generate-context-cli-authority.vitest.ts tests/input-normalizer-unit.vitest.ts tests/post-save-review.vitest.ts tests/project-phase-e2e.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/trigger-phrase-filter.vitest.ts tests/validation-v13-v14-v12.vitest.ts`
 
 Related references:
 - [json-primary-deprecation-posture.md](../../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md) — JSON-primary deprecation posture

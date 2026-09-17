@@ -968,13 +968,13 @@ function buildKeyFileLookupPaths(
       lookups.add(path.resolve(repoRoot, '.opencode', normalized));
     }
 
-    const systemSpecKitRoot = path.join(repoRoot, '.opencode', 'skills', 'system-spec-kit');
-    const workspaceRoots = [
+    const systemSpecKitRoots = ['.skilled', '.opencode'].map((root) => path.join(repoRoot, root, 'skills', 'system-spec-kit'));
+    const workspaceRoots = systemSpecKitRoots.flatMap((systemSpecKitRoot) => [
       systemSpecKitRoot,
       path.join(systemSpecKitRoot, 'runtime'),
       path.join(systemSpecKitRoot, 'runtime', 'cli'),
       path.join(systemSpecKitRoot, 'scripts'),
-    ];
+    ]);
     for (const root of workspaceRoots) {
       lookups.add(path.resolve(root, normalized));
     }

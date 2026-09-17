@@ -24,7 +24,7 @@ import { describe, expect, it } from 'vitest';
 
 const REPO_ROOT = path.resolve(import.meta.dirname, '..', '..', '..', '..', '..', '..');
 // drift: 026 release
-const ASSETS_ROOT = path.join(REPO_ROOT, '.opencode', 'commands', 'speckit', 'assets');
+const ASSETS_ROOT = path.join(REPO_ROOT, '.skilled', 'commands', 'speckit', 'assets');
 
 const ASSETS_WITH_INTAKE_EVENTS = [
   'speckit-plan.yaml',

@@ -169,12 +169,12 @@ Run compiled commands from the repository root after the TypeScript build has pr
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin` | CLI | Save structured session context from stdin. |
-| `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{...}' <spec-folder>` | CLI | Save structured context from an inline JSON string with an explicit packet target. |
-| `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/validate-memory-quality.js <file>` | CLI | Check rendered continuity quality before accepting the output. |
-| `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/backfill-frontmatter.js --dry-run --include-archive` | CLI | Preview frontmatter normalization changes. |
-| `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/backfill-frontmatter.js --apply --include-archive --report /tmp/frontmatter-apply.json` | CLI | Apply frontmatter normalization and write a report. |
-| `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/migrate-trigger-phrase-residual.js` | CLI | Clean residual trigger-phrase metadata that no longer matches the current schema. |
+| `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin` | CLI | Save structured session context from stdin. |
+| `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{...}' <spec-folder>` | CLI | Save structured context from an inline JSON string with an explicit packet target. |
+| `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/validate-memory-quality.js <file>` | CLI | Check rendered continuity quality before accepting the output. |
+| `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/backfill-frontmatter.js --dry-run --include-archive` | CLI | Preview frontmatter normalization changes. |
+| `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/backfill-frontmatter.js --apply --include-archive --report /tmp/frontmatter-apply.json` | CLI | Apply frontmatter normalization and write a report. |
+| `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/migrate-trigger-phrase-residual.js` | CLI | Clean residual trigger-phrase metadata that no longer matches the current schema. |
 
 ---
 
@@ -183,8 +183,8 @@ Run compiled commands from the repository root after the TypeScript build has pr
 Run from the repository root.
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/skills/system-spec-kit/runtime/cli/continuity/README.md
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/cli/continuity/README.md
+python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py .skilled/skills/system-spec-kit/runtime/cli/continuity/README.md
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/continuity/README.md
 ```
 
 Expected result: the structure extractor reports README type with no critical issues, and document validation exits `0`.
@@ -192,8 +192,8 @@ Expected result: the structure extractor reports README type with no critical is
 For CLI behavior checks, use command-specific dry-run or help modes where available:
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --help
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --help
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json
 ```
 
 ---

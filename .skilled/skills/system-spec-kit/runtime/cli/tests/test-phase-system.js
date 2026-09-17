@@ -11,8 +11,8 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
-const CREATE_SCRIPT = path.join(REPO_ROOT, '.opencode', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'create.sh');
-const RECOMMEND_SCRIPT = path.join(REPO_ROOT, '.opencode', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'recommend-level.sh');
+const CREATE_SCRIPT = path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'create.sh');
+const RECOMMEND_SCRIPT = path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'recommend-level.sh');
 const ALLOWED_SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
 
 let passed = 0;

@@ -44,7 +44,7 @@
       "title": "Search Retrieval Query",
       "content": "Search retrieval query behavior powers lexical lookup and ranking quality. Shared gate prose covers tier importance priority constitutional pinned cache sqlite schema active projection lazy startup gating.",
       "triggers": ["search", "retrieval", "query"],
-      "file_path": ".opencode/skills/system-spec-kit/runtime/lib/search/hybrid-search.ts",
+      "file_path": ".skilled/skills/system-spec-kit/runtime/lib/search/hybrid-search.ts",
       "spec_folder": "specs/golden/prose"
     },
     {
@@ -68,7 +68,7 @@
       "title": "Embedding Cache",
       "content": "The cache stores embedding vectors and avoids repeated provider calls. Shared gate prose covers tier importance priority constitutional pinned sqlite schema active projection lazy startup gating.",
       "triggers": ["cache", "embedding-cache"],
-      "file_path": ".opencode/skills/system-spec-kit/runtime/lib/cache/embedding-cache.ts",
+      "file_path": ".skilled/skills/system-spec-kit/runtime/lib/cache/embedding-cache.ts",
       "spec_folder": "specs/golden/prose"
     },
     {
@@ -76,7 +76,7 @@
       "title": "SQLite Schema",
       "content": "SQLite schema migrations create memory_fts and memory_index tables.",
       "triggers": ["sqlite schema", "memory_fts"],
-      "file_path": ".opencode/skills/system-spec-kit/runtime/lib/search/vector-index-schema.ts",
+      "file_path": ".skilled/skills/system-spec-kit/runtime/lib/search/vector-index-schema.ts",
       "spec_folder": "specs/golden/columns"
     },
     {
@@ -84,7 +84,7 @@
       "title": "Trigger Phrase Column Weight",
       "content": "A trigger phrase hit should rank well because curated trigger text is weighted.",
       "triggers": ["trigger phrase", "column weight"],
-      "file_path": ".opencode/skills/system-spec-kit/runtime/lib/parsing/trigger-matcher.ts",
+      "file_path": ".skilled/skills/system-spec-kit/runtime/lib/parsing/trigger-matcher.ts",
       "spec_folder": "specs/golden/columns"
     },
     {
@@ -92,7 +92,7 @@
       "title": "Active Projection",
       "content": "Active projection keeps the current memory view available for retrieval.",
       "triggers": ["active projection", "projection"],
-      "file_path": ".opencode/skills/system-spec-kit/runtime/lib/storage/lineage-state.ts",
+      "file_path": ".skilled/skills/system-spec-kit/runtime/lib/storage/lineage-state.ts",
       "spec_folder": "specs/golden/prose"
     },
     {
@@ -116,7 +116,7 @@
       "title": "Context Server Startup",
       "content": "The context server initializes search channels and health diagnostics.",
       "triggers": ["context server", "startup health"],
-      "file_path": ".opencode/skills/system-spec-kit/runtime/context-server.ts",
+      "file_path": ".skilled/skills/system-spec-kit/runtime/context-server.ts",
       "spec_folder": "specs/golden/columns"
     },
     {
@@ -124,7 +124,7 @@
       "title": "Running Runner",
       "content": "running runners run repeatedly during stress tests.",
       "triggers": ["running"],
-      "file_path": ".opencode/tests/stemming/running.md",
+      "file_path": ".skilled/tests/stemming/running.md",
       "spec_folder": "specs/golden/stemming"
     },
     {
@@ -132,7 +132,7 @@
       "title": "Runs",
       "content": "runs run commands and records execution output.",
       "triggers": ["runs"],
-      "file_path": ".opencode/tests/stemming/runs.md",
+      "file_path": ".skilled/tests/stemming/runs.md",
       "spec_folder": "specs/golden/stemming"
     },
     {
@@ -140,7 +140,7 @@
       "title": "Ran",
       "content": "ran records describe commands that ran in a previous session.",
       "triggers": ["ran"],
-      "file_path": ".opencode/tests/stemming/ran.md",
+      "file_path": ".skilled/tests/stemming/ran.md",
       "spec_folder": "specs/golden/stemming"
     },
     {
@@ -148,7 +148,7 @@
       "title": "Tested",
       "content": "tested tests prove the test harness catches regressions.",
       "triggers": ["tested", "tests"],
-      "file_path": ".opencode/tests/stemming/tested.md",
+      "file_path": ".skilled/tests/stemming/tested.md",
       "spec_folder": "specs/golden/stemming"
     },
     {
@@ -156,7 +156,7 @@
       "title": "Tests",
       "content": "tests test the lexical retrieval stack.",
       "triggers": ["tests"],
-      "file_path": ".opencode/tests/stemming/tests.md",
+      "file_path": ".skilled/tests/stemming/tests.md",
       "spec_folder": "specs/golden/stemming"
     },
     {
@@ -164,7 +164,7 @@
       "title": "Boxes",
       "content": "boxes box archived fixture data into deterministic rows.",
       "triggers": ["boxes"],
-      "file_path": ".opencode/tests/stemming/boxes.md",
+      "file_path": ".skilled/tests/stemming/boxes.md",
       "spec_folder": "specs/golden/stemming"
     },
     {
@@ -172,7 +172,7 @@
       "title": "hybrid-search implementation",
       "content": "hybrid-search combines vector, FTS, BM25, graph, trigger, and degree channels.",
       "triggers": ["hybrid-search", "reciprocal rank fusion"],
-      "file_path": ".opencode/skills/system-spec-kit/runtime/lib/search/hybrid-search.ts",
+      "file_path": ".skilled/skills/system-spec-kit/runtime/lib/search/hybrid-search.ts",
       "spec_folder": "specs/golden/columns"
     },
     {
@@ -180,7 +180,7 @@
       "title": "memory_index table",
       "content": "memory_index stores title, trigger_phrases, content_text, file_path, and spec_folder.",
       "triggers": ["memory_index", "sqlite schema"],
-      "file_path": ".opencode/skills/system-spec-kit/runtime/lib/search/vector-index-schema.ts",
+      "file_path": ".skilled/skills/system-spec-kit/runtime/lib/search/vector-index-schema.ts",
       "spec_folder": "specs/golden/columns"
     },
     {
@@ -196,7 +196,7 @@
       "title": "buildBm25DocumentText helper",
       "content": "buildBm25DocumentText combines title content trigger phrases and file path text.",
       "triggers": ["buildBm25DocumentText"],
-      "file_path": ".opencode/skills/system-spec-kit/runtime/lib/search/bm25-index.ts",
+      "file_path": ".skilled/skills/system-spec-kit/runtime/lib/search/bm25-index.ts",
       "spec_folder": "specs/golden/columns"
     },
     {
@@ -204,7 +204,7 @@
       "title": "Cafe Unicode",
       "content": "cafe cafe unicode diacritic retrieval checks ascii and accented text.",
       "triggers": ["cafe"],
-      "file_path": ".opencode/tests/tokenization/cafe.md",
+      "file_path": ".skilled/tests/tokenization/cafe.md",
       "spec_folder": "specs/golden/tokenization"
     },
     {
@@ -228,7 +228,7 @@
       "title": "Reciprocal Rank Fusion",
       "content": "Reciprocal rank fusion is implemented in hybrid-search with keyword results.",
       "triggers": ["reciprocal rank fusion", "RRF"],
-      "file_path": ".opencode/skills/system-spec-kit/runtime/lib/search/hybrid-search.ts",
+      "file_path": ".skilled/skills/system-spec-kit/runtime/lib/search/hybrid-search.ts",
       "spec_folder": "specs/golden/rrf"
     }
   ]

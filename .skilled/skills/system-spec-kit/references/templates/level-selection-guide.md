@@ -19,7 +19,7 @@ Guide to selecting appropriate documentation levels based on task complexity.
 
 ## 1. OVERVIEW
 
-> Use `--level N` with `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` to select a level directly.
+> Use `--level N` with `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` to select a level directly.
 
 The complexity detection system automatically analyzes task descriptions to:
 - Recommend appropriate documentation levels (1, 2, 3, or 3+)
@@ -115,16 +115,16 @@ Create spec folder with pre-expanded templates from level-specific folders:
 
 ```bash
 # Create Level 1 spec folder (default)
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh "Simple bugfix"
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "Simple bugfix"
 
 # Create Level 2 spec folder
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh "Add OAuth2 authentication" --level 2
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "Add OAuth2 authentication" --level 2
 
 # Create Level 3 spec folder
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh "Major architecture redesign" --level 3
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "Major architecture redesign" --level 3
 
 # Create Level 3+ spec folder (extended)
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh "Platform migration" --level 3+
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "Platform migration" --level 3+
 ```
 
 **Template Source:**
@@ -180,9 +180,9 @@ Validates level consistency across all spec files:
 
 ```bash
 # Run all complexity validation rules
-bash .opencode/skills/system-spec-kit/runtime/cli/rules/check-complexity.sh specs/XXX/
-bash .opencode/skills/system-spec-kit/runtime/cli/rules/check-ai-protocols.sh specs/XXX/
-bash .opencode/skills/system-spec-kit/runtime/cli/rules/check-level-match.sh specs/XXX/
+bash .skilled/skills/system-spec-kit/runtime/cli/rules/check-complexity.sh specs/XXX/
+bash .skilled/skills/system-spec-kit/runtime/cli/rules/check-ai-protocols.sh specs/XXX/
+bash .skilled/skills/system-spec-kit/runtime/cli/rules/check-level-match.sh specs/XXX/
 
 # Exit codes:
 # 0 = PASS

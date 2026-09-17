@@ -59,7 +59,7 @@ The command loads `doctor-update.yaml`, reads `migration-manifest.json`, detects
 - Precondition check command:
 
 ```bash
-node -e "const fs=require('fs'); const skill='.opencode/skills/system-spec-kit/SKILL.md'; const manifest='.opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json'; const skillText=fs.readFileSync(skill,'utf8'); const version=(skillText.match(/^version:\\s*(.+)$/m)||[])[1]||'<missing>'; const data=JSON.parse(fs.readFileSync(manifest,'utf8')); console.log('system-spec-kit SKILL.md version: '+version); console.log('manifest path: '+manifest); console.log('manifest current_version: '+(Object.prototype.hasOwnProperty.call(data,'current_version')?data.current_version:'<missing>')); console.log('manifest top-level keys: '+Object.keys(data).join(', '));"
+node -e "const fs=require('fs'); const skill='.skilled/skills/system-spec-kit/SKILL.md'; const manifest='.opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json'; const skillText=fs.readFileSync(skill,'utf8'); const version=(skillText.match(/^version:\\s*(.+)$/m)||[])[1]||'<missing>'; const data=JSON.parse(fs.readFileSync(manifest,'utf8')); console.log('system-spec-kit SKILL.md version: '+version); console.log('manifest path: '+manifest); console.log('manifest current_version: '+(Object.prototype.hasOwnProperty.call(data,'current_version')?data.current_version:'<missing>')); console.log('manifest top-level keys: '+Object.keys(data).join(', '));"
 ```
 
 - Precondition check output:
@@ -72,7 +72,7 @@ manifest top-level keys: schema_version, migration, completed_at, executor, work
 ```
 
 - `/doctor:update --migrate` was not invoked because the scenario preconditions were not established in the current repo state.
-- Missing precondition: repository and installed spec-kit version are not `3.4.1.0`; `.opencode/skills/system-spec-kit/SKILL.md` reports `version: 3.7.0.0`.
+- Missing precondition: repository and installed spec-kit version are not `3.4.1.0`; `.skilled/skills/system-spec-kit/SKILL.md` reports `version: 3.7.0.0`.
 - Missing precondition: referenced `migration-manifest.json` does not contain `current_version: 3.4.1.0`; it has no `current_version` key.
 
 ### Pass / Fail
@@ -89,8 +89,8 @@ If migration scripts run, inspect `migration-manifest.json` no-op `upgrade_paths
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Command entrypoint: [.opencode/commands/doctor/update.md](../../../../commands/doctor/update.md)
-- Matching YAML asset: [.opencode/commands/doctor/assets/doctor-update.yaml](../../../../commands/doctor/assets/doctor-update.yaml)
+- Command entrypoint: [.skilled/commands/doctor/update.md](../../../../commands/doctor/update.md)
+- Matching YAML asset: [.skilled/commands/doctor/assets/doctor-update.yaml](../../../../commands/doctor/assets/doctor-update.yaml)
 - Migration manifest: [specs/system-speckit/026-graph-and-context-optimization/.../scratch/migration-manifest.json](../../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
 - Decision context: local doctor command ADRs
 

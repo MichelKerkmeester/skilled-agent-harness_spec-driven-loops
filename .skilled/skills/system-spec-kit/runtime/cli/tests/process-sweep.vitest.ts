@@ -10,7 +10,7 @@ import {
 } from '../ops/process-memory-harness.js';
 import { applySweep, planSweep } from '../ops/process-sweep.js';
 
-const PROJECT_DAEMON_COMMAND = 'node .opencode/skills/system-spec-kit/runtime/cli/dist/ops/synthetic-daemon.js';
+const PROJECT_DAEMON_COMMAND = 'node .skilled/skills/system-spec-kit/runtime/cli/dist/ops/synthetic-daemon.js';
 
 // No project daemon ships in the default rule set, so the tests that exercise the
 // project-daemon and orphan paths register one for their own scope.
@@ -119,7 +119,7 @@ describe('process sweep', () => {
 
   it('marks stale project PID locks eligible after exact path identity proof', () => {
     const staleLock: PidLockState = {
-      path: '.opencode/skills/system-spec-kit/run/stale.pid',
+      path: '.skilled/skills/system-spec-kit/run/stale.pid',
       raw: '3000',
       pid: 3000,
       state: 'stale',

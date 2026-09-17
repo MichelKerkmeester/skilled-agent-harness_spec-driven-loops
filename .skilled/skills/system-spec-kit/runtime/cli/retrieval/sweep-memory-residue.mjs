@@ -302,9 +302,9 @@ export function classifySurface(relativePath) {
   if (has('bin')) return 'bin';
   if (has('agents')) return 'agents';
   if (has('commands')) return 'commands';
-  if (CONFIG_EXTENSIONS.has(extension) && segments[0] !== '.opencode' && segments[0] !== 'specs') return 'config';
+  if (CONFIG_EXTENSIONS.has(extension) && segments[0] !== '.skilled' && segments[0] !== '.opencode' && segments[0] !== 'specs') return 'config';
   if (CODE_EXTENSIONS.has(extension)) return 'code';
-  if (segments[0] === '.opencode' && segments[1] === 'skills') return 'skills';
+  if ((segments[0] === '.skilled' || segments[0] === '.opencode') && segments[1] === 'skills') return 'skills';
   if (DOC_EXTENSIONS.has(extension)) return 'docs';
   return 'other';
 }
@@ -430,8 +430,8 @@ async function streamRipgrep(root, onMatch) {
  */
 export async function sweep(options = {}) {
   const root = path.resolve(options.root ?? process.cwd());
-  if (!fs.existsSync(path.join(root, '.opencode'))) {
-    throw new Error(`root does not look like the repository root (no .opencode): ${root}`);
+  if (!['.skilled', '.opencode'].some((name) => fs.existsSync(path.join(root, name)))) {
+    throw new Error(`root does not look like the repository root (no .skilled or .opencode): ${root}`);
   }
 
   const allowlistPath = path.resolve(options.allowlistPath ?? DEFAULT_ALLOWLIST_PATH);

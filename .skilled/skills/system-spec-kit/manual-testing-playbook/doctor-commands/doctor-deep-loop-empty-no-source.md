@@ -45,7 +45,7 @@ Check deep-loop graph status. There's no recent research iteration data.
 1. Create a disposable copy of the repository or a minimal sandbox with no deep-loop iteration folders.
 2. Confirm no source iteration files exist:
    - `test -z "$(find .opencode/specs -path '*/research/iterations/*.md' -o -path '*/review/iterations/*.md' | head -1)"`
-3. Remove or isolate only `.opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite` in the disposable workspace.
+3. Remove or isolate only `.skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite` in the disposable workspace.
 4. Confirm the graph status is empty with `deep_loop_graph_status({})` or equivalent.
 5. Run `/doctor deep-loop --scope=both` through the real runtime.
 6. Capture the full diagnostic report and state log.
@@ -73,15 +73,15 @@ No graph rows are inserted, no snapshot is taken, and no iteration markdown file
 
 ### Failure Triage
 
-If the command tries to remediate, inspect the diagnostic-mode guard in `.opencode/commands/doctor/assets/doctor-deep-loop.yaml` and fail with `auto-mode-upsert-forbidden`. If it reports a source despite the sandbox having no iteration files, inspect the Glob path resolution and verify the command is running from the intended disposable workspace.
+If the command tries to remediate, inspect the diagnostic-mode guard in `.skilled/commands/doctor/assets/doctor-deep-loop.yaml` and fail with `auto-mode-upsert-forbidden`. If it reports a source despite the sandbox having no iteration files, inspect the Glob path resolution and verify the command is running from the intended disposable workspace.
 
 ---
 
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Command entrypoint: [.opencode/commands/doctor/speckit.md](../../../../commands/doctor/speckit.md)
-- Matching YAML asset: [.opencode/commands/doctor/assets/doctor-deep-loop.yaml](../../../../commands/doctor/assets/doctor-deep-loop.yaml)
+- Command entrypoint: [.skilled/commands/doctor/speckit.md](../../../../commands/doctor/speckit.md)
+- Matching YAML asset: [.skilled/commands/doctor/assets/doctor-deep-loop.yaml](../../../../commands/doctor/assets/doctor-deep-loop.yaml)
 - Design context: local doctor command contract
 - Decision context: local doctor command ADRs
 

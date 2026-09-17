@@ -290,9 +290,9 @@ describe('completion-evidence-sentinel core', () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('appendAdvisoryLog writes a bounded, append-only line under .opencode/logs', () => {
+  it('appendAdvisoryLog writes a bounded, append-only line under .skilled/logs', () => {
     projectDir = newProjectDir();
-    mkdirSync(join(projectDir, '.opencode', 'logs'), { recursive: true });
+    mkdirSync(join(projectDir, '.skilled', 'logs'), { recursive: true });
 
     const ok = sentinelCore.appendAdvisoryLog(projectDir, 'test advisory line');
     expect(ok).toBe(true);

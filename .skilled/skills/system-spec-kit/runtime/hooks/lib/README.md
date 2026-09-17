@@ -62,7 +62,7 @@ lib/
 
 ## 5. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 node --check hooks/lib/hook-adapter-shared.mjs

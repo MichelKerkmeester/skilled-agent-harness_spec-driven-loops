@@ -198,7 +198,7 @@ No owner record and no live pid means the previous run died mid-save, so the loc
 Run from the repository root unless noted.
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
 ```
 
 Expected result: TypeScript compiles and updates `runtime/cli/dist/`.

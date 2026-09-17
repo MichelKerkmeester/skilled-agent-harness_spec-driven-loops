@@ -96,7 +96,7 @@ The flags the module reads are `SPECKIT_RRF`, `SPECKIT_RRF_K`, `SPECKIT_SCORE_NO
 Run from the repository root:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/shared/algorithms/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/shared/algorithms/README.md
 ```
 
 Expected result: the validator exits with code `0`. The module's behavior is covered by the skill advisor's scorer tests, which import it.

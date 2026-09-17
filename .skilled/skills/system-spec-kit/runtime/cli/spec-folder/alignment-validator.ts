@@ -379,7 +379,7 @@ function detectWorkDomain(collectedData: AlignmentCollectedData | null): WorkDom
 
   const normalizedFiles = files.map((f) => f.replace(/\\/g, '/'));
   const opencodeFiles = normalizedFiles.filter((f) =>
-    f.includes('.opencode/') || f.includes('/.opencode/')
+    /\.(?:skilled|opencode)\//.test(f)
   );
 
   const opencodeRatio = opencodeFiles.length / normalizedFiles.length;
@@ -392,7 +392,7 @@ function detectWorkDomain(collectedData: AlignmentCollectedData | null): WorkDom
   let matchedPatterns: string[] = [];
 
   for (const [subpath, patterns] of Object.entries(ALIGNMENT_CONFIG.INFRASTRUCTURE_PATTERNS)) {
-    const matchingFiles = opencodeFiles.filter((f) => f.includes(`.opencode/${subpath}`));
+    const matchingFiles = opencodeFiles.filter((f) => f.includes(`.skilled/${subpath}`) || f.includes(`.opencode/${subpath}`));
     if (matchingFiles.length > 0) {
       if (!detectedSubpath || subpath.length > detectedSubpath.length) {
         detectedSubpath = subpath;
@@ -495,7 +495,7 @@ async function validateContentAlignment(
   const isInfrastructureMismatch = workDomain.domain === 'opencode' && domainAwareScore === baseScore;
 
   if (isInfrastructureMismatch) {
-    console.log(`   Warning: INFRASTRUCTURE MISMATCH: Work is on .opencode/${workDomain.subpath || ''}`);
+    console.log(`   Warning: INFRASTRUCTURE MISMATCH: Work is on .skilled/${workDomain.subpath || ''}`);
     console.log(`      But target folder "${specFolderName}" doesn't match infrastructure patterns`);
     console.log(`      Suggested patterns: ${workDomain.patterns.join(', ')}`);
   }
@@ -512,7 +512,7 @@ async function validateContentAlignment(
 
   if (isInfrastructureMismatch) {
     console.log('\n   Warning: INFRASTRUCTURE ALIGNMENT WARNING');
-    console.log(`   Work domain: .opencode/${workDomain.subpath || '*'} (${Math.round(workDomain.confidence * 100)}% of files)`);
+    console.log(`   Work domain: .skilled/${workDomain.subpath || '*'} (${Math.round(workDomain.confidence * 100)}% of files)`);
   } else {
     console.log('\n   Warning: ALIGNMENT WARNING: Content may not match target folder');
   }
@@ -617,7 +617,7 @@ async function validateFolderAlignment(
   const isInfrastructureMismatch = workDomain.domain === 'opencode' && domainAwareScore === baseScore;
 
   if (isInfrastructureMismatch) {
-    console.log(`   Warning: Infrastructure work detected: .opencode/${workDomain.subpath || '*'}`);
+    console.log(`   Warning: Infrastructure work detected: .skilled/${workDomain.subpath || '*'}`);
   }
 
   if (alignmentScore >= ALIGNMENT_CONFIG.THRESHOLD && !isInfrastructureMismatch) {
@@ -631,7 +631,7 @@ async function validateFolderAlignment(
   }
 
   if (isInfrastructureMismatch) {
-    console.log(`\n   Warning: INFRASTRUCTURE MISMATCH (${Math.round(workDomain.confidence * 100)}% of files in .opencode/)`);
+    console.log(`\n   Warning: INFRASTRUCTURE MISMATCH (${Math.round(workDomain.confidence * 100)}% of files in .skilled/)`);
     console.log(`   Suggested folder patterns: ${workDomain.patterns.join(', ')}`);
   } else {
     console.log(`\n   Warning: LOW ALIGNMENT WARNING (${baseScore}% match)`);

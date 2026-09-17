@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 
 const capabilityModulePath = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs',
+  '.skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs',
 );
 const capabilityModule = fs.existsSync(capabilityModulePath) ? require(capabilityModulePath) as {
   listRuntimeCapabilityIds: () => string[];
@@ -24,13 +24,13 @@ function readWorkspaceFile(relativePath: string): string {
 
 (capabilityModule ? describe : describe.skip)('deep-research contract parity', () => {
   const primaryDocs = [
-    '.opencode/skills/system-deep-loop/deep-research/SKILL.md',
-    '.opencode/skills/system-deep-loop/deep-research/README.md',
-    '.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md',
-    '.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md',
-    '.opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md',
-    '.opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md',
-    '.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json',
+    '.skilled/skills/system-deep-loop/deep-research/SKILL.md',
+    '.skilled/skills/system-deep-loop/deep-research/README.md',
+    '.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md',
+    '.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md',
+    '.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md',
+    '.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md',
+    '.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json',
   ];
 
   const runtimeMirrors = capabilityModule
@@ -38,8 +38,8 @@ function readWorkspaceFile(relativePath: string): string {
     : [];
 
   const commandAssets = [
-    '.opencode/commands/deep/assets/deep-research-auto.yaml',
-    '.opencode/commands/deep/assets/deep-research-confirm.yaml',
+    '.skilled/commands/deep/assets/deep-research-auto.yaml',
+    '.skilled/commands/deep/assets/deep-research-confirm.yaml',
   ];
 
   it('keeps primary docs aligned on canonical artifacts and the machine-readable capability source', () => {
@@ -75,13 +75,13 @@ function readWorkspaceFile(relativePath: string): string {
       expect(content, `${docPath} should write the findings registry`).toContain('findings-registry.json');
       expect(content, `${docPath} should mention completed-continue`).toContain('completed-continue');
       expect(content, `${docPath} should invoke the reducer script`).toContain(
-        'node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}',
+        'node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}',
       );
     }
   });
 
   it('records manual stop before confirm-mode synthesis', () => {
-    const content = readWorkspaceFile('.opencode/commands/deep/assets/deep-research-confirm.yaml');
+    const content = readWorkspaceFile('.skilled/commands/deep/assets/deep-research-confirm.yaml');
     const preIterationGate = content.match(/gate_pre_iteration:[\s\S]*?step_dispatch_iteration:/)?.[0] || '';
     const postIterationGate = content.match(/gate_post_iteration:[\s\S]*?step_generate_dashboard:/)?.[0] || '';
 
@@ -111,7 +111,7 @@ function readWorkspaceFile(relativePath: string): string {
   });
 
   it('uses the same canonical agent_file path in both auto and confirm YAMLs', () => {
-    const canonicalAgentPath = '.opencode/agents/deep-research.md';
+    const canonicalAgentPath = '.skilled/agents/deep-research.md';
 
     for (const docPath of commandAssets) {
       const content = readWorkspaceFile(docPath);

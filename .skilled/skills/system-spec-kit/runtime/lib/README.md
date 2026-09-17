@@ -176,9 +176,9 @@ import { getCanonicalPathKey } from './utils/canonical-path.js';
 Run from the repository root:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime run typecheck
-npm --prefix .opencode/skills/system-spec-kit/runtime run build
-(cd .opencode/skills/system-spec-kit/runtime && npm run test:core)
+npm --prefix .skilled/skills/system-spec-kit/runtime run typecheck
+npm --prefix .skilled/skills/system-spec-kit/runtime run build
+(cd .skilled/skills/system-spec-kit/runtime && npm run test:core)
 ```
 
 Use targeted Vitest paths when changing one subsystem under `lib/`.

@@ -31,7 +31,7 @@ The shipped behavior in this slice currently works as follows:
 3. Candidate quality scoring downgrades archive, test-fixture, and scratch-like folders before ranking. Auto-detect ranking then layers multiple signals in order: folder quality, git-status count, session-activity boost, effective depth, recently active child count, numeric ID-vector ordering, modification time, and canonical path tiebreakers.
 4. Git-status ranking counts changed files that fall under candidate spec paths, while session-activity ranking uses a structured signal builder that combines matching tool-call paths, git-changed files, and transcript mentions. Both signals are treated as confidence-checked hints rather than unconditional selectors.
 5. `alignment-validator.ts` extracts conversation topics from recent requests and early observations, expands that with observation keywords from titles, narratives, and filenames, and then computes word-boundary alignment scores against spec-folder path segments instead of using weaker substring matching.
-6. The same validator detects whether the session is primarily `.opencode/` infrastructure work. When enough touched files fall under OpenCode infrastructure paths, it applies a domain-aware bonus only for matching infrastructure-oriented folder names and emits explicit mismatch warnings when the selected folder does not fit the detected subpath.
+6. The same validator detects whether the session is primarily `.skilled/` infrastructure work. When enough touched files fall under OpenCode infrastructure paths, it applies a domain-aware bonus only for matching infrastructure-oriented folder names and emits explicit mismatch warnings when the selected folder does not fit the detected subpath.
 7. Before content or folder alignment proceeds, telemetry schema/docs drift validation compares interface fields in `retrieval-telemetry.ts` and the telemetry `README.md`. Field-level drift becomes a hard error, which makes this module a gatekeeper for alignment safety and telemetry documentation consistency at the same time.
 8. `validateContentAlignment()` is the stricter guard. It can recommend higher-scoring alternative folders, warn on moderate matches, and hard-block non-interactive execution when alignment is critically low or when a 0% infrastructure mismatch would otherwise silently route work into the wrong folder.
 9. `validateFolderAlignment()` is the lighter check used when a structured `SPEC_FOLDER` is already present. It still scores alignment, offers better alternatives in interactive mode, and warns on mismatches, but it is more permissive than the content-level gate.
@@ -47,11 +47,11 @@ The shipped behavior in this slice currently works as follows:
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/runtime/cli/spec-folder/folder-detector.ts` | Detection/orchestration | Multi-priority spec-folder resolution, candidate ranking, low-confidence handling, and explicit-path recovery |
-| `.opencode/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts` | Validation | Topic extraction, domain-aware alignment scoring, telemetry schema/docs drift checks, and interactive/non-interactive alignment gating |
-| `.opencode/skills/system-spec-kit/runtime/cli/spec-folder/directory-setup.ts` | Filesystem setup | Path sanitization, `NNN-name` enforcement, existence validation, and `memory/` directory creation |
-| `.opencode/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts` | CLI | Generates or refreshes per-folder `description.json` metadata from explicit text or `spec.md` content |
-| `.opencode/skills/system-spec-kit/runtime/cli/spec-folder/index.ts` | Barrel export | Re-exports the spec-folder detection, validation, and setup API surface |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/folder-detector.ts` | Detection/orchestration | Multi-priority spec-folder resolution, candidate ranking, low-confidence handling, and explicit-path recovery |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts` | Validation | Topic extraction, domain-aware alignment scoring, telemetry schema/docs drift checks, and interactive/non-interactive alignment gating |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/directory-setup.ts` | Filesystem setup | Path sanitization, `NNN-name` enforcement, existence validation, and `memory/` directory creation |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts` | CLI | Generates or refreshes per-folder `description.json` metadata from explicit text or `spec.md` content |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/index.ts` | Barrel export | Re-exports the spec-folder detection, validation, and setup API surface |
 
 ---
 

@@ -48,7 +48,7 @@ The one daemon an operator still meets is the skill advisor. Its CLI family (`SY
 
 ## 3. EMBEDDING PROVIDERS
 
-This section is shared, not this package's. Its readers are `shared/embeddings/**` and the launcher libraries under `.opencode/bin`, and the skill advisor is the consumer that keeps them live. Provider selection is **local-first** and follows this precedence:
+This section is shared, not this package's. Its readers are `shared/embeddings/**` and the launcher libraries under `.skilled/bin`, and the skill advisor is the consumer that keeps them live. Provider selection is **local-first** and follows this precedence:
 1. Explicit `EMBEDDINGS_PROVIDER` setting (tries the pinned provider first, then falls back to the cascade if unreachable)
 2. `ollama` when a supported model is pulled and reachable
 3. Falls back to `hf-local` (Hugging Face local inference)
@@ -122,11 +122,11 @@ SPECKIT_QUIET=true bash runtime/cli/spec/validate.sh specs/001-feature/
 SPECKIT_RULES=GENERATED_METADATA_INTEGRITY bash runtime/cli/spec/validate.sh specs/001-feature/ --strict
 
 # Force local embeddings for the shared stack (no API key required)
-EMBEDDINGS_PROVIDER=hf-local node .opencode/bin/skill-advisor.cjs advisor_status --format json
+EMBEDDINGS_PROVIDER=hf-local node .skilled/bin/skill-advisor.cjs advisor_status --format json
 
 # Force a cloud provider ahead of the local-first cascade
 EMBEDDINGS_PROVIDER=voyage VOYAGE_API_KEY=your-key-here \
-  node .opencode/bin/skill-advisor.cjs advisor_status --format json
+  node .skilled/bin/skill-advisor.cjs advisor_status --format json
 ```
 
 ---

@@ -43,10 +43,10 @@ Validate compact list-tools, names-only list-tools, and bash/zsh completion gene
 SANDBOX=$(mktemp -d /tmp/cli-compact-completion.XXXXXX)
 
 cli=skill-advisor
-node .opencode/bin/$cli.cjs list-tools --compact --format json > "$SANDBOX/$cli.compact.json"
-node .opencode/bin/$cli.cjs list-tools --names-only --format json > "$SANDBOX/$cli.names.json"
-node .opencode/bin/$cli.cjs completion bash > "$SANDBOX/$cli.bash"
-node .opencode/bin/$cli.cjs completion zsh > "$SANDBOX/$cli.zsh"
+node .skilled/bin/$cli.cjs list-tools --compact --format json > "$SANDBOX/$cli.compact.json"
+node .skilled/bin/$cli.cjs list-tools --names-only --format json > "$SANDBOX/$cli.names.json"
+node .skilled/bin/$cli.cjs completion bash > "$SANDBOX/$cli.bash"
+node .skilled/bin/$cli.cjs completion zsh > "$SANDBOX/$cli.zsh"
 
 python3 - "$SANDBOX" <<'PY'
 import json
@@ -111,11 +111,11 @@ If counts drift, rerun the list-tools parity scenario first. If schemas appear i
 
 | File | Role |
 |---|---|
-| `.opencode/bin/skill-advisor.cjs` | skill-advisor shim |
-| `.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | skill-advisor compact/names-only and completion implementation |
-| `.opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts` | skill-advisor compact/names-only and completion tests |
+| `.skilled/bin/skill-advisor.cjs` | skill-advisor shim |
+| `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | skill-advisor compact/names-only and completion implementation |
+| `.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts` | skill-advisor compact/names-only and completion tests |
 
-Provenance: .opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts
+Provenance: .skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts
 
 ---
 

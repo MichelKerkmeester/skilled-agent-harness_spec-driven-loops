@@ -36,7 +36,7 @@ const BOUNDARY_TIMEOUT_MS = 750;
 
 function sessionLifecycleHookEnabled() {
   try {
-    const { isHookEnabled } = require('../../../../../../.opencode/hooks/shared/hook-flags.cjs');
+    const { isHookEnabled } = require('../../../../../../.skilled/hooks/shared/hook-flags.cjs');
     return typeof isHookEnabled !== 'function' || isHookEnabled('session-lifecycle') !== false;
   } catch (_) {
     return true;
@@ -111,7 +111,7 @@ function notifyLifecycleBoundary(startDir, sessionId) {
     if (!projectDir) return false;
     const boundaryPath = join(
       projectDir,
-      '.opencode',
+      '.skilled',
       'skills',
       'system-spec-kit',
       'runtime',

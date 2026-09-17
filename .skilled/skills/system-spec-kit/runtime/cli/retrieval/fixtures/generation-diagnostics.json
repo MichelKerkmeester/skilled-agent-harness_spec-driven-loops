@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7150,
+    "missing-frontmatter": 7152,
     "non-yaml-frontmatter": 1,
     "ok": 15275,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27269,
+  "documentsScanned": 27271,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "5718c97eaeec6290537fd9613120e1cc3aff008d8ade194c026aa9b6a21ade61",
+  "manifestHash": "fa351eb7530a076142761a64c5358171cc4b6b486ad31c847d10e29141a7f426",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -35879,6 +35879,18 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -76929,6 +76941,10 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
+      "path": ".skilled/skills/sk-communication/cli-communication-projection/dist",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/skills/sk-communication/cli-communication-projection/test/fixtures",
       "reason": "excluded directory"
     },
@@ -76978,6 +76994,10 @@
     },
     {
       "path": ".skilled/skills/sk-vision/vision-runtime/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -77090,6 +77110,10 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/dist",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/node_modules",
       "reason": "excluded directory"
     },
     {

@@ -48,7 +48,7 @@ runtime/tests/adversarial/
 ## 5. VALIDATION
 
 ```bash
-npx vitest run .opencode/skills/system-spec-kit/runtime/tests/adversarial/compact-prime-identity-race.vitest.ts
+npx vitest run .skilled/skills/system-spec-kit/runtime/tests/adversarial/compact-prime-identity-race.vitest.ts
 ```
 
 ---

@@ -12,7 +12,7 @@ const require = createRequire(import.meta.url);
 
 const pathsModule = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/shared/review-research-paths.cjs',
+  '.skilled/skills/system-spec-kit/shared/review-research-paths.cjs',
 )) as {
   resolveArtifactRoot: (
     specFolder: string,

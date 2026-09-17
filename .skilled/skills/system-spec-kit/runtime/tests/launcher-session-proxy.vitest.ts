@@ -7,7 +7,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
-const proxyModulePath = join(repoRoot, '.opencode/bin/lib/launcher-session-proxy.cjs');
+const proxyModulePath = join(repoRoot, '.skilled/bin/lib/launcher-session-proxy.cjs');
 
 type PendingEntry = { frame: string; replayable: boolean };
 type FrameSplitter = {
@@ -38,7 +38,7 @@ const { createSessionProxy, __testing } = require(proxyModulePath) as {
 // The proxy deliberately owns no tool set: only the server behind it knows which of its tools are
 // safe to repeat. The skill-advisor launcher is the caller that supplies one, so its real sets are
 // read from the launcher rather than copied here, where they would drift out of sync silently.
-const advisorLauncherPath = join(repoRoot, '.opencode/bin/system-skill-advisor-launcher.cjs');
+const advisorLauncherPath = join(repoRoot, '.skilled/bin/system-skill-advisor-launcher.cjs');
 const {
   classifySkillAdvisorFrame,
   SKILL_ADVISOR_REPLAYABLE_TOOL_NAMES,

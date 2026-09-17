@@ -152,7 +152,7 @@ Main flow:
 
 ## 8. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime` unless noted.
+Run from `.skilled/skills/system-spec-kit/runtime` unless noted.
 
 ```bash
 npx vitest run tests/spec-folder-mutex-liveness.vitest.ts
@@ -161,7 +161,7 @@ npx vitest run tests/spec-folder-mutex-liveness.vitest.ts
 Documentation check from the repository root:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/runtime/handlers/save/README.md
+python3 .skilled/skills/sk-doc/scripts/extract_structure.py .skilled/skills/system-spec-kit/runtime/handlers/save/README.md
 ```
 
 Expected result: the lock-liveness suite passes, and the document is detected as a README with no critical section or HVR issues.

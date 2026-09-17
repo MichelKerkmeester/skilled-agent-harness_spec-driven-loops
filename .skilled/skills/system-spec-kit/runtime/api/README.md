@@ -67,8 +67,8 @@ Internal package code should import from its owning `lib/`, `handlers/`, or `cor
 Run from the repository root:
 
 ```bash
-(cd .opencode/skills/system-spec-kit/runtime/cli && npx vitest run tests/import-policy-rules.vitest.ts)
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/api/README.md
+(cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/import-policy-rules.vitest.ts)
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/api/README.md
 ```
 
 Expected result: import policy tests pass and README validation exits `0` with no HVR issues.

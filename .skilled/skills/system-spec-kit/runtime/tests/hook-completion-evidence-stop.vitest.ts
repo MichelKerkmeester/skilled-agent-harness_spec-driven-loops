@@ -2,7 +2,7 @@
 // Covers the stdin/exit-code contract this standalone .cjs entrypoint owns,
 // as distinct from completion-evidence-sentinel.vitest.ts which covers the
 // runtime-neutral core it delegates to. Spawns the hook as a real child
-// process (mirroring .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs)
+// process (mirroring .skilled/plugins/tests/claude-task-dispatch-guard.test.cjs)
 // so the stop_hook_active guard is exercised exactly as Claude Code invokes it.
 //
 // P1 regression: stop_hook_active is FALSE on a normal turn-end and TRUE only
@@ -34,7 +34,7 @@ function writeHookState(cwd: string, sessionId: string, specFolder: string): voi
 }
 
 function advisoryLogPath(projectDir: string): string {
-  return join(projectDir, '.opencode', 'logs', 'completion-sentinel-advisories.log');
+  return join(projectDir, '.skilled', 'logs', 'completion-sentinel-advisories.log');
 }
 
 function readAdvisoryLog(projectDir: string): string {

@@ -45,10 +45,10 @@ Confirm the `Generate LITERAL phase names` string is present in all four YAML wo
 
 ```bash
 grep -Fl "LITERAL phase names" \
-  .opencode/commands/speckit/assets/spec_kit_plan_auto.yaml \
-  .opencode/commands/speckit/assets/spec_kit_plan_confirm.yaml \
-  .opencode/commands/speckit/assets/spec_kit_complete_auto.yaml \
-  .opencode/commands/speckit/assets/spec_kit_complete_confirm.yaml
+  .skilled/commands/speckit/assets/spec_kit_plan_auto.yaml \
+  .skilled/commands/speckit/assets/spec_kit_plan_confirm.yaml \
+  .skilled/commands/speckit/assets/spec_kit_complete_auto.yaml \
+  .skilled/commands/speckit/assets/spec_kit_complete_confirm.yaml
 ```
 
 Expected: all four files printed. If fewer than 4, the Packet 012 implementation is incomplete; stop and fix before continuing.
@@ -206,7 +206,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-- If a CLI returns generic stoplist slugs: confirm that CLI's MCP wiring surfaces the `spec_kit_plan_auto.yaml` activity. Run `grep -F "LITERAL phase names" .opencode/commands/speckit/assets/spec_kit_plan_auto.yaml` and confirm at least 1 match.
+- If a CLI returns generic stoplist slugs: confirm that CLI's MCP wiring surfaces the `spec_kit_plan_auto.yaml` activity. Run `grep -F "LITERAL phase names" .skilled/commands/speckit/assets/spec_kit_plan_auto.yaml` and confirm at least 1 match.
 - If the YAML is present but the CLI ignores it: re-run with explicit reference to `/speckit:plan :with-phases` in the user prompt. The YAML activity fires only when the command route is active.
 - If `cli-claude-code` blocks with a self-invocation error: this is expected behavior. Record the error as expected and substitute another CLI from the rotation.
 - If `cli-opencode` returns a direct-provider auth or quota error: verify the DeepSeek provider setup with `opencode providers list`, then rerun or substitute another configured direct provider.

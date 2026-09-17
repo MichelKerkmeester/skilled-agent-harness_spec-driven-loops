@@ -42,7 +42,7 @@ The system comprises 4 components spanning references, agent definitions, and va
 
 ### Agent Knowledge Embedding (Layer 1)
 
-**2. Compact structural contract in 3 CLI distributed-governance spec-authoring flow definitions:** A 49-line compact version of the structural contract is embedded in each repo-managed `distributed-governance spec authoring` agent definition — Claude Code (`.claude/agents/speckit.md`), Copilot (`.opencode/agents/speckit.md`), and OpenCode (`.opencode/agents/speckit.toml`). This gives every agent pre-write knowledge of anchor-to-H2 mappings for each document type at each level.
+**2. Compact structural contract in 3 CLI distributed-governance spec-authoring flow definitions:** A 49-line compact version of the structural contract is embedded in each repo-managed `distributed-governance spec authoring` agent definition — Claude Code (`.claude/agents/speckit.md`), Copilot (`.skilled/agents/speckit.md`), and OpenCode (`.skilled/agents/speckit.toml`). This gives every agent pre-write knowledge of anchor-to-H2 mappings for each document type at each level.
 
 ### Content Minimums (Layer 3)
 
@@ -60,11 +60,11 @@ The system comprises 4 components spanning references, agent definitions, and va
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/references/validation/template-compliance-contract.md` | Reference | Canonical structural contract for L1-L3+ |
+| `.skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md` | Reference | Canonical structural contract for L1-L3+ |
 | `.claude/agents/speckit.md` | Agent Def | Claude Code distributed-governance spec authoring with embedded contract |
-| `.opencode/agents/speckit.md` | Agent Def | Copilot distributed-governance spec authoring with embedded contract |
-| `.opencode/agents/speckit.toml` | Agent Def | OpenCode distributed-governance spec authoring with embedded contract |
-| `.opencode/skills/system-spec-kit/runtime/cli/utils/template-structure.js` | Engine | Contract extraction CLI |
+| `.skilled/agents/speckit.md` | Agent Def | Copilot distributed-governance spec authoring with embedded contract |
+| `.skilled/agents/speckit.toml` | Agent Def | OpenCode distributed-governance spec authoring with embedded contract |
+| `.skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js` | Engine | Contract extraction CLI |
 
 ---
 

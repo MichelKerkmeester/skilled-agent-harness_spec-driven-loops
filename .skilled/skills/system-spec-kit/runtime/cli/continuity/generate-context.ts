@@ -93,7 +93,7 @@ Output:
   also refresh the packet's root-level graph-metadata.json file as part of the
   same workflow. That is the whole write: there is no indexing handoff and no
   daemon to wait for. Regenerate the lookup surface with
-  node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+  node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
   when the packet's trigger phrases changed.
   Planner-first canonical saves are requested by default; use --full-auto for
   the legacy mutation-first fallback.

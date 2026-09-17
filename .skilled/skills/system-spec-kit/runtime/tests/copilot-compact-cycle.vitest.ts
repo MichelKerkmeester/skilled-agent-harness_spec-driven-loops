@@ -45,7 +45,7 @@ const copilotHooksAvailable = existsSync(join(import.meta.dirname, '..', 'hooks'
   it('writes trustState=cached into the pending compact payload contract', () => {
     const transcriptPath = writeTranscript([
       '{"message":{"content":"Reading /Users/demo/project/src/main.ts"}}',
-      'plain text with /.opencode/specs/system-spec-kit/demo/spec.md reference',
+      'plain text with /.skilled/specs/system-spec-kit/demo/spec.md reference',
     ]);
 
     const result = cacheCompactContext({

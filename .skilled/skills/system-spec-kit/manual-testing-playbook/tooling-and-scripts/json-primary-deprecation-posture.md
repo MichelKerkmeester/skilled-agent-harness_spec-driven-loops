@@ -37,9 +37,9 @@ Validate JSON-primary deprecation posture against the documented validation surf
 
 ### Commands
 
-1. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"test","sessionSummary":"test"}' <spec-folder>` → expect exit 0
-2. `printf '{"specFolder":"test","sessionSummary":"test"}' | node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin <spec-folder>` → expect exit 0
-3. `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json <spec-folder>` → expect exit 0
+1. `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"test","sessionSummary":"test"}' <spec-folder>` → expect exit 0
+2. `printf '{"specFolder":"test","sessionSummary":"test"}' | node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin <spec-folder>` → expect exit 0
+3. `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json <spec-folder>` → expect exit 0
 
 ### Expected
 
@@ -70,7 +70,7 @@ Check generate-context.ts argument parsing, loader routing, and structured-input
 - Feature catalog: [tooling-and-scripts/json-primary-deprecation-posture.md](../../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md)
 - Source spec: the JSON-primary deprecation posture specification packet in this repository's spec tree
 
-Provenance: manual only - node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"test","sessionSummary":"test"}' <spec-folder>
+Provenance: manual only - node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"test","sessionSummary":"test"}' <spec-folder>
 
 ---
 

@@ -50,7 +50,7 @@ The package used to carry a second half that nothing imported once the memory da
 | --- | --- |
 | Node.js | >=20.11.0 |
 
-The embedding stack talks to Ollama, the local HF model server under `.opencode/bin`, OpenAI or Voyage over HTTP; it does not load a model in-process, so this package declares no ML dependency.
+The embedding stack talks to Ollama, the local HF model server under `.skilled/bin`, OpenAI or Voyage over HTTP; it does not load a model in-process, so this package declares no ML dependency.
 
 ---
 
@@ -67,7 +67,7 @@ The embedding stack talks to Ollama, the local HF model server under `.opencode/
 ## 2. QUICK START
 
 ```bash
-cd .opencode/skills/system-spec-kit
+cd .skilled/skills/system-spec-kit
 npm install
 ( cd shared && ../node_modules/.bin/tsc --build )
 # `dist/` is untracked. system-deep-loop and sk-doc declare this package as a file: dependency
@@ -84,7 +84,7 @@ import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory';
 ### Verify Installation
 
 ```bash
-ls .opencode/skills/system-spec-kit/shared/
+ls .skilled/skills/system-spec-kit/shared/
 # budget-allocator.ts, chunking.ts, compact-merger.ts, config.ts, context-types.ts,
 # gate-3-classifier.ts, review-research-paths.cjs, trigger-extractor.ts, types.ts,
 # unicode-normalization.ts, algorithms/, embeddings/, frontmatter/, ipc/, parsing/,
@@ -277,7 +277,7 @@ console.log(provider.getMetadata().model, vector.length);
 ### Diagnostic Commands
 
 ```bash
-cd .opencode/skills/system-spec-kit/shared
+cd .skilled/skills/system-spec-kit/shared
 npm test
 node --input-type=module -e "const { extractTriggerPhrases } = await import('./dist/trigger-extractor.js'); console.log(extractTriggerPhrases('memory search trigger extraction'))"
 ```

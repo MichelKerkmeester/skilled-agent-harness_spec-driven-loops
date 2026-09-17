@@ -47,7 +47,7 @@ Validate spec folder description discovery and description.json fallback behavio
 6. Verify missing description.json falls back to spec.md without forcing a write
 7. Attempt generation against an out-of-base or prefix-bypass path → verify rejection and no file written
 8. Use spec.md with large YAML frontmatter and CRLF-heavy line endings → verify extracted description comes from post-frontmatter content
-9. Run `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` → verify the regenerated `runtime/data/trigger-index.json` carries this packet, then look it up with `lookup-trigger-index.mjs "<a declared trigger phrase>"`
+9. Run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` → verify the regenerated `runtime/data/trigger-index.json` carries this packet, then look it up with `lookup-trigger-index.mjs "<a declared trigger phrase>"`
 
 ### Expected
 
@@ -90,7 +90,7 @@ Created `description.json` content:
 Targeted automated validation covering stale detection, per-folder preference, mixed-mode aggregation, corrupt/schema-invalid fallback and repair, missing-file fallback without implicit backfill, traversal/prefix-bypass rejection, CRLF frontmatter stripping, and regenerated JSON/temp-file behavior:
 
 ```text
- RUN  v4.1.9 .opencode/skills/system-spec-kit
+ RUN  v4.1.9 .skilled/skills/system-spec-kit
 
 
  Test Files  2 passed (2)
@@ -135,7 +135,7 @@ Verify create.sh generates description.json → Check stale detection mtime comp
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/spec-folder-description-discovery.md](../../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)
 
-Provenance: manual only - node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+Provenance: manual only - node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 
 ---
 

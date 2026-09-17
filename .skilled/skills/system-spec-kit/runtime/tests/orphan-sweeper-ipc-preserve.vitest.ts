@@ -17,7 +17,7 @@ import { fileURLToPath } from 'node:url';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', '..', '..');
-const sweeper = join(repoRoot, '.opencode/scripts/orphan-mcp-sweeper.sh');
+const sweeper = join(repoRoot, '.skilled/scripts/orphan-mcp-sweeper.sh');
 
 let dir: string;
 
@@ -78,7 +78,7 @@ function runSourcedHarness(lines: string[], env: NodeJS.ProcessEnv = {}): string
 }
 
 const advisorCommand =
-  '/usr/local/bin/node /repo/.opencode/skills/system-skill-advisor/runtime/dist/advisor-server.js';
+  '/usr/local/bin/node /repo/.skilled/skills/system-skill-advisor/runtime/dist/advisor-server.js';
 
 type TerminationOptions = {
   currentCommand: string;

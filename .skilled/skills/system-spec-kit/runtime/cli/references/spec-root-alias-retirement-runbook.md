@@ -60,7 +60,7 @@ Run the targeted spec-root suites with the alias absent, then repeat the filesys
 
 ```bash
 (
-  cd .opencode/skills/system-spec-kit/runtime/cli
+  cd .skilled/skills/system-spec-kit/runtime/cli
   npm exec -- vitest run tests/spec-root-*.vitest.ts \
     --config ../../vitest.config.ts \
     --project cli

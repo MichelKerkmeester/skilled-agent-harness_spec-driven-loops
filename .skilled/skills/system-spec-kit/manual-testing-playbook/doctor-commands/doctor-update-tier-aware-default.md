@@ -77,8 +77,8 @@ If no ETA prompt appears before memory rebuild, inspect `doctor-update.yaml` `pr
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Command entrypoint: [.opencode/commands/doctor/update.md](../../../../commands/doctor/update.md)
-- Matching YAML asset: [.opencode/commands/doctor/assets/doctor-update.yaml](../../../../commands/doctor/assets/doctor-update.yaml)
+- Command entrypoint: [.skilled/commands/doctor/update.md](../../../../commands/doctor/update.md)
+- Matching YAML asset: [.skilled/commands/doctor/assets/doctor-update.yaml](../../../../commands/doctor/assets/doctor-update.yaml)
 - Migration manifest: [specs/system-speckit/026-graph-and-context-optimization/.../scratch/migration-manifest.json](../../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
 - Decision context: local doctor command ADRs
 

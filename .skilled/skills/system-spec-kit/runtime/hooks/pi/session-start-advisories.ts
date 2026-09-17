@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import * as hookFlags from "../../.opencode/hooks/shared/hook-flags.mjs";
+import * as hookFlags from "../../.skilled/hooks/shared/hook-flags.mjs";
 
 function sessionLifecycleHookEnabled(): boolean {
   try {
@@ -31,18 +31,18 @@ interface AdvisoryCheck {
 }
 
 const CHECKS: AdvisoryCheck[] = [
-  { label: "git-worktree-guard", concern: "git-worktree-guard", command: "bash", args: [".opencode/bin/worktree-guard.sh"] },
-  { label: "check-git-hooks", concern: "git-hooks-check", command: "bash", args: [".opencode/bin/check-git-hooks.sh"] },
-  { label: "primary-reconcile", concern: "session-lifecycle", command: "bash", args: ["-c", "bash .opencode/bin/git-primary-reconcile.sh >/dev/null 2>&1 &"] },
-  { label: "live-sync-follow", concern: "live-sync", command: "bash", args: [".opencode/bin/git-live-follow.sh", "--start"] },
+  { label: "git-worktree-guard", concern: "git-worktree-guard", command: "bash", args: [".skilled/bin/worktree-guard.sh"] },
+  { label: "check-git-hooks", concern: "git-hooks-check", command: "bash", args: [".skilled/bin/check-git-hooks.sh"] },
+  { label: "primary-reconcile", concern: "session-lifecycle", command: "bash", args: ["-c", "bash .skilled/bin/git-primary-reconcile.sh >/dev/null 2>&1 &"] },
+  { label: "live-sync-follow", concern: "live-sync", command: "bash", args: [".skilled/bin/git-live-follow.sh", "--start"] },
   {
     label: "check-dist-staleness",
     concern: "dist-freshness",
     // A Python program behind a `.sh` name: bash would print parse errors instead of a verdict.
     command: "python3",
-    args: [".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh", "--all"],
+    args: [".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh", "--all"],
   },
-  { label: "install-codex-hooks", concern: "hook-install", command: "node", args: [".opencode/bin/install-codex-hooks.mjs", "--check"] },
+  { label: "install-codex-hooks", concern: "hook-install", command: "node", args: [".skilled/bin/install-codex-hooks.mjs", "--check"] },
 ];
 
 /** Runs the same warn-only, always-exit-0 SessionStart advisory scripts cursor/devin wire into their SessionStart chain, surfacing any warning text via a Pi notification. */

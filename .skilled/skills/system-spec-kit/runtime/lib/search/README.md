@@ -163,8 +163,8 @@ npm run test:core
 Focused documentation checks from the repository root:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/lib/search/README.md
-python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/runtime/lib/search/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/lib/search/README.md
+python3 .skilled/skills/sk-doc/scripts/extract_structure.py .skilled/skills/system-spec-kit/runtime/lib/search/README.md
 ```
 
 Expected result: typecheck and tests exit 0, README validation reports no blocking issues, and structure extraction returns a README document profile.

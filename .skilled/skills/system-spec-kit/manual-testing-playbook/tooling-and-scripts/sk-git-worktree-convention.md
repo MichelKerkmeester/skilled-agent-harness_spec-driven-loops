@@ -101,7 +101,7 @@ Output:
 
 ### Failure Triage
 
-Re-read the numbered-worktree rule in `.opencode/skills/sk-git/SKILL.md` (the `wt/{NNNN}-{name}` namespace rule) if the counter is not 4-digit zero-padded or not derived from the existing maximum.
+Re-read the numbered-worktree rule in `.skilled/skills/sk-git/SKILL.md` (the `wt/{NNNN}-{name}` namespace rule) if the counter is not 4-digit zero-padded or not derived from the existing maximum.
 
 ---
 
@@ -140,7 +140,7 @@ Do NOT modify, create, or delete any file OTHER than the single scenario file na
 Allowed write path from the user instruction:
 
 ```text
-.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/sk-git-worktree-convention.md (this file only)
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/sk-git-worktree-convention.md (this file only)
 ```
 
 ### Pass / Fail
@@ -150,14 +150,14 @@ Allowed write path from the user instruction:
 
 ### Failure Triage
 
-If the branch or directory naming diverges, re-read the numbered-worktree rule in `.opencode/skills/sk-git/SKILL.md` and the worktree creation examples in `.opencode/skills/sk-git/references/worktree-workflows.md`. Note the distinct ephemeral per-session form (`work/{runtime}/{slug}` + `.worktrees/{runtime}-{slug}`) is auto-managed and intentionally not numbered.
+If the branch or directory naming diverges, re-read the numbered-worktree rule in `.skilled/skills/sk-git/SKILL.md` and the worktree creation examples in `.skilled/skills/sk-git/references/worktree-workflows.md`. Note the distinct ephemeral per-session form (`work/{runtime}/{slug}` + `.worktrees/{runtime}-{slug}`) is auto-managed and intentionally not numbered.
 
 ---
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- sk-git convention: `.opencode/skills/sk-git/SKILL.md` (numbered-worktree rule: `wt/{NNNN}-{name}`, `.worktrees/{NNNN}-{name}`, 4-digit global max+1)
-- Worktree workflows: `.opencode/skills/sk-git/references/worktree-workflows.md` (`git worktree add -b wt/NNNN-name .worktrees/NNNN-name main`)
+- sk-git convention: `.skilled/skills/sk-git/SKILL.md` (numbered-worktree rule: `wt/{NNNN}-{name}`, `.worktrees/{NNNN}-{name}`, 4-digit global max+1)
+- Worktree workflows: `.skilled/skills/sk-git/references/worktree-workflows.md` (`git worktree add -b wt/NNNN-name .worktrees/NNNN-name main`)
 
 Provenance: manual only - git worktree add -b wt/<NNNN>-<name> .worktrees/<NNNN>-<name> main
 
@@ -168,7 +168,7 @@ Provenance: manual only - git worktree add -b wt/<NNNN>-<name> .worktrees/<NNNN>
 - Group: Tooling and Scripts
 - Playbook ID: EX-041
 - Canonical root source: `manual-testing-playbook.md`
-- Source anchors read: `.opencode/skills/sk-git/SKILL.md` (numbered-worktree rule: `wt/{NNNN}-{name}` where `{NNNN}` is 4-digit zero-padded `max(existing NNNN under .worktrees/) + 1`, first `0001`; matching dir `.worktrees/{NNNN}-{name}`); `.opencode/skills/sk-git/references/worktree-workflows.md` (creation command examples, e.g. `git worktree add -b wt/0001-fix-modal .worktrees/0001-fix-modal main`)
+- Source anchors read: `.skilled/skills/sk-git/SKILL.md` (numbered-worktree rule: `wt/{NNNN}-{name}` where `{NNNN}` is 4-digit zero-padded `max(existing NNNN under .worktrees/) + 1`, first `0001`; matching dir `.worktrees/{NNNN}-{name}`); `.skilled/skills/sk-git/references/worktree-workflows.md` (creation command examples, e.g. `git worktree add -b wt/0001-fix-modal .worktrees/0001-fix-modal main`)
 - Feature file path: `tooling-and-scripts/sk-git-worktree-convention.md`
 - Destructive: No — creates and inspects a worktree only; no commit/push/merge.
 - Runtime policy: Real execution only; no mocked git.

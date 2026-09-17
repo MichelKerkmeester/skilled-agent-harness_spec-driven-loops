@@ -40,7 +40,7 @@ export function runClaudeHookAdapter(
   try {
     const adapterPath = join(
       projectDir,
-      ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude",
+      ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude",
       filename,
     );
     const result = spawnSync(process.execPath, [adapterPath], {

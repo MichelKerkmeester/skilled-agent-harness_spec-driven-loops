@@ -47,18 +47,18 @@ make_temp_repo() {
   mkdir -p "$temp_repo/.specify"
   mkdir -p "$temp_repo/specs"
 
-  mkdir -p "$temp_repo/.opencode/skills/system-spec-kit/runtime/cli/spec"
-  mkdir -p "$temp_repo/.opencode/skills/system-spec-kit/runtime/cli/lib"
-  mkdir -p "$temp_repo/.opencode/skills/system-spec-kit/runtime/cli/templates"
-  mkdir -p "$temp_repo/.opencode/skills/system-spec-kit/templates"
+  mkdir -p "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/spec"
+  mkdir -p "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/lib"
+  mkdir -p "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/templates"
+  mkdir -p "$temp_repo/.skilled/skills/system-spec-kit/templates"
 
-  cp "$SOURCE_SCRIPTS_DIR/create.sh" "$temp_repo/.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh"
-  cp "$SOURCE_LIB_DIR/shell-common.sh" "$temp_repo/.opencode/skills/system-spec-kit/runtime/cli/lib/shell-common.sh"
-  cp "$SOURCE_LIB_DIR/git-branch.sh" "$temp_repo/.opencode/skills/system-spec-kit/runtime/cli/lib/git-branch.sh"
-  cp "$SOURCE_LIB_DIR/template-utils.sh" "$temp_repo/.opencode/skills/system-spec-kit/runtime/cli/lib/template-utils.sh"
-  cp "$SOURCE_SCRIPT_TEMPLATES_DIR/inline-gate-renderer.sh" "$temp_repo/.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh"
+  cp "$SOURCE_SCRIPTS_DIR/create.sh" "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+  cp "$SOURCE_LIB_DIR/shell-common.sh" "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/lib/shell-common.sh"
+  cp "$SOURCE_LIB_DIR/git-branch.sh" "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/lib/git-branch.sh"
+  cp "$SOURCE_LIB_DIR/template-utils.sh" "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh"
+  cp "$SOURCE_SCRIPT_TEMPLATES_DIR/inline-gate-renderer.sh" "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh"
 
-  cp -R "$SOURCE_TEMPLATES_DIR"/. "$temp_repo/.opencode/skills/system-spec-kit/templates/"
+  cp -R "$SOURCE_TEMPLATES_DIR"/. "$temp_repo/.skilled/skills/system-spec-kit/templates/"
 
   echo "$temp_repo"
 }
@@ -70,7 +70,7 @@ make_temp_repo() {
 # generator's own output correctness.
 install_desc_generator_stub() {
   local temp_repo="$1"
-  local stub_dir="$temp_repo/.opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder"
+  local stub_dir="$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder"
   mkdir -p "$stub_dir"
   cat > "$stub_dir/generate-description.js" <<'STUB_EOF'
 const fs = require('fs');
@@ -109,7 +109,7 @@ echo ""
 echo "-- Default phase count --"
 
 repo1=$(make_temp_repo)
-create1="$repo1/.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh"
+create1="$repo1/.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
 
 json1=$(cd "$repo1" && bash "$create1" --json --phase --skip-branch --number 1 "Default phase count")
 branch1=$(echo "$json1" | json_field "BRANCH_NAME")
@@ -135,7 +135,7 @@ echo ""
 echo "-- Parent append mode --"
 
 repo2=$(make_temp_repo)
-create2="$repo2/.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh"
+create2="$repo2/.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
 
 base_json=$(cd "$repo2" && bash "$create2" --json --phase --skip-branch --number 2 --phases 1 --phase-names "foundation" "Parent append base")
 base_branch=$(echo "$base_json" | json_field "BRANCH_NAME")
@@ -174,7 +174,7 @@ echo "-- Parent description.json regeneration guard --"
 
 repo3=$(make_temp_repo)
 install_desc_generator_stub "$repo3"
-create3="$repo3/.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh"
+create3="$repo3/.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
 desc_log="$repo3/desc-invocations.log"
 
 base_json=$(cd "$repo3" && DESC_STUB_LOG="$desc_log" bash "$create3" --json --phase --skip-branch --number 3 --phases 1 --phase-names "foundation" "Stability base parent")

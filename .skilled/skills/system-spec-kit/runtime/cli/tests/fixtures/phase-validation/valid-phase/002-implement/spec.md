@@ -67,10 +67,10 @@ Provide a concrete second phase that validates phase ordering, predecessor refer
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/spec.md` | Regenerate | Current Level 1 specification fixture |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/plan.md` | Regenerate | Current Level 1 plan fixture |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/tasks.md` | Regenerate | Current Level 1 task fixture |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/implementation-summary.md` | Create | Current Level 1 summary fixture |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/spec.md` | Regenerate | Current Level 1 specification fixture |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/plan.md` | Regenerate | Current Level 1 plan fixture |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/tasks.md` | Regenerate | Current Level 1 task fixture |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement/implementation-summary.md` | Create | Current Level 1 summary fixture |
 
 <!-- /ANCHOR:scope -->
 ---

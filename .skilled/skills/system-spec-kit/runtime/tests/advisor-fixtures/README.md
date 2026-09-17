@@ -60,7 +60,7 @@ Current state:
 Run from the repository root.
 
 ```bash
-cd .opencode/skills/system-spec-kit/runtime && npm test -- tests/copilot-user-prompt-submit-hook.vitest.ts
+cd .skilled/skills/system-spec-kit/runtime && npm test -- tests/copilot-user-prompt-submit-hook.vitest.ts
 ```
 
 The consumer test is gated behind `copilotHooksAvailable` and is currently skipped in this environment when compiled Copilot hook fixtures are not available. The test structure and fixture loading logic are valid.

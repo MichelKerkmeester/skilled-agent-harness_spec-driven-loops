@@ -42,9 +42,9 @@ build_pkg() {
 
 echo "== Building package dists =="
 # spec-kit runtime engine: builds @spec-kit/shared too via TS project references.
-build_pkg "spec-kit" ".opencode/skills/system-spec-kit/runtime"
+build_pkg "spec-kit" ".skilled/skills/system-spec-kit/runtime"
 # system-skill-advisor MCP daemon: build if it ships a build script.
-build_pkg "advisor" ".opencode/skills/system-skill-advisor/runtime"
+build_pkg "advisor" ".skilled/skills/system-skill-advisor/runtime"
 
 if [[ "$FAIL" -ne 0 ]]; then
   echo "!! One or more builds failed. Fix builds first." >&2
@@ -55,8 +55,8 @@ echo "== Launcher .cjs change check =="
 # Surface launcher .cjs touched in the working tree or last commit: these need a
 # FRESH session to take effect.
 CJS_CHANGED="$(
-  { git diff --name-only -- '.opencode/bin/*.cjs' '.opencode/bin/lib/*.cjs' 2>/dev/null
-    git diff --name-only HEAD~1 HEAD -- '.opencode/bin/*.cjs' '.opencode/bin/lib/*.cjs' 2>/dev/null
+  { git diff --name-only -- '.skilled/bin/*.cjs' '.skilled/bin/lib/*.cjs' 2>/dev/null
+    git diff --name-only HEAD~1 HEAD -- '.skilled/bin/*.cjs' '.skilled/bin/lib/*.cjs' 2>/dev/null
   } | sort -u || true
 )"
 if [[ -n "$CJS_CHANGED" ]]; then

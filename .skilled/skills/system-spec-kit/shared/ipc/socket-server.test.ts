@@ -21,7 +21,7 @@ assert(parseMaxClients('not-a-number') === fallback, 'a non-numeric value falls 
 // The launcher and the CLI front door spell the socket file name as a literal
 // because they run before the package is built; hold them to the server's name.
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..', '..', '..');
-for (const relative of ['.opencode/bin/skill-advisor.cjs', '.opencode/bin/system-skill-advisor-launcher.cjs']) {
+for (const relative of ['.skilled/bin/skill-advisor.cjs', '.skilled/bin/system-skill-advisor-launcher.cjs']) {
   const source = fs.readFileSync(path.join(repoRoot, relative), 'utf8');
   assert(source.includes(`'${SOCKET_FILE_NAME}'`), `${relative} names the daemon socket file as ${SOCKET_FILE_NAME}`);
 }

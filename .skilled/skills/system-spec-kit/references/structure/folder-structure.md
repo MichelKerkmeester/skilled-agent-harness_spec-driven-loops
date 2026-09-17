@@ -228,11 +228,11 @@ Deep-research and deep-review artifacts (iterations, deltas, prompts, state logs
 
 **Flat-first convention (post-028):** child-phase first runs go directly under `{spec_folder}/research/` or `{spec_folder}/review/` with no `-pt-NN` subfolder. A packet subfolder is allocated only when prior content already exists for a non-matching target. Continuation runs reuse the existing flat artifact (or matching `pt-NN` packet). Root specs always use the flat path.
 
-**Required resolver:** always use `resolveArtifactRoot(specFolder, 'research' | 'review')` from [`.opencode/skills/system-spec-kit/shared/review-research-paths.cjs`](../../shared/review-research-paths.cjs). It resolves the local owner folder, returns flat for first runs and matching continuations, reuses an existing packet for the same target when present, and allocates a `pt-NN` packet only when prior content for a non-matching target exists. Never hand-pick the path.
+**Required resolver:** always use `resolveArtifactRoot(specFolder, 'research' | 'review')` from [`.skilled/skills/system-spec-kit/shared/review-research-paths.cjs`](../../shared/review-research-paths.cjs). It resolves the local owner folder, returns flat for first runs and matching continuations, reuses an existing packet for the same target when present, and allocates a `pt-NN` packet only when prior content for a non-matching target exists. Never hand-pick the path.
 
 **Forbidden:** creating or continuing child-phase research/review packets under an ancestor/root spec's `research/` or `review/` folder.
 
-**See also:** `system-deep-loop/deep-research/references/protocol/loop-protocol.md`, `system-deep-loop/deep-review/references/protocol/loop-protocol.md`, and the `step_resolve_artifact_root` block in `.opencode/commands/deep/assets/deep-research-auto.yaml`.
+**See also:** `system-deep-loop/deep-research/references/protocol/loop-protocol.md`, `system-deep-loop/deep-review/references/protocol/loop-protocol.md`, and the `step_resolve_artifact_root` block in `.skilled/commands/deep/assets/deep-research-auto.yaml`.
 
 ### improvement/ (improvement artifact family)
 

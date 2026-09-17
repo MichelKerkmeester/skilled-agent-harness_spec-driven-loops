@@ -112,7 +112,7 @@ return merged record plus key reports
 
 ## 7. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 npx vitest run tests/description tests/folder-discovery.vitest.ts

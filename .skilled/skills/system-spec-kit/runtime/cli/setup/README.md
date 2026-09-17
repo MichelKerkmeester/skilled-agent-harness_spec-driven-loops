@@ -66,25 +66,25 @@ Disallowed direction:
 Run from the repository root unless noted.
 
 ```bash
-.opencode/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh
+.skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh
 ```
 
 Expected result: prints `FEATURE_DIR` and available supporting documents for the active spec folder.
 
 ```bash
-.opencode/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate-strict
+.skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate-strict
 ```
 
 Expected result: emits JSON and exits non-zero if strict spec validation fails.
 
 ```bash
-.opencode/skills/system-spec-kit/runtime/cli/setup/check-native-modules.sh
+.skilled/skills/system-spec-kit/runtime/cli/setup/check-native-modules.sh
 ```
 
 Expected result: exits zero when native dependencies load in the current Node.js runtime.
 
 ```bash
-.opencode/skills/system-spec-kit/runtime/cli/setup/rebuild-native-modules.sh
+.skilled/skills/system-spec-kit/runtime/cli/setup/rebuild-native-modules.sh
 ```
 
 Expected result: rebuilds native modules for the current Node.js runtime.
@@ -107,14 +107,14 @@ Expected result: rebuilds native modules for the current Node.js runtime.
 Run the README validator after editing this file:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/cli/setup/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/setup/README.md
 ```
 
 Run command checks after changing setup scripts:
 
 ```bash
-.opencode/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json
-.opencode/skills/system-spec-kit/runtime/cli/setup/check-native-modules.sh
+.skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json
+.skilled/skills/system-spec-kit/runtime/cli/setup/check-native-modules.sh
 ```
 
 Expected result: each command exits zero in a configured workspace.

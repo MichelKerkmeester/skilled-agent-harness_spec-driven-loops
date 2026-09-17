@@ -985,7 +985,7 @@ test('fail-open: unwritable state directory never blocks classify or enforce', (
     });
     assert.equal(mutation.decision, 'allow');
   } finally {
-    try { chmodSync(join(root, '.opencode', 'skills', '.state', 'spec-gate'), 0o644); } catch (_) { /* best-effort */ }
+    try { chmodSync(join(root, '.skilled', 'skills', '.state', 'spec-gate'), 0o644); } catch (_) { /* best-effort */ }
     cleanup(root);
   }
 });
@@ -1627,7 +1627,7 @@ test('HIGHEST BLAST proof: every known error path resolves to allow, even with e
       const result = core.evaluateMutation({ tool: 'write', filePath: 'src/login.ts', sessionID, projectDir: root, env: enforceEnv });
       assert.notEqual(result.decision, 'deny');
     } finally {
-      try { chmodSync(join(root, '.opencode', 'skills', '.state', 'spec-gate'), 0o644); } catch (_) { /* best-effort */ }
+      try { chmodSync(join(root, '.skilled', 'skills', '.state', 'spec-gate'), 0o644); } catch (_) { /* best-effort */ }
       cleanup(root);
     }
   }

@@ -9,7 +9,7 @@
   ],
   "filesModified": [
     {
-      "path": ".opencode/skills/system-spec-kit/runtime/cli/lib/trigger-phrase-sanitizer.ts",
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/trigger-phrase-sanitizer.ts",
       "action": "Created",
       "description": "Adds suspicious-prefix filtering from the frozen D3 corpus"
     }

@@ -64,35 +64,35 @@ Level 3+ (Extended):    Level 3 + governance/AI execution content
 ### Level 1: Baseline (ALL features start here)
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/###-name --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/###-name --name feature-name
 ```
 
 ### Level 2: Verification (complete set)
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path specs/###-name --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path specs/###-name --name feature-name
 ```
 
 ### Level 3: Full Documentation (complete set)
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path specs/###-name --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path specs/###-name --name feature-name
 ```
 
 ### Level 3+: Extended Documentation (complete set)
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --path specs/###-name --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --path specs/###-name --name feature-name
 ```
 
 ### Optional Templates (Level 3 Only)
 
 ```bash
 ## Comprehensive Research (from root templates folder):
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name/research \
-  .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
+  .skilled/skills/system-spec-kit/templates/addons/research.md.tmpl
 ```
 
 ---
@@ -120,7 +120,7 @@ If the runtime does not surface command menus clearly, use this compact command 
 - `/speckit:search` - retrieve prior context, decisions, and analysis by ripgrep over spec and skill docs
 
 **Nested changelog generator**
-- `node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write` - publish a packet-local changelog for a root spec or phase child
+- `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write` - publish a packet-local changelog for a root spec or phase child
 
 ### Find Next Spec Number
 
@@ -140,11 +140,11 @@ mkdir -p specs/###-short-name/
 
 ```bash
 # Render one or more manifest templates for inspection
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir /tmp/spec-kit-render \
-  .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl \
-  .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
+  .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl \
+  .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
 ```
 
 `create.sh --path` validates the resolved target before writing and rejects traversal outside the repository. Post-create validation is opt-in: set `SPECKIT_POST_VALIDATE=1` when CI or a strict local workflow should run `validate.sh --quiet` immediately after scaffolding.
@@ -166,7 +166,7 @@ Say: "save context" or "save conversation"
 
 **Required Inputs:** Structured JSON is mandatory for routine saves, and the target spec folder is still required
 ```
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/
 ```
 
 Use `generate-context.js` for routine metadata saves. Quick direct edits are allowed only for `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md`. There is no indexing hand-off after a save; regenerate `runtime/data/trigger-index.json` only when a document's `trigger_phrases` changed.
@@ -284,16 +284,16 @@ When Gate 3 applies, always present all four stable labels and ask the user to c
 
 ```bash
 # Upgrade to Level 2 (auto-detects current level)
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 2
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 2
 
 # Upgrade to Level 3 (chains through intermediate levels)
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 3
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 3
 
 # Upgrade to Level 3+
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 3+
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 3+
 
 # Preview changes first
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 3 --dry-run
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/042-feature/ --to 3 --dry-run
 ```
 
 **Post-Upgrade:** After the script runs, AI **must** auto-populate all `<placeholder_token>` text in newly injected sections by reading existing spec context and deriving appropriate content.
@@ -301,7 +301,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/04
 Then verify placeholders are fully resolved:
 
 ```bash
-.opencode/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/042-feature/
+.skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/042-feature/
 ```
 
 ### Manual Fallback
@@ -370,7 +370,7 @@ Then verify placeholders are fully resolved:
 - ✅ Documentation files (*.md, *.txt, docs/)
 - ✅ Configuration files (*.json, *.yaml, *.toml)
 - ✅ Knowledge base files
-- ✅ Templates (.opencode/skills/system-spec-kit/templates/*.md)
+- ✅ Templates (.skilled/skills/system-spec-kit/templates/*.md)
 - ✅ Build files (package.json, requirements.txt)
 
 **Exceptions (no spec needed):**
@@ -400,7 +400,7 @@ Then verify placeholders are fully resolved:
 | Documentation | ✅ Yes | Markdown, README updates, guides |
 | Configuration | ✅ Yes | JSON, YAML, TOML, .env templates |
 | Knowledge base | ✅ Yes | Project-specific knowledge files |
-| Templates | ✅ Yes | `.opencode/skills/system-spec-kit/templates/*.md` modifications |
+| Templates | ✅ Yes | `.skilled/skills/system-spec-kit/templates/*.md` modifications |
 | Build/tooling | ✅ Yes | package.json, requirements.txt, Dockerfile |
 
 **Exceptions (no spec needed):**
@@ -445,7 +445,7 @@ Skipping documentation:
 
 Before presenting documentation to user:
 
-- [ ] All REQUIRED templates for level copied from `.opencode/skills/system-spec-kit/templates/`:
+- [ ] All REQUIRED templates for level copied from `.skilled/skills/system-spec-kit/templates/`:
   - [ ] Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - [ ] Level 2: Level 1 + acceptance-criteria.md
   - [ ] Level 3: Level 2 + decision-record.md
@@ -477,7 +477,7 @@ Before presenting documentation to user:
 
 **MANDATORY:** Use generate-context.js for memory save:
 ```
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/###-folder/
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/###-folder/
 ```
 
 Use `generate-context.js` for routine metadata and index saves. Quick direct edits are allowed only for `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md`.
@@ -564,7 +564,7 @@ specs/###-parent/
 ### Absolutely Required
 
 - **NEVER create documentation from scratch** - Always copy from templates
-- **ALWAYS copy from `.opencode/skills/system-spec-kit/templates/`** directory
+- **ALWAYS copy from `.skilled/skills/system-spec-kit/templates/`** directory
 - **ALWAYS copy ALL REQUIRED templates for chosen level**:
   - Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - Level 2: Level 1 + acceptance-criteria.md
@@ -586,7 +586,7 @@ specs/###-parent/
 - Documentation files (*.md, README, docs/)
 - Configuration files (*.json, *.yaml, *.toml)
 - Knowledge base files (project-specific)
-- Template files (.opencode/skills/system-spec-kit/templates/*.md)
+- Template files (.skilled/skills/system-spec-kit/templates/*.md)
 - Build files (package.json, requirements.txt)
 
 **No exceptions** (unless user explicitly selects Option E)

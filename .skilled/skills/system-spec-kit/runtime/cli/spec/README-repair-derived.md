@@ -56,7 +56,7 @@ until someone who knows the answer writes it down.
 
 ```bash
 # report what could be repaired, changing nothing
-node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --roots specs
+node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --roots specs
 
 # repair one packet
 node .../repair-derived.cjs --folder specs/<track>/<packet> --apply

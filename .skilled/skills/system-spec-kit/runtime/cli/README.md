@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.opencode/skills/system-spec-kit/runtime/cli/` holds the continuity save pipeline, the spec-folder validation dispatch, packet metadata generation, retrieval tooling, cross-runtime mirror sync, evaluations and setup checks. Continuity and validation are the heavily wired halves; the rest is invoked by commands, the doctor and CI.
+`.skilled/skills/system-spec-kit/runtime/cli/` holds the continuity save pipeline, the spec-folder validation dispatch, packet metadata generation, retrieval tooling, cross-runtime mirror sync, evaluations and setup checks. Continuity and validation are the heavily wired halves; the rest is invoked by commands, the doctor and CI.
 
 Current state:
 
@@ -121,8 +121,8 @@ Disallowed direction:
 | `lib/` | Shares TypeScript helpers and sourced shell utilities. |
 | `retrieval/` | Generates and looks up the committed trigger index, runs the ripgrep recipe lane, checks retrieval parity, retrofits the grep convention and sweeps for retired-memory-MCP residue. See `retrieval/README.md`. |
 | `observability/` | Records and measures smart-router resource-routing telemetry (live wrapper plus static corpus harness). See `observability/README.md`. |
-| `codex/` | Generates `.codex/agents` and `.codex/prompts` from their `.opencode/` canonical sources and checks command-router drift. See `codex/README.md`. |
-| `pi/` | Generates `.pi/agents` and `.pi/prompts` from their `.opencode/` canonical sources. See `pi/README.md`. |
+| `codex/` | Generates `.codex/agents` and `.codex/prompts` from their `.skilled/` canonical sources and checks command-router drift. See `codex/README.md`. |
+| `pi/` | Generates `.pi/agents` and `.pi/prompts` from their `.skilled/` canonical sources. See `pi/README.md`. |
 | `check-markdown-links.cjs` | Repo-wide markdown-link integrity guard over skills/commands/agents; CI-wired via `.github/workflows/markdown-link-integrity.yml`. Strips fenced + inline code before extraction. Complements the wikilink checker. `--self-test` asserts the inline-code handling. |
 | `spec/repair-derived.cjs` | Repairs the packet facts that are recomputable from disk, recorded location, declared level, generated-metadata fingerprint, and refuses everything else, reporting it by rule. Reporting is the default; `--apply` writes. Skips archived, scratch and pre-rename snapshot trees. See `spec/README-repair-derived.md` for the derived-versus-authored boundary. |
 | `deploy-mcp.sh` | Rebuilds every daemon-backed package `dist/` (the spec-kit runtime engine plus `@spec-kit/shared` via TS project references, and the skill advisor daemon) after a source change, then warns about launcher `.cjs` changes that only a fresh session can load. `dist/` is gitignored, so this is the canonical rebuild step after pulling source changes. |
@@ -183,14 +183,14 @@ This package owns local automation. Long-lived product behavior belongs in the s
 ## 6. ENTRYPOINTS
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<inline-json>' specs/<name>
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '<inline-json>' specs/<name>
 # Or use --stdin, or a session-scoped temp file (e.g. /tmp/save-context-data-<session-id>.json).
 # The legacy shared path /tmp/save-context-data.json is rejected (LEGACY_SHARED_DATA_FILE).
-node .opencode/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js --dry-run
-node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs   # markdown-link guard (exit 1 on broken)
-node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs --self-test  # guard inline-code self-test (6 cases)
+node .skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js --dry-run
+node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs   # markdown-link guard (exit 1 on broken)
+node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs --self-test  # guard inline-code self-test (6 cases)
 ```
 
 Use structured JSON input with `generate-context.js`. Do not pass free-form positional save text.
@@ -222,9 +222,9 @@ Before apply, preserve the affected `graph-metadata.json` files in version contr
 Use repository-root commands:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli test
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli test
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
 ```
 
 Run targeted shell or Vitest checks when editing one script zone. Use the parent package build after TypeScript changes.

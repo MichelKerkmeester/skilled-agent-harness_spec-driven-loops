@@ -82,7 +82,7 @@ The retrieval contract is `references/retrieval/retrieval-conventions.md`, and t
 When an AI assistant asks "Which spec folder?" at Gate 3, choose Option B (New):
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh 042-my-feature
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh 042-my-feature
 ```
 
 The script creates `specs/042-my-feature/` with the Level 1 starters, initializes `description.json` and prepares the packet docs plus a `scratch/` workspace:
@@ -101,7 +101,7 @@ Continuity no longer writes to `[spec]/memory/*.md`. Use `/speckit:save` to rout
 **Step 2: Save context at the end of a session.**
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   --json '{"specFolder":"042-my-feature","user_prompts":["Implement login form validation"],"observations":["Added client-side validation for empty email and password"],"recent_context":["Touched auth form schema and submit handler"],"toolCalls":["npm test -- auth"],"exchanges":["Verified the error states render before submit"]}' \
   specs/042-my-feature/
 ```
@@ -127,7 +127,7 @@ The system reads the question, classifies the task intent and routes to the righ
 **Step 5: Validate a spec folder.**
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh \
   specs/[project]/042-my-feature/
 ```
 
@@ -136,7 +136,7 @@ The default validation set runs the non-strict rules from the 40-rule registry. 
 **Step 6: Verify retrieval works.**
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "spec folder"; echo "exit=$?"
 ```
 
@@ -145,7 +145,7 @@ Exit `0` means the index resolved candidates, `1` means a clean miss and `2` mea
 If the index is missing, rebuild it:
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ```
 
 ### Common Patterns
@@ -233,7 +233,7 @@ A session binds to exactly one packet, and that packet's `goal.md` is the single
 
 The validator warns past 3,000 durable characters and fails past 4,000. That budget applies to phase parents and top-level packets. Phase children are unbounded, and a binding row naming a child `goal.md` that does not exist fails validation.
 
-The full cross-runtime contract, injection behavior per runtime and management commands live in the root `README.md` Goal Plugin section and in `.opencode/hooks/goal/README.md`.
+The full cross-runtime contract, injection behavior per runtime and management commands live in the root `README.md` Goal Plugin section and in `.skilled/hooks/goal/README.md`.
 
 ### Task Priority System
 
@@ -337,7 +337,7 @@ The tool counts `/speckit:save` and `/speckit:search` used to carry were counts 
 
 Autopilot is distinct from `:auto`. It requires unattended task metadata during planning, preserves the branch on hard failure, skips merge unless verification is clean and limits terminal reasons to `no_eligible_tasks`, `retry_exhausted`, `verification_failed` and `uncertainty_blocked`.
 
-Command source files: `.opencode/commands/speckit/`.
+Command source files: `.skilled/commands/speckit/`.
 
 ---
 
@@ -377,8 +377,8 @@ Note: in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a wr
 This skill registers no MCP server of its own. Retrieval runs from two committed scripts under `runtime/cli/retrieval/`, and continuity is written by `runtime/cli/dist/continuity/generate-context.js`. There is nothing to add to `mcpServers` for a generic MCP client, and nothing to keep warm.
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ```
 
 ### Feature Flags
@@ -412,7 +412,7 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 ### Files and Folders
 
 ```
-.opencode/skills/system-spec-kit/
+.skilled/skills/system-spec-kit/
 ├── SKILL.md                    # AI workflow instructions (when to use, gates, rules)
 ├── README.md                   # This file (what it does, how to use it)
 ├── ARCHITECTURE.md             # Boundary contract: runtime/cli/ vs runtime/
@@ -480,8 +480,8 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 The Gate 1 lookup exits `2`. That is a bad invocation or an unreadable index, never a clean miss.
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"; echo "exit=$?"
-ls -l .opencode/skills/system-spec-kit/runtime/data/trigger-index.json
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"; echo "exit=$?"
+ls -l .skilled/skills/system-spec-kit/runtime/data/trigger-index.json
 ```
 
 Exit `0` means candidates were found and `1` means none were. If the index file is missing or truncated, regenerate it with `runtime/cli/retrieval/generate-trigger-index.mjs`.
@@ -491,7 +491,7 @@ Exit `0` means candidates were found and `1` means none were. If the index file 
 `generate-context.js` runs but the output file is empty or the script exits with an error. Invalid structured JSON input, a missing explicit spec-folder target or TypeScript sources not compiled to `dist/` cause this.
 
 ```bash
-cd .opencode/skills/system-spec-kit && npm run build
+cd .skilled/skills/system-spec-kit && npm run build
 ```
 
 Rebuild the scripts, then retry with a valid structured payload and an explicit spec-folder target.
@@ -506,8 +506,8 @@ The save runs but the payload is rejected by the sufficiency gate or the structu
 
 ```bash
 ls -la specs/[project]/NNN-feature/
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh specs/[project]/NNN-feature/
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[project]/NNN-feature/ [target-level]
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh specs/[project]/NNN-feature/
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[project]/NNN-feature/ [target-level]
 ```
 
 ### Retrieval Misses Content You Know Exists
@@ -517,7 +517,7 @@ The trigger index only knows what an author declared in `trigger_phrases`. A phr
 ```bash
 rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
-  -- 'phrase' specs .opencode
+  -- 'phrase' specs .skilled
 ```
 
 There is no paraphrase matching to fall back to. Retrieval is lexical.
@@ -538,10 +538,10 @@ There is no paraphrase matching to fall back to. Retrieval is lexical.
 ### Diagnostic Commands
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh specs/[project]/NNN-feature/
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/[project]/NNN-feature/ --verbose
-bash .opencode/skills/system-spec-kit/runtime/cli/check-api-boundary.sh
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh specs/[project]/NNN-feature/
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/[project]/NNN-feature/ --verbose
+bash .skilled/skills/system-spec-kit/runtime/cli/check-api-boundary.sh
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
 ```
 
 ---
@@ -566,7 +566,7 @@ A: Spec folders capture what happened in structured documentation. `generate-con
 
 **Q: Can I use retrieval without spec folders?**
 
-A: Yes. The index and the ripgrep recipes read any Markdown under `specs` and `.opencode`, not only packet docs. For implementation work the canonical continuity path is still the spec folder itself, and Gate 3 asks about one before any file modification regardless.
+A: Yes. The index and the ripgrep recipes read any Markdown under `specs` and `.skilled`, not only packet docs. For implementation work the canonical continuity path is still the spec folder itself, and Gate 3 asks about one before any file modification regardless.
 
 **Q: What is the difference between this README and the runtime README?**
 
@@ -581,7 +581,7 @@ A: SKILL.md contains instructions for AI agents: when to activate, routing rules
 A: Run `upgrade-level.sh` with the target level. It renders and injects the additional Level contract sections into the existing folder. Then run `check-placeholders.sh` to find new placeholder values that need filling.
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[project]/NNN-feature/ 2
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[project]/NNN-feature/ 2
 ```
 
 ---
@@ -590,7 +590,7 @@ bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/[p
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/README.md --type readme` reports zero issues |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/README.md --type readme` reports zero issues |
 | Human Voice Rules | the em dash, semicolon and Oxford comma greps return zero prose hits |
 | Link resolution | the link guard reports no failures in this README |
 | Spec folder validation | `validate.sh` on a spec folder exits 0 |
@@ -672,7 +672,7 @@ The manual testing playbook runs every scenario behind these checks.
 |---|---|
 | `AGENTS.md` (project root) | gate definitions, AI behavior framework and mandatory workflow rules |
 | `specs/` | all spec folders created by Spec Kit (`.opencode/specs` is a compat symlink to this same tree) |
-| `.opencode/commands/speckit/` | speckit command definitions, including the continuity save and search commands |
+| `.skilled/commands/speckit/` | speckit command definitions, including the continuity save and search commands |
 
 ### External Resources
 

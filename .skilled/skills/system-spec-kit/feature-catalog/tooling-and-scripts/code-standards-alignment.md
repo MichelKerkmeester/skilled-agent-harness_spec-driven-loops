@@ -24,7 +24,7 @@ This was a cleanup pass that made the code follow a consistent style across the 
 
 ## 2. HOW IT WORKS
 
-All modified files were reviewed against sk-code OPENCODE route standards. At HEAD, the live codebase uses MODULE/COMPONENT headers plus purposeful inline comments where explanation adds value. Legacy AI-intent prefixes (`AI-WHY`, `AI-TRACE`, `AI-GUARD`) are no longer part of the active convention, and `rg "AI-(WHY|TRACE|GUARD):" .opencode/skills/system-spec-kit/runtime` returns no matches.
+All modified files were reviewed against sk-code OPENCODE route standards. At HEAD, the live codebase uses MODULE/COMPONENT headers plus purposeful inline comments where explanation adds value. Legacy AI-intent prefixes (`AI-WHY`, `AI-TRACE`, `AI-GUARD`) are no longer part of the active convention, and `rg "AI-(WHY|TRACE|GUARD):" .skilled/skills/system-spec-kit/runtime` returns no matches.
 
 ---
 
@@ -38,7 +38,7 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
   - `sk-code/references/opencode/shared/universal_patterns.md` documents the purposeful-comment rule used at HEAD.
   - `sk-code/assets/opencode/checklists/typescript-checklist.md` keeps file headers as a compliance check.
 - **HEAD evidence**
-  - `rg "AI-(WHY|TRACE|GUARD):" .opencode/skills/system-spec-kit/runtime` returns no matches at HEAD.
+  - `rg "AI-(WHY|TRACE|GUARD):" .skilled/skills/system-spec-kit/runtime` returns no matches at HEAD.
   - The live alignment posture uses standardized `// MODULE:` / `// COMPONENT:` headers and targeted explanatory comments rather than AI-intent marker prefixes.
 
 ### 2) MODULE/COMPONENT headers
@@ -86,11 +86,11 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
 ### Lint/check commands
 
 - Lint (MCP server scope):
-  - `cd .opencode/skills/system-spec-kit/runtime && npm run lint`
+  - `cd .skilled/skills/system-spec-kit/runtime && npm run lint`
 - Lint + type-check bundle:
-  - `cd .opencode/skills/system-spec-kit/runtime && npm run check`
+  - `cd .skilled/skills/system-spec-kit/runtime && npm run check`
 - Workspace type-check:
-  - `cd .opencode/skills/system-spec-kit && npm run typecheck`
+  - `cd .skilled/skills/system-spec-kit && npm run typecheck`
 
 ### Expected compliant output
 

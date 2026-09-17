@@ -66,7 +66,7 @@ describe('dist freshness — global walk', () => {
 describe('dist freshness — build cache bootstrap', () => {
   it('pre-warms the checker hash cache so content-identical mtime skew reports fresh', () => {
     const workspaceRoot = mkdtempSync(join(tmpdir(), 'dist-freshness-bootstrap-'));
-    const packageRoot = join(workspaceRoot, '.opencode', 'skills', 'system-spec-kit', 'runtime');
+    const packageRoot = join(workspaceRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime');
     mkdirSync(join(packageRoot, 'dist'), { recursive: true });
     mkdirSync(join(packageRoot, 'schemas'), { recursive: true });
     // The checker refuses to judge freshness for a package root that carries no
@@ -123,7 +123,7 @@ describe('dist freshness — build cache bootstrap', () => {
 
   it('uses per-entry cache paths so one entry cannot vouch for another', () => {
     const workspaceRoot = mkdtempSync(join(tmpdir(), 'dist-freshness-entry-'));
-    const packageRoot = join(workspaceRoot, '.opencode', 'skills', 'system-spec-kit', 'runtime');
+    const packageRoot = join(workspaceRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime');
     mkdirSync(join(packageRoot, 'dist', 'lib', 'validation'), { recursive: true });
     mkdirSync(join(packageRoot, 'lib', 'validation'), { recursive: true });
     for (const dir of ['templates', 'spec', 'graph', 'config', 'description']) {

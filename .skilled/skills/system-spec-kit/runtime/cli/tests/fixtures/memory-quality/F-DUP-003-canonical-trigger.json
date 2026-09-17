@@ -20,7 +20,7 @@
   ],
   "filesModified": [
     {
-      "path": ".opencode/skills/system-spec-kit/runtime/cli/lib/trigger-phrase-sanitizer.ts",
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/trigger-phrase-sanitizer.ts",
       "action": "modified",
       "description": "Canonicalize opencode cli compact and tree sitter aliases while preserving api cli mcp anchors."
     }

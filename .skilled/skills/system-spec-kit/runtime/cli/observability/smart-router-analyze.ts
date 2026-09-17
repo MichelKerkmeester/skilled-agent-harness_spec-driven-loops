@@ -39,8 +39,8 @@ export interface TelemetryAnalysis {
   readonly noData: boolean;
 }
 
-const DEFAULT_INPUT_PATH = '.opencode/skills/.state/smart-router-telemetry/compliance.jsonl';
-const DEFAULT_OUTPUT_DIR = '.opencode/skills/system-spec-kit/runtime/cli/observability';
+const DEFAULT_INPUT_PATH = '.skilled/skills/.state/smart-router-telemetry/compliance.jsonl';
+const DEFAULT_OUTPUT_DIR = '.skilled/skills/system-spec-kit/runtime/cli/observability';
 const IS_CLI_ENTRY = isMainModule(import.meta.url);
 const CLASSES: ComplianceClass[] = [
   'always',
@@ -54,7 +54,7 @@ const CLASSES: ComplianceClass[] = [
 function locateWorkspaceRoot(startDir = process.cwd()): string {
   let current = path.resolve(startDir);
   while (true) {
-    if (fs.existsSync(path.join(current, '.opencode', 'skill'))) {
+    if (fs.existsSync(path.join(current, '.skilled', 'skill'))) {
       return current;
     }
     const parent = path.dirname(current);

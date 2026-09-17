@@ -20,7 +20,7 @@
 // over the track's graph-metadata), not a side effect of a diagnostic.
 //
 // Usage:
-//   node .opencode/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs [--specs <dir>]
+//   node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs [--specs <dir>]
 //
 // Exit codes: 0 = every track's declared and actual counts agree,
 //             1 = at least one track differs (or metadata was unreadable).

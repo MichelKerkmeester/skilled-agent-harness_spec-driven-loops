@@ -46,14 +46,14 @@ This numbered convention is distinct from the launch wrapper's ephemeral per-ses
 
 | File | Role |
 |------|------|
-| `.opencode/skills/sk-git/SKILL.md` | Owns the numbered worktree convention (`wt/{NNNN}-{name}` branch, `.worktrees/{NNNN}-{name}` dir, 4-digit global max+1 counter) and all git-workflow mechanics |
-| `.opencode/skills/sk-git/references/` | Per-flow worktree create / restructure / finish references |
+| `.skilled/skills/sk-git/SKILL.md` | Owns the numbered worktree convention (`wt/{NNNN}-{name}` branch, `.worktrees/{NNNN}-{name}` dir, 4-digit global max+1 counter) and all git-workflow mechanics |
+| `.skilled/skills/sk-git/references/` | Per-flow worktree create / restructure / finish references |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/SKILL.md` | Reference | Convention is verified by the skill's own routing and checklist sections rather than a code test in this server |
+| `.skilled/skills/sk-git/SKILL.md` | Reference | Convention is verified by the skill's own routing and checklist sections rather than a code test in this server |
 
 ---
 

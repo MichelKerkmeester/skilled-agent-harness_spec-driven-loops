@@ -45,7 +45,7 @@ export SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock"
 export SPECKIT_DAEMON_REELECTION=0
 BEFORE=$(pgrep -f "mk-skill-advisor-launcher" | wc -l)
 
-node .opencode/bin/skill-advisor.cjs advisor_status --workspaceRoot . --warm-only --timeout-ms 3000 --format json; echo "skill-advisor exit=$?"
+node .skilled/bin/skill-advisor.cjs advisor_status --workspaceRoot . --warm-only --timeout-ms 3000 --format json; echo "skill-advisor exit=$?"
 
 AFTER=$(pgrep -f "mk-skill-advisor-launcher" | wc -l)
 echo "launchers before=$BEFORE after=$AFTER"
@@ -91,8 +91,8 @@ An exit 0 means the call reached a daemon — check that `SPECKIT_IPC_SOCKET_DIR
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | `ensureDaemonReady` warm-only branch throwing the retryable error |
-| `.opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper relying on this contract |
+| `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | `ensureDaemonReady` warm-only branch throwing the retryable error |
+| `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper relying on this contract |
 
 Provenance: manual only - run the scenario prompt: Validate that --warm-only CLI calls exit 75 with backend unavailable and never spawn a daemon when the socket directory is empty.
 

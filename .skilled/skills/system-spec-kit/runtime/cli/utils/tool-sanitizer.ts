@@ -31,8 +31,8 @@ function sanitizeToolDescription(description: string): string {
     .replace(/specs\/\d{3,}-[a-z0-9-]+(?:\/\d{3,}-[a-z0-9-]+)*/gi, '[spec]')
     // Replace absolute paths (/Users/..., /home/..., C:\...)
     .replace(/(?:\/(?:Users|home|var|tmp|opt|etc|usr)\/|[A-Z]:\\)[^\s"'`,;)}\]]+/g, '[path]')
-    // Replace .opencode/ internal paths
-    .replace(/\.opencode\/[^\s"'`,;)}\]]+/g, '[internal-path]')
+    // Replace .skilled/ and .opencode/ internal paths
+    .replace(/\.(?:skilled|opencode)\/[^\s"'`,;)}\]]+/g, '[internal-path]')
     // Replace .claude/ internal paths
     .replace(/\.claude\/[^\s"'`,;)}\]]+/g, '[internal-path]');
 

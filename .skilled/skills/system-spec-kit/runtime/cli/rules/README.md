@@ -145,8 +145,8 @@ Main flow:
 Run from the repository root:
 
 ```bash
-.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/cli/rules/README.md
+.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/rules/README.md
 ```
 
 Expected result: spec validation passes or reports only accepted packet warnings, and README validation exits `0` with no HVR violations.

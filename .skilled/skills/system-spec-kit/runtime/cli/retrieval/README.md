@@ -17,7 +17,7 @@ trigger_phrases:
 
 Current state:
 
-- `generate-trigger-index.mjs` publishes the committed index at `../runtime/data/trigger-index.json` from the `trigger_phrases` frontmatter across `specs/`, `.opencode/skills/` and `.opencode/install-guides/`.
+- `generate-trigger-index.mjs` publishes the committed index at `../runtime/data/trigger-index.json` from the `trigger_phrases` frontmatter across `specs/`, `.skilled/skills/` and `.skilled/install-guides/`.
 - `lookup-trigger-index.mjs` is the read side: it scores a prompt against the committed index using the same normalization, tokenization and match-class ranking the retired substring trigger lane used, so its recorded results still diff against this lookup. It drops query tokens shorter than three characters and keeps the first eight distinct tokens, reporting both discards.
 - `rg-wrapper.mjs` runs three of the four documented ripgrep recipes (structured, path-only, count) behind one front door; the context-and-anchor recipe of Section 2.4 is composed by hand. Its glob set now excludes `scratch/` alongside `z_archive/`, `node_modules/` and `.git/` - see `references/retrieval/retrieval-conventions.md` Section 9 for the full root and exclusion coverage table shared with `lib/corpus.mjs`.
 - `sweep-memory-residue.mjs` answers one question with an exit code: does any live consumer of the retired memory MCP surface still exist outside its own subsystem tree.
@@ -33,7 +33,7 @@ Current state:
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌────────────────────┐      ┌──────────────────────────┐
-│ specs/, .opencode/  │ ───▶ │ generate-trigger-index.mjs│ ──▶ runtime/data/trigger-index.json
+│ specs/, .skilled/  │ ───▶ │ generate-trigger-index.mjs│ ──▶ runtime/data/trigger-index.json
 │ (trigger_phrases)   │      └──────────────────────────┘              │
 └─────────────────────┘                                                ▼
                                                             ┌──────────────────────────┐
@@ -103,13 +103,13 @@ Five fixtures were captured once, when the lexical lanes were accepted, and have
 
 ## 6. ENTRYPOINTS
 
-Run from the repository root. `rg-wrapper.mjs` and `sweep-memory-residue.mjs` default their search root to the current working directory, so running them from elsewhere without `--root`/`--search-root` fails to find `specs/` and `.opencode/`.
+Run from the repository root. `rg-wrapper.mjs` and `sweep-memory-residue.mjs` default their search root to the current working directory, so running them from elsewhere without `--root`/`--search-root` fails to find `specs/` and `.skilled/`.
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --json
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>" --json
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs structured "<phrase>" --json
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs --json
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --json
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>" --json
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs structured "<phrase>" --json
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs --json
 ```
 
 Exit codes follow the same shape across scripts: `0` for a clean or passing result, `1` for a substantive finding (no candidates, residue, at least one failing case), `2` for a bad invocation or execution fault. Each script's own header comment documents its exact codes.
@@ -118,7 +118,7 @@ Exit codes follow the same shape across scripts: `0` for a clean or passing resu
 
 ## 7. VALIDATION
 
-Run from the CLI package (`.opencode/skills/system-spec-kit/runtime/cli`):
+Run from the CLI package (`.skilled/skills/system-spec-kit/runtime/cli`):
 
 ```bash
 npx vitest run --config ../../vitest.config.ts --project cli \
@@ -136,8 +136,8 @@ Expected result: all suites pass.
 Determinism check after any edit here, from the repository root:
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --json > /tmp/a.json
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --json > /tmp/b.json
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --json > /tmp/a.json
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --json > /tmp/b.json
 diff <(python3 -c "import json;print(json.load(open('/tmp/a.json'))['indexSha256'])") \
      <(python3 -c "import json;print(json.load(open('/tmp/b.json'))['indexSha256'])")
 ```

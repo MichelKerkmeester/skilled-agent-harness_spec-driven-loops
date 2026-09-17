@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url);
 
 const rubric = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/runtime/cli/optimizer/rubric.cjs',
+  '.skilled/skills/system-spec-kit/runtime/cli/optimizer/rubric.cjs',
 )) as {
   DEFAULT_WEIGHTS: Record<string, number>;
   SCORE_RANGE: { min: number; max: number };

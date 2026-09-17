@@ -40,7 +40,7 @@ Validate SPECKIT_COMPLETION_FRESHNESS and SPECKIT_COMPLETION_FRESHNESS_ENFORCE w
 1. Copy a complete Level 1 spec folder into a disposable sandbox.
 2. Modify an in-scope spec doc after the stored continuity fingerprint is present, or intentionally set a stale `session_dedup.fingerprint` in the sandbox frontmatter.
 3. Unset both flags: `unset SPECKIT_COMPLETION_FRESHNESS SPECKIT_COMPLETION_FRESHNESS_ENFORCE`.
-4. Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <sandbox-spec-folder> --strict` and capture exit code plus output.
+4. Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <sandbox-spec-folder> --strict` and capture exit code plus output.
 5. Enable warn mode: `export SPECKIT_COMPLETION_FRESHNESS=true`; `unset SPECKIT_COMPLETION_FRESHNESS_ENFORCE`; rerun validation.
 6. Enable enforce mode: `export SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`; rerun validation.
 7. Disable both flags, rerun validation, and compare with the baseline output.

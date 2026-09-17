@@ -53,18 +53,18 @@ shared/ imports into runtime/ or runtime/cli/ are flagged across supported impor
 Command: `node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/architecture-boundary-enforcement.vitest.ts --config runtime/vitest.config.ts --reporter verbose`
 
 ```text
- RUN  v4.1.9 .opencode/skills/system-spec-kit
+ RUN  v4.1.9 .skilled/skills/system-spec-kit
 
-10:40:49 PM [vite] (ssr) Failed to load source map for .opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript.js.
+10:40:49 PM [vite] (ssr) Failed to load source map for .skilled/skills/system-spec-kit/node_modules/typescript/lib/typescript.js.
 Error: An error occurred while trying to read the map file at typescript.js.map
-Error: ENOENT: no such file or directory, open '.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript.js.map'
+Error: ENOENT: no such file or directory, open '.skilled/skills/system-spec-kit/node_modules/typescript/lib/typescript.js.map'
     at Object.readFileSync (node:fs:440:20)
-    at file://.opencode/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18742:13
-    at readFromFileMap (file://.opencode/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18442:13)
-    at Object.exports.fromMapFileComment (file://.opencode/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18536:12)
-    at Object.exports.fromMapFileSource (file://.opencode/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18547:22)
-    at extractSourcemapFromFile (file://.opencode/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18728:87)
-    at loadAndTransform (file://.opencode/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:19697:22)
+    at file://.skilled/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18742:13
+    at readFromFileMap (file://.skilled/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18442:13)
+    at Object.exports.fromMapFileComment (file://.skilled/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18536:12)
+    at Object.exports.fromMapFileSource (file://.skilled/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18547:22)
+    at extractSourcemapFromFile (file://.skilled/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18728:87)
+    at loadAndTransform (file://.skilled/skills/system-spec-kit/runtime/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:19697:22)
  ✓ runtime/cli/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > T39: GAP A detects shared -> runtime/scripts imports across syntax variants 6ms
  ✓ runtime/cli/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > parses export-from, import type, and require() forms when checking shared neutrality 2ms
  ✓ runtime/cli/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > T40: GAP B flags wrappers exceeding 50 substantive lines 2ms

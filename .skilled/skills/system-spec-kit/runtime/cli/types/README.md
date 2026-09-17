@@ -103,7 +103,7 @@ import { resolveSaveMode } from '../types/save-mode'
 Example declaration check:
 
 ```bash
-test -f .opencode/skills/system-spec-kit/runtime/cli/dist/types/session-types.d.ts
+test -f .skilled/skills/system-spec-kit/runtime/cli/dist/types/session-types.d.ts
 ```
 
 ---
@@ -124,13 +124,13 @@ test -f .opencode/skills/system-spec-kit/runtime/cli/dist/types/session-types.d.
 Run the README validator after editing this file:
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/cli/types/README.md
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/types/README.md
 ```
 
 Run the script build after changing type definitions:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
 ```
 
 Expected result: TypeScript compiles and emits declarations for `session-types.ts` and `save-mode.ts`.

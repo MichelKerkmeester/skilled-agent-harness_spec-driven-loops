@@ -44,7 +44,7 @@ The default-on/explicit-opt-out helper and its `SPECKIT_ROLLOUT_PERCENT` partial
 
 ### Compiled-Routing Flag (`SPECKIT_COMPILED_ROUTING`)
 
-`SPECKIT_COMPILED_ROUTING` is the tri-state gate for serving the compiled per-hub router contract instead of a hub's prose smart-router. The flag itself ships **unset**, never forced on. Parsing is single-sourced — `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and `.opencode/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts` share the same tri-state semantics:
+`SPECKIT_COMPILED_ROUTING` is the tri-state gate for serving the compiled per-hub router contract instead of a hub's prose smart-router. The flag itself ships **unset**, never forced on. Parsing is single-sourced — `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and `.skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts` share the same tri-state semantics:
 
 | Value | Resolution |
 |---|---|
@@ -53,9 +53,9 @@ The default-on/explicit-opt-out helper and its `SPECKIT_ROLLOUT_PERCENT` partial
 | `0`, `false`, `off` | Explicit fleet-wide kill-switch: forces legacy regardless of manifest or cohort state |
 | anything else | Fails closed to legacy |
 
-**Eligibility** is the fixed hub set in `COMPILED_ROUTING_HUBS`: `sk-code`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`, `sk-doc`. The retired `sk-design` hub left the set when it was decommissioned; the standalone skill that now holds that name is not a hub and is not eligible. Serving additionally requires the hub's promoted activation manifest (`.opencode/bin/lib/compiled-routing/013-live-activation/activation/<hub>/manifest.json`) to report `servingAuthority: "compiled"`, so the flag alone lights no hub.
+**Eligibility** is the fixed hub set in `COMPILED_ROUTING_HUBS`: `sk-code`, `mcp-tooling`, `system-deep-loop`, `cli-external-orchestration`, `sk-doc`. The retired `sk-design` hub left the set when it was decommissioned; the standalone skill that now holds that name is not a hub and is not eligible. Serving additionally requires the hub's promoted activation manifest (`.skilled/bin/lib/compiled-routing/013-live-activation/activation/<hub>/manifest.json`) to report `servingAuthority: "compiled"`, so the flag alone lights no hub.
 
-**Serving status** for any hub is readable via `node .opencode/bin/compiled-route-status.cjs --hub <hub> | --all`, which emits one stable JSON record per hub with a `causeCode` that separates expected **drift** (`flag-off`, `legacy-authority`, `missing-manifest` — the flag or manifest intentionally withholds compiled serving) from a genuine **break** (`engine-throw` — flag and manifest both authorize compiled serving but the engine itself fails). `compiled-serving` means the hub is actually being served compiled right now; the full set in `compiled-route-status.cjs` also carries `stale-manifest`, `identity-mismatch` and `compile-error` for a manifest that no longer matches its inputs.
+**Serving status** for any hub is readable via `node .skilled/bin/compiled-route-status.cjs --hub <hub> | --all`, which emits one stable JSON record per hub with a `causeCode` that separates expected **drift** (`flag-off`, `legacy-authority`, `missing-manifest` — the flag or manifest intentionally withholds compiled serving) from a genuine **break** (`engine-throw` — flag and manifest both authorize compiled serving but the engine itself fails). `compiled-serving` means the hub is actually being served compiled right now; the full set in `compiled-route-status.cjs` also carries `stale-manifest`, `identity-mismatch` and `compile-error` for a manifest that no longer matches its inputs.
 
 Default-on for a hub is a staged, per-hub cutover — never the flag's own shipped default — gated on that hub passing parity, serving-status, fallback and rollback checks first. The cutover is complete for every eligible hub in both the runtime resolver's cohort and the advisor enrichment's `DEFAULT_ON_HUBS`, so an unset flag currently resolves to compiled for all of them. The **explicit `=0` override** is the fleet-wide kill-switch: it forces every eligible hub back to legacy routing regardless of any hub's individual manifest or cohort state, independent of `SPECKIT_COMPILED_ROUTING_DEBUG` (unset/OFF by default), which only emits debug-gated stderr breadcrumbs on a fallback and never changes what is served.
 
@@ -71,11 +71,11 @@ A governance target is not a runtime guardrail. Nothing in the runtime enforces 
 
 - `.env.example` - documents `SPECKIT_COMPILED_ROUTING` and `SPECKIT_COMPILED_ROUTING_DEBUG`; `runtime/ENV-REFERENCE.md` carries the other governed flags but not these two.
 - `.env.example` - The operator-facing copy of the same surface; a flag documented in one and missing from the other is drift.
-- `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` - Runtime tri-state flag parser and the manifest serving-authority gate.
-- `.opencode/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts` - Advisor-side single-sourced tri-state parser, `COMPILED_ROUTING_HUBS` eligibility set, and `DEFAULT_ON_HUBS` cohort.
-- `.opencode/bin/compiled-route-status.cjs` - Per-hub serving-status probe emitting the drift-vs-break `causeCode` contract.
-- `.opencode/bin/compiled-route.cjs` - The public front door callers use to resolve a hub's route; delegates to the runtime resolver.
-- `.opencode/bin/system-skill-advisor-launcher.cjs` - Child-process env allowlist that forwards `SPECKIT_COMPILED_ROUTING` to the spawned advisor daemon.
+- `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` - Runtime tri-state flag parser and the manifest serving-authority gate.
+- `.skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts` - Advisor-side single-sourced tri-state parser, `COMPILED_ROUTING_HUBS` eligibility set, and `DEFAULT_ON_HUBS` cohort.
+- `.skilled/bin/compiled-route-status.cjs` - Per-hub serving-status probe emitting the drift-vs-break `causeCode` contract.
+- `.skilled/bin/compiled-route.cjs` - The public front door callers use to resolve a hub's route; delegates to the runtime resolver.
+- `.skilled/bin/system-skill-advisor-launcher.cjs` - Child-process env allowlist that forwards `SPECKIT_COMPILED_ROUTING` to the spawned advisor daemon.
 
 ---
 

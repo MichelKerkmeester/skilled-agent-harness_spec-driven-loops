@@ -7,27 +7,27 @@ import { describe, expect, it } from 'vitest';
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const RUNTIME_ROOT = resolve(TEST_DIR, '..');
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
-const PLAYBOOK_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook');
-const SKILL_ADVISOR_TEST_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/system-skill-advisor/runtime/tests');
-const DEEP_LOOP_RUNTIME_TEST_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/runtime/tests');
+const PLAYBOOK_ROOT = join(WORKSPACE_ROOT, '.skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook');
+const SKILL_ADVISOR_TEST_ROOT = join(WORKSPACE_ROOT, '.skilled/skills/system-skill-advisor/runtime/tests');
+const DEEP_LOOP_RUNTIME_TEST_ROOT = join(WORKSPACE_ROOT, '.skilled/skills/system-deep-loop/runtime/tests');
 
 const RENAMED_TEST_REFERENCES: Record<string, string> = {
-  '.opencode/skills/system-spec-kit/runtime/tests/ai-council-runtime-parity.vitest.ts':
-    '.opencode/skills/system-spec-kit/runtime/tests/multi-ai-council-runtime-parity.vitest.ts',
-  '.opencode/skills/system-spec-kit/runtime/tests/ai-council-permission-scope.vitest.ts':
-    '.opencode/skills/system-spec-kit/runtime/tests/multi-ai-council-permission-scope.vitest.ts',
-  '.opencode/skills/system-spec-kit/runtime/tests/ai-council-audit-trail.vitest.ts':
-    '.opencode/skills/system-spec-kit/runtime/tests/multi-ai-council-audit-trail.vitest.ts',
-  '.opencode/skills/system-spec-kit/runtime/tests/ai-council-rollback.vitest.ts':
-    '.opencode/skills/system-spec-kit/runtime/tests/multi-ai-council-rollback.vitest.ts',
-  '.opencode/skills/system-spec-kit/runtime/cli/tests/ai-council-persist-artifacts.vitest.ts':
-    '.opencode/skills/system-spec-kit/runtime/cli/tests/multi-ai-council-persist-artifacts.vitest.ts',
+  '.skilled/skills/system-spec-kit/runtime/tests/ai-council-runtime-parity.vitest.ts':
+    '.skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-runtime-parity.vitest.ts',
+  '.skilled/skills/system-spec-kit/runtime/tests/ai-council-permission-scope.vitest.ts':
+    '.skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-permission-scope.vitest.ts',
+  '.skilled/skills/system-spec-kit/runtime/tests/ai-council-audit-trail.vitest.ts':
+    '.skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-audit-trail.vitest.ts',
+  '.skilled/skills/system-spec-kit/runtime/tests/ai-council-rollback.vitest.ts':
+    '.skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-rollback.vitest.ts',
+  '.skilled/skills/system-spec-kit/runtime/cli/tests/ai-council-persist-artifacts.vitest.ts':
+    '.skilled/skills/system-spec-kit/runtime/cli/tests/multi-ai-council-persist-artifacts.vitest.ts',
 };
 
 const TEST_FILE_REF =
-  /(?:(?:\.opencode\/skills\/system-spec-kit\/)?scripts\/tests|\.opencode\/skills\/system-deep-loop\/runtime\/tests|\.\.\/scripts\/tests)\/[A-Za-z0-9._/-]+?\.vitest\.ts/g;
+  /(?:(?:\.skilled\/skills\/system-spec-kit\/)?scripts\/tests|\.skilled\/skills\/system-deep-loop\/runtime\/tests|\.\.\/scripts\/tests)\/[A-Za-z0-9._/-]+?\.vitest\.ts/g;
 const TEST_NAME_ANCHOR =
-  /`((?:(?:\.opencode\/skills\/system-spec-kit\/)?scripts\/tests|\.opencode\/skills\/system-deep-loop\/runtime\/tests|\.\.\/scripts\/tests)\/[^`]+?\.vitest\.ts)`\s+test name\s+`([^`]+)`/g;
+  /`((?:(?:\.skilled\/skills\/system-spec-kit\/)?scripts\/tests|\.skilled\/skills\/system-deep-loop\/runtime\/tests|\.\.\/scripts\/tests)\/[^`]+?\.vitest\.ts)`\s+test name\s+`([^`]+)`/g;
 const TEST_CALL = /\b(?:it|test)\s*\(\s*(?:'([^']+)'|"([^"]+)"|`([^`]+)`)/g;
 
 function walkMarkdown(dir: string): string[] {
@@ -51,17 +51,17 @@ function resolveTestReference(reference: string): string {
   if (normalizedReference === 'runtime/tests/scorer/native-scorer.vitest.ts') {
     return join(SKILL_ADVISOR_TEST_ROOT, 'scorer/native-scorer.vitest.ts');
   }
-  const withoutSkillPrefix = normalizedReference.replace(/^\.opencode\/skills\/system-spec-kit\//, '');
+  const withoutSkillPrefix = normalizedReference.replace(/^\.skilled\/skills\/system-spec-kit\//, '');
   if (withoutSkillPrefix.startsWith('runtime/tests/')) {
-    return join(WORKSPACE_ROOT, '.opencode/skills/system-spec-kit', withoutSkillPrefix);
+    return join(WORKSPACE_ROOT, '.skilled/skills/system-spec-kit', withoutSkillPrefix);
   }
   if (withoutSkillPrefix.startsWith('runtime/cli/tests/')) {
-    return join(WORKSPACE_ROOT, '.opencode/skills/system-spec-kit', withoutSkillPrefix);
+    return join(WORKSPACE_ROOT, '.skilled/skills/system-spec-kit', withoutSkillPrefix);
   }
   if (withoutSkillPrefix.startsWith('cli/tests/')) {
     return resolve(RUNTIME_ROOT, withoutSkillPrefix);
   }
-  if (normalizedReference.startsWith('.opencode/skills/system-deep-loop/runtime/tests/')) {
+  if (normalizedReference.startsWith('.skilled/skills/system-deep-loop/runtime/tests/')) {
     return join(WORKSPACE_ROOT, normalizedReference);
   }
   return join(WORKSPACE_ROOT, reference);

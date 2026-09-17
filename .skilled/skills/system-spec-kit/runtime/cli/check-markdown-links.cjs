@@ -21,7 +21,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOTS = [
-  '.opencode/skills', '.opencode/commands', '.opencode/agents',
+  '.skilled/skills', '.skilled/commands', '.skilled/agents',
   '.claude/agents', '.claude/commands',
 ];
 
@@ -39,38 +39,38 @@ const EXCLUDE_SEGMENTS = [
 const ALLOWLIST = new Set([
   // completion-sentinel advisory log — written at runtime when advisories occur, so the
   // path is correct and simply has no file until the sentinel has something to say
-  '.opencode/skills/.state/completion-sentinel/README.md::../../../logs/completion-sentinel-advisories.log',
+  '.skilled/skills/.state/completion-sentinel/README.md::../../../logs/completion-sentinel-advisories.log',
   // benchmark report template — sibling artifacts the report author creates
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./source.md',
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./results.csv',
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./per-probe.jsonl',
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./runtime-measurements.md',
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::../README.md',
+  '.skilled/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./source.md',
+  '.skilled/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./results.csv',
+  '.skilled/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./per-probe.jsonl',
+  '.skilled/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./runtime-measurements.md',
+  '.skilled/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::../README.md',
   // behavior benchmark index template — destination package resources
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../../shared/behavior-benchmark/framework.md',
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../../shared/behavior-benchmark/behavior-bench-run.cjs',
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::./baselines/claude-baseline.md',
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../README.md',
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../SKILL.md',
+  '.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../../shared/behavior-benchmark/framework.md',
+  '.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../../shared/behavior-benchmark/behavior-bench-run.cjs',
+  '.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::./baselines/claude-baseline.md',
+  '.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../README.md',
+  '.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../SKILL.md',
   // skill_md_template — fill-in names the author replaces per skill
-  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/workflow-details.md',
-  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/reference-name.md',
-  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/workflow-name.md',
-  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./assets/template-name.md',
-  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./assets/checklist-name.md',
-  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::INSTALL-GUIDE.md',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/workflow-details.md',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/reference-name.md',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/workflow-name.md',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./assets/template-name.md',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./assets/checklist-name.md',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::INSTALL-GUIDE.md',
   // skill_reference_template — use-site example paths
-  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::./scripts/workflow_router.py',
-  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../scripts/',
-  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../assets/',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::./scripts/workflow_router.py',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../scripts/',
+  '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../assets/',
   // install guide template — optional sibling examples
-  '.opencode/skills/sk-doc/sk-create-readme/assets/install-guide-template.md::../../../../../install-guides/MCP%20-%20Spec%20Kit%20Memory.md',
-  '.opencode/skills/sk-doc/sk-create-readme/assets/install-guide-template.md::../../../../../install-guides/MCP%20-%20Code%20Mode.md',
+  '.skilled/skills/sk-doc/sk-create-readme/assets/install-guide-template.md::../../../../../install-guides/MCP%20-%20Spec%20Kit%20Memory.md',
+  '.skilled/skills/sk-doc/sk-create-readme/assets/install-guide-template.md::../../../../../install-guides/MCP%20-%20Code%20Mode.md',
   // illustrative client-domain example path
-  '.opencode/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md::/specs/005-example.com/024-performance-optimization/decision-record.md',
+  '.skilled/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md::/specs/005-example.com/024-performance-optimization/decision-record.md',
   // runtime-generated, gitignored advisory log — written only when the sentinel emits one,
   // so it is never a committed file; the referring row itself says "when the log exists"
-  '.opencode/skills/.state/completion-sentinel/README.md::../../logs/completion-sentinel-advisories.log',
+  '.skilled/skills/.state/completion-sentinel/README.md::../../logs/completion-sentinel-advisories.log',
 ]);
 
 function excluded(p) { return EXCLUDE_SEGMENTS.some((seg) => p.includes(seg)); }

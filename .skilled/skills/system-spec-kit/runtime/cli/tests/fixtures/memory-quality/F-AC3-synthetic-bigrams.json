@@ -9,7 +9,7 @@
   ],
   "filesModified": [
     {
-      "path": ".opencode/skills/system-spec-kit/runtime/cli/lib/semantic-signal-extractor.ts",
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/semantic-signal-extractor.ts",
       "action": "Modified",
       "description": "Rejects stopword-collapsed synthetic bigrams before they reach Key Topics"
     }

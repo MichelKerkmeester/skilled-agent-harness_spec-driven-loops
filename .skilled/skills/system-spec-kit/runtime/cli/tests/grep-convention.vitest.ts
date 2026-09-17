@@ -33,7 +33,7 @@ import {
 // `specs/`; without that rule the trigger index would read them and fail
 // publication closed for the whole corpus.
 const FIXTURE_DIR = fileURLToPath(new URL('../retrieval/fixtures/grep-convention/', import.meta.url));
-const FIXTURE_REPO_DIR = '.opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/grep-convention';
+const FIXTURE_REPO_DIR = '.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/grep-convention';
 
 function fixture(label: string): { path: string; text: string } {
   const name = `${label}.md`;

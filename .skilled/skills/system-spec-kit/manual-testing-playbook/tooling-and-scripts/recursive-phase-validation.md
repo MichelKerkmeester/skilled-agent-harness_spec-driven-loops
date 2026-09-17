@@ -41,7 +41,7 @@ Validate Recursive phase validation against create.sh "Validate Test" --phase --
 ### Commands
 
 1. Use the phase folder created in PHASE-002 (or create one via `create.sh "Validate Test" --phase --level 2 --phases 2`)
-2. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive specs/<phase-parent>`
+2. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive specs/<phase-parent>`
 3. Inspect output for per-phase validation results
 4. Verify JSON output contains `phases` array with one entry per child folder
 5. Verify combined exit code matches highest severity across children
@@ -75,7 +75,7 @@ Verify parent folder contains child folders matching `[0-9][0-9][0-9]-*/` patter
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)
 
-Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive specs/<phase-parent>
+Provenance: manual only - bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive specs/<phase-parent>
 
 ---
 

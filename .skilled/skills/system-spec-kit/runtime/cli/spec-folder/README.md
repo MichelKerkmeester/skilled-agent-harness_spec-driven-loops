@@ -82,19 +82,19 @@ Disallowed direction:
 Run from the repository root unless noted.
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
 ```
 
 Expected result: TypeScript compiles and emits `runtime/cli/dist/spec-folder/` files.
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder>
+node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder>
 ```
 
 Expected result: prints nested changelog data for the supplied packet path when the path exists.
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data.json specs/<###-feature-name>/
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data.json specs/<###-feature-name>/
 ```
 
 Expected result: continuity save workflow uses the explicit spec-folder target and supporting utilities from this folder.
@@ -117,14 +117,14 @@ Expected result: continuity save workflow uses the explicit spec-folder target a
 Run the README validator after editing this file:
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/cli/spec-folder/README.md
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/spec-folder/README.md
 ```
 
 Run build and a compiled-module smoke check after changing source files:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
-node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/index.js').then(m => console.log(Object.keys(m).length))"
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
+node -e "import('./.skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/index.js').then(m => console.log(Object.keys(m).length))"
 ```
 
 Expected result: build passes and the compiled public barrel exports module members.
