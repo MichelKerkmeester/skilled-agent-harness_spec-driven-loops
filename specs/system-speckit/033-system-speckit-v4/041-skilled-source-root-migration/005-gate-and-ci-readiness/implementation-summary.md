@@ -71,7 +71,7 @@ Eight workflows gained a `.skilled/` twin for each of their 56 path filters, dep
 
 ### Naming guard
 
-The guard's changed-since mode now passes a rename or copy that keeps its basename, so the four grandfathered snake_case names that move with the tree no longer fail. A new snake_case name, or a new snake_case directory on the destination path, still does.
+The guard's changed-since mode now passes a rename that keeps its basename, so the four grandfathered snake_case names that move with the tree no longer fail. A new snake_case name, a new snake_case directory on the destination path and a copy that keeps a snake_case name still do.
 
 ### Files Changed
 
@@ -114,7 +114,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 
 ### Commits
 
-`259f4f6cf4`, `a17d8ab9ce`, `50eca95e28`, `f7165195e2`, `b5f179bd0e`, `576ac3c930` (pre-commit), `5fa1f39da8`, `5ae40d3c1a` (pre-push), `4866bc8eea`, `6ad37a5a13`, `ae007f51a2`, `8ffe7e8dc3` (other hooks), `5cad25db6b`, `fc6305eb69`, `ecf3812ea1` (check, test, workflow), `60605917a9`, `f4f6ea659e`, `9f009e8dd3` (workflows), `be0c3974ab` (drill), `33f2d87531`, `60635ffca5` (naming guard), `0e60909b2e`, `452cc9b6dc` (READMEs), `27dd545510` (mass-deletion harness), `610374769a` (SessionStart harness pin), `fcc0b50028`, `07039dea39` (filter shapes). None is pushed.
+`259f4f6cf4`, `a17d8ab9ce`, `50eca95e28`, `f7165195e2`, `b5f179bd0e`, `576ac3c930` (pre-commit), `5fa1f39da8`, `5ae40d3c1a` (pre-push), `4866bc8eea`, `6ad37a5a13`, `ae007f51a2`, `8ffe7e8dc3` (other hooks), `5cad25db6b`, `fc6305eb69`, `ecf3812ea1` (check, test, workflow), `60605917a9`, `f4f6ea659e`, `9f009e8dd3` (workflows), `be0c3974ab` (drill), `33f2d87531`, `60635ffca5` (naming guard), `0e60909b2e`, `452cc9b6dc` (READMEs), `27dd545510` (mass-deletion harness), `610374769a` (SessionStart harness pin), `fcc0b50028`, `07039dea39` (filter shapes), `9e1bc29d87`, `904bcd479c` (rename-only guard). None is pushed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -148,7 +148,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 | `bash .github/scripts/check-gate-inputs.sh` | PASS: 32 files, 137 inputs resolved, 8 dynamic, 167 twin pairs, `RESULT: PASSED` in 0.6 s. Its fixture test passes 12 of 12 |
 | `bash .github/scripts/tests/broken-move-drill.sh` | PASS: 48 expectations, `RESULT: PASSED` in 49 s, including the earlier hooks passing every silent break without a word |
 | Other repositories | PASS: in a clean repository and one with a dangling `.opencode` link, every hook exits 0 and prints nothing beyond two warnings the earlier hooks also printed |
-| Naming guard | PASS: suite 7 of 7 with `-p no:cacheprovider`. `--changed-since 7085ec3290` prints `PASS:`, and on a rehearsal clone with the move staged the changed guard passes where the earlier one reports the four names |
+| Naming guard | PASS: suite 8 of 8 with `-p no:cacheprovider`. `--changed-since 7085ec3290` prints `PASS:`, and on a rehearsal clone with the move staged the changed guard passes where the earlier one reports the four names |
 | Comment hygiene, run directly | PASS: 0 violations. 12 files checked, 24 skipped by type and no id in the comments added to extensionless hooks |
 | Workflow syntax | PASS: 20 workflows and dependabot parse with `ruby -ryaml` |
 | No-op pre-commit timing | PASS: median 546 ms against a 559 ms baseline |

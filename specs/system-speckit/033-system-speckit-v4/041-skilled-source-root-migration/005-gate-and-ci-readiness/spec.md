@@ -97,7 +97,7 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 - Fail-closed replacements for the six skip conditionals.
 - The independent check with its workflow and test script, plus the broken-move drill.
 - New cases in the four hook test scripts whose files change, a new test script for the SessionStart hook check, and the environment scrub the mass-deletion harness lacked.
-- The naming guard's rule for a rename or copy that keeps its basename (REQ-012).
+- The naming guard's rule for a rename that keeps its basename (REQ-012).
 - Behavior notes in `.opencode/scripts/git-hooks/README.md`, its `tests/README.md` and `.github/workflows/README.md`.
 
 ### Out of Scope
@@ -158,10 +158,10 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 | ID | Requirement |
 |----|-------------|
 | REQ-008 | Every gate change has test coverage. The six existing hook test scripts keep their 126 passing cases, and each new case is seen failing against the unchanged file before its change lands. |
-| REQ-009 | Every contract change carries a GPT-5.6 review, with each finding fixed or answered before its commit. The contract changes are the missing-script rule, the fail-closed workflows, the independent check, the drill and the naming guard rule. |
+| REQ-009 | Every contract change carries a SWE-2 max review (amended 2026-09-17 by the operator after Codex's quota ran out), with each finding fixed or answered before its commit. The contract changes are the missing-script rule, the fail-closed workflows, the independent check, the drill and the naming guard rule. |
 | REQ-010 | No new code comment carries a spec path, packet or phase number or task id, and every new file name is kebab-case. |
 | REQ-011 | The handoff to phase 006 names each script the gates call whose own root literal this phase leaves in place, with its line. |
-| REQ-012 | The naming guard's changed-since mode reports no offender for a rename or copy that keeps its basename, so a pure move of a grandfathered name passes. A new snake_case basename, and a new snake_case directory on the destination path, still fail. Today four tracked names would fail once moved: `commands/prompt/assets/prompt_improve_auto.yaml`, `prompt_improve_confirm.yaml`, `prompt_improve_presentation.txt` and the grep-convention fixture `naming-exception/Spec_Draft.md`, whose name is the fixture's purpose (`.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py:143-176`, `:266-282`). |
+| REQ-012 | The naming guard's changed-since mode reports no offender for a rename that keeps its basename, so a pure move of a grandfathered name passes. A copy that keeps a snake_case basename still fails, because it adds a second snake_case name (amended 2026-09-17 by the operator). A new snake_case basename, and a new snake_case directory on the destination path, still fail. Today four tracked names would fail once moved: `commands/prompt/assets/prompt_improve_auto.yaml`, `prompt_improve_confirm.yaml`, `prompt_improve_presentation.txt` and the grep-convention fixture `naming-exception/Spec_Draft.md`, whose name is the fixture's purpose (`.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py:143-176`, `:266-282`). |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -187,7 +187,7 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 |------|------|--------|------------|
 | Dependency | Phase 004's frozen layout | The literal run paths, the log root and the move's commit shape stay unknown, so this phase cannot start (parent decision D1) | Wait for phase 004 to validate, and halt with a LOGIC-SYNC report if its layout contradicts this plan |
 | Dependency | DeepSeek V4.1 Flash on cli-pi through the LLM Gateway | Literal edits stall | The orchestrator makes them and records the deviation in `goal.md` |
-| Dependency | GPT-5.6 on cli-codex | A contract change lacks its second model family | The change waits for its review and is never merged unreviewed |
+| Dependency | SWE-2 max on cli-devin, replacing GPT-5.6 on cli-codex after its quota ran out | A contract change lacks its second model family | The change waits for its review and is never merged unreviewed |
 | Risk | Live hooks run from the main checkout: every file in `~/.config/git/hooks/` links to `Public/.opencode/scripts/git-hooks/` | High | A hook edited in the worktree is not live, so the tests call the worktree's hook files directly. Once the main checkout carries this phase, every repository on this machine that uses the global hooks runs the new code, so the foreign-repository proof passes first |
 | Risk | A new block fires in a repository that is not this one | High | The sentinel decides only what a missing script means. A present script runs as it does today in any repository, and a repository with no sentinel is never blocked |
 | Risk | A consumer project reaches this checkout through `.opencode -> Public/.opencode` (`PUBLIC-RELEASE.md:22`) | Med | The sentinel resolves through the link, so gates keep running there. If phase 004 shrinks `.opencode/`, phase 010 owns keeping consumers gated |
