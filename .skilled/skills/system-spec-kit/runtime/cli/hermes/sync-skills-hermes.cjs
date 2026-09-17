@@ -17,14 +17,14 @@ const path = require('node:path');
 
 const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
 const REPO_ROOT = findRepoRoot(__dirname);
-const SOURCE_DIR = process.env.HERMES_SKILLS_SOURCE_DIR || path.join(REPO_ROOT, '.opencode', 'skills');
+const SOURCE_DIR = process.env.HERMES_SKILLS_SOURCE_DIR || path.join(REPO_ROOT, '.skilled', 'skills');
 const OUTPUT_DIR = process.env.HERMES_SKILLS_OUTPUT_DIR || path.join(REPO_ROOT, '.hermes', 'skills');
 // Hermes has no flag that loads an agent file, and a plugin prompt section is capped at 4000
 // characters, so each shared agent persona is also mirrored as a preloadable skill named
 // `agent-<name>`: `-s agent-<name>` carries the whole persona into the session.
-// Agents are authored in .opencode/agents and mirrored to the other runtimes, so the mirror for
+// Agents are authored in .skilled/agents and mirrored to the other runtimes, so the mirror for
 // Hermes reads the source, not a sibling's copy.
-const AGENTS_DIR = process.env.HERMES_AGENTS_SOURCE_DIR || path.join(REPO_ROOT, '.opencode', 'agents');
+const AGENTS_DIR = process.env.HERMES_AGENTS_SOURCE_DIR || path.join(REPO_ROOT, '.skilled', 'agents');
 const AGENT_SKILL_PREFIX = 'agent-';
 // Hermes scans every project skill directory with its static security scanner at session start,
 // so the generated folder holds one markdown file per skill and nothing the scanner would walk:
@@ -78,7 +78,7 @@ function renderSkill(relativePath, content) {
   const skillDir = path.posix.dirname(relativePath);
   const fallbackName = path.posix.basename(skillDir);
   const name = frontmatterName(frontmatter, fallbackName);
-  const canonical = `.opencode/skills/${skillDir}`;
+  const canonical = `.skilled/skills/${skillDir}`;
   const header = [
     GENERATED_MARKER,
     `> Canonical source: \`${canonical}/\`. This is a generated markdown-only copy so Hermes can load the`,
