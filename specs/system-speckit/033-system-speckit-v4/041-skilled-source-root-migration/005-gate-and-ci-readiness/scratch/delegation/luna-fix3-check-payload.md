@@ -1,3 +1,14 @@
+# Files for unit luna-fix3-check
+
+Create each file named below with exactly the content between its two fence lines, without the fence lines themselves.
+
+## File 1
+
+File: `.github/scripts/check-gate-inputs.sh`
+
+CONTENT:
+
+~~~~text
 #!/usr/bin/env bash
 # Independent gate-input check.
 #
@@ -390,3 +401,4 @@ if [[ "$FAILS" -eq 0 ]]; then
 fi
 echo "RESULT: FAILED"
 exit 1
+~~~~
