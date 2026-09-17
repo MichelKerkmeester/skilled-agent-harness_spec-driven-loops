@@ -28,8 +28,8 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const AGENTS_DIR = path.join(REPO_ROOT, '.opencode', 'agents');
 
 // A changed path counts as an agent definition only when it sits directly inside
-// one of the two runtime agent directories.
-const AGENT_PATH_RE = /(?:^|\/)\.(?:opencode|claude)\/agents\/[^/]+$/;
+// the authored agent directory, under either source root, or the Claude mirror.
+const AGENT_PATH_RE = /(?:^|\/)\.(?:opencode|skilled|claude)\/agents\/[^/]+$/;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
