@@ -17,23 +17,30 @@
 // Usage:
 //   check-no-spec-imports.cjs            scan the default runtime dirs
 //   check-no-spec-imports.cjs <dir...>   scan explicit dirs (used by fixtures)
-// Exit 0 = clean, 1 = at least one violation (each named on stderr).
+// Exit 0 = clean, 1 = at least one violation (each named on stderr), 2 = the scan
+// read no file. A scan that reads nothing proves nothing, and it must not share the
+// violation code: a caller that expects a violation from a fixture would otherwise
+// accept a fixture that moved away.
 
 const fs = require('fs');
 const path = require('path');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 // specs/ is the canonical physical tree; .opencode/specs is a compat symlink
-// alias to it. path.resolve() is lexical and never follows symlinks, so an
-// import written against either form must be checked against its own root —
-// checking only one root lets an import through the other spelling.
+// alias to it, and the source tree may sit under .skilled instead, which spells
+// the alias .skilled/specs. path.resolve() is lexical and never follows symlinks,
+// so an import written against any form must be checked against its own root —
+// checking only one root lets an import through another spelling.
 const SPECS_ROOTS = [
   path.join(REPO_ROOT, 'specs'),
   path.join(REPO_ROOT, '.opencode', 'specs'),
+  path.join(REPO_ROOT, '.skilled', 'specs'),
 ];
 
-// Runtime directories that must never import from the spec tree.
-const DEFAULT_ROOTS = [path.join(REPO_ROOT, '.opencode', 'bin')];
+// Runtime directories that must never import from the spec tree. This guard lives
+// in that directory, and Node reports its real path through an .opencode link, so
+// its own directory is the runtime directory under whichever name the tree has.
+const DEFAULT_ROOTS = [__dirname];
 
 // The promoted closure is generated (byte copies of the authored source) and is
 // intentionally the runtime's own copy, not a spec import; skip it.
@@ -92,7 +99,7 @@ function underSpecs(abs) {
 }
 
 function targetResolvesUnderSpecs(fileDir, target) {
-  if (target.includes('.opencode/specs') || target.includes('/specs/')) return true;
+  if (target.includes('.opencode/specs') || target.includes('.skilled/specs') || target.includes('/specs/')) return true;
   if (!target.startsWith('.')) return false; // bare module id, not a path import
   const resolved = path.resolve(fileDir, target);
   return underSpecs(resolved);
@@ -119,7 +126,7 @@ function scanFile(file) {
     }
     // Catch a spec-tree path reconstructed from a string literal even when it is
     // fed to a dynamic require via a variable (the original coupling's shape).
-    if (line.includes(COMPILED_ROUTING_SPEC_FRAGMENT) || line.includes('.opencode/specs')) {
+    if (line.includes(COMPILED_ROUTING_SPEC_FRAGMENT) || line.includes('.opencode/specs') || line.includes('.skilled/specs')) {
       if (/\b(require|import)\b/.test(line) || /['"][^'"]*specs\/sk-doc\/019-skill-routing-refactor/.test(line)) {
         violations.push({ file, line: index + 1, target: line.trim().slice(0, 120), reason: 'compiled-routing spec-tree path literal in runtime code' });
       }
@@ -133,6 +140,10 @@ function main() {
   const roots = argv.length > 0 ? argv.map((d) => path.resolve(d)) : DEFAULT_ROOTS;
   const files = [];
   for (const root of roots) walk(root, files);
+  if (files.length === 0) {
+    process.stderr.write(`FAIL: scanned no runtime file under ${roots.join(', ')}; an empty scan proves nothing\n`);
+    process.exit(2);
+  }
 
   const violations = [];
   for (const file of files) violations.push(...scanFile(file));
