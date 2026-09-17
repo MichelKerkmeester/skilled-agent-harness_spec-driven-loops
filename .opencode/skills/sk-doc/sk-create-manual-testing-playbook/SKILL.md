@@ -174,6 +174,25 @@ Package invariants:
 - Benchmark tier is owned by the per-feature file's optional `stage:` frontmatter field (`routing` default, or `holdout`/`negative`), not by a filename token.
 - Every feature ID maps to exactly one per-feature file.
 
+Two runtimes, where a system ships as both a skill and a hosted assistant:
+
+- Write two scenario sets, never one system tested twice. Category folders carry a
+  prefix naming the runtime, and every per-feature file carries a matching
+  `- Runtime:` line in `SOURCE METADATA`.
+- Each set opens with one identity handover scenario, named as a precondition by
+  every other scenario in that set. It passes only when the reply carries a
+  verbatim string present in that runtime's own instructions and absent from the
+  other's, plus the delivery contract only that runtime can honour. A reply that
+  could have come from either runtime is a FAIL.
+- A handover string is proved against each runtime's whole load surface, not
+  against its top-level instruction file alone. A skill runtime loads that file
+  and everything the file sends it to. A hosted runtime loads its own
+  instructions and every document attached to it. A string absent from one file
+  and present three directories away has not been proved.
+- Read the string at run time where it can move. Grading on a literal version
+  line fails the next time that version is bumped, which makes a version check
+  wearing an identity check's clothes.
+
 Contract boundary:
 
 - The operator-scenario contract is the five-section, execution-evidence contract
