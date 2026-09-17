@@ -47,8 +47,12 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
       ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
       ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/commands/speckit/search.md",
+      ".skilled/agents/context.md",
       ".claude/agents/context.md",
       ".claude/skills/sk-git/SKILL.md",
       ".pi/skills/sk-git/SKILL.md",
@@ -56,11 +60,7 @@
       ".claude/commands/speckit/search.md",
       ".cursor/commands/speckit-search.md",
       ".opencode/commands/speckit/search.md",
-      ".hermes/agents/context.md",
-      ".opencode/agents/context.md",
-      ".cursor/agents/context.md",
-      ".devin/agents/context/AGENT.md",
-      ".codex/prompts/speckit-search.md"
+      ".hermes/agents/context.md"
     ],
     "entities": [
       {
@@ -100,6 +100,12 @@
         "source": "derived"
       },
       {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
         "name": "test_verify_alignment_drift.py",
         "kind": "file",
         "path": ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
@@ -112,33 +118,27 @@
         "source": "derived"
       },
       {
-        "name": "context.md",
-        "kind": "doc",
-        "path": ".claude/agents/context.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".claude/skills/sk-git/SKILL.md",
+        "path": ".skilled/skills/sk-git/SKILL.md",
         "source": "derived"
       },
       {
         "name": "search.md",
         "kind": "doc",
-        "path": ".claude/commands/speckit/search.md",
+        "path": ".skilled/commands/speckit/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".skilled/agents/context.md",
         "source": "derived"
       },
       {
         "name": "speckit-search.md",
         "kind": "doc",
         "path": ".cursor/commands/speckit-search.md",
-        "source": "derived"
-      },
-      {
-        "name": "AGENT.md",
-        "kind": "doc",
-        "path": ".devin/agents/context/AGENT.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nothing yet proves that the `.skilled` source root works on the seven runtimes, in the local gates and in CI",
     "created_at": "2026-09-16T17:54:10Z",
-    "last_save_at": "2026-09-16T18:43:45.830Z",
+    "last_save_at": "2026-09-17T21:51:33.525Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a9dcfddbb905c7a05072701230dc9f1a6f4164c9b267878632dbdde9eb9fd57",
+    "source_fingerprint": "sha256:503d4f212e4f6ab09b80ac5ee4ae1530be3c4fc457b26c610dbc57c00b87f883",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "877dd8e3ff0e0bf893f4aeaea53f2962a8c0dedebe6ae6a2d485667232955cf7",
       "plan.md": "c7dd6c178d4a4b6a5c662f472156cf0cffbb1b9f7eb76febe26159696b0d8a59",
-      "tasks.md": "a99fa36b6d891686b4cd7f2d178cd99964ee0caf2868a7a1b140463820dbedfe",
-      "implementation-summary.md": "37f2d22c5847bd494f142a3539c106317497af97d3fb337b01ff17a95dcb517a"
+      "tasks.md": "bb6b7378d961feca4338674f64a00e96d485c885a7a1c952a63ebe47e94b960b",
+      "implementation-summary.md": "672c170b4bd610f0f03fedb2197c8a814be8a7739425749b65e3dd08094ba48a"
     },
     "last_active_at": null
   }

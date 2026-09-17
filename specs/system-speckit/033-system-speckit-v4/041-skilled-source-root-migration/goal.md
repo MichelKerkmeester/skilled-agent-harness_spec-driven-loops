@@ -83,12 +83,12 @@ while unset, without stopping work.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] All eleven phases validate PASSED, acceptance criteria met
-- [ ] `.skilled/` holds the authored tree; `.opencode/` keeps only what 004 chose
-- [ ] Each runtime live-loads its skill, command and agent surfaces from `.skilled/` or a synced copy
-- [ ] Drift guards, retrieval and deep-loop suites pass; pushed-tip CI adds no failure to the pre-005 baseline
-- [ ] No tracked file outside changelogs, reports and specs names a dropped `.opencode` path
-- [ ] Global hooks and home configs here point at `.skilled/` or an ADR-003 kept path, rollback recorded
+- [x] All eleven phases validate PASSED, acceptance criteria met
+- [x] `.skilled/` holds the authored tree; `.opencode/` keeps only what 004 chose
+- [x] Each runtime live-loads its skill, command and agent surfaces from `.skilled/` or a synced copy
+- [x] Drift guards, retrieval and deep-loop suites pass; pushed-tip CI adds no failure to the pre-005 baseline
+- [x] No tracked file outside changelogs, reports and specs names a dropped `.opencode` path
+- [x] Global hooks and home configs here point at `.skilled/` or an ADR-003 kept path, rollback recorded
 <!-- /ANCHOR:completion -->
 
 ---
@@ -115,6 +115,7 @@ and findings belong here.
 | Phase 008 links and generated state | Done, committed locally `88425278a6` to `aaea487a2b` | 27 hand-made links and 144 mirrors now target `.skilled` directly, three dangling links are retired, and every generator reads `.skilled` constants: hooks, mirrors, Codex, Pi and Hermes copies, the Gate 1 pointer, command contracts, compiled routing, skill metadata, dist freshness, the package lock and the trigger index. The census counts 433 links with only the 4 frozen records dangling and no old-root target, 14 of 15 freshness checks pass with the fifteenth predating the move, every generator is idempotent, and six Luna reviews are dispositioned. Consumer-checkout ordering is handed to phase 010, and four scripts that still cut paths at `/.opencode/` go to phase 009 |
 | Phase 009 reference rewrite | Done, committed locally `7175a82823` to `6e9b8d69f7` | 2,743 tracked files now name `.skilled`; 1,673 occurrences kept the old name by recorded decision (the opencode runtime's own view, root discovery, consumer projects, the specs alias, legacy-layout tests); 36 hand edits give path matchers both root names; the rescan and an independent recount both report zero unclassified; suites add no failing identity against the phase base and fix 21; `validate.sh --strict` PASSED |
 | Phase 010 machine and consumer cutover | Done, committed locally through `974d27e29b` | The machine moved inside a hook bridge: `core.hooksPath` ran on plain copies from 19:57:54Z until 20:11:07Z, so no repository here was ever a commit away from running no gates. The main checkout fast-forwarded from `PRE` `3717ac8854` to the migrated tree, 138 ignored entries moved out of the old root and 40,040 files back under the new one, and the old name survives as a link. Seven global hooks, 18 Codex hook identities, the Codex trust header and two Pi manifest lines now name `.skilled`; the Hermes launcher stays on the old name because consumer projects expose only that. Four consumer roots gained an untracked link and a local exclude. Checkpoints 1 to 5 clean, V1 to V10 pass, residue census zero `must-fix`, restorability proven from `~/.skilled-cutover-backup/20260917T195302Z/manifest.tsv` |
+| Phase 011 verification and rollout | Done, published at `48e5740f3b` | Twenty-one canary cells across seven runtimes, the thirteen local gates, the tree-shape and residue scan with a planted control, then the push to `skilled/v4.0.0.0` and `main` with no bypass variable. CI ran 11 green of 12; the one failure fails 3 packages where the pre-move base fails 5. The primary checkout carries the published commit and its seven hook links, Codex registration and home configs all read the new root |
 | CI on the pushed tip | Checked | All 22 runs for `1d198996ca` and `728c4f3efc` completed; the naming guard went red, then green at `728c4f3efc` |
 
 ### Deviations and findings
@@ -148,4 +149,10 @@ and findings belong here.
 | The hook installer preferred the legacy root | It tried the old directory first and fell back to the real one only when the old path was missing, which a link makes impossible. The first relink therefore recorded seven targets that reach their scripts through the link. Fixed at `974d27e29b`, then relinked again to the real targets |
 | The landing ran with other sessions live | Six code-mode launchers and the advisor daemon belong to other sessions and were left running, since the old name stays resolvable. The advisor's `skill-graph.sqlite` advanced during the window, keeping its inode; `pragma integrity_check` returns `ok` |
 | Push rollback, written before any push | Pinned for the rollout: `TIP` `85ba7554baa425c10556f1089b872e1078ae1392`, `BASE` = `OLD_V4` = `OLD_MAIN` = `3717ac8854bcc755e8d56591ab3b2d0d21484105`, 28 commits to publish. Undo for either branch is `git push --force-with-lease origin 3717ac8854bcc755e8d56591ab3b2d0d21484105:<branch>`, which needs the branch to have moved no further; after that the main checkout goes back with `git -C <main checkout> reset --hard 3717ac8854`, the global hooks with `rm -f ~/.config/git/hooks/* && cp -a ~/.skilled-cutover-backup/20260917T195302Z/git-hooks/. ~/.config/git/hooks/`, and each home file from its manifest row. Once anyone else has fetched the moved tree, undoing it is a forward fix on every clone rather than a rewind |
+| Criterion 1 receipt | All twelve packets, the parent and eleven children, print `RESULT: PASSED` on their own strict runs |
+| Criterion 2 receipt | `.skilled/` holds the ten authored directories; `.opencode` is a single tree entry at mode 120000 pointing at `.skilled`, which is 004's L1 shape, and no link under it dangles |
+| Criterion 3 receipt | Codex, Hermes, opencode and Pi answered all four canary cells; Claude answered skill and command, and its agent control cannot be clean because the runtime injects the agent roster into every session; Devin answered its skill cell and its listing reads the new root, while its subagent cell needs a permission mode this phase did not widen; Cursor was out of account quota, and its command and agent files still resolve into the tree. The eight resolving copies all point under the new root |
+| Criterion 4 receipt | Drift guards `all 2 guards PASSED`, retrieval `Test Files 6 passed`, deep-loop `154 files / 2,684 tests` against a 154 / 2,681 baseline. Every remaining local failure reproduces at the pre-move base, and CI's one red workflow fails fewer packages than the base does |
+| Criterion 5 receipt | Nothing was dropped: the old root survives as a link by ADR-003, so every remaining mention still resolves. Phase 009's rescan reports zero unclassified at this tip, and a planted control in a clone proved the scan pattern catches both a markdown and a JSON mention |
+| Criterion 6 receipt | Seven hook links name `<primary>/.skilled/scripts/git-hooks/`, 18 Codex identities moved and none remain on the old root, the Codex trust header and two Pi manifest lines name the new root, and the Hermes launcher stays on the old name as ADR-003 K13 requires. Rollback is the row above, with a per-item restore command in the backup manifest |
 <!-- /ANCHOR:log -->
