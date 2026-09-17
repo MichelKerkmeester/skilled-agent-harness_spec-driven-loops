@@ -341,86 +341,86 @@
       "apply or score prose against the Human Voice Rules"
     ],
     "key_files": [
-      ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/skills/sk-doc/README.md",
-      ".opencode/skills/sk-doc/mode-registry.json",
-      ".opencode/skills/sk-doc/hub-router.json",
-      ".opencode/skills/sk-doc/description.json",
-      ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
-      ".opencode/skills/sk-doc/sk-create-quality-control/SKILL.md",
-      ".opencode/skills/sk-doc/sk-create-changelog/SKILL.md",
-      ".opencode/skills/sk-design/sk-design-chart/SKILL.md",
-      ".opencode/skills/sk-doc/sk-create-diff/SKILL.md",
-      ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
-      ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      ".opencode/skills/sk-doc/shared/scripts/extract_structure.py"
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/README.md",
+      ".skilled/skills/sk-doc/mode-registry.json",
+      ".skilled/skills/sk-doc/hub-router.json",
+      ".skilled/skills/sk-doc/description.json",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-quality-control/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/sk-design/sk-design-chart/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-diff/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/shared/scripts/extract_structure.py"
     ],
     "entities": [
       {
         "name": "sk-doc",
         "kind": "skill",
-        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "path": ".skilled/skills/sk-doc/SKILL.md",
         "source": "derived"
       },
       {
         "name": "mode-registry",
         "kind": "config",
-        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "path": ".skilled/skills/sk-doc/mode-registry.json",
         "source": "derived"
       },
       {
         "name": "hub-router",
         "kind": "config",
-        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "path": ".skilled/skills/sk-doc/hub-router.json",
         "source": "derived"
       },
       {
         "name": "sk-create-skill",
         "kind": "reference",
-        "path": ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
         "source": "derived"
       },
       {
         "name": "sk-create-quality-control",
         "kind": "reference",
-        "path": ".opencode/skills/sk-doc/sk-create-quality-control/SKILL.md",
+        "path": ".skilled/skills/sk-doc/sk-create-quality-control/SKILL.md",
         "source": "derived"
       },
       {
         "name": "sk-create-changelog",
         "kind": "reference",
-        "path": ".opencode/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
         "source": "derived"
       },
       {
         "name": "sk-create-diff",
         "kind": "reference",
-        "path": ".opencode/skills/sk-doc/sk-create-diff/SKILL.md",
+        "path": ".skilled/skills/sk-doc/sk-create-diff/SKILL.md",
         "source": "derived"
       },
       {
         "name": "sk-create-repo-rule",
         "kind": "reference",
-        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
         "source": "derived"
       },
       {
         "name": "sk-create-with-human-voice",
         "kind": "reference",
-        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
         "source": "derived"
       },
       {
         "name": "validate_document",
         "kind": "script",
-        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
         "source": "derived"
       },
       {
         "name": "extract_structure",
         "kind": "script",
-        "path": ".opencode/skills/sk-doc/shared/scripts/extract_structure.py",
+        "path": ".skilled/skills/sk-doc/shared/scripts/extract_structure.py",
         "source": "derived"
       }
     ],

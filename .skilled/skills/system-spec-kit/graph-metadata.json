@@ -91,69 +91,69 @@
       "preserve continuity"
     ],
     "key_files": [
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-      ".opencode/skills/system-spec-kit/references/workflows/quick-reference.md",
-      ".opencode/skills/system-spec-kit/references/memory/memory-system.md",
-      ".opencode/skills/system-spec-kit/config/config.jsonc",
-      ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
-      ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts"
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/system-spec-kit/ARCHITECTURE.md",
+      ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+      ".skilled/skills/system-spec-kit/references/memory/memory-system.md",
+      ".skilled/skills/system-spec-kit/config/config.jsonc",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts"
     ],
     "entities": [
       {
         "name": "system-spec-kit",
         "kind": "skill",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README",
         "kind": "reference",
-        "path": ".opencode/skills/system-spec-kit/README.md",
+        "path": ".skilled/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
         "name": "ARCHITECTURE",
         "kind": "reference",
-        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+        "path": ".skilled/skills/system-spec-kit/ARCHITECTURE.md",
         "source": "derived"
       },
       {
         "name": "quick_reference",
         "kind": "reference",
-        "path": ".opencode/skills/system-spec-kit/references/workflows/quick-reference.md",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
         "source": "derived"
       },
       {
         "name": "retrieval_and_continuity",
         "kind": "reference",
-        "path": ".opencode/skills/system-spec-kit/references/memory/memory-system.md",
+        "path": ".skilled/skills/system-spec-kit/references/memory/memory-system.md",
         "source": "derived"
       },
       {
         "name": "config",
         "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/config/config.jsonc",
+        "path": ".skilled/skills/system-spec-kit/config/config.jsonc",
         "source": "derived"
       },
       {
         "name": "create",
         "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
         "source": "derived"
       },
       {
         "name": "validate",
         "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
         "source": "derived"
       },
       {
         "name": "generate-context",
         "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
         "source": "derived"
       }
     ],

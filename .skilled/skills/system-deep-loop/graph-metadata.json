@@ -126,32 +126,32 @@
       "runtime-infrastructure"
     ],
     "key_files": [
-      ".opencode/skills/system-deep-loop/SKILL.md",
-      ".opencode/skills/system-deep-loop/mode-registry.json",
-      ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
-      ".opencode/skills/system-deep-loop/shared/synthesis/resource-map.cjs",
-      ".opencode/skills/system-deep-loop/runtime/README.md"
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/system-deep-loop/mode-registry.json",
+      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+      ".skilled/skills/system-deep-loop/shared/synthesis/resource-map.cjs",
+      ".skilled/skills/system-deep-loop/runtime/README.md"
     ],
     "entities": [
       {
         "name": "system-deep-loop",
         "kind": "skill",
-        "path": ".opencode/skills/system-deep-loop/SKILL.md",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
         "source": "derived"
       },
       {
         "name": "mode-registry",
         "kind": "config",
-        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "path": ".skilled/skills/system-deep-loop/mode-registry.json",
         "source": "derived"
       },
       {
         "name": "runtime",
         "kind": "reference",
-        "path": ".opencode/skills/system-deep-loop/runtime/README.md",
+        "path": ".skilled/skills/system-deep-loop/runtime/README.md",
         "source": "derived"
       }
     ],

@@ -33,7 +33,7 @@ function testAuthoredFieldsPreservedThroughRepair() {
   const input = clone(SK_GIT_DERIVED);
   input.lifecycle_status = 'deprecated';
   input.redirect_to = 'sk-code';
-  input.key_files = [...input.key_files, '.opencode/skills/sk-git/DOES-NOT-EXIST.md']; // forces a repair
+  input.key_files = [...input.key_files, '.skilled/skills/sk-git/DOES-NOT-EXIST.md']; // forces a repair
   const { derived, changes } = regen.repairDerived(SK_GIT_DIR, input);
   assert.ok(changes.some((c) => c.startsWith('key_files:')), 'the dead key_file should be pruned');
   assert.equal(derived.lifecycle_status, 'deprecated', 'lifecycle_status must survive the repair');
@@ -44,9 +44,9 @@ function testAuthoredFieldsPreservedThroughRepair() {
 // A dead structural reference is detected as drift (the freshness signal).
 function testDeadKeyFilePrunedAndFlaggedStale() {
   const input = clone(SK_GIT_DERIVED);
-  input.key_files = [...input.key_files, '.opencode/skills/sk-git/GHOST.md'];
+  input.key_files = [...input.key_files, '.skilled/skills/sk-git/GHOST.md'];
   const { derived, changes } = regen.repairDerived(SK_GIT_DIR, input);
-  assert.ok(!derived.key_files.includes('.opencode/skills/sk-git/GHOST.md'), 'ghost path pruned');
+  assert.ok(!derived.key_files.includes('.skilled/skills/sk-git/GHOST.md'), 'ghost path pruned');
   assert.equal(regen.derivedChanged(input, derived), true, 'a pruned dead reference is a real change');
   assert.ok(changes.length > 0);
 }
@@ -79,7 +79,7 @@ function testGateFailsOnStaleRoot() {
   fs.writeFileSync(path.join(demo, 'references', 'a.md'), '# a\n');
   const derived = clone(SK_GIT_DERIVED);
   derived.source_docs = ['references/a.md'];
-  derived.key_files = ['.opencode/skills/sk-git/SKILL.md', '.opencode/skills/sk-git/GHOST.md'];
+  derived.key_files = ['.skilled/skills/sk-git/SKILL.md', '.skilled/skills/sk-git/GHOST.md'];
   fs.writeFileSync(path.join(demo, 'graph-metadata.json'), JSON.stringify({ schema_version: 2, derived }, null, 2));
   const original = process.stdout.write.bind(process.stdout);
   process.stdout.write = () => true;

@@ -54,13 +54,13 @@
       "moondream"
     ],
     "key_files": [
-      ".opencode/skills/sk-vision/SKILL.md"
+      ".skilled/skills/sk-vision/SKILL.md"
     ],
     "entities": [
       {
         "name": "sk-vision",
         "kind": "skill",
-        "path": ".opencode/skills/sk-vision/SKILL.md",
+        "path": ".skilled/skills/sk-vision/SKILL.md",
         "source": "derived"
       }
     ],
