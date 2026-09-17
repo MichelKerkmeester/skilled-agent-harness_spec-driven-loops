@@ -11,8 +11,9 @@
 # Rules:
 #   gate-files       every hook, hook library, the legacy helper and the SessionStart
 #                    check exists under .opencode/ or .skilled/
-#   hook-inputs      every literal $REPO_ROOT/.opencode/<path> a hook command uses, and
-#                    every variable assigned a literal .opencode/<path>, resolves
+#   hook-inputs      every literal $REPO_ROOT/.opencode/<path> a hook command uses, every
+#                    variable assigned a literal .opencode/<path> and every quoted literal
+#                    .opencode/<path> handed to a command other than git resolves
 #   workflow-inputs  every literal .opencode/<path> a workflow runs resolves, a glob
 #                    matches something, and the directory that installs or builds a
 #                    node_modules or dist path exists. Echo and printf text runs nothing
@@ -55,8 +56,10 @@ fail() { # fail <rule> <location> <detail>
 
 # Line helpers shared by the parsers. A comment starts at a # that follows whitespace
 # outside quotes, and a command splits at ;, |, && and || outside quotes, so neither a
-# trailing comment nor a second command can lend a twin to the first. Quote state does
-# not carry across lines, and escaped quotes are not tracked.
+# trailing comment nor a second command can lend a twin to the first. A $( ... )
+# substitution is a command of its own, even inside double quotes, so a git call nested
+# in another command's arguments speaks only for its own. Quote state does not carry
+# across lines, and escaped quotes are not tracked.
 LEX_AWK='
 function uncomment(s,    i, n, c, q, prev, t) {
   n = length(s); q = ""; prev = " "
@@ -69,10 +72,13 @@ function uncomment(s,    i, n, c, q, prev, t) {
   }
   return s
 }
-function segments(s, out,    i, n, c, nxt, q, k, cur) {
-  n = length(s); k = 1; cur = ""; q = ""
+function segments(s, out,    i, n, c, nxt, q, k, cur, depth, saved) {
+  n = length(s); k = 1; cur = ""; q = ""; depth = 0
   for (i = 1; i <= n; i++) {
     c = substr(s, i, 1); nxt = substr(s, i + 1, 1)
+    if (q == "\047") { if (c == q) q = ""; cur = cur c; continue }
+    if (c == "$" && nxt == "(") { saved[++depth] = q; q = ""; out[k++] = cur; cur = ""; i++; continue }
+    if (c == ")" && depth > 0 && q == "") { q = saved[depth--]; out[k++] = cur; cur = ""; continue }
     if (q != "") { if (c == q) q = ""; cur = cur c; continue }
     if (c == "\047" || c == "\"") { q = c; cur = cur c; continue }
     if (c == ";" || c == "|" || (c == "&" && nxt == "&")) {
@@ -144,50 +150,65 @@ check_regex() { # check_regex <relpath>
   done <<<"$PARSED"
 }
 
-# Script paths a hook builds from a variable or assigns as a literal, and pathspecs it
-# hands to git, grouped by the array or by the command segment that holds them. A root
-# path in a git command is a pathspec with or without --, written out or behind a
-# variable, while a variable path in an array is a script path to resolve. A git
-# command runs on over backslash continuation lines. Messages, a variable path to the
-# root itself or to .skilled outside git, quoted arguments to other commands and
-# regexes are read as notes, and any other segment that names a root is a miss.
+# Script paths a hook builds from a variable, assigns or quotes as a literal, and
+# pathspecs it hands to git, grouped by the array or by the command segment that holds
+# them. git is recognized by its name at the end of any command path. A root path in a
+# git command is a pathspec with or without --, written out or behind a variable, and
+# the root directory itself counts, with or without its trailing slash. A variable path
+# in an array is a script path to resolve, and a command that follows an array's closing
+# paren on the same line is read as a command. A git command runs on over backslash
+# continuation lines. Messages, a variable path to the root itself or to .skilled outside
+# git, quoted arguments that hold a variable or a glob, and regexes are read as notes,
+# and any other segment that names a root is a miss.
 HOOK_AWK='
 function emit(kind, tok) { hits++; print FNR "\t" kind "\t" tok }
 function roots(text, grp,    tok, c) {
-  while (match(text, /(^|[^A-Za-z0-9_}\/$.])\.(opencode|skilled)\/[A-Za-z0-9._*\/$-]*/)) {
-    tok = substr(text, RSTART, RLENGTH); c = substr(tok, 1, 1)
+  while (match(text, /(^|[^A-Za-z0-9_}\/$.])\.(opencode|skilled)(\/[A-Za-z0-9._*\/$-]*)?/)) {
+    tok = substr(text, RSTART, RLENGTH); c = substr(tok, 1, 1); text = substr(text, RSTART + RLENGTH)
+    if (text ~ /^[A-Za-z0-9_]/) continue
     if (c != ".") tok = substr(tok, 2)
-    record(tok, grp); text = substr(text, RSTART + RLENGTH)
+    record(tok, grp)
   }
 }
 function varpaths(text, grp, pathspec,    tok, var, path) {
   while (match(text, /\$[{]?[A-Za-z_][A-Za-z0-9_]*[}]?\/\.(opencode|skilled)(\/[A-Za-z0-9._\/-]*)?/)) {
     tok = substr(text, RSTART, RLENGTH); text = substr(text, RSTART + RLENGTH)
+    if (text ~ /^[A-Za-z0-9_]/) continue
     var = tok; sub(/\/\.(opencode|skilled).*/, "", var); path = tok; sub(/^[^\/]*\//, "", path)
-    if (pathspec && path ~ /\/./) record(path, grp)
+    if (pathspec) record(path, grp)
     if (path ~ /^\.opencode\/./) emit((var ~ /REPO_ROOT/ ? "repo" : "var"), path)
     else emit("note", "read")
   }
 }
-function unread(part) { if (part ~ /\.(opencode|skilled)/ && !hits) emit("miss", "segment") }
+function closing(s,    i, n, c, q) {
+  n = length(s); q = ""
+  for (i = 1; i <= n; i++) {
+    c = substr(s, i, 1)
+    if (q != "") { if (c == q) q = ""; continue }
+    if (c == "\047" || c == "\"") q = c
+    else if (c == ")") return i
+  }
+  return 0
+}
+function unread(text) { if (text ~ /\.(opencode|skilled)/ && !hits) emit("miss", "segment") }
 {
   raw = $0
   if (raw ~ /^[[:space:]]*#/) next
   code = (raw ~ /#/) ? uncomment(raw) : raw
   if (!cont) { cmd = FNR; seg = 0; spec = 0 }
   cont = (raw ~ /\\$/)
+  if (!inarr && code ~ /^[[:space:]]*((local|declare|typeset|readonly)([[:space:]]+-[A-Za-z]+)*[[:space:]]+)?[A-Za-z_][A-Za-z0-9_]*=\(/) {
+    inarr = 1; arr = FNR; sub(/^[^(]*\(/, "", code)
+  }
   if (inarr) {
-    if (code ~ /^[[:space:]]*\)/) { inarr = 0; next }
-    hits = 0; varpaths(code, "array" arr, 0); roots(code, "array" arr); unread(code); next
+    endp = closing(code)
+    elements = endp ? substr(code, 1, endp - 1) : code
+    hits = 0; varpaths(elements, "array" arr, 0); roots(elements, "array" arr); unread(elements)
+    if (!endp) next
+    inarr = 0; code = substr(code, endp + 1); cmd = FNR; seg = 0; spec = 0
+    if (code !~ /[^[:space:]]/) next
   }
-  if (code ~ /^[[:space:]]*((local|declare|typeset|readonly)([[:space:]]+-[A-Za-z]+)*[[:space:]]+)?[A-Za-z_][A-Za-z0-9_]*=\(/) {
-    if (code ~ /=\([[:space:]]*$/) { inarr = 1; arr = FNR; next }
-    if (code ~ /\)[[:space:]]*$/) {
-      inner = code; sub(/^[^(]*\(/, "", inner); sub(/\)[[:space:]]*$/, "", inner)
-      hits = 0; varpaths(inner, "array" FNR, 0); roots(inner, "array" FNR); unread(code); next
-    }
-  }
-  n = (code ~ /[;|&]/) ? segments(code, parts) : 1
+  n = (code ~ /[;|&]|\$\(/) ? segments(code, parts) : 1
   if (n == 1) parts[1] = code
   for (p = 1; p <= n; p++) {
     if (p > 1) { seg++; spec = 0 }
@@ -196,21 +217,26 @@ function unread(part) { if (part ~ /\.(opencode|skilled)/ && !hits) emit("miss",
       if (part ~ /\.(opencode|skilled)/) emit("note", "message")
       continue
     }
-    if (part ~ /^[[:space:]]*((local|export|readonly)[[:space:]]+)?[A-Za-z_][A-Za-z0-9_]*="?\.opencode\/[A-Za-z0-9._\/-]+"?[[:space:]]*$/) {
+    if (part ~ /^[[:space:]]*((local|export|readonly|declare|typeset)([[:space:]]+-[A-Za-z]+)*[[:space:]]+)?[A-Za-z_][A-Za-z0-9_]*="?\.opencode\/[A-Za-z0-9._\/-]+"?[[:space:]]*$/) {
       path = part; sub(/^[^=]*="?/, "", path); sub(/"?[[:space:]]*$/, "", path); emit("repo", path)
       continue
     }
-    if (part ~ /(^|[[:space:]])git[[:space:]]/) spec = 1
+    if (part ~ /(^|[^A-Za-z0-9_.-])git[[:space:]]/) spec = 1
     varpaths(part, grp, spec)
     if (part ~ /\\\.(opencode|skilled)\// || part ~ /(\(|\|)(opencode|skilled)(\||\))/) emit("note", "regex")
     rest = part
-    while (match(rest, /\047\.(opencode|skilled)\/[^\047]*\047/)) {
+    while (match(rest, /\047\.(opencode|skilled)(\/[^\047]*)?\047/)) {
       record(substr(rest, RSTART + 1, RLENGTH - 2), grp); rest = substr(rest, RSTART + RLENGTH)
     }
     if (spec) {
       rest = part; sub(/.*[[:space:]]--([[:space:]]|$)/, "", rest); gsub(/\047[^\047]*\047/, "", rest); roots(rest, grp)
-    } else if (part ~ /"\.(opencode|skilled)\//) {
-      emit("note", "argument")
+    } else {
+      rest = part
+      while (match(rest, /"\.(opencode|skilled)\/[^"]*"/)) {
+        lit = substr(rest, RSTART + 1, RLENGTH - 2); rest = substr(rest, RSTART + RLENGTH)
+        if (lit ~ /^\.opencode\/[A-Za-z0-9._\/-]+$/) emit("repo", lit)
+        else emit("note", "argument")
+      }
     }
     unread(part)
   }
@@ -277,7 +303,7 @@ function unread(part) { if (part ~ /\.(opencode|skilled)/ && !hits) emit("miss",
   if (code ~ /^[ ]*-?[ ]*name:/) { if (code ~ /\.(opencode|skilled)/) emit("note", "label"); next }
   if (code ~ /^[ ]*(-[ ]+)?run:[ ]+"/) { sub(/run:[ ]+"/, "run: ", code); sub(/"$/, "", code); gsub(/\\"/, "\"", code) }
   else if (code ~ /^[ ]*(-[ ]+)?run:[ ]+\047/) { sub(/run:[ ]+\047/, "run: ", code); sub(/\047$/, "", code); gsub(/\047\047/, "\047", code) }
-  n = (code ~ /[;|&]/) ? segments(code, parts) : 1
+  n = (code ~ /[;|&]|\$\(/) ? segments(code, parts) : 1
   if (n == 1) parts[1] = code
   for (p = 1; p <= n; p++) {
     part = parts[p]; hits = 0
