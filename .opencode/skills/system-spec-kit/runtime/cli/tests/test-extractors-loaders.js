@@ -23,6 +23,7 @@ const __filename = fileURLToPath(import.meta.url);
 const path = require('path');
 const __dirname = path.dirname(__filename);
 const fs = require('fs');
+const os = require('os');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
@@ -1365,6 +1366,30 @@ async function testDataLoader() {
       } else {
         skip('LOAD-002: Data loading', `Expected in test env: ${loadError.message.substring(0, 50)}`);
       }
+    }
+
+    // A data file inside a consumer's linked .skilled tree passes the path check. TMPDIR
+    // points at the consumer while the loader runs, so the loader's temporary-directory
+    // base does not admit the linked tree.
+    const consumerRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-loader-consumer-'));
+    const skilledTree = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-loader-skilled-'));
+    fs.writeFileSync(path.join(skilledTree, 'linked-session.json'), JSON.stringify(MOCK_COLLECTED_DATA));
+    fs.symlinkSync(skilledTree, path.join(consumerRoot, '.skilled'));
+    const previousCwd = process.cwd();
+    const previousTmpdir = process.env.TMPDIR;
+    process.chdir(consumerRoot);
+    process.env.TMPDIR = consumerRoot;
+    try {
+      const linked = await loadCollectedData({ dataFile: path.join(consumerRoot, '.skilled', 'linked-session.json'), specFolderArg: null });
+      assertEqual(linked._source, 'file', 'LOAD-003: loadCollectedData reads a data file inside a linked .skilled');
+    } catch (linkedError) {
+      fail('LOAD-003: loadCollectedData reads a data file inside a linked .skilled', linkedError.message.substring(0, 120));
+    } finally {
+      process.chdir(previousCwd);
+      if (previousTmpdir === undefined) delete process.env.TMPDIR;
+      else process.env.TMPDIR = previousTmpdir;
+      fs.rmSync(consumerRoot, { recursive: true, force: true });
+      fs.rmSync(skilledTree, { recursive: true, force: true });
     }
 
   } catch (error) {
