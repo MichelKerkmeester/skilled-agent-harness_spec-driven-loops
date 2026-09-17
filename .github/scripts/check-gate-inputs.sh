@@ -15,8 +15,10 @@
 #                    variable assigned a literal .opencode/<path> and every quoted literal
 #                    .opencode/<path> handed to a command other than git resolves
 #   workflow-inputs  every literal .opencode/<path> a workflow runs resolves, a glob
-#                    matches something, and the directory that installs or builds a
-#                    node_modules or dist path exists. Echo and printf text runs nothing
+#                    with *, ? or brackets matches something, and the directory that
+#                    installs or builds a node_modules or dist path exists. A path that
+#                    continues into a variable is dynamic, and echo and printf text runs
+#                    nothing
 #   filter-twins     every workflow path filter, negated or not, dependabot directory,
 #                    hook pathspec and regex that names one root also names the other,
 #                    within the same filter, update entry, array or command
@@ -96,15 +98,19 @@ function segments(s, out,    i, n, c, nxt, q, k, cur, depth, saved) {
 # each root-naming entry with the group it belongs to, and the twin must sit in that
 # group: matched anywhere in the file, a comment, a message or another event's filter
 # could stand in for a twin the rule itself lacks. Every record and emitted item counts
-# as a hit, which is how a parser tells a read segment from an unread one.
+# as a hit, which is how a parser tells a read segment from an unread one. Each parser
+# defines finish(), which runs before the verdicts, so a parser can record what only
+# the whole file decides.
 TWIN_AWK='
-function record(tok, grp) { hits++; nrec++; rline[nrec] = FNR; rtok[nrec] = tok; rgrp[nrec] = grp; have[grp, tok] = 1 }
+function record(tok, grp) { recordat(tok, grp, FNR) }
+function recordat(tok, grp, line) { hits++; nrec++; rline[nrec] = line; rtok[nrec] = tok; rgrp[nrec] = grp; have[grp, tok] = 1 }
 function twin(tok) {
   if (tok ~ /^!?\/?\.opencode(\/|$)/) sub(/\.opencode/, ".skilled", tok)
   else sub(/\.skilled/, ".opencode", tok)
   return tok
 }
 END {
+  finish()
   for (i = 1; i <= nrec; i++) {
     tw = twin(rtok[i])
     print rline[i] "\t" (((rgrp[i], tw) in have) ? "twin-ok" : "twin-one") "\t" rtok[i] "\t" tw
@@ -122,20 +128,25 @@ run_parser() { # run_parser <relpath> <awk program>; sets PARSED
 
 # Regex groups such as (opencode|claude) and escaped single-root literals such as
 # \.opencode/, which match one root however the rest of the pattern reads. A trailing
-# comment is dropped first, as the parsers drop it.
+# comment is dropped first, as the parsers drop it, and each command segment is judged
+# on its own, so a second command's regex cannot supply the other root.
 REGEX_AWK='
 {
   if ($0 ~ /^[[:space:]]*#/) next
   code = ($0 ~ /#/) ? uncomment($0) : $0
-  line = code
-  while (match(line, /\([^()]*\)/)) {
-    group = substr(line, RSTART + 1, RLENGTH - 2); line = substr(line, RSTART + RLENGTH)
-    n = split(group, alts, "|"); has_o = 0; has_s = 0
-    for (i = 1; i <= n; i++) { if (alts[i] == "opencode") has_o = 1; if (alts[i] == "skilled") has_s = 1 }
-    if (has_o || has_s) print FNR "\t" (has_o && has_s ? "group-ok" : "group-one") "\t(" group ")"
+  n = (code ~ /[;|&]|\$\(/) ? segments(code, parts) : 1
+  if (n == 1) parts[1] = code
+  for (p = 1; p <= n; p++) {
+    line = parts[p]
+    while (match(line, /\([^()]*\)/)) {
+      group = substr(line, RSTART + 1, RLENGTH - 2); line = substr(line, RSTART + RLENGTH)
+      k = split(group, alts, "|"); has_o = 0; has_s = 0
+      for (i = 1; i <= k; i++) { if (alts[i] == "opencode") has_o = 1; if (alts[i] == "skilled") has_s = 1 }
+      if (has_o || has_s) print FNR "\t" (has_o && has_s ? "group-ok" : "group-one") "\t(" group ")"
+    }
+    if (parts[p] ~ /\\\.opencode\// && parts[p] !~ /\\\.skilled\//) print FNR "\tliteral-one\t\\.opencode/"
+    if (parts[p] ~ /\\\.skilled\// && parts[p] !~ /\\\.opencode\//) print FNR "\tliteral-one\t\\.skilled/"
   }
-  if (code ~ /\\\.opencode\// && code !~ /\\\.skilled\//) print FNR "\tliteral-one\t\\.opencode/"
-  if (code ~ /\\\.skilled\// && code !~ /\\\.opencode\//) print FNR "\tliteral-one\t\\.skilled/"
 }'
 
 check_regex() { # check_regex <relpath>
@@ -152,14 +163,17 @@ check_regex() { # check_regex <relpath>
 
 # Script paths a hook builds from a variable, assigns or quotes as a literal, and
 # pathspecs it hands to git, grouped by the array or by the command segment that holds
-# them. git is recognized by its name at the end of any command path. A root path in a
-# git command is a pathspec with or without --, written out or behind a variable, and
-# the root directory itself counts, with or without its trailing slash. A variable path
-# in an array is a script path to resolve, and a command that follows an array's closing
-# paren on the same line is read as a command. A git command runs on over backslash
-# continuation lines. Messages, a variable path to the root itself or to .skilled outside
-# git, quoted arguments that hold a variable or a glob, and regexes are read as notes,
-# and any other segment that names a root is a miss.
+# them. git is recognized by its name at the end of any command path. In a git command,
+# roots after -- are pathspecs, while before -- only a command with no -- at all has
+# pathspecs, and an option value such as --format='.skilled/x' never is one. The root
+# directory itself counts, with or without its trailing slash, written out or behind a
+# variable. A variable path in an array is a script path to resolve, unless the file
+# expands that array into a git command, which makes its entries pathspecs. A variable
+# or glob after a literal root prefix makes the input dynamic rather than resolved. A
+# command that follows an array's closing paren is read as a command, and a git command
+# runs on over backslash continuation lines. Messages, a variable path to the root
+# itself or to .skilled outside git, quoted arguments that hold a variable or a glob,
+# and regexes are read as notes, and any other segment that names a root is a miss.
 HOOK_AWK='
 function emit(kind, tok) { hits++; print FNR "\t" kind "\t" tok }
 function roots(text, grp,    tok, c) {
@@ -170,15 +184,47 @@ function roots(text, grp,    tok, c) {
     record(tok, grp)
   }
 }
-function varpaths(text, grp, pathspec,    tok, var, path) {
+function varpaths(text, grp, pathspec, array,    tok, var, path) {
   while (match(text, /\$[{]?[A-Za-z_][A-Za-z0-9_]*[}]?\/\.(opencode|skilled)(\/[A-Za-z0-9._\/-]*)?/)) {
     tok = substr(text, RSTART, RLENGTH); text = substr(text, RSTART + RLENGTH)
     if (text ~ /^[A-Za-z0-9_]/) continue
     var = tok; sub(/\/\.(opencode|skilled).*/, "", var); path = tok; sub(/^[^\/]*\//, "", path)
     if (pathspec) record(path, grp)
-    if (path ~ /^\.opencode\/./) emit((var ~ /REPO_ROOT/ ? "repo" : "var"), path)
-    else emit("note", "read")
+    else if (array != "") { ncand++; cline[ncand] = FNR; cpath[ncand] = path; carr[ncand] = array; cgrp[ncand] = grp }
+    if (path !~ /^\.opencode\/./) emit("note", "read")
+    else if (text ~ /^(\$|\*|\?|\[|\{)/) emit("var", path)
+    else emit((var ~ /REPO_ROOT/ ? "repo" : "var"), path)
   }
+}
+function optvalues(text,    val) {
+  while (match(text, /--?[A-Za-z0-9][A-Za-z0-9-]*=("[^"]*"|\047[^\047]*\047|[^[:space:]]*)/)) {
+    val = substr(text, RSTART, RLENGTH); text = substr(text, 1, RSTART - 1) " " substr(text, RSTART + RLENGTH)
+    if (val ~ /\.(opencode|skilled)/) emit("note", "option")
+  }
+  return text
+}
+function pathspecs(text, grp,    rest) {
+  text = optvalues(text)
+  varpaths(text, grp, 1, "")
+  rest = text
+  while (match(rest, /\047\.(opencode|skilled)(\/[^\047]*)?\047/)) {
+    record(substr(rest, RSTART + 1, RLENGTH - 2), grp); rest = substr(rest, RSTART + RLENGTH)
+  }
+  rest = text; gsub(/\047[^\047]*\047/, "", rest); roots(rest, grp)
+}
+function options(text, grp) {
+  text = optvalues(text)
+  varpaths(text, grp, 0, "")
+  if (text ~ /\.(opencode|skilled)/) emit("note", "option")
+}
+function arrays(text,    name) {
+  while (match(text, /\$\{[A-Za-z_][A-Za-z0-9_]*\[[@*]\]\}/)) {
+    name = substr(text, RSTART + 2, RLENGTH - 2); sub(/\[.*/, "", name); gitarr[name] = 1
+    text = substr(text, RSTART + RLENGTH)
+  }
+}
+function finish(    i) {
+  for (i = 1; i <= ncand; i++) if (carr[i] in gitarr) recordat(cpath[i], cgrp[i], cline[i])
 }
 function closing(s,    i, n, c, q) {
   n = length(s); q = ""
@@ -195,23 +241,24 @@ function unread(text) { if (text ~ /\.(opencode|skilled)/ && !hits) emit("miss",
   raw = $0
   if (raw ~ /^[[:space:]]*#/) next
   code = (raw ~ /#/) ? uncomment(raw) : raw
-  if (!cont) { cmd = FNR; seg = 0; spec = 0 }
+  if (!cont) { cmd = FNR; seg = 0; spec = 0; after = 0 }
   cont = (raw ~ /\\$/)
   if (!inarr && code ~ /^[[:space:]]*((local|declare|typeset|readonly)([[:space:]]+-[A-Za-z]+)*[[:space:]]+)?[A-Za-z_][A-Za-z0-9_]*=\(/) {
+    arrname = code; sub(/=\(.*/, "", arrname); sub(/.*[[:space:]]/, "", arrname)
     inarr = 1; arr = FNR; sub(/^[^(]*\(/, "", code)
   }
   if (inarr) {
     endp = closing(code)
     elements = endp ? substr(code, 1, endp - 1) : code
-    hits = 0; varpaths(elements, "array" arr, 0); roots(elements, "array" arr); unread(elements)
+    hits = 0; varpaths(elements, "array" arr, 0, arrname); roots(elements, "array" arr); unread(elements)
     if (!endp) next
-    inarr = 0; code = substr(code, endp + 1); cmd = FNR; seg = 0; spec = 0
+    inarr = 0; code = substr(code, endp + 1); cmd = FNR; seg = 0; spec = 0; after = 0
     if (code !~ /[^[:space:]]/) next
   }
   n = (code ~ /[;|&]|\$\(/) ? segments(code, parts) : 1
   if (n == 1) parts[1] = code
   for (p = 1; p <= n; p++) {
-    if (p > 1) { seg++; spec = 0 }
+    if (p > 1) { seg++; spec = 0; after = 0 }
     part = parts[p]; grp = cmd ":" seg; hits = 0
     if (part ~ /^[[:space:]]*((!|then|else|do|\{|\()[[:space:]]*)?(echo|printf)([[:space:]]|$)/) {
       if (part ~ /\.(opencode|skilled)/) emit("note", "message")
@@ -222,15 +269,21 @@ function unread(text) { if (text ~ /\.(opencode|skilled)/ && !hits) emit("miss",
       continue
     }
     if (part ~ /(^|[^A-Za-z0-9_.-])git[[:space:]]/) spec = 1
-    varpaths(part, grp, spec)
     if (part ~ /\\\.(opencode|skilled)\// || part ~ /(\(|\|)(opencode|skilled)(\||\))/) emit("note", "regex")
-    rest = part
-    while (match(rest, /\047\.(opencode|skilled)(\/[^\047]*)?\047/)) {
-      record(substr(rest, RSTART + 1, RLENGTH - 2), grp); rest = substr(rest, RSTART + RLENGTH)
-    }
     if (spec) {
-      rest = part; sub(/.*[[:space:]]--([[:space:]]|$)/, "", rest); gsub(/\047[^\047]*\047/, "", rest); roots(rest, grp)
+      arrays(part)
+      if (!after && match(part, /[[:space:]]--([[:space:]]|$)/)) {
+        head = substr(part, 1, RSTART); tail = substr(part, RSTART + RLENGTH); after = 1
+        options(head, grp); pathspecs(tail, grp)
+      } else {
+        pathspecs(part, grp)
+      }
     } else {
+      varpaths(part, grp, 0, "")
+      rest = part
+      while (match(rest, /\047\.(opencode|skilled)(\/[^\047]*)?\047/)) {
+        record(substr(rest, RSTART + 1, RLENGTH - 2), grp); rest = substr(rest, RSTART + RLENGTH)
+      }
       rest = part
       while (match(rest, /"\.(opencode|skilled)\/[^"]*"/)) {
         lit = substr(rest, RSTART + 1, RLENGTH - 2); rest = substr(rest, RSTART + RLENGTH)
@@ -269,6 +322,7 @@ scan_hook() { # scan_hook <relpath>
 # beside it are still read.
 WORKFLOW_AWK='
 function emit(kind, tok) { hits++; print FNR "\t" kind "\t" tok }
+function finish() { return }
 function unread(part) { if (part ~ /\.(opencode|skilled)/ && !hits) emit("miss", "segment") }
 {
   raw = $0
@@ -312,9 +366,11 @@ function unread(part) { if (part ~ /\.(opencode|skilled)/ && !hits) emit("miss",
       continue
     }
     line = part
-    while (match(line, /(^|[^A-Za-z0-9_])\.opencode\/[A-Za-z0-9._*\/-]*/)) {
+    while (match(line, /(^|[^A-Za-z0-9_])\.opencode\/[][A-Za-z0-9._*?\/-]*/)) {
       tok = substr(line, RSTART, RLENGTH); if (substr(tok, 1, 1) != ".") tok = substr(tok, 2)
-      emit("run", tok); line = substr(line, RSTART + RLENGTH)
+      line = substr(line, RSTART + RLENGTH)
+      if (line ~ /^(\$|\{)/) emit("bare", tok)
+      else emit("run", tok)
     }
     line = part
     while (match(line, /(^|[^A-Za-z0-9_\/.])\.opencode([^\/A-Za-z0-9_]|$)/)) {
@@ -342,7 +398,7 @@ scan_workflow() { # scan_workflow <relpath>
             owner="${tok%%/node_modules*}"; owner="${owner%%/dist/*}"; owner="${owner%/dist}"
             if [[ -d "$ROOT/$owner" ]]; then DYNAMIC=$((DYNAMIC + 1))
             else fail workflow-inputs "$rel:$ln" "$tok is generated under $owner, which resolves nowhere"; fi ;;
-          *\**)
+          *\**|*\?*|*\[*)
             if compgen -G "$ROOT/$tok" >/dev/null; then RESOLVED=$((RESOLVED + 1))
             else fail workflow-inputs "$rel:$ln" "$tok matches nothing"; fi ;;
           *)
@@ -358,12 +414,13 @@ scan_workflow() { # scan_workflow <relpath>
 }
 
 # Dependabot directories, quoted or plain, grouped by the update entry that lists them.
-# An entry opens at a list item that starts with a key.
+# An entry opens at a list item that starts with a key or a flow-style mapping.
 DEPENDABOT_AWK='
+function finish() { return }
 {
   if ($0 ~ /^[[:space:]]*#/) next
   code = ($0 ~ /#/) ? uncomment($0) : $0
-  if (code ~ /^[[:space:]]*-[[:space:]]+[A-Za-z_-]+:/) entry = FNR
+  if (code ~ /^[[:space:]]*-[[:space:]]+(\{|[A-Za-z_-]+:)/) entry = FNR
   hits = 0; line = code
   while (match(line, /(^|[[:space:],"\047])\/\.(opencode|skilled)(\/[A-Za-z0-9._*\/-]*)?/)) {
     tok = substr(line, RSTART, RLENGTH); if (substr(tok, 1, 1) != "/") tok = substr(tok, 2)
