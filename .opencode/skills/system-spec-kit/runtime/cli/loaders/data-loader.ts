@@ -17,6 +17,7 @@ import os from 'node:os';
 import { CONFIG } from '../core/index.js';
 import { getSessionScopedSaveContextExample, isLegacySharedSaveContextPath } from '../core/index.js';
 import { structuredLog, sanitizePath } from '../utils/index.js';
+import { SOURCE_ROOT_NAMES } from '@spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 import {
   validateInputData,
@@ -88,7 +89,7 @@ async function loadCollectedData(options?: LoadOptions): Promise<LoadedData> {
       '/private/tmp',   // macOS: actual tmp location
       process.cwd(),
       path.join(process.cwd(), 'specs'),
-      path.join(process.cwd(), '.opencode'),
+      ...SOURCE_ROOT_NAMES.map((name: string) => path.join(process.cwd(), name)),
       ...(specsDirOverride ? [path.resolve(process.cwd(), specsDirOverride)] : [])
     ];
 
