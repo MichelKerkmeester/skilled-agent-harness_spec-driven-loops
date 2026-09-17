@@ -51,17 +51,17 @@ Node reports the real path for `__dirname` and `import.meta.url` of a script lau
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 005 prints `RESULT: PASSED` under `validate.sh --strict`, read by content
-- [ ] Phase 004's recorded shape for `.opencode/` is copied into goal.md's log
-- [ ] The REQ-014 decisions are recorded for the five root-discovery twins and for the work phase 004's plan assigns to this phase (`install-git-hooks.sh`, the `.gitignore` twins and the publish step)
-- [ ] Baseline pass, fail and skip counts for every command in §5 are recorded at the phase's start commit
+- [x] Phase 005 prints `RESULT: PASSED` under `validate.sh --strict`, read by content
+- [x] Phase 004's recorded shape for `.opencode/` is copied into goal.md's log
+- [x] The REQ-014 decisions are recorded for the five root-discovery twins and for the work phase 004's plan assigns to this phase (`install-git-hooks.sh`, the `.gitignore` twins and the publish step)
+- [x] Baseline pass, fail and skip counts for every command in §5 are recorded at the phase's start commit
 
 ### Definition of Done
-- [ ] All 15 rows in `acceptance-criteria.md` are Met with observed evidence
-- [ ] Every command in §5 passes in `today`, and the rehearsal passes in `skilled-only` and `whole-link`
-- [ ] `dist/` trees are rebuilt and the freshness checker reports `"stale":false` for each rebuilt package
-- [ ] `check-comment-hygiene.sh` passes on every changed code file
-- [ ] `validate.sh --strict` prints `RESULT: PASSED`
+- [x] All 15 rows in `acceptance-criteria.md` are Met with observed evidence
+- [x] Every command in §5 passes in `today`, and the rehearsal passes in `skilled-only` and `whole-link`
+- [x] `dist/` trees are rebuilt and the freshness checker reports `"stale":false` for each rebuilt package
+- [x] `check-comment-hygiene.sh` passes on every changed code file
+- [x] `validate.sh --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -92,12 +92,12 @@ Each block gives current behavior with `file:line`, the planned change and its t
 - **Current (read):** the legacy alias is `<workspace>/.opencode/specs` in `spec-root-canonical-resolver.ts:66`, `spec-root-write-guard.ts:25`, `spec-root-migration-manifest.ts:106` and `spec-root-migration.ts:221,275,312`. `isQualifiedSpecPath` accepts `specs/` and `.opencode/specs/` prefixes (`spec-root-canonical-resolver.ts:12-18`). An absent alias returns null or false (`spec-root-migration-manifest.ts:65-75`, `spec-root-migration.ts:65-82`). A same-inode alias classifies `same-inode-alias` (`spec-root-collision-classifier.ts:161-163`).
 - **Expected (inferred from reading, confirmed or refuted by T026):** `today` and `whole-link` reach `specs/` through the alias, which is R3 behavior. `skilled-only` has no `.opencode/specs`, which is R1 behavior. A relative `.skilled/specs/<id>` argument is not a qualified path.
 - **Change:** none planned (goal D2). A failing row goes to the orchestrator as a design question, never to a drafter.
-- **Test:** `materializeRootFixture` in `spec-root-fixtures.ts:136-239` takes an optional layout. `today` keeps a real `.opencode` parent. `skilled-only` creates `.skilled/specs -> ../specs` with no `.opencode`, and `whole-link` adds `.opencode -> .skilled`. `tests/spec-root-validation-matrix.vitest.ts` runs R1, R3 and R7 per layout. `today` and `whole-link` must match the current rows, and `skilled-only` must classify canonical-only and never list `.skilled/specs` as a root.
+- **Test:** `materializeRootFixture` in `spec-root-fixtures.ts:136-239` takes an optional layout. `today` keeps a real `.opencode` parent. `skilled-only` creates `.skilled/specs -> ../specs` with no `.opencode`, and `whole-link` adds `.opencode -> .skilled`. `tests/spec-root-validation-matrix.vitest.ts` runs R1, R3 and R7 per layout. `today` and `whole-link` must match the current rows, and `skilled-only` must classify canonical-only and never list `.skilled/specs` as a root. Added after review on 2026-09-17: `tests/spec-root-migration-manifest.vitest.ts` and `tests/spec-root-migration.vitest.ts` run the manifest and a legacy-only migration per layout, and fixture setup that can fail runs inside the cleanup guard.
 
 #### C3. Folder detection (`system-spec-kit/runtime/cli/spec-folder/folder-detector.ts`)
 - **Current (read):** the approved roots are `specs` and `.opencode/specs` (`:139-145`), checked through `validateFilePath`, which realpaths the candidate and each base (`shared/utils/path-security.ts:44-102`). Explicit `specs/` and `.opencode/specs/` arguments join the project root, and any other relative argument joins the active specs directory (`:1014-1029`, `:1137-1156`).
 - **Change:** none planned (D2).
-- **Test:** `tests/test-folder-detector-functional.js`, beside the `isUnderApprovedSpecsRoots` case at `:542`, gains per-layout rows: an absolute packet path through `specs/` (all layouts), through `.opencode/specs` (`today`, `whole-link`) and through `.skilled/specs` (`skilled-only`, `whole-link`, accepted because it realpaths into `specs/`). A relative `.skilled/specs/<id>` argument stays unsupported, and its row records the error. The runner loads `dist/` (`:24`), so it runs after the rebuild.
+- **Test:** `tests/test-folder-detector-functional.js`, beside the `isUnderApprovedSpecsRoots` case at `:542`, gains per-layout rows: an absolute packet path through `specs/` (all layouts), through `.opencode/specs` (`today`, `whole-link`) and through `.skilled/specs` (`skilled-only`, `whole-link`, accepted because it realpaths into `specs/`). A relative `.skilled/specs/<id>` argument stays unsupported, and its row records the error. The runner loads `dist/` (`:24`), so it runs after the rebuild. Observed during implementation: the detector resolves that argument to the canonical packet through its nested search, so the row asserts that packet and fails on a throw. Added after review on 2026-09-17: a real `.skilled/specs` decoy is rejected where `.opencode` does not lead to it, and the listed spec directories and auto-detect candidates never name a `.skilled/specs` path.
 
 #### C4. Config (`system-spec-kit/runtime/cli/core/config.ts`)
 - **Current (read):** `PROJECT_ROOT` sits five levels above the scripts root found by a `package.json` walk (`:77-91`, `:299`), so it never names the source root. `getSpecsDirectories` lists `specs` and `.opencode/specs` (`:321-326`), and `getAllExistingSpecsDirs` dedupes by realpath (`:338-361`).
@@ -138,7 +138,7 @@ Each block gives current behavior with `file:line`, the planned change and its t
 - **Current (read):** hook identity is the adapter path (`:65-70`). Ownership is the set of source identities (`:85-100`, `:155`), and an identity under `.opencode/` that is missing on disk is an orphan (`:102-109`). The repository anchor sits two levels above the module (`:367-368`), so it never names the source root.
 - **Current (observed, `--dry-run` into a temp target):** in `whole-link` the installed `.opencode/hooks/x.js` entry lands in `kept` while `.skilled/hooks/x.js` is added. In `skilled-only` the old entry lands in `orphaned` and is removed.
 - **Change:** an ownership key maps a leading `.opencode/` or `.skilled/` to one namespace. It applies to source identities, the owned check, the orphan test and owned occurrences (`:203-217`). Labels, command text and the `--check` report stay as they are, so an installed entry with the other spelling reports `command` drift until the next install.
-- **Test:** new `.opencode/bin/tests/install-codex-hooks-source-root.test.cjs` (`node --test`) with rows for layouts `today`, `skilled-only` and `whole-link` x installed spelling x source spelling. It asserts one owned entry per hook after an install into a temp target and `--check` exit 0 after that install. A third-party hook outside both namespaces must survive. Fixtures run `git init`, because `assertSafeRepoAnchor` (`:290-322`) requires a primary checkout.
+- **Test:** new `.opencode/bin/tests/install-codex-hooks-source-root.test.cjs` (`node --test`) with rows for layouts `today`, `skilled-only` and `whole-link` x installed spelling x source spelling. It asserts one owned entry per hook after an install into a temp target and `--check` exit 0 after that install. A third-party hook outside both namespaces must survive. Fixtures run `git init`, because `assertSafeRepoAnchor` (`:290-322`) requires a primary checkout. Added after review on 2026-09-17: orphan rows under either name, and fixtures that clear inherited GIT_ variables.
 
 #### C11. Worktree session launcher (`.opencode/bin/worktree-session.sh`)
 - **Current (read):** the default shared paths are six `.opencode/skills/system-spec-kit/...` paths (`:80-89`). The database directory is `$WT_ABS/.opencode/skills/system-spec-kit/runtime/database` (`:225`). A path absent in main is skipped with a log line (`:358-363`).
@@ -155,14 +155,14 @@ Each block gives current behavior with `file:line`, the planned change and its t
 #### C13. No-spec-import guard (`.opencode/bin/check-no-spec-imports.cjs`)
 - **Current (read):** `REPO_ROOT` comes from `__dirname` (`:25`). The lexical spec roots are `specs` and `.opencode/specs` (`:30-33`). The default scan root is `<root>/.opencode/bin` (`:36`). The literal checks name `.opencode/specs` (`:95`, `:122`). A scan that read zero files prints ok and exits 0 (`:147`).
 - **Current (observed):** `today` and `whole-link` flag a seeded `require('../specs/x/y.cjs')`. In `skilled-only`, run from `.skilled/bin`, the guard prints `ok: no spec-tree imports in 0 runtime file(s) across 1 dir(s)` and exits 0.
-- **Change:** the default scan root is `__dirname`. `<root>/.skilled/specs` joins the spec roots, and `.skilled/specs` joins both literal checks. Any scan that read zero files exits 2 with a message. The code must differ from the violation exit 1: the CI step at `.github/workflows/runtime-no-spec-import.yml:37-40` treats any non-zero exit on the positive fixture as the expected failure, so a zero-file exit 1 would hide a moved fixture there. Phase 005 owns that step's exact-code check. The CI fixture directories hold one file each, so today's CI calls keep passing.
+- **Change:** the default scan root is `__dirname`. `<root>/.skilled/specs` joins the spec roots, and `.skilled/specs` joins both literal checks. Any scan that read zero files exits 2 with a message. The code must differ from the violation exit 1: the CI step at `.github/workflows/runtime-no-spec-import.yml:37-40` treats any non-zero exit on the positive fixture as the expected failure, so a zero-file exit 1 would hide a moved fixture there. Phase 005 was to own that step's exact-code check and closed without it, so on 2026-09-17 the step joined this phase and now requires exit 1. After review, a scan that cannot read a file it found also exits 2, which outranks a violation. The CI fixture directories hold one file each, so today's CI calls keep passing.
 - **Test:** `.opencode/bin/compiled-routing-foundation.vitest.ts:278-288` gains `targetResolvesUnderSpecs` rows for `require('../specs')` from `<root>/.skilled/bin` and for each of the three spellings. A spawn row per layout runs a copied guard beside a seeded import and expects exit 1, and a zero-file row expects exit 2.
 
 #### C14. Contract drift checker (`system-deep-loop/runtime/scripts/check-contract-drift.cjs`, paired functions in `compile-command-contracts.cjs`)
 - **Current (read):** the path pattern takes candidates that start with `.opencode/` or `specs/` (`:68`), and the declared-mode pattern takes `.opencode/` or relative paths (`:69`). Only `.opencode/` paths can be authority sources (`:142-159`, `:165`, `:194`, `:236`). Sources resolve against `WORKSPACE_ROOT`, five levels above the scripts (`compile-command-contracts.cjs:8`, `:366-376`). Compiled contracts live under `.opencode/commands/deep/assets/compiled` (`compile-command-contracts.cjs:662-665`). The gap check flags derived sources missing from the recorded set, never the reverse (`:483-494`).
 - **Current (observed):** with the `commands/deep/` documents rewritten in memory to `.skilled/`, `deriveAuthoritySources('deep/review')` returns 14 sources instead of 16 and raises no failure. The checker reports zero failures on today's tree.
 - **Current (read, `skilled-only`):** every recorded `.opencode/...` digest path is missing, so the checker fails loudly with `STALE_SOURCE_DIGEST` (`:419-441`), and `readContract` cannot open the compiled contract (`:87-92`).
-- **Change:** both patterns and the prefix predicates accept `.opencode/` or `.skilled/`. Recorded and derived sources compare by a root-normalized key. `absolutePath` in both files resolves a source under the other name when its own spelling is absent, and `outputPathFor` does the same for the compiled directory. Digests stay byte digests, so a pure rename changes none of them.
+- **Change:** both patterns and the prefix predicates accept `.opencode/` or `.skilled/`. Recorded and derived sources compare by a root-normalized key. `absolutePath` in both files resolves a source under the other name when its own spelling is absent, and `outputPathFor` does the same for the compiled directory. Digests stay byte digests, so a pure rename changes none of them. Added after review on 2026-09-17: a path missing under both names resolves under the compiler's own tree, so a first write never creates a second source tree.
 - **Test:** `runtime/tests/unit/check-contract-drift.vitest.ts`, which injects contract text through `checkCommand` options (`:41-48`), gains a header whose digest paths use `.skilled/`. On the `today` tree that row must raise neither `STALE_SOURCE_DIGEST` nor `ENUMERATED_SOURCE_GAP`. The planning probe becomes a regression row: the derived set stays unchanged when the command documents name `.skilled/`. The rehearsal runs the checker in `skilled-only` and `whole-link` clones and expects `[CONTRACT DRIFT] OK`.
 
 #### C15. `opencode.json`
@@ -337,9 +337,9 @@ C2-C4 ──► C8 launcher ──► C10 hooks ──► C11 worktree ──►
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline counts recorded at the phase's start commit
-- [ ] One commit per component, with no unit mixed into another's commit
-- [ ] No test or rehearsal writes `~/.codex/hooks.json`: every installer run passes `--target` inside a temp directory
+- [x] Baseline counts recorded at the phase's start commit
+- [x] One commit per component, with no unit mixed into another's commit. One review round's commit, `9de853871b`, carried a worktree test fix and a data loader row fix together
+- [x] No test or rehearsal writes `~/.codex/hooks.json`: every installer run passes `--target` inside a temp directory
 
 ### Rollback Procedure
 1. Stop delegation for the failing unit.

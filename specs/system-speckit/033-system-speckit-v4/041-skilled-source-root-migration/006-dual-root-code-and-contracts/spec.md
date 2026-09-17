@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-16 |
 | **Branch** | `worktrees/055-skilled-source-root-migration` |
 | **Parent Spec** | ../spec.md |
@@ -49,8 +49,8 @@ This is **Phase 6** of the Plan and execute the .skilled source-root migration s
 - The reconciled reference map from phase 002 (`../002-per-runtime-reference-map/research/maps/map-c-references.tsv`, rows classed `manual` under `rule:contract-or-ci`).
 
 **Deliverables**:
-- Source changes in 13 files, each drafted from a one-file brief, reviewed by a second model family and verified by its own tests.
-- Layout rows added to 16 test files and test-support modules, two of them new.
+- Source changes in 24 files, each drafted from a one-file brief, reviewed by a second model family and verified by its own tests.
+- Layout rows in 26 test files and test-support modules, four of them new.
 - A move rehearsal script in `scratch/` that builds the three layouts from a clone of the rebuilt worktree and runs the whole-tree checks.
 
 **Changelog**:
@@ -97,12 +97,16 @@ Every component that defines what `.opencode` means resolves under either root n
 - The no-spec-import guard and the contract drift checker, with the two path functions of the contract compiler it imports.
 - A move rehearsal that clones the rebuilt worktree into three layouts and runs the whole-tree checks.
 - The five root-discovery twins that compare a path segment with `.opencode`: `shared/gate-3-classifier.ts:349-372`, `system-skill-advisor/runtime/skill-advisor-cli.ts:189-215`, `runtime/lib/graph/graph-metadata-parser.ts:874-897`, `sk-create-skill/scripts/validate_skill_package.py:24-29` and `routing-accuracy/capture-local-native-divergence-ledger.mjs:30`.
+- A sixth twin, the post-edit router's skill-document check (`hooks/post-edit-quality/lib/post-edit-router.cjs:196`). This plan left it to phase 005, which closed without it. The orchestrator placed it here on 2026-09-17 for the same reason as the other five.
+- The hooks re-export of the root resolver (`runtime/hooks/lib/workspace/repo-root.mjs` and its declaration), which the runtime CLI imports, so the name list reaches its TypeScript callers.
 - `install-git-hooks.sh` treating a link into either root's `scripts/git-hooks/` as its own, so a reinstall replaces the seven `.opencode` links instead of skipping them (phase 004 step 6).
 - `.gitignore` twins: every rule and negation naming `.opencode/` gains the same line under `.skilled/` (phase 004 step 7).
+- The no-spec-import workflow's positive-fixture step, which must require the violation exit 1 once a scan that reads no file exits 2. The plan left that exact exit check to phase 005, which closed without it. The orchestrator placed it here on 2026-09-17, after the guard's review showed a moved fixture passing CI.
+- Layout rows for the migration manifest and migration, which REQ-009 names and the first rows never reached, added on 2026-09-17 after their review.
 - Publishing this phase to `skilled/v4.0.0.0` and `main`, fast-forwarding the main checkout and restarting the `code_mode` launcher (phase 004 step 8, parent D2).
 
 ### Out of Scope
-- Git hooks, `check-git-hooks.sh`, `check-agent-mirror-sync.cjs`, the post-edit router and the 19 CI workflows. Phase 005 teaches hooks and CI the new root; only `install-git-hooks.sh` is in scope here.
+- Git hooks, `check-git-hooks.sh`, `check-agent-mirror-sync.cjs` and the 19 CI workflows. Phase 005 teaches hooks and CI the new root; only `install-git-hooks.sh`, the post-edit router's skill-document check and the no-spec-import workflow's positive-fixture exit check are in scope here.
 - Moving the tree and dealing with the `.skilled/` placeholder. Phase 007 owns the rename commits.
 - Retargeting hand-made links and regenerating mirrors, compiled contracts, the trigger index and `dist/` output for the move. Phase 008 owns them.
 - The roughly 2,938 mechanical path constants and doc references, including the 13 non-test files that name `.opencode/skills/.state` and the Hermes plugin constants in `.hermes/plugins/repo-guards/__init__.py:31-48`. Phase 009 rewrites them.
@@ -115,6 +119,7 @@ Every component that defines what `.opencode` means resolves under either root n
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/shared/workspace/repo-root.mjs` | Modify | Sentinel under either root name, hoist above either name, export the name list |
 | `.opencode/skills/system-spec-kit/shared/workspace/repo-root.d.mts` | Modify | Declare the new export |
+| `.opencode/skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs`, `repo-root.d.mts` | Modify | Re-export and declare the name list for the runtime CLI, which imports the resolver through this path |
 | `.opencode/skills/system-spec-kit/runtime/cli/utils/workspace-identity.ts` | Modify | Either name anchors a workspace, compare workspace roots |
 | `.opencode/skills/system-spec-kit/runtime/cli/utils/path-utils.ts` | Modify | `.skilled` joins the default bases |
 | `.opencode/skills/system-spec-kit/runtime/cli/loaders/data-loader.ts` | Modify | `.skilled` joins the data-file bases |
@@ -123,9 +128,11 @@ Every component that defines what `.opencode` means resolves under either root n
 | `.opencode/bin/mcp-code-mode-launcher.cjs` | Modify | Server directory from the launcher's own source root |
 | `.opencode/bin/install-codex-hooks.mjs` | Modify | One ownership namespace for `.opencode/` and `.skilled/` |
 | `.opencode/bin/worktree-session.sh` | Modify | Shared paths and database directory under the checkout's real source root |
-| `.opencode/bin/check-no-spec-imports.cjs` | Modify | Scan its own directory, add the `.skilled/specs` spelling, fail on zero files |
+| `.opencode/bin/check-no-spec-imports.cjs` | Modify | Scan its own directory, add the `.skilled/specs` spelling, exit 2 when a scan reads no file or cannot read one |
+| `.github/workflows/runtime-no-spec-import.yml` | Modify | The positive-fixture step requires exit 1, so a fixture that moved away fails the job |
 | `.opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs` | Modify | Either prefix counts as an authority source, root-normalized comparison |
-| `.opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs` | Modify | `absolutePath` and `outputPathFor` resolve under either root name |
+| `.opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs` | Modify | `absolutePath` and `outputPathFor` resolve under either root name, and a path missing under both resolves under the compiler's own tree |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts` | Modify | Row for a compiled directory missing under both names |
 | `.opencode/skills/system-spec-kit/runtime/cli/core/spec-root-fixtures.ts` | Modify | Layout parameter for fixtures |
 | `.opencode/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts` | Modify | Layout axis and hoist rows |
 | `.opencode/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts` | Modify | Layout rows |
@@ -140,8 +147,12 @@ Every component that defines what `.opencode` means resolves under either root n
 | `.opencode/bin/tests/install-codex-hooks-source-root.test.cjs` | Create | Reconcile rows across spellings and layouts |
 | `.opencode/bin/tests/worktree-session.test.sh` | Modify | One fixture per layout |
 | `.opencode/bin/tests/relink-local-specs.test.sh` | Create | Root resolution per layout |
-| `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts`, `.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`, `.opencode/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts`, `.opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py`, the routing-accuracy `capture-local-native-divergence-ledger.mjs` | Modify | Accept either root segment where each compares a path segment with `.opencode` |
-| `.opencode/scripts/install-git-hooks.sh` | Modify | A link into either root's `scripts/git-hooks/` counts as owned |
+| `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts`, `.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`, `.opencode/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts`, `.opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py`, the routing-accuracy `capture-local-native-divergence-ledger.mjs`, `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs` | Modify | Accept either root segment where each compares a path segment with `.opencode` |
+| `runtime/cli/tests/gate-3-classifier.vitest.ts`, `runtime/tests/graph-metadata-schema.vitest.ts`, `sk-doc/scripts/tests/test_create_skill_contract.py`, `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs` | Modify | Twin rows that fail on the old code |
+| `system-skill-advisor/runtime/tests/skill-advisor-cli-repo-paths.vitest.ts`, `system-skill-advisor/runtime/tests/parity/capture-ledger-workspace-root.vitest.ts` | Create | Twin rows for the two walks no existing test covered |
+| `.opencode/scripts/git-hooks/tests/install-git-hooks-worktree-harness.sh` | Modify | Ownership rows for links written through either root |
+| `.opencode/scripts/install-git-hooks.sh` | Modify | A link into either root's `scripts/git-hooks/` counts as owned, and hooks install from `.skilled` when `.opencode` holds none |
+| `runtime/cli/tests/spec-root-migration-manifest.vitest.ts`, `runtime/cli/tests/spec-root-migration.vitest.ts` | Modify | Manifest and migration rows per layout |
 | `.gitignore` | Modify | `.skilled/` twin for every rule and negation naming `.opencode/` |
 | `.opencode/bin/compiled-routing-foundation.vitest.ts` | Modify | Spelling rows for the guard |
 | `.opencode/skills/system-deep-loop/runtime/tests/unit/check-contract-drift.vitest.ts` | Modify | Mixed-spelling rows |
@@ -163,7 +174,7 @@ Every component that defines what `.opencode` means resolves under either root n
 | REQ-003 | The MCP code-mode launcher resolves its server manifest and entry point under the source root it was launched from, in all three layouts. |
 | REQ-004 | The Codex hook installer treats `.opencode/<path>` and `.skilled/<path>` as one owned hook, so a reinstall leaves exactly one entry per owned hook and keeps hooks outside both namespaces. |
 | REQ-005 | `worktree-session.sh` links shared dependencies and compiled output from the main checkout's real source root and sets `SPEC_KIT_DB_DIR` under the worktree's real source root. It never creates a real `.opencode/` directory in a `.skilled`-only checkout. |
-| REQ-006 | The no-spec-import guard scans its own directory in all three layouts and exits 2, not 0 or the violation code 1, when a scan reads zero files. It flags imports through `specs/`, `.opencode/specs` and `.skilled/specs`. |
+| REQ-006 | The no-spec-import guard scans its own directory in all three layouts and exits 2, not 0 or the violation code 1, when a scan reads zero files or cannot read a file it found. It flags imports through `specs/`, `.opencode/specs` and `.skilled/specs`. |
 | REQ-007 | The contract drift checker reports no drift on an unchanged tree in all three layouts, and derives the same authority sources whether documents spell a path `.opencode/` or `.skilled/`. |
 | REQ-008 | Workspace identity gives one workspace root for a `.opencode` anchor, a `.skilled` anchor and a `.opencode -> .skilled` link, and still separates unrelated repositories. |
 
@@ -176,7 +187,7 @@ Every component that defines what `.opencode` means resolves under either root n
 | REQ-011 | `relink-local-specs.sh` resolves the repository root and its sibling targets in all three layouts with no source change. |
 | REQ-012 | The six MCP registrations start the launcher from the repository root under real `.opencode/` and under the link, and the `.skilled`-only result is recorded against phase 004's chosen shape. |
 | REQ-013 | After the TypeScript changes, rebuilt `dist/` trees pass the staleness check, and the three-layout rehearsal runs against those rebuilt trees. |
-| REQ-014 | The five root-discovery twins, the `install-git-hooks.sh` ownership change, the `.gitignore` twins and the publish step land in this phase, each with a test or check that fails before its change and passes after. Decided by the orchestrator on 2026-09-16: a twin left for phase 009 would misresolve under the link between the move and the rewrite, and phase 004's cutover order places the other three here. |
+| REQ-014 | The five root-discovery twins, the `install-git-hooks.sh` ownership change, the `.gitignore` twins and the publish step land in this phase, each with a test or check that fails before its change and passes after. Decided by the orchestrator on 2026-09-16: a twin left for phase 009 would misresolve under the link between the move and the rewrite, and phase 004's cutover order places the other three here. The post-edit router's skill-document check joined as a sixth twin on 2026-09-17, for the same reason. |
 | REQ-015 | When phase 004 selects per-entry links, every component also passes its tests with `.opencode/` as a real directory holding one relative link per moved entry. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
@@ -272,9 +283,9 @@ Every component that defines what `.opencode` means resolves under either root n
 
 ## 10. OPEN QUESTIONS
 
-- Which shape does phase 004 record for `.opencode/`? It decides whether the `.skilled`-only row of REQ-012 must pass before phase 009 rewrites the registration strings.
-- Do the five root-discovery twins listed out of scope join this phase, and does this phase or another own the `install-git-hooks.sh` change, the `.gitignore` twins and the publish step from phase 004's plan? REQ-014 makes the orchestrator answer both before any draft.
-- Can the advisor schema's `detectRepoRoot` be exported as a test seam, or does the lockstep proof need another route? The orchestrator decides this in the T005 brief.
+- Answered: phase 004 recorded L1, one `.opencode -> .skilled` link, so the `.skilled`-only row of REQ-012 is recorded rather than required to pass.
+- Answered: the five twins, the `install-git-hooks.sh` change, the `.gitignore` twins and the publish step all joined this phase (REQ-014), and the post-edit router joined as a sixth twin.
+- Answered: `detectRepoRoot` is exported with an optional start directory, whose default keeps reading `process.cwd()`, so the lockstep row feeds it and the advisor walk the same trees.
 <!-- /ANCHOR:questions -->
 
 ---

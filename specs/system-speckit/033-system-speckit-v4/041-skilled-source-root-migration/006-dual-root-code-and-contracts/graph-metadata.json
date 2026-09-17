@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/shared/workspace/repo-root.mjs",
-      ".opencode/skills/system-spec-kit/shared/workspace/repo-root.d.mts",
-      ".opencode/skills/system-spec-kit/runtime/cli/utils/workspace-identity.ts",
-      ".opencode/skills/system-spec-kit/runtime/cli/utils/path-utils.ts",
-      ".opencode/skills/system-spec-kit/runtime/cli/loaders/data-loader.ts",
-      ".opencode/skills/system-skill-advisor/runtime/lib/utils/workspace-root.ts",
-      ".opencode/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      "shared/workspace/repo-root.mjs",
+      "runtime/hooks/lib/workspace/repo-root.mjs",
+      "runtime/cli/utils/workspace-identity.ts",
+      "utils/path-utils.ts",
+      "loaders/data-loader.ts",
+      "runtime/cli/core/spec-root-fixtures.ts",
       ".opencode/bin/mcp-code-mode-launcher.cjs",
-      ".opencode/bin/install-codex-hooks.mjs",
-      ".opencode/bin/worktree-session.sh",
-      ".opencode/bin/check-no-spec-imports.cjs",
-      ".opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs",
-      ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-      ".opencode/skills/system-spec-kit/runtime/cli/core/spec-root-fixtures.ts"
+      ".github/workflows/runtime-no-spec-import.yml",
+      "shared/gate-3-classifier.ts",
+      "runtime/lib/graph/graph-metadata-parser.ts",
+      ".opencode/scripts/install-git-hooks.sh",
+      "runtime/cli/tests/package-root-parity.vitest.ts",
+      ".opencode/bin/tests/install-codex-hooks-source-root.test.cjs",
+      ".opencode/bin/tests/relink-local-specs.test.sh"
     ],
     "entities": [
       {
@@ -102,43 +102,31 @@
       {
         "name": "repo-root.mjs",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/shared/workspace/repo-root.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "repo-root.d.mts",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/shared/workspace/repo-root.d.mts",
+        "path": "shared/workspace/repo-root.mjs",
         "source": "derived"
       },
       {
         "name": "workspace-identity.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/utils/workspace-identity.ts",
+        "path": "runtime/cli/utils/workspace-identity.ts",
         "source": "derived"
       },
       {
         "name": "path-utils.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/utils/path-utils.ts",
+        "path": "utils/path-utils.ts",
         "source": "derived"
       },
       {
         "name": "data-loader.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/loaders/data-loader.ts",
+        "path": "loaders/data-loader.ts",
         "source": "derived"
       },
       {
-        "name": "workspace-root.ts",
+        "name": "spec-root-fixtures.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/runtime/lib/utils/workspace-root.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "path": "runtime/cli/core/spec-root-fixtures.ts",
         "source": "derived"
       },
       {
@@ -148,39 +136,45 @@
         "source": "derived"
       },
       {
-        "name": "install-codex-hooks.mjs",
-        "kind": "file",
-        "path": ".opencode/bin/install-codex-hooks.mjs",
+        "name": "runtime-no-spec-import.yml",
+        "kind": "config",
+        "path": ".github/workflows/runtime-no-spec-import.yml",
         "source": "derived"
       },
       {
-        "name": "worktree-session.sh",
-        "kind": "script",
-        "path": ".opencode/bin/worktree-session.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-no-spec-imports.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/check-no-spec-imports.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "check-contract-drift.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "compile-command-contracts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec-root-fixtures.ts",
+        "name": "gate-3-classifier.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/core/spec-root-fixtures.ts",
+        "path": "shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": "runtime/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "package-root-parity.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/package-root-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks-source-root.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/tests/install-codex-hooks-source-root.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relink-local-specs.test.sh",
+        "kind": "script",
+        "path": ".opencode/bin/tests/relink-local-specs.test.sh",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Root discovery, installers, launchers and two gates recognise the source root by the literal name `.opencode`",
     "created_at": "2026-09-16T17:54:07Z",
-    "last_save_at": "2026-09-17T09:30:54.262Z",
+    "last_save_at": "2026-09-17T12:55:53.391Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b0b4eb3e01e0dff2cfd93fbe75f73cad5cf88624c51c2967076cd3002dcb16a",
+    "source_fingerprint": "sha256:51e84a907ad4f3e67c54544f4f936f318fb29081e19e10f4b166bd23c03f1f84",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a25776b754d2a4ed24c4dcb45bd7f02da936cf8bd86f084aef70ebca35c776c",
-      "plan.md": "e91a396a91143b06ce6cad7d41459de97218295aabdd225d429301df2ddc7bf6",
-      "tasks.md": "b3e83bc210d21ff5fd844a41acca81fe6f47d7c90ce5841d1aafd44811392819",
-      "implementation-summary.md": "62ea4e0cdf9689269430aceeff53ee0bffde4507aa85ed21c5402cf356959e44"
+      "spec.md": "08f20fc0bd4916b81446283cb5f11a7ab2ce89ee3d9954c9d27ee680586e7878",
+      "plan.md": "ccefdae1344e7b387829c11d6194ac11850d2797cbb71e92ddc565b105268e35",
+      "tasks.md": "90db53f037f10b4dc857ab46a661a056c76533369695d0d761c530ef89931b51",
+      "implementation-summary.md": "304c16ccc6c6e0f06f8b4d4829c51bc6523d4d8069f1d920fb9e0ad75cf5bac9"
     },
     "last_active_at": null
   }

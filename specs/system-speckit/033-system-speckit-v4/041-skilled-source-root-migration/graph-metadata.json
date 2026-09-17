@@ -137,6 +137,18 @@
         "source": "derived"
       },
       {
+        "name": "Pi Gateway",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Cline",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "Nine Opus",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -153,33 +165,21 @@
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "their",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
     "created_at": "2026-09-16T08:35:04Z",
-    "last_save_at": "2026-09-17T09:15:50.742Z",
+    "last_save_at": "2026-09-17T12:54:18.277Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:0b221d868f6401f8f23cd5fb5ccbe0d229df69a24b92261b16799e5b052301eb",
+    "source_fingerprint": "sha256:9a6b28f49e885b0745926e657e8ffee6c58213b1e4f26a0c5de6e4344bd460e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e99117b9386e596ceecb911f3c892b05687ba5a96e9ae35b22831267d7a66a67"
+      "spec.md": "14edc3b84c62bb86814bad6b4c73a84b3fbfa24a89c600caa70f5dbd580994c3"
     },
     "last_active_at": null
   }
