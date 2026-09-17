@@ -40,7 +40,7 @@ contextType: "implementation"
 
 This is **Phase 5** of the Plan and execute the .skilled source-root migration specification.
 
-**Scope Boundary**: The seven git hooks and their autostash library under `.opencode/scripts/git-hooks/`, the legacy hygiene helper `.opencode/hooks/git/pre-commit`, the SessionStart hook check `.opencode/bin/check-git-hooks.sh`, the 19 workflows under `.github/workflows/`, `.github/dependabot.yml` and new files under `.github/scripts/`. No file moves in this phase. The scripts these gates call keep their own `.opencode` literals, which phase 006 teaches.
+**Scope Boundary**: The seven git hooks and their autostash library under `.opencode/scripts/git-hooks/`, the legacy hygiene helper `.opencode/hooks/git/pre-commit`, the SessionStart hook check `.opencode/bin/check-git-hooks.sh`, the 19 workflows under `.github/workflows/`, `.github/dependabot.yml` and new files under `.github/scripts/`. No file moves in this phase. The scripts these gates call keep their own `.opencode` literals, which phase 006 teaches, except the agent mirror checker's path pattern, which the operator placed in this phase on 2026-09-17.
 
 **Dependencies**:
 - Phase 004 has frozen the layout: what `.opencode/` keeps, where hook logs live and whether the move lands as one rename commit or a series.
@@ -98,11 +98,12 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 - The independent check with its workflow and test script, plus the broken-move drill.
 - New cases in the four hook test scripts whose files change, a new test script for the SessionStart hook check, and the environment scrub the mass-deletion harness lacked.
 - The naming guard's rule for a rename that keeps its basename (REQ-012).
+- The agent mirror checker's path pattern, so an agent staged under `.skilled/agents/` is checked rather than dropped, with Vitest cases for an in-sync and a drifted mirror (REQ-013).
 - Behavior notes in `.opencode/scripts/git-hooks/README.md`, its `tests/README.md` and `.github/workflows/README.md`.
 
 ### Out of Scope
 - Moving any file. Phase 007 moves the tree.
-- The code the gates call. Its own root literals stay for phase 006: `check-agent-mirror-sync.cjs:28` and `:32`, `lib/mirror-sync-verify.cjs:19`, `hooks/shared/hook-flags.sh:15`, `sk-git/scripts/worktree-naming.sh:145` and however `compiled-route-manifest.cjs` treats `--skill-root`.
+- The code the gates call. Its own root literals stay for phase 006: `check-agent-mirror-sync.cjs:28`, `lib/mirror-sync-verify.cjs:19` and `:109-110`, `hooks/shared/hook-flags.sh:15`, `sk-git/scripts/worktree-naming.sh:145` and however `compiled-route-manifest.cjs` treats `--skill-root`.
 - The installers. `install-git-hooks.sh:30`, its ownership check at `:58-67` and `hooks/git/install-hooks.sh:15` belong to phase 006.
 - Human-facing text that names `.opencode`, such as the fix hints at `pre-commit:322-323` and `pre-push:152`, and the two echo lines and three comments in workflows. Phase 009 rewrites that text.
 - Runtime hook registrations that call the SessionStart hook check by path. They are generated output that phase 008 regenerates.
@@ -131,7 +132,9 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 | `.opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh` | Modify | Clears a caller's git environment so the harness stays hermetic |
 | `.opencode/bin/tests/check-git-hooks.test.sh` | Create | Test script for the SessionStart hook check |
 | `.github/workflows/*.yml` (19 files) | Modify | Filter twins in 8, the agent name filter in 1 and fail-closed guards in 5 |
-| `.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py` and `scripts/tests/test_no_new_snake_case_guard.py` | Modify | A rename or copy that keeps its basename passes, with three cases |
+| `.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py` and `scripts/tests/test_no_new_snake_case_guard.py` | Modify | A rename that keeps its basename passes, with four cases |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs` | Modify | The agent path pattern admits `.skilled/agents/` |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts` and `shared/tests/README.md` | Create and modify | Cases that run the checker against a `.skilled` agent path, and the suite's index row |
 | `.github/dependabot.yml` | Modify | `.skilled/**` twin of line 13 |
 | `.opencode/scripts/git-hooks/README.md`, `tests/README.md`, `.github/workflows/README.md` | Modify | The missing-script rule, the new cases and the new workflow |
 <!-- /ANCHOR:scope -->
@@ -158,10 +161,11 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 | ID | Requirement |
 |----|-------------|
 | REQ-008 | Every gate change has test coverage. The six existing hook test scripts keep their 126 passing cases, and each new case is seen failing against the unchanged file before its change lands. |
-| REQ-009 | Every contract change carries a GPT-5.6 Luna review at xhigh on the fast tier (amended 2026-09-17 by the operator), with each finding fixed or answered before its commit. The contract changes are the missing-script rule, the fail-closed workflows, the independent check, the drill and the naming guard rule. |
+| REQ-009 | Every contract change carries a GPT-5.6 Luna review at xhigh on the fast tier (amended 2026-09-17 by the operator), with each finding fixed or answered before its commit. The contract changes are the missing-script rule, the fail-closed workflows, the independent check, the drill, the naming guard rule and the agent mirror checker's path pattern. |
 | REQ-010 | No new code comment carries a spec path, packet or phase number or task id, and every new file name is kebab-case. |
 | REQ-011 | The handoff to phase 006 names each script the gates call whose own root literal this phase leaves in place, with its line. |
 | REQ-012 | The naming guard's changed-since mode reports no offender for a rename that keeps its basename, so a pure move of a grandfathered name passes. A copy that keeps a snake_case basename still fails, because it adds a second snake_case name (amended 2026-09-17 by the operator). A new snake_case basename, and a new snake_case directory on the destination path, still fail. Today four tracked names would fail once moved: `commands/prompt/assets/prompt_improve_auto.yaml`, `prompt_improve_confirm.yaml`, `prompt_improve_presentation.txt` and the grep-convention fixture `naming-exception/Spec_Draft.md`, whose name is the fixture's purpose (`.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py:143-176`, `:266-282`). |
+| REQ-013 | The agent mirror checker checks an agent named by a `.skilled/agents/` path. An in-sync mirror is reported as checked, and a drifted Claude mirror exits 1 with its drift line. Its pattern admitted `.opencode` and `.claude` only (`check-agent-mirror-sync.cjs:32`), so every hook filter that passes `.skilled` agents on checked nothing (added 2026-09-17 by the operator, who placed the fix in this phase rather than phase 006). |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -257,8 +261,8 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 
 - Which executable paths does phase 004 keep literal under `.opencode/`? Answered by the L1 amendment: every workflow keeps its `.opencode/` literals, which resolve through the link.
 - Does `compiled-route-manifest.cjs refresh` accept `--skill-root .skilled/skills/<hub>`? Not needed here: the gate keeps `--skill-root .opencode/skills/<hub>`, which reads through the link. Phase 006 still owns how the tool treats the flag.
-- Should a missing mass-deletion library block pushes in this repository, reversing the documented fail-open at `pre-push:34-36`? Implemented as proposed, with `SPECKIT_ALLOW_MASS_DELETION=1` as the approval. The GPT-5.6 review is pending.
-- When the kill switch cannot be read, should live-sync publishing stay enabled as it does today (`post-commit:36-49`)? Kept enabled, with a warning. The GPT-5.6 review is pending.
+- Should a missing mass-deletion library block pushes in this repository, reversing the documented fail-open at `pre-push:34-36`? Implemented as proposed, with `SPECKIT_ALLOW_MASS_DELETION=1` as the approval. GPT-5.6 Luna judged it sound on 2026-09-17.
+- When the kill switch cannot be read, should live-sync publishing stay enabled as it does today (`post-commit:36-49`)? Kept enabled, with a warning. GPT-5.6 Luna judged it sound on 2026-09-17.
 - Which pushed tip first carries this phase, so its CI runs can be read? UNKNOWN. The parent goal pre-authorizes pushes to `skilled/v4.0.0.0` and `main` (`../goal.md`, decision D2).
 <!-- /ANCHOR:questions -->
 

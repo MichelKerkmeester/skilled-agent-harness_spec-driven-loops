@@ -57,10 +57,10 @@
       ".github/workflows/gate-inputs.yml",
       ".github/dependabot.yml",
       ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts",
       ".opencode/scripts/git-hooks/README.md",
-      "tests/README.md",
-      ".github/workflows/README.md",
-      "scratch/delegation/supplementary-hook-review-verdict.md"
+      "tests/README.md"
     ],
     "entities": [
       {
@@ -160,15 +160,21 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/scripts/git-hooks/README.md",
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
         "source": "derived"
       },
       {
-        "name": "supplementary-hook-review-verdict.md",
+        "name": "check-agent-mirror-sync.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
         "kind": "doc",
-        "path": "scratch/delegation/supplementary-hook-review-verdict.md",
+        "path": ".opencode/scripts/git-hooks/README.md",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repository's gates look for their own scripts at one literal root, `$REPOROOT/.opencode/`, and most of them read a missing script as a reason to skip",
     "created_at": "2026-09-16T17:54:07Z",
-    "last_save_at": "2026-09-17T05:26:52.211Z",
+    "last_save_at": "2026-09-17T06:42:11.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:349d259d5dd946c403b980bc57e968a6fce42bf062cc7ea6841b2618029502ea",
+    "source_fingerprint": "sha256:ab16347cd745eceb1705aa9be600e7d64171cc870e2fa7725c84a79cd4bd3acf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9beb1c1c14272dc855ace28ef49cdd2edb1f008c5b81af0106dbf18796b7a253",
-      "plan.md": "dc07d9380fb816c9887dd14d55f082698897d48769623243c76a54c94426bc94",
-      "tasks.md": "449e28e411e9b1f8b758a0d5753a0d007166afded0dca167bf31295b758c8a03",
-      "implementation-summary.md": "eb78035860b99c910db4a00a8cd32d5ac93b5fd1bde2a52c19ddaee166800703"
+      "spec.md": "c7692c268dffe77d25e2c9dbe4a3cb3da0ad5844baa33b6fd4d58408c797b187",
+      "plan.md": "9e684cb4a207342fbf749732f6d1461f8f2a92960f70909603d7077365949af8",
+      "tasks.md": "de20b95d8801a020ab06aaba86d8c52c33ad8bc9f8ed8a08116fbcbcddc1a87e",
+      "implementation-summary.md": "42f3d6986c4aeac400ee8284048f92790db948785e46a648164975b9425e3356"
     },
     "last_active_at": null
   }
