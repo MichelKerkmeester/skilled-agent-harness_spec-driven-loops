@@ -77,7 +77,49 @@ test('the durable slice stops at the log anchor and the chat slice drops markup'
   const packet = slice.readPacketGoal(workspace, 'specs/x/001-fixture');
   assert.ok(!packet.durableSlice.includes('## 4. LOG'));
   assert.ok(!packet.chatSlice.includes('<!--'));
-  assert.ok(packet.chatSlice.includes('## 1. DURABLE DIRECTIVE'));
+  assert.ok(packet.chatSlice.includes('## DURABLE DIRECTIVE'));
+});
+
+test('the chat slice drops dividers and heading section numbers but keeps the title, tables and bullets', () => {
+  const content = [
+    '---',
+    'title: "Goal: fixture"',
+    '---',
+    '# Goal: fixture',
+    '',
+    '---',
+    '',
+    '<!-- ANCHOR:directive -->',
+    '## 1. DURABLE DIRECTIVE',
+    '',
+    '### 2026 scope',
+    '',
+    '| ID | Decision |',
+    '|----|----------|',
+    '| D1 | Ship the fixture |',
+    '<!-- /ANCHOR:directive -->',
+    '',
+    '---',
+    '',
+    '<!-- ANCHOR:completion -->',
+    '## 3. COMPLETION CRITERIA',
+    '- [ ] tests pass',
+    '<!-- /ANCHOR:completion -->',
+    '',
+    '<!-- ANCHOR:log -->',
+    '## 4. LOG',
+    '<!-- /ANCHOR:log -->',
+  ].join('\n');
+  const chat = slice.renderChatSlice(content);
+  assert.ok(chat.startsWith('# Goal: fixture'));
+  assert.ok(chat.includes('## DURABLE DIRECTIVE'));
+  assert.ok(chat.includes('## COMPLETION CRITERIA'));
+  assert.doesNotMatch(chat, /^#{1,6}[ \t]+\d+\./m);
+  assert.doesNotMatch(chat, /^---$/m);
+  assert.ok(!chat.includes('<!--'));
+  assert.ok(chat.includes('### 2026 scope'), 'a heading that only starts with a number keeps it');
+  assert.ok(chat.includes('| D1 | Ship the fixture |'));
+  assert.ok(chat.includes('- [ ] tests pass'));
 });
 
 test('a nested packet gets the binding sentence and a singular one does not', () => {
@@ -141,7 +183,7 @@ test('a symlinked packet that resolves outside the workspace reads as unbound', 
 test('a CR-only document still hides its frontmatter', () => {
   const crOnly = goalDoc().replace(/\n/g, '\r');
   assert.ok(!slice.extractDurableSlice(crOnly).includes('SECRET'));
-  assert.ok(slice.renderChatSlice(crOnly).includes('## 1. DURABLE DIRECTIVE'));
+  assert.ok(slice.renderChatSlice(crOnly).includes('## DURABLE DIRECTIVE'));
 });
 
 test('the projection carries the packet real path and no file handle fields', () => {
@@ -158,6 +200,7 @@ test('the reminder names the runtime command that records the resend', () => {
   assert.ok(generic.includes("goal command's resent action"));
   assert.ok(pi.includes('record it with: /goal-pi resent'));
   assert.ok(!pi.includes('ask the operator to set it'));
+  assert.ok(generic.includes('4000 characters'), 'the reminder carries the chat send cap');
 });
 
 test('resolveWorkspaceRoot walks up from a subdirectory to the repository root', () => {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1e326eeb55887a74f688d0eb7d53eb4e980091fc5582f9dfcde34d23651a7558",
+  "manifestHash": "c726e525a34014ceb86f7d1b0b2b8c47c90e7df289e57a2f2ebe03a69bfd18d1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -50008,6 +50008,9 @@
     "goal capability probes": [
       "goal capability probes"
     ],
+    "goal chat slice": [
+      "goal chat slice"
+    ],
     "goal closure plan": [
       "goal closure plan"
     ],
@@ -71192,6 +71195,9 @@
     ],
     "parent goal budget plan": [
       "parent goal budget plan"
+    ],
+    "parent goal chat send cap": [
+      "parent goal chat send cap"
     ],
     "parent goal child phases": [
       "parent goal child phases"

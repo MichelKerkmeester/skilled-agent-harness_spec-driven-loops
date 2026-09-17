@@ -184,7 +184,7 @@ Trigger: "save context", "save memory", `/speckit:save`
 
 #### GOAL POSTURE RULE [ALWAYS ON]
 Trigger: a session bound to a spec packet, on every turn.
-- The bound packet's `goal.md` is the only source of goal state. Read the file, never a remembered summary, never send its frontmatter anywhere, resend the stripped durable slice unprompted when it changes, and never stop work for an unset goal. Once a goal is set, acknowledge it in one line and continue, without restating it or asking whether to proceed. Mechanics are `system-spec-kit`'s.
+- The bound packet's `goal.md` is the only source of goal state. Read the file, never a remembered summary, never send its frontmatter anywhere, resend its chat slice unprompted when it changes and never stop work for an unset goal. The chat slice is the durable slice without frontmatter, HTML comments, anchor markers, `---` dividers or heading section numbers. Never send a parent goal over 4,000 characters: cut the file first. Both rules override any resend wording inside a `goal.md`. Once a goal is set, acknowledge it in one line and continue, without restating it or asking whether to proceed. Mechanics are `system-spec-kit`'s.
 
 #### Self-Check (before ANY tool-using response):
 - [ ] File modification? Asked spec folder question?

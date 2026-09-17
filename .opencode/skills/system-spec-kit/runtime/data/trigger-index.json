@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1e326eeb55887a74f688d0eb7d53eb4e980091fc5582f9dfcde34d23651a7558",
+  "manifestHash": "c726e525a34014ceb86f7d1b0b2b8c47c90e7df289e57a2f2ebe03a69bfd18d1",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -15260,6 +15260,12 @@
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/research/research.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/spec.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/before-after.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/spec.md",
@@ -24766,8 +24772,9 @@
       15165,
       15170,
       15175,
-      15258,
-      15267
+      15250,
+      15264,
+      15273
     ],
     "ac traceability table": [
       12893,
@@ -25121,8 +25128,9 @@
       15165,
       15170,
       15175,
-      15258,
-      15267
+      15250,
+      15264,
+      15273
     ],
     "acceptance criteria closure gate": [
       14624,
@@ -29447,8 +29455,9 @@
       15235,
       15241,
       15246,
-      15260,
-      15269
+      15253,
+      15266,
+      15275
     ],
     "architecture diagram": [
       801,
@@ -39632,8 +39641,9 @@
       15165,
       15170,
       15175,
-      15258,
-      15267
+      15250,
+      15264,
+      15273
     ],
     "closure gate blocks evidence": [
       14564
@@ -44420,7 +44430,8 @@
       15228,
       15233,
       15239,
-      15244
+      15244,
+      15251
     ],
     "completion criteria copied": [
       14691,
@@ -45869,8 +45880,9 @@
       15234,
       15240,
       15245,
-      15259,
-      15268
+      15252,
+      15265,
+      15274
     ],
     "continue post review closeout": [
       2695
@@ -59979,7 +59991,7 @@
       7320
     ],
     "dot skilled migration": [
-      15272
+      15278
     ],
     "dot state directories": [
       14600
@@ -60763,7 +60775,8 @@
       15228,
       15233,
       15239,
-      15244
+      15244,
+      15251
     ],
     "durable fan in failure plan": [
       8364
@@ -62381,22 +62394,22 @@
       14712
     ],
     "entry point acceptance criteria": [
-      15253
+      15259
     ],
     "entry point guard worktree": [
-      15256
+      15262
     ],
     "entry point plan": [
-      15255
+      15261
     ],
     "entry point summary": [
-      15254
+      15260
     ],
     "entry point symlink resolution": [
       9429
     ],
     "entry point tasks": [
-      15257
+      15263
     ],
     "enum constrain schemas": [
       13934,
@@ -65613,8 +65626,9 @@
       15237,
       15242,
       15248,
-      15261,
-      15270
+      15254,
+      15267,
+      15276
     ],
     "feature specification 028 drift remediation": [
       13621
@@ -65744,7 +65758,7 @@
       217
     ],
     "fewer skills safer paths": [
-      15273
+      15279
     ],
     "fidelity checklist": [
       889
@@ -68185,7 +68199,7 @@
       12841
     ],
     "frontmatter never sent in chat": [
-      15251
+      15257
     ],
     "frontmatter normalization": [
       14771,
@@ -69221,7 +69235,7 @@
       6289
     ],
     "generator exits 0 without writing": [
-      15256
+      15262
     ],
     "generator graph metadata guess": [
       14648
@@ -69920,7 +69934,7 @@
       302
     ],
     "goal before after": [
-      15250
+      15256
     ],
     "goal binding": [
       2523,
@@ -70125,6 +70139,10 @@
     "goal capability probes": [
       2713
     ],
+    "goal chat slice": [
+      15251,
+      15254
+    ],
     "goal closure plan": [
       15230
     ],
@@ -70138,7 +70156,7 @@
       3994,
       15207,
       15208,
-      15252
+      15258
     ],
     "goal contradiction register": [
       15236
@@ -70302,7 +70320,7 @@
     ],
     "goal hook refactor": [
       3994,
-      15252
+      15258
     ],
     "goal hook validation": [
       2742
@@ -70405,11 +70423,11 @@
       15247
     ],
     "goal md across runtimes": [
-      15251
+      15257
     ],
     "goal md frontmatter strip": [
       3994,
-      15252
+      15258
     ],
     "goal md template": [
       14699
@@ -70563,7 +70581,7 @@
       3994,
       15217,
       15219,
-      15252
+      15258
     ],
     "goal store fate": [
       15183,
@@ -70578,7 +70596,7 @@
       15236
     ],
     "goal system comparison": [
-      15250
+      15256
     ],
     "goal template": [
       14673,
@@ -70598,8 +70616,8 @@
     ],
     "goal unification": [
       3994,
-      15251,
-      15252
+      15257,
+      15258
     ],
     "goal unification changelog": [
       15217,
@@ -70623,7 +70641,7 @@
       15224
     ],
     "goal unification record": [
-      15250
+      15256
     ],
     "goal unification research": [
       15183,
@@ -75188,8 +75206,9 @@
       15235,
       15241,
       15246,
-      15260,
-      15269
+      15253,
+      15266,
+      15275
     ],
     "implementation status": [
       3759,
@@ -75606,8 +75625,9 @@
       15234,
       15240,
       15245,
-      15259,
-      15268
+      15252,
+      15265,
+      15274
     ],
     "implementation summary 025": [
       7038
@@ -75975,8 +75995,9 @@
       15238,
       15243,
       15249,
-      15262,
-      15271
+      15255,
+      15268,
+      15277
     ],
     "implementation testing verification phases": [
       521
@@ -77465,13 +77486,13 @@
       12408
     ],
     "ismainmodule plan": [
-      15255
+      15261
     ],
     "ismainmodule symlink": [
-      15256
+      15262
     ],
     "ismainmodule tasks": [
-      15257
+      15263
     ],
     "isolate ai sessions git worktree": [
       11759,
@@ -84994,7 +85015,7 @@
       14800
     ],
     "memory decommission history": [
-      15274
+      15280
     ],
     "memory decommission inventory": [
       14783
@@ -85019,7 +85040,7 @@
     ],
     "memory decommission timeline": [
       3995,
-      15275
+      15281
     ],
     "memory delete causal cleanup": [
       12922
@@ -88573,7 +88594,7 @@
       14503
     ],
     "move opencode to skilled": [
-      15272
+      15278
     ],
     "move or rename a note": [
       447
@@ -92667,7 +92688,7 @@
       109
     ],
     "opencode path inventory": [
-      15264
+      15270
     ],
     "opencode path key boundary": [
       6488
@@ -92898,7 +92919,7 @@
       12051
     ],
     "opencode source root blockers": [
-      15263
+      15269
     ],
     "opencode stdin dev null rule": [
       109
@@ -94526,7 +94547,8 @@
       15228,
       15233,
       15239,
-      15244
+      15244,
+      15251
     ],
     "packet goal binding": [
       11
@@ -94534,8 +94556,8 @@
     "packet goal single source": [
       3994,
       15185,
-      15251,
-      15252
+      15257,
+      15258
     ],
     "packet goal single source backlog": [
       15186
@@ -94804,13 +94826,17 @@
     "parent goal budget plan": [
       9545
     ],
+    "parent goal chat send cap": [
+      15251,
+      15254
+    ],
     "parent goal child phases": [
       14699
     ],
     "parent goal resend": [
       15212,
       15213,
-      15251
+      15257
     ],
     "parent goal resend in chat": [
       14900
@@ -95883,8 +95909,8 @@
       3881
     ],
     "per runtime symlink map": [
-      15265,
-      15266
+      15271,
+      15272
     ],
     "per seat outcome aggregation": [
       1387
@@ -98617,7 +98643,7 @@
       11752,
       12897,
       15039,
-      15274
+      15280
     ],
     "phase parent 049": [
       10236
@@ -102492,8 +102518,9 @@
       15237,
       15242,
       15248,
-      15261,
-      15270
+      15254,
+      15267,
+      15276
     ],
     "procedural benchmark gate task": [
       13744
@@ -105547,7 +105574,7 @@
       5152
     ],
     "reconciled migration map": [
-      15265
+      15271
     ],
     "reconcilemoves spec folder omission": [
       11616,
@@ -108575,8 +108602,9 @@
       15237,
       15242,
       15248,
-      15261,
-      15270
+      15254,
+      15267,
+      15276
     ],
     "requirements rules and checklist": [
       771
@@ -113161,7 +113189,7 @@
       1408
     ],
     "runtime file path inventory": [
-      15266
+      15272
     ],
     "runtime fork drift guard gap": [
       10337
@@ -113477,10 +113505,10 @@
       2596
     ],
     "runtime symlink inversion": [
-      15272
+      15278
     ],
     "runtime symlink retarget research": [
-      15264
+      15270
     ],
     "runtime sync manifest template": [
       1067
@@ -117479,7 +117507,7 @@
       8786
     ],
     "silent gate disengagement": [
-      15263
+      15269
     ],
     "silent hook catch stderr": [
       14896,
@@ -123995,22 +124023,22 @@
       7544
     ],
     "skilled cutover constraints": [
-      15263
+      15269
     ],
     "skilled migration findings": [
-      15263
+      15269
     ],
     "skilled migration research": [
-      15264
+      15270
     ],
     "skilled reference map": [
-      15266
+      15272
     ],
     "skilled reference map findings": [
-      15265
+      15271
     ],
     "skilled source root": [
-      15272
+      15278
     ],
     "skillmd references assets cleanup phase": [
       13558
@@ -124560,13 +124588,13 @@
       891
     ],
     "source parent migration": [
-      15272
+      15278
     ],
     "source phase metadata cleanup": [
       6848
     ],
     "source root move implications": [
-      15264
+      15270
     ],
     "source to target map": [
       15168
@@ -125358,10 +125386,10 @@
     ],
     "spec kit v4 chronology": [
       3995,
-      15275
+      15281
     ],
     "spec kit v4 timeline": [
-      15274
+      15280
     ],
     "spec kit version migration": [
       11716,
@@ -126710,10 +126738,10 @@
       13712
     ],
     "stale opencode path references": [
-      15266
+      15272
     ],
     "stale opencode references map": [
-      15265
+      15271
     ],
     "stale phase documentation map": [
       6227
@@ -128665,8 +128693,9 @@
       15237,
       15242,
       15248,
-      15261,
-      15270
+      15254,
+      15267,
+      15276
     ],
     "success rows missing active vector": [
       12364
@@ -130387,11 +130416,11 @@
       14308
     ],
     "system speckit v4": [
-      15274
+      15280
     ],
     "system speckit v4 timeline": [
       3995,
-      15275
+      15281
     ],
     "system to embedder mapping": [
       11193,
@@ -130882,8 +130911,9 @@
       15238,
       15243,
       15249,
-      15262,
-      15271
+      15255,
+      15268,
+      15277
     ],
     "task cache removal": [
       221
@@ -131209,8 +131239,9 @@
       15238,
       15243,
       15249,
-      15262,
-      15271
+      15255,
+      15268,
+      15277
     ],
     "task detail without network": [
       241
@@ -131970,8 +132001,9 @@
       15235,
       15241,
       15246,
-      15260,
-      15269
+      15253,
+      15266,
+      15275
     ],
     "telemetry and process verification harness": [
       11293,
@@ -132679,7 +132711,7 @@
       14535
     ],
     "template reduction history": [
-      15274
+      15280
     ],
     "template reduction requirements": [
       14515
@@ -133389,8 +133421,9 @@
       15235,
       15241,
       15246,
-      15260,
-      15269
+      15253,
+      15266,
+      15275
     ],
     "tests that cannot fail": [
       672
@@ -136108,10 +136141,10 @@
       15154
     ],
     "v4 0 0 0 release notes": [
-      15273
+      15279
     ],
     "v4 changelog": [
-      15273
+      15279
     ],
     "v4 changelog draft update": [
       15158
@@ -136121,7 +136154,7 @@
     ],
     "v4 packet order": [
       3995,
-      15275
+      15281
     ],
     "v4 pro retirement status": [
       2472
@@ -136297,7 +136330,7 @@
       3491
     ],
     "validate passes but touched 0 files": [
-      15256
+      15262
     ],
     "validate recursive orchestrator": [
       10456,
@@ -136714,8 +136747,9 @@
       15234,
       15240,
       15245,
-      15259,
-      15268
+      15252,
+      15265,
+      15274
     ],
     "validation first workflow": [
       1037
@@ -137549,8 +137583,9 @@
       15238,
       15243,
       15249,
-      15262,
-      15271
+      15255,
+      15268,
+      15277
     ],
     "verification class blind to failure class": [
       9687
@@ -138488,8 +138523,9 @@
       15165,
       15170,
       15175,
-      15258,
-      15267
+      15250,
+      15264,
+      15273
     ],
     "wal autocheckpoint 256": [
       11832,
@@ -139172,13 +139208,13 @@
       201
     ],
     "what changed about goals": [
-      15250
+      15256
     ],
     "what changed between these two screenshots": [
       1144
     ],
     "what changed in v4": [
-      15273
+      15279
     ],
     "what colors are in this design": [
       1142
@@ -139509,8 +139545,9 @@
       15234,
       15240,
       15245,
-      15259,
-      15268
+      15252,
+      15265,
+      15274
     ],
     "what shipped acceptance closure": [
       15004
@@ -139768,7 +139805,7 @@
     ],
     "which spec was worked on first": [
       3995,
-      15275
+      15281
     ],
     "which system uses cocoindex or mk spec memory": [
       12422
