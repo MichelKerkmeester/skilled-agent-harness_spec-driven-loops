@@ -293,13 +293,13 @@ describe('walkCorpus', () => {
     writeDoc(root, 'specs/track/scratch/tmp.md', frontmatter(['scratch']));
     writeDoc(root, 'specs/track/research/lineages/run/iter.md', frontmatter(['lineage']));
     writeDoc(root, 'specs/track/research/synthesis.md', frontmatter(['kept']));
-    writeDoc(root, '.opencode/skills/demo/SKILL.md', frontmatter(['skill']));
-    writeDoc(root, '.opencode/skills/demo/node_modules/pkg/readme.md', frontmatter(['vendored']));
+    writeDoc(root, '.skilled/skills/demo/SKILL.md', frontmatter(['skill']));
+    writeDoc(root, '.skilled/skills/demo/node_modules/pkg/readme.md', frontmatter(['vendored']));
 
     const { files } = walkCorpus(root);
 
     expect(files).toEqual([
-      '.opencode/skills/demo/SKILL.md',
+      '.skilled/skills/demo/SKILL.md',
       'specs/track/a.md',
       'specs/track/research/synthesis.md',
     ]);
@@ -335,32 +335,32 @@ describe('walkCorpus', () => {
     });
   });
 
-  it('also walks .opencode/install-guides, the widened corpus root', () => {
+  it('also walks .skilled/install-guides, the widened corpus root', () => {
     const root = makeTempDir('speckit-trigger-install-guides-');
-    writeDoc(root, '.opencode/install-guides/README.md', frontmatter(['install guides']));
-    writeDoc(root, '.opencode/skills/demo/SKILL.md', frontmatter(['skill']));
+    writeDoc(root, '.skilled/install-guides/README.md', frontmatter(['install guides']));
+    writeDoc(root, '.skilled/skills/demo/SKILL.md', frontmatter(['skill']));
 
     const { files } = walkCorpus(root);
 
     expect(files).toEqual([
-      '.opencode/install-guides/README.md',
-      '.opencode/skills/demo/SKILL.md',
+      '.skilled/install-guides/README.md',
+      '.skilled/skills/demo/SKILL.md',
     ]);
   });
 
   it('folds the .opencode/specs alias onto its canonical path', () => {
     expect(canonicalRelativePath('.opencode/specs/track/a.md')).toBe('specs/track/a.md');
-    expect(canonicalRelativePath('.opencode/skills/demo/SKILL.md')).toBe('.opencode/skills/demo/SKILL.md');
+    expect(canonicalRelativePath('.skilled/skills/demo/SKILL.md')).toBe('.skilled/skills/demo/SKILL.md');
   });
 
   it('prunes fixture trees in the skills tree while keeping a spec packet named for fixtures', () => {
     const root = makeTempDir('speckit-trigger-fixtures-');
-    writeDoc(root, '.opencode/skills/demo/tests/fixtures/broken.md', '---\ntrigger_phrases:\n');
-    writeDoc(root, '.opencode/skills/demo/tests/fixtures/nested/also-broken.md', '---\ntrigger_phrases:\n');
-    writeDoc(root, '.opencode/skills/demo/scripts/__fixtures__/sample.md', frontmatter(['fixture phrase']));
-    writeDoc(root, '.opencode/skills/demo/test-fixtures/sample.md', frontmatter(['fixture phrase']));
-    writeDoc(root, '.opencode/skills/demo/tests/advisor-fixtures/sample.md', frontmatter(['fixture phrase']));
-    writeDoc(root, '.opencode/skills/demo/SKILL.md', frontmatter(['skill']));
+    writeDoc(root, '.skilled/skills/demo/tests/fixtures/broken.md', '---\ntrigger_phrases:\n');
+    writeDoc(root, '.skilled/skills/demo/tests/fixtures/nested/also-broken.md', '---\ntrigger_phrases:\n');
+    writeDoc(root, '.skilled/skills/demo/scripts/__fixtures__/sample.md', frontmatter(['fixture phrase']));
+    writeDoc(root, '.skilled/skills/demo/test-fixtures/sample.md', frontmatter(['fixture phrase']));
+    writeDoc(root, '.skilled/skills/demo/tests/advisor-fixtures/sample.md', frontmatter(['fixture phrase']));
+    writeDoc(root, '.skilled/skills/demo/SKILL.md', frontmatter(['skill']));
     // A spec packet may legitimately be named for fixtures, or hold a folder of
     // them it documents. Those are documents, and pruning them would drop real
     // specifications out of retrieval.
@@ -370,7 +370,7 @@ describe('walkCorpus', () => {
     const { files } = walkCorpus(root);
 
     expect(files).toEqual([
-      '.opencode/skills/demo/SKILL.md',
+      '.skilled/skills/demo/SKILL.md',
       'specs/track/002-contracts-and-fixtures/spec.md',
       'specs/track/003-scaffold/fixtures/routing-parity.md',
     ]);
@@ -385,7 +385,7 @@ describe('generate', () => {
   it('produces a byte-identical artifact on a second run over the same corpus', () => {
     const root = makeTempDir('speckit-trigger-idempotent-');
     writeDoc(root, 'specs/track/a.md', frontmatter(['spec folder question', 'gate three']));
-    writeDoc(root, '.opencode/skills/demo/SKILL.md', frontmatter(['skill routing']));
+    writeDoc(root, '.skilled/skills/demo/SKILL.md', frontmatter(['skill routing']));
     const options = generationPaths(root);
 
     const first = generate(options);

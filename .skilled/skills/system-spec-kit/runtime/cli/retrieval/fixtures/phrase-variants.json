@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1e326eeb55887a74f688d0eb7d53eb4e980091fc5582f9dfcde34d23651a7558",
+  "manifestHash": "b9b0ae6de561b1ec1dd225ae406cf8db7c5b58680e391f4895faf5ce2a906207",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15817,8 +15817,14 @@
     "broken link ci check skills commands agents": [
       "broken link CI check skills commands agents"
     ],
+    "broken link retire or restore": [
+      "broken link retire or restore"
+    ],
     "broken markdown links": [
       "broken markdown links"
+    ],
+    "broken move dry run": [
+      "broken move dry run"
     ],
     "broken readme link gate": [
       "broken readme link gate"
@@ -21172,6 +21178,9 @@
     "cli pi deepseek flash": [
       "cli-pi deepseek flash"
     ],
+    "cli pi deepseek flash delegation": [
+      "cli-pi deepseek flash delegation"
+    ],
     "cli pi deepseek flash openrouter research run": [
       "cli-pi deepseek flash openrouter research run"
     ],
@@ -24354,6 +24363,9 @@
     "codex hooks mirror": [
       "codex hooks mirror"
     ],
+    "codex hooks reinstall duplicates": [
+      "codex hooks reinstall duplicates"
+    ],
     "codex hooks rewiring": [
       "codex hooks rewiring"
     ],
@@ -27117,8 +27129,14 @@
     "consumer inventory rename": [
       "consumer inventory rename"
     ],
+    "consumer link cutover tasks": [
+      "consumer link cutover tasks"
+    ],
     "consumer measurement plan": [
       "consumer measurement plan"
+    ],
+    "consumer project skilled links": [
+      "consumer project skilled links"
     ],
     "consumer repointing": [
       "consumer repointing"
@@ -27128,6 +27146,9 @@
     ],
     "consumer search before changing a marker": [
       "consumer search before changing a marker"
+    ],
+    "consumer skilled link plan": [
+      "consumer skilled link plan"
     ],
     "consumption log pii redaction query hash": [
       "consumption-log pii redaction query_hash"
@@ -31585,6 +31606,9 @@
     ],
     "dangerously skip permissions risk": [
       "dangerously skip permissions risk"
+    ],
+    "dangling git hook probe": [
+      "dangling git hook probe"
     ],
     "dangling install symlink": [
       "dangling install symlink"
@@ -36053,6 +36077,9 @@
     "deepseek cache stack adoption": [
       "deepseek cache stack adoption"
     ],
+    "deepseek census units": [
+      "deepseek census units"
+    ],
     "deepseek cli pi stall": [
       "deepseek cli-pi stall"
     ],
@@ -36082,6 +36109,9 @@
     ],
     "deepseek direct ownership reclaim": [
       "deepseek direct ownership reclaim"
+    ],
+    "deepseek draft gpt review tasks": [
+      "deepseek draft gpt review tasks"
     ],
     "deepseek exclusion patch": [
       "deepseek exclusion patch"
@@ -37926,6 +37956,12 @@
     ],
     "design resource map": [
       "design resource map"
+    ],
+    "design review adjudication criterion": [
+      "design review adjudication criterion"
+    ],
+    "design review adjudication tasks": [
+      "design review adjudication tasks"
     ],
     "design review findings": [
       "design review findings"
@@ -41394,6 +41430,27 @@
     "dual read single write fail closed migration": [
       "dual read single write fail closed migration"
     ],
+    "dual root code and contracts": [
+      "dual-root-code-and-contracts"
+    ],
+    "dual root code and contracts results": [
+      "dual-root-code-and-contracts results"
+    ],
+    "dual root contracts": [
+      "dual root contracts"
+    ],
+    "dual root implementation plan": [
+      "dual root implementation plan"
+    ],
+    "dual root implementation summary": [
+      "dual root implementation summary"
+    ],
+    "dual root phase goal": [
+      "dual root phase goal"
+    ],
+    "dual root task breakdown": [
+      "dual root task breakdown"
+    ],
     "dual schema wal truncate": [
       "dual-schema WAL TRUNCATE"
     ],
@@ -41919,6 +41976,12 @@
     ],
     "eighth rule file": [
       "eighth rule file"
+    ],
+    "either root completion criteria": [
+      "either root completion criteria"
+    ],
+    "either root verification evidence": [
+      "either root verification evidence"
     ],
     "element traceability": [
       "element traceability"
@@ -48008,6 +48071,9 @@
     "framework selection matrix": [
       "framework selection matrix"
     ],
+    "freeze exclusion globs": [
+      "freeze exclusion globs"
+    ],
     "fresh": [
       "fresh"
     ],
@@ -48918,8 +48984,14 @@
     "gate decision fields": [
       "gate decision fields"
     ],
+    "gate filter trace plan": [
+      "gate filter trace plan"
+    ],
     "gate function completion claims": [
       "gate function completion claims"
+    ],
+    "gate input check design": [
+      "gate input check design"
     ],
     "gate matrix negative controls": [
       "gate matrix negative controls"
@@ -48956,6 +49028,18 @@
     ],
     "gate question injection": [
       "gate question injection"
+    ],
+    "gate readiness phase goal": [
+      "gate readiness phase goal"
+    ],
+    "gate readiness plan": [
+      "gate readiness plan"
+    ],
+    "gate readiness tasks": [
+      "gate readiness tasks"
+    ],
+    "gate readiness verification checklist": [
+      "gate readiness verification checklist"
     ],
     "gate release with a dated support matrix and fail closed compatibility doctor": [
       "gate release with a dated support matrix and fail-closed compatibility doctor"
@@ -49282,6 +49366,12 @@
     "generated skill copy skip": [
       "generated skill copy skip"
     ],
+    "generated state closure gate": [
+      "generated state closure gate"
+    ],
+    "generated state phase directive": [
+      "generated state phase directive"
+    ],
     "generatedocumentembedding catch swallow": [
       "generateDocumentEmbedding catch swallow"
     ],
@@ -49342,6 +49432,12 @@
     "generator exits 0 without writing": [
       "generator exits 0 without writing"
     ],
+    "generator freshness acceptance": [
+      "generator freshness acceptance"
+    ],
+    "generator freshness sweep": [
+      "generator freshness sweep"
+    ],
     "generator graph metadata guess": [
       "generator graph metadata guess"
     ],
@@ -49350,6 +49446,12 @@
     ],
     "generator not rules fix": [
       "generator not rules fix"
+    ],
+    "generator rerun tasks": [
+      "generator rerun tasks"
+    ],
+    "generator source constants order": [
+      "generator source constants order"
     ],
     "generator status field menu": [
       "generator status field menu"
@@ -49935,6 +50037,15 @@
     ],
     "global disable flag": [
       "global disable flag"
+    ],
+    "global git hooks reinstall": [
+      "global git hooks reinstall"
+    ],
+    "global hooks cutover directive": [
+      "global hooks cutover directive"
+    ],
+    "global hooks relink criteria": [
+      "global hooks relink criteria"
     ],
     "global security audit complete": [
       "global security audit complete"
@@ -52502,6 +52613,12 @@
     "holdout scoring honesty": [
       "holdout scoring honesty"
     ],
+    "home config cutover": [
+      "home config cutover"
+    ],
+    "home config cutover checklist": [
+      "home config cutover checklist"
+    ],
     "honest measurement contract": [
       "honest measurement contract"
     ],
@@ -52553,8 +52670,23 @@
     "hook adapter versus cli": [
       "hook adapter versus CLI"
     ],
+    "hook and ci delegation plan": [
+      "hook and ci delegation plan"
+    ],
+    "hook and workflow unit tasks": [
+      "hook and workflow unit tasks"
+    ],
     "hook box header all runtimes": [
       "hook box header all runtimes"
+    ],
+    "hook bridge landing bracket": [
+      "hook bridge landing bracket"
+    ],
+    "hook bridge task order": [
+      "hook bridge task order"
+    ],
+    "hook bridge window": [
+      "hook bridge window"
     ],
     "hook compatibility consumer cutover": [
       "hook compatibility consumer cutover"
@@ -54466,6 +54598,9 @@
     ],
     "incumbent inventory parity tasks": [
       "incumbent inventory parity tasks"
+    ],
+    "independent gate input check": [
+      "independent gate input check"
     ],
     "independent percentages legend": [
       "independent percentages legend"
@@ -57053,8 +57188,17 @@
     "layout fingerprint screenshot dedupe watcher tasks": [
       "layout fingerprint screenshot dedupe watcher tasks"
     ],
+    "layout probe completion criteria": [
+      "layout probe completion criteria"
+    ],
+    "layout probe verification checklist": [
+      "layout probe verification checklist"
+    ],
     "layout recalc thresholds": [
       "layout recalc thresholds"
+    ],
+    "layout rehearsal checklist": [
+      "layout rehearsal checklist"
     ],
     "lazy add on docs": [
       "lazy add-on docs"
@@ -58067,6 +58211,21 @@
     ],
     "link based population count": [
       "link-based population count"
+    ],
+    "link census acceptance row": [
+      "link census acceptance row"
+    ],
+    "link census command": [
+      "link census command"
+    ],
+    "link census completion criteria": [
+      "link census completion criteria"
+    ],
+    "link census verification checklist": [
+      "link census verification checklist"
+    ],
+    "link census zero dangling": [
+      "link census zero dangling"
     ],
     "link checker broken list retained": [
       "link checker broken list retained"
@@ -59170,6 +59329,12 @@
     ],
     "machine block preservation decision": [
       "machine block preservation decision"
+    ],
+    "machine cutover acceptance": [
+      "machine cutover acceptance"
+    ],
+    "machine cutover completion criteria": [
+      "machine cutover completion criteria"
     ],
     "machine friendly cli json": [
       "machine friendly cli json"
@@ -64144,6 +64309,12 @@
     "migration changelog evidence": [
       "migration changelog evidence"
     ],
+    "migration design acceptance criteria": [
+      "migration design acceptance criteria"
+    ],
+    "migration design checklist": [
+      "migration design checklist"
+    ],
     "migration execution decision record": [
       "migration execution decision record"
     ],
@@ -64197,6 +64368,9 @@
     ],
     "migration playbook reference": [
       "migration playbook reference"
+    ],
+    "migration point of no return": [
+      "migration point of no return"
     ],
     "migration program completion claims": [
       "migration program completion claims"
@@ -66159,6 +66333,9 @@
     ],
     "move reconciliation packet id identity": [
       "move reconciliation packet_id identity"
+    ],
+    "move rehearsal plan": [
+      "move rehearsal plan"
     ],
     "move skill graph handlers": [
       "move skill_graph_ handlers"
@@ -69229,6 +69406,18 @@
     "opencode command scaffold": [
       "opencode command scaffold"
     ],
+    "opencode compat link shape": [
+      "opencode compat link shape"
+    ],
+    "opencode compatibility commit": [
+      "opencode compatibility commit"
+    ],
+    "opencode compatibility link decision": [
+      "opencode compatibility link decision"
+    ],
+    "opencode compatibility shape commit": [
+      "opencode compatibility shape commit"
+    ],
     "opencode config checklist": [
       "opencode config checklist"
     ],
@@ -69368,11 +69557,23 @@
     "opencode json registration comment stale": [
       "opencode.json registration comment stale"
     ],
+    "opencode keep list": [
+      "opencode keep list"
+    ],
     "opencode layered self dispatch check": [
       "opencode layered self-dispatch check"
     ],
+    "opencode layout decision": [
+      "opencode layout decision"
+    ],
+    "opencode layout phase goal": [
+      "opencode layout phase goal"
+    ],
     "opencode leaf agent constraints": [
       "opencode leaf agent constraints"
+    ],
+    "opencode link decision tree": [
+      "opencode link decision tree"
     ],
     "opencode mcp config example": [
       "opencode mcp config example"
@@ -69430,6 +69631,9 @@
     ],
     "opencode path map tasks": [
       "opencode path map tasks"
+    ],
+    "opencode path reference rewrite": [
+      "opencode path reference rewrite"
     ],
     "opencode permissions matrix": [
       "opencode permissions matrix"
@@ -69640,6 +69844,9 @@
     ],
     "opencode skill to skills test fixtures": [
       "opencode skill to skills test fixtures"
+    ],
+    "opencode skilled layout matrix": [
+      "opencode skilled layout matrix"
     ],
     "opencode source root blockers": [
       "opencode source root blockers"
@@ -69998,6 +70205,9 @@
     "orchestrator env round trip": [
       "orchestrator env round trip"
     ],
+    "orchestrator pi flash codex sol tasks": [
+      "orchestrator pi-flash codex-sol tasks"
+    ],
     "orchestrator placeholder parity": [
       "orchestrator placeholder parity"
     ],
@@ -70282,6 +70492,9 @@
     ],
     "osi model layers": [
       "osi model layers"
+    ],
+    "other machine cutover checklist": [
+      "other machine cutover checklist"
     ],
     "out of box embedder narrative": [
       "out-of-box embedder narrative"
@@ -72039,6 +72252,12 @@
     "per engine cli command table": [
       "per-engine cli command table"
     ],
+    "per entry git mv tasks": [
+      "per entry git mv tasks"
+    ],
+    "per entry git mv verification": [
+      "per entry git mv verification"
+    ],
     "per environment custom code": [
       "per environment custom code"
     ],
@@ -72209,6 +72428,9 @@
     ],
     "per runtime hook validation": [
       "per-runtime hook validation"
+    ],
+    "per runtime map goal": [
+      "per runtime map goal"
     ],
     "per runtime playbook model standardization": [
       "per-runtime playbook model standardization"
@@ -77149,6 +77371,12 @@
     "probe deepprobe reap plan": [
       "probe deepProbe reap plan"
     ],
+    "probe delegation deepseek pi": [
+      "probe delegation deepseek pi"
+    ],
+    "probe executor assignment": [
+      "probe executor assignment"
+    ],
     "probe manual design": [
       "probe manual design"
     ],
@@ -80462,6 +80690,15 @@
     "reference research implementation summary": [
       "reference research implementation summary"
     ],
+    "reference rewrite batch plan": [
+      "reference rewrite batch plan"
+    ],
+    "reference rewrite batches": [
+      "reference rewrite batches"
+    ],
+    "reference rewrite delegation": [
+      "reference rewrite delegation"
+    ],
     "reference rewrite executor implementation": [
       "reference rewrite executor implementation"
     ],
@@ -80471,8 +80708,23 @@
     "reference rewrite executor tasks": [
       "reference-rewrite executor tasks"
     ],
+    "reference rewrite phase goal": [
+      "reference rewrite phase goal"
+    ],
+    "reference rewrite rescan": [
+      "reference rewrite rescan"
+    ],
+    "reference rewrite rule": [
+      "reference rewrite rule"
+    ],
+    "reference rewrite tasks": [
+      "reference rewrite tasks"
+    ],
     "reference rewrite tooling dry run": [
       "reference rewrite tooling dry-run"
+    ],
+    "reference rewrite verification checklist": [
+      "reference rewrite verification checklist"
     ],
     "reference sweep decision": [
       "reference sweep decision"
@@ -81055,6 +81307,9 @@
     ],
     "regenerate proof packet": [
       "regenerate proof packet"
+    ],
+    "regenerate runtime mirrors after move": [
+      "regenerate runtime mirrors after move"
     ],
     "regeneration identical criterion": [
       "regeneration identical criterion"
@@ -82048,6 +82303,18 @@
     "rename closure batching decision": [
       "rename closure batching decision"
     ],
+    "rename commit closure gate": [
+      "rename commit closure gate"
+    ],
+    "rename commit deletion ceiling": [
+      "rename commit deletion ceiling"
+    ],
+    "rename commit handoff notes": [
+      "rename commit handoff notes"
+    ],
+    "rename commit verification checklist": [
+      "rename commit verification checklist"
+    ],
     "rename contract freeze": [
       "rename contract freeze"
     ],
@@ -82108,8 +82375,17 @@
     "rename numbered snippet files": [
       "rename numbered snippet files"
     ],
+    "rename only move completion criteria": [
+      "rename-only move completion criteria"
+    ],
+    "rename only tree move": [
+      "rename-only tree move"
+    ],
     "rename pattern checklist": [
       "rename pattern checklist"
+    ],
+    "rename push deletion ceiling": [
+      "rename push deletion ceiling"
     ],
     "rename set changelog entry": [
       "rename set changelog entry"
@@ -84009,6 +84285,9 @@
     "retarget links": [
       "retarget links"
     ],
+    "retarget runtime symlinks to skilled": [
+      "retarget runtime symlinks to skilled"
+    ],
     "retention durability plan": [
       "retention durability plan"
     ],
@@ -85172,6 +85451,12 @@
     ],
     "rewrite 379 references": [
       "rewrite 379 references"
+    ],
+    "rewrite batch task order": [
+      "rewrite batch task order"
+    ],
+    "rewrite batch verification": [
+      "rewrite batch verification"
     ],
     "rewrite command namespace": [
       "rewrite command namespace"
@@ -86787,6 +87072,9 @@
     "runtime budget test suite": [
       "runtime budget test suite"
     ],
+    "runtime canary smoke test": [
+      "runtime canary smoke test"
+    ],
     "runtime capabilities json": [
       "runtime_capabilities.json"
     ],
@@ -87227,6 +87515,9 @@
     ],
     "runtime symlink inversion": [
       "runtime symlink inversion"
+    ],
+    "runtime symlink resolution probe": [
+      "runtime symlink resolution probe"
     ],
     "runtime symlink retarget research": [
       "runtime symlink retarget research"
@@ -88929,6 +89220,9 @@
     ],
     "seat recommendation sections": [
       "seat recommendation sections"
+    ],
+    "second family design review": [
+      "second family design review"
     ],
     "second lens review": [
       "second lens review"
@@ -91012,6 +91306,9 @@
     ],
     "silent gate disengagement": [
       "silent gate disengagement"
+    ],
+    "silent gate skip fix": [
+      "silent gate skip fix"
     ],
     "silent hook catch stderr": [
       "silent hook catch stderr"
@@ -97162,14 +97459,131 @@
     "skilled branch alias": [
       "skilled branch alias"
     ],
+    "skilled canary smoke plan": [
+      "skilled canary smoke plan"
+    ],
+    "skilled contract components goal": [
+      "skilled contract components goal"
+    ],
+    "skilled contract components plan": [
+      "skilled contract components plan"
+    ],
+    "skilled contract components shipped": [
+      "skilled contract components shipped"
+    ],
+    "skilled contract tasks": [
+      "skilled contract tasks"
+    ],
     "skilled cutover constraints": [
       "skilled cutover constraints"
+    ],
+    "skilled cutover order decision": [
+      "skilled cutover order decision"
+    ],
+    "skilled cutover sequence": [
+      "skilled cutover sequence"
+    ],
+    "skilled cutover steps": [
+      "skilled cutover steps"
+    ],
+    "skilled design closure gate": [
+      "skilled design closure gate"
+    ],
+    "skilled design tasks": [
+      "skilled design tasks"
+    ],
+    "skilled gate matrix": [
+      "skilled gate matrix"
+    ],
+    "skilled gate readiness": [
+      "skilled gate readiness"
+    ],
+    "skilled gate teaching goal": [
+      "skilled gate teaching goal"
+    ],
+    "skilled layout options": [
+      "skilled layout options"
+    ],
+    "skilled layout probe acceptance": [
+      "skilled layout probe acceptance"
+    ],
+    "skilled layout probe plan": [
+      "skilled layout probe plan"
+    ],
+    "skilled layout probe tasks": [
+      "skilled layout probe tasks"
+    ],
+    "skilled layout probes": [
+      "skilled layout probes"
+    ],
+    "skilled layout probes goal": [
+      "skilled layout probes goal"
+    ],
+    "skilled links acceptance criteria": [
+      "skilled links acceptance criteria"
+    ],
+    "skilled links and generated state": [
+      "skilled links and generated state"
+    ],
+    "skilled links phase goal": [
+      "skilled links phase goal"
+    ],
+    "skilled links task list": [
+      "skilled links task list"
+    ],
+    "skilled machine cutover": [
+      "skilled machine cutover"
+    ],
+    "skilled machine cutover goal": [
+      "skilled machine cutover goal"
+    ],
+    "skilled machine cutover plan": [
+      "skilled machine cutover plan"
+    ],
+    "skilled machine cutover tasks": [
+      "skilled machine cutover tasks"
+    ],
+    "skilled migration binding": [
+      "skilled migration binding"
+    ],
+    "skilled migration closeout": [
+      "skilled migration closeout"
+    ],
+    "skilled migration completion criteria": [
+      "skilled migration completion criteria"
+    ],
+    "skilled migration design": [
+      "skilled migration design"
+    ],
+    "skilled migration design goal": [
+      "skilled migration design goal"
     ],
     "skilled migration findings": [
       "skilled migration findings"
     ],
+    "skilled migration goal": [
+      "skilled migration goal"
+    ],
     "skilled migration research": [
       "skilled migration research"
+    ],
+    "skilled migration verification": [
+      "skilled migration verification"
+    ],
+    "skilled move verification rows": [
+      "skilled move verification rows"
+    ],
+    "skilled placeholder removal": [
+      "skilled placeholder removal"
+    ],
+    "skilled probe task order": [
+      "skilled probe task order"
+    ],
+    "skilled push and ci census": [
+      "skilled push and ci census"
+    ],
+    "skilled push tasks": [
+      "skilled push tasks"
     ],
     "skilled reference map": [
       "skilled reference map"
@@ -97177,8 +97591,62 @@
     "skilled reference map findings": [
       "skilled reference map findings"
     ],
+    "skilled reference map phase goal": [
+      "skilled reference map phase goal"
+    ],
+    "skilled reference rewrite": [
+      "skilled reference rewrite"
+    ],
+    "skilled regeneration runbook": [
+      "skilled regeneration runbook"
+    ],
+    "skilled rename rehearsal": [
+      "skilled rename rehearsal"
+    ],
+    "skilled rename rehearsal plan": [
+      "skilled rename rehearsal plan"
+    ],
+    "skilled research phase goal": [
+      "skilled research phase goal"
+    ],
+    "skilled residue scan": [
+      "skilled residue scan"
+    ],
+    "skilled rewrite completion criteria": [
+      "skilled rewrite completion criteria"
+    ],
+    "skilled rollout checklist": [
+      "skilled rollout checklist"
+    ],
+    "skilled rollout phase goal": [
+      "skilled rollout phase goal"
+    ],
+    "skilled rollout push plan": [
+      "skilled rollout push plan"
+    ],
+    "skilled root discovery": [
+      "skilled root discovery"
+    ],
     "skilled source root": [
       "skilled source root"
+    ],
+    "skilled source root move": [
+      "skilled source root move"
+    ],
+    "skilled source root move goal": [
+      "skilled source root move goal"
+    ],
+    "skilled tree move results": [
+      "skilled tree move results"
+    ],
+    "skilled verification phase goal": [
+      "skilled verification phase goal"
+    ],
+    "skilled verification plan": [
+      "skilled verification plan"
+    ],
+    "skilled verification tasks": [
+      "skilled verification tasks"
     ],
     "skillmd references assets cleanup phase": [
       "skillmd references assets cleanup phase"
@@ -97706,8 +98174,44 @@
     "source phase metadata cleanup": [
       "source phase metadata cleanup"
     ],
+    "source root block plan": [
+      "source root block plan"
+    ],
+    "source root layout matrix": [
+      "source root layout matrix"
+    ],
+    "source root migration directive": [
+      "source root migration directive"
+    ],
+    "source root move acceptance criteria": [
+      "source root move acceptance criteria"
+    ],
+    "source root move blockers goal": [
+      "source root move blockers goal"
+    ],
+    "source root move implementation summary": [
+      "source root move implementation summary"
+    ],
     "source root move implications": [
       "source root move implications"
+    ],
+    "source root move plan": [
+      "source root move plan"
+    ],
+    "source root move rollback": [
+      "source root move rollback"
+    ],
+    "source root move tasks": [
+      "source root move tasks"
+    ],
+    "source root move verification evidence": [
+      "source-root-move verification evidence"
+    ],
+    "source root rollback plan": [
+      "source root rollback plan"
+    ],
+    "source root sentinel either root": [
+      "source root sentinel either root"
     ],
     "source to target map": [
       "source to target map"
@@ -105473,6 +105977,9 @@
     ],
     "two plane routing learning": [
       "two-plane routing learning"
+    ],
+    "two root gate resolution": [
+      "two root gate resolution"
     ],
     "two stage replay evidence": [
       "two stage replay evidence"
