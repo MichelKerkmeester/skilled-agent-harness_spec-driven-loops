@@ -1,0 +1,98 @@
+===== hook-registrations (exit 0): node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
+[hook-registration-sync] PASS: 4 registration files match the 29-hook registry; 15 Pi extensions resolve.
+===== runtime-mirrors (exit 0): node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
+[runtime-mirror-sync] PASS: 168 mirrors across 8 trees are in sync.
+===== gate1-pointers (exit 0): node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check
+[gate1-pointer-sync] PASS: 2 instruction files carry the root Gate 1 lookup.
+===== codex-prompts (exit 0): node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check
+[codex-prompt-sync] PASS: 33 prompts are in sync.
+===== codex-agents (exit 0): node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check
+[codex-agent-sync] PASS: 12 agents are in sync.
+===== pi-prompts (exit 0): node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check
+[pi-prompt-sync] PASS: 33 prompts are in sync.
+===== pi-agents (exit 0): node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check
+[pi-agent-sync] PASS: 12 agents are in sync.
+===== hermes-prompts (exit 0): node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check
+[hermes-prompt-sync] PASS: 33 prompts are in sync.
+===== hermes-skills (exit 0): node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+PASS: 68 Hermes skill copies in sync
+===== codex-command-routers (exit 1): node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check
+command-router drift check
+
+  DRIFT .skilled/commands/speckit/plan.md [mode-pair]
+        - PATH-DRIFT missing=[".skilled/commands/speckit/assets/speckit-plan-auto.yaml",".skilled/commands/speckit/assets/speckit-plan-confirm.yaml"]
+  DRIFT .skilled/commands/speckit/implement.md [mode-pair]
+        - PATH-DRIFT missing=[".skilled/commands/speckit/assets/speckit-implement-auto.yaml",".skilled/commands/speckit/assets/speckit-implement-confirm.yaml"]
+  DRIFT .skilled/commands/speckit/complete.md [mode-pair]
+        - PATH-DRIFT missing=[".skilled/commands/speckit/assets/speckit-complete-auto.yaml",".skilled/commands/speckit/assets/speckit-complete-confirm.yaml"]
+
+routers=29 clean=26 path-drift=3 shape-drift=0
+===== contract-drift (exit 0): node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs
+[CONTRACT DRIFT] OK commands=3
+===== leaf-manifests (exit 0): node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
+OK    cli-external-orchestration  6b0e8212d0bdcb9d086bf917d4b033bb69f4ba40bff1d2af065d0803572b61e7
+OK    mcp-code-mode  b3f1d72303c12901966aa22203c3d3784051a07c04078e5c01105183127901b8
+OK    mcp-tooling  a79578496e244358f7fc87a9ed74cbebc468231dec3d4e80b888abbc7dab2fd7
+OK    sk-code  e72482a83835bf2a22977974f253baaeaf26da32828b8560b698d44be0ad3cd5
+OK    sk-communication  9558384e997516763002cd9a5ad589ed870677f6e2719d9bdd6d2051080a9783
+OK    sk-design  1cdca644379a5ebd716621fd8abb38a6ecdd0af0ae15df1a9bce6da62f78c723
+OK    sk-doc  0289d0c03bbc83336075dc7a49ca9e78c60382265f8d1e0a6a53bac3123f9b6a
+OK    sk-git  7d87a005784b042ab9d947274f884109e4b7300268f39af4a48c7cc3905e3ec9
+OK    sk-prompt  922a3899ce9d8ff96ed63d41689318e6b802471452a0647c8ab261c0d84bdb71
+OK    sk-vision  c2a9f38562b29504ec620677341da9d12a9a10e9014de337f2d8e9c71bcecaee
+OK    system-deep-loop  9b306e5c1f55fec413db0ea486885144c692e9523e5b37c714f5d826bc73841f
+OK    system-skill-advisor  0d166a4e7e7ac35b7f65615c8ba2a3309a79354553419acabf7d39c1f368a47d
+OK    system-spec-kit  067a33b375ca0654cd781020a7fe8ed050441f6edff092af5a79910d270ea754
+
+checked=13 fresh=13 failed=0
+===== skill-derived (exit 0): node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs
+
+checked=13 fresh=13 stale=0 errored=0
+===== dist-check-all (exit 0): node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check-all
+All watched dist outputs are fresh.
+===== compiled-routing (exit 0): node .skilled/bin/compiled-route-sync.cjs --check
+43 closure files under authored root
+  003-contract-schemas/lib/canonical.cjs
+  003-contract-schemas/schemas/compiled-policy.v1.schema.json
+  004-compiler-n1-shadow/compiler/compiler.cjs
+  004-compiler-n1-shadow/compiler/errors.cjs
+  004-compiler-n1-shadow/compiler/order.cjs
+  004-compiler-n1-shadow/harness/json-schema.cjs
+  005-decision-evaluator/lib/decision-contract.cjs
+  005-decision-evaluator/lib/projector.cjs
+  008-calibration/001-holdout-corpus/lib/calibration-corpus.cjs
+  008-calibration/002-rank-vs-calibrated-contract/calibration-method-envelope.v1.json
+  008-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs
+  009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs
+  009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+  009-parent-hub-rollout/001-sk-code/lib/policy-card.cjs
+  009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs
+  009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/002-system-deep-loop/harness/build-artifacts.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/policy-card.cjs
+  009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs
+  009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/003-mcp-tooling/harness/build-artifacts.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/policy-card.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/registry-compiler.cjs
+  009-parent-hub-rollout/003-mcp-tooling/lib/router.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/004-cli-external-orchestration/harness/build-artifacts.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/policy-card.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/registry-compiler.cjs
+  009-parent-hub-rollout/004-cli-external-orchestration/lib/router.cjs
+  009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json
+  009-parent-hub-rollout/007-sk-doc/harness/build-artifacts.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/policy-card.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs
+  009-parent-hub-rollout/007-sk-doc/lib/router.cjs
+  013-live-activation/activation/cli-external-orchestration/manifest.json
+  013-live-activation/activation/mcp-tooling/manifest.json
+  013-live-activation/activation/sk-code/manifest.json
+  013-live-activation/activation/sk-doc/manifest.json
+  013-live-activation/activation/system-deep-loop/manifest.json
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 5 hubs resolve

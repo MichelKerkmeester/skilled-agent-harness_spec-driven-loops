@@ -1,0 +1,5 @@
+.skilled/plugins/cli-dispatch-audit.js	57	5	d70493c24401f5a1	rewrite	comment names the stray tree the rewritten log path plants
+.skilled/plugins/tests/goal-doc-contract.test.cjs	35	23	45644132d9697225	keep	dual-root-needed: cited-path regex must also match .skilled citations
+.skilled/plugins/tests/system-dist-freshness-guard.test.cjs	394	19	11b939923dd2a342	rewrite	comment names the tree; checker path is now .skilled/skills
+.skilled/plugins/tests/system-dist-freshness-guard.test.cjs	395	44	b243e1c2dc8052e7	rewrite	old bug path names the tree root; real dir is .skilled
+.skilled/plugins/tests/system-dist-freshness-guard.test.cjs	395	67	b243e1c2dc8052e7	rewrite	appended checker segment is now .skilled, matching the comment

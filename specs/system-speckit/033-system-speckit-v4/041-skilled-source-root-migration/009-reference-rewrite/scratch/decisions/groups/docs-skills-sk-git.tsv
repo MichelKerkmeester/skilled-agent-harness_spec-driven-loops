@@ -1,0 +1,10 @@
+.skilled/skills/sk-git/README.md	147	197	734805f7cd555b42	rewrite	alias example names the repo wrapper; real bin is .skilled/bin
+.skilled/skills/sk-git/SKILL.md	608	39	81f80fb4f5a02593	rewrite	rg search scope; the recipe must search the real tree
+.skilled/skills/sk-git/SKILL.md	622	227	310837e6183a700c	rewrite	sk-doc script path into the tree; real root .skilled
+.skilled/skills/sk-git/references/continuous-integration.md	169	14	f72a663a8cf4abf0	rewrite	plugin file path; the real file sits under .skilled/plugins
+.skilled/skills/sk-git/references/finish-workflows.md	754	99	2ac50cd955086228	keep	external: changelog URL outside the repository
+.skilled/skills/sk-git/scripts/hooks/README.md	80	18	8e95bf5bf27e23d9	rewrite	plugin file path; the real file sits under .skilled/plugins
+.skilled/skills/sk-git/scripts/hooks/README.md	83	40	ebded06dff2beb18	keep	opencode-view: states the loader discovers plugins from its own .opencode/plugins
+.skilled/skills/sk-git/scripts/hooks/README.md	103	25	4ee937b0fe807b87	rewrite	hooks-tree index path; the real tree is .skilled/hooks
+.skilled/skills/sk-git/scripts/hooks/README.md	114	3	82be2da07b25eb37	rewrite	key-files plugin path; real file is under .skilled/plugins
+.skilled/skills/sk-git/scripts/worktree-provision-paths.txt	16	0	5e2dd251c591a56f	rewrite	bare dependency-tree entry; the repo root is now .skilled

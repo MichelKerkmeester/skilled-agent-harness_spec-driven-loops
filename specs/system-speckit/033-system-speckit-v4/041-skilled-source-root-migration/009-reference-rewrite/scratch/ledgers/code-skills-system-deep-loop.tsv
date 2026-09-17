@@ -1,0 +1,10 @@
+.skilled/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs	55	40	1073fc811ef917a4	compat-link: root discovery probes .opencode beside the rewritten .skilled probe
+.skilled/skills/system-deep-loop/deep-research/scripts/verify-yaml-script-paths.sh	33	33	901b34695ea4b543	dual-root-needed: invocation grep must also match .skilled/ script paths
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts	107	19	7ff5c19e6e2be417	external: the opencode CLI's own home directory name, not this tree
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts	178	81	1cf2a2da37815029	compat-link: root discovery accepts the .opencode root marker
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts	243	43	29904cba8cca32d8	dual-root-needed: relative-path derivation must also split on .skilled/
+.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs	44	72	db67b51227fc922e	compat-link: comment explains the root-discovery marker still named .opencode
+.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs	49	68	f54acf146d89d027	compat-link: root-discovery fallback marker kept for the old name
+.skilled/skills/system-deep-loop/runtime/scripts/runtime-bootstrap.cjs	47	70	81dff56248eedb1c	compat-link: checkout whose .opencode is a symlink into shared canonical
+.skilled/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts	118	16	5e6be7c9c399af07	external: hermetic temp home's .opencode directory for the CLI
+.skilled/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts	140	33	84ef808df2207015	external: OPENCODE_HOME points at the temp home's .opencode directory

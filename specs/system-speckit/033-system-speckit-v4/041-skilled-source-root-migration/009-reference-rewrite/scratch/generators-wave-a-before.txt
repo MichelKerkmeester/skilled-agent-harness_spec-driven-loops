@@ -1,0 +1,15 @@
+hook-registrations     exit=0   [hook-registration-sync] PASS: 4 registration files match the 29-hook registry; 15 Pi extensions resolve.
+runtime-mirrors        exit=0   [runtime-mirror-sync] PASS: 168 mirrors across 8 trees are in sync.
+gate1-pointers         exit=0   [gate1-pointer-sync] PASS: 2 instruction files carry the root Gate 1 lookup.
+codex-prompts          exit=0   [codex-prompt-sync] PASS: 33 prompts are in sync.
+codex-agents           exit=1   [codex-agent-sync] STALE .codex/agents/review.toml
+pi-prompts             exit=0   [pi-prompt-sync] PASS: 33 prompts are in sync.
+pi-agents              exit=1   [pi-agent-sync] STALE .pi/agents/review.md
+hermes-prompts         exit=0   [hermes-prompt-sync] PASS: 33 prompts are in sync.
+hermes-skills          exit=1   FAIL: 12 drifted, 0 stale; run without --check to regenerate
+codex-command-routers  exit=1   routers=29 clean=3 path-drift=26 shape-drift=0
+contract-drift         exit=2   [CONTRACT DRIFT] command=deep/research class=STALE_SOURCE_DIGEST reason=source digest mismatch for .skilled/agents/deep-research.md recordedSha256=c3bf110fda4c5
+leaf-manifests         exit=0   checked=13 fresh=13 failed=0
+skill-derived          exit=0   checked=13 fresh=13 stale=0 errored=0
+dist-check-all         exit=69  STALE DIST WARNING: @spec-kit/system-skill-advisor -- run: cd .skilled/skills/system-skill-advisor/runtime && npm run build
+compiled-routing       exit=0   all 5 hubs resolve

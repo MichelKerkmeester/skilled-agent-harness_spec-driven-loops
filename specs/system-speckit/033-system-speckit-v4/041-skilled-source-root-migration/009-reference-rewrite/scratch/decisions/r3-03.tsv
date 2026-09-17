@@ -1,0 +1,67 @@
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	433	32	2fea22a659da5759	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	434	32	41e5db0443a05b9e	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	485	21	9f067884a9266a9a	rewrite	fixture path literal names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	487	9	d80778cb321cdd2e	rewrite	fixture path literal names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	520	12	ccd9aa8320aa2c5b	rewrite	fixture path literal names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	521	12	fc014278738cb15d	rewrite	fixture path literal names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	539	26	a6abee315290e9cf	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	540	27	f54a3222a5c65348	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	544	26	dc454c728f680815	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	545	27	9b8ce839a9679179	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	549	26	c8a67ed2532f9dc3	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	550	27	1a47af5168f940e2	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	565	30	a60d7356561c4eff	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	566	30	10c9e899a2612ecd	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	605	32	172f4c01ab3aba3e	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	606	32	bc600cbd4e2ad49c	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	879	34	c318dbf82157f869	rewrite	test resource path names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	893	34	66fed501482a7e95	rewrite	test resource path names the tree; real directory is .skilled
+.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts	173	39	01cf3f0400f4f38a	keep	compat-link: root walk probes the tree the CLI installs into
+.skilled/skills/system-skill-advisor/runtime/advisor-server.ts	68	31	b029c8810ccefee1	rewrite	anchor comment should name the state tree, which is .skilled
+.skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts	34	66	33d8a6b30b74f5fe	rewrite	resolver comment should name the tree it guards, now .skilled
+.skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts	75	9	f844e011a39f17e9	rewrite	hub-surface comment should name the tree, which is .skilled
+.skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts	77	99	b0602e9ec5ec2d65	keep	dual-root-needed: guard matches only .opencode; .skilled prompts bypass it
+.skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts	42	37	c4cf8e3aa765b247	keep	compat-link: root discovery accepts the .opencode tree marker
+.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/metadata-sanitizer.ts	17	24	a51781f11b23f0d3	keep	dual-root-needed: marker knows only .opencode/skills; .skilled paths miss it
+.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts	277	71	8890b58bc1d1edb7	rewrite	anchor comment should name the tree the DB resolves under, .skilled
+.skilled/skills/system-skill-advisor/runtime/scripts/init-skill-graph.sh	16	36	38413b361e51284d	keep	compat-link: root-derivation comment explains the kept .opencode strip
+.skilled/skills/system-skill-advisor/runtime/scripts/init-skill-graph.sh	17	77	3a61e3613ea29530	keep	compat-link: nesting example names the wrapped .opencode layout
+.skilled/skills/system-skill-advisor/runtime/scripts/init-skill-graph.sh	18	26	e66027a1fd229789	keep	dual-root-needed: strip matches only .opencode; add .skilled twin
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-routing-corpus.py	23	44	43d3e9ce690bb4d6	rewrite	parent-index comment should name the real tree directory, .skilled
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-routing-corpus.py	28	7	72ce2d37e7733902	rewrite	quoted segment builds the advisor script path inside the tree
+.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py	3582	8	0ab6b8b2c5bacc0b	rewrite	hub-surface comment should name the tree, which is .skilled
+.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py	3584	81	0dc1e5bd56c9ce8f	keep	dual-root-needed: guard matches only .opencode; .skilled prompts bypass it
+.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/chokidar-narrow-scope-stress.vitest.ts	57	8	31c5b2764942d1bf	rewrite	expected target mirrors the fixture rewritten under .skilled
+.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/chokidar-narrow-scope-stress.vitest.ts	58	8	2ce541e6fb6cf3ab	rewrite	expected target mirrors the fixture rewritten under .skilled
+.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/lifecycle-routing-stress.vitest.ts	140	21	b86cba1eaefd8d5a	rewrite	legacy singular skill fixture path; tree spelling becomes .skilled
+.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/lifecycle-routing-stress.vitest.ts	146	45	1a5af7badfee8177	rewrite	legacy singular skill path; tree spelling becomes .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/advisor-rebuild.vitest.ts	87	65	16df6ff1c819b28d	rewrite	assertion must mirror the producer's rewritten .skilled/skills root
+.skilled/skills/system-skill-advisor/runtime/tests/advisor-rebuild.vitest.ts	90	41	54b881283bba4991	rewrite	changedPaths must mirror the producer's rewritten .skilled/skills root
+.skilled/skills/system-skill-advisor/runtime/tests/advisor-rebuild.vitest.ts	150	65	16df6ff1c819b28d	rewrite	assertion must mirror the producer's rewritten .skilled/skills root
+.skilled/skills/system-skill-advisor/runtime/tests/handlers/skill-graph-scan-auth.vitest.ts	60	39	81915c6bc241fa6f	rewrite	legacy singular skill fixture root; real tree is .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/handlers/skill-graph-scan-auth.vitest.ts	90	39	81915c6bc241fa6f	rewrite	legacy singular skill fixture root; real tree is .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts	53	54	0f86d3d20c43cbfb	rewrite	comment must match the committed settings spelling .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-freshness.vitest.ts	174	35	a319db948da61e42	rewrite	mkdir pairs with the rewritten .skilled/skills fixture write
+.skilled/skills/system-skill-advisor/runtime/tests/state-containment.vitest.ts	49	39	0dc66ac43d8de164	keep	dual-root-needed: path now starts .skilled; add the twin
+.skilled/skills/system-skill-advisor/runtime/tests/state-containment.vitest.ts	58	38	156fff3445bf6b2c	keep	dual-root-needed: DB dir now starts .skilled; add the twin
+.skilled/skills/system-skill-advisor/runtime/tests/vocabulary-agreement.vitest.ts	20	80	6fe1fa577aa2d5b9	keep	compat-link: root-discovery note on why the tree name is unsafe
+.skilled/skills/system-skill-advisor/runtime/tests/vocabulary-agreement.vitest.ts	21	34	d2ed37f0087400f8	keep	compat-link: sibling root-discovery note keeps the unsafe-sentinel mention
+.skilled/skills/system-spec-kit/runtime/cli/common.sh	21	74	f11db3665e894c90	rewrite	ascent chain through the tree should end at .skilled
+.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts	310	36	4daae0dfa5c52278	rewrite	ascent chain names the tree level; it is now .skilled
+.skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json	2	79	e496faf3a9af1ec8	keep	external: Public checkout path outside this worktree, recorded baseline
+.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-analyze.ts	57	42	7df9f1eaf92233a0	rewrite	producer probe follows the rewritten .skilled/skill fixture
+.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl	198	4748	80393c4edbe31537	keep	external: recorded run read an absolute Public checkout path
+.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts	137	40	7db1f8a96ccb41cc	rewrite	reports output dir inside the tree; constant rewrites with suite
+.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts	149	42	7df9f1eaf92233a0	rewrite	producer probe follows the rewritten .skilled/skill fixture
+.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts	558	50	6787c99dbac08b11	rewrite	skill dir joins the tree; fixture spelling becomes .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs	71	70	7bfe9ed5781b33b0	rewrite	corpus-marker comment should name the real tree, .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs	305	59	eaf9be5c57d97f57	keep	dual-root-needed: segment test excludes only .opencode; .skilled misclassifies
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs	307	23	2924ff968c9b5c9a	keep	dual-root-needed: skills-surface check needs the .skilled twin
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs	433	38	d8a1497b589d5ed5	keep	compat-link: root-presence probe keeps the tree name checkouts carry
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs	434	69	91b5b908868eb09e	keep	compat-link: refusal message names the root marker the probe keeps
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-shared.cjs	41	24	2e82cbc8a6521d45	keep	compat-link: legacy .opencode/specs alias marker keeps its spelling
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-shared.cjs	63	21	d79995d43d1b2af2	keep	compat-link: marker list detects the kept .opencode/specs alias spelling
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh	112	24	9f34932ef4f6fdb0	keep	compat-link: marker detects the kept .opencode/specs alias spelling
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-identity.sh	68	24	9f34932ef4f6fdb0	keep	compat-link: marker detects the kept .opencode/specs alias spelling
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs	22	24	2e82cbc8a6521d45	keep	compat-link: legacy .opencode/specs alias marker keeps its spelling
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs	44	26	09297ea75575993c	keep	compat-link: marker detects the kept .opencode/specs alias spelling

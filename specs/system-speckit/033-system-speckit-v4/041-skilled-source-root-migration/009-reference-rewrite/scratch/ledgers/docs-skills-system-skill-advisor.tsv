@@ -1,0 +1,30 @@
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	53	279	5c81dd8da43f019e	dual-root-needed: ancestor walk knows only .opencode; add .skilled twin
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	58	107	d7715508cdfd25a6	opencode-view: loader globs its own .opencode/plugins folder
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	98	142	315de135b13b7cd6	dual-root-needed: ancestor walk knows only .opencode; add .skilled twin
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/anti-stuffing.md	49	24	91b5fd240640153d	external: /tmp disposable fixture path outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md	191	87	31da7cbdbd5faaa8	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md	199	87	b70d96d45c578040	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md	208	87	7576939a54530b74	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	205	66	e4c4615fcfb63675	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	214	66	1eb7f0076c50b807	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	215	66	99eab48484c9e669	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	216	66	8b5ca2a7c50997d6	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	217	66	4bda230aff302021	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	218	66	4151bbd90d519ceb	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/rebuild-from-source.md	55	37	6efe46e54b9e6f05	external: /tmp disposable fixture path outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/rebuild-from-source.md	93	37	6efe46e54b9e6f05	external: /tmp disposable fixture path outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/rebuild-from-source.md	102	118	90c7ab6914cad0b4	external: /tmp disposable fixture path outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md	201	66	06e65dad14da444d	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md	453	66	1596d7a407e03148	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md	477	66	162857b94b82465c	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md	495	66	5462f85492490fa9	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/schema-migration.md	47	21	304e9ebda75b3477	external: /tmp disposable fixture path outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md	64	1144	27fcd00c721e9e5c	external: recorded test-output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/shadow-delta-sink.md	116	66	15881180197a5a14	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/shadow-delta-sink.md	122	66	bb85551a4d06914b	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	124	66	a3d67dbbe1ee62b8	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	142	66	e3dc11cfcc2ae886	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	143	66	8f89f19f0a8999c5	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	144	66	4a9c20fd7cfe8c34	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	145	66	1bccce62e40c1bc2	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	146	66	d5a1cf269b4977ca	external: recorded output path in another checkout

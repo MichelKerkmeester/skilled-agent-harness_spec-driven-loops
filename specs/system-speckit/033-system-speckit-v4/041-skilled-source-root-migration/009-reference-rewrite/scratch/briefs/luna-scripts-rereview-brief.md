@@ -1,0 +1,20 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is empty. This is a read-only review: your final message is the whole deliverable, and the orchestrator saves it. The spec folder is:
+  specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite
+
+PERSONA (this repository's `review` agent, condensed): a code reviewer who reports defects with evidence and changes nothing. You run in a read-only sandbox: use commands only to read, such as `git diff`, `git show`, `git grep`, `grep` and `cat`, and never try to write, edit, create, delete, stage or commit a file, or run a generator, a build or a test suite. Never open a file under the home directory outside this repository. Cite `file:line` for every claim.
+
+BACKGROUND. The repository moved its source tree from `.opencode/` to `.skilled/`: every tracked file sits under a real `.skilled/` directory and `.opencode` is a tracked relative link to `.skilled`, so every old path still resolves. Links and generated state already point at `.skilled`. This phase rewrites the remaining text references in tracked files outside `specs/`. Phase 004's ADR-003 keeps `.opencode` only where the reader is opencode itself, root discovery, the consumer contract, the spec compatibility link, a dual-root alternate or a frozen record (`specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design/decision-record.md:298`). Frozen records are the changelog, benchmark report and scorer cache globs. Nothing has been rewritten yet.
+
+CONTRACT UNDER REVIEW. A previous review of the three scripts under `specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/scratch/` reported ten findings, recorded in `specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/scratch/briefs/luna-scripts-review-return.md`. The scripts now: key each kept occurrence in the ledger by path, line, final column and line hash, and the rescan matches that key per occurrence; send an occurrence inside a URL or an absolute path with a directory segment to review; treat a token after `-` or `.` as part of a longer name; keep a line that names the same path under both roots; read and write bytes so line endings survive; require a line hash in every decision and refuse a decision whose line changed; send a quoted specs segment to review when the canonical target is on; drop the undocumented `--verify` mode; tolerate `git grep` finding nothing; and count occurrences in frozen, generated and routed files by path without a line class.
+
+TASK. Read the three scripts whole, run only `python3 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/scratch/rewrite-batch.py --self-test`, and check each earlier finding against the current code. Then look for defects the fixes introduced: a ledger column computation that is wrong when several tokens on one line are rewritten or kept, a decision flow that writes part of a manifest before refusing, an absolute-path or URL test that now sends a real repository-relative path to review or lets an absolute one through, a same-path test that keeps a line it should rewrite, and a rescan shortcut that hides an owed edit. Report a defect only with the concrete input that reproduces it.
+
+RETURN, markdown only. Your final message must be this return and nothing else, with no narration of what you read:
+## Verdict
+One paragraph: safe to run the write mode as edited, or not.
+## Findings
+A table with columns: ID, Severity (P0 blocks the write run, P1 must fix before the write run, P2 should fix), File:line, Scenario (the inputs and the wrong outcome), Suggested fix. Write "No finding" if there is none.

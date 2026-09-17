@@ -1,0 +1,20 @@
+.codex/AGENTS.md	129	36	20f92f3891acf45f	rewrite	lookup script path into this repository's tree; sync regenerates block
+.cursor/rules/skill-routing.md	9	54	578cdeae88ca30e1	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	10	132	37a81fae9bd5369b	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	11	98	18b8494cbaf5f1fe	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	12	48	7c9d1733bd38576e	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	12	88	7c9d1733bd38576e	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	13	46	deae44543129ad4a	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	14	43	efabf6bd7f17ab18	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	15	68	09f4bb9524d79a2a	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	16	29	1579a7fd1419eb24	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	25	36	20f92f3891acf45f	rewrite	lookup script path into this repository's tree; sync regenerates block
+AGENTS.md	47	76	450d14c4f352f859	rewrite	advisor CLI script path into this repository's own tree
+AGENTS.md	65	39	c42928b8ed18686c	rewrite	lookup script path into this repository's tree; now .skilled
+AGENTS.md	80	109	a289bddf5d85a277	rewrite	hook contract doc path into this repository's own tree
+AGENTS.md	81	29	338e0ff7087cead6	rewrite	advisor CLI invocation; script path names this repository's tree
+AGENTS.md	174	13	445ba651656e3b7a	rewrite	validation script path into this repository's own tree
+AGENTS.md	203	87	dbda462f88987397	rewrite	skill directory pointer; mechanics live in this repository's tree
+AGENTS.md	269	47	b790dc003b5e2b0a	keep	opencode-view: runtime-directory list keeps the opencode agent directory name
+AGENTS.md	277	71	bc92946e7b0a4e3c	keep	opencode-view: names where the runtime's injected command inventory lives
+AGENTS.md	282	26	15783d74e3938f70	rewrite	skill packet path into this repository's own tree

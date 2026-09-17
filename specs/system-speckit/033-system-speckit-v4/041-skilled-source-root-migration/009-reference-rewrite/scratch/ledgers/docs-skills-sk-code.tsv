@@ -1,0 +1,21 @@
+.skilled/skills/sk-code/ROUTER.md	265	125	2d038c75c1f97bcb	external: the Barter fork's own tree, not this repository
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/webflow-detection.md	103	149	d7554fc61ec6d813	dual-root-needed: PWD fragment test needs the .skilled spelling too
+.skilled/skills/sk-code/shared/references/stack-detection.md	31	206	15c2473bc9730acf	compat-link: consumer plugin repo reaches hub code through its .opencode symlink
+.skilled/skills/sk-code/shared/references/stack-detection.md	73	1	04bf72927125a9f5	compat-link: consumer plugin repo symlinks this name back to the hub
+.skilled/skills/sk-code/shared/references/stack-detection.md	75	1	90ff7cff8f5f84ca	dual-root-needed: literal segment test needs the .skilled twin too
+.skilled/skills/sk-code/shared/references/stack-detection.md	87	243	67dd8650e4f804b8	compat-link: target through the .opencode link still wins OPENCODE
+.skilled/skills/sk-code/shared/references/stack-detection.md	145	154	133ce01b91d88063	compat-link: consumer plugin repo's .opencode symlink at its root
+.skilled/skills/sk-code/shared/references/stack-detection.md	146	26	a952a58319f6c574	compat-link: consumer plugin repo path through its .opencode link
+.skilled/skills/sk-code/shared/references/stack-detection.md	147	32	d9bf12547c56fa4b	dual-root-needed: literal-string gate case needs the .skilled twin
+.skilled/skills/sk-code/shared/references/stack-detection.md	149	48	66d84b4516016d0c	compat-link: app repo addresses the changed file via its .opencode link
+.skilled/skills/sk-code/shared/references/stack-detection.md	149	92	66d84b4516016d0c	compat-link: target inside the Pi Remote repo resolves through its .opencode link
+.skilled/skills/sk-code/sk-code-mobile-cli/README.md	90	1	0a34327dcfff90ae	compat-link: target through the .opencode link still wins OPENCODE
+.skilled/skills/sk-code/sk-code-obsidian/README.md	65	50	3d52505813903008	compat-link: consumer plugin repo symlinks these names to the hub
+.skilled/skills/sk-code/sk-code-obsidian/README.md	67	23	4f36fa1840260448	compat-link: literal match fails on the consumer repo's .opencode link
+.skilled/skills/sk-code/sk-code-obsidian/README.md	98	33	983618585ea8e278	compat-link: target through the .opencode link still wins OPENCODE
+.skilled/skills/sk-code/sk-code-obsidian/SKILL.md	281	56	8038e6ceadf32cd1	compat-link: consumer plugin repo symlinks this name to the hub
+.skilled/skills/sk-code/sk-code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md	45	3	a169ef12cbc38bba	opencode-view: states the runtime plugin loader's requirement for its plugins folder
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	62	14	2f07a3662f70d9d4	opencode-view: names the runtime's plugin registration source folder
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	260	31	4de9d53659fe164d	opencode-view: names the runtime's plugin folder as a wiring source
+.skilled/skills/sk-code/sk-code-review/SKILL.md	224	8	0350e76a431f9431	dual-root-needed: surface detector matches only .opencode/ paths; add .skilled twin
+.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md	78	3	d4a3d28cd9a5f234	compat-link: gitignore convention of the .opencode dir in OpenCode projects

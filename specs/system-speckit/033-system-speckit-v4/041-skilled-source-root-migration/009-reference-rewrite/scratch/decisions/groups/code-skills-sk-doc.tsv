@@ -1,0 +1,28 @@
+.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json	830	5	5f91a2a33afc5b23	rewrite	derivation walks .skilled; frozen directories are spelled .skilled
+.skilled/skills/sk-doc/scripts/tests/test_extract_structure_regressions.py	44	22	ba480166f7dfde39	keep	external: absolute /tmp fixture path, not this repository's tree
+.skilled/skills/sk-doc/scripts/tests/test_quick_validate_086.py	6	17	365d9f79534d6213	keep	opencode-view: runtime scanners discover skills in their own .opencode/skills
+.skilled/skills/sk-doc/scripts/validate-doc-model-refs.js	349	7	30bcabf28e98429c	rewrite	comment records the scan scope; it is scoped under .skilled
+.skilled/skills/sk-doc/shared/scripts/check_no_new_snake_case.py	200	44	b00272b1a19c2ccd	keep	compat-link: .opencode/specs alias guard; the specs target stays keep
+.skilled/skills/sk-doc/shared/scripts/reference_checker_extractors.py	84	23	63c0a1d71dbe71d8	keep	dual-root-needed: literal-path matcher must also accept .skilled literals
+.skilled/skills/sk-doc/shared/scripts/validate_document.py	1100	66	17e465dbba969389	keep	compat-link: rule detects the kept .opencode/specs alias reference spelling
+.skilled/skills/sk-doc/shared/scripts/validate_document.py	1222	5	779d5acbef142b6a	keep	opencode-view: states what OpenCode enforces for agents under .opencode/agents
+.skilled/skills/sk-doc/shared/scripts/validate_document.py	1231	20	f4a11d2afe06eb52	keep	dual-root-needed: path test must accept .skilled/agents files too
+.skilled/skills/sk-doc/shared/scripts/validate_document.py	1288	44	eddc7177ea2bc7b2	keep	opencode-view: message labels an OpenCode agent file by its runtime dir
+.skilled/skills/sk-doc/shared/scripts/validate_document.py	1295	44	a49674731f04c86d	keep	opencode-view: message names the runtime dir OpenCode reads agents from
+.skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py	107	47	275cfeeb846f6a68	keep	dual-root-needed: token matcher must also match .skilled path tokens
+.skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py	488	27	b0aa15c2338199c4	keep	dual-root-needed: repo-relative prefix allowlist needs the .skilled prefix
+.skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py	904	96	59c820d63dad2929	rewrite	help text names the default skills root; it is .skilled/skills
+.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py	16	25	98e98be92822dde8	rewrite	docstring lists the audited roots; the tree root is .skilled
+.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py	46	28	f3cb7af7b9b458c1	rewrite	root list is walked to derive directories, spelled .skilled
+.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py	97	18	667e52017756d7c8	keep	dual-root-needed: path-hint list needs the .skilled/ prefix too
+.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py	272	52	cb7d70ce018cbbf7	keep	compat-link: guard excludes the kept .opencode/specs alias subtree
+.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py	426	25	fe1ad6e26fc233ab	keep	dual-root-needed: path recognizer must accept .skilled/ references too
+.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py	429	30	f90e5a7e424092eb	keep	dual-root-needed: root-absolute check must accept /.skilled/ references too
+.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py	447	41	10bdd99df4a19e10	keep	dual-root-needed: inline-code path recognizer needs the .skilled/ prefix
+.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py	455	41	10bdd99df4a19e10	keep	dual-root-needed: tree-line path recognizer needs the .skilled/ prefix
+.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py	462	33	94dc7426bfdc41ab	keep	dual-root-needed: inline-code guard needs the .skilled/ prefix too
+.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py	577	52	cb7d70ce018cbbf7	keep	compat-link: guard excludes the kept .opencode/specs alias subtree
+.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py	987	17	26e597f8aba560b8	rewrite	report scope lists the walked roots, now spelled .skilled
+.skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py	7	42	d9196f4693ebbc05	rewrite	docstring anchor example follows the rewritten references, .skilled/...
+.skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py	49	5	b3df6dc8d28f47f0	keep	dual-root-needed: root-prefix list needs the .skilled/ prefix too
+.skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py	103	50	42da284723d2cb41	keep	dual-root-needed: path-likeness check needs the .skilled/ root prefix

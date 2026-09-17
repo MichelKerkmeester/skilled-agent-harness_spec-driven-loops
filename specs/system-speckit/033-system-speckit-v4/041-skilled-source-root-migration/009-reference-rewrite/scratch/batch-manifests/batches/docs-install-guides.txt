@@ -1,0 +1,2 @@
+.skilled/install-guides/README.md
+.skilled/install-guides/install-scripts/README.md

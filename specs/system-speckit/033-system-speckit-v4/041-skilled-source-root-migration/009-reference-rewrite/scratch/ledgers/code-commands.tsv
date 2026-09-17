@@ -1,0 +1,33 @@
+.skilled/commands/deep/assets/deep-review-auto.yaml	2591	68	d49e2cff9164ee79	not-a-path: slash-joined runtime-surface labels, not a path into the tree
+.skilled/commands/deep/assets/deep-review-confirm.yaml	2066	68	d49e2cff9164ee79	not-a-path: slash-joined runtime-surface labels, not a path into the tree
+.skilled/commands/doctor/assets/doctor-update.yaml	115	7	c2b1700386c2676a	legacy-layout: bridge artifact path; the legacy symlink keeps its old name
+.skilled/commands/doctor/assets/doctor-update.yaml	116	7	74af6bc8d369d1c8	legacy-layout: backup pattern the bridge creates beside .opencode/skill
+.skilled/commands/doctor/assets/doctor-update.yaml	216	11	727743f35ba3164f	legacy-layout: signal detects the pre-rename singular skill directory
+.skilled/commands/doctor/assets/doctor-update.yaml	218	27	349b3dcd29978f27	dual-root-needed: find prune must also skip the .skilled tree
+.skilled/commands/doctor/assets/doctor-update.yaml	225	21	de34ebb05f4ef6c6	legacy-layout: check detects the real legacy singular skill directory
+.skilled/commands/doctor/assets/doctor-update.yaml	225	49	de34ebb05f4ef6c6	legacy-layout: check detects the real legacy singular skill directory
+.skilled/commands/doctor/assets/doctor-update.yaml	252	26	51c08d194b6092a7	legacy-layout: precondition names the legacy v3.3 layout directories
+.skilled/commands/doctor/assets/doctor-update.yaml	254	13	dd5e9bb20388167c	legacy-layout: detect command tests the real legacy singular directory
+.skilled/commands/doctor/assets/doctor-update.yaml	254	67	dd5e9bb20388167c	legacy-layout: detect command tests the real legacy singular directory
+.skilled/commands/doctor/assets/doctor-update.yaml	256	15	a866e86e3d89e489	legacy-layout: backup path the legacy bridge creates before relinking
+.skilled/commands/doctor/assets/doctor-update.yaml	257	11	16273374e8317661	legacy-layout: moves the real legacy singular directory aside
+.skilled/commands/doctor/assets/doctor-update.yaml	257	27	16273374e8317661	legacy-layout: backup name the bridge creates beside the legacy directory
+.skilled/commands/doctor/assets/doctor-update.yaml	258	22	7f0d1a1a551a4efe	legacy-layout: creates the legacy .opencode/skill compatibility symlink
+.skilled/commands/doctor/assets/doctor-update.yaml	265	25	c1a2b532d6524bdf	legacy-layout: sed rewrites legacy references inside consumer configs
+.skilled/commands/doctor/assets/doctor-update.yaml	267	23	bf62941dfb072fea	legacy-layout: idempotency check reads the legacy bridge symlink
+.skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh	26	18	85b342db58d92226	legacy-layout: help text describes the legacy singular directory migration
+.skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh	44	20	6b2c784ac7d4ff20	compat-link: workspace runtime dir resolves through the .opencode link
+.skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh	125	34	f1f85e103118adc4	compat-link: message names the workspace .opencode dir the script requires
+.skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh	136	24	497c53e7db13405d	legacy-layout: comment names the legacy directory the bootstrap migrates
+.skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh	138	2	2ae8d4d10e8abfbe	legacy-layout: comment names the legacy compatibility symlink the bootstrap dropped
+.skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh	144	33	dad1869fdb25f497	legacy-layout: action record names the migrated legacy directory
+.skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh	148	36	07783f0c4069e015	legacy-layout: action record names the stray legacy directory moved
+.skilled/commands/doctor/scripts/mcp-doctor-lib.sh	158	52	49d9b32e9e5c171d	dual-root-needed: root probe needs the .skilled sentinel beside .opencode
+.skilled/commands/doctor/scripts/parent-skill-check.cjs	43	39	56b16acdab119482	compat-link: comment names the root-discovery marker's directory
+.skilled/commands/doctor/scripts/parent-skill-check.cjs	49	38	13043f01c7669cdf	dual-root-needed: repo-root probe must also accept a .skilled checkout
+.skilled/commands/doctor/scripts/route-validate.py	61	31	e13ec9442e99f20a	dual-root-needed: script-path regex must also match .skilled literals
+.skilled/commands/doctor/scripts/route-validate.py	154	44	f51ae3cd0d99d32a	dual-root-needed: asset-row regex must also match .skilled paths
+.skilled/commands/speckit/assets/speckit-resume-auto.yaml	72	21	32d15b09e7ac57ff	compat-link: brace glob keeps the .opencode/specs alias branch
+.skilled/commands/speckit/assets/speckit-resume-auto.yaml	78	21	acfa3795123de72c	compat-link: brace glob keeps the .opencode/specs alias branch
+.skilled/commands/speckit/assets/speckit-resume-confirm.yaml	72	21	32d15b09e7ac57ff	compat-link: brace glob keeps the .opencode/specs alias branch
+.skilled/commands/speckit/assets/speckit-resume-confirm.yaml	78	21	acfa3795123de72c	compat-link: brace glob keeps the .opencode/specs alias branch

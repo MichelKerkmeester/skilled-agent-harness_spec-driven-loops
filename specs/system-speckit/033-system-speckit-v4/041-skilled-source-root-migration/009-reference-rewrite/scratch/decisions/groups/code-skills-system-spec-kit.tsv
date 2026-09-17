@@ -1,0 +1,99 @@
+.skilled/skills/system-spec-kit/runtime/cli/common.sh	21	74	f11db3665e894c90	rewrite	ascent chain through the tree should end at .skilled
+.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts	310	36	4daae0dfa5c52278	rewrite	ascent chain names the tree level; it is now .skilled
+.skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json	2	79	e496faf3a9af1ec8	keep	external: Public checkout path outside this worktree, recorded baseline
+.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-analyze.ts	57	42	7df9f1eaf92233a0	rewrite	producer probe follows the rewritten .skilled/skill fixture
+.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl	198	4748	80393c4edbe31537	keep	external: recorded run read an absolute Public checkout path
+.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts	137	40	7db1f8a96ccb41cc	rewrite	reports output dir inside the tree; constant rewrites with suite
+.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts	149	42	7df9f1eaf92233a0	rewrite	producer probe follows the rewritten .skilled/skill fixture
+.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement.ts	558	50	6787c99dbac08b11	rewrite	skill dir joins the tree; fixture spelling becomes .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs	71	70	7bfe9ed5781b33b0	rewrite	corpus-marker comment should name the real tree, .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs	305	59	eaf9be5c57d97f57	keep	dual-root-needed: segment test excludes only .opencode; .skilled misclassifies
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs	307	23	2924ff968c9b5c9a	keep	dual-root-needed: skills-surface check needs the .skilled twin
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs	433	38	d8a1497b589d5ed5	keep	compat-link: root-presence probe keeps the tree name checkouts carry
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs	434	69	91b5b908868eb09e	keep	compat-link: refusal message names the root marker the probe keeps
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-shared.cjs	41	24	2e82cbc8a6521d45	keep	compat-link: legacy .opencode/specs alias marker keeps its spelling
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-canonical-save-shared.cjs	63	21	d79995d43d1b2af2	keep	compat-link: marker list detects the kept .opencode/specs alias spelling
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh	112	24	9f34932ef4f6fdb0	keep	compat-link: marker detects the kept .opencode/specs alias spelling
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-identity.sh	68	24	9f34932ef4f6fdb0	keep	compat-link: marker detects the kept .opencode/specs alias spelling
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs	22	24	2e82cbc8a6521d45	keep	compat-link: legacy .opencode/specs alias marker keeps its spelling
+.skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs	44	26	09297ea75575993c	keep	compat-link: marker detects the kept .opencode/specs alias spelling
+.skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts	382	16	3e3d64c2c2c82f9f	keep	dual-root-needed: infrastructure file matcher must also accept .skilled/ paths
+.skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts	382	45	3e3d64c2c2c82f9f	keep	dual-root-needed: second contains test needs the .skilled/ twin too
+.skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts	395	66	be5d93d622eeadf8	keep	dual-root-needed: subpath containment needs a .skilled/ match as well
+.skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts	498	65	055c64f7536c405c	rewrite	message names the source tree; the real directory is .skilled
+.skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts	515	33	5e950e27d087e04f	rewrite	message names the source tree; the real directory is .skilled
+.skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts	620	59	2e5287da45f282df	rewrite	message names the source tree; the real directory is .skilled
+.skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts	634	112	f1cac30a8151a552	rewrite	message names the source tree; the real directory is .skilled
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh	22	91	3f83cb2bd1dcb4e8	rewrite	fallback ascent comment names the old tree chain, now .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/alignment-drift-fixture-preservation.vitest.ts	16	3	3fd087da7abfb01e	rewrite	legacy .opencode/skill path; the real tree is .skilled/skills
+.skilled/skills/system-spec-kit/runtime/cli/tests/graph-key-file-declarations.vitest.ts	16	36	d21c74415b933e5d	rewrite	fixture marker should name the tree its declarations now use
+.skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-write-containment.sh	110	39	7e6057e25c961470	keep	compat-link: message names the workspace anchor that must accept .opencode
+.skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-write-containment.sh	118	31	bb6c8f2ecf94a5fb	keep	compat-link: refusal case names the .opencode-anchored twin's shape
+.skilled/skills/system-spec-kit/runtime/cli/tests/manual-playbook-runner.js	8	43	7a8f9513cad1cdb6	rewrite	legacy .opencode/skill check; the real tree is .skilled/skills
+.skilled/skills/system-spec-kit/runtime/cli/tests/manual-playbook-runner.ts	106	43	7a8f9513cad1cdb6	rewrite	legacy .opencode/skill check; the real tree is .skilled/skills
+.skilled/skills/system-spec-kit/runtime/cli/tests/process-memory-harness.vitest.ts	22	52	b71eb38d52418cc6	keep	external: absolute /repo fixture path, not this repository's tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-repo-root.vitest.ts	28	47	3acd9c1ea8d520ef	rewrite	test name should name the real tree directory, .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-repo-root.vitest.ts	29	55	30b5a825a7bcc634	rewrite	guard excludes the old tree basename; it should exclude .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/retrofit-convention-pipeline.vitest.ts	33	31	4cb1f8a28646116f	rewrite	fixture source-tree marker should now be .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/rg-wrapper-recipes.vitest.ts	65	49	7b317272d911b7f6	rewrite	stale scope mirror; the convention's search roots now spell .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/rg-wrapper-recipes.vitest.ts	68	32	dc00f4b984f4915d	rewrite	expected argv echoes the stale scope; convention roots are .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/rg-wrapper-recipes.vitest.ts	73	43	2a3738f82d0fb864	rewrite	stale scope mirror; the convention's search roots now spell .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/rg-wrapper-recipes.vitest.ts	77	32	dc00f4b984f4915d	rewrite	expected argv echoes the stale scope; convention roots are .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/rg-wrapper-recipes.vitest.ts	82	44	97deb2da8c6512c4	rewrite	stale scope mirror; the convention's search roots now spell .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/rg-wrapper-recipes.vitest.ts	85	32	dc00f4b984f4915d	rewrite	expected argv echoes the stale scope; convention roots are .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/session-enrichment.vitest.ts	320	7	87accec7331209ca	rewrite	legacy .opencode/skill path; the real tree is .skilled/skills
+.skilled/skills/system-spec-kit/runtime/cli/tests/session-enrichment.vitest.ts	375	46	4164bb5118e4ffd2	rewrite	legacy .opencode/skill path; the real tree is .skilled/skills
+.skilled/skills/system-spec-kit/runtime/cli/tests/sweep-memory-residue.vitest.ts	101	30	d54a1a07ddd98611	rewrite	classifier input names the tree; the real root is .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js	165	26	abdbffa0af4767ab	rewrite	legacy .opencode/agent path; the real entry is .skilled/agents
+.skilled/skills/system-spec-kit/runtime/cli/tests/workflow-invariance.vitest.ts	52	31	297972d922c545f6	rewrite	legacy .opencode/command path; no such entry under .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/workflow-invariance.vitest.ts	53	31	aed00b5d0ebd5c54	rewrite	legacy .opencode/agent path; no such entry under .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/workflow-trigger-index-freshness.vitest.ts	20	60	70b890583f4049ed	rewrite	ascent comment chain ends at the real level, .skilled
+.skilled/skills/system-spec-kit/runtime/cli/utils/tool-sanitizer.ts	34	15	e570f8517a229b31	keep	dual-root-needed: comment covers the kept .opencode branch; twin joins it
+.skilled/skills/system-spec-kit/runtime/cli/utils/tool-sanitizer.ts	35	15	acfdabb8e08c9617	keep	dual-root-needed: regex strips only .opencode paths; .skilled paths leak
+.skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts	58	37	40e9cc559ded6bd9	keep	compat-link: root-discovery probe keeps the .opencode name consumers use
+.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts	49	33	c65fb3a4264636c8	keep	compat-link: transcript matcher keeps the legacy .opencode/specs alias spelling
+.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts	31	27	514a8370ebc12b1a	keep	compat-link: comment explains the root-discovery marker still named .opencode
+.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts	56	37	40e9cc559ded6bd9	keep	compat-link: root-discovery probe keeps the .opencode name consumers use
+.skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs	100	34	c3d6ab60e3cbad63	keep	compat-link: root discovery accepts the .opencode root marker
+.skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-devin.test.mjs	259	19	9f82766cc175f1bd	rewrite	bug-path comment names the old tree root; now .skilled
+.skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-devin.test.mjs	263	64	b7824074aa0a94bc	rewrite	bug-path comment names the tree root; the real dir is .skilled
+.skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-devin.test.mjs	264	24	b7b255b3ca447d29	rewrite	correct-path comment should name the tree root, .skilled
+.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs	575	44	882321bd3a6908b7	rewrite	bug-history comment names the old root; the state dir is .skilled
+.skilled/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts	311	64	7d782b48d2d0a15b	keep	compat-link: detects the canonical .opencode/specs alias pair; alias keeps spelling
+.skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts	57	16	ccfeb563443b9b61	keep	dual-root-needed: prefix strip must also drop .skilled/; old values keep .opencode/
+.skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts	512	16	64d2189afdc6ef4b	keep	dual-root-needed: packet-pointer strip needs the .skilled/ twin for new values
+.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs	75	38	abe7afb167527dd2	keep	compat-link: free-text matcher keeps the legacy .opencode/specs alias spelling
+.skilled/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts	255	16	51c32534d73c5686	keep	dual-root-needed: prefix strip must also drop .skilled/; stored values keep .opencode/
+.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts	1408	46	4fdd60caa5a3dd1e	keep	compat-link: root discovery recognises tree paths under the .opencode name
+.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts	1414	42	5255264ced44ebd5	keep	compat-link: root-discovery walk keeps accepting a .opencode child; consumers have it
+.skilled/skills/system-spec-kit/runtime/lib/utils/index-scope.ts	15	49	53ef27331f145840	rewrite	doc comment names the tree folders the policy scopes; now .skilled
+.skilled/skills/system-spec-kit/runtime/lib/utils/index-scope.ts	130	18	f35cfb38b4d20ce7	rewrite	label names the tree's opted-in folders; the tree is .skilled
+.skilled/skills/system-spec-kit/runtime/lib/utils/index-scope.ts	131	9	3c441273ec3ddd16	rewrite	label names the tree's excluded folders; the tree is .skilled
+.skilled/skills/system-spec-kit/runtime/lib/utils/index-scope.ts	222	10	f239f919240dc9fb	keep	compat-link: keeps the legacy .opencode/specs alias beside canonical specs
+.skilled/skills/system-spec-kit/runtime/lib/utils/index-scope.ts	223	10	23b588c37f49546e	keep	dual-root-needed: folder matcher must also match .skilled/<folder> paths
+.skilled/skills/system-spec-kit/runtime/lib/validation/generated-metadata-integrity.ts	71	10	984c14b86597e3bc	keep	dual-root-needed: drift check must also reject .skilled/specs/ prefixed values
+.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts	739	31	37de3d30fe19a46d	keep	compat-link: locates the legacy .opencode/specs alias to derive the scan root
+.skilled/skills/system-spec-kit/runtime/tests/copilot-compact-cycle.vitest.ts	48	24	249140f736ba2f3a	rewrite	transcript fixture names the tree's specs alias; now .skilled
+.skilled/skills/system-spec-kit/runtime/tests/council-helpers-smoke.vitest.ts	33	38	54031906d1dc92b4	keep	compat-link: comment explains the root-discovery marker still named .opencode
+.skilled/skills/system-spec-kit/runtime/tests/council-helpers-smoke.vitest.ts	34	28	f21f0b40624bf802	keep	compat-link: fixture supplies the .opencode root signal the helper probes
+.skilled/skills/system-spec-kit/runtime/tests/directive-lifecycle-boundary-bridge.vitest.ts	80	27	7c9a80d8aef1110c	keep	compat-link: cwd fixture exercises root discovery through the .opencode link
+.skilled/skills/system-spec-kit/runtime/tests/embedders/hf-model-server-perimeter.vitest.ts	24	75	d59af785c53334af	rewrite	ascent comment chain ends at the real level, .skilled
+.skilled/skills/system-spec-kit/runtime/tests/embedders/launcher-model-server-single-writer-cluster.vitest.ts	215	40	224a90a5b3da3eb2	keep	compat-link: runtime-facing dir; consumers resolve the server under .opencode
+.skilled/skills/system-spec-kit/runtime/tests/folder-discovery-integration.vitest.ts	153	60	e7361907adc725f9	rewrite	test name should match the fixture's .skilled tooling dir
+.skilled/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts	23	22	5c8c35a72d625e74	rewrite	stale example; registrations now spell .skilled paths
+.skilled/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts	135	69	5ac9d196ad484663	keep	opencode-view: plugin path the runtime discovers under its own .opencode/plugins
+.skilled/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts	136	69	f093a861adf25c67	keep	opencode-view: second plugin the runtime discovers under .opencode/plugins
+.skilled/skills/system-spec-kit/runtime/tests/index-scope.vitest.ts	50	44	99f28512429f2dc5	keep	external: synthetic /workspace path outside repo; .opencode/specs alias stays
+.skilled/skills/system-spec-kit/runtime/tests/index-scope.vitest.ts	51	44	bf3f2563c3e081d4	keep	external: synthetic /workspace path outside repo; .opencode/specs alias stays
+.skilled/skills/system-spec-kit/runtime/tests/index-scope.vitest.ts	52	44	b29a6ceac794c064	keep	external: synthetic /workspace path outside repo; .opencode/specs alias stays
+.skilled/skills/system-spec-kit/runtime/tests/index-scope.vitest.ts	54	44	c4ccf0ebd260762e	keep	external: synthetic /workspace path outside repo; .opencode/specs alias stays
+.skilled/skills/system-spec-kit/runtime/tests/index-scope.vitest.ts	59	47	81496678da38598d	keep	external: synthetic /workspace path outside repo; .opencode/specs alias stays
+.skilled/skills/system-spec-kit/runtime/tests/orphan-sweeper-ipc-preserve.vitest.ts	81	29	b31248c838791bdf	rewrite	fixture names the moved advisor-server dist path; sibling sweeper path goes .skilled
+.skilled/skills/system-spec-kit/runtime/tests/smart-router-analyze.vitest.ts	108	34	77d875cf776bf951	rewrite	legacy singular .opencode/skill fixture; producer path rewrites to .skilled
+.skilled/skills/system-spec-kit/runtime/tests/smart-router-analyze.vitest.ts	109	39	2dbbbc025c8503c3	rewrite	legacy singular .opencode/skill fixture; producer path rewrites to .skilled
+.skilled/skills/system-spec-kit/runtime/tests/smart-router-measurement.vitest.ts	42	32	fd96a7ec9e58e6c5	rewrite	legacy singular skill fixture dir; matching source marker rewrites to .skilled
+.skilled/skills/system-spec-kit/runtime/tests/smart-router-measurement.vitest.ts	47	36	e74a34a4e8569619	rewrite	legacy singular skill fixture dir; matching source marker rewrites to .skilled
+.skilled/skills/system-spec-kit/runtime/tests/smart-router-measurement.vitest.ts	185	42	e4a5f65ed560a46f	rewrite	reports output dir no longer exists under .skilled; constant rewrites
+.skilled/skills/system-spec-kit/runtime/tests/smart-router-measurement.vitest.ts	186	40	6793721a69267a2e	rewrite	legacy singular skill stream path; constant rewrites to .skilled
+.skilled/skills/system-spec-kit/runtime/tests/smart-router-telemetry.vitest.ts	281	61	7af0869d9a82a5b7	keep	history: comment records the module's old singular default path
+.skilled/skills/system-spec-kit/shared/review-research-paths.cjs	70	32	63d39cc303ded35c	keep	dual-root-needed: alias marker knows only .opencode/specs; add .skilled twin

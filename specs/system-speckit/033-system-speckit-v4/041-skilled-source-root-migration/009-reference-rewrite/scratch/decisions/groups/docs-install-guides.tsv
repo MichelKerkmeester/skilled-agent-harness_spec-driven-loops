@@ -1,0 +1,5 @@
+.skilled/install-guides/README.md	77	61	b9fa8c6b3e3a610b	rewrite	guide file path inside the tree; now .skilled/install-guides
+.skilled/install-guides/README.md	139	51	99ced66325596c3d	keep	opencode-view: components install into the directory opencode reads
+.skilled/install-guides/README.md	275	73	3253a1edb9dc08ba	keep	opencode-view: skill discovery happens in .opencode/skills
+.skilled/install-guides/README.md	342	121	d5805ef85876ee56	keep	opencode-view: skills auto-discovered from .opencode/skills/*/SKILL.md
+.skilled/install-guides/README.md	1196	20	c1134d1802ce964f	rewrite	search scope in recipe; rewrites to specs .skilled per plan

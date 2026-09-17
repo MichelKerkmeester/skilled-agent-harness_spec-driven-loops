@@ -1,0 +1,21 @@
+{
+ "occurrences": {
+  "freeze": 49711,
+  "generated": 214,
+  "kept": 1771,
+  "never": 82,
+  "routed-005": 433,
+  "routed-006": 65,
+  "routed-010": 45
+ },
+ "files": {
+  "freeze": 972,
+  "generated": 22,
+  "kept": 509,
+  "never": 29,
+  "routed-005": 43,
+  "routed-006": 15,
+  "routed-010": 3
+ },
+ "unclassified": 0
+}

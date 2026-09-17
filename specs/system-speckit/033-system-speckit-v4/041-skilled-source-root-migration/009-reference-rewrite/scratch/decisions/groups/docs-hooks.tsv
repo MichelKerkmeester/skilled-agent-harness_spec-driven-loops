@@ -1,0 +1,65 @@
+.skilled/hooks/README.md	147	501	da837ea06c21cad4	keep	opencode-view: loader scans its fixed .opencode/plugins folder by flat glob
+.skilled/hooks/README.md	147	842	da837ea06c21cad4	rewrite	browsability symlink target; real plugins folder is .skilled/plugins
+.skilled/hooks/README.md	147	971	da837ea06c21cad4	keep	opencode-view: verified that the loader globs only .opencode/plugins
+.skilled/hooks/README.md	153	43	08acc4e208e2bb04	keep	opencode-view: plugins stay in the runtime's own plugin folder
+.skilled/hooks/README.md	254	67	1469a90e66a21567	rewrite	real home cell; sibling bin cells rewrite to .skilled/bin
+.skilled/hooks/README.md	255	72	fbea5d1b9de88cc3	rewrite	real home cell; script references rewrite to .skilled/scripts
+.skilled/hooks/README.md	255	112	fbea5d1b9de88cc3	rewrite	real home cell; plugin references rewrite to .skilled/plugins
+.skilled/hooks/codex-watchdog/README.md	44	18	f24707ae97fad318	rewrite	adapter file path; key-files row and load commands use .skilled
+.skilled/hooks/codex-watchdog/README.md	51	74	8d6e66e9aaa525e4	keep	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/completion/README.md	22	152	6fc10c0d8a65c048	rewrite	states where plugin sources live; real directory is .skilled/plugins
+.skilled/hooks/completion/README.md	69	61	6c056569601c0abd	rewrite	adapter symlink target; real plugin file sits under .skilled/plugins
+.skilled/hooks/completion/README.md	70	60	fe346b3e662e5d2d	rewrite	adapter symlink target; real plugin file sits under .skilled/plugins
+.skilled/hooks/completion/README.md	74	75	44a0e5d1f53093f2	keep	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/completion/README.md	104	3	a61df1ad193566c2	rewrite	key-files plugin path; load commands use .skilled/plugins
+.skilled/hooks/completion/README.md	105	3	4289f64b6f2e3f9e	rewrite	key-files plugin path; load commands use .skilled/plugins
+.skilled/hooks/directive-lifecycle/README.md	45	458	33769dd611491925	keep	dual-root-needed: ancestor walk knows only .opencode; orchestrator adds .skilled
+.skilled/hooks/directive-lifecycle/README.md	83	158	ae6c04966d9a5788	keep	dual-root-needed: ancestor walk knows only .opencode; orchestrator adds .skilled
+.skilled/hooks/dispatch/README.md	73	18	d2b520eebb442f7e	rewrite	adapter file path; key files and commands use .skilled/plugins
+.skilled/hooks/dispatch/README.md	73	255	d2b520eebb442f7e	keep	compat-link: root discovery still catches a stray nested .opencode tree
+.skilled/hooks/dispatch/README.md	77	125	7ba4cc971bfb98d4	keep	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/dispatch/README.md	95	102	198aeead6113c889	keep	opencode-view: real plugin file loaded from .opencode/plugins
+.skilled/hooks/dispatch/README.md	112	1	6a9a9a5defe99d82	rewrite	key-files plugin path; load command uses .skilled/plugins
+.skilled/hooks/dist-freshness/README.md	22	24	68746b968bbf1dc7	rewrite	plugin file locator; key files and commands use .skilled/plugins
+.skilled/hooks/dist-freshness/README.md	43	200	79204a1ef2727155	rewrite	bounded log path; writer constant rewrites to .skilled/logs
+.skilled/hooks/dist-freshness/README.md	64	18	26e2b0325f7583ae	rewrite	adapter file path; key-files row rewrites to .skilled/plugins
+.skilled/hooks/dist-freshness/README.md	71	74	83972760b771497f	keep	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/dist-freshness/README.md	93	3	ff7c13ff984cf337	rewrite	key-files plugin path; sibling skill and hook rows rewrite
+.skilled/hooks/git-primary-reconcile/README.md	22	94	04b87b3e050ae93b	rewrite	symlinks into the bin tree; sibling bin paths rewrite to .skilled
+.skilled/hooks/git-primary-reconcile/README.md	70	30	a6ef06ff3a9be99c	rewrite	launcher plugin path; keys and bin paths rewrite to .skilled
+.skilled/hooks/git-primary-reconcile/README.md	95	3	d9dc6894c2ba25d6	rewrite	key-files plugin path; sibling bin and hooks rows rewrite
+.skilled/hooks/git-worktree-guard/README.md	47	130	1ae29a740b504b00	rewrite	hook chain example; live settings.json uses .skilled/bin
+.skilled/hooks/goal/README.md	34	162	adca90880df79d90	rewrite	plugin file path; key-files paragraph rewrites to .skilled/plugins
+.skilled/hooks/goal/README.md	80	18	f347ea78e30e0bfa	rewrite	adapter file path; key files and tests rewrite to .skilled
+.skilled/hooks/goal/README.md	86	74	857adae0cc171122	keep	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/goal/goal-plugin.md	31	12	005983f7b33bdbd4	rewrite	plugin cell path; sibling surface rows rewrite to .skilled
+.skilled/hooks/goal/goal-plugin.md	121	35	6d8c0642e77898a9	rewrite	file to change after edits; sibling command path rewrites
+.skilled/hooks/goal/goal-plugin.md	121	73	6d8c0642e77898a9	rewrite	command file to change; sibling command path rewrites
+.skilled/hooks/goal/goal-plugin.md	166	33	32fff0b341a27f86	rewrite	command source path; sibling hooks row rewrites to .skilled
+.skilled/hooks/goal/goal-plugin.md	170	343	8bbc414eac86a2e5	rewrite	goal hooks doc path; sibling tree paths rewrite to .skilled
+.skilled/hooks/hook-install/README.md	41	48	5d5fd17494d73b4b	rewrite	namespace names the tree; the real directory is .skilled
+.skilled/hooks/hook-install/README.md	41	114	5d5fd17494d73b4b	rewrite	ownership namespace names the tree; real root is .skilled
+.skilled/hooks/hook-install/README.md	87	3	a9b4e8efb00071db	rewrite	stale entry; versioned source is root .codex/hooks.json
+.skilled/hooks/hook-install/README.md	123	85	6c461396fea10cd6	rewrite	namespace prefix names the tree; real root is .skilled
+.skilled/hooks/injection-contract.md	64	882	eb50bf1361b5eba9	rewrite	canonical rule file lives under the real tree .skilled
+.skilled/hooks/injection-contract.md	65	24	f27374febd95e6fb	rewrite	canonical owner file lives under .skilled/skills
+.skilled/hooks/injection-contract.md	65	208	f27374febd95e6fb	rewrite	plugin file path; real file sits under .skilled/plugins
+.skilled/hooks/injection-contract.md	116	166	73289dcbbd6207ea	rewrite	core file path; real file is under .skilled/hooks
+.skilled/hooks/mcp-route-guard/README.md	57	18	b2d5ef3bb238ec0d	rewrite	adapter file path; the plugin sits under .skilled/plugins
+.skilled/hooks/mcp-route-guard/README.md	57	103	b2d5ef3bb238ec0d	keep	opencode-view: loader globs its own .opencode/plugins folder
+.skilled/hooks/mcp-route-guard/README.md	61	125	7c2b87bbe81463c1	keep	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/mcp-route-guard/README.md	92	1	a678aa92fb1c1962	rewrite	plugin locator; the adapter file sits under .skilled/plugins
+.skilled/hooks/post-edit-quality/README.md	71	18	4d52d93b4c467d0d	rewrite	adapter file path; the plugin sits under .skilled/plugins
+.skilled/hooks/post-edit-quality/README.md	71	515	4d52d93b4c467d0d	rewrite	bounded log path; writer constant rewrites to .skilled/logs
+.skilled/hooks/post-edit-quality/README.md	75	125	64c55bcc8dcbbcb5	keep	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/post-edit-quality/README.md	90	109	04fd83e1c96ee6b6	keep	opencode-view: real plugin file loaded from .opencode/plugins
+.skilled/hooks/post-edit-quality/README.md	105	3	8f6130ed127f2152	rewrite	key-files plugin path; load command uses .skilled/plugins
+.skilled/hooks/session-cleanup/README.md	21	24	54d47f2338034ae2	rewrite	plugin file locator; real file is under .skilled/plugins
+.skilled/hooks/session-cleanup/README.md	63	18	679c72835c6adcd4	rewrite	adapter file path; real plugin sits under .skilled/plugins
+.skilled/hooks/session-cleanup/README.md	89	3	b2aca7f0626e5706	rewrite	key-files plugin path; command uses .skilled/plugins
+.skilled/hooks/session-lifecycle/README.md	80	24	807b88044a0b0db5	rewrite	states where the real code lives; it is .skilled/skills
+.skilled/hooks/task-dispatch/README.md	18	151	44044e471061ceea	rewrite	state directory lives in the tree; now .skilled/skills/.state
+.skilled/hooks/task-dispatch/README.md	62	18	d303e1dfe266a9ba	rewrite	adapter file path; real plugin sits under .skilled/plugins
+.skilled/hooks/task-dispatch/README.md	68	74	423211013c9840bb	keep	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/task-dispatch/README.md	83	106	703a57ff2371a47c	keep	opencode-view: real file loaded from .opencode/plugins
+.skilled/hooks/task-dispatch/README.md	97	3	074c0b274dbcd8e8	rewrite	key-files plugin path; real plugin is .skilled/plugins

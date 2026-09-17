@@ -1,0 +1,3 @@
+.skilled/install-guides/README.md	139	51	99ced66325596c3d	opencode-view: components install into the directory opencode reads
+.skilled/install-guides/README.md	275	73	3253a1edb9dc08ba	opencode-view: skill discovery happens in .opencode/skills
+.skilled/install-guides/README.md	342	121	d5805ef85876ee56	opencode-view: skills auto-discovered from .opencode/skills/*/SKILL.md

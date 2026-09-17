@@ -1,0 +1,3 @@
+.skilled/skills/mcp-code-mode/scripts/doctor.sh
+.skilled/skills/mcp-code-mode/scripts/install.sh
+.skilled/skills/mcp-code-mode/scripts/update.sh

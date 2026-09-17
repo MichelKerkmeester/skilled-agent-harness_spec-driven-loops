@@ -1,0 +1,3 @@
+.skilled/plugins/README.md
+.skilled/plugins/tests/README.md
+.skilled/plugins/tests/helpers/README.md

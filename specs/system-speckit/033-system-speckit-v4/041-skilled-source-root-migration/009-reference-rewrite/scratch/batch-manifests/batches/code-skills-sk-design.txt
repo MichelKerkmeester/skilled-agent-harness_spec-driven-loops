@@ -1,0 +1,5 @@
+.skilled/skills/sk-design/command-metadata.json
+.skilled/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs
+.skilled/skills/sk-design/sk-design-md-generator/backend/scripts/cli.ts
+.skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts
+.skilled/skills/sk-design/sk-design-md-generator/backend/tests/guided-run.test.ts

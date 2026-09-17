@@ -1,0 +1,4 @@
+.skilled/bin/lib/model-server-supervision.cjs	23	51	3b675b5864fed4a7	rewrite	quoted segment builds the tree root; real dir is .skilled
+.skilled/bin/lib/model-server-supervision.cjs	1054	62	cae1d332fdf11b3a	rewrite	quoted segment builds the tree root; real dir is .skilled
+.skilled/bin/system-skill-advisor-launcher.cjs	24	37	8c753545677807ff	rewrite	quoted segment builds the tree root; real dir is .skilled
+.skilled/bin/worktree-guard.sh	13	19	dad6a031b1faa0da	rewrite	usage line names the tree's bin dir, now .skilled/bin

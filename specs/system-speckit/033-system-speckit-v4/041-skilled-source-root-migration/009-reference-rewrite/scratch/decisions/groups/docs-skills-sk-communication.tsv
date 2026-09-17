@@ -1,0 +1,4 @@
+.skilled/skills/sk-communication/SKILL.md	12	370	ac563aadc346c869	rewrite	package path names the tree; implementation sits under .skilled
+.skilled/skills/sk-communication/SKILL.md	203	100	27a9d4a5c10c3c66	rewrite	preset source path names the repo file; now .skilled/skills
+.skilled/skills/sk-communication/cli-communication-projection/docs/rollback.md	50	1	893651418b2aebe6	rewrite	deleted test path names the repo plugin test; now .skilled/plugins
+.skilled/skills/sk-communication/feature-catalog/runtime-adapters/six-runtime-adapter-matrix.md	44	3	8cd277a927c739b3	rewrite	adapter file path names the repo source; now .skilled/skills

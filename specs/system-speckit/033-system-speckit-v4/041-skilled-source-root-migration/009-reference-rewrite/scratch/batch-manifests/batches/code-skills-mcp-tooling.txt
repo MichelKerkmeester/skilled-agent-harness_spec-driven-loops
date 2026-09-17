@@ -1,0 +1,7 @@
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/scripts/install.sh
+.skilled/skills/mcp-tooling/mcp-click-up/examples/task-queue-workflow.sh
+.skilled/skills/mcp-tooling/mcp-click-up/examples/time-tracking-workflow.sh
+.skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh
+.skilled/skills/mcp-tooling/mcp-figma/examples/safe-connect-daemon-health.sh
+.skilled/skills/mcp-tooling/mcp-notion/scripts/install.sh
+.skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh

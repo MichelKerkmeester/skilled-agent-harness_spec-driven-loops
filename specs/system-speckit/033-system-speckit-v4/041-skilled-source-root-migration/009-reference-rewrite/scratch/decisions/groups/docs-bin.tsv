@@ -1,0 +1,4 @@
+.skilled/bin/README.md	179	602	4ce47eb9a367eb9d	rewrite	plugin folder locator; plugin code and log path move to .skilled
+.skilled/bin/README.md	179	757	4ce47eb9a367eb9d	rewrite	append-only log path; writer constant rewrites to .skilled/logs
+.skilled/bin/README.md	193	111	74085af08b2d2899	rewrite	alias example names repo wrapper; hooks now launch .skilled/bin
+.skilled/bin/README.md	219	42	c59fb2fffd8f7b19	rewrite	directory mention; suites run from the real tree .skilled

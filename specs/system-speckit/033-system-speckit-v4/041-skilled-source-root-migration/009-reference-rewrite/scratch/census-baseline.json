@@ -1,0 +1,223 @@
+{
+ "base_sha": "8c2d2aff6653c2539d2e5774cd10d8141a1422d8",
+ "specs_target": "keep",
+ "files": 2835,
+ "judged_files": 35,
+ "occurrences": {
+  "K": 56,
+  "R1": 14406,
+  "R2": 538,
+  "R3": 1236,
+  "X": 54
+ },
+ "by_group": {
+  "agents": {
+   "R1": 318,
+   "R3": 8
+  },
+  "code-bin": {
+   "R1": 30,
+   "R3": 4,
+   "X": 1
+  },
+  "code-commands": {
+   "R1": 1478,
+   "R2": 29,
+   "R3": 52,
+   "X": 2
+  },
+  "code-hooks": {
+   "R1": 58,
+   "R3": 3
+  },
+  "code-plugins": {
+   "R1": 75,
+   "R3": 5,
+   "X": 6
+  },
+  "code-root": {
+   "R1": 3
+  },
+  "code-scripts": {
+   "R1": 14,
+   "R3": 3
+  },
+  "code-skills-cli-external-orchestration": {
+   "R1": 9,
+   "R2": 2,
+   "R3": 6
+  },
+  "code-skills-mcp-code-mode": {
+   "R1": 10
+  },
+  "code-skills-mcp-tooling": {
+   "R1": 10
+  },
+  "code-skills-sk-code": {
+   "R1": 25,
+   "R3": 6,
+   "X": 2
+  },
+  "code-skills-sk-communication": {
+   "R1": 3
+  },
+  "code-skills-sk-design": {
+   "R1": 15,
+   "R2": 12
+  },
+  "code-skills-sk-doc": {
+   "R1": 1041,
+   "R2": 6,
+   "R3": 28
+  },
+  "code-skills-sk-git": {
+   "R1": 10
+  },
+  "code-skills-sk-vision": {
+   "R1": 6
+  },
+  "code-skills-system-deep-loop": {
+   "R1": 345,
+   "R2": 14,
+   "R3": 29
+  },
+  "code-skills-system-skill-advisor": {
+   "R1": 329,
+   "R2": 2,
+   "R3": 30
+  },
+  "code-skills-system-spec-kit": {
+   "R1": 435,
+   "R2": 165,
+   "R3": 99
+  },
+  "docs-bin": {
+   "R1": 32,
+   "R2": 1,
+   "R3": 4
+  },
+  "docs-commands": {
+   "R1": 468,
+   "R2": 16,
+   "R3": 11
+  },
+  "docs-hooks": {
+   "R1": 167,
+   "R3": 65
+  },
+  "docs-install-guides": {
+   "R1": 79,
+   "R3": 5,
+   "X": 7
+  },
+  "docs-logs": {
+   "R1": 5,
+   "R3": 2
+  },
+  "docs-plugins": {
+   "K": 2,
+   "R1": 11,
+   "R3": 1
+  },
+  "docs-root": {
+   "R1": 55,
+   "R3": 15
+  },
+  "docs-scripts": {
+   "R1": 8
+  },
+  "docs-skills": {
+   "R1": 9
+  },
+  "docs-skills-.state": {
+   "R1": 5,
+   "R3": 1
+  },
+  "docs-skills-cli-external-orchestration": {
+   "K": 3,
+   "R1": 777,
+   "R2": 10,
+   "R3": 100,
+   "X": 32
+  },
+  "docs-skills-mcp-code-mode": {
+   "R1": 65,
+   "R3": 5
+  },
+  "docs-skills-mcp-tooling": {
+   "R1": 391
+  },
+  "docs-skills-sk-code": {
+   "R1": 904,
+   "R2": 5,
+   "R3": 155
+  },
+  "docs-skills-sk-communication": {
+   "R1": 168,
+   "R3": 4
+  },
+  "docs-skills-sk-design": {
+   "R1": 269,
+   "R2": 39
+  },
+  "docs-skills-sk-doc": {
+   "R1": 886,
+   "R2": 4,
+   "R3": 43
+  },
+  "docs-skills-sk-git": {
+   "R1": 183,
+   "R3": 10
+  },
+  "docs-skills-sk-prompt": {
+   "R1": 53,
+   "R3": 1
+  },
+  "docs-skills-sk-vision": {
+   "R1": 69,
+   "R3": 19
+  },
+  "docs-skills-system-deep-loop": {
+   "R1": 2636,
+   "R2": 36,
+   "R3": 88
+  },
+  "docs-skills-system-skill-advisor": {
+   "R1": 867,
+   "R2": 1,
+   "R3": 71,
+   "X": 2
+  },
+  "docs-skills-system-spec-kit": {
+   "R1": 1666,
+   "R2": 145,
+   "R3": 145,
+   "X": 2
+  },
+  "dual-root": {
+   "K": 48,
+   "R1": 255,
+   "R2": 50,
+   "R3": 186
+  },
+  "runtime-files": {
+   "K": 3,
+   "R1": 164,
+   "R2": 1,
+   "R3": 32
+  }
+ },
+ "map_census_728": {
+  "R1": 14940,
+  "R2": 789,
+  "R3": 611,
+  "X": 79,
+  "files": 2963,
+  "map_expected": {
+   "R1": 14905,
+   "R2": 790,
+   "R3": 646,
+   "X": 78
+  }
+ }
+}

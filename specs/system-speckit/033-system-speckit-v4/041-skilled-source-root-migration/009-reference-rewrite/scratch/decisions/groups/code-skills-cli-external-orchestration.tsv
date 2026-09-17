@@ -1,0 +1,6 @@
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json	3	28	cb24492f546aa0a8	rewrite	description names the authored tree, which is now .skilled
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json	3	73	cb24492f546aa0a8	rewrite	authored writes land inside the tree; real directory is .skilled
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json	76	22	5c6718491d78b489	rewrite	write target glob scopes the authored tree; now .skilled/**
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json	80	63	cfe94e414f1a0fac	rewrite	rationale names authored writes across the tree, now .skilled
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json	83	22	5c6718491d78b489	rewrite	edit target glob scopes the authored tree; now .skilled/**
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json	87	62	f4ec467afa8457e5	rewrite	rationale names authored edits across the tree, now .skilled

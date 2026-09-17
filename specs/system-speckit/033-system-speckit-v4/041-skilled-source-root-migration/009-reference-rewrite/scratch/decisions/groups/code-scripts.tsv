@@ -1,0 +1,3 @@
+.skilled/scripts/run-node-tests.mjs	114	114	561115f34352804e	rewrite	install instruction names the tree; npm install runs in .skilled
+.skilled/scripts/run-node-tests.mjs	140	107	f52a36975c0f22ef	rewrite	quoted segment builds the vitest cwd path; tree is .skilled
+.skilled/scripts/run-node-tests.mjs	141	33	13a22028d184ca12	rewrite	quoted segment builds the vitest cwd; the tree is .skilled

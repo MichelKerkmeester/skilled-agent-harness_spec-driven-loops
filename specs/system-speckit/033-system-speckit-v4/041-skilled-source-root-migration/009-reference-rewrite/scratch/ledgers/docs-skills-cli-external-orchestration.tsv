@@ -1,0 +1,18 @@
+.skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/speckit-agent-spec-folder.md	49	1479	5dc86090720e5551	compat-link: the .opencode/specs alias stays by design
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md	94	101	04799434bb1e0f59	opencode-view: names it the OpenCode runtime's own directory
+.skilled/skills/cli-external-orchestration/cli-cursor/references/shared-editor-config.md	25	138	a4717f8932e25fb5	opencode-view: states which config directory OpenCode reads
+.skilled/skills/cli-external-orchestration/cli-cursor/references/shared-editor-config.md	100	77	35371d82dce78c2b	opencode-view: tool-private config directory OpenCode reads
+.skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/commands-and-skills/mirrored-command-invocation.md	3	89	7137e2221052e533	legacy-layout: scenario asserts Devin discovers skills through the linked root
+.skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/commands-and-skills/skills-roster.md	3	74	7af4f43e2561b8ba	legacy-layout: scenario asserts Devin discovers skills through the linked root
+.skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/commands-and-skills/skills-roster.md	42	15	ac570dca96c99a64	legacy-layout: recipe greps Devin's linked .opencode/skills output paths
+.skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/git-preflight-advisory/git-advisory-delivery.md	74	292	3617af2ef9553122	history: record of a run before the move at the old root
+.skilled/skills/cli-external-orchestration/cli-opencode/README.md	109	347	8b058c85c29942c1	opencode-view: every skill the project load sits under .opencode/skills
+.skilled/skills/cli-external-orchestration/cli-opencode/README.md	135	50	5cd2f0d2f342d695	opencode-view: states where OpenCode resolves project-local agents
+.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md	260	237	116f8dc0cc5f3a77	opencode-view: names each runtime's own agent directory
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md	19	56	0385dc76c948710d	opencode-view: built-in has no project-local file in the runtime agents dir
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md	53	104	3508f2ab655e06fe	opencode-view: names where opencode keeps project-local agent files
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md	53	236	3508f2ab655e06fe	opencode-view: the runtime resolves this project-local agent file
+.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md	3	104	6429ebdd12f0feb3	opencode-view: names the runtime agents directory holding agent slugs
+.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md	23	42	acbae2b1f7d8e4f3	opencode-view: states where the runtime loads agent files from
+.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md	80	560	d20e2b1ad369841c	opencode-view: flag loads the project-local agent definition there
+.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md	383	48	56f28bc8ab2ba6aa	opencode-view: directory the runtime resolves agent slugs from

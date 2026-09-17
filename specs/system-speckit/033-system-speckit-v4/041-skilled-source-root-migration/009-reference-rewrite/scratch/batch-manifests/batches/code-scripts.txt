@@ -1,0 +1,3 @@
+.skilled/scripts/copy-skill-advisor-dist-data.sh
+.skilled/scripts/run-node-tests.mjs
+.skilled/scripts/session-cleanup.sh

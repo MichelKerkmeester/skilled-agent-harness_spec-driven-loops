@@ -1,0 +1,3 @@
+# Orchestrator overrides of lane decisions: path, line, column, line hash, action, reason.
+.skilled/commands/scripts/validate-command-references.cjs	65	22	b4a12acfa9787ea5	keep	dual-root: the orchestrator widens this token pattern to both root names by hand, matching the file's other command patterns
+.skilled/commands/scripts/validate-command-references.cjs	69	25	e951a8d46261a9ff	keep	dual-root: the orchestrator widens this target pattern to both root names by hand, matching the file's other command patterns

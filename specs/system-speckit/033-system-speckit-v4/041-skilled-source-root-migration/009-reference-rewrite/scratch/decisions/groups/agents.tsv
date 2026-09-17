@@ -1,0 +1,8 @@
+.claude/agents/code.md	500	316	0a62d8edd6effd3d	rewrite	bare tree mention; component files live under .skilled
+.claude/agents/context.md	176	262	c20c5bde78ff833b	rewrite	repo search scope; recipe now searches .skilled
+.claude/agents/markdown.md	179	90	9c56e408a43da1fe	rewrite	template asset path resolves under .skilled/skills
+.claude/agents/orchestrate.md	21	58	b727d3ce1e1d2866	keep	opencode-view: states the directory the OpenCode profile reads agents from
+.skilled/agents/code.md	514	316	7df55da175de17cc	rewrite	bare tree mention; component files live under .skilled
+.skilled/agents/context.md	190	262	c20c5bde78ff833b	rewrite	repo search scope; recipe now searches .skilled
+.skilled/agents/markdown.md	193	90	9c56e408a43da1fe	rewrite	template asset path resolves under .skilled/skills
+.skilled/agents/orchestrate.md	33	58	b727d3ce1e1d2866	keep	opencode-view: states the directory the OpenCode profile reads agents from
