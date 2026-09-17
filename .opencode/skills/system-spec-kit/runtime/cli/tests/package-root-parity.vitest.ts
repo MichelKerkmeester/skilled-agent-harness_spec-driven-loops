@@ -130,11 +130,13 @@ describe('the repository resolver treats .skilled and .opencode as one source tr
     expect(findRepoRoot(start)).toBe(leakRoot);
   });
 
-  it('look-alike segments never count as a source root', () => {
-    const start = path.join(root, '055-skilled-source-root-migration', 'skilled', '.skilled-backup', 'work');
+  it('look-alike segments never count as a source root, and an exact segment below them does', () => {
+    const lookAlikes = path.join(root, '055-skilled-source-root-migration', 'skilled', '.skilled-backup');
+    const start = path.join(lookAlikes, '.skilled', 'work');
     fs.mkdirSync(start, { recursive: true });
-    expect(hoistAboveOpencodeTree(start)).toBeNull();
-    expect(findRepoRoot(start)).toBe(start);
+    expect(hoistAboveOpencodeTree(lookAlikes)).toBeNull();
+    expect(hoistAboveOpencodeTree(start)).toBe(lookAlikes);
+    expect(findRepoRoot(start)).toBe(lookAlikes);
   });
 
   it('a dangling .opencode link falls back to the hoist, never to the start', () => {
@@ -146,12 +148,15 @@ describe('the repository resolver treats .skilled and .opencode as one source tr
     }
   });
 
-  it('a repository inside an ancestor named .skilled resolves to its own root', () => {
-    const ancestor = path.join(root, '.skilled', 'outer');
-    fs.mkdirSync(ancestor, { recursive: true });
-    const { repoRoot, start } = buildTree(ancestor, FULL_TREE, TODAY, '.opencode');
-    expect(findRepoRoot(start)).toBe(repoRoot);
-  });
+  for (const layout of [TODAY, SKILLED_ONLY]) {
+    it(`${layout.name}: a repository inside an ancestor named .skilled keeps its own root on full and capped walks`, () => {
+      const ancestor = path.join(root, '.skilled', `outer-${layout.name}`);
+      fs.mkdirSync(ancestor, { recursive: true });
+      const { repoRoot, start } = buildTree(ancestor, FULL_TREE, layout, layout.realRoot);
+      expect(findRepoRoot(start)).toBe(repoRoot);
+      expect(findRepoRoot(start, { maxDepth: 2 })).toBe(repoRoot);
+    });
+  }
 
   it('a real .opencode tree beside the .skilled placeholder resolves from either tree', () => {
     const { repoRoot, start } = buildTree(root, { name: 'placeholder', markers: PACKAGE_ROOT_MARKERS, expectsPackageRoot: true }, TODAY, '.opencode');
