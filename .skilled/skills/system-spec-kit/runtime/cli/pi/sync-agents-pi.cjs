@@ -18,7 +18,7 @@ const { parseFrontmatter: parseFrontmatterDoc } = require('@spec-kit/shared/fron
 
 const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
 const REPO_ROOT = findRepoRoot(__dirname);
-const SOURCE_DIR = path.join(REPO_ROOT, '.opencode', 'agents');
+const SOURCE_DIR = path.join(REPO_ROOT, '.skilled', 'agents');
 const OUTPUT_DIR = path.join(REPO_ROOT, '.pi', 'agents');
 
 // These are the literal Pi built-in names confirmed by the installed Pi type
