@@ -117,9 +117,9 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 - [x] T039 Prove the foreign-repository allowance: in a scratch repository with no sentinel, every hook exits 0 with empty output [Orchestrator]
 - [x] T040 Run `check-comment-hygiene.sh` on every changed file and the naming guard with `--changed-since` the phase base, running its pytest suite with `-p no:cacheprovider` [Orchestrator]
 - [x] T041 Time the no-op pre-commit again and compare the median with T003 [Orchestrator]
-- [ ] T042 Push the tip that carries this phase and read each workflow run's conclusion, `gate-inputs.yml` included [Orchestrator]
+- [x] T042 Push the tip that carries this phase and read each workflow run's conclusion, `gate-inputs.yml` included [Orchestrator]
 - [x] T043 Write the phase 006 handoff list and the delegation summary (`implementation-summary.md`) [Orchestrator]
-- [ ] T044 Mark each acceptance row with its evidence, then validate from the main checkout's toolchain until it prints `RESULT: PASSED` (`acceptance-criteria.md`) [Orchestrator]
+- [x] T044 Mark each acceptance row with its evidence, then validate from the main checkout's toolchain until it prints `RESULT: PASSED` (`acceptance-criteria.md`) [Orchestrator]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -127,9 +127,9 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The independent check and the drill both print `RESULT: PASSED` from the final state
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The independent check and the drill both print `RESULT: PASSED` from the final state
 <!-- /ANCHOR:completion -->
 
 ---
@@ -189,7 +189,7 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 - [x] CHK-022 [P0] `check-gate-inputs.sh` and its test print `RESULT: PASSED` on the tip
 - [x] CHK-023 [P0] The drill prints `RESULT: PASSED`, and its pre-change control shows exit 0 with no gate output
 - [x] CHK-024 [P0] In a repository with no sentinel, every hook exits 0 and prints nothing the hooks before this phase did not
-- [ ] CHK-025 [P1] Every workflow parses, and each run on the pushed tip was read by its conclusion
+- [x] CHK-025 [P1] Every workflow parses, and each run on the pushed tip was read by its conclusion
 <!-- /ANCHOR:testing -->
 
 ---
@@ -243,10 +243,10 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 16 | 16/16 |
-| P1 Items | 13 | 12/13 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: 2026-09-17, locally. CHK-025 waits for CI runs on a pushed tip
+**Verification Date**: 2026-09-17, locally and on the pushed tip `c22d1b63c9`
 <!-- /ANCHOR:summary -->
 
 ---

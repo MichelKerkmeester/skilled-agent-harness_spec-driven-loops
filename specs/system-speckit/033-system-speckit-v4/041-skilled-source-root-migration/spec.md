@@ -117,7 +117,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 2 | `002-per-runtime-reference-map/` | Map every symlink and stale path reference per runtime, and across skills, code and docs | complete |
 | 3 | `003-layout-probes/` | Settle the runtime and git behaviors that decide the layout, each by a live probe | complete |
 | 4 | `004-migration-design/` | Choose what `.opencode/` becomes, and freeze the cutover sequence and its rollback | complete |
-| 5 | `005-gate-and-ci-readiness/` | Teach hooks and CI the new root, and add a check that does not live under the moved tree | in progress |
+| 5 | `005-gate-and-ci-readiness/` | Teach hooks and CI the new root, and add a check that does not live under the moved tree | complete |
 | 6 | `006-dual-root-code-and-contracts/` | Make root discovery, launchers and installers work under either root | draft |
 | 7 | `007-source-root-move/` | Move the authored tree into `.skilled/` in rename-only commits | draft |
 | 8 | `008-links-and-generated-state/` | Retarget hand-made links, and regenerate mirrors and every derived artifact | draft |
