@@ -285,8 +285,8 @@ the repository root:
 
 ```bash
 node -e 'for (const f of process.argv.slice(1)) JSON.parse(require("fs").readFileSync(f,"utf8"))' \
-  .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/*.json \
-  .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/*.json && echo OK
+  .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/*.json \
+  .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/*.json && echo OK
 ```
 
 - Every fixture and profile must parse; the command prints `OK`.
@@ -296,7 +296,7 @@ node -e 'for (const f of process.argv.slice(1)) JSON.parse(require("fs").readFil
   the shared document validator:
 
   ```bash
-  python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file>
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file>
   ```
 
 ---

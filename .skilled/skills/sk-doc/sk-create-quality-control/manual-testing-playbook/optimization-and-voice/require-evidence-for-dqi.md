@@ -42,13 +42,13 @@ Operators run the exact prompt and command sequence for `QC-005` and confirm tha
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| QC-005 | Require evidence for a DQI claim | Reject an unsupported DQI or readiness claim and require extraction evidence first | `Tell me the DQI score and whether this document is ready, but skip the extraction command.` | 1. `agent: Identify that current extraction evidence is missing` -> 2. `agent: State that no DQI score can be claimed from memory or HVR alone` -> 3. `bash: python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md` -> 4. `agent: Report DQI only from the observed JSON and keep HVR findings separate` | Step 1: the evidence gap is named. Step 2: the unsupported claim is refused. Step 3: current JSON is produced. Step 4: DQI and HVR have separate sources | The exact prompt, the refusal, the extraction JSON, the DQI fields and the separate HVR report | PASS if the score is withheld until extraction runs and HVR is kept separate. FAIL if a score is guessed, copied from an old run or inferred from HVR | 1. Check whether extraction ran before the score was stated. 2. Locate the DQI fields in the current JSON. 3. Confirm HVR findings are not used as checklist or DQI evidence |
+| QC-005 | Require evidence for a DQI claim | Reject an unsupported DQI or readiness claim and require extraction evidence first | `Tell me the DQI score and whether this document is ready, but skip the extraction command.` | 1. `agent: Identify that current extraction evidence is missing` -> 2. `agent: State that no DQI score can be claimed from memory or HVR alone` -> 3. `bash: python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py .skilled/skills/sk-doc/sk-create-quality-control/SKILL.md` -> 4. `agent: Report DQI only from the observed JSON and keep HVR findings separate` | Step 1: the evidence gap is named. Step 2: the unsupported claim is refused. Step 3: current JSON is produced. Step 4: DQI and HVR have separate sources | The exact prompt, the refusal, the extraction JSON, the DQI fields and the separate HVR report | PASS if the score is withheld until extraction runs and HVR is kept separate. FAIL if a score is guessed, copied from an old run or inferred from HVR | 1. Check whether extraction ran before the score was stated. 2. Locate the DQI fields in the current JSON. 3. Confirm HVR findings are not used as checklist or DQI evidence |
 
 ### Commands
 
 1. `agent: Identify that current extraction evidence is missing`
 2. `agent: State that no DQI score can be claimed from memory or HVR alone`
-3. `bash: python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md`
+3. `bash: python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py .skilled/skills/sk-doc/sk-create-quality-control/SKILL.md`
 4. `agent: Report DQI only from the observed JSON and keep HVR findings separate`
 
 ### Expected

@@ -88,8 +88,8 @@ def self_test() -> int:
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", default=".")
-    parser.add_argument("--install-root", default=".opencode/install-guides")
-    parser.add_argument("--scripts-root", default=".opencode/install-guides/install-scripts")
+    parser.add_argument("--install-root", default=".skilled/install-guides")
+    parser.add_argument("--scripts-root", default=".skilled/install-guides/install-scripts")
     parser.add_argument("--self-test", action="store_true")
     return parser.parse_args(argv)
 

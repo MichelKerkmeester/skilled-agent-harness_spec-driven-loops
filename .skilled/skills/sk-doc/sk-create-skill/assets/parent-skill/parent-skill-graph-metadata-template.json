@@ -85,25 +85,25 @@
       "[surface-name]/references/[reference].md"
     ],
     "key_files": [
-      ".opencode/skills/[parent-skill-name]/SKILL.md",
-      ".opencode/skills/[parent-skill-name]/README.md",
-      ".opencode/skills/[parent-skill-name]/mode-registry.json",
-      ".opencode/skills/[parent-skill-name]/hub-router.json",
-      ".opencode/skills/[parent-skill-name]/graph-metadata.json",
-      ".opencode/skills/[parent-skill-name]/[workflow-packet-a]/SKILL.md",
-      ".opencode/skills/[parent-skill-name]/[surface-name]/SKILL.md"
+      ".skilled/skills/[parent-skill-name]/SKILL.md",
+      ".skilled/skills/[parent-skill-name]/README.md",
+      ".skilled/skills/[parent-skill-name]/mode-registry.json",
+      ".skilled/skills/[parent-skill-name]/hub-router.json",
+      ".skilled/skills/[parent-skill-name]/graph-metadata.json",
+      ".skilled/skills/[parent-skill-name]/[workflow-packet-a]/SKILL.md",
+      ".skilled/skills/[parent-skill-name]/[surface-name]/SKILL.md"
     ],
     "entities": [
       {
         "name": "[parent-skill-name]",
         "kind": "skill",
-        "path": ".opencode/skills/[parent-skill-name]/SKILL.md",
+        "path": ".skilled/skills/[parent-skill-name]/SKILL.md",
         "source": "derived"
       },
       {
         "name": "[surface-name]",
         "kind": "reference",
-        "path": ".opencode/skills/[parent-skill-name]/[surface-name]/references/[reference].md",
+        "path": ".skilled/skills/[parent-skill-name]/[surface-name]/references/[reference].md",
         "source": "derived"
       }
     ],

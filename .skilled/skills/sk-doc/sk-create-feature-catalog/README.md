@@ -56,7 +56,7 @@ create-feature-catalog authors a `feature-catalog/` package: a root `feature-cat
 
 ```bash
 # from the repo root, so the validator resolves the readme doc type
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/feature-catalog.md
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/feature-catalog.md
 ```
 
 A clean run reports the root catalog structure passed: frontmatter and numbered `OVERVIEW` present, category sections in order.
@@ -64,7 +64,7 @@ A clean run reports the root catalog structure passed: frontmatter and numbered 
 **Step 3: validate every per-feature leaf the same way.**
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/<category-name>/feature-name.md
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/<category-name>/feature-name.md
 ```
 
 Passes when the file carries its required sections and a Validation And Tests table.
@@ -129,9 +129,9 @@ A: No. `validate_document.py` checks structure and the leaf's Validation And Tes
 
 | Check | Result |
 |---|---|
-| Root catalog structure | `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/feature-catalog.md` passes |
+| Root catalog structure | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/feature-catalog.md` passes |
 | Per-feature leaf structure | Same command against `<target-skill>/feature-catalog/<category-name>/feature-name.md`, checks the Validation And Tests table |
-| New-content naming guard | `python3 .opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py <new-content-staging-root>` |
+| New-content naming guard | `python3 .skilled/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py <new-content-staging-root>` |
 | Manual review | Root-entry to feature-file parity, cross-file links and source-anchor accuracy (not machine-checked) |
 
 ---

@@ -49,10 +49,10 @@ description: "Python and Node utilities shared across every /create:* command: t
 Run from the repository root.
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <document.md> --type readme
-python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py <skill-dir>/SKILL.md
-python3 .opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py --all
-bash .opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <document.md> --type readme
+python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py <skill-dir>/SKILL.md
+python3 .skilled/skills/sk-doc/shared/scripts/check_no_new_snake_case.py --all
+bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh
 ```
 
 Expected result: `validate_document.py` exits 0 on a valid document, 1 on blocking errors and 2 on a missing file or parse error. The naming guards exit 0 when clean and 1 with offenders printed otherwise.

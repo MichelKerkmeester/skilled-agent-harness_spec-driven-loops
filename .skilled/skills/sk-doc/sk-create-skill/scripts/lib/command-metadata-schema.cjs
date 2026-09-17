@@ -115,7 +115,7 @@ function validateCommandMetadata(entries, context) {
         seenCommands.add(entry.command);
         if (context.commandExists && !context.commandExists(entry.command)) {
           violations.push(violation('COMMAND_FILE_MISSING', id,
-            `${skillId}: no command definition found for '${entry.command}' under .opencode/commands/`));
+            `${skillId}: no command definition found for '${entry.command}' under .skilled/commands/`));
         }
       }
     }

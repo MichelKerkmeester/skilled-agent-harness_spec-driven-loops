@@ -32,7 +32,7 @@ Templates for creating slash commands with proper frontmatter, mandatory gates, 
 
 **Key Difference from Skills**:
 - Commands = Actionable workflows triggered by `/command-name`
-- Skills = Reference documentation loaded via `Read(".opencode/skills/<skill-name>/SKILL.md")`
+- Skills = Reference documentation loaded via `Read(".skilled/skills/<skill-name>/SKILL.md")`
 
 ### Core Characteristics
 
@@ -65,7 +65,7 @@ User types: /command-name arguments
 ### Command File Location
 
 ```
-.opencode/
+.skilled/
 └── command/
     ├── simple-command.md          → /simple-command
     ├── workflow-command.md        → /workflow-command
@@ -684,7 +684,7 @@ $ARGUMENTS
 
 ## 6. TEMPLATES USED
 
-- `.opencode/skills/system-spec-kit/templates/[template].md`
+- `.skilled/skills/system-spec-kit/templates/[template].md`
 - [Other template references]
 
 ---
@@ -860,7 +860,7 @@ The **memory** and **doctor** families have NO workflow YAML. Their routers disp
 
 Which family uses which topology is defined by the machine-readable command contract ([`command-contract.json`](command-contract.json), validated by [`command-contract.schema.json`](command-contract.schema.json)). Read it rather than hand-maintaining a family list here.
 
-Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Execution Order`). The validator alias-normalizes those as a safety net, but the authored end state is the canonical names above. Reference shape: `.opencode/commands/speckit/plan.md` (router) + `speckit-plan-presentation.txt` (contract). Skeletons: [`command-router-template.md`](command-router-template.md), [`command-presentation-template.md`](command-presentation-template.md).
+Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Execution Order`). The validator alias-normalizes those as a safety net, but the authored end state is the canonical names above. Reference shape: `.skilled/commands/speckit/plan.md` (router) + `speckit-plan-presentation.txt` (contract). Skeletons: [`command-router-template.md`](command-router-template.md), [`command-presentation-template.md`](command-presentation-template.md).
 
 ---
 
@@ -1102,7 +1102,7 @@ Use for: Grouping related commands under a common prefix.
 ### Directory Structure
 
 ```
-.opencode/commands/
+.skilled/commands/
 └── [namespace]/           # Directory name = namespace
     ├── [action1].md       # → /namespace:action1
     ├── [action2].md       # → /namespace:action2
@@ -1112,7 +1112,7 @@ Use for: Grouping related commands under a common prefix.
 ### Example: Index Namespace
 
 ```
-.opencode/commands/
+.skilled/commands/
 └── index/
     ├── start.md     → /index:start
     ├── stop.md      → /index:stop
@@ -1269,14 +1269,14 @@ hand-maintained list. A single family entry validates as one `familyContract`:
 ```json
 {
   "topology": "direct-dispatch",
-  "router_path": ".opencode/commands/<ns>/<action>.md",
+  "router_path": ".skilled/commands/<ns>/<action>.md",
   "input": { "required": false, "gate_owner": "router", "argument_hint": "<query> | <sub-action>" },
   "execution_targets": [
     { "selector": "<sub-action>", "target": "the tool, script, or MCP call the router dispatches" }
   ],
   "mode_matrix": { "default_policy": "non-mutating-default", "supported_modes": [] },
   "owned_assets": [
-    { "purpose": "presentation", "path": ".opencode/commands/<ns>/assets/<action>-presentation.txt" }
+    { "purpose": "presentation", "path": ".skilled/commands/<ns>/assets/<action>-presentation.txt" }
   ],
   "presentation": { "owner": "presentation-asset", "exceptions": [] },
   "destructive_policy": { "has_destructive_ops": true, "gated": true, "operations": ["names the destructive operations and confirms they are gated"] },

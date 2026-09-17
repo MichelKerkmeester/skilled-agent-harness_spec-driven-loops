@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `SKL-003` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKL-003 | Leave quality audits alone | Decline an existing-document quality audit and route it to quality control | `Audit the existing invoice-review SKILL.md for DQI and human voice issues. Do not create anything.` | 1. `agent: Read the create-skill when-not-to-use boundary` -> 2. `agent: Confirm that invoice-review SKILL.md already exists` -> 3. `agent: Route the request to sk-create-quality-control and run no scaffold command` -> 4. `bash: git status --porcelain .opencode/skills/invoice-review` | Step 1: quality auditing is outside create-skill. Step 2: the target is existing. Step 3: the handoff is named and no scaffold command runs. Step 4: no new create-skill artifact appears | The exact prompt, boundary text, target check, handoff statement and status output with exit status | PASS if the existing audit is handed to quality control and no new artifact is created. FAIL if create-skill initializes or packages anything | 1. Confirm the target exists before routing. 2. Re-read the quality-control boundary. 3. Inspect status for a newly created root or archive |
+| SKL-003 | Leave quality audits alone | Decline an existing-document quality audit and route it to quality control | `Audit the existing invoice-review SKILL.md for DQI and human voice issues. Do not create anything.` | 1. `agent: Read the create-skill when-not-to-use boundary` -> 2. `agent: Confirm that invoice-review SKILL.md already exists` -> 3. `agent: Route the request to sk-create-quality-control and run no scaffold command` -> 4. `bash: git status --porcelain .skilled/skills/invoice-review` | Step 1: quality auditing is outside create-skill. Step 2: the target is existing. Step 3: the handoff is named and no scaffold command runs. Step 4: no new create-skill artifact appears | The exact prompt, boundary text, target check, handoff statement and status output with exit status | PASS if the existing audit is handed to quality control and no new artifact is created. FAIL if create-skill initializes or packages anything | 1. Confirm the target exists before routing. 2. Re-read the quality-control boundary. 3. Inspect status for a newly created root or archive |
 
 ### Commands
 
 1. `agent: Read the create-skill when-not-to-use boundary`
 2. `agent: Confirm that invoice-review SKILL.md already exists`
 3. `agent: Route the request to sk-create-quality-control and run no scaffold command`
-4. `bash: git status --porcelain .opencode/skills/invoice-review`
+4. `bash: git status --porcelain .skilled/skills/invoice-review`
 
 ### Expected
 

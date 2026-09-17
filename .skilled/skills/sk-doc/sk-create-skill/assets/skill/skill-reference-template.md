@@ -21,7 +21,7 @@ Templates for creating reference files in AI agent skills with deep-dive technic
 
 ### Location & Naming
 
-**Location:** `.opencode/skills/[skill-name]/references/`
+**Location:** `.skilled/skills/[skill-name]/references/`
 
 **Naming Convention:** kebab-case with `.md` extension only
 
@@ -742,7 +742,7 @@ config:
 ### File Organization
 
 ```
-.opencode/skills/[skill-name]/
+.skilled/skills/[skill-name]/
 ├── assets/
 │   ├── workflow-configs/
 │   │   ├── canvas-methodology.yaml
@@ -950,10 +950,10 @@ def test_default_mode():
 
 ### Complete Skill Directory Structure
 
-**Path:** `.opencode/skills/` (singular, not `skills` or `openskills`)
+**Path:** `.skilled/skills/` (singular, not `skills` or `openskills`)
 
 ```
-.opencode/skills/[skill-name]/
+.skilled/skills/[skill-name]/
 ├── SKILL.md                    # Main skill file (Level 2 in progressive disclosure)
 ├── references/                 # Deep-dive technical documentation (Level 3)
 │   ├── workflow-name.md        # Multi-phase workflows with checkpoints (kebab-case)

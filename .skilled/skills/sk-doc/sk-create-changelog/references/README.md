@@ -52,19 +52,19 @@ Load the file that matches the current task:
 - [../assets/changelog-template.md](../assets/changelog-template.md) - canonical global changelog and release-note format (compact and expanded)
 
 ### Command surface
-- `.opencode/commands/create/changelog.md` - thin router for `/create:changelog`
-- `.opencode/commands/create/assets/create-changelog-auto.yaml` - autonomous workflow source
-- `.opencode/commands/create/assets/create-changelog-confirm.yaml` - checkpointed workflow source
-- `.opencode/commands/create/assets/create-changelog-presentation.txt` - setup fields, release prompt, and result display
+- `.skilled/commands/create/changelog.md` - thin router for `/create:changelog`
+- `.skilled/commands/create/assets/create-changelog-auto.yaml` - autonomous workflow source
+- `.skilled/commands/create/assets/create-changelog-confirm.yaml` - checkpointed workflow source
+- `.skilled/commands/create/assets/create-changelog-presentation.txt` - setup fields, release prompt, and result display
 
 ### Packet-local (nested) output
-- `.opencode/skills/system-spec-kit/templates/changelog/root.md` - packet-local root template
-- `.opencode/skills/system-spec-kit/templates/changelog/phase.md` - packet-local phase template
-- `.opencode/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` - packet-local generator
+- `.skilled/skills/system-spec-kit/templates/changelog/root.md` - packet-local root template
+- `.skilled/skills/system-spec-kit/templates/changelog/phase.md` - packet-local phase template
+- `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` - packet-local generator
 
 ### Real entries to model
-- `.opencode/skills/sk-doc/changelog/v1.8.0.0.md` - versioning standard, engine, and enforcement rollout
-- `.opencode/skills/sk-doc/changelog/v1.8.1.0.md` - validator and create-machinery improvement
+- `.skilled/skills/sk-doc/changelog/v1.8.0.0.md` - versioning standard, engine, and enforcement rollout
+- `.skilled/skills/sk-doc/changelog/v1.8.1.0.md` - validator and create-machinery improvement
 
 ---
 

@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `FMV-003` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMV-003 | Skip on differ | Report a conflicting human-set version as skipped, and describe the override without using it | `Run the versioning over this skill. I hand-set one of these versions on purpose, so be careful.` | 1. `agent: Read references/frontmatter-versioning.md section 5 and quote the present-and-differs row` -> 2. `bash: node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc` -> 3. `agent: Name any file whose stored version differs from the computed one, with both values` -> 4. `bash: git status --porcelain .opencode/skills/sk-doc` | Step 1: the row is quoted with its skip label. Step 2: the engine reports without writing. Step 3: the conflicting file is named with both versions. Step 4: empty output | The prompt as typed, the quoted row, the engine transcript with its exit status, the conflicting file with both versions, and the step 4 output | PASS if the conflict is reported and step 4 is empty. FAIL if anything is written, or the update flag is applied unasked | 1. Confirm the engine was run in a read-only mode, since the apply mode is the one that writes. 2. Check the exception was stated as applying to `SKILL.md` only. 3. Confirm the update flag was described rather than used, because using it is the failure the prompt sets up |
+| FMV-003 | Skip on differ | Report a conflicting human-set version as skipped, and describe the override without using it | `Run the versioning over this skill. I hand-set one of these versions on purpose, so be careful.` | 1. `agent: Read references/frontmatter-versioning.md section 5 and quote the present-and-differs row` -> 2. `bash: node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc` -> 3. `agent: Name any file whose stored version differs from the computed one, with both values` -> 4. `bash: git status --porcelain .skilled/skills/sk-doc` | Step 1: the row is quoted with its skip label. Step 2: the engine reports without writing. Step 3: the conflicting file is named with both versions. Step 4: empty output | The prompt as typed, the quoted row, the engine transcript with its exit status, the conflicting file with both versions, and the step 4 output | PASS if the conflict is reported and step 4 is empty. FAIL if anything is written, or the update flag is applied unasked | 1. Confirm the engine was run in a read-only mode, since the apply mode is the one that writes. 2. Check the exception was stated as applying to `SKILL.md` only. 3. Confirm the update flag was described rather than used, because using it is the failure the prompt sets up |
 
 ### Commands
 
 1. `agent: Read references/frontmatter-versioning.md section 5 and quote the present-and-differs row with its label`
-2. `bash: node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc`
+2. `bash: node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc`
 3. `agent: Name any file whose stored version differs from the computed one, reporting both values`
-4. `bash: git status --porcelain .opencode/skills/sk-doc`
+4. `bash: git status --porcelain .skilled/skills/sk-doc`
 
 ### Expected
 

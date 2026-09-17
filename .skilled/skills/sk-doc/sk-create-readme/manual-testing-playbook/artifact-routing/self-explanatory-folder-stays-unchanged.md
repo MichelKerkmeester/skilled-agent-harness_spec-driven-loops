@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `RMR-002`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| RMR-002 | Self-explanatory folder stays unchanged | Leave a folder without a redundant README | `This small folder already has clear parent documentation and no reader is expected to land here. Should I add another README?` | 1. `agent: Read SKILL.md Section 2 and state the skip branch of the README decision tree` -> 2. `agent: Inspect the target folder and its parent README` -> 3. `agent: State whether a reader is likely to land in the folder` -> 4. `bash: python3 .opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .opencode/skills/sk-doc/shared/scripts/validate_document.py` | Step 1: the skip branch is stated. Step 2: parent documentation and folder contents are recorded. Step 3: no reader need is found. Step 4: audit output and exit status are captured | The prompt, decision-tree rule, target inventory, parent link and audit transcript | PASS if no README is proposed and the parent documentation is named. FAIL if a redundant README is authored or the answer skips evidence review | 1. Check whether the folder has a real audience. 2. Confirm parent navigation is sufficient. 3. Verify the audit command was run and its output was read |
+| RMR-002 | Self-explanatory folder stays unchanged | Leave a folder without a redundant README | `This small folder already has clear parent documentation and no reader is expected to land here. Should I add another README?` | 1. `agent: Read SKILL.md Section 2 and state the skip branch of the README decision tree` -> 2. `agent: Inspect the target folder and its parent README` -> 3. `agent: State whether a reader is likely to land in the folder` -> 4. `bash: python3 .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .skilled/skills/sk-doc/shared/scripts/validate_document.py` | Step 1: the skip branch is stated. Step 2: parent documentation and folder contents are recorded. Step 3: no reader need is found. Step 4: audit output and exit status are captured | The prompt, decision-tree rule, target inventory, parent link and audit transcript | PASS if no README is proposed and the parent documentation is named. FAIL if a redundant README is authored or the answer skips evidence review | 1. Check whether the folder has a real audience. 2. Confirm parent navigation is sufficient. 3. Verify the audit command was run and its output was read |
 
 ### Commands
 
 1. `agent: Read SKILL.md Section 2 and state the skip branch of the README decision tree`
 2. `agent: Inspect the target folder and its parent README`
 3. `agent: State whether a reader is likely to land in the folder`
-4. `bash: python3 .opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .opencode/skills/sk-doc/shared/scripts/validate_document.py`
+4. `bash: python3 .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .skilled/skills/sk-doc/shared/scripts/validate_document.py`
 
 ### Expected
 

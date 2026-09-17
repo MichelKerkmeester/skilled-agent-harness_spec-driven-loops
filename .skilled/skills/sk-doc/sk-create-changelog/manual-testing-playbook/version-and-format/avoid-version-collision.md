@@ -40,14 +40,14 @@ Operators run the exact prompt and command sequence for `CHG-004` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CHG-004 | Avoid a version collision | Find a free version path without overwriting a changelog | `Calculate the next global changelog version for this component. If the target file already exists, increment the build segment and leave the existing file unchanged.` | 1. `agent: Read SKILL.md sections 4 and 7 and state the collision rule` -> 2. `bash: ls .opencode/changelog/sk-doc` -> 3. `agent: Compare the calculated target with the existing filenames and increment the build segment if needed` -> 4. `bash: git status --porcelain .opencode/changelog/sk-doc` | Step 1 states no overwrite. Step 2 lists the current files. Step 3 reports each occupied candidate and the free target. Step 4 shows no unrequested change | Exact prompt, rule text, file listing and exit status, candidate comparisons, final target and status output | PASS if the final target is free and the existing file is preserved. FAIL if the run overwrites, reuses or silently skips the collision | 1. Confirm the candidate filename is exact. 2. Check the build segment increment. 3. Compare the existing file before and after the run |
+| CHG-004 | Avoid a version collision | Find a free version path without overwriting a changelog | `Calculate the next global changelog version for this component. If the target file already exists, increment the build segment and leave the existing file unchanged.` | 1. `agent: Read SKILL.md sections 4 and 7 and state the collision rule` -> 2. `bash: ls .skilled/changelog/sk-doc` -> 3. `agent: Compare the calculated target with the existing filenames and increment the build segment if needed` -> 4. `bash: git status --porcelain .skilled/changelog/sk-doc` | Step 1 states no overwrite. Step 2 lists the current files. Step 3 reports each occupied candidate and the free target. Step 4 shows no unrequested change | Exact prompt, rule text, file listing and exit status, candidate comparisons, final target and status output | PASS if the final target is free and the existing file is preserved. FAIL if the run overwrites, reuses or silently skips the collision | 1. Confirm the candidate filename is exact. 2. Check the build segment increment. 3. Compare the existing file before and after the run |
 
 ### Commands
 
 1. `agent: Read SKILL.md sections 4 and 7 and state the collision rule`
-2. `bash: ls .opencode/changelog/sk-doc`
+2. `bash: ls .skilled/changelog/sk-doc`
 3. `agent: Compare the calculated target with the existing filenames and increment the build segment if needed`
-4. `bash: git status --porcelain .opencode/changelog/sk-doc`
+4. `bash: git status --porcelain .skilled/changelog/sk-doc`
 
 ### Expected
 

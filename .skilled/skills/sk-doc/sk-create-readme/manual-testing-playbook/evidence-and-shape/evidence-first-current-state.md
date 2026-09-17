@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `RME-001`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| RME-001 | Evidence-first current-state README | Ground README claims in current files and tested commands | `Refresh this folder README from the current files. Do not document a command or feature unless you can confirm it locally.` | 1. `agent: Read SKILL.md Section 4 and list the local evidence sources` -> 2. `agent: Inspect the target folder, nearby docs, package files, config and commands` -> 3. `agent: Test each documented command or mark it as an example` -> 4. `bash: python3 .opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .opencode/skills/sk-doc/shared/scripts/validate_document.py` | Step 1: all evidence classes are named. Step 2: the inventory is captured. Step 3: each command is tested or labeled. Step 4: audit output and exit status are captured | The prompt, evidence list, target inventory, command results, expected output blocks and audit transcript | PASS if each claim has local evidence and the audit is read. FAIL if an unconfirmed path, command or metric is documented | 1. Compare claims with the inventory. 2. Run any command that was marked tested. 3. Remove claims whose source cannot be found |
+| RME-001 | Evidence-first current-state README | Ground README claims in current files and tested commands | `Refresh this folder README from the current files. Do not document a command or feature unless you can confirm it locally.` | 1. `agent: Read SKILL.md Section 4 and list the local evidence sources` -> 2. `agent: Inspect the target folder, nearby docs, package files, config and commands` -> 3. `agent: Test each documented command or mark it as an example` -> 4. `bash: python3 .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .skilled/skills/sk-doc/shared/scripts/validate_document.py` | Step 1: all evidence classes are named. Step 2: the inventory is captured. Step 3: each command is tested or labeled. Step 4: audit output and exit status are captured | The prompt, evidence list, target inventory, command results, expected output blocks and audit transcript | PASS if each claim has local evidence and the audit is read. FAIL if an unconfirmed path, command or metric is documented | 1. Compare claims with the inventory. 2. Run any command that was marked tested. 3. Remove claims whose source cannot be found |
 
 ### Commands
 
 1. `agent: Read SKILL.md Section 4 and list the local evidence sources`
 2. `agent: Inspect the target folder, nearby docs, package files, config and commands`
 3. `agent: Test each documented command or mark it as an example`
-4. `bash: python3 .opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .opencode/skills/sk-doc/shared/scripts/validate_document.py`
+4. `bash: python3 .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .skilled/skills/sk-doc/shared/scripts/validate_document.py`
 
 ### Expected
 

@@ -40,13 +40,13 @@ Operators run the exact prompt and command sequence for `BMR-004` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| BMR-004 | Author a Lane C index | Update the hub index and leave rendered reports to the harness | `Update the Lane C benchmark index for this skill. Add the run-label row and link the storage and scoring authorities. Do not hand-edit the rendered report.` | 1. `agent: Read references/skill-benchmark/skill-benchmark-storage-guide.md sections 2 and 5` -> 2. `agent: Read assets/skill-benchmark/skill-benchmark-readme-template.md` -> 3. `bash: test -d .opencode/skills/sk-code/benchmark` -> 4. `agent: State which files are authored and which files are renderer-owned` | Step 1 names `benchmark/README.md`, `reports/`, frozen `baseline/` and the report boundary. Step 2 supplies the index shape. Step 3 exits 0. Step 4 leaves report Markdown and JSON to the Lane C harness | Exact prompt, guide and template paths, target output and exit status, authored-file list and renderer-owned list | PASS if only the index convention is authored and `baseline/` is preserved. FAIL if a report is hand-edited or a run folder is overwritten | 1. Re-read storage section 5. 2. Confirm the run label follows the date and subject grammar. 3. Check that the scoring contract is linked rather than copied |
+| BMR-004 | Author a Lane C index | Update the hub index and leave rendered reports to the harness | `Update the Lane C benchmark index for this skill. Add the run-label row and link the storage and scoring authorities. Do not hand-edit the rendered report.` | 1. `agent: Read references/skill-benchmark/skill-benchmark-storage-guide.md sections 2 and 5` -> 2. `agent: Read assets/skill-benchmark/skill-benchmark-readme-template.md` -> 3. `bash: test -d .skilled/skills/sk-code/benchmark` -> 4. `agent: State which files are authored and which files are renderer-owned` | Step 1 names `benchmark/README.md`, `reports/`, frozen `baseline/` and the report boundary. Step 2 supplies the index shape. Step 3 exits 0. Step 4 leaves report Markdown and JSON to the Lane C harness | Exact prompt, guide and template paths, target output and exit status, authored-file list and renderer-owned list | PASS if only the index convention is authored and `baseline/` is preserved. FAIL if a report is hand-edited or a run folder is overwritten | 1. Re-read storage section 5. 2. Confirm the run label follows the date and subject grammar. 3. Check that the scoring contract is linked rather than copied |
 
 ### Commands
 
 1. `agent: Read references/skill-benchmark/skill-benchmark-storage-guide.md sections 2 and 5`
 2. `agent: Read assets/skill-benchmark/skill-benchmark-readme-template.md`
-3. `bash: test -d .opencode/skills/sk-code/benchmark`
+3. `bash: test -d .skilled/skills/sk-code/benchmark`
 4. `agent: State which files are authored and which files are renderer-owned`
 
 ### Expected

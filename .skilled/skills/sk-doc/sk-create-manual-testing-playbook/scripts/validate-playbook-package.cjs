@@ -41,7 +41,7 @@ function usage() {
     'Options:',
     '  --package ID|PATH   Validate one package or an explicit playbook root',
     '  --repo-root PATH    Repository root (defaults from this script)',
-    '  --skills-root PATH  Skills root (defaults to <repo>/.opencode/skills)',
+    '  --skills-root PATH  Skills root (defaults to <repo>/.skilled/skills)',
     '  --manifest PATH     Corpus manifest (defaults to this packet manifest)',
     '  --format text|json  Report format (default: text)',
     '  --json              Alias for --format json',
@@ -77,7 +77,7 @@ function defaultPaths() {
   const repoRoot = path.resolve(__dirname, '../../../../..');
   return {
     repoRoot,
-    skillsRoot: path.join(repoRoot, '.opencode', 'skills'),
+    skillsRoot: path.join(repoRoot, '.skilled', 'skills'),
     manifest: path.join(__dirname, '..', 'playbook-corpus-manifest.json'),
   };
 }

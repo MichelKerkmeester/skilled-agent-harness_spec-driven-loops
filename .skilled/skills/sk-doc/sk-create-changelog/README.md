@@ -39,7 +39,7 @@ create-changelog is the `sk-doc` workflow behind `/create:changelog`. It resolve
 | Capability | What the skill knows how to operate |
 |---|---|
 | **Source resolution** | turn a spec folder, a component hint or recent git history into a work summary with the files it touched |
-| **Topology detection** | route a source to a global `.opencode/changelog/<component>/` release file or a packet-local nested entry without a manual choice |
+| **Topology detection** | route a source to a global `.skilled/changelog/<component>/` release file or a packet-local nested entry without a manual choice |
 | **Version calculation** | compute the next four-part `major.minor.patch.build` when global rules apply and refuse to overwrite an existing file |
 | **Format selection** | choose compact under 10 changes and expanded at 10 or more, a major release or a breaking change |
 | **Validation** | gate the draft through `validate_document.py --type changelog` before anything is written |
@@ -53,7 +53,7 @@ create-changelog is the `sk-doc` workflow behind `/create:changelog`. It resolve
 **Step 2: Read the shared format before writing.**
 
 ```bash
-cat .opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
+cat .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
 ```
 
 You get the compact and expanded shapes, the spec-folder blockquote convention and the plain-category section vocabulary.
@@ -61,7 +61,7 @@ You get the compact and expanded shapes, the spec-folder blockquote convention a
 **Step 3: Validate the written file.**
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/changelog/<component>/v<version>.md --type changelog
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/changelog/<component>/v<version>.md --type changelog
 ```
 
 You get `✅ VALID` when the summary, category sections and upgrade guidance are all present.
@@ -70,7 +70,7 @@ You get `✅ VALID` when the summary, category sections and upgrade guidance are
 
 ## 4. HOW IT WORKS
 
-For a spec folder source, read `implementation-summary.md` first, then `tasks.md` and `spec.md`. Extract the work summary, files changed and change type from those files. For a component hint or git history, gather recent commits and affected files instead. From there, detect the output mode. Discover the real folders under `.opencode/changelog/` at run time rather than trusting a hardcoded list, then pick the primary component by file-count share when several are affected. Global mode calculates the next `vMAJOR.MINOR.PATCH.BUILD` and refuses to overwrite an existing version. Nested mode skips version calculation and writes through the spec-kit nested generator instead. Either way, choose compact format under 10 changes and expanded format for 10 or more, a major release or a breaking change, then validate before writing.
+For a spec folder source, read `implementation-summary.md` first, then `tasks.md` and `spec.md`. Extract the work summary, files changed and change type from those files. For a component hint or git history, gather recent commits and affected files instead. From there, detect the output mode. Discover the real folders under `.skilled/changelog/` at run time rather than trusting a hardcoded list, then pick the primary component by file-count share when several are affected. Global mode calculates the next `vMAJOR.MINOR.PATCH.BUILD` and refuses to overwrite an existing version. Nested mode skips version calculation and writes through the spec-kit nested generator instead. Either way, choose compact format under 10 changes and expanded format for 10 or more, a major release or a breaking change, then validate before writing.
 
 The four version segments each answer a different question. `major` means breaking, a rewrite or a migration, not just "large." `minor` covers a genuinely new feature or subsystem. `patch` covers the everyday case: a fix, a refactor or a docs update. `build` covers a same-day hotfix on a version already published. When no explicit `--bump` is passed, auto-detection reads `spec.md` and commit prefixes first and falls back to `patch` when no clear signal exists.
 
@@ -100,7 +100,7 @@ Reach for create-changelog when a shipped change needs a global component releas
 
 | What you see | Why | Fix |
 |---|---|---|
-| No component folder matches | `component_hint` doesn't resemble any real folder under `.opencode/changelog/` | Run `ls -d .opencode/changelog/*/` first, then match by substring or path segment. Never invent a folder |
+| No component folder matches | `component_hint` doesn't resemble any real folder under `.skilled/changelog/` | Run `ls -d .skilled/changelog/*/` first, then match by substring or path segment. Never invent a folder |
 | Version calculation looks off | Auto-detection defaulted to patch without a clear signal and the target file already exists | Pass an explicit `--bump` or let the build segment auto-increment on collision |
 | Entry looks like it belongs to the packet, not the whole project | The spec folder is a phase child or already has `changelog/` | Nested mode is likely correct here. Use `--nested` or let auto-detection route it |
 | File uses `Added`/`Changed`/`Fixed` headings | The caller asked for a different external format | Translate the content into the shared plain-category vocabulary (New Features, Bug Fixes and similar) unless the user explicitly needs that other format |
@@ -133,7 +133,7 @@ A: List every affected component in the report and write to the primary one by f
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
-| Global format | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <changelog-file> --type changelog` | `✅ VALID`, with summary, spec-folder blockquote when sourced from a spec, category sections, files changed and upgrade guidance all present |
+| Global format | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <changelog-file> --type changelog` | `✅ VALID`, with summary, spec-folder blockquote when sourced from a spec, category sections, files changed and upgrade guidance all present |
 | Version sequencing | List the target folder and compare against the calculated version | New version is strictly greater than the latest existing one and no file already exists at that exact path |
 | Nested output | Confirm the file landed under the packet's `changelog/` folder with the correct `changelog-<packet>-root.md` or `changelog-<packet>-<phase>.md` name | File exists at the expected nested path |
 

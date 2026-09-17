@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CMD-001`.
 - Objective: select a command for a repeatable user-triggered workflow and resolve its path.
 - Realistic user request: `I want a repeatable /release:check command that takes a path and returns a structured status. It should run the same workflow each time.`
 - Prompt: `I want a repeatable /release:check command that takes a path and returns a structured status. It should run the same workflow each time.`
-- Expected execution process: read the component-choice rules, classify the workflow as a command and resolve `.opencode/commands/release/check.md`.
+- Expected execution process: read the component-choice rules, classify the workflow as a command and resolve `.skilled/commands/release/check.md`.
 - Expected signals: the command type is named, the namespace and action use lowercase hyphen-case and the invocation is `/release:check`.
 - Desired user-visible outcome: the user receives a valid command path and invocation shape.
 - Pass/fail: PASS if the request is routed to a command with a valid path. FAIL if it is routed to a skill, a root command path or a non-kebab segment.
@@ -42,18 +42,18 @@ Operators run the exact prompt and command sequence for `CMD-001`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CMD-001 | Repeatable slash command | Select a command and resolve a valid namespace path | `I want a repeatable /release:check command that takes a path and returns a structured status. It should run the same workflow each time.` | 1. `agent: Read references/common-pitfalls.md and state the command choice rule` -> 2. `agent: Resolve the namespace and action path for /release:check` -> 3. `agent: State why this is a command rather than a skill` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .opencode/commands/create/command.md` | Step 1: a user-triggered repeatable workflow selects command. Step 2: the namespace path is valid. Step 3: reusable guidance is separated from the entry point. Step 4: the name check output and exit status are captured | The prompt, component decision, resolved path, invocation and name-check transcript | PASS if the workflow is assigned to a valid slash command. FAIL if a skill is selected or the path violates the naming rule | 1. Check whether the request needs a repeatable invocation. 2. Verify the namespace and action against the kebab-case rule. 3. Confirm the command owns executable steps rather than reference prose |
+| CMD-001 | Repeatable slash command | Select a command and resolve a valid namespace path | `I want a repeatable /release:check command that takes a path and returns a structured status. It should run the same workflow each time.` | 1. `agent: Read references/common-pitfalls.md and state the command choice rule` -> 2. `agent: Resolve the namespace and action path for /release:check` -> 3. `agent: State why this is a command rather than a skill` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .skilled/commands/create/command.md` | Step 1: a user-triggered repeatable workflow selects command. Step 2: the namespace path is valid. Step 3: reusable guidance is separated from the entry point. Step 4: the name check output and exit status are captured | The prompt, component decision, resolved path, invocation and name-check transcript | PASS if the workflow is assigned to a valid slash command. FAIL if a skill is selected or the path violates the naming rule | 1. Check whether the request needs a repeatable invocation. 2. Verify the namespace and action against the kebab-case rule. 3. Confirm the command owns executable steps rather than reference prose |
 
 ### Commands
 
 1. `agent: Read references/common-pitfalls.md and state the command choice rule`
 2. `agent: Resolve the namespace and action path for /release:check`
 3. `agent: State why this is a command rather than a skill`
-4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .opencode/commands/create/command.md`
+4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .skilled/commands/create/command.md`
 
 ### Expected
 
-Step 1 identifies a repeatable user-triggered workflow. Step 2 resolves `.opencode/commands/release/check.md`. Step 3 keeps reusable rules in a skill. Step 4 checks a real command name with the shared authored-name checker.
+Step 1 identifies a repeatable user-triggered workflow. Step 2 resolves `.skilled/commands/release/check.md`. Step 3 keeps reusable rules in a skill. Step 4 checks a real command name with the shared authored-name checker.
 
 ### Evidence
 

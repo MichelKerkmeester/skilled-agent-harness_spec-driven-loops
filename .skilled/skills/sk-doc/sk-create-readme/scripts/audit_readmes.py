@@ -13,7 +13,7 @@ Implements a deterministic README audit for:
 Scope rules:
 - Include:
     - repo-root README.md
-    - README files below .opencode, .claude, .pi, .github and scripts
+    - README files below .skilled, .claude, .pi, .github and scripts
 - Exclude any path containing:
     - /z_archive/
     - /context/
@@ -43,7 +43,7 @@ from urllib.parse import unquote
 
 EXCLUDE_SEGMENTS = {"z_archive", "context", "vendored", "node_modules"}
 SKIP_COVERAGE_SEGMENTS = {"templates", "examples"}
-DURABLE_ROOT_NAMES = (".", ".opencode", ".claude", ".pi", ".github", "scripts")
+DURABLE_ROOT_NAMES = (".", ".skilled", ".claude", ".pi", ".github", "scripts")
 DURABLE_FILE_EXTENSIONS = {
     ".bash", ".cjs", ".css", ".go", ".html", ".js", ".json", ".mjs", ".ps1",
     ".py", ".rs", ".scss", ".sh", ".sql", ".swift", ".toml", ".ts", ".tsx",
@@ -94,7 +94,7 @@ INDEX_FILES = ("README.md", "index.ts", "index.tsx", "index.js", "index.mjs", "i
 
 SPECIAL_FILENAMES = {"package.json", "skill.md", "readme.md"}
 PATH_PREFIX_HINTS = (
-    "./", "../", ".opencode/", "specs/",
+    "./", "../", ".skilled/", ".opencode/", "specs/",
 )
 COMMAND_STYLE_PREFIXES = ("/anchor", "/memory:", "/speckit:", "/create:", "/docs:", "/mcp:")
 TREE_GLYPHS = ("├", "└", "│", "──")
@@ -423,10 +423,10 @@ def token_looks_like_path(token: str, source: str) -> bool:
 
     if token.startswith("./") or token.startswith("../"):
         return True
-    if lower.startswith(".opencode/") or lower.startswith("specs/"):
+    if lower.startswith((".skilled/", ".opencode/")) or lower.startswith("specs/"):
         return True
     if token.startswith("/"):
-        if lower.startswith("/.opencode/") or lower.startswith("/specs/"):
+        if lower.startswith(("/.skilled/", "/.opencode/")) or lower.startswith("/specs/"):
             return True
         suffix = Path(token).suffix.lower()
         return bool(suffix and suffix in ALLOWED_LINK_EXTENSIONS)
@@ -444,7 +444,7 @@ def token_looks_like_path(token: str, source: str) -> bool:
                 return (
                     token.startswith("./")
                     or token.startswith("../")
-                    or lower.startswith(".opencode/")
+                    or lower.startswith((".skilled/", ".opencode/"))
                     or lower.startswith("specs/")
                 )
             if source == "tree_line":
@@ -452,14 +452,14 @@ def token_looks_like_path(token: str, source: str) -> bool:
                     len(parts) >= 2
                     or token.startswith("./")
                     or token.startswith("../")
-                    or lower.startswith(".opencode/")
+                    or lower.startswith((".skilled/", ".opencode/"))
                     or lower.startswith("specs/")
                 )
             return token.startswith(PATH_PREFIX_HINTS)
         if source == "inline_code" and not (
             token.startswith("./")
             or token.startswith("../")
-            or lower.startswith(".opencode/")
+            or lower.startswith((".skilled/", ".opencode/"))
             or lower.startswith("specs/")
         ):
             return False
@@ -844,9 +844,9 @@ def render_markdown_report(
     lines.append("")
     lines.append("```bash")
     lines.append(
-        "python3 .opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py "
+        "python3 .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py "
         "--repo-root . "
-        "--validator .opencode/skills/sk-doc/shared/scripts/validate_document.py "
+        "--validator .skilled/skills/sk-doc/shared/scripts/validate_document.py "
         "--inventory-out /tmp/readme-audit-inventory.txt "
         "--json-out /tmp/readme-audit-report.json "
         "--markdown-out /tmp/readme-audit-report.md"
@@ -900,7 +900,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--validator",
-        default=".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        default=".skilled/skills/sk-doc/shared/scripts/validate_document.py",
         help="Path to validate_document.py",
     )
     parser.add_argument(
@@ -984,7 +984,7 @@ def main() -> int:
         "scope": {
             "include": [
                 "README.md (repo root)",
-                ".opencode/**/README.md",
+                ".skilled/**/README.md",
                 ".claude/**/README.md",
                 ".pi/**/README.md",
                 ".github/**/README.md",

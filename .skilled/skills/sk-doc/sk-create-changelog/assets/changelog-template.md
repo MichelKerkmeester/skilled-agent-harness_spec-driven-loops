@@ -1,6 +1,6 @@
 ---
 title: Changelog & Release Notes Templates
-description: Templates and writing-style rules for global component changelogs at .opencode/changelog/{NN--component}/v{VERSION}.md and the matching GitHub release notes.
+description: Templates and writing-style rules for global component changelogs at .skilled/changelog/{NN--component}/v{VERSION}.md and the matching GitHub release notes.
 trigger_phrases:
   - "changelog format templates"
   - "release notes template"
@@ -21,7 +21,7 @@ Two formats (compact and expanded) for global component changelogs and the match
 
 ### Purpose
 
-Global component changelog files live at `.opencode/changelog/{NN--component}/v{VERSION}.md` and double as the body of GitHub releases. This asset gives the `/create:changelog` command (and human authors) a copy-paste starting point for both layouts, plus the voice and structure rules that keep the 370+ existing files consistent.
+Global component changelog files live at `.skilled/changelog/{NN--component}/v{VERSION}.md` and double as the body of GitHub releases. This asset gives the `/create:changelog` command (and human authors) a copy-paste starting point for both layouts, plus the voice and structure rules that keep the 370+ existing files consistent.
 
 ### Usage
 
@@ -172,7 +172,7 @@ Changelog files start directly with the summary paragraph - no version header or
 At the end, append:
 
 ```
-Full changelog: `.opencode/changelog/{component}/v{VERSION}.md`
+Full changelog: `.skilled/changelog/{component}/v{VERSION}.md`
 ```
 
 ---
@@ -204,7 +204,7 @@ These rules apply to both changelog files and GitHub release notes. See `PUBLIC-
 - **H4 (`####`) for category subsections** under each H2 -- never H3
 - **`&nbsp;` between H4 subsections within the same H2** -- this is the soft separator that renders as an invisible line on GitHub. Do NOT use `---` between H4s.
 - **`---` only between H2 sections** -- place a `---` divider before each `##` heading. Do NOT place `---` (or `&nbsp;`) between an H2 (or its intro paragraph) and the first H4 underneath it.
-- **No Oxford commas, em dashes, or semicolons** -- see HVR rules in `.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`
+- **No Oxford commas, em dashes, or semicolons** -- see HVR rules in `.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`
 
 ### Category Vocabulary (use plain names)
 
@@ -245,12 +245,12 @@ Count the changes in the release.
 
 ### Compact Format Reference
 
-See: `.opencode/changelog/04--commands/v3.0.1.4.md`
+See: `.skilled/changelog/04--commands/v3.0.1.4.md`
 
 ### Expanded Format References
 
-- `.opencode/changelog/01--system-spec-kit/v3.0.1.3.md` (28 fixes, full Problem/Fix paragraphs)
-- `.opencode/changelog/01--system-spec-kit/v3.0.1.0.md` (117 fixes, full Problem/Fix paragraphs)
+- `.skilled/changelog/01--system-spec-kit/v3.0.1.3.md` (28 fixes, full Problem/Fix paragraphs)
+- `.skilled/changelog/01--system-spec-kit/v3.0.1.0.md` (117 fixes, full Problem/Fix paragraphs)
 
 ---
 
@@ -263,13 +263,13 @@ Nested packet-local changelogs are a separate output mode for spec folders and p
 - Phase child folders write to `../changelog/changelog-<packet>-<phase-folder>.md`
 
 **Canonical Templates**:
-- `.opencode/skills/system-spec-kit/templates/changelog/root.md`
-- `.opencode/skills/system-spec-kit/templates/changelog/phase.md`
+- `.skilled/skills/system-spec-kit/templates/changelog/root.md`
+- `.skilled/skills/system-spec-kit/templates/changelog/phase.md`
 
 **Canonical Generator**:
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
+node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
 ```
 
 The global component versioning rules in this file do not apply to nested packet changelogs.
@@ -293,5 +293,5 @@ The global component versioning rules in this file do not apply to nested packet
 
 ### Workflows
 
-- [.opencode/commands/create/changelog.md](../../../../commands/create/changelog.md) - The `/create:changelog` command surface
+- [.skilled/commands/create/changelog.md](../../../../commands/create/changelog.md) - The `/create:changelog` command surface
 - [nested-changelog.md](../../../system-spec-kit/references/workflows/nested-changelog.md) - Nested packet-local changelog workflow

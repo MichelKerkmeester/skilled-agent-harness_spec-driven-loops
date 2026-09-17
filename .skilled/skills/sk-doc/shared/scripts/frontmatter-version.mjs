@@ -5,7 +5,7 @@
 // Deterministic compute / insert / verify of the 4-part `version`
 // frontmatter field for in-scope skill docs.
 //
-// Standard: .opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md
+// Standard: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md
 //
 // Usage:
 //   node frontmatter-version.mjs compute [--skill <name>] [--manifest-out <path>]
@@ -382,14 +382,14 @@ function helpText() {
   return `frontmatter-version.mjs — 4-part version compute/apply/verify/gate
 Modes: compute (dry-run), apply, verify, gate (git-free format check over every in-scope doc; the mode the post-edit hook runs)
 Options: --skill <name>  --paths <file-list>  --manifest-out <base>  --update
-Standard: .opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md`;
+Standard: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md`;
 }
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.mode || args.mode === 'help') { console.log(helpText()); process.exit(0); }
   const root = repoRoot();
-  const skillsRoot = args.skillsRoot ? path.resolve(args.skillsRoot) : path.join(root, '.opencode', 'skills');
+  const skillsRoot = args.skillsRoot ? path.resolve(args.skillsRoot) : path.join(root, '.skilled', 'skills');
 
   if (args.mode === 'gate') {
     // Enforcement gate: every in-scope file must carry a 4-part version.

@@ -20,8 +20,8 @@
  * it cannot pass a corpus the generator would have typed differently.
  *
  * Usage:
- *   node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
- *        [--skills-dir <dir>]   default: the repo .opencode/skills (resolved from
+ *   node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
+ *        [--skills-dir <dir>]   default: the repo .skilled/skills (resolved from
  *                               this file's location)
  *        [--format text|json]   default: text
  *

@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `RME-002`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| RME-002 | Code-folder navigation shape | Match tree or file inventory to the actual folder shape | `Write a README for this source folder. Use the actual folder shape to decide between a directory tree and a complete direct-file table.` | 1. `agent: Read SKILL.md Section 6 and state the two navigation branches` -> 2. `bash: find .opencode/skills/sk-doc/sk-create-readme -mindepth 1 -maxdepth 1 -type d -print` -> 3. `agent: Select the tree or direct-file inventory branch from the observed count` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-readme/SKILL.md` | Step 1: both branches are stated. Step 2: the immediate-directory output is captured. Step 3: the selected shape matches the count. Step 4: validator output and exit status are captured | The prompt, navigation rule, directory listing, selected branch and validator transcript | PASS if the shape matches the observed folder structure. FAIL if the mode chooses by preference or omits the required navigation artifact | 1. Count only immediate subdirectories. 2. List every direct file when the folder is flat. 3. Use a fenced tree when at least one immediate subdirectory exists |
+| RME-002 | Code-folder navigation shape | Match tree or file inventory to the actual folder shape | `Write a README for this source folder. Use the actual folder shape to decide between a directory tree and a complete direct-file table.` | 1. `agent: Read SKILL.md Section 6 and state the two navigation branches` -> 2. `bash: find .skilled/skills/sk-doc/sk-create-readme -mindepth 1 -maxdepth 1 -type d -print` -> 3. `agent: Select the tree or direct-file inventory branch from the observed count` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-readme/SKILL.md` | Step 1: both branches are stated. Step 2: the immediate-directory output is captured. Step 3: the selected shape matches the count. Step 4: validator output and exit status are captured | The prompt, navigation rule, directory listing, selected branch and validator transcript | PASS if the shape matches the observed folder structure. FAIL if the mode chooses by preference or omits the required navigation artifact | 1. Count only immediate subdirectories. 2. List every direct file when the folder is flat. 3. Use a fenced tree when at least one immediate subdirectory exists |
 
 ### Commands
 
 1. `agent: Read SKILL.md Section 6 and state the two navigation branches`
-2. `bash: find .opencode/skills/sk-doc/sk-create-readme -mindepth 1 -maxdepth 1 -type d -print`
+2. `bash: find .skilled/skills/sk-doc/sk-create-readme -mindepth 1 -maxdepth 1 -type d -print`
 3. `agent: Select the tree or direct-file inventory branch from the observed count`
-4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-readme/SKILL.md`
+4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-readme/SKILL.md`
 
 ### Expected
 

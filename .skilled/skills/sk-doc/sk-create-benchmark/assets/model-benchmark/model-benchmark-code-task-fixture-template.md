@@ -29,7 +29,7 @@ Usage:
   1. Pick a slug matching `^[a-z0-9]+(?:-[a-z0-9]+)*$` and create the fixture
      next to its siblings, for example:
      cp /dev/null \
-        .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/t3-my-new-task.json
+        .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/t3-my-new-task.json
      then paste the json scaffold below into it.
   2. Fill every {{PLACEHOLDER}}. Keep the real field names and their order. `args`
      and `expect` hold literal JSON values (numbers, strings, arrays, objects, null,
@@ -39,8 +39,8 @@ Usage:
      separate "mostly right" from "fully right". Every `expect` MUST be generated
      from a verified reference implementation, never hand-guessed.
   4. Validate THIS template .md (structure): 0 issues required.
-     python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py \
-       .opencode/skills/sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-code-task-fixture-template.md --type asset
+     python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py \
+       .skilled/skills/sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-code-task-fixture-template.md --type asset
      Validate the FILLED .json fixture by parsing it and running the scorer. The
      runner is the ultimate check, and it fails a fixture it cannot parse or whose
      reference impl does not score 1.0.

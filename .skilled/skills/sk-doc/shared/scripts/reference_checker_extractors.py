@@ -81,7 +81,7 @@ QUOTED_LITERAL_PATTERN = re.compile(r"^\s*(?P<quote>['\"])(?P<value>.*)(?P=quote
 # source, so unrelated matches are filtered out. Closes the gap where a renamed path embedded in an
 # instruction or example was left pointing at the old name.
 LITERAL_PATH_PATTERN = re.compile(
-    r"(?<![\w./-])((?:\.opencode|\.claude|\.codex|\.github)/[\w.-]+(?:/[\w.-]+)*)(?![\w/-])"
+    r"(?<![\w./-])((?:\.skilled|\.opencode|\.claude|\.codex|\.github)/[\w.-]+(?:/[\w.-]+)*)(?![\w/-])"
 )
 
 

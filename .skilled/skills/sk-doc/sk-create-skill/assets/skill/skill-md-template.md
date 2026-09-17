@@ -584,7 +584,7 @@ Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md) when the skill has installat
 
 **Bundled Resources Structure (Monolithic)**:
 ```
-.opencode/skills/skill-name/       # Note: .opencode/skills/ (singular, NOT skills)
+.skilled/skills/skill-name/       # Note: .skilled/skills/ (singular, NOT skills)
 ├── SKILL.md (800-1000 lines)
 └── Bundled Resources
     ├── scripts/          - Executable automation
@@ -604,10 +604,10 @@ Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md) when the skill has installat
 - **scripts/** = Typically flat, but subfolders OK for large script collections
 
 **Native Discovery**:
-- Skills auto-discovered from `.opencode/skills/*/SKILL.md` frontmatter
+- Skills auto-discovered from `.skilled/skills/*/SKILL.md` frontmatter
 - Skill name in frontmatter MUST match folder name
 - Skills appear as `skills_<name>` functions in OpenCode (hyphens → underscores)
-- Invoke via `Read(".opencode/skills/<name>/SKILL.md")`
+- Invoke via `Read(".skilled/skills/<name>/SKILL.md")`
 
 ---
 
@@ -1154,7 +1154,7 @@ Quality:
 
 ```bash
 # Validate skill structure (REQUIRED before claiming complete)
-python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/[skill-name] --check
+python .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/[skill-name] --check
 
 # Validation checks:
 # - Frontmatter: name (hyphen-case), description (no <>), allowed-tools (array format), version
@@ -1163,9 +1163,9 @@ python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/[skill-
 # - Size constraints: max 5000 words, max 3000 lines
 
 # Native discovery:
-# - Skills auto-discovered from .opencode/skills/*/SKILL.md frontmatter
+# - Skills auto-discovered from .skilled/skills/*/SKILL.md frontmatter
 # - Skills appear as skills_* functions in OpenCode
-# - Invoke via Read(".opencode/skills/<name>/SKILL.md")
+# - Invoke via Read(".skilled/skills/<name>/SKILL.md")
 ```
 
 ---

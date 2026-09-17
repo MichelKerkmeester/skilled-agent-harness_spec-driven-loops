@@ -227,7 +227,7 @@ Placement:
 
 ### Real-World Implementation
 
-`sk-design` (`.opencode/skills/sk-design/`) is an illustrative hub-scale example: its current registry has two workflow modes and one transport packet, with procedure cards owned by the workflow packets plus shared coordination cards. Consult `sk-design/mode-registry.json` before copying this topology. `sk-design/shared/procedure-card-schema.md` is the schema this template generalizes from.
+`sk-design` (`.skilled/skills/sk-design/`) is an illustrative hub-scale example: its current registry has two workflow modes and one transport packet, with procedure cards owned by the workflow packets plus shared coordination cards. Consult `sk-design/mode-registry.json` before copying this topology. `sk-design/shared/procedure-card-schema.md` is the schema this template generalizes from.
 
 ### Templates
 - [skill-reference-template.md](./skill-reference-template.md) - Reference file templates (use when no trigger-based selection is needed)

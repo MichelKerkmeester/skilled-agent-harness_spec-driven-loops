@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `RMI-002`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| RMI-002 | One-line install stays inline | Leave a one-command setup in inline documentation or official docs | `This tool has clear official documentation and needs one install command with no project settings. Should I write a five-phase guide?` | 1. `agent: Read SKILL.md Section 2 and state the install-guide decision tree` -> 2. `agent: Check whether project settings, platform configuration or multiple steps are required` -> 3. `agent: Return the inline command or official-docs link without proposing a guide` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-readme/SKILL.md` | Step 1: the one-line branch is stated. Step 2: no project-specific setup is found. Step 3: inline documentation or official docs is selected. Step 4: validator output and exit status are captured | The prompt, decision tree, setup assessment, inline or link recommendation and validator transcript | PASS if the full guide is declined with the setup reason. FAIL if five-phase sections or checkpoints are proposed without a need | 1. Confirm the tool has a real official documentation link. 2. Check whether any project-specific setting was overlooked. 3. Verify the recommendation does not invent a multi-step setup |
+| RMI-002 | One-line install stays inline | Leave a one-command setup in inline documentation or official docs | `This tool has clear official documentation and needs one install command with no project settings. Should I write a five-phase guide?` | 1. `agent: Read SKILL.md Section 2 and state the install-guide decision tree` -> 2. `agent: Check whether project settings, platform configuration or multiple steps are required` -> 3. `agent: Return the inline command or official-docs link without proposing a guide` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-readme/SKILL.md` | Step 1: the one-line branch is stated. Step 2: no project-specific setup is found. Step 3: inline documentation or official docs is selected. Step 4: validator output and exit status are captured | The prompt, decision tree, setup assessment, inline or link recommendation and validator transcript | PASS if the full guide is declined with the setup reason. FAIL if five-phase sections or checkpoints are proposed without a need | 1. Confirm the tool has a real official documentation link. 2. Check whether any project-specific setting was overlooked. 3. Verify the recommendation does not invent a multi-step setup |
 
 ### Commands
 
 1. `agent: Read SKILL.md Section 2 and state the install-guide decision tree`
 2. `agent: Check whether project settings, platform configuration or multiple steps are required`
 3. `agent: Return the inline command or official-docs link without proposing a guide`
-4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-readme/SKILL.md`
+4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-readme/SKILL.md`
 
 ### Expected
 

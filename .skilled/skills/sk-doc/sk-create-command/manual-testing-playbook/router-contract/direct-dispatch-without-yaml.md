@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `CMR-002`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CMR-002 | Direct dispatch without YAML | Keep direct-dispatch assets limited to the real execution targets | `This command dispatches directly to a script. Do I need auto and confirm YAML files just because it has a router?` | 1. `agent: Read assets/command-contract.json and identify the direct-dispatch topology` -> 2. `agent: Read SKILL.md Step 11 and list the assets required for that topology` -> 3. `agent: State whether auto and confirm YAML files are needed for a direct script target` -> 4. `bash: python3 -m json.tool .opencode/skills/sk-doc/sk-create-command/assets/command-contract.json` | Step 1: direct dispatch is distinguished from mode-pair routing. Step 2: the owned asset list matches the topology. Step 3: unused YAML is declined. Step 4: the contract JSON parses and its output and exit status are captured | The prompt, topology decision, asset list, direct-dispatch answer and JSON parser transcript | PASS if the answer declines unused YAML and names the topology rule. FAIL if a workflow asset is added without a workflow target | 1. Confirm the family entry rather than assuming every router is mode-pair. 2. Check for actual workflow targets before adding YAML. 3. Compare the answer with the owned-assets table |
+| CMR-002 | Direct dispatch without YAML | Keep direct-dispatch assets limited to the real execution targets | `This command dispatches directly to a script. Do I need auto and confirm YAML files just because it has a router?` | 1. `agent: Read assets/command-contract.json and identify the direct-dispatch topology` -> 2. `agent: Read SKILL.md Step 11 and list the assets required for that topology` -> 3. `agent: State whether auto and confirm YAML files are needed for a direct script target` -> 4. `bash: python3 -m json.tool .skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Step 1: direct dispatch is distinguished from mode-pair routing. Step 2: the owned asset list matches the topology. Step 3: unused YAML is declined. Step 4: the contract JSON parses and its output and exit status are captured | The prompt, topology decision, asset list, direct-dispatch answer and JSON parser transcript | PASS if the answer declines unused YAML and names the topology rule. FAIL if a workflow asset is added without a workflow target | 1. Confirm the family entry rather than assuming every router is mode-pair. 2. Check for actual workflow targets before adding YAML. 3. Compare the answer with the owned-assets table |
 
 ### Commands
 
 1. `agent: Read assets/command-contract.json and identify the direct-dispatch topology`
 2. `agent: Read SKILL.md Step 11 and list the assets required for that topology`
 3. `agent: State whether auto and confirm YAML files are needed for a direct script target`
-4. `bash: python3 -m json.tool .opencode/skills/sk-doc/sk-create-command/assets/command-contract.json`
+4. `bash: python3 -m json.tool .skilled/skills/sk-doc/sk-create-command/assets/command-contract.json`
 
 ### Expected
 

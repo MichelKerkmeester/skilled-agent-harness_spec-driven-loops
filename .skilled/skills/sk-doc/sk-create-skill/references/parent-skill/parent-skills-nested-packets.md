@@ -140,7 +140,7 @@ Stage one and stage two are separate authoring acts. `hub-router.json` selects a
 Every new parent hub receives the additive compiled-routing directive, while its generated activation state is selected explicitly:
 
 - `legacy` is the backward-compatible default. It emits no activation manifest and reports `legacy (no manifest)`.
-- `ready` writes the final `SKILL.md`, `mode-registry.json`, and `hub-router.json`, invokes `.opencode/bin/compiled-route-manifest.cjs mint --hub <hub-id> --skill-root <final-hub-path>`, and then invokes the same CLI's `freshness` action.
+- `ready` writes the final `SKILL.md`, `mode-registry.json`, and `hub-router.json`, invokes `.skilled/bin/compiled-route-manifest.cjs mint --hub <hub-id> --skill-root <final-hub-path>`, and then invokes the same CLI's `freshness` action.
 
 Only a valid, fresh canonical result may be reported as `compiled-ready (fresh manifest verified)`. Missing tooling, a failed mint, malformed manifest bytes, or stale policy identity fails the command and retains the legacy fallback. Do not synthesize an effective-policy digest or hand-author the activation manifest.
 
@@ -242,7 +242,7 @@ a hub can pass every check with a mode that no request can reach. Two shipped ex
 ### Verify against the hub you changed
 
 ```bash
-node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/<hub>
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/<hub>
 ```
 
 **Always pass the hub path.** The check is per-hub, and a bare invocation reports on
@@ -252,8 +252,8 @@ exactly like success.
 Then replay both stages, because each can pass while the other is broken:
 
 ```bash
-node .opencode/bin/compiled-route.cjs --hub <hub> --prompt "<a real request for the new mode>"
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<same request>" --threshold 0.5
+node .skilled/bin/compiled-route.cjs --hub <hub> --prompt "<a real request for the new mode>"
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<same request>" --threshold 0.5
 ```
 
 A stage-one hit with `surfaceIntents: []`, or a stage-two hit with `intents: [NONE]`, means

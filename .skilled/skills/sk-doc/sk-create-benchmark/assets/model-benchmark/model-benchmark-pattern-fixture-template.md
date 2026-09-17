@@ -20,7 +20,7 @@ This template produces a JSON pattern or capability fixture for a model benchmar
 <!--
 Copy-paste scaffold for ONE non-code-task model-benchmark fixture. These fixtures
 live beside their sweep, in the model_benchmark benchmark-fixtures folder:
-  .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/<slug>.json
+  .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/<slug>.json
 
 Usage:
   1. Pick a lowercase-hyphen <slug> and create a NEW <slug>.json in that folder.
@@ -37,8 +37,8 @@ Usage:
 
 Validate:
   - This template .md (auto-detects as an asset), must report 0 issues:
-      python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py \
-        .opencode/skills/sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-pattern-fixture-template.md
+      python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py \
+        .skilled/skills/sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-pattern-fixture-template.md
   - The filled <slug>.json fixture (JSON has no schema validator here, so parse it
     and let the runner be the final check):
       node -e "JSON.parse(require('fs').readFileSync('<slug>.json','utf8'))"

@@ -181,7 +181,7 @@ Verify that an OpenCode agent uses explicit `permission:` values and denies dele
 #### Scenario Contract
 Prompt: `Create an OpenCode subagent that edits only the supplied fixture and must not start another agent.`
 
-The draft uses `.opencode/agents/`, sets `mode: subagent`, gives only the permissions used by the role and sets `task: deny`. A standalone `tools:` list is not used.
+The draft uses `.skilled/agents/`, sets `mode: subagent`, gives only the permissions used by the role and sets `task: deny`. A standalone `tools:` list is not used.
 
 Desired user-visible outcome: the frontmatter matches the OpenCode runtime contract and the authority boundary is visible before the body is read.
 

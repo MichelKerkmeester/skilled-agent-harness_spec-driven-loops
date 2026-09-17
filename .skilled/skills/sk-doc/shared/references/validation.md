@@ -494,13 +494,13 @@ scripts/extract_structure.py document.md
 
 **Quick validation** (skill folders):
 ```bash
-scripts/quick_validate.py .opencode/skills/my-skill
+scripts/quick_validate.py .skilled/skills/my-skill
 # Fast check for essential requirements
 ```
 
 **Quick validation with JSON output**:
 ```bash
-scripts/quick_validate.py .opencode/skills/my-skill --json
+scripts/quick_validate.py .skilled/skills/my-skill --json
 # Machine-readable output for automation
 ```
 

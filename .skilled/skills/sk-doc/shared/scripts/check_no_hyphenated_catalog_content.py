@@ -49,7 +49,7 @@ def main(argv) -> int:
     flags = {'--json', '--enforce-hyphen-target'}
     args = [argument for argument in argv if argument not in flags]
     as_json = '--json' in argv
-    root = Path(args[0]) if args else Path('.opencode/skills')
+    root = Path(args[0]) if args else Path('.skilled/skills')
     if not root.exists():
         print(f'ERROR: root not found: {root}', file=sys.stderr)
         return 2

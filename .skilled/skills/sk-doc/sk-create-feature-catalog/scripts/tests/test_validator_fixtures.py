@@ -33,7 +33,7 @@ def _copy_fixture(tmp: Path, rule: str, variant: str, filename: str, destination
 
 
 def _catalog(tmp: Path, name: str = 'fixture') -> tuple[Path, Path, Path]:
-    package = tmp / '.opencode' / 'skills' / name
+    package = tmp / '.skilled' / 'skills' / name
     catalog = package / 'feature-catalog'
     catalog.mkdir(parents=True)
     return tmp, package, catalog
@@ -43,7 +43,7 @@ def _run_validator(tmp: Path, *args: str) -> subprocess.CompletedProcess[str]:
     env = dict(os.environ)
     env['PYTHONDONTWRITEBYTECODE'] = '1'
     return subprocess.run(
-        [sys.executable, str(VALIDATOR), '--repo-root', str(tmp), '--skills-root', str(tmp / '.opencode' / 'skills'), *args],
+        [sys.executable, str(VALIDATOR), '--repo-root', str(tmp), '--skills-root', str(tmp / '.skilled' / 'skills'), *args],
         check=False,
         capture_output=True,
         text=True,
@@ -71,8 +71,8 @@ def run() -> int:
         check('phantom negative fails', len(phantom) == 1 and phantom[0]['type'] == 'phantom_root_row')
 
         _, _, catalog = _catalog(tmp / 'prose')
-        (tmp / 'prose' / '.opencode' / 'skills' / 'fixture' / 'implementation.py').parent.mkdir(parents=True, exist_ok=True)
-        (tmp / 'prose' / '.opencode' / 'skills' / 'fixture' / 'implementation.py').write_text('fixture\n', encoding='utf-8')
+        (tmp / 'prose' / '.skilled' / 'skills' / 'fixture' / 'implementation.py').parent.mkdir(parents=True, exist_ok=True)
+        (tmp / 'prose' / '.skilled' / 'skills' / 'fixture' / 'implementation.py').write_text('fixture\n', encoding='utf-8')
         leaf = catalog / 'category' / 'leaf.md'
         _copy_fixture(tmp, 'prose-path', 'positive', 'leaf.md', leaf)
         check('prose path positive passes', check_prose_paths('fixture', catalog, tmp / 'prose') == [])
@@ -116,26 +116,26 @@ def run() -> int:
         check('volatile value negative fails', any(v['type'] == 'volatile_measurement_snapshot' for v in volatile))
 
         _, package, catalog = _catalog(tmp / 'coverage', 'new-surface')
-        packages = expected_root_packages(tmp / 'coverage' / '.opencode' / 'skills')
+        packages = expected_root_packages(tmp / 'coverage' / '.skilled' / 'skills')
         check('presence discovery sees new catalog package', [p['name'] for p in packages] == ['new-surface'])
         check('coverage assertion catches an unruled present package',
               any(v['type'] == 'unruled_catalog_package'
-                  for v in check_discovery_coverage(tmp / 'coverage' / '.opencode' / 'skills', [])))
+                  for v in check_discovery_coverage(tmp / 'coverage' / '.skilled' / 'skills', [])))
         root = catalog / 'FEATURE-CATALOG.md'
         root.write_text('[Feature](category/feature.md)\n', encoding='utf-8')
         leaf = catalog / 'category' / 'feature.md'
         leaf.parent.mkdir()
         leaf.write_text('# Feature\n', encoding='utf-8')
         check('case-folded root/link matching passes', check_root_catalog_bijection(
-            tmp / 'coverage' / '.opencode' / 'skills', packages) == [])
+            tmp / 'coverage' / '.skilled' / 'skills', packages) == [])
 
-        clean_root = tmp / 'exit' / '.opencode' / 'skills' / 'clean' / 'feature-catalog'
+        clean_root = tmp / 'exit' / '.skilled' / 'skills' / 'clean' / 'feature-catalog'
         clean_root.mkdir(parents=True)
         (clean_root / 'feature-catalog.md').write_text('# Clean\n', encoding='utf-8')
         clean = _run_validator(tmp / 'exit', '--package', 'clean')
         check('clean package exits zero', clean.returncode == 0)
 
-        green_root = tmp / 'exit' / '.opencode' / 'skills' / 'green' / 'feature-catalog'
+        green_root = tmp / 'exit' / '.skilled' / 'skills' / 'green' / 'feature-catalog'
         green_root.mkdir(parents=True)
         (green_root / 'feature-catalog.md').write_text(
             '| Feature | Link |\n|---|---|\n| Missing | [missing.md](missing.md) |\n',
@@ -146,7 +146,7 @@ def run() -> int:
         report_only = _run_validator(tmp / 'exit', '--package', 'green', '--report-only')
         check('report-only preserves zero exit', report_only.returncode == 0)
 
-        backlog_root = tmp / 'exit' / '.opencode' / 'skills' / 'system-spec-kit' / 'feature-catalog'
+        backlog_root = tmp / 'exit' / '.skilled' / 'skills' / 'system-spec-kit' / 'feature-catalog'
         backlog_root.mkdir(parents=True)
         (backlog_root / 'feature-catalog.md').write_text('# Backlog\n', encoding='utf-8')
         (backlog_root / 'category').mkdir()

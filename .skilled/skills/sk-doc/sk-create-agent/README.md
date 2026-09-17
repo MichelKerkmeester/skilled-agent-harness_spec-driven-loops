@@ -19,7 +19,7 @@ version: 1.0.0.13
 |---|---|
 | **Use it for** | Scaffolding or updating one OpenCode or Claude Code agent markdown file |
 | **Invoke with** | `/create:agent`, "create agent" or a direct read of `SKILL.md` |
-| **Works on** | Agent files under `.opencode/agents/` or `.claude/agents/` |
+| **Works on** | Agent files under `.skilled/agents/` or `.claude/agents/` |
 | **Produces** | One validated agent file with runtime-correct frontmatter, boundaries, workflow and verification |
 
 ---
@@ -38,7 +38,7 @@ create-agent is the `sk-doc` workflow behind `/create:agent`. It decides whether
 
 | Capability | What the skill knows how to operate |
 |---|---|
-| **OpenCode agent files** | scaffold or update `.opencode/agents/*.md` files with the `permission:` object schema and `task` gating for orchestration authority |
+| **OpenCode agent files** | scaffold or update `.skilled/agents/*.md` files with the `permission:` object schema and `task` gating for orchestration authority |
 | **Claude Code agent files** | scaffold or update `.claude/agents/*.md` files with the `tools:` allow-list and no `permission:` block at all |
 | **Update pass** | read an existing agent completely, apply the same schema and section rules and preserve behavior the user didn't ask to change |
 
@@ -51,7 +51,7 @@ create-agent is the `sk-doc` workflow behind `/create:agent`. It decides whether
 **Step 2: Copy the scaffold and fill it in.**
 
 ```bash
-cat .opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md
+cat .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
 ```
 
 You get the full frontmatter shape, the hard boundary section, the workflow and the verification contract to fill in for the target runtime.
@@ -59,7 +59,7 @@ You get the full frontmatter shape, the hard boundary section, the workflow and 
 **Step 3: Validate before you ship it.**
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/agents/agent-name.md --type agent
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/agents/agent-name.md --type agent
 ```
 
 A clean file reports `✅ VALID: <path>` with `Total issues: 0`.
@@ -68,7 +68,7 @@ A clean file reports `✅ VALID: <path>` with `Total issues: 0`.
 
 ## 4. HOW IT WORKS
 
-Start by choosing the component. A skill answers how the work should be done, a command answers how a user triggers it. An agent answers who does it, with explicit authority. Search existing agents for overlap before creating a new one, so you don't end up with two personas covering the same authority. Resolve the runtime directory (`.opencode/agents/` or `.claude/agents/`) and draft frontmatter first, especially `permission` or `tools`. Write the hard boundary section before the general workflow. The boundary comes first on purpose: it states what the agent must never do, nested dispatch, writes outside its scope, before the file describes what it does do, so a reader who only skims the top already knows the limits.
+Start by choosing the component. A skill answers how the work should be done, a command answers how a user triggers it. An agent answers who does it, with explicit authority. Search existing agents for overlap before creating a new one, so you don't end up with two personas covering the same authority. Resolve the runtime directory (`.skilled/agents/` or `.claude/agents/`) and draft frontmatter first, especially `permission` or `tools`. Write the hard boundary section before the general workflow. The boundary comes first on purpose: it states what the agent must never do, nested dispatch, writes outside its scope, before the file describes what it does do, so a reader who only skims the top already knows the limits.
 
 From there, add a capability scan of relevant skills and tools, explicit output verification, anti-patterns and related resources. Together with the H1, the hard boundary and the core workflow already written, that's the full required shape, seven sections beyond frontmatter, each earning its place. Remove every placeholder from the template and run the validation gate before delivery.
 
@@ -101,7 +101,7 @@ Reach for create-agent when a request needs a stable named persona with explicit
 | What you see | Why | Fix |
 |---|---|---|
 | Agent runs with unrestricted tools | `.claude/agents/` file omits `tools:` | Add an explicit least-authority `tools:` allow-list, never leave it empty |
-| Permissions block has no effect | `permission:` written into a `.claude/agents/` file or `tools:` written into `.opencode/agents/` | Match the schema to the runtime directory, never mix them |
+| Permissions block has no effect | `permission:` written into a `.claude/agents/` file or `tools:` written into `.skilled/agents/` | Match the schema to the runtime directory, never mix them |
 | Validator flags a missing section | Hard boundary, workflow, verification or related resources section absent | Copy the full scaffold from `assets/agent-template.md` rather than writing from a blank file |
 | Filename and `name` field disagree | Frontmatter `name` was edited without renaming the file or the reverse | Keep the filename stem and frontmatter `name` identical |
 | Agent has broad permissions "just in case" | Permissions were scoped to the role's imagined ceiling instead of its actual authority | Grant only what the current responsibilities need. Revisit if the role genuinely grows |
@@ -133,9 +133,9 @@ A: Yes. Read the current file completely first, apply the same frontmatter and s
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
-| Document structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <agent-file> --type agent` | `✅ VALID` with zero blocking issues |
-| Structure extraction | `python3 .opencode/skills/sk-doc/scripts/extract_structure.py <agent-file>` | Section list matches the required body shape |
-| Filename discipline | `python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <agent-file>` | Filename stem is valid kebab-case and matches `name` |
+| Document structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <agent-file> --type agent` | `✅ VALID` with zero blocking issues |
+| Structure extraction | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py <agent-file>` | Section list matches the required body shape |
+| Filename discipline | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <agent-file>` | Filename stem is valid kebab-case and matches `name` |
 
 ---
 

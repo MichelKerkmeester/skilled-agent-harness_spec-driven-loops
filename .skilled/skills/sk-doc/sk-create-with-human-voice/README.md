@@ -65,7 +65,7 @@ and calls this one for the voice finding it reports.
 **Step 1: Scan before you read.**
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <file>
+python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <file>
 ```
 
 You get the hard blockers, the soft deductions, a count per term and a mechanical ceiling.

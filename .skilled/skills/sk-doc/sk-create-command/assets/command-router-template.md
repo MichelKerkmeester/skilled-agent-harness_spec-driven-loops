@@ -67,9 +67,9 @@ question, checkpoint, dashboard, success output, failure output, or next-step pr
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/<ns>/assets/<ns>-<action>-presentation.txt` |
-| Auto workflow (workflow-YAML variant only) | `.opencode/commands/<ns>/assets/<ns>-<action>-auto.yaml` |
-| Confirm workflow (workflow-YAML variant only) | `.opencode/commands/<ns>/assets/<ns>-<action>-confirm.yaml` |
+| Presentation source of truth | `.skilled/commands/<ns>/assets/<ns>-<action>-presentation.txt` |
+| Auto workflow (workflow-YAML variant only) | `.skilled/commands/<ns>/assets/<ns>-<action>-auto.yaml` |
+| Confirm workflow (workflow-YAML variant only) | `.skilled/commands/<ns>/assets/<ns>-<action>-confirm.yaml` |
 
 <!-- Asset stems are hyphen-joined `<ns>-<action>-<kind>`. A family whose action names read
 unambiguously alone drops the `<ns>` prefix (memory: `save-presentation.txt`; design:
@@ -144,17 +144,17 @@ entry validates as one `familyContract`, and the shape below is a copy-ready exa
 ```json
 {
   "topology": "mode-pair",
-  "router_path": ".opencode/commands/<ns>/*.md",
+  "router_path": ".skilled/commands/<ns>/*.md",
   "input": { "required": true, "gate_owner": "router", "argument_hint": "<target> [:auto|:confirm]" },
   "execution_targets": [
-    { "selector": ":auto", "target": ".opencode/commands/<ns>/assets/<ns>-<action>-auto.yaml" },
-    { "selector": ":confirm | omitted", "target": ".opencode/commands/<ns>/assets/<ns>-<action>-confirm.yaml" }
+    { "selector": ":auto", "target": ".skilled/commands/<ns>/assets/<ns>-<action>-auto.yaml" },
+    { "selector": ":confirm | omitted", "target": ".skilled/commands/<ns>/assets/<ns>-<action>-confirm.yaml" }
   ],
   "mode_matrix": { "default_policy": "confirm", "supported_modes": [":auto", ":confirm"] },
   "owned_assets": [
-    { "purpose": "presentation", "path": ".opencode/commands/<ns>/assets/<ns>-<action>-presentation.txt" },
-    { "purpose": "auto_workflow", "path": ".opencode/commands/<ns>/assets/<ns>-<action>-auto.yaml" },
-    { "purpose": "confirm_workflow", "path": ".opencode/commands/<ns>/assets/<ns>-<action>-confirm.yaml" }
+    { "purpose": "presentation", "path": ".skilled/commands/<ns>/assets/<ns>-<action>-presentation.txt" },
+    { "purpose": "auto_workflow", "path": ".skilled/commands/<ns>/assets/<ns>-<action>-auto.yaml" },
+    { "purpose": "confirm_workflow", "path": ".skilled/commands/<ns>/assets/<ns>-<action>-confirm.yaml" }
   ],
   "presentation": { "owner": "presentation-asset", "exceptions": [] },
   "destructive_policy": { "has_destructive_ops": false },

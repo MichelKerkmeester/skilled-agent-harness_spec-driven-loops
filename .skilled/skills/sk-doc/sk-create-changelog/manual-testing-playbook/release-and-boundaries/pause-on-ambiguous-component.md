@@ -40,12 +40,12 @@ Operators run the exact prompt and command sequence for `CHG-007` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CHG-007 | Pause on an ambiguous component | Refuse to guess a global component folder | `Resolve the global changelog component from these mixed changes. If the evidence does not identify one existing folder, pause and ask for the component instead of guessing.` | 1. `agent: Read SKILL.md section 6 and README.md troubleshooting` -> 2. `bash: ls -d .opencode/changelog/*/` -> 3. `agent: Compare the supplied changed paths and component hints with the discovered folders` -> 4. `agent: State the clarification question and confirm that no write path is selected` | Step 1 states the ambiguity rule. Step 2 lists existing folders. Step 3 shows no dominant match. Step 4 asks for the missing component and selects no path | Exact prompt, rule text, folder listing and exit status, comparison notes, clarification question and no-write statement | PASS if ambiguity is named and no component or write path is guessed. FAIL if an entry is assigned to an arbitrary folder | 1. Re-run folder discovery. 2. Apply file-count and path-segment evidence. 3. Ask for the component when no primary remains |
+| CHG-007 | Pause on an ambiguous component | Refuse to guess a global component folder | `Resolve the global changelog component from these mixed changes. If the evidence does not identify one existing folder, pause and ask for the component instead of guessing.` | 1. `agent: Read SKILL.md section 6 and README.md troubleshooting` -> 2. `bash: ls -d .skilled/changelog/*/` -> 3. `agent: Compare the supplied changed paths and component hints with the discovered folders` -> 4. `agent: State the clarification question and confirm that no write path is selected` | Step 1 states the ambiguity rule. Step 2 lists existing folders. Step 3 shows no dominant match. Step 4 asks for the missing component and selects no path | Exact prompt, rule text, folder listing and exit status, comparison notes, clarification question and no-write statement | PASS if ambiguity is named and no component or write path is guessed. FAIL if an entry is assigned to an arbitrary folder | 1. Re-run folder discovery. 2. Apply file-count and path-segment evidence. 3. Ask for the component when no primary remains |
 
 ### Commands
 
 1. `agent: Read SKILL.md section 6 and README.md troubleshooting`
-2. `bash: ls -d .opencode/changelog/*/`
+2. `bash: ls -d .skilled/changelog/*/`
 3. `agent: Compare the supplied changed paths and component hints with the discovered folders`
 4. `agent: State the clarification question and confirm that no write path is selected`
 

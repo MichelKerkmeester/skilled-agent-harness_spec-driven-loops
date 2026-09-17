@@ -13,7 +13,7 @@ version: 1.2.0.15
 
 # Skill README Template
 
-Use this template for `.opencode/skills/[skill-name]/README.md`. It writes a skill README in the same narrative voice the repo root `README.md` and the changelogs use: a one-line human pitch, an at-a-glance table near the top, a problem-first overview, then quick start, navigation and a verification close.
+Use this template for `.skilled/skills/[skill-name]/README.md`. It writes a skill README in the same narrative voice the repo root `README.md` and the changelogs use: a one-line human pitch, an at-a-glance table near the top, a problem-first overview, then quick start, navigation and a verification close.
 
 ---
 
@@ -31,7 +31,7 @@ The pilot README for mcp-obsidian states the outcome first: it makes AI use insi
 
 ### Usage
 
-Copy the fillable scaffold in Section 6 into `.opencode/skills/[skill-name]/README.md`, then replace every placeholder with current behavior taken from the skill's real files. Keep the numbered ALL-CAPS section headers, the house style and the validator both require them. Drop any section that does not earn its place and renumber the rest.
+Copy the fillable scaffold in Section 6 into `.skilled/skills/[skill-name]/README.md`, then replace every placeholder with current behavior taken from the skill's real files. Keep the numbered ALL-CAPS section headers, the house style and the validator both require them. Drop any section that does not earn its place and renumber the rest.
 
 ### What Changed From The Old Style
 
@@ -139,7 +139,7 @@ Every release gets a per-skill changelog entry at `changelog/<version>.md`. The 
 
 ## 6. FILLABLE SCAFFOLD
 
-Copy this into `.opencode/skills/[skill-name]/README.md`, fill every placeholder from the skill's real files, then remove sections that do not fit and renumber.
+Copy this into `.skilled/skills/[skill-name]/README.md`, fill every placeholder from the skill's real files, then remove sections that do not fit and renumber.
 
 ````markdown
 ---
@@ -314,7 +314,7 @@ Each check has a pass criterion. A check only passes when its criterion holds, n
 | 5 | Command output expectations | Every command block shows its expected output |
 | 6 | Link verification | Every relative link resolves on disk |
 | 7 | HVR clean | The four greps in Section 4 return zero matches outside code fences |
-| 8 | Validator | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues |
+| 8 | Validator | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues |
 | 9 | Optional sections | Sections without real content were removed and the rest renumbered |
 | 10 | Problem narrative | OVERVIEW opens with a concrete failing situation the reader recognizes, not a one-line summary |
 | 11 | Connection diagram | A multi-step skill includes a small ASCII diagram of how the pieces connect |

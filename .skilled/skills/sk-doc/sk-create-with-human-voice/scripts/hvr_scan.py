@@ -6,7 +6,7 @@
 """Scan prose for the deterministic Human Voice Rules findings.
 
 The term lists are PARSED from the standard at
-``.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`` on
+``.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`` on
 every run. This file holds no copy of them. Edit the standard and the scanner
 follows.
 

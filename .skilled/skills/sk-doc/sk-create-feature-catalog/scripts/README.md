@@ -28,10 +28,10 @@ description: "Strict package-level validator that checks root-to-leaf bijection,
 Run from the repository root.
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py [--skills-root PATH] [--repo-root PATH] [--package ID] [--strict] [--report-only] [--json]
+python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py [--skills-root PATH] [--repo-root PATH] [--package ID] [--strict] [--report-only] [--json]
 ```
 
-Discovery is presence-based: every canonical `feature-catalog/` directory under `.opencode/skills/` becomes a package, keyed by its path relative to that root. The measured starting corpus is 26 packages and 804 leaves. Root filenames and link targets are compared case-insensitively so `FEATURE-CATALOG.md` does not create a false orphan.
+Discovery is presence-based: every canonical `feature-catalog/` directory under `.skilled/skills/` becomes a package, keyed by its path relative to that root. The measured starting corpus is 26 packages and 804 leaves. Root filenames and link targets are compared case-insensitively so `FEATURE-CATALOG.md` does not create a false orphan.
 
 The default is fail-closed for promoted packages. The explicit WARN tier currently contains `system-spec-kit`, `mcp-tooling/mcp-refero`, `mcp-tooling/mcp-click-up`, and `system-deep-loop/deep-research`, which carry the known 104-orphan backlog. Repair work removes a package from that list when its backlog is cleared. `--report-only` always returns zero; `--strict` is retained as an alias for the default.
 

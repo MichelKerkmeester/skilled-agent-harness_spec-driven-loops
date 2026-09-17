@@ -8,7 +8,7 @@ scenario is inserted. This guard keeps the de-numbered form self-enforcing.
 Exit 0 when clean, 1 when any numbered scenario file is found (offenders printed).
 
 Usage:
-  check_no_numbered_snippet_files.py [ROOT]        # ROOT defaults to .opencode/skills
+  check_no_numbered_snippet_files.py [ROOT]        # ROOT defaults to .skilled/skills
   check_no_numbered_snippet_files.py --json [ROOT]
 """
 import json
@@ -48,7 +48,7 @@ def find_numbered_snippet_files(root: Path):
 def main(argv) -> int:
     args = [a for a in argv if a != '--json']
     as_json = '--json' in argv
-    root = Path(args[0]) if args else Path('.opencode/skills')
+    root = Path(args[0]) if args else Path('.skilled/skills')
     if not root.exists():
         print(f'ERROR: root not found: {root}', file=sys.stderr)
         return 2

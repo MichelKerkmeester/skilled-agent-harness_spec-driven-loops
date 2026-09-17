@@ -61,7 +61,7 @@ Capture the full stdout of step 1 (summary + counts + report path), the exit cod
 
 ### Failure Triage
 
-1. Confirm the working directory is the packet root `.opencode/skills/sk-doc/sk-create-diff/` so the `assets/fixtures/` paths resolve.
+1. Confirm the working directory is the packet root `.skilled/skills/sk-doc/sk-create-diff/` so the `assets/fixtures/` paths resolve.
 2. Confirm Python 3.9+ is on `PATH` and that both fixture files exist and are byte-unchanged.
 3. Re-run step 1 with `--json` to inspect the individual `added`/`removed`/`changed`/`unchanged` fields and isolate whether the drift is in extraction or in the diff.
 

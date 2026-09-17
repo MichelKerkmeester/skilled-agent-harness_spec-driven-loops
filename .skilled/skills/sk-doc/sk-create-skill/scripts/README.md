@@ -47,7 +47,7 @@ trigger_phrases:
 Run syntax checks for the Node entrypoints from the repository root:
 
 ```bash
-for script in .opencode/skills/sk-doc/sk-create-skill/scripts/*.cjs; do node --check "$script"; done
+for script in .skilled/skills/sk-doc/sk-create-skill/scripts/*.cjs; do node --check "$script"; done
 ```
 
 Use the package-specific commands in the create-skill workflow when validating a skill or hub.

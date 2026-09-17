@@ -31,7 +31,7 @@ Agent files fail in a small, predictable set of ways: the component should not h
 | Mistake | Why It Breaks | Correct Fix |
 |---|---|---|
 | Creating an agent for reusable knowledge only | Authority and persona are unnecessary overhead | Create or extend a skill instead |
-| Using the wrong runtime agent directory | The runtime will not resolve the file as intended | Place the file under the active runtime path (`.opencode/agents/` or `.claude/agents/`) |
+| Using the wrong runtime agent directory | The runtime will not resolve the file as intended | Place the file under the active runtime path (`.skilled/agents/` or `.claude/agents/`) |
 | Mismatching filename and `name` | Invocation and identity drift apart | Keep the filename stem and `name` identical |
 | Over-permissive `permission` values | The role can do more than its contract allows | Reduce permissions to the least authority needed |
 | Giving `task: allow` to a non-orchestrator | Delegation authority leaks into a leaf role | Deny `task` unless orchestration is intentional |

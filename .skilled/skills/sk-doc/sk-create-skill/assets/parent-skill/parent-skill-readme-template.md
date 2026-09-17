@@ -39,11 +39,11 @@ The situation this template fixes: you have a hub folder with packets, a registr
 
 ### What It Does
 
-Every finished hub README covers six surfaces: the pitch and purpose-first overview, the modes and packets table, the navigation to `mode-registry.json` and `leaf-manifest.json`, the changelog convention, the scripts and commands list and the verification close. The template uses `.opencode/skills/mcp-tooling/` and `.opencode/skills/system-deep-loop/` as the structural examples, because both hubs already carry the full surface set this template standardizes.
+Every finished hub README covers six surfaces: the pitch and purpose-first overview, the modes and packets table, the navigation to `mode-registry.json` and `leaf-manifest.json`, the changelog convention, the scripts and commands list and the verification close. The template uses `.skilled/skills/mcp-tooling/` and `.skilled/skills/system-deep-loop/` as the structural examples, because both hubs already carry the full surface set this template standardizes.
 
 ### When To Write A Hub README
 
-Write one for every parent hub: a folder that carries `mode-registry.json`, `hub-router.json`, `leaf-manifest.json` and nested packet folders with their own SKILL files. Both example hubs show the pattern. `.opencode/skills/mcp-tooling/` routes seven modes across workflow bridges and design transports. `.opencode/skills/system-deep-loop/` routes five workflow families over one shared runtime layer. Read both READMEs and both registries before drafting. Build the packet table from what `mode-registry.json` lists.
+Write one for every parent hub: a folder that carries `mode-registry.json`, `hub-router.json`, `leaf-manifest.json` and nested packet folders with their own SKILL files. Both example hubs show the pattern. `.skilled/skills/mcp-tooling/` routes seven modes across workflow bridges and design transports. `.skilled/skills/system-deep-loop/` routes five workflow families over one shared runtime layer. Read both READMEs and both registries before drafting. Build the packet table from what `mode-registry.json` lists.
 
 ---
 
@@ -103,7 +103,7 @@ Close with the checks that prove the README is real. The sk-doc readme validator
 
 ## 5. FILLABLE SCAFFOLD
 
-Copy this into `.opencode/skills/[hub-name]/README.md`, fill every placeholder from the hub's real files, then remove sections that do not fit and renumber.
+Copy this into `.skilled/skills/[hub-name]/README.md`, fill every placeholder from the hub's real files, then remove sections that do not fit and renumber.
 
 ````markdown
 ---
@@ -214,7 +214,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 Run the sk-doc readme validator on this file:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md --type readme
+python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme
 ```
 
 [Expected: zero issues. The validator enforces the numbered ALL-CAPS OVERVIEW section.]
@@ -229,7 +229,7 @@ grep for the semicolon character in README.md
 [Keep zero Oxford commas, zero banned words and zero setup phrases in the prose as well. Optional extra: run the parent-skill check to prove the whole hub shape.]
 
 ```bash
-node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/[hub-name]
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/[hub-name]
 ```
 
 [Expected: zero invariant failures and zero warnings.]
@@ -250,7 +250,7 @@ node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/[
 - [ ] `VERIFICATION` names the sk-doc readme validator and the HVR checks.
 - [ ] Every linked path resolves from the hub root.
 - [ ] HVR passes: zero em dashes, zero semicolons, zero Oxford commas, zero banned words and zero setup phrases.
-- [ ] `python3 .opencode/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues.
+- [ ] `python3 .skilled/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues.
 
 > The script above is a floor, not a proxy for this checklist. It enforces the numbered ALL-CAPS `OVERVIEW` header. It does not check the pitch, the `AT A GLANCE` table, the packet table or HVR. A green run means the file cleared the floor, not that it passed the checks above.
 

@@ -8,7 +8,7 @@ from pathlib import Path
 
 TESTS = Path(__file__).resolve().parent
 REPO = TESTS.parents[4]
-SCRIPTS = REPO / ".opencode/skills/sk-doc/shared/scripts"
+SCRIPTS = REPO / ".skilled/skills/sk-doc/shared/scripts"
 sys.path.insert(0, str(SCRIPTS))
 
 from validate_document import load_rules, validate_document  # type: ignore  # noqa: E402

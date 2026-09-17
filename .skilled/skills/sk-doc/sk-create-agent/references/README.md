@@ -42,7 +42,7 @@ Load the file that matches the current task:
 ### Create-Agent Packet
 - [SKILL.md](../SKILL.md) - authoritative packet contract and the complete creation workflow
 - [agent-template.md](../assets/agent-template.md) - canonical scaffold: frontmatter shape, boundaries, workflow, verification, anti-patterns
-- `.opencode/commands/create/agent.md` - preferred command-driven creation workflow for `/create:agent`
+- `.skilled/commands/create/agent.md` - preferred command-driven creation workflow for `/create:agent`
 
 ### Sibling sk-doc Packets
 - [create-skill README](../../sk-create-skill/references/README.md) - companion workflow for reusable knowledge bundles

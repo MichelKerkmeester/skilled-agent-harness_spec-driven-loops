@@ -40,7 +40,7 @@ trigger_phrases:
 Run the source inventory from the repository root:
 
 ```bash
-cd .opencode/skills/sk-doc/sk-create-skill/scripts/tests
+cd .skilled/skills/sk-doc/sk-create-skill/scripts/tests
 for test_file in ./*.test.cjs; do node "$test_file"; done
 ```
 

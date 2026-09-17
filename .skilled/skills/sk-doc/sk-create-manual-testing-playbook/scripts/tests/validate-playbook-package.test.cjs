@@ -42,7 +42,7 @@ function runCli(packageRoot, extra = []) {
     validatorPath,
     '--package', packageRoot,
     '--repo-root', repoRoot,
-    '--skills-root', path.join(repoRoot, '.opencode', 'skills'),
+    '--skills-root', path.join(repoRoot, '.skilled', 'skills'),
     '--manifest', manifestPath,
     ...extra,
   ], { encoding: 'utf8' });

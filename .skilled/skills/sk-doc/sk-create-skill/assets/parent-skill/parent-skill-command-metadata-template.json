@@ -1,5 +1,5 @@
 {
-  "_template": "Parent-hub command-metadata.json scaffold. Add this file only when the hub owns slash commands; omit it for a command-less hub. When present, use one entry per owned command. Replace every [bracketed] placeholder and delete this wrapper object — the committed file's top level is the ARRAY below, not this object. Core fields shown are all required; hubs may add extension fields after them (the design hub adds register policies and task projections, for example) and the fleet gate ignores unknown fields. Validation: ci-skill-root-metadata.cjs checks command id shape, that ownerMode names a workflowMode in mode-registry.json, that every choreography resource resolves on disk, that .opencode/commands/[family]/[name].md exists, and that command ids and ownedSignals are unique across the file.",
+  "_template": "Parent-hub command-metadata.json scaffold. Add this file only when the hub owns slash commands; omit it for a command-less hub. When present, use one entry per owned command. Replace every [bracketed] placeholder and delete this wrapper object — the committed file's top level is the ARRAY below, not this object. Core fields shown are all required; hubs may add extension fields after them (the design hub adds register policies and task projections, for example) and the fleet gate ignores unknown fields. Validation: ci-skill-root-metadata.cjs checks command id shape, that ownerMode names a workflowMode in mode-registry.json, that every choreography resource resolves on disk, that .skilled/commands/[family]/[name].md exists, and that command ids and ownedSignals are unique across the file.",
   "entries": [
     {
       "command": "/[family]:[name]",
@@ -18,13 +18,13 @@
         {
           "order": 1,
           "skill": "[parent-skill-name]",
-          "resource": ".opencode/skills/[parent-skill-name]/SKILL.md",
+          "resource": ".skilled/skills/[parent-skill-name]/SKILL.md",
           "action": "load the parent hub routing table"
         },
         {
           "order": 2,
           "skill": "[owner-mode-packet-name]",
-          "resource": ".opencode/skills/[parent-skill-name]/[owner-mode-packet]/SKILL.md",
+          "resource": ".skilled/skills/[parent-skill-name]/[owner-mode-packet]/SKILL.md",
           "action": "load the owning mode contract, then apply the workflow to $ARGUMENTS"
         }
       ],

@@ -43,9 +43,9 @@ No Lane C skill-benchmark run has been archived for `sk-doc` yet. When the first
 Run from the repository root. The runner and its scoring live in the deep-improvement Lane C lane; only the `--skill` and `--outputs-dir` arguments are hub-specific.
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=sk-doc \
-  --outputs-dir=.opencode/skills/sk-doc/benchmark/reports/<run-label> \
+  --outputs-dir=.skilled/skills/sk-doc/benchmark/reports/<run-label> \
   --trace-mode=router
 ```
 

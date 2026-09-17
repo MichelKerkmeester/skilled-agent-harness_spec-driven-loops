@@ -121,7 +121,7 @@ function directiveBlockText(hubToken) {
   return [
     '> **Compiled routing (opt-in, flag-gated, additive).** When `SPECKIT_COMPILED_ROUTING=1`, resolve the mode via the compiled router contract first:',
     '> ```bash',
-    `> node .opencode/bin/compiled-route.cjs --hub ${hubToken} --prompt "<task>"`,
+    `> node .skilled/bin/compiled-route.cjs --hub ${hubToken} --prompt "<task>"`,
     '> ```',
     '> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). '
       + 'On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on '

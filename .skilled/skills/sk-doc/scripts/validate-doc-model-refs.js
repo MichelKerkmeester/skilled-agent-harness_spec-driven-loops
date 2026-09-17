@@ -335,18 +335,18 @@ Exits:
   1 - Drift detected or error
 
 Canonical sources:
-  - .opencode/skills/system-spec-kit/shared/embeddings/registry.ts
+  - .skilled/skills/system-spec-kit/shared/embeddings/registry.ts
 
 Scanned paths:
-  - .opencode/skills/**/*.md (excludes changelog/, scratch/, benchmarks/, *archive*, research/iterations/)
+  - .skilled/skills/**/*.md (excludes changelog/, scratch/, benchmarks/, *archive*, research/iterations/)
 `);
     process.exit(0);
   }
 
   try {
     const canonicalModels = loadCanonicalModels();
-    // Scan .opencode/skills/** per the documented scope. (Was '../../..' =>
-    // .opencode/**, which over-scanned historical specs/ implementation records —
+    // Scan .skilled/skills/** per the documented scope. (Was '../../..' =>
+    // .skilled/**, which over-scanned historical specs/ implementation records —
     // frozen provenance the canonical-drift check was never meant to police.)
     const skillsRoot = path.join(__dirname, '../../');
 

@@ -19,7 +19,7 @@ than recalled. Nothing below is aspirational: every MUST element is carried by e
 shipped rule.
 
 Corpus figures are deliberately not restated here. To see the current ones, run
-`node .opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` (the
+`node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` (the
 corpus checker) from the repository root — it reports count parity, link wiring,
 trigger-phrase uniqueness, the line ceiling, frontmatter keys and divider parity for the
 corpus as it stands.

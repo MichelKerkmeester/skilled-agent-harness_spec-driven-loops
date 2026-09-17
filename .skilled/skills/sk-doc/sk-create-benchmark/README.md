@@ -65,7 +65,7 @@ The block is the family router in miniature. MCP promotion is the flagship comma
 **Step 3: Verify before you rely on it.**
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py \
+python3 .skilled/skills/sk-doc/scripts/validate_document.py \
   mcp-server/benchmarks/benchmark-2026-07-06/benchmark-report.md --type readme
 ```
 
@@ -138,9 +138,9 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
 
 | Check | How to run it |
 |---|---|
-| MCP promotion report | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <path>/benchmark-report.md --type readme` reports zero blocking issues |
+| MCP promotion report | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <path>/benchmark-report.md --type readme` reports zero blocking issues |
 | Behavior, skill, and model package markdown | Same validator against each authored `.md`. JSON fixtures and lane-configs must additionally parse as valid JSON |
-| Filename or folder naming | `python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>` before any new artifact path ships |
+| Filename or folder naming | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>` before any new artifact path ships |
 
 ---
 

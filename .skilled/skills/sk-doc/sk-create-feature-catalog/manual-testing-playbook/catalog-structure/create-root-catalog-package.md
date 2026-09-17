@@ -40,14 +40,14 @@ Operators run the exact prompt and command sequence for `FCR-001` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FCR-001 | Create the root catalog package | Build the canonical root and leaf package shape | `Create a feature-catalog package for this skill. Start with the root inventory, define descriptive categories and create one source-backed per-feature file for every root entry.` | 1. `agent: Read SKILL.md sections 3 through 6 and both catalog templates` -> 2. `agent: State the root file, category and per-feature naming rules` -> 3. `agent: Inspect the drafted root entries and linked category files` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py .opencode/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook` | Step 1 identifies the canonical shape. Step 2 names bare kebab-case categories and leaves. Step 3 finds one leaf per root entry. Step 4 passes the new-content naming guard with exit status 0 | Exact prompt, skill and template paths, naming rules, root-to-leaf inventory and guard output and exit status | PASS if the root and leaves follow the canonical shape. FAIL if an entry lacks a leaf or a path uses a numeric prefix or underscore | 1. Compare root links with files on disk. 2. Check category and filename slugs. 3. Keep display order in the root index |
+| FCR-001 | Create the root catalog package | Build the canonical root and leaf package shape | `Create a feature-catalog package for this skill. Start with the root inventory, define descriptive categories and create one source-backed per-feature file for every root entry.` | 1. `agent: Read SKILL.md sections 3 through 6 and both catalog templates` -> 2. `agent: State the root file, category and per-feature naming rules` -> 3. `agent: Inspect the drafted root entries and linked category files` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py .skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook` | Step 1 identifies the canonical shape. Step 2 names bare kebab-case categories and leaves. Step 3 finds one leaf per root entry. Step 4 passes the new-content naming guard with exit status 0 | Exact prompt, skill and template paths, naming rules, root-to-leaf inventory and guard output and exit status | PASS if the root and leaves follow the canonical shape. FAIL if an entry lacks a leaf or a path uses a numeric prefix or underscore | 1. Compare root links with files on disk. 2. Check category and filename slugs. 3. Keep display order in the root index |
 
 ### Commands
 
 1. `agent: Read SKILL.md sections 3 through 6 and both catalog templates`
 2. `agent: State the root file, category and per-feature naming rules`
 3. `agent: Inspect the drafted root entries and linked category files`
-4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py .opencode/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook`
+4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py .skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook`
 
 ### Expected
 

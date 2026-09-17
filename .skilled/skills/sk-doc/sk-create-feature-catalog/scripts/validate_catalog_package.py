@@ -104,7 +104,7 @@ MD_LINK_RE = re.compile(r'\]\(([^)]+)\)')
 FULL_MD_LINK_RE = re.compile(r'\[[^\]]*\]\([^)]+\)')
 BARE_PATH_HINT_RE = re.compile(r'\.[A-Za-z0-9]{1,8}$')
 MD_PATH_TOKEN_RE = re.compile(r'(?<![\w])(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+\.md\b')
-REPO_PATH_TOKEN_RE = re.compile(r'(?<![\w])(?:\.opencode|\.claude|\.codex)/[A-Za-z0-9_./-]+')
+REPO_PATH_TOKEN_RE = re.compile(r'(?<![\w])(?:\.skilled|\.opencode|\.claude|\.codex)/[A-Za-z0-9_./-]+')
 WORKFLOW_MODE_INVENTORY_RE = re.compile(
     r'`workflowMode`\s+(?:spans|is the public packet key\s+—)\s+(.*?)\.',
     re.DOTALL,
@@ -485,7 +485,7 @@ def check_prose_paths(
 # Cells outside this allowlist are ambiguous (skill-root-relative shorthand, mixed
 # conventions across older catalogs) rather than clearly repo-root-relative, so they are
 # left unchecked instead of risking a false positive this script cannot substantiate.
-REPO_RELATIVE_PREFIXES = ('.opencode/', '.claude/', '.codex/')
+REPO_RELATIVE_PREFIXES = ('.skilled/', '.opencode/', '.claude/', '.codex/')
 
 # A trailing `:123` or `:123-145` line-range locator (a real, documented citation style
 # in this corpus) is not part of the filesystem path and must be stripped before the
@@ -900,8 +900,8 @@ def main(argv: List[str]) -> int:
     parser = argparse.ArgumentParser(
         description='Fail-closed package-level validator for sk-doc feature catalogs.',
     )
-    parser.add_argument('--skills-root', default=None, help='Defaults to .opencode/skills at the repo root.')
-    parser.add_argument('--repo-root', default=None, help='Defaults to the repo root containing .opencode/skills.')
+    parser.add_argument('--skills-root', default=None, help='Defaults to .skilled/skills at the repo root.')
+    parser.add_argument('--repo-root', default=None, help='Defaults to the repo root containing .skilled/skills.')
     parser.add_argument('--package', dest='packages', action='append', help='Validate one package ID; repeatable.')
     parser.add_argument('--strict', action='store_true', help='Alias for the default fail-closed behavior.')
     parser.add_argument('--report-only', action='store_true', help='Print findings without failing on promoted violations.')
@@ -910,7 +910,7 @@ def main(argv: List[str]) -> int:
 
     default_repo_root = Path(__file__).resolve().parents[5]
     repo_root = Path(args.repo_root).resolve() if args.repo_root else default_repo_root
-    skills_root = Path(args.skills_root).resolve() if args.skills_root else (repo_root / '.opencode' / 'skills')
+    skills_root = Path(args.skills_root).resolve() if args.skills_root else (repo_root / '.skilled' / 'skills')
 
     if not skills_root.exists():
         print(f'ERROR: skills root not found: {skills_root}', file=sys.stderr)

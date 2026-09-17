@@ -15,15 +15,15 @@ const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
-const INIT_PATH = path.join(REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'init_skill.py');
-const GATE_PATH = path.join(REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'ci-skill-root-metadata.cjs');
-const VALIDATE_PATH = path.join(REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'validate_skill_package.py');
-const CHECKER_PATH = path.join(REPO_ROOT, '.opencode', 'commands', 'doctor', 'scripts', 'parent-skill-check.cjs');
-const GENERATOR_PATH = path.join(REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
-const LEAF_CONTRACT_PATH = path.join(REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
-const ROOT_CONTRACT_PATH = path.join(REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'skill-root-metadata-contract.cjs');
-const ROOT_ROUTER_CONTRACT_PATH = path.join(REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'root-router-contract.cjs');
-const ASSETS_DIR = path.join(REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'sk-create-skill', 'assets', 'skill');
+const INIT_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'init_skill.py');
+const GATE_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'ci-skill-root-metadata.cjs');
+const VALIDATE_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'validate_skill_package.py');
+const CHECKER_PATH = path.join(REPO_ROOT, '.skilled', 'commands', 'doctor', 'scripts', 'parent-skill-check.cjs');
+const GENERATOR_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
+const LEAF_CONTRACT_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
+const ROOT_CONTRACT_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'skill-root-metadata-contract.cjs');
+const ROOT_ROUTER_CONTRACT_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'root-router-contract.cjs');
+const ASSETS_DIR = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'assets', 'skill');
 const GRAPH_TEMPLATE_PATH = path.join(ASSETS_DIR, 'skill-graph-metadata-template.json');
 const CONFIG_TEMPLATE_PATH = path.join(ASSETS_DIR, 'skill-leaf-manifest-config-template.json');
 
@@ -79,7 +79,7 @@ function stageDoctorSupport(tempRoot) {
   // generate-leaf-manifest.cjs now reads the shared S-class config defaults, so
   // the doctor's staged copy needs it too or its require fails at runtime.
   fs.copyFileSync(
-    path.join(REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 's-class-config-defaults.json'),
+    path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 's-class-config-defaults.json'),
     path.join(libDir, 's-class-config-defaults.json'),
   );
   // root-router-contract.cjs parses fences through the shared spec-kit parser,
@@ -87,7 +87,7 @@ function stageDoctorSupport(tempRoot) {
   // a @spec-kit/shared entry under the staged skill's node_modules.
   fs.mkdirSync(path.join(tempRoot, 'sk-doc', 'node_modules', '@spec-kit'), { recursive: true });
   fs.symlinkSync(
-    path.join(REPO_ROOT, '.opencode', 'skills', 'system-spec-kit', 'shared'),
+    path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit', 'shared'),
     path.join(tempRoot, 'sk-doc', 'node_modules', '@spec-kit', 'shared'),
     'dir',
   );

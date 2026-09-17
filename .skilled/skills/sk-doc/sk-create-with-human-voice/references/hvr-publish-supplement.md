@@ -139,10 +139,10 @@ pre_publish_checklist:
 
 | Template | Location | Focus |
 |----------|----------|-------|
-| Implementation Summary | `.opencode/skills/system-spec-kit/templates/*/implementation-summary.md` | Narrative prose, explain "why", direct address |
-| Decision Record | `.opencode/skills/system-spec-kit/templates/level-3*/decision-record.md` | Clear rationale, no hedging, active voice |
-| README | `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md` | Welcoming tone, practical focus |
-| Install Guide | `.opencode/skills/sk-doc/sk-create-readme/assets/install-guide-template.md` | Direct instructions, imperative mood |
+| Implementation Summary | `.skilled/skills/system-spec-kit/templates/*/implementation-summary.md` | Narrative prose, explain "why", direct address |
+| Decision Record | `.skilled/skills/system-spec-kit/templates/level-3*/decision-record.md` | Clear rationale, no hedging, active voice |
+| README | `.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md` | Welcoming tone, practical focus |
+| Install Guide | `.skilled/skills/sk-doc/sk-create-readme/assets/install-guide-template.md` | Direct instructions, imperative mood |
 
 ### Standards
 - [core-standards.md](../../shared/references/core-standards.md) - Document formatting standards

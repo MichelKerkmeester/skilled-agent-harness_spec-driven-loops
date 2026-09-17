@@ -235,7 +235,7 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
         return 'install_guide'
     if 'install_guide' in Path(path_lower).stem or 'install-guide' in Path(path_lower).stem:
         return 'install_guide'
-    # Changelog files: under .opencode/changelog/, .opencode/skills/*/changelog/,
+    # Changelog files: under .skilled/changelog/, .skilled/skills/*/changelog/,
     # or spec-folder nested changelog/ subdirectories. Files match v{VERSION}.md or changelog-*.md
     if '/changelog/' in path_lower or '\\changelog\\' in path_lower:
         return 'changelog'
@@ -1228,7 +1228,7 @@ def validate_agent_frontmatter(content: str, file_path: str) -> List[Dict[str, A
 
     path_str = str(file_path).replace('\\', '/')
     is_claude = '/.claude/agents/' in f'/{path_str}' or path_str.startswith('.claude/agents/')
-    is_opencode = '/.opencode/agents/' in f'/{path_str}' or path_str.startswith('.opencode/agents/')
+    is_opencode = any(f'/{root}/agents/' in f'/{path_str}' for root in ('.skilled', '.opencode'))
 
     if not is_claude and not is_opencode:
         # Runtime cannot be determined from the path; skip schema enforcement rather than guess.

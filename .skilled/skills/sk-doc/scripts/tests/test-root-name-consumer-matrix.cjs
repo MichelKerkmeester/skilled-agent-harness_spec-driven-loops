@@ -8,12 +8,12 @@ const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
 const REPO = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const POST_ROUTER_PATH = path.join(REPO, '.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs');
-const LEAF_GENERATOR_PATH = path.join(REPO, '.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs');
-const LEAF_CONTRACT_PATH = path.join(REPO, '.opencode/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs');
-const TOPOLOGY_PATH = path.join(REPO, '.opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs');
-const FRONTMATTER_PATH = path.join(REPO, '.opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs');
-const DRIFT_PATH = path.join(REPO, '.opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs');
+const POST_ROUTER_PATH = path.join(REPO, '.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs');
+const LEAF_GENERATOR_PATH = path.join(REPO, '.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs');
+const LEAF_CONTRACT_PATH = path.join(REPO, '.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs');
+const TOPOLOGY_PATH = path.join(REPO, '.skilled/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs');
+const FRONTMATTER_PATH = path.join(REPO, '.skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs');
+const DRIFT_PATH = path.join(REPO, '.skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs');
 
 const postRouter = require(POST_ROUTER_PATH);
 const leafGenerator = require(LEAF_GENERATOR_PATH);

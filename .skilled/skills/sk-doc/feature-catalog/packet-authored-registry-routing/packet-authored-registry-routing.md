@@ -39,15 +39,15 @@ Because each packet's `Keyword triggers:` line is authored at the packet, adding
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-doc/SKILL.md` | Shared | States the packet-authored/registry-projected contract and the discriminator. |
-| `.opencode/skills/sk-doc/mode-registry.json` | Shared | Synchronized runtime projection of all twelve packets. |
-| `.opencode/skills/sk-doc/hub-router.json` | Shared | Router signal data consumed alongside the registry. |
+| `.skilled/skills/sk-doc/SKILL.md` | Shared | States the packet-authored/registry-projected contract and the discriminator. |
+| `.skilled/skills/sk-doc/mode-registry.json` | Shared | Synchronized runtime projection of all twelve packets. |
+| `.skilled/skills/sk-doc/hub-router.json` | Shared | Router signal data consumed alongside the registry. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the tool-surface-union invariant and registry/packet-vocabulary synchronization checks. |
+| `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the tool-surface-union invariant and registry/packet-vocabulary synchronization checks. |
 
 ---
 

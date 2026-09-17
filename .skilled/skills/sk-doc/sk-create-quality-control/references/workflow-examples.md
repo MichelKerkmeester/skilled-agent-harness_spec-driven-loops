@@ -32,13 +32,13 @@ This file collects copy-paste command recipes for the create-quality-control wor
 # Run every command from the repository root.
 
 # 1. Create the skill directory and write its SKILL.md
-mkdir -p .opencode/skills/my-skill
+mkdir -p .skilled/skills/my-skill
 
 # 2. Check frontmatter and structure (takes the directory, not the file)
-python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/my-skill
+python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py .skilled/skills/my-skill
 
 # 3. Extract structure for AI analysis
-python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/skills/my-skill/SKILL.md
+python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py .skilled/skills/my-skill/SKILL.md
 # AI evaluates JSON output and provides quality assessment
 
 # Expected: No checklist failures, high AI-friendliness rating
@@ -47,7 +47,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/sk
 **Example 2: README Optimization**
 ```bash
 # Extract current README structure
-python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py README.md
+python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py README.md
 
 # AI receives JSON with:
 # - Metrics (word count, heading depth, code ratio)
@@ -60,7 +60,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py README.md
 **Example 3: Pre-Commit Validation**
 ```bash
 # Extract spec structure for review
-python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py specs/<track>/<NNN-short-name>/spec.md
+python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py specs/<track>/<NNN-short-name>/spec.md
 
 # AI evaluates:
 # - Structure checklist results
@@ -77,16 +77,16 @@ python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py specs/<track
 # Extract structure from all spec files for batch analysis
 for file in $(find specs/ -name "spec.md"); do
   echo "=== $file ==="
-  python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py "$file"
+  python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py "$file"
 done
 ```
 
 **Quick validation batch**:
 ```bash
 # Validate every skill root that actually carries a SKILL.md
-for skill in .opencode/skills/*/; do
+for skill in .skilled/skills/*/; do
   [ -f "$skill/SKILL.md" ] || continue
-  python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py "$skill" --json
+  python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py "$skill" --json
 done
 ```
 

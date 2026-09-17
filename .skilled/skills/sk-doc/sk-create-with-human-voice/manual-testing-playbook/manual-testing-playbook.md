@@ -68,7 +68,7 @@ Exit 2 is a failure and never a pass. It means the scanner could not read the st
 
 ## 2. GLOBAL PRECONDITIONS
 
-1. Working directory is the repository root, so every `.opencode/skills/sk-doc/sk-create-with-human-voice/` subpath in this package resolves.
+1. Working directory is the repository root, so every `.skilled/skills/sk-doc/sk-create-with-human-voice/` subpath in this package resolves.
 2. `python3` is on PATH. The scanner is one file with no third-party dependency.
 3. The seven shipped fixtures under `scripts/tests/fixtures/` are present and unmodified. A scenario asserting a fixture number cannot be graded against an edited fixture.
 4. The working tree is clean for the packet paths, so any diff is attributable to the run.
@@ -114,7 +114,7 @@ A transcript without the not-scored list cannot be graded. That list is the evid
 - Bash commands shown as `bash: <command>`.
 - Agent prompts shown as `agent: <instruction>`. These scenarios are agent-driven, so a step is usually what an agent does: read a reference, apply a gate, report or refuse to report a number.
 - `->` separates sequential steps.
-- Repo-relative paths are written as `.opencode/skills/sk-doc/sk-create-with-human-voice/...`. The packet root means that directory wherever the packet is installed.
+- Repo-relative paths are written as `.skilled/skills/sk-doc/sk-create-with-human-voice/...`. The packet root means that directory wherever the packet is installed.
 - Commands in this package avoid shell pipes so each step is one deterministic invocation that survives being copied into a table cell.
 
 ---

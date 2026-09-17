@@ -28,8 +28,8 @@ only point to it (see section 5).
 
 Usage:
   1. cp this file to the hub's benchmark/ folder, for example:
-     cp .opencode/skills/sk-doc/sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md \
-        .opencode/skills/<hub>/benchmark/README.md
+     cp .skilled/skills/sk-doc/sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md \
+        .skilled/skills/<hub>/benchmark/README.md
   2. DELETE the "version:" line above. A shipped hub benchmark README carries the
      five frontmatter fields shown (title / description / trigger_phrases /
      importance_tier / contextType) and NO version field: it is a memory-indexed
@@ -42,14 +42,14 @@ Usage:
      folders on disk: one row per shipped run-label folder, one folder per row.
      New run-label values must match ^[a-z0-9]+(?:-[a-z0-9]+)*$.
   5. Validate:
-     python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py \
-       .opencode/skills/<hub>/benchmark/README.md
+     python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py \
+       .skilled/skills/<hub>/benchmark/README.md
      Iterate until 0 issues.
 
 The measurement authority this index points at is NOT restated here. The five-
 dimension rubric, terminal buckets, and pass thresholds live once in the
 deep-improvement Lane C scoring contract:
-  .opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md
+  .skilled/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md
 The harness that produces every run in this tree is the deep-improvement Lane C
 skill-benchmark lane. Cross-link both, and do not copy them into the hub.
 -->
@@ -130,7 +130,7 @@ Run from the repository root. The runner and its scoring live in the deep-improv
 Router mode (deterministic, no network, the CI gate):
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill={{HUB_PATH}} \
   --outputs-dir={{HUB_PATH}}/benchmark/reports/{{NEW_RUN_LABEL}} \
   --trace-mode=router
@@ -140,7 +140,7 @@ Live mode (dispatches through `cli-opencode`, needs a configured provider):
 
 ```bash
 SKILL_BENCH_OPENCODE_MODEL={{PROVIDER_MODEL}} SKILL_BENCH_OPENCODE_VARIANT=high \
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill={{HUB_PATH}} \
   --outputs-dir={{HUB_PATH}}/benchmark/reports/{{NEW_RUN_LABEL}} \
   --trace-mode=live
@@ -174,11 +174,11 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 
 <!-- Express each link relative to this benchmark/ folder. Canonical repo-root
      targets to translate:
-       {{PATH_TO_DEEP_IMPROVEMENT_SKILL}} -> .opencode/skills/system-deep-loop/deep-improvement/SKILL.md
-       {{PATH_TO_HUB_SKILL}}              -> .opencode/skills/<hub>/SKILL.md
-       {{PATH_TO_SCORING_CONTRACT}}       -> .opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md
-       {{PATH_TO_SKILL_BENCHMARK_COMMAND}}-> .opencode/commands/deep/skill-benchmark.md
-     For example, from .opencode/skills/sk-code/benchmark/README.md the scoring
+       {{PATH_TO_DEEP_IMPROVEMENT_SKILL}} -> .skilled/skills/system-deep-loop/deep-improvement/SKILL.md
+       {{PATH_TO_HUB_SKILL}}              -> .skilled/skills/<hub>/SKILL.md
+       {{PATH_TO_SCORING_CONTRACT}}       -> .skilled/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md
+       {{PATH_TO_SKILL_BENCHMARK_COMMAND}}-> .skilled/commands/deep/skill-benchmark.md
+     For example, from .skilled/skills/sk-code/benchmark/README.md the scoring
      contract is ../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md -->
 
 ### Related Documents

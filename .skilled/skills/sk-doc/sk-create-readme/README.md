@@ -20,7 +20,7 @@ version: 1.1.0.13
 | **Use it for** | Current-state `README.md` and install-guide authoring, sourced from real files, never from memory |
 | **Invoke with** | `/create:readme`, "create readme", "write a readme", "install guide" |
 | **Works on** | Project, skill, feature, component and source-code folders, plus MCP server, CLI, plugin and tool installs |
-| **Produces** | A `README.md` in the target folder or an `.opencode/install-guides/<slug>.md` |
+| **Produces** | A `README.md` in the target folder or an `.skilled/install-guides/<slug>.md` |
 
 ---
 
@@ -51,7 +51,7 @@ It is the maintenance path, not the birth path. `create-skill` writes a brand-ne
 **Step 1: Point it at a folder.**
 
 ```text
-Use create-readme to write a concise README.md for .opencode/skills/sk-doc/sk-create-readme.
+Use create-readme to write a concise README.md for .skilled/skills/sk-doc/sk-create-readme.
 Read SKILL.md first, inspect references/assets/scripts and only document confirmed files.
 ```
 
@@ -62,7 +62,7 @@ It reads `SKILL.md`, nearby docs, package or config files and existing commands 
 **Step 3: Validate the result.**
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py <path/to/README.md> --type readme
+python3 .skilled/skills/sk-doc/scripts/validate_document.py <path/to/README.md> --type readme
 ```
 
 Expected output ends with `✅ VALID` and zero blocking issues.
@@ -70,8 +70,8 @@ Expected output ends with `✅ VALID` and zero blocking issues.
 **Step 4 (optional): Audit every README in the repo.**
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . \
-  --validator .opencode/skills/sk-doc/scripts/validate_document.py
+python3 .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . \
+  --validator .skilled/skills/sk-doc/scripts/validate_document.py
 ```
 
 Expected output is a JSON summary, for example:
@@ -148,9 +148,9 @@ A: `create-skill`, using its own `skill-readme-template.md`, as one step in scaf
 
 | Check | How to run it | Pass looks like |
 |---|---|---|
-| Document structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <path> --type readme` | `✅ VALID`, zero blocking issues |
-| Repo-wide drift | `python3 .opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .opencode/skills/sk-doc/scripts/validate_document.py` | `template_invalid: 0`, `broken_references: 0` |
-| Authored name casing | `python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>` | Exits clean for install-guide slugs (`README.md` is exempt) |
+| Document structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <path> --type readme` | `✅ VALID`, zero blocking issues |
+| Repo-wide drift | `python3 .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .skilled/skills/sk-doc/scripts/validate_document.py` | `template_invalid: 0`, `broken_references: 0` |
+| Authored name casing | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>` | Exits clean for install-guide slugs (`README.md` is exempt) |
 
 ---
 

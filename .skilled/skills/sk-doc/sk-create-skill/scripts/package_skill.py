@@ -17,9 +17,9 @@ Usage:
     python package_skill.py <path/to/skill-folder> --check  # Validate only, don't package
 
 Example:
-    python package_skill.py .opencode/skills/my-skill
-    python package_skill.py .opencode/skills/my-skill ./dist
-    python package_skill.py .opencode/skills/my-skill --check
+    python package_skill.py .skilled/skills/my-skill
+    python package_skill.py .skilled/skills/my-skill ./dist
+    python package_skill.py .skilled/skills/my-skill --check
 """
 
 import argparse

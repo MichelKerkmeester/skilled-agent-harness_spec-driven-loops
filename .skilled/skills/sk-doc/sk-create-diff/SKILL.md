@@ -270,7 +270,7 @@ The task is successful when:
 - **sk-doc parent hub** — this packet is registered in `../mode-registry.json` and `../hub-router.json`; the single advisor identity and workflow registry live at the hub root, not here.
 - **Shared backbone** — `../shared/` provides sk-doc quality standards and the document validator for surrounding markdown when that is in scope.
 - **Canon gates** — `parent-skill-check.cjs`, `sk-create-skill/scripts/package_skill.py --check`, and `scripts/check-frontmatter-versions.sh` validate this packet's registration and shape.
-- **`/create:diff` command** — the mode is invocable as `/create:diff` (`:auto`/`:confirm`) via a full sibling-pattern router plus presentation and auto/confirm YAML assets under `.opencode/commands/create/`, alongside advisor-alias routing and direct script invocation.
+- **`/create:diff` command** — the mode is invocable as `/create:diff` (`:auto`/`:confirm`) via a full sibling-pattern router plus presentation and auto/confirm YAML assets under `.skilled/commands/create/`, alongside advisor-alias routing and direct script invocation.
 - **Sibling boundaries** — hands off to `sk-git` (code/Git diffs) and `create-quality-control` (single-document audit).
 
 ---

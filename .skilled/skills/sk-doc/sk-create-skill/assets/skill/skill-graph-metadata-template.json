@@ -28,13 +28,13 @@
       "[skill-name]"
     ],
     "key_files": [
-      ".opencode/skills/[skill-name]/SKILL.md"
+      ".skilled/skills/[skill-name]/SKILL.md"
     ],
     "entities": [
       {
         "name": "[skill-name]",
         "kind": "skill",
-        "path": ".opencode/skills/[skill-name]/SKILL.md",
+        "path": ".skilled/skills/[skill-name]/SKILL.md",
         "source": "derived"
       }
     ],

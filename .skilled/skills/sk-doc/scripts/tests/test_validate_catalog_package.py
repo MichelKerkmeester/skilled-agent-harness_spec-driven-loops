@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fixture-based test for the strict feature-catalog package validator.
 
-Builds an isolated temp .opencode/skills tree (never reads or writes the live repo
+Builds an isolated temp .skilled/skills tree (never reads or writes the live repo
 corpus) with one fake hub (identified via hub-router.json, the same structural signal
 the validator uses on the real fleet) plus the hardcoded advisor-central package, then
 proves:
@@ -27,7 +27,7 @@ from validate_catalog_package import check_root_catalog_bijection, run_all_check
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'shared' / 'scripts'))
 from validate_document import load_template_rules  # type: ignore  # noqa: E402
 
-REAL_IMPL_PATH = '.opencode/skills/fake-hub-alpha/lib/widget.ts'
+REAL_IMPL_PATH = '.skilled/skills/fake-hub-alpha/lib/widget.ts'
 
 
 def _write(path: Path, content: str) -> None:
@@ -37,7 +37,7 @@ def _write(path: Path, content: str) -> None:
 
 def build_clean_fixture(root: Path) -> None:
     """A minimal but structurally complete 2-package tree: one fake hub + advisor-central."""
-    skills = root / '.opencode' / 'skills'
+    skills = root / '.skilled' / 'skills'
 
     _write(root / REAL_IMPL_PATH, '// fixture target\n')
 
@@ -96,13 +96,13 @@ def run() -> int:
 
     # ---- Positive fixture: fully clean tree -> zero violations across all checks. ----
     def _clean(tmp: Path):
-        return run_all_checks(tmp / '.opencode' / 'skills', tmp, rules)
+        return run_all_checks(tmp / '.skilled' / 'skills', tmp, rules)
     violations = _in_temp_fixture(_clean)
     check('clean fixture reports zero violations', violations == [])
 
     # ---- Negative: seeded missing leaf (root catalog links a leaf that does not exist). ----
     def _missing_leaf(tmp: Path):
-        skills = tmp / '.opencode' / 'skills'
+        skills = tmp / '.skilled' / 'skills'
         root_catalog = skills / 'fake-hub-alpha' / 'feature-catalog' / 'feature-catalog.md'
         text = root_catalog.read_text(encoding='utf-8')
         text += '| Widget B | [widget-category/widget-b.md](./widget-category/widget-b.md) |\n'
@@ -118,7 +118,7 @@ def run() -> int:
 
     # ---- Negative: seeded orphan leaf (a leaf file the root catalog never links). ----
     def _orphan_leaf(tmp: Path):
-        skills = tmp / '.opencode' / 'skills'
+        skills = tmp / '.skilled' / 'skills'
         _write(skills / 'fake-hub-alpha' / 'feature-catalog' / 'widget-category' / 'widget-orphan.md', '# Orphan Widget\n')
         return check_root_catalog_bijection(skills)
     violations = _in_temp_fixture(_orphan_leaf)
@@ -129,13 +129,13 @@ def run() -> int:
 
     # ---- Negative: seeded missing SOURCE FILES path. ----
     def _missing_source_path(tmp: Path):
-        skills = tmp / '.opencode' / 'skills'
+        skills = tmp / '.skilled' / 'skills'
         leaf = skills / 'fake-hub-alpha' / 'feature-catalog' / 'widget-category' / 'widget-a.md'
         text = leaf.read_text(encoding='utf-8')
         text = text.replace(
             f'| `{REAL_IMPL_PATH}` | Library | Source reference |',
             f'| `{REAL_IMPL_PATH}` | Library | Source reference |\n'
-            '| `.opencode/skills/fake-hub-alpha/lib/does-not-exist.ts` | Library | Stale reference |',
+            '| `.skilled/skills/fake-hub-alpha/lib/does-not-exist.ts` | Library | Stale reference |',
         )
         leaf.write_text(text, encoding='utf-8')
         return run_all_checks(skills, tmp, rules)
@@ -143,11 +143,11 @@ def run() -> int:
     missing_paths = [v for v in violations if v['type'] == 'missing_source_path']
     check('seeded missing source path is caught exactly once', len(missing_paths) == 1)
     check('seeded missing source path names the specific path',
-          bool(missing_paths) and missing_paths[0]['path'] == '.opencode/skills/fake-hub-alpha/lib/does-not-exist.ts')
+          bool(missing_paths) and missing_paths[0]['path'] == '.skilled/skills/fake-hub-alpha/lib/does-not-exist.ts')
 
     # ---- Negative: seeded off-taxonomy Type value. ----
     def _off_taxonomy(tmp: Path):
-        skills = tmp / '.opencode' / 'skills'
+        skills = tmp / '.skilled' / 'skills'
         leaf = skills / 'fake-hub-alpha' / 'feature-catalog' / 'widget-category' / 'widget-a.md'
         text = leaf.read_text(encoding='utf-8')
         text = text.replace(
@@ -164,7 +164,7 @@ def run() -> int:
 
     # ---- Negative: seeded missing root catalog (package-existence half of bijection). ----
     def _missing_root_catalog(tmp: Path):
-        skills = tmp / '.opencode' / 'skills'
+        skills = tmp / '.skilled' / 'skills'
         (skills / 'system-skill-advisor' / 'feature-catalog' / 'feature-catalog.md').unlink()
         return check_root_catalog_bijection(skills)
     violations = _in_temp_fixture(_missing_root_catalog)

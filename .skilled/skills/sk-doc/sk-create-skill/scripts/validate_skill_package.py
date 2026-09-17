@@ -15,7 +15,7 @@ from typing import Dict, List, Optional
 
 COMPILED_ROUTING_MARKERS = (
     'Compiled routing (default-on',
-    'node .opencode/bin/compiled-route.cjs --hub',
+    'node .skilled/bin/compiled-route.cjs --hub',
     'servingAuthority":"legacy',
     'SPECKIT_COMPILED_ROUTING=0',
 )
@@ -268,7 +268,7 @@ def main() -> int:
             expected = (
                 str(parent_checker)
                 if parent_checker
-                else "the repository's .opencode/commands/doctor/scripts/parent-skill-check.cjs"
+                else "the repository's .skilled/commands/doctor/scripts/parent-skill-check.cjs"
             )
             missing_checker_error = f"Parent skill checker not found: {expected}"
             checks.append({

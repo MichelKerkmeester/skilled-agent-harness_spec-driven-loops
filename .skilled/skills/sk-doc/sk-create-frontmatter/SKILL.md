@@ -228,9 +228,9 @@ conditional on the question being about `version`.
 
 - **sk-doc parent hub.** This packet is registered in `../mode-registry.json` and `../hub-router.json`. The advisor scores the hub on `../graph-metadata.json`, so every keyword trigger above is also a stage-one entry there. A trigger present in one of the three and absent from another routes on one stage only.
 - **Shared-tier enforcement.** `../shared/scripts/quick_validate.py` reads the description budget from `../shared/assets/skill-contract.json`, `../shared/scripts/frontmatter-version.mjs` implements the versioning standard, and `../shared/scripts/check-frontmatter-versions.sh` wraps its `gate` mode. This mode owns what they check, and never edits how.
-- **Post-edit hook.** `.opencode/hooks/post-edit-quality/` resolves the corpus gate by literal path on every qualifying edit. That path is why the scripts stay in the shared tier.
+- **Post-edit hook.** `.skilled/hooks/post-edit-quality/` resolves the corpus gate by literal path on every qualifying edit. That path is why the scripts stay in the shared tier.
 - **Templates that cite this contract.** `sk-create-skill`'s manifest, reference and asset templates, the feature-catalog and playbook templates, and the `/create:skill` and `/create:agent` workflow assets all point at `assets/frontmatter-templates.md`. A rule changed here changes what they emit.
-- **Doctor budget audit.** `/doctor skill-budget` and `.opencode/commands/doctor/scripts/audit_descriptions.py` measure the project against the budget this contract documents.
+- **Doctor budget audit.** `/doctor skill-budget` and `.skilled/commands/doctor/scripts/audit_descriptions.py` measure the project against the budget this contract documents.
 
 ---
 

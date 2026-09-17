@@ -29,7 +29,7 @@ A skill root carries up to eight metadata JSON files. Which of them apply is not
 - Auditing an existing root, or diagnosing a `ci-skill-root-metadata` failure
 - Deciding whether a metadata file may be generated or must be authored
 
-> **Not the spec-folder schema.** `description.json` and `graph-metadata.json` also exist under `.opencode/specs/` under a completely separate continuity schema. The two are never the same file and never interchangeable. This contract governs `.opencode/skills/<root>/` only, and the gate never scans the spec tree.
+> **Not the spec-folder schema.** `description.json` and `graph-metadata.json` also exist under `.opencode/specs/` under a completely separate continuity schema. The two are never the same file and never interchangeable. This contract governs `.skilled/skills/<root>/` only, and the gate never scans the spec tree.
 
 ---
 
@@ -80,7 +80,7 @@ No production consumer reads a skill-root `description.json`. The advisor ingest
 
 A command surface exists only for hubs that actually ship slash commands, so the file is **optional** for hubs: present (and validated) when the hub owns commands, simply absent when it owns none. Requiring it fleet-wide forced command-less hubs to carry an empty-array placeholder nothing reads, so the rule was reversed to optional — the authority is the class contract module (`scripts/lib/skill-root-metadata-contract.cjs`, where `command-metadata.json` sits in `OPTIONAL_BY_CLASS[CLASS_HUB]`, not the required set), and the standard was set in `sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification`.
 
-When present, the fleet gate validates each entry's core schema (`command`, `ownerMode`, `description`, `argumentHint`, `userIntent`, `choreography`) against the hub's own registry and the disk: owner modes must exist in `mode-registry.json`, choreography resources must resolve, the command's definition file must exist under `.opencode/commands/`, and owned routing signals must be unique across the file. Entries may carry hub-specific extension fields beyond the core (the design hub's register policies and task projections, for example); unknown fields are legal so richer per-hub validators can layer on top. The core schema lives in `scripts/lib/command-metadata-schema.cjs`.
+When present, the fleet gate validates each entry's core schema (`command`, `ownerMode`, `description`, `argumentHint`, `userIntent`, `choreography`) against the hub's own registry and the disk: owner modes must exist in `mode-registry.json`, choreography resources must resolve, the command's definition file must exist under `.skilled/commands/`, and owned routing signals must be unique across the file. Entries may carry hub-specific extension fields beyond the core (the design hub's register policies and task projections, for example); unknown fields are legal so richer per-hub validators can layer on top. The core schema lives in `scripts/lib/command-metadata-schema.cjs`.
 
 The file is forbidden on standalone roots: every entry binds a command to an `ownerMode` in a mode registry, and a standalone root has none.
 
@@ -109,13 +109,13 @@ The remaining seven files carry authored semantic identity, routing policy, or a
 
 ```bash
 # Report the whole fleet
-node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
 
 # Machine-readable
-node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --format json
+node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --format json
 
 # Regenerate what is derivable; authored files are still only reported
-node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix
+node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix
 ```
 
 Exit `0` when every root conforms, `1` on violations, `2` when the gate cannot run.

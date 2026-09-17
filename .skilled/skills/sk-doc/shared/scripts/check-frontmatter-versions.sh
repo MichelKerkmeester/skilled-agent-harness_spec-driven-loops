@@ -2,10 +2,10 @@
 # ───────────────────────────────────────────────────────────────
 # CI / pre-commit gate: every in-scope skill doc must carry a 4-part version.
 # Discovers in-scope docs (SKILL.md, README, references, assets, feature_catalog,
-# manual_testing_playbook under .opencode/skills/*) git-free and exits non-zero on
+# manual_testing_playbook under .skilled/skills/*) git-free and exits non-zero on
 # any missing or malformed version. Frontmatter-less docs are skipped, not failed.
 #
-# Standard: .opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md
+# Standard: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md
 # Usage:    check-frontmatter-versions.sh [--skill <name>] [--classes <c1,c2>]
 # ───────────────────────────────────────────────────────────────
 set -euo pipefail

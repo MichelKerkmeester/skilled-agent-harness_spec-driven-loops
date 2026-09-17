@@ -27,8 +27,8 @@ description: "Node CLIs that capture a hub's live compiled-routing state and arc
 Run from the repository root.
 
 ```bash
-node .opencode/skills/sk-doc/sk-create-benchmark/scripts/render-serving-snapshot.cjs --hub <hubId> [--out <dir>] [--validate] [--pretty]
-node .opencode/skills/sk-doc/sk-create-benchmark/scripts/archive-compiled-routing.cjs --hub <hubId> --run-label <label> --report <report.json>
+node .skilled/skills/sk-doc/sk-create-benchmark/scripts/render-serving-snapshot.cjs --hub <hubId> [--out <dir>] [--validate] [--pretty]
+node .skilled/skills/sk-doc/sk-create-benchmark/scripts/archive-compiled-routing.cjs --hub <hubId> --run-label <label> --report <report.json>
 ```
 
 Expected result: `render-serving-snapshot.cjs` prints or writes a `serving-snapshot/V1` JSON document. `archive-compiled-routing.cjs` exits nonzero on a duplicate run-label, a stale manifest mid-archive or a shadow-candidate source.

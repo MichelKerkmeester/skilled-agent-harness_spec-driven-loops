@@ -26,7 +26,7 @@ Packets reference these files by relative path (`../shared/references/core-stand
 
 The one exception is `scripts/`. Six entries under `sk-doc/scripts/` are facade symlinks into `shared/scripts/`, so a caller can run `scripts/validate_document.py` from the hub root. There is no matching facade for `references/` or `assets/`: the hub has no root-level `references/` or `assets/` directory, so a bare `assets/...` path does not resolve and every reference to these files must be packet-qualified or `shared/`-qualified.
 
-`.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs` hard-codes `shared/scripts/check-frontmatter-versions.sh`, and `sk-doc/scripts/` symlinks resolve into `shared/scripts/`. Moving anything under `scripts/` breaks both.
+`.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` hard-codes `shared/scripts/check-frontmatter-versions.sh`, and `sk-doc/scripts/` symlinks resolve into `shared/scripts/`. Moving anything under `scripts/` breaks both.
 
 ---
 

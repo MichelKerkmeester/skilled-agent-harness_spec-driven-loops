@@ -19,7 +19,7 @@ Templates and guidelines for creating asset files in AI agent skills.
 
 ### Location & Naming
 
-**Location:** `.opencode/skills/[skill-name]/assets/`
+**Location:** `.skilled/skills/[skill-name]/assets/`
 
 **Naming Convention:** kebab-case with the appropriate extension
 
@@ -913,7 +913,7 @@ Integration:
 
 ## 14. ASSET FILE NAMING QUICK REFERENCE
 
-**Location**: `.opencode/skills/[skill-name]/assets/`
+**Location**: `.skilled/skills/[skill-name]/assets/`
 
 **Format**: kebab-case (hyphens, lowercase)
 

@@ -16,7 +16,7 @@ This scenario validates the out-of-scope decline for `FMC-003`. It focuses on a 
 
 ### Why This Matters
 
-The version standard opens with scope and only then gives the format. Its out-of-scope table names `.opencode/commands/*.md`, `.opencode/agents/*.md` and standalone install guides, and the packet README states that the standard says so explicitly rather than leaving the absence of a rule to be inferred. A run that reads the format rules without the scope section above them will produce a well-formed four-part version for a file that is governed somewhere else, and nothing rejects it: these files carry frontmatter, the added key parses, and the validators keep `version` optional for commands. The wrong field sits there looking right. This is the cheapest scenario in the package to run and the one whose failure is hardest to see afterwards.
+The version standard opens with scope and only then gives the format. Its out-of-scope table names `.skilled/commands/*.md`, `.skilled/agents/*.md` and standalone install guides, and the packet README states that the standard says so explicitly rather than leaving the absence of a rule to be inferred. A run that reads the format rules without the scope section above them will produce a well-formed four-part version for a file that is governed somewhere else, and nothing rejects it: these files carry frontmatter, the added key parses, and the validators keep `version` optional for commands. The wrong field sits there looking right. This is the cheapest scenario in the package to run and the one whose failure is hardest to see afterwards.
 
 ---
 
@@ -26,9 +26,9 @@ Operators run the exact prompt and command sequence for `FMC-003` and confirm th
 
 - Objective: decline to add `version` to an out-of-scope document class, quoting the clause that excludes it and naming that these files are governed separately
 - Realistic user request: `My command file does not have a version field like the skill docs do. Add one.`
-- Prompt: `Add the 4-part version field to my command file under .opencode/commands so it matches the skills.`
-- Expected execution process: the request is about `version`, so `references/frontmatter-versioning.md` loads conditionally through `references/README.md`, section 1 is read before section 2, the out-of-scope table is found to name `.opencode/commands/*.md`, and no edit is made.
-- Expected signals: the reply declines, quotes the out-of-scope clause verbatim, and states that commands and agents are governed separately. No file under `.opencode/commands/` is modified.
+- Prompt: `Add the 4-part version field to my command file under .skilled/commands so it matches the skills.`
+- Expected execution process: the request is about `version`, so `references/frontmatter-versioning.md` loads conditionally through `references/README.md`, section 1 is read before section 2, the out-of-scope table is found to name `.skilled/commands/*.md`, and no edit is made.
+- Expected signals: the reply declines, quotes the out-of-scope clause verbatim, and states that commands and agents are governed separately. No file under `.skilled/commands/` is modified.
 - Desired user-visible outcome: the user learns the field does not belong there, sees the clause that says so, and is told these files are governed separately.
 - Pass/fail: PASS if the request is declined with the clause quoted and nothing is written. FAIL if a `version` key is added, or the decline arrives as a paraphrase with no clause quoted.
 
@@ -38,30 +38,30 @@ Operators run the exact prompt and command sequence for `FMC-003` and confirm th
 
 ### Prompt
 
-- Prompt: `Add the 4-part version field to my command file under .opencode/commands so it matches the skills.`
+- Prompt: `Add the 4-part version field to my command file under .skilled/commands so it matches the skills.`
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMC-003 | Out-of-scope class | Decline to add `version` to an out-of-scope class with the excluding clause quoted | `Add the 4-part version field to my command file under .opencode/commands so it matches the skills.` | 1. `agent: Read references/frontmatter-versioning.md section 1 before reading section 2` -> 2. `agent: Quote the out-of-scope clause verbatim and name the affected paths` -> 3. `agent: State that these files are governed separately and make no edit` -> 4. `bash: git status --porcelain .opencode/commands` | Step 1: scope is read before format. Step 2: the clause is quoted, not summarized. Step 3: no edit is proposed. Step 4: empty output | The prompt as typed, the decline text, the quoted clause, and the step 4 output | PASS if steps 2 and 3 decline with the clause quoted and step 4 is empty. FAIL if a `version` key is added anywhere, or the clause is paraphrased | 1. Confirm section 1 was read before section 2, since a run that starts at the format rules has no scope information. 2. Check the clause is quoted rather than restated, because a paraphrase cannot be checked against the source. 3. Grep the standard for the install-guides row, which is the third out-of-scope path and is often dropped from the answer |
+| FMC-003 | Out-of-scope class | Decline to add `version` to an out-of-scope class with the excluding clause quoted | `Add the 4-part version field to my command file under .skilled/commands so it matches the skills.` | 1. `agent: Read references/frontmatter-versioning.md section 1 before reading section 2` -> 2. `agent: Quote the out-of-scope clause verbatim and name the affected paths` -> 3. `agent: State that these files are governed separately and make no edit` -> 4. `bash: git status --porcelain .skilled/commands` | Step 1: scope is read before format. Step 2: the clause is quoted, not summarized. Step 3: no edit is proposed. Step 4: empty output | The prompt as typed, the decline text, the quoted clause, and the step 4 output | PASS if steps 2 and 3 decline with the clause quoted and step 4 is empty. FAIL if a `version` key is added anywhere, or the clause is paraphrased | 1. Confirm section 1 was read before section 2, since a run that starts at the format rules has no scope information. 2. Check the clause is quoted rather than restated, because a paraphrase cannot be checked against the source. 3. Grep the standard for the install-guides row, which is the third out-of-scope path and is often dropped from the answer |
 
 ### Commands
 
 1. `agent: Read references/frontmatter-versioning.md section 1 before reading section 2`
 2. `agent: Quote the out-of-scope clause verbatim and name every path it lists`
 3. `agent: State that commands and agents are governed separately, and make no edit`
-4. `bash: git status --porcelain .opencode/commands`
+4. `bash: git status --porcelain .skilled/commands`
 
 ### Expected
 
-Step 1 reads scope before format, which is the ordering the standard itself uses. Step 2 quotes the out-of-scope table naming `.opencode/commands/*.md`, `.opencode/agents/*.md` and standalone install guides. Step 3 declines, and names the reason: these files carry frontmatter and are governed separately, so the absence of `version` there is intended rather than an omission. Step 4 prints nothing, proving no file was written.
+Step 1 reads scope before format, which is the ordering the standard itself uses. Step 2 quotes the out-of-scope table naming `.skilled/commands/*.md`, `.skilled/agents/*.md` and standalone install guides. Step 3 declines, and names the reason: these files carry frontmatter and are governed separately, so the absence of `version` there is intended rather than an omission. Step 4 prints nothing, proving no file was written.
 
 ### Evidence
 
-Capture the prompt exactly as typed, the full decline text, the clause as quoted from the standard, and the literal output of `git status --porcelain .opencode/commands`. Record whether the clause was quoted or restated, because the point of the scenario is that the exclusion is written down rather than inferred, and a paraphrase cannot demonstrate that.
+Capture the prompt exactly as typed, the full decline text, the clause as quoted from the standard, and the literal output of `git status --porcelain .skilled/commands`. Record whether the clause was quoted or restated, because the point of the scenario is that the exclusion is written down rather than inferred, and a paraphrase cannot demonstrate that.
 
 ### Pass / Fail
 
-- **Pass**: the request is declined, the out-of-scope clause is quoted verbatim, the separate governance is stated, and no file under `.opencode/commands/` changed.
+- **Pass**: the request is declined, the out-of-scope clause is quoted verbatim, the separate governance is stated, and no file under `.skilled/commands/` changed.
 - **Fail**: a `version` key is added to any out-of-scope file, the decline names no clause, or the decline is a general statement about commands with no source behind it.
 
 ### Failure Triage

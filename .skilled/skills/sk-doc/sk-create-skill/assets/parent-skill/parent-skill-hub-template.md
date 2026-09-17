@@ -162,7 +162,7 @@ Routing is registry-driven. `mode-registry.json` lists every workflow and surfac
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
-> node .opencode/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
+> node .skilled/bin/compiled-route.cjs --hub {{HUB_NAME}} --prompt "<task>"
 > ```
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `{{HUB_NAME}}`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
 

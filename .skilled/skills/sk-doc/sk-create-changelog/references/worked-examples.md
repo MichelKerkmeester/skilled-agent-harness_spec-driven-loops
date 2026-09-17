@@ -50,10 +50,10 @@ sk-doc's changelog creation workflow now has a dedicated packet that separates t
 
 | File | What changed |
 |---|---|
-| `.opencode/skills/sk-doc/sk-create-changelog/SKILL.md` | Primary numbered workflow for changelog creation |
-| `.opencode/skills/sk-doc/sk-create-changelog/references/` | Route-map plus worked examples, version-bump, and edge-case files |
-| `.opencode/commands/create/assets/create-changelog-auto.yaml` | Existing autonomous workflow source |
-| `.opencode/commands/create/assets/create-changelog-confirm.yaml` | Existing checkpointed workflow source |
+| `.skilled/skills/sk-doc/sk-create-changelog/SKILL.md` | Primary numbered workflow for changelog creation |
+| `.skilled/skills/sk-doc/sk-create-changelog/references/` | Route-map plus worked examples, version-bump, and edge-case files |
+| `.skilled/commands/create/assets/create-changelog-auto.yaml` | Existing autonomous workflow source |
+| `.skilled/commands/create/assets/create-changelog-confirm.yaml` | Existing checkpointed workflow source |
 
 ## Upgrade
 
@@ -88,8 +88,8 @@ This packet adds the `create-changelog` sub-skill to the sk-doc parent hub and r
 
 | File | Change |
 |---|---|
-| `.opencode/skills/sk-doc/sk-create-changelog/SKILL.md` | New packet contract |
-| `.opencode/skills/sk-doc/sk-create-changelog/references/` | Supplemental reference set |
+| `.skilled/skills/sk-doc/sk-create-changelog/SKILL.md` | New packet contract |
+| `.skilled/skills/sk-doc/sk-create-changelog/references/` | Supplemental reference set |
 
 ## Validation
 
@@ -97,8 +97,8 @@ This packet adds the `create-changelog` sub-skill to the sk-doc parent hub and r
 ```
 
 **Annotations**:
-- The exact packet-local shape is owned by `.opencode/skills/system-spec-kit/templates/changelog/root.md` and `phase.md`.
-- Use the nested generator: `node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write`.
+- The exact packet-local shape is owned by `.skilled/skills/system-spec-kit/templates/changelog/root.md` and `phase.md`.
+- Use the nested generator: `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write`.
 - The output filename is deterministic, such as `changelog-<packet>-root.md` or `changelog-<packet>-<phase-folder>.md`.
 - Do not invent a `vX.Y.Z.W.md` filename for packet-local output.
 

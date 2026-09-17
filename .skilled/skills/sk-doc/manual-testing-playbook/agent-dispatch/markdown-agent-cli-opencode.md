@@ -48,12 +48,12 @@ The DeepSeek API rejects MCP tool names containing `:` or `@` characters (memory
 
 ### Prompt
 
-- Prompt: `Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-opencode.md. Do NOT install the stub skill into the .opencode/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.`
+- Prompt: `Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-opencode.md. Do NOT install the stub skill into the .skilled/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.`
 
 ### Commands
 
 ```text
-PROMPT='Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-opencode.md. Do NOT install the stub skill into the .opencode/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.'
+PROMPT='Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-opencode.md. Do NOT install the stub skill into the .skilled/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.'
 
 EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/<spec-folder>'
 
@@ -99,8 +99,8 @@ Verify `opencode providers list` shows `deepseek`; confirm `--pure` strips the M
 - **Intent picked**: `CHANGELOG`
 - **Executor**: `@markdown` agent (opencode resolves via `.opencode/agents/markdown.md`)
 - **Resources loaded**:
-  - `.opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`
-  - `.opencode/skills/sk-doc/sk-create-changelog/references/README.md`
+  - `.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`
+  - `.skilled/skills/sk-doc/sk-create-changelog/references/README.md`
 - **Outcome**: CLI scaffolds a v0.1.0 changelog file with Added / Changed / Fixed / Removed sections at `/tmp/sk-test-dummy-CHANGELOG-cli-opencode.md`.
 
 **Cross-CLI Variants**
@@ -112,7 +112,7 @@ This scenario is fixed to `cli-opencode` with the DeepSeek v4 Pro DIRECT API pro
 - `@markdown` invocation evidence present in JSON transcript
 - output file exists at the requested path
 - output contains at least 3 of the 4 Keep-a-Changelog sections (Added / Changed / Fixed / Removed)
-- no installation under `.opencode/skills/` (stub stayed out of the skills tree)
+- no installation under `.skilled/skills/` (stub stayed out of the skills tree)
 - no DeepSeek 400 errors due to tool-name regex (proves `--pure` is doing its job)
 
 

@@ -24,8 +24,8 @@ Copy-paste scaffold for ONE behavior-benchmark scenario file:
 Usage:
   1. Pick the next zero-padded 3-digit NNN and a lowercase-hyphen slug, then
      cp this file to that path, for example:
-     cp .opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md \
-        .opencode/skills/system-deep-loop/<mode>/behavior-benchmark/scenarios/<PREFIX>-007-verify-first.md
+     cp .skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md \
+        .skilled/skills/system-deep-loop/<mode>/behavior-benchmark/scenarios/<PREFIX>-007-verify-first.md
   2. DELETE this template's own frontmatter and this comment. A shipped scenario
      file has NO frontmatter: it starts at the "# <PREFIX>-NNN" H1.
   3. Choose ONE schema version and keep only that JSON block:
@@ -40,7 +40,7 @@ Usage:
      scoring context only and is never parsed.
 
 Field definitions and enums are normative in:
-  .opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md
+  .skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md
   (SCENARIO CONTRACT SCHEMA, SCHEMA VERSIONING, SCORING RUBRIC, DELEGATION
    EVIDENCE KINDS, POSTCONDITION PROBES, CLASSIFICATION TAXONOMY)
 -->

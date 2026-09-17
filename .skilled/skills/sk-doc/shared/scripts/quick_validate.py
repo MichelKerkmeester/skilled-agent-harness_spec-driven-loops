@@ -23,7 +23,7 @@ Output formats:
 - JSON (with --json flag)
 
 Description budget reference: see
-.opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md
+.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md
 § "Description Budget & Trim Style". Constants below are the single source of
 truth for the python validators; doc-side constants live in the markdown file.
 """
@@ -59,7 +59,7 @@ except Exception:
 def _detect_target_kind(skill_path: Path) -> str:
     """Detect whether the validated artifact is a skill or a command from its path.
 
-    Returns 'command' for paths under .opencode/commands/ or .claude/commands/, else 'skill'.
+    Returns 'command' for paths under .skilled/commands/ or .claude/commands/, else 'skill'.
     """
     parts = [p.lower() for p in skill_path.resolve().parts]
     if any(part in ('command', 'commands') for part in parts):
@@ -90,7 +90,7 @@ def check_description_length(
             None,
             f"Description is {length} chars, exceeds soft target of {soft_target}. "
             f"Project total budget is ~5,600 chars (default 8,000 minus built-ins); "
-            f"trim per .opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md "
+            f"trim per .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md "
             f"§ 'Description Budget & Trim Style'.",
         )
     return (None, None)

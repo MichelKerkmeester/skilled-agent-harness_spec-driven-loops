@@ -76,8 +76,8 @@ def run() -> int:
 
     def classifier_parity():
         for family in SKILL_FAMILIES:
-            posix_old = f'.opencode/skills/{family}/feature-catalog/routing/route.md'
-            posix_new = f'.opencode/skills/{family}/feature-catalog/routing/route.md'
+            posix_old = f'.skilled/skills/{family}/feature-catalog/routing/route.md'
+            posix_new = f'.skilled/skills/{family}/feature-catalog/routing/route.md'
             windows_old = posix_old.replace('/', '\\')
             windows_new = posix_new.replace('/', '\\')
             results = {detect_document_type(value, '', {}) for value in (posix_old, posix_new, windows_old, windows_new)}
@@ -88,7 +88,7 @@ def run() -> int:
 
     def classifier_refuses():
         try:
-            detect_document_type('.opencode/skills/sk-doc/feature_catalog_v2/routing/route.md', '', {})
+            detect_document_type('.skilled/skills/sk-doc/feature_catalog_v2/routing/route.md', '', {})
         except UnsupportedRootError:
             return
         raise AssertionError('unsupported root reached document classification')
