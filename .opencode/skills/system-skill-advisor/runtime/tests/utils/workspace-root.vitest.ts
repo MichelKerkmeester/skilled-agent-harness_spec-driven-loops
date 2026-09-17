@@ -146,6 +146,14 @@ describe('findAdvisorWorkspaceRoot — either source-root name', () => {
     expect(findAdvisorWorkspaceRoot(start, { sentinel: '.opencode/specs/marker' })).toBe(resolve(start));
   });
 
+  it('tests a sentinel spelled under .skilled/specs under the legacy .opencode/specs spelling too', () => {
+    const repo = makeTmpRoot();
+    mkdirp(join(repo, '.opencode', 'specs'));
+    writeFileSync(join(repo, '.opencode', 'specs', 'marker'), 'marker\n');
+    const start = mkdirp(join(repo, 'work', 'sub'));
+    expect(findAdvisorWorkspaceRoot(start, { sentinel: '.skilled/specs/marker' })).toBe(resolve(repo));
+  });
+
   it('hoists above the OUTERMOST segment when a .skilled tree leaked an .opencode tree inside it', () => {
     const repo = makeTmpRoot();
     const seat = mkdirp(join(repo, '.skilled', 'skills', 'x', '.opencode', 'skills'));

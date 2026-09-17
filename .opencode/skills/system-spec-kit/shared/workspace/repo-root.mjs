@@ -40,14 +40,15 @@ const DEFAULT_MAX_DEPTH = 14;
  * Spell a sentinel under every source-root name when its first segment is one.
  *
  * The legacy spec alias keeps its one `.opencode/specs` spelling, so a sentinel under
- * it is tested as written.
+ * it is tested as written. A sentinel spelled under `.skilled/specs` still tests that
+ * legacy spelling, because it is the only one the alias has.
  *
  * @param {string} sentinel - Relative sentinel path.
  * @returns {string[]} One spelling per source-root name, or the sentinel alone.
  */
 function sentinelSpellings(sentinel) {
   const [head, ...rest] = sentinel.split('/');
-  if (rest.length === 0 || rest[0] === 'specs' || !SOURCE_ROOT_NAMES.includes(head)) return [sentinel];
+  if (rest.length === 0 || !SOURCE_ROOT_NAMES.includes(head) || (head === '.opencode' && rest[0] === 'specs')) return [sentinel];
   return SOURCE_ROOT_NAMES.map((name) => [name, ...rest].join('/'));
 }
 

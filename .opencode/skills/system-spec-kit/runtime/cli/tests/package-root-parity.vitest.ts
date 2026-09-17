@@ -174,6 +174,15 @@ describe('the repository resolver treats .skilled and .opencode as one source tr
     expect(findRepoRoot(start, { sentinel: '.opencode/specs/marker' })).toBe(start);
   });
 
+  it('a sentinel spelled under .skilled/specs also tests the legacy .opencode/specs spelling', () => {
+    const aliasRoot = path.join(root, 'skilled-spelled-alias-sentinel');
+    const start = path.join(aliasRoot, 'work', 'sub');
+    fs.mkdirSync(path.join(aliasRoot, '.opencode', 'specs'), { recursive: true });
+    fs.mkdirSync(start, { recursive: true });
+    fs.writeFileSync(path.join(aliasRoot, '.opencode', 'specs', 'marker'), 'marker\n');
+    expect(findRepoRoot(start, { sentinel: '.skilled/specs/marker' })).toBe(aliasRoot);
+  });
+
   it('a real .opencode tree beside the .skilled placeholder resolves from either tree', () => {
     const { repoRoot, start } = buildTree(root, { name: 'placeholder', markers: PACKAGE_ROOT_MARKERS, expectsPackageRoot: true }, TODAY, '.opencode');
     const placeholder = path.join(repoRoot, '.skilled', 'future-task-placeholder');
