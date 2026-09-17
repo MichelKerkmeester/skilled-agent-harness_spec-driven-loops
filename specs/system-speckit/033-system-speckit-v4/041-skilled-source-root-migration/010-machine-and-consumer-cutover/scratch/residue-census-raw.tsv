@@ -1,0 +1,38 @@
+path	kind	key_or_line	link_target	count
+/Users/michelkerkmeester/.gitconfig	core-hooks-path	core.hooksPath	/Users/michelkerkmeester/.config/git/hooks	1
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public	git-path-hooks	rev-parse --git-path hooks	/Users/michelkerkmeester/.config/git/hooks	1
+/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration	git-path-hooks	rev-parse --git-path hooks	/Users/michelkerkmeester/.config/git/hooks	1
+/Users/michelkerkmeester/.config/git/hooks/commit-msg	global-hook-link	commit-msg	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/commit-msg	resolves
+/Users/michelkerkmeester/.config/git/hooks/post-commit	global-hook-link	post-commit	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/post-commit	resolves
+/Users/michelkerkmeester/.config/git/hooks/post-merge	global-hook-link	post-merge	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/post-merge	resolves
+/Users/michelkerkmeester/.config/git/hooks/post-rewrite	global-hook-link	post-rewrite	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/post-rewrite	resolves
+/Users/michelkerkmeester/.config/git/hooks/pre-commit	global-hook-link	pre-commit	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/pre-commit	resolves
+/Users/michelkerkmeester/.config/git/hooks/pre-push	global-hook-link	pre-push	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/pre-push	resolves
+/Users/michelkerkmeester/.config/git/hooks/prepare-commit-msg	global-hook-link	prepare-commit-msg	/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/prepare-commit-msg	resolves
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/install-git-hooks.sh	installer-status	exit=0	0	7
+/Users/michelkerkmeester/.codex/hooks.json	installer-check	exit=0	install-codex-hooks: OK /Users/michelker	1
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public	worktrees	git worktree list	-	29
+/Users/michelkerkmeester/.codex/hooks.json	codex-hook-identities	entries=66	opencode=0;skilled=18	18
+/Users/michelkerkmeester/.codex/config.toml	codex-config		line-numbers-only	0
+/Users/michelkerkmeester/.codex/config.toml	codex-config-projects	project-headers	-	26
+/Users/michelkerkmeester/.hermes/config.yaml	hermes-config	17	mcp_servers.code_mode.args	1
+/Users/michelkerkmeester/.claude.json	claude-json	key-path-walk	recorded-prompt	1
+/Users/michelkerkmeester/.zshrc	zshrc	3,32	PATH-entries	2
+/Users/michelkerkmeester/.pi/agent/SYNC.md	pi-sync		-	0
+/Users/michelkerkmeester/.pi/agent/trust.json	pi-trust	-	-	0 0
+/Users/michelkerkmeester/.codex/prompts	codex-prompts	files=38	match-repo=0	38
+/Users/michelkerkmeester	home-links	find -maxdepth 4 -type l	into-MAIN	14
+/Users/michelkerkmeester/Library/LaunchAgents	launch-agents	plists	-	0
+crontab	crontab	-	-	0
+/Users/michelkerkmeester/.zshenv	shell-profile	-	-	0 0
+/Users/michelkerkmeester/.bashrc	shell-profile	-	-	0 0
+/Users/michelkerkmeester/.profile	shell-profile	-	-	0 0
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.git/hooks	repo-hook-links	-	into-source-root	6
+/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com	repo-hooks-path	core.hooksPath	/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.git/hooks	1
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public	main-dirty-source-root	status --porcelain -- .opencode	-	0
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public	main-dirty-tracked	status --porcelain	-	0
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public	main-head	rev-parse HEAD	974d27e29b	1
+git	version	git-version-2.50.1-(Apple-Git-155)	-	1
+codex	version	codex-cli-0.154.0	-	1
+hermes	version	Hermes-Agent-v0.21.1-(2026.9.7)-·-upstream-dc90a75a Install-directory:-/Users/michelkerkmeester/.hermes/hermes-agent Install-method:-git Python:-3.11.13 OpenAI-SDK:-2.24.0 Update-available:-3169-commits-behind-—-run-'hermes-update'	-	1
+python3	version	Python-3.9.6	-	1
