@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Every git hook and CI workflow now matches changes under .skilled/ as well as .opencode/, and a gate script missing from this repository blocks or warns instead of passing, proven by an independent check, a broken-move drill and the hook test scripts in CI. Publishing and the pushed-tip CI read are pending."
+description: "Every git hook and CI workflow now matches changes under .skilled/ as well as .opencode/, and a gate script missing from this repository blocks or warns instead of passing, proven by an independent check, a broken-move drill and the hook test scripts in CI, and published with CI adding no failure to the recorded baseline."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -13,10 +13,9 @@ _memory:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness"
     last_updated_at: "2026-09-17T09:05:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Closed the Luna review loop and added the hook test scripts to CI"
-    next_safe_action: "Merge 0aa71350e4, publish, read CI on the pushed tip, then close"
-    blockers:
-      - "Publish and pushed-tip CI pending"
+    recent_action: "Published phase 005 and read CI on the pushed tip"
+    next_safe_action: "Start phase 006"
+    blockers: []
     key_files:
       - ".github/scripts/check-gate-inputs.sh"
       - ".github/scripts/tests/broken-move-drill.sh"
@@ -26,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "041-005-gate-and-ci-readiness"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +43,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-gate-and-ci-readiness |
-| **Completed** | Not yet: publishing and the pushed-tip CI runs are pending |
+| **Completed** | 2026-09-17, published to `skilled/v4.0.0.0` and `main` at `c22d1b63c9` |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -161,7 +160,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 | Comment hygiene, run directly | PASS: 0 violations. 12 files checked, 24 skipped by type and no id in the comments added to extensionless hooks |
 | Workflow syntax | PASS: 20 workflows and dependabot parse with `ruby -ryaml` |
 | No-op pre-commit timing | PASS: median 546 ms against a 559 ms baseline |
-| CI on a pushed tip | NOT RUN: nothing is pushed until the contract reviews complete |
+| CI on a pushed tip | PASS against the baseline: CI on `c22d1b63c9`, pushed to `skilled/v4.0.0.0` and `main` on 2026-09-17: all 23 runs completed. Gate Inputs, which now runs the hook test scripts, passed on both branches (runs `35203256650`, `35203313488`), and so did 16 other runs. The three red workflows match their last runs before this phase line for line: Routing Registry Drift Guard 11 of 11 failure lines against `96ee85d5b7`, Spec-Kit Check 7 of 7 against `1d198996ca`, and Playbook Operator Contract 57 of 57 against `728c4f3efc` |
 
 ### Contract reviews
 
@@ -180,7 +179,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The phase cannot close yet.** It closes once the tip is pushed and CI on it is read against the failure baseline recorded before this phase. The hook test scripts in `gate-inputs.yml` have only run on macOS, so that CI run is their first on Linux.
+1. **Publishing carried two more commits.** At the operator's request the push also carried another session's unpushed commit `0aa71350e4`, merged in `1f15bc2b46`, and that commit had changed an sk-doc routing input without re-minting the hub, so `c22d1b63c9` regenerates the sk-doc manifest and its authored copy. The main checkout's two locally rewritten 041 metadata files were restored before its fast-forward, with their diff saved outside the repository.
 2. **Adjacent defects, not fixed.** The card-sync and mutation-class triggers pipe `git diff` into `grep -q` under `pipefail`, so a trigger listed first can be missed on a commit that stages thousands of files. The comment hygiene checker skips files without an extension, so no git hook is ever scanned. The git-hooks README still describes a removed naming gate and a doc-model check that moved to CI. `agent-mirror-sync.yml` runs the checker without installing workspace packages, and in a checkout without them the checker cannot load its frontmatter parser, exits 1 and the step reports drift. No CI run has reached that path, because the workflow has run only on dependabot pull requests that change no agent.
 3. **The independent check reads text, so it has stated limits.** A root spelled in pieces, such as a regex that puts syntax between the dot and the name or a variable that holds the name, is beyond it, and the hook test scripts cover that behavior by staging `.skilled` paths through each gate. Two shapes fail loudly as false positives instead: a `case` pattern that lists both roots separated by `|`, and a quoted string that spans lines.
 4. **`ci-skill-root-metadata.cjs` needs installed workspace packages.** In a checkout without them it exits with "Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'", which pre-push reports as stale metadata and does not block.

@@ -9,12 +9,11 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness"
-    last_updated_at: "2026-09-17T09:05:00Z"
+    last_updated_at: "2026-09-17T09:30:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Closed the review loop on the gate-input check and added the hook test scripts to CI"
-    next_safe_action: "Merge 0aa71350e4, publish per phase 004 step 5, read CI, then close the phase"
-    blockers:
-      - "Publish and pushed-tip CI pending"
+    recent_action: "Published phase 005 at c22d1b63c9 and read CI on the pushed tip"
+    next_safe_action: "Validate, then start phase 006"
+    blockers: []
     key_files:
       - "plan.md"
       - "tasks.md"
@@ -23,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "041-005-goal"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -65,7 +64,7 @@ A change here that alters a parent decision or criterion is applied to the paren
 - [x] The six hook test scripts pass above their 126-case baseline with no case removed, and every new test script passes
 - [x] Every workflow `paths:` entry naming `.opencode/` has a `.skilled/` twin, and no workflow exits 0 on a missing guard
 - [x] Every contract change has a GPT-5.6 Luna xhigh review with no open finding, apart from the final check fixes the operator exempted
-- [ ] The phase validates PASSED
+- [x] The phase validates PASSED
 <!-- /ANCHOR:completion -->
 
 ---
@@ -121,7 +120,10 @@ Everything below is VOLATILE.
 | Second operator decision on the review loop, 2026-09-17 | "Fix six, add tests to CI now" | Offered because five rounds had found 4, 8, 5, 4 and 6 shapes and no workflow ran the hook test scripts. The alternatives were a sixth review, publishing with the six open, or fixing and publishing with the scripts added to CI later. REQ-009 and D3 record the exception |
 | T059 and T060, the fifth round and the CI step | Committed `a55d308ba4`, `26b2360c80`, `9bc50c4ce8` | Six DeepSeek units, each matched to its expected state. The six new cases failed against `2f9d3bcdd2`, the suite passes 42 of 42, and the tree passes with 132 inputs resolved, 8 dynamic and 167 twin pairs. `gate-inputs.yml` now runs the six hook test scripts and the SessionStart check's test script, which pass locally and have never run on Linux |
 | Suites, drill and guards from `9bc50c4ce8` | Observed under `/bin/bash` 3.2.57 | The six hook harnesses pass 175, `check-git-hooks.test.sh` 4 and `check-gate-inputs.test.sh` 42. The drill passes 48 of 48 in 65 s, the naming guard prints `PASS:` since `7085ec3290`, and the 20 workflows and dependabot parse |
-| T042 publish | Next | The operator asked on 2026-09-17 to publish the other session's unpushed commit `0aa71350e4` with this phase. It changes only `sk-create-manual-testing-playbook/SKILL.md`, so it is merged into the worktree branch, which keeps its id and the ids these records cite. Both remote branches still point at `728c4f3efc` |
+| T042 publish | Done 2026-09-17 | At the operator's request `0aa71350e4` was merged into the worktree branch in `1f15bc2b46`. It had changed an sk-doc routing input without re-minting, so the compiled-route guard reported sk-doc stale, and `c22d1b63c9` regenerates the manifest and its authored copy, after which every hub is fresh. `c22d1b63c9` was pushed to `skilled/v4.0.0.0` and `main`, both from `728c4f3efc`. The push hook's skill-root metadata warning came from the checker failing to load `@spec-kit/shared` in the worktree, and with that workspace link in place the checker passes 13 of 13. Rollback: revert the pushed range on both branches and push |
+| Main checkout fast-forward | Done 2026-09-17 | Its only overlap with the incoming range was this packet's two locally rewritten 041 metadata files, restored after their diff was saved outside the repository. It now sits at `c22d1b63c9` with its 45 other dirty files untouched, and its live `pre-commit` names `skilled` 16 times, so the global hooks run this phase's hooks machine-wide |
+| CI on `c22d1b63c9` | Read 2026-09-17 | All 23 runs completed. Gate Inputs passed on both branches, which is the hook test scripts' first Linux run, and 16 other runs passed. Routing Registry Drift Guard, Spec-Kit Check and Playbook Operator Contract failed with failure lines identical to their last runs before this phase (11 of 11, 7 of 7 and 57 of 57), so the tip adds no failure to the baseline |
+| Workspace links in the worktree | Created 2026-09-17 | `.opencode/skills/system-deep-loop/node_modules/@spec-kit/shared` and `.opencode/skills/sk-doc/node_modules/@spec-kit/shared`, both pointing at `../../../system-spec-kit/shared` as `npm install` makes them, under the ignored `node_modules`. Rollback: remove those two `node_modules` directories |
 ### Deviations and findings
 
 | Item | Note |

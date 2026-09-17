@@ -11,12 +11,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness"
-    last_updated_at: "2026-09-17T00:30:00Z"
+    last_updated_at: "2026-09-17T09:30:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Marked ten criteria Met with observed evidence"
-    next_safe_action: "Meet AC-006 and AC-009 once the contract reviews run and the tip is pushed"
-    blockers:
-      - "GPT-5.6 Luna contract reviews pending"
+    recent_action: "Marked all thirteen criteria Met, AC-006 on CI for the pushed tip"
+    next_safe_action: "None, the phase is closeable"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -25,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "041-005-acceptance"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +44,7 @@ _memory:
 
 **Packet:** system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-16
 <!-- /ANCHOR:metadata -->
 
@@ -65,7 +64,7 @@ Every command runs from the worktree root unless it names another directory.
 | AC-003 | REQ-003 | Given a gate script missing under both roots, When its hook runs in a repository with the spec-kit sentinel, Then a blocking gate exits 1 with `BLOCKED [gate:<name>]` and the path, and a gate that cannot block prints `WARNING [gate:<name>]` with its exit status unchanged. When the same hook runs in a repository without the sentinel, Then it exits 0 with no output | The missing-script and foreign-repository cases pass in `pre-commit.test.sh`, `pre-push.test.sh`, `prepare-commit-msg.test.sh`, `autostash-orphan-guard.test.sh` and `.opencode/bin/tests/check-git-hooks.test.sh` Observed: every missing-script and other-repository case passes in all five harnesses, under `/bin/bash` 3.2.57. | Met | - |
 | AC-004 | REQ-004 | Given the workflows and the dependabot config, When their `.opencode/` filter entries are compared with their `.skilled/` twins, Then there are 56 twins in workflows and 1 in dependabot, and the agent name filter admits `skilled` | `grep -hcE "^[[:space:]]+- '\.skilled/" .github/workflows/*.yml` sums to 56 and `grep -c '/\.skilled/\*\*' .github/dependabot.yml` prints 1. `grep -n 'skilled' .github/workflows/agent-mirror-sync.yml` shows the filter line, and the check reports no `filter-twins` failure Observed: the grep sums to 56, dependabot prints 1, line 29 admits `skilled`, and the check reports no `filter-twins` failure. | Met | - |
 | AC-005 | REQ-005 | Given the six missing-guard conditionals, When their guard file is absent, Then each step fails with `::error::` and exit 1 | `grep -c 'exit 0'` shows none left in those six guard blocks, and each block prints `::error::` then `exit 1` (checked by reading the six diffs) Observed: each of the six guard steps, run in a directory without its guard, exited 0 before the change and exits 1 with `::error::` after it. | Met | - |
-| AC-006 | REQ-006 | Given the phase tip, When the independent check runs locally and in CI, Then it prints `RESULT: PASSED` with nonzero counts, its fixture test passes and it lives outside `.opencode/` and `.skilled/` | `bash .github/scripts/check-gate-inputs.sh; echo "exit=$?"` prints `RESULT: PASSED` and `exit=0`, and `bash .github/scripts/tests/check-gate-inputs.test.sh` passes. `grep -n 'paths:' .github/workflows/gate-inputs.yml` prints nothing, and `gh run list --workflow gate-inputs.yml` shows `success` on the pushed tip Local half observed on 2026-09-17 from `9bc50c4ce8`, after five rounds of review fixes: `RESULT: PASSED` with 132 inputs resolved, 8 dynamic, 167 twin pairs and every root-naming command segment read, `exit=0`, the fixture test 42 of 42 and no `paths:` key. The workflow now also runs the hook test scripts, which pass locally. The CI run waits for a pushed tip, which waits for the contract reviews. | Unmet | - |
+| AC-006 | REQ-006 | Given the phase tip, When the independent check runs locally and in CI, Then it prints `RESULT: PASSED` with nonzero counts, its fixture test passes and it lives outside `.opencode/` and `.skilled/` | `bash .github/scripts/check-gate-inputs.sh; echo "exit=$?"` prints `RESULT: PASSED` and `exit=0`, and `bash .github/scripts/tests/check-gate-inputs.test.sh` passes. `grep -n 'paths:' .github/workflows/gate-inputs.yml` prints nothing, and `gh run list --workflow gate-inputs.yml` shows `success` on the pushed tip Local half observed on 2026-09-17 from `9bc50c4ce8`, after five rounds of review fixes: `RESULT: PASSED` with 132 inputs resolved, 8 dynamic, 167 twin pairs and every root-naming command segment read, `exit=0`, the fixture test 42 of 42 and no `paths:` key. CI on `c22d1b63c9`, pushed to `skilled/v4.0.0.0` and `main` on 2026-09-17: all 23 runs completed. Gate Inputs, which now runs the hook test scripts, passed on both branches (runs `35203256650`, `35203313488`), and so did 16 other runs. The three red workflows match their last runs before this phase line for line: Routing Registry Drift Guard 11 of 11 failure lines against `96ee85d5b7`, Spec-Kit Check 7 of 7 against `1d198996ca`, and Playbook Operator Contract 57 of 57 against `728c4f3efc`. | Met | - |
 | AC-007 | REQ-007 | Given the drill's moved clone, When each gate input is deleted in turn, Then the check exits 1 naming it and its hook blocks or warns, while the same break under the pre-change hooks exits 0 with no gate output | `bash .github/scripts/tests/broken-move-drill.sh; echo "exit=$?"` prints a PASS line per break, the pre-change and foreign control lines, `RESULT: PASSED` and `exit=0` Observed: 48 expectations, `RESULT: PASSED`, `exit=0` in 49 s. | Met | - |
 | AC-008 | REQ-008 | Given the 126-case baseline at `728c4f3efc`, When every hook test script runs from the final state, Then each passes at or above its baseline count and every new case was seen failing first | Summaries read at or above `pre-commit` 25, `pre-push` 19, `prepare-commit-msg` 51, `commit-msg` 17, `autostash-orphan-guard` 2 and `mass-deletion-guard` 12, each with 0 failed. `check-git-hooks.test.sh` and `check-gate-inputs.test.sh` pass, and `goal.md` names the negative-control run Observed from the tip: 9, 17, 12, 49, 32 and 56 passing, 175 in all with none removed, plus `check-git-hooks.test.sh` 4 of 4. `goal.md` names each unit's negative control. | Met | - |
 | AC-009 | REQ-009 | Given each contract change named in plan §DELEGATION, When GPT-5.6 Luna reviews it at xhigh through cli-codex, Then every finding is fixed or answered before its commit | The review table in `implementation-summary.md` lists unit, finding count and disposition for each contract unit, backed by the returns kept in `scratch/delegation/` Observed on 2026-09-17: GPT-5.6 Luna reviewed the hook rules (2 findings, one fixed and one answered), the CI changes and the check's fixes in five rounds (4, 8, 5, 4 and 6 findings, each confirmed and fixed except one answered as beyond a text check), the naming guard (none) and the agent mirror checker (1, answered). The fifth round's fixes and the CI step for the hook test scripts were verified by failing-first cases without a further review, under the exception the operator set in REQ-009. Every verdict is in `scratch/delegation/`. | Met | - |
@@ -97,7 +96,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Ten of the twelve criteria are met on local evidence. AC-006 needs CI runs on a pushed tip and AC-009 needs the GPT-5.6 Luna contract reviews, and nothing is pushed until those reviews complete. Codex's usage limit lifts on 2026-09-19 at 10:29.
+All thirteen criteria are met. AC-006 closed on CI for the pushed tip `c22d1b63c9`, and AC-009 closed on seven GPT-5.6 Luna reviews, with the final round of check fixes verified by failing-first cases under the exception the operator set in REQ-009.
 <!-- /ANCHOR:closure -->

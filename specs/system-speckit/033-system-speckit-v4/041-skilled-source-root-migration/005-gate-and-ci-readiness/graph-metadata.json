@@ -39,7 +39,7 @@
       "broken"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -184,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repository's gates look for their own scripts at one literal root, `$REPOROOT/.opencode/`, and most of them read a missing script as a reason to skip",
     "created_at": "2026-09-16T17:54:07Z",
-    "last_save_at": "2026-09-17T09:03:59.947Z",
+    "last_save_at": "2026-09-17T09:16:05.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc4926a198ea8e94dd5a223232876911c9769e201ec069dc48013aa71514d63c",
+    "source_fingerprint": "sha256:452da12914668dfd3328488a8eff720b7b43a65d9ae90efbcb3fc0f5bfbe50ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a8c6a54540f7fd8e451f2cf0af8b050eb9a498741632ab02130a2d2d5b5c6533",
+      "spec.md": "5ec584eb9a48d81a8041f8ec35bff170b9bcc281b9b1b5051381c7c67e3b8546",
       "plan.md": "9e684cb4a207342fbf749732f6d1461f8f2a92960f70909603d7077365949af8",
-      "tasks.md": "066f684a5b3f07398983fc5b911afba28e99700482e3465fa87113f72abcaa97",
-      "implementation-summary.md": "599bb85c33ced1abb35c5d908e87ac0b4c9d3d9ae651e6618c4644405ebae27b"
+      "tasks.md": "cfbdf8d0f218ad2965d997c98f5262f23da4b290c8dfa8e2ca680d8d24799644",
+      "implementation-summary.md": "d666a096ffb6cfd54786aa83eebcc52b6fb468908e7840235825db406371ebaa"
     },
     "last_active_at": null
   }
