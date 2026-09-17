@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape",
+  "description": "A session bound to a phase parent edited a criterion and resent the parent `goal.md` in chat",
+  "keywords": [
+    "session",
+    "bound",
+    "phase",
+    "parent",
+    "edited",
+    "criterion",
+    "resent",
+    "goal",
+    "chat"
+  ],
+  "lastUpdated": "2026-09-16T19:05:43.257Z",
+  "specId": "013",
+  "folderSlug": "goal-chat-send-shape",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "038-goal-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

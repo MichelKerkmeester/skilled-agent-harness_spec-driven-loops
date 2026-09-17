@@ -3,10 +3,10 @@
     "duplicate-phrase": 54,
     "missing-frontmatter": 7152,
     "non-yaml-frontmatter": 1,
-    "ok": 15279,
+    "ok": 15285,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27275,
+  "documentsScanned": 27281,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "d14037d08acb589b4ed6c31299c8686178f540914e27ae6846808913e67adeaa",
+  "manifestHash": "b0d6626afeab3f2b594a8098e38cfccd99ae000907ce090ef074bef47debf4e9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 36366,
+      "ok": 36368,
       "prose-sentence": 27,
       "single-token": 306,
       "stop-word-only": 3
@@ -81886,6 +81886,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/scratch",
       "reason": "excluded directory"
     },
     {

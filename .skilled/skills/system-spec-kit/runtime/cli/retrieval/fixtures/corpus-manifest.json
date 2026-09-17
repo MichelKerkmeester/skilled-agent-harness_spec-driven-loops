@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9397e7678a5a79dd999a72c2de15770559f260ec56e1736093ef15ccdf175aaf",
+  "corpusHash": "a804c83be32577b3b3a4c72d3eca3837f11fd7dda94147366e447fa9a38a0ee1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27275,
+  "includedPathCount": 27281,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -27198,6 +27198,12 @@
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/research/research.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/spec.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/before-after.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/spec.md",
@@ -27297,7 +27303,7 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d14037d08acb589b4ed6c31299c8686178f540914e27ae6846808913e67adeaa",
+  "manifestHash": "b0d6626afeab3f2b594a8098e38cfccd99ae000907ce090ef074bef47debf4e9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32333,6 +32339,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/scratch",
       "reason": "excluded directory"
     },
     {
