@@ -1,0 +1,347 @@
+{
+ "candidates": 4128,
+ "routed": 61,
+ "manual": 41,
+ "generated": 91,
+ "noop": 132,
+ "freeze": 968,
+ "batched_files": 2835,
+ "judged_files": 35,
+ "specs_target": "keep",
+ "batched_occurrences": {
+  "K": 56,
+  "R1": 14406,
+  "R2": 538,
+  "R3": 1236,
+  "X": 54
+ },
+ "groups": {
+  "agents": {
+   "files": 26,
+   "occurrences": {
+    "R1": 318,
+    "R3": 8
+   }
+  },
+  "code-bin": {
+   "files": 16,
+   "occurrences": {
+    "R1": 30,
+    "R3": 4,
+    "X": 1
+   }
+  },
+  "code-commands": {
+   "files": 76,
+   "occurrences": {
+    "R1": 1478,
+    "R2": 29,
+    "R3": 52,
+    "X": 2
+   }
+  },
+  "code-hooks": {
+   "files": 30,
+   "occurrences": {
+    "R1": 58,
+    "R3": 3
+   }
+  },
+  "code-plugins": {
+   "files": 21,
+   "occurrences": {
+    "R1": 75,
+    "R3": 5,
+    "X": 6
+   }
+  },
+  "code-root": {
+   "files": 2,
+   "occurrences": {
+    "R1": 3
+   }
+  },
+  "code-scripts": {
+   "files": 3,
+   "occurrences": {
+    "R1": 14,
+    "R3": 3
+   }
+  },
+  "code-skills-cli-external-orchestration": {
+   "files": 2,
+   "occurrences": {
+    "R1": 9,
+    "R2": 2,
+    "R3": 6
+   }
+  },
+  "code-skills-mcp-code-mode": {
+   "files": 3,
+   "occurrences": {
+    "R1": 10
+   }
+  },
+  "code-skills-mcp-tooling": {
+   "files": 7,
+   "occurrences": {
+    "R1": 10
+   }
+  },
+  "code-skills-sk-code": {
+   "files": 13,
+   "occurrences": {
+    "R1": 25,
+    "R3": 6,
+    "X": 2
+   }
+  },
+  "code-skills-sk-communication": {
+   "files": 1,
+   "occurrences": {
+    "R1": 3
+   }
+  },
+  "code-skills-sk-design": {
+   "files": 5,
+   "occurrences": {
+    "R1": 15,
+    "R2": 12
+   }
+  },
+  "code-skills-sk-doc": {
+   "files": 53,
+   "occurrences": {
+    "R1": 1041,
+    "R2": 6,
+    "R3": 28
+   }
+  },
+  "code-skills-sk-git": {
+   "files": 5,
+   "occurrences": {
+    "R1": 10
+   }
+  },
+  "code-skills-sk-vision": {
+   "files": 2,
+   "occurrences": {
+    "R1": 6
+   }
+  },
+  "code-skills-system-deep-loop": {
+   "files": 95,
+   "occurrences": {
+    "R1": 345,
+    "R2": 14,
+    "R3": 29
+   }
+  },
+  "code-skills-system-skill-advisor": {
+   "files": 127,
+   "occurrences": {
+    "R1": 329,
+    "R2": 2,
+    "R3": 30
+   }
+  },
+  "code-skills-system-spec-kit": {
+   "files": 163,
+   "occurrences": {
+    "R1": 435,
+    "R2": 165,
+    "R3": 99
+   }
+  },
+  "docs-bin": {
+   "files": 2,
+   "occurrences": {
+    "R1": 32,
+    "R2": 1,
+    "R3": 4
+   }
+  },
+  "docs-commands": {
+   "files": 66,
+   "occurrences": {
+    "R1": 468,
+    "R2": 16,
+    "R3": 11
+   }
+  },
+  "docs-hooks": {
+   "files": 19,
+   "occurrences": {
+    "R1": 167,
+    "R3": 65
+   }
+  },
+  "docs-install-guides": {
+   "files": 2,
+   "occurrences": {
+    "R1": 79,
+    "R3": 5,
+    "X": 7
+   }
+  },
+  "docs-logs": {
+   "files": 1,
+   "occurrences": {
+    "R1": 5,
+    "R3": 2
+   }
+  },
+  "docs-plugins": {
+   "files": 3,
+   "occurrences": {
+    "K": 2,
+    "R1": 11,
+    "R3": 1
+   }
+  },
+  "docs-root": {
+   "files": 2,
+   "occurrences": {
+    "R1": 55,
+    "R3": 15
+   }
+  },
+  "docs-scripts": {
+   "files": 1,
+   "occurrences": {
+    "R1": 8
+   }
+  },
+  "docs-skills": {
+   "files": 1,
+   "occurrences": {
+    "R1": 9
+   }
+  },
+  "docs-skills-.state": {
+   "files": 2,
+   "occurrences": {
+    "R1": 5,
+    "R3": 1
+   }
+  },
+  "docs-skills-cli-external-orchestration": {
+   "files": 278,
+   "occurrences": {
+    "K": 3,
+    "R1": 777,
+    "R2": 10,
+    "R3": 100,
+    "X": 32
+   }
+  },
+  "docs-skills-mcp-code-mode": {
+   "files": 30,
+   "occurrences": {
+    "R1": 65,
+    "R3": 5
+   }
+  },
+  "docs-skills-mcp-tooling": {
+   "files": 145,
+   "occurrences": {
+    "R1": 391
+   }
+  },
+  "docs-skills-sk-code": {
+   "files": 200,
+   "occurrences": {
+    "R1": 904,
+    "R2": 5,
+    "R3": 155
+   }
+  },
+  "docs-skills-sk-communication": {
+   "files": 29,
+   "occurrences": {
+    "R1": 168,
+    "R3": 4
+   }
+  },
+  "docs-skills-sk-design": {
+   "files": 69,
+   "occurrences": {
+    "R1": 269,
+    "R2": 39
+   }
+  },
+  "docs-skills-sk-doc": {
+   "files": 182,
+   "occurrences": {
+    "R1": 886,
+    "R2": 4,
+    "R3": 43
+   }
+  },
+  "docs-skills-sk-git": {
+   "files": 43,
+   "occurrences": {
+    "R1": 183,
+    "R3": 10
+   }
+  },
+  "docs-skills-sk-prompt": {
+   "files": 32,
+   "occurrences": {
+    "R1": 53,
+    "R3": 1
+   }
+  },
+  "docs-skills-sk-vision": {
+   "files": 32,
+   "occurrences": {
+    "R1": 69,
+    "R3": 19
+   }
+  },
+  "docs-skills-system-deep-loop": {
+   "files": 538,
+   "occurrences": {
+    "R1": 2636,
+    "R2": 36,
+    "R3": 88
+   }
+  },
+  "docs-skills-system-skill-advisor": {
+   "files": 158,
+   "occurrences": {
+    "R1": 867,
+    "R2": 1,
+    "R3": 71,
+    "X": 2
+   }
+  },
+  "docs-skills-system-spec-kit": {
+   "files": 294,
+   "occurrences": {
+    "R1": 1666,
+    "R2": 145,
+    "R3": 145,
+    "X": 2
+   }
+  },
+  "dual-root": {
+   "files": 35,
+   "occurrences": {
+    "K": 48,
+    "R1": 255,
+    "R2": 50,
+    "R3": 186
+   }
+  },
+  "runtime-files": {
+   "files": 21,
+   "occurrences": {
+    "K": 3,
+    "R1": 164,
+    "R2": 1,
+    "R3": 32
+   }
+  }
+ }
+}

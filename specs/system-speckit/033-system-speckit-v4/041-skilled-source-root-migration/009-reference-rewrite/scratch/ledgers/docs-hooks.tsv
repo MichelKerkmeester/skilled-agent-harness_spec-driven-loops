@@ -1,0 +1,18 @@
+.skilled/hooks/README.md	147	501	18dee4c5e1da8e73	opencode-view: loader scans its fixed .opencode/plugins folder by flat glob
+.skilled/hooks/README.md	147	970	18dee4c5e1da8e73	opencode-view: verified that the loader globs only .opencode/plugins
+.skilled/hooks/README.md	153	43	08acc4e208e2bb04	opencode-view: plugins stay in the runtime's own plugin folder
+.skilled/hooks/codex-watchdog/README.md	51	74	8d6e66e9aaa525e4	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/completion/README.md	74	75	44a0e5d1f53093f2	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/directive-lifecycle/README.md	45	458	33769dd611491925	dual-root-needed: ancestor walk knows only .opencode; orchestrator adds .skilled
+.skilled/hooks/directive-lifecycle/README.md	83	158	ae6c04966d9a5788	dual-root-needed: ancestor walk knows only .opencode; orchestrator adds .skilled
+.skilled/hooks/dispatch/README.md	73	254	3d194e1554fa4108	compat-link: root discovery still catches a stray nested .opencode tree
+.skilled/hooks/dispatch/README.md	77	125	7ba4cc971bfb98d4	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/dispatch/README.md	95	102	198aeead6113c889	opencode-view: real plugin file loaded from .opencode/plugins
+.skilled/hooks/dist-freshness/README.md	71	74	83972760b771497f	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/goal/README.md	86	74	857adae0cc171122	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/mcp-route-guard/README.md	57	102	1cc4a9bf2fac1111	opencode-view: loader globs its own .opencode/plugins folder
+.skilled/hooks/mcp-route-guard/README.md	61	125	7c2b87bbe81463c1	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/post-edit-quality/README.md	75	125	64c55bcc8dcbbcb5	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/post-edit-quality/README.md	90	109	04fd83e1c96ee6b6	opencode-view: real plugin file loaded from .opencode/plugins
+.skilled/hooks/task-dispatch/README.md	68	74	423211013c9840bb	opencode-view: loader globs .opencode/plugins by a flat pattern
+.skilled/hooks/task-dispatch/README.md	83	106	703a57ff2371a47c	opencode-view: real file loaded from .opencode/plugins

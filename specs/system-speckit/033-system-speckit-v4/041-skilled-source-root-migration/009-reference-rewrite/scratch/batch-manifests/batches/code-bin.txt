@@ -1,0 +1,16 @@
+.skilled/bin/compiled-route-guard.cjs
+.skilled/bin/compiled-route-status.cjs
+.skilled/bin/git-live-follow.sh
+.skilled/bin/git-primary-reconcile.sh
+.skilled/bin/git-sync.sh
+.skilled/bin/hf-model-server.cjs
+.skilled/bin/lib/compiled-route-manifest.cjs
+.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs
+.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/harness/build-artifacts.cjs
+.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/harness/build-artifacts.cjs
+.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/harness/build-artifacts.cjs
+.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/harness/build-artifacts.cjs
+.skilled/bin/lib/launcher-ipc-bridge.cjs
+.skilled/bin/lib/model-server-supervision.cjs
+.skilled/bin/system-skill-advisor-launcher.cjs
+.skilled/bin/worktree-guard.sh

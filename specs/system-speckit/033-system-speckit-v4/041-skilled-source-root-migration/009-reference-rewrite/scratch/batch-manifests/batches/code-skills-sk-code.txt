@@ -1,0 +1,13 @@
+.skilled/skills/sk-code/mode-registry.json
+.skilled/skills/sk-code/sk-code-mobile-cli/scripts/run-source-gates.sh
+.skilled/skills/sk-code/sk-code-obsidian/scripts/run-source-gates.sh
+.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py
+.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py
+.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh
+.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
+.skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh
+.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
+.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh
+.skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs
+.skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs
+.skilled/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs

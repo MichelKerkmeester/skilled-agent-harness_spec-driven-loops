@@ -1,0 +1,5 @@
+.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md	221	9	c103ea95e132dbdf	rewrite	config dir inside the tree; no such entry under .skilled
+.skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md	28	28	f7a199f26c0c3b13	rewrite	adapter file path; the plugin sits under .skilled/plugins
+.skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md	113	98	9a322b74a484ce8b	rewrite	test directory path; now .skilled/plugins/tests
+.skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md	113	857	9a322b74a484ce8b	rewrite	source-read pointer names the tree; now .skilled/plugins
+.skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md	232	28	d3fbfe69ac146c98	rewrite	source-files listing names the tree; now .skilled/plugins

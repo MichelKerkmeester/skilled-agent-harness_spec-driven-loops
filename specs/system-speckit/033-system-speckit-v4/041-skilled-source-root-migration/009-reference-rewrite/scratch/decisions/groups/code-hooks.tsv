@@ -1,0 +1,3 @@
+.skilled/hooks/goal/lib/goal-core.cjs	154	4	68300d68d8af994e	keep	compat-link: comment names the root-discovery marker's .opencode tree
+.skilled/hooks/vitest.config.ts	10	44	5a79a36d7cc7d5c3	rewrite	alias base builds a tree path; real root is .skilled
+.skilled/hooks/vitest.config.ts	19	26	80dcaf6b69f76f41	keep	dual-root-needed: alias must also catch imports rewritten to .skilled

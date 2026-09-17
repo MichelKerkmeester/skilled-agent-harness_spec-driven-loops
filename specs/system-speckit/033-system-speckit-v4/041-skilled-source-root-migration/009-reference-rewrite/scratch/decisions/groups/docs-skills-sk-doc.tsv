@@ -1,0 +1,43 @@
+.skilled/skills/sk-doc/README.md	180	42	4c355a517a6c0d05	rewrite	new-skill location names the tree; real path .skilled/skills
+.skilled/skills/sk-doc/README.md	180	166	4c355a517a6c0d05	rewrite	new-agent location names the tree; real path .skilled/agents
+.skilled/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-opencode.md	100	58	d932dc176ed759e5	keep	opencode-view: states the path opencode resolves the executor agent from
+.skilled/skills/sk-doc/sk-create-agent/README.md	41	49	ceb3574c8a75837b	rewrite	scaffolded agent files; the source tree is .skilled/agents
+.skilled/skills/sk-doc/sk-create-agent/SKILL.md	72	89	d5c3c0e8978efe5f	rewrite	router keyword should match the rewritten .skilled/agents target
+.skilled/skills/sk-doc/sk-create-agent/SKILL.md	157	14	451eff0c47ade112	keep	opencode-view: names the OpenCode runtime's agent directory
+.skilled/skills/sk-doc/sk-create-agent/SKILL.md	159	38	0c17e435bbee5a89	keep	opencode-view: names each runtime profile's own agent directory
+.skilled/skills/sk-doc/sk-create-agent/SKILL.md	176	3	2bdbd1f86e654395	keep	opencode-view: states what OpenCode enforces for its agents directory
+.skilled/skills/sk-doc/sk-create-agent/SKILL.md	186	13	cccc700b27642e24	keep	opencode-view: labels the OpenCode agent schema by its runtime dir
+.skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/component-choice/named-runtime-persona.md	45	490	87d5149a09c93523	rewrite	validator script path names the repo script; now .skilled/skills
+.skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/component-choice/named-runtime-persona.md	45	558	87d5149a09c93523	rewrite	fixture path must match the rewritten .skilled/agents fixtures
+.skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/component-choice/named-runtime-persona.md	45	662	87d5149a09c93523	rewrite	expected signal must match the rewritten .skilled/agents fixture
+.skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md	49	66	40e8436f5240f0d7	keep	opencode-view: states the agent directory OpenCode uses
+.skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/runtime-contract/claude-tools-allow-list.md	45	478	7d67f40ba5fa72e7	rewrite	validator script path names the repo script; now .skilled/skills
+.skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/runtime-contract/opencode-permission-object.md	45	310	aac814b68813c603	rewrite	fixture draft dir must match the rewritten .skilled/agents fixtures
+.skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/runtime-contract/opencode-permission-object.md	45	448	aac814b68813c603	rewrite	validator script path names the repo script; now .skilled/skills
+.skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/runtime-contract/opencode-permission-object.md	45	508	aac814b68813c603	rewrite	fixture path argument must match the rewritten .skilled/agents fixture
+.skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/runtime-contract/opencode-permission-object.md	45	628	aac814b68813c603	rewrite	signal must match the rewritten .skilled/agents fixture directory
+.skilled/skills/sk-doc/sk-create-command/README.md	20	79	984fe9cf4d415430	rewrite	command dir names the tree; sibling paths use .skilled/commands
+.skilled/skills/sk-doc/sk-create-command/SKILL.md	12	141	229fcaba2c2ff96a	rewrite	command dir names the tree; sibling examples use .skilled/commands
+.skilled/skills/sk-doc/sk-create-command/assets/command-template.md	54	35	f38206b17182fbe9	keep	opencode-view: states where OpenCode finds a command file
+.skilled/skills/sk-doc/sk-create-command/assets/command-template.md	68	0	a39027c326b8120d	rewrite	command file location tree; the real root is .skilled
+.skilled/skills/sk-doc/sk-create-readme/scripts/README.md	12	167	2225c36e8ae20bb5	rewrite	scanner walks the real tree; audit roots rewrite to .skilled
+.skilled/skills/sk-doc/sk-create-skill/README.md	3	167	f05d08875b53cf4a	rewrite	skill location names the tree; real path .skilled/skills
+.skilled/skills/sk-doc/sk-create-skill/README.md	20	80	3029f9a821102382	rewrite	skill location names the tree; real path .skilled/skills
+.skilled/skills/sk-doc/sk-create-skill/SKILL.md	21	50	b7989fc4ca37d31f	rewrite	activation trigger location; the real tree is .skilled/skills
+.skilled/skills/sk-doc/sk-create-skill/SKILL.md	77	138	81cc57694d299e9a	rewrite	canonical tree is the real source tree; now .skilled
+.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-sync-manifest-template.md	3	129	16f5eda4ffc29f9c	rewrite	derivation source is the real tree; now .skilled
+.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-sync-manifest-template.md	16	152	3fb888cfdfc95cb5	rewrite	derivation source is the real tree; now .skilled
+.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-sync-manifest-template.md	45	45	24a221a1060fe0de	rewrite	derivation source is the real tree; now .skilled
+.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-sync-manifest-template.md	50	64	1b06a44399ff9d57	rewrite	derivation source is the real tree; now .skilled
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md	149	71	2495317964249adf	rewrite	scenario prompt names the tree; skills root is .skilled
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/scaffold-a-standalone-skill.md	28	89	7986a091d6642ba6	rewrite	prompt names the tree's skills output dir; real root .skilled
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/scaffold-a-standalone-skill.md	29	73	6b99e65675653b49	rewrite	prompt names the tree's skills output dir; real root .skilled
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/scaffold-a-standalone-skill.md	41	73	6b99e65675653b49	rewrite	prompt names the tree's skills output dir; real root .skilled
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/scaffold-a-standalone-skill.md	45	194	ddfebacb6a30e5c9	rewrite	prompt names the tree's skills output dir; real root .skilled
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/scaffold-a-standalone-skill.md	45	348	ddfebacb6a30e5c9	rewrite	sk-doc script path into the tree; real root .skilled
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/scaffold-a-standalone-skill.md	45	432	ddfebacb6a30e5c9	rewrite	skill output dir inside the tree; real root .skilled
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/scaffold-a-standalone-skill.md	45	559	ddfebacb6a30e5c9	rewrite	sk-doc script path into the tree; real root .skilled
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/scaffold-a-standalone-skill.md	45	624	ddfebacb6a30e5c9	rewrite	skill output dir inside the tree; real root .skilled
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/scaffold-a-standalone-skill.md	45	695	ddfebacb6a30e5c9	rewrite	sk-doc script path into the tree; real root .skilled
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/standalone-skill/scaffold-a-standalone-skill.md	45	760	ddfebacb6a30e5c9	rewrite	skill output dir inside the tree; real root .skilled
+.skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md	137	48	3ffdcd07fb37b375	rewrite	legacy singular .opencode/skill entry; real tree is .skilled

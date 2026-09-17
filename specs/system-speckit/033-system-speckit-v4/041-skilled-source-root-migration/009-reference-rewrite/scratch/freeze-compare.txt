@@ -1,0 +1,10 @@
+freeze baseline paths: 2674
+freeze paths now: 2678
+changed: 0
+removed: 0
+added: 4
+  added by the F4 decision: .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/daemon-off-proof.json
+  added by the F4 decision: .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/latency-report.json
+  added by the F4 decision: .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/recipe-execution.json
+  added by the F4 decision: .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json
+freeze paths with working-tree changes: 0

@@ -1,0 +1,11 @@
+.skilled/commands/deep/assets/deep-agent-improvement-presentation.txt	467	65	9baedcf8bc4ecebd	keep	opencode-view: runtime-directory list keeps the opencode directory name
+.skilled/commands/deep/assets/deep-ai-council-presentation.txt	41	200	3d6c89a480a78600	rewrite	script path into tree; sibling skill paths rewrite to .skilled
+.skilled/commands/deep/assets/deep-ai-council-presentation.txt	121	185	c4c5d4c9076a4103	rewrite	search scope in recipe; rewrites to specs .skilled per plan
+.skilled/commands/deep/assets/deep-research-presentation.txt	134	181	00ddbab6962dbb6d	rewrite	search scope in recipe; rewrites to specs .skilled per plan
+.skilled/commands/deep/assets/deep-review-presentation.txt	160	180	04b09287726b0e08	rewrite	search scope in recipe; rewrites to specs .skilled per plan
+.skilled/commands/doctor/assets/doctor-speckit-presentation.txt	104	155	f9d21f7f0566534e	rewrite	runtime mirrors derive from the tree; real root is .skilled
+.skilled/commands/rewrite/response-by-external-agent.md	149	304	f8534d18dbcc6697	rewrite	skill doc path; sibling fenced script path rewrites to .skilled
+.skilled/commands/speckit/save.md	61	323	f1d3dbcbe972445f	rewrite	runnable goal CLI path; hooks tree rewrites to .skilled
+.skilled/commands/speckit/save.md	61	570	f1d3dbcbe972445f	rewrite	runnable goal CLI path; hooks tree rewrites to .skilled
+.skilled/commands/speckit/search.md	101	21	7ff2a06178fdb857	rewrite	search scope in recipe; rewrites to specs .skilled per plan
+.skilled/commands/speckit/search.md	104	81	b6cd4df4a74c050a	rewrite	search scope in recipe; rewrites to specs .skilled per plan

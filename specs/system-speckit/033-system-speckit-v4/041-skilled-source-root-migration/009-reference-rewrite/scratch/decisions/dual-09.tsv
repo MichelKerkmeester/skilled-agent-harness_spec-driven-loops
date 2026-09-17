@@ -1,0 +1,25 @@
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	10	4	41ecbd9712c9dbf8	keep	legacy-layout: names both root layouts a checkout can hold
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	11	4	de1ed41b957f698e	keep	compat-link: about the .opencode link to .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	46	50	dbfca3d1e2578763	keep	legacy-layout: fixture builds a real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	46	88	dbfca3d1e2578763	keep	legacy-layout: fixture entry names real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	57	69	e3054c9fc4a50248	keep	legacy-layout: fixture links .opencode to .skilled on purpose
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	99	139	9762d0b8afa524ce	keep	legacy-layout: TODAY fixture entry builds a real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	121	53	f45516515ca3a0ae	keep	legacy-layout: TODAY fixture entry builds a real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	127	66	517ba72738a82b41	keep	legacy-layout: test deliberately nests .opencode to exercise hoisting
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	142	17	e117ba005b0ab153	keep	compat-link: test name for a dangling .opencode link
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	145	56	7cd4c7751d980f47	keep	legacy-layout: fixture links a dangling .opencode to .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	164	64	6430a17993b965bf	keep	legacy-layout: TODAY fixture entry builds a real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	186	13	5c98e5341f694a77	keep	legacy-layout: test name deliberately names both roots
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	187	138	f34c78bf2e80d3c7	keep	legacy-layout: TODAY fixture entry builds a real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-migration-manifest.vitest.ts	175	74	98861a902d9f216d	keep	compat-link: legacy .opencode/specs alias and its link
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-migration-manifest.vitest.ts	199	78	165069787fd8c5f3	keep	compat-link: root discovery lists legacy root by .opencode spelling
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-migration.vitest.ts	200	74	2dc8e5477adbc57c	keep	compat-link: link from .opencode to .skilled reaches legacy packet
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-migration.vitest.ts	202	3	fc6fba46a576e2ab	keep	compat-link: layout with no .opencode path; names both roots
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-validation-matrix.vitest.ts	219	70	22cf82302c9d6ca9	keep	compat-link: workspace with no .opencode path; layout comment
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-validation-matrix.vitest.ts	245	64	0223260f36da5094	keep	legacy-layout: skilled-only fixture asserts no .opencode entry
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-folder-detector-functional.js	610	63	a578b0d4eb5eac51	keep	compat-link: comment about where the .opencode link leads
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-folder-detector-functional.js	613	21	bba17dc23cc055b7	keep	compat-link: legacy root reached through the .opencode link
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-folder-detector-functional.js	638	9	17671a0e4bebbd25	keep	compat-link: .opencode link makes it a candidate; legacy spelling
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js	237	58	4de5dc3d0626ad79	keep	compat-link: consumer project links its tree as .opencode
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js	243	69	821f79e05a140760	keep	compat-link: consumer's linked .opencode path; both names tested
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js	244	74	70f0d83d113758f6	keep	compat-link: message names the consumer's linked .opencode tree

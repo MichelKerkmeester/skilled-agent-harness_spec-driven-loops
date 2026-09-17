@@ -1,0 +1,19 @@
+.skilled/skills/sk-vision/README.md	126	80	c8130dbc6fc64e14	rewrite	plugin load path; the real file is under .skilled/plugins
+.skilled/skills/sk-vision/README.md	131	58	9278ce4de9ea576a	rewrite	adapter mirror hub path; the real tree is .skilled/hooks
+.skilled/skills/sk-vision/SKILL.md	208	386	25ce5506a4aef772	rewrite	plugin load path; the real file is under .skilled/plugins
+.skilled/skills/sk-vision/SKILL.md	290	36	37a81cd229567ea2	rewrite	plugin load path; the real file is under .skilled/plugins
+.skilled/skills/sk-vision/SKILL.md	315	110	34f2369113412ff8	rewrite	adapter mirror hub path; the real tree is .skilled/hooks
+.skilled/skills/sk-vision/SKILL.md	315	267	34f2369113412ff8	rewrite	plugin load path; the real file is under .skilled/plugins
+.skilled/skills/sk-vision/feature-catalog/host-adapters/opencode-plugin.md	20	1	7613f36db091efb4	rewrite	plugin load path; the real file is under .skilled/plugins
+.skilled/skills/sk-vision/feature-catalog/host-adapters/opencode-plugin.md	42	3	0f10ccc6730dc722	rewrite	plugin load path; the real file is under .skilled/plugins
+.skilled/skills/sk-vision/hooks/README.md	9	113	daee3324907bf7b0	rewrite	adapter plugin path; the real file is under .skilled/plugins
+.skilled/skills/sk-vision/hooks/README.md	14	68	7bf2d6fc07b49eb5	rewrite	adapter mirror hub path; the real tree is .skilled/hooks
+.skilled/skills/sk-vision/manual-testing-playbook/guaranteed-vision/auto-inspect-guarantee.md	30	70	5322b40f952405ec	rewrite	plugin file named in the preconditions; real file is .skilled/plugins
+.skilled/skills/sk-vision/manual-testing-playbook/guaranteed-vision/classifier-and-env.md	38	189	d44eb10de43d1149	rewrite	cd into the skill runtime dir; the real tree is .skilled
+.skilled/skills/sk-vision/manual-testing-playbook/host-adapters/opencode-plugin.md	37	218	0dfce6354294c860	rewrite	plugin load-path check; the real file is .skilled/plugins
+.skilled/skills/sk-vision/manual-testing-playbook/host-adapters/opencode-plugin.md	37	277	0dfce6354294c860	rewrite	plugin load-path check; the real file is .skilled/plugins
+.skilled/skills/sk-vision/manual-testing-playbook/host-adapters/opencode-plugin.md	37	328	0dfce6354294c860	rewrite	built plugin path inside the tree; real root is .skilled
+.skilled/skills/sk-vision/manual-testing-playbook/host-adapters/opencode-vision-command.md	38	223	24c310fc8f22eadb	rewrite	plugin load-path check; the real file is .skilled/plugins
+.skilled/skills/sk-vision/manual-testing-playbook/host-adapters/opencode-vision-command.md	38	282	24c310fc8f22eadb	rewrite	plugin load-path check; the real file is .skilled/plugins
+.skilled/skills/sk-vision/manual-testing-playbook/host-adapters/opencode-vision-command.md	88	3	ffc890e644f8d1fc	rewrite	key-files plugin path; the real file is .skilled/plugins
+.skilled/skills/sk-vision/manual-testing-playbook/manual-testing-playbook.md	78	27	90c7f2062d90f836	rewrite	host-adapter plugin path; the real file is .skilled/plugins

@@ -1,0 +1,24 @@
+.skilled/commands/scripts/fixtures/broken-command-refs.yaml	26	29	4ce0d7df38220e4a	legacy-layout: validate-command-references.cjs self-test asserts the allowlisted .opencode runtime dir
+.skilled/hooks/git-hooks-check/README.md	31	59	95a271a0b08c6587	legacy-layout: guard resolves this source dir through the literal .opencode path
+.skilled/hooks/git-hooks-check/README.md	44	107	5e85e83f95cee9f5	legacy-layout: warning quotes the installer path the guard invokes
+.skilled/hooks/git-hooks-check/README.md	86	3	8eed64958f0e8d43	legacy-layout: installer the self-heal leg runs, kept as the guard's literal
+.skilled/hooks/git-hooks-check/README.md	87	3	36e9954eb1957148	legacy-layout: guard sources this hook-flags.sh literal, fail-open if absent
+.skilled/scripts/git-hooks/README.md	30	37	907a8d39630c8c49	legacy-layout: gates locate scripts under kept old root through the link
+.skilled/scripts/git-hooks/README.md	30	118	907a8d39630c8c49	compat-link: names the tracked .opencode link itself
+.skilled/scripts/git-hooks/README.md	85	14	2e646293f6cd3444	legacy-layout: post-commit sources this exact .opencode path on purpose
+.skilled/scripts/git-hooks/README.md	85	52	2e646293f6cd3444	legacy-layout: post-commit tests and runs this exact .opencode path
+.skilled/scripts/git-hooks/README.md	86	122	acb212104846404f	legacy-layout: pre-commit tests and runs this exact .opencode path
+.skilled/scripts/git-hooks/README.md	87	11	a0ddf62c5e75265d	legacy-layout: pre-push sources this exact .opencode path on purpose
+.skilled/scripts/git-hooks/README.md	104	89	cfd84f48fd3ab95e	legacy-layout: post-commit runs this .opencode path at runtime
+.skilled/scripts/git-hooks/README.md	170	8	bf76613a21662367	legacy-layout: hooks test and source this exact .opencode library path
+.skilled/scripts/git-hooks/lib/README.md	50	8	bf76613a21662367	legacy-layout: hooks test and source this exact .opencode library path
+.skilled/scripts/git-hooks/lib/README.md	51	8	21caee260102a4cd	legacy-layout: pre-push tests and sources this exact .opencode path
+.skilled/skills/system-deep-loop/runtime/tests/fixtures/council-value/seed-helpers.ts	139	42	5255264ced44ebd5	compat-link: council-graph-value-scenarios.vitest.ts root-discovery walk keeps the .opencode child
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md	151	61	c8c5f7f51e80e4e0	external: disposable temp playground path; fixture root spelling stays
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md	155	63	053f5299fbe95cb9	external: disposable temp playground paths; both fixture roots deliberately named
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/manual-playbook-fixture.js	153	28	46ca8273ca0592c7	legacy-layout: manual-playbook-runner.vitest.ts temp-workspace allowlist keeps the old-root spelling
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/manual-playbook-fixture.js	154	32	8c8006d5af66f880	legacy-layout: manual-playbook-runner.vitest.ts temp-workspace allowlist keeps the old-root spelling
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/manual-playbook-fixture.ts	263	24	3ee4d3b6c00448ad	legacy-layout: manual-playbook-runner.vitest.ts temp-workspace allowlist keeps the old-root spelling
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/manual-playbook-fixture.ts	264	28	10916d6aa143afee	legacy-layout: manual-playbook-runner.vitest.ts temp-workspace allowlist keeps the old-root spelling
+AGENTS.md	269	47	b790dc003b5e2b0a	opencode-view: runtime-directory list keeps the opencode agent directory name
+AGENTS.md	277	71	bc92946e7b0a4e3c	opencode-view: names where the runtime's injected command inventory lives

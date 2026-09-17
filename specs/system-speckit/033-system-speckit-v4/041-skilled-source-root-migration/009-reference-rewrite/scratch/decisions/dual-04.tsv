@@ -1,0 +1,2 @@
+.github/workflows/README.md	30	39	fa28f12b9e87d6c3	rewrite	names the tree's agent-mirror directory; real directory is .skilled
+.github/workflows/README.md	33	112	f5811fafb7846f21	keep	legacy-layout: deliberately names both roots; twin filter requirement keeps .opencode alternates

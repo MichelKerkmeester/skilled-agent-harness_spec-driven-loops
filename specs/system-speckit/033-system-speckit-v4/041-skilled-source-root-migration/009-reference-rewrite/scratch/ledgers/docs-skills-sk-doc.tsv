@@ -1,0 +1,7 @@
+.skilled/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-opencode.md	100	58	d932dc176ed759e5	opencode-view: states the path opencode resolves the executor agent from
+.skilled/skills/sk-doc/sk-create-agent/SKILL.md	157	14	451eff0c47ade112	opencode-view: names the OpenCode runtime's agent directory
+.skilled/skills/sk-doc/sk-create-agent/SKILL.md	159	38	0c17e435bbee5a89	opencode-view: names each runtime profile's own agent directory
+.skilled/skills/sk-doc/sk-create-agent/SKILL.md	176	3	2bdbd1f86e654395	opencode-view: states what OpenCode enforces for its agents directory
+.skilled/skills/sk-doc/sk-create-agent/SKILL.md	186	13	cccc700b27642e24	opencode-view: labels the OpenCode agent schema by its runtime dir
+.skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md	49	66	40e8436f5240f0d7	opencode-view: states the agent directory OpenCode uses
+.skilled/skills/sk-doc/sk-create-command/assets/command-template.md	54	35	f38206b17182fbe9	opencode-view: states where OpenCode finds a command file

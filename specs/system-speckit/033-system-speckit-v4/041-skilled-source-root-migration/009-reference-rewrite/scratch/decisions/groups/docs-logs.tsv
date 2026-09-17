@@ -1,0 +1,2 @@
+.skilled/logs/README.md	16	1	9ecac7f54d9a2f72	rewrite	log directory lives in the tree; now .skilled/logs
+.skilled/logs/README.md	31	255	0bc8a7788152413e	rewrite	writer path names the tree; real file is .skilled/hooks

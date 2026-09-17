@@ -1,0 +1,7 @@
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	152	38	b994f8946d2249fa	keep	dual-root-needed: routes only .opencode/ refs; .skilled/ refs need the branch
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	155	38	72d1367b17c31c0a	keep	compat-link: fixture materializes the legacy .opencode/specs alias path
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	167	38	e6b940f7743c8902	keep	legacy-layout: fixture builds the old-layout tree the parser's .opencode lookup resolves
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	639	56	b586ee868dc0788f	rewrite	cd command sample names the tree; still noise-filtered once rewritten
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	695	20	965d8dd089c54114	rewrite	candidate names the tree; parent-segment rejection unchanged by rewrite
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	705	18	c6b9c5c823231973	rewrite	asserted string names the tree; rejection is spelling-independent
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	915	79	2d4bbf30f0ce14cd	keep	legacy-layout: fixture links .opencode to .skilled on purpose

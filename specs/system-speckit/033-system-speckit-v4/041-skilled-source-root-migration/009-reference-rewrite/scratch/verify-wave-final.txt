@@ -1,0 +1,6 @@
+V1 changed=2743 stray=0 missing=0 [] []
+V2 automatic-left=0 undecided=0 k-x-deltas=16 [] [] [('K:.codex/SYNC.md', 1), ('K:.skilled/commands/deep/assets/deep-agent-improvement-auto.yaml', 2), ('K:.skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml', 2)]
+V3 unbalanced=0 renames=0 []
+V4 protected-changes=0 generated-changes=88 []
+V5 fenced-resolution-regressions=0 []
+WAVE VERIFIED

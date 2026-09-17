@@ -1,0 +1,45 @@
+.skilled/commands/scripts/validate-command-references.cjs	13	64	fd44f6e32b9f8397	rewrite	describes skill-asset paths the checker resolves; assets rewrite to .skilled
+.skilled/commands/scripts/validate-command-references.cjs	42	21	b37bf946f8d4d60e	rewrite	candidate runtime agent dirs; the real source dir is .skilled/agents
+.skilled/commands/scripts/validate-command-references.cjs	46	40	38e439a9cc20226d	keep	dual-root-needed: runtime-dir allowlist; add .skilled so rewritten agents/ refs pass
+.skilled/commands/scripts/validate-command-references.cjs	52	43	5032f7a75dd5bf06	rewrite	builds the command-tree path; the real tree is .skilled/commands
+.skilled/commands/scripts/validate-command-references.cjs	65	22	b4a12acfa9787ea5	rewrite	token must match the rewritten .skilled/skills asset paths
+.skilled/commands/scripts/validate-command-references.cjs	69	25	e951a8d46261a9ff	rewrite	token must match the rewritten .skilled/commands asset targets
+.skilled/commands/scripts/validate-command-references.cjs	169	38	5030f3aa67052436	rewrite	scans the real command-asset tree under .skilled/commands
+.skilled/commands/scripts/validate-command-references.cjs	186	52	40e57202afd2d2a0	keep	legacy-layout: deliberately names both roots; predating checkouts fall back to .opencode
+.skilled/commands/scripts/validate-command-references.cjs	410	49	38c30663b4b9a743	rewrite	self-test fixture must mirror the rewritten .skilled command tokens
+.skilled/commands/scripts/validate-command-references.cjs	414	35	dd07617c56fb0b39	rewrite	fixture reference must match the rewritten command-target token
+.skilled/commands/scripts/validate-command-references.cjs	420	23	8f9bd8ce0427d5d0	rewrite	fixture reference must match the rewritten command-target token
+.skilled/commands/scripts/validate-command-references.cjs	421	22	002ce10bd63194e8	rewrite	fixture reference must match the rewritten command-target token
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	36	19	b835d26ce310e35e	rewrite	comment-hygiene checker path; the real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	37	14	c3ea9128c754370b	rewrite	flowchart checker path; the real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	38	24	b41a49037532fc4f	rewrite	frontmatter-versions checker path; real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	39	17	568f044d7eefd68b	rewrite	placeholders checker path; the real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	40	14	9805806a0c025f84	rewrite	wikilinks checker path; the real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	41	18	73bc632e5ddb0073	rewrite	dist-staleness checker path; the real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	197	57	b22d2a0a6abd7881	keep	compat-link: describes the .opencode link the real runtime path resolves past
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	217	73	86390a190eeb24da	keep	compat-link: keeps the .opencode/specs alias dispatching; .skilled/specs is no root
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	30	23	0878a4ef108e25c4	rewrite	mirrors the plugin LOG_RELATIVE, rewritten to .skilled/logs
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	101	42	ef8c44b575a4b1f5	keep	legacy-layout: linked-spelling dispatch case; its .skilled twin sits beside it
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	153	45	5f34935016d15c2c	keep	legacy-layout: linked-spelling wikilinks case; router deliberately accepts .opencode
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	156	44	da91ae5e1f1bb36f	keep	legacy-layout: linked-spelling case; the .skilled twin covers the real root
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	161	61	6edcd3d62f81e735	keep	legacy-layout: assertion for the linked-spelling input kept at line 156
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	165	42	59f24c06e4fec0e7	keep	legacy-layout: linked-spelling priority case; exercises the kept .opencode branch
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	173	42	c5100f2bb8e41212	keep	legacy-layout: linked-spelling adversarial case; exercises the kept .opencode branch
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	182	23	faef56f02b3e78b8	keep	legacy-layout: fixture spelled through the linked root; its assertion needs it
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	196	55	3266e02c56864a17	keep	legacy-layout: fixture spelled through the linked root; frontmatter needs it
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	199	31	37201601a1cb43fe	keep	legacy-layout: sibling fixture must match the README spelling above
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	363	55	fbc415a08a1a6539	rewrite	temp dir inside the real repository tree; .skilled/plugins names it
+.skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py	18	10	5258e34da5a42d41	rewrite	directive marker must match skill docs rewritten to .skilled/bin
+.skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py	271	39	b5906471f9adaeb1	rewrite	fallback message names the real tree; .skilled/commands/doctor is real
+.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts	10	21	161acbe2aa31eb5c	rewrite	repo-relative scripts path; the real tree is .skilled/skills
+.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts	52	31	8f174e0f69cc4159	rewrite	points at the real shared package dir under .skilled/skills
+.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts	55	13	0d8799fdaa7ebba3	keep	legacy-layout: fixture canonical dir the checker reads at .opencode/agents
+.skilled/skills/system-deep-loop/runtime/tests/unit/check-contract-drift.vitest.ts	148	52	da4fde23adc1603b	keep	legacy-layout: test name deliberately names both roots
+.skilled/skills/system-deep-loop/runtime/tests/unit/check-contract-drift.vitest.ts	150	100	9adfbc8b605a867e	keep	legacy-layout: converts digests to the legacy .opencode spelling deliberately
+.skilled/skills/system-deep-loop/runtime/tests/unit/check-contract-drift.vitest.ts	166	35	6916d3e556ee9b68	keep	legacy-layout: converts document paths across both root spellings deliberately
+.skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts	87	47	71774b806d89e2b1	keep	legacy-layout: comment describes the deliberate .opencode-only checkout
+.skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts	92	34	3d06f855bfaa09e1	keep	legacy-layout: builds the .opencode-only checkout the fallback row needs
+.skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts	98	20	64d50c9e6e0cb52b	keep	legacy-layout: expectation for the .opencode-only fixture keeps the fallback discriminating
+.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts	32	47	8ded8265ddd35e1b	keep	legacy-layout: comment deliberately names both roots for the sentinel check
+.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts	70	20	64382cb9166b7cb8	keep	legacy-layout: comment deliberately names both roots for the hoist
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs	85	32	1013763f6b7cafc0	rewrite	path literal left for this phase; the real tree is .skilled/skills

@@ -1,0 +1,2 @@
+.skilled/skills/.state/advisor/README.md
+.skilled/skills/.state/smart-router-telemetry/README.md

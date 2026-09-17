@@ -1,0 +1,40 @@
+.skilled/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md	16	187	487cc4faa4f6c861	keep	dual-root-needed: nested-tree hazard applies under either root name
+.skilled/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md	21	100	dfb6b5a8c717dbdb	keep	dual-root-needed: hoist must name both segment names; twin added
+.skilled/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md	21	183	dfb6b5a8c717dbdb	keep	dual-root-needed: inside-a-tree test covers both names; twin joins it
+.skilled/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md	22	154	c5ead765b6a3ac82	keep	dual-root-needed: planted sentinel example applies under either root name
+.skilled/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md	39	92	3565aadda97ecc77	keep	dual-root-needed: hoist doc must name both segments; add .skilled twin
+.skilled/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md	39	160	3565aadda97ecc77	keep	dual-root-needed: null case spans either tree; twin joins it
+.skilled/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md	71	26	139bc7a50e9c7fca	keep	dual-root-needed: diagram segment scan needs the .skilled alternative too
+.skilled/skills/system-spec-kit/runtime/lib/utils/README.md	24	199	b90711d6be4f89c5	rewrite	policy summary names the tree's folders; the real tree is .skilled
+.claude/SYNC.md	3	39	2c257e59a4a303f1	rewrite	derivation source is the real tree; now .skilled
+.claude/SYNC.md	8	3	f1075b1218772250	rewrite	source of truth is the real tree, .skilled
+.claude/SYNC.md	34	59	a4c9e6696fb903f6	rewrite	symlink source column; the mirror links now target .skilled
+.claude/SYNC.md	41	90	0b8d1eb5f94d0785	rewrite	settings.json command strings now spell .skilled paths
+.claude/SYNC.md	58	49	334bf10696902e5f	rewrite	alignment gate compares against the real agents tree, .skilled
+.claude/hooks/README.md	3	147	b256784f137cfa3f	rewrite	runtime wiring now points at real .skilled paths
+.claude/hooks/README.md	11	67	819d43026259c281	rewrite	hook symlinks target .skilled; scripts are owned under it
+.codex/SYNC.md	3	38	1c373715bcbdf989	rewrite	derivation source is the real tree; now .skilled
+.codex/SYNC.md	16	152	0637b10bdb0777a1	rewrite	the generators transform the .skilled tree into Codex's dialect
+.codex/SYNC.md	30	59	bd11db7023ebbeac	rewrite	symlink source column; the mirror links now target .skilled
+.codex/SYNC.md	117	285	2dc48533856bce17	keep	dual-root-needed: orphan test spans both roots; add .skilled twin
+.codex/SYNC.md	117	368	2dc48533856bce17	keep	dual-root-needed: outside-test spans both roots; add .skilled twin
+.codex/hooks/README.md	3	142	756c649f25caddc7	rewrite	runtime wiring now points at real .skilled paths
+.codex/hooks/README.md	11	66	ce1a818e15f48140	rewrite	hook symlinks target .skilled; adapters are owned under it
+.cursor/SYNC.md	3	39	bb6838fe23b3eb5d	rewrite	derivation source is the real tree; now .skilled
+.cursor/SYNC.md	33	40	c6a97bb57bb95588	rewrite	symlink source column; the mirror links now target .skilled
+.cursor/hooks/README.md	3	144	42024816a62d90d3	rewrite	runtime wiring now points at real .skilled paths
+.devin/SYNC.md	3	38	57e0b0d751517090	rewrite	derivation source is the real tree; now .skilled
+.devin/SYNC.md	30	35	a386cb5a80281f87	rewrite	symlink source column; the mirror links now target .skilled
+.devin/SYNC.md	100	9	a06a02d656c3817e	rewrite	hooks.v1.json commands all spell .skilled; parity text follows
+.devin/hooks/README.md	3	138	810e0df6f882df78	rewrite	runtime wiring now points at real .skilled paths
+.devin/hooks/README.md	11	77	1396ef3c2fb5d73e	rewrite	hook symlinks target .skilled; adapters are owned under it
+.hermes/SYNC.md	3	39	496580415f00f153	rewrite	derivation source is the real tree; now .skilled
+.hermes/SYNC.md	26	88	a96c7fd81c606cf0	rewrite	guard cores live under .skilled; the plugin shells out there
+.hermes/SYNC.md	52	37	ef6a43041f5463ea	rewrite	guard-core drift review covers cores under .skilled
+.hermes/plugins/repo-guards/__init__.py	7	59	59f6236ea0db7444	rewrite	plugin constants now spell .skilled; the docstring follows
+.pi/SYNC.md	3	35	b5ab05cf0a05bb29	rewrite	derivation source is the real tree; now .skilled
+.pi/SYNC.md	16	25	c5de2781b17dd59d	rewrite	canonical agents tree is .skilled/agents; generators read it
+.pi/SYNC.md	29	91	4bb84ed654dce07e	rewrite	guard cores live under .skilled; extensions bridge them
+.pi/SYNC.md	45	37	34affc0a7ddef33b	rewrite	guard-core drift review covers cores under .skilled
+.pi/extensions/README.md	75	25	90ab8be4e5ab5f9f	rewrite	root-relative convention now spells .skilled; display paths follow
+.pi/extensions/README.md	98	85	501b5e4a2e37736c	rewrite	cores live under .skilled; the ownership boundary follows

@@ -1,0 +1,65 @@
+# The keep-list rows of the source-root migration layout decision that fall inside the rewrite set.
+# One row per kept statement: repository path, a tab, then a regular expression that matches only the lines making it.
+# opencode's own view of where it discovers plugins.
+.skilled/plugins/README.md	OpenCode discovers these via a flat glob over \.opencode/plugins/
+.skilled/plugins/README.md	^`\.opencode/plugins/` contains the JavaScript modules OpenCode discovers as local plugins
+# opencode's own view of where it loads skills and agents.
+.skilled/skills/cli-external-orchestration/cli-opencode/README.md	every skill under `\.opencode/skills/` and every MCP server registered there
+.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md	^These live at `\.opencode/agents/<slug>\.md` with `mode: subagent`
+# The negation of the global ignore, harmless under both layouts.
+.gitignore	^# The global ~/\.gitignore_global ignores /\.opencode/ for symlinked repos\.$
+.gitignore	^# But THIS repo is the SOURCE of \.opencode/ content
+.gitignore	^!\.opencode/$
+# Devin finds skills through its provider roster, which has no .skilled entry.
+.devin/SYNC.md	discovers the repo's `\.opencode/skills/` packets on its own
+.devin/SYNC.md	Devin also discovers the 12 `\.opencode/skills/` packets on its own
+# The Hermes code_mode launcher argument resolves in consumer projects that expose only .opencode.
+.hermes/SYNC.md	--args \.opencode/bin/mcp-code-mode-launcher\.cjs
+# The agent mirror library the gate readiness decision owns resolves the canonical agent through `.opencode/agents`, so its test fixtures build that path.
+.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/mirror-sync-verify.vitest.ts	^  writeFile\(`\.opencode/agents/\$\{AGENT_NAME\}\.md`, CANONICAL\);$
+.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-mirror-sync.vitest.ts	^  const target = path\.join\(work, `\.opencode/agents/\$\{AGENT_NAME\}\.md`\);$
+.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-mirror-sync.vitest.ts	^  writeFile\(`\.opencode/agents/\$\{AGENT_NAME\}\.md`, canonicalMd\(CURRENT_BODY\)\);$
+# A recorded routing corpus prompt, pinned by hash in the scorer baseline ratchet, stays as captured.
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl	"id":"rr-iter2-019"
+# Fixture packets whose generated metadata pins a fingerprint of their own bytes; no repair tool reaches outside the packet tree, so they stay as recorded.
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/002-valid-level1/graph-metadata.json	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/002-valid-level1/implementation-summary.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/002-valid-level1/plan.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/002-valid-level1/spec.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/002-valid-level1/tasks.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/graph-metadata.json	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/implementation-summary.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/plan.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/spec.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/tasks.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/004-valid-level3/decision-record.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/004-valid-level3/graph-metadata.json	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/004-valid-level3/implementation-summary.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/004-valid-level3/plan.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/004-valid-level3/spec.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/004-valid-level3/tasks.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/graph-metadata.json	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/implementation-summary.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/plan.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/spec.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/tasks.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/061-template-optional-absent/spec.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/decision-record.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/graph-metadata.json	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/implementation-summary.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/spec.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/tasks.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/070-comment-hygiene-marker/implementation-summary.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/070-comment-hygiene-marker/spec.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/071-comment-hygiene-marker-violation/implementation-summary.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/071-comment-hygiene-marker-violation/spec.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/072-scaffold-never-touched-violation/spec.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/073-scaffold-never-touched-clean/plan.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/073-scaffold-never-touched-clean/spec.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/073-template-provenance-title/implementation-summary.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/073-template-provenance-title/plan.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/073-template-provenance-title/spec.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/073-template-provenance-title/tasks.md	\.opencode
+.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/README.md	\.opencode
+# The Codex sync manifest states both roots are owned by the installer, which prunes an orphan under either name.
+.codex/SYNC.md	as its own orphan\*\* and prunes it; paths outside both roots

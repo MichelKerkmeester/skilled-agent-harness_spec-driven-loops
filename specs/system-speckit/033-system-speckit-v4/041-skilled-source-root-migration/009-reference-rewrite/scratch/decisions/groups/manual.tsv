@@ -1,0 +1,182 @@
+.codex/AGENTS.md	129	36	20f92f3891acf45f	rewrite	lookup script path into this repository's tree; sync regenerates block
+.cursor/rules/skill-routing.md	9	54	578cdeae88ca30e1	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	10	132	37a81fae9bd5369b	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	11	98	18b8494cbaf5f1fe	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	12	48	7c9d1733bd38576e	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	12	88	7c9d1733bd38576e	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	13	46	deae44543129ad4a	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	14	43	efabf6bd7f17ab18	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	15	68	09f4bb9524d79a2a	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	16	29	1579a7fd1419eb24	rewrite	skill packet path into this repository's own tree
+.cursor/rules/skill-routing.md	25	36	20f92f3891acf45f	rewrite	lookup script path into this repository's tree; sync regenerates block
+AGENTS.md	47	76	450d14c4f352f859	rewrite	advisor CLI script path into this repository's own tree
+AGENTS.md	65	39	c42928b8ed18686c	rewrite	lookup script path into this repository's tree; now .skilled
+AGENTS.md	80	109	a289bddf5d85a277	rewrite	hook contract doc path into this repository's own tree
+AGENTS.md	81	29	338e0ff7087cead6	rewrite	advisor CLI invocation; script path names this repository's tree
+AGENTS.md	174	13	445ba651656e3b7a	rewrite	validation script path into this repository's own tree
+AGENTS.md	203	87	dbda462f88987397	rewrite	skill directory pointer; mechanics live in this repository's tree
+AGENTS.md	269	47	b790dc003b5e2b0a	keep	opencode-view: runtime-directory list keeps the opencode agent directory name
+AGENTS.md	277	71	bc92946e7b0a4e3c	keep	opencode-view: names where the runtime's injected command inventory lives
+AGENTS.md	282	26	15783d74e3938f70	rewrite	skill packet path into this repository's own tree
+.skilled/hooks/git-hooks-check/README.md	18	208	463d0d2c99122dbd	rewrite	prose names where versioned hooks live; real dir .skilled/scripts/git-hooks
+.skilled/hooks/git-hooks-check/README.md	22	100	d6a76a0a00832c75	rewrite	adapter symlink targets; real script sits under .skilled/bin
+.skilled/hooks/git-hooks-check/README.md	31	59	95a271a0b08c6587	keep	legacy-layout: guard resolves this source dir through the literal .opencode path
+.skilled/hooks/git-hooks-check/README.md	44	107	5e85e83f95cee9f5	keep	legacy-layout: warning quotes the installer path the guard invokes
+.skilled/hooks/git-hooks-check/README.md	57	132	4c231836c1cb0bc1	rewrite	wiring example; live settings.json launches .skilled/bin/check-git-hooks.sh
+.skilled/hooks/git-hooks-check/README.md	64	82	a10791895b958aac	rewrite	adapter symlink targets; real script sits under .skilled/bin
+.skilled/hooks/git-hooks-check/README.md	85	3	aeff525d70d8237e	rewrite	key-files row locates the guard; real file .skilled/bin/check-git-hooks.sh
+.skilled/hooks/git-hooks-check/README.md	86	3	8eed64958f0e8d43	keep	legacy-layout: installer the self-heal leg runs, kept as the guard's literal
+.skilled/hooks/git-hooks-check/README.md	87	3	36e9954eb1957148	keep	legacy-layout: guard sources this hook-flags.sh literal, fail-open if absent
+.skilled/hooks/git-hooks-check/README.md	102	78	eb659e15862a71e1	rewrite	hook-flags.sh reads .skilled/hooks/hook-flags.env; real config path
+.skilled/hooks/git-hooks-check/README.md	114	24	3a28b8c360fecf67	rewrite	real code location; guard and hub entries sit under .skilled/bin
+.skilled/hooks/git-hooks-check/README.md	121	5	729f149136584bb7	rewrite	runnable command; live guard is .skilled/bin/check-git-hooks.sh
+.skilled/hooks/git-hooks-check/README.md	127	33	caab2a716af5f5f2	rewrite	runnable command; live guard is .skilled/bin/check-git-hooks.sh
+.skilled/hooks/git/README.md	16	1	65415894b81071ce	rewrite	names where this hook folder lives; real dir .skilled/hooks/git
+.skilled/hooks/git/README.md	18	94	37b51b6fddebf15a	rewrite	names where the installer lives; real path .skilled/scripts/install-git-hooks.sh
+.skilled/hooks/git/README.md	18	265	37b51b6fddebf15a	rewrite	names where the versioned hooks live; real dir .skilled/scripts/git-hooks
+.skilled/hooks/git/README.md	29	48	af54f050c7a8cbf0	rewrite	staged agent tree; this hook's filter also admits .skilled/agents
+.skilled/hooks/git/README.md	29	203	af54f050c7a8cbf0	rewrite	quoted segment names the agent source tree; real tree is .skilled/agents
+.skilled/hooks/git/README.md	37	5	ba1a843983922807	rewrite	printed pointer to the guide; real path under .skilled/skills
+.skilled/hooks/git/README.md	44	39	84a73fb8571d3143	rewrite	printed mirror message names the agent tree; real tree is .skilled
+.skilled/hooks/git/README.md	57	19	b5f923cff0d6f2b8	rewrite	names the primary hook source file; real path .skilled/scripts/git-hooks
+.skilled/hooks/git/README.md	57	104	b5f923cff0d6f2b8	rewrite	names the installer that links it; real path .skilled/scripts
+.skilled/hooks/git/README.md	91	191	5593c6d00d2e8971	rewrite	hook-flags.sh reads .skilled/hooks/hook-flags.env; real config path
+.skilled/hooks/git/README.md	110	5	05f1486d12896121	rewrite	runnable command; real installer .skilled/hooks/git/install-hooks.sh
+.skilled/hooks/git/README.md	119	40	da3c921f5634ccce	rewrite	symlink target in this repo; real hook file .skilled/hooks/git/pre-commit
+.skilled/scripts/git-hooks/README.md	20	1	bb5264e2344cfbff	rewrite	folder mention names where the hook scripts live; real tree .skilled
+.skilled/scripts/git-hooks/README.md	30	37	907a8d39630c8c49	keep	legacy-layout: gates locate scripts under kept old root through the link
+.skilled/scripts/git-hooks/README.md	30	118	907a8d39630c8c49	keep	compat-link: names the tracked .opencode link itself
+.skilled/scripts/git-hooks/README.md	85	14	2e646293f6cd3444	keep	legacy-layout: post-commit sources this exact .opencode path on purpose
+.skilled/scripts/git-hooks/README.md	85	52	2e646293f6cd3444	keep	legacy-layout: post-commit tests and runs this exact .opencode path
+.skilled/scripts/git-hooks/README.md	86	13	ba16ae33d62c67d5	rewrite	no hook uses this path; legacy helper's real file is .skilled/hooks
+.skilled/scripts/git-hooks/README.md	86	123	ba16ae33d62c67d5	keep	legacy-layout: pre-commit tests and runs this exact .opencode path
+.skilled/scripts/git-hooks/README.md	87	11	a0ddf62c5e75265d	keep	legacy-layout: pre-push sources this exact .opencode path on purpose
+.skilled/scripts/git-hooks/README.md	104	89	cfd84f48fd3ab95e	keep	legacy-layout: post-commit runs this .opencode path at runtime
+.skilled/scripts/git-hooks/README.md	107	408	ff7a03d4fc319d70	rewrite	alert log path; output now lives under the real .skilled/logs
+.skilled/scripts/git-hooks/README.md	143	5	ec5f0fe489fe66d5	rewrite	alert log path; output directory now lives under .skilled/logs
+.skilled/scripts/git-hooks/README.md	152	5	cb2f84b6598f41d1	rewrite	entrypoint command; installer real file is .skilled/scripts
+.skilled/scripts/git-hooks/README.md	153	5	2ba572c51e3a1c8b	rewrite	same installer command; real file is .skilled/scripts
+.skilled/scripts/git-hooks/README.md	154	5	a40e4a2949dfb93e	rewrite	same installer command; real file is .skilled/scripts
+.skilled/scripts/git-hooks/README.md	164	8	f996b53b8d9b5d17	rewrite	validation command; hook source's real file is .skilled/scripts
+.skilled/scripts/git-hooks/README.md	165	8	86a1c77563261e84	rewrite	validation command; hook source's real file is .skilled/scripts
+.skilled/scripts/git-hooks/README.md	166	8	8211c526070e64d7	rewrite	validation command; hook source's real file is .skilled/scripts
+.skilled/scripts/git-hooks/README.md	167	8	1614540211c7879f	rewrite	validation command; hook source's real file is .skilled/scripts
+.skilled/scripts/git-hooks/README.md	168	8	cc4ec4e27b2ba0a3	rewrite	validation command; hook source's real file is .skilled/scripts
+.skilled/scripts/git-hooks/README.md	169	8	f6144205aae616fd	rewrite	validation command; hook source's real file is .skilled/scripts
+.skilled/scripts/git-hooks/README.md	170	8	bf76613a21662367	keep	legacy-layout: hooks test and source this exact .opencode library path
+.skilled/scripts/git-hooks/lib/README.md	27	198	66a707f2f0eb8d39	rewrite	alert log path; output now lives under the real .skilled/logs
+.skilled/scripts/git-hooks/lib/README.md	50	8	bf76613a21662367	keep	legacy-layout: hooks test and source this exact .opencode library path
+.skilled/scripts/git-hooks/lib/README.md	51	8	21caee260102a4cd	keep	legacy-layout: pre-push tests and sources this exact .opencode path
+.skilled/scripts/git-hooks/lib/README.md	57	5	269c51028dc237a7	rewrite	harness recipe; test file's real path is .skilled/scripts
+.skilled/commands/create/assets/tests/fixtures/emitted-name-contract.json	62	7	4eb06c19ebedf05b	rewrite	test_emitted_name_contract.py compares this token to the rewritten changelog asset
+.skilled/commands/create/assets/tests/fixtures/emitted-name-contract.json	65	7	4eb06c19ebedf05b	rewrite	test_emitted_name_contract.py compares this token to the rewritten changelog asset
+.skilled/commands/create/assets/tests/fixtures/emitted-name-contract.json	87	7	9d6bda2fe88aa804	rewrite	test_emitted_name_contract.py token must match the asset rewritten to .skilled
+.skilled/commands/create/assets/tests/fixtures/emitted-name-contract.json	98	7	3ad16dc687f68ca7	rewrite	test_emitted_name_contract.py token must match the asset rewritten to .skilled
+.skilled/commands/scripts/fixtures/broken-command-refs.yaml	17	13	1c5bc4db504f9bf4	rewrite	validate-command-references.cjs self-test resolves the fixture path; tree is .skilled
+.skilled/commands/scripts/fixtures/broken-command-refs.yaml	19	20	9a008b6691b4c50b	rewrite	validate-command-references.cjs self-test; real assets spell the interpolated form .skilled
+.skilled/commands/scripts/fixtures/broken-command-refs.yaml	26	29	4ce0d7df38220e4a	keep	legacy-layout: validate-command-references.cjs self-test asserts the allowlisted .opencode runtime dir
+.skilled/skills/sk-design/sk-design-diagram/scripts/tests/fixtures/design-md-sample.html	10	36	c36b1f4d3901f038	rewrite	corpus-mutations.test.cjs deletes this provenance line; its case expects .skilled
+.skilled/skills/system-deep-loop/deep-improvement/test-fixtures/060-stress-test/.codex/agents/cp-improve-target.toml	2	18	e27351c7594a410f	rewrite	setup-cp-sandbox.sh requires the fixture canonical at .skilled/agents
+.skilled/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-config.json	15	17	b76bef51b1524a2c	rewrite	reduce-state.cjs reads this config; the packet lives under .skilled
+.skilled/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-state.jsonl	1	398	7134ee94633609f4	rewrite	opening config record must match the config file rewritten to .skilled
+.skilled/skills/system-deep-loop/runtime/tests/fixtures/council-value/seed-helpers.ts	139	42	5255264ced44ebd5	keep	compat-link: council-graph-value-scenarios.vitest.ts root-discovery walk keeps the .opencode child
+.skilled/skills/system-skill-advisor/runtime/tests/fixtures/lifecycle/index.ts	22	17	0b2c3915316f245d	rewrite	lifecycle-derived-metadata.vitest.ts reads it; sibling z_archive paths are .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/fixtures/lifecycle/index.ts	27	17	7dbf9b7e1f9db2c5	rewrite	lifecycle-derived-metadata.vitest.ts reads it; sibling z-future paths are .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	5	27	0614173cc67fba18	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	9	27	d1eca8f02c582fa2	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	13	27	de3d2f65c83fe489	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	73	27	cc380d22ef82cec5	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	77	27	4400f9f2733f1334	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	81	27	9ee6904c88359a88	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	85	27	e6ec93a62eb3c2f3	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	89	27	5d7faa7f4fd1c2a2	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	93	27	36007400ab00ae29	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	97	27	1a936de8c8eaba03	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	101	27	5fc5e3ba765f0341	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	113	27	a718859d02576158	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	121	27	dce77b41cf92c1c2	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	125	27	4363bd89b42aa7d5	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	129	27	83e717787a37d4aa	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	133	27	38b6da2b615221b0	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	137	27	4ebf28e8da5c6556	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	141	27	68574c9a70953cba	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	145	27	c1cbc332df35fd93	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	149	27	7bdcbbe25cfde0c5	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	153	27	b926896a55049183	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	157	27	920b5d9834be9630	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	161	27	f959fb25f53f542f	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	165	27	3d08fbf7a2bbd83b	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/residue-allowlist.json	169	27	4e519512acb809b4	rewrite	sweep-memory-residue.mjs prefix-matches repo paths; its vitest expects .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/manual-playbook-fixture.js	153	28	46ca8273ca0592c7	keep	legacy-layout: manual-playbook-runner.vitest.ts temp-workspace allowlist keeps the old-root spelling
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/manual-playbook-fixture.js	154	32	8c8006d5af66f880	keep	legacy-layout: manual-playbook-runner.vitest.ts temp-workspace allowlist keeps the old-root spelling
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/manual-playbook-fixture.ts	263	24	3ee4d3b6c00448ad	keep	legacy-layout: manual-playbook-runner.vitest.ts temp-workspace allowlist keeps the old-root spelling
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/manual-playbook-fixture.ts	264	28	10916d6aa143afee	keep	legacy-layout: manual-playbook-runner.vitest.ts temp-workspace allowlist keeps the old-root spelling
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC1-truncation.json	6	15	0786723a5c926f0d	rewrite	memory-quality-phase2-pr3.test.ts resolves these paths against the project root
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC1-truncation.json	11	15	5df8550de902b7f1	rewrite	memory-quality-phase2-pr3.test.ts resolves these paths against the project root
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC3-happy-path.json	11	15	5b171310431ca6c0	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC3-path-fragment.json	11	15	5b171310431ca6c0	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC3-standalone-stopwords.json	15	15	ac8c27eae64ab694	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC3-suspicious-prefix.json	12	15	ac8c27eae64ab694	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC3-synthetic-bigrams.json	12	15	1bd8712f07f186c9	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC4-importance-tier.json	7	15	b632ad56d31fde11	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC6-provenance.json	13	9	3d2f12295a54ce83	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC6-provenance.json	19	15	5b171310431ca6c0	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-001-trigger-cluster.json	15	15	5b171310431ca6c0	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002a-blank-observation-titles.json	16	9	9e33287f2aa7d1c9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002a-blank-observation-titles.json	24	9	9e33287f2aa7d1c9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002a-blank-observation-titles.json	32	9	9e33287f2aa7d1c9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002a-blank-observation-titles.json	40	9	9e33287f2aa7d1c9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002a-blank-observation-titles.json	46	15	23d503b64ef92ddf	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json	16	9	d463fcefdc05befa	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json	24	9	f192799beaba5da9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json	32	9	f192799beaba5da9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json	47	15	5df8550de902b7f1	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json	51	15	306aab581555c53f	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-003-canonical-trigger.json	23	15	ac8c27eae64ab694	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-004b-last-clipping.json	9	9	f192799beaba5da9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/tests/description/fixtures/017-002-cluster-consumers.description.json	69	23	5005827e52da0f06	rewrite	repair-specimens.vitest.ts reads it; runnable validate.sh path, tree is .skilled
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	47	20	c7a077693483bf1c	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	71	20	bcf3da8c645205d1	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	79	20	51a960a85b941d53	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	87	20	b0ac7d7c966e9617	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	95	20	430b474a48f64067	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	119	20	ca8fbea81b244db5	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	127	20	29aa38e4f52ca47b	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	135	20	28efa53c3ecb392e	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	143	20	bb0f5f95880cf097	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	151	20	f815d1a445955a93	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	159	20	47a9c39fc93ce68b	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	167	20	6885cc9d15d280ea	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	175	20	c7a077693483bf1c	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	183	20	51a960a85b941d53	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	199	20	b1a1b701bae1901b	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	207	20	cd1f1ce57e2b3938	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	231	20	c7a077693483bf1c	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	49	3	12f53fccc26aeda1	rewrite	source-tree path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	50	3	28b12a25fdbec72c	rewrite	repo-tree path; the line's .opencode/specs mention stays
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	51	3	9bf623f14e514f7f	rewrite	source-tree path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	55	3	330659aa3a8403a6	rewrite	source-tree path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	56	3	675522a60d45fdb3	rewrite	source-tree path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	57	3	d37e81d8875cde9d	rewrite	source-tree path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	58	3	9a54b2282d2c5d71	rewrite	source-tree path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	62	3	48ea28e158427487	rewrite	source-tree path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	63	3	f9539aec04dcaa33	rewrite	source-tree path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	64	3	cb9c4161db76115f	rewrite	source-tree path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	65	3	88b6940675cc02b9	rewrite	source-tree path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	69	3	82d14eda093b7287	rewrite	first generate-context.ts path on the line; real tree is .skilled
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	69	135	82d14eda093b7287	rewrite	second generate-context.ts path on the line; real tree is .skilled
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	70	3	7d67c87e802ef1d3	rewrite	repo-tree path; the line's .opencode/specs creation-root alias stays
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	71	3	c75fdf571378b144	rewrite	first workflow.ts path on the line; real tree is .skilled
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	71	102	c75fdf571378b144	rewrite	second workflow.ts path on the line; real tree is .skilled
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	72	3	14ca4644db880c17	rewrite	source-tree path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	73	3	c371d464c19fe7a9	rewrite	source-tree test path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md	74	3	2787b74ce177b2f7	rewrite	source-tree test path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md	61	6	5b1cf335882f6ccc	rewrite	cd into the repo's skill runtime dir; real tree is .skilled
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md	145	6	e2e99851293ee849	rewrite	cd into the repo's skill tree; the real directory is .skilled
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md	151	61	c8c5f7f51e80e4e0	keep	external: disposable temp playground path; fixture root spelling stays
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md	155	63	053f5299fbe95cb9	keep	external: disposable temp playground paths; both fixture roots deliberately named
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md	186	3	cae9708a7bf2f1f0	rewrite	source-tree path in the table; real directory is .skilled/skills
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md	187	3	5e44f0e932e235c9	rewrite	source-tree path in the table; real directory is .skilled/skills
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md	188	3	df9afd249c55a702	rewrite	source-tree test path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md	189	3	7cc78fc1ecf96138	rewrite	source-tree test path; the real directory is .skilled/skills
+.skilled/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md	63	5	2773e5a7b514e326	rewrite	cd into the repo's skill runtime dir; real tree is .skilled

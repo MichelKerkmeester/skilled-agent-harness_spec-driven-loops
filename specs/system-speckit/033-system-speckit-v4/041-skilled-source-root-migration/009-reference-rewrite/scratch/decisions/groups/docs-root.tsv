@@ -1,0 +1,15 @@
+README.md	401	22	f63269b2f2fa1573	rewrite	plugin file path; sibling skill path rewrites to .skilled
+README.md	401	80	f63269b2f2fa1573	rewrite	spawned script path; bin references rewrite to .skilled/bin
+README.md	567	133	23a6a1d497a3138d	rewrite	directory mention names the tree; it is .skilled
+README.md	590	93	f2790349560f3bb7	rewrite	link target names the tree; skills links rewrite to .skilled
+README.md	590	210	f2790349560f3bb7	rewrite	link target names the tree; the real file is under .skilled
+README.md	590	314	f2790349560f3bb7	rewrite	link target names the tree; the real file is under .skilled
+README.md	590	434	f2790349560f3bb7	rewrite	link target names the tree; the real file is under .skilled
+README.md	590	548	f2790349560f3bb7	rewrite	link target names the tree; the real file is under .skilled
+README.md	590	657	f2790349560f3bb7	rewrite	link target names the tree; the real file is under .skilled
+README.md	590	768	f2790349560f3bb7	rewrite	link target names the tree; the real file is under .skilled
+README.md	591	224	23ed3fa80df5674b	keep	opencode-view: every skill opencode run loads sits under .opencode/skills
+README.md	638	41	9004bd51ca0a2050	rewrite	names the tree's agent-mirror source directory; real one is .skilled/agents
+README.md	638	157	9004bd51ca0a2050	keep	opencode-view: names the agent directory OpenCode uses
+README.md	866	91	da825ab2c8377d03	rewrite	goal hub doc path; real file is under .skilled/hooks
+README.md	866	142	da825ab2c8377d03	rewrite	goal plugin doc path; sibling hooks path rewrites to .skilled

@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-17T14:05:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Rebuilt links and generated state under .skilled in phase 008"
-    next_safe_action: "Start phase 009 per its goal"
+    next_safe_action: "Start phase 010 per its goal"
     blockers: []
     key_files: []
     session_dedup:
@@ -113,6 +113,7 @@ and findings belong here.
 | Phase 006 dual-root code and contracts | Done, pushed at `dadf2d19dd` | Every contract component resolves under a real `.opencode/`, a real `.skilled/` and the link, proven by layout rows that fail on the start commit and by a three-layout rehearsal with no failure. GPT-5.6 Luna ran 23 reviews, every finding was fixed or answered with evidence, and the last round was clean. On 2026-09-17 the operator widened D3 to three parallel DeepSeek lanes. The main checkout and both remotes sit on `dadf2d19dd`, a fresh `code_mode` launcher answers from the main checkout, and a commit at `7085ec3290` passes the global hooks |
 | Phase 007 source-root move | Done, committed locally `ec33385ae5` | `a06f17bf52` removed the placeholder, and `ec33385ae5` holds 17,773 exact renames plus the `.opencode -> .skilled` link, the single-commit shape the operator chose on 2026-09-17. The path map shows no difference, every `--follow` sample reaches pre-move history, the 8 dangling links are the pre-move 8, and 7 read-only DeepSeek units on the Gateway and Cline lanes plus a Devin cross-check agree with the orchestrator's re-checks. Nothing is pushed, the main checkout and the hook links are unchanged, and strict validation PASSED |
 | Phase 008 links and generated state | Done, committed locally `88425278a6` to `aaea487a2b` | 27 hand-made links and 144 mirrors now target `.skilled` directly, three dangling links are retired, and every generator reads `.skilled` constants: hooks, mirrors, Codex, Pi and Hermes copies, the Gate 1 pointer, command contracts, compiled routing, skill metadata, dist freshness, the package lock and the trigger index. The census counts 433 links with only the 4 frozen records dangling and no old-root target, 14 of 15 freshness checks pass with the fifteenth predating the move, every generator is idempotent, and six Luna reviews are dispositioned. Consumer-checkout ordering is handed to phase 010, and four scripts that still cut paths at `/.opencode/` go to phase 009 |
+| Phase 009 reference rewrite | Done, committed locally `7175a82823` to `6e9b8d69f7` | 2,743 tracked files now name `.skilled`; 1,673 occurrences kept the old name by recorded decision (the opencode runtime's own view, root discovery, consumer projects, the specs alias, legacy-layout tests); 36 hand edits give path matchers both root names; the rescan and an independent recount both report zero unclassified; suites add no failing identity against the phase base and fix 21; `validate.sh --strict` PASSED |
 | CI on the pushed tip | Checked | All 22 runs for `1d198996ca` and `728c4f3efc` completed; the naming guard went red, then green at `728c4f3efc` |
 
 ### Deviations and findings

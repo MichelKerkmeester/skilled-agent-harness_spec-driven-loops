@@ -1,0 +1,12 @@
+.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts	173	39	01cf3f0400f4f38a	compat-link: root walk probes the tree the CLI installs into
+.skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts	77	99	b0602e9ec5ec2d65	dual-root-needed: guard matches only .opencode; .skilled prompts bypass it
+.skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts	42	37	c4cf8e3aa765b247	compat-link: root discovery accepts the .opencode tree marker
+.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/metadata-sanitizer.ts	17	24	a51781f11b23f0d3	dual-root-needed: marker knows only .opencode/skills; .skilled paths miss it
+.skilled/skills/system-skill-advisor/runtime/scripts/init-skill-graph.sh	16	36	38413b361e51284d	compat-link: root-derivation comment explains the kept .opencode strip
+.skilled/skills/system-skill-advisor/runtime/scripts/init-skill-graph.sh	17	77	3a61e3613ea29530	compat-link: nesting example names the wrapped .opencode layout
+.skilled/skills/system-skill-advisor/runtime/scripts/init-skill-graph.sh	18	26	e66027a1fd229789	dual-root-needed: strip matches only .opencode; add .skilled twin
+.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py	3584	81	0dc1e5bd56c9ce8f	dual-root-needed: guard matches only .opencode; .skilled prompts bypass it
+.skilled/skills/system-skill-advisor/runtime/tests/state-containment.vitest.ts	49	39	0dc66ac43d8de164	dual-root-needed: path now starts .skilled; add the twin
+.skilled/skills/system-skill-advisor/runtime/tests/state-containment.vitest.ts	58	38	156fff3445bf6b2c	dual-root-needed: DB dir now starts .skilled; add the twin
+.skilled/skills/system-skill-advisor/runtime/tests/vocabulary-agreement.vitest.ts	20	80	6fe1fa577aa2d5b9	compat-link: root-discovery note on why the tree name is unsafe
+.skilled/skills/system-skill-advisor/runtime/tests/vocabulary-agreement.vitest.ts	21	34	d2ed37f0087400f8	compat-link: sibling root-discovery note keeps the unsafe-sentinel mention

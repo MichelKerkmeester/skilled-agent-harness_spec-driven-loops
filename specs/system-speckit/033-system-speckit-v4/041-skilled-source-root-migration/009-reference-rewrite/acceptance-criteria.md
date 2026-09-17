@@ -44,7 +44,7 @@ _memory:
 
 **Packet:** system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-16
 <!-- /ANCHOR:metadata -->
 
@@ -57,15 +57,15 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given every batch has landed, When `rewrite-batch.py --census` runs over all manifests, Then R1 is 0, R2 matches 004's decision and X equals the T005 baseline | `python3 scratch/rewrite-batch.py --census --all-manifests` output compared with `scratch/census-baseline.json` | Unmet | - |
-| AC-002 | REQ-002 | Given the freeze baseline from T010, When the phase tip is compared with it, Then no hash differs and the diff over F1 to F3 is empty | `git ls-files -s` over the 968 freeze paths diffed against `scratch/freeze-baseline.tsv`, plus `git diff --name-only <base>..HEAD` limited to the F1 to F3 globs printing nothing | Unmet | - |
-| AC-003 | REQ-003 | Given a batch commit, When V1, V3 and V4 run against its base SHA, Then every changed path sits inside the manifest, the report or a named generator output, added lines equal removed lines per file and no `R` status appears | `python3 scratch/rewrite-batch.py --verify --manifest scratch/batch-manifests/batch-NN.json` exits 0 for every batch, with `git diff --numstat` and `git diff --name-status` against the batch base | Unmet | - |
-| AC-004 | REQ-004 | Given a batch has passed V1 to V5, When its group suite from `plan.md` runs, Then it exits 0 before the next brief goes out | Suite command, exit code and output tail in each `scratch/batch-reports/batch-NN-report.md`, plus the T042 full-suite run | Unmet | - |
-| AC-005 | REQ-005 | Given generator closeout is done, When the final rescan runs over tracked files outside `specs/`, Then it reports `unclassified=0` and the independent recount agrees | `python3 scratch/rescan-references.py` output showing `unclassified=0` plus the T039 GPT-5.6 recount | Unmet | - |
-| AC-006 | REQ-006 | Given the 98 manual rows, When the phase closes, Then 39 carry a disposition with evidence in `goal.md`, the 53 rows of 005 and 006 each show a commit in those phases and the 3 rows of 010 appear in its `tasks.md` | `goal.md` log, `git log --oneline -- <path>` for each 005 and 006 row plus `../010-machine-and-consumer-cutover/tasks.md` | Unmet | - |
-| AC-007 | REQ-007 | Given the final tree, When every generator named in `plan.md` runs its check, Then each exits 0 and no batch diff holds a generated path outside a named generator run | Generator check exit codes recorded at T037 plus V4 in every batch report | Unmet | - |
-| AC-008 | REQ-008 | Given the phase scripts, the 19 batches marked 2F and the rescan count, When GPT-5.6 reviews each one read-only, Then no P0 or P1 finding stays open | Review records attached to T004, to each 2F batch report and to T039 | Unmet | - |
-| AC-009 | REQ-009 | Given the phase commit range, When its history is read with file status, Then no `R` status and no path under `containment/` or `lineages/` appears | `git log --name-status <base>..HEAD` output captured at T041 | Unmet | - |
+| AC-001 | REQ-001 | Given every batch has landed, When `rewrite-batch.py --census` runs over all manifests, Then R1 is 0, R2 matches 004's decision and X equals the T005 baseline | The phase-base census is `scratch/census-baseline.json:1`; the post-rewrite census reports no automatic and no undecided occurrence at `scratch/verify-wave-final.txt:2`, with the specs class unchanged at `scratch/rescan-final.txt:6` | Met | - |
+| AC-002 | REQ-002 | Given the freeze baseline from T010, When the phase tip is compared with it, Then no hash differs and the diff over F1 to F3 is empty | `scratch/freeze-compare.txt:3` (0 changed), `:4` (0 removed) and `:10` (no working-tree change), against the 2,674-path baseline `scratch/freeze-baseline.tsv:1` | Met | - |
+| AC-003 | REQ-003 | Given a batch commit, When V1, V3 and V4 run against its base SHA, Then every changed path sits inside the manifest, the report or a named generator output, added lines equal removed lines per file and no `R` status appears | `scratch/verify-wave-final.txt:1` (2,743 changed, 0 stray, 0 missing), `:3` (0 unbalanced, 0 renames), `:4` (0 protected), `:5` (0 fenced regressions) | Met | - |
+| AC-004 | REQ-004 | Given a batch has passed V1 to V5, When its group suite from `plan.md` runs, Then it exits 0 before the next brief goes out | `scratch/suite-logs/final/deep-loop.log:79` and the sibling logs, compared with `scratch/suite-logs/baseline2/spec-kit-cli.log:1`; the comparison is recorded at `goal.md:87` | Met | - |
+| AC-005 | REQ-005 | Given generator closeout is done, When the final rescan runs over tracked files outside `specs/`, Then it reports `unclassified=0` and the independent recount agrees | `scratch/rescan-final.txt:20` reports zero; the independent recount agrees at `scratch/briefs/luna-rescan-recount-2-return.md:3` | Met | - |
+| AC-006 | REQ-006 | Given the 98 manual rows, When the phase closes, Then 39 carry a disposition with evidence in `goal.md`, the 53 rows of 005 and 006 each show a commit in those phases and the 3 rows of 010 appear in its `tasks.md` | Manual dispositions at `scratch/decisions/groups/manual.tsv:1`, the freeze decision for the captured-once records at `goal.md:82`, and the routed owners at `scratch/batch-manifests/routed.tsv:1` | Met | - |
+| AC-007 | REQ-007 | Given the final tree, When every generator named in `plan.md` runs its check, Then each exits 0 and no batch diff holds a generated path outside a named generator run | `scratch/generators-wave-b-after.txt:9` (mirrors and copies in sync) and `:10` (the router drift that predates the phase, also at `scratch/generators-wave-a-before.txt:10`) | Met | - |
+| AC-008 | REQ-008 | Given the phase scripts, the 19 batches marked 2F and the rescan count, When GPT-5.6 reviews each one read-only, Then no P0 or P1 finding stays open | Script reviews at `scratch/briefs/luna-scripts-review-5-return.md:3`, change reviews at `scratch/briefs/luna-wave-a-dual-return.md:3`, `scratch/briefs/luna-wave-a-runtime-return.md:3`, `scratch/briefs/luna-wave-a-commands-return.md:3` and `scratch/briefs/luna-wave-b-runtime-return.md:3`, with dispositions at `goal.md:99` | Met | - |
+| AC-009 | REQ-009 | Given the phase commit range, When its history is read with file status, Then no `R` status and no path under `containment/` or `lineages/` appears | `git log --name-status 8c2d2aff66..HEAD` shows no rename status and no containment or lineage path, recorded at `goal.md:88` | Met | - |
 
 ### Status values
 
@@ -90,7 +90,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every criterion is Unmet because execution has not started: it waits on phases 003 to 008. Nothing has been waived.
+Every criterion is Met. The rewrite landed in eight commits over 2,877 files, the rescan and its independent recount both report zero unclassified occurrences, the freeze paths are byte-identical to the phase base, and the final suite run adds no failing test identity while fixing 21. Nothing is waived.
 <!-- /ANCHOR:closure -->

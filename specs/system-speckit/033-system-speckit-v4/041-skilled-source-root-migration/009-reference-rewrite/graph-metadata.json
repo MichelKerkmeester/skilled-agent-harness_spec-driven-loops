@@ -39,7 +39,7 @@
       "rule"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,11 +49,18 @@
       "implementation-summary.md",
       ".github/dependabot.yml",
       ".github/workflows/README.md",
+      "scratch/build-batch-manifests.py",
+      "scratch/rewrite-batch.py",
+      "scratch/rescan-references.py",
       ".opencode/commands/scripts/validate-command-references.cjs",
       ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
       ".opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md",
       "templates/changelog/README.md",
-      ".opencode/skills/sk-doc/shared/scripts/reference_checker.py"
+      "scratch/census-baseline.json",
+      ".opencode/skills/sk-doc/shared/scripts/reference_checker.py",
+      "scratch/freeze-baseline.tsv",
+      "scratch/batch-manifests/base-sha.txt",
+      "scratch/generators-wave-a-before.txt"
     ],
     "entities": [
       {
@@ -105,6 +112,24 @@
         "source": "derived"
       },
       {
+        "name": "build-batch-manifests.py",
+        "kind": "file",
+        "path": "scratch/build-batch-manifests.py",
+        "source": "derived"
+      },
+      {
+        "name": "rewrite-batch.py",
+        "kind": "file",
+        "path": "scratch/rewrite-batch.py",
+        "source": "derived"
+      },
+      {
+        "name": "rescan-references.py",
+        "kind": "file",
+        "path": "scratch/rescan-references.py",
+        "source": "derived"
+      },
+      {
         "name": "validate-command-references.cjs",
         "kind": "file",
         "path": ".opencode/commands/scripts/validate-command-references.cjs",
@@ -123,9 +148,33 @@
         "source": "derived"
       },
       {
+        "name": "census-baseline.json",
+        "kind": "config",
+        "path": "scratch/census-baseline.json",
+        "source": "derived"
+      },
+      {
         "name": "reference_checker.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/shared/scripts/reference_checker.py",
+        "source": "derived"
+      },
+      {
+        "name": "freeze-baseline.tsv",
+        "kind": "file",
+        "path": "scratch/freeze-baseline.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "base-sha.txt",
+        "kind": "file",
+        "path": "scratch/batch-manifests/base-sha.txt",
+        "source": "derived"
+      },
+      {
+        "name": "generators-wave-a-before.txt",
+        "kind": "file",
+        "path": "scratch/generators-wave-a-before.txt",
         "source": "derived"
       },
       {
@@ -157,53 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement After",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Manifest",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Map",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After phase 007 moves the authored tree, 2,963 tracked files still name it by its old path: 2,938 mechanical rows in map C carrying 15,648 matching lines plus 27 authored runtime files in map B",
     "created_at": "2026-09-16T17:54:09Z",
-    "last_save_at": "2026-09-17T14:53:03.973Z",
+    "last_save_at": "2026-09-17T19:23:35.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4484db7790f8ec6db76747189e576f9e0549c2816f218d9460f653d6c92ac0fc",
+    "source_fingerprint": "sha256:1c9b029a7cb2aa4b1a27be4c458181d2a5bb2ebbf9e362ec6ba9744ce1e1e2ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a8c30cb10c4d3c7ad5756a1e1ce527aa1e56b6d68a8df8971dedc6a5b2cb5dcc",
+      "spec.md": "e4ddb07eb6d0b2cc5ab8e9cfb0d3b18a5d52e8241d02ca17afb8339863d81559",
       "plan.md": "b540c8a3027c9ebc0a6f5c35c0960846664700fad7a9ccd63030be46c1c36d9f",
-      "tasks.md": "ea9bbacbb85dad99ff0c37ae2ab0a5ae2410aa61e3d29a15745cb5990046077b",
-      "implementation-summary.md": "23b6cc101c63f96e30980c4a786884f9bdd5d1fc0beb1cd4ee84ccd88f0b91dd"
+      "tasks.md": "50d60081a0509389558455878a82b9ac9df1c804ba7f47b15ffc88a9f703fdf7",
+      "implementation-summary.md": "5b909cdc569e5f00bd216c268585dc6adef02a919c304ebf8f19bcb28b9f0dd8"
     },
     "last_active_at": null
   }

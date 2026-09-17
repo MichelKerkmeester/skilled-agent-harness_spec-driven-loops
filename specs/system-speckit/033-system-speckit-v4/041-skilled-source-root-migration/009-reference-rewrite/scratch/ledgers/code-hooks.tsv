@@ -1,0 +1,2 @@
+.skilled/hooks/goal/lib/goal-core.cjs	154	4	68300d68d8af994e	compat-link: comment names the root-discovery marker's .opencode tree
+.skilled/hooks/vitest.config.ts	19	26	80dcaf6b69f76f41	dual-root-needed: alias must also catch imports rewritten to .skilled

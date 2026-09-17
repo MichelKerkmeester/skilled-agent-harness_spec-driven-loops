@@ -1,0 +1,70 @@
+.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md	621	236	18c586427134d1ce	keep	opencode-view: fixture runtime-root list; the opencode surface name stays
+.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md	621	264	18c586427134d1ce	keep	opencode-view: fixture runtime-root list; the opencode surface name stays
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	31	99	719b69c1f68e914b	rewrite	maintainer edit target; the twin lives under .skilled/agents
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	34	53	ba0a509b458f2af5	rewrite	generator source tree; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	34	72	ba0a509b458f2af5	rewrite	maintainer edit target names the tree; real root .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	35	48	fb77adc4a55e01e4	rewrite	generated from the tree; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	35	67	fb77adc4a55e01e4	rewrite	maintainer edit target names the tree; real root .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	37	40	b46319ade9040633	rewrite	names the canonical tree; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	39	39	f69e1a75ea8d894e	rewrite	names the tree the Claude mirror tracks; now .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	53	60	c6e8b80e9adc0d15	rewrite	mirror checker reads the tree; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	68	1	d4eab9eac2231eb4	rewrite	names the tree's permission map; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	75	3	271343d3a34634f4	rewrite	table row names the tree; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	90	16	31e09484224a5fd0	rewrite	names the tree's permission map; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	92	41	ba7e9bd3a8ddc5cd	rewrite	generator reads the tree's map; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	105	1	14e613aa2de03b85	rewrite	frontmatter source tree; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	110	3	7f102d5515a0f3f3	rewrite	table row names the tree; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	121	1	ae0976a4a5c8c911	rewrite	declaration source tree; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	126	3	ff40f7798a3b9d1f	rewrite	table row names the tree; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	132	1	34840c6b4f0537b2	rewrite	the tree routing must be read from; now .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	136	45	f6a48732690cf0e3	rewrite	names the tree's permission map; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	141	3	5a503a63b0265161	rewrite	table row names the tree; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	151	18	ddd329a456f13f6f	rewrite	names the agent tree; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md	165	32	0f3190e52ae8d999	rewrite	frontmatter dialect source; the real root is .skilled
+.skilled/skills/system-deep-loop/deep-research/SKILL.md	17	56	e8d5cde74208d990	keep	opencode-view: states the agent path the OpenCode runtime resolves
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md	101	37	f9fac019b0aeb319	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md	101	91	f9fac019b0aeb319	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md	84	37	a38dd1a37ee2b57f	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md	84	91	a38dd1a37ee2b57f	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md	87	37	760b39e1e2eea78d	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md	87	91	760b39e1e2eea78d	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/resource-map-toggle.md	84	37	cb6764cb79db7f30	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/resource-map-toggle.md	84	91	cb6764cb79db7f30	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md	84	37	4a4cb8e706f4a2e3	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md	84	91	4a4cb8e706f4a2e3	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md	84	37	404c365e18ffd42d	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md	84	91	404c365e18ffd42d	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md	53	24	d2f9108d61928543	keep	opencode-view: runtime mirror path for the OpenCode agent
+.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md	53	215	d2f9108d61928543	keep	opencode-view: names the OpenCode runtime's own agent mirror
+.skilled/skills/system-deep-loop/deep-review/SKILL.md	17	29	c2a92702fc715a23	keep	opencode-view: states the agent path the OpenCode runtime resolves
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md	59	23	ab0e6e6e794a58b7	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md	63	24	2678b8b161adab11	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md	74	38	2f135dabd28e0dcf	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md	74	74	2f135dabd28e0dcf	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md	63	38	2dcb2af3d471829c	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md	63	74	2dcb2af3d471829c	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/write-boundary-reducer-owned-files.md	59	23	449caf6ec946707d	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/write-boundary-reducer-owned-files.md	66	24	811f2229a4037f63	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/write-boundary-reducer-owned-files.md	77	38	86d1f311d3d35655	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/write-boundary-reducer-owned-files.md	77	74	86d1f311d3d35655	keep	external: /tmp sandbox fixture path outside this repository
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md	77	3	4f26bbe560d7da05	keep	opencode-view: names the OpenCode runtime's own agent file
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-reads-state-before-review.md	78	3	b0794a8008945178	keep	opencode-view: names the OpenCode runtime's own agent file
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md	78	3	804ae444d58b9e09	keep	opencode-view: names the OpenCode runtime's own agent file
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md	313	69	1ba236c65ef4194c	keep	not-a-path: runtime tree labels in a prose list, not a path
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md	313	89	1ba236c65ef4194c	keep	not-a-path: runtime tree labels in a prose list, not a path
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md	726	23	f85168dd2ce620f7	keep	opencode-view: runtime path list; the OpenCode agent file stays
+.skilled/skills/system-deep-loop/runtime/feature-catalog/validation/mk-deep-loop-guard.md	45	150	5d9f94ac92e2d49c	rewrite	plugin state log path inside the tree; now .skilled/skills
+.skilled/skills/system-deep-loop/runtime/feature-catalog/validation/mk-deep-loop-guard.md	69	3	fc5913b42c94acf0	rewrite	plugin entrypoint path; the real file is .skilled/plugins
+.skilled/skills/system-deep-loop/runtime/feature-catalog/validation/mk-deep-loop-guard.md	75	3	b699f4db35c39d2b	rewrite	plugin test file path; real file is .skilled/plugins/tests
+.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/validation/mk-deep-loop-guard.md	48	281	3349c1cffd6e469c	rewrite	state log path inside the tree; now .skilled/skills
+.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/validation/mk-deep-loop-guard.md	86	3	07d70fa11b2c2fda	rewrite	plugin entrypoint path; the real file is .skilled/plugins
+.skilled/skills/system-skill-advisor/ARCHITECTURE.md	133	111	d98d0f143daa070c	rewrite	names the repo's plugin file; real file .skilled/plugins
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	43	43	4de0801113dd8475	rewrite	names the advisor package dir; real tree .skilled/skills
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	43	130	4de0801113dd8475	rewrite	CLI front door path; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	43	557	4de0801113dd8475	rewrite	SQLite DB path inside the tree; now .skilled/skills
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	127	14	b9e4b892e8dc724a	rewrite	hook surface names the repo plugin file; now .skilled/plugins
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	164	205	90ff3d0053d86259	rewrite	CLI path the hooks shell out to; now .skilled/bin
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	164	278	90ff3d0053d86259	rewrite	launcher path the CLI starts; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	427	147	f98b6b3165d1ff08	rewrite	rollback output dir inside the tree; now .skilled/scratch
+.skilled/skills/system-skill-advisor/README.md	42	51	b55da50bd5211cb4	rewrite	CLI front door path; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/README.md	217	183	047bf99d0fbcb039	rewrite	source adapter dir inside the tree; now .skilled/skills

@@ -1,0 +1,155 @@
+.skilled/skills/sk-code/ROUTER.md	96	251	e9ef8cb5eb928868	rewrite	OPENCODE target mention names the tree; real dir .skilled
+.skilled/skills/sk-code/ROUTER.md	251	22	85f0583583873d4c	rewrite	verification command path; verifier lives under .skilled/skills
+.skilled/skills/sk-code/ROUTER.md	260	37	c10e0b328727f8c2	rewrite	fallback question names the tree's system code; now .skilled
+.skilled/skills/sk-code/ROUTER.md	265	125	2d038c75c1f97bcb	keep	external: the Barter fork's own tree, not this repository
+.skilled/skills/sk-code/ROUTER.md	650	578	5539a352c8337281	rewrite	mixed-marker mention names the tree; real directory .skilled
+.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/non-webflow-plus-motion-dev.md	24	322	8194baebccd6608e	rewrite	marker prose names the tree; canonical text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md	11	51	bce0fc2c69a46257	rewrite	scenario names a tree tool; real directory .skilled
+.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md	25	12	3ade22315fea924f	rewrite	marker comment names the tree; canonical text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md	25	56	3ade22315fea924f	rewrite	second marker mention names the tree; now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md	100	3	39ecb602970f1fe7	rewrite	expected reference path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md	101	3	c4916a26bf5db612	rewrite	expected reference path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/design-restraint/ceiling-comment-convention.md	29	46	a205080fe89ab24e	rewrite	detection line names the tree; marker text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/design-restraint/design-restraint-ladder.md	31	46	a205080fe89ab24e	rewrite	detection line names the tree; marker text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/design-restraint/implementer-anti-stall.md	31	46	a205080fe89ab24e	rewrite	detection line names the tree; marker text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-config.md	47	78	8abc83cb069cbc06	rewrite	precondition names the tree; equivalent configs live under .skilled
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	43	56	193821bcd10070f1	rewrite	detection summary names the tree; marker text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	78	36	beb443279a038b53	rewrite	skill presence path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	194	130	feeba51139a84ea2	rewrite	probe prompt path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	205	140	8bc8c9d63c9f74a1	rewrite	probe prompt path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	206	133	46316e3e960d6704	rewrite	probe prompt path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	207	121	77c7f830afc7e051	rewrite	probe prompt path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	218	174	1995dcdcb984e861	rewrite	scenario prompt path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	218	675	1995dcdcb984e861	rewrite	repeated prompt path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	274	48	b9242335b2260bbe	rewrite	objective names the tree's target; real directory .skilled
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	274	135	b9242335b2260bbe	rewrite	scenario prompt path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	290	150	82cc4576e9af3247	rewrite	scenario prompt path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	318	362	1489c569d01e4add	rewrite	test command path names the tree; now .skilled/plugins
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	328	3	d3cea70d88d7a04e	rewrite	source-files listing path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md	346	158	4fd47838be6f1501	rewrite	suite path names the tree; now .skilled/plugins/tests
+.skilled/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md	49	5	74face7de623411f	rewrite	precondition path names the tree; now .skilled/plugins
+.skilled/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md	160	79	e5c9353d6cb649fb	rewrite	import URL path names the repo plugin under .skilled/plugins
+.skilled/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md	218	156	9217abb1678b0761	rewrite	fixture path under the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md	227	28	0498d1e2dc9631c3	rewrite	source-files listing path; now .skilled/plugins
+.skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/mixed-marker-ambiguity.md	11	166	b10df32c4400fda2	rewrite	scenario marker names the tree; real directory .skilled
+.skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/mixed-marker-ambiguity.md	24	147	9393764b63cad513	rewrite	preview server named as a tree tool; real dir .skilled
+.skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/mixed-marker-ambiguity.md	35	25	8e1086e826a99f5d	rewrite	path marker names the tree's file; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/mixed-marker-ambiguity.md	41	192	6427a40cbf75af3d	rewrite	clarification text names the tree; real directory .skilled
+.skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/skcode-vs-skdoc.md	13	221	46c5f549484700c1	rewrite	risk text names tree directories; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md	27	77	f8d8e1a22557c055	rewrite	probe prompt path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md	37	64	9742f9cd36473f11	rewrite	probe prompt path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md	104	61	eb81d6633cd6fdd6	rewrite	marker note names the tree; marker text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	3	69	8d6c48fa1fd59c17	rewrite	description names tree paths; real directory .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	11	151	c2f802091d129069	rewrite	detection rule names the tree; marker text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	11	185	c2f802091d129069	rewrite	surface scope names the tree's code; real dir .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	31	46	a205080fe89ab24e	rewrite	detection line names the tree; marker text now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	51	62	4e2c977a7b4b7b54	rewrite	outcome path names the tree; now .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	95	115	ce457ee463bccdd5	rewrite	example path fragment names the tree; now .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	105	3	92e45600643f8ffa	rewrite	reference path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	107	3	40954c9fffec74f5	rewrite	reference asset path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md	108	3	3df37d64d81634a9	rewrite	verifier script path resolves under .skilled/skills
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md	11	227	f8faa26357170420	rewrite	supported-stack rows name the tree; real directory .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md	88	89	51a222afc7a84b21	rewrite	detection triage names the tree; real directory .skilled
+.skilled/skills/sk-code/manual-testing-playbook/surface-detection/webflow-detection.md	103	149	d7554fc61ec6d813	keep	dual-root-needed: PWD fragment test needs the .skilled spelling too
+.skilled/skills/sk-code/shared/references/stack-detection.md	28	112	0c008cd38bb0bf33	rewrite	names the system-code tree; the real root is .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	29	14	f97b04cca4de5f23	rewrite	OPENCODE surface scope names the tree; real root is .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	30	291	0aa2af87895673cb	rewrite	PI_REMOTE row names the system-code tree; real root is .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	31	206	15c2473bc9730acf	keep	compat-link: consumer plugin repo reaches hub code through its .opencode symlink
+.skilled/skills/sk-code/shared/references/stack-detection.md	40	167	9db06877fd2f7d85	rewrite	realpath criterion names the hub's own tree; now .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	44	12	3ade22315fea924f	rewrite	detection comment names the tree; the real root is .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	44	56	3ade22315fea924f	rewrite	second detection-comment mention; the real root is .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	70	35	4f84690bad4758c6	rewrite	system-tools mention names the tree; the real root is .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	70	121	4f84690bad4758c6	rewrite	sk-doc scripts path names the tree; now .skilled/skills
+.skilled/skills/sk-code/shared/references/stack-detection.md	73	1	04bf72927125a9f5	keep	compat-link: consumer plugin repo symlinks this name back to the hub
+.skilled/skills/sk-code/shared/references/stack-detection.md	75	1	90ff7cff8f5f84ca	keep	dual-root-needed: literal segment test needs the .skilled twin too
+.skilled/skills/sk-code/shared/references/stack-detection.md	78	14	e3a0ca6e527d385a	rewrite	guard names the hub's real directory; it is now .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	87	243	67dd8650e4f804b8	keep	compat-link: target through the .opencode link still wins OPENCODE
+.skilled/skills/sk-code/shared/references/stack-detection.md	89	326	29a98cdc1cfcbaf7	rewrite	generic-Node scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	131	171	c43adcead3a807c0	rewrite	scan scope over the tree; commands and skills are .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	131	196	c43adcead3a807c0	rewrite	second scan-scope mention; the real tree is .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	139	75	04bc9647ac3a1a5c	rewrite	absence-of-target case names the tree; now .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	141	7	273062e563fd0845	rewrite	test-case CWD in the tree; real path is .skilled/skills
+.skilled/skills/sk-code/shared/references/stack-detection.md	142	11	9c5a068440355fbf	rewrite	changed agent file names the tree; real path .skilled/agents
+.skilled/skills/sk-code/shared/references/stack-detection.md	142	69	9c5a068440355fbf	rewrite	target-file reason names the tree; the real root is .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	145	154	133ce01b91d88063	keep	compat-link: consumer plugin repo's .opencode symlink at its root
+.skilled/skills/sk-code/shared/references/stack-detection.md	146	26	a952a58319f6c574	keep	compat-link: consumer plugin repo path through its .opencode link
+.skilled/skills/sk-code/shared/references/stack-detection.md	147	32	d9bf12547c56fa4b	keep	dual-root-needed: literal-string gate case needs the .skilled twin
+.skilled/skills/sk-code/shared/references/stack-detection.md	148	47	b7fa06eda4e9c27a	rewrite	absence-of-target case names the tree; now .skilled
+.skilled/skills/sk-code/shared/references/stack-detection.md	149	48	66d84b4516016d0c	keep	compat-link: app repo addresses the changed file via its .opencode link
+.skilled/skills/sk-code/shared/references/stack-detection.md	149	92	66d84b4516016d0c	keep	compat-link: target inside the Pi Remote repo resolves through its .opencode link
+.skilled/skills/sk-code/shared/references/stack-detection.md	150	44	9cdff3af47d25b2d	rewrite	mixed-marker changed file names the tree; now .skilled/skills
+.skilled/skills/sk-code/shared/references/stack-detection.md	152	31	e8f2b9e0b27c54c7	rewrite	absence-of-target case names the tree; now .skilled
+.skilled/skills/sk-code/shared/references/universal-debugging-checklist.md	70	85	93229552e8c87177	rewrite	reference path into the tree; the real file is .skilled/skills
+.skilled/skills/sk-code/shared/references/universal-debugging-checklist.md	92	3	bac9002c684db57c	rewrite	related-resource path into the tree; now .skilled/skills
+.skilled/skills/sk-code/shared/references/universal-verification-checklist.md	52	69	c5d73ee23be98759	rewrite	runnable command path into the tree; now .skilled/skills
+.skilled/skills/sk-code/shared/references/universal/error-recovery.md	109	14	0313846776121fc7	rewrite	reference path into the tree; the real file is .skilled/skills
+.skilled/skills/sk-code/sk-code-mobile-cli/README.md	29	29	9913aa15eccb1b82	rewrite	detection scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-mobile-cli/README.md	90	1	0a34327dcfff90ae	keep	compat-link: target through the .opencode link still wins OPENCODE
+.skilled/skills/sk-code/sk-code-obsidian/README.md	30	56	3d0cff670a86d9e5	rewrite	marker mention names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-obsidian/README.md	65	50	3d52505813903008	keep	compat-link: consumer plugin repo symlinks these names to the hub
+.skilled/skills/sk-code/sk-code-obsidian/README.md	67	23	4f36fa1840260448	keep	compat-link: literal match fails on the consumer repo's .opencode link
+.skilled/skills/sk-code/sk-code-obsidian/README.md	98	33	983618585ea8e278	keep	compat-link: target through the .opencode link still wins OPENCODE
+.skilled/skills/sk-code/sk-code-obsidian/SKILL.md	281	56	8038e6ceadf32cd1	keep	compat-link: consumer plugin repo symlinks this name to the hub
+.skilled/skills/sk-code/sk-code-opencode/README.md	3	36	ff29b41cca497274	rewrite	description names the system-code tree; real root .skilled
+.skilled/skills/sk-code/sk-code-opencode/README.md	13	26	b008048be667d72b	rewrite	blockquote names the system-code tree; real root .skilled
+.skilled/skills/sk-code/sk-code-opencode/README.md	21	43	f41504203db4d268	rewrite	usage row names the system-code tree; real root .skilled
+.skilled/skills/sk-code/sk-code-opencode/README.md	32	21	9b7d5a48cb405141	rewrite	why-this-exists names the system-code tree; now .skilled
+.skilled/skills/sk-code/sk-code-opencode/README.md	36	331	6ee6c3866353f671	rewrite	surface detection names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/README.md	54	107	656d08db06731f31	rewrite	quick-start step names the system-code tree; now .skilled
+.skilled/skills/sk-code/sk-code-opencode/README.md	72	42	c5514e94bc26fae6	rewrite	detection trigger names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/README.md	84	38	b020dab3f42ef65a	rewrite	when-to-use rule names the system-code tree; now .skilled
+.skilled/skills/sk-code/sk-code-opencode/README.md	104	92	9a85c1df0bfb3790	rewrite	troubleshooting row names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/SKILL.md	16	80	02c618351d59813c	rewrite	tree mention names the surface domain; now .skilled
+.skilled/skills/sk-code/sk-code-opencode/SKILL.md	18	65	fce0d7069c6b2202	rewrite	surface trigger names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/SKILL.md	22	20	9621a84af6872aff	rewrite	bundle rule names the system-code tree; now .skilled
+.skilled/skills/sk-code/sk-code-opencode/SKILL.md	30	28	fee9ac0ba628cd79	rewrite	reference-map prose names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/SKILL.md	175	52	5c1d32d76c416447	rewrite	most-tasks line names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/assets/checklists/agent-authoring.md	62	102	ffa12a7580db42fb	rewrite	grep target names the repo agent file; now .skilled/agents
+.skilled/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md	43	35	9e19c0c0932d62f8	rewrite	legacy prompts path under the tree; no such .skilled entry
+.skilled/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md	58	157	d7f88d6b39523a20	rewrite	legacy prompts entry; the tree root is now .skilled
+.skilled/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md	69	182	8e1c1e47235e927e	rewrite	legacy prompts path; the real tree root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md	54	70	150d4b96082b961a	rewrite	detection scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md	54	70	80b8905c7aff5549	rewrite	detection scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md	47	70	84cd01833fd7c306	rewrite	detection scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/config-schema.md	49	70	043a31b3a3f01988	rewrite	detection scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/hooks-wiring.md	46	70	229d005cc0d1ba01	rewrite	detection scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/python-standards.md	48	70	00c49a455c248ed5	rewrite	detection scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/rust-standards.md	62	70	773ce43b7edd0dc0	rewrite	detection scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/shell-standards.md	51	70	f4741c941bdcb9b9	rewrite	detection scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/typescript-standards.md	52	70	bd0ff5dd8ac6b325	rewrite	detection scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md	5	1	c2f85e2eb2aa50de	rewrite	packet scope names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/manual-testing-playbook.md	36	1	b992b9425382411d	rewrite	assumption line names the tree; the real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/references/config/quick-reference.md	157	17	8916047365526a70	rewrite	example database value names the tree; real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/references/config/quick-reference.md	172	11	d57fb00a365ac0fe	rewrite	example path value names the tree; real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/references/config/quick-reference.md	304	0	a39027c326b8120d	rewrite	legacy location tree with singular skill/; names the old root
+.skilled/skills/sk-code/sk-code-opencode/references/config/style-guide.md	220	19	d7b5cfa4493a5197	rewrite	example database path names the tree; real root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/references/config/style-guide.md	396	0	a39027c326b8120d	rewrite	location tree lists real config homes; root is .skilled
+.skilled/skills/sk-code/sk-code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md	45	3	a169ef12cbc38bba	keep	opencode-view: states the runtime plugin loader's requirement for its plugins folder
+.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md	82	98	b3ce663f2ff61726	rewrite	scan-root argument names the authored tree; use .skilled
+.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md	88	98	31d2a2939c802216	rewrite	scan-root argument names the authored tree; use .skilled
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	43	27	680a90c7e9d7c3e7	rewrite	hook-helper doc pointer names the tree; real path .skilled/skills
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	47	35	c61e47648479da5a	rewrite	advisor plugin file pointer; real file under .skilled/plugins
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	62	14	2f07a3662f70d9d4	keep	opencode-view: names the runtime's plugin registration source folder
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	83	77	cc98228f5c4c55a8	rewrite	Claude hook command must match live wiring, now .skilled/hooks
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	183	231	a0bea1a058ec50ab	rewrite	advisor plugin path in transport sentence; real .skilled/plugins
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	183	279	a0bea1a058ec50ab	rewrite	goal plugin path in transport sentence; real .skilled/plugins
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	185	205	e73dddfb71c42bac	rewrite	spawned CLI path; the plugin resolves it under .skilled/bin
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	249	28	32e07664065afc79	rewrite	related-resource plugin pointer; real file .skilled/plugins
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	249	75	32e07664065afc79	rewrite	related-resource CLI pointer; real file .skilled/bin
+.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	260	31	4de9d53659fe164d	keep	opencode-view: names the runtime's plugin folder as a wiring source
+.skilled/skills/sk-code/sk-code-quality/README.md	59	197	ee508565263b5a5a	rewrite	targets sit in the authored tree; real root is .skilled
+.skilled/skills/sk-code/sk-code-quality/SKILL.md	27	47	6e60eb0f9c162842	rewrite	authoring checklist target; real path .skilled/skills
+.skilled/skills/sk-code/sk-code-quality/SKILL.md	27	68	6e60eb0f9c162842	rewrite	authoring checklist target; real path .skilled/agents
+.skilled/skills/sk-code/sk-code-quality/SKILL.md	27	89	6e60eb0f9c162842	rewrite	authoring checklist target; real path .skilled/commands
+.skilled/skills/sk-code/sk-code-quality/SKILL.md	235	81	a5b1dc82f1094fbb	rewrite	work location mention; the real tree is .skilled
+.skilled/skills/sk-code/sk-code-review/README.md	134	164	0f38c63fb12fcd9f	rewrite	review cache is an output directory in the tree; now .skilled
+.skilled/skills/sk-code/sk-code-review/SKILL.md	224	8	0350e76a431f9431	keep	dual-root-needed: surface detector matches only .opencode/ paths; add .skilled twin
+.skilled/skills/sk-code/sk-code-review/SKILL.md	464	351	d139cd5064deb5f8	rewrite	runnable validator path names the repo script; now .skilled
+.skilled/skills/sk-code/sk-code-review/SKILL.md	482	9	043a3c7dadf8d74a	rewrite	review cache path; output directory inside the tree is .skilled
+.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/cross-cli-orchestration/cli-opencode-delegation.md	33	77	a03e087c9bd75e0e	rewrite	agent-file reference names the repo file; now .skilled/agents
+.skilled/skills/sk-code/sk-code-review/manual-testing-playbook/cross-cli-orchestration/cli-opencode-delegation.md	49	731	3a13c1e87c6b90a6	rewrite	agent-file reference names the repo file; now .skilled/agents
+.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md	41	11	dff88b7385311361	rewrite	review cache path; the output directory is under .skilled
+.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md	78	3	d4a3d28cd9a5f234	keep	compat-link: gitignore convention of the .opencode dir in OpenCode projects
+.skilled/skills/sk-code/sk-code-webflow/README.md	36	372	494802364514ba8a	rewrite	system-code evidence names the tree; it is .skilled
+.skilled/skills/sk-code/sk-code-webflow/README.md	94	46	79f83b841177ee52	rewrite	sibling surface scope names the tree; it is .skilled
+.skilled/skills/sk-code/sk-code-webflow/README.md	108	47	eab2e096bdb30261	rewrite	detection scope names the tree; it is .skilled

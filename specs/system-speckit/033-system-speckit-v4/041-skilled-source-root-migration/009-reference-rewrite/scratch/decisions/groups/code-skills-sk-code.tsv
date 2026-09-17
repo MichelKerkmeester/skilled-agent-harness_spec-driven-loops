@@ -1,0 +1,6 @@
+.skilled/skills/sk-code/mode-registry.json	50	85	740d95dcbbc299d6	rewrite	untracked review cache is an output directory inside the tree
+.skilled/skills/sk-code/sk-code-mobile-cli/scripts/run-source-gates.sh	26	42	4ae93f062e4ec422	keep	compat-link: the app repo's own .opencode symlink; consumer project
+.skilled/skills/sk-code/sk-code-obsidian/scripts/run-source-gates.sh	27	36	371a6e48aee43367	keep	compat-link: consumer plugin repo reaches this SKILL.md through .opencode
+.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py	110	6	010750e3636e670d	keep	compat-link: .opencode/specs alias path stays; specs target is keep
+.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh	74	54	cb5a4fa95a810a1f	rewrite	parent-count comment names the real chain; the root is .skilled
+.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh	8	44	2e8b4464cff2a6f0	rewrite	parent-count comment chain ends at .skilled, the real tree root

@@ -1,0 +1,39 @@
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC3-happy-path.json	11	15	5b171310431ca6c0	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC3-path-fragment.json	11	15	5b171310431ca6c0	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC3-standalone-stopwords.json	15	15	ac8c27eae64ab694	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC3-suspicious-prefix.json	12	15	ac8c27eae64ab694	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC3-synthetic-bigrams.json	12	15	1bd8712f07f186c9	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC4-importance-tier.json	7	15	b632ad56d31fde11	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC6-provenance.json	13	9	3d2f12295a54ce83	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-AC6-provenance.json	19	15	5b171310431ca6c0	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-001-trigger-cluster.json	15	15	5b171310431ca6c0	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002a-blank-observation-titles.json	16	9	9e33287f2aa7d1c9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002a-blank-observation-titles.json	24	9	9e33287f2aa7d1c9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002a-blank-observation-titles.json	32	9	9e33287f2aa7d1c9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002a-blank-observation-titles.json	40	9	9e33287f2aa7d1c9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002a-blank-observation-titles.json	46	15	23d503b64ef92ddf	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json	16	9	d463fcefdc05befa	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json	24	9	f192799beaba5da9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json	32	9	f192799beaba5da9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json	47	15	5df8550de902b7f1	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-002b-proposition-overlap.json	51	15	306aab581555c53f	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-003-canonical-trigger.json	23	15	ac8c27eae64ab694	rewrite	no test reads it; the fixture path names the source tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/memory-quality/F-DUP-004b-last-clipping.json	9	9	f192799beaba5da9	rewrite	no test reads it; the observation file path names the tree
+.skilled/skills/system-spec-kit/runtime/tests/description/fixtures/017-002-cluster-consumers.description.json	69	23	5005827e52da0f06	rewrite	repair-specimens.vitest.ts reads it; runnable validate.sh path, tree is .skilled
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	47	20	c7a077693483bf1c	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	71	20	bcf3da8c645205d1	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	79	20	51a960a85b941d53	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	87	20	b0ac7d7c966e9617	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	95	20	430b474a48f64067	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	119	20	ca8fbea81b244db5	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	127	20	29aa38e4f52ca47b	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	135	20	28efa53c3ecb392e	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	143	20	bb0f5f95880cf097	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	151	20	f815d1a445955a93	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	159	20	47a9c39fc93ce68b	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	167	20	6885cc9d15d280ea	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	175	20	c7a077693483bf1c	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	183	20	51a960a85b941d53	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	199	20	b1a1b701bae1901b	rewrite	no test reads it; file_path names the source tree
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	207	20	cd1f1ce57e2b3938	rewrite	no test reads it; .opencode/tests entry no longer exists
+.skilled/skills/system-spec-kit/runtime/tests/fixtures/golden-queries.json	231	20	c7a077693483bf1c	rewrite	no test reads it; file_path names the source tree

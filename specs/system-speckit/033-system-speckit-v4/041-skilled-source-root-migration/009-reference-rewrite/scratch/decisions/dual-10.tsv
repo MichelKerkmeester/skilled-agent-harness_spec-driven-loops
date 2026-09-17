@@ -1,0 +1,42 @@
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	3	10	7dc6104100f0add2	keep	legacy-layout: comment names the old tree shape a fixture builds
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	3	54	7dc6104100f0add2	keep	compat-link: names the .opencode link to .skilled the test covers
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	33	46	e790a787ae1ce0f4	keep	legacy-layout: describes today's fixture holding the real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	37	67	34fd9175aee3198a	keep	legacy-layout: ternary deliberately names both roots per fixture layout
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	41	79	020a779530b0879d	keep	legacy-layout: fixture links .opencode to .skilled on purpose
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	46	28	69600f5f8e3f730b	keep	legacy-layout: test name for the .opencode-tree anchor fixture
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	48	46	ff2733489ef34746	keep	legacy-layout: builds the fixture's own .opencode tree directory
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	53	55	06fd7f36b664122d	keep	legacy-layout: asserts the fixture tree name; the .opencode anchor stays
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	60	66	00f1d311c440255b	keep	legacy-layout: test name for the .opencode-tree fixture workspace
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	62	46	ff2733489ef34746	keep	legacy-layout: builds the fixture's own .opencode tree directory
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	69	70	6200dd1416da6957	keep	legacy-layout: fixture path inside the .opencode tree; expectation depends
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	70	13	94aafcef4393aa99	keep	legacy-layout: expected relative path for the .opencode fixture tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	77	38	d86b0db166d1634f	keep	legacy-layout: fixture builds an .opencode tree to reject unrelated repos
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	78	43	b95cc3662f35d52c	keep	legacy-layout: fixture builds an .opencode tree in the other temp repo
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	80	52	2d2bbcc09949d79a	keep	legacy-layout: compares the fixture's .opencode anchor against another repo
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	81	52	ab6b42c165500d2e	keep	legacy-layout: fixture .opencode anchors compared; both layouts deliberate
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	81	91	ab6b42c165500d2e	keep	legacy-layout: second fixture .opencode anchor; both layouts deliberate
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	86	46	ff2733489ef34746	keep	legacy-layout: builds the fixture's own .opencode tree directory
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	94	69	c311f4b8193e8a0f	keep	legacy-layout: .opencode reached through the fixture's symlinked repo root
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	111	54	b064f3db87305548	keep	compat-link: test name states .opencode links to .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	114	45	1bc4a9f2f1cc75e3	keep	compat-link: builds the path through the .opencode link
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	120	52	6fc5bd90fc253b61	keep	compat-link: asserts the .opencode link and real path share a workspace
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	123	84	9469ab77c4414bea	keep	legacy-layout: names both root variants; the .opencode twin stays
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	128	42	a335499546a91567	keep	legacy-layout: test name for the real .opencode tree beside .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	131	48	35f48f1a25c1ce25	keep	legacy-layout: nested dir inside the fixture's real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	137	74	a3b52c95f4e5811f	keep	legacy-layout: asserts the variant of the fixture's real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	139	52	19d772a8fbd7d71d	keep	legacy-layout: compares the fixture's real .opencode tree with the placeholder
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	141	13	4f72775c97e60156	keep	legacy-layout: expected relative path for the fixture's real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	146	42	40c9af9e24c5be9b	keep	legacy-layout: fixture deliberately nests an .opencode tree inside .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	153	13	4f72775c97e60156	keep	legacy-layout: expected relative path for the nested .opencode fixture tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	173	38	25abd1d4b2658362	keep	legacy-layout: fixture nests a stray .opencode tree under a .skilled name
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	182	56	edd42910a7b2ce06	keep	legacy-layout: compares the today fixture's .opencode anchor; names both roots
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	183	56	23788a3cb994b371	keep	legacy-layout: today fixture .opencode anchor against a .skilled-only repo
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	184	92	58d3bccbb20ddab2	keep	legacy-layout: today fixture's .opencode anchor; distinct anchors asserted
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	874	53	baf8e58ad94695a5	keep	legacy-layout: comment deliberately names both accepted root names
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	886	35	6da98811f4ad20b2	keep	compat-link: detects the legacy .opencode/specs alias; test pins that spelling
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	905	36	7299f2b5d0e6d66c	keep	compat-link: derives the repo root for the .opencode/specs alias
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	964	31	59429a99ba16f075	keep	dual-root-needed: prefix test knows only .opencode; .skilled candidate misses
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	968	42	e84a8803b8773de8	keep	compat-link: builds the .opencode/specs alias spelling for a specs reference
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	971	51	68601f8653bd8386	rewrite	path constant names the source tree; real directory is .skilled
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	1039	26	963f26642a2fe0cc	keep	compat-link: fragment of the legacy .opencode/specs alias spelling
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	1778	64	1d2288f15b8479ad	keep	compat-link: describes workspace anchoring that must accept the old name

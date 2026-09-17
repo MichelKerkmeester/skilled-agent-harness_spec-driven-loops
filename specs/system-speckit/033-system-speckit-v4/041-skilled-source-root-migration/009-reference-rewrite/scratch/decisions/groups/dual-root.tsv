@@ -1,0 +1,441 @@
+.github/dependabot.yml	13	10	4fb5720b08500fdd	keep	legacy-layout: deliberate twin of /.skilled/**; twins rule needs both roots
+.github/scripts/check-gate-inputs.sh	14	46	c0ceb50aa525f0b5	keep	legacy-layout: hook inputs stay .opencode-named; check resolves them through the link
+.github/scripts/check-gate-inputs.sh	15	49	b7921398b08709b6	keep	legacy-layout: .opencode-literal assignments are resolved hook inputs; gates keep that name
+.github/scripts/check-gate-inputs.sh	16	21	8f9c62aacd70446b	keep	legacy-layout: quoted .opencode literals resolve; .skilled read as note
+.github/scripts/check-gate-inputs.sh	17	35	bf5e57c5efa2ff44	keep	legacy-layout: workflow inputs stay .opencode-named; workflows resolve them through the link
+.github/scripts/check-gate-inputs.sh	108	20	6547cbfe1d2d38dc	keep	legacy-layout: twin mapper deliberately names both roots; .skilled handled by its else
+.github/scripts/check-gate-inputs.sh	108	44	6547cbfe1d2d38dc	keep	legacy-layout: substitution builds the twin name; both roots mapped by design
+.github/scripts/check-gate-inputs.sh	109	25	936673a8b55264b8	keep	legacy-layout: replacement name for a .skilled token; twin mapping needs both
+.github/scripts/check-gate-inputs.sh	130	3	6d8f2bf7450b30a4	keep	legacy-layout: documents the detector keeping gates naming both roots
+.github/scripts/check-gate-inputs.sh	147	96	0749f41ca0b76cf4	keep	legacy-layout: report label for the .opencode branch; .skilled branch sits beside
+.github/scripts/check-gate-inputs.sh	194	19	586673c0cb0010d2	keep	legacy-layout: only link-side varpaths resolve; .skilled outside git is a note
+.github/scripts/check-gate-inputs.sh	267	134	03fd132c0bbc9644	keep	legacy-layout: resolves .opencode literal assignments; .skilled spelling read as argument
+.github/scripts/check-gate-inputs.sh	290	21	e8ca21d7d3d29518	keep	legacy-layout: quoted .opencode literal resolves; .skilled falls to the argument note
+.github/scripts/check-gate-inputs.sh	317	16	0a2728e9fa762bcb	keep	legacy-layout: example of the bare .opencode mention workflows still contain
+.github/scripts/check-gate-inputs.sh	369	42	bcbf80b4a580991f	keep	dual-root-needed: matches only .opencode run tokens; a .skilled path misses and fails
+.github/scripts/check-gate-inputs.sh	376	45	b3b88633a8a52943	keep	dual-root-needed: bare scan knows only .opencode; a bare .skilled mention would fail
+.github/scripts/check-gate-inputs.sh	377	20	1714a2fdb447db66	keep	dual-root-needed: emit should report the matched root once the scan widens
+.github/scripts/check-gate-inputs.sh	446	18	f0bd95f13bc2962c	keep	legacy-layout: dual lookup tries .opencode then .skilled; both roots deliberate
+.github/scripts/check-gate-inputs.sh	446	49	f0bd95f13bc2962c	keep	legacy-layout: keeps the root it found; .skilled branch checks next
+.github/scripts/tests/broken-move-drill.sh	5	28	71815f6317dcb9d1	keep	compat-link: header names the .opencode link the drill builds
+.github/scripts/tests/broken-move-drill.sh	49	79	03085d45ed6b148f	keep	history: pathspec walks history at the file's pre-move path
+.github/scripts/tests/broken-move-drill.sh	53	35	3bcba436ec29dafa	keep	history: extracts the pre-rule hook blob at its old path
+.github/scripts/tests/broken-move-drill.sh	55	33	215d3729d5873f46	keep	history: extracts the pre-rule SessionStart check at its old path
+.github/scripts/tests/broken-move-drill.sh	56	33	2019e0719ae2ac12	keep	history: extracts the pre-rule legacy helper at its old path
+.github/scripts/tests/broken-move-drill.sh	64	11	63e8efa8e4f15411	keep	legacy-layout: the drill's move takes the old name as its source
+.github/scripts/tests/broken-move-drill.sh	65	23	b56c2b4edbd8c4c2	keep	legacy-layout: creates the tracked .opencode link the drill exercises
+.github/scripts/tests/broken-move-drill.sh	66	23	85223cdcfa4181a8	keep	legacy-layout: stages both roots so the move records the link
+.github/scripts/tests/broken-move-drill.sh	70	10	f804be51ab2b58b0	keep	compat-link: hooks dir reached through the link the drill created
+.github/scripts/tests/broken-move-drill.sh	88	70	c57133552b3ee25f	keep	legacy-layout: comment names the synthetic move's old-path deletions
+.github/scripts/tests/broken-move-drill.sh	90	61	9d66bb65173a1291	keep	legacy-layout: comment names the old root alone as the filter defect
+.github/scripts/tests/broken-move-drill.sh	125	41	93cb865306617d96	keep	compat-link: mirrors pre-commit's kept .opencode comment-checker input
+.github/scripts/tests/broken-move-drill.sh	129	18	399935d4bc3b8069	keep	compat-link: legacy helper reached through the link the drill created
+.github/scripts/tests/broken-move-drill.sh	134	46	b75745afd9f9876c	keep	compat-link: mirrors pre-commit's kept .opencode mirror-checker input
+.github/scripts/tests/broken-move-drill.sh	143	45	dd1a456b0eb90614	keep	compat-link: mirrors pre-commit's kept .opencode parity-script input
+.github/scripts/tests/broken-move-drill.sh	150	41	4e0dd52e28781a24	keep	compat-link: mirrors pre-commit's kept .opencode card-guard input
+.github/scripts/tests/broken-move-drill.sh	157	46	4994db6b84ebd983	keep	compat-link: mirrors pre-commit's kept .opencode mutation-guard input
+.github/scripts/tests/broken-move-drill.sh	164	40	96e0bb671b298c0f	keep	compat-link: mirrors pre-commit's kept .opencode re-derive input
+.github/scripts/tests/broken-move-drill.sh	171	37	b7586e9a3615e5a5	keep	compat-link: mirrors pre-commit's kept .opencode hook-flags input
+.github/scripts/tests/broken-move-drill.sh	178	37	1b1eea7c2216bc94	keep	compat-link: mirrors pre-commit's kept .opencode route-guard input
+.github/scripts/tests/broken-move-drill.sh	190	43	d1d77bac125325ca	keep	compat-link: mirrors pre-push's kept .opencode permission-script input
+.github/scripts/tests/broken-move-drill.sh	196	53	320079e36fe4846f	keep	compat-link: mirrors pre-push's kept .opencode skill-checker input
+.github/scripts/tests/broken-move-drill.sh	202	45	a34a93e46c14f72c	keep	compat-link: mirrors prepare-commit-msg's kept .opencode allocator input
+.github/scripts/tests/broken-move-drill.sh	215	18	a435a8470f3eaec8	keep	compat-link: SessionStart check reached through the link the drill created
+.github/scripts/tests/broken-move-drill.sh	304	19	7986957409c2328b	keep	legacy-layout: fixture builds another repo's old-named agent tree
+.github/scripts/tests/broken-move-drill.sh	304	47	7986957409c2328b	keep	legacy-layout: fixture builds another repo's old-named demo skill tree
+.github/scripts/tests/broken-move-drill.sh	305	23	24fd64ec448c5675	keep	legacy-layout: fixture writes an agent file under the old name
+.github/scripts/tests/broken-move-drill.sh	305	70	24fd64ec448c5675	keep	legacy-layout: fixture writes a demo skill file under the old name
+.github/scripts/tests/broken-move-drill.sh	311	85	56753cabbdced212	keep	compat-link: current SessionStart check reached through the link for comparison
+.github/scripts/tests/broken-move-drill.sh	312	80	c3f174c3c7166d42	keep	compat-link: current legacy helper reached through the link for comparison
+.github/scripts/tests/check-gate-inputs.test.sh	24	52	52eaf5990eb8fd12	keep	legacy-layout: fixture builds its own .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	24	78	52eaf5990eb8fd12	keep	legacy-layout: second fixture directory inside that .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	26	24	1360d2b7a35c64e2	keep	legacy-layout: fixture gate directory inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	27	48	e8af2a2a6c4d7d03	keep	legacy-layout: fixture gate file written into the .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	29	27	8589ccf1622c09bb	keep	legacy-layout: fixture tool script under .opencode/bin
+.github/scripts/tests/check-gate-inputs.test.sh	30	28	f23effbb3af65b89	keep	legacy-layout: fixture skill under .opencode/skills
+.github/scripts/tests/check-gate-inputs.test.sh	31	20	c316d4374a2ded69	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	32	17	846758073090a865	keep	legacy-layout: fixture hook names its own .opencode tool path
+.github/scripts/tests/check-gate-inputs.test.sh	40	9	d10bbfa6d8b5427d	keep	legacy-layout: fixture .opencode filter paired with its .skilled twin
+.github/scripts/tests/check-gate-inputs.test.sh	46	18	d4fe8773dbc4b89b	keep	legacy-layout: fixture workflow run keeps the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	53	10	4fb5720b08500fdd	keep	legacy-layout: fixture dependabot directory twin of /.skilled/**
+.github/scripts/tests/check-gate-inputs.test.sh	77	14	16e8080f473bf6f8	keep	legacy-layout: fixture deletes a file from its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	79	72	8a2bac528f480bd1	keep	legacy-layout: expected message carries the fixture .opencode path
+.github/scripts/tests/check-gate-inputs.test.sh	83	23	236a1199aa24c60f	keep	legacy-layout: fixture hook input names an .opencode tool
+.github/scripts/tests/check-gate-inputs.test.sh	83	61	236a1199aa24c60f	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	85	79	e14816ce8056950d	keep	legacy-layout: expected message carries the fixture .opencode hook path
+.github/scripts/tests/check-gate-inputs.test.sh	89	24	9736d5ca3aeaced9	keep	legacy-layout: fixture workflow run keeps the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	91	121	8a4119eebeb86836	keep	legacy-layout: expected message carries the fixture .opencode path
+.github/scripts/tests/check-gate-inputs.test.sh	98	128	2ce8ff2886dfcfd6	keep	legacy-layout: expected message carries the fixture .opencode filter
+.github/scripts/tests/check-gate-inputs.test.sh	102	92	022d246068b11e65	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	108	13	362ab9ffdb9c52b3	keep	legacy-layout: fixture source line names an .opencode/lib path
+.github/scripts/tests/check-gate-inputs.test.sh	108	51	362ab9ffdb9c52b3	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	110	83	fde7a9a9b5799d39	keep	legacy-layout: expected message carries the fixture .opencode hook path
+.github/scripts/tests/check-gate-inputs.test.sh	114	14	8cdd8f84d5997726	keep	legacy-layout: fixture moves the .opencode tree under .skilled
+.github/scripts/tests/check-gate-inputs.test.sh	115	26	543f2cf6221e0064	keep	compat-link: fixture links .opencode back to .skilled
+.github/scripts/tests/check-gate-inputs.test.sh	126	7	52bd83df436972c7	keep	legacy-layout: fixture one-root filter keeps its .opencode spelling
+.github/scripts/tests/check-gate-inputs.test.sh	131	18	d4fe8773dbc4b89b	keep	legacy-layout: fixture workflow run keeps the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	134	135	c0ac9bf958b9f51f	keep	legacy-layout: expected message carries the fixture .opencode filter
+.github/scripts/tests/check-gate-inputs.test.sh	142	13	372dd4877da0f301	keep	legacy-layout: fixture inline filter names the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	147	18	d4fe8773dbc4b89b	keep	legacy-layout: fixture workflow run keeps the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	150	123	8e7fc209701c64e0	keep	legacy-layout: expected message carries the fixture .opencode filter
+.github/scripts/tests/check-gate-inputs.test.sh	163	18	d4fe8773dbc4b89b	keep	legacy-layout: fixture workflow run keeps the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	175	7	a7e089803908d9c9	keep	legacy-layout: fixture unreadable filter names the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	180	18	d4fe8773dbc4b89b	keep	legacy-layout: fixture workflow run keeps the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	187	35	67c401ef51078743	keep	legacy-layout: fixture workflow run names an .opencode skills path
+.github/scripts/tests/check-gate-inputs.test.sh	189	135	38d366d73ba6577d	keep	legacy-layout: expected message carries the fixture .opencode path
+.github/scripts/tests/check-gate-inputs.test.sh	189	209	38d366d73ba6577d	keep	legacy-layout: expected message carries the fixture .opencode owner
+.github/scripts/tests/check-gate-inputs.test.sh	193	24	5aff4f22b372f96d	keep	legacy-layout: fixture assignment names an .opencode/bin path
+.github/scripts/tests/check-gate-inputs.test.sh	193	66	5aff4f22b372f96d	keep	legacy-layout: fixture assignment names an .opencode tool path
+.github/scripts/tests/check-gate-inputs.test.sh	193	104	5aff4f22b372f96d	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	195	102	af1f2337bd082b49	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	195	146	af1f2337bd082b49	keep	legacy-layout: expected message carries the fixture .opencode path
+.github/scripts/tests/check-gate-inputs.test.sh	199	17	224ad96f6530fe9b	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	202	17	846758073090a865	keep	legacy-layout: fixture hook names its own .opencode tool path
+.github/scripts/tests/check-gate-inputs.test.sh	203	34	5466dde5d23fe609	keep	legacy-layout: fixture pathspec names an .opencode skills path
+.github/scripts/tests/check-gate-inputs.test.sh	207	118	fef0488872fd7cce	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	207	168	fef0488872fd7cce	keep	legacy-layout: expected message carries the fixture .opencode pathspec
+.github/scripts/tests/check-gate-inputs.test.sh	216	9	d10bbfa6d8b5427d	keep	legacy-layout: fixture .opencode filter paired with its .skilled twin
+.github/scripts/tests/check-gate-inputs.test.sh	220	9	d10bbfa6d8b5427d	keep	legacy-layout: fixture one-root filter keeps its .opencode spelling
+.github/scripts/tests/check-gate-inputs.test.sh	225	18	d4fe8773dbc4b89b	keep	legacy-layout: fixture workflow run keeps the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	228	156	11bb995635197af2	keep	legacy-layout: expected message carries the fixture .opencode filter
+.github/scripts/tests/check-gate-inputs.test.sh	235	10	4fb5720b08500fdd	keep	legacy-layout: fixture dependabot directory twin of .skilled
+.github/scripts/tests/check-gate-inputs.test.sh	238	152	0a554c13bebe8974	keep	legacy-layout: expected message carries the fixture .opencode directory
+.github/scripts/tests/check-gate-inputs.test.sh	242	29	48736e76e401d528	keep	legacy-layout: fixture echo message names .opencode/docs text
+.github/scripts/tests/check-gate-inputs.test.sh	248	17	224ad96f6530fe9b	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	250	17	846758073090a865	keep	legacy-layout: fixture hook names its own .opencode tool path
+.github/scripts/tests/check-gate-inputs.test.sh	257	112	681a6da6c15d4bec	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	257	162	681a6da6c15d4bec	keep	legacy-layout: expected message carries the fixture .opencode pathspec
+.github/scripts/tests/check-gate-inputs.test.sh	261	17	224ad96f6530fe9b	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	263	17	846758073090a865	keep	legacy-layout: fixture hook names its own .opencode tool path
+.github/scripts/tests/check-gate-inputs.test.sh	264	30	30210e69e2b19496	keep	legacy-layout: fixture continued pathspec names the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	268	121	4c6ec68947cafcd2	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	268	171	4c6ec68947cafcd2	keep	legacy-layout: expected message carries the fixture .opencode pathspec
+.github/scripts/tests/check-gate-inputs.test.sh	272	17	224ad96f6530fe9b	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	274	17	846758073090a865	keep	legacy-layout: fixture hook names its own .opencode tool path
+.github/scripts/tests/check-gate-inputs.test.sh	275	9	624aaf1d2e202042	keep	legacy-layout: fixture inline array entry names the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	279	92	3af39f9fafc78611	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	279	142	3af39f9fafc78611	keep	legacy-layout: expected message carries the fixture .opencode pathspec
+.github/scripts/tests/check-gate-inputs.test.sh	286	9	0ffc4d1f14ea1a94	keep	legacy-layout: fixture dependabot directory names the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	289	158	221dcc8712561328	keep	legacy-layout: expected message carries the fixture .opencode directory
+.github/scripts/tests/check-gate-inputs.test.sh	293	43	81593a6f69171fd3	keep	legacy-layout: fixture workflow command names an .opencode path
+.github/scripts/tests/check-gate-inputs.test.sh	295	125	553f3b80307437ae	keep	legacy-layout: expected message carries the fixture .opencode path
+.github/scripts/tests/check-gate-inputs.test.sh	299	29	a97f8eb98fab5235	keep	legacy-layout: fixture quoted echo message names .opencode/docs text
+.github/scripts/tests/check-gate-inputs.test.sh	305	17	224ad96f6530fe9b	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	307	17	846758073090a865	keep	legacy-layout: fixture hook names its own .opencode tool path
+.github/scripts/tests/check-gate-inputs.test.sh	310	5	b8d1e5e14918b405	keep	legacy-layout: fixture array entry names an .opencode skills path
+.github/scripts/tests/check-gate-inputs.test.sh	321	9	a20ada0f364f4b8a	keep	legacy-layout: fixture hook command copies the .opencode tool
+.github/scripts/tests/check-gate-inputs.test.sh	321	64	a20ada0f364f4b8a	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	323	93	ea47ddb60b47f617	keep	legacy-layout: expected message carries the fixture .opencode hook path
+.github/scripts/tests/check-gate-inputs.test.sh	327	15	7bef8900d8fe13ad	keep	legacy-layout: fixture git add names an .opencode skill path
+.github/scripts/tests/check-gate-inputs.test.sh	327	62	7bef8900d8fe13ad	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	329	92	9bbb7b0431d63eed	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	329	142	9bbb7b0431d63eed	keep	legacy-layout: expected message carries the fixture .opencode pathspec
+.github/scripts/tests/check-gate-inputs.test.sh	337	59	10fc15537d2f7ee3	keep	legacy-layout: fixture negated filter entry keeps .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	342	18	d4fe8773dbc4b89b	keep	legacy-layout: fixture workflow run keeps the .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	345	130	815880fe617f946e	keep	legacy-layout: expected message carries the fixture .opencode filter
+.github/scripts/tests/check-gate-inputs.test.sh	349	97	4b87c7caf0f73bc3	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	351	94	159372bf3478b9d9	keep	legacy-layout: expected message carries the fixture .opencode hook path
+.github/scripts/tests/check-gate-inputs.test.sh	355	16	39cc5d34f90711fd	keep	legacy-layout: fixture echo message names .opencode/docs text
+.github/scripts/tests/check-gate-inputs.test.sh	355	56	39cc5d34f90711fd	keep	legacy-layout: fixture source command names an .opencode/lib path
+.github/scripts/tests/check-gate-inputs.test.sh	355	94	39cc5d34f90711fd	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	357	87	77264490f1e21f72	keep	legacy-layout: expected message carries the fixture .opencode hook path
+.github/scripts/tests/check-gate-inputs.test.sh	361	60	0f6c1c690ccc7aa3	keep	legacy-layout: fixture trailing comment names .opencode/docs text
+.github/scripts/tests/check-gate-inputs.test.sh	361	90	0f6c1c690ccc7aa3	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	367	37	20c3b21eb370fb3f	keep	legacy-layout: fixture pathspec names an .opencode skills path
+.github/scripts/tests/check-gate-inputs.test.sh	367	87	20c3b21eb370fb3f	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	369	108	6695eb970d8da1bc	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	369	158	6695eb970d8da1bc	keep	legacy-layout: expected message carries the fixture .opencode pathspec
+.github/scripts/tests/check-gate-inputs.test.sh	373	39	3109d7c959735e51	keep	legacy-layout: fixture pathspec names the .opencode root directory
+.github/scripts/tests/check-gate-inputs.test.sh	373	66	3109d7c959735e51	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	375	98	68051992ad90a8e4	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	375	148	68051992ad90a8e4	keep	legacy-layout: expected message carries the fixture .opencode pathspec
+.github/scripts/tests/check-gate-inputs.test.sh	379	18	7e08ccbbb58b045c	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	381	3	d493ced7f4d6e635	keep	legacy-layout: fixture array entry names an .opencode skills path
+.github/scripts/tests/check-gate-inputs.test.sh	383	26	ac7990333bcd3a2d	keep	legacy-layout: fixture pathspec names an .opencode skills path
+.github/scripts/tests/check-gate-inputs.test.sh	386	86	447aa574bfb90c22	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	386	136	447aa574bfb90c22	keep	legacy-layout: expected message carries the fixture .opencode pathspec
+.github/scripts/tests/check-gate-inputs.test.sh	390	26	7e0a0d09a27a1f7a	keep	legacy-layout: fixture assignment names an .opencode/bin path
+.github/scripts/tests/check-gate-inputs.test.sh	390	67	7e0a0d09a27a1f7a	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	392	100	8ba7a8d9e9937d7f	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	392	152	8ba7a8d9e9937d7f	keep	legacy-layout: expected message carries the fixture .opencode path
+.github/scripts/tests/check-gate-inputs.test.sh	396	109	7ba2377bb20036d2	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	398	106	2e94ee7e82fad695	keep	legacy-layout: expected message carries the fixture .opencode hook path
+.github/scripts/tests/check-gate-inputs.test.sh	402	35	b3b71a53e5e1ce7b	keep	legacy-layout: fixture array entry names an .opencode skill path
+.github/scripts/tests/check-gate-inputs.test.sh	402	121	b3b71a53e5e1ce7b	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	404	92	9e1a08edbaa91706	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	404	142	9e1a08edbaa91706	keep	legacy-layout: expected message carries the fixture .opencode pathspec
+.github/scripts/tests/check-gate-inputs.test.sh	408	57	1491b5faec9428c2	keep	legacy-layout: fixture dynamic node path names .opencode skills
+.github/scripts/tests/check-gate-inputs.test.sh	408	104	1491b5faec9428c2	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	414	149	20b78e0f1b73fee9	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	416	95	fa76c48028e08e3c	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	416	144	fa76c48028e08e3c	keep	legacy-layout: expected message carries the fixture .opencode regex
+.github/scripts/tests/check-gate-inputs.test.sh	420	104	e9012a231e07c5e0	keep	legacy-layout: fixture hook file inside its .opencode tree
+.github/scripts/tests/check-gate-inputs.test.sh	422	76	508291967f0b9c43	keep	legacy-layout: expected message carries the fixture .opencode paths
+.github/scripts/tests/check-gate-inputs.test.sh	422	126	508291967f0b9c43	keep	legacy-layout: expected message carries the fixture .opencode pathspec
+.github/scripts/tests/check-gate-inputs.test.sh	426	54	8da2e44b3098d331	keep	legacy-layout: fixture dependabot flow entry names .opencode root
+.github/scripts/tests/check-gate-inputs.test.sh	428	120	b27c9c9419608534	keep	legacy-layout: expected message carries the fixture .opencode directory
+.github/scripts/tests/check-gate-inputs.test.sh	432	24	8c123f3b6ec5ca70	keep	legacy-layout: fixture workflow run names an .opencode glob path
+.github/workflows/README.md	30	39	fa28f12b9e87d6c3	rewrite	names the tree's agent-mirror directory; real directory is .skilled
+.github/workflows/README.md	33	112	f5811fafb7846f21	keep	legacy-layout: deliberately names both roots; twin filter requirement keeps .opencode alternates
+.gitignore	53	0	f3493feb4e28548c	keep	legacy-layout: output ignore twin; alternate kept for old-root worktrees
+.gitignore	65	0	674fcc43d4b53d99	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	67	0	9b6342efc75315af	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	69	0	6683e302de166714	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	71	0	f9ace4cdf3ba70a8	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	73	0	4bc41bc6c73b8907	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	75	0	efd5e39a1385aae4	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	77	0	d3367e8c4071e054	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	79	0	3101f27fa8280063	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	85	0	5da44c14d0772a95	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	87	0	a440f4d9b26a4c26	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	89	0	a0d5c6ee9845fc3e	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	91	0	5705beb54edc2982	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	93	0	8f58d6d1f4a4ca5c	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	95	0	57c00a26051665ab	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	97	0	9a83339357127513	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	100	1	98d0dc6ddf55fd85	keep	legacy-layout: negation twin; keeps hand-written declaration tracked under both roots
+.gitignore	102	0	27425f8067a300da	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	104	0	5bd7791fd434cea7	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	106	0	b6755d4af74ae766	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	129	0	9c12b327aa437c9e	keep	legacy-layout: state ignore twin; alternate kept for old-root worktrees
+.gitignore	131	1	9c3584ff9e029da0	keep	legacy-layout: negation twin; keeps .state README tracked under both roots
+.gitignore	135	0	2f6fad098caf455a	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	137	0	f32791d5ba80bd06	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	143	0	cf29251ec68b604b	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	145	0	de67aa8305a569dc	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	147	0	2a301400e9387392	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	149	0	2acc0c338c7653c1	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	151	0	27aba3e831095932	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	157	0	666a23c29de999fd	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	159	0	c0460b8950c344f0	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	161	0	952dde4d3f0a6deb	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	163	0	d12bf866ce979b78	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	165	0	7ca4d13fc30411f2	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	167	0	430bcc433168b16a	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	169	0	03e8824da0a40b5c	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	171	0	cb1aac3ec51d2596	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	177	0	4b95acf495096a84	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	179	0	ce4d7c2ab334817e	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	181	0	d28edd24c8b82ad2	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	183	0	783cb2b87e380638	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	194	0	ff8bdb78f1ab5369	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	205	0	7e44d6cef4896920	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	207	0	2c7e9d368ad95c44	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	209	0	f1fdefec582baaff	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	215	0	f621f5222631cfe7	keep	legacy-layout: ignore twin; outer alternate kept for old-root worktrees
+.gitignore	215	41	f621f5222631cfe7	keep	legacy-layout: nested runtime directory named .opencode; twin pair kept
+.gitignore	216	40	fc946534c12cdd06	keep	legacy-layout: nested runtime directory named .opencode; twin pair kept
+.gitignore	217	0	e6ef7376460796ad	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	223	6	2df34fa553caa5ab	keep	legacy-layout: nested-leak ignore twin; alternate kept for old-root worktrees
+.gitignore	225	6	de40ec397c717944	keep	legacy-layout: nested-leak ignore twin; alternate kept for old-root worktrees
+.gitignore	227	6	001f595e2922fd9b	keep	legacy-layout: nested-leak ignore twin; alternate kept for old-root worktrees
+.gitignore	233	6	552c092620378acc	keep	legacy-layout: nested-leak ignore twin; alternate kept for old-root worktrees
+.gitignore	239	0	ed890b5aa9cf7aee	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	241	0	79ad2d9e7bd4f08d	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	243	0	2253d6539e5970db	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	291	0	ed85908b607a4ae5	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	293	0	7b29eb75da78ecf1	keep	legacy-layout: ignore twin; .opencode alternate kept for old-root worktrees
+.gitignore	332	0	54008bf7b4b7e8c3	keep	legacy-layout: project ignore twin; barter alternate kept under both roots
+.gitignore	345	0	5b9ec0fe203ed4d0	keep	legacy-layout: hook-config ignore twin; alternate kept for old-root worktrees
+.gitignore	368	0	f591f7365bff1293	keep	legacy-layout: state-dir ignore twin; alternate kept for old-root worktrees
+.skilled/bin/compiled-routing-foundation.vitest.ts	51	3	4e470af3ec83d4d8	rewrite	plain path constant into repo tree; real root .skilled
+.skilled/bin/compiled-routing-foundation.vitest.ts	294	37	13b92c82ebadb1c9	keep	legacy-layout: comment deliberately names both roots of layout matrix
+.skilled/bin/compiled-routing-foundation.vitest.ts	295	5	8860f010398b73a1	keep	legacy-layout: comment names both roots; link described on purpose
+.skilled/bin/compiled-routing-foundation.vitest.ts	297	32	f40cdc1bfe1443b4	keep	legacy-layout: today-layout fixture deliberately names .opencode real root
+.skilled/bin/compiled-routing-foundation.vitest.ts	297	70	f40cdc1bfe1443b4	keep	legacy-layout: today-layout entries deliberately name .opencode root
+.skilled/bin/compiled-routing-foundation.vitest.ts	322	65	2fcacef409134c04	keep	legacy-layout: fixture links .opencode to .skilled deliberately
+.skilled/bin/mcp-code-mode-launcher.test.cjs	175	35	a766ac7a9503b39a	keep	legacy-layout: comment deliberately names both roots of layout matrix
+.skilled/bin/mcp-code-mode-launcher.test.cjs	176	3	927e477fadabd7db	keep	legacy-layout: comment names both roots; link described on purpose
+.skilled/bin/mcp-code-mode-launcher.test.cjs	178	30	582f4acfae579a1b	keep	legacy-layout: today-layout fixture deliberately names .opencode real root
+.skilled/bin/mcp-code-mode-launcher.test.cjs	178	68	582f4acfae579a1b	keep	legacy-layout: today-layout entries deliberately name .opencode root
+.skilled/bin/mcp-code-mode-launcher.test.cjs	201	75	e07b4ceb6d871e45	keep	legacy-layout: fixture links .opencode to .skilled deliberately
+.skilled/bin/tests/check-git-hooks.test.sh	16	18	6bea6c27234c0373	rewrite	harness locates repo script via old alias; real root .skilled
+.skilled/bin/tests/check-git-hooks.test.sh	31	19	7014d746952f1a81	keep	legacy-layout: fixture builds old-named tree deliberately for check
+.skilled/bin/tests/check-git-hooks.test.sh	32	26	4478c49f176a34eb	keep	legacy-layout: fixture builds old-named tree deliberately for check
+.skilled/bin/tests/check-git-hooks.test.sh	59	13	ed4e821f28efabda	keep	legacy-layout: fixture removes old tree to construct linked layout
+.skilled/bin/tests/check-git-hooks.test.sh	60	21	1bae0ca9c5213cc9	keep	legacy-layout: fixture links .opencode to .skilled deliberately
+.skilled/bin/tests/check-git-hooks.test.sh	63	12	7cde47de44e54c41	keep	legacy-layout: hook installed through deliberately linked .opencode name
+.skilled/bin/tests/check-git-hooks.test.sh	74	15	67d833bf883cac9f	keep	legacy-layout: fixture builds old-named hook source deliberately
+.skilled/bin/tests/check-git-hooks.test.sh	75	47	a198deb169b3813e	keep	legacy-layout: fixture builds old-named hook source deliberately
+.skilled/bin/tests/install-codex-hooks-source-root.test.cjs	31	35	a766ac7a9503b39a	keep	legacy-layout: comment deliberately names both roots of layout matrix
+.skilled/bin/tests/install-codex-hooks-source-root.test.cjs	32	3	1fb94277f67f6b2c	keep	legacy-layout: comment names both roots of layout matrix
+.skilled/bin/tests/install-codex-hooks-source-root.test.cjs	35	30	1d17db534635e3b9	keep	legacy-layout: today-layout fixture deliberately names .opencode real root
+.skilled/bin/tests/install-codex-hooks-source-root.test.cjs	57	65	bd6f427e4743d2d3	keep	legacy-layout: fixture links .opencode to .skilled deliberately
+.skilled/bin/tests/relink-local-specs.test.sh	6	2	de08764c4f25b91e	keep	legacy-layout: comment deliberately names both roots of layout matrix
+.skilled/bin/tests/relink-local-specs.test.sh	7	26	14db2c4d5c47641b	keep	legacy-layout: comment names both roots; link described on purpose
+.skilled/bin/tests/relink-local-specs.test.sh	38	17	89c9f778c91009dd	keep	legacy-layout: today-layout fixture deliberately names .opencode real root
+.skilled/bin/tests/relink-local-specs.test.sh	38	38	89c9f778c91009dd	keep	legacy-layout: today-layout entries deliberately name .opencode root
+.skilled/bin/tests/relink-local-specs.test.sh	39	25	181a96375acf6457	keep	legacy-layout: whole-link entries deliberately name both roots
+.skilled/bin/tests/relink-local-specs.test.sh	49	63	1da1ef6661e12588	keep	legacy-layout: fixture links .opencode to .skilled deliberately
+.skilled/bin/tests/worktree-session.test.sh	216	22	e323ccd6cd3f5dc1	keep	legacy-layout: comment deliberately names both roots of layout matrix
+.skilled/bin/tests/worktree-session.test.sh	217	25	40e79afa13aab4a4	keep	legacy-layout: comment names both roots; link described on purpose
+.skilled/bin/tests/worktree-session.test.sh	221	36	0aeac82941fa7da6	keep	legacy-layout: today-layout fixture deliberately names .opencode real root
+.skilled/bin/tests/worktree-session.test.sh	229	60	2fc950100c7705fb	keep	legacy-layout: fixture links .opencode to .skilled deliberately
+.skilled/bin/tests/worktree-session.test.sh	249	36	0aeac82941fa7da6	keep	legacy-layout: today-layout fixture deliberately names .opencode real root
+.skilled/bin/tests/worktree-session.test.sh	282	39	a9ef591f9311018b	keep	legacy-layout: asserts skilled-only launch plants no .opencode path
+.skilled/bin/tests/worktree-session.test.sh	282	89	a9ef591f9311018b	keep	legacy-layout: asserts skilled-only worktree holds no .opencode path
+.skilled/bin/tests/worktree-session.test.sh	291	16	d7875c7fe35d160a	keep	legacy-layout: fixture simulates move from .opencode to .skilled
+.skilled/bin/tests/worktree-session.test.sh	299	98	b7cb8a8946f77f62	keep	legacy-layout: expects mismatch message naming worktree's .opencode root
+.skilled/commands/scripts/validate-command-references.cjs	13	64	fd44f6e32b9f8397	rewrite	describes skill-asset paths the checker resolves; assets rewrite to .skilled
+.skilled/commands/scripts/validate-command-references.cjs	42	21	b37bf946f8d4d60e	rewrite	candidate runtime agent dirs; the real source dir is .skilled/agents
+.skilled/commands/scripts/validate-command-references.cjs	46	40	38e439a9cc20226d	keep	dual-root-needed: runtime-dir allowlist; add .skilled so rewritten agents/ refs pass
+.skilled/commands/scripts/validate-command-references.cjs	52	43	5032f7a75dd5bf06	rewrite	builds the command-tree path; the real tree is .skilled/commands
+.skilled/commands/scripts/validate-command-references.cjs	65	22	b4a12acfa9787ea5	keep	dual-root: the orchestrator widens this token pattern to both root names by hand, matching the file's other command patterns
+.skilled/commands/scripts/validate-command-references.cjs	69	25	e951a8d46261a9ff	keep	dual-root: the orchestrator widens this target pattern to both root names by hand, matching the file's other command patterns
+.skilled/commands/scripts/validate-command-references.cjs	169	38	5030f3aa67052436	rewrite	scans the real command-asset tree under .skilled/commands
+.skilled/commands/scripts/validate-command-references.cjs	186	52	40e57202afd2d2a0	keep	legacy-layout: deliberately names both roots; predating checkouts fall back to .opencode
+.skilled/commands/scripts/validate-command-references.cjs	410	49	38c30663b4b9a743	rewrite	self-test fixture must mirror the rewritten .skilled command tokens
+.skilled/commands/scripts/validate-command-references.cjs	414	35	dd07617c56fb0b39	rewrite	fixture reference must match the rewritten command-target token
+.skilled/commands/scripts/validate-command-references.cjs	420	23	8f9bd8ce0427d5d0	rewrite	fixture reference must match the rewritten command-target token
+.skilled/commands/scripts/validate-command-references.cjs	421	22	002ce10bd63194e8	rewrite	fixture reference must match the rewritten command-target token
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	36	19	b835d26ce310e35e	rewrite	comment-hygiene checker path; the real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	37	14	c3ea9128c754370b	rewrite	flowchart checker path; the real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	38	24	b41a49037532fc4f	rewrite	frontmatter-versions checker path; real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	39	17	568f044d7eefd68b	rewrite	placeholders checker path; the real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	40	14	9805806a0c025f84	rewrite	wikilinks checker path; the real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	41	18	73bc632e5ddb0073	rewrite	dist-staleness checker path; the real script is under .skilled/skills
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	197	57	b22d2a0a6abd7881	keep	compat-link: describes the .opencode link the real runtime path resolves past
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs	217	73	86390a190eeb24da	keep	compat-link: keeps the .opencode/specs alias dispatching; .skilled/specs is no root
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	30	23	0878a4ef108e25c4	rewrite	mirrors the plugin LOG_RELATIVE, rewritten to .skilled/logs
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	101	42	ef8c44b575a4b1f5	keep	legacy-layout: linked-spelling dispatch case; its .skilled twin sits beside it
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	153	45	5f34935016d15c2c	keep	legacy-layout: linked-spelling wikilinks case; router deliberately accepts .opencode
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	156	44	da91ae5e1f1bb36f	keep	legacy-layout: linked-spelling case; the .skilled twin covers the real root
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	161	61	6edcd3d62f81e735	keep	legacy-layout: assertion for the linked-spelling input kept at line 156
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	165	42	59f24c06e4fec0e7	keep	legacy-layout: linked-spelling priority case; exercises the kept .opencode branch
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	173	42	c5100f2bb8e41212	keep	legacy-layout: linked-spelling adversarial case; exercises the kept .opencode branch
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	182	23	faef56f02b3e78b8	keep	legacy-layout: fixture spelled through the linked root; its assertion needs it
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	196	55	3266e02c56864a17	keep	legacy-layout: fixture spelled through the linked root; frontmatter needs it
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	199	31	37201601a1cb43fe	keep	legacy-layout: sibling fixture must match the README spelling above
+.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs	363	55	fbc415a08a1a6539	rewrite	temp dir inside the real repository tree; .skilled/plugins names it
+.skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py	18	10	5258e34da5a42d41	rewrite	directive marker must match skill docs rewritten to .skilled/bin
+.skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py	271	39	b5906471f9adaeb1	rewrite	fallback message names the real tree; .skilled/commands/doctor is real
+.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts	10	21	161acbe2aa31eb5c	rewrite	repo-relative scripts path; the real tree is .skilled/skills
+.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts	52	31	8f174e0f69cc4159	rewrite	points at the real shared package dir under .skilled/skills
+.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts	55	13	0d8799fdaa7ebba3	keep	legacy-layout: fixture canonical dir the checker reads at .opencode/agents
+.skilled/skills/system-deep-loop/runtime/tests/unit/check-contract-drift.vitest.ts	148	52	da4fde23adc1603b	keep	legacy-layout: test name deliberately names both roots
+.skilled/skills/system-deep-loop/runtime/tests/unit/check-contract-drift.vitest.ts	150	100	9adfbc8b605a867e	keep	legacy-layout: converts digests to the legacy .opencode spelling deliberately
+.skilled/skills/system-deep-loop/runtime/tests/unit/check-contract-drift.vitest.ts	166	35	6916d3e556ee9b68	keep	legacy-layout: converts document paths across both root spellings deliberately
+.skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts	87	47	71774b806d89e2b1	keep	legacy-layout: comment describes the deliberate .opencode-only checkout
+.skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts	92	34	3d06f855bfaa09e1	keep	legacy-layout: builds the .opencode-only checkout the fallback row needs
+.skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts	98	20	64d50c9e6e0cb52b	keep	legacy-layout: expectation for the .opencode-only fixture keeps the fallback discriminating
+.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts	32	47	8ded8265ddd35e1b	keep	legacy-layout: comment deliberately names both roots for the sentinel check
+.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts	70	20	64382cb9166b7cb8	keep	legacy-layout: comment deliberately names both roots for the hoist
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs	85	32	1013763f6b7cafc0	rewrite	path literal left for this phase; the real tree is .skilled/skills
+.skilled/skills/system-skill-advisor/runtime/tests/parity/capture-ledger-workspace-root.vitest.ts	19	35	a766ac7a9503b39a	keep	legacy-layout: prose deliberately names every checkout layout the tests cover
+.skilled/skills/system-skill-advisor/runtime/tests/parity/capture-ledger-workspace-root.vitest.ts	20	3	7668bd9622853670	keep	compat-link: prose describes the .opencode link to .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/parity/capture-ledger-workspace-root.vitest.ts	22	30	582f4acfae579a1b	keep	legacy-layout: today layout's realRoot deliberately names the .opencode tree
+.skilled/skills/system-skill-advisor/runtime/tests/parity/capture-ledger-workspace-root.vitest.ts	22	68	582f4acfae579a1b	keep	legacy-layout: today layout's entry runs through the real .opencode tree
+.skilled/skills/system-skill-advisor/runtime/tests/parity/capture-ledger-workspace-root.vitest.ts	39	65	2fcacef409134c04	keep	compat-link: whole-link fixture symlinks .opencode to .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts	38	11	ee2da53387bbc456	rewrite	legacy singular .opencode/skill; no such entry under the real tree
+.skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts	195	28	af4befa9a246b2dc	keep	legacy-layout: today fixture writes its sentinel under .opencode deliberately
+.skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts	200	47	94bc49dc0338072d	keep	compat-link: whole-link fixture symlinks .opencode to .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts	201	66	e1d6c5d419e125fc	keep	legacy-layout: fixture deliberately nests an .opencode tree inside .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts	204	27	9754a3ce6ddf8649	keep	legacy-layout: prose describes the deliberate .opencode ancestor fixture
+.skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts	206	37	fa134f2aa5ccfcbf	keep	legacy-layout: fixture deliberately places the repo under an .opencode ancestor
+.skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts	212	22	1292ee0c0b8064a3	keep	legacy-layout: today case start reaches its real .opencode tree
+.skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts	214	26	76ae400362fd76fa	keep	compat-link: whole-link case reaches the tree through the .opencode link
+.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-repo-paths.vitest.ts	24	63	615c756307b0eff4	keep	compat-link: whole-link fixture symlinks .opencode to .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	5	24	d1d672bdec7c4ea7	rewrite	directory mention names the tree; the rule should read .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	6	56	11c5ff4d18092521	rewrite	second leak-rule mention; the tree is .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	14	45	1c7e230ff61e586c	keep	legacy-layout: prose deliberately names both source-root names of the tree
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	15	4	09d97025993e7983	keep	compat-link: prose names the .opencode link to .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	25	18	23095a9d4b19571a	rewrite	sentinel constant names the tree; sibling advisor tests rewrite theirs
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	48	36	f1ed8bd4115ec388	rewrite	happy-path fixture tree; the real source directory is .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	49	23	de6762c14454f57f	rewrite	happy-path sentinel dir; the real source directory is .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	55	68	71a90121290c4d8c	keep	legacy-layout: describe title for the deliberate .opencode leak fixtures
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	57	21	1aec1f386922dcd5	keep	legacy-layout: fixture subtree under the deliberate .opencode leak tree
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	58	27	42feff5463ed5e62	keep	legacy-layout: fixture subtree under the deliberate .opencode leak tree
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	59	22	28236d9fb6c7db0b	keep	legacy-layout: fixture subtree under the deliberate .opencode leak tree
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	61	23	1bf0995c116518d1	keep	legacy-layout: fixture subtree under the deliberate .opencode leak tree
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	62	18	2e153c518981595c	keep	legacy-layout: fixture subtree under the deliberate .opencode leak tree
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	63	22	060a4afb509764d9	keep	legacy-layout: fixture subtree under the deliberate .opencode leak tree
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	67	21	816a6df61f16ac1e	keep	legacy-layout: test name for the deliberate .opencode hoist fixtures
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	73	33	80e91fec2c60de14	keep	legacy-layout: test name for the deliberate nested .opencode leak
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	75	36	aad9f5604dccc75e	keep	legacy-layout: fixture deliberately nests .opencode to exercise hoisting
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	75	69	aad9f5604dccc75e	keep	legacy-layout: second nested .opencode seat segment; nesting is deliberate
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	79	41	f73f8e76bf0ad557	keep	legacy-layout: test name for the .opencode residue check on leaks
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	82	90	761e000de24d8ef1	keep	dual-root-needed: residue check knows only .opencode; add .skilled twin
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	88	63	eda765bedf4c7111	rewrite	test name cites the old root name; the tree is .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	98	16	9a45bf1d847b19df	keep	legacy-layout: today layout entry deliberately names the .opencode tree
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	105	61	7cff895eb018a067	keep	legacy-layout: ternary deliberately names both roots per fixture layout
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	107	69	88e1d7023b5d9dcd	keep	compat-link: whole-link fixture symlinks .opencode to .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	126	63	e1a2156aa1e6605f	keep	legacy-layout: ternary deliberately names both roots per fixture layout
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	136	40	0d7f58724bc03c97	keep	legacy-layout: today tree under the .skilled-named ancestor; zero-cap walk
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	157	72	9d4415217fd72935	keep	legacy-layout: test name; mixed .skilled/.opencode nested leak deliberate
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	159	63	5a963583795a58d7	keep	legacy-layout: fixture deliberately nests .opencode inside .skilled
+.skilled/skills/system-skill-advisor/runtime/tests/utils/workspace-root.vitest.ts	174	38	c678cc4bd081bba0	keep	dual-root-needed: residue check; .skilled twin already sits at line 173
+.skilled/skills/system-spec-kit/runtime/cli/tests/gate-3-classifier.vitest.ts	624	88	7c0e432266a93dfc	keep	compat-link: whole-link fixture symlinks .opencode to .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	10	4	41ecbd9712c9dbf8	keep	legacy-layout: names both root layouts a checkout can hold
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	11	4	de1ed41b957f698e	keep	compat-link: about the .opencode link to .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	46	50	dbfca3d1e2578763	keep	legacy-layout: fixture builds a real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	46	88	dbfca3d1e2578763	keep	legacy-layout: fixture entry names real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	57	69	e3054c9fc4a50248	keep	legacy-layout: fixture links .opencode to .skilled on purpose
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	99	139	9762d0b8afa524ce	keep	legacy-layout: TODAY fixture entry builds a real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	121	53	f45516515ca3a0ae	keep	legacy-layout: TODAY fixture entry builds a real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	127	66	517ba72738a82b41	keep	legacy-layout: test deliberately nests .opencode to exercise hoisting
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	142	17	e117ba005b0ab153	keep	compat-link: test name for a dangling .opencode link
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	145	56	7cd4c7751d980f47	keep	legacy-layout: fixture links a dangling .opencode to .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	164	64	6430a17993b965bf	keep	legacy-layout: TODAY fixture entry builds a real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	186	13	5c98e5341f694a77	keep	legacy-layout: test name deliberately names both roots
+.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts	187	138	f34c78bf2e80d3c7	keep	legacy-layout: TODAY fixture entry builds a real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-migration-manifest.vitest.ts	175	74	98861a902d9f216d	keep	compat-link: legacy .opencode/specs alias and its link
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-migration-manifest.vitest.ts	199	78	165069787fd8c5f3	keep	compat-link: root discovery lists legacy root by .opencode spelling
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-migration.vitest.ts	200	74	2dc8e5477adbc57c	keep	compat-link: link from .opencode to .skilled reaches legacy packet
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-migration.vitest.ts	202	3	fc6fba46a576e2ab	keep	compat-link: layout with no .opencode path; names both roots
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-validation-matrix.vitest.ts	219	70	22cf82302c9d6ca9	keep	compat-link: workspace with no .opencode path; layout comment
+.skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-validation-matrix.vitest.ts	245	64	0223260f36da5094	keep	legacy-layout: skilled-only fixture asserts no .opencode entry
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-folder-detector-functional.js	610	63	a578b0d4eb5eac51	keep	compat-link: comment about where the .opencode link leads
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-folder-detector-functional.js	613	21	bba17dc23cc055b7	keep	compat-link: legacy root reached through the .opencode link
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-folder-detector-functional.js	638	9	17671a0e4bebbd25	keep	compat-link: .opencode link makes it a candidate; legacy spelling
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js	237	58	4de5dc3d0626ad79	keep	compat-link: consumer project links its tree as .opencode
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js	243	69	821f79e05a140760	keep	compat-link: consumer's linked .opencode path; both names tested
+.skilled/skills/system-spec-kit/runtime/cli/tests/test-scripts-modules.js	244	74	70f0d83d113758f6	keep	compat-link: message names the consumer's linked .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	3	10	7dc6104100f0add2	keep	legacy-layout: comment names the old tree shape a fixture builds
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	3	54	7dc6104100f0add2	keep	compat-link: names the .opencode link to .skilled the test covers
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	33	46	e790a787ae1ce0f4	keep	legacy-layout: describes today's fixture holding the real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	37	67	34fd9175aee3198a	keep	legacy-layout: ternary deliberately names both roots per fixture layout
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	41	79	020a779530b0879d	keep	legacy-layout: fixture links .opencode to .skilled on purpose
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	46	28	69600f5f8e3f730b	keep	legacy-layout: test name for the .opencode-tree anchor fixture
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	48	46	ff2733489ef34746	keep	legacy-layout: builds the fixture's own .opencode tree directory
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	53	55	06fd7f36b664122d	keep	legacy-layout: asserts the fixture tree name; the .opencode anchor stays
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	60	66	00f1d311c440255b	keep	legacy-layout: test name for the .opencode-tree fixture workspace
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	62	46	ff2733489ef34746	keep	legacy-layout: builds the fixture's own .opencode tree directory
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	69	70	6200dd1416da6957	keep	legacy-layout: fixture path inside the .opencode tree; expectation depends
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	70	13	94aafcef4393aa99	keep	legacy-layout: expected relative path for the .opencode fixture tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	77	38	d86b0db166d1634f	keep	legacy-layout: fixture builds an .opencode tree to reject unrelated repos
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	78	43	b95cc3662f35d52c	keep	legacy-layout: fixture builds an .opencode tree in the other temp repo
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	80	52	2d2bbcc09949d79a	keep	legacy-layout: compares the fixture's .opencode anchor against another repo
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	81	52	ab6b42c165500d2e	keep	legacy-layout: fixture .opencode anchors compared; both layouts deliberate
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	81	91	ab6b42c165500d2e	keep	legacy-layout: second fixture .opencode anchor; both layouts deliberate
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	86	46	ff2733489ef34746	keep	legacy-layout: builds the fixture's own .opencode tree directory
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	94	69	c311f4b8193e8a0f	keep	legacy-layout: .opencode reached through the fixture's symlinked repo root
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	111	54	b064f3db87305548	keep	compat-link: test name states .opencode links to .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	114	45	1bc4a9f2f1cc75e3	keep	compat-link: builds the path through the .opencode link
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	120	52	6fc5bd90fc253b61	keep	compat-link: asserts the .opencode link and real path share a workspace
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	123	84	9469ab77c4414bea	keep	legacy-layout: names both root variants; the .opencode twin stays
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	128	42	a335499546a91567	keep	legacy-layout: test name for the real .opencode tree beside .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	131	48	35f48f1a25c1ce25	keep	legacy-layout: nested dir inside the fixture's real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	137	74	a3b52c95f4e5811f	keep	legacy-layout: asserts the variant of the fixture's real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	139	52	19d772a8fbd7d71d	keep	legacy-layout: compares the fixture's real .opencode tree with the placeholder
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	141	13	4f72775c97e60156	keep	legacy-layout: expected relative path for the fixture's real .opencode tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	146	42	40c9af9e24c5be9b	keep	legacy-layout: fixture deliberately nests an .opencode tree inside .skilled
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	153	13	4f72775c97e60156	keep	legacy-layout: expected relative path for the nested .opencode fixture tree
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	173	38	25abd1d4b2658362	keep	legacy-layout: fixture nests a stray .opencode tree under a .skilled name
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	182	56	edd42910a7b2ce06	keep	legacy-layout: compares the today fixture's .opencode anchor; names both roots
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	183	56	23788a3cb994b371	keep	legacy-layout: today fixture .opencode anchor against a .skilled-only repo
+.skilled/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts	184	92	58d3bccbb20ddab2	keep	legacy-layout: today fixture's .opencode anchor; distinct anchors asserted
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	874	53	baf8e58ad94695a5	keep	legacy-layout: comment deliberately names both accepted root names
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	886	35	6da98811f4ad20b2	keep	compat-link: detects the legacy .opencode/specs alias; test pins that spelling
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	905	36	7299f2b5d0e6d66c	keep	compat-link: derives the repo root for the .opencode/specs alias
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	964	31	59429a99ba16f075	keep	dual-root-needed: prefix test knows only .opencode; .skilled candidate misses
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	968	42	e84a8803b8773de8	keep	compat-link: builds the .opencode/specs alias spelling for a specs reference
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	971	51	68601f8653bd8386	rewrite	path constant names the source tree; real directory is .skilled
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	1039	26	963f26642a2fe0cc	keep	compat-link: fragment of the legacy .opencode/specs alias spelling
+.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts	1778	64	1d2288f15b8479ad	keep	compat-link: describes workspace anchoring that must accept the old name
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	152	38	b994f8946d2249fa	keep	dual-root-needed: routes only .opencode/ refs; .skilled/ refs need the branch
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	155	38	72d1367b17c31c0a	keep	compat-link: fixture materializes the legacy .opencode/specs alias path
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	167	38	e6b940f7743c8902	keep	legacy-layout: fixture builds the old-layout tree the parser's .opencode lookup resolves
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	639	56	b586ee868dc0788f	rewrite	cd command sample names the tree; still noise-filtered once rewritten
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	695	20	965d8dd089c54114	rewrite	candidate names the tree; parent-segment rejection unchanged by rewrite
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	705	18	c6b9c5c823231973	rewrite	asserted string names the tree; rejection is spelling-independent
+.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts	915	79	2d4bbf30f0ce14cd	keep	legacy-layout: fixture links .opencode to .skilled on purpose

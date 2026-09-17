@@ -1,0 +1,29 @@
+.skilled/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs	55	40	1073fc811ef917a4	keep	compat-link: root discovery probes .opencode beside the rewritten .skilled probe
+.skilled/skills/system-deep-loop/deep-research/scripts/verify-yaml-script-paths.sh	33	33	901b34695ea4b543	keep	dual-root-needed: invocation grep must also match .skilled/ script paths
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts	107	19	7ff5c19e6e2be417	keep	external: the opencode CLI's own home directory name, not this tree
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts	178	81	1cf2a2da37815029	keep	compat-link: root discovery accepts the .opencode root marker
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts	243	43	29904cba8cca32d8	keep	dual-root-needed: relative-path derivation must also split on .skilled/
+.skilled/skills/system-deep-loop/runtime/scripts/check-protocol-append-sites.cjs	35	55	789b5277b6d1626b	rewrite	parent-count comment chain ends at the real root, .skilled
+.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs	44	72	db67b51227fc922e	keep	compat-link: comment explains the root-discovery marker still named .opencode
+.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs	49	68	f54acf146d89d027	keep	compat-link: root-discovery fallback marker kept for the old name
+.skilled/skills/system-deep-loop/runtime/scripts/runtime-bootstrap.cjs	47	70	81dff56248eedb1c	keep	compat-link: checkout whose .opencode is a symlink into shared canonical
+.skilled/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts	118	16	5e6be7c9c399af07	keep	external: hermetic temp home's .opencode directory for the CLI
+.skilled/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts	140	33	84ef808df2207015	keep	external: OPENCODE_HOME points at the temp home's .opencode directory
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	433	32	2fea22a659da5759	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	434	32	41e5db0443a05b9e	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	485	21	9f067884a9266a9a	rewrite	fixture path literal names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	487	9	d80778cb321cdd2e	rewrite	fixture path literal names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	520	12	ccd9aa8320aa2c5b	rewrite	fixture path literal names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	521	12	fc014278738cb15d	rewrite	fixture path literal names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	539	26	a6abee315290e9cf	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	540	27	f54a3222a5c65348	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	544	26	dc454c728f680815	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	545	27	9b8ce839a9679179	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	549	26	c8a67ed2532f9dc3	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	550	27	1a47af5168f940e2	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	565	30	a60d7356561c4eff	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	566	30	10c9e899a2612ecd	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	605	32	172f4c01ab3aba3e	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	606	32	bc600cbd4e2ad49c	rewrite	test fixture identity names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	879	34	c318dbf82157f869	rewrite	test resource path names the tree; real directory is .skilled
+.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts	893	34	66fed501482a7e95	rewrite	test resource path names the tree; real directory is .skilled

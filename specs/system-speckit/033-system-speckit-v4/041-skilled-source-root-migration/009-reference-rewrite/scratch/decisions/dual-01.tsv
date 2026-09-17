@@ -1,0 +1,19 @@
+.github/dependabot.yml	13	10	4fb5720b08500fdd	keep	legacy-layout: deliberate twin of /.skilled/**; twins rule needs both roots
+.github/scripts/check-gate-inputs.sh	14	46	c0ceb50aa525f0b5	keep	legacy-layout: hook inputs stay .opencode-named; check resolves them through the link
+.github/scripts/check-gate-inputs.sh	15	49	b7921398b08709b6	keep	legacy-layout: .opencode-literal assignments are resolved hook inputs; gates keep that name
+.github/scripts/check-gate-inputs.sh	16	21	8f9c62aacd70446b	keep	legacy-layout: quoted .opencode literals resolve; .skilled read as note
+.github/scripts/check-gate-inputs.sh	17	35	bf5e57c5efa2ff44	keep	legacy-layout: workflow inputs stay .opencode-named; workflows resolve them through the link
+.github/scripts/check-gate-inputs.sh	108	20	6547cbfe1d2d38dc	keep	legacy-layout: twin mapper deliberately names both roots; .skilled handled by its else
+.github/scripts/check-gate-inputs.sh	108	44	6547cbfe1d2d38dc	keep	legacy-layout: substitution builds the twin name; both roots mapped by design
+.github/scripts/check-gate-inputs.sh	109	25	936673a8b55264b8	keep	legacy-layout: replacement name for a .skilled token; twin mapping needs both
+.github/scripts/check-gate-inputs.sh	130	3	6d8f2bf7450b30a4	keep	legacy-layout: documents the detector keeping gates naming both roots
+.github/scripts/check-gate-inputs.sh	147	96	0749f41ca0b76cf4	keep	legacy-layout: report label for the .opencode branch; .skilled branch sits beside
+.github/scripts/check-gate-inputs.sh	194	19	586673c0cb0010d2	keep	legacy-layout: only link-side varpaths resolve; .skilled outside git is a note
+.github/scripts/check-gate-inputs.sh	267	134	03fd132c0bbc9644	keep	legacy-layout: resolves .opencode literal assignments; .skilled spelling read as argument
+.github/scripts/check-gate-inputs.sh	290	21	e8ca21d7d3d29518	keep	legacy-layout: quoted .opencode literal resolves; .skilled falls to the argument note
+.github/scripts/check-gate-inputs.sh	317	16	0a2728e9fa762bcb	keep	legacy-layout: example of the bare .opencode mention workflows still contain
+.github/scripts/check-gate-inputs.sh	369	42	bcbf80b4a580991f	keep	dual-root-needed: matches only .opencode run tokens; a .skilled path misses and fails
+.github/scripts/check-gate-inputs.sh	376	45	b3b88633a8a52943	keep	dual-root-needed: bare scan knows only .opencode; a bare .skilled mention would fail
+.github/scripts/check-gate-inputs.sh	377	20	1714a2fdb447db66	keep	dual-root-needed: emit should report the matched root once the scan widens
+.github/scripts/check-gate-inputs.sh	446	18	f0bd95f13bc2962c	keep	legacy-layout: dual lookup tries .opencode then .skilled; both roots deliberate
+.github/scripts/check-gate-inputs.sh	446	49	f0bd95f13bc2962c	keep	legacy-layout: keeps the root it found; .skilled branch checks next

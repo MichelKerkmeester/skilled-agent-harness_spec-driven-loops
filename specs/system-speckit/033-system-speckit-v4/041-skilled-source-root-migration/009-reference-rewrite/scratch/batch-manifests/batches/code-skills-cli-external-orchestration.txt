@@ -1,0 +1,2 @@
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-packet-local.json
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json

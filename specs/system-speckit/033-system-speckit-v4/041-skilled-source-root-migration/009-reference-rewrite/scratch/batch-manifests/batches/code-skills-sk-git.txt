@@ -1,0 +1,5 @@
+.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs
+.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs
+.skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts
+.skilled/skills/sk-git/scripts/lib/advisory-noise-audit.mjs
+.skilled/skills/sk-git/scripts/worktree-naming.sh

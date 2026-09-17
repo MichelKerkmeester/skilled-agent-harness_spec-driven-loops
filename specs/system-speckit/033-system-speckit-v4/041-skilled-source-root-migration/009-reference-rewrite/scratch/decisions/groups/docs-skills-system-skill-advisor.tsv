@@ -1,0 +1,71 @@
+.skilled/skills/system-skill-advisor/ARCHITECTURE.md	133	111	d98d0f143daa070c	rewrite	names the repo's plugin file; real file .skilled/plugins
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	43	43	4de0801113dd8475	rewrite	names the advisor package dir; real tree .skilled/skills
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	43	130	4de0801113dd8475	rewrite	CLI front door path; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	43	557	4de0801113dd8475	rewrite	SQLite DB path inside the tree; now .skilled/skills
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	127	14	b9e4b892e8dc724a	rewrite	hook surface names the repo plugin file; now .skilled/plugins
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	164	205	90ff3d0053d86259	rewrite	CLI path the hooks shell out to; now .skilled/bin
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	164	278	90ff3d0053d86259	rewrite	launcher path the CLI starts; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md	427	147	f98b6b3165d1ff08	rewrite	rollback output dir inside the tree; now .skilled/scratch
+.skilled/skills/system-skill-advisor/README.md	42	51	b55da50bd5211cb4	rewrite	CLI front door path; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/README.md	217	183	047bf99d0fbcb039	rewrite	source adapter dir inside the tree; now .skilled/skills
+.skilled/skills/system-skill-advisor/SKILL.md	423	71	0417c72f4d33bf01	rewrite	hooks directory inside the tree; the real root is .skilled
+.skilled/skills/system-skill-advisor/SKILL.md	423	150	0417c72f4d33bf01	rewrite	plugin file path; the real file is .skilled/plugins
+.skilled/skills/system-skill-advisor/SKILL.md	423	251	0417c72f4d33bf01	rewrite	CLI front-door path; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md	18	25	a013ebe3cedd55ac	rewrite	CLI front-door path; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md	16	93	6e7e6d83d63f61e4	rewrite	package source directory inside the tree; real root .skilled
+.skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md	29	1	4c58be7bad3ba3b6	rewrite	plugin file path; the real file is .skilled/plugins
+.skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md	29	93	4c58be7bad3ba3b6	rewrite	state directory inside the tree; now .skilled/skills
+.skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md	29	246	4c58be7bad3ba3b6	rewrite	command file path; the real file is .skilled/commands
+.skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md	29	631	4c58be7bad3ba3b6	rewrite	shared module path; the real file is .skilled/hooks
+.skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md	57	3	c271a9a5167e3293	rewrite	plugin file path; the real file is .skilled/plugins
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md	56	3	9f4a5ac7ae16bdf4	rewrite	plugin file path; the real file is .skilled/plugins
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md	57	3	504bce7d45b9c859	rewrite	CLI front-door path; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	23	653	37b7184aa1c3f766	rewrite	plugin file path; the real file is .skilled/plugins
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	27	210	0b06d6aa6badc259	rewrite	repository-root prefix in prose; the real root is .skilled
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	53	279	5c81dd8da43f019e	keep	dual-root-needed: ancestor walk knows only .opencode; add .skilled twin
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	58	18	3db7978e77d133b4	rewrite	plugin file path; the real file is .skilled/plugins
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	58	108	3db7978e77d133b4	keep	opencode-view: loader globs its own .opencode/plugins folder
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	60	213	77a05c7460629dea	rewrite	hooks-tree index path; the real tree is .skilled/hooks
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	88	0	8ca9b38eb0af93b9	rewrite	plugin file path in the tree listing; real root .skilled
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	98	142	315de135b13b7cd6	keep	dual-root-needed: ancestor walk knows only .opencode; add .skilled twin
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	100	3	a89768445107f10e	rewrite	plugin file path; the real file is .skilled/plugins
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md	101	3	bd19144f82f8e473	rewrite	CLI front-door path; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/anti-stuffing.md	49	24	91b5fd240640153d	keep	external: /tmp disposable fixture path outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md	191	87	31da7cbdbd5faaa8	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md	199	87	b70d96d45c578040	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md	208	87	7576939a54530b74	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	205	66	e4c4615fcfb63675	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	214	66	1eb7f0076c50b807	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	215	66	99eab48484c9e669	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	216	66	8b5ca2a7c50997d6	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	217	66	4bda230aff302021	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md	218	66	4151bbd90d519ceb	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/rebuild-from-source.md	55	37	6efe46e54b9e6f05	keep	external: /tmp disposable fixture path outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/rebuild-from-source.md	93	37	6efe46e54b9e6f05	keep	external: /tmp disposable fixture path outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/rebuild-from-source.md	102	118	90c7ab6914cad0b4	keep	external: /tmp disposable fixture path outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md	30	189	53a845eb3bb3d6db	rewrite	tree directory mention; the real root is .skilled
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md	54	34	72e31b134755371f	rewrite	tree directory mention; the real root is .skilled
+.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md	36	33	cd2a2f089ca82be9	rewrite	plugin file named in the preconditions; real file .skilled/plugins
+.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md	201	66	06e65dad14da444d	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md	453	66	1596d7a407e03148	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md	477	66	162857b94b82465c	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md	495	66	5462f85492490fa9	keep	external: recorded output path in another checkout, outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/schema-migration.md	47	21	304e9ebda75b3477	keep	external: /tmp disposable fixture path outside this repository
+.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md	55	5	72e238efc258a877	rewrite	CLI front-door path; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md	64	1144	27fcd00c721e9e5c	keep	external: recorded test-output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/native-validate-slices.md	55	5	a7fc78eff9a5dd54	rewrite	CLI front-door path; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/native-validate-slices.md	298	5	7da917af841a73a0	rewrite	CLI front-door path; the real file is .skilled/bin
+.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/shadow-delta-sink.md	116	66	15881180197a5a14	keep	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/shadow-delta-sink.md	122	66	bb85551a4d06914b	keep	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	124	66	a3d67dbbe1ee62b8	keep	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	142	66	e3dc11cfcc2ae886	keep	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	143	66	8f89f19f0a8999c5	keep	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	144	66	4a9c20fd7cfe8c34	keep	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	145	66	1bccce62e40c1bc2	keep	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md	146	66	d5a1cf269b4977ca	keep	external: recorded output path in another checkout
+.skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md	100	20	9d30f0bde31bd276	rewrite	plugin file path; the real file is .skilled/plugins
+.skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md	135	8	96e0930e2fd7a4f0	rewrite	hook location path inside the tree; real root is .skilled
+.skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md	136	8	f0064c3bd27b2a74	rewrite	hook location path inside the tree; real root is .skilled
+.skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md	136	100	f0064c3bd27b2a74	rewrite	dist hook path inside the tree; real root is .skilled
+.skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md	157	24	086824a98118afd7	rewrite	plugin file path; the real file is .skilled/plugins
+.skilled/skills/system-skill-advisor/runtime/data/README.md	53	100	ac45d3ae8c73b72f	rewrite	gitignore reference inside the tree; the real root is .skilled
