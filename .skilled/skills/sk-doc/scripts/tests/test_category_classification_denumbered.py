@@ -20,7 +20,7 @@ sys.path.insert(0, str(SCRIPTS_DIR))
 from validate_document import detect_document_type  # noqa: E402
 
 GUARD = SCRIPTS_DIR.parent / 'shared' / 'scripts' / 'check_no_hyphenated_catalog_content.py'
-SKILL = '.opencode/skills/sk-x'
+SKILL = '.skilled/skills/sk-x'
 
 
 def run() -> int:

@@ -64,7 +64,7 @@ The case studies, pitfalls, and worked example cover the **MCP promotion** famil
 
 ### Validation
 
-- `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type readme`: run against any `benchmark-report.md` or `benchmarks/README.md` before promoting.
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file> --type readme`: run against any `benchmark-report.md` or `benchmarks/README.md` before promoting.
 
 ### Benchmark examples
 

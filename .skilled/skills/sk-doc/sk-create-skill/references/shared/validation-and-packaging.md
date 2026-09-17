@@ -70,8 +70,8 @@ The fleet and parent-hub gates validate structure, metadata classes, registry/ro
 Run the fleet-wide class gate before release to check metadata presence, forbidden files, and generated-file freshness. `--fix` regenerates derivable files only. The canonical contract is [skill-root-metadata-contract.md](skill-root-metadata-contract.md).
 
 ```bash
-node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
-node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix
+node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix
 ```
 
 ### Minimal Validation (quick_validate.py)
@@ -108,7 +108,7 @@ node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs 
 
 **Command**:
 ```bash
-scripts/extract_structure.py .opencode/skills/my-skill/SKILL.md
+scripts/extract_structure.py .skilled/skills/my-skill/SKILL.md
 # AI evaluates the JSON output and provides quality assessment
 ```
 
@@ -137,7 +137,7 @@ scripts/package_skill.py <path/to/skill> <output-directory>
 
 **User installation**:
 1. Download skill zip file
-2. Extract to `.opencode/skills/` directory
+2. Extract to `.skilled/skills/` directory
 3. Skill automatically available to the agent
 
 **Verification**:

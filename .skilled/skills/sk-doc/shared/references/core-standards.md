@@ -66,8 +66,8 @@ Numbered documents such as `NNN-name.md` use hyphens by default and conform to t
 | Priority | Pattern | Type | Example |
 |----------|---------|------|---------|
 | 1 | Exact filename | README → readme | `/any/path/README.md` |
-| 1 | Exact filename | SKILL → skill | `.opencode/skills/*/SKILL.md` |
-| 2 | Directory path | `.opencode/commands/**/*.md` → command | `.opencode/commands/deploy.md` |
+| 1 | Exact filename | SKILL → skill | `.skilled/skills/*/SKILL.md` |
+| 2 | Directory path | `.skilled/commands/**/*.md` → command | `.skilled/commands/deploy.md` |
 | 2 | Directory path | `knowledge/*.md` → knowledge | `knowledge/api.md` |
 | 2 | Directory path | `specs/**/*.md` → spec | `specs/042/spec.md` |
 | 3 | Parent directory | `*/specs/*` → spec | `project/specs/plan.md` |
@@ -289,8 +289,8 @@ Destructive: Requires --confirm flag
 Namespace:   Grouped under directory (e.g., /index:search)
 
 # Namespace Pattern:
-Directory:   .opencode/commands/[namespace]/
-File:        .opencode/commands/[namespace]/[action].md
+Directory:   .skilled/commands/[namespace]/
+File:        .skilled/commands/[namespace]/[action].md
 Command:     /namespace:action
 ```
 

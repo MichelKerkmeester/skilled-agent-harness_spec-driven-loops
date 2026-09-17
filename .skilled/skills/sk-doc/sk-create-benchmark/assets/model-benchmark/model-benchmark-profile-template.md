@@ -23,8 +23,8 @@ Copy-paste scaffold for ONE Lane B model-benchmark PROFILE:
 
 Usage:
   1. Pick a lowercase-hyphen profile id, then cp this file to that path, for example:
-     cp .opencode/skills/sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md \
-        .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/my-profile.json
+     cp .skilled/skills/sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md \
+        .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/my-profile.json
   2. The shipped artifact is a JSON file, NOT markdown: it carries NO frontmatter and NO
      prose. Keep ONLY the contents of the fenced json block below, drop this whole .md
      wrapper (frontmatter, this comment, the prose sections, and the field-guidance comment).
@@ -34,9 +34,9 @@ Usage:
 
 The field set, mode enum, swept axes, and per-mode defaults are NOT restated here. They are
 normative in:
-  .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/MODES.md          (A–F mode enum, swept axis, defaults)
-  .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs  (the hard validation rules)
-  .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/README.md (shared vs sweep-only keys, shipped examples)
+  .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/MODES.md          (A–F mode enum, swept axis, defaults)
+  .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs  (the hard validation rules)
+  .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/README.md (shared vs sweep-only keys, shipped examples)
 -->
 
 ## 1. OVERVIEW
@@ -60,7 +60,7 @@ in section 3. Do not re-derive them here.
 **Validation.** Run from the repository root after filling the scaffold:
 
 ```bash
-node -e "const {validateProfile}=require('./.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs');const p=require('./<path-to>/my-profile.json');const r=validateProfile(p);console.log(r.valid?'VALID '+p.profileId:'INVALID: '+r.errors.join('; '))"
+node -e "const {validateProfile}=require('./.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs');const p=require('./<path-to>/my-profile.json');const r=validateProfile(p);console.log(r.valid?'VALID '+p.profileId:'INVALID: '+r.errors.join('; '))"
 ```
 
 Expected result: the profile parses as JSON and prints `VALID <profileId>`. A non-empty
@@ -162,7 +162,7 @@ Field guidance (the enums and hard rules are authoritative in MODES.md and profi
   outputsDir          : where SWEEP reports land, read ONLY by sweep-benchmark.cjs, falling back to a temp dir when the
                         token is unresolved. NOT read by run-benchmark.cjs or the /deep:model-benchmark command. Both take
                         `--outputs-dir` on the CLI instead, and the command supplies a fixed hub path
-                        (.opencode/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/), ignoring this field entirely.
+                        (.skilled/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/), ignoring this field entirely.
                         Emitted files differ by path. run-benchmark.cjs -> report.json plus report-history/, sweep-benchmark.cjs
                         -> results.json (plus aggregate.json/synthesis.md by default), reviewer-scorer.cjs -> reviewer-report.json.
                         When this field IS read (standalone sweep), use the "{spec_folder}" (and/or "{run_label}") token.

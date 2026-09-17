@@ -12,7 +12,7 @@ This document captures the OpenCode frontmatter contract for a leaf agent.
 
 ## 1. OVERVIEW
 
-This scenario validates `AGR-001`. It focuses on `.opencode/agents/`, explicit permission values and denial of nested dispatch.
+This scenario validates `AGR-001`. It focuses on `.skilled/agents/`, explicit permission values and denial of nested dispatch.
 
 ### Why This Matters
 
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `AGR-001`.
 - Objective: author an OpenCode leaf agent with least-authority permissions.
 - Realistic user request: `Create an OpenCode subagent that edits only the supplied fixture and must not start another agent.`
 - Prompt: `Create an OpenCode subagent that edits only the supplied fixture and must not start another agent.`
-- Expected execution process: read the permission reference, select `.opencode/agents/`, draft `permission:` values and set `task: deny`.
+- Expected execution process: read the permission reference, select `.skilled/agents/`, draft `permission:` values and set `task: deny`.
 - Expected signals: filename stem matches `name`, `mode: subagent` is present, tools used by the role are allowed and high-risk unused tools are denied.
 - Desired user-visible outcome: the draft exposes a narrow runtime contract.
 - Pass/fail: PASS if the OpenCode schema and leaf boundary are present. FAIL if a bare `tools:` list replaces `permission:` or `task: allow` is granted.
@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `AGR-001`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| AGR-001 | OpenCode permission object | Author a least-authority OpenCode leaf agent | `Create an OpenCode subagent that edits only the supplied fixture and must not start another agent.` | 1. `agent: Read references/permission-design.md and state the least-authority rule` -> 2. `agent: Draft the fixture in .opencode/agents/ with permission and task deny` -> 3. `agent: Check that name matches the kebab-case filename stem` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/agents/release-note-reviewer.md --type agent` | Step 1: least authority and `task: deny` are stated. Step 2: `.opencode/agents/` and `permission:` are used. Step 3: name and stem match. Step 4: validator output and exit status are captured | The prompt, permission block, target path, name check and validator transcript | PASS if the runtime schema and leaf authority are explicit. FAIL if `tools:` replaces `permission:`, the path is wrong or task delegation is allowed | 1. Check the runtime directory before reviewing the YAML. 2. Compare each allow value with a body sentence that needs it. 3. Confirm `task` is denied for this leaf role |
+| AGR-001 | OpenCode permission object | Author a least-authority OpenCode leaf agent | `Create an OpenCode subagent that edits only the supplied fixture and must not start another agent.` | 1. `agent: Read references/permission-design.md and state the least-authority rule` -> 2. `agent: Draft the fixture in .skilled/agents/ with permission and task deny` -> 3. `agent: Check that name matches the kebab-case filename stem` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/agents/release-note-reviewer.md --type agent` | Step 1: least authority and `task: deny` are stated. Step 2: `.skilled/agents/` and `permission:` are used. Step 3: name and stem match. Step 4: validator output and exit status are captured | The prompt, permission block, target path, name check and validator transcript | PASS if the runtime schema and leaf authority are explicit. FAIL if `tools:` replaces `permission:`, the path is wrong or task delegation is allowed | 1. Check the runtime directory before reviewing the YAML. 2. Compare each allow value with a body sentence that needs it. 3. Confirm `task` is denied for this leaf role |
 
 ### Commands
 
 1. `agent: Read references/permission-design.md and state the least-authority rule`
-2. `agent: Draft the fixture in .opencode/agents/ with permission and task deny`
+2. `agent: Draft the fixture in .skilled/agents/ with permission and task deny`
 3. `agent: Check that name matches the kebab-case filename stem`
-4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/agents/release-note-reviewer.md --type agent`
+4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/agents/release-note-reviewer.md --type agent`
 
 ### Expected
 

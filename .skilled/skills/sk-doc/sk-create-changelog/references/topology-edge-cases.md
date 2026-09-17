@@ -30,7 +30,7 @@ Choose the output mode before thinking about version numbers.
 
 | Output Mode | Where It Writes | Versioned? | Source Rule |
 |---|---|---|---|
-| Global component changelog | `.opencode/changelog/{component}/v{VERSION}.md` | Yes | Use for public component release notes |
+| Global component changelog | `.skilled/changelog/{component}/v{VERSION}.md` | Yes | Use for public component release notes |
 | Packet-local root changelog | `{spec-folder}/changelog/changelog-<packet>-root.md` | No | Use for root spec-folder packet summary |
 | Packet-local phase changelog | `{phase-parent}/changelog/changelog-<packet>-<phase-folder>.md` | No | Use for phase-child summary |
 
@@ -44,7 +44,7 @@ Practical rule:
 
 - if the changelog is for users of a component, write global
 - if the changelog is for a spec packet's internal completion trail, write packet-local
-- the real folders under `.opencode/changelog/` are plain component names; the older `00--` umbrella-folder convention is stale
+- the real folders under `.skilled/changelog/` are plain component names; the older `00--` umbrella-folder convention is stale
 
 For multi-component tie-breaks — dominant component over 60 percent of changed files, roughly-equal components resolved by highest file count with secondaries noted, or no match at all so you pause and ask — follow the component selection rules in `../SKILL.md` §5 rather than guessing a folder.
 
@@ -71,7 +71,7 @@ Known behavior from sources:
 - `publish_release` defaults to `false` in auto setup.
 - the startup prompt asks whether to create a tag and GitHub release when `--release` is not supplied.
 - the completion result includes `Release Published: yes/no/not requested`.
-- the shared template says GitHub release notes can use the changelog body as-is, then append `Full changelog: .opencode/changelog/{component}/v{VERSION}.md`.
+- the shared template says GitHub release notes can use the changelog body as-is, then append `Full changelog: .skilled/changelog/{component}/v{VERSION}.md`.
 
 UNKNOWN from the provided workflow sources:
 

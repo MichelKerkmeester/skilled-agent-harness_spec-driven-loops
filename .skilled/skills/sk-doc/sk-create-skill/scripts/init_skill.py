@@ -127,7 +127,7 @@ def scaffold_benchmark_tree(skill_dir: Path, skill_name: str) -> None:
         'writes a dated run folder under `reports/`:\n'
         '\n'
         '```bash\n'
-        'node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \\\n'
+        'node .skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \\\n'
         f'  --skill {skill_name}\n'
         '```\n'
     )
@@ -336,12 +336,12 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
         "derived": {
             "trigger_phrases": [skill_name],
             "key_topics": [skill_name],
-            "key_files": [f".opencode/skills/{skill_name}/SKILL.md"],
+            "key_files": [f".skilled/skills/{skill_name}/SKILL.md"],
             "entities": [
                 {
                     "name": skill_name,
                     "kind": "skill",
-                    "path": f".opencode/skills/{skill_name}/SKILL.md",
+                    "path": f".skilled/skills/{skill_name}/SKILL.md",
                     "source": "derived",
                 }
             ],
@@ -676,21 +676,21 @@ def init_parent_skill(
                 "packetKind",
             ],
             "key_files": [
-                f".opencode/skills/{skill_name}/SKILL.md",
-                f".opencode/skills/{skill_name}/mode-registry.json",
-                f".opencode/skills/{skill_name}/hub-router.json",
+                f".skilled/skills/{skill_name}/SKILL.md",
+                f".skilled/skills/{skill_name}/mode-registry.json",
+                f".skilled/skills/{skill_name}/hub-router.json",
             ],
             "entities": [
                 {
                     "name": skill_name,
                     "kind": "skill",
-                    "path": f".opencode/skills/{skill_name}/SKILL.md",
+                    "path": f".skilled/skills/{skill_name}/SKILL.md",
                     "source": "derived",
                 },
                 {
                     "name": "mode-registry",
                     "kind": "config",
-                    "path": f".opencode/skills/{skill_name}/mode-registry.json",
+                    "path": f".skilled/skills/{skill_name}/mode-registry.json",
                     "source": "derived",
                 },
             ],

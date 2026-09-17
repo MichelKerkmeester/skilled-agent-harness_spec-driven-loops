@@ -146,7 +146,7 @@ Verify that a new one-identity skill uses the standalone scaffold, removes unuse
 
 #### Scenario Contract
 
-Prompt: `Create a standalone OpenCode skill named invoice-review under .opencode/skills and package it.`
+Prompt: `Create a standalone OpenCode skill named invoice-review under .skilled/skills and package it.`
 
 The mode should understand the skill's concrete use cases, scaffold the folder with `init_skill.py`, normalize the required sections, remove unused examples, author needed resources, validate the root and package only after validation passes.
 

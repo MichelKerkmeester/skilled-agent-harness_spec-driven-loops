@@ -25,7 +25,7 @@ A runnable before/after worked example for the local create-diff workflow.
 
 ## 2. RUN IT
 
-From the packet directory (`.opencode/skills/sk-doc/sk-create-diff/`):
+From the packet directory (`.skilled/skills/sk-doc/sk-create-diff/`):
 
 ```bash
 python3 scripts/create_diff.py compare-pair \

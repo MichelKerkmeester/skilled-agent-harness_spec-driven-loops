@@ -20,12 +20,12 @@ This template produces a source pointer from a benchmark folder to its authorita
 source.md scaffold for mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/source.md.
 
 Usage:
-  cp .opencode/skills/sk-doc/sk-create-benchmark/assets/shared/source-template.md \
-     .opencode/skills/<your-skill>/mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/source.md
+  cp .skilled/skills/sk-doc/sk-create-benchmark/assets/shared/source-template.md \
+     .skilled/skills/<your-skill>/mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/source.md
 
 Replace every [PLACEHOLDER]. Do not leave unfilled brackets in the shipped file.
 
-Creation reference: .opencode/skills/sk-doc/sk-create-benchmark/SKILL.md
+Creation reference: .skilled/skills/sk-doc/sk-create-benchmark/SKILL.md
 -->
 
 # SOURCE: [BENCHMARK_TOPIC] ([PROMOTION_DATE_LONG])

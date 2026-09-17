@@ -40,13 +40,13 @@ scripts/extract_structure.py document.md
 
 **Quick Validation** (skill folders):
 ```bash
-scripts/quick_validate.py .opencode/skills/my-skill
+scripts/quick_validate.py .skilled/skills/my-skill
 # Fast check for essential requirements
 ```
 
 **Quick Validation with JSON**:
 ```bash
-scripts/quick_validate.py .opencode/skills/my-skill --json
+scripts/quick_validate.py .skilled/skills/my-skill --json
 # Machine-readable output
 ```
 
@@ -165,7 +165,7 @@ python scripts/package_skill.py skill-path        # Package skill
 ## 7. FILE STRUCTURE
 
 ```
-.opencode/skills/sk-doc/
+.skilled/skills/sk-doc/
 ├── SKILL.md               # routing hub
 ├── mode-registry.json     # workflow packet registry
 ├── hub-router.json        # router signals and fallback resource

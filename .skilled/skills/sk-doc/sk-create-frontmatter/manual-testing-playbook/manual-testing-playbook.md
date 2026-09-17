@@ -71,7 +71,7 @@ The consequence for grading: **a scenario that produces confident output with no
 
 ## 2. GLOBAL PRECONDITIONS
 
-1. Working directory is the repository root, so `.opencode/skills/sk-doc/sk-create-frontmatter/` subpaths and the shared-tier script paths resolve.
+1. Working directory is the repository root, so `.skilled/skills/sk-doc/sk-create-frontmatter/` subpaths and the shared-tier script paths resolve.
 2. The document class under test is named before starting. The field set follows from the class, and a scenario run against an unnamed class is not gradeable.
 3. The packet's anchor inputs are recorded before starting: the `version` in `SKILL.md` and the highest filename version in `changelog/`. The anchor is the higher of the two, so a single reading of either one cannot be graded.
 4. The working tree is clean for the target paths, so any diff is attributable to the run.
@@ -104,7 +104,7 @@ A scenario whose evidence is an answer with no check attached cannot be graded, 
 - Bash commands shown as `bash: <command>`.
 - Agent prompts shown as `agent: <instruction>`. These scenarios are agent-driven, so a step is usually what an agent does: read a class row, apply a rule, author or decline to author a block.
 - `->` separates sequential steps.
-- Repo-relative paths are written as `.opencode/skills/sk-doc/sk-create-frontmatter/...`. The packet root means that directory wherever the packet is installed.
+- Repo-relative paths are written as `.skilled/skills/sk-doc/sk-create-frontmatter/...`. The packet root means that directory wherever the packet is installed.
 - Commands in this package avoid shell pipes so each step is a single deterministic invocation that survives being copied into a table cell.
 - `--skill` on the two shared-tier version tools takes a top-level skill directory name, so the value for this packet is `sk-doc` rather than `sk-create-frontmatter`. A run that passes the packet name discovers zero files and reports success over an empty set.
 
@@ -240,9 +240,9 @@ Desired user-visible outcome: the user learns the two files are different docume
 Verify that a request to add `version` to a command or agent file is declined, with the out-of-scope table quoted rather than paraphrased, and the reason given rather than implied.
 
 #### Scenario Contract
-Prompt: `Add the 4-part version field to my command file under .opencode/commands so it matches the skills.`
+Prompt: `Add the 4-part version field to my command file under .skilled/commands so it matches the skills.`
 
-The version standard lists `.opencode/commands/*.md` and `.opencode/agents/*.md` out of scope explicitly, rather than leaving the absence of a rule to be inferred. A run that adds the field anyway has read the format rules without reading the scope section above them.
+The version standard lists `.skilled/commands/*.md` and `.skilled/agents/*.md` out of scope explicitly, rather than leaving the absence of a rule to be inferred. A run that adds the field anyway has read the format rules without reading the scope section above them.
 
 Desired user-visible outcome: the user learns the field does not belong there, sees the clause that says so, and is told these files are governed separately.
 

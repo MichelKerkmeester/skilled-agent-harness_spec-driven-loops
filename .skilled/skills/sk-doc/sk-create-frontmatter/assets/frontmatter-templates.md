@@ -129,7 +129,7 @@ Level 3: Field Format
 | **README** (anywhere else) | ⚪ Optional | n/a | Add a block only when the doc should be discoverable |
 | **Feature Catalog** | ✅ Always | `title`, `description`, `trigger_phrases`, `version` | `importance_tier`, plus `last_updated` on the root index |
 | **Testing Playbook** | ✅ Always | `title`, `description`, `version` | Runner-specific keys only, added one at a time when a runner reads them |
-| **Agent** | ✅ Always | `name`, `description`, and the runtime's authority key: `permission:` under `.opencode/agents/`, `tools:` elsewhere | `mode`, `temperature`, `mcpServers` |
+| **Agent** | ✅ Always | `name`, `description`, and the runtime's authority key: `permission:` under `.skilled/agents/`, `tools:` elsewhere | `mode`, `temperature`, `mcpServers` |
 
 > **`version` is the 4-part `X.Y.Z.W` field** carried by every in-scope skill doc (SKILL.md, README, references, assets, feature catalogs, testing playbooks). Format, derivation, and rollout live in [frontmatter-versioning.md](../references/frontmatter-versioning.md). Commands and agents are out of scope (their `version` stays optional).
 
@@ -146,7 +146,7 @@ Spec-folder documents are not in this group. They carry frontmatter and `system-
 - These documents are pure content
 - Adds confusion about document purpose
 
-**Exception for skill references and assets**: docs under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` are NOT frontmatter-free knowledge files. They carry the full 5-field block (see the Skill Reference/Asset entry above and the template in Section 4). Skill and folder `README.md` files are exempt.
+**Exception for skill references and assets**: docs under `.skilled/skills/*/references/` and `.skilled/skills/*/assets/` are NOT frontmatter-free knowledge files. They carry the full 5-field block (see the Skill Reference/Asset entry above and the template in Section 4). Skill and folder `README.md` files are exempt.
 
 ### Decision Framework
 
@@ -162,7 +162,7 @@ Is this document invoked programmatically?
 │
 └─► NO
     │
-    ├─► Is it a skill reference/asset (.opencode/skills/*/references/ or assets/)?
+    ├─► Is it a skill reference/asset (.skilled/skills/*/references/ or assets/)?
     │   └─► Add the 5-field block: title, description, trigger_phrases,
     │       importance_tier, contextType (READMEs exempt)
     │
@@ -437,7 +437,7 @@ allowed-tools: Read, Write, Bash
 
 **Required Fields**: `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`
 
-Every doc under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` carries this full 5-field block (`README.md` files are exempt). The Skill Advisor harvests it as a flag-gated routing signal (`SPECKIT_ADVISOR_DOC_TRIGGERS`) with doc-level `matchedDocs` pointers. These fields exist for advisor routing: `/speckit:search` reaches skill docs lexically with ripgrep and never reads this block.
+Every doc under `.skilled/skills/*/references/` and `.skilled/skills/*/assets/` carries this full 5-field block (`README.md` files are exempt). The Skill Advisor harvests it as a flag-gated routing signal (`SPECKIT_ADVISOR_DOC_TRIGGERS`) with doc-level `matchedDocs` pointers. These fields exist for advisor routing: `/speckit:search` reaches skill docs lexically with ripgrep and never reads this block.
 
 ```yaml
 ---
@@ -468,7 +468,7 @@ version: 1.7.0.0
 ---
 ```
 
-Verify with `.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh`. Two things about that checker decide what a green run means. Its default `--shape` mode fails only a document that carries a partial block, so a file with `title` and `description` alone, or with no block at all, passes. Pass `--coverage` to require the full block. And it walks `references/` and `assets/` directly under each top-level skill folder only, so the docs of a nested mode packet are never read by it. For those, `package_skill.py --check --strict` on the packet is the gate that reaches the block.
+Verify with `.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh`. Two things about that checker decide what a green run means. Its default `--shape` mode fails only a document that carries a partial block, so a file with `title` and `description` alone, or with no block at all, passes. Pass `--coverage` to require the full block. And it walks `references/` and `assets/` directly under each top-level skill folder only, so the docs of a nested mode packet are never read by it. For those, `package_skill.py --check --strict` on the packet is the gate that reaches the block.
 
 ### Skill README Frontmatter Template
 
@@ -585,7 +585,7 @@ Both are documented in `sk-create-manual-testing-playbook/assets/manual-testing-
 
 An agent has no single block. The field set is chosen by the directory the file lives in. The other runtime authority key is silently ignored rather than rejected, which is why the wrong one is a security defect and not a validation error.
 
-`.opencode/agents/` uses a `permission:` object:
+`.skilled/agents/` uses a `permission:` object:
 
 ```yaml
 ---
@@ -623,8 +623,8 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 
 `.pi/agents/` carries the same three keys with `tools` as a block list of lowercase names.
 
-- **No `version`.** The versioning standard puts `.opencode/agents/*.md` out of scope. No agent file in the tree carries one.
-- `validate_document.py` blocks a `.claude/agents/` file that has no non-empty `tools:`, because Claude Code enforces only `tools:` and an absent list inherits the parent session full, unrestricted tool set. It blocks a `.opencode/agents/` file with no `permission:` and warns on a stray `tools:` there.
+- **No `version`.** The versioning standard puts `.skilled/agents/*.md` out of scope. No agent file in the tree carries one.
+- `validate_document.py` blocks a `.claude/agents/` file that has no non-empty `tools:`, because Claude Code enforces only `tools:` and an absent list inherits the parent session full, unrestricted tool set. It blocks a `.skilled/agents/` file with no `permission:` and warns on a stray `tools:` there.
 - `mode` is `subagent` on all but two OpenCode agents in the tree. `temperature` sits at 0.1 or 0.2. `mcpServers` is optional and rare.
 - Keep `description` at 130 characters or fewer. Agent descriptions share the Claude Code metadata budget described above.
 - `template-rules.json` lists `name`, `description`, `mode`, `temperature` and `permission` as required for the agent type without splitting by runtime. That list is not read for agents, since `validate_document.py` consults `frontmatterFields.required` only on the command path. The runtime split is what runs.
@@ -632,7 +632,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 
 ### Knowledge File Outside Skill Folders (No Frontmatter)
 
-**Rule**: Knowledge files outside `.opencode/skills/*/` should **NOT** have YAML frontmatter. (Skill references/assets are covered by the 5-field block above instead.)
+**Rule**: Knowledge files outside `.skilled/skills/*/` should **NOT** have YAML frontmatter. (Skill references/assets are covered by the 5-field block above instead.)
 
 ```markdown
 # ❌ BEFORE (incorrect)
@@ -731,7 +731,7 @@ validation_rules:
         pattern: "contains < or ["
 
   SkillReferenceAsset:
-    # .opencode/skills/*/references/ and assets/ docs, README.md exempt
+    # .skilled/skills/*/references/ and assets/ docs, README.md exempt
     frontmatter_required: true
     enforced_by: "check-skill-doc-frontmatter.sh --coverage for top-level skill folders, and package_skill.py --check --strict for nested mode packets. The checker's default --shape mode passes a file carrying no detailed field"
     required_fields:
@@ -932,7 +932,7 @@ Source: Parent directory name
 Method: Extract from file path
 
 Example:
-  Input: .opencode/skills/my-skill/SKILL.md
+  Input: .skilled/skills/my-skill/SKILL.md
   Output: my-skill
 ```
 
@@ -1019,7 +1019,7 @@ Document type detected?
 ```
 STRUCTURAL FIX: Add YAML Frontmatter
 
-File: .opencode/skills/new-skill/SKILL.md
+File: .skilled/skills/new-skill/SKILL.md
 Type: SKILL.md (frontmatter required)
 
 Proposed frontmatter (inferred from document):

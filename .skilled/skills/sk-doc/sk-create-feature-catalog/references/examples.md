@@ -20,7 +20,7 @@ A section-by-section reading of a real, shipped feature catalog so a new catalog
 
 ## 1. OVERVIEW
 
-The packet `SKILL.md` states the contract; this reference shows a working instance of its content model. Everything below is drawn from the live catalog at `.opencode/skills/system-skill-advisor/feature-catalog/`: 42 features across 7 group folders, every claim carrying a real source and test path.
+The packet `SKILL.md` states the contract; this reference shows a working instance of its content model. Everything below is drawn from the live catalog at `.skilled/skills/system-skill-advisor/feature-catalog/`: 42 features across 7 group folders, every claim carrying a real source and test path.
 
 Read this alongside the two scaffolds in `../assets/feature-catalog/`. The templates give you the empty shape; this walkthrough shows the shape filled in well.
 
@@ -28,7 +28,7 @@ Read this alongside the two scaffolds in `../assets/feature-catalog/`. The templ
 
 ## 2. THE LIVE EXAMPLE
 
-Location: `.opencode/skills/system-skill-advisor/feature-catalog/`
+Location: `.skilled/skills/system-skill-advisor/feature-catalog/`
 
 Canonical emitted shape, using content drawn from the live example:
 
@@ -63,7 +63,7 @@ The root `feature-catalog.md` opens with frontmatter carrying `title`, `descript
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
 This catalog is the current inventory for the skill advisor. The package source
-of truth is `.opencode/skills/system-skill-advisor/runtime/`, with adjacent
+of truth is `.skilled/skills/system-skill-advisor/runtime/`, with adjacent
 OpenCode plugin docs included where the same hook/plugin ownership model applies.
 Each group links to per-feature files that cite the real implementation and test
 anchors.
@@ -116,7 +116,7 @@ trigger_phrases:
 
 **`## 2. HOW IT WORKS`** runs long, so it names the handler, the schema and the response envelope in prose, then breaks out `### Compiled-Routing Enrichment (compiledRoute)` as an H3 because that behavior has its own gate, its own failure mode and its own flag. This is the sub-heading rule the contract asks for: split when a sub-behavior needs its own navigation anchor, not on a paragraph count. The section is also unusually good at stating when a field is *absent* — flag off, hub ineligible, legacy sentinel, probe failure — which is the half most feature docs skip.
 
-**`## 3. SOURCE FILES`** carries two tables. The `### Implementation` table uses `File | Layer | Role` columns, with Handler / Schema / Shared / Script rows pointing at real `runtime/**` and `.opencode/bin/**` paths. The `### Validation And Tests` table uses `File | Type | Role` columns, mixing `Automated test` rows that point at real `*.vitest.ts` files with a `Manual playbook` row that links named scenarios in the testing playbook.
+**`## 3. SOURCE FILES`** carries two tables. The `### Implementation` table uses `File | Layer | Role` columns, with Handler / Schema / Shared / Script rows pointing at real `runtime/**` and `.skilled/bin/**` paths. The `### Validation And Tests` table uses `File | Type | Role` columns, mixing `Automated test` rows that point at real `*.vitest.ts` files with a `Manual playbook` row that links named scenarios in the testing playbook.
 
 **`## 4. SOURCE METADATA`** closes with the group, the canonical catalog source, the feature file path, and `Related references` links to neighboring features plus the one cross-skill page the behavior depends on:
 
@@ -138,7 +138,7 @@ Related references:
 - Keep the root a table of links per category. Resist inlining prose or source tables there.
 - Put counts and baseline metrics in `## 1. OVERVIEW`, and pin the metrics to a commit SHA so staleness is visible.
 - Name the tool in the H1 whenever the feature maps to one.
-- Make `trigger_phrases` lead with the exact tool or feature name, then add alternates. Each phrase needs two or more tokens: the spec-kit trigger index judges phrases against the negative classes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` section 8, and a bare tool name is its `single-token` class.
+- Make `trigger_phrases` lead with the exact tool or feature name, then add alternates. Each phrase needs two or more tokens: the spec-kit trigger index judges phrases against the negative classes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` section 8, and a bare tool name is its `single-token` class.
 - Apply the H3 sub-heading rule when a sub-behavior needs its own anchor, not on a paragraph count.
 - Say when a field or behavior is absent, not only when it fires.
 - Point `Related references` at adjacent features so readers navigate without returning to the root.
@@ -152,4 +152,4 @@ Related references:
 - [common-pitfalls.md](common-pitfalls.md) - the defects this example avoids, with fixes
 - [../assets/feature-catalog-template.md](../assets/feature-catalog-template.md) - the empty root-catalog shape
 - [../assets/feature-catalog-snippet-template.md](../assets/feature-catalog-snippet-template.md) - the empty per-feature shape
-- `.opencode/skills/system-skill-advisor/feature-catalog/` - the full live catalog read here
+- `.skilled/skills/system-skill-advisor/feature-catalog/` - the full live catalog read here

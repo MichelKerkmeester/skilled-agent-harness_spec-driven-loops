@@ -38,7 +38,7 @@ The README type decision tree lives in `SKILL.md` Section 2. This reference cove
 | Type | Location | Audience | Voice |
 |------|----------|----------|-------|
 | **Project** | `/README.md` | New contributors, evaluators | Two-tier (narrative + reference) |
-| **Skill** | `.opencode/skills/[name]/README.md` | Humans understanding the skill | Two-tier (narrative + reference) |
+| **Skill** | `.skilled/skills/[name]/README.md` | Humans understanding the skill | Two-tier (narrative + reference) |
 | **Feature** | `/docs/features/[name]/README.md` | Developers implementing or maintaining | Two-tier (narrative + reference) |
 | **Component** | `/src/components/[name]/README.md` | Developers using the component | Technical (reference only) |
 | **Code Folder** | `[code-dir]/README.md` | Developers reading or modifying code | Technical (reference only) |

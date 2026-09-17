@@ -49,7 +49,7 @@ feature-catalog/
 ```
 
 **Existing Example**:
-- `.opencode/skills/system-spec-kit/feature-catalog/`
+- `.skilled/skills/system-spec-kit/feature-catalog/`
 
 The existing example keeps its legacy underscore root until the repository content migration. New packages emit only the canonical hyphenated layout above.
 

@@ -42,15 +42,15 @@ Operators run the exact prompt and command sequence for `SKL-002` and inspect au
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKL-002 | Classify standalone root metadata | Classify a standalone root and produce the correct authored and generated metadata files | `My new skill is standalone. Which root metadata files should I author and which ones should the gate generate?` | 1. `agent: Read the standalone class row in references/shared/skill-root-metadata-contract.md` -> 2. `agent: Confirm the root declares neither mode-registry.json nor hub-router.json` -> 3. `agent: Author graph-metadata.json and leaf-manifest.config.json only` -> 4. `bash: node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` -> 5. `bash: node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Step 1: class S is named. Step 2: both hub declarations are absent. Step 3: the authored set is correct. Step 4: generated manifests are refreshed. Step 5: the final gate is clean | The exact prompt, class row, root metadata listing, both gate transcripts with exit statuses and the final file ownership map | PASS if the authored and generated sets match class S and the final gate reports clean. FAIL if a hub-only file is present or generated output is hand-authored | 1. Compare the root files with the class S matrix. 2. Check that `leaf-manifest.json` and `leaf-aliases.json` match generated output. 3. Re-run the gate without `--fix` and read its exit status |
+| SKL-002 | Classify standalone root metadata | Classify a standalone root and produce the correct authored and generated metadata files | `My new skill is standalone. Which root metadata files should I author and which ones should the gate generate?` | 1. `agent: Read the standalone class row in references/shared/skill-root-metadata-contract.md` -> 2. `agent: Confirm the root declares neither mode-registry.json nor hub-router.json` -> 3. `agent: Author graph-metadata.json and leaf-manifest.config.json only` -> 4. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` -> 5. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Step 1: class S is named. Step 2: both hub declarations are absent. Step 3: the authored set is correct. Step 4: generated manifests are refreshed. Step 5: the final gate is clean | The exact prompt, class row, root metadata listing, both gate transcripts with exit statuses and the final file ownership map | PASS if the authored and generated sets match class S and the final gate reports clean. FAIL if a hub-only file is present or generated output is hand-authored | 1. Compare the root files with the class S matrix. 2. Check that `leaf-manifest.json` and `leaf-aliases.json` match generated output. 3. Re-run the gate without `--fix` and read its exit status |
 
 ### Commands
 
 1. `agent: Read the standalone class row in references/shared/skill-root-metadata-contract.md`
 2. `agent: Confirm the root declares neither mode-registry.json nor hub-router.json`
 3. `agent: Author graph-metadata.json and leaf-manifest.config.json only`
-4. `bash: node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix`
-5. `bash: node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`
+4. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix`
+5. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`
 
 ### Expected
 

@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `CHG-006` and confirm th
 
 ### Expected
 
-The changelog body is used as the release-note body. The body ends with `Full changelog: .opencode/changelog/{component}/v{VERSION}.md`. The exact tag format, `gh release create` command, draft state and packet-local publishing support are not defined by this packet. Git mechanics stay with `sk-git`.
+The changelog body is used as the release-note body. The body ends with `Full changelog: .skilled/changelog/{component}/v{VERSION}.md`. The exact tag format, `gh release create` command, draft state and packet-local publishing support are not defined by this packet. Git mechanics stay with `sk-git`.
 
 ### Evidence
 

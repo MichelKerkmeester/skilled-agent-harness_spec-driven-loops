@@ -48,12 +48,12 @@ Phase 003 renamed the documentation executor from `@create` to `@markdown` witho
 
 ### Prompt
 
-- Prompt: `Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md. Do NOT install the stub skill into the .opencode/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.`
+- Prompt: `Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md. Do NOT install the stub skill into the .skilled/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.`
 
 ### Commands
 
 ```text
-PROMPT='Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md. Do NOT install the stub skill into the .opencode/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.'
+PROMPT='Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md. Do NOT install the stub skill into the .skilled/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.'
 
 EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/<spec-folder>'
 
@@ -78,7 +78,7 @@ Transcript + output changelog content.
 
 ### Failure Triage
 
-Re-check `.claude/agents/markdown.md` exists; re-check `.opencode/commands/create/changelog.md` Phase 0 block.
+Re-check `.claude/agents/markdown.md` exists; re-check `.skilled/commands/create/changelog.md` Phase 0 block.
 
 ### Optional Supplemental Checks
 
@@ -87,8 +87,8 @@ Re-check `.claude/agents/markdown.md` exists; re-check `.opencode/commands/creat
 - **Intent picked**: `CHANGELOG`
 - **Executor**: `@markdown` agent (Phase 0 verification text appears verbatim in transcript)
 - **Resources loaded**:
-  - `.opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`
-  - `.opencode/skills/sk-doc/sk-create-changelog/references/README.md`
+  - `.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`
+  - `.skilled/skills/sk-doc/sk-create-changelog/references/README.md`
 - **Outcome**: CLI scaffolds a v0.1.0 changelog file with Added / Changed / Fixed / Removed sections at `/tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md`.
 
 **Cross-CLI Variants**
@@ -100,7 +100,7 @@ This scenario is fixed to `cli-claude-code`. Equivalent dispatches for cli-openc
 - `@markdown` invocation evidence present in transcript (regex `@markdown` or `Phase 0` Keep-a-Changelog block)
 - output file exists at the requested path
 - output contains at least 3 of the 4 Keep-a-Changelog sections (Added / Changed / Fixed / Removed)
-- no installation under `.opencode/skills/` (stub stayed out of the skills tree)
+- no installation under `.skilled/skills/` (stub stayed out of the skills tree)
 
 
 ---

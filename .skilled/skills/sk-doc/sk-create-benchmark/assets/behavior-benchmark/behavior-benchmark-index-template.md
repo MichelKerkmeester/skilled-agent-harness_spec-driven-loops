@@ -23,8 +23,8 @@ Copy-paste scaffold for a behavior-benchmark PACKAGE INDEX:
 
 Usage:
   1. cp this file to that path, for example:
-     cp .opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md \
-        .opencode/skills/system-deep-loop/<mode>/behavior-benchmark/behavior-benchmark.md
+     cp .skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md \
+        .skilled/skills/system-deep-loop/<mode>/behavior-benchmark/behavior-benchmark.md
   2. DELETE the "version:" line below. A shipped behavior-benchmark index carries
      the five frontmatter fields shown (title / description / trigger_phrases /
      importance_tier / contextType) and NO version field: it is a memory-indexed
@@ -39,7 +39,7 @@ Usage:
 
 The normative measurement contract (rubric, buckets, budget formula, ID prefixes)
 is NOT restated here. It lives once in:
-  .opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md
+  .skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md
 -->
 
 ## 1. OVERVIEW

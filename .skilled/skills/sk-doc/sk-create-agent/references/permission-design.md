@@ -59,5 +59,5 @@ Do not treat the old standalone `tools:` object as canonical. The unified `permi
 - [agent-vs-skill-vs-command.md](agent-vs-skill-vs-command.md) - decide the component type before scoping permissions
 - [common-pitfalls.md](common-pitfalls.md) - over-permissive values and other frontmatter failure modes
 - [agent-template.md](../assets/agent-template.md) - canonical scaffold with the frontmatter shape in place
-- `.opencode/commands/create/assets/create-agent-auto.yaml` - machine-executed permission-emitting path for `/create:agent`
-- `.opencode/commands/create/assets/create-agent-confirm.yaml` - confirm-mode execution guide for the same command
+- `.skilled/commands/create/assets/create-agent-auto.yaml` - machine-executed permission-emitting path for `/create:agent`
+- `.skilled/commands/create/assets/create-agent-confirm.yaml` - confirm-mode execution guide for the same command

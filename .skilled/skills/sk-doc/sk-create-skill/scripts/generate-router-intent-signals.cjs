@@ -24,7 +24,7 @@ const fs = require('fs');
 const path = require('path');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const SKILLS = path.join(REPO_ROOT, '.opencode', 'skills');
+const SKILLS = path.join(REPO_ROOT, '.skilled', 'skills');
 
 function hubs() {
   return fs.readdirSync(SKILLS, { withFileTypes: true })

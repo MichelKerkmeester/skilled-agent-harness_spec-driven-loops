@@ -31,21 +31,21 @@ This file covers how a create-quality-control run validates and enforces standar
 
 **Pre-Delivery Format Validation** (MANDATORY for READMEs):
 - **When**: Before claiming completion on any README
-- **Script**: `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file>`
+- **Script**: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file>`
 - **Action**: Check H2 format and required sections
 - **Blocking**: Yes - exit code 1 blocks delivery
 - **Auto-fix**: Use `--fix` for safe issues
 
 **Post-Write Validation Pattern** (manual):
 - **When**: After Write/Edit operations inside a skill or mode packet
-- **Script**: `python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py <skill-or-packet-directory>`
+- **Script**: `python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py <skill-or-packet-directory>`
 - **Action**: Check the directory's `SKILL.md` frontmatter and structure. It takes a directory, not a file, and errors with `SKILL.md not found` on a file path.
 - **Blocking**: No (logs only)
-- **Filename case**: a separate checker. Run `python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <file>` for lowercase kebab-case conformance; do not convert hyphens to underscores.
+- **Filename case**: a separate checker. Run `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <file>` for lowercase kebab-case conformance; do not convert hyphens to underscores.
 
 **Pre-Submit Quality Pattern** (manual):
 - **When**: Before finalizing documentation
-- **Script**: `python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <file>`
+- **Script**: `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>`
 - **Action**: Structure validation + AI-assisted quality assessment
 - **Blocking**: Recommend blocking on critical violations
 
@@ -53,15 +53,15 @@ This file covers how a create-quality-control run validates and enforces standar
 ```
 User saves file
     ↓
-Run: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file>  ← NEW: Format validation
+Run: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file>  ← NEW: Format validation
     ├─ Exit 0 → Continue
     └─ Exit 1 → Fix blocking errors → Re-run
     ↓
-Run: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py <path>
+Run: python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py <path>
     ↓
 Review output, fix issues
     ↓
-Run: python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <file>
+Run: python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>
     ├─ Safe violations → Fix manually → Re-run
     └─ Critical violations → Address before proceeding
 ```
@@ -79,7 +79,7 @@ Run: python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <file>
 To opt out for a single run — for example while migrating a doc set whose sections have not been normalized — set the flag to `0`:
 
 ```bash
-SKDOC_ENFORCE_STRUCTURE=0 python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type readme
+SKDOC_ENFORCE_STRUCTURE=0 python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file> --type readme
 ```
 
 Unset or any value other than `0` keeps enforcement on.

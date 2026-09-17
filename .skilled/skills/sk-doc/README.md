@@ -72,7 +72,7 @@ The validator reads the file path and content shape, then applies the matching e
 **Step 1: Invoke it.** Gate 2 auto-routing fires on documentation keywords. Otherwise read the skill directly.
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "validate my README" --threshold 0.8
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "validate my README" --threshold 0.8
 ```
 
 The advisor prints a routing recommendation with a score. A score above the 0.8 threshold names sk-doc as the skill to load.
@@ -80,7 +80,7 @@ The advisor prints a routing recommendation with a score. A score above the 0.8 
 **Step 2: Score a document.** `extract_structure.py` returns the DQI, the checklist results, every violation and the evaluation questions in JSON.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/extract_structure.py path/to/document.md
+python3 .skilled/skills/sk-doc/scripts/extract_structure.py path/to/document.md
 ```
 
 Success looks like a JSON object with `dqi.total`, `dqi.band` and `checklist.passed`. A band of "excellent" or "good" means the document is ready. A band of "needs_work" means the checklist output tells you exactly what to fix and in what order.
@@ -88,7 +88,7 @@ Success looks like a JSON object with `dqi.total`, `dqi.band` and `checklist.pas
 **Step 3: Validate a README before delivery.** `validate_document.py` is the fast gate. It checks required sections, heading format and frontmatter.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md --type readme
+python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme
 ```
 
 Exit 0 means the document is valid and ready to ship. Exit 1 means a blocking format error, so fix the reported violations and re-run. Exit 2 means the file could not be read, so check the path.
@@ -177,7 +177,7 @@ A: A feature catalog documents current behavior. It inventories what a skill or 
 
 **Q: Which `/create:*` command do I use?**
 
-A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.opencode/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring. `/design:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/design:chart` for a standalone HTML chart drawn from the catalog of chart forms. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review. `/create:repo-rule` for a repo-local rule wired into `REPO RULES.md`. `/create:with-human-voice` to apply or score the Human Voice Rules over prose.
+A: `/create:skill` for a new skill under `.skilled/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.skilled/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring. `/design:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/design:chart` for a standalone HTML chart drawn from the catalog of chart forms. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review. `/create:repo-rule` for a repo-local rule wired into `REPO RULES.md`. `/create:with-human-voice` to apply or score the Human Voice Rules over prose.
 
 ---
 
@@ -187,10 +187,10 @@ The skill ships the checks that prove a document is ready.
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md --type readme` reports zero issues and exits 0 |
-| Full quality | `python3 .opencode/skills/sk-doc/scripts/extract_structure.py document.md` returns the DQI, the checklist and the violations in JSON |
-| Flowchart shape | `bash .opencode/skills/sk-doc/scripts/validate-flowchart.sh` checks box alignment and label consistency |
-| Package gate | `python3 .opencode/skills/sk-doc/scripts/package_skill.py` validates a skill and bundles it to a zip |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme` reports zero issues and exits 0 |
+| Full quality | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py document.md` returns the DQI, the checklist and the violations in JSON |
+| Flowchart shape | `bash .skilled/skills/sk-doc/scripts/validate-flowchart.sh` checks box alignment and label consistency |
+| Package gate | `python3 .skilled/skills/sk-doc/scripts/package_skill.py` validates a skill and bundles it to a zip |
 
 ---
 

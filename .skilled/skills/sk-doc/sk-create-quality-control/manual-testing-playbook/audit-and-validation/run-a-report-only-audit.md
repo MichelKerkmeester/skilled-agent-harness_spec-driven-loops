@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `QC-001` and compare the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| QC-001 | Run a report-only audit | Run a report-only audit with extraction evidence and no target edit | `Audit this existing SKILL.md for structure, DQI and human voice issues. Do not edit it.` | 1. `agent: Read .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md` -> 2. `bash: python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md` -> 3. `agent: Report the detected type, metrics, checklist, DQI, quality band and HVR findings` -> 4. `bash: git status --porcelain .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md` | Step 1: the target is read before judgment. Step 2: JSON extraction output is present. Step 3: DQI is tied to the JSON and HVR follows structure review. Step 4: empty output | The exact prompt, target path, extraction JSON, report, HVR findings, status output and exit statuses | PASS if the score is taken from extraction, HVR is separate and the target is unchanged. FAIL if the score is guessed, HVR replaces structure review or the target changes | 1. Confirm the extraction command used the target file. 2. Check that the DQI score and band appear in the JSON output. 3. Compare the before and after status outputs |
+| QC-001 | Run a report-only audit | Run a report-only audit with extraction evidence and no target edit | `Audit this existing SKILL.md for structure, DQI and human voice issues. Do not edit it.` | 1. `agent: Read .skilled/skills/sk-doc/sk-create-quality-control/SKILL.md` -> 2. `bash: python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py .skilled/skills/sk-doc/sk-create-quality-control/SKILL.md` -> 3. `agent: Report the detected type, metrics, checklist, DQI, quality band and HVR findings` -> 4. `bash: git status --porcelain .skilled/skills/sk-doc/sk-create-quality-control/SKILL.md` | Step 1: the target is read before judgment. Step 2: JSON extraction output is present. Step 3: DQI is tied to the JSON and HVR follows structure review. Step 4: empty output | The exact prompt, target path, extraction JSON, report, HVR findings, status output and exit statuses | PASS if the score is taken from extraction, HVR is separate and the target is unchanged. FAIL if the score is guessed, HVR replaces structure review or the target changes | 1. Confirm the extraction command used the target file. 2. Check that the DQI score and band appear in the JSON output. 3. Compare the before and after status outputs |
 
 ### Commands
 
-1. `agent: Read .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md`
-2. `bash: python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md`
+1. `agent: Read .skilled/skills/sk-doc/sk-create-quality-control/SKILL.md`
+2. `bash: python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py .skilled/skills/sk-doc/sk-create-quality-control/SKILL.md`
 3. `agent: Report the detected type, metrics, checklist, DQI, quality band and HVR findings`
-4. `bash: git status --porcelain .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md`
+4. `bash: git status --porcelain .skilled/skills/sk-doc/sk-create-quality-control/SKILL.md`
 
 ### Expected
 

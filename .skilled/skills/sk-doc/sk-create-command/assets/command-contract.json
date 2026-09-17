@@ -12,24 +12,24 @@
   "families": {
     "create": {
       "topology": "mode-pair",
-      "router_path": ".opencode/commands/create/*.md",
+      "router_path": ".skilled/commands/create/*.md",
       "input": {
         "required": true,
         "gate_owner": "router",
         "argument_hint": "<target> [operation] [--path <dir>] [per-command flags] [:auto|:confirm]"
       },
       "execution_targets": [
-        { "selector": ":auto", "target": ".opencode/commands/create/assets/create-<name>-auto.yaml" },
-        { "selector": ":confirm | omitted", "target": ".opencode/commands/create/assets/create-<name>-confirm.yaml" }
+        { "selector": ":auto", "target": ".skilled/commands/create/assets/create-<name>-auto.yaml" },
+        { "selector": ":confirm | omitted", "target": ".skilled/commands/create/assets/create-<name>-confirm.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "confirm",
         "supported_modes": [":auto", ":confirm"]
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/create/assets/create-<name>-presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".opencode/commands/create/assets/create-<name>-auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".opencode/commands/create/assets/create-<name>-confirm.yaml" }
+        { "purpose": "presentation", "path": ".skilled/commands/create/assets/create-<name>-presentation.txt" },
+        { "purpose": "auto_workflow", "path": ".skilled/commands/create/assets/create-<name>-auto.yaml" },
+        { "purpose": "confirm_workflow", "path": ".skilled/commands/create/assets/create-<name>-confirm.yaml" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
@@ -49,25 +49,25 @@
     },
     "design": {
       "topology": "mode-pair",
-      "router_path": ".opencode/commands/design/*.md",
+      "router_path": ".skilled/commands/design/*.md",
       "input": {
         "required": true,
         "gate_owner": "router",
         "argument_hint": "<live-url> --output <dir> [--register brand|product] [:auto|:confirm]"
       },
       "execution_targets": [
-        { "selector": ":auto | no-suffix with complete args", "target": ".opencode/commands/design/assets/extract-auto.yaml" },
-        { "selector": ":confirm | no-suffix with incomplete args", "target": ".opencode/commands/design/assets/extract-confirm.yaml" }
+        { "selector": ":auto | no-suffix with complete args", "target": ".skilled/commands/design/assets/extract-auto.yaml" },
+        { "selector": ":confirm | no-suffix with incomplete args", "target": ".skilled/commands/design/assets/extract-confirm.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "conditional-auto",
         "supported_modes": [":auto", ":confirm"]
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/design/assets/extract-presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".opencode/commands/design/assets/extract-auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".opencode/commands/design/assets/extract-confirm.yaml" },
-        { "purpose": "other", "path": ".opencode/skills/sk-design/sk-design-md-generator/references/creation-contract.md (shared lifecycle contract; consumed, owned by sk-design-md-generator)" }
+        { "purpose": "presentation", "path": ".skilled/commands/design/assets/extract-presentation.txt" },
+        { "purpose": "auto_workflow", "path": ".skilled/commands/design/assets/extract-auto.yaml" },
+        { "purpose": "confirm_workflow", "path": ".skilled/commands/design/assets/extract-confirm.yaml" },
+        { "purpose": "other", "path": ".skilled/skills/sk-design/sk-design-md-generator/references/creation-contract.md (shared lifecycle contract; consumed, owned by sk-design-md-generator)" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
@@ -88,10 +88,10 @@
     "speckit": {
       "topology": "mode-pair",
       "router_path": [
-        ".opencode/commands/speckit/plan.md",
-        ".opencode/commands/speckit/implement.md",
-        ".opencode/commands/speckit/complete.md",
-        ".opencode/commands/speckit/resume.md"
+        ".skilled/commands/speckit/plan.md",
+        ".skilled/commands/speckit/implement.md",
+        ".skilled/commands/speckit/complete.md",
+        ".skilled/commands/speckit/resume.md"
       ],
       "input": {
         "required": true,
@@ -99,9 +99,9 @@
         "argument_hint": "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases]"
       },
       "execution_targets": [
-        { "selector": ":auto", "target": ".opencode/commands/speckit/assets/speckit-<name>-auto.yaml" },
-        { "selector": ":autopilot | :unattended | --unattended", "target": ".opencode/commands/speckit/assets/speckit-<name>-auto.yaml (bound to autopilot execution mode; not aliased to :auto)" },
-        { "selector": ":confirm | interactive choice", "target": ".opencode/commands/speckit/assets/speckit-<name>-confirm.yaml" }
+        { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml" },
+        { "selector": ":autopilot | :unattended | --unattended", "target": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml (bound to autopilot execution mode; not aliased to :auto)" },
+        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-<name>-confirm.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "ask",
@@ -111,9 +111,9 @@
         ]
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/speckit/assets/speckit-<name>-presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".opencode/commands/speckit/assets/speckit-<name>-auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".opencode/commands/speckit/assets/speckit-<name>-confirm.yaml" }
+        { "purpose": "presentation", "path": ".skilled/commands/speckit/assets/speckit-<name>-presentation.txt" },
+        { "purpose": "auto_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml" },
+        { "purpose": "confirm_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-confirm.yaml" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
@@ -138,13 +138,13 @@
       },
       "timeout_bounds": null,
       "invocation_aliases": ["/speckit:plan", "/speckit:implement", "/speckit:complete", "/speckit:resume", ":auto suffix", ":confirm suffix", ":autopilot suffix", ":unattended suffix", "--unattended flag"],
-      "workflow_schema_ref": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md"
+      "workflow_schema_ref": ".skilled/skills/system-spec-kit/references/workflows/agent-io-contract.md"
     },
     "continuity": {
       "topology": "direct-dispatch",
       "router_path": [
-        ".opencode/commands/speckit/save.md",
-        ".opencode/commands/speckit/search.md"
+        ".skilled/commands/speckit/save.md",
+        ".skilled/commands/speckit/search.md"
       ],
       "input": {
         "required": false,
@@ -160,8 +160,8 @@
         "supported_modes": []
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/speckit/assets/<command>-presentation.txt" },
-        { "purpose": "script", "path": ".opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js (consumed; owned by system-spec-kit)" }
+        { "purpose": "presentation", "path": ".skilled/commands/speckit/assets/<command>-presentation.txt" },
+        { "purpose": "script", "path": ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js (consumed; owned by system-spec-kit)" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
@@ -191,9 +191,9 @@
     "doctor": {
       "topology": "subaction-route-manifest",
       "router_path": [
-        ".opencode/commands/doctor/speckit.md",
-        ".opencode/commands/doctor/mcp.md",
-        ".opencode/commands/doctor/update.md"
+        ".skilled/commands/doctor/speckit.md",
+        ".skilled/commands/doctor/mcp.md",
+        ".skilled/commands/doctor/update.md"
       ],
       "input": {
         "required": true,
@@ -201,19 +201,19 @@
         "argument_hint": "per-command: <target> [flags] | list | ? (speckit); <install|debug> [--server <name>] [--runtime <name>] [--fix] (mcp); [--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap] (update)"
       },
       "execution_targets": [
-        { "selector": "<target> resolved via _routes.yaml", "target": ".opencode/commands/doctor/assets/doctor-<target>.yaml" },
-        { "selector": "install | debug", "target": ".opencode/commands/doctor/assets/doctor-mcp-<sub>.yaml" },
-        { "selector": "update", "target": ".opencode/commands/doctor/assets/doctor-update.yaml" }
+        { "selector": "<target> resolved via _routes.yaml", "target": ".skilled/commands/doctor/assets/doctor-<target>.yaml" },
+        { "selector": "install | debug", "target": ".skilled/commands/doctor/assets/doctor-mcp-<sub>.yaml" },
+        { "selector": "update", "target": ".skilled/commands/doctor/assets/doctor-update.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "confirm-only",
         "supported_modes": []
       },
       "owned_assets": [
-        { "purpose": "route_manifest", "path": ".opencode/commands/doctor/_routes.yaml" },
-        { "purpose": "presentation", "path": ".opencode/commands/doctor/assets/doctor-<entry>-presentation.txt" },
-        { "purpose": "other", "path": ".opencode/commands/doctor/assets/doctor-<target>.yaml (per-route target workflows)" },
-        { "purpose": "script", "path": ".opencode/commands/doctor/scripts/route-validate.sh (validates _routes.yaml)" }
+        { "purpose": "route_manifest", "path": ".skilled/commands/doctor/_routes.yaml" },
+        { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-<entry>-presentation.txt" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-<target>.yaml (per-route target workflows)" },
+        { "purpose": "script", "path": ".skilled/commands/doctor/scripts/route-validate.sh (validates _routes.yaml)" }
       ],
       "loader_requirements": [
         "Read the presentation asset and _routes.yaml before dispatch",
@@ -235,26 +235,26 @@
     },
     "deep": {
       "topology": "mode-pair",
-      "router_path": ".opencode/commands/deep/*.md",
+      "router_path": ".skilled/commands/deep/*.md",
       "input": {
         "required": true,
         "gate_owner": "router",
         "argument_hint": "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=<type>] [--concurrency=N] [--dry-run]"
       },
       "execution_targets": [
-        { "selector": ":auto", "target": ".opencode/commands/deep/assets/deep-<name>-auto.yaml (dispatches LEAF iteration agents)" },
-        { "selector": ":confirm | interactive choice", "target": ".opencode/commands/deep/assets/deep-<name>-confirm.yaml" }
+        { "selector": ":auto", "target": ".skilled/commands/deep/assets/deep-<name>-auto.yaml (dispatches LEAF iteration agents)" },
+        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/deep/assets/deep-<name>-confirm.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "ask",
         "supported_modes": [":auto", ":confirm"]
       },
       "owned_assets": [
-        { "purpose": "presentation", "path": ".opencode/commands/deep/assets/deep-<name>-presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".opencode/commands/deep/assets/deep-<name>-auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".opencode/commands/deep/assets/deep-<name>-confirm.yaml" },
-        { "purpose": "other", "path": ".opencode/commands/deep/assets/compiled/ (generated *.contract.md + manifest.jsonl digest ledger)" },
-        { "purpose": "other", "path": ".opencode/commands/deep/assets/legacy/ (fallback injection bodies)" }
+        { "purpose": "presentation", "path": ".skilled/commands/deep/assets/deep-<name>-presentation.txt" },
+        { "purpose": "auto_workflow", "path": ".skilled/commands/deep/assets/deep-<name>-auto.yaml" },
+        { "purpose": "confirm_workflow", "path": ".skilled/commands/deep/assets/deep-<name>-confirm.yaml" },
+        { "purpose": "other", "path": ".skilled/commands/deep/assets/compiled/ (generated *.contract.md + manifest.jsonl digest ledger)" },
+        { "purpose": "other", "path": ".skilled/commands/deep/assets/legacy/ (fallback injection bodies)" }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
@@ -274,7 +274,7 @@
         "executor_timeout": "bounded per-invocation by --executor-timeout=SECONDS"
       },
       "invocation_aliases": ["/deep:research", "/deep:review", "/deep:ai-council", "/deep:agent-improvement", "/deep:model-benchmark", "/deep:skill-benchmark", "attached suffix (e.g. /deep:research:auto)", "--dry-run flag (/deep:research only)"],
-      "workflow_schema_ref": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md"
+      "workflow_schema_ref": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md"
     }
   }
 }

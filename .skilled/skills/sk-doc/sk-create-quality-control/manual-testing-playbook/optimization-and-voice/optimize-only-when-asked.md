@@ -42,16 +42,16 @@ Operators run the exact prompt and command sequence for `QC-004` and compare the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| QC-004 | Optimize only when asked | Improve an existing README with targeted examples and prove the result after editing | `Rewrite this existing README for AI-friendly usage examples. Keep the change narrow and validate it after editing.` | 1. `bash: python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py README.md` -> 2. `agent: Identify observed question-coverage and snippet gaps and choose only needed patterns` -> 3. `agent: Edit README.md narrowly and preserve supported content` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py README.md --type readme` -> 5. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .` -> 6. `bash: python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py README.md` | Step 1: baseline JSON is captured. Step 2: patterns map to observed gaps. Step 3: only the target README changes. Step 4: README validation passes. Step 5: packet validation passes. Step 6: post-edit JSON is compared with baseline | The exact prompt, baseline and post-edit JSON, chosen patterns, scoped diff, all command outputs and exit statuses and the final report | PASS if the edit is authorized, targeted and all post-edit checks run. FAIL if unrelated content changes, claims are fabricated or any required check is skipped | 1. Compare the diff with the requested README scope. 2. Check every added example for imports, setup, syntax and a user question. 3. Compare pre-edit and post-edit extraction results |
+| QC-004 | Optimize only when asked | Improve an existing README with targeted examples and prove the result after editing | `Rewrite this existing README for AI-friendly usage examples. Keep the change narrow and validate it after editing.` | 1. `bash: python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py README.md` -> 2. `agent: Identify observed question-coverage and snippet gaps and choose only needed patterns` -> 3. `agent: Edit README.md narrowly and preserve supported content` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py README.md --type readme` -> 5. `bash: python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py .` -> 6. `bash: python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py README.md` | Step 1: baseline JSON is captured. Step 2: patterns map to observed gaps. Step 3: only the target README changes. Step 4: README validation passes. Step 5: packet validation passes. Step 6: post-edit JSON is compared with baseline | The exact prompt, baseline and post-edit JSON, chosen patterns, scoped diff, all command outputs and exit statuses and the final report | PASS if the edit is authorized, targeted and all post-edit checks run. FAIL if unrelated content changes, claims are fabricated or any required check is skipped | 1. Compare the diff with the requested README scope. 2. Check every added example for imports, setup, syntax and a user question. 3. Compare pre-edit and post-edit extraction results |
 
 ### Commands
 
-1. `bash: python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py README.md`
+1. `bash: python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py README.md`
 2. `agent: Identify observed question-coverage and snippet gaps and choose only needed patterns`
 3. `agent: Edit README.md narrowly and preserve supported content`
-4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py README.md --type readme`
-5. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .`
-6. `bash: python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py README.md`
+4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py README.md --type readme`
+5. `bash: python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py .`
+6. `bash: python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py README.md`
 
 ### Expected
 

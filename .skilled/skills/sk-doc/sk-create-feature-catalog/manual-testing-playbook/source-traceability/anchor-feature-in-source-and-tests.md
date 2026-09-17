@@ -40,14 +40,14 @@ Operators run the exact prompt and command sequence for `FCR-003` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FCR-003 | Anchor a feature in source and tests | Add real implementation and validation anchors | `Document this shipped feature in a per-feature catalog file. Add an implementation table and a Validation And Tests table with real stable paths. Do not use placeholders.` | 1. `agent: Read SKILL.md section 6 and assets/feature-catalog-snippet-template.md` -> 2. `agent: Fill the Implementation and Validation And Tests tables for the supplied feature` -> 3. `agent: Check that every cited path exists and that each validation Type is canonical` -> 4. `bash: python3 .opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package sk-doc` | Step 1 identifies the two table taxonomies. Step 2 fills stable paths. Step 3 confirms path existence and type values. Step 4 reports the package result and exit status | Exact prompt, template, filled tables, path checks, package validator output and exit status | PASS if every claim has real implementation and validation anchors. FAIL if the tables are missing, paths are invented or validation types are outside the canonical taxonomy | 1. Recheck each path from the repository root. 2. Compare validation types with the snippet template. 3. Remove any measurement snapshot or placeholder |
+| FCR-003 | Anchor a feature in source and tests | Add real implementation and validation anchors | `Document this shipped feature in a per-feature catalog file. Add an implementation table and a Validation And Tests table with real stable paths. Do not use placeholders.` | 1. `agent: Read SKILL.md section 6 and assets/feature-catalog-snippet-template.md` -> 2. `agent: Fill the Implementation and Validation And Tests tables for the supplied feature` -> 3. `agent: Check that every cited path exists and that each validation Type is canonical` -> 4. `bash: python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package sk-doc` | Step 1 identifies the two table taxonomies. Step 2 fills stable paths. Step 3 confirms path existence and type values. Step 4 reports the package result and exit status | Exact prompt, template, filled tables, path checks, package validator output and exit status | PASS if every claim has real implementation and validation anchors. FAIL if the tables are missing, paths are invented or validation types are outside the canonical taxonomy | 1. Recheck each path from the repository root. 2. Compare validation types with the snippet template. 3. Remove any measurement snapshot or placeholder |
 
 ### Commands
 
 1. `agent: Read SKILL.md section 6 and assets/feature-catalog-snippet-template.md`
 2. `agent: Fill the Implementation and Validation And Tests tables for the supplied feature`
 3. `agent: Check that every cited path exists and that each validation Type is canonical`
-4. `bash: python3 .opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package sk-doc`
+4. `bash: python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package sk-doc`
 
 ### Expected
 

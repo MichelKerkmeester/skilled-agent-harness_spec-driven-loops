@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `AGV-002`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| AGV-002 | Leaf denies delegation | Reject extra delegation authority for a leaf agent | `This leaf agent only edits the assigned fixture. Can I enable task permission in case it needs help later?` | 1. `agent: Read references/permission-design.md and quote the task permission rule` -> 2. `agent: Classify the role as a leaf or orchestrator` -> 3. `agent: State the permission value and the reason for it` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-agent/SKILL.md --type agent` | Step 1: the task rule is quoted. Step 2: the role is classified as a leaf. Step 3: `task: deny` is selected and future need is rejected. Step 4: the mode contract validator output and exit status are captured | The prompt, quoted rule, role classification, permission decision and validator transcript | PASS if the extra authority is rejected with the rule named. FAIL if `task: allow` is approved or the answer relies on a future need | 1. Check whether the role has explicit orchestration authority. 2. Re-read the least-authority rule. 3. Confirm the validator run is evidence for document structure, not permission approval |
+| AGV-002 | Leaf denies delegation | Reject extra delegation authority for a leaf agent | `This leaf agent only edits the assigned fixture. Can I enable task permission in case it needs help later?` | 1. `agent: Read references/permission-design.md and quote the task permission rule` -> 2. `agent: Classify the role as a leaf or orchestrator` -> 3. `agent: State the permission value and the reason for it` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-agent/SKILL.md --type agent` | Step 1: the task rule is quoted. Step 2: the role is classified as a leaf. Step 3: `task: deny` is selected and future need is rejected. Step 4: the mode contract validator output and exit status are captured | The prompt, quoted rule, role classification, permission decision and validator transcript | PASS if the extra authority is rejected with the rule named. FAIL if `task: allow` is approved or the answer relies on a future need | 1. Check whether the role has explicit orchestration authority. 2. Re-read the least-authority rule. 3. Confirm the validator run is evidence for document structure, not permission approval |
 
 ### Commands
 
 1. `agent: Read references/permission-design.md and quote the task permission rule`
 2. `agent: Classify the role as a leaf or orchestrator`
 3. `agent: State the permission value and the reason for it`
-4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-agent/SKILL.md --type agent`
+4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-agent/SKILL.md --type agent`
 
 ### Expected
 

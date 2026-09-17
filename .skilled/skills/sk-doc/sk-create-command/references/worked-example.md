@@ -29,17 +29,17 @@ This reference is a single worked example: the canonical command file contract a
 The smallest command package is one markdown file.
 
 ```text
-.opencode/commands/report.md             -> /report
-.opencode/commands/review/packet.md      -> /review:packet
+.skilled/commands/report.md             -> /report
+.skilled/commands/review/packet.md      -> /review:packet
 ```
 
 Split mode-based workflow packages commonly use this shape:
 
 ```text
-.opencode/commands/review/packet.md
-.opencode/commands/review/assets/review-packet-presentation.txt
-.opencode/commands/review/assets/review-packet-auto.yaml
-.opencode/commands/review/assets/review-packet-confirm.yaml
+.skilled/commands/review/packet.md
+.skilled/commands/review/assets/review-packet-presentation.txt
+.skilled/commands/review/assets/review-packet-auto.yaml
+.skilled/commands/review/assets/review-packet-confirm.yaml
 ```
 
 **Invariants**:
@@ -55,7 +55,7 @@ Split mode-based workflow packages commonly use this shape:
 
 This example is illustrative. It shows the output shape for a mode-based namespace command without claiming that `/review:packet` exists.
 
-Router file: `.opencode/commands/review/packet.md`
+Router file: `.skilled/commands/review/packet.md`
 
 ```markdown
 ---
@@ -126,7 +126,7 @@ The router must not inline startup prompt wording, dashboard layouts, success te
 Validate the spec folder, choose execution mode, run the selected review workflow, then return the structured status from the workflow result.
 ```
 
-Presentation asset: `.opencode/commands/review/assets/review-packet-presentation.txt`
+Presentation asset: `.skilled/commands/review/assets/review-packet-presentation.txt`
 
 ```markdown
 # Review Packet Presentation Contract

@@ -4,7 +4,7 @@
 Usage: python3 check_readme_references.py [--self-test] README.md [...]
 
 Relative links and inline file references resolve from the README directory.
-Repository-root command anchors such as ``.opencode/...`` are resolved from
+Repository-root command anchors such as ``.skilled/...`` are resolved from
 the Git repository root when the README documents a command run from that root.
 Fence info strings containing ``example`` explicitly mark illustrative paths.
 """
@@ -46,7 +46,7 @@ KNOWN_SUFFIXES = {
 }
 REPOSITORY_ROOT_PREFIXES = (
     ".github/",
-    ".opencode/",
+    ".skilled/", ".opencode/",
     "opencode.json",
     ".utcp_config.json",
     "package.json",
@@ -100,7 +100,7 @@ def looks_like_path(value: str) -> bool:
         return False
     if value in {"//", "Node.js", "node:test"}:
         return False
-    if value.startswith(("./", "../", "/", "~/", ".opencode/", ".github/")):
+    if value.startswith(("./", "../", "/", "~/", ".skilled/", ".opencode/", ".github/")):
         return True
     if "/" in value and ("*" not in value and "?" not in value):
         return True

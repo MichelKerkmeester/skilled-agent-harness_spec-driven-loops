@@ -200,7 +200,7 @@ def _python_package_roots(
         while parent != PurePosixPath("."):
             # A directory is an import package only when it actually holds an __init__.py.
             # Treating every identifier-named ancestor of any .py file as a package exempts
-            # whole non-Python trees (a lone script under .opencode/commands would exempt the
+            # whole non-Python trees (a lone script under .skilled/commands would exempt the
             # entire commands tree) and silently blocks their renames.
             if parent.name.isidentifier() and parent / "__init__.py" in tracked:
                 roots.add(parent)

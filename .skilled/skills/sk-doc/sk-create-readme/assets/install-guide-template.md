@@ -27,7 +27,7 @@ Templates for creating phased installation guides with validation checkpoints.
 - **Self-contained**: All commands, configs, and troubleshooting in one place
 - **Platform-aware**: Supports OpenCode, Claude Code, Claude Desktop
 
-**Location**: `.opencode/install-guides/<guide-slug>.md`
+**Location**: `.skilled/install-guides/<guide-slug>.md`
 
 `<guide-slug>` must match `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject ambiguous or empty names rather than copying a guide to an underscore-bearing filename.
 
@@ -472,7 +472,7 @@ Quality:
 □ HVR compliance verified (see hvr-rules.md)
 
 Integration:
-□ File at `.opencode/install-guides/<guide-slug>.md`
+□ File at `.skilled/install-guides/<guide-slug>.md`
 □ `<guide-slug>` is lowercase kebab-case and contains no underscore
 □ Linked from relevant SKILL.md files
 □ Referenced in AGENTS.md if mandatory tool

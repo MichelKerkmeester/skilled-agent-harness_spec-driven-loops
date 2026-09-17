@@ -64,7 +64,7 @@ Skill manifests carry a name and an allowed-tools list. References and assets ca
 **Step 2: Read the contract.**
 
 ```bash
-cat .opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md
+cat .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md
 ```
 
 Section 4 holds a copy-paste template per class. Section 3 explains what each field is for, including the description budget. Section 6 lists the four common breakages and their fixes.
@@ -72,7 +72,7 @@ Section 4 holds a copy-paste template per class. Section 3 explains what each fi
 **Step 3: Check the block you produced.**
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py <skill-dir>
+python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py <skill-dir>
 ```
 
 It reports missing fields, a malformed `version`, and a description over its soft target. The budget constants are duplicated into that script deliberately, so the script is fast and the markdown stays the source of truth for the reasoning.
@@ -167,11 +167,11 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
-| Packaging gate | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/sk-doc/sk-create-frontmatter --check --strict` | `Result: PASS` |
-| Hub check | `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-doc` | Exit 0 |
-| Link integrity | `python3 .opencode/skills/sk-doc/shared/scripts/resolve_skill_markdown_links.py --repo-root . --scope .opencode/skills/sk-doc/sk-create-frontmatter` | `failures=0` |
-| Corpus version gate | `bash .opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh --skill sk-doc` | Exit 0 |
-| Playbook package | `node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .opencode/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook` | `PASS`, tier `FAIL_CLOSED`, `operator=11`, `violations=0`. Read the operator count, not the exit status: a package filtered out of the contract reports `SKIP` at exit zero |
+| Packaging gate | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/sk-doc/sk-create-frontmatter --check --strict` | `Result: PASS` |
+| Hub check | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` | Exit 0 |
+| Link integrity | `python3 .skilled/skills/sk-doc/shared/scripts/resolve_skill_markdown_links.py --repo-root . --scope .skilled/skills/sk-doc/sk-create-frontmatter` | `failures=0` |
+| Corpus version gate | `bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh --skill sk-doc` | Exit 0 |
+| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook` | `PASS`, tier `FAIL_CLOSED`, `operator=11`, `violations=0`. Read the operator count, not the exit status: a package filtered out of the contract reports `SKIP` at exit zero |
 
 ---
 

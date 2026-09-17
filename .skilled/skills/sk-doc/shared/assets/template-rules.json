@@ -136,7 +136,7 @@
       "h2UppercaseRequired": true
     },
     "command": {
-      "description": "Command files in .opencode/commands/ folders",
+      "description": "Command files in .skilled/commands/ folders",
       "requiredSections": [
         "purpose",
         "instructions"
@@ -426,7 +426,7 @@
       "h2UppercaseRequired": true
     },
     "changelog": {
-      "description": "Component changelog files at .opencode/changelog/{component}/v{VERSION}.md or .opencode/skills/<skill>/changelog/v{VERSION}.md. Files start directly with a summary paragraph; no TOC, no Overview section, no version header. Authoritative format reference: .opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+      "description": "Component changelog files at .skilled/changelog/{component}/v{VERSION}.md or .skilled/skills/<skill>/changelog/v{VERSION}.md. Files start directly with a summary paragraph; no TOC, no Overview section, no version header. Authoritative format reference: .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
       "requiredSections": [],
       "recommendedSections": [
         "upgrade"
@@ -519,7 +519,7 @@
       "h2UppercaseRequired": false
     },
     "agent": {
-      "description": "Agent definition files in .opencode/agents/",
+      "description": "Agent definition files in .skilled/agents/",
       "requiredSections": [
         "core_workflow"
       ],

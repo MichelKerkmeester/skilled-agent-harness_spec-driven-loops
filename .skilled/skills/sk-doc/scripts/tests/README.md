@@ -1,6 +1,6 @@
 ---
 title: "sk doc scripts tests: Code README"
-description: "Code-facing README for .opencode/skills/sk-doc/scripts/tests."
+description: "Code-facing README for .skilled/skills/sk-doc/scripts/tests."
 trigger_phrases:
   - "sk-doc scripts/tests"
   - "code README"
@@ -16,7 +16,7 @@ Test code and validation helpers for this skill area.
 
 ### Purpose
 
-This README documents the code-bearing folder `.opencode/skills/sk-doc/scripts/tests` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.skilled/skills/sk-doc/scripts/tests` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -36,12 +36,12 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 **Step 1: Confirm the owner.**
 
-Start with `.opencode/skills/sk-doc/SKILL.md` for runtime routing and workflow boundaries.
+Start with `.skilled/skills/sk-doc/SKILL.md` for runtime routing and workflow boundaries.
 
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .opencode/skills/sk-doc/scripts/tests
+rg --files .skilled/skills/sk-doc/scripts/tests
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -92,7 +92,7 @@ Run the owning package test command from the nearest package boundary.
 **Audit this folder**
 
 ```text
-User request: Check .opencode/skills/sk-doc/scripts/tests for sk-code and README coverage.
+User request: Check .skilled/skills/sk-doc/scripts/tests for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings list current README template alignment and freshness drift.
 ```
@@ -103,7 +103,7 @@ Expected output: Findings list current README template alignment and freshness d
 
 | What You See | Cause | Fix |
 |---|---|---|
-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun `python3 .opencode/skills/sk-doc/scripts/audit_readmes.py --repo-root .`. |
+| README appears stale | Source files changed after this audit | Refresh the structure table and rerun `python3 .skilled/skills/sk-doc/scripts/audit_readmes.py --repo-root .`. |
 | Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
 
 ---

@@ -40,8 +40,8 @@ The modules do not read or write the filesystem. Existence probes and package tr
 Run the library-focused tests from the repository root:
 
 ```bash
-node .opencode/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs
-node .opencode/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs
+node .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs
+node .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs
 ```
 
 ---

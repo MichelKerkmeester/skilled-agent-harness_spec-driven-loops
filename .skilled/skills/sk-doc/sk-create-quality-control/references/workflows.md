@@ -46,10 +46,10 @@ The playbook workflow assumes a root directory playbook plus required per-featur
 
 | Workflow | Phases | Command | Use When | Output |
 | --- | --- | --- | --- | --- |
-| **Report-only audit** | 1+2 | `python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py` + AI eval | Default for `/doc:quality`; critical docs (specs, skills, READMEs) | JSON output + qualitative assessment + recommendations, no edits |
-| **Structure validation** | 1 | `python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py` | Readiness or blocking-issue questions, post-save checks | Checklist results + fix list |
-| **Content optimization** | 2 | `python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py` + AI eval | Improve existing docs for AI | Recommendations for clarity + AI-friendliness |
-| **Batch snapshot** | 1 (JSON only) | `python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py` per file | Assessing several docs at once, no changes | Per-file JSON report for another agent |
+| **Report-only audit** | 1+2 | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py` + AI eval | Default for `/doc:quality`; critical docs (specs, skills, READMEs) | JSON output + qualitative assessment + recommendations, no edits |
+| **Structure validation** | 1 | `python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py` | Readiness or blocking-issue questions, post-save checks | Checklist results + fix list |
+| **Content optimization** | 2 | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py` + AI eval | Improve existing docs for AI | Recommendations for clarity + AI-friendliness |
+| **Batch snapshot** | 1 (JSON only) | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py` per file | Assessing several docs at once, no changes | Per-file JSON report for another agent |
 
 **Mode selection**:
 - Auditing an existing SKILL/README/knowledge doc → Report-only audit

@@ -23,8 +23,8 @@ Copy-paste scaffold for a behavior-benchmark BASELINE:
 
 Usage:
   1. cp this file to that path, for example:
-     cp .opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md \
-        .opencode/skills/system-deep-loop/<mode>/behavior-benchmark/baselines/claude-baseline.md
+     cp .skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md \
+        .skilled/skills/system-deep-loop/<mode>/behavior-benchmark/baselines/claude-baseline.md
   2. DELETE the "version:" line below. A shipped baseline carries the five
      frontmatter fields shown and NO version field: it is a memory-indexed DATA
      artifact outside the references/** and assets/** version-scope defined in
@@ -38,7 +38,7 @@ Usage:
      from the framework formula and update the scenario contracts to match.
 
 The budget formula and the D5 latency-ratio definition are normative in:
-  .opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md
+  .skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md
 -->
 
 # Claude Baseline for the {{MODE}} Behavior Benchmark

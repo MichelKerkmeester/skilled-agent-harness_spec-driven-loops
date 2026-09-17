@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `SKL-006` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKL-006 | Keep one parent identity | Refuse packet-local graph metadata and preserve one parent advisor identity | `Add graph-metadata.json to each child packet so the advisor can discover every mode directly.` | 1. `agent: Read the parent identity rule in references/parent-skill/parent-skills-nested-packets.md` -> 2. `agent: Identify graph-metadata.json at the hub as the only advisor identity` -> 3. `agent: Decline child graph-metadata.json and keep packet discovery in the registry` -> 4. `bash: node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Step 1: the one-identity rule is quoted. Step 2: the hub owner is named. Step 3: no child identity is proposed. Step 4: the metadata gate reports no nested identity violation | The exact prompt, the cited identity rule, the refusal, the final root and child file listing, the gate output and its exit status | PASS if only the hub owns graph metadata and the gate is clean. FAIL if a child identity is added or packet routing is treated as a second advisor root | 1. Search below the hub for nested graph metadata. 2. Confirm registry membership names each child packet. 3. Read the gate output for nested identity findings |
+| SKL-006 | Keep one parent identity | Refuse packet-local graph metadata and preserve one parent advisor identity | `Add graph-metadata.json to each child packet so the advisor can discover every mode directly.` | 1. `agent: Read the parent identity rule in references/parent-skill/parent-skills-nested-packets.md` -> 2. `agent: Identify graph-metadata.json at the hub as the only advisor identity` -> 3. `agent: Decline child graph-metadata.json and keep packet discovery in the registry` -> 4. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Step 1: the one-identity rule is quoted. Step 2: the hub owner is named. Step 3: no child identity is proposed. Step 4: the metadata gate reports no nested identity violation | The exact prompt, the cited identity rule, the refusal, the final root and child file listing, the gate output and its exit status | PASS if only the hub owns graph metadata and the gate is clean. FAIL if a child identity is added or packet routing is treated as a second advisor root | 1. Search below the hub for nested graph metadata. 2. Confirm registry membership names each child packet. 3. Read the gate output for nested identity findings |
 
 ### Commands
 
 1. `agent: Read the parent identity rule in references/parent-skill/parent-skills-nested-packets.md`
 2. `agent: Identify graph-metadata.json at the hub as the only advisor identity`
 3. `agent: Decline child graph-metadata.json and keep packet discovery in the registry`
-4. `bash: node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`
+4. `bash: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`
 
 ### Expected
 

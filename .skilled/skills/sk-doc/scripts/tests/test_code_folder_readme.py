@@ -11,7 +11,7 @@ from pathlib import Path
 
 TESTS = Path(__file__).resolve().parent
 REPO = TESTS.parents[4]
-VALIDATOR = REPO / ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
+VALIDATOR = REPO / ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
 FIXTURE_ROOT = TESTS / "code-folder"
 
 NEGATIVE_CASES = {

@@ -43,7 +43,7 @@ def run() -> int:
     check('is_catalog_root rejects playbook', not r.is_catalog_root('manual-testing-playbook'))
 
     # Path matching is separator-agnostic and segment-bounded; a legacy underscore is not a root.
-    check('posix hyphen path', r.path_contains_root('.opencode/skills/x/feature-catalog/cat/leaf.md'))
+    check('posix hyphen path', r.path_contains_root('.skilled/skills/x/feature-catalog/cat/leaf.md'))
     check('windows hyphen path', r.path_contains_root('x\\manual-testing-playbook\\cat\\leaf.md'))
     check('windows underscore path rejected', not r.path_contains_root('x\\feature_catalog\\cat\\leaf.md'))
     check('no false positive on references', not r.path_contains_root('x/references/y.md'))

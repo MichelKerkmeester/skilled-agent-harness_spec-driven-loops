@@ -9,7 +9,7 @@ description: "Python script that audits every in-scope README for sk-doc templat
 
 ## 1. OVERVIEW
 
-`sk-create-readme/scripts/` holds the fleet-wide conformance checker for the `/create:readme` workflow. `audit_readmes.py` walks every README under the repo root and `.opencode/`, runs each through `validate_document.py` for template alignment and separately checks for broken references and missing key-artifact coverage. That coverage check flags untracked `scripts/`, `lib/`, `tests/` and similar sibling directories.
+`sk-create-readme/scripts/` holds the fleet-wide conformance checker for the `/create:readme` workflow. `audit_readmes.py` walks every README under the repo root and `.skilled/`, runs each through `validate_document.py` for template alignment and separately checks for broken references and missing key-artifact coverage. That coverage check flags untracked `scripts/`, `lib/`, `tests/` and similar sibling directories.
 
 ---
 
@@ -26,7 +26,7 @@ description: "Python script that audits every in-scope README for sk-doc templat
 Run from the repository root.
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py [--repo-root .] [--json-out report.json] [--markdown-out report.md]
+python3 .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py [--repo-root .] [--json-out report.json] [--markdown-out report.md]
 ```
 
 Expected result: a JSON summary printed to stdout with `readmes_total`, `template_valid`, `template_invalid` and P1/P2 finding counts.

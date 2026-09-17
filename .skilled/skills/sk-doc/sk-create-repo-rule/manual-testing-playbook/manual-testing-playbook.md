@@ -58,7 +58,7 @@ The inverse also holds and matters more: a produced rule is a `FAIL` when the sc
 
 ## 2. GLOBAL PRECONDITIONS
 
-1. Working directory is the repository root, so `.opencode/skills/sk-doc/sk-create-repo-rule/` subpaths and the root `REPO RULES.md` resolve.
+1. Working directory is the repository root, so `.skilled/skills/sk-doc/sk-create-repo-rule/` subpaths and the root `REPO RULES.md` resolve.
 2. A target repository is chosen and named before starting. Scenarios that wire or retire a rule need somewhere to act.
 3. Whether the target repository has a rule router is known before starting. Its absence changes the expected path and is itself the subject of `RRL-001`.
 4. The current counts are recorded before starting: rule files, trigger rows, and index rows. The structural assertions in this package are comparisons, and a single reading cannot be graded.
@@ -89,7 +89,7 @@ A scenario without both the before and after counts cannot be graded, because th
 - Bash commands shown as `bash: <command>`.
 - Agent prompts shown as `agent: <instruction>`. These scenarios are agent-driven, so a step is usually what an agent does: read a reference, apply a test, write or refuse to write a file.
 - `->` separates sequential steps.
-- Repo-relative paths are written as `.opencode/skills/sk-doc/sk-create-repo-rule/...`; the packet root means that directory wherever the packet is installed.
+- Repo-relative paths are written as `.skilled/skills/sk-doc/sk-create-repo-rule/...`; the packet root means that directory wherever the packet is installed.
 - Commands in this package avoid shell pipes so each step is a single deterministic invocation that survives being copied into a table cell.
 
 ---

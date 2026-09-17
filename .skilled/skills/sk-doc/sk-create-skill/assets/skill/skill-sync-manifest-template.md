@@ -1,6 +1,6 @@
 ---
 title: Runtime Sync Manifest Template
-description: Template and guidelines for authoring a runtime config dir's SYNC.md, documenting how it derives from the canonical .opencode tree and how to detect drift.
+description: Template and guidelines for authoring a runtime config dir's SYNC.md, documenting how it derives from the canonical .skilled tree and how to detect drift.
 trigger_phrases:
   - "runtime sync manifest template"
   - "sync md template"
@@ -13,7 +13,7 @@ version: 1.2.0.2
 
 # Runtime Sync Manifest Template
 
-Template for a runtime config dir's `SYNC.md`: how `.claude/`, `.codex/`, `.cursor/`, `.devin/`, `.pi/` or a future runtime derives from the canonical `.opencode/` tree, and which checks catch drift.
+Template for a runtime config dir's `SYNC.md`: how `.claude/`, `.codex/`, `.cursor/`, `.devin/`, `.pi/` or a future runtime derives from the canonical `.skilled/` tree, and which checks catch drift.
 
 ---
 
@@ -42,12 +42,12 @@ Rules the scaffold enforces:
 ````markdown
 ---
 title: "[RUNTIME] — Runtime Sync Manifest"
-description: "How [RUNTIME_DIR] derives from .opencode: [SUMMARY]."
+description: "How [RUNTIME_DIR] derives from .skilled: [SUMMARY]."
 ---
 
 # [RUNTIME] Sync Manifest
 
-Purpose: Document how [RUNTIME_DIR] derives from the canonical `.opencode/` tree.
+Purpose: Document how [RUNTIME_DIR] derives from the canonical `.skilled/` tree.
 
 <!-- Keep this manifest factual and repository-root-relative. Replace every placeholder, remove unused scaffolding, and preserve the nine-section order. -->
 

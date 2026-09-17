@@ -191,7 +191,7 @@ isolates, and any axis intentionally left out with its reason.
   shared document validator:
 
   ```bash
-  python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type readme
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file> --type readme
   ```
 
 - **Scenario files** ship without frontmatter by design (they open at the
@@ -223,7 +223,7 @@ isolates, and any axis intentionally left out with its reason.
 
 ### Worked reference package
 
-- `.opencode/skills/system-deep-loop/deep-review/behavior-benchmark/` — the shipped `RVB` package: read its `behavior-benchmark.md`, a `scenarios/RVB-*.md` file, and `baselines/claude-baseline.md` to see the templates filled in against a real mode.
+- `.skilled/skills/system-deep-loop/deep-review/behavior-benchmark/` — the shipped `RVB` package: read its `behavior-benchmark.md`, a `scenarios/RVB-*.md` file, and `baselines/claude-baseline.md` to see the templates filled in against a real mode.
 
 ---
 

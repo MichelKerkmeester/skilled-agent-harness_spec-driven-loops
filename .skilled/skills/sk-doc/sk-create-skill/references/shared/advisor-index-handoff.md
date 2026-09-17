@@ -54,17 +54,17 @@ Refresh is a deliberate, explicit operator choice between two non-equivalent pat
 cd "<selected_repo>"
 
 # Full advisor refresh (rebuild + republish)
-node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --workspace-root "$PWD" --force true --format json
+node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --workspace-root "$PWD" --force true --format json
 
 # Graph-only refresh (scan without republishing the advisor)
-node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --skills-root "$PWD/.opencode/skills" --format json
+node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --skills-root "$PWD/.skilled/skills" --format json
 ```
 
 Verification, run after either refresh path (or on its own to diagnose current state):
 
 ```bash
-node .opencode/bin/skill-advisor.cjs skill_graph_validate --format json
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
+node .skilled/bin/skill-advisor.cjs skill_graph_validate --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
 ```
 
 `skill_graph_scan` resolves `process.cwd()` as workspace root and rejects paths outside it — the `cd` is load-bearing, not decorative, when the operator is working from a linked worktree (research.md Theme B6).
@@ -110,7 +110,7 @@ H-only fields render **omitted**, not `N/A` or a false negative, on standalone (
 | Standalone `/create:skill` full-update | Full handoff, `standalone` scope |
 | Parent `/create:skill-parent` create | Full handoff, H-specific values (`leaf-manifest.json` freshness from the scoped generator this workflow just ran) |
 | Parent `/create:skill-parent` update | Full handoff, H-specific values |
-| Reference-only / asset-only create branches | **Not** the full handoff — only the narrow conditional `node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check <skillDir>` leaf-freshness signal, gated on the changed path falling under a configured leaf root |
+| Reference-only / asset-only create branches | **Not** the full handoff — only the narrow conditional `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check <skillDir>` leaf-freshness signal, gated on the changed path falling under a configured leaf root |
 | `/doctor:skill-advisor` | Full handoff vocabulary, live values from `skill_graph_validate`/`advisor_rebuild`/`advisor_validate` |
 | `/doctor:parent-skill` | Full handoff vocabulary; read-only — distinguishes `leaf-manifest.json` missing from stale and points at the scoped generator, never attempts repair |
 

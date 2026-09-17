@@ -62,7 +62,7 @@ def candidate_status(source: Path, target: str, root: Path) -> tuple[bool, str]:
 
 
 def markdown_files(root: Path, scopes: list[str]) -> tuple[list[Path], list[str]]:
-    skill_root = root / ".opencode" / "skills"
+    skill_root = root / ".skilled" / "skills"
     if not skill_root.is_dir():
         raise OSError(f"skill root is missing or unreadable: {skill_root}")
     scope_paths = [root / scope for scope in scopes]
@@ -134,7 +134,7 @@ def scan(root: Path, scopes: list[str]) -> tuple[int, dict[str, int], list[str]]
 def self_test() -> int:
     with tempfile.TemporaryDirectory() as temporary:
         root = Path(temporary)
-        skill = root / ".opencode" / "skills" / "sample"
+        skill = root / ".skilled" / "skills" / "sample"
         skill.mkdir(parents=True)
         (skill / "Exact.md").write_text("ok\n", encoding="utf-8")
         outside = root.parent / f"{root.name}-outside"

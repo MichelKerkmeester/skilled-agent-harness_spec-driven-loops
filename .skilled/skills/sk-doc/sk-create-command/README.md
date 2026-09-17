@@ -17,7 +17,7 @@ version: 1.0.0.12
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Scaffolding or refactoring an OpenCode slash command under `.opencode/commands/` |
+| **Use it for** | Scaffolding or refactoring an OpenCode slash command under `.skilled/commands/` |
 | **Invoke with** | `/create:command`, "create command" or a direct read of `SKILL.md` |
 | **Works on** | Root and namespace command files, plus router and presentation splits |
 | **Produces** | A validated command file or a router with its presentation asset, with correct frontmatter and gates |
@@ -44,7 +44,7 @@ create-command is the `sk-doc` workflow behind `/create:command`. It decides whe
 | **Router** | a thin dispatcher that verifies the agent, resolves mode and arguments, then hands off to owned assets |
 | **Argument dispatch** | an ASCII routing tree with one handler section per action keyword |
 | **Destructive** | confirmation by default, an affected-state display, execution logging and recovery guidance before any irreversible action |
-| **Namespace** | a directory of related commands under `.opencode/commands/` |
+| **Namespace** | a directory of related commands under `.skilled/commands/` |
 
 ---
 
@@ -55,7 +55,7 @@ create-command is the `sk-doc` workflow behind `/create:command`. It decides whe
 **Step 2: Draft frontmatter and read the template.**
 
 ```bash
-cat .opencode/skills/sk-doc/sk-create-command/assets/command-template.md
+cat .skilled/skills/sk-doc/sk-create-command/assets/command-template.md
 ```
 
 You get the full frontmatter shape, the command-type table, the mandatory gate pattern and the section vocabulary to work from.
@@ -63,7 +63,7 @@ You get the full frontmatter shape, the command-type table, the mandatory gate p
 **Step 3: Validate before you ship it.**
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/commands/<namespace>/<action>.md --type command
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/commands/<namespace>/<action>.md --type command
 ```
 
 You get `✅ VALID` with any warnings listed by name. Warnings do not block delivery. A blocking error does.
@@ -72,7 +72,7 @@ You get `✅ VALID` with any warnings listed by name. Warnings do not block deli
 
 ## 4. HOW IT WORKS
 
-Resolve the invocation path first. `.opencode/commands/<command>.md` becomes `/<command>`, while `.opencode/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`. Read any existing command completely before editing it, then check nearby commands in the same namespace so structure and vocabulary match the family. Classify the command type from the table in `SKILL.md`, then author the frontmatter first, starting with a single-line `description`. Add an `argument-hint` when input is expected. Keep `allowed-tools` at least privilege, listing only the tools the command actually calls.
+Resolve the invocation path first. `.skilled/commands/<command>.md` becomes `/<command>`, while `.skilled/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`. Read any existing command completely before editing it, then check nearby commands in the same namespace so structure and vocabulary match the family. Classify the command type from the table in `SKILL.md`, then author the frontmatter first, starting with a single-line `description`. Add an `argument-hint` when input is expected. Keep `allowed-tools` at least privilege, listing only the tools the command actually calls.
 
 If `argument-hint` carries a required argument, the mandatory gate goes immediately after frontmatter, before any other content. It checks whether `$ARGUMENTS` is empty, stops immediately when required input is missing, asks a specific question and waits. It never infers missing input from context, screenshots, conversation history or open files.
 
@@ -133,7 +133,7 @@ A: The command still runs, but you have no proof the frontmatter, gates, section
 
 **Q: How do I group several related commands?**
 
-A: Put them under a namespace directory. `.opencode/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`. Keep namespace and action names lowercase and hyphen-case.
+A: Put them under a namespace directory. `.skilled/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`. Keep namespace and action names lowercase and hyphen-case.
 
 ---
 
@@ -141,10 +141,10 @@ A: Put them under a namespace directory. `.opencode/commands/<namespace>/<action
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md --type readme` | `✅ VALID` with no blocking errors |
-| Filename discipline | `python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <command-file>` | Filename stem is valid kebab-case |
-| Document structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <command-file> --type command` | `✅ VALID` with no blocking errors |
-| Structure extraction | `python3 .opencode/skills/sk-doc/scripts/extract_structure.py <command-file>` | Section list matches the expected command shape |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme` | `✅ VALID` with no blocking errors |
+| Filename discipline | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <command-file>` | Filename stem is valid kebab-case |
+| Document structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <command-file> --type command` | `✅ VALID` with no blocking errors |
+| Structure extraction | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py <command-file>` | Section list matches the expected command shape |
 
 ---
 

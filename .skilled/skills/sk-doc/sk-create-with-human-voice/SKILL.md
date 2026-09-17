@@ -163,7 +163,7 @@ settled.
 2. **Run the mechanical pass.**
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>
+python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>
 ```
 
 The scanner parses the term lists out of the standard on every run, so it never carries a

@@ -9,7 +9,7 @@ version: 1.0.1.2
 
 # create-changelog
 
-`create-changelog` is the changelog-authoring workflow packet of the `sk-doc` family. It creates global component changelog files under `.opencode/changelog/{component}/v{VERSION}.md` or packet-local nested changelogs under a spec packet's `changelog/` folder, depending on source topology.
+`create-changelog` is the changelog-authoring workflow packet of the `sk-doc` family. It creates global component changelog files under `.skilled/changelog/{component}/v{VERSION}.md` or packet-local nested changelogs under a spec packet's `changelog/` folder, depending on source topology.
 
 The executable contract lives here: resolve the work source, detect global vs packet-local output, calculate the version when global versioning applies, generate content from the canonical format, validate, then write the file. Use `assets/changelog-template.md` as the shared global changelog template and the `references/` set (routed by `references/README.md`) only for supplementary worked examples or edge cases.
 
@@ -21,7 +21,7 @@ The executable contract lives here: resolve the work source, detect global vs pa
 
 Use this workflow when the task involves:
 
-1. Creating a global component changelog for `.opencode/changelog/{component}/v{VERSION}.md`.
+1. Creating a global component changelog for `.skilled/changelog/{component}/v{VERSION}.md`.
 2. Creating a packet-local nested changelog for a spec folder or phase child.
 3. Running or supporting `/create:changelog`.
 4. Resolving a changed spec folder, component hint, or recent git history into a changelog target.
@@ -55,7 +55,7 @@ This is a nested workflow packet under `sk-doc`. It owns changelog authoring onl
 
 Route the resolved work source to one of two output modes before generating content:
 
-1. **Global component mode** -- write to `.opencode/changelog/{component}/v{VERSION}.md` with four-part semantic versioning when the source resolves to a component hint, git history, or a non-phased spec folder without an existing `changelog/`.
+1. **Global component mode** -- write to `.skilled/changelog/{component}/v{VERSION}.md` with four-part semantic versioning when the source resolves to a component hint, git history, or a non-phased spec folder without an existing `changelog/`.
 2. **Packet-local nested mode** -- write through the spec-kit nested generator into the packet `changelog/` folder when `--nested` is set, or when the spec folder is a phase child, has direct child phase folders, or already has a `changelog/` folder.
 
 The full detection and target-resolution logic lives in HOW IT WORKS and TOPOLOGY AND TARGET RESOLUTION below.
@@ -164,7 +164,7 @@ Input handling rules:
 
 1. `source_type` must resolve before writing.
 2. `version_bump` defaults to `auto`.
-3. Changelog root defaults to `.opencode/changelog/` for global output.
+3. Changelog root defaults to `.skilled/changelog/` for global output.
 4. Version format is `v{MAJOR}.{MINOR}.{PATCH}.{BUILD}`.
 5. Initial global version is `v1.0.0.0` when no prior version exists.
 6. Dates use `YYYY-MM-DD` when date output is needed.
@@ -184,7 +184,7 @@ Confidence rules from the source workflow:
 Global changelogs live at:
 
 ```text
-.opencode/changelog/{component}/v{VERSION}.md
+.skilled/changelog/{component}/v{VERSION}.md
 ```
 
 Resolve `{component}` as a lowercase kebab-case segment matching `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject ambiguous component hints rather than emitting a guessed or underscore-bearing directory. The `v{VERSION}.md` filename is an exact version contract and is not slug-normalized.
@@ -226,10 +226,10 @@ Nested output paths from the shared template:
 Nested mode uses the spec-kit generator and templates:
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
+node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
 ```
 
-Canonical nested templates are `.opencode/skills/system-spec-kit/templates/changelog/root.md` and `.opencode/skills/system-spec-kit/templates/changelog/phase.md`.
+Canonical nested templates are `.skilled/skills/system-spec-kit/templates/changelog/root.md` and `.skilled/skills/system-spec-kit/templates/changelog/phase.md`.
 
 ---
 
@@ -407,16 +407,16 @@ When `source_type = git_history`, use recent git log and diff stats. This is glo
 Discover component folders dynamically from the actual repository. Do not hardcode the component table.
 
 ```bash
-ls -d .opencode/changelog/*/ 2>/dev/null | sort
+ls -d .skilled/changelog/*/ 2>/dev/null | sort
 ```
 
 Resolution strategy:
 
-1. Treat each discovered folder as a plain component name (e.g. `sk-doc`, `system-spec-kit`, `sk-code`). The real folders under `.opencode/changelog/` are not numerically prefixed. The auto workflow's older `NN--component-name` / `00--` fallback pattern is stale — match on the plain folder names as they exist on disk.
+1. Treat each discovered folder as a plain component name (e.g. `sk-doc`, `system-spec-kit`, `sk-code`). The real folders under `.skilled/changelog/` are not numerically prefixed. The auto workflow's older `NN--component-name` / `00--` fallback pattern is stale — match on the plain folder names as they exist on disk.
 2. Match changed file paths against discovered component names.
-3. Match `.opencode/skills/{name}/**` to the folder named `{name}` when possible.
-4. Match `.opencode/commands/**` to the folder that owns those commands when possible.
-5. Match `.opencode/agents/**` to the folder that owns those agents when possible.
+3. Match `.skilled/skills/{name}/**` to the folder named `{name}` when possible.
+4. Match `.skilled/commands/**` to the folder that owns those commands when possible.
+5. Match `.skilled/agents/**` to the folder that owns those agents when possible.
 6. Match `component_hint` against discovered folder names by substring.
 7. Match spec path segments against discovered folder names as a tiebreaker.
 8. If no folder matches, do not invent or default to a fallback folder — pause and ask which component this changelog belongs to.
@@ -438,15 +438,15 @@ Complete these seven steps in order. The SKILL.md is the primary workflow contra
 After resolving a component, packet, or phase slug and before writing, validate that authored slug with the shared checker. Exact version filenames remain governed by the version contract, and frozen changelog paths remain exempt under the filesystem-naming canon.
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <component-or-phase-slug>
+python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <component-or-phase-slug>
 ```
 
 1. **Analyze context.** Determine source type from the request or setup output. For a spec folder, read implementation summary, tasks, and spec files, then extract work summary, files changed, change type, level, and output mode. For a component hint, gather recent commits and affected files for that component. For git history, inspect recent commits and diff stats. Compile `work_context` with summary, files, change type, and source.
-2. **Resolve output target.** If nested mode, run the nested changelog generator with `--json`, read the root or phase nested template, extract the output path, and skip global component mapping. If global mode, discover `.opencode/changelog/*/`, parse component folders, match changed files and hints, choose the primary component, list secondary components, and verify `.opencode/changelog/{resolved_folder}/` exists.
+2. **Resolve output target.** If nested mode, run the nested changelog generator with `--json`, read the root or phase nested template, extract the output path, and skip global component mapping. If global mode, discover `.skilled/changelog/*/`, parse component folders, match changed files and hints, choose the primary component, list secondary components, and verify `.skilled/changelog/{resolved_folder}/` exists.
 3. **Determine version.** If nested mode, skip version calculation. If global mode, list existing files in the target folder, parse the latest `vX.Y.Z.B` version, choose bump type from explicit `--bump` or auto-detection, calculate the next version, and increment the build segment if the file already exists.
 4. **Generate content.** Read `assets/changelog-template.md` for global mode or the spec-kit nested template for nested mode. Set date when needed. Select compact format for fewer than 10 non-major changes. Select expanded format for 10 or more changes, major changes, or breaking changes. Write a 1-3 sentence summary that leads with why the release matters. Generate category sections, files-changed detail, test impact when applicable, schema changes when applicable, and upgrade guidance.
 5. **Validate quality.** Check format, version, and content before writing. Confirm required sections are present, version is strictly greater than the latest global version, no target file exists, summary is non-empty, files changed are real paths, and upgrade guidance is present. Auto-fix small missing sections when safe, then revalidate.
-6. **Write the file.** If nested mode, run `node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --write` and verify the output path. If global mode, write `.opencode/changelog/{primary_component}/v{next_version}.md` and read back the first lines to verify creation. If secondary components exist, note them as additional changelog candidates rather than writing extra files silently.
+6. **Write the file.** If nested mode, run `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --write` and verify the output path. If global mode, write `.skilled/changelog/{primary_component}/v{next_version}.md` and read back the first lines to verify creation. If secondary components exist, note them as additional changelog candidates rather than writing extra files silently.
 7. **Report and preserve context.** Report status, path, component, version, bump type, summary, section count, and files tracked. If a spec folder was the source, note that context can be preserved through the normal memory save workflow. Do not claim completion until the written file has been verified.
 
 Hard gates:
@@ -494,7 +494,7 @@ Pause conditions:
 For GitHub release notes, the shared template says to use the changelog file content as-is, then append:
 
 ```text
-Full changelog: `.opencode/changelog/{component}/v{VERSION}.md`
+Full changelog: `.skilled/changelog/{component}/v{VERSION}.md`
 ```
 
 The source router exposes `--release` as an optional path, but the exact GitHub CLI command is not defined in the files read for this packet. Do not invent release mechanics beyond preparing the body and applying the optional release-note appendix unless another workflow supplies the Git operation.
@@ -507,7 +507,7 @@ Before delivery, validate target, version, and content.
 
 Global changelog checks:
 
-1. Target path is `.opencode/changelog/{component}/v{VERSION}.md`.
+1. Target path is `.skilled/changelog/{component}/v{VERSION}.md`.
 2. Target component folder exists before writing.
 3. Version follows `vX.Y.Z.B`.
 4. Version is strictly greater than the latest existing version in that folder.
@@ -530,8 +530,8 @@ Nested changelog checks:
 Suggested shared markdown checks after writing authored markdown:
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <written-file>
-python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <written-file>
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <written-file>
+python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <written-file>
 ```
 
 If validation fails, fix blocking issues before delivery or report the exact blocker and command output.
@@ -544,7 +544,7 @@ If validation fails, fix blocking issues before delivery or report the exact blo
 
 1. Always follow the seven-step workflow in order.
 2. Always read `assets/changelog-template.md` before generating global changelog content.
-3. Always dynamically discover global changelog component folders from `.opencode/changelog/`.
+3. Always dynamically discover global changelog component folders from `.skilled/changelog/`.
 4. Always resolve global mode to an existing component folder before writing.
 5. Always validate global version sequencing before writing.
 6. Always keep global version numbers four-part: `vX.Y.Z.B`.
@@ -584,8 +584,8 @@ Use these only when the core path above is not enough:
 
 1. `assets/changelog-template.md` for the canonical global changelog and release-note format.
 2. `references/README.md` route-map to the overflow set: `references/worked-examples.md` (filled-in global and packet-local entries), `references/version-bump-rules.md` (concrete four-part version choices), and `references/topology-edge-cases.md` (placement, back-dating, source conflicts, and the optional GitHub release flow).
-3. `.opencode/commands/create/changelog.md` for the thin `/create:changelog` router boundary.
-4. `.opencode/commands/create/assets/create-changelog-auto.yaml` and `create-changelog-confirm.yaml` for the source workflows this packet inlines. `/create:changelog` runs `:auto` (autonomous) or `:confirm` (interactive checkpoints); both resolve to this same packet contract.
+3. `.skilled/commands/create/changelog.md` for the thin `/create:changelog` router boundary.
+4. `.skilled/commands/create/assets/create-changelog-auto.yaml` and `create-changelog-confirm.yaml` for the source workflows this packet inlines. `/create:changelog` runs `:auto` (autonomous) or `:confirm` (interactive checkpoints); both resolve to this same packet contract.
 
 ---
 
@@ -594,7 +594,7 @@ Use these only when the core path above is not enough:
 The workflow is successful when:
 
 1. The output mode is correctly classified as global or packet-local nested.
-2. Global output is written to `.opencode/changelog/{component}/v{VERSION}.md`, or nested output is written through the spec-kit nested generator to the packet `changelog/` path.
+2. Global output is written to `.skilled/changelog/{component}/v{VERSION}.md`, or nested output is written through the spec-kit nested generator to the packet `changelog/` path.
 3. Global versioning is sequential, unique, and four-part.
 4. The file follows the compact or expanded shape from `assets/changelog-template.md`.
 5. The changelog explains what changed, why it matters, files changed, test or schema impact when applicable, and upgrade guidance.

@@ -238,7 +238,7 @@ Complete these steps in order after the spec packet ships.
 Before naming a folder, run label, fixture, profile, or report, validate its resolved path or slug. Do not pass machine keys such as `model_benchmark` as filesystem names.
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>
+python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>
 ```
 
 1. **Confirm the promotion gate.** Read `decision-record.md`, `implementation-summary.md`, and benchmark evidence. Require an accepted decision, stable headline and fixture, replay commands, and a defensible winner or explicit provisional status.
@@ -250,7 +250,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <art
 7. **Write `benchmark-report.md`.** Use the ten-section template. Generalize the headline; separate a non-obvious load-bearing insight from the winner.
 8. **Write `source.md`.** Use the template with packet path, navigation and evidence maps, follow-on notes, and last-updated date.
 9. **Update the README index row.** Add or update the row with date, folder link, winner or status, headline metric, and source packet path.
-10. **Validate markdown.** Run `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py --type readme <file>` on `benchmark-report.md` and `benchmarks/README.md`; fix blockers.
+10. **Validate markdown.** Run `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py --type readme <file>` on `benchmark-report.md` and `benchmarks/README.md`; fix blockers.
 
 ### Authoring Order Rules
 

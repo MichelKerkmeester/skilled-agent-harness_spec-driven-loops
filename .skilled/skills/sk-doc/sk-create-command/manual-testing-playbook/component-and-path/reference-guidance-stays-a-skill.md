@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `CMD-002`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CMD-002 | Reference guidance stays a skill | Leave reusable guidance to a skill or reference | `Write a reusable standard for release checks. It should explain the process and should not add a slash command.` | 1. `agent: Read references/common-pitfalls.md and state the component comparison` -> 2. `agent: Check whether the request has a slash invocation or repeatable command input` -> 3. `agent: Return the owning skill or reference without proposing a command file` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-command/SKILL.md --type skill` | Step 1: command and skill roles are distinguished. Step 2: no invocation contract is found. Step 3: a skill or reference is selected. Step 4: the mode contract validator output and exit status are captured | The prompt, component comparison, missing invocation finding, non-command response and validator transcript | PASS if no command is proposed and the skill boundary is named. FAIL if a command file, `argument-hint` or slash invocation is added | 1. Check for a repeatable user-triggered workflow. 2. Confirm the request asks how to document guidance, not how to invoke it. 3. Verify the validator was run on the mode contract |
+| CMD-002 | Reference guidance stays a skill | Leave reusable guidance to a skill or reference | `Write a reusable standard for release checks. It should explain the process and should not add a slash command.` | 1. `agent: Read references/common-pitfalls.md and state the component comparison` -> 2. `agent: Check whether the request has a slash invocation or repeatable command input` -> 3. `agent: Return the owning skill or reference without proposing a command file` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-command/SKILL.md --type skill` | Step 1: command and skill roles are distinguished. Step 2: no invocation contract is found. Step 3: a skill or reference is selected. Step 4: the mode contract validator output and exit status are captured | The prompt, component comparison, missing invocation finding, non-command response and validator transcript | PASS if no command is proposed and the skill boundary is named. FAIL if a command file, `argument-hint` or slash invocation is added | 1. Check for a repeatable user-triggered workflow. 2. Confirm the request asks how to document guidance, not how to invoke it. 3. Verify the validator was run on the mode contract |
 
 ### Commands
 
 1. `agent: Read references/common-pitfalls.md and state the component comparison`
 2. `agent: Check whether the request has a slash invocation or repeatable command input`
 3. `agent: Return the owning skill or reference without proposing a command file`
-4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-command/SKILL.md --type skill`
+4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-command/SKILL.md --type skill`
 
 ### Expected
 

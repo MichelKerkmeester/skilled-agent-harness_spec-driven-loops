@@ -33,11 +33,11 @@ const { execFileSync } = require('child_process');
 const snap = require('./render-serving-snapshot.cjs');
 const { renderReport } = require(path.join(
   snap.REPO_ROOT,
-  '.opencode', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', 'build-report.cjs',
+  '.skilled', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', 'build-report.cjs',
 ));
 const { classifyFlagState } = require(path.join(
   snap.REPO_ROOT,
-  '.opencode', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', 'compiled-routing-parity.cjs',
+  '.skilled', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', 'compiled-routing-parity.cjs',
 ));
 
 const ENGINE_RESOLVER_PATH = snap.ENGINE_RESOLVER_PATH;
@@ -221,7 +221,7 @@ const EXIT_BY_CODE = {
 
 function main() {
   const args = require(path.join(
-    snap.REPO_ROOT, '.opencode', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', '_args.cjs',
+    snap.REPO_ROOT, '.skilled', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', '_args.cjs',
   )).parse(process.argv.slice(2));
 
   if (!args.hub || !args['run-label'] || !args.report) {

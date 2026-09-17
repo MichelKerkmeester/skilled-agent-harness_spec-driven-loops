@@ -64,7 +64,7 @@ The headline strength of this skill is the nine-field contract every per-feature
 
 ```bash
 mkdir -p manual-testing-playbook
-cp .opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md \
+cp .skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md \
    manual-testing-playbook/manual-testing-playbook.md
 ```
 
@@ -73,7 +73,7 @@ You get a root playbook file with the scaffold sections ready for category folde
 **Step 3: Verify before you rely on it.**
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py \
+python3 .skilled/skills/sk-doc/scripts/validate_document.py \
   manual-testing-playbook/manual-testing-playbook.md --type reference
 ```
 
@@ -147,7 +147,7 @@ A: Escalate rather than design around it. This packet expects sandboxed, reprodu
 
 | Check | How to run it |
 |---|---|
-| Root playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <path>/manual-testing-playbook.md --type reference` reports zero blocking issues |
+| Root playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <path>/manual-testing-playbook.md --type reference` reports zero blocking issues |
 | Feature ID reconciliation | Manually diff the root index feature IDs against the per-feature filenames in each category folder. The counts must match |
 | Cross-file links | The `check-markdown-links.cjs` CI guard covers cross-file markdown links repo-wide. Per-feature structure still needs a manual review pass |
 

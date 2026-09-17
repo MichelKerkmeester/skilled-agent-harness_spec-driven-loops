@@ -50,7 +50,7 @@ manual-testing-playbook/
 Category folders and per-feature files use descriptive kebab-case names. The root `manual-testing-playbook.md` index owns display order, not the folder name.
 
 **Existing Examples**:
-- `.opencode/skills/system-spec-kit/manual-testing-playbook/` (integrated root playbook + 195 per-feature files)
+- `.skilled/skills/system-spec-kit/manual-testing-playbook/` (integrated root playbook + 195 per-feature files)
 
 These existing examples keep their legacy underscore roots until the repository content migration. New packages emit only the canonical hyphenated layout above.
 

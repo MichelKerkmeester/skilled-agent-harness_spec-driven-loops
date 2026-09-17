@@ -35,7 +35,7 @@ deep-improvement and are linked in section 6, never restated here.
 ## 1. OVERVIEW
 
 The compiled-routing runtime serves each hub from an activation manifest under
-`.opencode/bin/lib/compiled-routing/010-live-activation/activation/<hub>/`. That
+`.skilled/bin/lib/compiled-routing/010-live-activation/activation/<hub>/`. That
 serving state — the declared authority, the fence epoch, the selected policy,
 the flag, and the latest parity result — is spread across separate files with no
 single artifact that answers "what is this hub serving right now." The
@@ -82,7 +82,7 @@ quietly grow a field no consumer agreed to.
   },
   "liveConfigHash": "9e9a56…",
   "freshness": { "state": "fresh", "manifestPresent": true, "manifestStableDuringCapture": true, "engineResolverPresent": true },
-  "engineResolverPath": ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
+  "engineResolverPath": ".skilled/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs",
   "parityBaseline": { "label": "router-compiled-parity-baseline", "present": false, "reportDigest": null, "capturedAt": null, "verdict": null },
   "realModelLast": null
 }
@@ -116,11 +116,11 @@ reading is a valid snapshot.
 
 ```bash
 # Capture + validate one hub (writes serving-snapshot.{json,md} into <dir>):
-node .opencode/skills/sk-doc/sk-create-benchmark/scripts/render-serving-snapshot.cjs \
+node .skilled/skills/sk-doc/sk-create-benchmark/scripts/render-serving-snapshot.cjs \
   --hub sk-code --out <dir> --pretty
 
 # Validate a real hub's live snapshot against this schema, no write:
-node .opencode/skills/sk-doc/sk-create-benchmark/scripts/render-serving-snapshot.cjs --hub sk-code --validate
+node .skilled/skills/sk-doc/sk-create-benchmark/scripts/render-serving-snapshot.cjs --hub sk-code --validate
 ```
 
 The `.md` view is rendered from the same JSON so the two never drift, exactly as
@@ -159,7 +159,7 @@ any existing label. Labels match `^[a-z0-9]+(?:-[a-z0-9]+)*$`, and `baseline` is
 explicitly refused.
 
 ```bash
-node .opencode/skills/sk-doc/sk-create-benchmark/scripts/archive-compiled-routing.cjs \
+node .skilled/skills/sk-doc/sk-create-benchmark/scripts/archive-compiled-routing.cjs \
   --hub sk-code --run-label router-compiled-parity-final \
   --report <lane-c-outputs-dir>/skill-benchmark-report.json
 ```

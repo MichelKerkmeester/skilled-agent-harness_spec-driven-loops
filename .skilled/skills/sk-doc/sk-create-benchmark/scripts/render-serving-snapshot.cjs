@@ -25,19 +25,19 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-// This script sits at .opencode/skills/sk-doc/sk-create-benchmark/scripts/; the
+// This script sits at .skilled/skills/sk-doc/sk-create-benchmark/scripts/; the
 // repository root is five directories up. Resolving from __dirname keeps the
 // paths correct in a worktree or a relocated checkout without an absolute pin.
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const RUNTIME_ROOT = path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-routing');
+const RUNTIME_ROOT = path.join(REPO_ROOT, '.skilled', 'bin', 'lib', 'compiled-routing');
 // Derived rather than hardcoded: the promoted closure renumbers its internal
 // directories when a new generation is published, and a pinned number silently
 // stops matching. The layout module resolves whichever generation is serving.
-const layout = require(path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-route-layout.cjs'));
+const layout = require(path.join(REPO_ROOT, '.skilled', 'bin', 'lib', 'compiled-route-layout.cjs'));
 const ACTIVE_ACTIVATION_ROOT = layout.activationRootFor(RUNTIME_ROOT);
 const ENGINE_RESOLVER_PATH = layout.resolverPathFor(RUNTIME_ROOT);
 const SERVING_CLOSURE_PATH = path.join(RUNTIME_ROOT, 'serving-closure.manifest.json');
-const DEFAULT_SKILLS_ROOT = path.join(REPO_ROOT, '.opencode', 'skills');
+const DEFAULT_SKILLS_ROOT = path.join(REPO_ROOT, '.skilled', 'skills');
 
 const SCHEMA_VERSION = 'serving-snapshot/V1';
 
@@ -46,7 +46,7 @@ const SCHEMA_VERSION = 'serving-snapshot/V1';
 // would read differently.
 const { classifyFlagState } = require(path.join(
   REPO_ROOT,
-  '.opencode', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', 'compiled-routing-parity.cjs',
+  '.skilled', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', 'compiled-routing-parity.cjs',
 ));
 
 // The only top-level keys a V1 snapshot may carry, and the only manifest
@@ -382,7 +382,7 @@ function writeSnapshot(snapshot, outDir, pretty) {
 
 function main() {
   const args = require(path.join(
-    REPO_ROOT, '.opencode', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', '_args.cjs',
+    REPO_ROOT, '.skilled', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', '_args.cjs',
   )).parse(process.argv.slice(2));
 
   const hubs = args.all ? knownHubs() : (args.hub ? [args.hub] : []);

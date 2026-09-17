@@ -45,7 +45,7 @@ A document either reads well to the person who wrote it or it does not. A self-a
 **Step 2: Run the primary workflow.**
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py README.md
+python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py README.md
 ```
 
 You get a JSON report with the detected document type, structural metrics, checklist results, DQI score and quality band.
@@ -53,7 +53,7 @@ You get a JSON report with the detected document type, structural metrics, check
 **Step 3: Verify before you rely on it.**
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py README.md --type readme
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py README.md --type readme
 ```
 
 Expected: zero blocking issues before the document counts as ready.
@@ -126,9 +126,9 @@ A: The packet escalates instead of editing. Product claims and policy text, plus
 
 | Check | How to run it |
 |---|---|
-| Structure and DQI | `python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <file>` returns metrics, checklist results, DQI score and band |
-| Format validation | `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type <type>` reports zero blocking issues |
-| Filename case (non-scored) | `python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <file>` reports `PASS` or `FAIL`, plus an exemption outcome where the naming rules do not apply |
+| Structure and DQI | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>` returns metrics, checklist results, DQI score and band |
+| Format validation | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file> --type <type>` reports zero blocking issues |
+| Filename case (non-scored) | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <file>` reports `PASS` or `FAIL`, plus an exemption outcome where the naming rules do not apply |
 
 ---
 

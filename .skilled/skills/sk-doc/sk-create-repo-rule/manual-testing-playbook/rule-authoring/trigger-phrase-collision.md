@@ -73,7 +73,7 @@ Capture the step 1 match including its file and line number, the reported owner,
 
 ### Optional Supplemental Checks
 
-Sweep the whole set for duplicates rather than checking one phrase: run the corpus checker (`node .opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs`) and read its phrase-uniqueness line, which reports the phrase count with zero collisions. That converts a single-phrase check into a standing property of the corpus.
+Sweep the whole set for duplicates rather than checking one phrase: run the corpus checker (`node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs`) and read its phrase-uniqueness line, which reports the phrase count with zero collisions. That converts a single-phrase check into a standing property of the corpus.
 
 ---
 

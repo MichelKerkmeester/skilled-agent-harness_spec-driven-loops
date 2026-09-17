@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `AGC-002`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| AGC-002 | Reusable knowledge stays a skill | Leave a reusable knowledge request to the skill workflow | `Write a reusable guide for reviewing release notes. It should be reference knowledge and should not define a runtime role.` | 1. `agent: Read references/agent-vs-skill-vs-command.md and state the component rule` -> 2. `agent: Decide whether the request names a runtime persona` -> 3. `agent: Return the owning workflow without proposing an agent file` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-agent/SKILL.md --type agent` | Step 1: the agent rule is quoted. Step 2: no runtime persona is found. Step 3: a skill or reference is selected. Step 4: the mode contract validates with its exit status captured | The prompt, reference excerpt, component decision, non-agent response and validation transcript | PASS if no agent is proposed and the skill boundary is named. FAIL if a runtime persona or permission object is introduced | 1. Check whether the request asks who should act or only how to document knowledge. 2. Confirm the answer names the lighter component. 3. Verify the validator was run on the mode contract and not used to justify an agent choice |
+| AGC-002 | Reusable knowledge stays a skill | Leave a reusable knowledge request to the skill workflow | `Write a reusable guide for reviewing release notes. It should be reference knowledge and should not define a runtime role.` | 1. `agent: Read references/agent-vs-skill-vs-command.md and state the component rule` -> 2. `agent: Decide whether the request names a runtime persona` -> 3. `agent: Return the owning workflow without proposing an agent file` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-agent/SKILL.md --type agent` | Step 1: the agent rule is quoted. Step 2: no runtime persona is found. Step 3: a skill or reference is selected. Step 4: the mode contract validates with its exit status captured | The prompt, reference excerpt, component decision, non-agent response and validation transcript | PASS if no agent is proposed and the skill boundary is named. FAIL if a runtime persona or permission object is introduced | 1. Check whether the request asks who should act or only how to document knowledge. 2. Confirm the answer names the lighter component. 3. Verify the validator was run on the mode contract and not used to justify an agent choice |
 
 ### Commands
 
 1. `agent: Read references/agent-vs-skill-vs-command.md and state the component rule`
 2. `agent: Decide whether the request names a runtime persona`
 3. `agent: Return the owning workflow without proposing an agent file`
-4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-agent/SKILL.md --type agent`
+4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-agent/SKILL.md --type agent`
 
 ### Expected
 

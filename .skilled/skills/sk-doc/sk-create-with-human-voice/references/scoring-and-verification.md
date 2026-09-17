@@ -161,7 +161,7 @@ floors in `MINIMUM_TERMS` stops the run with exit 2 rather than reporting a clea
 Two controls prove it, and both belong in any change that touches the parser:
 
 ```bash
-PACKET=.opencode/skills/sk-doc/sk-create-with-human-voice
+PACKET=.skilled/skills/sk-doc/sk-create-with-human-voice
 
 # The dirty fixture must report 6 hard blockers and exit 1.
 python3 "$PACKET/scripts/hvr_scan.py" "$PACKET/scripts/tests/fixtures/voice-dirty.md"

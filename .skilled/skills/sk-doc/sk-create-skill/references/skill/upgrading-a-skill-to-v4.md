@@ -41,9 +41,9 @@ v4 reshaped `sk-code` into a parent hub: one advisor identity that dispatches to
 - [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md) - `hub-router.json` contract
 - [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) - class H (hub) vs class S (standalone) file matrix
 - `scripts/validate_skill_package.py` - completion gate
-- `.opencode/commands/doctor/scripts/parent-skill-check.cjs` - parent-hub structural and routing audit
+- `.skilled/commands/doctor/scripts/parent-skill-check.cjs` - parent-hub structural and routing audit
 
-The live layout to copy from is `.opencode/skills/sk-code/` (parent hub) and `.opencode/skills/sk-git/` (single skill).
+The live layout to copy from is `.skilled/skills/sk-code/` (parent hub) and `.skilled/skills/sk-git/` (single skill).
 
 ---
 
@@ -69,12 +69,12 @@ Do not invent a third class. A root is a hub when both `mode-registry.json` and 
 
 ### `sk-code`: convert to parent, or keep your own single skill
 
-The repo now ships `sk-code` as a parent hub. Workflow packets `sk-code-quality` and `sk-code-review` act. Surface packets `sk-code-webflow` and `sk-code-opencode` are read-only evidence. `graph-metadata.json` lives only at `.opencode/skills/sk-code/`. Nested packets have none.
+The repo now ships `sk-code` as a parent hub. Workflow packets `sk-code-quality` and `sk-code-review` act. Surface packets `sk-code-webflow` and `sk-code-opencode` are read-only evidence. `graph-metadata.json` lives only at `.skilled/skills/sk-code/`. Nested packets have none.
 
 You have two legal outcomes:
 
 1. **Convert-to-parent.** Follow [Section 4](#4-convert-a-single-skill-into-a-parent-hub) so your customized stack becomes nested packets under one hub identity.
-2. **Remove-repo-and-keep-own-single.** Keep your customized standalone `.opencode/skills/sk-code/` (class S: `graph-metadata.json` plus `leaf-manifest.config.json`, no registry or router). When you take a framework update, do not replace that folder with the repo's parent-hub tree.
+2. **Remove-repo-and-keep-own-single.** Keep your customized standalone `.skilled/skills/sk-code/` (class S: `graph-metadata.json` plus `leaf-manifest.config.json`, no registry or router). When you take a framework update, do not replace that folder with the repo's parent-hub tree.
 
 There is no convert-in-place flag. Keeping your own single skill is a merge-time choice, not a `/create:*` operation.
 
@@ -104,17 +104,17 @@ List every distinct job. Mark each as `workflow` or `surface`. Pick hyphen-case 
 
 ### Step 2. Move the existing skill aside
 
-Copy the customized folder out of `.opencode/skills/<name>` to a backup path you control. Leave the destination name free.
+Copy the customized folder out of `.skilled/skills/<name>` to a backup path you control. Leave the destination name free.
 
 **Failure this prevents:** `/create:skill-parent <name> create` stopping because the folder already exists, or the scaffold overwriting your customized `SKILL.md` and references.
 
 ### Step 3. Scaffold the hub with `/create:skill-parent`
 
 ```text
-@markdown /create:skill-parent <skill-name> create --modes <mode1,mode2,...> [--surfaces <s1,s2,...>] [--path .opencode/skills] [:auto|:confirm]
+@markdown /create:skill-parent <skill-name> create --modes <mode1,mode2,...> [--surfaces <s1,s2,...>] [--path .skilled/skills] [:auto|:confirm]
 ```
 
-`--modes` is required. Do not omit it. `--surfaces` is optional. `--path` defaults to `.opencode/skills/`.
+`--modes` is required. Do not omit it. `--surfaces` is optional. `--path` defaults to `.skilled/skills/`.
 
 Example for a customized `sk-code` with quality, review, and two evidence bases:
 
@@ -167,7 +167,7 @@ Schema detail lives in [parent-hub-router-schema.md](../parent-skill/parent-hub-
 After the registry and packet trees are final, refresh the hub-only leaf manifest:
 
 ```bash
-node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .opencode/skills/<hub-name>
+node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/<hub-name>
 ```
 
 That is the scoped generator `/create:skill-parent` already runs. Do not run fleet `ci-skill-root-metadata.cjs --fix` unless you intend to regenerate generated files across every scanned root.
@@ -196,7 +196,7 @@ Stay on class S when the skill still has one job.
 
 A standalone root keeps `SKILL.md`, `graph-metadata.json`, and `leaf-manifest.config.json`. It must not gain `mode-registry.json`, `hub-router.json`, `description.json`, or `command-metadata.json`. Repair that package with `/create:skill <skill-name> full-update` (or `reference-only` / `asset-only` for a scoped add). `/create:skill <skill-name> full-create` is only for a folder that does not exist yet.
 
-**Keeping your own `sk-code` while the repo ships a parent hub.** Leave your customized `.opencode/skills/sk-code/` in place. Do not copy the repo hub's `mode-registry.json` or `hub-router.json` into it. Adding only one of those two files makes `validate_skill_package.py` report a partial hub declaration and refuse to classify the root.
+**Keeping your own `sk-code` while the repo ships a parent hub.** Leave your customized `.skilled/skills/sk-code/` in place. Do not copy the repo hub's `mode-registry.json` or `hub-router.json` into it. Adding only one of those two files makes `validate_skill_package.py` report a partial hub declaration and refuse to classify the root.
 
 **Failure this prevents:** a customized single skill that the advisor treats as a broken hub, and a framework update that silently replaces your stack conventions.
 
@@ -211,7 +211,7 @@ Run these from the repository root. End on `validate_skill_package.py` for every
 Structural audit (same checker `/doctor parent-skill` runs, and the same script `validate_skill_package.py` invokes for a parent root):
 
 ```bash
-node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/<hub-name>
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/<hub-name>
 ```
 
 Pass looks like `OK: parent-skill-check — all hard invariants passed`. Exit 0. This is the routing-parity gate: `routerSignals` vs `modes[]`, `tieBreak` coverage, `surfaceBundle` only with surfaces, on-disk packet paths, and the one-identity rule.
@@ -219,7 +219,7 @@ Pass looks like `OK: parent-skill-check — all hard invariants passed`. Exit 0.
 Routing-drift check (aliases and typed vocabulary still agree across registry, router, and packets):
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/parent-hub-vocab-sync.cjs --skill .opencode/skills/<hub-name>
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/parent-hub-vocab-sync.cjs --skill .skilled/skills/<hub-name>
 ```
 
 Pass is exit 0 with `"driftDetected": false`. Exit 1 means `VOCAB-DRIFT` (orphan aliases, collisions, or ownership drift). Exit 2 means the hub-router or registry could not be parsed. Run this after you edit `aliases[]` or `vocabularyClasses`. Skip it when you only moved files and left vocabulary untouched.
@@ -227,7 +227,7 @@ Pass is exit 0 with `"driftDetected": false`. Exit 1 means `VOCAB-DRIFT` (orphan
 Completion gate (must exit clean):
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .opencode/skills/<hub-name>
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/<hub-name>
 ```
 
 For a parent root this runs `package_skill.py --check`, compiled-routing readiness, and `parent-skill-check.cjs`. Pass prints `Detected kind: parent` and each check as `PASS (exit 0)`. The report is clean only when the process itself exits 0.
@@ -237,7 +237,7 @@ Keep the compiled-routing directive block the hub template ships in `SKILL.md`. 
 ### Standalone skill (after Section 5)
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .opencode/skills/<skill-name>
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/<skill-name>
 ```
 
 Pass prints `Detected kind: standalone` and `package_skill.py --check: PASS (exit 0)`. Do not run `parent-skill-check.cjs` on a single skill. That script audits hubs.
@@ -253,5 +253,5 @@ Pass prints `Detected kind: standalone` and `package_skill.py --check: PASS (exi
 - [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) - class H vs class S required and forbidden files
 - [validation-and-packaging.md](../shared/validation-and-packaging.md) - completion gate and packaging
 - [creation-workflow.md](creation-workflow.md) - standalone create path
-- `.opencode/commands/create/skill-parent.md` - `/create:skill-parent` operations `create` and `update`
-- `.opencode/commands/create/skill.md` - `/create:skill` operations `full-create`, `full-update`, `reference-only`, `asset-only`
+- `.skilled/commands/create/skill-parent.md` - `/create:skill-parent` operations `create` and `update`
+- `.skilled/commands/create/skill.md` - `/create:skill` operations `full-create`, `full-update`, `reference-only`, `asset-only`

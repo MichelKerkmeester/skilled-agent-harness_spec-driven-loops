@@ -75,7 +75,7 @@ This skill owns all three moves. A create mode that cannot delete produces a set
 **Step 2: Read what decides the answer.**
 
 ```bash
-cat .opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
+cat .skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
 ```
 
 Four tests run before anything gets written. Reading them first tells you whether your request has a chance.
@@ -177,7 +177,7 @@ A: No. Every refusal except the restraint one names a destination. The restraint
 | Structural invariant | `awk 'NR==1&&/^---$/{fm=1;next} fm&&/^---$/{fm=0;next} /^## [0-9]+\./{s++} /^---$/{d++} END{print s, d, NR}' repo-rules/<file>.md` | The first two numbers match, and the third is at or under 250 |
 | Router parity | `awk '/^## 2\. TRIGGER TABLE/{t=1} /^## 3\. INDEX/{t=0;i=1} /^## 4\./{i=0} t&&/repo-rules\//{tr++} i&&/repo-rules\//{ix++} END{print tr, ix}' 'REPO RULES.md'` | Both numbers equal the count of files in `repo-rules/` |
 | Phrase collisions | `grep -rn '^  - "<phrase>"' repo-rules/` | At most one match. Anchor the pattern, because an unanchored search matches body prose |
-| Playbook package | `node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .opencode/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook` | `PASS`, tier `FAIL_CLOSED`, `violations=0` |
+| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook` | `PASS`, tier `FAIL_CLOSED`, `violations=0` |
 
 ---
 

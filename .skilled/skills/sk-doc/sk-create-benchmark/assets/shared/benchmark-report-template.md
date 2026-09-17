@@ -22,16 +22,16 @@ This template produces a benchmark report that records candidates, measurements,
 Copy-paste-ready scaffold for mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark-report.md.
 
 Usage:
-  cp .opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md \
-     .opencode/skills/<your-skill>/mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark-report.md
+  cp .skilled/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md \
+     .skilled/skills/<your-skill>/mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark-report.md
 
 Then fill in every {{PLACEHOLDER}}. Keep the numbered H2 ALL CAPS structure intact.
 Validate after authoring:
-  python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py \
-    .opencode/skills/<your-skill>/mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark-report.md \
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py \
+    .skilled/skills/<your-skill>/mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark-report.md \
     --type readme
 
-Canonical reference: .opencode/skills/sk-doc/sk-create-benchmark/SKILL.md (report contract in Section 5)
+Canonical reference: .skilled/skills/sk-doc/sk-create-benchmark/SKILL.md (report contract in Section 5)
 -->
 
 # {{SKILL_NAME}} {{BENCHMARK_TOPIC}} -- {{LONG_DATE}}
@@ -330,7 +330,7 @@ Expected outcome: {{EXPECTED_OUTCOME_LINE}}.
 | [`per-probe.jsonl`](./per-probe.jsonl) | Per-probe rows. |
 | [`runtime-measurements.md`](./runtime-measurements.md) | RAM, residency, raw inference latency for the final candidates. |
 | [`../README.md`](../README.md) | Index of all `{{SKILL_NAME}}` benchmarks. |
-| `.opencode/skills/sk-doc/sk-create-benchmark/SKILL.md` | Convention these files follow. |
+| `.skilled/skills/sk-doc/sk-create-benchmark/SKILL.md` | Convention these files follow. |
 
 ### Authoritative spec packet
 

@@ -22,7 +22,7 @@ Every in-scope skill documentation file carries a 4-part `version: X.Y.Z.W` fiel
 
 ### In scope (MUST carry `version`)
 
-Under `.opencode/skills/*/`:
+Under `.skilled/skills/*/`:
 
 | Doc class | Path glob |
 |-----------|-----------|
@@ -35,7 +35,7 @@ Under `.opencode/skills/*/`:
 
 ### Out of scope (do NOT add `version` in this standard)
 
-`.opencode/commands/*.md`, `.opencode/agents/*.md`, and standalone `.opencode/install-guides/`. These also carry frontmatter but are governed separately; a follow-up packet may bring them in.
+`.skilled/commands/*.md`, `.skilled/agents/*.md`, and standalone `.skilled/install-guides/`. These also carry frontmatter but are governed separately; a follow-up packet may bring them in.
 
 ---
 
@@ -89,7 +89,7 @@ W = min( realEditCount(file), 99 )
 
 `W` is the number of commits whose **own added+deleted line count for that file is > 0**. Trace the path with `git log --follow` for continuity across renames, but **gate every commit through per-file `numstat`** and discard commits that changed 0 lines in the file.
 
-This gate is mandatory, and its size is worth stating accurately because the number moved. A naive `git log --follow | wc -l` over-counts for two reasons: (a) the historical repo-wide rename `skill/ -> .opencode/skills/`, where a file inherits pre-move history as commits that changed zero of its lines, and (b) bulk sweep commits that touch a file's siblings without changing the file. The gate removes both.
+This gate is mandatory, and its size is worth stating accurately because the number moved. A naive `git log --follow | wc -l` over-counts for two reasons: (a) the historical repo-wide rename `skill/ -> .skilled/skills/`, where a file inherits pre-move history as commits that changed zero of its lines, and (b) bulk sweep commits that touch a file's siblings without changing the file. The gate removes both.
 
 Measured across all 1,214 in-scope docs of `sk-doc` and `system-spec-kit` on 2026-09-02, the ungated count is **1.06-1.09x** the gated one in aggregate, **2.25x** at the worst single file, and identical on 262 of `sk-doc`'s 390. No file in either skill reaches 3x. The gate still changes the answer on 128 of those 390, so run it. But a run that reports a large multiple today is reporting something other than these two inflators, and is worth reading before it is trusted.
 
@@ -107,9 +107,9 @@ Two passes converge, and the second one must amend rather than add:
 
 ```bash
 node frontmatter-version.mjs apply --skill <name> --update
-git commit -m "..." -- .opencode/skills/<name>
+git commit -m "..." -- .skilled/skills/<name>
 node frontmatter-version.mjs apply --skill <name> --update
-git commit --amend --no-edit -- .opencode/skills/<name>
+git commit --amend --no-edit -- .skilled/skills/<name>
 ```
 
 The amend folds the second pass's increment into the commit that caused it, so the file's

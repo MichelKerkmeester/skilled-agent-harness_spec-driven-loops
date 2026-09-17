@@ -11,5 +11,5 @@ Status: shipped
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/fixture/implementation.py` | Script | Live implementation |
+| `.skilled/skills/fixture/implementation.py` | Script | Live implementation |
 

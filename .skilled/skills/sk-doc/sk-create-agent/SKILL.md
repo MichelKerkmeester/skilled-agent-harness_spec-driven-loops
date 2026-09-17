@@ -69,12 +69,12 @@ DEFAULT_RESOURCE = "references/README.md"
 
 # Three routing targets; keywords come from this packet's activation triggers.
 INTENT_MODEL = {
-    "opencode_agent": {"weight": 4, "keywords": ["opencode agent", "permission object", ".opencode/agents"]},
+    "opencode_agent": {"weight": 4, "keywords": ["opencode agent", "permission object", ".skilled/agents"]},
     "claude_agent": {"weight": 4, "keywords": ["claude code agent", ".claude/agents"]},
     "agent_authoring": {"weight": 4, "keywords": ["create agent", "/create:agent", "agent file", "new agent", "agent persona", "agent frontmatter", "authority boundary", "agent template", "runtime agent directory"]},
 }
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the runtime target directory (.opencode/agents/ or .claude/agents/)",
+    "Confirm the runtime target directory (.skilled/agents/ or .claude/agents/)",
     "Confirm the permission or authority boundary the agent needs (tool access, task/orchestration authority)",
     "Confirm this needs a new agent rather than a skill, command, or an existing agent",
 ]
@@ -179,7 +179,7 @@ Frontmatter schema is runtime-specific — never emit the same schema for both r
 Decision rule:
 
 ```text
-Authoring for .opencode/agents/? -> emit `permission:` (never bare `tools:`)
+Authoring for .skilled/agents/? -> emit `permission:` (never bare `tools:`)
 Authoring for .claude/agents/?   -> emit `tools:` (never `permission:`)
 ```
 
@@ -224,7 +224,7 @@ Frontmatter rules:
 1. `name` must match the filename stem.
 2. `description` is one line describing role and scope.
 3. `mode` and `temperature` are OpenCode-only fields; set `mode` to match runtime invocation (commonly `subagent` for specialists) and `temperature` to reflect determinism needs (commonly `0.1`) — `.claude/agents/` frontmatter omits both.
-4. Under `.opencode/agents/`, `permission` values must be explicit, least-authority, justified by the role, and use only `allow`, `deny`, or `ask`.
+4. Under `.skilled/agents/`, `permission` values must be explicit, least-authority, justified by the role, and use only `allow`, `deny`, or `ask`.
 5. Under `.claude/agents/`, `tools:` is the runtime-specific canonical schema — a comma-separated least-authority allow-list; never emit `permission:` there, and never leave `tools:` absent or empty (an absent `tools:` inherits the parent session's full tool set).
 6. Set `task: allow` (or include `Task` in `tools:`) only for agents whose explicit authority is orchestration.
 
@@ -274,9 +274,9 @@ When the user invokes `/create:agent`, treat the command as the preferred entry 
 Before delivery, verify document quality and runtime correctness.
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/agents/agent-name.md --type agent
-python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/agents/agent-name.md
-python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .opencode/agents/agent-name.md
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/agents/agent-name.md --type agent
+python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py .skilled/agents/agent-name.md
+python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .skilled/agents/agent-name.md
 ```
 
 Use `.claude/agents/agent-name.md` instead when Claude Code is the active runtime.
@@ -293,7 +293,7 @@ Required checks: frontmatter parses, filename stem matches `name`, the shared au
 2. Search existing agents before creating a new one.
 3. Use the active runtime agent directory, not a convenient nearby path.
 4. Keep filename stem and frontmatter `name` identical.
-5. Use the runtime-correct frontmatter schema — `permission:` object for `.opencode/agents/`, `tools:` allow-list for `.claude/agents/` — with explicit least-authority choices.
+5. Use the runtime-correct frontmatter schema — `permission:` object for `.skilled/agents/`, `tools:` allow-list for `.claude/agents/` — with explicit least-authority choices.
 6. Set `task: allow` only when orchestration is the agent's explicit authority.
 7. Include hard boundary, core workflow, capability scan, output verification, anti-patterns, and related resources.
 8. Keep deep domain knowledge in skills or references and link to it.
@@ -304,7 +304,7 @@ Required checks: frontmatter parses, filename stem matches `name`, the shared au
 
 1. Never add `graph-metadata.json` to this packet.
 2. Never create an agent for reusable knowledge alone.
-3. `tools:` is runtime-specific, not obsolete: it is Claude Code's canonical schema. Never emit `tools:` under `.opencode/agents/`, and never emit a bare `permission:` block under `.claude/agents/`.
+3. `tools:` is runtime-specific, not obsolete: it is Claude Code's canonical schema. Never emit `tools:` under `.skilled/agents/`, and never emit a bare `permission:` block under `.claude/agents/`.
 4. Never grant broad permissions because they might be useful later.
 5. Never give a LEAF agent `task: allow`.
 6. Never paste full skill guidance into an agent body.
@@ -328,7 +328,7 @@ Required checks: frontmatter parses, filename stem matches `name`, the shared au
 The agent file is done only when all of the following hold:
 
 1. The file lives in the active runtime agent directory, and the filename stem matches frontmatter `name`.
-2. Frontmatter uses the runtime-correct schema — `permission:` object for `.opencode/agents/`, `tools:` allow-list for `.claude/agents/` — with explicit least-authority choices, and `task`/`Task` granted only when orchestration is the agent's explicit authority.
+2. Frontmatter uses the runtime-correct schema — `permission:` object for `.skilled/agents/`, `tools:` allow-list for `.claude/agents/` — with explicit least-authority choices, and `task`/`Task` granted only when orchestration is the agent's explicit authority.
 3. The body carries every required section: hard boundary, core workflow, capability scan, output verification, anti-patterns, and related resources.
 4. Deep domain knowledge is linked to skills or references rather than pasted into the agent body, and no template placeholders remain.
 5. `validate_document.py` and `extract_structure.py` run clean, and completion is claimed only after they pass or the exact blocker is reported.

@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `AGC-001`.
 - Objective: choose an agent when the request needs a stable persona, permissions and an authority boundary.
 - Realistic user request: `I need a named OpenCode persona that reviews release notes and can read files but cannot delegate work. Create the agent file.`
 - Prompt: `I need a named OpenCode persona that reviews release notes and can read files but cannot delegate work. Create the agent file.`
-- Expected execution process: read the component-choice reference, identify the runtime role, select `.opencode/agents/` and keep reusable review rules in a linked skill.
+- Expected execution process: read the component-choice reference, identify the runtime role, select `.skilled/agents/` and keep reusable review rules in a linked skill.
 - Expected signals: the answer selects an agent, names the OpenCode runtime path and denies delegation for the leaf role.
 - Desired user-visible outcome: the operator gets a bounded agent plan with linked domain guidance.
 - Pass/fail: PASS if the answer names the agent decision and its authority boundary. FAIL if it selects a skill or command, or embeds reusable guidance as the agent's main purpose.
@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `AGC-001`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| AGC-001 | Named runtime persona | Select an agent for a stable persona with permissions and a non-delegating boundary | `I need a named OpenCode persona that reviews release notes and can read files but cannot delegate work. Create the agent file.` | 1. `agent: Read references/agent-vs-skill-vs-command.md and state the component rule` -> 2. `agent: Resolve the runtime directory and authority boundary` -> 3. `agent: State which reusable guidance stays in a skill` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .opencode/agents/release-note-reviewer.md` | Step 1: agent is selected for role and authority. Step 2: `.opencode/agents/` and no delegation are named. Step 3: reusable rules are linked, not pasted. Step 4: the authored-name check result and exit status are captured | The prompt as typed, the component decision, runtime path, authority boundary, linked guidance and validator transcript | PASS if the mode selects an agent and keeps the boundary narrow. FAIL if the request is routed to a skill or command, or if delegation is granted without an orchestration role | 1. Confirm the role needs a stable persona rather than only reusable knowledge. 2. Check the runtime path before reviewing frontmatter. 3. Verify the leaf does not receive `task: allow` without an orchestration need |
+| AGC-001 | Named runtime persona | Select an agent for a stable persona with permissions and a non-delegating boundary | `I need a named OpenCode persona that reviews release notes and can read files but cannot delegate work. Create the agent file.` | 1. `agent: Read references/agent-vs-skill-vs-command.md and state the component rule` -> 2. `agent: Resolve the runtime directory and authority boundary` -> 3. `agent: State which reusable guidance stays in a skill` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .skilled/agents/release-note-reviewer.md` | Step 1: agent is selected for role and authority. Step 2: `.skilled/agents/` and no delegation are named. Step 3: reusable rules are linked, not pasted. Step 4: the authored-name check result and exit status are captured | The prompt as typed, the component decision, runtime path, authority boundary, linked guidance and validator transcript | PASS if the mode selects an agent and keeps the boundary narrow. FAIL if the request is routed to a skill or command, or if delegation is granted without an orchestration role | 1. Confirm the role needs a stable persona rather than only reusable knowledge. 2. Check the runtime path before reviewing frontmatter. 3. Verify the leaf does not receive `task: allow` without an orchestration need |
 
 ### Commands
 
 1. `agent: Read references/agent-vs-skill-vs-command.md and state the component rule`
 2. `agent: Resolve the runtime directory and authority boundary`
 3. `agent: State which reusable guidance stays in a skill`
-4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .opencode/agents/release-note-reviewer.md`
+4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .skilled/agents/release-note-reviewer.md`
 
 ### Expected
 

@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `AGR-002`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| AGR-002 | Claude tools allow-list | Author a Claude Code agent with only the named read and edit tools | `Create this role for Claude Code. It may read and edit the assigned file but it must not use permission, mode or temperature fields.` | 1. `agent: Read SKILL.md section 3 and state the Claude Code schema` -> 2. `agent: Draft the fixture in .claude/agents/ with tools Read, Edit` -> 3. `agent: Check that permission, mode and temperature are absent` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .claude/agents/release-note-editor.md` | Step 1: `tools:` is selected for Claude Code. Step 2: the `.claude/agents/` path and allow-list are present. Step 3: OpenCode-only keys are absent. Step 4: the name check output and exit status are captured | The prompt, runtime decision, frontmatter, absent-key check and validator transcript | PASS if the Claude schema is present and least-authority tools are named. FAIL if `permission:` is used, `tools:` is missing or OpenCode-only fields are emitted | 1. Confirm the runtime profile is Claude Code. 2. Check that `tools:` is not empty. 3. Verify no OpenCode fields were copied into the Claude frontmatter |
+| AGR-002 | Claude tools allow-list | Author a Claude Code agent with only the named read and edit tools | `Create this role for Claude Code. It may read and edit the assigned file but it must not use permission, mode or temperature fields.` | 1. `agent: Read SKILL.md section 3 and state the Claude Code schema` -> 2. `agent: Draft the fixture in .claude/agents/ with tools Read, Edit` -> 3. `agent: Check that permission, mode and temperature are absent` -> 4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .claude/agents/release-note-editor.md` | Step 1: `tools:` is selected for Claude Code. Step 2: the `.claude/agents/` path and allow-list are present. Step 3: OpenCode-only keys are absent. Step 4: the name check output and exit status are captured | The prompt, runtime decision, frontmatter, absent-key check and validator transcript | PASS if the Claude schema is present and least-authority tools are named. FAIL if `permission:` is used, `tools:` is missing or OpenCode-only fields are emitted | 1. Confirm the runtime profile is Claude Code. 2. Check that `tools:` is not empty. 3. Verify no OpenCode fields were copied into the Claude frontmatter |
 
 ### Commands
 
 1. `agent: Read SKILL.md section 3 and state the Claude Code schema`
 2. `agent: Draft the fixture in .claude/agents/ with tools Read, Edit`
 3. `agent: Check that permission, mode and temperature are absent`
-4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .claude/agents/release-note-editor.md`
+4. `bash: python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .claude/agents/release-note-editor.md`
 
 ### Expected
 

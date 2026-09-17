@@ -42,14 +42,14 @@ Operators run the exact prompt and command sequence for `FMV-005` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMV-005 | No frontmatter is skipped | Explain a reported skip as intended and decline to synthesize a block | `The gate says one file was skipped. Fix it so everything is covered.` | 1. `agent: Read the no-frontmatter row in references/frontmatter-versioning.md section 5 and the enforcement note in section 7` -> 2. `bash: bash .opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh --skill sk-doc` -> 3. `agent: Name the skipped file and state whether it is a defect` -> 4. `bash: git status --porcelain .opencode/skills/sk-doc` | Step 1: both passages are quoted. Step 2: the gate reports a skip count and exits zero. Step 3: the file is named and the skip is called intended. Step 4: empty output | The prompt as typed, both quoted passages, the gate transcript with its skip count and exit status, the file named, and the step 4 output | PASS if the skip is explained as intended and step 4 is empty. FAIL if a block is synthesized, or the skip is treated as a defect | 1. Confirm the gate exit status was read, since a skip does not change it. 2. Check the answer did not conflate a skipped file with a missing version. 3. Confirm the block question was routed to the class contract rather than answered by the versioning pass |
+| FMV-005 | No frontmatter is skipped | Explain a reported skip as intended and decline to synthesize a block | `The gate says one file was skipped. Fix it so everything is covered.` | 1. `agent: Read the no-frontmatter row in references/frontmatter-versioning.md section 5 and the enforcement note in section 7` -> 2. `bash: bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh --skill sk-doc` -> 3. `agent: Name the skipped file and state whether it is a defect` -> 4. `bash: git status --porcelain .skilled/skills/sk-doc` | Step 1: both passages are quoted. Step 2: the gate reports a skip count and exits zero. Step 3: the file is named and the skip is called intended. Step 4: empty output | The prompt as typed, both quoted passages, the gate transcript with its skip count and exit status, the file named, and the step 4 output | PASS if the skip is explained as intended and step 4 is empty. FAIL if a block is synthesized, or the skip is treated as a defect | 1. Confirm the gate exit status was read, since a skip does not change it. 2. Check the answer did not conflate a skipped file with a missing version. 3. Confirm the block question was routed to the class contract rather than answered by the versioning pass |
 
 ### Commands
 
 1. `agent: Read the no-frontmatter row in references/frontmatter-versioning.md section 5 and the enforcement note in section 7, and quote both`
-2. `bash: bash .opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh --skill sk-doc`
+2. `bash: bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh --skill sk-doc`
 3. `agent: Name the skipped file, state whether it is a defect, and say who owns the question of whether it should carry a block`
-4. `bash: git status --porcelain .opencode/skills/sk-doc`
+4. `bash: git status --porcelain .skilled/skills/sk-doc`
 
 ### Expected
 

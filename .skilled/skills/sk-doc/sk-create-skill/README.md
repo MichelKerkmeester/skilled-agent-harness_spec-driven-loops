@@ -1,6 +1,6 @@
 ---
 title: "create-skill"
-description: "Scaffold, validate and package standalone OpenCode skills and two-axis parent hubs from vetted templates, for anyone building or repairing a skill under .opencode/skills/."
+description: "Scaffold, validate and package standalone OpenCode skills and two-axis parent hubs from vetted templates, for anyone building or repairing a skill under .skilled/skills/."
 trigger_phrases:
   - "create skill"
   - "parent hub"
@@ -17,7 +17,7 @@ version: 1.2.0.19
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Scaffolding, validating and packaging OpenCode skills under `.opencode/skills/`, standalone or parent hub |
+| **Use it for** | Scaffolding, validating and packaging OpenCode skills under `.skilled/skills/`, standalone or parent hub |
 | **Invoke with** | `/create:skill`, `/create:skill-parent`, "new skill", "parent hub" |
 | **Works on** | New skill folders and existing skill or hub packages that need repair or re-validation |
 | **Produces** | `SKILL.md`, `README.md`, `references/`, `assets/` and `scripts/` for a skill, a full parent-hub router set for a hub |
@@ -51,7 +51,7 @@ create-skill runs one of two workflow modes from a single packet. `create-skill`
 
 ```bash
 # --path is the PARENT directory. init_skill.py creates <path>/my-skill
-python3 .opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py my-skill --path .opencode/skills
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py my-skill --path .skilled/skills
 ```
 
 `init_skill.py` creates `my-skill/` with `SKILL.md` and two prepared trees: a `manual-testing-playbook/` corpus index and a `benchmark/reports/` tree carrying its own run index. `README.md`, `references/`, `assets/` and `scripts/` are added by hand as the skill earns them.
@@ -59,7 +59,7 @@ python3 .opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py my-skill -
 **Step 2: Fill in the real content, then validate.**
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .opencode/skills/my-skill
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/my-skill
 ```
 
 Expected output ends with `package_skill.py --check: PASS (exit 0)`.
@@ -67,7 +67,7 @@ Expected output ends with `package_skill.py --check: PASS (exit 0)`.
 **Step 3: Package only after validation passes.**
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/my-skill <output-directory>
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/my-skill <output-directory>
 ```
 
 ---
@@ -141,7 +141,7 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 
 | Check | How to run it | Pass looks like |
 |---|---|---|
-| README structure | `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-skill/README.md --type readme` | Reports zero issues |
+| README structure | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/README.md --type readme` | Reports zero issues |
 | Package completion | `python3 scripts/validate_skill_package.py <path>` | Ends with `package_skill.py --check: PASS (exit 0)`. Parent hubs also report legacy or compiled-ready state |
 | Strict contract check | `python3 scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
 | Structure extraction | `python3 ../shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |

@@ -10,7 +10,7 @@ from pathlib import Path
 
 TESTS = Path(__file__).resolve().parent
 REPO = TESTS.parents[4]
-SCRIPT_DIR = REPO / ".opencode/skills/sk-doc/sk-create-readme/scripts"
+SCRIPT_DIR = REPO / ".skilled/skills/sk-doc/sk-create-readme/scripts"
 sys.path.insert(0, str(SCRIPT_DIR))
 import audit_readmes
 
@@ -23,7 +23,7 @@ def main() -> int:
     for required in (".pi/extensions/README.md", ".github/workflows/README.md"):
         if required not in readmes:
             failures.append(f"missing discovered README: {required}")
-    if any(path.startswith(".opencode/skills/sk-doc/scripts/tests/") for path in readmes):
+    if any(path.startswith(".skilled/skills/sk-doc/scripts/tests/") for path in readmes):
         failures.append("fixture-owned README was included in the audit")
 
     fixture_manifest = json.loads(

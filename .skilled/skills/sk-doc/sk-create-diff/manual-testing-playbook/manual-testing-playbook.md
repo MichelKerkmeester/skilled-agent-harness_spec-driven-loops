@@ -52,7 +52,7 @@ Coverage note (2026-07-15): every scenario is runnable today against `scripts/cr
 
 ## 2. GLOBAL PRECONDITIONS
 
-1. Working directory is the packet root `.opencode/skills/sk-doc/sk-create-diff/` (or supply absolute paths to the scripts).
+1. Working directory is the packet root `.skilled/skills/sk-doc/sk-create-diff/` (or supply absolute paths to the scripts).
 2. Python 3.9+ is available on `PATH`.
 3. For PDF scenarios, at least one of `pdftotext`, `pypdf`, or `pdfplumber` is installed; otherwise CMP-003 is a documented SKIP.
 4. A scratch directory outside the repo is used for generated reports and the `.sk-create-diff/` snapshot store.

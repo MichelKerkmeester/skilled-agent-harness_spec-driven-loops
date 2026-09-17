@@ -26,8 +26,8 @@
  * advisor that must only ever see skill identities.
  *
  * Usage:
- *   node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
- *        [--skills-dir <dir>]   default: the repo .opencode/skills (resolved from
+ *   node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+ *        [--skills-dir <dir>]   default: the repo .skilled/skills (resolved from
  *                               this file's location)
  *        [--format text|json]   default: text
  *        [--fix]                regenerate missing/stale manifests, nothing else
@@ -322,7 +322,7 @@ function checkCommandMetadata(skillDir) {
   }
 
   const repoRoot = path.dirname(path.dirname(skillsDir));
-  const commandsDir = path.join(repoRoot, '.opencode', 'commands');
+  const commandsDir = path.join(repoRoot, '.skilled', 'commands');
 
   const violations = commandSchema.validateCommandMetadata(entries, {
     skillId: path.basename(skillDir),

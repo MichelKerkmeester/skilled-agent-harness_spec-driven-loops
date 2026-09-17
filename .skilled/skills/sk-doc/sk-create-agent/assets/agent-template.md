@@ -28,7 +28,7 @@ Agents are specialized AI personas with defined authority, tool permissions, and
 | Aspect | Agent | Skill |
 | --- | --- | --- |
 | **Purpose** | Persona with authority to act | Knowledge/workflow bundle |
-| **Location** | `.opencode/agents/` | `.opencode/skills/` |
+| **Location** | `.skilled/agents/` | `.skilled/skills/` |
 | **Invocation** | `@agent-name` or automatic routing | Skill loading by request or routing |
 | **Has Tools** | Yes, via a runtime-specific schema (see below) | No independent tool boundary |
 | **Frontmatter (OpenCode)** | `name`, `description`, `mode`, `temperature`, `permission`, optional `mcpServers` | `name`, `description`, `allowed-tools` |
@@ -85,7 +85,7 @@ mcpServers:
 ---
 ```
 
-Use the `permission:` object with `allow`, `deny`, or `ask` for `.opencode/agents/`. For `.claude/agents/`, use the runtime-specific `tools:` allow-list instead, because Claude Code enforces only `tools:` and silently ignores `permission:`:
+Use the `permission:` object with `allow`, `deny`, or `ask` for `.skilled/agents/`. For `.claude/agents/`, use the runtime-specific `tools:` allow-list instead, because Claude Code enforces only `tools:` and silently ignores `permission:`:
 
 ```yaml
 ---
@@ -95,7 +95,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 ```
 
-Decision rule: authoring for `.opencode/agents/` emits `permission:` (never bare `tools:`), and authoring for `.claude/agents/` emits `tools:` (never `permission:`). Map the `permission:` allow-set to the `tools:` list by including only the tools set to `allow`/`ask` and dropping the ones set to `deny`.
+Decision rule: authoring for `.skilled/agents/` emits `permission:` (never bare `tools:`), and authoring for `.claude/agents/` emits `tools:` (never `permission:`). Map the `permission:` allow-set to the `tools:` list by including only the tools set to `allow`/`ask` and dropping the ones set to `deny`.
 
 ### Field Reference
 
@@ -150,7 +150,7 @@ Every production agent should include these body elements in this order.
 
 [1-2 sentence description of the agent's purpose, authority, and primary output.]
 
-**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: [Most important behavioral constraint and output boundary.]
 
@@ -475,9 +475,9 @@ no list, because it invites trust it cannot repay.
 
 | Resource | Role |
 | --- | --- |
-| `.opencode/skills/[skill-name]/SKILL.md` | [What this agent loads from it] |
-| `.opencode/agents/[companion].md` | [How the two agents relate] |
-| `.opencode/commands/[namespace]/[action].md` | [The command that dispatches this agent] |
+| `.skilled/skills/[skill-name]/SKILL.md` | [What this agent loads from it] |
+| `.skilled/agents/[companion].md` | [How the two agents relate] |
+| `.skilled/commands/[namespace]/[action].md` | [The command that dispatches this agent] |
 ```
 
 ---
@@ -547,7 +547,7 @@ mcpServers:
 
 [1-2 sentence description of the agent's purpose, authority, and primary output.]
 
-**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: [Most important behavioral constraint and output boundary.]
 
@@ -704,9 +704,9 @@ Verify every path exists before shipping. A resource list full of dead paths is 
 
 | Resource | Role |
 | --- | --- |
-| `.opencode/skills/[skill-name]/SKILL.md` | [What this agent loads from it] |
-| `.opencode/agents/[companion].md` | [How the two agents relate] |
-| `.opencode/commands/[namespace]/[action].md` | [The command that dispatches this agent] |
+| `.skilled/skills/[skill-name]/SKILL.md` | [What this agent loads from it] |
+| `.skilled/agents/[companion].md` | [How the two agents relate] |
+| `.skilled/commands/[namespace]/[action].md` | [The command that dispatches this agent] |
 
 ---
 
@@ -785,11 +785,11 @@ Verify every path exists before shipping. A resource list full of dead paths is 
 
 **Deep-Loop Iteration Agents (sanctioned section-vocabulary dialect)**
 
-The `@deep-review` / `@deep-research` family (both `.opencode/agents/` and `.claude/agents/` mirrors) is a blessed alternate section vocabulary for per-iteration loop workers, carrying the same responsibilities as the generic skeleton under lane-named headings.
+The `@deep-review` / `@deep-research` family (both `.skilled/agents/` and `.claude/agents/` mirrors) is a blessed alternate section vocabulary for per-iteration loop workers, carrying the same responsibilities as the generic skeleton under lane-named headings.
 
 - **Full shape** (`deep-review`): `## 0. ILLEGAL NESTING (HARD BLOCK)` → `## 0b. INPUT + SCOPE GATES (HARD BLOCK)` → `## 1. CORE WORKFLOW -- Single <lane> Iteration` → `## 2. ROUTING SCAN` → `## 3. <lane> CONTRACT` (`REVIEW CONTRACT`) → `## 4. STATE MANAGEMENT + WRITE SAFETY` → `## 5. <lane> ADVERSARIAL CHECK (Tiered)` (`ADVERSARIAL SELF-CHECK`) → `## 6. RULES` → `## 7. OUTPUT VERIFICATION` → `## 8. ANTI-PATTERNS` → `## 9. SUMMARY`.
 - **Lean variant** (`deep-research`): no `§0b`, `## 3. ITERATION PROTOCOL` replaces the CONTRACT, `## 4. STATE MANAGEMENT` drops the `+ WRITE SAFETY` suffix, `RULES` moves to `## 5`, and `## 6. OUTPUT FORMAT` is added, then OUTPUT VERIFICATION / ANTI-PATTERNS / SUMMARY.
-- Only `## 1. CORE WORKFLOW` is validator-required. The dialect keeps every boundary, capability, verification, and anti-pattern responsibility of the generic skeleton. Reference files: `.opencode/agents/{deep-review,deep-research}.md` and their `.claude/agents/` mirrors.
+- Only `## 1. CORE WORKFLOW` is validator-required. The dialect keeps every boundary, capability, verification, and anti-pattern responsibility of the generic skeleton. Reference files: `.skilled/agents/{deep-review,deep-research}.md` and their `.claude/agents/` mirrors.
 
 ---
 
@@ -831,4 +831,4 @@ Before deploying an agent, verify:
 - [ ] Output format matches the agent's real deliverable.
 - [ ] Claims require inspected evidence.
 - [ ] Write boundaries are stricter than raw permissions when the role is scoped.
-- [ ] Production examples match the current agent fleet in `.opencode/agents/`.
+- [ ] Production examples match the current agent fleet in `.skilled/agents/`.

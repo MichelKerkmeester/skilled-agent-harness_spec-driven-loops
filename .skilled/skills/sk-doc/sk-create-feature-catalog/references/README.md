@@ -64,4 +64,4 @@ Load the file that matches the current task:
 
 ### Live example
 
-- `.opencode/skills/system-spec-kit/feature-catalog/` - the shipped catalog walked through in [examples.md](examples.md)
+- `.skilled/skills/system-spec-kit/feature-catalog/` - the shipped catalog walked through in [examples.md](examples.md)
