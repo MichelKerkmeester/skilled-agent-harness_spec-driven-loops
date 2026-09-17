@@ -3,9 +3,10 @@
 # COMPONENT: Relink Local Specs Test
 # ───────────────────────────────────────────────────────────────
 # Runs the relinker from every source-root layout a checkout can hold: a real
-# .opencode tree, a real .skilled tree, and a real .skilled tree with .opencode
-# linked to it. The script finds the checkout two directories above its own, so
-# each pointer must land under that checkout's specs/ whichever name it ran through.
+# .opencode tree beside an empty .skilled placeholder, a real .skilled tree, and a
+# real .skilled tree with .opencode linked to it. The script finds the checkout two
+# directories above its own, so each pointer must land under that checkout's specs/
+# whichever name it ran through.
 
 set -euo pipefail
 
@@ -44,6 +45,7 @@ for layout in today skilled-only whole-link; do
     mkdir -p "$code_environment/Barter/specs" "$code_environment/Websites/anobel.com/specs" \
       "$development/AI_Systems/Barter/specs" "$checkout/$real/bin"
     cp "$RELINKER" "$checkout/$real/bin/relink-local-specs.sh"
+    [ "$layout" != "today" ] || mkdir -p "$checkout/.skilled/future-task-placeholder"
     [ "$layout" != "whole-link" ] || ln -s .skilled "$checkout/.opencode"
 
     set +e
@@ -60,6 +62,8 @@ for layout in today skilled-only whole-link; do
       test "$(readlink "$checkout/specs/ai-systems")" = "$development/AI_Systems/Barter/specs"
     expect "$layout through $entry: no pointer lands inside the source tree" \
       test ! -e "$checkout/$real/specs"
+    [ "$layout" != "today" ] || expect "$layout through $entry: no pointer lands inside the .skilled placeholder" \
+      test ! -e "$checkout/.skilled/specs"
   done
 done
 
