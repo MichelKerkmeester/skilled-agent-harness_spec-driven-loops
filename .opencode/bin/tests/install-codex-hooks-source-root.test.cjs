@@ -24,8 +24,12 @@ const PROJECT_ANCHOR = '${CODEX_PROJECT_DIR:-$PWD}';
 const THIRD_PARTY_COMMAND = 'node /opt/third-party/hooks/notify.js';
 const SOURCE_ROOT_NAMES = ['.opencode', '.skilled'];
 
+// Git reads GIT_DIR and its siblings before any path argument, so a run started from a git
+// hook would aim git init and the installer's checkout probe at the enclosing repository.
+const GIT_FREE_ENV = Object.fromEntries(Object.entries(process.env).filter(([name]) => !name.startsWith('GIT_')));
+
 // A checkout holds the tree under .opencode, under .skilled, or under .skilled with
-// .opencode linked to it. The orphan test reads the adapter from disk, so each layout
+// .opencode linked to it. The orphan rows read the adapter from disk, so each layout
 // changes which spellings exist.
 const LAYOUTS = [
   { name: 'today', realRoot: '.opencode', linked: false },
@@ -33,8 +37,8 @@ const LAYOUTS = [
   { name: 'whole-link', realRoot: '.skilled', linked: true },
 ];
 
-function hookCommand(sourceRootName) {
-  return 'bash -c \'cd "' + PROJECT_ANCHOR + '" && node ' + sourceRootName + '/hooks/probe-hook.js\'';
+function hookCommand(sourceRootName, adapter = 'probe-hook.js') {
+  return 'bash -c \'cd "' + PROJECT_ANCHOR + '" && node ' + sourceRootName + '/hooks/' + adapter + '\'';
 }
 
 function writeHooks(filePath, groups) {
@@ -51,7 +55,7 @@ function buildFixture(layout, installedName, sourceName) {
   fs.mkdirSync(adapterDirectory, { recursive: true });
   fs.writeFileSync(path.join(adapterDirectory, 'probe-hook.js'), '');
   if (layout.linked) fs.symlinkSync('.skilled', path.join(repo, '.opencode'));
-  execFileSync('git', ['init', '-q', repo], { stdio: 'ignore' });
+  execFileSync('git', ['init', '-q', repo], { stdio: 'ignore', env: GIT_FREE_ENV });
 
   const sourcePath = path.join(repo, '.codex', 'hooks.json');
   const targetPath = path.join(root, 'home', '.codex', 'hooks.json');
@@ -67,7 +71,7 @@ function runInstaller(fixture, extraArguments) {
   return spawnSync(
     process.execPath,
     [INSTALLER_PATH, '--repo', fixture.repo, '--source', fixture.sourcePath, '--target', fixture.targetPath, ...extraArguments],
-    { encoding: 'utf8', env: { ...process.env, HOME: path.join(fixture.root, 'home') } },
+    { encoding: 'utf8', env: { ...GIT_FREE_ENV, HOME: path.join(fixture.root, 'home') } },
   );
 }
 
@@ -80,6 +84,8 @@ function installedCommands(targetPath) {
 // 3. RECONCILIATION ACROSS SPELLINGS AND LAYOUTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Rows that spell both sides alike are controls. The mixed rows are the ones an exact-path
+// ownership check fails, by keeping the old entry beside the new one.
 describe('install-codex-hooks treats .skilled and .opencode adapter paths as one owned hook', () => {
   for (const layout of LAYOUTS) {
     for (const installedName of SOURCE_ROOT_NAMES) {
@@ -103,6 +109,38 @@ describe('install-codex-hooks treats .skilled and .opencode adapter paths as one
           }
         });
       }
+    }
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ORPHANS UNDER EITHER NAME
+// ─────────────────────────────────────────────────────────────────────────────
+
+// An installed entry under either name whose adapter is gone from disk and absent from the
+// source is ours, so an install removes it. Its label keeps the spelling it was installed with.
+describe('install-codex-hooks removes an orphaned hook spelled under either source-root name', () => {
+  for (const layout of LAYOUTS) {
+    for (const orphanName of SOURCE_ROOT_NAMES) {
+      test(`${layout.name}: orphan installed under ${orphanName}`, () => {
+        const fixture = buildFixture(layout, layout.realRoot, layout.realRoot);
+        try {
+          const target = JSON.parse(fs.readFileSync(fixture.targetPath, 'utf8'));
+          const orphanCommand = hookCommand(orphanName, 'retired-hook.js').replaceAll(PROJECT_ANCHOR, fixture.repo);
+          target.hooks.SessionStart.push({ hooks: [{ type: 'command', command: orphanCommand, timeout: 3 }] });
+          fs.writeFileSync(fixture.targetPath, `${JSON.stringify(target, null, 2)}\n`);
+
+          const install = runInstaller(fixture, []);
+          assert.equal(install.status, 0, install.stderr);
+          assert.deepEqual(JSON.parse(install.stdout).orphaned, [`SessionStart:${orphanName}/hooks/retired-hook.js`]);
+
+          const commands = installedCommands(fixture.targetPath);
+          assert.equal(commands.includes(orphanCommand), false);
+          assert.equal(commands.filter((command) => command === THIRD_PARTY_COMMAND).length, 1);
+        } finally {
+          fs.rmSync(fixture.root, { recursive: true, force: true });
+        }
+      });
     }
   }
 });
