@@ -129,6 +129,7 @@ One goal surface. The packet `goal.md`, nested when the packet is phased and sin
 | 10 | 010-repo-wide-goal-research/ | [Phase 10 scope] | Pending |
 | 11 | 011-goal-drift-remediation/ | [Phase 11 scope] | Pending |
 | 12 | 012-open-items-research/ | [Phase 12 scope] | Pending |
+| 13 | 013-goal-chat-send-shape/ | Chat slice shape and the 4,000-character send cap: no anchors, comments, dividers or section numbers in a chat resend | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -151,6 +152,7 @@ One goal surface. The packet `goal.md`, nested when the packet is phased and sin
 | 009-close-open-decisions | 010-repo-wide-goal-research | [Criteria TBD] | [Verification TBD] |
 | 010-repo-wide-goal-research | 011-goal-drift-remediation | [Criteria TBD] | [Verification TBD] |
 | 011-goal-drift-remediation | 012-open-items-research | [Criteria TBD] | [Verification TBD] |
+| 012-open-items-research | 013-goal-chat-send-shape | The operator's chat resend requirement and an audit of every goal send surface exist | Audited lines re-read before edits were authorized |
 <!-- /ANCHOR:phase-map -->
 
 ---

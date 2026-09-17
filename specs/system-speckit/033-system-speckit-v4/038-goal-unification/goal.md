@@ -49,7 +49,7 @@ _memory:
 ### Decisions
 
 | ID | Decision |
-|----|----------|
+|---|---|
 | D1 | A session binds to one packet. Goal state lives in that packet's `goal.md`, nested when phased, singular otherwise. |
 | D2 | The `.opencode/skills/.state/goal` store is demoted to a per-session index with liveness and telemetry. It never holds the directive. |
 | D3 | Frontmatter is never sent to chat, injected, or stored in an objective. One strip function serves every surface. |
@@ -74,7 +74,7 @@ alters a parent decision or criterion is amended here first, then resent.
 **Read the child goal before working a phase.** Each binds as if written here.
 
 | Phase | Goal document |
-|-------|---------------|
+|---|---|
 | 001 | `001-goal-unification-research/goal.md` |
 | 002 | `002-decisions-and-contract-freeze/goal.md` |
 | 003 | `003-speckit-goal-contract/goal.md` |
@@ -87,6 +87,7 @@ alters a parent decision or criterion is amended here first, then resent.
 | 010 | `010-repo-wide-goal-research/goal.md` |
 | 011 | `011-goal-drift-remediation/goal.md` |
 | 012 | `012-open-items-research/goal.md` |
+| 013 | `013-goal-chat-send-shape/goal.md` |
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
