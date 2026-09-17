@@ -1,5 +1,5 @@
 {
-  "corpusHash": "312d721d43840f5e43c4eaef8baa07abaa6bc28cad795fe9ded81d224bc80265",
+  "corpusHash": "9397e7678a5a79dd999a72c2de15770559f260ec56e1736093ef15ccdf175aaf",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27271,
+  "includedPathCount": 27275,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -9005,6 +9005,10 @@
     "specs/cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard/tasks.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/goal.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/spec.md",
+    "specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/implementation-summary.md",
+    "specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/plan.md",
+    "specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/spec.md",
+    "specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/tasks.md",
     "specs/hooks/001-hook-docs-relocation/decision-record.md",
     "specs/hooks/001-hook-docs-relocation/fix-report-preexisting-ghosts.md",
     "specs/hooks/001-hook-docs-relocation/implementation-summary.md",
@@ -27293,7 +27297,7 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fa351eb7530a076142761a64c5358171cc4b6b486ad31c847d10e29141a7f426",
+  "manifestHash": "d14037d08acb589b4ed6c31299c8686178f540914e27ae6846808913e67adeaa",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27981,6 +27985,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/scratch",
       "reason": "excluded directory"
     },
     {
