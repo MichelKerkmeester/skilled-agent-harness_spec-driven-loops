@@ -20,7 +20,7 @@ const { spawn, spawnSync } = require('child_process');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const defaultRoot = path.resolve(__dirname, '..', '..', '..');
-const defaultOpencodeDir = path.join(defaultRoot, '.opencode');
+const defaultOpencodeDir = path.join(defaultRoot, '.skilled');
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const SHUTDOWN_DEADLINE_MS = 5000;
@@ -1051,7 +1051,7 @@ function createModelServerControl(deps = {}) {
   const logger = deps.log || defaultLog;
   const env = deps.env || process.env;
   const rootDir = deps.rootDir || defaultRoot;
-  const opencodeDir = deps.opencodeDir || path.join(rootDir, '.opencode');
+  const opencodeDir = deps.opencodeDir || path.join(rootDir, '.skilled');
   // No internal long-path default: when the caller doesn't supply dbDir explicitly,
   // resolveSocketPath below falls through to resolveModelServerSocketPath's own
   // canonical short default instead of silently reconstructing the overflow-prone path.

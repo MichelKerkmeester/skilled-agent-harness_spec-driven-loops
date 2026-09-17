@@ -30,7 +30,7 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const WARN_LOG_RELATIVE = join('.opencode', 'logs', 'mcp-route-guard.log');
+const WARN_LOG_RELATIVE = join('.skilled', 'logs', 'mcp-route-guard.log');
 const MAX_LOG_BYTES = 256 * 1024;
 
 // ─────────────────────────────────────────────────────────────────────────────

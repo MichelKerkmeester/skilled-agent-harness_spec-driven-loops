@@ -81,11 +81,11 @@ _classify_push_gate() {
   case "$PUSH_OUTPUT" in
     *'[gate:mass-deletion]'*)
       PUSH_GATE="mass-deletion"
-      PUSH_FIX="After inspection: SPECKIT_ALLOW_MASS_DELETION=1 bash .opencode/bin/git-sync.sh --live $LIVE"
+      PUSH_FIX="After inspection: SPECKIT_ALLOW_MASS_DELETION=1 bash .skilled/bin/git-sync.sh --live $LIVE"
       ;;
     *'[gate:skill-root-metadata]'*)
       PUSH_GATE="skill-root-metadata"
-      PUSH_FIX="node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix"
+      PUSH_FIX="node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix"
       ;;
     *'[gate:remote-create]'*)
       PUSH_GATE="remote-create"
@@ -243,7 +243,7 @@ while :; do
   if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
     _record blocked "live branch moved but tracked files dirty"
     warn "$REMOTE/$LIVE moved but there are uncommitted changes to tracked files — cannot rebase."
-    warn "commit or stash them, then run: bash .opencode/bin/git-sync.sh --live $LIVE"
+    warn "commit or stash them, then run: bash .skilled/bin/git-sync.sh --live $LIVE"
     _bail 1
   fi
 

@@ -48,7 +48,7 @@ const REPO = join(HERE, '..', '..');
 const AUTHORED_RESOLVER = sync.AUTHORED_RESOLVER;
 const ADVISOR_DIST_FLAG = join(
   REPO,
-  '.opencode/skills/system-skill-advisor/runtime/dist/runtime/lib/compiled-routing-flag.js',
+  '.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/compiled-routing-flag.js',
 );
 
 // Extract the ordered DEFAULT_ON_HUBS members from a source file by text, so the

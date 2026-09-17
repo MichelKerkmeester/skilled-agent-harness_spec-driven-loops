@@ -16,17 +16,17 @@ const test = require('node:test');
 const { pathToFileURL } = require('node:url');
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..');
-const PLUGIN_PATH = path.join(WORKSPACE_ROOT, '.opencode', 'plugins', 'system-skill-advisor.js');
+const PLUGIN_PATH = path.join(WORKSPACE_ROOT, '.skilled', 'plugins', 'system-skill-advisor.js');
 const MESSAGE_IDENTITY_PATH = path.join(
   WORKSPACE_ROOT,
-  '.opencode',
+  '.skilled',
   'plugins',
   'lib',
   'opencode-message-identity.js',
 );
 const RENDERER_PATH = path.join(
   WORKSPACE_ROOT,
-  '.opencode',
+  '.skilled',
   'skills',
   'system-skill-advisor',
   'runtime',
@@ -35,7 +35,7 @@ const RENDERER_PATH = path.join(
 );
 const CLAUDE_HOOK_PATH = path.join(
   WORKSPACE_ROOT,
-  '.opencode',
+  '.skilled',
   'skills',
   'system-skill-advisor',
   'hooks',
@@ -193,9 +193,9 @@ function makeAdvisorFixture() {
   delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   delete process.env.MK_SKILL_ADVISOR_DB_DIR;
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'system-skill-advisor-signature-'));
-  writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'SKILL.md'), '# Demo\n');
-  writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'graph-metadata.json'), '{"name":"demo"}\n');
-  const advisorRoot = path.join(root, '.opencode', 'skills', 'system-skill-advisor', 'runtime');
+  writeFixtureFile(path.join(root, '.skilled', 'skills', 'demo', 'SKILL.md'), '# Demo\n');
+  writeFixtureFile(path.join(root, '.skilled', 'skills', 'demo', 'graph-metadata.json'), '{"name":"demo"}\n');
+  const advisorRoot = path.join(root, '.skilled', 'skills', 'system-skill-advisor', 'runtime');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_advisor.py'), 'print("advisor")\n');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_advisor_runtime.py'), 'RUNTIME = 1\n');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_graph_compiler.py'), 'COMPILER = 1\n');
@@ -429,9 +429,9 @@ test('multi-file freshness invalidates cache and ignores WAL-only mtime changes'
     await runPrompt(hooks, prompt);
     assert.equal(calls.length, 1, 'warm identical prompt should hit cache');
 
-    writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'SKILL.md'), '# Demo changed\n');
+    writeFixtureFile(path.join(root, '.skilled', 'skills', 'demo', 'SKILL.md'), '# Demo changed\n');
     await runPrompt(hooks, prompt);
-    writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'graph-metadata.json'), '{"name":"changed"}\n');
+    writeFixtureFile(path.join(root, '.skilled', 'skills', 'demo', 'graph-metadata.json'), '{"name":"changed"}\n');
     await runPrompt(hooks, prompt);
     writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill-graph.json'), '{"skills":["demo"]}\n');
     await runPrompt(hooks, prompt);

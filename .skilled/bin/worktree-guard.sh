@@ -10,7 +10,7 @@
 # isolated worktree — the situation worktree-session.sh exists to prevent.
 #
 # Wire it into any runtime's SessionStart chain, e.g. as an extra hook command:
-#   bash /abs/path/.opencode/bin/worktree-guard.sh
+#   bash /abs/path/.skilled/bin/worktree-guard.sh
 #
 # It is intentionally non-fatal: it prints a one-line warning to stderr and always
 # exits 0, so it never blocks a session that the operator chose to run there.
@@ -23,8 +23,8 @@ set -euo pipefail
 
 # shared hook kill-switch (master + per-concern); fail-open if guard absent
 __hf_root="$(git rev-parse --show-toplevel 2>/dev/null)"
-if [ -n "$__hf_root" ] && [ -r "$__hf_root/.opencode/hooks/shared/hook-flags.sh" ]; then
-  . "$__hf_root/.opencode/hooks/shared/hook-flags.sh"
+if [ -n "$__hf_root" ] && [ -r "$__hf_root/.skilled/hooks/shared/hook-flags.sh" ]; then
+  . "$__hf_root/.skilled/hooks/shared/hook-flags.sh"
   # Honor the pre-rename flag name as a backward-compatible alias for this concern.
   __hook_flags_truthy "$(__hook_flags_resolve SYSTEM_WORKTREE_GUARD_DISABLED)" && exit 0
   hook_enabled git-worktree-guard || exit 0
@@ -45,6 +45,6 @@ if [ -n "$GUARD_GIT_DIR" ] && [ -n "$GUARD_GIT_COMMON_DIR" ] && [ "$GUARD_GIT_DI
 fi
 
 branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '?')"
-printf '%s\n' "[worktree-guard] This top-level session is running on the shared '$branch' checkout, not an isolated worktree. Concurrent AI sessions here can collide (shared working tree + MCP databases). To isolate next time, launch via: bash .opencode/bin/worktree-session.sh <runtime>. (silence: SPECKIT_WORKTREE_GUARD=off)" >&2
+printf '%s\n' "[worktree-guard] This top-level session is running on the shared '$branch' checkout, not an isolated worktree. Concurrent AI sessions here can collide (shared working tree + MCP databases). To isolate next time, launch via: bash .skilled/bin/worktree-session.sh <runtime>. (silence: SPECKIT_WORKTREE_GUARD=off)" >&2
 
 exit 0

@@ -150,10 +150,10 @@ Main flow (supervision):
 Run from the repository root.
 
 ```bash
-node -e "require('./.opencode/bin/lib/model-server-supervision.cjs')"
-node -e "require('./.opencode/bin/lib/launcher-ipc-bridge.cjs')"
-node -e "require('./.opencode/bin/lib/launcher-session-proxy.cjs')"
-node -e "require('./.opencode/bin/lib/sidecar-env-allowlist.cjs')"
+node -e "require('./.skilled/bin/lib/model-server-supervision.cjs')"
+node -e "require('./.skilled/bin/lib/launcher-ipc-bridge.cjs')"
+node -e "require('./.skilled/bin/lib/launcher-session-proxy.cjs')"
+node -e "require('./.skilled/bin/lib/sidecar-env-allowlist.cjs')"
 ```
 
 Expected result: each module loads without throwing.

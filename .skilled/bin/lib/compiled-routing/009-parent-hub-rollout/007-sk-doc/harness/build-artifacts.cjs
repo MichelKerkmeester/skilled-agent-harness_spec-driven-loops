@@ -31,7 +31,7 @@ const CHILD_ROOT = path.resolve(__dirname, '..');
 function findRepoRoot(start) {
   let current = path.resolve(start);
   for (;;) {
-    if (fs.existsSync(path.join(current, '.opencode', 'skills'))) return current;
+    if (fs.existsSync(path.join(current, '.skilled', 'skills'))) return current;
     const parent = path.dirname(current);
     if (parent === current) throw new Error('repository root could not be resolved');
     current = parent;
@@ -39,7 +39,7 @@ function findRepoRoot(start) {
 }
 
 const REPO_ROOT = findRepoRoot(CHILD_ROOT);
-const SKILL_ROOT = path.join(REPO_ROOT, '.opencode', 'skills', 'sk-doc');
+const SKILL_ROOT = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc');
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));

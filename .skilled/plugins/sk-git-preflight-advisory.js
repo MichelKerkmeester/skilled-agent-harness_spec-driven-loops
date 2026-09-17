@@ -85,7 +85,7 @@ export default async function MkGitPreflightAdvisoryPlugin(ctx) {
   } catch (_) {
     // Fail open with the host directory when root discovery cannot classify it.
   }
-  const skillMdPath = join(projectDir, '.opencode', 'skills', 'sk-git', 'SKILL.md');
+  const skillMdPath = join(projectDir, '.skilled', 'skills', 'sk-git', 'SKILL.md');
   const pendingEvents = [];
 
   return {

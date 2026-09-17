@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.opencode/logs/` holds append-only log files written by git hooks, the CLI dispatch auditor, and a few OpenCode plugins. Every file here is a runtime artifact, not checked-in evidence: writers create the file and its parent directory on first write, none of them prune or rotate content unless noted below, and none of them ever read stdin/stdout back from these files at prompt time.
+`.skilled/logs/` holds append-only log files written by git hooks, the CLI dispatch auditor, and a few OpenCode plugins. Every file here is a runtime artifact, not checked-in evidence: writers create the file and its parent directory on first write, none of them prune or rotate content unless noted below, and none of them ever read stdin/stdout back from these files at prompt time.
 
 Current state:
 
@@ -27,10 +27,10 @@ Current state:
 
 | File | Format | Writer |
 |---|---|---|
-| `autostash-orphan-alerts.log` | Tab-separated: `<UTC timestamp>\tHEAD=<short-sha>\t<stash-ref>\t<stash-commit-sha>` | `.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh` |
-| `cli-dispatch-audit.log` | JSON Lines, one redacted record per completed `opencode run` / `claude -p` dispatch (`schema_version`, `ts`, `runtime`, `sessionID`, `callID`, `skill`, `command`, `model`, `target`, `durationMs`, `exitCode`, `outputBytes`) | `.opencode/hooks/dispatch/lib/dispatch-audit.mjs`, paired with the `cli-dispatch-audit.js` plugin |
-| `completion-sentinel-advisories.log` | Plain text: `<UTC timestamp> [completion-evidence-sentinel] <advisory message>` | `.opencode/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`, via the `system-completion-sentinel.js` plugin |
-| `dist-freshness-guard.log` | Plain text: `<UTC timestamp> [system-dist-freshness-guard] <event>: <message>` | `.opencode/plugins/system-dist-freshness-guard.js` |
+| `autostash-orphan-alerts.log` | Tab-separated: `<UTC timestamp>\tHEAD=<short-sha>\t<stash-ref>\t<stash-commit-sha>` | `.skilled/scripts/git-hooks/lib/autostash-orphan-guard.sh` |
+| `cli-dispatch-audit.log` | JSON Lines, one redacted record per completed `opencode run` / `claude -p` dispatch (`schema_version`, `ts`, `runtime`, `sessionID`, `callID`, `skill`, `command`, `model`, `target`, `durationMs`, `exitCode`, `outputBytes`) | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`, paired with the `cli-dispatch-audit.js` plugin |
+| `completion-sentinel-advisories.log` | Plain text: `<UTC timestamp> [completion-evidence-sentinel] <advisory message>` | `.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`, via the `system-completion-sentinel.js` plugin |
+| `dist-freshness-guard.log` | Plain text: `<UTC timestamp> [system-dist-freshness-guard] <event>: <message>` | `.skilled/plugins/system-dist-freshness-guard.js` |
 
 `autostash-orphan-alerts.log` records only entries the pre-checkout/pre-rebase guard could not confirm were re-applied; each also gets a durable `refs/autostash-rescue/<sha12>` ref so the underlying stash survives a `git stash clear`.
 
@@ -43,13 +43,13 @@ Current state:
 Tail any log live while its writer is active:
 
 ```bash
-tail -f .opencode/logs/dist-freshness-guard.log
+tail -f .skilled/logs/dist-freshness-guard.log
 ```
 
 Confirm a JSONL file stays parseable:
 
 ```bash
-tail -n 1 .opencode/logs/cli-dispatch-audit.log | python3 -m json.tool
+tail -n 1 .skilled/logs/cli-dispatch-audit.log | python3 -m json.tool
 ```
 
 Expected result: valid JSON output for the most recent line.

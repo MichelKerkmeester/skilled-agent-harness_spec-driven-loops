@@ -20,7 +20,7 @@ const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
-const WARN_LOG_RELATIVE = join('.opencode', 'logs', 'codex-hooks-watchdog.log');
+const WARN_LOG_RELATIVE = join('.skilled', 'logs', 'codex-hooks-watchdog.log');
 const MAX_GUARD_LOG_BYTES = 256 * 1024;
 const MAX_SESSION_IDS = 1_000;
 const CHECK_TIMEOUT_MS = 5_000;
@@ -76,7 +76,7 @@ export default async function MkCodexHooksWatchdogPlugin(ctx) {
         try {
           execFileSync(
             'node',
-            [join(projectDir, '.opencode', 'bin', 'install-codex-hooks.mjs'), '--check'],
+            [join(projectDir, '.skilled', 'bin', 'install-codex-hooks.mjs'), '--check'],
             { cwd: projectDir, stdio: 'ignore', timeout: CHECK_TIMEOUT_MS },
           );
         } catch (_) {
@@ -84,7 +84,7 @@ export default async function MkCodexHooksWatchdogPlugin(ctx) {
           // (or the installer could not run). Record the remediation, never throw.
           appendWatchdogLog(
             projectDir,
-            'codex hook drift detected; run: node .opencode/bin/install-codex-hooks.mjs --check',
+            'codex hook drift detected; run: node .skilled/bin/install-codex-hooks.mjs --check',
           );
         }
       } catch (_) { /* fail-open: a watchdog must never degrade a session */ }

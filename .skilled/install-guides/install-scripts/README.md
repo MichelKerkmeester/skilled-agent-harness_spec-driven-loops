@@ -33,7 +33,7 @@ trigger_phrases:
 Run an installer from the repository root. Start with the component-specific help output before allowing a script to modify configuration.
 
 ```bash
-bash .opencode/install-guides/install-scripts/install-all.sh --help
+bash .skilled/install-guides/install-scripts/install-all.sh --help
 ```
 
 The component symlinks resolve to their owning skill directories.
@@ -45,13 +45,13 @@ The component symlinks resolve to their owning skill directories.
 Check the installer shell syntax from the repository root:
 
 ```bash
-for script in .opencode/install-guides/install-scripts/*.sh; do bash -n "$script"; done
+for script in .skilled/install-guides/install-scripts/*.sh; do bash -n "$script"; done
 ```
 
 The broken-symlink check is intentionally separate because a broken target cannot be validated by `bash -n`:
 
 ```bash
-find .opencode/install-guides/install-scripts -type l ! -exec test -e {} \; -print
+find .skilled/install-guides/install-scripts -type l ! -exec test -e {} \; -print
 ```
 
 Expected result: the syntax loop exits successfully and the symlink check prints nothing.

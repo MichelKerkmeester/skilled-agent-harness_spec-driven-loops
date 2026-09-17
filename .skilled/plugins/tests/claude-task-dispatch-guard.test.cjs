@@ -22,7 +22,7 @@ const { spawnSync } = require('node:child_process');
 
 const REJECT_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT';
 const REJECT_LOOP_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP';
-const GUARD_LOG_RELATIVE = ['.opencode', 'skills', '.state', 'loop-guard', 'guard-warnings.log'];
+const GUARD_LOG_RELATIVE = ['.skilled', 'skills', '.state', 'loop-guard', 'guard-warnings.log'];
 
 const HOOK_PATH = path.join(
   __dirname,
@@ -35,7 +35,7 @@ const HOOK_PATH = path.join(
 );
 
 function writeFixtureRegistry(dir) {
-  const registryDir = path.join(dir, '.opencode', 'skills', 'system-deep-loop');
+  const registryDir = path.join(dir, '.skilled', 'skills', 'system-deep-loop');
   fs.mkdirSync(registryDir, { recursive: true });
   fs.writeFileSync(
     path.join(registryDir, 'mode-registry.json'),
@@ -57,7 +57,7 @@ function guardLogPath(dir) {
 }
 
 function degradedGuardLogPath(dir) {
-  return `${path.join(dir, '.opencode', 'skills', '.state', 'loop-guard')}.guard-warnings.log`;
+  return `${path.join(dir, '.skilled', 'skills', '.state', 'loop-guard')}.guard-warnings.log`;
 }
 
 function readGuardLog(dir) {
@@ -214,7 +214,7 @@ function main() {
   assert.match(reasonOf(hook), /system-deep-loop-guard: Deep Route mode mismatch/, 'deny must carry the mismatch reason');
 
   // Fail-open: registry unreadable, mismatch present, reject on -- approve + degraded audit, no deny.
-  const registryPath = path.join(cwd, '.opencode', 'skills', 'system-deep-loop', 'mode-registry.json');
+  const registryPath = path.join(cwd, '.skilled', 'skills', 'system-deep-loop', 'mode-registry.json');
   fs.rmSync(registryPath);
   clearGuardLog(cwd);
   hook = runHook(
@@ -371,7 +371,7 @@ function main() {
   assert.doesNotMatch(readGuardLog(cwd), /loop-like/, 'separate sessions must not share loop-repeat counts');
 
   // Fail-open: loop-guard state dir is a file -- write fails, dispatch never denied.
-  const blockedStateDirPath = path.join(cwd, '.opencode', 'skills', '.state', 'loop-guard');
+  const blockedStateDirPath = path.join(cwd, '.skilled', 'skills', '.state', 'loop-guard');
   fs.rmSync(blockedStateDirPath, { recursive: true, force: true });
   fs.writeFileSync(blockedStateDirPath, 'not a directory');
   hook = runHook(

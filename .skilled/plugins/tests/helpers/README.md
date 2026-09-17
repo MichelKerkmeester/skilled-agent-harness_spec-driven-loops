@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`helpers/` holds shared utility functions for the sibling `*.test.cjs` files in `.opencode/plugins/tests/`. It centralizes continuation-log reading and environment-variable restoration so individual test files do not duplicate that logic. The helpers are CJS (`.cjs`) so they can be `require()`'d directly by the CJS test shells.
+`helpers/` holds shared utility functions for the sibling `*.test.cjs` files in `.skilled/plugins/tests/`. It centralizes continuation-log reading and environment-variable restoration so individual test files do not duplicate that logic. The helpers are CJS (`.cjs`) so they can be `require()`'d directly by the CJS test shells.
 
 Current state: one module, `continuation-log.cjs`, exporting two functions. It is consumed by four goal-plugin test files through `require('./helpers/continuation-log.cjs')`.
 
@@ -73,16 +73,16 @@ None. The helpers are pure utility functions with no configuration surface.
 The helpers are exercised by their consuming suites; there is no standalone helper test. Run the consuming suites to validate:
 
 ```bash
-node --test .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs \
-         .opencode/plugins/tests/opencode-goal-state.test.cjs \
-         .opencode/plugins/tests/opencode-goal-continuation.test.cjs \
-         .opencode/plugins/tests/opencode-goal-capabilities.test.cjs
+node --test .skilled/plugins/tests/opencode-goal-lifecycle.test.cjs \
+         .skilled/plugins/tests/opencode-goal-state.test.cjs \
+         .skilled/plugins/tests/opencode-goal-continuation.test.cjs \
+         .skilled/plugins/tests/opencode-goal-capabilities.test.cjs
 ```
 
 Expected result: all four suites pass (confirms the helpers behave as their consumers expect).
 
 ```bash
-node --check .opencode/plugins/tests/helpers/continuation-log.cjs
+node --check .skilled/plugins/tests/helpers/continuation-log.cjs
 ```
 
 Expected result: no syntax error.

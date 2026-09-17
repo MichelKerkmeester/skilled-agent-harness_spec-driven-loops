@@ -35,12 +35,12 @@ const layout = require('./lib/compiled-route-layout.cjs');
 const { checkCanonicalManifestFreshness } = require('./lib/compiled-route-manifest.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const RUNTIME_ROOT = path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-routing');
+const RUNTIME_ROOT = path.join(REPO_ROOT, '.skilled', 'bin', 'lib', 'compiled-routing');
 const AUTHORED_ROOT = path.join(
   REPO_ROOT,
   'specs/sk-doc/019-skill-routing-refactor/015-router-unification-program',
 );
-const SKILLS_ROOT = path.join(REPO_ROOT, '.opencode', 'skills');
+const SKILLS_ROOT = path.join(REPO_ROOT, '.skilled', 'skills');
 
 const HUBS = [
   'cli-external-orchestration',

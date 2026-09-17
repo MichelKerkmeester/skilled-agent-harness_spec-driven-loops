@@ -44,7 +44,7 @@ const {
 } = require('./lib/compiled-route-layout.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const RUNTIME_ROOT = path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-routing');
+const RUNTIME_ROOT = path.join(REPO_ROOT, '.skilled', 'bin', 'lib', 'compiled-routing');
 let cachedRuntimeModules = null;
 
 function clearRuntimeRequireCache(runtimeRoot) {
@@ -186,7 +186,7 @@ function manifestFreshnessFor(hubId, manifestBytes, skillRoot, engine = loadEngi
     }
   }
   const resolvedSkillRoot = skillRoot
-    || path.join(REPO_ROOT, '.opencode', 'skills', hubId);
+    || path.join(REPO_ROOT, '.skilled', 'skills', hubId);
   return checkCanonicalManifestFreshness({
     hubId,
     skillRoot: resolvedSkillRoot,

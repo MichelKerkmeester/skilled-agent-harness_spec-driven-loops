@@ -30,7 +30,7 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
 const DISABLED_ENV = 'SK_CODE_POST_EDIT_QUALITY_DISABLED';
-const LOG_RELATIVE = join('.opencode', 'logs', 'post-edit-quality.log');
+const LOG_RELATIVE = join('.skilled', 'logs', 'post-edit-quality.log');
 const MAX_LOG_BYTES = 256 * 1024;
 const MAX_CALL_IDS = 1_000;
 const MAX_PENDING_FINDINGS = 20;

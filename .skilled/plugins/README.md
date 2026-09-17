@@ -99,7 +99,7 @@ Every plugin is enabled by default. Truthy disable values are `1`, `true`, `yes`
 
 Optional tuning: `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000; owned by `system-skill-advisor`), `SYSTEM_OPENCODE_TRANSFORM_DEDUP=1` (opt-in transform dedup for the advisor plugin), plus per-plugin cache/budget/timeout envs documented in each plugin's README.
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -132,13 +132,13 @@ Plugin factories register some subset of:
 Run the Node regression command from the repository root:
 
 ```bash
-node --test .opencode/plugins/tests/*.test.cjs
+node --test .skilled/plugins/tests/*.test.cjs
 ```
 
 Expected result: Node discovers every current CJS test file and reports the suite result. A failing test is a validation failure.
 
 ```bash
-for f in .opencode/plugins/*.js; do node --check "$f"; done
+for f in .skilled/plugins/*.js; do node --check "$f"; done
 ```
 
 Expected result: no syntax errors across every plugin (resolves imports against the repo).

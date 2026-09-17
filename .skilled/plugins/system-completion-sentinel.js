@@ -20,7 +20,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The sentinel core lives outside .opencode/plugins/ so this file can remain a
+// The sentinel core lives outside .skilled/plugins/ so this file can remain a
 // thin, default-export-only OpenCode plugin while the Claude Stop hook
 // consumes the identical core. A .cjs core is imported here as the ESM
 // default export, exactly like system-deep-loop-guard.js.

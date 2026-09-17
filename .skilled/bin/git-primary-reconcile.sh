@@ -122,7 +122,7 @@ classify_push_gate() {
       ;;
     *'[gate:skill-root-metadata]'*)
       PUSH_GATE="skill-root-metadata"
-      PUSH_FIX="node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix"
+      PUSH_FIX="node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix"
       ;;
     *'[gate:remote-create]'*)
       PUSH_GATE="remote-create"
@@ -157,7 +157,7 @@ LOCK_FILE="$COMMON_DIR/git-primary-reconcile.lock"
 # Resolver failures leave default-on behavior intact. Startup must not become
 # dependent on optional policy plumbing, but the missing guard must be visible.
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-FLAGS_FILE="$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh"
+FLAGS_FILE="$REPO_ROOT/.skilled/hooks/shared/hook-flags.sh"
 FLAGS_LOADED=0
 if [ -n "$REPO_ROOT" ] && [ -r "$FLAGS_FILE" ]; then
   set +e

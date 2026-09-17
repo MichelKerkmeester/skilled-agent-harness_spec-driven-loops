@@ -32,7 +32,7 @@ const {
 
 const RISKY_BASH_COMMAND_REGEX = /opencode\s+run|\bvalidate\.sh\b/i;
 const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
-const WARN_LOG_RELATIVE = join('.opencode', 'logs', 'dist-freshness-guard.log');
+const WARN_LOG_RELATIVE = join('.skilled', 'logs', 'dist-freshness-guard.log');
 const MAX_GUARD_LOG_BYTES = 256 * 1024;
 const MAX_SESSION_IDS = 1_000;
 const MAX_DIAGNOSTIC_LINES = 8;

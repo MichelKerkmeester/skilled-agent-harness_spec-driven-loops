@@ -28,14 +28,14 @@ import { fileURLToPath } from 'node:url';
 
 const PLUGIN_ROOT = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(PLUGIN_ROOT, '..', '..');
-const CLEANUP_SCRIPT = join(REPO_ROOT, '.opencode/scripts/session-cleanup.sh');
-const PROCESS_SWEEP_SCRIPT = join(REPO_ROOT, '.opencode/skills/system-spec-kit/runtime/cli/dist/ops/process-sweep.js');
+const CLEANUP_SCRIPT = join(REPO_ROOT, '.skilled/scripts/session-cleanup.sh');
+const PROCESS_SWEEP_SCRIPT = join(REPO_ROOT, '.skilled/skills/system-spec-kit/runtime/cli/dist/ops/process-sweep.js');
 const GUARD_SCRIPTS = [
-  { path: join(REPO_ROOT, '.opencode/bin/worktree-guard.sh'), args: [] },
-  { path: join(REPO_ROOT, '.opencode/bin/check-git-hooks.sh'), args: [] },
-  { path: join(REPO_ROOT, '.opencode/bin/git-live-follow.sh'), args: ['--start'] },
+  { path: join(REPO_ROOT, '.skilled/bin/worktree-guard.sh'), args: [] },
+  { path: join(REPO_ROOT, '.skilled/bin/check-git-hooks.sh'), args: [] },
+  { path: join(REPO_ROOT, '.skilled/bin/git-live-follow.sh'), args: ['--start'] },
 ];
-const PRIMARY_RECONCILE_SCRIPT = join(REPO_ROOT, '.opencode/bin/git-primary-reconcile.sh');
+const PRIMARY_RECONCILE_SCRIPT = join(REPO_ROOT, '.skilled/bin/git-primary-reconcile.sh');
 const DEFAULT_LOG_PATH = join(
   process.env.HOME || '/tmp',
   '.local/share/session-cleanup.log',

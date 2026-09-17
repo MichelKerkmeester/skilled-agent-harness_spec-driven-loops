@@ -131,7 +131,7 @@ test('goal plugin reference links the OpenCode command document', async () => {
     join(opencodeRoot, 'hooks', 'goal', 'goal-plugin.md'),
     'utf8',
   );
-  assert.match(referenceDoc, /\.opencode\/commands\/goal-opencode\.md/);
+  assert.match(referenceDoc, /\.skilled\/commands\/goal-opencode\.md/);
 });
 
 test('regression graph key files exclude non-deliverable legacy basenames', async () => {
