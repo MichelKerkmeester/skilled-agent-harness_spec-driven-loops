@@ -140,8 +140,20 @@ is_backup_branch() {
 # missing or emptied allowlist file can only narrow exemptions back to these
 # two, never widen toward "everything" — the file is purely additive.
 _wn_remote_allowlist_file() {
-  local top
+  local top legacy
   top="$(_wn_toplevel)" || return 1
+  # The real directory is tried first. A checkout that carries only the legacy
+  # root still has an operator's approvals honoured, because losing the file
+  # silently would narrow the allowlist to `main` with nothing said.
+  if [ -f "$top/.skilled/skills/sk-git/scripts/remote-branch-allowlist.txt" ]; then
+    echo "$top/.skilled/skills/sk-git/scripts/remote-branch-allowlist.txt"
+    return 0
+  fi
+  legacy="$top/.opencode/skills/sk-git/scripts/remote-branch-allowlist.txt"
+  if [ -f "$legacy" ]; then
+    echo "$legacy"
+    return 0
+  fi
   echo "$top/.skilled/skills/sk-git/scripts/remote-branch-allowlist.txt"
 }
 
