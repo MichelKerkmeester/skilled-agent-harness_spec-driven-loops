@@ -33,6 +33,12 @@ export interface RootFixture {
   readonly expectedDecision: 'allow' | 'reject' | 'n/a';
 }
 
+/**
+ * Where a workspace keeps its source tree: a real `.opencode/`, a real `.skilled/`, or a
+ * real `.skilled/` with `.opencode` linked to it.
+ */
+export type SourceRootLayout = 'today' | 'skilled-only' | 'whole-link';
+
 /** Temporary filesystem state and classifier input produced from a root fixture. */
 export interface MaterializedRootFixture {
   readonly fixture: RootFixture;
@@ -133,27 +139,38 @@ function createPacket(rootPath: string, packetId: string, content: string): void
 }
 
 /** Materializes one root state entirely beneath a new operating-system temp directory. */
-export function materializeRootFixture(fixture: RootFixture): MaterializedRootFixture {
+export function materializeRootFixture(
+  fixture: RootFixture,
+  layout: SourceRootLayout = 'today',
+): MaterializedRootFixture {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'spec-root-fixture-'));
   const workspaceDir = path.join(tempDir, 'workspace');
   const canonicalRoot = path.join(workspaceDir, 'specs');
+  // Resolvers know the legacy root by its one `.opencode/specs` spelling. Under a
+  // `.skilled` tree the entry is written inside `.skilled`, so only an `.opencode` link
+  // can expose it, and a `.skilled`-only workspace has no legacy root to report.
   const legacyRoot = path.join(workspaceDir, '.opencode', 'specs');
+  const sourceRootDir = path.join(workspaceDir, layout === 'today' ? '.opencode' : '.skilled');
+  const legacyEntry = path.join(sourceRootDir, 'specs');
+  const legacyVisible = layout !== 'skilled-only';
   const physicalRoots: PhysicalRoot[] = [];
 
   fs.mkdirSync(workspaceDir, { recursive: true });
-  // legacyRoot now nests one level deeper (.opencode/specs) than canonicalRoot
-  // (specs) -- pre-create its parent so fixtures that write directly at
-  // legacyRoot (a symlink or a plain file, not addLegacyRoot()'s directory)
-  // never fail on a missing intermediate directory.
-  fs.mkdirSync(path.dirname(legacyRoot), { recursive: true });
+  // The legacy entry nests one level deeper than canonicalRoot, so pre-create its
+  // parent: fixtures that write directly at the entry (a symlink or a plain file, not
+  // addLegacyRoot()'s directory) never fail on a missing intermediate directory.
+  fs.mkdirSync(sourceRootDir, { recursive: true });
+  if (layout === 'whole-link') {
+    fs.symlinkSync('.skilled', path.join(workspaceDir, '.opencode'), 'dir');
+  }
 
   const addCanonicalRoot = (): void => {
     fs.mkdirSync(canonicalRoot, { recursive: true });
     physicalRoots.push({ rootPath: canonicalRoot, kind: 'canonical' });
   };
   const addLegacyRoot = (): void => {
-    fs.mkdirSync(legacyRoot, { recursive: true });
-    physicalRoots.push({ rootPath: legacyRoot, kind: 'legacy' });
+    fs.mkdirSync(legacyEntry, { recursive: true });
+    if (legacyVisible) physicalRoots.push({ rootPath: legacyRoot, kind: 'legacy' });
   };
 
   try {
@@ -164,25 +181,25 @@ export function materializeRootFixture(fixture: RootFixture): MaterializedRootFi
         break;
       case 'R2':
         addLegacyRoot();
-        createPacket(legacyRoot, RELATIVE_PACKET_ID, PACKET_CONTENT);
+        createPacket(legacyEntry, RELATIVE_PACKET_ID, PACKET_CONTENT);
         break;
       case 'R3':
         addCanonicalRoot();
         createPacket(canonicalRoot, RELATIVE_PACKET_ID, PACKET_CONTENT);
-        fs.symlinkSync(path.join('..', 'specs'), legacyRoot, 'dir');
-        physicalRoots.push({ rootPath: legacyRoot, kind: 'legacy' });
+        fs.symlinkSync(path.join('..', 'specs'), legacyEntry, 'dir');
+        if (legacyVisible) physicalRoots.push({ rootPath: legacyRoot, kind: 'legacy' });
         break;
       case 'R4':
         addCanonicalRoot();
         addLegacyRoot();
         createPacket(canonicalRoot, RELATIVE_PACKET_ID, PACKET_CONTENT);
-        createPacket(legacyRoot, OTHER_PACKET_ID, PACKET_CONTENT);
+        createPacket(legacyEntry, OTHER_PACKET_ID, PACKET_CONTENT);
         break;
       case 'R5':
         addCanonicalRoot();
         addLegacyRoot();
         createPacket(canonicalRoot, RELATIVE_PACKET_ID, PACKET_CONTENT);
-        createPacket(legacyRoot, RELATIVE_PACKET_ID, PACKET_CONTENT);
+        createPacket(legacyEntry, RELATIVE_PACKET_ID, PACKET_CONTENT);
         break;
       case 'R6':
         addCanonicalRoot();
@@ -192,23 +209,23 @@ export function materializeRootFixture(fixture: RootFixture): MaterializedRootFi
           RELATIVE_PACKET_ID,
           `${PACKET_CONTENT}Canonical copy.\n`,
         );
-        createPacket(legacyRoot, RELATIVE_PACKET_ID, `${PACKET_CONTENT}Legacy copy.\n`);
+        createPacket(legacyEntry, RELATIVE_PACKET_ID, `${PACKET_CONTENT}Legacy copy.\n`);
         break;
       case 'R7':
         addCanonicalRoot();
         createPacket(canonicalRoot, RELATIVE_PACKET_ID, PACKET_CONTENT);
-        fs.symlinkSync('missing-specs', legacyRoot, 'dir');
+        fs.symlinkSync('missing-specs', legacyEntry, 'dir');
         break;
       case 'R8':
         addCanonicalRoot();
         addLegacyRoot();
         createPacket(canonicalRoot, RELATIVE_PACKET_ID, PACKET_CONTENT);
-        createPacket(legacyRoot, OTHER_PACKET_ID, PACKET_CONTENT);
+        createPacket(legacyEntry, OTHER_PACKET_ID, PACKET_CONTENT);
         break;
       case 'R9':
         addCanonicalRoot();
         createPacket(canonicalRoot, RELATIVE_PACKET_ID, PACKET_CONTENT);
-        fs.writeFileSync(legacyRoot, '.opencode/specs\n', 'utf8');
+        fs.writeFileSync(legacyEntry, '.opencode/specs\n', 'utf8');
         break;
       case 'R10': {
         addCanonicalRoot();
@@ -219,7 +236,7 @@ export function materializeRootFixture(fixture: RootFixture): MaterializedRootFi
           RELATIVE_PACKET_ID,
           'External packet must remain isolated.\n',
         );
-        fs.symlinkSync(path.relative(path.dirname(legacyRoot), externalRoot), legacyRoot, 'dir');
+        fs.symlinkSync(path.relative(path.dirname(legacyEntry), externalRoot), legacyEntry, 'dir');
         break;
       }
     }
