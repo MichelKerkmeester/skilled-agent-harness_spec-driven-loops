@@ -1,0 +1,15 @@
+hook-registrations     exit=0   [hook-registration-sync] PASS: 4 registration files match the 29-hook registry; 15 Pi extensions resolve.
+runtime-mirrors        exit=0   [runtime-mirror-sync] PASS: 168 mirrors across 8 trees are in sync.
+gate1-pointers         exit=0   [gate1-pointer-sync] PASS: 2 instruction files carry the root Gate 1 lookup.
+codex-prompts          exit=0   [codex-prompt-sync] PASS: 33 prompts are in sync.
+codex-agents           exit=0   [codex-agent-sync] PASS: 12 agents are in sync.
+pi-prompts             exit=0   [pi-prompt-sync] PASS: 33 prompts are in sync.
+pi-agents              exit=0   [pi-agent-sync] PASS: 12 agents are in sync.
+hermes-prompts         exit=0   [hermes-prompt-sync] PASS: 33 prompts are in sync.
+hermes-skills          exit=1   FAIL: 2 drifted, 0 stale; run without --check to regenerate
+codex-command-routers  exit=1   routers=29 clean=26 path-drift=3 shape-drift=0
+contract-drift         exit=0   [CONTRACT DRIFT] OK commands=3
+leaf-manifests         exit=0   checked=13 fresh=13 failed=0
+skill-derived          exit=0   checked=13 fresh=13 stale=0 errored=0
+dist-check-all         exit=0   All watched dist outputs are fresh.
+compiled-routing       exit=0   all 5 hubs resolve

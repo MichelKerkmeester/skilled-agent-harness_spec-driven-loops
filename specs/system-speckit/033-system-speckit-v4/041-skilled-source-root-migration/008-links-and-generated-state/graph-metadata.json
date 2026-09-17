@@ -39,7 +39,7 @@
       "zero"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/package-lock.json",
+      "codex/sync-prompts.cjs",
+      "codex/sync-agents.cjs",
+      "hermes/sync-prompts-hermes.cjs",
+      "hermes/sync-skills-hermes.cjs",
+      "pi/sync-prompts-pi.cjs",
+      "pi/sync-agents-pi.cjs",
+      "scratch/review-ledger.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".codex/hooks.json",
       ".pi/extensions/lib/claude-hook-adapter.ts",
       ".cursor/rules/sk-vision.md",
-      ".claude/settings.json",
-      ".cursor/hooks.json",
-      ".devin/hooks.v1.json",
-      "codex/sync-agents.cjs",
-      "pi/sync-prompts-pi.cjs",
-      "pi/sync-agents-pi.cjs",
-      "hermes/sync-prompts-hermes.cjs",
-      "hermes/sync-skills-hermes.cjs",
-      ".codex/AGENTS.md",
-      ".cursor/rules/skill-routing.md"
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"
     ],
     "entities": [
       {
@@ -100,6 +100,54 @@
         "source": "derived"
       },
       {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".skilled/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": "codex/sync-prompts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": "codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-hermes.cjs",
+        "kind": "file",
+        "path": "hermes/sync-prompts-hermes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-hermes.cjs",
+        "kind": "file",
+        "path": "hermes/sync-skills-hermes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-pi.cjs",
+        "kind": "file",
+        "path": "pi/sync-prompts-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-pi.cjs",
+        "kind": "file",
+        "path": "pi/sync-agents-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-ledger.md",
+        "kind": "doc",
+        "path": "scratch/review-ledger.md",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
@@ -124,57 +172,15 @@
         "source": "derived"
       },
       {
-        "name": "settings.json",
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
         "kind": "config",
-        "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents.cjs",
-        "kind": "file",
-        "path": "codex/sync-agents.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts-pi.cjs",
-        "kind": "file",
-        "path": "pi/sync-prompts-pi.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents-pi.cjs",
-        "kind": "file",
-        "path": "pi/sync-agents-pi.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts-hermes.cjs",
-        "kind": "file",
-        "path": "hermes/sync-prompts-hermes.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-skills-hermes.cjs",
-        "kind": "file",
-        "path": "hermes/sync-skills-hermes.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "AGENTS.md",
-        "kind": "doc",
-        "path": ".codex/AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-routing.md",
-        "kind": "doc",
-        "path": ".cursor/rules/skill-routing.md",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 007 moves the files, and nothing that points at them moves along",
     "created_at": "2026-09-16T17:54:08Z",
-    "last_save_at": "2026-09-16T18:43:45.474Z",
+    "last_save_at": "2026-09-17T14:53:01.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ad79afb0238415decf6f55c1e6bf74793276b4851cee61a800c7f2a0990fcec",
+    "source_fingerprint": "sha256:362dfe3ac7c2195f30f1e922164a1b78da2a740cf8069ae8a4c2c993510e10eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "75ab44c3180136e11fd12900b3835b33222c0064e99c480d52c5ebb13d12f10d",
-      "plan.md": "423c4aacf3893acc178ffdf700b9cc77522a06a8520b2aac9c3c213f18e4e5ed",
-      "tasks.md": "5ef9a76e319f987679d78e30b347386f0d3da849d56d7faa791304cceb2f6fb2",
-      "implementation-summary.md": "3ef65c8faeebde1b90a2980e2199d332d57c886aa38f56573800231d5c68e337"
+      "spec.md": "323324ed8fac8baac87e4432cacf94991d416e2d9025470fffd0c9ba1ac2b835",
+      "plan.md": "b73f848526689073a228f3e259d07030aa45fd7a7401c65084825a1444d60fd5",
+      "tasks.md": "fa01bc7259286d30c0639123d584c234eef8294ebac452417da80fee98395b25",
+      "implementation-summary.md": "cbbb0ed9585b1f0ec4d0f9013a46e782826896963c434a2bfa017ea7cb183c02"
     },
     "last_active_at": null
   }

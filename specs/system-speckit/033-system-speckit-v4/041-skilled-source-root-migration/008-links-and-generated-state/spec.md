@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-16 |
 | **Branch** | `worktrees/055-skilled-source-root-migration` |
 | **Parent Spec** | ../spec.md |
@@ -151,7 +151,7 @@ Paths are post-move. Line numbers cite the pre-move file at `728c4f3efc`.
 | REQ-006 | Each of the four links broken before the move carries a recorded retire-or-restore decision, applied and censused. |
 | REQ-007 | The 13 skill `graph-metadata.json` derived blocks name only existing `.skilled/` paths, and the owner's dry run reports no change and no error. `regenerate-skill-derived.cjs` never runs with `--write` in this phase. |
 | REQ-008 | `council-graph.sqlite`, `.skilled/package-lock.json` and this folder's spec metadata are handled by their owners: phase 003's recorded disposition, an npm lock-only install and `repair-derived.cjs`. |
-| REQ-009 | Every source-constant or path-data diff has a GPT-5.6-sol review recorded before its write run, and the orchestrator re-runs every delegated unit's check and suite before the next unit starts. |
+| REQ-009 | Every source-constant or path-data diff has a GPT-5.6 Luna review recorded before its write run, and the orchestrator re-runs every delegated unit's check and suite before any unit that reads its output starts. The parent's D3, amended 2026-09-17, names Luna and parallel lanes. |
 | REQ-010 | The regeneration order, commands, checks and suites are recorded as a runbook that phases 009 and 011 re-run unchanged. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
@@ -248,11 +248,11 @@ Paths are post-move. Line numbers cite the pre-move file at `728c4f3efc`.
 
 ## 10. OPEN QUESTIONS
 
-- **UNKNOWN:** which command rebuilds or migrates `council-graph.sqlite`. Phase 003 records it. The writer names the file at `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts:81` and exposes no rebuild entry point.
-- **UNKNOWN:** the shape of `.opencode/` after the move. Phase 004 decides whether `.opencode/specs` exists, whether old-prefix paths resolve and so whether the three frozen `z_archive/022-hybrid-rag-fusion` links still resolve.
-- **UNKNOWN:** whether phase 006 already changed a constant this phase plans to change. T001 reads 006's record, and a constant already changed is skipped.
-- **UNKNOWN:** whether phase 007's rename carried untracked `node_modules/`, `dist/` and caches along. T003 records what is present before any build.
-- Retire or restore for each of the four already-broken links: the orchestrator decides at T006 from the evidence in `plan.md` §3.
+- Answered: `council-graph.sqlite` needs no migration. Phase 003 records that the graph rebuilds per session through `replay-graph-from-artifacts.cjs`, and the tracked file holds test residue with one `.opencode/specs` namespace key.
+- Answered: phase 004 froze L1, so `.opencode` is one link to `.skilled`, `.opencode/specs` and every old-prefix path resolve, and the three frozen `z_archive/022-hybrid-rag-fusion` links resolve too.
+- Answered: phase 006 changed none of these constants. It made root discovery and the contract compiler's path resolution accept either root.
+- Answered: yes. 17 of 18 ignored entries travelled with their entry, and phase 007 relocated the root `node_modules`.
+- Answered: three already-broken links retired and `plugins/sk-vision.js` kept and built, as `goal.md` records under T006.
 <!-- /ANCHOR:questions -->
 
 ---

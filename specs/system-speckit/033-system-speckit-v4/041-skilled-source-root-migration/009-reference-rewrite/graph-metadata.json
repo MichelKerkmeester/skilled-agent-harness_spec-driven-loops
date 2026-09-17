@@ -203,7 +203,7 @@
     ],
     "causal_summary": "After phase 007 moves the authored tree, 2,963 tracked files still name it by its old path: 2,938 mechanical rows in map C carrying 15,648 matching lines plus 27 authored runtime files in map B",
     "created_at": "2026-09-16T17:54:09Z",
-    "last_save_at": "2026-09-16T18:43:45.596Z",
+    "last_save_at": "2026-09-17T14:53:03.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4d2ec4fc0e5bf6880fa4fe63c717aa90ba273058dedff2405954fb42bcf584b",
+    "source_fingerprint": "sha256:4484db7790f8ec6db76747189e576f9e0549c2816f218d9460f653d6c92ac0fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a8c30cb10c4d3c7ad5756a1e1ce527aa1e56b6d68a8df8971dedc6a5b2cb5dcc",
-      "plan.md": "ff558a811be475bb48854438861ce25256e7e58ef479903a1702c1d0b937e75c",
+      "plan.md": "b540c8a3027c9ebc0a6f5c35c0960846664700fad7a9ccd63030be46c1c36d9f",
       "tasks.md": "ea9bbacbb85dad99ff0c37ae2ab0a5ae2410aa61e3d29a15745cb5990046077b",
-      "implementation-summary.md": "9742e707eebb2d6df276d9e20e30875644231a16097d75241df0da06d8c68ca5"
+      "implementation-summary.md": "23b6cc101c63f96e30980c4a786884f9bdd5d1fc0beb1cd4ee84ccd88f0b91dd"
     },
     "last_active_at": null
   }

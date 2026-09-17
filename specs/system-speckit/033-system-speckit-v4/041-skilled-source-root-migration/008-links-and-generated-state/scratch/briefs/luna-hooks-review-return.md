@@ -1,0 +1,12 @@
+## Verdict
+
+Not safe to run as edited. Generated relative `.skilled/` hook paths break documented consumer checkouts that expose only `.opencode`.
+
+## Findings
+
+| ID | Severity | File:line | Scenario (the inputs and the wrong outcome) | Suggested fix |
+|---|---|---|---|---|
+| H-001 | P0 | `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:80`<br>`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:49-51,59-75`<br>`PUBLIC-RELEASE.md:21-23` | With `CLAUDE_PROJECT_DIR` set to a consumer project containing `.opencode -> Public/.opencode` but no `.skilled`, the write renders `node .skilled/...` and runs it after `cd` into that consumer directory. The script is not found and the fallback reports hook drift. The pre-edit `.opencode` path in `.claude/settings.json:23` resolves in this layout. | Preserve `.opencode/` in runtime-facing commands, then normalize either spelling to `.skilled/` when creating mirror targets, or guarantee a `.skilled` link in every consumer checkout before generating configs. |
+| H-002 | P2 | `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:103-111,184-203,231-258`<br>`.claude/settings.json:23`<br>`.codex/hooks.json:8`<br>`.cursor/hooks.json:6`<br>`.devin/hooks.v1.json:8` | Running the edited mirror generator against the stated current state, before hook registration regeneration, finds zero hook paths because all four configs still contain `.opencode/`. It can report a reduced PASS and leave the existing 78 hook mirrors untouched, instead of reporting the required 168 mirrors. | Accept both prefixes during transition and canonicalize `.opencode/` matches to `.skilled/`, or fail explicitly when the four configs contain no recognized hook paths. |
+| H-003 | P1 | `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs:27-35`<br>`AGENTS.md:63-68`<br>`.skilled/skills/system-spec-kit/runtime/cli/tests/gate1-pointer-sync.vitest.ts:23-29` | The pointer generator’s test fixture contains a root `AGENTS.md` with a Gate 1 line but neither `.skilled/skills/system-spec-kit` nor `.opencode/skills/system-spec-kit`. The generated intro therefore implies Gate 1 does not apply, although the root rule says it triggers on every new user message. | Base the intro on the presence of the Gate 1 line in `AGENTS.md`, not on either source-tree path. |
+Codex exit 0, 2026-09-17T14:16:12Z to 2026-09-17T14:23:42Z, --model gpt-5.6-luna, reasoning xhigh, service tier fast, --sandbox read-only.
