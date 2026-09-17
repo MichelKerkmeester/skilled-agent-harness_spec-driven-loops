@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-006` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-006 | Color analysis | Verify a dominant palette and average RGB | Use sk_vision_colors on the fixture and summarize the color palette. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"colors","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"colors","palette":[...],"buckets":...,"avg_rgb":...}}` | The `palette`, `buckets`, and `avg_rgb` fields with the transcript | PASS if `result.type == "colors"` and `palette` is a non-empty array with `avg_rgb` present; FAIL if `palette` is empty or the request errors | 1. Confirm the fixture has non-trivial colors -> 2. Check `regions_analyzed` - a region parameter restricts the analysis -> 3. Inspect stderr for decode errors |
+| VSN-006 | Color analysis | Verify a dominant palette and average RGB | Use sk_vision_colors on the fixture and summarize the color palette. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"colors","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"colors","palette":[...],"buckets":...,"avg_rgb":...}}` | The `palette`, `buckets`, and `avg_rgb` fields with the transcript | PASS if `result.type == "colors"` and `palette` is a non-empty array with `avg_rgb` present; FAIL if `palette` is empty or the request errors | 1. Confirm the fixture has non-trivial colors -> 2. Check `regions_analyzed` - a region parameter restricts the analysis -> 3. Inspect stderr for decode errors |
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `VSN-006` and confirm th
 1. `bash: printf '%s\n' \`
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"colors","params":{"source":{"type":"path","path":"<FIXTURE>"}}}'`
-4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

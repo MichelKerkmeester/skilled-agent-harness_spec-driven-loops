@@ -54,7 +54,7 @@ What's a good watering schedule for tomato seedlings on a sunny balcony?
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/negative.md`
+1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/negative.md`
 2. `grep -n "UNKNOWN_FALLBACK_CHECKLIST\|max score is 0" ../../SKILL.md`
 
 

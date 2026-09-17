@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-003` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-003 | Object detection | Verify labeled bounding boxes for detected objects | Use sk_vision_detect on this mockup and list every object you find. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"detect","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"detect","objects":[...]}}` with at least one object carrying a label and normalized bbox | The `objects` array from the detect response (labels + bboxes) saved with the transcript | PASS if `result.objects` is a non-empty array whose entries have `label` and `bbox` fields; FAIL if `objects` is empty or the response is an error envelope | 1. Confirm the fixture has a discernible object; regenerate with higher contrast -> 2. Re-run with a warm cache -> 3. Inspect stderr for model task-support errors |
+| VSN-003 | Object detection | Verify labeled bounding boxes for detected objects | Use sk_vision_detect on this mockup and list every object you find. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"detect","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"detect","objects":[...]}}` with at least one object carrying a label and normalized bbox | The `objects` array from the detect response (labels + bboxes) saved with the transcript | PASS if `result.objects` is a non-empty array whose entries have `label` and `bbox` fields; FAIL if `objects` is empty or the response is an error envelope | 1. Confirm the fixture has a discernible object; regenerate with higher contrast -> 2. Re-run with a warm cache -> 3. Inspect stderr for model task-support errors |
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `VSN-003` and confirm th
 1. `bash: printf '%s\n' \`
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"detect","params":{"source":{"type":"path","path":"<FIXTURE>"}}}'`
-4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

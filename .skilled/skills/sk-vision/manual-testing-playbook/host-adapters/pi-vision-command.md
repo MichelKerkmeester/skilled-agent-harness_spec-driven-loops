@@ -35,7 +35,7 @@ Operators run the exact prompt and command sequence for `VSN-027` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-027 | Pi `/vision` command | Verify hidden tools, question and bare forms and teardown | Use `/vision` to read the latest screenshot, then confirm that the vision runtime has closed. | 1. bash: `test -L .pi/extensions/sk-vision.ts && readlink .pi/extensions/sk-vision.ts` -> 2. bash: `grep -c 'pi.registerTool' .opencode/skills/sk-vision/pi/sk-vision.ts` -> 3. Pi with `SK_VISION_AUTOINSPECT` unset: confirm the 13 tools are hidden -> 4. Pi: attach `<FIXTURE>` and run `/vision What does this screenshot say?` -> 5. Pi: run bare `/vision` -> 6. host: check the runtime process after each call | Step 1 exits 0. Step 2 prints `13`. Step 3 shows hidden tools. Step 4 returns evidence. Step 5 asks in the conversation or returns a full read. Step 6 finds no runtime process | Symlink output, registration count, hidden-tool view, both command responses and process checks | PASS if all six steps produce the expected signals. FAIL if the extension is missing, tools are visible, evidence is missing or a runtime process remains. | 1. Confirm the symlink and factory -> 2. Confirm `SK_VISION_AUTOINSPECT` is unset -> 3. Confirm hidden registration -> 4. Confirm `<FIXTURE>` is the latest image -> 5. Check `SK_VISION_TEARDOWN` and the process list |
+| VSN-027 | Pi `/vision` command | Verify hidden tools, question and bare forms and teardown | Use `/vision` to read the latest screenshot, then confirm that the vision runtime has closed. | 1. bash: `test -L .pi/extensions/sk-vision.ts && readlink .pi/extensions/sk-vision.ts` -> 2. bash: `grep -c 'pi.registerTool' .skilled/skills/sk-vision/pi/sk-vision.ts` -> 3. Pi with `SK_VISION_AUTOINSPECT` unset: confirm the 13 tools are hidden -> 4. Pi: attach `<FIXTURE>` and run `/vision What does this screenshot say?` -> 5. Pi: run bare `/vision` -> 6. host: check the runtime process after each call | Step 1 exits 0. Step 2 prints `13`. Step 3 shows hidden tools. Step 4 returns evidence. Step 5 asks in the conversation or returns a full read. Step 6 finds no runtime process | Symlink output, registration count, hidden-tool view, both command responses and process checks | PASS if all six steps produce the expected signals. FAIL if the extension is missing, tools are visible, evidence is missing or a runtime process remains. | 1. Confirm the symlink and factory -> 2. Confirm `SK_VISION_AUTOINSPECT` is unset -> 3. Confirm hidden registration -> 4. Confirm `<FIXTURE>` is the latest image -> 5. Check `SK_VISION_TEARDOWN` and the process list |
 
 ---
 
@@ -48,7 +48,7 @@ Operators run the exact prompt and command sequence for `VSN-027` and confirm th
 ### Commands
 
 1. `bash: test -L .pi/extensions/sk-vision.ts && readlink .pi/extensions/sk-vision.ts`
-2. `bash: grep -c 'pi.registerTool' .opencode/skills/sk-vision/pi/sk-vision.ts`
+2. `bash: grep -c 'pi.registerTool' .skilled/skills/sk-vision/pi/sk-vision.ts`
 3. `Pi with SK_VISION_AUTOINSPECT unset: confirm the 13 tools are hidden`
 4. `Pi: attach <FIXTURE> and run /vision What does this screenshot say?`
 5. `Pi: run bare /vision`
@@ -87,7 +87,7 @@ Capture the symlink output, registration count, hidden-tool view, both command r
 | File | Role |
 |---|---|
 | `.pi/extensions/sk-vision.ts` | Pi load path |
-| `.opencode/skills/sk-vision/pi/sk-vision.ts` | Hidden tool registration and command path |
+| `.skilled/skills/sk-vision/pi/sk-vision.ts` | Hidden tool registration and command path |
 | `.pi/prompts/vision.md` | Pi `/vision` prompt |
 | `vision-runtime/python/runtime.test.ts` | Runtime behavior the hidden tool proxies |
 

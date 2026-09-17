@@ -55,9 +55,9 @@ I need the visual direction for our marketing site grounded in real shipped work
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/mcp-tooling/mcp-refero/manual-testing-playbook/intra-routing-recall/holdout-styles.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-refero/SKILL.md | sed -n '/"STYLES":/p'`
-3. `for p in references/tool-surface.md; do test -e ".opencode/skills/mcp-tooling/mcp-refero/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,15p' .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/intra-routing-recall/holdout-styles.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-refero/SKILL.md | sed -n '/"STYLES":/p'`
+3. `for p in references/tool-surface.md; do test -e ".skilled/skills/mcp-tooling/mcp-refero/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

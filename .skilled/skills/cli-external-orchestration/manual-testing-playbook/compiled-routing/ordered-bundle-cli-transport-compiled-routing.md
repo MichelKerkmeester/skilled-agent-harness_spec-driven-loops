@@ -51,8 +51,8 @@ Delegate this to OpenCode and run the ablation suite with full plugin and Spec K
 
 Capture this hub's compiled-routing parity evidence with the live front door and serving-status probe:
 ```
-node .opencode/bin/compiled-route-status.cjs --hub cli-external-orchestration
-node .opencode/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<the exact prompt in section 2>"
+node .skilled/bin/compiled-route-status.cjs --hub cli-external-orchestration
+node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<the exact prompt in section 2>"
 ```
 
 ## Pass/Fail Criteria

@@ -56,7 +56,7 @@ This scenario needs a desktop browser that can render a page and show it. A mach
 3. `agent: Open assets/templates/daily-line.html and read the first and last tick labels on the time axis`
 4. `agent: Open assets/templates/scatter.html and assets/templates/parallel-axes.html and read every axis name`
 5. `agent: Report per file which text elements are fully visible and which are not`
-6. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
+6. `bash: git status --porcelain .skilled/skills/sk-design/sk-design-chart`
 
 ### Expected
 

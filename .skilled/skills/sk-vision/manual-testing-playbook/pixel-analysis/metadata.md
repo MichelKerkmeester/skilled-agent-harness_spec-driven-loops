@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-008` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-008 | Metadata extraction | Verify format, dimensions, and EXIF summary | Use sk_vision_metadata on this image and give me its format and size. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"metadata","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"metadata","format":"PNG","width":...,"height":...,...}}` | The metadata response fields (format, dimensions, EXIF brief) with the transcript | PASS if `result.type == "metadata"` and `format`, `width`, and `height` are present and match the file; FAIL if the fields are missing, wrong, or the request errors | 1. Confirm the path points at an actual image file -> 2. Missing EXIF is expected - EXIF is optional per file -> 3. Inspect stderr for decode errors |
+| VSN-008 | Metadata extraction | Verify format, dimensions, and EXIF summary | Use sk_vision_metadata on this image and give me its format and size. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"metadata","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"metadata","format":"PNG","width":...,"height":...,...}}` | The metadata response fields (format, dimensions, EXIF brief) with the transcript | PASS if `result.type == "metadata"` and `format`, `width`, and `height` are present and match the file; FAIL if the fields are missing, wrong, or the request errors | 1. Confirm the path points at an actual image file -> 2. Missing EXIF is expected - EXIF is optional per file -> 3. Inspect stderr for decode errors |
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `VSN-008` and confirm th
 1. `bash: printf '%s\n' \`
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"metadata","params":{"source":{"type":"path","path":"<FIXTURE>"}}}'`
-4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

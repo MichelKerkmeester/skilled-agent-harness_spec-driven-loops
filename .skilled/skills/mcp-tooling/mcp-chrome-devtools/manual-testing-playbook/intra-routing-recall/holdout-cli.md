@@ -56,9 +56,9 @@ Drive the page debugger straight from my shell prompt to snapshot the request wa
 
 ### Commands
 
-1. `sed -n '1,16p' .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/holdout-cli.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md | sed -n '/"CLI":/p'`
-3. `for p in references/cdp-patterns.md references/session-management.md; do test -e ".opencode/skills/mcp-tooling/mcp-chrome-devtools/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,16p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/holdout-cli.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md | sed -n '/"CLI":/p'`
+3. `for p in references/cdp-patterns.md references/session-management.md; do test -e ".skilled/skills/mcp-tooling/mcp-chrome-devtools/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

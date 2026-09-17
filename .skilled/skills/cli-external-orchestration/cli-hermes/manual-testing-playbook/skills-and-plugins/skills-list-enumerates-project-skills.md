@@ -48,7 +48,7 @@ Operators run the exact prompt and command sequence for `HERMES-017` and confirm
 ### Commands
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
 head -3 .hermes/skills/cli-hermes/SKILL.md
 ls .hermes/skills | wc -l
 

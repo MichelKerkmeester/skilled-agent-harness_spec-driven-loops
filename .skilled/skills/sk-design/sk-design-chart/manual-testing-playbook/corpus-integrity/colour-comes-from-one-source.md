@@ -47,21 +47,21 @@ Operators run the exact prompt and command sequence for `CHT-005` and confirm th
 
 ### Commands
 
-1. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/templates/heat-matrix.html keep-matrix.html`
-2. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/palette-sheet-neutral.html keep-sheet.html`
-3. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > before.txt 2>&1`
+1. `bash: cp .skilled/skills/sk-design/sk-design-chart/assets/templates/heat-matrix.html keep-matrix.html`
+2. `bash: cp .skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/palette-sheet-neutral.html keep-sheet.html`
+3. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > before.txt 2>&1`
 4. `bash: echo $?`
 5. `agent: Change one hex inside the palette block of assets/templates/heat-matrix.html, leaving the palette source untouched`
-6. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > drifted.txt 2>&1`
-7. `bash: cp keep-matrix.html .opencode/skills/sk-design/sk-design-chart/assets/templates/heat-matrix.html`
+6. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > drifted.txt 2>&1`
+7. `bash: cp keep-matrix.html .skilled/skills/sk-design/sk-design-chart/assets/templates/heat-matrix.html`
 8. `agent: Replace one var(--chart-muted) reference outside the palette block of assets/style-reference/evilcharts/palette-sheet-neutral.html with a literal hex`
-9. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > literal.txt 2>&1`
-10. `bash: cp keep-sheet.html .opencode/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/palette-sheet-neutral.html`
+9. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > literal.txt 2>&1`
+10. `bash: cp keep-sheet.html .skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/palette-sheet-neutral.html`
 11. `agent: Reverse the five .series-N fill mappings in assets/templates/heat-matrix.html so .series-1 takes token 5 and .series-5 takes token 1`
-12. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > reversed.txt 2>&1`
-13. `bash: cp keep-matrix.html .opencode/skills/sk-design/sk-design-chart/assets/templates/heat-matrix.html`
-14. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > after.txt 2>&1`
-15. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
+12. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > reversed.txt 2>&1`
+13. `bash: cp keep-matrix.html .skilled/skills/sk-design/sk-design-chart/assets/templates/heat-matrix.html`
+14. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > after.txt 2>&1`
+15. `bash: git status --porcelain .skilled/skills/sk-design/sk-design-chart`
 
 The restores are copies rather than `git checkout --`. That command reverts to the last commit
 rather than to the state the operator was working in, so on an uncommitted tree it throws the work

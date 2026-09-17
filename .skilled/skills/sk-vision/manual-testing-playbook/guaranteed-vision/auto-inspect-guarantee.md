@@ -27,7 +27,7 @@ Operators run the exact prompt against a text-only model in an in-process host a
 - Objective: for a text-only model, the adapter AWAITS the full image analysis and auto-injects the `<SK-VISION>` block, so the evidence is guaranteed present even when the first cold analysis is slower than the 2-second grace
 - Real user request: `I'm running DeepSeek in OpenCode and enabled legacy auto-inspect. The pasted screenshot should be readable without a command.`
 - Prompt: `What does this screenshot say?`
-- Preconditions: set `SK_VISION_AUTOINSPECT=1`. The OpenCode plugin (`.opencode/plugins/sk-vision.js`) or Pi extension (`.pi/extensions/sk-vision.ts`) is loaded. The active model is text-only, matched by the allowlist such as deepseek or by Pi declaring no "image" input. The fixture is attached.
+- Preconditions: set `SK_VISION_AUTOINSPECT=1`. The OpenCode plugin (`.skilled/plugins/sk-vision.js`) or Pi extension (`.pi/extensions/sk-vision.ts`) is loaded. The active model is text-only, matched by the allowlist such as deepseek or by Pi declaring no "image" input. The fixture is attached.
 - Expected execution process: on submit, the legacy adapter path calls `isTextOnlyModel`, awaits the full analysis and injects a `<SK-VISION>` block with scene, caption and OCR. The model answers from that block.
 - Expected signals: the submitted message contains a `<SK-VISION>` block with the fixture's real text (`DEPLOY OK 7391`). Evidence is present even on a cold first load.
 - Desired user-visible outcome: a text-only model answers the model's real question using guaranteed vision evidence it never had to ask for.

@@ -43,7 +43,7 @@ Prompt quality is part of dispatch correctness. The Pi card must preserve the ca
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PI-019 | CLEAR prompt-quality card | Confirm docs presence and Pi-specific addenda | `Read the Pi prompt-quality card and the sibling cli-family card. Confirm the canonical CLEAR checks are delegated, Pi dispatch addenda are present, and no provider turn is needed for this documentation check.` | `test -f .opencode/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md` -> `rg -n '^#|^## ' .opencode/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md` -> `rg -n '^#|^## ' .opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md .opencode/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md` -> read the Pi card | Pi file exists; Pi headings are `CANONICAL SOURCE`, `THREE TIERS`, `PI DISPATCH ADDENDA`, `COMPOSITION CHECK`, `RELATED`; sibling cards use the same five-section pattern | Captured output: Pi file check returned `yes`; sibling headings showed five numbered sections; Pi headings showed five numbered sections. The Pi card links the canonical CLI card and includes runtime, mode, scope, guard, tools, evidence, and handback checks. | PASS when presence, shape, delegation, and addenda are confirmed. FAIL if any required card element is missing. | Compare the actual card text with the canonical source and remove duplicated taxonomy rather than inventing a second framework. |
+| PI-019 | CLEAR prompt-quality card | Confirm docs presence and Pi-specific addenda | `Read the Pi prompt-quality card and the sibling cli-family card. Confirm the canonical CLEAR checks are delegated, Pi dispatch addenda are present, and no provider turn is needed for this documentation check.` | `test -f .skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md` -> `rg -n '^#|^## ' .skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md` -> `rg -n '^#|^## ' .skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md .skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md` -> read the Pi card | Pi file exists; Pi headings are `CANONICAL SOURCE`, `THREE TIERS`, `PI DISPATCH ADDENDA`, `COMPOSITION CHECK`, `RELATED`; sibling cards use the same five-section pattern | Captured output: Pi file check returned `yes`; sibling headings showed five numbered sections; Pi headings showed five numbered sections. The Pi card links the canonical CLI card and includes runtime, mode, scope, guard, tools, evidence, and handback checks. | PASS when presence, shape, delegation, and addenda are confirmed. FAIL if any required card element is missing. | Compare the actual card text with the canonical source and remove duplicated taxonomy rather than inventing a second framework. |
 
 ### Optional Supplemental Checks
 
@@ -65,9 +65,9 @@ Prompt quality is part of dispatch correctness. The Pi card must preserve the ca
 
 | File | Role |
 |---|---|
-| `.opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md` | Sibling card shape |
-| `.opencode/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md` | Sibling card shape |
-| `.opencode/skills/sk-prompt/assets/cli-prompt-quality-card.md` | Canonical CLEAR source |
+| `.skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md` | Sibling card shape |
+| `.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md` | Sibling card shape |
+| `.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md` | Canonical CLEAR source |
 
 ---
 

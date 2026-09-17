@@ -16,7 +16,7 @@ This scenario validates deep-research agent comparative investigation for `CC-02
 
 ### Why This Matters
 
-There is no `research` agent in the current roster — `.opencode/agents/` and `.claude/agents/` both ship `deep-research` instead, and `references/agent-delegation.md` §"@deep-research — Evidence Gatherer" already documents it as the evidence-gathering specialist for exactly this kind of comparative technology assessment (its own worked example is this same Redis-vs-Memcached question). When the calling AI needs to compare technologies or assess feasibility before architecture decisions, routing through `deep-research` yields a structured trade-off analysis instead of an opinion. If research output collapses into a single-option pitch, downstream architecture decisions lose their evidence base and the trade-off contract is broken.
+There is no `research` agent in the current roster — `.skilled/agents/` and `.claude/agents/` both ship `deep-research` instead, and `references/agent-delegation.md` §"@deep-research — Evidence Gatherer" already documents it as the evidence-gathering specialist for exactly this kind of comparative technology assessment (its own worked example is this same Redis-vs-Memcached question). When the calling AI needs to compare technologies or assess feasibility before architecture decisions, routing through `deep-research` yields a structured trade-off analysis instead of an opinion. If research output collapses into a single-option pitch, downstream architecture decisions lose their evidence base and the trade-off contract is broken.
 
 ---
 

@@ -19,7 +19,7 @@ A worked walkthrough for the cheapest useful lane: *"What do real empty states l
 ## Step 0 — Verify the wiring (always runs; no auth needed)
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-refero/scripts/install.sh
 # -> OK 'refero' manual registered in .utcp_config.json (read-only; never edited)
 ```
 

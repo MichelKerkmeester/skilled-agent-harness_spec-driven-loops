@@ -27,7 +27,7 @@ Worked, end-to-end Code Mode walkthroughs for the `mcp-mobbin` transport. Every 
 **Step A: wiring state (shell, read-only, always runnable):**
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh
 # expect: OK 'mobbin' manual registered in .utcp_config.json
 #         OK Bridge shape present: npx mcp-remote -> https://api.mobbin.com/mcp
 ```

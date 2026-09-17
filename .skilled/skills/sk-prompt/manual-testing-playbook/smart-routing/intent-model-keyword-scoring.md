@@ -47,7 +47,7 @@ Score these two sk-prompt inputs through INTENT_MODEL; verify TEXT_ENHANCE and F
 
 1. `sk-prompt: Please improve and refine this prompt for a customer-support email — enhance the tone.`
 2. `sk-prompt: Which framework should I apply here? COSTAR or TIDD-EC? Score both and tell me.`
-3. `bash: rg -A 12 'INTENT_MODEL' .opencode/skills/sk-prompt/SKILL.md` (verify keyword weights still match)
+3. `bash: rg -A 12 'INTENT_MODEL' .skilled/skills/sk-prompt/SKILL.md` (verify keyword weights still match)
 
 ### Expected
 
@@ -66,7 +66,7 @@ Routing trace per input. Capture intent name + resource list per call.
 
 1. Inspect SKILL.md §2 INTENT_MODEL keyword weights; compare to the per-input scoring trace.
 2. Re-dispatch each input with the keyword density doubled, see if scoring changes.
-3. Confirm RESOURCE_MAP entries still resolve on disk (`bash: ls .opencode/skills/sk-prompt/references/`).
+3. Confirm RESOURCE_MAP entries still resolve on disk (`bash: ls .skilled/skills/sk-prompt/references/`).
 
 ### Optional Supplemental Checks
 

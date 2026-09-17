@@ -137,5 +137,5 @@ Operational lifecycle notes: connection failures preserve stderr and timeout det
 - [session-management.md](./session-management.md) — daemon, binding, and concurrency model.
 - [troubleshooting.md](./troubleshooting.md) — MCP failure taxonomy and recovery.
 - [../mcp-servers/aside-mcp/README.md](../mcp-servers/aside-mcp/README.md) — registration package pointer.
-- Repository contracts: `.opencode/skills/mcp-code-mode/SKILL.md` (naming convention, discovery, structured results).
+- Repository contracts: `.skilled/skills/mcp-code-mode/SKILL.md` (naming convention, discovery, structured results).
 - Primary sources: https://docs.aside.com/help/developers#use-mcp, https://docs.aside.com/changelog/components.md.

@@ -89,7 +89,7 @@ Capture the verbatim response including any compile/runtime error text. Capture 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | call_tool_chain API spec |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | call_tool_chain API spec |
 
 ---
 

@@ -91,7 +91,7 @@ Capture the verbatim error message returned by the chain.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Manual-namespace contract; #1-error guidance (line 195-216) |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Manual-namespace contract; #1-error guidance (line 195-216) |
 
 ---
 

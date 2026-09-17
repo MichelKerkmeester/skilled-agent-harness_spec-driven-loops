@@ -91,7 +91,7 @@ Capture the verbatim chain response with both error and fallback data.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | call_tool_chain error-handling guidance |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | call_tool_chain error-handling guidance |
 
 ---
 

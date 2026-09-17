@@ -32,7 +32,7 @@ The cli-opencode skill exposes the project's full agent roster. The calling AI s
 | `opencode debug agent <slug>` | Print resolved frontmatter and system prompt for a slug |
 | `opencode debug skill <slug>` | Print skill resolution if the agent loads one |
 
-Project-local agents resolve from `.opencode/agents/<slug>.md`. User-level agents fall back from `~/.opencode/agents/<slug>.md` when the project file is missing. The `debug agent` subcommand prints the merged result so the calling AI can confirm which file the dispatch will load.
+Project-local agents resolve from `.skilled/agents/<slug>.md`. User-level agents fall back from `~/.opencode/agents/<slug>.md` when the project file is missing. The `debug agent` subcommand prints the merged result so the calling AI can confirm which file the dispatch will load.
 
 ### Orchestration principle
 
@@ -54,7 +54,7 @@ Calling AI (CONDUCTOR)
   v
 opencode run --agent <slug> (EXECUTOR ENTRY)
   |
-  |-- Resolves .opencode/agents/<slug>.md frontmatter
+  |-- Resolves .skilled/agents/<slug>.md frontmatter
   |-- Pins model, tool permissions, system prompt, behavioral rules
   |-- Loads project plugins, skills, and MCP servers
   |
@@ -118,7 +118,7 @@ The `--variant max` flash pin is the cli-opencode default for cross-AI dispatche
 
 ## 3. AGENT ROSTER
 
-The repo ships these agents under `.opencode/agents/`. Three dispatch classes apply — a fix agent (or operator) MUST route each slug through its correct class, not treat the whole roster as uniformly `--agent`-dispatchable. The summary table below is followed by per-agent property tables for the most-dispatched roles.
+The repo ships these agents under `.skilled/agents/`. Three dispatch classes apply — a fix agent (or operator) MUST route each slug through its correct class, not treat the whole roster as uniformly `--agent`-dispatchable. The summary table below is followed by per-agent property tables for the most-dispatched roles.
 
 | Slug | Class | Role | When to dispatch |
 |------|-------|------|-------------------|
@@ -246,7 +246,7 @@ opencode run \
   "As @review: Inspect @src/auth.ts for security issues. Surface any P0 / P1 findings with file:line citations."
 ```
 
-The dispatched session parses the `As @review:` prefix and loads the review agent's frontmatter from `.opencode/agents/review.md`. The remaining prompt is passed to that agent.
+The dispatched session parses the `As @review:` prefix and loads the review agent's frontmatter from `.skilled/agents/review.md`. The remaining prompt is passed to that agent.
 
 ### When to prefer `--agent` vs `As @<agent>:`
 

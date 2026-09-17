@@ -80,7 +80,7 @@ function makeViolatingRepo() {
   fs.writeFileSync(path.join(dir, 'src', 'tracked.txt'), 'b\n');
   fs.writeFileSync(path.join(dir, 'src', 'untracked.txt'), 'never committed\n');
 
-  const skillDir = path.join(dir, '.opencode', 'skills', 'sk-git');
+  const skillDir = path.join(dir, '.skilled', 'skills', 'sk-git');
   fs.mkdirSync(skillDir, { recursive: true });
   fs.copyFileSync(REAL_SKILL_MD, path.join(skillDir, 'SKILL.md'));
   return dir;

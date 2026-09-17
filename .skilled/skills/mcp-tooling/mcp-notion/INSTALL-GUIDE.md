@@ -16,7 +16,7 @@ Copy and paste this prompt to your AI assistant to get installation help:
 
 ```
 Check the runtime and print the Notion MCP config:
-  bash .opencode/skills/mcp-tooling/mcp-notion/scripts/install.sh
+  bash .skilled/skills/mcp-tooling/mcp-notion/scripts/install.sh
 
 It will:
   1. Verify Node 18+ and npx are available
@@ -34,13 +34,13 @@ Then:
      (Code Mode's config, not opencode.json).
 
 Verify:
-  bash .opencode/skills/mcp-tooling/mcp-notion/scripts/doctor.sh
+  bash .skilled/skills/mcp-tooling/mcp-notion/scripts/doctor.sh
 ```
 
 ### Quick Success Check (30 seconds)
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-notion/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-notion/scripts/doctor.sh
 ```
 
 All checks report `✓`: the runtime, the manual registration and the token are in place. Not working? Go to [Troubleshooting](#7-troubleshooting).

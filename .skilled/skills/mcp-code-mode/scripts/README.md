@@ -1,6 +1,6 @@
 ---
 title: "mcp code mode scripts: Code README"
-description: "Code-facing README for .opencode/skills/mcp-code-mode/scripts."
+description: "Code-facing README for .skilled/skills/mcp-code-mode/scripts."
 trigger_phrases:
   - "mcp-code-mode scripts"
   - "code README"
@@ -16,7 +16,7 @@ Operator and maintenance scripts for this skill.
 
 ### Purpose
 
-This README documents the code-bearing folder `.opencode/skills/mcp-code-mode/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.skilled/skills/mcp-code-mode/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -36,12 +36,12 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 **Step 1: Confirm the owner.**
 
-Start with `.opencode/skills/mcp-code-mode/SKILL.md` for runtime routing and workflow boundaries.
+Start with `.skilled/skills/mcp-code-mode/SKILL.md` for runtime routing and workflow boundaries.
 
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .opencode/skills/mcp-code-mode/scripts
+rg --files .skilled/skills/mcp-code-mode/scripts
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -87,7 +87,7 @@ Run individual scripts from the repository root with the documented arguments.
 **Audit this folder**
 
 ```text
-User request: Check .opencode/skills/mcp-code-mode/scripts for sk-code and README coverage.
+User request: Check .skilled/skills/mcp-code-mode/scripts for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded against the current source alignment review.
 ```

@@ -79,8 +79,8 @@ The JSON-RPC transcript, the verbatim error text, the classification statement, 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md` | Binding-state contract |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md` | PROFILE_UNBOUND taxonomy entry |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md` | Binding-state contract |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md` | PROFILE_UNBOUND taxonomy entry |
 
 ---
 

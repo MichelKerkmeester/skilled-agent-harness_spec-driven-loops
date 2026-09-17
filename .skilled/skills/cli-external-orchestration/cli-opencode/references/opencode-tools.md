@@ -25,7 +25,7 @@ The sibling cli-* skills (cli-claude-code, cli-opencode) dispatch a raw model or
 `opencode run` is different. It spawns a full OpenCode session. That session loads:
 
 1. Every plugin registered in the project's `opencode.json`
-2. Every skill under `.opencode/skills/`
+2. Every skill under `.skilled/skills/`
 3. Every MCP tool wired through `opencode.json` and `.utcp_config.json`
 4. The project's CLAUDE.md / AGENTS.md instructions
 5. The project's spec folders and their continuity docs
@@ -135,7 +135,7 @@ opencode run \
 
 ### What it does
 
-The `--agent <slug>` flag loads an agent definition from `.opencode/agents/<slug>.md`. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target.
+The `--agent <slug>` flag loads an agent definition from `.skilled/agents/<slug>.md`. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target.
 
 ### Why it matters
 

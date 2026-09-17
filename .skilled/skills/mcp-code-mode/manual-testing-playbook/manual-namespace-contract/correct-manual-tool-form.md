@@ -91,7 +91,7 @@ Capture the verbatim chain response (with sensitive workspace names REDACTED if 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Manual-namespace contract (line 195-216) |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Manual-namespace contract (line 195-216) |
 
 ---
 

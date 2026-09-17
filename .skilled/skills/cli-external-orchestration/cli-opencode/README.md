@@ -48,7 +48,7 @@ It does not write application code or manage spec folders. `sk-code` owns code s
 | **Parallel detached sessions** | separate session ids and state in the shared `~/.local/share/opencode/` database for ablation suites and worker farms |
 | **Cross-AI handback** | bridges the dispatch result back into the caller's spec folder through the Memory Handback |
 | **Provider and model surface** | reaches the `opencode-go`, `minimax`, `xiaomi` and `openai` provider catalogs through `references/providers-and-models.md` |
-| **Agent delegation** | routes to project-local agents under `.opencode/agents/` with the primary-versus-subagent caveats in `references/agent-delegation.md` |
+| **Agent delegation** | routes to project-local agents under `.skilled/agents/` with the primary-versus-subagent caveats in `references/agent-delegation.md` |
 
 ---
 
@@ -212,8 +212,8 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-opencode/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md` |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-opencode/README.md --type readme` reports zero issues |
+| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md` |
 | Default dispatch | `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir . "Say hello" </dev/null` returns a JSON event stream ending with a tool-result message |
 
 ---

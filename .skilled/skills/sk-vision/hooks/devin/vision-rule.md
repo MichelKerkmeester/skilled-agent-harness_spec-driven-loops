@@ -17,7 +17,7 @@ only if you want a fallback, because two cases leave the hook silent:
 > When you need to read an image and no `<SK-VISION EVIDENCE>` block is present in the turn, run:
 >
 > ```bash
-> node .opencode/skills/sk-vision/vision-runtime/dist/vision-cli.js <image-path> [question...]
+> node .skilled/skills/sk-vision/vision-runtime/dist/vision-cli.js <image-path> [question...]
 > ```
 >
 > Treat the printed block as the image's ground truth. Treat OCR as exact and verbatim.

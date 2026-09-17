@@ -27,8 +27,8 @@ description: "Install and read-only diagnostic scripts for the mcp-click-up tran
 Run from the repository root.
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/doctor.sh
-bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh --check-only
+bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh --check-only
 ```
 
 Expected result: `doctor.sh` prints a checklist with no red `✗` lines. `install.sh --check-only` reports the `cupt` install status without installing anything.

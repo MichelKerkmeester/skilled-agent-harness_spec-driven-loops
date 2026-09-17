@@ -10,7 +10,7 @@ version: 1.0.0.0
 
 This document is the operator directory for the sk-design manual testing playbook. Per-scenario execution detail lives in the category folders below; each scenario file ships a YAML contract (id, expected_intent, expected_resources) plus setup, expected behavior and success criteria.
 
-Source of truth for routing behavior: `.opencode/skills/sk-design/SKILL.md` and `ROUTER.md`, resolved at runtime through `mode-registry.json` / `hub-router.json`.
+Source of truth for routing behavior: `.skilled/skills/sk-design/SKILL.md` and `ROUTER.md`, resolved at runtime through `mode-registry.json` / `hub-router.json`.
 
 ---
 
@@ -48,8 +48,8 @@ They are the ids these scenarios were authored under in the documentation hub's 
 ## 4. RUNNING THE GATE
 
 ```
-node .opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs \
-  --skill-dir .opencode/skills/sk-design --strict
+node .skilled/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs \
+  --skill-dir .skilled/skills/sk-design --strict
 ```
 
 `--strict` is not optional. Without it the gate prints `verdict=FAIL` and exits 0, which reads as a pass to anything checking exit status.

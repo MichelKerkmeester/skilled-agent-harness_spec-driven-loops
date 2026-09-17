@@ -37,19 +37,19 @@ Persona handling is a packet rule rather than a Hermes capability. Hermes has no
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md` | Handler | The packet's thin delegator to the canonical prompt card. |
-| `.opencode/skills/sk-prompt/assets/cli-prompt-quality-card.md` | Shared | The canonical card, including the persona-injection rule the packet inlines. |
-| `.opencode/agents/prompt-improver.md` | Shared | The model-eligibility table carrying the `cli-hermes` row. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md` | Handler | The packet's thin delegator to the canonical prompt card. |
+| `.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md` | Shared | The canonical card, including the persona-injection rule the packet inlines. |
+| `.skilled/agents/prompt-improver.md` | Shared | The model-eligibility table carrying the `cli-hermes` row. |
 | `.claude/agents/prompt-improver.md` | Shared | The Claude copy of the same eligibility row. |
 | `.codex/agents/prompt-improver.toml` | Shared | The Codex copy of the same eligibility row. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/assets/prompt-templates.md` | Handler | Write, read-only review, generation and fan-out prompt scaffolds. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-templates.md` | Handler | Write, read-only review, generation and fan-out prompt scaffolds. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh` | Test harness | Checks the delegator cards and the CLI skills, including the Hermes entries. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md` | Reference | Persona inlining and the delegation surface the prompt contract assumes. |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh` | Test harness | Checks the delegator cards and the CLI skills, including the Hermes entries. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md` | Reference | Persona inlining and the delegation surface the prompt contract assumes. |
 
 ---
 

@@ -13,22 +13,22 @@
 .
 
 # The plugin/runtime surface. Plugin tests import from here.
-.opencode
+.skilled
 
 # Spec-kit, its shared library, and the two builds that the validation
 # orchestrator and the spec CLI are compiled into.
-.opencode/skills/system-spec-kit
-.opencode/skills/system-spec-kit/shared
-.opencode/skills/system-spec-kit/runtime
-.opencode/skills/system-spec-kit/runtime/cli
+.skilled/skills/system-spec-kit
+.skilled/skills/system-spec-kit/shared
+.skilled/skills/system-spec-kit/runtime
+.skilled/skills/system-spec-kit/runtime/cli
 
 # The advisor daemon and CLI front door.
-.opencode/skills/system-skill-advisor/runtime
+.skilled/skills/system-skill-advisor/runtime
 
 # The deep-loop runtime, which the fan-out runner needs.
-.opencode/skills/system-deep-loop/runtime
+.skilled/skills/system-deep-loop/runtime
 
 # sk-doc. A conformance check copies a real skill hub into a temporary
 # directory; in a provisioned checkout the copy carries these dependencies with
 # it, and without them the check fails on a hub that is correct.
-.opencode/skills/sk-doc
+.skilled/skills/sk-doc

@@ -40,7 +40,7 @@ fi
 if [ -z "$BIN" ]; then
   log "figma-ds-cli not found."
   log "Install via the skill installer (do NOT 'npm i -g figma-cli'):"
-  log "  bash .opencode/skills/mcp-tooling/mcp-figma/scripts/install.sh"
+  log "  bash .skilled/skills/mcp-tooling/mcp-figma/scripts/install.sh"
   exit 1
 fi
 

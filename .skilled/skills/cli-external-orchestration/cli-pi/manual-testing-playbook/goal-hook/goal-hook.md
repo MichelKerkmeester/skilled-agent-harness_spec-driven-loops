@@ -8,7 +8,7 @@ version: 1.6.0.0
 
 ## 1. OVERVIEW
 
-Pi is the fully supported runtime-neutral goal path. `.opencode/hooks/goal/pi/goal-context.ts` obtains `ctx.sessionManager.getSessionId()` for input, session-start, turn-end, and the registered `/goal-pi` command. The command delegates parsing to the shared CLI but appends the native runtime, session, and workspace flags after user arguments, so prompt text cannot override the binding.
+Pi is the fully supported runtime-neutral goal path. `.skilled/hooks/goal/pi/goal-context.ts` obtains `ctx.sessionManager.getSessionId()` for input, session-start, turn-end, and the registered `/goal-pi` command. The command delegates parsing to the shared CLI but appends the native runtime, session, and workspace flags after user arguments, so prompt text cannot override the binding.
 
 The `.pi/prompts/goal-pi.md` file is a fail-closed fallback. If it runs, the native extension command is unavailable and no goal mutation is allowed.
 
@@ -43,11 +43,11 @@ The `.pi/prompts/goal-pi.md` file is a fail-closed fallback. If it runs, the nat
 
 ### Exact Command Sequence
 
-Run `OPENCODE_GOAL_STATE_DIR=<temp> pi --no-extensions --extension .opencode/hooks/goal/pi/goal-context.ts --offline --session-dir <temp-sessions> --session-id session-a --print --no-tools "/goal-pi set Goal A"`, repeat for `session-b` and `Goal B`, then run `node --test .opencode/hooks/goal/pi/goal-pi.test.mjs`.
+Run `OPENCODE_GOAL_STATE_DIR=<temp> pi --no-extensions --extension .skilled/hooks/goal/pi/goal-context.ts --offline --session-dir <temp-sessions> --session-id session-a --print --no-tools "/goal-pi set Goal A"`, repeat for `session-b` and `Goal B`, then run `node --test .skilled/hooks/goal/pi/goal-pi.test.mjs`.
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 ||---|---|---|---|---|---|---|---|---|
-|| PI-021 | Session-isolated goal hook and native command | Two Pi sessions manage and inject different goals without collision | `Use the native Pi goal command to set different goals in two isolated session ids, prove each id reads and injects only its own goal, then verify resume, missing identity, legacy migration, and disabled fallback behavior.` | `OPENCODE_GOAL_STATE_DIR=<temp> pi --no-extensions --extension .opencode/hooks/goal/pi/goal-context.ts --offline --session-dir <temp-sessions> --session-id session-a --print --no-tools "/goal-pi set Goal A"`; repeat for `session-b` and `Goal B`; run `node --test .opencode/hooks/goal/pi/goal-pi.test.mjs` | Two scoped files; A output/state contains only Goal A; B contains only Goal B; adapter suite passes native command, input, turn-end, resume/new-id, and missing-id rows | Native command envelopes, scoped JSON inspection, test summary | PASS when state and output stay isolated and every negative boundary fails closed | Verify extension registration first; then inspect appended CLI flags and the native `getSessionId()` value; do not bypass the command with a guessed shell binding |
+|| PI-021 | Session-isolated goal hook and native command | Two Pi sessions manage and inject different goals without collision | `Use the native Pi goal command to set different goals in two isolated session ids, prove each id reads and injects only its own goal, then verify resume, missing identity, legacy migration, and disabled fallback behavior.` | `OPENCODE_GOAL_STATE_DIR=<temp> pi --no-extensions --extension .skilled/hooks/goal/pi/goal-context.ts --offline --session-dir <temp-sessions> --session-id session-a --print --no-tools "/goal-pi set Goal A"`; repeat for `session-b` and `Goal B`; run `node --test .skilled/hooks/goal/pi/goal-pi.test.mjs` | Two scoped files; A output/state contains only Goal A; B contains only Goal B; adapter suite passes native command, input, turn-end, resume/new-id, and missing-id rows | Native command envelopes, scoped JSON inspection, test summary | PASS when state and output stay isolated and every negative boundary fails closed | Verify extension registration first; then inspect appended CLI flags and the native `getSessionId()` value; do not bypass the command with a guessed shell binding |
 
 ### Legacy migration and rollback
 
@@ -59,9 +59,9 @@ For rollback, add `-extensions/goal-context.ts` to `.pi/settings.json`, preserve
 
 ```bash
 node --test \
-  .opencode/hooks/goal/lib/goal-core.test.cjs \
-  .opencode/hooks/goal/bin/goal.test.cjs \
-  .opencode/hooks/goal/pi/goal-pi.test.mjs
+  .skilled/hooks/goal/lib/goal-core.test.cjs \
+  .skilled/hooks/goal/bin/goal.test.cjs \
+  .skilled/hooks/goal/pi/goal-pi.test.mjs
 ```
 
 ---

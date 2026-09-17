@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `HERMES-023` and confirm
 ### Commands
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
 
 HERMES_AGENT_PERSONA=markdown HERMES_ENABLE_PROJECT_PLUGINS=1 perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool \
   --provider llmgateway --model glm-5.3-flash --reasoning none -t file,todo --max-turns 1 --run-budget 90 -s agent-markdown \

@@ -81,7 +81,7 @@ grep -c "COMMENT HYGIENE WARNING" out.txt
 |---|---|
 | [SYNC.md](../../../../../../.hermes/SYNC.md) | What the plugin bridges and how |
 | [hook-contract.md](../../references/hook-contract.md) | The plugin hook map |
-| `.opencode/hooks/post-edit-quality/devin/post-edit-quality.cjs` | The core the bridge runs |
+| `.skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs` | The core the bridge runs |
 
 ---
 

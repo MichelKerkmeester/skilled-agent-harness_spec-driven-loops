@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-016` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-016 | Runtime lifecycle | Verify load, warm status, unload, and released status | Load the vision model, check status, then unload it and confirm it is released. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"status","params":{}}' \ -> 4.   '{"id":3,"method":"unload","params":{}}' \ -> 5.   '{"id":4,"method":"status","params":{}}' -> 6.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: `load` returns `{"result":{"loaded":true}}`; Step 2: status reports `model_loaded: true`; Step 3: `unload` returns a result confirming the model was released; Step 4: status reports `model_loaded: false` | All four transcript lines showing the `model_loaded` flag flip true -> false | PASS if `model_loaded` is true after load and false after unload; FAIL if the flag does not flip, an error envelope appears, or the process crashes | 1. Confirm the model loaded in Step 1 before judging Step 2 -> 2. If unload errors, check stderr for a torch teardown exception -> 3. Confirm a subsequent `load` after `unload` succeeds (reversibility) |
+| VSN-016 | Runtime lifecycle | Verify load, warm status, unload, and released status | Load the vision model, check status, then unload it and confirm it is released. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"status","params":{}}' \ -> 4.   '{"id":3,"method":"unload","params":{}}' \ -> 5.   '{"id":4,"method":"status","params":{}}' -> 6.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: `load` returns `{"result":{"loaded":true}}`; Step 2: status reports `model_loaded: true`; Step 3: `unload` returns a result confirming the model was released; Step 4: status reports `model_loaded: false` | All four transcript lines showing the `model_loaded` flag flip true -> false | PASS if `model_loaded` is true after load and false after unload; FAIL if the flag does not flip, an error envelope appears, or the process crashes | 1. Confirm the model loaded in Step 1 before judging Step 2 -> 2. If unload errors, check stderr for a torch teardown exception -> 3. Confirm a subsequent `load` after `unload` succeeds (reversibility) |
 
 ---
 
@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `VSN-016` and confirm th
 3. `  '{"id":2,"method":"status","params":{}}' \`
 4. `  '{"id":3,"method":"unload","params":{}}' \`
 5. `  '{"id":4,"method":"status","params":{}}'`
-6. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+6. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

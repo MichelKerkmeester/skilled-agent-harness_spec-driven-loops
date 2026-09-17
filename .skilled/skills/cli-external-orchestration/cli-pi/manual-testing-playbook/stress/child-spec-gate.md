@@ -51,7 +51,7 @@ Prompt: `Run the manifest-indexed hermetic stress test for cli-pi:EC-006 and rep
 Run from the repository root:
 
 ```bash
-cd .opencode/skills/system-deep-loop/runtime && \
+cd .skilled/skills/system-deep-loop/runtime && \
   npx --no-install vitest run tests/stress/cli-adapter/cli-pi.vitest.ts \
   --configLoader runner --reporter=verbose \
   -t "passes child gate variables through the full cli-pi runtime" </dev/null

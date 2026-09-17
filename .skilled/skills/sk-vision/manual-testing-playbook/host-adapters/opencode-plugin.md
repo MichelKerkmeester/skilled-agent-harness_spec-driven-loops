@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-014` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-014 | OpenCode plugin | Verify the load path, default tool silence, `/vision` forms and teardown | Use `/vision` to read the latest screenshot, then confirm that the vision runtime has closed. | 1. bash: test -f .opencode/plugins/sk-vision.js && grep -q 'dist/plugin.js' .opencode/plugins/sk-vision.js -> 2. bash: test -f .opencode/skills/sk-vision/vision-runtime/dist/plugin.js -> 3. OpenCode with `SK_VISION_AUTOINSPECT` unset: confirm no `sk_vision_*` tools are advertised -> 4. OpenCode: attach `<FIXTURE>` and run `/vision What does this screenshot say?` -> 5. OpenCode: run bare `/vision` -> 6. host: check the runtime process after each call | Steps 1 and 2 exit 0. Step 3 lists no vision tools. Step 4 returns a `<SK-VISION COMMAND>` block. Step 5 returns scene, caption and OCR. Step 6 finds no runtime process | Load-path output, default tool list, both command responses and process check | PASS if the load path works, default tools stay unadvertised, both command forms return evidence and the runtime exits after each call. FAIL if any check fails. | 1. Rebuild `vision-runtime/dist` -> 2. Confirm `SK_VISION_AUTOINSPECT` is unset -> 3. Confirm the command has a recent image -> 4. Check the command hook output -> 5. Check `SK_VISION_TEARDOWN` and the runtime process |
+| VSN-014 | OpenCode plugin | Verify the load path, default tool silence, `/vision` forms and teardown | Use `/vision` to read the latest screenshot, then confirm that the vision runtime has closed. | 1. bash: test -f .skilled/plugins/sk-vision.js && grep -q 'dist/plugin.js' .skilled/plugins/sk-vision.js -> 2. bash: test -f .skilled/skills/sk-vision/vision-runtime/dist/plugin.js -> 3. OpenCode with `SK_VISION_AUTOINSPECT` unset: confirm no `sk_vision_*` tools are advertised -> 4. OpenCode: attach `<FIXTURE>` and run `/vision What does this screenshot say?` -> 5. OpenCode: run bare `/vision` -> 6. host: check the runtime process after each call | Steps 1 and 2 exit 0. Step 3 lists no vision tools. Step 4 returns a `<SK-VISION COMMAND>` block. Step 5 returns scene, caption and OCR. Step 6 finds no runtime process | Load-path output, default tool list, both command responses and process check | PASS if the load path works, default tools stay unadvertised, both command forms return evidence and the runtime exits after each call. FAIL if any check fails. | 1. Rebuild `vision-runtime/dist` -> 2. Confirm `SK_VISION_AUTOINSPECT` is unset -> 3. Confirm the command has a recent image -> 4. Check the command hook output -> 5. Check `SK_VISION_TEARDOWN` and the runtime process |
 
 ---
 
@@ -46,8 +46,8 @@ Operators run the exact prompt and command sequence for `VSN-014` and confirm th
 
 ### Commands
 
-1. `bash: test -f .opencode/plugins/sk-vision.js && grep -q 'dist/plugin.js' .opencode/plugins/sk-vision.js`
-2. `bash: test -f .opencode/skills/sk-vision/vision-runtime/dist/plugin.js`
+1. `bash: test -f .skilled/plugins/sk-vision.js && grep -q 'dist/plugin.js' .skilled/plugins/sk-vision.js`
+2. `bash: test -f .skilled/skills/sk-vision/vision-runtime/dist/plugin.js`
 3. `OpenCode with SK_VISION_AUTOINSPECT unset: confirm no sk_vision_* tools are advertised`
 4. `OpenCode: attach <FIXTURE> and run /vision What does this screenshot say?`
 5. `OpenCode: run bare /vision`
@@ -85,7 +85,7 @@ Load-path output, the default tool list, both command responses and the process 
 
 | File | Role |
 |---|---|
-| `.opencode/plugins/sk-vision.js` | Load-path re-export of the built runtime |
+| `.skilled/plugins/sk-vision.js` | Load-path re-export of the built runtime |
 | `vision-runtime/src/plugin.ts` | Command hook and legacy activation path |
 | `vision-runtime/src/opencode/command.ts` | `/vision` image read and teardown |
 | `vision-runtime/src/opencode/attachments.ts` | Legacy auto-inspect injector |

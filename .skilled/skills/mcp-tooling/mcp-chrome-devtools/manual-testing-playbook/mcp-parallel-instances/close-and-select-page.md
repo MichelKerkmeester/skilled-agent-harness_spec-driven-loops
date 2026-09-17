@@ -84,14 +84,14 @@ Capture the Code Mode script, both page IDs, and the `ls -la` / `xxd` output for
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `.opencode/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md` | CM playbook (CM-014..CM-016 Chrome via CM) |
+| `.skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md` | CM playbook (CM-014..CM-016 Chrome via CM) |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | new_page / close_page / select_page reference |
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Code Mode invocation contract |
+| `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | new_page / close_page / select_page reference |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Code Mode invocation contract |
 
 ---
 

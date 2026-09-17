@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario verifies whether Pi receives `.opencode/skills/` as a configured skill location and whether a successful session exposes the expected 12 hub-level identities.
+This scenario verifies whether Pi receives `.skilled/skills/` as a configured skill location and whether a successful session exposes the expected 12 hub-level identities.
 
 ### Why This Matters
 
@@ -23,10 +23,10 @@ The repository's advisor architecture depends on hub-level identity. A recursive
 ## 2. SCENARIO CONTRACT
 
 - Objective: Inspect the skills setting, count the 12 hub-level `SKILL.md` files, and live-check Pi's discovered surface when the configured pointer and credentials are available.
-- Real user request: `Check whether Pi is pointed at this repository's .opencode/skills directory and whether the expected hub skills are discoverable without flattening every nested mode.`
-- Prompt: `List the Pi skills discovered from the configured .opencode/skills location, one per line, and report whether nested SKILL.md files appear as independent skills. Do not infer the answer from the filesystem alone.`
+- Real user request: `Check whether Pi is pointed at this repository's .skilled/skills directory and whether the expected hub skills are discoverable without flattening every nested mode.`
+- Prompt: `List the Pi skills discovered from the configured .skilled/skills location, one per line, and report whether nested SKILL.md files appear as independent skills. Do not infer the answer from the filesystem alone.`
 - Expected execution process: Read `.pi/settings.json` -> count hub-level files -> if the `skills` array is configured, run an isolated approved Pi session -> capture the discovered list and output text.
-- Expected signals: The configured shape is `"skills": [".opencode/skills/"]`; filesystem inspection returns 12 hub-level `SKILL.md` files; a live session either reports the surface or reaches the provider gate.
+- Expected signals: The configured shape is `"skills": [".skilled/skills/"]`; filesystem inspection returns 12 hub-level `SKILL.md` files; a live session either reports the surface or reaches the provider gate.
 - Desired user-visible outcome: A clear distinction between filesystem inventory, configuration presence, and live Pi discovery behavior.
 - Pass/fail: PASS for a live, credential-backed hub enumeration matching the configured shape. SKIP with blockers `the current settings file has no skills array` and `provider credentials are absent on this machine`; FAIL if Pi accepts the configured pointer but reports a contradictory or malformed resource result.
 
@@ -44,7 +44,7 @@ The repository's advisor architecture depends on hub-level identity. A recursive
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PI-004 | Recursive skill discovery and hub surface | Verify configured skills pointer and live hub enumeration | `List the Pi skills discovered from the configured .opencode/skills location, one per line, and report whether nested SKILL.md files appear as independent skills. Do not infer the answer from the filesystem alone.` | `jq -c '.skills // null' .pi/settings.json` -> `find .opencode/skills -maxdepth 2 -name SKILL.md -type f | wc -l` -> `find .opencode/skills -name SKILL.md -type f | wc -l` -> if configured, `PI_CODING_AGENT_DIR=<tmp> pi --offline --approve -p "List the Pi skills discovered from the configured .opencode/skills location, one per line, and report whether nested SKILL.md files appear as independent skills." </dev/null` | Current output is `skills=null`, hub count `12`, total count `50`; no live hub count without a configured pointer and provider credentials | Captured output: `skills=null`; `hub_count=      12`; `all_skill_count=      50`. The current project settings contain only the package array. | SKIP because the required skills pointer is absent and provider credentials are absent. PASS only after a live session reports the hub surface from the configured pointer. | Do not add the skills pointer in this playbook. Supply it in a separately approved fixture, then repeat the isolated probe with credentials. |
+| PI-004 | Recursive skill discovery and hub surface | Verify configured skills pointer and live hub enumeration | `List the Pi skills discovered from the configured .skilled/skills location, one per line, and report whether nested SKILL.md files appear as independent skills. Do not infer the answer from the filesystem alone.` | `jq -c '.skills // null' .pi/settings.json` -> `find .skilled/skills -maxdepth 2 -name SKILL.md -type f | wc -l` -> `find .skilled/skills -name SKILL.md -type f | wc -l` -> if configured, `PI_CODING_AGENT_DIR=<tmp> pi --offline --approve -p "List the Pi skills discovered from the configured .skilled/skills location, one per line, and report whether nested SKILL.md files appear as independent skills." </dev/null` | Current output is `skills=null`, hub count `12`, total count `50`; no live hub count without a configured pointer and provider credentials | Captured output: `skills=null`; `hub_count=      12`; `all_skill_count=      50`. The current project settings contain only the package array. | SKIP because the required skills pointer is absent and provider credentials are absent. PASS only after a live session reports the hub surface from the configured pointer. | Do not add the skills pointer in this playbook. Supply it in a separately approved fixture, then repeat the isolated probe with credentials. |
 
 ### Optional Supplemental Checks
 
@@ -67,7 +67,7 @@ The repository's advisor architecture depends on hub-level identity. A recursive
 | File | Role |
 |---|---|
 | `.pi/settings.json` | Current project package state and absence of a skills key |
-| `.opencode/skills/` | Hub and nested `SKILL.md` inventory |
+| `.skilled/skills/` | Hub and nested `SKILL.md` inventory |
 
 ---
 

@@ -9,7 +9,7 @@ to an image file (`.png`, `.jpg`, `.jpeg`, `.webp`, `.gif`, `.bmp`, or a `.pdf` 
 treat its contents as unknown until you have inspected it with sk-vision:
 
 ```bash
-node .opencode/skills/sk-vision/vision-runtime/dist/vision-cli.js <image-path> [question...]
+node .skilled/skills/sk-vision/vision-runtime/dist/vision-cli.js <image-path> [question...]
 ```
 
 - Run it with the image's **path**, before reasoning about the image, and treat the

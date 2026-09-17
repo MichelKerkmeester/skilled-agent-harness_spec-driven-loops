@@ -102,7 +102,7 @@ Changes:
 - Preserve the existing atomic marker-writing path.
 
 Verification:
-- `bash .opencode/scripts/git-hooks/tests/post-commit-code-graph-invalidation.sh` -> 3/3 pass
+- `bash .skilled/scripts/git-hooks/tests/post-commit-code-graph-invalidation.sh` -> 3/3 pass
 
 Commit-Id: 0009021
 ```

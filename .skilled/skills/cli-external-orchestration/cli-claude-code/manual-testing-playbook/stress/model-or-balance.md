@@ -51,7 +51,7 @@ Prompt: `Run the manifest-indexed hermetic stress test for cli-claude-code:EC-00
 Run from the repository root:
 
 ```bash
-cd .opencode/skills/system-deep-loop/runtime && \
+cd .skilled/skills/system-deep-loop/runtime && \
   npx --no-install vitest run tests/stress/cli-adapter/cli-claude-code.vitest.ts \
   --configLoader runner --reporter=verbose \
   -t "retains cli-claude-code model-or-balance diagnostics in bounded lineage output" </dev/null

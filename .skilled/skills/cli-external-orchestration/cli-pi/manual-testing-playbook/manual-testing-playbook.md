@@ -68,7 +68,7 @@ Coverage note (2026-08-10): the package covers Pi version/help, settings, extens
 3. The operator has a safe Pi config directory. Do not write the real `~/.pi/agent/` directory; use the documented `PI_CODING_AGENT_DIR` override pointing at an isolated temporary directory when a live command needs config state.
 4. Successful provider-backed turns require provider credentials. If the output says `No API key found for the selected model`, any sub-check requiring a model turn is SKIP with that exact blocker; startup, static, and local package checks may still pass.
 5. The run is not inside a fan-out lineage and `cli-pi` is not already in the dispatch stack; the shared runtime refuses both. The active runtime may itself be Pi.
-6. The `cli-pi` skill references and assets exist under `.opencode/skills/cli-external-orchestration/cli-pi/{references,assets}/`.
+6. The `cli-pi` skill references and assets exist under `.skilled/skills/cli-external-orchestration/cli-pi/{references,assets}/`.
 7. The current project-local fixtures exist before execution: `.pi/settings.json`, `.pi/prompts/`, `.pi/agents/`, `.pi/extensions/`, and `.pi/mcp.json`.
 8. Do not install a new package during routine playbook execution. Package scenarios validate the current project settings as observed; optional MCP-host checks SKIP when `pi-mcp-extension` is not installed or approved.
 9. Do not write into the operator's real global Pi config or agent directory. Project/global precedence scenarios are documentation-grounded and SKIP any live collision test that would cross that boundary.
@@ -195,7 +195,7 @@ This category covers version/help, project settings state, unreliable failure ex
 
 ## 8. SKILL DISCOVERY (`PI-004..PI-006`)
 
-This category checks the configured `.opencode/skills/` pointer, recursive discovery claims, nested-mode flattening risk, and project-skill trust behavior without claiming a live hub count when the provider gate prevents introspection.
+This category checks the configured `.skilled/skills/` pointer, recursive discovery claims, nested-mode flattening risk, and project-skill trust behavior without claiming a live hub count when the provider gate prevents introspection.
 
 - `PI-004`: [Recursive skill discovery and hub surface](skill-discovery/recursive-skill-discovery-hub-surface.md)
 - `PI-005`: [Nested skill flattening risk](skill-discovery/nested-skill-flattening-risk.md)
@@ -289,17 +289,17 @@ The `cli-pi` skill is an orchestrator wrapper around the Pi binary and community
 
 | Test Surface | Coverage | Playbook Overlap |
 |---|---|---|
-| `.opencode/skills/cli-external-orchestration/cli-pi/SKILL.md` | Routing, provider preflight, headless modes, and hard rules | `PI-001`, `PI-002`, `PI-003`, `PI-017`, `PI-018` |
-| `.opencode/skills/cli-external-orchestration/cli-pi/references/cli-reference.md` | Confirmed flags, config-dir override, JSON/RPC distinctions, and output-first failure handling | `PI-001`, `PI-002`, `PI-017` |
-| `.opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs` | Flat prompt generation and drift checking | `PI-007`, `PI-008` |
-| `.opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-010` |
+| `.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md` | Routing, provider preflight, headless modes, and hard rules | `PI-001`, `PI-002`, `PI-003`, `PI-017`, `PI-018` |
+| `.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md` | Confirmed flags, config-dir override, JSON/RPC distinctions, and output-first failure handling | `PI-001`, `PI-002`, `PI-017` |
+| `.skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs` | Flat prompt generation and drift checking | `PI-007`, `PI-008` |
+| `.skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-010` |
 | `.pi/extensions/*.ts` and the installed Pi extension declarations | Extension factories, event registration, guard-core, session-lifecycle bridge behavior, and paired advisory delivery | `PI-014`, `PI-015`, `PI-016`, `PI-020`, `PI-022` |
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Pi model allowlist and default | `PI-017` |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Pi model allowlist and default | `PI-017` |
 | `.pi/models.json`, `.pi/settings.json`, and `.pi/custom-providers.md` | Config-wired cline-pass provider block, three-segment references, and the slashed model-id contract | `PI-023` |
-| `.opencode/hooks/goal/pi/goal-pi.test.mjs` | Native command, A/B lifecycle, resume/new-id, turn-end isolation, and missing-identity contracts | `PI-021` |
-| `.opencode/hooks/goal/lib/goal-core.test.cjs` | Session-scoped state, legacy quarantine, rendering, and hardening | `PI-021` |
-| `.opencode/skills/sk-doc/shared/scripts/validate_document.py` | Root markdown structure validation | This root playbook |
-| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-pi.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-pi` adapter | `cli-pi-EC-001` .. `cli-pi-EC-014` |
+| `.skilled/hooks/goal/pi/goal-pi.test.mjs` | Native command, A/B lifecycle, resume/new-id, turn-end isolation, and missing-identity contracts | `PI-021` |
+| `.skilled/hooks/goal/lib/goal-core.test.cjs` | Session-scoped state, legacy quarantine, rendering, and hardening | `PI-021` |
+| `.skilled/skills/sk-doc/shared/scripts/validate_document.py` | Root markdown structure validation | This root playbook |
+| `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-pi.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-pi` adapter | `cli-pi-EC-001` .. `cli-pi-EC-014` |
 
 There is no substitute automated test for a provider-backed Pi model turn, recursive skill enumeration, trust persistence, or a real global/project collision test. Goal binding separately requires an explicit-load native command canary and the automated lifecycle matrix.
 

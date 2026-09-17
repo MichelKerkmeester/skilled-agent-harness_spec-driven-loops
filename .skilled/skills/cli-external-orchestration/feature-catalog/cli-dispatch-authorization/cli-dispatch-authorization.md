@@ -15,7 +15,7 @@ version: 1.4.0.1
 
 ## 1. OVERVIEW
 
-The dispatch hooks share one runtime-neutral inspector that decides whether a Bash command is an external-CLI dispatch, and — under Pi — whether that dispatch is authorized. The inspector (`inspectDispatch` in `.opencode/hooks/dispatch/lib/dispatch-audit.mjs`) tokenizes a bounded command without evaluating it and returns exactly one classification:
+The dispatch hooks share one runtime-neutral inspector that decides whether a Bash command is an external-CLI dispatch, and — under Pi — whether that dispatch is authorized. The inspector (`inspectDispatch` in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`) tokenizes a bounded command without evaluating it and returns exactly one classification:
 
 - `direct` — exactly one proven command-position executor (e.g. `devin -p x`, `codex exec -p x`, `opencode run x`).
 - `ambiguous` — an executor-shaped candidate that cannot be pinned to a single direct executor: variable (`$CLI -p x`), alias, command substitution, unknown wrapper, variable-prompt, or two dispatch segments.
@@ -51,18 +51,18 @@ The Claude, Codex, and Devin dispatch hooks consume the same shared inspector fo
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/hooks/dispatch/lib/dispatch-audit.mjs` | Shared | `inspectDispatch` classification (`direct`/`ambiguous`/`none`), `directExecutor` quote-safe normalization, `matchDispatchShape`, `recordDispatch`. |
-| `.opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts` | Pi | `shouldDenyPiDispatch` authorization gate and the `tool_call` deny path. |
-| `.opencode/hooks/dispatch/claude/dispatch-preflight-lint.mjs` | Claude | Preflight twin consuming the shared inspector. |
-| `.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs` | Codex | Preflight twin consuming the shared inspector. |
-| `.opencode/hooks/dispatch/devin/dispatch-preflight-lint.mjs` | Devin | Preflight twin consuming the shared inspector. |
+| `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` | Shared | `inspectDispatch` classification (`direct`/`ambiguous`/`none`), `directExecutor` quote-safe normalization, `matchDispatchShape`, `recordDispatch`. |
+| `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` | Pi | `shouldDenyPiDispatch` authorization gate and the `tool_call` deny path. |
+| `.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs` | Claude | Preflight twin consuming the shared inspector. |
+| `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs` | Codex | Preflight twin consuming the shared inspector. |
+| `.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs` | Devin | Preflight twin consuming the shared inspector. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | Inspector classification table, including the quote-safe executor rows and prose/argument controls. |
-| `.opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts` | Automated test | `shouldDenyPiDispatch` authorization contract and the `tool_call` gate. |
+| `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | Inspector classification table, including the quote-safe executor rows and prose/argument controls. |
+| `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts` | Automated test | `shouldDenyPiDispatch` authorization contract and the `tool_call` gate. |
 
 ---
 

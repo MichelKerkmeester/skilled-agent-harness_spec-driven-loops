@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `CHT-002` and confirm th
 2. `agent: Open the same file from a file:// URL and read the top gridline label`
 3. `agent: Compute the ratio of top tick to peak and report both numbers`
 4. `agent: Repeat for assets/templates/grouped-bars.html and assets/templates/daily-line.html`
-5. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
+5. `bash: git status --porcelain .skilled/skills/sk-design/sk-design-chart`
 
 ### Expected
 

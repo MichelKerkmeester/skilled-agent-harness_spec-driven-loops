@@ -79,7 +79,7 @@ The REPL transcript and, on success, the redacted event fixture. Confirm no head
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md` | Capability-gap fail-closed policy and redaction rules |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md` | Capability-gap fail-closed policy and redaction rules |
 
 ---
 

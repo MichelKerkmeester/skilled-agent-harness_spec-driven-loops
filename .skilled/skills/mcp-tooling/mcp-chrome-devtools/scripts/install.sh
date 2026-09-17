@@ -391,7 +391,7 @@ main() {
     echo "  bdg --search screenshot    # Search methods"
     echo ""
     echo "Documentation:"
-    echo "  .opencode/install-guides/MCP - Chrome Dev Tools.md"
+    echo "  .skilled/install-guides/MCP - Chrome Dev Tools.md"
     echo ""
 }
 

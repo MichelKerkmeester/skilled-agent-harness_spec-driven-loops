@@ -85,10 +85,10 @@ I finished the ticket I was working on this morning - please close it out and jo
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/holdout-daily.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-3. `sed -n '/^```text$/,/^```$/p' .opencode/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/holdout-daily.md | grep -io 'cupt\|clickup\|mcp\|list\b\|log time' || echo "no obvious router keyword in the prompt body"`
-4. `test -e .opencode/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md && echo "OK references/cupt-commands.md" || echo "MISS references/cupt-commands.md"`
+1. `sed -n '1,17p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/holdout-daily.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+3. `sed -n '/^```text$/,/^```$/p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/holdout-daily.md | grep -io 'cupt\|clickup\|mcp\|list\b\|log time' || echo "no obvious router keyword in the prompt body"`
+4. `test -e .skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md && echo "OK references/cupt-commands.md" || echo "MISS references/cupt-commands.md"`
 
 ### Expected
 

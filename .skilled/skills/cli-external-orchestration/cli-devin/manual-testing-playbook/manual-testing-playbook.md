@@ -209,7 +209,7 @@ Devin's `skills` subcommand is the slash-command surface. These scenarios verify
 The playbook is manual by design. It has no replacement automated suite for the authenticated CLI, hook delivery, interactive slash commands, or cloud handoff. Structural evidence can be checked locally with `rg`, `find`, and the phase's Spec Kit validator; those checks do not replace executing the scenario commands.
 
 The `cli-devin` stress-matrix category is the one exception: it runs the shared hermetic Vitest suite
-at `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-devin.vitest.ts`, covering
+at `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-devin.vitest.ts`, covering
 `cli-devin-EC-001` .. `cli-devin-EC-014`.
 
 ---

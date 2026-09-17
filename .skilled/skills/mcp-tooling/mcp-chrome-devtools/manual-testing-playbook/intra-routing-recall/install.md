@@ -54,9 +54,9 @@ The tool is not installed on this machine; walk me through the initial setup.
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/install.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md | sed -n '/"INSTALL":/p'`
-3. `for p in references/troubleshooting.md; do test -e ".opencode/skills/mcp-tooling/mcp-chrome-devtools/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/install.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md | sed -n '/"INSTALL":/p'`
+3. `for p in references/troubleshooting.md; do test -e ".skilled/skills/mcp-tooling/mcp-chrome-devtools/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

@@ -60,7 +60,7 @@ On top of those surfaces sits the plugin knowledge layer. The mode treats each d
 **Step 1: Install or inspect the headless profile.**
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
 ```
 
 The script installs `notesmd-cli` through Homebrew when available, then prints the app-backed CLI and MCP setup steps without changing configuration files. Confirm with:
@@ -194,8 +194,8 @@ The mode-root scripts are the first checks because they separate required headle
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-tooling/mcp-obsidian/README.md --type readme` reports zero issues |
-| Setup diagnostics | `bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/doctor.sh` reports the detected CLI, app and MCP prerequisites without changing them |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-obsidian/README.md --type readme` reports zero issues |
+| Setup diagnostics | `bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/doctor.sh` reports the detected CLI, app and MCP prerequisites without changing them |
 | Headless CLI | `notesmd-cli --version && notesmd-cli list-vaults && notesmd-cli list` succeeds. An empty note list is valid |
 | Official CLI | With Obsidian running, `obsidian version` exits 0 and `obsidian help` prints its current command surface |
 | MCP health | With the manual registered, `list_tools()` shows `obsidian.obsidian_*` entries and `tool_info("obsidian.obsidian_get_note")` resolves a live schema |

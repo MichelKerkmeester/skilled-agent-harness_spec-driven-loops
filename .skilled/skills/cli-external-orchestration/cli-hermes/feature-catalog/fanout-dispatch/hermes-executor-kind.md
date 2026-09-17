@@ -47,18 +47,18 @@ Omitting `--yolo` does not stop ordinary file writes or commands. It leaves the 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | `buildHermesLineageCommand`, `isHermesBinaryAvailable`, and the adapter registration in the lineage-command table. |
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Shared | `EXECUTOR_KINDS`, the `cli-hermes` flag-support entry, and the preventive-sandbox capability ruling. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The documented dispatch shape and the hard rules a manual dispatch is held to. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md` | Handler | Flags, headless forms, exit codes and environment for the Hermes CLI. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | `buildHermesLineageCommand`, `isHermesBinaryAvailable`, and the adapter registration in the lineage-command table. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Shared | `EXECUTOR_KINDS`, the `cli-hermes` flag-support entry, and the preventive-sandbox capability ruling. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The documented dispatch shape and the hard rules a manual dispatch is held to. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md` | Handler | Flags, headless forms, exit codes and environment for the Hermes CLI. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Vitest | Exercises the emitted Hermes command, its refusal paths and its flag composition. |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Vitest | Covers the kind list, flag support and sandbox-capability entries. |
-| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts` | Test harness | Declares the adapter matrix the stress suite runs each CLI kind through. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Vitest | Exercises the emitted Hermes command, its refusal paths and its flag composition. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Vitest | Covers the kind list, flag support and sandbox-capability entries. |
+| `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/matrix-manifest.ts` | Test harness | Declares the adapter matrix the stress suite runs each CLI kind through. |
 
 ---
 

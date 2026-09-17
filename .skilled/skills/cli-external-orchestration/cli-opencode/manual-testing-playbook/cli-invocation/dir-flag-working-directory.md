@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `CO-003` and confirm the
 - Real user request: `Run opencode run from /tmp but pin --dir to the Public repo, and have OpenCode tell me which directory it sees as its working dir. Confirm it matches the pinned path.`
 - Prompt: `From /tmp, run opencode with --dir pinned to <repo-root>; verify the session reports the pinned directory, not /tmp.`
 - Expected execution process: External-AI orchestrator captures the operator's repo root via `REPO_ROOT="$(pwd)"`, runs `cd /tmp` (or otherwise changes the parent shell's CWD), dispatches with `--dir "$REPO_ROOT"` and a prompt that asks the session to surface its working directory, then validates the response references the captured `REPO_ROOT` rather than `/tmp`.
-- Expected signals: Dispatch exits 0. The session response references the Public repo path or names project-specific files like `AGENTS.md`, `opencode.json` or `.opencode/`. The response does NOT mention `/tmp` as the working directory.
+- Expected signals: Dispatch exits 0. The session response references the Public repo path or names project-specific files like `AGENTS.md`, `opencode.json` or `.skilled/`. The response does NOT mention `/tmp` as the working directory.
 - Desired user-visible outcome: Verdict naming the observed working directory and confirming it matches the pinned `--dir` path.
 - Pass/fail: PASS if exit 0 AND response names the pinned directory or project-specific files AND does not name `/tmp`. FAIL if response says it sees `/tmp` or fails to surface the pinned path.
 

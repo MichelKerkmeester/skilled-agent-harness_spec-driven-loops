@@ -56,7 +56,7 @@ Live pre-auth discovery confirmed a bounded read-only surface. Each tool covers 
 **Step 1: Check the wiring state (read-only).**
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh
 # Confirms node/npx and reports the 'mobbin' manual state in .utcp_config.json (grep only,
 # never edited). Manual PRESENCE is the healthy result. ABSENCE reports as an ERROR
 # (a broken or reverted registration). MOBBIN_DOCTOR_LIVE=1 adds one unauthenticated
@@ -199,11 +199,11 @@ A: No. It is a transport with `mutatesWorkspace: false`:
 
 | Check | How to run it |
 |---|---|
-| Skill package | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-mobbin --check` reports zero errors |
-| SKILL.md frontmatter | `head -8 .opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md` shows `name: mcp-mobbin`, a `description` and `version: 1.0.0.0` |
-| Wiring state | `bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` reports `OK 'mobbin' manual registered` plus the bridge shape (absence would be ERR) |
-| Install posture | `bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/install.sh` verifies Node 18 or newer, npx and the registered manual, then points at the operator-only OAuth step |
-| Endpoint reachability | `MOBBIN_DOCTOR_LIVE=1 bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` reports HTTP 401 (auth required, as documented) |
+| Skill package | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-mobbin --check` reports zero errors |
+| SKILL.md frontmatter | `head -8 .skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md` shows `name: mcp-mobbin`, a `description` and `version: 1.0.0.0` |
+| Wiring state | `bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` reports `OK 'mobbin' manual registered` plus the bridge shape (absence would be ERR) |
+| Install posture | `bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/install.sh` verifies Node 18 or newer, npx and the registered manual, then points at the operator-only OAuth step |
+| Endpoint reachability | `MOBBIN_DOCTOR_LIVE=1 bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` reports HTTP 401 (auth required, as documented) |
 | Callable confirmation | In a fresh Code Mode session: `tool_info({ tool_name: "mobbin.mobbin_search_screens" })` returns a schema (requires operator OAuth on a paid account) |
 
 ---

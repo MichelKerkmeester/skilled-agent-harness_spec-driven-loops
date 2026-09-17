@@ -35,20 +35,20 @@ Export returns an empty disabled result unless the caller explicitly enables it.
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-communication/cli-communication-projection/src/observability/emitter.ts` | Handler | Creates validated reason-coded events and emits or suppresses them. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/observability/aggregation.ts` | Shared | Aggregates lifecycle counts and rates by runtime and tier. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/observability/correlation.ts` | Shared | Creates rotating keyed correlation digests. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/observability/export.ts` | Handler | Applies default-off allowlisted aggregate export and inspection. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/observability/redaction.ts` | Shared | Detects synthetic secret and personal-data canaries. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/observability/emitter.ts` | Handler | Creates validated reason-coded events and emits or suppresses them. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/observability/aggregation.ts` | Shared | Aggregates lifecycle counts and rates by runtime and tier. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/observability/correlation.ts` | Shared | Creates rotating keyed correlation digests. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/observability/export.ts` | Handler | Applies default-off allowlisted aggregate export and inspection. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/observability/redaction.ts` | Shared | Detects synthetic secret and personal-data canaries. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-communication/cli-communication-projection/test/observability/aggregation.test.ts` | Unit | Verifies counters, rates, and runtime/tier buckets. |
-| `.opencode/skills/sk-communication/cli-communication-projection/test/observability/correlation.test.ts` | Unit | Verifies deterministic within-epoch and unlinkable rotated digests. |
-| `.opencode/skills/sk-communication/cli-communication-projection/test/observability/export.test.ts` | Unit | Covers opt-in export, schema filtering, and forbidden fields. |
-| `.opencode/skills/sk-communication/cli-communication-projection/test/observability/redaction.test.ts` | Unit | Covers canaries across strings, binary values, errors, and keys. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/observability/aggregation.test.ts` | Unit | Verifies counters, rates, and runtime/tier buckets. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/observability/correlation.test.ts` | Unit | Verifies deterministic within-epoch and unlinkable rotated digests. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/observability/export.test.ts` | Unit | Covers opt-in export, schema filtering, and forbidden fields. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/observability/redaction.test.ts` | Unit | Covers canaries across strings, binary values, errors, and keys. |
 
 ---
 

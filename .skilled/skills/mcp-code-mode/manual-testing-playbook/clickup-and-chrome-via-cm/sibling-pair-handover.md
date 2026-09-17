@@ -91,7 +91,7 @@ Capture the chain response with both ids and the description-contains check.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | Chrome MCP catalog |
+| `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | Chrome MCP catalog |
 
 ---
 

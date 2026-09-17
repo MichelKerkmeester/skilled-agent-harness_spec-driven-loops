@@ -84,7 +84,7 @@ The transparency report shows `DEPTH ROUNDS: 3` for `$short` and no DEPTH phases
 **Step 4: Verify before you rely on it.**
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/README.md --type readme
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-prompt/README.md --type readme
 ```
 
 Zero issues means the README matches the house template.
@@ -200,7 +200,7 @@ A: No. An intent-preservation check runs during Prototype. The skill keeps the g
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/README.md --type readme` reports zero issues |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-prompt/README.md --type readme` reports zero issues |
 | Manual testing playbook | Scenarios under `manual-testing-playbook/` cover mode detection, smart routing, the DEPTH-CLEAR loop, CLEAR scoring, framework selection, escalation tiers and format modes |
 | Agent contract | The `@prompt-improver` output block contract lives in `SKILL.md` Section 7. Validate with the playbook scenarios under `manual-testing-playbook/escalation-tiers/` |
 

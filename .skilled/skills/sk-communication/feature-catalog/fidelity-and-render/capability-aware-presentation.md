@@ -35,17 +35,17 @@ This boundary controls only what the operator sees. It exposes no canonical writ
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-communication/cli-communication-projection/src/render/decision.ts` | Handler | Chooses a digest-checked capability-supported render mode. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/clients/display.ts` | Handler | Applies atomic replacement or append on a client-owned display. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/clients/sidecar.ts` | Handler | Applies sidecar projection without suppressing the original. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/render/decision.ts` | Handler | Chooses a digest-checked capability-supported render mode. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/clients/display.ts` | Handler | Applies atomic replacement or append on a client-owned display. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/clients/sidecar.ts` | Handler | Applies sidecar projection without suppressing the original. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-communication/cli-communication-projection/test/fidelity/render.test.ts` | Unit | Covers render prerequisites, mode selection, and exact-original fallback. |
-| `.opencode/skills/sk-communication/cli-communication-projection/test/clients/display.test.ts` | Unit | Verifies ownership, atomic commit, append, and failure behavior. |
-| `.opencode/skills/sk-communication/cli-communication-projection/test/clients/sidecar.test.ts` | Unit | Verifies sidecar-only degradation and original visibility. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/fidelity/render.test.ts` | Unit | Covers render prerequisites, mode selection, and exact-original fallback. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/clients/display.test.ts` | Unit | Verifies ownership, atomic commit, append, and failure behavior. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/clients/sidecar.test.ts` | Unit | Verifies sidecar-only degradation and original visibility. |
 
 ---
 

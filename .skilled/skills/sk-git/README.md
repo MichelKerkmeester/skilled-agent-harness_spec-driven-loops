@@ -76,10 +76,10 @@ sk-git does not write code or manage spec folders. `sk-code` owns the code that 
 
 ```bash
 # Auto-routing through the skill advisor
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "commit my changes" --threshold 0.8
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "commit my changes" --threshold 0.8
 
 # Or read the runtime instructions
-Read(".opencode/skills/sk-git/SKILL.md")
+Read(".skilled/skills/sk-git/SKILL.md")
 ```
 
 The advisor prints a routing recommendation. The Read call opens the runtime instructions.
@@ -91,11 +91,11 @@ The advisor prints a routing recommendation. The Read call opens the runtime ins
 ```bash
 # Numbered worktree: the allocator reserves a collision-free number under a
 # per-namespace lock and creates the branch plus directory together.
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create add-oauth-login
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create add-oauth-login
 # -> branch worktrees/007-add-oauth-login, directory .worktrees/007-add-oauth-login
 
 # Dedicated branch with no worktree (branches/ numbers independently):
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-branch external-dep
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-branch external-dep
 # -> branch branches/003-external-dep
 ```
 
@@ -144,7 +144,7 @@ A branch never exists without a worktree set up for it.
 
 ### Launch Wrapper And Continuous Integration
 
-The ask-first rule governs in-session decisions. It is separate from `.opencode/bin/worktree-session.sh`, a launch wrapper the operator opts into at the shell (for example `alias claude='bash /abs/.opencode/bin/worktree-session.sh claude'`). The wrapper runs before the AI starts and places each top-level session in its own worktree and branch, with isolated MCP databases. Orchestrated children exec in place. Because the operator aliased the launch, the choice was already made, so the wrapper does not violate the in-session rule.
+The ask-first rule governs in-session decisions. It is separate from `.skilled/bin/worktree-session.sh`, a launch wrapper the operator opts into at the shell (for example `alias claude='bash /abs/.skilled/bin/worktree-session.sh claude'`). The wrapper runs before the AI starts and places each top-level session in its own worktree and branch, with isolated MCP databases. Orchestrated children exec in place. Because the operator aliased the launch, the choice was already made, so the wrapper does not violate the in-session rule.
 
 Worktree isolation keeps concurrent sessions safe, but it also hides each session's work from the operator's IDE, which is open on the primary checkout. Continuous integration resolves that without giving up isolation. Each session autosyncs every commit to one shared live branch. The IDE fast-forward-follows it. Visibility is at commit granularity only, never another session's uncommitted buffer. The `post-commit` hook publishes through `git-sync.sh`. The script fetches and fast-forwards the shared branch or aborts on conflict. It pushes without force.
 
@@ -267,12 +267,12 @@ The skill ships a manual testing playbook with scenarios across 8 categories and
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-git/README.md --type readme` reports zero issues |
-| Skill packaging and structure | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/sk-git --check` reports `PASS` (snake_case findings on `references/`/`assets/` are advisory ahead of the hyphen-naming program) |
-| Allocator behavior | `bash .opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh` ends in `FAIL=0` |
-| Commit message structure | `bash .opencode/scripts/git-hooks/tests/commit-msg.test.sh` reports `PASS=11 FAIL=0` |
-| Commit trailer stamping | `bash .opencode/scripts/git-hooks/tests/prepare-commit-msg.test.sh` reports `PASS=43 FAIL=0` |
-| Commit ordinal allocation | `bash .opencode/skills/sk-git/scripts/tests/commit-id-naming.test.sh` reports `PASS=39 FAIL=0` |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-git/README.md --type readme` reports zero issues |
+| Skill packaging and structure | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/sk-git --check` reports `PASS` (snake_case findings on `references/`/`assets/` are advisory ahead of the hyphen-naming program) |
+| Allocator behavior | `bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` ends in `FAIL=0` |
+| Commit message structure | `bash .skilled/scripts/git-hooks/tests/commit-msg.test.sh` reports `PASS=11 FAIL=0` |
+| Commit trailer stamping | `bash .skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh` reports `PASS=43 FAIL=0` |
+| Commit ordinal allocation | `bash .skilled/skills/sk-git/scripts/tests/commit-id-naming.test.sh` reports `PASS=39 FAIL=0` |
 | Live behavior | Run the playbook scenarios under `manual-testing-playbook/<topic>/` in a live session |
 
 ---

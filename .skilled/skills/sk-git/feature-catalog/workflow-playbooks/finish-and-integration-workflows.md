@@ -47,18 +47,18 @@ An optional release step is available only when explicitly requested. It creates
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/references/finish-workflows.md` | Shared | Five-step completion flow, release step, primary-checkout reconciliation |
-| `.opencode/skills/sk-git/assets/pr-template.md` | Shared | PR description structure and examples |
-| `.opencode/bin/git-sync.sh` | Script | Publishes a worktree's commits during continuous-integration finish |
+| `.skilled/skills/sk-git/references/finish-workflows.md` | Shared | Five-step completion flow, release step, primary-checkout reconciliation |
+| `.skilled/skills/sk-git/assets/pr-template.md` | Shared | PR description structure and examples |
+| `.skilled/bin/git-sync.sh` | Script | Publishes a worktree's commits during continuous-integration finish |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/manual-testing-playbook/integration-and-pr/finish-merge-to-main.md` | Manual playbook | Validates the local-merge integration option |
-| `.opencode/skills/sk-git/manual-testing-playbook/integration-and-pr/finish-create-pr-with-template.md` | Manual playbook | Validates the push-and-PR integration option |
-| `.opencode/skills/sk-git/manual-testing-playbook/integration-and-pr/branch-cleanup-after-merge.md` | Manual playbook | Validates post-merge worktree/branch cleanup |
-| `.opencode/skills/sk-git/manual-testing-playbook/integration-and-pr/failing-tests-block-merge.md` | Manual playbook | Validates the test gate blocks integration on failure |
+| `.skilled/skills/sk-git/manual-testing-playbook/integration-and-pr/finish-merge-to-main.md` | Manual playbook | Validates the local-merge integration option |
+| `.skilled/skills/sk-git/manual-testing-playbook/integration-and-pr/finish-create-pr-with-template.md` | Manual playbook | Validates the push-and-PR integration option |
+| `.skilled/skills/sk-git/manual-testing-playbook/integration-and-pr/branch-cleanup-after-merge.md` | Manual playbook | Validates post-merge worktree/branch cleanup |
+| `.skilled/skills/sk-git/manual-testing-playbook/integration-and-pr/failing-tests-block-merge.md` | Manual playbook | Validates the test gate blocks integration on failure |
 
 ---
 

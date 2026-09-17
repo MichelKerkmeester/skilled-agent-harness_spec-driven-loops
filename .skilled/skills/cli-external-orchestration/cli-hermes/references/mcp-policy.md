@@ -32,7 +32,7 @@ MCP servers reach a Hermes session only from the operator's user-level configura
 To reach the repo's code-mode server from Hermes, the operator runs, once:
 
 ```bash
-printf 'Y\n' | hermes mcp add code_mode --command node --env UTCP_CONFIG_FILE=.utcp_config.json --args .opencode/bin/mcp-code-mode-launcher.cjs
+printf 'Y\n' | hermes mcp add code_mode --command node --env UTCP_CONFIG_FILE=.utcp_config.json --args .skilled/bin/mcp-code-mode-launcher.cjs
 hermes mcp list
 ```
 

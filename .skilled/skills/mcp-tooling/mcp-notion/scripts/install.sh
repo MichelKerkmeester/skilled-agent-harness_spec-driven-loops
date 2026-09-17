@@ -180,8 +180,8 @@ QUICK REFERENCE:
   Search  : search  (title-only)
 
 SKILL REFERENCE:
-  .opencode/skills/mcp-tooling/mcp-notion/SKILL.md
-  .opencode/skills/mcp-tooling/mcp-notion/feature-catalog/FEATURE-CATALOG.md
+  .skilled/skills/mcp-tooling/mcp-notion/SKILL.md
+  .skilled/skills/mcp-tooling/mcp-notion/feature-catalog/FEATURE-CATALOG.md
 
 EOF
 }

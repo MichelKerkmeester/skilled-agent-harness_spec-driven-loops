@@ -35,7 +35,7 @@ Operators run the two unit suites in `vision-runtime/` and confirm the expected 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-024 | Text-only classifier and env overrides | Confirm the classifier rules and the await-vs-grace behavior via the unit suites | (none — this scenario runs the unit suites) | 1. `cd .opencode/skills/sk-vision/vision-runtime` -> 2. `bun test src/model-modality.test.ts` -> 3. `bun test src/opencode/attachments.test.ts` | `model-modality.test.ts` reports 6 pass / 0 fail (allowlist, unlisted=false, missing model=false, `SK_VISION_FORCE`, `SK_VISION_TEXT_ONLY_MODELS`, declared-modality); `attachments.test.ts` reports 2 pass / 0 fail (a text-only model awaits past the grace; a non-listed model does not) | The two `bun test` transcripts | PASS if both suites are green with the counts above; FAIL on any failure | 1. Run `bun install` in `vision-runtime/` -> 2. Run `./node_modules/.bin/tsc --noEmit` to rule out a type error -> 3. Inspect the failing assertion |
+| VSN-024 | Text-only classifier and env overrides | Confirm the classifier rules and the await-vs-grace behavior via the unit suites | (none — this scenario runs the unit suites) | 1. `cd .skilled/skills/sk-vision/vision-runtime` -> 2. `bun test src/model-modality.test.ts` -> 3. `bun test src/opencode/attachments.test.ts` | `model-modality.test.ts` reports 6 pass / 0 fail (allowlist, unlisted=false, missing model=false, `SK_VISION_FORCE`, `SK_VISION_TEXT_ONLY_MODELS`, declared-modality); `attachments.test.ts` reports 2 pass / 0 fail (a text-only model awaits past the grace; a non-listed model does not) | The two `bun test` transcripts | PASS if both suites are green with the counts above; FAIL on any failure | 1. Run `bun install` in `vision-runtime/` -> 2. Run `./node_modules/.bin/tsc --noEmit` to rule out a type error -> 3. Inspect the failing assertion |
 
 ---
 
@@ -47,7 +47,7 @@ Operators run the two unit suites in `vision-runtime/` and confirm the expected 
 
 ### Commands
 
-1. `cd .opencode/skills/sk-vision/vision-runtime`
+1. `cd .skilled/skills/sk-vision/vision-runtime`
 2. `bun test src/model-modality.test.ts`
 3. `bun test src/opencode/attachments.test.ts`
 

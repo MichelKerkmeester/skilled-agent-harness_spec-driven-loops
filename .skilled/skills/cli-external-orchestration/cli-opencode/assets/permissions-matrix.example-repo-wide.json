@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "description": "Repo-wide .opencode matrix. Allows writes/edits across .opencode while explicitly denying .git, node_modules, and ~/.config. Resolution semantics: most-specific glob wins; first-in-array breaks equal-specificity ties.",
+  "description": "Repo-wide .skilled matrix. Allows writes/edits across .skilled while explicitly denying .git, node_modules, and ~/.config. Resolution semantics: most-specific glob wins; first-in-array breaks equal-specificity ties.",
   "rules": [
     {
       "target_glob": "**",
@@ -73,18 +73,18 @@
       "rationale": "User-level configuration is outside the repository."
     },
     {
-      "target_glob": ".opencode/**",
+      "target_glob": ".skilled/**",
       "operation_class": "write",
       "scope": "repo-wide",
       "effect": "allow",
-      "rationale": "This profile allows authored writes across .opencode."
+      "rationale": "This profile allows authored writes across .skilled."
     },
     {
-      "target_glob": ".opencode/**",
+      "target_glob": ".skilled/**",
       "operation_class": "edit",
       "scope": "repo-wide",
       "effect": "allow",
-      "rationale": "This profile allows authored edits across .opencode."
+      "rationale": "This profile allows authored edits across .skilled."
     },
     {
       "target_glob": "**",

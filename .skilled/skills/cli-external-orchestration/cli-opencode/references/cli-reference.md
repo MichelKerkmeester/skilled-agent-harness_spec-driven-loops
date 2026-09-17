@@ -107,7 +107,7 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 | `--fork` | boolean | Fork before continuing — requires `--continue` or `--session` |
 | `--share` | boolean | Publish a shareable URL for this session |
 | `-m`, `--model` | string | Provider/model selector — e.g. `opencode-go/deepseek-v4-flash` |
-| `--agent` | string | Agent slug (loads from `.opencode/agents/<slug>.md`) |
+| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) |
 | `--format` | enum | `default` (formatted) or `json` (raw event stream) |
 | `-f`, `--file` | array | Attach files to the message; the positional message must come first |
 | `--title` | string | Session title (truncated message used when omitted) |
@@ -278,7 +278,7 @@ Default model `opencode-go/deepseek-v4-flash --variant max` (Go gateway; flash i
 
 ## 6. AGENT FLAG
 
-`--agent <slug>` loads an agent definition from `.opencode/agents/<slug>.md` (project-local) or the user-level fallback. The agent definition's frontmatter pins the model, tool permissions, and system prompt that shape the dispatch.
+`--agent <slug>` loads an agent definition from `.skilled/agents/<slug>.md` (project-local) or the user-level fallback. The agent definition's frontmatter pins the model, tool permissions, and system prompt that shape the dispatch.
 
 ### Discovering agents
 

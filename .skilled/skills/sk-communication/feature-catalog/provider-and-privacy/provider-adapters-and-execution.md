@@ -37,20 +37,20 @@ The pass the provider performs is declared once, in `src/config/copy-editing-ins
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/adapters.ts` | Handler | Prepares and parses provider-family wire formats. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/controls.ts` | Shared | Compiles only capability-backed prompt controls. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/config/copy-editing-instruction.ts` | Shared | Holds the one copy-editing instruction declaration, resolved from the wording standard's reply base. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/executor.ts` | Handler | Runs the approved attempt sequence with deadlines and fallback. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts` | Shared | Builds shipped local and hosted provider-model records. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/providers/adapters.ts` | Handler | Prepares and parses provider-family wire formats. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/providers/controls.ts` | Shared | Compiles only capability-backed prompt controls. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/config/copy-editing-instruction.ts` | Shared | Holds the one copy-editing instruction declaration, resolved from the wording standard's reply base. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/providers/executor.ts` | Handler | Runs the approved attempt sequence with deadlines and fallback. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/providers/presets.ts` | Shared | Builds shipped local and hosted provider-model records. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-communication/cli-communication-projection/test/providers/adapters.test.ts` | Unit | Verifies wire preparation, control handling, and response parsing. |
-| `.opencode/skills/sk-communication/cli-communication-projection/test/providers/executor.test.ts` | Unit | Covers attempt order, cancellation, timeout, and exact-original results. |
-| `.opencode/skills/sk-communication/cli-communication-projection/test/providers/performance.test.ts` | Benchmark | Exercises provider execution overhead under injected transports. |
-| `.opencode/skills/sk-communication/cli-communication-projection/test/config/copy-editing-instruction.test.ts` | Unit | Covers the resolved instruction, provider-default thinking, the omission rejection and the no-op record. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/providers/adapters.test.ts` | Unit | Verifies wire preparation, control handling, and response parsing. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/providers/executor.test.ts` | Unit | Covers attempt order, cancellation, timeout, and exact-original results. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/providers/performance.test.ts` | Benchmark | Exercises provider execution overhead under injected transports. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/config/copy-editing-instruction.test.ts` | Unit | Covers the resolved instruction, provider-default thinking, the omission rejection and the no-op record. |
 
 ---
 

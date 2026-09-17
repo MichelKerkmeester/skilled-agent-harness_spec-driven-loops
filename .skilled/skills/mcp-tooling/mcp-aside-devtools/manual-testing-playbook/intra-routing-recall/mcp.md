@@ -76,12 +76,12 @@ Run the aside mcp server over stdio and chain its repl tool with other code mode
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/mcp.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
-4. `test -e .opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md && echo "OK references/mcp-wiring.md" || echo "MISS references/mcp-wiring.md"`
-5. `test -e .opencode/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md && echo "OK references/session-management.md" || echo "MISS references/session-management.md"`
-6. `test -e .opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md && echo "OK assets/utcp-aside-manual.md" || echo "MISS assets/utcp-aside-manual.md"`
+1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/mcp.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
+4. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md && echo "OK references/mcp-wiring.md" || echo "MISS references/mcp-wiring.md"`
+5. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md && echo "OK references/session-management.md" || echo "MISS references/session-management.md"`
+6. `test -e .skilled/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md && echo "OK assets/utcp-aside-manual.md" || echo "MISS assets/utcp-aside-manual.md"`
 
 ### Expected
 

@@ -71,10 +71,10 @@ PRE: `backend/node_modules/` must exist and `npx playwright install chromium` mu
 
 ### Exact Command Sequence
 
-1. `bash: npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/guided-run.ts https://example.com --output .opencode/specs/<track>/<packet>/output --dry-run`
-2. `bash: npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/guided-run.ts https://example.com --output .opencode/specs/<track>/<packet>/output --fast`
+1. `bash: npx ts-node .skilled/skills/sk-design-md-generator/backend/scripts/guided-run.ts https://example.com --output .opencode/specs/<track>/<packet>/output --dry-run`
+2. `bash: npx ts-node .skilled/skills/sk-design-md-generator/backend/scripts/guided-run.ts https://example.com --output .opencode/specs/<track>/<packet>/output --fast`
 3. `bash: ls -la .opencode/specs/<track>/<packet>/output/tokens.json .opencode/specs/<track>/<packet>/output/write-prompt.md`
-4. `bash: npx ts-node .opencode/skills/sk-design-md-generator/backend/scripts/guided-run.ts https://example.com --output .opencode/specs/<track>/<packet>/output --design-md .opencode/specs/<track>/<packet>/output/absent-DESIGN.md --fast`
+4. `bash: npx ts-node .skilled/skills/sk-design-md-generator/backend/scripts/guided-run.ts https://example.com --output .opencode/specs/<track>/<packet>/output --design-md .opencode/specs/<track>/<packet>/output/absent-DESIGN.md --fast`
 5. `bash: ls .opencode/specs/<track>/<packet>/output/absent-DESIGN.md`
 6. `agent: report the readiness lines, the produced artifacts, and where the wrapper stopped`
 

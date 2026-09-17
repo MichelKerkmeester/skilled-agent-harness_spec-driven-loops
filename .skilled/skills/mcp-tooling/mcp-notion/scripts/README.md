@@ -28,8 +28,8 @@ version: 0.1.0.0
 Run from the repository root.
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-notion/scripts/doctor.sh
-bash .opencode/skills/mcp-tooling/mcp-notion/scripts/install.sh --check-only
+bash .skilled/skills/mcp-tooling/mcp-notion/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-notion/scripts/install.sh --check-only
 ```
 
 Expected result: `doctor.sh` prints a checklist with no red `✗` lines when Node/npx are present. `install.sh --check-only` verifies the Node/npx runtime without printing the config snippet or installing anything.

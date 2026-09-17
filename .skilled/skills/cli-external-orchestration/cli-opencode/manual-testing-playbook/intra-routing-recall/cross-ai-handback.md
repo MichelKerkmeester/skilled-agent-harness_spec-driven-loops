@@ -56,11 +56,11 @@ Hand back to spec kit and code graph so the structural code index stays current 
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/cross-ai-handback.md`
+1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/cross-ai-handback.md`
 2. `grep -n '"CROSS_AI_HANDBACK"' ../../SKILL.md` (confirms the `INTENT_SIGNALS` entry)
 3. `grep -A2 'RESOURCE_MAP = {' ../../SKILL.md | grep '"CROSS_AI_HANDBACK"'` (confirms the `RESOURCE_MAP` entry)
-4. `test -e .opencode/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
-5. `test -e .opencode/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md && echo "OK references/opencode-tools.md" || echo "MISS references/opencode-tools.md"`
+4. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
+5. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md && echo "OK references/opencode-tools.md" || echo "MISS references/opencode-tools.md"`
 
 ### Expected
 

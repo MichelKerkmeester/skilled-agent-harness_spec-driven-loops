@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-005` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-005 | Segmentation | Verify a bbox or mask locating a named object | Use sk_vision_segment to find the text block in this image. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"segment","params":{"source":{"type":"path","path":"<FIXTURE>"},"target":"text"}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"segment","bbox":...,"path":...}}` with a bbox and/or mask path | The segment response (bbox + optional mask path) with the transcript | PASS if `result.type == "segment"` and the result carries `bbox` and/or `path`; FAIL if the response is an error envelope (including task-not-supported) or empty | 1. If `task 'segment' is not supported` appears, check `capabilities` in VSN-012 -> 2. Confirm the `target` names an object the model knows -> 3. Inspect stderr for the underlying exception |
+| VSN-005 | Segmentation | Verify a bbox or mask locating a named object | Use sk_vision_segment to find the text block in this image. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"segment","params":{"source":{"type":"path","path":"<FIXTURE>"},"target":"text"}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"segment","bbox":...,"path":...}}` with a bbox and/or mask path | The segment response (bbox + optional mask path) with the transcript | PASS if `result.type == "segment"` and the result carries `bbox` and/or `path`; FAIL if the response is an error envelope (including task-not-supported) or empty | 1. If `task 'segment' is not supported` appears, check `capabilities` in VSN-012 -> 2. Confirm the `target` names an object the model knows -> 3. Inspect stderr for the underlying exception |
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `VSN-005` and confirm th
 1. `bash: printf '%s\n' \`
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"segment","params":{"source":{"type":"path","path":"<FIXTURE>"},"target":"text"}}'`
-4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

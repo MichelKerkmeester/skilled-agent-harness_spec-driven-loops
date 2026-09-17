@@ -56,11 +56,11 @@ Get a second opinion from Claude: audit this login handler for security holes an
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/review.md`
+1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/review.md`
 2. `grep -n '"REVIEW"' ../../SKILL.md` (confirms the `INTENT_SIGNALS` entry)
 3. `grep -A2 'RESOURCE_MAP = {' ../../SKILL.md | grep '"REVIEW"'` (confirms the `RESOURCE_MAP` entry)
-4. `test -e .opencode/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
-5. `test -e .opencode/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md && echo "OK references/agent-delegation.md" || echo "MISS references/agent-delegation.md"`
+4. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
+5. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md && echo "OK references/agent-delegation.md" || echo "MISS references/agent-delegation.md"`
 
 ### Expected
 

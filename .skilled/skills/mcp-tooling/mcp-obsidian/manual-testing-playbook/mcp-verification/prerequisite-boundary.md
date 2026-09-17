@@ -23,7 +23,7 @@ The MCP requires a running app, Local REST API plugin, and bearer token. A missi
 - Feature Name: App and token prerequisite boundary
 - Scenario Objective: Show the MCP preflight warning with no token and then demonstrate a headless vault preflight remains usable.
 - Exact Prompt: `The Obsidian app or API token may be unavailable. Report the MCP blocker and switch a filesystem check to notesmd-cli.`
-- Exact Command Sequence: `1. env -u OBSIDIAN_API_KEY OBSIDIAN_BASE_URL="http://127.0.0.1:27123" bash .opencode/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh -> 2. notesmd-cli list-vaults`
+- Exact Command Sequence: `1. env -u OBSIDIAN_API_KEY OBSIDIAN_BASE_URL="http://127.0.0.1:27123" bash .skilled/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh -> 2. notesmd-cli list-vaults`
 - Expected Signals: Step 1 warns that the token or REST API is unavailable and recommends the headless alternative; step 2 still lists registered vaults if notesmd-cli is installed.
 - Evidence: Preflight transcript, absence of token value, REST API probe result, headless vault output, and final routing verdict.
 - Pass/Fail Criteria: PASS if the MCP blocker is named without exposing a token and the headless check remains available; FAIL if the blocker is hidden, a token is printed, or headless routing is attempted without a binary.
@@ -43,7 +43,7 @@ This boundary scenario does not need the MCP to be healthy. It needs `bash`, `cu
 
 ### Commands
 
-1. `env -u OBSIDIAN_API_KEY OBSIDIAN_BASE_URL="http://127.0.0.1:27123" bash .opencode/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh`
+1. `env -u OBSIDIAN_API_KEY OBSIDIAN_BASE_URL="http://127.0.0.1:27123" bash .skilled/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh`
 2. `notesmd-cli list-vaults`
 
 ### Expected
@@ -68,7 +68,7 @@ Capture the warning/probe output, confirm no token value appears, and capture th
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MCP-M002 | App and token prerequisite boundary | Report MCP blocker and retain headless fallback | `The Obsidian app or API token may be unavailable. Report the MCP blocker and switch a filesystem check to notesmd-cli.` | 1. `env -u OBSIDIAN_API_KEY OBSIDIAN_BASE_URL="http://127.0.0.1:27123" bash .opencode/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh` -> 2. `notesmd-cli list-vaults` | MCP warning; no token leak; headless vault list | Preflight and headless transcripts | PASS if blocker and fallback are clear; SKIP if CLI absent; FAIL on leak or misrouting | Check env safely, probe endpoint, check CLI |
+| MCP-M002 | App and token prerequisite boundary | Report MCP blocker and retain headless fallback | `The Obsidian app or API token may be unavailable. Report the MCP blocker and switch a filesystem check to notesmd-cli.` | 1. `env -u OBSIDIAN_API_KEY OBSIDIAN_BASE_URL="http://127.0.0.1:27123" bash .skilled/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh` -> 2. `notesmd-cli list-vaults` | MCP warning; no token leak; headless vault list | Preflight and headless transcripts | PASS if blocker and fallback are clear; SKIP if CLI absent; FAIL on leak or misrouting | Check env safely, probe endpoint, check CLI |
 
 ---
 

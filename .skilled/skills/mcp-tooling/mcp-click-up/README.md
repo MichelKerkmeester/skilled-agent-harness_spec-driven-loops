@@ -55,7 +55,7 @@ The MCP transport is owned by `mcp-code-mode`. This skill consumes Code Mode as 
 **Step 1: Install cupt and authenticate.**
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh
 # Expected: [mcp-click-up] ✓ cupt X.Y.Z installed
 # Also prints the MCP config snippet for Step 3 below
 
@@ -183,7 +183,7 @@ This skill uses only ClickUp's official MCP server (`@clickup/mcp-server`, launc
 
 | What you see | Why | Fix |
 |---|---|---|
-| `command not found: cupt` | cupt not installed or PATH missing | Run `bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh` then `pipx ensurepath && source ~/.zshrc` |
+| `command not found: cupt` | cupt not installed or PATH missing | Run `bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh` then `pipx ensurepath && source ~/.zshrc` |
 | `AuthError: No credentials` | Not authenticated | Run `cupt auth` or `cupt config --api-token pk_YOUR_TOKEN` |
 | `cupt status` shows 401 | Expired or revoked token | Run `cupt logout && cupt auth` to refresh credentials |
 | `cupt done` wrote the wrong status | The list's closed status differs from the default | Run `cupt statuses <id>` before every completion to discover the schema |
@@ -205,7 +205,7 @@ A: Every ClickUp list defines its own status schema. "Done" in one list may not 
 
 **Q: How do I set up the MCP for ClickUp documents and goals?**
 
-A: Run `bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh`. It prints a manual for `.utcp_config.json` (Code Mode's config, not `opencode.json`) with server key `"clickup_official"`, launched via `npx -y @clickup/mcp-server` with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` set. Paste the snippet in, set the two env vars and restart your AI client. Full instructions are in `INSTALL-GUIDE.md`.
+A: Run `bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh`. It prints a manual for `.utcp_config.json` (Code Mode's config, not `opencode.json`) with server key `"clickup_official"`, launched via `npx -y @clickup/mcp-server` with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` set. Paste the snippet in, set the two env vars and restart your AI client. Full instructions are in `INSTALL-GUIDE.md`.
 
 **Q: What is the difference between `@krodak/clickup-cli` (`cu`) and cupt?**
 
@@ -223,7 +223,7 @@ The skill ships a manual testing playbook and two example scripts that double as
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-tooling/mcp-click-up/README.md --type readme` reports zero issues |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-click-up/README.md --type readme` reports zero issues |
 | cupt health | `cupt --version && cupt status && cupt list --today --json | python3 -m json.tool` all pass with no errors |
 | MCP health | Confirm `clickup` tools appear in `list_tools()` and a `clickup_official.clickup_official_get_workspace_hierarchy` call via `call_tool_chain(...)` returns workspace data |
 | Example scripts | Run `task-queue-workflow.sh --dry-run` with a valid tag and confirm exit code 0, then run `time-tracking-workflow.sh status` and confirm no errors |

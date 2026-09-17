@@ -73,10 +73,10 @@ Show me my task list for today, mark the ones I finished as done, then log time 
 
 ### Commands
 
-1. `sed -n '1,11p' .opencode/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/cupt-daily.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-4. `test -e .opencode/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md && echo "OK references/cupt-commands.md" || echo "MISS references/cupt-commands.md"`
+1. `sed -n '1,11p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/cupt-daily.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+4. `test -e .skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md && echo "OK references/cupt-commands.md" || echo "MISS references/cupt-commands.md"`
 
 ### Expected
 

@@ -20,7 +20,7 @@ Read-only contract reference for the fourteen MagicPath CLI tools.
 
 ### Purpose
 
-The expected contract for the MagicPath CLI's **fourteen read-only tools across six themes** (session, components, projects, teams, themes, local & canvas). Treat this table as the documented baseline and Code Mode discovery (`list_tools` / `search_tools` / `tool_info`) as the final live schema before calling. Documented facts trace to the registered manual emitted by `node .opencode/bin/magicpath-utcp-manual.cjs`; the manual is the source of truth for what an agent can call.
+The expected contract for the MagicPath CLI's **fourteen read-only tools across six themes** (session, components, projects, teams, themes, local & canvas). Treat this table as the documented baseline and Code Mode discovery (`list_tools` / `search_tools` / `tool_info`) as the final live schema before calling. Documented facts trace to the registered manual emitted by `node .skilled/bin/magicpath-utcp-manual.cjs`; the manual is the source of truth for what an agent can call.
 
 ### Usage
 

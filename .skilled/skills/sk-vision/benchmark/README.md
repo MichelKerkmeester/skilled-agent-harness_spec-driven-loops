@@ -50,15 +50,15 @@ benchmark/
 ### Lane C, full corpus
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
-  --skill .opencode/skills/sk-vision
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
+  --skill .skilled/skills/sk-vision
 ```
 
 ### Manual playbook scenario, single scenario
 
 ```bash
 node the retired scenario-persistence wrapper \
-  --skill .opencode/skills/sk-vision \
+  --skill .skilled/skills/sk-vision \
   --scenario VSN-012 \
   --variant status-first-run \
   --verdict PASS \
@@ -79,4 +79,4 @@ Rules:
 
 - Corpus: `manual-testing-playbook/manual-testing-playbook.md`
 - Wrapper: the retired scenario-persistence wrapper
-- Runner: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs`
+- Runner: `.skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs`

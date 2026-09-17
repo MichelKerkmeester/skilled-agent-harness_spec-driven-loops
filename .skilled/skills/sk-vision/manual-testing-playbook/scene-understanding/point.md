@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-004` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-004 | Pointing | Verify normalized coordinates answering a spatial question | Use sk_vision_point on the screenshot and tell me where the title text is. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"point","params":{"source":{"type":"path","path":"<FIXTURE>"},"question":"Where is the title text?"}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"point","points":[...]}}` with points carrying normalized x/y values | The `points` array (normalized x/y) plus the transcript line | PASS if `result.points` is non-empty and each point has x/y in the 0..1 range; FAIL if `points` is empty, out-of-range, or the request errors | 1. Rephrase the `question` - vague targets yield empty points -> 2. Confirm the fixture actually contains the requested feature -> 3. Check stderr for model task-support failures |
+| VSN-004 | Pointing | Verify normalized coordinates answering a spatial question | Use sk_vision_point on the screenshot and tell me where the title text is. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"point","params":{"source":{"type":"path","path":"<FIXTURE>"},"question":"Where is the title text?"}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"point","points":[...]}}` with points carrying normalized x/y values | The `points` array (normalized x/y) plus the transcript line | PASS if `result.points` is non-empty and each point has x/y in the 0..1 range; FAIL if `points` is empty, out-of-range, or the request errors | 1. Rephrase the `question` - vague targets yield empty points -> 2. Confirm the fixture actually contains the requested feature -> 3. Check stderr for model task-support failures |
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `VSN-004` and confirm th
 1. `bash: printf '%s\n' \`
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"point","params":{"source":{"type":"path","path":"<FIXTURE>"},"question":"Where is the title text?"}}'`
-4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

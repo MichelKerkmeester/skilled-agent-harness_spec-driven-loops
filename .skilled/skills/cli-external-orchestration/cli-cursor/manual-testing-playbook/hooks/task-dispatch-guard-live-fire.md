@@ -16,7 +16,7 @@ This scenario validates that a `preToolUse` array entry scoped with `"matcher": 
 
 ### Why This Matters
 
-This repo's `.opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` is registered as a SECOND `preToolUse` entry alongside the existing unmatched `spec-gate-enforce.mjs` entry, proxying to the same deep-loop dispatch guard (`.opencode/hooks/task-dispatch/lib/dispatch-guard.cjs`, via the `claude/task-dispatch-guard.cjs` adapter) Claude Code's own `preToolUse` hook already uses. If Cursor's `matcher` schema field stopped routing by `tool_name`, or if adding a second array entry silently shadowed the first, the deep-loop dispatch guard would go dark for Cursor-originated subagent delegation without any visible failure.
+This repo's `.skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` is registered as a SECOND `preToolUse` entry alongside the existing unmatched `spec-gate-enforce.mjs` entry, proxying to the same deep-loop dispatch guard (`.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs`, via the `claude/task-dispatch-guard.cjs` adapter) Claude Code's own `preToolUse` hook already uses. If Cursor's `matcher` schema field stopped routing by `tool_name`, or if adding a second array entry silently shadowed the first, the deep-loop dispatch guard would go dark for Cursor-originated subagent delegation without any visible failure.
 
 ---
 

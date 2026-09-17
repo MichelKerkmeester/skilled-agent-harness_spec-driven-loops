@@ -35,7 +35,7 @@ The snippets are illustrative. Tool identifiers follow the local stdio server's 
 
 ```bash
 # Verify the runtime and registration
-bash .opencode/skills/mcp-tooling/mcp-notion/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-notion/scripts/doctor.sh
 ```
 
 | Requirement | Minimum | Notes |

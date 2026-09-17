@@ -91,7 +91,7 @@ Capture step 2's `created_task_id` + `error`, step 3's task object, step 4's del
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | call_tool_chain semantics |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | call_tool_chain semantics |
 
 ---
 

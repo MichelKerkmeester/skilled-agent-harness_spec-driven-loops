@@ -20,7 +20,7 @@ stock palette. Extraction belongs to `sk-design-md-generator`.
 ## The command
 
 ```bash
-node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
+node .skilled/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
   path/to/DESIGN.md --forms grouped-bars,daily-line --out scratch/themed
 ```
 
@@ -161,7 +161,7 @@ inline values in both themes against the same gates. `--extra DIR` runs the file
 HTML deliveries outside the package without adding them to the catalog:
 
 ```bash
-node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra scratch/themed
+node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra scratch/themed
 ```
 
 That separation is the safety line: a themed copy can be accepted by evidence without putting

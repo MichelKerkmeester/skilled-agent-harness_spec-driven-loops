@@ -54,7 +54,7 @@ Recommend a moist three-layer chocolate cake recipe and estimate how long it sho
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/negative-out-of-domain.md`
+1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/negative-out-of-domain.md`
 2. `grep -n "UNKNOWN_FALLBACK_CHECKLIST\|max score is 0" ../../SKILL.md`
 
 

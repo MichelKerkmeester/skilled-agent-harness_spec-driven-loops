@@ -68,7 +68,7 @@ The skill distills four public sources into one operating model, kept in the ord
 **Step 1: Invoke it.** Routing is automatic on the trigger phrases above. To load it manually:
 
 ```bash
-cat .opencode/skills/sk-design/SKILL.md
+cat .skilled/skills/sk-design/SKILL.md
 ```
 
 The scales in Section 3 are the always-loaded part; everything else loads on intent.
@@ -76,7 +76,7 @@ The scales in Section 3 are the always-loaded part; everything else loads on int
 **Step 2: Take the token file.**
 
 ```bash
-cp .opencode/skills/sk-design/assets/tokens.css <your-project>/styles/tokens.css
+cp .skilled/skills/sk-design/assets/tokens.css <your-project>/styles/tokens.css
 ```
 
 You get every scale as CSS custom properties, a semantic role layer, and a dark-mode block. Retune the hues rather than rebuilding the ramps.
@@ -84,7 +84,7 @@ You get every scale as CSS custom properties, a semantic role layer, and a dark-
 **Step 3: Verify the skill package before relying on it.**
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .opencode/skills/sk-design
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/sk-design
 ```
 
 Exit 0 with no hard failures.
@@ -174,9 +174,9 @@ A: That skill measures what a live site already does. This one decides what a su
 
 | Check | Result |
 |---|---|
-| Skill package | `validate_skill_package.py .opencode/skills/sk-design` exits 0 |
-| Root metadata | `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` reports the root conformant |
-| Advisor routing | `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"this ui looks off"}' --warm-only --format json` returns this skill |
+| Skill package | `validate_skill_package.py .skilled/skills/sk-design` exits 0 |
+| Root metadata | `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` reports the root conformant |
+| Advisor routing | `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"this ui looks off"}' --warm-only --format json` returns this skill |
 
 ---
 

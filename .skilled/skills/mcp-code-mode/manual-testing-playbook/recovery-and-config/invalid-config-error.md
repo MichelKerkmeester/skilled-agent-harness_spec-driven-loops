@@ -96,7 +96,7 @@ Capture the corrupted-state error message verbatim. Capture the post-restore `li
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Config validation guidance |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Config validation guidance |
 | `.utcp_config.json` (project root) | Subject of corruption |
 
 ---

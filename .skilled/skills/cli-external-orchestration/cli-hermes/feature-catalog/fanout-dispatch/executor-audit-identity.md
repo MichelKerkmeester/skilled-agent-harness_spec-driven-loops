@@ -43,16 +43,16 @@ A dispatched child inherits only the `HERMES_` and `LLMGATEWAY_` prefixes. The g
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | Shared | Binary name, self-presence variable, state and home variables, dotfolder, and env prefixes for `cli-hermes`. |
-| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | Reads the kind's state-directory variable when scoping a lineage. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The self-invocation guard that consumes the session-variable signal. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | Shared | Binary name, self-presence variable, state and home variables, dotfolder, and env prefixes for `cli-hermes`. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | Reads the kind's state-directory variable when scoping a lineage. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The self-invocation guard that consumes the session-variable signal. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Vitest | Asserts per-kind identity and configuration entries stay complete. |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Vitest | Covers lineage state scoping and dispatch environment composition. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Vitest | Asserts per-kind identity and configuration entries stay complete. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Vitest | Covers lineage state scoping and dispatch environment composition. |
 
 ---
 

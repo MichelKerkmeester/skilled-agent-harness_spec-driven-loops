@@ -90,7 +90,7 @@ rm -f "$PROBE"
 |---|---|
 | [SYNC.md](../../../../../../.hermes/SYNC.md) | What the plugin bridges and how |
 | [hook-contract.md](../../references/hook-contract.md) | The plugin hook map |
-| `.opencode/hooks/git-preflight/shared/git-preflight-advisory.mjs` | The core the bridge runs |
+| `.skilled/hooks/git-preflight/shared/git-preflight-advisory.mjs` | The core the bridge runs |
 
 ---
 

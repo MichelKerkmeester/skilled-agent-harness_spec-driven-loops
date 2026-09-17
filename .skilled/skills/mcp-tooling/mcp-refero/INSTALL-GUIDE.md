@@ -99,13 +99,13 @@ node -v && npx --version
 ## 3. VERIFY THE WIRING (READ-ONLY)
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh
 ```
 
 `doctor.sh` is a non-interactive, read-only report. It checks Node and npx, greps `.utcp_config.json` for the registered `refero` manual (it never edits the file), states the auth expectations, and optionally probes the endpoint.
 
 ```bash
-REFERO_DOCTOR_LIVE=1 bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh
+REFERO_DOCTOR_LIVE=1 bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh
 ```
 
 The gated live probe sends one unauthenticated HTTPS request. **HTTP 401 is the healthy result**: it proves the endpoint is reachable and requires auth, matching the documented behavior.
@@ -198,11 +198,11 @@ See [`references/troubleshooting.md`](references/troubleshooting.md) for the ful
 
 | Document | Location | Purpose |
 | -------- | -------- | ------- |
-| README | `.opencode/skills/mcp-tooling/mcp-refero/README.md` | Human orientation and quick start |
-| SKILL.md | `.opencode/skills/mcp-tooling/mcp-refero/SKILL.md` | Runtime instructions and routing |
-| Tool Surface | `.opencode/skills/mcp-tooling/mcp-refero/references/tool-surface.md` | The eight-tool contract, funnel, and plan gating |
-| MCP Wiring | `.opencode/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md` | Bridge, OAuth/Bearer, naming, discovery |
-| Troubleshooting | `.opencode/skills/mcp-tooling/mcp-refero/references/troubleshooting.md` | Full failure-mode table |
+| README | `.skilled/skills/mcp-tooling/mcp-refero/README.md` | Human orientation and quick start |
+| SKILL.md | `.skilled/skills/mcp-tooling/mcp-refero/SKILL.md` | Runtime instructions and routing |
+| Tool Surface | `.skilled/skills/mcp-tooling/mcp-refero/references/tool-surface.md` | The eight-tool contract, funnel, and plan gating |
+| MCP Wiring | `.skilled/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md` | Bridge, OAuth/Bearer, naming, discovery |
+| Troubleshooting | `.skilled/skills/mcp-tooling/mcp-refero/references/troubleshooting.md` | Full failure-mode table |
 
 ### Licensing and Upstream
 

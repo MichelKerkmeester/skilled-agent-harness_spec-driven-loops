@@ -44,7 +44,7 @@ This directory contains worked examples of the three everyday mcp-figma flows. E
 
 ```bash
 # Install the silships CLI (never 'npm i -g figma-cli')
-bash .opencode/skills/mcp-tooling/mcp-figma/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-figma/scripts/install.sh
 
 # Verify
 figma-ds-cli --version   # expect >= 1.2.0
@@ -117,7 +117,7 @@ This one is a document rather than a shell script because the flow runs inside C
 
 | What you see | Why | Fix |
 |---|---|---|
-| `figma-ds-cli not found` | CLI not installed | `bash .opencode/skills/mcp-tooling/mcp-figma/scripts/install.sh` |
+| `figma-ds-cli not found` | CLI not installed | `bash .skilled/skills/mcp-tooling/mcp-figma/scripts/install.sh` |
 | Safe connect fails | Figma Desktop closed, or FigCli plugin not running | Open Figma with a file, keep Plugins -> Development -> FigCli open |
 | `daemon status` unreachable | Daemon idle-stopped (~60 min) or never started | `figma-ds-cli daemon diagnose`, then `daemon restart` |
 | "Unauthorized" from daemon | Token mismatch | Diagnose then restart; NEVER auto-delete the token |

@@ -17,11 +17,11 @@ import type {
   ExtensionContext,
 } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
-import { RuntimeClient, SkVisionError } from "../../.opencode/skills/sk-vision/vision-runtime/src/runtime/client.ts";
-import { PhotonProvider } from "../../.opencode/skills/sk-vision/vision-runtime/src/providers/photon.ts";
-import contextBuilder from "../../.opencode/skills/sk-vision/vision-runtime/src/core/context-builder.ts";
-import type { BBox, ImageSource, VisionHealth } from "../../.opencode/skills/sk-vision/vision-runtime/src/providers/types.ts";
-import { isTextOnlyModel, type ActiveModel } from "../../.opencode/skills/sk-vision/vision-runtime/src/model-modality.ts";
+import { RuntimeClient, SkVisionError } from "../../.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts";
+import { PhotonProvider } from "../../.skilled/skills/sk-vision/vision-runtime/src/providers/photon.ts";
+import contextBuilder from "../../.skilled/skills/sk-vision/vision-runtime/src/core/context-builder.ts";
+import type { BBox, ImageSource, VisionHealth } from "../../.skilled/skills/sk-vision/vision-runtime/src/providers/types.ts";
+import { isTextOnlyModel, type ActiveModel } from "../../.skilled/skills/sk-vision/vision-runtime/src/model-modality.ts";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. SHARED HELPERS

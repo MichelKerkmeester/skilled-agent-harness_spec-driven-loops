@@ -55,9 +55,9 @@ The command failed: the binary is not found and the request came back unauthoriz
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/troubleshoot.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-figma/SKILL.md | sed -n '/"TROUBLESHOOT":/p'`
-3. `for p in references/troubleshooting.md references/figma-cli-reference.md; do test -e ".opencode/skills/mcp-tooling/mcp-figma/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,15p' .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/troubleshoot.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-figma/SKILL.md | sed -n '/"TROUBLESHOOT":/p'`
+3. `for p in references/troubleshooting.md references/figma-cli-reference.md; do test -e ".skilled/skills/mcp-tooling/mcp-figma/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

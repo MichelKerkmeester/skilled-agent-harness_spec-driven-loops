@@ -48,17 +48,17 @@ In-process coverage: `.hermes/plugins/repo-guards/tests/test_repo_guards.py` exe
 |---|---|---|
 | `.hermes/plugins/repo-guards/plugin.yaml` | Shared | Plugin manifest: name, kind and the declared hook list. |
 | `.hermes/plugins/repo-guards/__init__.py` | Handler | Hook implementations, the core subprocess bridge, the self-dispatch refusal and the registration function. |
-| `.opencode/hooks/dispatch/devin/dispatch-preflight-lint.mjs` | Shared | The dispatch preflight core the pre-tool-call hook runs. |
-| `.opencode/skills/system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs` | Shared | The completion-evidence core the pre-verify hook runs. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md` | Handler | The two hook surfaces and which one a repository can carry. |
+| `.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs` | Shared | The dispatch preflight core the pre-tool-call hook runs. |
+| `.skilled/skills/system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs` | Shared | The completion-evidence core the pre-verify hook runs. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md` | Handler | The two hook surfaces and which one a repository can carry. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Automated test | The rule engine the bridged preflight core evaluates with. |
-| `.opencode/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | The dispatch recognition the self-dispatch refusal mirrors. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Operator scenarios for enabling and exercising the plugin. |
+| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Automated test | The rule engine the bridged preflight core evaluates with. |
+| `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | The dispatch recognition the self-dispatch refusal mirrors. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Operator scenarios for enabling and exercising the plugin. |
 
 ---
 

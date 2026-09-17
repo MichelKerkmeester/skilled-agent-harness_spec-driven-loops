@@ -70,10 +70,10 @@ PRE: no runtime setup is required. This scenario reads shipped reference materia
 
 ### Exact Command Sequence
 
-1. `bash: ls .opencode/skills/sk-design-md-generator/references/examples/`
+1. `bash: ls .skilled/skills/sk-design-md-generator/references/examples/`
 2. `agent: issue the exact prompt in a fresh session and capture the reply`
-3. `bash: rg -n "editorial" .opencode/skills/sk-design-md-generator/references/examples/editorial-exemplar.md`
-4. `bash: rg -n "not a preset|illustrative" .opencode/skills/sk-design-md-generator/references/examples/editorial-exemplar.md`
+3. `bash: rg -n "editorial" .skilled/skills/sk-design-md-generator/references/examples/editorial-exemplar.md`
+4. `bash: rg -n "not a preset|illustrative" .skilled/skills/sk-design-md-generator/references/examples/editorial-exemplar.md`
 5. `agent: report the chosen exemplar category and the transferable lesson`
 
 ### Expected Signals

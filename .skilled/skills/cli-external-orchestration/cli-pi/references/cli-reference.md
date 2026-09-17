@@ -186,7 +186,7 @@ The pin confirmed JSON mode as a JSONL event stream. The first record is a sessi
 
 Print mode surfaces only the final assistant message. Any leaf that needs structured output, intermediate messages, or tool events must use `--mode json`, never `-p`/`--print`.
 
-For `cli-pi`, captured stdout is hard-capped at 20 MB and truncated or killed beyond that limit by the fanout runner (`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2390`). A structured-output leaf must keep its output bounded; do not dump large tool output into the captured stream. Consume JSONL incrementally, extracting records line by line.
+For `cli-pi`, captured stdout is hard-capped at 20 MB and truncated or killed beyond that limit by the fanout runner (`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2390`). A structured-output leaf must keep its output bounded; do not dump large tool output into the captured stream. Consume JSONL incrementally, extracting records line by line.
 
 ~~~bash
 pi --mode json "Summarize the work"

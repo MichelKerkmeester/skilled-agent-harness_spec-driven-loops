@@ -78,7 +78,7 @@ Capture both command outputs verbatim; save the version string as the fixture ke
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` | Automated equivalent of this check |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` | Automated equivalent of this check |
 
 ---
 

@@ -45,7 +45,7 @@ Run sk-prompt on my meeting-notes action-item prompt in default mode; verify 10 
 ### Commands
 
 1. `sk-prompt: I'm writing a prompt to extract action items from meeting notes — score it and tighten it.`
-2. `bash: grep -E '^\| Improve' .opencode/skills/sk-prompt/SKILL.md` (confirm default-mode row in operating-modes table)
+2. `bash: grep -E '^\| Improve' .skilled/skills/sk-prompt/SKILL.md` (confirm default-mode row in operating-modes table)
 
 ### Expected
 
@@ -64,7 +64,7 @@ Capture the full transparency report including mode, DEPTH-round count, framewor
 
 1. Confirm operator input contains no `$` prefix and no override directive.
 2. Inspect SKILL.md §3 operating-modes table to confirm default = 10 rounds.
-3. Run `bash: rg '\$improve' .opencode/skills/sk-prompt/SKILL.md` to confirm the alias still points to default mode.
+3. Run `bash: rg '\$improve' .skilled/skills/sk-prompt/SKILL.md` to confirm the alias still points to default mode.
 4. Re-dispatch with explicit `$improve` prefix and compare round counts.
 
 ### Optional Supplemental Checks

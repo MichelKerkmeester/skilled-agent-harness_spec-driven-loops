@@ -44,7 +44,7 @@ OpenCode's native `opencode-goal` plugin is a separate regression control. Pi is
 ```bash
 GOAL_TEST_ROOT="$(mktemp -d /tmp/goal-isolation.XXXXXX)"
 export OPENCODE_GOAL_STATE_DIR="$GOAL_TEST_ROOT"
-GOAL_CLI=.opencode/hooks/goal/bin/goal.cjs
+GOAL_CLI=.skilled/hooks/goal/bin/goal.cjs
 WORKSPACE="$PWD"
 ```
 
@@ -139,7 +139,7 @@ Expected: inspect reports `malformed`; migrate fails with `LEGACY_GOAL_MALFORMED
 OPENCODE_GOAL_DISABLED=1 node "$GOAL_CLI" --runtime pi --session session-b --workspace "$WORKSPACE" show
 
 printf '%s' '{"session_id":"session-b","workspace_roots":["'"$WORKSPACE"'"]}' \
-  | OPENCODE_GOAL_DISABLED=1 node .opencode/hooks/goal/cursor/goal-inject.mjs
+  | OPENCODE_GOAL_DISABLED=1 node .skilled/hooks/goal/cursor/goal-inject.mjs
 ```
 
 Expected: CLI management fails with `PLUGIN_DISABLED`; Cursor returns only `{"permission":"allow"}` with no `agent_message`. Pi rollback uses `-extensions/goal-context.ts` in `.pi/settings.json`; preserve the state root and do not merge scoped files into `active-goal.json`.
@@ -157,8 +157,8 @@ node "$GOAL_CLI" show --runtime pi --session session-c --workspace "$WORKSPACE"
 node "$GOAL_CLI" resent --runtime pi --session session-c --workspace "$WORKSPACE"
 node "$GOAL_CLI" log "playbook run | Done | section G" --runtime pi --session session-c --workspace "$WORKSPACE"
 node "$GOAL_CLI" bind ../outside --runtime pi --session session-c --workspace "$WORKSPACE"
-printf '%s' '{"session_id":"session-c","workspace_roots":["'"$WORKSPACE"'"]}' | node .opencode/hooks/goal/cursor/goal-inject.mjs
-printf '%s' '{"session_id":"session-c","hook_event_name":"UserPromptSubmit","cwd":"'"$WORKSPACE"'"}' | node .opencode/hooks/goal/devin/goal-inject.mjs
+printf '%s' '{"session_id":"session-c","workspace_roots":["'"$WORKSPACE"'"]}' | node .skilled/hooks/goal/cursor/goal-inject.mjs
+printf '%s' '{"session_id":"session-c","hook_event_name":"UserPromptSubmit","cwd":"'"$WORKSPACE"'"}' | node .skilled/hooks/goal/devin/goal-inject.mjs
 node "$GOAL_CLI" unbind --runtime pi --session session-c --workspace "$WORKSPACE"
 ```
 
@@ -168,12 +168,12 @@ Expected: `packet` reports `packet_nested=true`, `packet_budget=`, and a `chat_s
 
 ```bash
 node --test \
-  .opencode/hooks/goal/lib/goal-slice.test.cjs \
-  .opencode/hooks/goal/lib/goal-core.test.cjs \
-  .opencode/hooks/goal/bin/goal.test.cjs \
-  .opencode/hooks/goal/pi/goal-pi.test.mjs \
-  .opencode/hooks/goal/cursor/goal-cursor.test.mjs \
-  .opencode/hooks/goal/devin/goal-devin.test.mjs
+  .skilled/hooks/goal/lib/goal-slice.test.cjs \
+  .skilled/hooks/goal/lib/goal-core.test.cjs \
+  .skilled/hooks/goal/bin/goal.test.cjs \
+  .skilled/hooks/goal/pi/goal-pi.test.mjs \
+  .skilled/hooks/goal/cursor/goal-cursor.test.mjs \
+  .skilled/hooks/goal/devin/goal-devin.test.mjs
 ```
 
 ---
@@ -182,13 +182,13 @@ node --test \
 
 | File | Role |
 |---|---|
-| `.opencode/hooks/goal/lib/goal-core.cjs` | Scope validation, isolated lifecycle, aggregate diagnostics, and legacy quarantine. |
-| `.opencode/hooks/goal/bin/goal.cjs` | Session-bound management and explicit legacy action envelope. |
-| `.opencode/hooks/goal/pi/goal-context.ts` | Pi native identity and `/goal-pi`. |
-| `.opencode/hooks/goal/cursor/goal-inject.mjs` | Cursor session-bound injection. |
-| `.opencode/hooks/goal/devin/goal-inject.mjs` | Devin session-bound injection. |
-| `.opencode/hooks/goal/lib/goal-slice.cjs` | Packet `goal.md` projections shared with the OpenCode plugin. |
-| `.opencode/hooks/goal/README.md` | Current state layout, support matrix, failure contract, and rollback. |
+| `.skilled/hooks/goal/lib/goal-core.cjs` | Scope validation, isolated lifecycle, aggregate diagnostics, and legacy quarantine. |
+| `.skilled/hooks/goal/bin/goal.cjs` | Session-bound management and explicit legacy action envelope. |
+| `.skilled/hooks/goal/pi/goal-context.ts` | Pi native identity and `/goal-pi`. |
+| `.skilled/hooks/goal/cursor/goal-inject.mjs` | Cursor session-bound injection. |
+| `.skilled/hooks/goal/devin/goal-inject.mjs` | Devin session-bound injection. |
+| `.skilled/hooks/goal/lib/goal-slice.cjs` | Packet `goal.md` projections shared with the OpenCode plugin. |
+| `.skilled/hooks/goal/README.md` | Current state layout, support matrix, failure contract, and rollback. |
 
 ---
 

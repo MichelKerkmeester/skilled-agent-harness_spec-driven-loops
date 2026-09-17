@@ -49,18 +49,18 @@ A configured MCP server is invisible to a Hermes run unless its name is in the `
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | `HERMES_LEAF_TOOLSETS`, `HERMES_READ_ONLY_TOOLSETS` and `hermesToolsetsFor`. |
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Shared | The `cli-hermes` row of the web-search capability matrix. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md` | Handler | Per-toolset inventory and the leaf policy for each one. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md` | Handler | Why a configured server stays invisible until it is named in the toolset list. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | `HERMES_LEAF_TOOLSETS`, `HERMES_READ_ONLY_TOOLSETS` and `hermesToolsetsFor`. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Shared | The `cli-hermes` row of the web-search capability matrix. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md` | Handler | Per-toolset inventory and the leaf policy for each one. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md` | Handler | Why a configured server stays invisible until it is named in the toolset list. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Vitest | Covers toolset selection across sandbox and web-search combinations. |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Vitest | Asserts the web-search capability matrix per executor kind. |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts` | Vitest | Checks the sandbox and policy combinations the fan-out accepts. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Vitest | Covers toolset selection across sandbox and web-search combinations. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Vitest | Asserts the web-search capability matrix per executor kind. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts` | Vitest | Checks the sandbox and policy combinations the fan-out accepts. |
 
 ---
 

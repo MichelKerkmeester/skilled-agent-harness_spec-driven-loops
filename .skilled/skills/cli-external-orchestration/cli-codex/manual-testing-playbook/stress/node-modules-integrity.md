@@ -51,7 +51,7 @@ Prompt: `Run the manifest-indexed hermetic stress test for cli-codex:EC-013 and 
 Run from the repository root:
 
 ```bash
-cd .opencode/skills/system-deep-loop/runtime && \
+cd .skilled/skills/system-deep-loop/runtime && \
   npx --no-install vitest run tests/stress/cli-adapter/cli-codex.vitest.ts \
   --configLoader runner --reporter=verbose \
   -t "preserves independent worktree node_modules boundaries during dispatch" </dev/null

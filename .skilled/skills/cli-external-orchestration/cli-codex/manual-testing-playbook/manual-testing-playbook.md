@@ -68,7 +68,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-5.6-lu
 2. Codex CLI is installed and on PATH: `command -v codex` returns a non-empty path. If not installed, run `npm i -g @openai/codex` first.
 3. Codex CLI is authenticated via ChatGPT OAuth: `codex login` has succeeded (ChatGPT Plus/Pro/Business/Edu/Enterprise account).
 4. The active runtime is NOT Codex CLI itself - the self-invocation guard in SKILL.md §2 must not trip. Verify by running `env | grep -i codex_` and confirming no `CODEX_SESSION_ID` or `CODEX_*` vars are set.
-5. The skill's reference and asset files exist at `.opencode/skills/cli-external-orchestration/cli-codex/{references,assets}/` so prompt-quality and template scenarios resolve.
+5. The skill's reference and asset files exist at `.skilled/skills/cli-external-orchestration/cli-codex/{references,assets}/` so prompt-quality and template scenarios resolve.
 6. `gpt-5.6-luna` is the documented default model; `gpt-5.6-luna`, `gpt-5.6-terra`, and `gpt-5.6-luna` are the documented alternates (each with its own reasoning-effort ceiling — see SKILL.md §3 / `references/cli-reference.md` §5). Use the model a scenario names; do not substitute IDs outside this roster.
 7. `service_tier="fast"` MUST be passed explicitly on every `codex exec` invocation in this playbook (per the auto-memory rule). Never rely on a global config default.
 8. Destructive scenario `CX-007` (danger-full-access) MUST run only against rebuildable, non-production data and requires explicit human approval before execution.
@@ -412,7 +412,7 @@ Verify `codex exec -p review` routes to the read-only review profile and produce
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator delegating a code review, dispatch codex exec -p review against @./.opencode/skills/cli-external-orchestration/cli-codex/references/cli-reference.md with --model gpt-5.6-luna -c model_reasoning_effort="high" -c service_tier="fast". Verify the dispatch routes via -p review, exits 0, returns categorized findings (style/correctness/clarity), makes no file modifications, and the dispatched command line includes -p review explicitly. Return a verdict naming the profile and the finding-category count.`
+Prompt: `As a cross-AI orchestrator delegating a code review, dispatch codex exec -p review against @./.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md with --model gpt-5.6-luna -c model_reasoning_effort="high" -c service_tier="fast". Verify the dispatch routes via -p review, exits 0, returns categorized findings (style/correctness/clarity), makes no file modifications, and the dispatched command line includes -p review explicitly. Return a verdict naming the profile and the finding-category count.`
 
 Expected signals: `codex exec -p review` exits 0. Stdout contains categorized findings. `bash: git status --porcelain` shows no modifications. Dispatch line includes `-p review`.
 
@@ -430,7 +430,7 @@ Verify `codex exec -p context` routes to the read-only context-exploration profi
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator gathering architecture context, dispatch codex exec -p context against the .opencode/skills/cli-external-orchestration/cli-codex/references/ folder with --model gpt-5.6-luna -c model_reasoning_effort="high" -c service_tier="fast". Verify the dispatch routes via -p context, exits 0, returns a dependency or anchor map naming each reference file, makes no file modifications, and the dispatched command line includes -p context. Return a verdict naming the profile and confirming the map enumerates all 5 reference files.`
+Prompt: `As a cross-AI orchestrator gathering architecture context, dispatch codex exec -p context against the .skilled/skills/cli-external-orchestration/cli-codex/references/ folder with --model gpt-5.6-luna -c model_reasoning_effort="high" -c service_tier="fast". Verify the dispatch routes via -p context, exits 0, returns a dependency or anchor map naming each reference file, makes no file modifications, and the dispatched command line includes -p context. Return a verdict naming the profile and confirming the map enumerates all 5 reference files.`
 
 Expected signals: `codex exec -p context` exits 0. Stdout enumerates the five reference files (`cli-reference.md`, `integration-patterns.md`, `codex-tools.md`, `hook-contract.md`, `agent-delegation.md`). No file modifications. Dispatch line includes `-p context`.
 
@@ -508,7 +508,7 @@ Verify `codex --enable codex_hooks` (or `[features].codex_hooks = true` in confi
 
 #### Scenario Contract
 
-Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator validating Codex hook parity, FIRST verify ~/.codex/hooks.json contains entries for SessionStart and UserPromptSubmit pointing at .opencode/skills/system-spec-kit/runtime/dist/hooks/codex/{session-start,user-prompt-submit}.js, THEN dispatch codex --enable codex_hooks exec --full-auto "Implement a tiny TypeScript hook smoke test in /tmp/cli-codex-playbook-cx016/hook.ts" with --model gpt-5.6-luna -c service_tier="fast". Verify the hook stdout contract is satisfied (session-start emits {} or hookSpecificOutput.additionalContext; user-prompt-submit emits an Advisor: brief). Return a verdict naming the hook script paths and confirming the advisor brief surfaced.`
+Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator validating Codex hook parity, FIRST verify ~/.codex/hooks.json contains entries for SessionStart and UserPromptSubmit pointing at .skilled/skills/system-spec-kit/runtime/dist/hooks/codex/{session-start,user-prompt-submit}.js, THEN dispatch codex --enable codex_hooks exec --full-auto "Implement a tiny TypeScript hook smoke test in /tmp/cli-codex-playbook-cx016/hook.ts" with --model gpt-5.6-luna -c service_tier="fast". Verify the hook stdout contract is satisfied (session-start emits {} or hookSpecificOutput.additionalContext; user-prompt-submit emits an Advisor: brief). Return a verdict naming the hook script paths and confirming the advisor brief surfaced.`
 
 Expected signals: `~/.codex/hooks.json` lists both hooks at the documented paths. `codex --enable codex_hooks exec --full-auto` exits 0. The hook smoke checks documented in `references/hook-contract.md` §6 succeed when invoked manually (`{}` for session-start, `Advisor:` prefix for user-prompt-submit). The test file is written.
 
@@ -731,11 +731,11 @@ The `cli-codex` skill is an orchestrator wrapper around a third-party binary (`c
 | Test Surface | Coverage | Playbook Overlap |
 |---|---|---|
 | Upstream Codex CLI repo (`https://github.com/openai/codex`) | Codex binary correctness | Out of scope for this playbook. We validate that our skill dispatches the binary correctly, not that the binary itself is correct |
-| `.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/{session-start,user-prompt-submit}.js` | Hook contract integration | `CX-016` exercises the hook scripts via the documented manual smoke checks in `hook-contract.md` §6 |
-| `.opencode/skills/cli-external-orchestration/cli-codex/references/hook-contract.md` §6 manual smoke checks | Hook output shape | `CX-016` |
-| `.opencode/skills/sk-doc/scripts/validate_document.py` | Markdown structure validation for this playbook | This playbook itself (root MUST validate cleanly) |
-| `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Shared `PreToolUse` `exec` advisory hook | `CX-029` |
-| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-codex` adapter | `cli-codex-EC-001` .. `cli-codex-EC-014` |
+| `.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/{session-start,user-prompt-submit}.js` | Hook contract integration | `CX-016` exercises the hook scripts via the documented manual smoke checks in `hook-contract.md` §6 |
+| `.skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md` §6 manual smoke checks | Hook output shape | `CX-016` |
+| `.skilled/skills/sk-doc/scripts/validate_document.py` | Markdown structure validation for this playbook | This playbook itself (root MUST validate cleanly) |
+| `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Shared `PreToolUse` `exec` advisory hook | `CX-029` |
+| `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-codex` adapter | `cli-codex-EC-001` .. `cli-codex-EC-014` |
 
 There is no automated coverage for default-invocation, sandbox-mode, reasoning_effort, agent_routing or built-in-tool scenarios. Manual playbook execution IS the canonical validation surface for those features. Re-run the wave plan in §6 before each release.
 

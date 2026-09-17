@@ -45,7 +45,7 @@ tests/
 Run from the repository root.
 
 ```bash
-bash .opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh
+bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh
 ```
 
 Expected result: the harness prints a summary line ending in `FAIL=0` (for example `worktree-naming tests: PASS=65 FAIL=0`) and exits 0. A failing assertion prints a `FAIL: <desc>` line with its expected and actual values, and the run exits non-zero.

@@ -66,7 +66,7 @@ Do not copy this packet into Pi and assume the hub's single advisor identity sur
 
 ## 4. PROMPT TEMPLATES
 
-**Confirmed (phases 012/013):** Pi discovers flat, non-recursive markdown files under `.pi/prompts/` and exposes each as a slash command named after the file. This repo mirrors all 36 canonical `.opencode/commands/**/*.md` files this way; `sync-prompts-pi.cjs --check` reports `36 prompts are in sync`. Argument substitution — including `$ARGUMENTS` as a documented alias for `$@` — was live-confirmed in a real generated prompt file during a live session (phase 013, scenario PI-008). See [RPC documentation](https://pi.dev/docs/latest/rpc) for how prompt-template commands surface in `get_commands` output.
+**Confirmed (phases 012/013):** Pi discovers flat, non-recursive markdown files under `.pi/prompts/` and exposes each as a slash command named after the file. This repo mirrors all 36 canonical `.skilled/commands/**/*.md` files this way; `sync-prompts-pi.cjs --check` reports `36 prompts are in sync`. Argument substitution — including `$ARGUMENTS` as a documented alias for `$@` — was live-confirmed in a real generated prompt file during a live session (phase 013, scenario PI-008). See [RPC documentation](https://pi.dev/docs/latest/rpc) for how prompt-template commands surface in `get_commands` output.
 
 Per Pi docs, unconfirmed: full path-precedence rules across every documented discovery location (global, project, package, settings, explicit CLI path) beyond the project-local `.pi/prompts/` location this packet actually populates.
 
@@ -142,7 +142,7 @@ Still open — needs a credentialed provider session:
 1. Create one uniquely named skill at each candidate location (global, project, package, settings, explicit CLI path).
 2. Record which slash commands appear in a live session and confirm precedence when the same name exists at more than one location.
 3. Compare project and global resources.
-4. Confirm whether nested hub packets flatten when Pi's own skill discovery walks `.opencode/skills/`.
+4. Confirm whether nested hub packets flatten when Pi's own skill discovery walks `.skilled/skills/`.
 5. Capture a `session_compact` firing trace from a long interactive session (every other registered event was live-traced in playbook scenario PI-020, per §5).
 6. Start Pi in JSON and RPC modes against a real provider (both remain doc-grounded, not live-executed, for this specific verification plan).
 

@@ -36,7 +36,7 @@ Present in `.utcp_config.json` under `manual_call_templates[]`. **[CONFIRMED: re
   "call_template_type": "cli",
   "commands": [
     {
-      "command": "node .opencode/bin/magicpath-utcp-manual.cjs",
+      "command": "node .skilled/bin/magicpath-utcp-manual.cjs",
       "append_to_final_output": true
     }
   ],
@@ -46,7 +46,7 @@ Present in `.utcp_config.json` under `manual_call_templates[]`. **[CONFIRMED: re
 }
 ```
 
-- The manual is a **`cli` transport**, not `mcp`. The manual command (`node .opencode/bin/magicpath-utcp-manual.cjs`) prints the UTCP manual that lists the fourteen tools; each tool call is executed by `node .opencode/bin/magicpath-utcp-exec.cjs`, which shells out to the `magicpath-ai` binary. **[CONFIRMED: the registered manual and the wrapper source]**
+- The manual is a **`cli` transport**, not `mcp`. The manual command (`node .skilled/bin/magicpath-utcp-manual.cjs`) prints the UTCP manual that lists the fourteen tools; each tool call is executed by `node .skilled/bin/magicpath-utcp-exec.cjs`, which shells out to the `magicpath-ai` binary. **[CONFIRMED: the registered manual and the wrapper source]**
 - The `env_vars` block maps the CLI's `MAGICPATH_TOKEN` to `${magicpath_MAGICPATH_TOKEN}`. Under Code Mode, environment variables are **prefixed with the manual name** (`magicpath_<NAME>`), so the token is set in `.env` as `magicpath_MAGICPATH_TOKEN` and exposed to the CLI as `MAGICPATH_TOKEN`. **[CONFIRMED: Code Mode env-prefix rule]**
 - A byte-preserved snapshot of this manual lives in [`../assets/utcp-magicpath-manual.md`](../assets/utcp-magicpath-manual.md).
 

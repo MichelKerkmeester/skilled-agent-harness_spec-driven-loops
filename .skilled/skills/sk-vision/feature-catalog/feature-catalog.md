@@ -245,7 +245,7 @@ Loads the vision runtime and handles `/vision` in OpenCode. Tools are not regist
 
 #### Current Reality
 
-A real file at `.opencode/plugins/sk-vision.js` re-exports the built runtime plugin. By default the plugin registers the `/vision` command hook only. The hook fetches the latest image, injects a `<SK-VISION COMMAND>` evidence block and tears the runtime down after the call. `SK_VISION_AUTOINSPECT=1` restores visible tools and legacy attachment inspection.
+A real file at `.skilled/plugins/sk-vision.js` re-exports the built runtime plugin. By default the plugin registers the `/vision` command hook only. The hook fetches the latest image, injects a `<SK-VISION COMMAND>` evidence block and tears the runtime down after the call. `SK_VISION_AUTOINSPECT=1` restores visible tools and legacy attachment inspection.
 
 #### Source Files
 

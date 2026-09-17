@@ -54,8 +54,8 @@ Summarise this quarterly sales report into three bullet points.
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/negative.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`
+1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/negative.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`
 3. `echo "Summarise this quarterly sales report into three bullet points." | grep -qiE 'bdg|browser-debugger-cli|terminal|cli|command line|command-line|shell|headless|lightweight|token efficient|mcp|code mode|multi-tool|parallel sessions|model context protocol|multiple tools|isolated instances|tool chain|in parallel|install|setup|not installed|command -v bdg|set up|getting started|download|npm install|not found|first time|error|failed|troubleshoot|session issue|keeps dropping|won.t connect|figure out why|work out the cause|hangs|hanging|stuck|crash|crashing|broken|not working|timeout|disconnect|flaky|root cause|ci|pipeline|automation|production|automate|unattended|continuous integration|batch|recurring' && echo MATCH || echo NOMATCH`
 
 ### Expected

@@ -55,7 +55,7 @@ WHAT THIS SCRIPT DOES:
     2. Creates .utcp_config.json template (if not exists)
     3. Creates .env.example with placeholder API keys (if not exists)
     4. Adds code_mode to opencode.json MCP configuration
-    5. Verifies the embedded MCP server at .opencode/skills/mcp-code-mode/
+    5. Verifies the embedded MCP server at .skilled/skills/mcp-code-mode/
 
 FILES CREATED/MODIFIED:
     .utcp_config.json    - UTCP configuration file (created if missing)
@@ -118,8 +118,8 @@ check_server_engine_range() {
     local project_root
     project_root=$(find_project_root) || return 1
 
-    local resolver="${project_root}/.opencode/bin/lib/node-engine-resolver.cjs"
-    local manifest="${project_root}/.opencode/skills/mcp-code-mode/mcp-server/package.json"
+    local resolver="${project_root}/.skilled/bin/lib/node-engine-resolver.cjs"
+    local manifest="${project_root}/.skilled/skills/mcp-code-mode/mcp-server/package.json"
 
     if [[ ! -f "${resolver}" || ! -f "${manifest}" ]]; then
         log_warn "Cannot check the Node engine range: resolver or server manifest missing"
@@ -325,11 +325,11 @@ add_to_opencode_json() {
     backup_file "${config_file}"
     
     # MCP configuration for opencode.json
-    # Uses embedded source from .opencode/skills/mcp-code-mode/mcp-server/
+    # Uses embedded source from .skilled/skills/mcp-code-mode/mcp-server/
     # This requires: npm install in mcp-server/ directory (done in verify step)
     local mcp_config='{
         "type": "local",
-        "command": ["node", ".opencode/bin/mcp-code-mode-launcher.cjs"],
+        "command": ["node", ".skilled/bin/mcp-code-mode-launcher.cjs"],
         "environment": {
             "UTCP_CONFIG_FILE": ".utcp_config.json"
         }
@@ -355,9 +355,9 @@ verify_installation() {
 
     local project_root
     project_root=$(find_project_root) || return 1
-    local mcp_server_dir="${project_root}/.opencode/skills/mcp-code-mode/mcp-server"
+    local mcp_server_dir="${project_root}/.skilled/skills/mcp-code-mode/mcp-server"
     local entry_point="${mcp_server_dir}/dist/index.js"
-    local launcher="${project_root}/.opencode/bin/mcp-code-mode-launcher.cjs"
+    local launcher="${project_root}/.skilled/bin/mcp-code-mode-launcher.cjs"
 
     if [[ "${DRY_RUN}" == "true" ]]; then
         log_info "[DRY-RUN] Would verify: ${launcher} and ${entry_point} exist"
@@ -418,7 +418,7 @@ print_summary() {
     echo "  - .env.example      : API key templates"
     echo ""
     echo "MCP Server registration:"
-    echo "  - .opencode/bin/mcp-code-mode-launcher.cjs"
+    echo "  - .skilled/bin/mcp-code-mode-launcher.cjs"
     echo ""
     echo "Next steps:"
     echo "  1. Copy API keys from .env.example to .env"

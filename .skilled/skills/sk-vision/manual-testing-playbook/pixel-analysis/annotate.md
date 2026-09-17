@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-011` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-011 | Annotation | Verify boxes or points drawn onto an image | Use sk_vision_annotate to draw a box around the error text with the label "error". | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"annotate","params":{"source":{"type":"path","path":"<FIXTURE>"},"boxes":[{"x1":0.05,"y1":0.1,"x2":0.95,"y2":0.5}],"label":"error"}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"annotate","path":"<cache>/annotations/...","width":...,"height":...}}` | The annotate response `path`; verify the output file exists and visually shows the box/label | PASS if `result.type == "annotate"` and the output file exists; FAIL if the output file is missing or the request errors | 1. Confirm `boxes`/`points` use normalized 0..1 values -> 2. Verify the cache dir `~/.cache/sk-vision/annotations` is writable -> 3. Inspect stderr for drawing errors |
+| VSN-011 | Annotation | Verify boxes or points drawn onto an image | Use sk_vision_annotate to draw a box around the error text with the label "error". | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"annotate","params":{"source":{"type":"path","path":"<FIXTURE>"},"boxes":[{"x1":0.05,"y1":0.1,"x2":0.95,"y2":0.5}],"label":"error"}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"annotate","path":"<cache>/annotations/...","width":...,"height":...}}` | The annotate response `path`; verify the output file exists and visually shows the box/label | PASS if `result.type == "annotate"` and the output file exists; FAIL if the output file is missing or the request errors | 1. Confirm `boxes`/`points` use normalized 0..1 values -> 2. Verify the cache dir `~/.cache/sk-vision/annotations` is writable -> 3. Inspect stderr for drawing errors |
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `VSN-011` and confirm th
 1. `bash: printf '%s\n' \`
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"annotate","params":{"source":{"type":"path","path":"<FIXTURE>"},"boxes":[{"x1":0.05,"y1":0.1,"x2":0.95,"y2":0.5}],"label":"error"}}'`
-4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

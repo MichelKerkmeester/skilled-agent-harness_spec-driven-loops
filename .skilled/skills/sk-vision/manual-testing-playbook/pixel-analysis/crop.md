@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-009` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-009 | Cropping | Verify a cropped output file with reported dimensions | Use sk_vision_crop on the fixture, cropping to the top-left half. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"crop","params":{"source":{"type":"path","path":"<FIXTURE>"},"bbox":{"x1":0,"y1":0,"x2":0.5,"y2":0.5}}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"crop","path":"<cache>/crops/...","width":...,"height":...,"bbox_px":[...]}}` | The crop response `path`, `width`, `height`, and `bbox_px`; verify the output file exists | PASS if `result.type == "crop"`, the output `path` exists on disk, and width/height equal half the fixture; FAIL if the output file is missing or the bbox is rejected as malformed | 1. Confirm `bbox` uses normalized 0..1 values -> 2. Verify the cache dir `~/.cache/sk-vision/crops` is writable -> 3. Inspect stderr for Pillow save errors |
+| VSN-009 | Cropping | Verify a cropped output file with reported dimensions | Use sk_vision_crop on the fixture, cropping to the top-left half. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"crop","params":{"source":{"type":"path","path":"<FIXTURE>"},"bbox":{"x1":0,"y1":0,"x2":0.5,"y2":0.5}}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"crop","path":"<cache>/crops/...","width":...,"height":...,"bbox_px":[...]}}` | The crop response `path`, `width`, `height`, and `bbox_px`; verify the output file exists | PASS if `result.type == "crop"`, the output `path` exists on disk, and width/height equal half the fixture; FAIL if the output file is missing or the bbox is rejected as malformed | 1. Confirm `bbox` uses normalized 0..1 values -> 2. Verify the cache dir `~/.cache/sk-vision/crops` is writable -> 3. Inspect stderr for Pillow save errors |
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `VSN-009` and confirm th
 1. `bash: printf '%s\n' \`
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"crop","params":{"source":{"type":"path","path":"<FIXTURE>"},"bbox":{"x1":0,"y1":0,"x2":0.5,"y2":0.5}}}'`
-4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

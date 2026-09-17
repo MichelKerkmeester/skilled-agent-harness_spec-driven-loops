@@ -224,8 +224,8 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-claude-code/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/manual-testing-playbook.md` |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-claude-code/README.md --type readme` reports zero issues |
+| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/manual-testing-playbook.md` |
 | Behavior | Run the scenarios under `manual-testing-playbook/<NN>--<topic>/` in a live session with valid Anthropic auth |
 
 ---

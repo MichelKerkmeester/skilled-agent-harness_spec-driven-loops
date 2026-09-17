@@ -54,8 +54,8 @@ Refactor this Python function to run more efficiently.
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/negative.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-figma/SKILL.md`
+1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/negative.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-figma/SKILL.md`
 3. `echo "Refactor this Python function to run more efficiently." | grep -qiE 'create|render|frame|component|icon|layout|import|build|draw|mockup|wireframe|prototype|artboard|button|generate|sketch|card|token|variable|var:|collection|shadcn|design system|theme|palette|style|swatch|typography|spacing|tailwind|primitive|inspect|extract|export|screenshot|design\.md|a11y|audit|accessibility|contrast|snapshot|properties|svg|png|storybook|jsx|download|capture|connect|safe|patch|unpatch|daemon|diagnose|reconnect|setup|set up|install|bridge|plugin|restart|health|mcp|code mode|design context|figma-developer-mcp|pull|framelink|utcp|get_design_context|error|failed|not connected|binary not found|unauthorized|broken|not working|doesn.t work|won.t connect|not responding|unresponsive|crash|timeout|conflict|stuck|permission denied' && echo MATCH || echo NOMATCH`
 
 ### Expected

@@ -78,7 +78,7 @@ Full transcript including exit code; where the Aside browser UI is observable, n
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md` | REPL lane contract and helper list |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md` | REPL lane contract and helper list |
 
 ---
 

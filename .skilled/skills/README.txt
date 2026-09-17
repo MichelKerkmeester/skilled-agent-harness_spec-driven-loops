@@ -28,7 +28,7 @@ trigger_phrases:
 
 ## 2. OVERVIEW
 
-Thirteen top-level skill identities live under `.opencode/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
+Thirteen top-level skill identities live under `.skilled/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
 
 New skills are discovered automatically from a valid `SKILL.md` frontmatter plus `graph-metadata.json`; no manual registration step exists.
 
@@ -94,7 +94,7 @@ Three paths reach a skill.
 **Route with Gate 2.** The advisor picks the match. You do not need to know which skill to open.
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "commit my changes" --threshold 0.8
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "commit my changes" --threshold 0.8
 # Output: [{"skill":"sk-git","confidence":0.92,"uncertainty":0.08,...}]
 ```
 
@@ -102,13 +102,13 @@ python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "
 
 ```bash
 # Read the full runtime surface
-Read(".opencode/skills/sk-git/SKILL.md")
+Read(".skilled/skills/sk-git/SKILL.md")
 ```
 
 **Run skill-local scripts.** Many skills ship automation in their `scripts/` directory.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md --type readme
+python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme
 # Exit 0 means valid. Anything else prints the issues found.
 ```
 
@@ -121,7 +121,7 @@ A typical workflow chains all three: the advisor picks the skill, the agent read
 New skills start with `sk-doc` scaffolding and follow a fixed folder layout.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/init_skill.py my-new-skill --path .opencode/skills
+python3 .skilled/skills/sk-doc/scripts/init_skill.py my-new-skill --path .skilled/skills
 # Creates the folder with SKILL.md, graph-metadata.json and the references/ assets/ scripts/ skeleton
 ```
 
@@ -138,7 +138,7 @@ Every skill folder needs:
 After fleshing out `SKILL.md` and the references, run the packager to validate the structure:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/my-new-skill/
+python3 .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/my-new-skill/
 # Validates frontmatter, structure and graph metadata. Exit 0 means the skill is ready for discovery.
 ```
 
@@ -150,7 +150,7 @@ The advisor picks up the new skill on the next graph scan. No manual registratio
 
 | What you see | Why | Fix |
 |---|---|---|
-| Advisor returns an empty list | No skill matched above the threshold, or `SKILL.md` files are missing | Lower the threshold to inspect low-confidence matches: `python3 skill_advisor.py "query" --threshold 0.5`. Verify frontmatter with `head -10 .opencode/skills/*/SKILL.md`. |
+| Advisor returns an empty list | No skill matched above the threshold, or `SKILL.md` files are missing | Lower the threshold to inspect low-confidence matches: `python3 skill_advisor.py "query" --threshold 0.5`. Verify frontmatter with `head -10 .skilled/skills/*/SKILL.md`. |
 | Advisor returns the wrong skill | Overly broad description terms in a skill's frontmatter, or a synonym that pulls unrelated skills | Tighten the `description` in that skill's `SKILL.md`. Add specific `trigger_phrases`. Compare native `advisor_recommend` output with the Python shim's to isolate the mismatch. |
 | New skill does not appear in results | Missing or invalid `SKILL.md` frontmatter. The advisor needs at least `name` and `description` | Validate the frontmatter, then run a health check to clear the discovery cache: `python3 skill_advisor.py "test" --health`. |
 | Skill script raises `ModuleNotFoundError` | A required Python package is not installed, or the script is run from the wrong directory | Always run scripts from the repository root with the full path. Check dependencies: `python3 -c "import yaml; print('ok')"`. |

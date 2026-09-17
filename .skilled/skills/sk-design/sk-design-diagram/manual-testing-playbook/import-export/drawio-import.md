@@ -43,7 +43,7 @@ Operators run the exact prompt and command sequence for `IMP-001` and confirm th
 ### Commands
 
 1. `bash: shasum docs/system.drawio` (capture the before-checksum)
-2. `bash: python3 .opencode/skills/sk-design/sk-design-diagram/scripts/drawio_extract.py docs/system.drawio --page 0`
+2. `bash: python3 .skilled/skills/sk-design/sk-design-diagram/scripts/drawio_extract.py docs/system.drawio --page 0`
 3. `agent: Read references/import-export/import-drawio.md, references/foundations/output-spec.md, and the matching references/types/type-*.md`
 4. `agent: Set the four dials (format html, size doc-inline, detail balanced, audience mixed); build the semantic model; redraw on the 4px grid; reroute every connector orthogonally`
 5. `agent: Write docs/system-redrawn.html; run the taste gate; report the fidelity ledger`

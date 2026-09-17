@@ -49,7 +49,7 @@ This directory contains three focused examples for the mcp-obsidian mode. They d
 
 ```bash
 # Headless note workflow
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
 notesmd-cli --version
 notesmd-cli list-vaults
 
@@ -244,7 +244,7 @@ The script prints a reference only; `NOTE_PATH` changes the preflight label, not
 ### headless-notes-workflow.sh: `notesmd-cli` not found
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
 notesmd-cli --version
 notesmd-cli list-vaults
 ```

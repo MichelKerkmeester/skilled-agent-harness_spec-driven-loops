@@ -84,7 +84,7 @@ Capture all command outputs, file size, parsed HAR version, and entry count.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg network har reference |
+| `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg network har reference |
 
 ---
 

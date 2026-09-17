@@ -44,17 +44,17 @@ The packet root carries no `graph-metadata.json`, `description.json`, `mode-regi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/mode-registry.json` | Registry | The `sk-design-diagram` `workflowMode` entry: command, aliases, tool surface |
-| `.opencode/skills/sk-design/hub-router.json` | Registry | The `create-diagram-aliases` weighted keyword class and `tieBreak` membership |
-| `.opencode/skills/sk-design/command-metadata.json` | Registry | The `/design:diagram` command choreography entry |
+| `.skilled/skills/sk-design/mode-registry.json` | Registry | The `sk-design-diagram` `workflowMode` entry: command, aliases, tool surface |
+| `.skilled/skills/sk-design/hub-router.json` | Registry | The `create-diagram-aliases` weighted keyword class and `tieBreak` membership |
+| `.skilled/skills/sk-design/command-metadata.json` | Registry | The `/design:diagram` command choreography entry |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/command-and-hub-integration/hub-registration.md` | Manual playbook | Scenario CMD-002 verifies the packet resolves through hub routing without a packet-local advisor identity |
-| `.opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py` | Test harness | Packaging gate that enforces the no-packet-local-metadata invariant |
-| `.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Test harness | Fleet-wide audit confirming the `sk-design` hub stays class H clean |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py` | Test harness | Packaging gate that enforces the no-packet-local-metadata invariant |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Test harness | Fleet-wide audit confirming the `sk-design` hub stays class H clean |
 
 ---
 

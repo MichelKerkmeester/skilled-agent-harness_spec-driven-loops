@@ -91,7 +91,7 @@ Capture the verbatim chain return value, including the team id used and the spac
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | call_tool_chain spec |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | call_tool_chain spec |
 
 ---
 

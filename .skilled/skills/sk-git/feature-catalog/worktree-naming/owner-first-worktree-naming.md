@@ -48,14 +48,14 @@ Git has no way to enforce sequential uniqueness itself, so each namespace's coun
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/scripts/worktree-naming.sh` | Script | Per-namespace number scanning/allocation, grammar validators, worktree/dedicated-branch creation, CLI dispatch |
-| `.opencode/skills/sk-git/scripts/migrate-legacy-branch-names.sh` | Script | One-shot renumberer of legacy `OWNER/NNNN-SLUG` worktree pairs into `worktrees/NNN-SLUG` (dry-run by design) |
+| `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Script | Per-namespace number scanning/allocation, grammar validators, worktree/dedicated-branch creation, CLI dispatch |
+| `.skilled/skills/sk-git/scripts/migrate-legacy-branch-names.sh` | Script | One-shot renumberer of legacy `OWNER/NNNN-SLUG` worktree pairs into `worktrees/NNN-SLUG` (dry-run by design) |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Automated test | Exercises grammar validators and allocator behavior |
+| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Automated test | Exercises grammar validators and allocator behavior |
 
 ---
 

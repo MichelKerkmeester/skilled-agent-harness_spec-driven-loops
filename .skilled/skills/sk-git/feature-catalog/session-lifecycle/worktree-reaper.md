@@ -44,13 +44,13 @@ The reaper also prunes the short per-session socket directories under `~/.spk-wt
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/bin/worktree-reaper.sh` | Script | Worktree pruning gate, socket/marker cleanup |
+| `.skilled/bin/worktree-reaper.sh` | Script | Worktree pruning gate, socket/marker cleanup |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/bin/tests/worktree-reaper.test.sh` | Automated test | Exercises the reap-only-proven-inactive gate and report-only categories |
+| `.skilled/bin/tests/worktree-reaper.test.sh` | Automated test | Exercises the reap-only-proven-inactive gate and report-only categories |
 
 ---
 

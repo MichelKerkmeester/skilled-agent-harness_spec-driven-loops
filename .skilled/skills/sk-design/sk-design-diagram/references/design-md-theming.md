@@ -59,7 +59,7 @@ for a themed value.
 ## 2. THE COMMAND
 
 ```bash
-node .opencode/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs \
+node .skilled/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs \
   path/to/DESIGN.md --forms starter-full --out scratch/themed
 ```
 
@@ -84,7 +84,7 @@ travel unchanged.
 `--default --all --out <dir>` must reproduce the stock forms byte for byte:
 
 ```bash
-node .opencode/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs \
+node .skilled/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs \
   --default --all --out /tmp/dmd-default
 diff -rq /tmp/dmd-default assets/diagrams   # no output
 ```
@@ -252,7 +252,7 @@ A theme that repaints the block rewrites its marker and records where the values
 
 ```css
 /* DIAGRAM_PALETTE:BEGIN skin=light system=design-md */
-/* DESIGN.md provenance: path=.opencode/skills/.../DESIGN.md sha256=<64 hex> generator=1.0.0.0 */
+/* DESIGN.md provenance: path=.skilled/skills/.../DESIGN.md sha256=<64 hex> generator=1.0.0.0 */
 ```
 
 The path is repository-relative when the reference lives inside the repository, and the one given on

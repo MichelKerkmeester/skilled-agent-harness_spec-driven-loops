@@ -46,7 +46,7 @@ Four categories divide the surface:
 
 Before running any scenario:
 
-1. The repository is at its checked-out state with no uncommitted edit to `.opencode/skills/sk-design/` in flight. A scenario run against a dirty skill measures the edit, not the skill.
+1. The repository is at its checked-out state with no uncommitted edit to `.skilled/skills/sk-design/` in flight. A scenario run against a dirty skill measures the edit, not the skill.
 2. The skill advisor has ingested the current skill graph. When a probe returns a transport timeout rather than a ranking, re-run through the Python advisor path used in the command sequences here.
 3. Agent-issued prompts are issued in a **fresh session**. A session that has already loaded a reference will appear to route correctly whether or not the router works.
 

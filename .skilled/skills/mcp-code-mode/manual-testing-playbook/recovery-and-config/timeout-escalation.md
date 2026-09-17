@@ -88,7 +88,7 @@ Capture the verbatim response (including the timeout error message text) and the
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | timeout argument doc (line 689-693) |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | timeout argument doc (line 689-693) |
 
 ---
 

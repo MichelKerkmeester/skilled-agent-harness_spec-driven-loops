@@ -81,7 +81,7 @@ Capture all command outputs, the parsed JSON structure, and the grep match.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg console --list reference |
+| `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg console --list reference |
 
 ---
 

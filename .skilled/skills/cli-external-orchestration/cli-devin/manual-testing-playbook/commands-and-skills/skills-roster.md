@@ -10,7 +10,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 
 ## 1. OVERVIEW
 
-Inspect Devin's native repository-skill discovery with `devin skills list` and verify that repo-local entries resolve to real packets under `.opencode/skills`.
+Inspect Devin's native repository-skill discovery with `devin skills list` and verify that repo-local entries resolve to real packets under `.skilled/skills`.
 
 ### Why This Matters
 
@@ -20,13 +20,13 @@ Devin discovers repository skills directly. It has no command-file system, so a 
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Confirm that `devin skills list` reports repository skills discovered natively from `.opencode/skills`.
+- Objective: Confirm that `devin skills list` reports repository skills discovered natively from `.skilled/skills`.
 - Real user request: `Show which repository skills Devin discovers natively and where they come from.`
 - Prompt: `List the repository skills Devin discovers natively, include each reported repository path, and do not infer any command-file mirrors.`
-- Expected execution process: Run `devin skills list`, retain its raw output, isolate entries whose reported path is under `./.opencode/skills`, and verify that every reported repository path exists.
-- Expected signals: Repo-local skill entries point into `./.opencode/skills`; no mirror directory or separate command-file abstraction is required or asserted.
+- Expected execution process: Run `devin skills list`, retain its raw output, isolate entries whose reported path is under `./.skilled/skills`, and verify that every reported repository path exists.
+- Expected signals: Repo-local skill entries point into `./.skilled/skills`; no mirror directory or separate command-file abstraction is required or asserted.
 - Desired user-visible outcome: A reproducible native skill-discovery report grounded in the CLI output and real repository paths.
-- Pass/fail: PASS when reported repo-local skill paths exist under `.opencode/skills`; FAIL when Devin reports a missing repo-local path or omits native discovery entirely; SKIP when Devin authentication or CLI availability makes the native list unavailable.
+- Pass/fail: PASS when reported repo-local skill paths exist under `.skilled/skills`; FAIL when Devin reports a missing repo-local path or omits native discovery entirely; SKIP when Devin authentication or CLI availability makes the native list unavailable.
 
 ---
 
@@ -44,7 +44,7 @@ Devin discovers repository skills directly. It has no command-file system, so a 
 
 ### Expected
 
-The raw list contains native repo-local skill entries with paths under `./.opencode/skills`. External or setup-provided entries may also appear and are not treated as repository mirrors.
+The raw list contains native repo-local skill entries with paths under `./.skilled/skills`. External or setup-provided entries may also appear and are not treated as repository mirrors.
 
 ### Evidence
 
@@ -52,17 +52,17 @@ Capture the Devin exit status, `/tmp/cli-devin-dv014-skills.txt`, the filtered r
 
 ### Pass / Fail
 
-- **PASS**: Devin lists native repo-local skills and each reported `.opencode/skills` path exists.
+- **PASS**: Devin lists native repo-local skills and each reported `.skilled/skills` path exists.
 - **FAIL**: Native discovery is absent despite an available CLI, or a reported repo-local path does not exist.
 - **SKIP**: Blocker: Devin authentication or CLI availability is missing, so `devin skills list` is unavailable.
 
 ### Failure Triage
 
-Inspect stderr and authentication state first. If a reported path is stale, compare the CLI output with the actual `.opencode/skills` packet path; do not create a command mirror as a repair.
+Inspect stderr and authentication state first. If a reported path is stale, compare the CLI output with the actual `.skilled/skills` packet path; do not create a command mirror as a repair.
 
 | Feature ID | Feature Name | Scenario Name/Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DV-014 | Native skill discovery | Verify native `.opencode/skills` discovery | `List the repository skills Devin discovers natively, include each reported repository path, and do not infer any command-file mirrors.` | Run `devin skills list`; filter repo-local paths; verify each reported path exists. | Native entries resolve under `./.opencode/skills`; no command-file mirror is asserted. | Raw output, exit status, filtered entries, and path checks. | PASS on valid native paths; FAIL on absent discovery or stale repo-local paths; SKIP only for a specific unavailable auth or CLI runtime. | Diagnose the CLI or reported path; never synthesize a command mirror. |
+| DV-014 | Native skill discovery | Verify native `.skilled/skills` discovery | `List the repository skills Devin discovers natively, include each reported repository path, and do not infer any command-file mirrors.` | Run `devin skills list`; filter repo-local paths; verify each reported path exists. | Native entries resolve under `./.skilled/skills`; no command-file mirror is asserted. | Raw output, exit status, filtered entries, and path checks. | PASS on valid native paths; FAIL on absent discovery or stale repo-local paths; SKIP only for a specific unavailable auth or CLI runtime. | Diagnose the CLI or reported path; never synthesize a command mirror. |
 
 ---
 
@@ -78,7 +78,7 @@ Inspect stderr and authentication state first. If a reported path is stale, comp
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | Native `.opencode/skills` discovery and command-file non-concept |
+| `../../SKILL.md` | Native `.skilled/skills` discovery and command-file non-concept |
 | `../../../../` | Repository skill packets discovered by Devin |
 
 ---

@@ -44,17 +44,17 @@ User-facing wording — startup questions, Phase 0 verification, the setup dashb
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/create/diagram.md` | Handler | The `/design:diagram` router contract: owned assets, mode routing, execution targets, and the presentation boundary |
-| `.opencode/commands/create/assets/create-diagram-auto.yaml` | Shared | The bound workflow executed in `:auto` mode |
-| `.opencode/commands/create/assets/create-diagram-confirm.yaml` | Shared | The bound workflow executed in `:confirm` mode (also the default when mode is omitted) |
-| `.opencode/commands/create/assets/create-diagram-presentation.txt` | Shared | The presentation contract that owns all user-facing wording |
+| `.skilled/commands/create/diagram.md` | Handler | The `/design:diagram` router contract: owned assets, mode routing, execution targets, and the presentation boundary |
+| `.skilled/commands/create/assets/create-diagram-auto.yaml` | Shared | The bound workflow executed in `:auto` mode |
+| `.skilled/commands/create/assets/create-diagram-confirm.yaml` | Shared | The bound workflow executed in `:confirm` mode (also the default when mode is omitted) |
+| `.skilled/commands/create/assets/create-diagram-presentation.txt` | Shared | The presentation contract that owns all user-facing wording |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/command-and-hub-integration/design-diagram-command.md` | Manual playbook | Scenario CMD-001 verifies the router loads the presentation contract, binds the correct workflow YAML, and produces the diagram without inventing prompts |
-| `.opencode/skills/sk-design/command-metadata.json` | Reference | Anchor for the `/design:diagram` command metadata and choreography |
+| `.skilled/skills/sk-design/command-metadata.json` | Reference | Anchor for the `/design:diagram` command metadata and choreography |
 
 ---
 

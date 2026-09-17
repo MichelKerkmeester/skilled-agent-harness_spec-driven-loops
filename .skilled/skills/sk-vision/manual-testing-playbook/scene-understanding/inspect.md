@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-001` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-001 | Image inspection | Verify a combined caption, scene, and OCR readout for one image | Inspect this screenshot and tell me what is on screen. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"caption","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' \ -> 4.   '{"id":3,"method":"scene","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' \ -> 5.   '{"id":4,"method":"ocr","params":{"source":{"type":"path","path":"<FIXTURE>"},"kind":"all"}}' -> 6.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: `{"id":1,"result":{"loaded":true}}` - model loads warm; Steps 2-4: three result lines with `result.type` values `caption`, `scene`, `ocr`, each carrying a text or structured field | The full NDJSON transcript (4 response lines) saved to the run evidence folder; note `_ms` latency per request | PASS if the transcript contains `caption`, `scene`, and `ocr` results with non-empty text; FAIL if any request returns an `error` envelope or an empty result | 1. Check stderr for a Python/torch traceback; re-run with the venv python explicitly -> 2. Verify the cache is warm: run VSN-012 first -> 3. Confirm `<FIXTURE>` resolves to an existing PNG |
+| VSN-001 | Image inspection | Verify a combined caption, scene, and OCR readout for one image | Inspect this screenshot and tell me what is on screen. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"caption","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' \ -> 4.   '{"id":3,"method":"scene","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' \ -> 5.   '{"id":4,"method":"ocr","params":{"source":{"type":"path","path":"<FIXTURE>"},"kind":"all"}}' -> 6.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: `{"id":1,"result":{"loaded":true}}` - model loads warm; Steps 2-4: three result lines with `result.type` values `caption`, `scene`, `ocr`, each carrying a text or structured field | The full NDJSON transcript (4 response lines) saved to the run evidence folder; note `_ms` latency per request | PASS if the transcript contains `caption`, `scene`, and `ocr` results with non-empty text; FAIL if any request returns an `error` envelope or an empty result | 1. Check stderr for a Python/torch traceback; re-run with the venv python explicitly -> 2. Verify the cache is warm: run VSN-012 first -> 3. Confirm `<FIXTURE>` resolves to an existing PNG |
 
 ---
 
@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `VSN-001` and confirm th
 3. `  '{"id":2,"method":"caption","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' \`
 4. `  '{"id":3,"method":"scene","params":{"source":{"type":"path","path":"<FIXTURE>"}}}' \`
 5. `  '{"id":4,"method":"ocr","params":{"source":{"type":"path","path":"<FIXTURE>"},"kind":"all"}}'`
-6. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+6. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

@@ -79,9 +79,9 @@ The full REPL transcript and the parsed shapes (redacted). On success, save the 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/console-and-network-capture.md` | Capability leaf with the repl code + HAR gap |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/probes-and-gaps/console-probe.md` | ASD-012 guarded probe this scenario supersedes |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/probes-and-gaps/network-probe.md` | ASD-013 guarded probe; HAR gap stays honest |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/console-and-network-capture.md` | Capability leaf with the repl code + HAR gap |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/probes-and-gaps/console-probe.md` | ASD-012 guarded probe this scenario supersedes |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/probes-and-gaps/network-probe.md` | ASD-013 guarded probe; HAR gap stays honest |
 
 ---
 

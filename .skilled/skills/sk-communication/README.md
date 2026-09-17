@@ -18,7 +18,7 @@ Make supported CLI and agent output read like careful plain English without ever
 | Field | Value |
 |-------|-------|
 | Kind | Standalone skill (class S) |
-| Wraps | `.opencode/skills/sk-communication/cli-communication-projection/` |
+| Wraps | `.skilled/skills/sk-communication/cli-communication-projection/` |
 | Routes on | Hand-invoked only; held off advisor routing by design |
 | Lane | Projection: a byte-safe rewrite of output that already exists |
 | Entry point | [SKILL.md](SKILL.md) |
@@ -53,10 +53,10 @@ For what it deliberately does **not** cover (general code, docs, design, git), s
 
 ```bash
 # 1. Read the routing contract and the subsystem map (both live in SKILL.md)
-#    .opencode/skills/sk-communication/SKILL.md
+#    .skilled/skills/sk-communication/SKILL.md
 
 # 2. Integrate against the package's subpath exports, then run the gate
-cd .opencode/skills/sk-communication/cli-communication-projection
+cd .skilled/skills/sk-communication/cli-communication-projection
 npm run check   # typecheck + build + tests + import smoke
 ```
 
@@ -71,7 +71,7 @@ npm run check   # typecheck + build + tests + import smoke
 
 - [feature-catalog/feature-catalog.md](feature-catalog/feature-catalog.md): the current shipped-behavior inventory.
 - [manual-testing-playbook/manual-testing-playbook.md](manual-testing-playbook/manual-testing-playbook.md): deterministic operator validation scenarios.
-- `.opencode/skills/sk-communication/cli-communication-projection/docs/`: install, configuration, privacy, support-matrix, rollback, and runbook.
+- `.skilled/skills/sk-communication/cli-communication-projection/docs/`: install, configuration, privacy, support-matrix, rollback, and runbook.
 
 ---
 
@@ -79,10 +79,10 @@ npm run check   # typecheck + build + tests + import smoke
 
 ```bash
 # skill conformance
-python3 .opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .opencode/skills/sk-communication --strict
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/sk-communication --strict
 
 # package gate
-cd .opencode/skills/sk-communication/cli-communication-projection && npm run check
+cd .skilled/skills/sk-communication/cli-communication-projection && npm run check
 ```
 
 - `validate_skill_package.py --strict` passes.

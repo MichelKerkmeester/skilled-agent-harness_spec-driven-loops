@@ -54,7 +54,7 @@ Start from a clean, up-to-date base so the diff is pure rename signal.
 ```bash
 git status --porcelain        # MUST be empty; stash/commit unrelated WIP first
 git fetch && git checkout main && git pull --ff-only
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create reorg main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create reorg main
 cd .worktrees/<NNN>-reorg
 ```
 
@@ -133,9 +133,9 @@ work (a bare worktree silently no-ops — see §8b Caveat 1). Run, in order:
 
 ```bash
 # 1. Regenerate per-folder metadata for moved/renamed spec folders
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js <spec-folder>
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js <spec-folder>
 # 2. Strict-validate affected packets
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
 ```
 
 NEVER reuse a strict-validate result from inside the worktree — treat it as meaningless.

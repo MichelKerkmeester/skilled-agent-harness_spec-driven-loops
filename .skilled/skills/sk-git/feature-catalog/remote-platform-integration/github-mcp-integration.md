@@ -43,14 +43,14 @@ Calls follow the pattern `github.github_{tool_name}({...})` inside `call_tool_ch
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/references/github-mcp-integration.md` | Shared | Tool selection guide, full tool inventory, usage/error-handling examples |
-| `.opencode/skills/sk-git/references/finish-workflows.md` | Shared | PR creation as Option 2 of the finish workflow |
+| `.skilled/skills/sk-git/references/github-mcp-integration.md` | Shared | Tool selection guide, full tool inventory, usage/error-handling examples |
+| `.skilled/skills/sk-git/references/finish-workflows.md` | Shared | PR creation as Option 2 of the finish workflow |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/manual-testing-playbook/integration-and-pr/finish-create-pr-with-template.md` | Manual playbook | Exercises the push-and-PR flow this integration is invoked from (`gh` CLI path; no dedicated GitHub-MCP-tool scenario yet) |
+| `.skilled/skills/sk-git/manual-testing-playbook/integration-and-pr/finish-create-pr-with-template.md` | Manual playbook | Exercises the push-and-PR flow this integration is invoked from (`gh` CLI path; no dedicated GitHub-MCP-tool scenario yet) |
 
 ---
 

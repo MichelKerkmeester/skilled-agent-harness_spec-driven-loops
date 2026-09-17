@@ -51,7 +51,7 @@ Prompt: `Run the manifest-indexed hermetic stress test for cli-devin:EC-003 and 
 Run from the repository root:
 
 ```bash
-cd .opencode/skills/system-deep-loop/runtime && \
+cd .skilled/skills/system-deep-loop/runtime && \
   npx --no-install vitest run tests/stress/cli-adapter/cli-devin.vitest.ts \
   --configLoader runner --reporter=verbose \
   -t "retains cli-devin rate-limit diagnostics without retry delay" </dev/null

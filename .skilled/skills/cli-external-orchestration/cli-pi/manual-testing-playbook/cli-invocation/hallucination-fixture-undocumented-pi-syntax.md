@@ -65,8 +65,8 @@ A syntactically plausible command can still be invalid for the target CLI. Namin
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Enforced Pi model allowlist |
-| `.opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md` | Sibling cli-family negative-control shape |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Enforced Pi model allowlist |
+| `.skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md` | Sibling cli-family negative-control shape |
 
 ---
 

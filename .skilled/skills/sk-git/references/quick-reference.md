@@ -49,16 +49,16 @@ git-worktrees   git-commit      git-finish
 
 ```bash
 # Named feature worktree (recommended): allocator reserves the next worktrees/ number
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <name> main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create <name> main
 
 # Long-running feature worktree (needs PR): use the same allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <name> main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create <name> main
 
 # Dedicated branch with no worktree: branches/NNN-<name>
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-branch <name> main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-branch <name> main
 
 # Experimental (no branch): allocator creates the detached directory
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached <name> main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-detached <name> main
 
 # List all worktrees
 git worktree list
@@ -215,7 +215,7 @@ git worktree remove .worktrees/{NNN}-<name>
 
 ```bash
 # 1. Create named feature worktree through the allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create fix main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create fix main
 
 # 2. Make changes
 cd .worktrees/<NNN>-fix
@@ -240,7 +240,7 @@ git worktree remove .worktrees/<NNN>-fix
 
 ```bash
 # 1. Create named feature worktree through the allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create name main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create name main
 
 # 2. Develop
 cd .worktrees/<NNN>-name
@@ -265,14 +265,14 @@ cd ../.. && git worktree remove .worktrees/<NNN>-name
 
 ```bash
 # 1. Create detached HEAD worktree through the allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached exp main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-detached exp main
 
 # 2. Experiment
 cd .worktrees/<NNN>-detached-exp
 # ... try approach ...
 
 # 3a. Keep: Create a new named worktree and branch through the allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create name HEAD
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create name HEAD
 cd ../<NNN>-name
 git add . && git commit -m "feat(scope): experimental approach"
 
@@ -299,10 +299,10 @@ cd ../.. && git worktree remove .worktrees/<NNN>-detached-exp
 
 ### Worktree
 ```bash
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <slug> [base]
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-branch <slug> [base]
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached <slug> [base]
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh allocate [worktrees|branches]
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create <slug> [base]
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-branch <slug> [base]
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-detached <slug> [base]
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh allocate [worktrees|branches]
 git worktree list                      # List all
 git worktree remove <path>             # Remove
 git worktree prune                     # Clean stale refs

@@ -93,9 +93,9 @@ Capture the verbatim response of `list_tools()` (paste truncated to first 30 ent
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Native tools spec; manual-namespace rule |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Native tools spec; manual-namespace rule |
 | `.utcp_config.json` (project root) | Manual configuration source |
-| `.opencode/skills/mcp-code-mode/scripts/validate_config.py` | Config validator (referenced by CM-010) |
+| `.skilled/skills/mcp-code-mode/scripts/validate_config.py` | Config validator (referenced by CM-010) |
 
 ---
 

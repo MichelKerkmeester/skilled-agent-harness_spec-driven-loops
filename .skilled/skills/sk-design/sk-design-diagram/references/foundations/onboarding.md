@@ -171,7 +171,7 @@ Use the installed-skill location exposed by the current agent when available. Ot
 **OpenCode:**
 
 1. `~/.config/opencode/skills/<skill-name>/` (user install)
-2. `.opencode/skills/<skill-name>/` (project install)
+2. `.skilled/skills/<skill-name>/` (project install)
 
 Finally, check any path the user provides explicitly. If the skill is still not found, ask the user to confirm the name or provide its path.
 

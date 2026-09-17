@@ -46,7 +46,7 @@ As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=re
 
 1. `sk-prompt: Use @prompt-improver to enhance my prompt with task_type=review, target_cli=opencode, complexity_hint=8, and constraints around safety.`
 2. `agent: @prompt-improver raw_task="Improve a safety-sensitive review prompt for CLI dispatch." task_type=review target_cli=opencode complexity_hint=8 constraints="Preserve safety requirements; include verification and do-not-change boundaries."`
-3. `bash: rg 'Expected Input Payload|raw_task|task_type|target_cli|complexity_hint|constraints' .opencode/skills/sk-prompt/SKILL.md`
+3. `bash: rg 'Expected Input Payload|raw_task|task_type|target_cli|complexity_hint|constraints' .skilled/skills/sk-prompt/SKILL.md`
 
 ### Expected
 

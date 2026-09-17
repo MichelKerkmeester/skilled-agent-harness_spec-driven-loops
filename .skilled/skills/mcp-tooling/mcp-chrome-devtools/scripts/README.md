@@ -27,8 +27,8 @@ description: "Install and read-only diagnostic scripts for the mcp-chrome-devtoo
 Run from the repository root.
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-chrome-devtools/scripts/doctor.sh
-bash .opencode/skills/mcp-tooling/mcp-chrome-devtools/scripts/install.sh --verbose
+bash .skilled/skills/mcp-tooling/mcp-chrome-devtools/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-chrome-devtools/scripts/install.sh --verbose
 ```
 
 Expected result: `doctor.sh` prints a checklist with no red `✗` lines. `install.sh` exits 0 after `bdg --version` and `bdg --list` succeed.

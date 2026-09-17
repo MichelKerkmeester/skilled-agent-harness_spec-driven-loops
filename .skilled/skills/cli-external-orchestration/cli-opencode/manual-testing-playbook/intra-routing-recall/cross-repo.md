@@ -56,11 +56,11 @@ Run the same task in another repository by pointing --dir at that cross-repo che
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/cross-repo.md`
+1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/cross-repo.md`
 2. `grep -n '"CROSS_REPO"' ../../SKILL.md` (confirms the `INTENT_SIGNALS` entry)
 3. `grep -A2 'RESOURCE_MAP = {' ../../SKILL.md | grep '"CROSS_REPO"'` (confirms the `RESOURCE_MAP` entry)
-4. `test -e .opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
-5. `test -e .opencode/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md && echo "OK references/opencode-tools.md" || echo "MISS references/opencode-tools.md"`
+4. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
+5. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md && echo "OK references/opencode-tools.md" || echo "MISS references/opencode-tools.md"`
 
 ### Expected
 

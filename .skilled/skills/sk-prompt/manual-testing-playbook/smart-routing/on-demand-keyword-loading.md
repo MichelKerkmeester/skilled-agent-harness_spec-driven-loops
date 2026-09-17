@@ -45,7 +45,7 @@ Run sk-prompt on my deep-dive framework comparison; verify ON_DEMAND loads every
 ### Commands
 
 1. `sk-prompt: Give me a deep dive on all frameworks — I want to compare RCAF vs COSTAR vs TIDD-EC for an executive briefing.`
-2. `bash: rg 'ON_DEMAND_KEYWORDS' .opencode/skills/sk-prompt/SKILL.md` (verify keyword list still includes "deep dive" and "all frameworks")
+2. `bash: rg 'ON_DEMAND_KEYWORDS' .skilled/skills/sk-prompt/SKILL.md` (verify keyword list still includes "deep dive" and "all frameworks")
 
 ### Expected
 

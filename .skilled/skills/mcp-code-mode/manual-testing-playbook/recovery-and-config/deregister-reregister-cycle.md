@@ -89,7 +89,7 @@ Capture the chain response with both counts.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Dynamic registration tools |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Dynamic registration tools |
 
 ---
 

@@ -80,7 +80,7 @@ curl -fsSL https://releases.aside.com/install.sh | bash
 Or run the packaged wrapper (platform gate + no-op when already installed):
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-aside-devtools/scripts/install.sh
 ```
 
 ### Step 2: Verify the binary
@@ -162,7 +162,7 @@ Notes: `env: {}` is correct (auth is account/session-based, no transport credent
 ### One-Command Health Check
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh
 ```
 
 ### Full Verification Checklist

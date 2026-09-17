@@ -43,8 +43,8 @@ Everything from this point runs on `main`, the merged tree being the source of t
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/references/large-reorg-playbook.md` | Shared | Step-ordered runbook: snapshot, worktree rename, merge, post-merge toolchain/DB, verify |
-| `.opencode/skills/sk-git/references/worktree-workflows.md` | Shared | §8b large-reorg caveats that motivate this playbook |
+| `.skilled/skills/sk-git/references/large-reorg-playbook.md` | Shared | Step-ordered runbook: snapshot, worktree rename, merge, post-merge toolchain/DB, verify |
+| `.skilled/skills/sk-git/references/worktree-workflows.md` | Shared | §8b large-reorg caveats that motivate this playbook |
 
 ### Validation And Tests
 

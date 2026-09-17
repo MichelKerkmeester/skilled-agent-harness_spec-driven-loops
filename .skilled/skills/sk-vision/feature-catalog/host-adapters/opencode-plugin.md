@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 Loads the vision runtime and handles `/vision` in OpenCode. The default plugin does not register the 13 tools and does not inspect attached images.
 
-`.opencode/plugins/sk-vision.js` is the OpenCode load path: a symlink that resolves to the built runtime plugin in the skill package.
+`.skilled/plugins/sk-vision.js` is the OpenCode load path: a symlink that resolves to the built runtime plugin in the skill package.
 
 ---
 
@@ -39,7 +39,7 @@ The plugin honors `enabled` (disable entirely), `python` (interpreter override),
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/plugins/sk-vision.js` | Script | OpenCode load path: symlink to the built plugin |
+| `.skilled/plugins/sk-vision.js` | Script | OpenCode load path: symlink to the built plugin |
 | `vision-runtime/src/plugin.ts` | Handler | Plugin bootstrap, command hook and legacy activation path |
 | `vision-runtime/src/opencode/tools.ts` | Handler | The 13 tool definitions for OpenCode |
 | `vision-runtime/src/opencode/attachments.ts` | Handler | AttachmentInjector: preload, 2s grace, materialization |

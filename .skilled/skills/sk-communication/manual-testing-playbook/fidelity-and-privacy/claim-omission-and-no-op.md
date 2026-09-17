@@ -37,7 +37,7 @@ A copy edit that silently drops "must" from a sentence has changed what the orig
 
 ### Exact Command Sequence
 
-1. Change directory to `.opencode/skills/sk-communication/cli-communication-projection/`.
+1. Change directory to `.skilled/skills/sk-communication/cli-communication-projection/`.
 2. Run `npm run test -- test/config/copy-editing-instruction.test.ts -t "claim omission and change kind"`.
 3. Capture the exit status and the named Vitest summary.
 

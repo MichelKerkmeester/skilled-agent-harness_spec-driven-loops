@@ -16,7 +16,7 @@ contextType: "general"
 
 ## 1. OVERVIEW
 
-This skill is benchmarked on advisor-routing accuracy: whether a projection-intent prompt (for example "make CLI output readable" or "claudish to english, privacy-first rewrite") routes to `sk-communication` as the advisor's top match. The harness is the skill-advisor scorer (`.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`); dated capture runs live under `reports/`. The underlying `cli-communication-projection` package is verified separately by its own gate (`npm run check` in `.opencode/skills/sk-communication/cli-communication-projection/`), not by this harness.
+This skill is benchmarked on advisor-routing accuracy: whether a projection-intent prompt (for example "make CLI output readable" or "claudish to english, privacy-first rewrite") routes to `sk-communication` as the advisor's top match. The harness is the skill-advisor scorer (`.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`); dated capture runs live under `reports/`. The underlying `cli-communication-projection` package is verified separately by its own gate (`npm run check` in `.skilled/skills/sk-communication/cli-communication-projection/`), not by this harness.
 
 ---
 
@@ -35,6 +35,6 @@ The Lane C harness reads this skill's manual-testing playbook as its default cor
 writes a dated run folder under `reports/`:
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
   --skill sk-communication
 ```

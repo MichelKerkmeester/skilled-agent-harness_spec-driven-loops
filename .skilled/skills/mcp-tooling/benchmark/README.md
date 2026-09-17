@@ -41,9 +41,9 @@ Baseline captured before mcp-obsidian was registered: six modes (three workflow 
 ## 4. HOW TO RE-RUN
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
   --skill mcp-tooling \
-  --outputs-dir .opencode/skills/mcp-tooling/benchmark/reports/<run-label> \
+  --outputs-dir .skilled/skills/mcp-tooling/benchmark/reports/<run-label> \
   --trace-mode router
 ```
 

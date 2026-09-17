@@ -56,11 +56,11 @@ Show me a reusable prompt template and how to ask Claude for a copy-paste starti
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/templates.md`
+1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/templates.md`
 2. `grep -n '"TEMPLATES"' ../../SKILL.md` (confirms the `INTENT_SIGNALS` entry)
 3. `grep -A2 'RESOURCE_MAP = {' ../../SKILL.md | grep '"TEMPLATES"'` (confirms the `RESOURCE_MAP` entry)
-4. `test -e .opencode/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md && echo "OK assets/prompt-templates.md" || echo "MISS assets/prompt-templates.md"`
-5. `test -e .opencode/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
+4. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md && echo "OK assets/prompt-templates.md" || echo "MISS assets/prompt-templates.md"`
+5. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
 
 ### Expected
 

@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 > hardcoded a fixed agent count, which went stale the moment the canonical roster in
 > `.claude/agents/` changed — the parity assertion failed while the behaviour was healthy.
 > Parity is now stated against the canonical roster itself. For a one-command answer use
-> `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs`, which derives the
+> `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs`, which derives the
 > roster and reports per-runtime coverage; a written count cannot stay true, a derived one
 > cannot go stale.
 

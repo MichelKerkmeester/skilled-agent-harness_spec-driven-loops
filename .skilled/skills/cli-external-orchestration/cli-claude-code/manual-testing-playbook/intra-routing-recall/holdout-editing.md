@@ -56,11 +56,11 @@ Have the external assistant rework the checkout module so the retry behavior is 
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/holdout-editing.md`
+1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/holdout-editing.md`
 2. `grep -n '"CODE_EDITING"' ../../SKILL.md` (confirms the `INTENT_SIGNALS` entry)
 3. `grep -A2 'RESOURCE_MAP = {' ../../SKILL.md | grep '"CODE_EDITING"'` (confirms the `RESOURCE_MAP` entry)
-4. `test -e .opencode/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
-5. `test -e .opencode/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md && echo "OK assets/prompt-templates.md" || echo "MISS assets/prompt-templates.md"`
+4. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
+5. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md && echo "OK assets/prompt-templates.md" || echo "MISS assets/prompt-templates.md"`
 
 ### Expected
 

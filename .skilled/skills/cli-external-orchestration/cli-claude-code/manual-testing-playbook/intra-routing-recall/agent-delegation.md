@@ -56,11 +56,11 @@ Delegate this long-running indexing job to a Claude background agent and let it 
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/agent-delegation.md`
+1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/agent-delegation.md`
 2. `grep -n '"AGENT_DELEGATION"' ../../SKILL.md` (confirms the `INTENT_SIGNALS` entry)
 3. `grep -A2 'RESOURCE_MAP = {' ../../SKILL.md | grep '"AGENT_DELEGATION"'` (confirms the `RESOURCE_MAP` entry)
-4. `test -e .opencode/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md && echo "OK references/agent-delegation.md" || echo "MISS references/agent-delegation.md"`
-5. `test -e .opencode/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
+4. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md && echo "OK references/agent-delegation.md" || echo "MISS references/agent-delegation.md"`
+5. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
 
 ### Expected
 

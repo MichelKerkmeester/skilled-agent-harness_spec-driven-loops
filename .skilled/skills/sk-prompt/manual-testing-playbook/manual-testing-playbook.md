@@ -53,9 +53,9 @@ Coverage note (2026-05-06): the playbook covers mode detection across 7 command 
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is project root.
-2. `.opencode/skills/sk-prompt/SKILL.md` is at HEAD-of-main and contains §2 Smart Routing (INTENT_MODEL, RESOURCE_MAP, ON_DEMAND_KEYWORDS, AMBIGUITY_DELTA, UNKNOWN_FALLBACK_CHECKLIST), §3 operating modes table, and §7 agent invocation contract.
-3. `.opencode/skills/sk-prompt/references/depth-framework.md`, `.opencode/skills/sk-prompt/references/patterns-evaluation.md`, `.opencode/skills/sk-prompt/assets/format-guide-markdown.md`, `.opencode/skills/sk-prompt/assets/format-guide-json.md`, and `.opencode/skills/sk-prompt/assets/format-guide-yaml.md` resolve on disk.
-4. `@prompt-improver` agent is canonical at `.opencode/agents/prompt-improver.md` (verify with `ls .opencode/agents/prompt-improver.md`).
+2. `.skilled/skills/sk-prompt/SKILL.md` is at HEAD-of-main and contains §2 Smart Routing (INTENT_MODEL, RESOURCE_MAP, ON_DEMAND_KEYWORDS, AMBIGUITY_DELTA, UNKNOWN_FALLBACK_CHECKLIST), §3 operating modes table, and §7 agent invocation contract.
+3. `.skilled/skills/sk-prompt/references/depth-framework.md`, `.skilled/skills/sk-prompt/references/patterns-evaluation.md`, `.skilled/skills/sk-prompt/assets/format-guide-markdown.md`, `.skilled/skills/sk-prompt/assets/format-guide-json.md`, and `.skilled/skills/sk-prompt/assets/format-guide-yaml.md` resolve on disk.
+4. `@prompt-improver` agent is canonical at `.skilled/agents/prompt-improver.md` (verify with `ls .skilled/agents/prompt-improver.md`).
 5. Destructive scenario: none in this playbook. All scenarios are read+score+return, no file mutation outside the operator's own evidence capture under `/tmp/`.
 
 ---

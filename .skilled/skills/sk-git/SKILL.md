@@ -286,7 +286,7 @@ When a git workspace trigger fires, the AI MUST ask the user to explicitly choos
 
 ### Launch-Wrapper Worktrees vs the In-Session Ask-First Rule
 
-The ask-first rule above governs **in-session** decisions: once running, an AI must not autonomously create a worktree. `.opencode/bin/worktree-session.sh`, a **launch wrapper** the operator opts into at the shell, is different: it runs *before* the AI starts, placing each top-level session in its own worktree + branch + isolated MCP databases (orchestrated children with `AI_SESSION_CHILD=1`, or already inside a linked worktree, exec in place) — acting pre-session at operator opt-in, so it doesn't violate the ask-first rule.
+The ask-first rule above governs **in-session** decisions: once running, an AI must not autonomously create a worktree. `.skilled/bin/worktree-session.sh`, a **launch wrapper** the operator opts into at the shell, is different: it runs *before* the AI starts, placing each top-level session in its own worktree + branch + isolated MCP databases (orchestrated children with `AI_SESSION_CHILD=1`, or already inside a linked worktree, exec in place) — acting pre-session at operator opt-in, so it doesn't violate the ask-first rule.
 
 **Deliberate per-session deps override.** The wrapper **symlinks** the shared `node_modules`/`dist` into each worktree and gives each its own MCP DBs (via `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`), rather than paying an install per session. Strict-validate and metadata regeneration run on `main` only.
 
@@ -358,7 +358,7 @@ Setup (worktree created) → Work → Complete (committed, tests passing) → ba
 1. **Use deterministic conventional commit format** - All authored commits follow `type(scope): summary`; preserve the explicitly exempt Git-generated subjects defined below
 2. **Create worktree for parallel work** - Never work on multiple features in the same worktree
 3. **Verify branch is up-to-date** - Pull latest changes before creating PR
-4. **Name worktree-created branches with the numbered-worktree grammar** - `worktrees/{NNN}-{slug}` for a worktree-backed branch, `branches/{NNN}-{slug}` for a dedicated branch with none. Each namespace counts 001..999 independently, sequential, never skipped or reused. Never hand-compute `{NNN}`: allocate through `.opencode/skills/sk-git/scripts/worktree-naming.sh` (`create`, `create-branch` or `allocate`), which locks and seeds each counter from its high-water mark plus every matching ref. The script header carries the full grammar, the relocatable `{base}` rule and the reserved `skilled/v*`, `main` and `backup/` lanes. Distinct from the launch wrapper's unnumbered `work/{runtime}/{slug}` lane (see above).
+4. **Name worktree-created branches with the numbered-worktree grammar** - `worktrees/{NNN}-{slug}` for a worktree-backed branch, `branches/{NNN}-{slug}` for a dedicated branch with none. Each namespace counts 001..999 independently, sequential, never skipped or reused. Never hand-compute `{NNN}`: allocate through `.skilled/skills/sk-git/scripts/worktree-naming.sh` (`create`, `create-branch` or `allocate`), which locks and seeds each counter from its high-water mark plus every matching ref. The script header carries the full grammar, the relocatable `{base}` rule and the reserved `skilled/v*`, `main` and `backup/` lanes. Distinct from the launch wrapper's unnumbered `work/{runtime}/{slug}` lane (see above).
 5. **Reference the spec packet in a `Spec:` trailer** - Put the packet path in a `Spec:` trailer shaped `Spec: <track>/<packet>[/<phase>...]`, relative to `specs/` with nested phases included and omit it when the commit is not packet work. `Refs:` is for external links only: issues, pull requests and URLs.
 6. **Clean up after merge** - Delete local and remote feature branches after successful merge
 7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
@@ -371,7 +371,7 @@ Setup (worktree created) → Work → Complete (committed, tests passing) → ba
 14. **Commit substantial work before an autostash-prone operation** - `git merge|pull|rebase --autostash` (or `pull.rebase=true`/`rebase.autoStash=true`) stashes the tree, runs the operation, then re-applies it — but a re-apply CONFLICT strands the changeset behind an easily-missed warning, one `git stash drop`/`clear`/gc from permanent loss. Before merging/pulling/rebasing a large or shared-branch changeset, COMMIT it (or stash and pop it yourself) instead of `--autostash`. The `post-merge`/`post-rewrite` guard ([git-hooks/lib/autostash-orphan-guard.sh](../../scripts/git-hooks/lib/autostash-orphan-guard.sh)) is a safety net, not a substitute: it anchors autostashes under `refs/autostash-rescue/<sha>` and alerts visibly if not re-applied — recover with `git stash pop` and commit immediately, before any `git stash drop/clear`.
 15. **Reconcile the primary checkout after pushing a detached/worktree HEAD to a shared branch** - `git push origin HEAD:<branch>` from a detached HEAD or a worktree advances the remote but not the primary checkout's local ref, so the work is safe on origin yet invisible there. Say so plainly and hand over the safe sync recipe. Never stash, rebase or reset a primary tree that is dirty, diverged or concurrently owned. See [finish-workflows.md](references/finish-workflows.md) Step 5b.
 16. **Let launch-wrapper sessions autosync; never hand-roll the publish** - Under the continuous-integration model, autosync publishes every commit to the live branch through `git-sync.sh`. Never `git push origin HEAD:<live>` or rebase onto the live branch by hand: that risks the invariants the sync protects. If autosync prints a conflict, resolve per its message and never force it. The primary checkout follows fast-forward-only and is never worked in. Full contract: [continuous-integration.md](references/continuous-integration.md).
-17. **Reap worktrees before branches, and only the exempt wrapper lane** - Remove a finished worktree's directory (`git worktree remove`) before deleting its branch, because a checked-out branch cannot be deleted. `.opencode/bin/worktree-reaper.sh` auto-reaps only `work/{runtime}/{slug}` pairs that are clean, merged into the live integration tip and proven inactive by a dead session marker. Everything else stays report-only: absence of proof is never proof of absence. Naming is enforced by a migration-tolerant pre-push hook on new remote branches only, never `skilled/v*`.
+17. **Reap worktrees before branches, and only the exempt wrapper lane** - Remove a finished worktree's directory (`git worktree remove`) before deleting its branch, because a checked-out branch cannot be deleted. `.skilled/bin/worktree-reaper.sh` auto-reaps only `work/{runtime}/{slug}` pairs that are clean, merged into the live integration tip and proven inactive by a dead session marker. Everything else stays report-only: absence of proof is never proof of absence. Naming is enforced by a migration-tolerant pre-push hook on new remote branches only, never `skilled/v*`.
 18. **Ask before every push to a branch outside the remote allowlist** - See [Remote Push Permission Enforcement](#remote-push-permission-enforcement) above for mechanics; a prior approval never carries forward to the next push. Allowlist: [remote-branch-policy.md](references/remote-branch-policy.md).
 
 ### Commit Message Logic (Human-Clear and AI-Deterministic)
@@ -437,10 +437,10 @@ choose `chore` merely because the commit touches many files.
 
 First match, by logical owner:
 
-1. `.opencode/skills/<name>/...` -> `<name>`.
-2. `.opencode/scripts/git-hooks/...` or installer -> `git-hooks`.
+1. `.skilled/skills/<name>/...` -> `<name>`.
+2. `.skilled/scripts/git-hooks/...` or installer -> `git-hooks`.
 3. `AGENTS.md` or runtime agent definitions -> `agents`.
-4. `.opencode/commands/...` -> `commands`.
+4. `.skilled/commands/...` -> `commands`.
 5. `opencode.json`, `.utcp_config.json`, or equivalent config -> `config`.
 6. Root `README.md` only -> `readme`.
 7. Spec-doc or generated packet-metadata maintenance only -> `specs`.
@@ -586,7 +586,7 @@ produce the same subject again.
 ### Framework Integration
 
 This skill operates within the framework in [AGENTS.md](../../../AGENTS.md):
-- **Gate 2**: Skill routing via `.opencode/bin/skill-advisor.cjs`
+- **Gate 2**: Skill routing via `.skilled/bin/skill-advisor.cjs`
 - **Gate 3**: File modifications require the spec folder question (AGENTS.md, HARD BLOCK)
 - **Tool Routing**: AGENTS.md Section 5 decision tree
 - **Continuity**: see Continuity Integration below
@@ -605,7 +605,7 @@ Recovery sequence (widen with ripgrep only once packet-native sources are exhaus
 // Exit 1 is a clean no-hit, not an error.
 rg --no-config --json --fixed-strings --ignore-case \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
-  -- 'branch strategy decisions' specs .opencode
+  -- 'branch strategy decisions' specs .skilled
 
 // After major commits or workflow completion
 // Save context with: /speckit:save or "save context to [spec-folder]"
@@ -619,10 +619,10 @@ The router discovers reference, asset, and script docs dynamically from `referen
 
 ### Manual Testing Playbook
 
-Manual testing scenarios live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus scenario files (`GIT-001`..`GIT-042`) across 8 categories under `manual-testing-playbook/<topic>/<scenario>.md`. Run `bash .opencode/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; run scenarios in opencode/Claude/OpenCode for behavioral checks.
+Manual testing scenarios live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus scenario files (`GIT-001`..`GIT-042`) across 8 categories under `manual-testing-playbook/<topic>/<scenario>.md`. Run `bash .skilled/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; run scenarios in opencode/Claude/OpenCode for behavioral checks.
 
 ### Feature Catalog
 
-A companion `feature-catalog/feature-catalog.md` catalogs every sk-git capability's entry point — naming allocator/validators (`scripts/worktree-naming.sh`), launch-wrapper isolation (`.opencode/bin/worktree-session.sh`), worktree reaper (`.opencode/bin/worktree-reaper.sh`), naming hook (`.opencode/scripts/git-hooks/pre-push`), CI autosync, and the worktree/commit/finish/GitKraken/GitHub/large-reorg workflows.
+A companion `feature-catalog/feature-catalog.md` catalogs every sk-git capability's entry point — naming allocator/validators (`scripts/worktree-naming.sh`), launch-wrapper isolation (`.skilled/bin/worktree-session.sh`), worktree reaper (`.skilled/bin/worktree-reaper.sh`), naming hook (`.skilled/scripts/git-hooks/pre-push`), CI autosync, and the worktree/commit/finish/GitKraken/GitHub/large-reorg workflows.
 
 Related: `system-spec-kit` (packet recovery, continuity), `sk-doc` (PR, release, documentation quality).

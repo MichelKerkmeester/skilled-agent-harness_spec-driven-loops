@@ -64,7 +64,7 @@ So the pairing is `sk-design`, and the difference from the siblings is deliberat
 
 ## 4. THE PERSONA AND ITS RECONCILED BOUNDARY
 
-This packet operates under the **design agent persona**, resolved from the ACTIVE runtime's agent directory — `.opencode/agents/design.md`, `.claude/agents/design.md`, and the sibling runtime paths. Resolve it by runtime; never hardcode one path, and never assume the variants are byte-identical, because they are not.
+This packet operates under the **design agent persona**, resolved from the ACTIVE runtime's agent directory — `.skilled/agents/design.md`, `.claude/agents/design.md`, and the sibling runtime paths. Resolve it by runtime; never hardcode one path, and never assume the variants are byte-identical, because they are not.
 
 **Inherited from the persona:**
 

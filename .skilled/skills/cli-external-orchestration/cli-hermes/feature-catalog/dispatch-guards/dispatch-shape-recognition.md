@@ -43,14 +43,14 @@ A `direct` classification is what the audit path acts on. The pipeline extracts 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/hooks/dispatch/lib/dispatch-audit.mjs` | Shared | The `DISPATCH_SHAPES` Hermes entry, the `hermes` branch of `directExecutor`, `HERMES_QUERY_FLAGS`, and the scrub, bound and append pipeline. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The documented headless forms these patterns are built to match. |
+| `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` | Shared | The `DISPATCH_SHAPES` Hermes entry, the `hermes` branch of `directExecutor`, `HERMES_QUERY_FLAGS`, and the scrub, bound and append pipeline. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The documented headless forms these patterns are built to match. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | Classification table covering the Hermes dispatch forms and the management-subcommand controls. |
+| `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | Classification table covering the Hermes dispatch forms and the management-subcommand controls. |
 
 ---
 

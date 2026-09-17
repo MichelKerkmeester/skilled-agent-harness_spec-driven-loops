@@ -80,14 +80,14 @@ Capture the Code Mode script, the returned object (or summarized fields), and th
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `.opencode/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md` | CM playbook (CM-005..CM-007 manual-namespace, CM-014..CM-016 Chrome via CM) |
+| `.skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md` | CM playbook (CM-005..CM-007 manual-namespace, CM-014..CM-016 Chrome via CM) |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | chrome_devtools_1 MCP reference |
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Code Mode + manual-namespace contract |
+| `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | chrome_devtools_1 MCP reference |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Code Mode + manual-namespace contract |
 
 ---
 

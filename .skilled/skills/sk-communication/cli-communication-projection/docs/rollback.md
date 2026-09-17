@@ -46,8 +46,8 @@ Do not place raw transcript bytes or credential values in rollback logs.
 ## 4. UNINSTALL THE PLUGIN
 
 To remove the OpenCode hook, delete
-`.opencode/plugins/sk-communication-projection.js` and its test file
-`.opencode/plugins/tests/sk-communication-projection.test.cjs`. OpenCode then
+`.skilled/plugins/sk-communication-projection.js` and its test file
+`.skilled/plugins/tests/sk-communication-projection.test.cjs`. OpenCode then
 loads no projection hook for the session. No other plugin depends on the file.
 
 You can also keep the file in place and disable it without removing it. Set

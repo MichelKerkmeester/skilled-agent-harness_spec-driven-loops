@@ -87,7 +87,7 @@ Detached experiments create no branch but still use the allocator for a numbered
 
 **Command**:
 ```bash
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
 ```
 
 **Lifecycle**:
@@ -112,12 +112,12 @@ git worktree list
 
 **Create worktree with branch**:
 ```bash
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <slug> [base]
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create <slug> [base]
 ```
 
 **Create dedicated branch (no worktree)**:
 ```bash
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-branch <slug> [base]
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-branch <slug> [base]
 ```
 
 **Create worktree from existing branch**:
@@ -127,7 +127,7 @@ git worktree add <path> <existing-branch>
 
 **Create detached HEAD worktree**:
 ```bash
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached <slug> [base]
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-detached <slug> [base]
 ```
 
 **Remove worktree**:
@@ -355,7 +355,7 @@ Clients must update to handle JSON responses.
 
 ```bash
 # 1. Create named feature worktree through the allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create quick-fix main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create quick-fix main
 
 # 2. Navigate and fix
 cd .worktrees/<NNN>-quick-fix
@@ -382,7 +382,7 @@ git worktree remove .worktrees/<NNN>-quick-fix
 
 ```bash
 # 1. Create named feature worktree through the allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create new-feature main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create new-feature main
 
 # 2. Navigate and develop
 cd .worktrees/<NNN>-new-feature
@@ -408,14 +408,14 @@ git worktree remove .worktrees/<NNN>-new-feature
 
 ```bash
 # 1. Create detached HEAD worktree through the allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
 
 # 2. Experiment
 cd .worktrees/<NNN>-detached-experiment
 # ... try different approach ...
 
 # 3a. If keeping: Create a new named worktree and branch through the allocator
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create new-approach HEAD
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create new-approach HEAD
 cd ../<NNN>-new-approach
 git add .
 git commit -m "feat(scope): experimental approach"
@@ -501,7 +501,7 @@ git status
 git stash
 
 # 3. Create a recovery worktree and branch to save work
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create recovery HEAD
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create recovery HEAD
 
 # 4. Restore stashed changes in the recovery worktree (if any)
 cd .worktrees/<NNN>-recovery
@@ -525,12 +525,12 @@ git branch -d worktrees/<NNN>-recovery
 git worktree list
 
 # 2. Option A: Allocate a fresh worktree via the next number
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create feature main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create feature main
 
 # 3. Option B: Remove the existing worktree first, then recreate
 git worktree remove .worktrees/0007-feature
 git branch -d worktrees/0007-feature
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create feature main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create feature main
 
 # 4. Option C: Continue work in the existing worktree
 cd .worktrees/0007-feature  # Navigate to existing

@@ -10,7 +10,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 
 ## 1. OVERVIEW
 
-Devin receives the session goal through `.opencode/hooks/goal/devin/goal-inject.mjs`, registered in `.devin/hooks.v1.json` under both `SessionStart` and `UserPromptSubmit`. The adapter reads the native `session_id` from the payload, resolves the workspace from `cwd` or `DEVIN_PROJECT_DIR`, and returns the active-goal brief as `hookSpecificOutput.additionalContext`. When the session is bound to a packet, the brief is rendered from that packet's `goal.md` durable slice on every turn, frontmatter excluded, and a `[goal_resend_pending]` line follows the brief while the operator copy is behind the file.
+Devin receives the session goal through `.skilled/hooks/goal/devin/goal-inject.mjs`, registered in `.devin/hooks.v1.json` under both `SessionStart` and `UserPromptSubmit`. The adapter reads the native `session_id` from the payload, resolves the workspace from `cwd` or `DEVIN_PROJECT_DIR`, and returns the active-goal brief as `hookSpecificOutput.additionalContext`. When the session is bound to a packet, the brief is rendered from that packet's `goal.md` durable slice on every turn, frontmatter excluded, and a `[goal_resend_pending]` line follows the brief while the operator copy is behind the file.
 
 Three `UserPromptSubmit` hooks in this repository write `hookSpecificOutput.additionalContext` (the spec-kit prompt adapter, the spec-gate classifier and this adapter). The host concatenates them: a live `devin -p` run on 2026-09-11 against CLI 3000.6.14, with a write-intent prompt so the classifier fired, reported both the advisor line the spec-kit adapter emits and the classifier's own sentence in the same turn. Ordering is therefore not load-bearing, and an adapter that emits nothing costs the others nothing. Re-check this after a Devin CLI upgrade, since it is host behaviour rather than a documented contract.
 
@@ -32,7 +32,7 @@ A Devin session that works a packet without its goal drifts from the directive t
 - Evidence requirements: Capture both envelopes before and after `resent`, the three fail-open outputs, and the parsed registration entries.
 - Desired user-visible outcome: A concise PASS or FAIL verdict with the envelope excerpts. SKIP is allowed only when the sandbox cannot execute `node` or cannot write a temporary `OPENCODE_GOAL_STATE_DIR`; name that blocker in the verdict.
 - Pass/fail: PASS when both events inject the packet-rendered brief with no frontmatter, the reminder tracks `resent`, and every failure path returns `{}`. FAIL on any frontmatter leak, a non-empty response without identity, or a missing registration.
-- Failure triage: Check `session_id` in the payload first, then the workspace resolution (`cwd` or `DEVIN_PROJECT_DIR`), then whether the packet path resolves inside that workspace. A leak means the slice module's fence handling regressed; run `node --test .opencode/hooks/goal/lib/goal-slice.test.cjs`.
+- Failure triage: Check `session_id` in the payload first, then the workspace resolution (`cwd` or `DEVIN_PROJECT_DIR`), then whether the packet path resolves inside that workspace. A leak means the slice module's fence handling regressed; run `node --test .skilled/hooks/goal/lib/goal-slice.test.cjs`.
 
 ---
 
@@ -43,14 +43,14 @@ A Devin session that works a packet without its goal drifts from the directive t
 ```bash
 export OPENCODE_GOAL_STATE_DIR="$(mktemp -d /tmp/goal-devin.XXXXXX)"
 PACKET=specs/system-speckit/033-system-speckit-v4/038-goal-unification
-node .opencode/hooks/goal/bin/goal.cjs bind "$PACKET" --runtime devin --session session-d --workspace "$PWD"
-printf '%s' '{"session_id":"session-d","hook_event_name":"SessionStart","cwd":"'"$PWD"'"}' | node .opencode/hooks/goal/devin/goal-inject.mjs
-printf '%s' '{"session_id":"session-d","hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | node .opencode/hooks/goal/devin/goal-inject.mjs
-node .opencode/hooks/goal/bin/goal.cjs resent --runtime devin --session session-d --workspace "$PWD"
-printf '%s' '{"session_id":"session-d","hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | node .opencode/hooks/goal/devin/goal-inject.mjs
-printf '%s' '{"hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | node .opencode/hooks/goal/devin/goal-inject.mjs
-printf 'not json' | node .opencode/hooks/goal/devin/goal-inject.mjs
-printf '%s' '{"session_id":"session-d","hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | OPENCODE_GOAL_DISABLED=1 node .opencode/hooks/goal/devin/goal-inject.mjs
+node .skilled/hooks/goal/bin/goal.cjs bind "$PACKET" --runtime devin --session session-d --workspace "$PWD"
+printf '%s' '{"session_id":"session-d","hook_event_name":"SessionStart","cwd":"'"$PWD"'"}' | node .skilled/hooks/goal/devin/goal-inject.mjs
+printf '%s' '{"session_id":"session-d","hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | node .skilled/hooks/goal/devin/goal-inject.mjs
+node .skilled/hooks/goal/bin/goal.cjs resent --runtime devin --session session-d --workspace "$PWD"
+printf '%s' '{"session_id":"session-d","hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | node .skilled/hooks/goal/devin/goal-inject.mjs
+printf '%s' '{"hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | node .skilled/hooks/goal/devin/goal-inject.mjs
+printf 'not json' | node .skilled/hooks/goal/devin/goal-inject.mjs
+printf '%s' '{"session_id":"session-d","hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | OPENCODE_GOAL_DISABLED=1 node .skilled/hooks/goal/devin/goal-inject.mjs
 python3 -c 'import json;d=json.load(open(".devin/hooks.v1.json"));print(sum("goal-inject" in json.dumps(d[e]) for e in ("SessionStart","UserPromptSubmit")))'
 ```
 
@@ -61,7 +61,7 @@ python3 -c 'import json;d=json.load(open(".devin/hooks.v1.json"));print(sum("goa
 ### Automated companion gate
 
 ```bash
-node --test .opencode/hooks/goal/devin/goal-devin.test.mjs .opencode/hooks/goal/lib/goal-slice.test.cjs
+node --test .skilled/hooks/goal/devin/goal-devin.test.mjs .skilled/hooks/goal/lib/goal-slice.test.cjs
 ```
 
 ### Rollback

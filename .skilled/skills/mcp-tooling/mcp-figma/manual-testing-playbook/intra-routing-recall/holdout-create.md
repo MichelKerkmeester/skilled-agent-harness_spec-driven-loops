@@ -56,9 +56,9 @@ Build me a new screen with a call-to-action and a set of navigation links laid o
 
 ### Commands
 
-1. `sed -n '1,16p' .opencode/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/holdout-create.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-figma/SKILL.md | sed -n '/"CREATE_RENDER":/p'`
-3. `for p in references/figma-cli-reference.md references/tool-surface.md; do test -e ".opencode/skills/mcp-tooling/mcp-figma/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,16p' .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/holdout-create.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-figma/SKILL.md | sed -n '/"CREATE_RENDER":/p'`
+3. `for p in references/figma-cli-reference.md references/tool-surface.md; do test -e ".skilled/skills/mcp-tooling/mcp-figma/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

@@ -47,16 +47,16 @@ Operators run the exact prompt and command sequence for `CHT-006` and confirm th
 
 ### Commands
 
-1. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > before.txt 2>&1`
-2. `bash: cp .opencode/skills/sk-design/sk-design-chart/references/catalog.md keep-catalog.md`
+1. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > before.txt 2>&1`
+2. `bash: cp .skilled/skills/sk-design/sk-design-chart/references/catalog.md keep-catalog.md`
 3. `agent: Add one row to the table between the CHART_CATALOG sentinels in references/catalog.md naming a file that does not exist`
-4. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > phantom-row.txt 2>&1`
-5. `bash: cp keep-catalog.md .opencode/skills/sk-design/sk-design-chart/references/catalog.md`
+4. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > phantom-row.txt 2>&1`
+5. `bash: cp keep-catalog.md .skilled/skills/sk-design/sk-design-chart/references/catalog.md`
 6. `agent: Copy assets/templates/scatter.html to assets/templates/orphan-form.html and change its identity tag to orphan-form`
-7. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > orphan-file.txt 2>&1`
-8. `bash: rm .opencode/skills/sk-design/sk-design-chart/assets/templates/orphan-form.html`
-9. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > after.txt 2>&1`
-10. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
+7. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > orphan-file.txt 2>&1`
+8. `bash: rm .skilled/skills/sk-design/sk-design-chart/assets/templates/orphan-form.html`
+9. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > after.txt 2>&1`
+10. `bash: git status --porcelain .skilled/skills/sk-design/sk-design-chart`
 
 ### Expected
 

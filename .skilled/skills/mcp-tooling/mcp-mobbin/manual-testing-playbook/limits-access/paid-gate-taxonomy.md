@@ -46,7 +46,7 @@ Operators run the exact sequence for `PAIDGATE-001` and confirm the expected sig
 
 PRE: The classification half (taxonomy, correct next steps, verbatim-relay rule) is always gradable. Observing a live entitlement denial requires a Free-plan account nobody may have; observing a live 401 requires only the gated probe. SKIP the unobservable halves with the blocker documented.
 
-1. optional `bash: MOBBIN_DOCTOR_LIVE=1 bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh`  # -> HTTP 401 observed (the expected challenge shape)
+1. optional `bash: MOBBIN_DOCTOR_LIVE=1 bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh`  # -> HTTP 401 observed (the expected challenge shape)
 2. agent classifies the user's actual error evidence into 401 / entitlement / 429  # -> grounded in status+payload
 3. agent names the class-correct next step  # -> OAuth (operator) | plan decision (verbatim message) | Retry-After
 4. agent states what is UNVERIFIED (Free-plan denial semantics) instead of guessing  # -> honest boundary

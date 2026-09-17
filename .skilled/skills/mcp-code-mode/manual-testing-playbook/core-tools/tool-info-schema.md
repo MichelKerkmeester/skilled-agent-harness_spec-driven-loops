@@ -91,7 +91,7 @@ Capture the verbatim response object including parameter schema.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | tool_info API spec |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | tool_info API spec |
 
 ---
 

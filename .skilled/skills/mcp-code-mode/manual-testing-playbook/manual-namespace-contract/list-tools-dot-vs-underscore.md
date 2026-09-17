@@ -72,7 +72,7 @@ Capture the chosen entry literal, the dot-form error, and the underscore-form re
 
 ### Failure Triage
 
-1. If no entries have 2+ dots: read `.opencode/skills/mcp-code-mode/SKILL.md` line 232-233 for the current dot/underscore rule — the contract may have been simplified.
+1. If no entries have 2+ dots: read `.skilled/skills/mcp-code-mode/SKILL.md` line 232-233 for the current dot/underscore rule — the contract may have been simplified.
 2. If dot form succeeds: the runtime is auto-translating — file an enhancement to clarify documentation, but treat as a PASS for tooling purposes.
 3. If underscore form fails with "tool not found": cross-check via `tool_info({tool_name: <underscore_form>})` (CM-003) — confirm the canonical name.
 
@@ -94,7 +94,7 @@ Capture the chosen entry literal, the dot-form error, and the underscore-form re
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Tool name translation rule (line 232-233) |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Tool name translation rule (line 232-233) |
 
 ---
 

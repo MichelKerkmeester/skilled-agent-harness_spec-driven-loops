@@ -79,7 +79,7 @@ Full task transcript (stderr included), the summary text, and the judgment ratio
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/examples/agent-task-session.sh` | Scripted equivalent of this lane |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/examples/agent-task-session.sh` | Scripted equivalent of this lane |
 
 ---
 
