@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-dual-root-code-and-contracts"
+    packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts"
     last_updated_at: "2026-09-16T17:54:08Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"

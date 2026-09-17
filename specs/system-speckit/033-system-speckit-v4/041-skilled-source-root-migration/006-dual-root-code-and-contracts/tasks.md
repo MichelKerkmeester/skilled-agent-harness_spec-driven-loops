@@ -39,9 +39,9 @@ Component ids (C1 to C15), layouts (`today`, `skilled-only`, `whole-link` and th
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 {orchestrator} Read phase 005's `validate.sh --strict` output for `RESULT: PASSED` and copy phase 004's recorded shape for `.opencode/` into the log. Then run the cli-pi and cli-codex readiness checks their `SKILL.md` files name (`goal.md`)
+- [x] T001 {orchestrator} Read phase 005's `validate.sh --strict` output for `RESULT: PASSED` and copy phase 004's recorded shape for `.opencode/` into the log. Then run the cli-pi and cli-codex readiness checks their `SKILL.md` files name (`goal.md`)
 - [x] T002 {orchestrator} Record the REQ-014 decisions (decided 2026-09-16: all eight join this phase, see `goal.md` log): this phase or phase 009 for each of the five root-discovery twins, and this phase or another for the `install-git-hooks.sh` change, the `.gitignore` twins and the publish step that phase 004's plan assigns here. Amend `spec.md` before T005 for anything that joins (`goal.md`)
-- [ ] T003 {orchestrator} Record pass, fail and skip counts for every command in `plan.md` §5 at the phase's start commit (`scratch/baseline-counts.md`)
+- [x] T003 {orchestrator} Record pass, fail and skip counts for every command in `plan.md` §5 at the phase's start commit (`scratch/baseline-counts.md`)
 - [ ] T004 {orchestrator} Write the rehearsal script: clone the worktree per layout outside it, delete the clone's `.git` pointer, arrange `today`, `skilled-only` and `whole-link` (and `entry-links` if phase 004 selects it), run the whole-tree checks and assert `test ! -e .opencode` in `skilled-only` (`scratch/layout-rehearsal.sh`)
 - [ ] T005 {orchestrator} Write one brief per drafting task (T006 to T054) with its behavior pairs, test rows and verify command, and decide there whether `detectRepoRoot` becomes a test seam (`scratch/briefs/`)
 <!-- /ANCHOR:phase-1 -->
@@ -191,10 +191,10 @@ Component ids (C1 to C15), layouts (`today`, `skilled-only`, `whole-link` and th
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 005's `RESULT: PASSED` is read by content and recorded (T001)
-- [ ] CHK-002 [P0] Phase 004's shape for `.opencode/` is recorded in `goal.md`'s log (T001)
-- [ ] CHK-003 [P0] The REQ-014 decisions cover the five root-discovery twins and the three assignments from phase 004's plan (T002)
-- [ ] CHK-004 [P1] Baseline counts exist for every command in `plan.md` §5 at the start commit (T003)
+- [x] CHK-001 [P0] Phase 005's `RESULT: PASSED` is read by content and recorded (T001) [EVIDENCE: `goal.md` log row "Phase 005 gate", read at `cfeba3e1fb`]
+- [x] CHK-002 [P0] Phase 004's shape for `.opencode/` is recorded in `goal.md`'s log (T001) [EVIDENCE: `goal.md` log row "Phase 004 shape", ADR-001 Accepted as L1]
+- [x] CHK-003 [P0] The REQ-014 decisions cover the five root-discovery twins and the three assignments from phase 004's plan (T002) [EVIDENCE: `goal.md` deviations rows dated 2026-09-16, `spec.md` §3 lists all eight]
+- [x] CHK-004 [P1] Baseline counts exist for every command in `plan.md` §5 at the start commit (T003) [EVIDENCE: `scratch/baseline-counts.md`]
 - [ ] CHK-005 [P1] A brief exists for each drafting task before its dispatch (T005)
 <!-- /ANCHOR:pre-impl -->
 

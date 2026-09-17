@@ -10,12 +10,11 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts"
-    last_updated_at: "2026-09-16T21:30:00Z"
+    last_updated_at: "2026-09-17T09:40:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Authored the durable directive for this phase"
-    next_safe_action: "Wait for phase 005 to validate, then run T001"
-    blockers:
-      - "Phase 005 has not validated PASSED yet"
+    recent_action: "Recorded the setup and the reviewer amendment"
+    next_safe_action: "Draft, review and verify C1"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -24,11 +23,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "041-006-goal"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Which shape does phase 004 record for .opencode/?"
-      - "Which phase owns the install-git-hooks.sh change, the .gitignore twins and the publish step that phase 004's plan assigns here?"
-    answered_questions: []
+    completion_pct: 5
+    open_questions: []
+    answered_questions:
+      - "Phase 004 recorded L1, one .opencode -> .skilled link"
+      - "This phase owns install-git-hooks.sh, the .gitignore twins and the publish step"
 ---
 # Goal: make the .opencode contract components work under either root
 
@@ -51,7 +50,7 @@ Frozen choices. Changing one is an amendment.
 | D1 | Root names extend the existing sentinel logic. `repo-root.mjs` exports `.skilled` and `.opencode`, and resolvers test the sentinel under each name and hoist above either. Scripts resolve from their own directory. No new module is added. |
 | D2 | The legacy spec alias keeps the single spelling `.opencode/specs`. Resolvers gain no `.skilled/specs` form and are proven in all three layouts. Detectors that must catch any on-disk spelling list all three. |
 | D3 | The six MCP registrations name one path each, so they are proven by a launch probe and not edited here. Their retarget follows phase 004's shape and phase 009's rewrite. |
-| D4 | DeepSeek V4.1 Flash max on cli-pi through the LLM Gateway drafts one file per short literal brief. GPT-5.6 sol on cli-codex reviews each component. The orchestrator owns every design choice, runs each unit's tests before the next unit starts and runs the move rehearsal. |
+| D4 | DeepSeek V4.1 Flash max on cli-pi through the LLM Gateway drafts one file per short literal brief. GPT-5.6 Luna at xhigh on the fast tier through cli-codex reviews each component. The orchestrator owns every design choice, runs each unit's tests before the next unit starts and runs the move rehearsal. Amended 2026-09-17 by the operator's model decision: Luna replaces GPT-5.6 sol, and no other model runs |
 
 ### Operator copy
 
@@ -83,7 +82,12 @@ Everything below is VOLATILE.
 |------|-------|----------|
 | Planning documents | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and this file, authored against `728c4f3efc` |
 | Current-behavior probes | Done | Fixture probes in a session scratch directory covered root discovery, workspace identity, the advisor walk, the guard, the launcher paths, the hook installer, the worktree launcher, the relinker and drift-source derivation |
-| Implementation | Pending | Waits on phase 005 validating PASSED (parent D1) |
+| Phase 005 gate | Validated | `validate.sh --strict` on `005-gate-and-ci-readiness` printed `RESULT: PASSED` on 2026-09-17 at `cfeba3e1fb`, the start commit of this phase |
+| Phase 004 shape | L1, one `.opencode -> .skilled` link | `004-migration-design/decision-record.md` ADR-001 reads `Accepted`. The `entry-links` layout is therefore not required (REQ-015, AC-015), and the `skilled-only` launch row of REQ-012 is recorded, not required to pass |
+| Executor readiness | Ready | `command -v pi` found Pi 0.85.1 and a read-only DeepSeek probe answered `PONG7` in 23 s. `command -v codex` found codex-cli 0.154.0, `codex login status` read `Logged in using ChatGPT` and a read-only Luna probe answered `PONG 7` in 16 s |
+| Start commit | `cfeba3e1fb` | Between the planning commit `728c4f3efc` and this commit, the planned paths changed only in `check-git-hooks.sh`, its test and the sk-doc routing manifest, so the planning probes still describe the files this phase edits |
+| Baseline | Recorded | `scratch/baseline-counts.md`, every command in `plan.md` §5 at `cfeba3e1fb` |
+| Implementation | In progress | Setup done, components follow in `plan.md` §4 order |
 
 ### Deviations and findings
 
