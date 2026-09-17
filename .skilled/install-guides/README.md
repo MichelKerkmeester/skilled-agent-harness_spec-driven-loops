@@ -74,7 +74,7 @@ All 4 `.md` guide entries in this directory (1 regular file + 3 symlinks), group
 Copy this prompt to your AI assistant to begin a guided installation:
 
 ```
-I need to install OpenCode components. Please guide me using .opencode/install-guides/README.md
+I need to install OpenCode components. Please guide me using .skilled/install-guides/README.md
 
 My environment:
 - Platform: [macOS / Linux / Windows WSL]
@@ -105,7 +105,7 @@ printf "  │ %-23s │ %-29s │\n" "Chrome DevTools (bdg)" "$(command -v bdg >
 echo "    ├─────────────────────────┼───────────────────────────────┤"
 printf "  │ %-23s │ %-29s │\n" "opencode.json" "$(test -f opencode.json && echo '✅ Exists' || echo '❌ Missing')"
 printf "  │ %-23s │ %-29s │\n" ".utcp_config.json" "$(test -f .utcp_config.json && echo '✅ Exists' || echo '❌ Missing')"
-printf "  │ %-23s │ %-29s │\n" "Skills directory" "$(test -d .opencode/skills && echo '✅ '$(ls .opencode/skills 2>/dev/null | wc -l | tr -d ' ')' skills'     || echo '❌ Missing')"
+printf "  │ %-23s │ %-29s │\n" "Skills directory" "$(test -d .skilled/skills && echo '✅ '$(ls .skilled/skills 2>/dev/null | wc -l | tr -d ' ')' skills'     || echo '❌ Missing')"
 echo "    └─────────────────────────┴───────────────────────────────┘"
 echo ""
 ```
@@ -171,7 +171,7 @@ The SpecKit validation and creation scripts require a Bash shell:
 Run scripts from Git Bash or WSL on Windows:
 ```bash
 # From Git Bash
-.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<001-feature>/
+.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<001-feature>/
 ```
 
 </details>
@@ -254,7 +254,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 **Disk breakdown:**
 - MCP servers: ~500MB
 - HF Local fallback model (nomic-embed-text-v1.5, ONNX q8): ~140MB (downloaded only if the HF Local fallback is used)
-- Trigger index (`.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`): ~4MB, regenerated from spec-doc frontmatter
+- Trigger index (`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`): ~4MB, regenerated from spec-doc frontmatter
 
 **Quick Verification:**
 ```bash
@@ -314,7 +314,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
    │  GitHub, your CMS...                  │
    └───────────────────────────────────┘
 
-   NATIVE SKILLS: auto-discovered from .opencode/skills/*/SKILL.md
+   NATIVE SKILLS: auto-discovered from .skilled/skills/*/SKILL.md
    OPTIONAL: Chrome DevTools CLI (bdg), Auth Plugins
 ```
 
@@ -428,7 +428,7 @@ node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(
 
 ## 9. PHASE 2: LOCAL EMBEDDINGS
 
-The shared embedding stack at `.opencode/skills/system-spec-kit/shared/embeddings/` resolves the active local embedding profile automatically. Skill Advisor and the retained model-server consumers read it. The HF Local ONNX profile runs on Node.js without external services. When an Ollama daemon is reachable on `localhost:11434`, the cascade can promote to Ollama.
+The shared embedding stack at `.skilled/skills/system-spec-kit/shared/embeddings/` resolves the active local embedding profile automatically. Skill Advisor and the retained model-server consumers read it. The HF Local ONNX profile runs on Node.js without external services. When an Ollama daemon is reachable on `localhost:11434`, the cascade can promote to Ollama.
 
 | Provider | When to use | Dimension | Requirements |
 |----------|-------------|-----------|------------|
@@ -547,38 +547,38 @@ npx utcp-mcp --help >/dev/null 2>&1 && test -f .utcp_config.json && echo "✅ PA
 
 Retrieval over spec folders and skill docs is file-based. There is no server to register, no database to create and no daemon to keep warm: a committed trigger index answers Gate 1 lookups, and ripgrep answers free-text queries.
 
-**Location:** Bundled in project at `.opencode/skills/system-spec-kit/`
+**Location:** Bundled in project at `.skilled/skills/system-spec-kit/`
 
 **Gate 1 trigger lookup:**
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
 ```
 
 Exit `0` means candidates were found, `1` means none were, and `2` means a bad invocation or an unreadable index. Branch on all three: an empty result is not a failure.
 
 **Regenerate the index** after spec-doc frontmatter changes:
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ```
 
-The generated artifact lives at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` and is committed, so a fresh clone answers Gate 1 before anything is built.
+The generated artifact lives at `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and is committed, so a fresh clone answers Gate 1 before anything is built.
 
 **Free-text retrieval** uses the literal ripgrep recipes in [`retrieval-conventions.md`](../skills/system-spec-kit/references/retrieval/retrieval-conventions.md), scoped by track and packet. Copy the flags rather than paraphrasing them: `--no-config` and the two exclusion globs each close a specific failure.
 
-**Continuity saves** are written by `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`, invoked through `/speckit:save`. The writer updates the packet's continuity surfaces in place; nothing is indexed afterwards.
+**Continuity saves** are written by `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`, invoked through `/speckit:save`. The writer updates the packet's continuity surfaces in place; nothing is indexed afterwards.
 
 **What this does not do.** Semantic paraphrase matching, vector and BM25 fusion, decay scoring, access tracking, session dedup and causal traversal have no file-based equivalent, and this install does not provide them. A query that matches nothing returns nothing rather than degrading to an approximate answer.
 
 ### Validation: `spec_retrieval_check`
 
-- [ ] Trigger index exists at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`
+- [ ] Trigger index exists at `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`
 - [ ] The lookup script exits `0` for a known trigger phrase
 - [ ] `rg --version` reports ripgrep 14 or newer
 
 **Quick Verification:**
 ```bash
-test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json && \
-  node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
+test -f .skilled/skills/system-spec-kit/runtime/data/trigger-index.json && \
+  node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
     --json -- "spec folder" >/dev/null && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
@@ -586,42 +586,42 @@ test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json && \
 
 ### 10.3 Skill Advisor (CLI Front Door, Native Recommendation)
 
-The Skill Advisor runs as a resident daemon reached through one CLI front door, `node .opencode/bin/skill-advisor.cjs`. It registers no MCP server and needs no `opencode.json` entry. The CLI exposes nine commands: the eight public ones (`advisor_recommend/rebuild/status/validate`, `skill_graph_scan/query/status/validate`) plus the trusted-caller-only `skill_graph_propagate_enhances`.
+The Skill Advisor runs as a resident daemon reached through one CLI front door, `node .skilled/bin/skill-advisor.cjs`. It registers no MCP server and needs no `opencode.json` entry. The CLI exposes nine commands: the eight public ones (`advisor_recommend/rebuild/status/validate`, `skill_graph_scan/query/status/validate`) plus the trusted-caller-only `skill_graph_propagate_enhances`.
 
 > **Detailed Guide:** See [system-skill-advisor/INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) for full installation, configuration, rollback, and operator notes.
 > **Runtime Tuning:** See [system-skill-advisor INSTALL-GUIDE.md §14 Tuning the Advisor](../skills/system-skill-advisor/INSTALL-GUIDE.md#14-tuning-the-advisor) for post-install adjustments.
 
-**Location:** Bundled in this repository at `.opencode/skills/system-skill-advisor/`.
+**Location:** Bundled in this repository at `.skilled/skills/system-skill-advisor/`.
 
 **Check:**
 ```bash
-test -f .opencode/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js && echo "Installed" || echo "Needs build"
+test -f .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js && echo "Installed" || echo "Needs build"
 ```
 
 **Install if missing:**
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime install
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+npm --prefix .skilled/skills/system-skill-advisor/runtime install
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 ```
 
-> **Build pipeline note:** `npm run build` builds `@spec-kit/shared`, compiles the advisor hooks and runtime code, then copies `data/*.json` into `dist/runtime/data`. Use `bash .opencode/scripts/copy-skill-advisor-dist-data.sh` only as a manual repair helper when dist data is missing or stale.
+> **Build pipeline note:** `npm run build` builds `@spec-kit/shared`, compiles the advisor hooks and runtime code, then copies `data/*.json` into `dist/runtime/data`. Use `bash .skilled/scripts/copy-skill-advisor-dist-data.sh` only as a manual repair helper when dist data is missing or stale.
 
 **Verify:**
 ```bash
-node .opencode/bin/skill-advisor.cjs list-tools --format json
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
+node .skilled/bin/skill-advisor.cjs list-tools --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
 ```
 
 ### Validation: `skill_advisor_check`
 
-- [ ] Runtime dist entry exists: `.opencode/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js`
-- [ ] `node .opencode/bin/skill-advisor.cjs list-tools --format json` reports nine commands
-- [ ] `node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json` returns an envelope with `freshness`
+- [ ] Runtime dist entry exists: `.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js`
+- [ ] `node .skilled/bin/skill-advisor.cjs list-tools --format json` reports nine commands
+- [ ] `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json` returns an envelope with `freshness`
 
 **Quick Verification:**
 ```bash
-test -f .opencode/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js && \
-  node .opencode/bin/skill-advisor.cjs list-tools --format json >/dev/null && \
+test -f .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js && \
+  node .skilled/bin/skill-advisor.cjs list-tools --format json >/dev/null && \
   echo "✅ PASS" || echo "❌ FAIL"
 ```
 
@@ -666,15 +666,15 @@ The Skill Advisor is validated here for convenience, not because it is an MCP
 server. It registers nothing; the check runs its CLI front door.
 
 - [ ] Code Mode: npx utcp-mcp --version responds
-- [ ] Skill Advisor: `node .opencode/bin/skill-advisor.cjs list-tools --format json` reports nine commands
-- [ ] Trigger index present at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`
+- [ ] Skill Advisor: `node .skilled/bin/skill-advisor.cjs list-tools --format json` reports nine commands
+- [ ] Trigger index present at `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`
 - [ ] (Optional) Chrome DevTools: bdg --version responds
 
 **Quick Verification:**
 ```bash
 grep -q '"code_mode"' opencode.json && \
-  node .opencode/bin/skill-advisor.cjs list-tools --format json >/dev/null && \
-  test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json && \
+  node .skilled/bin/skill-advisor.cjs list-tools --format json >/dev/null && \
+  test -f .skilled/skills/system-spec-kit/runtime/data/trigger-index.json && \
   echo "✅ PASS" || echo "❌ FAIL"
 ```
 
@@ -687,7 +687,7 @@ grep -q '"code_mode"' opencode.json && \
 OpenCode v1.0.190+ has **native skill support** built-in. No plugin installation required.
 
 Skills are automatically discovered from:
-- `.opencode/skills/<name>/SKILL.md` (project-level)
+- `.skilled/skills/<name>/SKILL.md` (project-level)
 - `~/.opencode/skills/<name>/SKILL.md` (global)
 - `.claude/skills/<name>/SKILL.md` (Claude-compatible)
 
@@ -713,7 +713,7 @@ Skills are organized as parent hubs that own workflow modes (dispatched via each
 - Skills are surfaced as `skills_*` functions (e.g., `skills_mcp_code_mode`)
 - Agents read `SKILL.md` files directly when a task matches
 
-**No configuration needed.** Skills in `.opencode/skills/` are automatically available.
+**No configuration needed.** Skills in `.skilled/skills/` are automatically available.
 
 ### Validation: `native_skills_check`
 
@@ -723,7 +723,7 @@ Skills are organized as parent hubs that own workflow modes (dispatched via each
 
 **Quick Verification:**
 ```bash
-test -d .opencode/skills && ls .opencode/skills/*/SKILL.md >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
+test -d .skilled/skills && ls .skilled/skills/*/SKILL.md >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ---
@@ -774,7 +774,7 @@ export OPENAI_API_KEY="your-api-key"
 
 **Quick Verification:**
 ```bash
-test -d .opencode/skills && [ $(ls -1 .opencode/skills | wc -l) -ge 1 ] && echo "✅ PASS" || echo "❌ FAIL"
+test -d .skilled/skills && [ $(ls -1 .skilled/skills | wc -l) -ge 1 ] && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ---
@@ -852,7 +852,7 @@ test -d .opencode/skills && [ $(ls -1 .opencode/skills | wc -l) -ge 1 ] && echo 
 node --version | grep -E "^v(1[89]|2[0-9])" && \
 python3 --version | grep -E "3\.(1[0-9]|[2-9][0-9])" && \
 test -f opencode.json && \
-test -d .opencode/skills && \
+test -d .skilled/skills && \
 echo "✅ INSTALLATION COMPLETE" || echo "❌ VERIFICATION FAILED"
 ```
 
@@ -860,7 +860,7 @@ echo "✅ INSTALLATION COMPLETE" || echo "❌ VERIFICATION FAILED"
 
 ```bash
 npx utcp-mcp --list-tools          # Code Mode
-ls .opencode/skills/                 # Skills
+ls .skilled/skills/                 # Skills
 cat opencode.json | jq '.mcp | keys'  # MCP servers
 ```
 
@@ -878,7 +878,7 @@ After the static checks above pass, run the interactive doctor surface to verify
 - `/doctor:update` rebuilds the generated artifacts and the advisor database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
 - `/doctor:mcp debug` checks the native MCP servers (Code Mode) and offers guided repair with `--fix`.
 
-Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory (the trigger index and ripgrep recipes), embeddings, deep-loop, skill-advisor, skill-budget, skill-graph-freshness, parent-skill, runtime-mirrors, fable-mode.
+Full reference: `.skilled/commands/doctor/speckit.md` + `.skilled/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory (the trigger index and ripgrep recipes), embeddings, deep-loop, skill-advisor, skill-budget, skill-graph-freshness, parent-skill, runtime-mirrors, fable-mode.
 
 ---
 
@@ -910,7 +910,7 @@ BACKUP="$HOME/.opencode-backup-$(date +%Y%m%d-%H%M%S)" && mkdir -p "$BACKUP" && 
 ls -lhd ~/.opencode-backup-* 2>/dev/null || echo "No backups found"
 
 # Restore (replace BACKUP path)
-BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$BACKUP/.utcp_config.json" ./ 2>/dev/null && cp -r "$BACKUP/database" .opencode/skills/system-spec-kit/ 2>/dev/null && echo "✅ Restored"
+BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$BACKUP/.utcp_config.json" ./ 2>/dev/null && cp -r "$BACKUP/database" .skilled/skills/system-spec-kit/ 2>/dev/null && echo "✅ Restored"
 ```
 
 ---
@@ -921,9 +921,9 @@ BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$
 | ------------------------ | ------------------------------------------------------ | ---------------------------------------------------- |
 | **Code Mode**            | `npm uninstall -g utcp-mcp`                            | Remove from opencode.json + delete .utcp_config.json |
 | **Chrome DevTools CLI**  | `npm uninstall -g browser-debugger-cli`                |                                                      |
-| **Trigger index**        | `rm .opencode/skills/system-spec-kit/runtime/data/trigger-index.json`      | Regenerate with `generate-trigger-index.mjs` |
-| **Skills**               | `rm -rf .opencode/skills/<skill-name>/`                 | Remove specific skill folder                         |
-| **All Skills**           | `rm -rf .opencode/skills/`                              | Removes all skills                                   |
+| **Trigger index**        | `rm .skilled/skills/system-spec-kit/runtime/data/trigger-index.json`      | Regenerate with `generate-trigger-index.mjs` |
+| **Skills**               | `rm -rf .skilled/skills/<skill-name>/`                 | Remove specific skill folder                         |
+| **All Skills**           | `rm -rf .skilled/skills/`                              | Removes all skills                                   |
 
 **To remove MCP server:** Edit `opencode.json` and delete the corresponding entry from the `mcp` object.
 
@@ -955,10 +955,10 @@ BACKUP=$(ls -td ~/.opencode-backup-* 2>/dev/null | head -1) && [ -n "$BACKUP" ] 
 
 ```bash
 # Quick health check one-liner
-node -v && python3 -V && [ -f opencode.json ] && [ -d .opencode/skills ] && echo "✅ Core components OK" || echo "❌ Check failed"
+node -v && python3 -V && [ -f opencode.json ] && [ -d .skilled/skills ] && echo "✅ Core components OK" || echo "❌ Check failed"
 
 # Detailed checks
-ls .opencode/skills/           # Skills installed
+ls .skilled/skills/           # Skills installed
 cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 ```
 
@@ -998,7 +998,7 @@ The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize 
 1. **Rename the file**: `AGENTS (Universal).md` → `AGENTS.md`
 2. **Choose project type**: Front-end, Back-end, or Full-stack
 3. **Align with installed tools**: Update tool references to match your MCP configuration
-4. **Align with available skills**: Update skills table to match `.opencode/skills/`
+4. **Align with available skills**: Update skills table to match `.skilled/skills/`
 
 **Quick customization for project types:**
 
@@ -1014,10 +1014,10 @@ The Skill Advisor powers Gate 2 in AGENTS.md, routing requests to appropriate sk
 
 ```bash
 # Verify skill advisor
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "help me write documentation" --format text
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me write documentation" --format text
 ```
 
-The Python local scorer at `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` answers `advisor_recommend` when the daemon is unreachable.
+The Python local scorer at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` answers `advisor_recommend` when the daemon is unreachable.
 
 If confidence > 0.8, the AI agent MUST use the recommended skill.
 
@@ -1029,10 +1029,10 @@ Create custom skills to extend AI agent capabilities:
 
 ```bash
 # Initialize new skill
-python .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skills
+python .skilled/skills/sk-doc/scripts/init_skill.py my-skill --path .skilled/skills
 
 # Validate skill
-python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/<my-skill>/
+python .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/<my-skill>/
 ```
 
 ### 15.4 Agent System
@@ -1055,7 +1055,7 @@ The Agent System provides specialized AI personas with defined authorities, tool
 
 **Quick Verification:**
 ```bash
-ls .opencode/agents/*.md 2>/dev/null && echo "✅ PASS" || echo "❌ FAIL"
+ls .skilled/agents/*.md 2>/dev/null && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ### 15.5 Customizing for Your Stack. Start with `sk-code`
@@ -1074,7 +1074,7 @@ This template ships with `sk-code` configured for Webflow + OpenCode + cross-sta
 4. Update the `RESOURCE_MAP` intent → file paths to point at your renamed references/assets.
 5. Bump `sk-code` version + ship a changelog. Use `assets/opencode/checklists/skill-authoring.md` as your reference.
 
-**Adding your own skills:** the shipped set is intentionally minimal: most teams will add their own (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor automatically. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
+**Adding your own skills:** the shipped set is intentionally minimal: most teams will add their own (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). Drop them into `.skilled/skills/<your-skill>/` and they'll be picked up by the advisor automatically. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
 **Detailed Guide**: [Root README §4 Customizing for Your Stack](../../README.md#customizing-for-your-stack)
 
@@ -1082,10 +1082,10 @@ This template ships with `sk-code` configured for Webflow + OpenCode + cross-sta
 
 **Post-Installation Quick Verification:**
 ```bash
-node -v && python3 -V && [ -f opencode.json ] && [ -d .opencode/skills ] && echo "✅ Core components OK" || echo "❌ Check failed"
+node -v && python3 -V && [ -f opencode.json ] && [ -d .skilled/skills ] && echo "✅ Core components OK" || echo "❌ Check failed"
 
 # Detailed checks
-ls .opencode/skills/           # Skills installed
+ls .skilled/skills/           # Skills installed
 cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 ```
 
@@ -1101,7 +1101,7 @@ You have completed the installation. Here is your roadmap for getting started.
 | ---- | ---------------------- | ---------------------------------------------------------------- |
 | 1    | Verify installation    | Run health check script from Section 14.5                        |
 | 2    | Customize AGENTS.md    | Edit `AGENTS.md` for your project type                           |
-| 3    | Test skill invocation  | `node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "your task" --format text`          |
+| 3    | Test skill invocation  | `node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "your task" --format text`          |
 | 4    | Save first continuity record | Use `/speckit:save` or "save context" in conversation       |
 
 ### 16.2 Common Workflows
@@ -1130,10 +1130,10 @@ For the SpecKit chain, `/speckit:plan --intake-only` is the standalone intake en
 | Resource      | Location                                   | Description                   |
 | ------------- | ------------------------------------------ | ----------------------------- |
 | OpenCode Docs | https://opencode.ai/docs                   | Official documentation        |
-| Continuity Skill | `.opencode/skills/system-spec-kit/SKILL.md` | Context preservation       |
-| Code Skill    | `.opencode/skills/sk-code/SKILL.md` | Frontend implementation patterns |
-| Code Skill    | `.opencode/skills/sk-code/SKILL.md` | Multi-stack implementation patterns |
-| Git Skill     | `.opencode/skills/sk-git/SKILL.md`   | Git workflows                 |
+| Continuity Skill | `.skilled/skills/system-spec-kit/SKILL.md` | Context preservation       |
+| Code Skill    | `.skilled/skills/sk-code/SKILL.md` | Frontend implementation patterns |
+| Code Skill    | `.skilled/skills/sk-code/SKILL.md` | Multi-stack implementation patterns |
+| Git Skill     | `.skilled/skills/sk-git/SKILL.md`   | Git workflows                 |
 | AGENTS.md     | `AGENTS.md`                                | AI agent behavior reference   |
 
 ### 16.5 Next Level (Week 1)
@@ -1173,13 +1173,13 @@ npx utcp-mcp
 ### Trigger index missing
 ```bash
 # Regenerate it; the artifact is committed, so this is also how you repair a bad merge
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
-ls -l .opencode/skills/system-spec-kit/runtime/data/trigger-index.json
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+ls -l .skilled/skills/system-spec-kit/runtime/data/trigger-index.json
 ```
 
 ### Embeddings not working
 1. Auto-cascade is ollama (default, if reachable) -> hf-local (local fallback) -> `OPENAI_API_KEY` -> `VOYAGE_API_KEY`
-2. Clear corrupted model cache: `rm -rf .opencode/skills/system-spec-kit/shared/embeddings/node_modules/@huggingface/transformers/.cache`
+2. Clear corrupted model cache: `rm -rf .skilled/skills/system-spec-kit/shared/embeddings/node_modules/@huggingface/transformers/.cache`
 3. Restart the consuming MCP server (model re-downloads on first use)
 4. If using cloud provider: verify API key is set and `EMBEDDINGS_PROVIDER` matches
 
@@ -1188,12 +1188,12 @@ Embeddings serve Skill Advisor, not spec-folder retrieval. A retrieval miss is n
 ### Retrieval returns nothing
 ```bash
 # Exit 1 means a clean no-hit; exit 2 means the invocation or the index is broken
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"; echo "exit=$?"
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"; echo "exit=$?"
 
 # Free-text lane, per references/retrieval/retrieval-conventions.md
 rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
-  -- 'phrase' specs .opencode
+  -- 'phrase' specs .skilled
 ```
 
 A phrase the author never declared in `trigger_phrases` will not appear in the index. That is a corpus gap, not a lookup failure.
@@ -1223,7 +1223,7 @@ bdg screenshot --chrome-path "/Applications/Google Chrome.app/Contents/MacOS/Goo
 <summary><strong>Plugin Issues</strong></summary>
 
 ### Skills not loading (Native Skills)
-1. Verify skill folder exists: `ls -la .opencode/skills/`
+1. Verify skill folder exists: `ls -la .skilled/skills/`
 2. Check SKILL.md frontmatter has required `name` and `description` fields
 3. Ensure `name` matches folder name exactly
 4. Restart OpenCode after adding skills
@@ -1289,9 +1289,9 @@ The doctor commands read the install guides, check system reality, and offer gui
 
 Shell script (for direct use outside AI clients):
 ```bash
-bash .opencode/commands/doctor/scripts/mcp-doctor.sh
-bash .opencode/commands/doctor/scripts/mcp-doctor.sh --json
-bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
+bash .skilled/commands/doctor/scripts/mcp-doctor.sh
+bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json
+bash .skilled/commands/doctor/scripts/mcp-doctor.sh --fix
 ```
 
 </details>
@@ -1305,8 +1305,8 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | Task                 | Command                                                     |
 | -------------------- | ----------------------------------------------------------- |
 | Check prerequisites  | `node -v && python3 -V`                                     |
-| List skills          | `ls .opencode/skills/`                                       |
-| Read skill           | `cat .opencode/skills/<skill-name>/SKILL.md`                 |
+| List skills          | `ls .skilled/skills/`                                       |
+| Read skill           | `cat .skilled/skills/<skill-name>/SKILL.md`                 |
 | Browser screenshot   | `bdg screenshot --url <url> --output out.png`               |
 | Run health check     | `node -v && python3 -V && test -f opencode.json`            |
 
@@ -1316,9 +1316,9 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | --------------------------- | --------------------------------------------- |
 | `opencode.json`             | OpenCode MCP server config (3 native servers) |
 | `.utcp_config.json`         | Code Mode external tools config               |
-| `.opencode/skills/`          | Skill definitions (16 skills)                 |
-| `.opencode/agents/`          | Base agent source definitions                 |
-| `.opencode/install-guides/` | Installation documentation                    |
+| `.skilled/skills/`          | Skill definitions (16 skills)                 |
+| `.skilled/agents/`          | Base agent source definitions                 |
+| `.skilled/install-guides/` | Installation documentation                    |
 | `~/.opencode-backup/`       | Configuration backups                         |
 | `AGENTS.md`                 | AI agent behavior configuration               |
 

@@ -34,7 +34,7 @@ git clone https://github.com/YOUR_USERNAME/opencode-dev-environment.git
 cd opencode-dev-environment
 
 # Install dependencies (if modifying MCP server)
-cd .opencode/skills/system-spec-kit
+cd .skilled/skills/system-spec-kit
 npm install
 ```
 
@@ -42,10 +42,10 @@ npm install
 
 ```bash
 # Test spec-folder retrieval (no server)
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder question"
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder question"
 
 # Test embedding providers
-node .opencode/skills/system-spec-kit/runtime/cli/tests/test-embeddings-factory.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/tests/test-embeddings-factory.cjs
 ```
 
 ---

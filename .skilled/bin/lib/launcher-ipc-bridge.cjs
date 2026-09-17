@@ -95,7 +95,7 @@ function defaultDbDirForService(serviceName) {
     const advisorOverride = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
     return advisorOverride
       ? path.resolve(advisorOverride)
-      : path.join(root, '.opencode', 'skills', 'system-skill-advisor', 'runtime', 'database');
+      : path.join(root, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'database');
   }
   throw new Error(`Unknown MCP service name: ${serviceName}`);
 }

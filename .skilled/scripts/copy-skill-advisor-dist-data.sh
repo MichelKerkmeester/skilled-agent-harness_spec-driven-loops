@@ -7,7 +7,7 @@
 #     dist/runtime/data/prompt-policy.default.json
 #
 # Usage:
-#   bash .opencode/scripts/copy-skill-advisor-dist-data.sh
+#   bash .skilled/scripts/copy-skill-advisor-dist-data.sh
 #
 # `npm run build` runs this copy as its postbuild step. Keep this script as
 # a manual repair helper when dist data is missing or stale.
@@ -22,8 +22,8 @@ if [ -z "$REPO_ROOT" ]; then
   exit 1
 fi
 
-SRC="$REPO_ROOT/.opencode/skills/system-skill-advisor/runtime/data"
-DST="$REPO_ROOT/.opencode/skills/system-skill-advisor/runtime/dist/runtime/data"
+SRC="$REPO_ROOT/.skilled/skills/system-skill-advisor/runtime/data"
+DST="$REPO_ROOT/.skilled/skills/system-skill-advisor/runtime/dist/runtime/data"
 
 if [ ! -d "$SRC" ]; then
   echo "skipped: source dir not present ($SRC)" >&2

@@ -21,7 +21,7 @@ const { spawn, spawnSync } = require('child_process');
 const mss = loadModelServerSupervisionModule();
 
 const root = path.resolve(__dirname, '..', '..');
-const opencodeDir = path.join(root, '.opencode');
+const opencodeDir = path.join(root, '.skilled');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. ENV BOOTSTRAP HELPERS

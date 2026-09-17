@@ -17,7 +17,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.opencode/scripts/git-hooks/` holds the hook scripts this repo installs into `.git/hooks/`. Hooks here are advisory-first: each one's primary check has its own bypass env var: with two exceptions whose headline check blocks by default: `pre-commit` layers a few genuinely blocking sub-gates on top of its advisory headline check, and `pre-push` blocks outright (for new remote branches only; see below).
+`.skilled/scripts/git-hooks/` holds the hook scripts this repo installs into `.git/hooks/`. Hooks here are advisory-first: each one's primary check has its own bypass env var: with two exceptions whose headline check blocks by default: `pre-commit` layers a few genuinely blocking sub-gates on top of its advisory headline check, and `pre-push` blocks outright (for new remote branches only; see below).
 
 Current state:
 
@@ -83,7 +83,7 @@ Allowed dependency direction:
 ```text
 post-merge / post-rewrite → lib/autostash-orphan-guard.sh
 post-commit → .opencode/hooks/shared/hook-flags.sh, .opencode/bin/git-sync.sh
-pre-commit → .opencode/hooks/git/pre-commit, sk-doc validator, skill-advisor card-sync guard, doctor mutation-class guard, .opencode/bin/compiled-route-manifest.cjs
+pre-commit → .skilled/hooks/git/pre-commit, sk-doc validator, skill-advisor card-sync guard, doctor mutation-class guard, .opencode/bin/compiled-route-manifest.cjs
 pre-push → .opencode/skills/sk-git/scripts/worktree-naming.sh (sourced; validators only), lib/mass-deletion-guard.sh
 ```
 
@@ -104,7 +104,7 @@ hooks here → hard-fail without a bypass env var on their primary check
 | `post-commit` | Publishes the just-completed commit to the shared live branch through `.opencode/bin/git-sync.sh --auto --quiet`, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`. Also runs the autostash orphan guard. | `SPECKIT_AUTOSYNC=0` (this launch); `SYSTEM_LIVE_SYNC_DISABLED` or `SYSTEM_HOOKS_DISABLED` (whole live-sync loop) |
 | `post-merge` | Sources `lib/autostash-orphan-guard.sh` and anchors any `--autostash` entry the merge left un-applied. | None; the guard is best-effort and never blocks |
 | `post-rewrite` | Sources `lib/autostash-orphan-guard.sh` after an amend or rebase. The rewritten `old_commit new_commit` pairs git sends on stdin are unused. | None; the guard is best-effort and never blocks |
-| `lib/autostash-orphan-guard.sh` | Defines `autostash_orphan_guard()`, the one function `post-commit`, `post-merge` and `post-rewrite` source. Reads the sequencer's recorded autostash object, so a rebase autostash is anchored before git re-applies it. Anchors every autostash entry under `refs/autostash-rescue/<sha>` so it survives garbage collection, prints recovery instructions and records an alert in `.opencode/logs/autostash-orphan-alerts.log`. | None; it always returns success |
+| `lib/autostash-orphan-guard.sh` | Defines `autostash_orphan_guard()`, the one function `post-commit`, `post-merge` and `post-rewrite` source. Reads the sequencer's recorded autostash object, so a rebase autostash is anchored before git re-applies it. Anchors every autostash entry under `refs/autostash-rescue/<sha>` so it survives garbage collection, prints recovery instructions and records an alert in `.skilled/logs/autostash-orphan-alerts.log`. | None; it always returns success |
 | `pre-push` | Reads `<local ref> <local sha> <remote ref> <remote sha>` lines from stdin and runs two gates. The mass-deletion ceiling blocks a destructive range. The remote gate blocks any push to a branch outside the allowlist unless this one is approved: creating a branch needs `SPECKIT_ALLOW_REMOTE_PUSH=<branch>`, an update accepts a bare `=1`, and `main`, `skilled/v*` and the allowlist file pass with nothing set. A naming-grammar gate ran here until it was removed for never refusing a push the remote gate would have allowed. Fails safe (exits 0) if `worktree-naming.sh` fails to source. Where the toolchain ships, a missing `worktree-naming.sh` blocks each push the remote gate would check until `SPECKIT_ALLOW_REMOTE_PUSH` approves it, a missing mass-deletion library blocks update pushes until `SPECKIT_ALLOW_MASS_DELETION=1` and a missing route guard blocks until `SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1`. | `SPECKIT_ALLOW_MASS_DELETION=1`, `SPECKIT_ALLOW_REMOTE_PUSH=1` or `=<branch>` |
 
 ---
@@ -140,7 +140,7 @@ Autostash-guard flow:
                   ▼
 ╭──────────────────────────────────────────╮
 │ recovery instructions printed and logged  │
-│ to .opencode/logs/autostash-orphan-alerts │
+│ to .skilled/logs/autostash-orphan-alerts │
 ╰──────────────────────────────────────────╯
 ```
 
@@ -149,9 +149,9 @@ Autostash-guard flow:
 ## 6. ENTRYPOINTS
 
 ```bash
-bash .opencode/scripts/install-git-hooks.sh             # symlink all hooks in this folder into .git/hooks/
-bash .opencode/scripts/install-git-hooks.sh --uninstall  # remove symlinks this installer created
-bash .opencode/scripts/install-git-hooks.sh --status     # report where each hook resolves
+bash .skilled/scripts/install-git-hooks.sh             # symlink all hooks in this folder into .git/hooks/
+bash .skilled/scripts/install-git-hooks.sh --uninstall  # remove symlinks this installer created
+bash .skilled/scripts/install-git-hooks.sh --status     # report where each hook resolves
 ```
 
 Hooks are not invoked directly; git calls them by name during the matching lifecycle event once installed.
@@ -161,12 +161,12 @@ Hooks are not invoked directly; git calls them by name during the matching lifec
 ## 7. VALIDATION
 
 ```bash
-bash -n .opencode/scripts/git-hooks/pre-commit
-bash -n .opencode/scripts/git-hooks/post-commit
-bash -n .opencode/scripts/git-hooks/post-merge
-bash -n .opencode/scripts/git-hooks/post-rewrite
-bash -n .opencode/scripts/git-hooks/pre-push
-bash -n .opencode/scripts/git-hooks/prepare-commit-msg
+bash -n .skilled/scripts/git-hooks/pre-commit
+bash -n .skilled/scripts/git-hooks/post-commit
+bash -n .skilled/scripts/git-hooks/post-merge
+bash -n .skilled/scripts/git-hooks/post-rewrite
+bash -n .skilled/scripts/git-hooks/pre-push
+bash -n .skilled/scripts/git-hooks/prepare-commit-msg
 bash -n .opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh
 git commit --allow-empty -m "hook smoke"
 ```

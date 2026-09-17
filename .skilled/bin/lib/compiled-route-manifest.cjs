@@ -500,7 +500,7 @@ function shadowChildPolicyFor({ hubId, skillRoot }) {
   let realCanonicalRoot;
   try {
     realSkillRoot = fs.realpathSync(path.resolve(skillRoot));
-    realCanonicalRoot = fs.realpathSync(path.join(REPO_ROOT, '.opencode', 'skills', hubId));
+    realCanonicalRoot = fs.realpathSync(path.join(REPO_ROOT, '.skilled', 'skills', hubId));
   } catch {
     return undefined;
   }

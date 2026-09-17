@@ -144,7 +144,7 @@
             "call_template_type": "cli",
             "commands": [
                 {
-                    "command": "node .opencode/bin/magicpath-utcp-manual.cjs",
+                    "command": "node .skilled/bin/magicpath-utcp-manual.cjs",
                     "append_to_final_output": true
                 }
             ]

@@ -31,7 +31,7 @@
 #                 Refuses to run inside a linked worktree, honors the live-sync
 #                 kill switches, prints the live-sync status line, and exits 0.
 #
-# Kill switches (see .opencode/hooks/shared/hook-flags.sh):
+# Kill switches (see .skilled/hooks/shared/hook-flags.sh):
 #   SYSTEM_LIVE_SYNC_DISABLED   master off for the whole live-sync loop
 #   SYSTEM_LIVE_FOLLOW_DISABLED follower-only opt-out
 
@@ -155,9 +155,9 @@ if [ "$START" = "1" ]; then
   fi
   # Kill switches: absent means ON; a disabled loop must not announce or start.
   __hf_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-  if [ -n "$__hf_root" ] && [ -r "$__hf_root/.opencode/hooks/shared/hook-flags.sh" ]; then
+  if [ -n "$__hf_root" ] && [ -r "$__hf_root/.skilled/hooks/shared/hook-flags.sh" ]; then
     # shellcheck source=/dev/null
-    . "$__hf_root/.opencode/hooks/shared/hook-flags.sh"
+    . "$__hf_root/.skilled/hooks/shared/hook-flags.sh"
     hook_enabled live-sync || exit 0
     hook_enabled live-follow || exit 0
   fi
@@ -169,9 +169,9 @@ if [ "$START" = "1" ]; then
   # running follower (from an earlier session) still gets the notice once.
   echo "[live-sync] live-sync active (commits auto-publish, checkout auto-follows); disable with SYSTEM_LIVE_SYNC_DISABLED=1" >&2
   if ! lock_held; then
-    if [ -f "$__hf_root/.opencode/bin/git-live-follow.sh" ]; then
+    if [ -f "$__hf_root/.skilled/bin/git-live-follow.sh" ]; then
       mkdir -p "$LOCK_DIR" 2>/dev/null || true
-      LIVE_FOLLOW_MANAGED_LOG=1 nohup bash "$__hf_root/.opencode/bin/git-live-follow.sh" \
+      LIVE_FOLLOW_MANAGED_LOG=1 nohup bash "$__hf_root/.skilled/bin/git-live-follow.sh" \
         --live "$LIVE" --remote "$REMOTE" --interval "$INTERVAL" \
         >/dev/null 2>&1 &
       disown 2>/dev/null || true

@@ -24,7 +24,7 @@ import { createRequire } from 'node:module';
 
 import { findRepoRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
-// The audit core lives outside .opencode/plugins/ so this file can remain a thin,
+// The audit core lives outside .skilled/plugins/ so this file can remain a thin,
 // default-export-only OpenCode plugin while the Claude hook consumes the same logic.
 import * as dispatchAuditCore from '../hooks/dispatch/lib/dispatch-audit.mjs';
 // The same engine the Claude PreToolUse adapter runs, so a rule enforced there is enforced
@@ -54,7 +54,7 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 export default async function MkCliDispatchAuditPlugin(ctx) {
   // Anchor to the repository root: the plugin host can hand us a nested working
   // directory, and writing the audit log relative to it plants a stray
-  // .opencode tree wherever the dispatch happened to run.
+  // .skilled tree wherever the dispatch happened to run.
   const projectDir = findRepoRoot(ctx?.directory || process.cwd());
   const logPath = join(projectDir, dispatchAuditCore.DEFAULT_LOG_RELATIVE_PATH);
 
@@ -77,7 +77,7 @@ export default async function MkCliDispatchAuditPlugin(ctx) {
         const match = dispatchAuditCore.resolveDispatchPacket(command);
         if (!match) return; // not a dispatch shape → nothing this hook governs
 
-        const rules = readHardRules(join(projectDir, '.opencode', 'skills', match.packetPath, 'SKILL.md'));
+        const rules = readHardRules(join(projectDir, '.skilled', 'skills', match.packetPath, 'SKILL.md'));
         if (rules.length === 0) return; // nothing declared → nothing to enforce
 
         const violations = evaluate(command, rules).filter((v) => v.severity === 'block');

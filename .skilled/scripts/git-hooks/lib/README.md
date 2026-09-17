@@ -24,7 +24,7 @@ The helpers protect recoverable autostashes and report mass deletions without si
 
 | File | Purpose |
 |---|---|
-| [`autostash-orphan-guard.sh`](autostash-orphan-guard.sh) | Finds autostash entries, anchors each stash commit under `refs/autostash-rescue/`, prints recovery instructions and records an alert in `.opencode/logs/autostash-orphan-alerts.log`. |
+| [`autostash-orphan-guard.sh`](autostash-orphan-guard.sh) | Finds autostash entries, anchors each stash commit under `refs/autostash-rescue/`, prints recovery instructions and records an alert in `.skilled/logs/autostash-orphan-alerts.log`. |
 | [`mass-deletion-guard.sh`](mass-deletion-guard.sh) | Counts tracked-file deletions in a diff and returns a verdict when the count passes the configured ceiling. |
 
 ---
@@ -54,7 +54,7 @@ bash -n .opencode/scripts/git-hooks/lib/mass-deletion-guard.sh
 Run the mass-deletion harness from the repository root:
 
 ```bash
-bash .opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh
+bash .skilled/scripts/git-hooks/tests/mass-deletion-guard.test.sh
 ```
 
 Expected result: both syntax checks exit successfully and the harness reports that every mass-deletion scenario passed.

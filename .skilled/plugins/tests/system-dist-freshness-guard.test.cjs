@@ -15,7 +15,7 @@ const path = require('node:path');
 const test = require('node:test');
 const { pathToFileURL } = require('node:url');
 
-const GUARD_LOG_RELATIVE = path.join('.opencode', 'logs', 'dist-freshness-guard.log');
+const GUARD_LOG_RELATIVE = path.join('.skilled', 'logs', 'dist-freshness-guard.log');
 const DIST_FRESHNESS_PATH = path.join(
   __dirname,
   '..',
@@ -49,7 +49,7 @@ const CHECK_DIST_WRAPPER = path.join(
   'check-dist-staleness.sh',
 );
 const CHECKER_REL = path.join(
-  '.opencode', 'skills', 'system-spec-kit', 'runtime', 'cli', 'lib', 'dist-freshness.cjs',
+  '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'lib', 'dist-freshness.cjs',
 );
 const distFreshness = require(DIST_FRESHNESS_PATH);
 
@@ -70,7 +70,7 @@ function writeFileWithMtime(filePath, content, mtimeMs) {
 }
 
 function writeCodeModeFixture(dir, stale) {
-  const packageDir = path.join(dir, '.opencode', 'skills', 'mcp-code-mode', 'mcp-server');
+  const packageDir = path.join(dir, '.skilled', 'skills', 'mcp-code-mode', 'mcp-server');
   const sourceMtime = Date.now();
   const distMtime = stale ? sourceMtime - 10_000 : sourceMtime + 10_000;
 
@@ -286,7 +286,7 @@ test('keeps JSON build inputs watched and preserves checker mtime fallback', (t)
   writeAllPackageFixtures(tmpDir);
   const jsonPath = path.join(
     tmpDir,
-    '.opencode',
+    '.skilled',
     'skills',
     'system-skill-advisor',
     'runtime',
@@ -361,7 +361,7 @@ test('Claude hook rejects malformed envelopes without traceback', () => {
 
 test('Claude hook shares one deadline across sequential checkers', (t) => {
   const tmpDir = temporaryDirectory(t, 'dist-freshness-hook-budget-');
-  const scriptsDir = path.join(tmpDir, '.opencode', 'skills', 'sk-code', 'sk-code-quality', 'scripts');
+  const scriptsDir = path.join(tmpDir, '.skilled', 'skills', 'sk-code', 'sk-code-quality', 'scripts');
   const editedFile = path.join(tmpDir, 'edited.ts');
   const commentChecker = path.join(scriptsDir, 'check-comment-hygiene.sh');
   const distChecker = path.join(scriptsDir, 'check-dist-staleness.sh');
@@ -391,8 +391,8 @@ test('Claude hook shares one deadline across sequential checkers', (t) => {
 
 test('standalone wrapper resolves the shared checker from a non-repo-root cwd', (t) => {
   const tmpDir = temporaryDirectory(t, 'check-dist-staleness-fallback-');
-  // A cwd without .opencode forces the script-relative fallback. Before the
-  // parent-count fix it resolved to <repo>/.opencode and appended .opencode again,
+  // A cwd without .skilled forces the script-relative fallback. Before the
+  // parent-count fix it resolved to <repo>/.skilled and appended .skilled again,
   // yielding "checker not found"; the fix must reach the real workspace root.
   const result = spawnSync('python3', [CHECK_DIST_WRAPPER, DIST_FRESHNESS_PATH], {
     cwd: tmpDir,

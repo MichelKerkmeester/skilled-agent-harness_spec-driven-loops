@@ -181,7 +181,7 @@ const ADVISOR_SOURCE_PATHS = [
   fileURLToPath(new URL('../skills/system-skill-advisor/runtime/advisor-server.ts', import.meta.url)),
   fileURLToPath(new URL('../skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js', import.meta.url)),
 ];
-const SKILL_ROOT_RELATIVE_PATH = join('.opencode', 'skills');
+const SKILL_ROOT_RELATIVE_PATH = join('.skilled', 'skills');
 const ADVISOR_ROOT_RELATIVE_PATH = join(SKILL_ROOT_RELATIVE_PATH, 'system-skill-advisor', 'runtime');
 const ADVISOR_JSON_RELATIVE_PATH = join(ADVISOR_ROOT_RELATIVE_PATH, 'scripts', 'skill-graph.json');
 const ADVISOR_SCRIPT_RELATIVE_PATHS = [

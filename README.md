@@ -101,9 +101,9 @@ npm install
 
 # 3. Build the advisor runtime and check its CLI front door
 # The CLI spawns the resident daemon on demand; Code Mode boots from its launcher when a runtime needs it.
-npm --prefix .opencode/skills/system-skill-advisor/runtime install
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
-node .opencode/bin/skill-advisor.cjs list-tools --format json
+npm --prefix .skilled/skills/system-skill-advisor/runtime install
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
+node .skilled/bin/skill-advisor.cjs list-tools --format json
 ```
 
 ### Verify Installation
@@ -113,7 +113,7 @@ node .opencode/bin/skill-advisor.cjs list-tools --format json
 grep -l mcp-code-mode-launcher opencode.json .claude/mcp.json .cursor/mcp.json .pi/mcp.json 2>/dev/null
 
 # Confirm the advisor CLI enumerates all nine commands
-node .opencode/bin/skill-advisor.cjs list-tools --format json
+node .skilled/bin/skill-advisor.cjs list-tools --format json
 ```
 
 ### First Use
@@ -128,7 +128,7 @@ This creates a spec folder, runs research, builds a plan and begins implementati
 
 ### Adapting to Your Stack
 
-This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `system-deep-loop`, `cli-external-orchestration`, `mcp-tooling`) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
+This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `system-deep-loop`, `cli-external-orchestration`, `mcp-tooling`) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.skilled/skills/<your-skill>/` and they'll be picked up automatically.
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
 
@@ -153,7 +153,7 @@ Documentation depth scales with task complexity.
 
 The LOC ranges are guidance, not hard rules. Risk, complexity and the number of affected files can push a task to a higher level. When in doubt, choose the higher level.
 
-Only `spec.md`, `plan.md` and `tasks.md` are hard requirements at every level. `implementation-summary.md` is required too, but created **after** implementation completes rather than at spec folder creation time. `acceptance-criteria.md` is scaffolded at Level 2 and above and its absence fails validation for packets created after 2026-08-30; older packets stay advisory. Every other add-on is lazy at every level: present only when asked for, skipped silently otherwise. The machine contract is the `levels` section of `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json`; the `documents` section beside it is a descriptive index, and nothing enforces its `absenceBehavior` column.
+Only `spec.md`, `plan.md` and `tasks.md` are hard requirements at every level. `implementation-summary.md` is required too, but created **after** implementation completes rather than at spec folder creation time. `acceptance-criteria.md` is scaffolded at Level 2 and above and its absence fails validation for packets created after 2026-08-30; older packets stay advisory. Every other add-on is lazy at every level: present only when asked for, skipped silently otherwise. The machine contract is the `levels` section of `.skilled/skills/system-spec-kit/templates/spec-kit-docs.json`; the `documents` section beside it is a descriptive index, and nothing enforces its `absenceBehavior` column.
 
 &nbsp;
 #### Spec Folder Structure
@@ -172,12 +172,12 @@ specs/<track>/<###-feature-name>/
 └── scratch/                     # Temporary workspace files
 ```
 
-`resource-map.md` is a lazy add-on at any level. Render it by hand with the inline gate renderer (`bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh --level <N> --out-dir <packet> .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl`) when a packet wants a lean, central listing of the files, scripts and external resources it interacts with. Deep-research and deep-review loops write a different file of the same name: an evidence ledger extracted from their deltas into the loop's own `research/` or `review/` artifact directory, never into the packet root.
+`resource-map.md` is a lazy add-on at any level. Render it by hand with the inline gate renderer (`bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh --level <N> --out-dir <packet> .skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl`) when a packet wants a lean, central listing of the files, scripts and external resources it interacts with. Deep-research and deep-review loops write a different file of the same name: an evidence ledger extracted from their deltas into the loop's own `research/` or `review/` artifact directory, never into the packet root.
 
 &nbsp;
 #### Available Templates
 
-Sixteen templates ship under `.opencode/skills/system-spec-kit/templates/`. Which ones a packet gets depends on how each document is triggered, not on its level alone.
+Sixteen templates ship under `.skilled/skills/system-spec-kit/templates/`. Which ones a packet gets depends on how each document is triggered, not on its level alone.
 
 | Trigger | Templates | Where |
 | ------- | --------- | ----- |
@@ -237,7 +237,7 @@ Run with `--verbose` to see details behind each rule or `--recursive` to validat
 &nbsp;
 #### Scripts and Validation
 
-**Spec Management Scripts** (in `.opencode/skills/system-spec-kit/runtime/cli/spec/`):
+**Spec Management Scripts** (in `.skilled/skills/system-spec-kit/runtime/cli/spec/`):
 
 - **`create.sh`** - Create spec folders with level-appropriate templates. Use `--phase` for parent + child
 - **`validate.sh`** - Run 38 validation rules. Use `--recursive` for phase folders
@@ -247,13 +247,13 @@ Run with `--verbose` to see details behind each rule or `--recursive` to validat
 - **`check-completion.sh`** - Verify all completion criteria are met
 - **`check-placeholders.sh`** - Find remaining `[PLACEHOLDER]` values after level upgrade
 
-**Continuity Scripts** (in `.opencode/skills/system-spec-kit/runtime/cli/continuity/`):
+**Continuity Scripts** (in `.skilled/skills/system-spec-kit/runtime/cli/continuity/`):
 
 - **`generate-context.ts`** - Primary workflow for updating packet continuity and supporting generated context artifacts
 - **`backfill-frontmatter.ts`** - Add missing frontmatter to existing generated context artifacts and indexed spec docs
 - **`validate-memory-quality.ts`** - Run quality checks on continuity content before it is written
 
-TypeScript sources compile to `.opencode/skills/system-spec-kit/runtime/cli/dist/`. The runtime entry point for continuity saves is `.opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`.
+TypeScript sources compile to `.skilled/skills/system-spec-kit/runtime/cli/dist/`. The runtime entry point for continuity saves is `.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`.
 
 &nbsp;
 #### Gate System
@@ -304,15 +304,15 @@ TypeScript sources compile to `.opencode/skills/system-spec-kit/runtime/cli/dist
 - **VALUE** - Does this change behavior or just refactor?
 - **SCOPE** - Does solution complexity match problem size?
 
-For the full spec folder workflow, Level contract template architecture, gate definitions and anti-pattern detection rules, see the [→ Spec Kit README](.opencode/skills/system-spec-kit/README.md) and [→ AGENTS.md](AGENTS.md).
+For the full spec folder workflow, Level contract template architecture, gate definitions and anti-pattern detection rules, see the [→ Spec Kit README](.skilled/skills/system-spec-kit/README.md) and [→ AGENTS.md](AGENTS.md).
 
 ---
 
 ### 🧠 Continuity and Retrieval
 
-Continuity and retrieval are packet-local and file-based. `generate-context.js` updates canonical packet continuity and may emit supporting generated context artifacts inside the spec folder. Canonical continuity lives in the spec packet itself: use `/speckit:resume` as the recovery surface, then rebuild context in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs. Gate 1 matches a prompt against author-declared trigger phrases through the committed trigger index at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`, and free-text retrieval uses the ripgrep recipes in [retrieval-conventions.md](.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md). Both read committed files, so neither needs a running daemon. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+Continuity and retrieval are packet-local and file-based. `generate-context.js` updates canonical packet continuity and may emit supporting generated context artifacts inside the spec folder. Canonical continuity lives in the spec packet itself: use `/speckit:resume` as the recovery surface, then rebuild context in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs. Gate 1 matches a prompt against author-declared trigger phrases through the committed trigger index at `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, and free-text retrieval uses the ripgrep recipes in [retrieval-conventions.md](.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md). Both read committed files, so neither needs a running daemon. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
-`/speckit:save` refreshes packet metadata on every invocation through the continuity writer `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`. Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup. Copilot and Claude share the same compact-cache provenance path.
+`/speckit:save` refreshes packet metadata on every invocation through the continuity writer `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`. Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup. Copilot and Claude share the same compact-cache provenance path.
 
 What the retired continuity server used to do is now split three ways. `/speckit:search` runs the two lexical lanes. `/speckit:resume` walks the continuity ladder. `/doctor speckit-retrieval` checks that the index and the recipes are still healthy. Embeddings left with the shared model server for the skill advisor, reachable through `/doctor embeddings`.
 
@@ -320,7 +320,7 @@ What the retired continuity server used to do is now split three ways. `/speckit
 
 ### 🎯 Skill Advisor
 
-The Skill Advisor matches what you type to the right skill before any tool runs. It runs as a resident daemon behind one CLI front door, `node .opencode/bin/skill-advisor.cjs`, which speaks the advisor's own newline-delimited protocol over a unix socket. The CLI exposes nine commands: eight on the public surface (four `advisor_*` commands for routing, freshness, rebuild and validation, plus four `skill_graph_*` commands for scan, query, status and graph validation), plus the trusted-caller-only `skill_graph_propagate_enhances`. The advisor registers no MCP server, in `opencode.json` or any other runtime config. When the daemon is unreachable the CLI answers from the Python scorer at `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` and marks the response degraded, so the prompt-time brief reports `Advisor: stale` rather than claiming live.
+The Skill Advisor matches what you type to the right skill before any tool runs. It runs as a resident daemon behind one CLI front door, `node .skilled/bin/skill-advisor.cjs`, which speaks the advisor's own newline-delimited protocol over a unix socket. The CLI exposes nine commands: eight on the public surface (four `advisor_*` commands for routing, freshness, rebuild and validation, plus four `skill_graph_*` commands for scan, query, status and graph validation), plus the trusted-caller-only `skill_graph_propagate_enhances`. The advisor registers no MCP server, in `opencode.json` or any other runtime config. When the daemon is unreachable the CLI answers from the Python scorer at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` and marks the response degraded, so the prompt-time brief reports `Advisor: stale` rather than claiming live.
 
 #### How It Works
 
@@ -369,7 +369,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 #### Native Package Layout
 
 ```text
-.opencode/skills/system-skill-advisor/runtime/
+.skilled/skills/system-skill-advisor/runtime/
 ├── advisor-server.ts      resident daemon behind the CLI socket protocol
 ├── skill-advisor-cli.ts   the nine-command CLI implementation
 ├── bench/      benchmarks
@@ -397,8 +397,8 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 &nbsp;
 #### How Runtimes Talk To It
 
-- **Claude Code**: calls prompt-time hook adapters under `.opencode/skills/system-spec-kit/runtime/hooks/`.
-- **OpenCode**: uses `.opencode/plugins/system-skill-advisor.js`, which spawns `.opencode/bin/skill-advisor.cjs` and renders the returned brief through the shared renderer.
+- **Claude Code**: calls prompt-time hook adapters under `.skilled/skills/system-spec-kit/runtime/hooks/`.
+- **OpenCode**: uses `.skilled/plugins/system-skill-advisor.js`, which spawns `.skilled/bin/skill-advisor.cjs` and renders the returned brief through the shared renderer.
 - **Disable everywhere**: set `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` (or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` for the OpenCode plugin alone) to turn off prompt-time advisor surfaces; the legacy `SPECKIT_`-prefixed names still work.
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default.
 - **CLI front door**: `skill-advisor.cjs` exposes the same nine commands over the warm daemon for hooks, cron and shell diagnostics; the mutation commands (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) are gated behind `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`.
@@ -407,7 +407,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 &nbsp;
 #### Validation and Testing
 
-- `node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true}' --format json` returns measured corpus / holdout / parity / safety / latency slices plus prompt-safe outcome totals.
+- `node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true}' --format json` returns measured corpus / holdout / parity / safety / latency slices plus prompt-safe outcome totals.
 - Python compatibility regression harness: checked-in dataset and pass/fail totals are reported by `skill_advisor_regression.py`.
 - Native package: 121 advisor test files, 872 tests.
 - Manual testing playbook: 47 scenario files spanning the native command surface, runtime hooks, the OpenCode plugin, compatibility controls, auto-indexing, lifecycle routing, scorer fusion and operator-state edge cases.
@@ -418,7 +418,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 
 Callers can pass structured tool and resource hints, `skillId`, `name`, `triggers[]`, `category`, `dependsOn[]`, `enhances[]`, `siblings[]`, `prerequisiteFor[]`, `conflictsWith[]`, as affordance evidence. A normalizer strips URLs, emails, token-shaped fragments, control characters and instruction-shaped strings before the scorer sees anything. Free-form `description` text is ignored on purpose. Sanitized triggers feed the existing derived-hints lane at reduced weight. Normalized relations become temporary edges in the existing causal-graph lane reusing the standard relation multipliers (`depends_on`, `enhances`, `siblings`, `prerequisite_for`, `conflicts_with`). No new scoring lane, no new entity kind, no raw matched phrases in recommendation payloads, evidence labels stay as stable `affordance:<skillId>:<index>` identifiers.
 
-For details, see the [Skill Advisor README](.opencode/skills/system-skill-advisor/README.md).
+For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor/README.md).
 
 ---
 
@@ -538,13 +538,13 @@ Two co-equal lanes in the `system-deep-loop` improvement mode. Lane A reviews an
 - **Knows when to stop:** ends once the scores stop improving
 - **Benchmarks too (Lane B):** models and prompt frameworks against fixtures with pattern or 5-dimension scoring, deterministic or graded
 
-For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loop/runtime/README.md), or the [system-deep-loop README](.opencode/skills/system-deep-loop/README.md), which documents each mode.
+For details, see the [Deep Loop Runtime README](.skilled/skills/system-deep-loop/runtime/README.md), or the [system-deep-loop README](.skilled/skills/system-deep-loop/README.md), which documents each mode.
 
 ---
 
 ### 🎯 Skills Library
 
-13 advisor skill identities in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+13 advisor skill identities in `.skilled/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 #### SYSTEM
 
@@ -555,16 +555,16 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loo
 - Manages the manifest template source, 38 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
 **system-skill-advisor**
-- Gate 2 skill-routing subsystem at `.opencode/skills/system-skill-advisor/`
+- Gate 2 skill-routing subsystem at `.skilled/skills/system-skill-advisor/`
 - Owns prompt-time skill routing, the `skill_graph_*` commands, freshness and lifecycle checks, plus the shared embeddings stack
-- Front door: `node .opencode/bin/skill-advisor.cjs` over the resident daemon's socket protocol. No MCP registration, no client namespace
+- Front door: `node .skilled/bin/skill-advisor.cjs` over the resident daemon's socket protocol. No MCP registration, no client namespace
 
 &nbsp;
 #### CODE WORKFLOW
 
 **sk-code**
 - **Write code that fits the stack you're in.** Loads surface-aware patterns, checklists and verification recipes per surface, and detects the active stack from paths and library markers. Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
-- **Two ready surfaces:** WEBFLOW (Webflow and vanilla HTML/CSS/JS animation, CDN deploy, Lighthouse/TBT/INP targets) and OPENCODE (`.opencode/` system code across JS/TS/Python/Shell/JSON, MCP servers, agents, commands, skills)
+- **Two ready surfaces:** WEBFLOW (Webflow and vanilla HTML/CSS/JS animation, CDN deploy, Lighthouse/TBT/INP targets) and OPENCODE (`.skilled/` system code across JS/TS/Python/Shell/JSON, MCP servers, agents, commands, skills)
 - **Verifies before it claims done:** three mandatory phases run implementation, then testing and debugging, then verification
 - **Reviews before you ship (`code-review` mode).** A stack-agnostic findings-first review baseline that reuses the surface evidence above; the security, correctness, SOLID and threat-model checklists always run first and their minimums are never relaxed, and findings come ranked P0/P1/P2
 
@@ -587,7 +587,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 > **Self-invocation guard:** every skill refuses to call itself. A Claude Code session never dispatches `cli-claude-code`, an OpenCode session never dispatches `cli-opencode`, etc. Cross-AI delegation only, no cycles.
 
 **cli-external-orchestration**
-- **Parent hub for external CLI dispatch.** One advisor identity routing to [`cli-opencode`](.opencode/skills/cli-external-orchestration/cli-opencode/README.md) (OpenCode runtime dispatch), [`cli-claude-code`](.opencode/skills/cli-external-orchestration/cli-claude-code/README.md) (Claude Code CLI), [`cli-codex`](.opencode/skills/cli-external-orchestration/cli-codex/README.md) (OpenAI Codex CLI, availability-gated), [`cli-cursor`](.opencode/skills/cli-external-orchestration/cli-cursor/README.md) (Cursor CLI, availability-gated), [`cli-devin`](.opencode/skills/cli-external-orchestration/cli-devin/README.md) (Devin CLI, availability-gated), [`cli-pi`](.opencode/skills/cli-external-orchestration/cli-pi/README.md) (Pi CLI, availability-gated), and [`cli-hermes`](.opencode/skills/cli-external-orchestration/cli-hermes/README.md) (Hermes Agent CLI, availability-gated) through `mode-registry.json`
+- **Parent hub for external CLI dispatch.** One advisor identity routing to [`cli-opencode`](.skilled/skills/cli-external-orchestration/cli-opencode/README.md) (OpenCode runtime dispatch), [`cli-claude-code`](.skilled/skills/cli-external-orchestration/cli-claude-code/README.md) (Claude Code CLI), [`cli-codex`](.skilled/skills/cli-external-orchestration/cli-codex/README.md) (OpenAI Codex CLI, availability-gated), [`cli-cursor`](.skilled/skills/cli-external-orchestration/cli-cursor/README.md) (Cursor CLI, availability-gated), [`cli-devin`](.skilled/skills/cli-external-orchestration/cli-devin/README.md) (Devin CLI, availability-gated), [`cli-pi`](.skilled/skills/cli-external-orchestration/cli-pi/README.md) (Pi CLI, availability-gated), and [`cli-hermes`](.skilled/skills/cli-external-orchestration/cli-hermes/README.md) (Hermes Agent CLI, availability-gated) through `mode-registry.json`
 - **`cli-opencode`**: OpenCode CLI orchestrator. Use it when the dispatched task needs **the project's full plugin / skill / MCP runtime**, a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skills/` and every MCP server. Also handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`). Default model: `opencode-go/deepseek-v4-pro` at high reasoning. Configured providers span `opencode-go` (default gateway: DeepSeek + open models), `deepseek` (direct API), `minimax-coding-plan` / `minimax` (MiniMax-M3), `xiaomi` (MiMo-V2.5-Pro), `kimi-for-coding` (Kimi k2.7 Code), `zai-coding-plan` (GLM-5.2) and `openai` (`gpt-5.5` family): see the skill's provider pre-flight for the live list
 - **`cli-claude-code`**: Claude Code CLI orchestrator. Use it for **extended thinking (chain-of-thought), surgical diff-based edits and JSON-schema-validated structured output**. Ships with 9 built-in agents and session continuity. Three models: `claude-opus-4-6` (deep reasoning), `claude-sonnet-4-6` (default, balanced), `claude-haiku-4-5` (fast/cheap)
 - **`cli-codex`**: OpenAI Codex CLI orchestrator. Use it for **OpenAI-backed coding, repo analysis, PR review, web research and cross-model second opinions**, dispatched through `codex exec` (`gpt-5.5` family). **Availability-gated / fails closed:** every routing surface checks `command -v codex` before advertising or dispatching, and refuses the route when the binary is absent: an unavailable Codex is never offered as usable. Execution runs through the audited deep-loop runtime, and project hooks + agents mirror the Claude bridge under `.codex/`
@@ -635,7 +635,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 
 ### 🤖 Agent Network
 
-12 custom specialist agents. Defined in `.opencode/agents/` (source of truth) and mirrored for Claude Code (`.claude/agents/`). OpenCode uses the canonical `.opencode/agents/` definitions directly.
+12 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code (`.claude/agents/`). OpenCode uses the canonical `.opencode/agents/` definitions directly.
 
 #### AGENT ORCHESTRATION
 
@@ -693,7 +693,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 
 ### ⌨️ Commands
 
-32 command entry points across 8 command groups plus 3 root utilities. Each command is a Markdown entry point under `.opencode/commands/**/*.md` backed by a behavioral execution spec; command families keep their workflow routing (YAML execution specs) separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
+32 command entry points across 8 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md` backed by a behavioral execution spec; command families keep their workflow routing (YAML execution specs) separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
 
 &nbsp;
 #### SPEC KIT
@@ -765,7 +765,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 
 **Agent**
 - Scaffolds a new agent definition with proper frontmatter, behavioral rules and tool permissions
-- Creates source-of-truth file in `.opencode/agents/` and the Claude Code mirror
+- Creates source-of-truth file in `.skilled/agents/` and the Claude Code mirror
 - Modes: `:auto`, `:confirm`
 
 **Readme**
@@ -788,7 +788,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - Generates scenario files with test steps, expected results and verification evidence fields
 - Validates against established playbook format
 
-The package also ships a dedicated [stress-test/](.opencode/skills/system-spec-kit/runtime/stress-test/) suite for load, contention and capacity checks. It sits outside the default test run and uses its own `vitest.stress.config.ts` at the [runtime/](.opencode/skills/system-spec-kit/runtime/) package root, so an operator runs it on purpose rather than on every commit.
+The package also ships a dedicated [stress-test/](.skilled/skills/system-spec-kit/runtime/stress-test/) suite for load, contention and capacity checks. It sits outside the default test run and uses its own `vitest.stress.config.ts` at the [runtime/](.skilled/skills/system-spec-kit/runtime/) package root, so an operator runs it on purpose rather than on every commit.
 
 &nbsp;
 #### DEEP
@@ -818,7 +818,7 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 
 **`/doctor <target>` (router)**
 - Single entry point for 9 subsystems: `memory` (checks the trigger index, its lookup and the ripgrep recipes), `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `skill-graph-freshness`, `parent-skill`, `runtime-mirrors`, `fable-mode`
-- Argv-positional dispatch via `.opencode/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
+- Argv-positional dispatch via `.skilled/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
 - Each target loads its own self-contained YAML workflow under `assets/doctor_<target>.yaml`
 - Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
 - Examples: `/doctor speckit-retrieval --dry-run`, `/doctor embeddings`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
@@ -836,7 +836,7 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 - Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle schema migration (e.g. v3.3.0.0 → v3.4.1.0). Wall-clock 8-25 min
 
-The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode/invariants/upstream_assets/user_inputs/field_handling` block plus phased execution. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+The 12 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode/invariants/upstream_assets/user_inputs/field_handling` block plus phased execution. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY
@@ -861,9 +861,9 @@ The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self
 Gives a session a durable completion objective that survives across turns, instead of losing intent to context resets. The packet's `goal.md` is the goal. A session binds to a spec packet, and the runtime injects that file's durable slice, frontmatter stripped, with its completion criteria as their own `criteria:` list, one per line, on every turn where that runtime injects at all: OpenCode, Pi and Devin inject per turn, Cursor injects at session start. The agent resends the slice in chat whenever a decision or criterion changes, reminding you to set it, and never stops working while it waits.
 - **Claude Code and Codex:** use the built-in native `/goal <condition>`. The speckit workflows hand you the stripped slice of the parent `goal.md` to paste. Do not route through `opencode_goal` (that tool does not exist in those sessions)
 - **OpenCode:** `/goal-opencode bind <packet-path>` makes the packet goal the session goal. `resent` clears the reminder, `packet <path>` reads a packet, and `set <condition>` still sets a plain text goal. Show, pause, clear and complete run through the `opencode_goal` tools
-- **Pi, Cursor, Devin, Hermes:** the shared core under `.opencode/hooks/goal/` injects the same slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin injects without a management surface, and Hermes binds the packet named by `HERMES_SPEC_FOLDER` under its session id through the repo plugin. Cursor and Devin still record a turn on the bound record, so neither is read-only
+- **Pi, Cursor, Devin, Hermes:** the shared core under `.skilled/hooks/goal/` injects the same slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin injects without a management surface, and Hermes binds the packet named by `HERMES_SPEC_FOLDER` under its session id through the repo plugin. Cursor and Devin still record a turn on the bound record, so neither is read-only
 - **Guarded by the validator:** a phase parent or top-level packet goal warns past 3,000 characters and fails past 4,000, and a binding row naming a child goal that does not exist fails
-- **Autonomous continuation is default-off** and gated (caps, cooldown, kill-switch). See `.opencode/hooks/goal/README.md` for the model and `.opencode/hooks/goal/goal-plugin.md` for the OpenCode plugin contract
+- **Autonomous continuation is default-off** and gated (caps, cooldown, kill-switch). See `.skilled/hooks/goal/README.md` for the model and `.skilled/hooks/goal/goal-plugin.md` for the OpenCode plugin contract
 
 ---
 
@@ -873,7 +873,7 @@ Code Mode MCP gives the AI access to external tools (Figma, GitHub, Chrome DevTo
 
 #### Native MCP Servers
 
-Canonical native server set: `code_mode` is the only registered MCP server. The Skill Advisor is deliberately not one; it runs as a resident daemon behind `node .opencode/bin/skill-advisor.cjs` and registers nothing.
+Canonical native server set: `code_mode` is the only registered MCP server. The Skill Advisor is deliberately not one; it runs as a resident daemon behind `node .skilled/bin/skill-advisor.cjs` and registers nothing.
 
 | Server      | Tools | Purpose                                              |
 | ----------- | ----- | ---------------------------------------------------- |
@@ -913,7 +913,7 @@ Canonical native server set: `code_mode` is the only registered MCP server. The 
 
 To call a Code Mode tool: `call_tool_chain({ code: "const result = await figma.figma_get_file({fileKey: 'abc123'}); return result;" })`
 
-For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the skill at `.opencode/skills/mcp-code-mode/SKILL.md`.
+For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the skill at `.skilled/skills/mcp-code-mode/SKILL.md`.
 
 &nbsp;
 #### Git Worktree / Continuous Integration
@@ -944,7 +944,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `cli-external-orchestration` | ✅ Codebase-agnostic                        | Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes`. Stack-independent.                                                                                                                                                           |
 | `mcp-tooling`                                       | ✅ Codebase-agnostic                        | Parent hub for MCP tool bridges: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`), `mcp-obsidian` (Obsidian notes via notesmd-cli, the official obsidian CLI, and cyanheads obsidian-mcp-server), and `mcp-figma` (Figma Desktop transport via the silships `figma-ds-cli`, requires Figma Desktop open). Stack-independent.   |
 
-**Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
+**Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.skilled/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
 **What "adapting `sk-code`" looks like**:
 - Replace the surface packets (`sk-code-webflow/`, `sk-code-opencode/`, `sk-code-mobile-cli/`, `sk-code-obsidian/`) with packets for your stack. Each one owns its own `references/` and `assets/`.
@@ -968,7 +968,7 @@ The other shipped skills will continue working unchanged: `sk-doc` will still va
 &nbsp;
 ### Retrieval And Continuity Configuration
 
-Nothing to configure. The trigger index is a committed file regenerated by `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`, the ripgrep recipes read the working tree, and the continuity writer updates the packet in place. There is no database, no daemon and no embedding provider on this path. The skill advisor keeps its own model-server settings.
+Nothing to configure. The trigger index is a committed file regenerated by `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`, the ripgrep recipes read the working tree, and the continuity writer updates the packet in place. There is no database, no daemon and no embedding provider on this path. The skill advisor keeps its own model-server settings.
 
 &nbsp;
 ### MCP Config Shape
@@ -1009,7 +1009,7 @@ A: Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) wo
 &nbsp;
 **Q: How do I add a new skill to the framework?**
 
-A: Use `/create:sk-skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Then register the skill in `.opencode/skills/README.txt`.
+A: Use `/create:sk-skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Then register the skill in `.skilled/skills/README.txt`.
 &nbsp;
 **Q: What does "local-first" mean for continuity?**
 
@@ -1017,7 +1017,7 @@ A: Everything is a file in your own repository. Continuity lives in the spec fol
 &nbsp;
 **Q: How do I contribute a new agent definition?**
 
-A: Define the agent in `.opencode/agents/` (the source of truth), then mirror the adapter into `.claude/agents/`. Use `/create:agent` to scaffold the file from the agent template.
+A: Define the agent in `.skilled/agents/` (the source of truth), then mirror the adapter into `.claude/agents/`. Use `/create:agent` to scaffold the file from the agent template.
 &nbsp;
 **Q: How many MCP tools are there and where are they defined?**
 
@@ -1032,17 +1032,17 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 **Internal Documentation:**
 
 - **[→ AGENTS.md](AGENTS.md)** - Agent routing, gate definitions, behavior rules
-- **[→ Spec Kit README](.opencode/skills/system-spec-kit/README.md)** - Spec folder workflow, Level contract template set, validation rules
-- **[→ Spec-Kit Engine README](.opencode/skills/system-spec-kit/runtime/README.md)** - Validation, generated metadata and runtime hook adapters
-- **[→ Repo Scripts Runbook](.opencode/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
-- **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Daemon-backed CLI front door, nine advisor/skill-graph commands and routing docs
-- **[→ Architecture](.opencode/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
-- **[→ sk-doc Skill](.opencode/skills/sk-doc/SKILL.md)** - Documentation standards, DQI scoring
-- **[→ Skills Index](.opencode/skills/README.txt)** - Skills library and invocation patterns
-- **[→ Feature Catalog](.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md)** - Current technical reference
-- **[→ Manual Testing Playbook](.opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md)** - Operator validation scenarios, including runtime lifecycle checks
-- **[→ Latest System Spec-Kit Release Notes](.opencode/skills/system-spec-kit/changelog/v3.6.0.0.md)** - Most recent shipped release notes
-- **[→ Daemon CLI Reference](.opencode/skills/system-spec-kit/references/cli/daemon-cli-reference.md)** - Full-parity CLI front doors over the warm daemons
+- **[→ Spec Kit README](.skilled/skills/system-spec-kit/README.md)** - Spec folder workflow, Level contract template set, validation rules
+- **[→ Spec-Kit Engine README](.skilled/skills/system-spec-kit/runtime/README.md)** - Validation, generated metadata and runtime hook adapters
+- **[→ Repo Scripts Runbook](.skilled/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
+- **[→ Skill Advisor README](.skilled/skills/system-skill-advisor/README.md)** - Daemon-backed CLI front door, nine advisor/skill-graph commands and routing docs
+- **[→ Architecture](.skilled/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
+- **[→ sk-doc Skill](.skilled/skills/sk-doc/SKILL.md)** - Documentation standards, DQI scoring
+- **[→ Skills Index](.skilled/skills/README.txt)** - Skills library and invocation patterns
+- **[→ Feature Catalog](.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md)** - Current technical reference
+- **[→ Manual Testing Playbook](.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md)** - Operator validation scenarios, including runtime lifecycle checks
+- **[→ Latest System Spec-Kit Release Notes](.skilled/skills/system-spec-kit/changelog/v3.6.0.0.md)** - Most recent shipped release notes
+- **[→ Daemon CLI Reference](.skilled/skills/system-spec-kit/references/cli/daemon-cli-reference.md)** - Full-parity CLI front doors over the warm daemons
 
 **External Resources:**
 

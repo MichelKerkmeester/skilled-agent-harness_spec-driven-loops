@@ -20,7 +20,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The completion-state core lives outside .opencode/plugins/ so this file can
+// The completion-state core lives outside .skilled/plugins/ so this file can
 // remain a thin, default-export-only OpenCode plugin while a Claude/Bash CLI
 // shim consumes the identical core. A .cjs core is imported here as the ESM
 // default export, exactly like system-deep-loop-guard.js.

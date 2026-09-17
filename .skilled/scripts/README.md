@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.opencode/scripts/` owns repository-level scripts for local operators and automated workflows. The direct entrypoints cover session cleanup, orphan-process review, Git-hook installation, Skill Advisor distribution data and Node test discovery.
+`.skilled/scripts/` owns repository-level scripts for local operators and automated workflows. The direct entrypoints cover session cleanup, orphan-process review, Git-hook installation, Skill Advisor distribution data and Node test discovery.
 
 ---
 
@@ -46,18 +46,18 @@ trigger_phrases:
 Run shell syntax and plist checks from the repository root:
 
 ```bash
-bash -n .opencode/scripts/claude-session-cleanup.sh
-bash -n .opencode/scripts/copy-skill-advisor-dist-data.sh
-bash -n .opencode/scripts/install-git-hooks.sh
-bash -n .opencode/scripts/orphan-mcp-sweeper.sh
-bash -n .opencode/scripts/session-cleanup.sh
-plutil -lint .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist
+bash -n .skilled/scripts/claude-session-cleanup.sh
+bash -n .skilled/scripts/copy-skill-advisor-dist-data.sh
+bash -n .skilled/scripts/install-git-hooks.sh
+bash -n .skilled/scripts/orphan-mcp-sweeper.sh
+bash -n .skilled/scripts/session-cleanup.sh
+plutil -lint .skilled/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist
 ```
 
 Review the orphan sweeper without changing processes:
 
 ```bash
-bash .opencode/scripts/orphan-mcp-sweeper.sh --dry-run --verbose
+bash .skilled/scripts/orphan-mcp-sweeper.sh --dry-run --verbose
 ```
 
 ---

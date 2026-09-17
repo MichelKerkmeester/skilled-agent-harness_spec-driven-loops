@@ -27,7 +27,7 @@ const CODEX_HOOK_PATH = path.join(
   __dirname, '..', '..', 'hooks', 'post-edit-quality', 'codex', 'post-edit-quality.cjs',
 );
 const REPO_ROOT = path.join(__dirname, '..', '..', '..');
-const LOG_RELATIVE = ['.opencode', 'logs', 'post-edit-quality.log'];
+const LOG_RELATIVE = ['.skilled', 'logs', 'post-edit-quality.log'];
 
 const router = require(ROUTER_PATH);
 
@@ -360,7 +360,7 @@ test('runChecks: real check-comment-hygiene.sh flags a live ADR reference (repo-
   // Must live inside REPO_ROOT: resolveDispatch treats an outside-root path as
   // no-match by design, and the real checker install this test targets only
   // exists at repo-relative canonical paths.
-  const tmpFile = fs.mkdtempSync(path.join(REPO_ROOT, '.opencode', 'plugins', 'tests', '.tmp-real-checker-'));
+  const tmpFile = fs.mkdtempSync(path.join(REPO_ROOT, '.skilled', 'plugins', 'tests', '.tmp-real-checker-'));
   try {
     const editedFile = writeFile(path.join(tmpFile, 'edited.ts'), '// See ADR-042 for details\nexport const x = 1;\n');
     const entries = router.resolveDispatch(editedFile, REPO_ROOT);

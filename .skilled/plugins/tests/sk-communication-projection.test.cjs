@@ -33,7 +33,7 @@ if (!fs.existsSync(distPath)) {
   test.skip(
     'sk-communication-projection suite',
     {
-      skip: 'cli-communication-projection dist/index.js is not built — run npm ci && npm run build in .opencode/skills/sk-communication/cli-communication-projection',
+      skip: 'cli-communication-projection dist/index.js is not built — run npm ci && npm run build in .skilled/skills/sk-communication/cli-communication-projection',
     },
     () => {},
   );

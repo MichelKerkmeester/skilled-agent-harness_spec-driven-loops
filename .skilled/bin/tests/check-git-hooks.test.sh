@@ -13,7 +13,7 @@ unset GIT_DIR GIT_WORK_TREE GIT_COMMON_DIR GIT_INDEX_FILE GIT_OBJECT_DIRECTORY \
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
-CHECK="$REPO_ROOT/.opencode/bin/check-git-hooks.sh"
+CHECK="$REPO_ROOT/.skilled/bin/check-git-hooks.sh"
 
 PASS=0; FAIL=0
 export GIT_CONFIG_GLOBAL=/dev/null

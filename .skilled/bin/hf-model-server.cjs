@@ -72,7 +72,7 @@ function repoRoot() {
 }
 
 function systemSpecKitRoot() {
-  return path.join(repoRoot(), '.opencode', 'skills', 'system-spec-kit');
+  return path.join(repoRoot(), '.skilled', 'skills', 'system-spec-kit');
 }
 
 function defaultDbDir() {

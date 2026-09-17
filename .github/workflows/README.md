@@ -27,7 +27,7 @@ isolation-check.yml
 
 | Workflow | Responsibility |
 |---|---|
-| `agent-mirror-sync.yml` | Keeps the `.opencode` and `.claude` agent mirrors aligned. |
+| `agent-mirror-sync.yml` | Keeps the `.skilled` and `.claude` agent mirrors aligned. |
 | `changed-packet-validation.yml` | Validates the spec packets a pull request changed. |
 | `comment-hygiene.yml` | Rejects forbidden ephemeral-artifact pointers in code comments. |
 | `gate-inputs.yml` | Checks that every hook and workflow input resolves and that every path filter names both `.opencode/` and `.skilled/`. |

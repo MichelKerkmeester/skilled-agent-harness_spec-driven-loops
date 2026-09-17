@@ -8,7 +8,7 @@
 // spec tree carry their own suites with their own dependencies; running them here would fail
 // for reasons that say nothing about this repository's health.
 //
-// Run: node .opencode/scripts/run-node-tests.mjs [--list]
+// Run: node .skilled/scripts/run-node-tests.mjs [--list]
 
 import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -20,7 +20,7 @@ const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..
 // Live-code roots. The spec tree is excluded wholesale: everything under it that carries tests
 // is either vendored external code or an archived experiment, and both fail for environmental
 // reasons unrelated to the runtime being gated.
-const ROOTS = ['.opencode/skills', '.opencode/scripts', '.opencode/plugins', '.opencode/bin', '.opencode/hooks'];
+const ROOTS = ['.skilled/skills', '.skilled/scripts', '.skilled/plugins', '.skilled/bin', '.skilled/hooks'];
 const EXCLUDED_SEGMENTS = new Set(['node_modules', 'external', '.worktrees', 'z_archive', 'z_future']);
 const NODE_TEST_SUFFIXES = ['.test.mjs', '.test.cjs'];
 
@@ -107,11 +107,11 @@ if (all.length === 0) {
 
 let failed = false;
 
-if (nodeFiles.length > 0 && !fs.existsSync(path.join(REPO_ROOT, '.opencode', 'node_modules'))) {
+if (nodeFiles.length > 0 && !fs.existsSync(path.join(REPO_ROOT, '.skilled', 'node_modules'))) {
   // Without installed deps every plugin test fails at import with ERR_MODULE_NOT_FOUND;
   // that noise is environmental, not a regression. Report it skipped -- the same way the
   // vitest branch treats a missing runner -- instead of dumping false failures.
-  console.log(`node:test — ${nodeFiles.length} files SKIPPED (.opencode/node_modules absent; run "npm install" in .opencode)`);
+  console.log(`node:test — ${nodeFiles.length} files SKIPPED (.skilled/node_modules absent; run "npm install" in .skilled)`);
   failed = true;
 } else if (nodeFiles.length > 0) {
   // Pin the TAP reporter explicitly. Node's default reporter switched to `spec`
@@ -135,10 +135,10 @@ if (nodeFiles.length > 0 && !fs.existsSync(path.join(REPO_ROOT, '.opencode', 'no
 }
 
 if (vitestFiles.length > 0) {
-  const vitest = path.join(REPO_ROOT, '.opencode', 'node_modules', '.bin', 'vitest');
+  const vitest = path.join(REPO_ROOT, '.skilled', 'node_modules', '.bin', 'vitest');
   if (fs.existsSync(vitest)) {
-    const result = spawnSync(vitest, ['run', ...vitestFiles.map((f) => path.relative(path.join(REPO_ROOT, '.opencode'), f))], {
-      cwd: path.join(REPO_ROOT, '.opencode'),
+    const result = spawnSync(vitest, ['run', ...vitestFiles.map((f) => path.relative(path.join(REPO_ROOT, '.skilled'), f))], {
+      cwd: path.join(REPO_ROOT, '.skilled'),
       stdio: ['ignore', 'pipe', 'pipe'],
       encoding: 'utf8',
       timeout: 10 * 60 * 1000,

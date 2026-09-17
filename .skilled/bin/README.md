@@ -109,7 +109,7 @@ bin/
 |---|---|
 | Imports | Launchers require `./lib/model-server-supervision.cjs` and `./lib/launcher-ipc-bridge.cjs`. The model server requires only Node core plus `@huggingface/transformers` loaded at runtime. |
 | Exports | Launchers run as CLI processes. `hf-model-server.cjs` exports `createHfModelServer`, `loadHfModel`, `resolveListenTarget`, `assertLoopbackBindAllowed`, `assertSocketDirOwnership` and `probeSocketResident` for tests and direct callers. |
-| Ownership | This folder owns process bootstrap, lease arbitration and the embedding HTTP surface. MCP request handling, schemas and tools live in each server's own skill directory under `.opencode/skills/`. |
+| Ownership | This folder owns process bootstrap, lease arbitration and the embedding HTTP surface. MCP request handling, schemas and tools live in each server's own skill directory under `.skilled/skills/`. |
 
 Main flow:
 
@@ -150,21 +150,21 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `node .opencode/bin/system-skill-advisor-launcher.cjs` | CLI | Start the system-skill-advisor daemon. |
-| `node .opencode/bin/skill-advisor.cjs <tool> [flags]` | CLI | Call any of the 9 system-skill-advisor tools from a shell. pass `--trusted` for maintainer mutations. |
-| `node .opencode/bin/hf-model-server.cjs` | CLI | Start the local embedding server (via `main`). |
+| `node .skilled/bin/system-skill-advisor-launcher.cjs` | CLI | Start the system-skill-advisor daemon. |
+| `node .skilled/bin/skill-advisor.cjs <tool> [flags]` | CLI | Call any of the 9 system-skill-advisor tools from a shell. pass `--trusted` for maintainer mutations. |
+| `node .skilled/bin/hf-model-server.cjs` | CLI | Start the local embedding server (via `main`). |
 | `createHfModelServer` | Function | Build an embedding server instance with `listen`, `close`, `dispose` and `inject` for tests. |
 | `assertLoopbackBindAllowed` | Function | Refuse non-loopback binds unless remote bind plus auth token are set. |
-| `bash .opencode/bin/worktree-session.sh <runtime> [args]` | CLI | Launch an AI session in its own git worktree + branch + isolated MCP databases. Top-level sessions isolate. orchestrated children (`AI_SESSION_CHILD=1` or already inside a linked worktree) exec in place. `--dry-run` prints the plan. |
-| `bash .opencode/bin/worktree-reaper.sh [--dry-run]` | CLI | Prune merged + clean per-session worktrees, stale socket dirs and session markers. never signals a process. Auto-reap is restricted to proven-inactive exact `work/<runtime>/<slug>` pairs (the whole marker file must match a PID grammar, a malformed marker is treated as ambiguous and the worktree is kept. the branch's runtime/slug must equal the directory basename). |
-| `bash .opencode/bin/worktree-guard.sh` | CLI / SessionStart hook | Detect-and-warn: prints a one-line stderr warning when a top-level session is on shared `main`/`master` instead of an isolated worktree. Non-fatal (always exits 0). silent for children, inside worktrees, non-git dirs, or with `SPECKIT_WORKTREE_GUARD=off`. |
-| `node .opencode/bin/compiled-route.cjs --hub <id> --prompt "<task>"` | CLI | Ask whether the compiled router is authoritative for a hub. Returns a legacy sentinel when it is not. |
-| `node .opencode/bin/compiled-route-status.cjs --all` | CLI | Report per-hub serving authority and a cause code separating expected drift from breakage. |
-| `node .opencode/bin/compiled-route-guard.cjs [--warn-only] [--json]` | CLI | Fail when a hub's serving manifest no longer matches its inputs, or when the runtime and its authored source disagree. |
-| `node .opencode/bin/compiled-route-sync.cjs [--check] [--verify] [--finalize <path>] [--revert <path>]` | CLI | Trace the authored closure, publish it atomically, and finalize or revert the retained rollback. |
-| `node .opencode/bin/compiled-route-manifest.cjs <command>` | CLI | Mint, refresh or inspect a hub activation manifest through the library in `lib/`. |
-| `node .opencode/bin/check-no-spec-imports.cjs` | CLI | Prove no file here reaches into the spec tree at runtime. |
-| `node .opencode/bin/install-codex-hooks.mjs` | CLI | Merge the repo's versioned Codex hook set (lifecycle + tool-level guards) into user-global `~/.codex/hooks.json`. Backs up to `.bak-<ts>` first, preserves Superset/user entries, substitutes the repo path, and is idempotent (re-runs add nothing). |
+| `bash .skilled/bin/worktree-session.sh <runtime> [args]` | CLI | Launch an AI session in its own git worktree + branch + isolated MCP databases. Top-level sessions isolate. orchestrated children (`AI_SESSION_CHILD=1` or already inside a linked worktree) exec in place. `--dry-run` prints the plan. |
+| `bash .skilled/bin/worktree-reaper.sh [--dry-run]` | CLI | Prune merged + clean per-session worktrees, stale socket dirs and session markers. never signals a process. Auto-reap is restricted to proven-inactive exact `work/<runtime>/<slug>` pairs (the whole marker file must match a PID grammar, a malformed marker is treated as ambiguous and the worktree is kept. the branch's runtime/slug must equal the directory basename). |
+| `bash .skilled/bin/worktree-guard.sh` | CLI / SessionStart hook | Detect-and-warn: prints a one-line stderr warning when a top-level session is on shared `main`/`master` instead of an isolated worktree. Non-fatal (always exits 0). silent for children, inside worktrees, non-git dirs, or with `SPECKIT_WORKTREE_GUARD=off`. |
+| `node .skilled/bin/compiled-route.cjs --hub <id> --prompt "<task>"` | CLI | Ask whether the compiled router is authoritative for a hub. Returns a legacy sentinel when it is not. |
+| `node .skilled/bin/compiled-route-status.cjs --all` | CLI | Report per-hub serving authority and a cause code separating expected drift from breakage. |
+| `node .skilled/bin/compiled-route-guard.cjs [--warn-only] [--json]` | CLI | Fail when a hub's serving manifest no longer matches its inputs, or when the runtime and its authored source disagree. |
+| `node .skilled/bin/compiled-route-sync.cjs [--check] [--verify] [--finalize <path>] [--revert <path>]` | CLI | Trace the authored closure, publish it atomically, and finalize or revert the retained rollback. |
+| `node .skilled/bin/compiled-route-manifest.cjs <command>` | CLI | Mint, refresh or inspect a hub activation manifest through the library in `lib/`. |
+| `node .skilled/bin/check-no-spec-imports.cjs` | CLI | Prove no file here reaches into the spec tree at runtime. |
+| `node .skilled/bin/install-codex-hooks.mjs` | CLI | Merge the repo's versioned Codex hook set (lifecycle + tool-level guards) into user-global `~/.codex/hooks.json`. Backs up to `.bak-<ts>` first, preserves Superset/user entries, substitutes the repo path, and is idempotent (re-runs add nothing). |
 
 ### Daemon-backed CLI shims
 
@@ -176,7 +176,7 @@ The CLI shim is the advisor's single front door: it registers no MCP server, and
 
 **Dist freshness.** Each shim calls the shared `checkPackageFreshness()` (`system-spec-kit/runtime/cli/lib/dist-freshness.cjs`) to compare its package's watched source files against the built dist entrypoint, exiting `69` with a rebuild instruction when stale. Dev overrides: `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
 
-The same shared module tracks 6 dist-producing packages total (`system-spec-kit/{shared,runtime,runtime/cli}`, `system-skill-advisor/runtime`, `mcp-code-mode/mcp-server`, and `sk-design-md-generator/backend`) and backs three other consumers: `validate.sh`'s `run_node_orchestrator()` fails closed (exit `3`, no auto-rebuild) when the compiled spec-validation orchestrator it depends on is stale. the `sk-code` `claude-posttooluse.sh` PostToolUse hook prints a non-blocking `STALE DIST WARNING` banner when an edit lands in a watched source tree. and the `system-dist-freshness-guard` OpenCode plugin (`.opencode/plugins/`) surfaces stale packages to the agent via bounded system-context injection (`experimental.chat.system.transform`) plus an append-only `.opencode/logs/dist-freshness-guard.log`, never stdout/stderr, which the TUI would paint over the chat input, refreshed before a Bash call matching `opencode run`/`validate.sh` and once per session on `session.created`. Root cause and full design: `system-speckit/028-memory-search-intelligence/002-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement` spec folder.
+The same shared module tracks 6 dist-producing packages total (`system-spec-kit/{shared,runtime,runtime/cli}`, `system-skill-advisor/runtime`, `mcp-code-mode/mcp-server`, and `sk-design-md-generator/backend`) and backs three other consumers: `validate.sh`'s `run_node_orchestrator()` fails closed (exit `3`, no auto-rebuild) when the compiled spec-validation orchestrator it depends on is stale. the `sk-code` `claude-posttooluse.sh` PostToolUse hook prints a non-blocking `STALE DIST WARNING` banner when an edit lands in a watched source tree. and the `system-dist-freshness-guard` OpenCode plugin (`.skilled/plugins/`) surfaces stale packages to the agent via bounded system-context injection (`experimental.chat.system.transform`) plus an append-only `.skilled/logs/dist-freshness-guard.log`, never stdout/stderr, which the TUI would paint over the chat input, refreshed before a Bash call matching `opencode run`/`validate.sh` and once per session on `session.created`. Root cause and full design: `system-speckit/028-memory-search-intelligence/002-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement` spec folder.
 
 **Trust (skill-advisor only).** `advisor_rebuild`, `skill_graph_scan` and apply-mode `skill_graph_propagate_enhances` require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. everything else is sent untrusted by default. The daemon-side gate fails closed when transport `_meta` is absent, see the skill-advisor server docs.
 
@@ -190,7 +190,7 @@ Full env-var detail lives in the spec-kit runtime's [`ENV-REFERENCE.md`](../skil
 
 **Spec-gate enforce neutralization.** Every `exec_in_place` path (both child signals above) also exports `SYSTEM_SPEC_GATE_ENFORCE=0` before handing off to the runtime, so a child cannot inherit an enforced spec-mutation gate from its parent shell. This is belt-and-suspenders: the spec-gate core independently treats `AI_SESSION_CHILD=1` as a complete no-op in both classify and enforce, so a leaked enforce env is harmless even without this wrapper. See the [spec-gate core reference](../skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md) for the shared contract.
 
-To make a runtime isolate by default, alias its launch through the wrapper, e.g. `alias claude='bash /abs/path/.opencode/bin/worktree-session.sh claude'`. See [`sk-git`](../skills/sk-git/SKILL.md) §3 for how this relates to the in-session worktree ask-first rule.
+To make a runtime isolate by default, alias its launch through the wrapper, e.g. `alias claude='bash /abs/path/.skilled/bin/worktree-session.sh claude'`. See [`sk-git`](../skills/sk-git/SKILL.md) §3 for how this relates to the in-session worktree ask-first rule.
 
 **Backstop warning.** For sessions that still start directly (no alias), add `worktree-guard.sh` as a SessionStart hook step so the operator is warned when a top-level session lands on shared `main`. It is detect-and-warn only, it never relocates or blocks the session.
 
@@ -201,25 +201,25 @@ To make a runtime isolate by default, alias its launch through the wrapper, e.g.
 Run from the repository root.
 
 ```bash
-node -e "require('./.opencode/bin/hf-model-server.cjs')"
-node -e "require('./.opencode/bin/lib/model-server-supervision.cjs')"
-node .opencode/bin/skill-advisor.cjs list-tools --format text | head -3
-node .opencode/bin/cli-offline-smoke.cjs --format text          # daemon-free: list-tools counts, cwd-independent
-node .opencode/bin/cli-exit-taxonomy-smoke.cjs --format text    # daemon-free: CLI failure contract (exit 64/69/75)
-bash -n .opencode/bin/worktree-session.sh
+node -e "require('./.skilled/bin/hf-model-server.cjs')"
+node -e "require('./.skilled/bin/lib/model-server-supervision.cjs')"
+node .skilled/bin/skill-advisor.cjs list-tools --format text | head -3
+node .skilled/bin/cli-offline-smoke.cjs --format text          # daemon-free: list-tools counts, cwd-independent
+node .skilled/bin/cli-exit-taxonomy-smoke.cjs --format text    # daemon-free: CLI failure contract (exit 64/69/75)
+bash -n .skilled/bin/worktree-session.sh
 
 # Compiled routing
-node .opencode/bin/compiled-route-guard.cjs                     # every hub fresh, runtime matches source
-node .opencode/bin/compiled-route-status.cjs --all              # per-hub serving authority and cause code
-node .opencode/bin/compiled-route-sync.cjs --check              # authored closure resolves every hub
-node .opencode/bin/compiled-route-sync.cjs --verify             # promoted closure resolves with no spec reads
-node .opencode/bin/check-no-spec-imports.cjs                    # nothing here imports from the spec tree
-node .opencode/bin/tests/compiled-route-manifest.test.cjs       # publication lifecycle suite
+node .skilled/bin/compiled-route-guard.cjs                     # every hub fresh, runtime matches source
+node .skilled/bin/compiled-route-status.cjs --all              # per-hub serving authority and cause code
+node .skilled/bin/compiled-route-sync.cjs --check              # authored closure resolves every hub
+node .skilled/bin/compiled-route-sync.cjs --verify             # promoted closure resolves with no spec reads
+node .skilled/bin/check-no-spec-imports.cjs                    # nothing here imports from the spec tree
+node .skilled/bin/tests/compiled-route-manifest.test.cjs       # publication lifecycle suite
 
-# Vitest suites for this folder, run from .opencode
+# Vitest suites for this folder, run from .skilled
 npx vitest run --config vitest.config.bin.ts
-bash -n .opencode/bin/worktree-reaper.sh
-AI_SESSION_CHILD=1 bash .opencode/bin/worktree-session.sh --dry-run claude   # must report exec-in-place, no worktree
+bash -n .skilled/bin/worktree-reaper.sh
+AI_SESSION_CHILD=1 bash .skilled/bin/worktree-session.sh --dry-run claude   # must report exec-in-place, no worktree
 ```
 
 Expected result: each `.cjs` module loads without throwing. each CLI shim lists tool names offline and exits 0. both daemon-free smokes pass (offline tool counts + the failure-contract exit taxonomy). both shell scripts pass `bash -n`. the child dry-run reports it would exec in place without creating a worktree.
