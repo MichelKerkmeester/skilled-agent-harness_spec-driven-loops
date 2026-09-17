@@ -11,11 +11,14 @@
 # Rules:
 #   gate-files       every hook, hook library, the legacy helper and the SessionStart
 #                    check exists under .opencode/ or .skilled/
-#   hook-inputs      every literal $REPO_ROOT/.opencode/<path> in those files resolves
-#   workflow-inputs  every literal .opencode/<path> a workflow runs resolves, and a
-#                    glob matches something
+#   hook-inputs      every literal $REPO_ROOT/.opencode/<path> in those files, and every
+#                    variable assigned a literal .opencode/<path>, resolves
+#   workflow-inputs  every literal .opencode/<path> a workflow runs resolves, a glob
+#                    matches something, and the directory that installs or builds a
+#                    node_modules or dist path exists; echo and printf text runs nothing
 #   filter-twins     every workflow path filter, dependabot directory, hook pathspec
-#                    and regex that names one root also names the other
+#                    and regex that names one root also names the other, within the
+#                    same filter, update entry, array or command
 #   parser-miss      a file that names a root outside comments yields at least one
 #                    input, so a parser that stops matching cannot report a pass
 #
@@ -43,14 +46,23 @@ fail() { # fail <rule> <location> <detail>
   FAILS=$((FAILS + 1))
 }
 
-swap_root() { # swap_root <token>: the same path under the other source root
-  case "$1" in
-    .opencode/*) printf '.skilled/%s' "${1#.opencode/}" ;;
-    .skilled/*) printf '.opencode/%s' "${1#.skilled/}" ;;
-    /.opencode/*) printf '/.skilled/%s' "${1#/.opencode/}" ;;
-    /.skilled/*) printf '/.opencode/%s' "${1#/.skilled/}" ;;
-  esac
+# Twin matching shared by the hook, workflow and dependabot parsers. A parser records
+# each root-naming entry with the group it belongs to, and the twin must sit in that
+# group: matched anywhere in the file, a comment, a message or another event's filter
+# could stand in for a twin the rule itself lacks.
+TWIN_AWK='
+function record(tok, grp) { nrec++; rline[nrec] = FNR; rtok[nrec] = tok; rgrp[nrec] = grp; have[grp, tok] = 1 }
+function twin(tok) {
+  if (tok ~ /^\/?\.opencode\//) sub(/\.opencode\//, ".skilled/", tok)
+  else sub(/\.skilled\//, ".opencode/", tok)
+  return tok
 }
+END {
+  for (i = 1; i <= nrec; i++) {
+    tw = twin(rtok[i])
+    print rline[i] "\t" (((rgrp[i], tw) in have) ? "twin-ok" : "twin-one") "\t" rtok[i] "\t" tw
+  }
+}'
 
 root_mentions() { # root_mentions <file>: non-comment lines that name a source root
   grep -nE '\.(opencode|skilled)' "$1" 2>/dev/null | grep -cvE '^[0-9]+:[[:space:]]*#'
@@ -85,41 +97,48 @@ check_regex() { # check_regex <relpath>; prints the number of regex items found
   REGEX_ITEMS=$count
 }
 
-# Script paths a hook builds from a variable, and pathspecs it hands to git.
+# Script paths a hook builds from a variable or assigns as a literal, and pathspecs it
+# hands to git, grouped by the array or the command that holds them. A command runs on
+# over backslash continuation lines.
 HOOK_AWK='
 function emit(kind, tok) { print FNR "\t" kind "\t" tok }
-function roots(text, kind,    tok, c) {
+function roots(text, grp,    tok, c) {
   while (match(text, /(^|[^A-Za-z0-9_}\/$.])\.(opencode|skilled)\/[A-Za-z0-9._*\/$-]*/)) {
     tok = substr(text, RSTART, RLENGTH); c = substr(tok, 1, 1)
     if (c != ".") tok = substr(tok, 2)
-    emit(kind, tok); text = substr(text, RSTART + RLENGTH)
+    record(tok, grp); text = substr(text, RSTART + RLENGTH)
   }
 }
 {
   raw = $0
   if (raw ~ /^[[:space:]]*#/) next
+  if (!cont) cmd = FNR
+  cont = (raw ~ /\\$/)
   line = raw
   while (match(line, /\$[{]?[A-Za-z_][A-Za-z0-9_]*[}]?\/\.opencode\/[A-Za-z0-9._\/-]*/)) {
     tok = substr(line, RSTART, RLENGTH); line = substr(line, RSTART + RLENGTH)
     var = tok; sub(/\/\.opencode\/.*/, "", var); path = tok; sub(/^[^\/]*\//, "", path)
     emit((var ~ /REPO_ROOT/ ? "repo" : "var"), path)
   }
+  if (raw ~ /^[[:space:]]*((local|export|readonly)[[:space:]]+)?[A-Za-z_][A-Za-z0-9_]*="?\.opencode\/[A-Za-z0-9._\/-]+"?([[:space:]]+#.*)?[[:space:]]*$/) {
+    path = raw; sub(/^[^=]*="?/, "", path); sub(/"?([[:space:]]+#.*)?[[:space:]]*$/, "", path); emit("repo", path)
+  }
   if (inarr) {
     if (raw ~ /^[[:space:]]*\)/) { inarr = 0; next }
-    roots(raw, "spec"); next
+    roots(raw, arr); next
   }
-  if (raw ~ /^[[:space:]]*[A-Za-z_][A-Za-z0-9_]*=\([[:space:]]*$/) { inarr = 1; next }
+  if (raw ~ /^[[:space:]]*[A-Za-z_][A-Za-z0-9_]*=\([[:space:]]*$/) { inarr = 1; arr = FNR; next }
   if (raw ~ /^[[:space:]]*(echo|printf)[[:space:]]/) next
   line = raw
   while (match(line, /\047\.(opencode|skilled)\/[^\047]*\047/)) {
-    emit("spec", substr(line, RSTART + 1, RLENGTH - 2)); line = substr(line, RSTART + RLENGTH)
+    record(substr(line, RSTART + 1, RLENGTH - 2), cmd); line = substr(line, RSTART + RLENGTH)
   }
-  if (raw ~ /git / && raw ~ / -- /) { rest = raw; sub(/.* -- /, "", rest); gsub(/\047[^\047]*\047/, "", rest); roots(rest, "spec") }
+  if (raw ~ /git / && raw ~ / -- /) { rest = raw; sub(/.* -- /, "", rest); gsub(/\047[^\047]*\047/, "", rest); roots(rest, cmd) }
 }'
 
 scan_hook() { # scan_hook <relpath>
   local rel="$1" ln kind tok items=0 twin mentions
-  while IFS=$'\t' read -r ln kind tok; do
+  while IFS=$'\t' read -r ln kind tok twin; do
     [[ -n "$ln" ]] || continue
     items=$((items + 1))
     case "$kind" in
@@ -127,12 +146,10 @@ scan_hook() { # scan_hook <relpath>
         if [[ -e "$ROOT/$tok" ]]; then RESOLVED=$((RESOLVED + 1))
         else fail hook-inputs "$rel:$ln" "\$REPO_ROOT/$tok resolves nowhere"; fi ;;
       var) DYNAMIC=$((DYNAMIC + 1)) ;;
-      spec)
-        twin="$(swap_root "$tok")"
-        if grep -qF -- "$twin" "$ROOT/$rel"; then TWINS=$((TWINS + 1))
-        else fail filter-twins "$rel:$ln" "pathspec $tok has no twin $twin"; fi ;;
+      twin-ok) TWINS=$((TWINS + 1)) ;;
+      twin-one) fail filter-twins "$rel:$ln" "pathspec $tok has no twin $twin" ;;
     esac
-  done < <(awk "$HOOK_AWK" "$ROOT/$rel")
+  done < <(awk "$TWIN_AWK$HOOK_AWK" "$ROOT/$rel")
   check_regex "$rel"; items=$((items + REGEX_ITEMS))
   mentions="$(root_mentions "$ROOT/$rel")"
   if [[ "$mentions" -gt 0 && "$items" -eq 0 ]]; then
@@ -143,7 +160,8 @@ scan_hook() { # scan_hook <relpath>
 # Workflow tokens: path filters, executable paths, and bare root mentions such as
 # `npm --prefix .opencode`, which carry no path to resolve. A path filter may list its
 # entries below the key at any indent or inline on one line, and any other shape fails
-# closed, because a filter the parser cannot read would otherwise pass unchecked.
+# closed, because a filter the parser cannot read would otherwise pass unchecked. A
+# filter's entries form its group, and echo or printf text is a message, not an input.
 WORKFLOW_AWK='
 function emit(kind, tok) { print FNR "\t" kind "\t" tok }
 {
@@ -153,19 +171,19 @@ function emit(kind, tok) { print FNR "\t" kind "\t" tok }
   if (inpaths) {
     if (raw ~ /^[ ]*-[ ]/ && ind >= pind) {
       val = raw; sub(/^[ ]*-[ ]*/, "", val); gsub(/[\047"]/, "", val); sub(/[ ]+#.*$/, "", val)
-      if (val ~ /^\.(opencode|skilled)\//) emit("filter", val)
+      if (val ~ /^\.(opencode|skilled)\//) record(val, pgrp)
       next
     }
     inpaths = 0
   }
-  if (raw ~ /^[ ]*(paths|paths-ignore):[ ]*$/) { inpaths = 1; pind = ind; next }
+  if (raw ~ /^[ ]*(paths|paths-ignore):[ ]*$/) { inpaths = 1; pind = ind; pgrp = FNR; next }
   if (raw ~ /^[ ]*(paths|paths-ignore):/) {
     val = raw; sub(/^[ ]*(paths|paths-ignore):[ ]*/, "", val); sub(/[ ]+#.*$/, "", val)
     if (val ~ /^\[.*\]$/) {
       gsub(/^\[|\]$/, "", val); n = split(val, items, ",")
       for (i = 1; i <= n; i++) {
         item = items[i]; gsub(/[\047" ]/, "", item)
-        if (item ~ /^\.(opencode|skilled)\//) emit("filter", item)
+        if (item ~ /^\.(opencode|skilled)\//) record(item, FNR)
       }
     } else {
       emit("shape", val)
@@ -173,6 +191,7 @@ function emit(kind, tok) { print FNR "\t" kind "\t" tok }
     next
   }
   if (raw ~ /^[ ]*-?[ ]*name:/) next
+  if (raw ~ /^[ ]*(-[ ]+)?(run:[ ]+)?(echo|printf)[ ]/) next
   line = raw
   while (match(line, /(^|[^A-Za-z0-9_])\.opencode\/[A-Za-z0-9._*\/-]*/)) {
     tok = substr(line, RSTART, RLENGTH); if (substr(tok, 1, 1) != ".") tok = substr(tok, 2)
@@ -185,19 +204,22 @@ function emit(kind, tok) { print FNR "\t" kind "\t" tok }
 }'
 
 scan_workflow() { # scan_workflow <relpath>
-  local rel="$1" ln kind tok items=0 twin mentions
-  while IFS=$'\t' read -r ln kind tok; do
+  local rel="$1" ln kind tok items=0 twin owner mentions
+  while IFS=$'\t' read -r ln kind tok twin; do
     [[ -n "$ln" ]] || continue
     items=$((items + 1))
     case "$kind" in
-      filter)
-        twin="$(swap_root "$tok")"
-        if grep -qF -- "$twin" "$ROOT/$rel"; then TWINS=$((TWINS + 1))
-        else fail filter-twins "$rel:$ln" "path filter $tok has no twin $twin"; fi ;;
+      twin-ok) TWINS=$((TWINS + 1)) ;;
+      twin-one) fail filter-twins "$rel:$ln" "path filter $tok has no twin $twin" ;;
       run)
         tok="${tok%.}"
         case "$tok" in
-          *node_modules*|*/dist/*|*/dist) DYNAMIC=$((DYNAMIC + 1)) ;;
+          *node_modules*|*/dist/*|*/dist)
+            # A checkout holds no installed or built output, so only the directory that
+            # installs or builds this path can be checked, and it must exist.
+            owner="${tok%%/node_modules*}"; owner="${owner%%/dist/*}"; owner="${owner%/dist}"
+            if [[ -d "$ROOT/$owner" ]]; then DYNAMIC=$((DYNAMIC + 1))
+            else fail workflow-inputs "$rel:$ln" "$tok is generated under $owner, which resolves nowhere"; fi ;;
           *\**)
             if compgen -G "$ROOT/$tok" >/dev/null; then RESOLVED=$((RESOLVED + 1))
             else fail workflow-inputs "$rel:$ln" "$tok matches nothing"; fi ;;
@@ -208,7 +230,7 @@ scan_workflow() { # scan_workflow <relpath>
       bare) DYNAMIC=$((DYNAMIC + 1)) ;;
       shape) fail parser-miss "$rel:$ln" "path filter shape not recognized: $tok" ;;
     esac
-  done < <(awk "$WORKFLOW_AWK" "$ROOT/$rel")
+  done < <(awk "$TWIN_AWK$WORKFLOW_AWK" "$ROOT/$rel")
   check_regex "$rel"; items=$((items + REGEX_ITEMS))
   mentions="$(root_mentions "$ROOT/$rel")"
   if [[ "$mentions" -gt 0 && "$items" -eq 0 ]]; then
@@ -216,15 +238,26 @@ scan_workflow() { # scan_workflow <relpath>
   fi
 }
 
+# Dependabot directories, grouped by the update entry that lists them. An entry opens
+# at a list item that starts with a key.
+DEPENDABOT_AWK='
+{
+  if ($0 ~ /^[[:space:]]*#/) next
+  if ($0 ~ /^[[:space:]]*-[[:space:]]+[A-Za-z_-]+:/) entry = FNR
+  line = $0
+  while (match(line, /["\047]\/\.(opencode|skilled)\/[^"\047]*["\047]/)) {
+    record(substr(line, RSTART + 1, RLENGTH - 2), entry); line = substr(line, RSTART + RLENGTH)
+  }
+}'
+
 scan_dependabot() { # scan_dependabot <relpath>
-  local rel="$1" ln tok items=0 twin mentions
-  while IFS=$'\t' read -r ln tok; do
+  local rel="$1" ln kind tok items=0 twin mentions
+  while IFS=$'\t' read -r ln kind tok twin; do
     [[ -n "$ln" ]] || continue
     items=$((items + 1))
-    twin="$(swap_root "$tok")"
-    if grep -qF -- "\"$twin\"" "$ROOT/$rel" || grep -qF -- "'$twin'" "$ROOT/$rel"; then TWINS=$((TWINS + 1))
+    if [[ "$kind" == "twin-ok" ]]; then TWINS=$((TWINS + 1))
     else fail filter-twins "$rel:$ln" "directory $tok has no twin $twin"; fi
-  done < <(awk '$0 !~ /^[[:space:]]*#/ { line = $0; while (match(line, /["\047]\/\.(opencode|skilled)\/[^"\047]*["\047]/)) { print FNR "\t" substr(line, RSTART + 1, RLENGTH - 2); line = substr(line, RSTART + RLENGTH) } }' "$ROOT/$rel")
+  done < <(awk "$TWIN_AWK$DEPENDABOT_AWK" "$ROOT/$rel")
   mentions="$(root_mentions "$ROOT/$rel")"
   if [[ "$mentions" -gt 0 && "$items" -eq 0 ]]; then
     fail parser-miss "$rel" "names a source root on $mentions line(s) but yielded no input"
