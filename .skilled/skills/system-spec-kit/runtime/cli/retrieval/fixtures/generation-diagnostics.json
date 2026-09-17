@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "b9b0ae6de561b1ec1dd225ae406cf8db7c5b58680e391f4895faf5ce2a906207",
+  "manifestHash": "5718c97eaeec6290537fd9613120e1cc3aff008d8ade194c026aa9b6a21ade61",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 36348,
+      "ok": 36352,
       "prose-sentence": 27,
       "single-token": 306,
       "stop-word-only": 3

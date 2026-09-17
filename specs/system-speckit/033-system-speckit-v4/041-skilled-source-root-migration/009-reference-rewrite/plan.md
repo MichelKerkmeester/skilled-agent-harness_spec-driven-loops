@@ -183,6 +183,8 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+
+After the last batch, re-run phase 008's regeneration runbook unchanged (`../008-links-and-generated-state/plan.md` §4, rows 1 and 3 to 14, then row 15 for this folder). Codex and Pi agents embed agent bodies, Hermes copies embed `SKILL.md` bodies, compiled contracts hash their sources and the trigger index hashes every corpus byte, so the rewrite stales each of them. The six runtime `SYNC.md` manifests under `.claude`, `.codex`, `.cursor`, `.devin`, `.hermes` and `.pi` are inputs of that rewrite too, because generated copies embed their text.
 <!-- /ANCHOR:phases -->
 
 ---

@@ -39,17 +39,17 @@ The phase works in three passes. It retargets the 27 links no generator owns, ch
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `007-source-root-move` validates `RESULT: PASSED`, and its tip SHA is recorded in `goal.md` as the rollback base
-- [ ] Phase 004's layout record names the shape of `.opencode/`, including `.opencode/specs`
-- [ ] Phase 003 records the `council-graph.sqlite` disposition
-- [ ] `findRepoRoot` resolves the worktree root from a `.skilled/` path, which phase 006 delivers
-- [ ] The baseline checks and the link census are captured before the first change
+- [x] `007-source-root-move` validates `RESULT: PASSED`, and its tip SHA is recorded in `goal.md` as the rollback base
+- [x] Phase 004's layout record names the shape of `.opencode/`, including `.opencode/specs`
+- [x] Phase 003 records the `council-graph.sqlite` disposition
+- [x] `findRepoRoot` resolves the worktree root from a `.skilled/` path, which phase 006 delivers
+- [x] The baseline checks and the link census are captured before the first change
 
 ### Definition of Done
-- [ ] The link census reports no dangling tracked link outside the frozen allowlist
-- [ ] Every check in the freshness sweep exits 0, and a second write run of each generator leaves `git status` clean
-- [ ] Every suite named per unit in §4 passes
-- [ ] `validate.sh --strict` on this folder prints `RESULT: PASSED`, and every row in `acceptance-criteria.md` is `Met`
+- [x] The link census reports no dangling tracked link outside the frozen allowlist
+- [x] Every check in the freshness sweep exits 0, and a second write run of each generator leaves `git status` clean
+- [x] Every suite named per unit in §4 passes
+- [x] `validate.sh --strict` on this folder prints `RESULT: PASSED`, and every row in `acceptance-criteria.md` is `Met`
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -213,15 +213,15 @@ Pass: `comm` prints nothing, or every printed link is named in `goal.md` with th
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `007-source-root-move` validated | Internal | Red, not started | Nothing in this phase can start |
-| Phase 006 root discovery under `.skilled/` | Internal | Red, not started | Generators resolve the wrong root and write into the wrong tree |
-| Phase 004 layout record | Internal | Red, not started | `.opencode/specs`, compatibility entries and the frozen allowlist stay undecided |
-| Phase 003 council-graph disposition | Internal | Red, not started | T048 waits. Every other unit proceeds |
-| Phase 005 pre-commit and CI teach-in | Internal | Red, not started | Commits pass without mirror checks, so this phase runs them itself |
+| `007-source-root-move` validated | Internal | Green, `RESULT: PASSED` at `1464a85667` | Nothing in this phase can start |
+| Phase 006 root discovery under `.skilled/` | Internal | Green, `findRepoRoot` proven from `.skilled` paths (T002) | Generators resolve the wrong root and write into the wrong tree |
+| Phase 004 layout record | Internal | Green, L1 | `.opencode/specs`, compatibility entries and the frozen allowlist stay undecided |
+| Phase 003 council-graph disposition | Internal | Green, no migration needed | T048 waits. Every other unit proceeds |
+| Phase 005 pre-commit and CI teach-in | Internal | Green, the mirror parity gate ran on every commit | Commits pass without mirror checks, so this phase runs them itself |
 | Node.js and npm | External | Green, `node` v26.8.2 on this machine | Nothing runs |
 | Bun | External | Green, `~/.bun/bin/bun` present | sk-vision stays a build-output link |
-| cli-pi with the LLM Gateway | External | Yellow, not probed for this phase | The orchestrator executes the units itself |
-| cli-codex with GPT-5.6-sol | External | Yellow, not probed for this phase | Reviews wait, and no constant edit runs its write mode unreviewed |
+| cli-pi with the LLM Gateway | External | Green, units returned on the Gateway and Cline lanes | The orchestrator executes the units itself |
+| cli-codex with GPT-5.6 Luna | External | Green, six reviews returned | Reviews wait, and no constant edit runs its write mode unreviewed |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -243,7 +243,7 @@ Parent decision D3 governs. Three executors appear in `tasks.md`:
 |-------|-----|------------|----------|
 | `orchestrator` | The conducting Opus session | Direct | Baseline, decisions, verification of every return, council graph, spec metadata, census, sweep and commits |
 | `pi-flash` | DeepSeek V4.1 Flash at thinking `max` on cli-pi, through the LLM Gateway | `AI_SESSION_CHILD=1 pi -p "<brief>" --provider llmgateway --model llmgateway/deepseek-v4.1-flash --thinking max --mode text` (`cli-pi/SKILL.md:21`, `:217`, `cli-pi/references/providers-and-models.md:103`, `:113`) | One runtime directory's links, one generator's constant edit or one generator's write run with its check and suite |
-| `codex-sol` | GPT-5.6-sol at `xhigh`, read-only sandbox | `codex exec --model gpt-5.6-sol -c model_reasoning_effort="xhigh" -c service_tier="fast" --sandbox read-only "<brief>"` (`cli-codex/SKILL.md:227`, `:269`, `cli-codex/references/providers-and-models.md:53`) | Second-family review of every constant or path-data diff before its write run |
+| `codex-sol` | GPT-5.6 Luna at `xhigh` on the fast tier, read-only sandbox, under the parent's amended D3 | `codex exec --model gpt-5.6-luna -c model_reasoning_effort="xhigh" -c service_tier="fast" --sandbox read-only "<brief>"` (`cli-codex/SKILL.md:227`, `:269`, `cli-codex/references/providers-and-models.md:53`) | Second-family review of every constant or path-data diff before its write run |
 
 Brief rules:
 - One unit per brief, stated literally: the file, the line, the old text, the new text, the command to run and the output line that counts as success. A brief never bundles two runtime directories or two unrelated generators.
@@ -292,9 +292,9 @@ Estimates, not measurements.
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Rollback base SHA recorded in `goal.md` before T007
-- [ ] `council-graph.sqlite` copied to `scratch/council-graph-before.sqlite` before T048
-- [ ] The compiled-routing rollback sibling kept until `--verify` passes at T042
+- [x] Rollback base SHA recorded in `goal.md` before T007
+- [x] `council-graph.sqlite` copied to `scratch/council-graph-before.sqlite` before T048. Not needed, because phase 003's disposition changes nothing
+- [x] The compiled-routing rollback sibling kept until `--verify` passes at T042
 
 ### Rollback Procedure
 1. Stop the running unit and send no further brief.

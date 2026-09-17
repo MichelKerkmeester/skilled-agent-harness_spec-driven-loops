@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b9b0ae6de561b1ec1dd225ae406cf8db7c5b58680e391f4895faf5ce2a906207",
+  "manifestHash": "5718c97eaeec6290537fd9613120e1cc3aff008d8ade194c026aa9b6a21ade61",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49372,6 +49372,9 @@
     "generated state phase directive": [
       "generated state phase directive"
     ],
+    "generated state verification evidence": [
+      "generated state verification evidence"
+    ],
     "generatedocumentembedding catch swallow": [
       "generateDocumentEmbedding catch swallow"
     ],
@@ -58215,6 +58218,9 @@
     "link census acceptance row": [
       "link census acceptance row"
     ],
+    "link census after the move": [
+      "link census after the move"
+    ],
     "link census command": [
       "link census command"
     ],
@@ -58259,6 +58265,9 @@
     ],
     "link resolver task": [
       "link resolver task"
+    ],
+    "links and generated state implementation summary": [
+      "links and generated state implementation summary"
     ],
     "links scan registry rule": [
       "links scan registry rule"
@@ -97500,6 +97509,9 @@
     ],
     "skilled gate teaching goal": [
       "skilled gate teaching goal"
+    ],
+    "skilled generator rebuild results": [
+      "skilled generator rebuild results"
     ],
     "skilled layout options": [
       "skilled layout options"

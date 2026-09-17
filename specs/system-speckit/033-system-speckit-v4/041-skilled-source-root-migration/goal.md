@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration"
     last_updated_at: "2026-09-17T14:05:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Moved the authored tree under .skilled in phase 007"
-    next_safe_action: "Start phase 008 per its goal"
+    recent_action: "Rebuilt links and generated state under .skilled in phase 008"
+    next_safe_action: "Start phase 009 per its goal"
     blockers: []
     key_files: []
     session_dedup:
@@ -112,6 +112,7 @@ and findings belong here.
 | Phase 005 gate and CI readiness | Done, pushed at `c22d1b63c9` | GPT-5.6 Luna reviewed the hook rules, the naming guard, the agent mirror checker and the CI check in five rounds on 2026-09-17. The operator chose to close the check's review loop after the fifth round and to run the hook test scripts in CI. From `9bc50c4ce8` the check and the drill print `RESULT: PASSED`, the hook harnesses pass 175 cases against the 126 baseline and the check's fixture test 42. Pushed to `skilled/v4.0.0.0` and `main` with the other session's commit `0aa71350e4` at the operator's request, plus an sk-doc manifest re-mint that commit needed. The main checkout is fast-forwarded, so the global hooks run the new hooks, and CI on the tip adds no failure to the pre-005 baseline |
 | Phase 006 dual-root code and contracts | Done, pushed at `dadf2d19dd` | Every contract component resolves under a real `.opencode/`, a real `.skilled/` and the link, proven by layout rows that fail on the start commit and by a three-layout rehearsal with no failure. GPT-5.6 Luna ran 23 reviews, every finding was fixed or answered with evidence, and the last round was clean. On 2026-09-17 the operator widened D3 to three parallel DeepSeek lanes. The main checkout and both remotes sit on `dadf2d19dd`, a fresh `code_mode` launcher answers from the main checkout, and a commit at `7085ec3290` passes the global hooks |
 | Phase 007 source-root move | Done, committed locally `ec33385ae5` | `a06f17bf52` removed the placeholder, and `ec33385ae5` holds 17,773 exact renames plus the `.opencode -> .skilled` link, the single-commit shape the operator chose on 2026-09-17. The path map shows no difference, every `--follow` sample reaches pre-move history, the 8 dangling links are the pre-move 8, and 7 read-only DeepSeek units on the Gateway and Cline lanes plus a Devin cross-check agree with the orchestrator's re-checks. Nothing is pushed, the main checkout and the hook links are unchanged, and strict validation PASSED |
+| Phase 008 links and generated state | Done, committed locally `88425278a6` to `aaea487a2b` | 27 hand-made links and 144 mirrors now target `.skilled` directly, three dangling links are retired, and every generator reads `.skilled` constants: hooks, mirrors, Codex, Pi and Hermes copies, the Gate 1 pointer, command contracts, compiled routing, skill metadata, dist freshness, the package lock and the trigger index. The census counts 433 links with only the 4 frozen records dangling and no old-root target, 14 of 15 freshness checks pass with the fifteenth predating the move, every generator is idempotent, and six Luna reviews are dispositioned. Consumer-checkout ordering is handed to phase 010, and four scripts that still cut paths at `/.opencode/` go to phase 009 |
 | CI on the pushed tip | Checked | All 22 runs for `1d198996ca` and `728c4f3efc` completed; the naming guard went red, then green at `728c4f3efc` |
 
 ### Deviations and findings
@@ -119,7 +120,7 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | CI was red before this packet pushed | Playbook Operator Contract fails with the same 16 lines at 06:40Z as at 17:32Z; Spec-Kit Check fails the same 2 tests at 01:24Z as at 17:29Z (`hook-registration-sync` expected 81 to be 77, `lazy-goal.md` snapshot). A green-CI criterion was unreachable, so criterion 4 and D2's stop rule now compare against a baseline recorded before 005 |
-| 008 regenerates what a red test covers | `hook-registration-sync` already fails; 008 must record its failure before regenerating hook registrations, so the baseline stays distinguishable from a regression |
+| 008 regenerates what a red test covers | `hook-registration-sync` already fails, so 008 must record its failure before regenerating hook registrations, so the baseline stays distinguishable from a regression. Resolved: phase 008 reproduced `expected 81 to be 77` on the pre-move commit before and after regenerating |
 | 004's step 24 said "CI on the tip is green" | Reconciled: step 24 now compares with the failure sets 005 records, and 005's T003 captures each red workflow's failing lines |
 | The main checkout is shared | Other sessions keep uncommitted work there (`council-graph.sqlite`, containment directories, `.stderr` files). Steps 18 and 19 must check for live sessions and dirty paths under `.opencode/` before the fast-forward |
 | A Pi dispatch bootstraps the advisor | A read-only DeepSeek smoke test in the worktree (`PONG 4`, 7 s, 2026-09-16 18:31Z) installed `node_modules` and built `dist` for system-skill-advisor there: 4,454 ignored files, no tracked change |
