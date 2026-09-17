@@ -144,8 +144,9 @@ def _changed_destinations(
 ) -> tuple[set[PurePosixPath], set[PurePosixPath]]:
     """Return added, copied, renamed, and untracked destinations since ``ref``.
 
-    The second set holds the rename and copy destinations that keep their source
-    basename: those moved an existing name rather than introducing one.
+    The second set holds the rename destinations that keep their source basename:
+    those moved an existing name rather than introducing one. A copy leaves the
+    original in place, so it adds a name and stays checked.
     """
     raw = _git(
         repo_root,
@@ -174,7 +175,7 @@ def _changed_destinations(
             index += 1
             destination = _decode_path(fields[index])
             changed.add(destination)
-            if destination.name == source.name:
+            if status.startswith("R") and destination.name == source.name:
                 kept_names.add(destination)
             index += 1
             continue
