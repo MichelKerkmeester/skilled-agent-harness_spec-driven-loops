@@ -1,5 +1,5 @@
 # Agent: code
-# Converted from: .opencode/agents/code.md
+# Converted from: .skilled/agents/code.md
 name = "code"
 description = "Application-code implementation specialist via sk-code. LEAF, dispatched only by @orchestrate."
 sandbox_mode = "workspace-write"

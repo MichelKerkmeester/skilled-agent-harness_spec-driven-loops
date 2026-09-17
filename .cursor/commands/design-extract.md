@@ -1,1 +1,1 @@
-../../.opencode/commands/design/extract.md
+../../.skilled/commands/design/extract.md

@@ -1,1 +1,1 @@
-../../.opencode/skills/sk-vision/hooks/cursor/vision-rule.md
+../../.skilled/skills/sk-vision/hooks/cursor/vision-rule.md

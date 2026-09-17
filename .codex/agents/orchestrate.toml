@@ -1,5 +1,5 @@
 # Agent: orchestrate
-# Converted from: .opencode/agents/orchestrate.md
+# Converted from: .skilled/agents/orchestrate.md
 name = "orchestrate"
 description = "Senior orchestration agent: task decomposition, delegation, quality eval, delivery synthesis."
 sandbox_mode = "workspace-write"

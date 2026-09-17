@@ -1,5 +1,5 @@
 # Agent: deep-improvement
-# Converted from: .opencode/agents/deep-improvement.md
+# Converted from: .skilled/agents/deep-improvement.md
 name = "deep-improvement"
 description = "Proposal-only mutator for bounded deep-improvement candidate generation with evaluator-first rules"
 sandbox_mode = "workspace-write"

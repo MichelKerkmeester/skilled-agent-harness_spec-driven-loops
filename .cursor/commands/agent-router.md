@@ -1,1 +1,1 @@
-../../.opencode/commands/agent-router.md
+../../.skilled/commands/agent-router.md

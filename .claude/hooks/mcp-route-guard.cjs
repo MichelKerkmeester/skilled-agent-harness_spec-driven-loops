@@ -1,1 +1,1 @@
-../../.opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs
+../../.skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs

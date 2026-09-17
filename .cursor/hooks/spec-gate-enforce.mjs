@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs
+../../.skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs

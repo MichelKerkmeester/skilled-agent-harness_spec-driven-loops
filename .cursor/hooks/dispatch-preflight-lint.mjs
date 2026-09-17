@@ -1,1 +1,1 @@
-../../.opencode/hooks/dispatch/cursor/dispatch-preflight-lint.mjs
+../../.skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs

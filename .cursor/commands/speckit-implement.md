@@ -1,1 +1,1 @@
-../../.opencode/commands/speckit/implement.md
+../../.skilled/commands/speckit/implement.md

@@ -1,1 +1,1 @@
-../../.opencode/commands/create/skill-parent.md
+../../.skilled/commands/create/skill-parent.md

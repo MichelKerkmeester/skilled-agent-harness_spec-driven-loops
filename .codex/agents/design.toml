@@ -1,5 +1,5 @@
 # Agent: design
-# Converted from: .opencode/agents/design.md
+# Converted from: .skilled/agents/design.md
 name = "design"
 description = "Design specialist across the four sk-design modes: decides values and behavior via sk-design-fundamentals, measures an existing surface into a Style Reference via sk-design-md-generator, and authors charts and diagrams via sk-design-chart and sk-design-diagram. LEAF."
 sandbox_mode = "workspace-write"

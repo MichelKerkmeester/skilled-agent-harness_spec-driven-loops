@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs
+../../.skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs

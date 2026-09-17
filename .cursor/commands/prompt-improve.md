@@ -1,1 +1,1 @@
-../../.opencode/commands/prompt/improve.md
+../../.skilled/commands/prompt/improve.md

@@ -1,1 +1,1 @@
-../../.opencode/bin/check-git-hooks.sh
+../../.skilled/bin/check-git-hooks.sh

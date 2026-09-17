@@ -1,1 +1,1 @@
-../../.opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts
+../../.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts

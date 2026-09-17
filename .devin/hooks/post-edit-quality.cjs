@@ -1,1 +1,1 @@
-../../.opencode/hooks/post-edit-quality/devin/post-edit-quality.cjs
+../../.skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs

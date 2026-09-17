@@ -1,1 +1,1 @@
-../../.opencode/hooks/sk-vision/devin/sk-vision.mjs
+../../.skilled/hooks/sk-vision/devin/sk-vision.mjs

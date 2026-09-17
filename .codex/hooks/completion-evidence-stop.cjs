@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs
+../../.skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs

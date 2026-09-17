@@ -1,1 +1,1 @@
-../../../.opencode/commands/speckit/complete.md
+../../../.skilled/commands/speckit/complete.md

@@ -1,1 +1,1 @@
-../../.opencode/commands/design/diagram.md
+../../.skilled/commands/design/diagram.md

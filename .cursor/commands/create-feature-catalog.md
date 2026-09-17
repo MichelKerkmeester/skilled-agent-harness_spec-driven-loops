@@ -1,1 +1,1 @@
-../../.opencode/commands/create/feature-catalog.md
+../../.skilled/commands/create/feature-catalog.md

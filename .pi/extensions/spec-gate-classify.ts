@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts
+../../.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts

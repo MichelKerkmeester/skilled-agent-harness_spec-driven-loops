@@ -1,1 +1,1 @@
-../../../.opencode/commands/create/manual-testing-playbook.md
+../../../.skilled/commands/create/manual-testing-playbook.md

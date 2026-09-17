@@ -1,1 +1,1 @@
-../../.opencode/commands/deep/ai-council.md
+../../.skilled/commands/deep/ai-council.md

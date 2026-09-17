@@ -1,5 +1,5 @@
 # Agent: deep-review
-# Converted from: .opencode/agents/deep-review.md
+# Converted from: .skilled/agents/deep-review.md
 name = "deep-review"
 description = "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state."
 sandbox_mode = "workspace-write"

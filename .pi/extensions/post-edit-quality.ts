@@ -1,1 +1,1 @@
-../../.opencode/hooks/post-edit-quality/pi/post-edit-quality.ts
+../../.skilled/hooks/post-edit-quality/pi/post-edit-quality.ts

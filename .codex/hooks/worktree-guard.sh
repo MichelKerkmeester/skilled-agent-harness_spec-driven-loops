@@ -1,1 +1,1 @@
-../../.opencode/bin/worktree-guard.sh
+../../.skilled/bin/worktree-guard.sh

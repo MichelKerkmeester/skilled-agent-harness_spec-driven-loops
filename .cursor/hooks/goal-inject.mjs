@@ -1,1 +1,1 @@
-../../.opencode/hooks/goal/cursor/goal-inject.mjs
+../../.skilled/hooks/goal/cursor/goal-inject.mjs

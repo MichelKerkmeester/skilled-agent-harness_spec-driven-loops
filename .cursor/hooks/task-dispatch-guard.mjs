@@ -1,1 +1,1 @@
-../../.opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs
+../../.skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs

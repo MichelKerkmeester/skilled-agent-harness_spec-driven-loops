@@ -1,1 +1,1 @@
-../../../.opencode/commands/deep/research.md
+../../../.skilled/commands/deep/research.md

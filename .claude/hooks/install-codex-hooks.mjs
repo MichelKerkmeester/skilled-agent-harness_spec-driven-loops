@@ -1,1 +1,1 @@
-../../.opencode/bin/install-codex-hooks.mjs
+../../.skilled/bin/install-codex-hooks.mjs

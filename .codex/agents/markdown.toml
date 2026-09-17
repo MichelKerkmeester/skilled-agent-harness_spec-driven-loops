@@ -1,5 +1,5 @@
 # Agent: markdown
-# Converted from: .opencode/agents/markdown.md
+# Converted from: .skilled/agents/markdown.md
 name = "markdown"
 description = "Template-first markdown/documentation executor; handles /create:* commands, spec docs, and scoped markdown authoring"
 sandbox_mode = "workspace-write"

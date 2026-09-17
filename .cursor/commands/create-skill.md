@@ -1,1 +1,1 @@
-../../.opencode/commands/create/skill.md
+../../.skilled/commands/create/skill.md

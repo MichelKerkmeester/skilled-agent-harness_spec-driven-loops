@@ -1,1 +1,1 @@
-../../.opencode/hooks/mcp-route-guard/pi/mcp-route-guard.ts
+../../.skilled/hooks/mcp-route-guard/pi/mcp-route-guard.ts

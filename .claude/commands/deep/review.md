@@ -1,1 +1,1 @@
-../../../.opencode/commands/deep/review.md
+../../../.skilled/commands/deep/review.md

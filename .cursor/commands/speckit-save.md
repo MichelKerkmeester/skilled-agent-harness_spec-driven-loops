@@ -1,1 +1,1 @@
-../../.opencode/commands/speckit/save.md
+../../.skilled/commands/speckit/save.md

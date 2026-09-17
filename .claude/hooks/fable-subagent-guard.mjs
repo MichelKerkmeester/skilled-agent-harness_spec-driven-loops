@@ -1,1 +1,1 @@
-../../.opencode/hooks/task-dispatch/claude/fable-subagent-guard.mjs
+../../.skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs

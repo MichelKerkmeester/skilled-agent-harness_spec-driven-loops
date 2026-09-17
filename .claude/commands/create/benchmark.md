@@ -1,1 +1,1 @@
-../../../.opencode/commands/create/benchmark.md
+../../../.skilled/commands/create/benchmark.md

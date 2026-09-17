@@ -1,1 +1,1 @@
-../../.opencode/skills/sk-vision/hooks/pi/sk-vision.ts
+../../.skilled/skills/sk-vision/hooks/pi/sk-vision.ts

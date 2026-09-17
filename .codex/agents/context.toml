@@ -1,5 +1,5 @@
 # Agent: context
-# Converted from: .opencode/agents/context.md
+# Converted from: .skilled/agents/context.md
 name = "context"
 description = "Production context agent — comprehensive retrieval with canonical continuity recovery and structured Context Packages"
 sandbox_mode = "read-only"

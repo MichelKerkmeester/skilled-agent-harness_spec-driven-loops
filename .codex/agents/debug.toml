@@ -1,5 +1,5 @@
 # Agent: debug
-# Converted from: .opencode/agents/debug.md
+# Converted from: .skilled/agents/debug.md
 name = "debug"
 description = "User-invoked fresh-perspective debugger: 5-phase root-cause methodology, never auto-dispatched."
 sandbox_mode = "workspace-write"
