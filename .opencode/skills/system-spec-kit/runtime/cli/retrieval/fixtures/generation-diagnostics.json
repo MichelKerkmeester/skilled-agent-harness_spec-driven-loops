@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7140,
+    "missing-frontmatter": 7139,
     "non-yaml-frontmatter": 1,
-    "ok": 15222,
+    "ok": 15228,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27206,
+  "documentsScanned": 27211,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "1e326eeb55887a74f688d0eb7d53eb4e980091fc5582f9dfcde34d23651a7558",
+  "manifestHash": "c726e525a34014ceb86f7d1b0b2b8c47c90e7df289e57a2f2ebe03a69bfd18d1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 36179,
+      "ok": 36181,
       "prose-sentence": 27,
       "single-token": 306,
       "stop-word-only": 3
@@ -11824,12 +11824,6 @@
       "line": 2,
       "path": ".opencode/skills/sk-code/sk-code-opencode/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/.pytest_cache/README.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -81882,6 +81876,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/scratch",
       "reason": "excluded directory"
     },
     {

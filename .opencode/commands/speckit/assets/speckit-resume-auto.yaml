@@ -44,7 +44,7 @@ goal_prompting:
   status_tool: opencode_goal_status
   packet_goal:
     read: "Read the packet goal.md durable slice from the file; resume never mutates it and never binds."
-    reminder: "If the runtime reports resend_pending, or the operator copy is known to be behind, render the durable slice with frontmatter excluded once and ask the operator to set it; then continue the resume."
+    reminder: "If the runtime reports resend_pending, or the operator copy is known to be behind, render the parent goal.md chat slice once and ask the operator to set it, then continue the resume. The chat slice is the durable slice without frontmatter, HTML comments, anchor markers, `---` dividers or heading section numbers, as `node .opencode/hooks/goal/bin/goal.cjs packet <spec_path> --workspace <repo root>` prints it in `chat_slice`. Never send a parent goal over 4,000 characters."
     never_halts: "Work never stops because a goal is unset. After the operator sets it, acknowledge in one line and continue."
 
 # ─────────────────────────────────────────────────────────────────

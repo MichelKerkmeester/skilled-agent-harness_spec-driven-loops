@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e20985001f97a2109e5856f46238598256ad58788e0cdd5c277251381c9f9b82",
+  "corpusHash": "4d9ac054a503608b1e001ad6349221bdf09a173f8431b5a05ce1062d11fd8322",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27206,
+  "includedPathCount": 27211,
   "includedPaths": [
     ".opencode/hooks/README.md",
     ".opencode/hooks/codex-watchdog/README.md",
@@ -2592,7 +2592,6 @@
     ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/skill-authoring.md",
     ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/typescript-checklist.md",
     ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md",
-    ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/.pytest_cache/README.md",
     ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
     ".opencode/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
     ".opencode/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--live-mode-b--live/failed-runs.md",
@@ -27200,6 +27199,12 @@
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/research/research.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/spec.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/before-after.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/spec.md",
@@ -27228,7 +27233,7 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1e326eeb55887a74f688d0eb7d53eb4e980091fc5582f9dfcde34d23651a7558",
+  "manifestHash": "c726e525a34014ceb86f7d1b0b2b8c47c90e7df289e57a2f2ebe03a69bfd18d1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32332,6 +32337,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/scratch",
       "reason": "excluded directory"
     },
     {

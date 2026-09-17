@@ -25,6 +25,10 @@ const FRONTMATTER_PATTERN = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---[ \t]*\n([
 const FRONTMATTER_OPENER_PATTERN = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---[ \t]*\n/;
 const BUDGET_MANIFEST = '.opencode/skills/system-spec-kit/templates/spec-kit-docs.json';
 const HTML_COMMENT_PATTERN = /<!--[\s\S]*?-->\n?/g;
+// A heading's section number addresses a place in the file, not the objective,
+// so the chat copy drops it. A trailing dot is required so a heading that only
+// starts with a number, such as a year, keeps it.
+const HEADING_SECTION_NUMBER_PATTERN = /^(#{1,6}[ \t]+)\d+(?:\.\d+)*\.[ \t]+/gm;
 const ANCHOR_BODY_PATTERN = (id) => new RegExp(`<!-- ANCHOR:${id} -->([\\s\\S]*?)<!-- /ANCHOR:${id} -->`);
 
 /**
@@ -59,9 +63,9 @@ function extractDurableSlice(content) {
 }
 
 /**
- * The slice as it is sent in chat: the durable slice with anchor markers and
- * scaffold comments removed and blank runs collapsed, so an operator pastes
- * prose, not markup.
+ * The slice as it is sent in chat: the durable slice with anchor markers,
+ * scaffold comments, `---` dividers and heading section numbers removed and
+ * blank runs collapsed, so an operator pastes prose, not markup.
  *
  * @param {string} content - Raw file content.
  * @returns {string} Chat-ready text.
@@ -70,6 +74,7 @@ function renderChatSlice(content) {
   return extractDurableSlice(content)
     .replace(HTML_COMMENT_PATTERN, '')
     .replace(/\n---\n/g, '\n')
+    .replace(HEADING_SECTION_NUMBER_PATTERN, '$1')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
@@ -203,7 +208,7 @@ function renderResendReminderText(packetPath, options = {}) {
   const record = typeof options.recordCommand === 'string' && options.recordCommand.trim()
     ? `then record it with: ${options.recordCommand.trim()}`
     : 'then record it with the goal command\'s resent action';
-  return `[goal_resend_pending] The bound packet goal.md (${packetPath}) changed above its log. Resend its durable slice in chat, frontmatter excluded, so the operator sees the change, ${record}. Keep working meanwhile.`;
+  return `[goal_resend_pending] The bound packet goal.md (${packetPath}) changed above its log. Resend its chat slice in chat so the operator sees the change, ${record}. The goal command's packet action prints that slice as chat_slice, with no frontmatter, comments, anchors, dividers or section numbers. Never send more than 4000 characters: when the slice is longer, cut the file first. Keep working meanwhile.`;
 }
 
 /**
