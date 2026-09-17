@@ -200,11 +200,12 @@ describe('detectRepoRoot stays in lockstep with findAdvisorWorkspaceRoot', () =>
       symlinkSync('.skilled', join(wholeLink, '.opencode'));
       const leak = join(root, 'leak', '.skilled', 'skills', 'x', '.opencode', 'skills');
       mkdirSync(leak, { recursive: true });
-      // Deeper than both fixed walks, so each must fall back, under an ancestor that
-      // carries a source-root name.
-      const nestedRepo = join(root, '.skilled', 'outer', 'repo');
-      writeSentinel(nestedRepo, '.opencode');
-      const deepStart = join(nestedRepo, '.opencode', 'skills', 'system-spec-kit', ...Array.from({ length: 14 }, () => 'deep'));
+      // Deeper than both fixed walks, so each must fall back. The repository sits under
+      // an ancestor named .opencode and holds its tree under .skilled, so hoisting above
+      // the outermost segment would pass the repository.
+      const nestedRepo = join(root, '.opencode', 'outer', 'repo');
+      writeSentinel(nestedRepo, '.skilled');
+      const deepStart = join(nestedRepo, '.skilled', 'skills', 'system-spec-kit', ...Array.from({ length: 14 }, () => 'deep'));
       mkdirSync(deepStart, { recursive: true });
 
       const cases: ReadonlyArray<readonly [string, string]> = [

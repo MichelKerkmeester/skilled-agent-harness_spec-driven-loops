@@ -29,10 +29,14 @@ const SOURCE_ROOT_NAMES: readonly string[] = ['.skilled', '.opencode'];
 // sentinel for the same reason — keep these two in lockstep.
 const DEFAULT_SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
 
-/** Spell a sentinel under every source-root name when its first segment is one. */
+/**
+ * Spell a sentinel under every source-root name when its first segment is one. The
+ * legacy spec alias keeps its one `.opencode/specs` spelling, so a sentinel under it
+ * is tested as written.
+ */
 function sentinelSpellings(sentinel: string): string[] {
   const [head, ...rest] = sentinel.split('/');
-  if (rest.length === 0 || !SOURCE_ROOT_NAMES.includes(head)) return [sentinel];
+  if (rest.length === 0 || rest[0] === 'specs' || !SOURCE_ROOT_NAMES.includes(head)) return [sentinel];
   return SOURCE_ROOT_NAMES.map((name) => [name, ...rest].join('/'));
 }
 
@@ -68,17 +72,19 @@ function hoistAboveOpencodeTree(dir: string): string | null {
 
 /**
  * A walk capped below the root never reaches the sentinel, yet the root is still the
- * parent of one source-root segment in the start path. Testing those parents nearest
- * first, as the walk would, keeps a workspace that sits under a directory named
- * `.skilled` or `.opencode` instead of hoisting past it. Returns null when no such
- * parent holds the sentinel.
+ * start itself or the parent of one source-root segment in the start path. Testing the
+ * start, then those parents nearest first, as the walk would, keeps a workspace that
+ * sits under a directory named `.skilled` or `.opencode` instead of hoisting past it.
+ * Returns null when none of them holds the sentinel.
  */
-function sourceTreeParentWithSentinel(dir: string, sentinels: readonly string[]): string | null {
+function nearestSentinelHolder(dir: string, sentinels: readonly string[]): string | null {
+  const holdsSentinel = (candidate: string): boolean => sentinels.some((sentinel) => existsSync(resolve(candidate, sentinel)));
+  if (holdsSentinel(dir)) return resolve(dir);
   const parts = resolve(dir).split(sep);
   for (let index = parts.length - 1; index >= 1; index -= 1) {
     if (!SOURCE_ROOT_NAMES.includes(parts[index])) continue;
     const parent = parts.slice(0, index).join(sep) || sep;
-    if (sentinels.some((sentinel) => existsSync(resolve(parent, sentinel)))) return parent;
+    if (holdsSentinel(parent)) return parent;
   }
   return null;
 }
@@ -87,8 +93,10 @@ function sourceTreeParentWithSentinel(dir: string, sentinels: readonly string[])
  * Walk up parent directories from `start` until the `sentinel` path is found
  * relative to the candidate directory. Returns the first directory that
  * contains `sentinel`. If no candidate is found within `maxDepth` iterations,
- * returns the canonicalized form of `start` as the safest fallback (matching
- * the prior in-line behavior of `handlers/advisor-recommend.ts`).
+ * the start or the nearest source-root parent in its path that holds the
+ * sentinel is the root. Failing that, the result is the directory above the
+ * outermost source-root segment in `start`, and a `start` outside any source
+ * tree comes back canonicalized.
  *
  * The default sentinel is the canonical `.opencode/skills/system-spec-kit/SKILL.md`
  * file rather than a bare `.opencode/skills` directory. Bare-directory sentinels
@@ -119,5 +127,5 @@ export function findAdvisorWorkspaceRoot(
   // Sentinel not found within maxDepth. Never fall back to a path inside a
   // source tree — that is provably not a workspace root, and writing state
   // there creates a nested tree that re-anchors every future walk-up.
-  return sourceTreeParentWithSentinel(start, sentinels) ?? hoistAboveOpencodeTree(start) ?? resolve(start);
+  return nearestSentinelHolder(start, sentinels) ?? hoistAboveOpencodeTree(start) ?? resolve(start);
 }
