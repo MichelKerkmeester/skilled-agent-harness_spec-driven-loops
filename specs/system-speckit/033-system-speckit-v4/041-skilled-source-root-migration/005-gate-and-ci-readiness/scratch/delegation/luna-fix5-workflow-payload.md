@@ -1,21 +1,21 @@
-name: Gate Inputs
-on:
-  push:
-    branches: [main, 'skilled/**']
-  pull_request:
-  workflow_dispatch:
+# Edits for unit luna-fix5-workflow
 
-permissions:
-  contents: read
+Each edit names a file, an OLD block and a NEW block. The block is the text between its two fence lines, without the fence lines themselves.
 
-jobs:
-  gate-inputs:
-    name: Every gate input resolves under both source roots
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Test the gate-input check against its fixtures
-        run: bash .github/scripts/tests/check-gate-inputs.test.sh
+## Edit 1
+
+File: `.github/workflows/gate-inputs.yml`
+
+OLD:
+
+~~~~text
+      - name: Check the inputs of every hook, workflow and dependabot entry
+        run: bash .github/scripts/check-gate-inputs.sh
+~~~~
+
+NEW:
+
+~~~~text
       - name: Check the inputs of every hook, workflow and dependabot entry
         run: bash .github/scripts/check-gate-inputs.sh
       # The check reads the gates as text, so a shape it cannot parse could still hide a
@@ -30,3 +30,4 @@ jobs:
             echo "::endgroup::"
           done
           exit "$status"
+~~~~
