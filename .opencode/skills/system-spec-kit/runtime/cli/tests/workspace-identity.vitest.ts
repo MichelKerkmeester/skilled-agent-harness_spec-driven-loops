@@ -9,6 +9,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   buildWorkspaceIdentity,
+  getWorkspacePathVariants,
   isSameWorkspacePath,
   toWorkspaceRelativePath,
 } from '../utils';
@@ -29,11 +30,13 @@ afterEach(() => {
 
 type Layout = 'today' | 'skilled-only' | 'whole-link';
 
-// Today's checkout holds the real tree under .opencode beside a .skilled placeholder.
+// Today's checkout holds the real tree under .opencode beside a .skilled placeholder,
+// and the real tree carries the spec-kit skill.
 function makeLayoutRepo(prefix: string, layout: Layout): string {
   const repoRoot = makeTempRoot(prefix);
   const realSourceRoot = path.join(repoRoot, layout === 'today' ? '.opencode' : '.skilled');
   fs.mkdirSync(path.join(realSourceRoot, 'skills', 'system-spec-kit'), { recursive: true });
+  fs.writeFileSync(path.join(realSourceRoot, 'skills', 'system-spec-kit', 'SKILL.md'), '# sentinel\n');
   if (layout === 'today') fs.mkdirSync(path.join(repoRoot, '.skilled', 'future-task-placeholder'), { recursive: true });
   if (layout === 'whole-link') fs.symlinkSync('.skilled', path.join(repoRoot, '.opencode'));
   return repoRoot;
@@ -129,9 +132,32 @@ describe('workspace identity under either source-root name', () => {
     for (const start of [repoRoot, nestedSkillDir, placeholder]) {
       expect(buildWorkspaceIdentity(start).workspaceRoot).toBe(realRepoRoot);
     }
+    expect(getWorkspacePathVariants(repoRoot)).toContain(`${realRepoRoot}/.opencode`);
+    expect(getWorkspacePathVariants(repoRoot)).not.toContain(`${realRepoRoot}/.skilled`);
     expect(isSameWorkspacePath(path.join(repoRoot, '.opencode'), placeholder)).toBe(true);
     expect(toWorkspaceRelativePath(repoRoot, path.join(nestedSkillDir, 'SKILL.md')))
       .toBe('.opencode/skills/system-spec-kit/SKILL.md');
+  });
+
+  it('keeps a checkout whose own directory is named .skilled as the workspace root', () => {
+    const repoRoot = path.join(makeTempRoot('speckit-workspace-dot-named-'), '.skilled');
+    const skillDir = path.join(repoRoot, '.opencode', 'skills', 'system-spec-kit');
+    fs.mkdirSync(skillDir, { recursive: true });
+    fs.writeFileSync(path.join(skillDir, 'SKILL.md'), '# sentinel\n');
+    const realRepoRoot = fs.realpathSync(repoRoot);
+
+    expect(buildWorkspaceIdentity(repoRoot).workspaceRoot).toBe(realRepoRoot);
+    expect(toWorkspaceRelativePath(repoRoot, path.join(skillDir, 'SKILL.md')))
+      .toBe('.opencode/skills/system-spec-kit/SKILL.md');
+  });
+
+  it('treats a stray tree written inside a source root as a leak, not as the workspace', () => {
+    const repoRoot = makeLayoutRepo('speckit-workspace-leak-', 'skilled-only');
+    fs.mkdirSync(path.join(repoRoot, '.skilled', '.opencode', 'skills', '.state'), { recursive: true });
+    const realRepoRoot = fs.realpathSync(repoRoot);
+
+    expect(buildWorkspaceIdentity(path.join(repoRoot, '.skilled', 'skills', 'system-spec-kit')).workspaceRoot)
+      .toBe(realRepoRoot);
   });
 
   it('rejects unrelated repositories whose anchors carry different names', () => {
