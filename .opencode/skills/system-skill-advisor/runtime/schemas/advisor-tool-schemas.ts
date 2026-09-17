@@ -26,12 +26,11 @@ const SOURCE_ROOT_NAMES: readonly string[] = ['.skilled', '.opencode'];
 // inlined here to avoid a circular import between schemas/ and lib/. The start
 // directory is a parameter so the lockstep test can feed both resolvers one tree.
 export function detectRepoRoot(start: string = process.cwd()): string {
-  // Use the same SKILL.md sentinel that
-  // findAdvisorWorkspaceRoot uses in advisor-validate.ts so the schema
-  // and the handler agree on which directory is the workspace root.
-  // A bare `.opencode/skill` sentinel can match nested mock directories
-  // created by other workflows (e.g. runtime/.opencode/skill). The source tree
-  // sits under `.skilled` or `.opencode`, so the sentinel is tested under both.
+  // Use the same SKILL.md file sentinel as findAdvisorWorkspaceRoot so the schema
+  // and the handler agree on which directory is the workspace root. A bare
+  // directory sentinel would match the nested mock trees other workflows create.
+  // The source tree sits under `.skilled` or `.opencode`, so the sentinel is
+  // tested under both.
   const sentinels = SOURCE_ROOT_NAMES.map((name) => `${name}/skills/system-spec-kit/SKILL.md`);
   let current = resolve(start);
   for (let index = 0; index < 14; index += 1) {
@@ -40,11 +39,11 @@ export function detectRepoRoot(start: string = process.cwd()): string {
     if (parent === current) break;
     current = parent;
   }
-  // Lockstep with findAdvisorWorkspaceRoot: when the sentinel is unreachable,
-  // never anchor the allowlist on a directory inside a source tree — take the
-  // nearest source-root parent that holds the sentinel, else hoist above the
-  // outermost source-root segment, so caller-supplied workspaceRoots are
-  // bounded to the real root, not a nested subdir.
+  // Lockstep with findAdvisorWorkspaceRoot: when the walk misses the sentinel,
+  // never anchor the allowlist on a directory inside a source tree. Take the start
+  // or the nearest source-root parent that holds the sentinel, else hoist above the
+  // outermost source-root segment, so caller-supplied workspaceRoots are bounded
+  // to the real root, not a nested subdir.
   return nearestSentinelHolder(start, sentinels) ?? hoistAboveOpencodeTree(start) ?? resolve(start);
 }
 
