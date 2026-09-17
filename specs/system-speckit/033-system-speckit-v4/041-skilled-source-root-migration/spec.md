@@ -122,8 +122,8 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 7 | `007-source-root-move/` | Move the authored tree into `.skilled/` in rename-only commits | complete |
 | 8 | `008-links-and-generated-state/` | Retarget hand-made links, and regenerate mirrors and every derived artifact | complete |
 | 9 | `009-reference-rewrite/` | Rewrite the mechanical path references, leaving frozen records alone | complete |
-| 10 | `010-machine-and-consumer-cutover/` | Reinstall the global hooks, update home configs, and keep consumer projects working | draft |
-| 11 | `011-verification-and-rollout/` | Prove every runtime and gate on the new root, push, and clean up | draft |
+| 10 | `010-machine-and-consumer-cutover/` | Reinstall the global hooks, update home configs, and keep consumer projects working | complete |
+| 11 | `011-verification-and-rollout/` | Prove every runtime and gate on the new root, push, and clean up | complete |
 
 ### Phase Transition Rules
 
