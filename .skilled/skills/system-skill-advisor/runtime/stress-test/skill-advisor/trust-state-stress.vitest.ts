@@ -62,7 +62,7 @@ describe('sa-005 — Trust-state classifier pressure', () => {
 
   it('returns each classifier call under 10ms on a 1000-skill corpus', async () => {
     for (let index = 0; index < 1_000; index += 1) {
-      write(`.opencode/skills/skill-${index}/SKILL.md`, [
+      write(`.skilled/skills/skill-${index}/SKILL.md`, [
         '---',
         `name: skill-${index}`,
         'description: Trust-state stress fixture',
@@ -70,7 +70,7 @@ describe('sa-005 — Trust-state classifier pressure', () => {
         '---',
         '',
       ].join('\n'));
-      write(`.opencode/skills/skill-${index}/graph-metadata.json`, '{}\n');
+      write(`.skilled/skills/skill-${index}/graph-metadata.json`, '{}\n');
     }
 
     const durations: number[] = [];

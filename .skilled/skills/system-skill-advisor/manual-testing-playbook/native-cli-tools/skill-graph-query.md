@@ -110,10 +110,10 @@ Observed result count: `10` rows for requested `limit: 10`.
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/handlers/skill-graph/query.ts`
-- `.opencode/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts`
-- `.opencode/skills/system-skill-advisor/runtime/tests/handlers/skill-graph-dispatch.vitest.ts`
-- `.opencode/skills/system-skill-advisor/runtime/tests/skill-graph-handlers.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/query.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/handlers/skill-graph-dispatch.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-handlers.vitest.ts`
 
 ---
 

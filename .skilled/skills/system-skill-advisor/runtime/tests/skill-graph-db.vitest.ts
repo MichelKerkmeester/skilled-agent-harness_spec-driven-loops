@@ -302,7 +302,7 @@ describe('skill graph database indexing', () => {
   it('sanitizes skill metadata before writing indexed rows', () => {
     const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-'));
     const dbDir = join(root, 'db');
-    const skillRoot = join(root, 'workspace', '.opencode', 'skills');
+    const skillRoot = join(root, 'workspace', '.skilled', 'skills');
     const skillDir = join(skillRoot, 'alpha');
 
     try {
@@ -348,7 +348,7 @@ describe('skill graph database indexing', () => {
     const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-'));
     const dbDir = join(root, 'db');
     const workspaceRoot = join(root, 'workspace');
-    const skillRoot = join(workspaceRoot, '.opencode', 'skills');
+    const skillRoot = join(workspaceRoot, '.skilled', 'skills');
     const skillDir = join(skillRoot, 'alpha');
     const previousDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 

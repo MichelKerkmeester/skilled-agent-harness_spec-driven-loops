@@ -18,7 +18,7 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-`system-skill-advisor` is the standalone routing runtime that picks the right skill for a non-trivial prompt. Its single front door is `node .opencode/bin/skill-advisor.cjs`, a nine-command CLI that reaches the resident daemon over a unix socket. The daemon holds the scorer, the embedder and the SQLite skill graph, and a file watcher keeps that graph fresh. No MCP transport ships: no stdio server, no SDK, no plugin bridge and no server declaration in any runtime config.
+`system-skill-advisor` is the standalone routing runtime that picks the right skill for a non-trivial prompt. Its single front door is `node .skilled/bin/skill-advisor.cjs`, a nine-command CLI that reaches the resident daemon over a unix socket. The daemon holds the scorer, the embedder and the SQLite skill graph, and a file watcher keeps that graph fresh. No MCP transport ships: no stdio server, no SDK, no plugin bridge and no server declaration in any runtime config.
 
 The package owns three authored zones:
 
@@ -41,7 +41,7 @@ The recommendation command is `advisor_recommend`. The trust surface is `advisor
 │  └────────┬─────────┘          └──────────────────────┘         │
 │           │                                                     │
 │  ┌────────▼──────────────────────────────────────────────────┐  │
-│  │   Front door: node .opencode/bin/skill-advisor.cjs        │  │
+│  │   Front door: node .skilled/bin/skill-advisor.cjs        │  │
 │  │   nine commands, JSON envelope, exit codes 0/1/64/69/75   │  │
 │  └────────┬───────────────────────────────┬──────────────────┘  │
 │           │ unix socket:                  │ unreachable         │
@@ -100,7 +100,7 @@ The advisor treats its SQLite skill graph as the durable record. Recommendations
 
 **Read path (`advisor_recommend`):** input prompt enters the CLI, crosses the unix socket, and lands in `runtime/handlers/advisor-recommend.ts`; the scorer fuses 5 lanes; the result joins with trust-state metadata; the handler returns a calibrated `recommendations[]` array with prompt-safe attribution.
 
-**Write path (`advisor_rebuild`):** the rebuilder scans `.opencode/skills/*/SKILL.md` and `graph-metadata.json`, applies the affordance normalizer, persists rows to the skill graph, and bumps the generation counter. The daemon watches the same paths and triggers incremental rebuilds on file change.
+**Write path (`advisor_rebuild`):** the rebuilder scans `.skilled/skills/*/SKILL.md` and `graph-metadata.json`, applies the affordance normalizer, persists rows to the skill graph, and bumps the generation counter. The daemon watches the same paths and triggers incremental rebuilds on file change.
 
 **Key modules:**
 
@@ -118,7 +118,7 @@ The daemon is composed of focused subsystems that share the IPC layer and the SQ
 
 **Shadow-delta sink.** `advisor_recommend` returns shadow comparison data without writing by default. Durable JSONL deltas are recorded only when `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` points to a workspace-contained file or `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1` / `true` enables the default sink; the launcher allowlist forwards both env names to the daemon child.
 
-**Daemon and freshness.** A chokidar watcher under `lib/daemon/` observes `.opencode/skills/*/SKILL.md` and per-skill `graph-metadata.json` files. On change, it triggers an incremental rebuild and refreshes the trust-state vocabulary: `live`, `stale`, `absent`, `unavailable`.
+**Daemon and freshness.** A chokidar watcher under `lib/daemon/` observes `.skilled/skills/*/SKILL.md` and per-skill `graph-metadata.json` files. On change, it triggers an incremental rebuild and refreshes the trust-state vocabulary: `live`, `stale`, `absent`, `unavailable`.
 
 **Skill graph.** A SQLite database holds the cross-skill edges (depends_on, dependents, enhances, conflicts) plus per-skill metadata. The `skill_graph_query` command exposes read-only graph traversal.
 
@@ -130,7 +130,7 @@ The daemon is composed of focused subsystems that share the IPC layer and the SQ
 
 ## 5. HOOK AND PLUGIN INTEGRATION
 
-The advisor ships prompt-submit adapters for Claude, Codex, Cursor, Devin and Pi, plus the OpenCode plugin at `.opencode/plugins/system-skill-advisor.js`. The native adapters and Pi resolve the same brief builder, scorer and renderer, and the OpenCode plugin invokes the CLI. Every adapter bounds its advisor call with a timeout and fails open: a timeout, a scoring error or a missing graph yields no brief, never a blocked prompt. The Claude adapter applies `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` to its advisor subprocess. The plugin appends the brief to the system prompt and exposes the advisor status tool.
+The advisor ships prompt-submit adapters for Claude, Codex, Cursor, Devin and Pi, plus the OpenCode plugin at `.skilled/plugins/system-skill-advisor.js`. The native adapters and Pi resolve the same brief builder, scorer and renderer, and the OpenCode plugin invokes the CLI. Every adapter bounds its advisor call with a timeout and fails open: a timeout, a scoring error or a missing graph yields no brief, never a blocked prompt. The Claude adapter applies `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` to its advisor subprocess. The plugin appends the brief to the system prompt and exposes the advisor status tool.
 
 ---
 

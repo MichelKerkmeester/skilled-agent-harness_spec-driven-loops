@@ -26,7 +26,7 @@ description: "Read-only health check script for the system-skill-advisor runtime
 Run from the repository root:
 
 ```bash
-bash .opencode/skills/system-skill-advisor/scripts/doctor.sh [--strict]
+bash .skilled/skills/system-skill-advisor/scripts/doctor.sh [--strict]
 ```
 
 Exit codes: `0` health checks pass (or a warning fell through in non-strict mode), `1` invalid arguments, `20` `runtime/dist` missing, `26` a runtime import failed (strict mode only, or no `node` on `PATH` in strict mode).

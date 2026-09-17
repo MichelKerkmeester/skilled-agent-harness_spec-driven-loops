@@ -491,7 +491,7 @@ describe('lease-held single-writer enforcement', () => {
     const workspaceRoot = mkdtempSync(join(tmpdir(), 'skill-graph-runtime-open-'));
     const tempDbDir = mkdtempSync(join(tmpdir(), 'skill-graph-db-test-'));
     tempDirs.push(workspaceRoot, tempDbDir);
-    mkdirSync(join(workspaceRoot, '.opencode', 'skills'), { recursive: true });
+    mkdirSync(join(workspaceRoot, '.skilled', 'skills'), { recursive: true });
     process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = tempDbDir;
     let statusCalls = 0;
 

@@ -6,7 +6,7 @@
 # Validates the doc-frontmatter contract the skill advisor harvests
 # (SPECKIT_ADVISOR_DOC_TRIGGERS): title, description, trigger_phrases
 # (3-8), importance_tier and contextType on every doc under
-# .opencode/skills/*/references/ and assets/ (README.md exempt).
+# .skilled/skills/*/references/ and assets/ (README.md exempt).
 #
 # Modes:
 #   --shape     (default) any doc carrying any detailed field must be

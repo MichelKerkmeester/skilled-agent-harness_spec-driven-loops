@@ -65,8 +65,8 @@ Compiled consumers load these from `runtime/dist/runtime/lib/ipc/`.
 Run from the repository root.
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime run test -- tests/launcher-lease.vitest.ts
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/runtime/lib/ipc/README.md
+npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/launcher-lease.vitest.ts
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/lib/ipc/README.md
 ```
 
 ---

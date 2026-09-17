@@ -23,7 +23,7 @@ describe('executor-delegation filesystem alias cache', () => {
     const workspaceRoot = mkdtempSync(join(tmpdir(), 'executor-alias-cache-'));
     const archiveEntry = join(
       workspaceRoot,
-      '.opencode',
+      '.skilled',
       'skills',
       'z_archive',
       'cli-retired',

@@ -38,7 +38,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const ROUTING = resolve(HERE, '../../scripts/routing-accuracy');
 const BASELINE_PATH = join(ROUTING, 'scorer-eval-baseline.json');
 const AMBIGUITY_PATH = join(ROUTING, 'ambiguity-prompts.jsonl');
-const SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
+const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
 
 function readJsonl<T>(path: string): T[] {
   return readFileSync(path, 'utf8').trim().split('\n').filter(Boolean).map((line) => JSON.parse(line) as T);

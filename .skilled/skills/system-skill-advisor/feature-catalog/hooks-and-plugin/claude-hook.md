@@ -33,15 +33,15 @@ Hook diagnostics are prompt-safe rollups handled by `lib/metrics.ts`. The `spec_
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Implementation | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/metrics.ts` | Library | `SPECKIT_METRICS_ENABLED` emission gate and `getAdvisorHookAlertThresholds()` cache-hit p95 threshold flags |
+| `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Implementation | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` | Library | `SPECKIT_METRICS_ENABLED` emission gate and `getAdvisorHookAlertThresholds()` cache-hit p95 threshold flags |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `Playbook scenario [CL-001](../../manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md).` | Manual playbook | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-runtime-parity.vitest.ts` | Automated test | parity across hooks |
+| `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-runtime-parity.vitest.ts` | Automated test | parity across hooks |
 
 ---
 

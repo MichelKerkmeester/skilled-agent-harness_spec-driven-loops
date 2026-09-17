@@ -12,7 +12,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
 const advisorPath = resolve(
   repoRoot,
-  '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
+  '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
 );
 
 describe('advisor graph evidence calibration', () => {

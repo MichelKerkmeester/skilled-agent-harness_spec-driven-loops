@@ -43,7 +43,7 @@ Validate that `advisor_recommend` keeps shadow-delta comparison response-visible
 1. Confirm default-off behavior. With both `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` and `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED` unset, call:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "build a typescript handler with vitest coverage" --options '{"topK":3}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "build a typescript handler with vitest coverage" --options '{"topK":3}' --format json
 ```
 
 2. Inspect the response envelope and confirm no new shadow-delta file was written for this call.
@@ -51,7 +51,7 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "build a typescr
 3. Enable the sink at a scratch path under the workspace root and re-run:
 
 ```bash
-SPECKIT_ADVISOR_SHADOW_DELTA_PATH=/tmp/skill-advisor-playbook/shadow-deltas.jsonl node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "build a typescript handler with vitest coverage" --options '{"topK":3}' --format json
+SPECKIT_ADVISOR_SHADOW_DELTA_PATH=/tmp/skill-advisor-playbook/shadow-deltas.jsonl node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "build a typescript handler with vitest coverage" --options '{"topK":3}' --format json
 ```
 
 4. Read the scratch JSONL file and inspect each record's `prompt` field.
@@ -59,7 +59,7 @@ SPECKIT_ADVISOR_SHADOW_DELTA_PATH=/tmp/skill-advisor-playbook/shadow-deltas.json
 5. Run the shadow-sink contract test:
 
 ```bash
-cd .opencode/skills/system-skill-advisor/runtime && npm exec -- vitest run tests/shadow-sink.vitest.ts --reporter=default
+cd .skilled/skills/system-skill-advisor/runtime && npm exec -- vitest run tests/shadow-sink.vitest.ts --reporter=default
 ```
 
 ### Expected Signals
@@ -81,8 +81,8 @@ cd .opencode/skills/system-skill-advisor/runtime && npm exec -- vitest run tests
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts`
-- `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
 - Feature [`cli-surface/advisor-recommend.md`](../../feature-catalog/cli-surface/advisor-recommend.md).
 
 ---
@@ -125,13 +125,13 @@ Shadow sink contract test file presence check:
 Live sink metadata before default-off MCP call:
 
 ```bash
-stat -f '%N %z %m' '.opencode/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl'
+stat -f '%N %z %m' '.skilled/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl'
 ```
 
 Output:
 
 ```text
-.opencode/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl 300200 1779564968
+.skilled/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl 300200 1779564968
 ```
 
 Default-off MCP call:
@@ -180,13 +180,13 @@ Observed MCP response:
 Live sink metadata after default-off MCP call and scratch path existence check:
 
 ```bash
-stat -f '%N %z %m' '.opencode/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl'; test -e '/tmp/skill-advisor-playbook/shadow-deltas.jsonl' && stat -f '%N %z %m' '/tmp/skill-advisor-playbook/shadow-deltas.jsonl'
+stat -f '%N %z %m' '.skilled/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl'; test -e '/tmp/skill-advisor-playbook/shadow-deltas.jsonl' && stat -f '%N %z %m' '/tmp/skill-advisor-playbook/shadow-deltas.jsonl'
 ```
 
 Output:
 
 ```text
-.opencode/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl 300200 1779564968
+.skilled/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl 300200 1779564968
 ```
 
 Advisor status check:

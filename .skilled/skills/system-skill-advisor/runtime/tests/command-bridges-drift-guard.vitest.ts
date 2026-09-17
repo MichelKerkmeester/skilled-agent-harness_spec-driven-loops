@@ -37,7 +37,7 @@ interface AllowListEntry extends Omit<CommandBridgeEntry, 'source'> {
 }
 
 const REPO_ROOT = findAdvisorWorkspaceRoot(import.meta.dirname);
-const SKILLS_ROOT = join(REPO_ROOT, '.opencode', 'skills');
+const SKILLS_ROOT = join(REPO_ROOT, '.skilled', 'skills');
 const COMMAND_BRIDGES_DIR = join(
   SKILLS_ROOT,
   'system-skill-advisor',
@@ -62,7 +62,7 @@ function metadataProjection(): CommandBridgeEntry[] {
       readonly command: string;
       readonly ownerMode: string;
     }>;
-    const source = `.opencode/skills/${skillId}/command-metadata.json`;
+    const source = `.skilled/skills/${skillId}/command-metadata.json`;
     for (const entry of metadata) {
       entries.push({
         id: bridgeId(entry.command),

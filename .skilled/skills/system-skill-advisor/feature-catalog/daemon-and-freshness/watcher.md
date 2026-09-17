@@ -21,7 +21,7 @@ Keep the advisor graph fresh without incurring the cost of watching the whole wo
 
 ## 2. HOW IT WORKS
 
-`lib/daemon/watcher.ts` boots a Chokidar watcher at daemon startup (through `lib/daemon/lifecycle.ts`) scoped to per-skill `SKILL.md` and `graph-metadata.json` paths. When a skill declares additional tracked files via `derived.key_files` in its graph metadata, those paths are added dynamically. Unrelated writes under `.opencode/plugins/`, repo source code or other skill subfolders do not trigger a reindex. Daemon hardening added reindex-storm back-pressure so rapid bursts of writes debounce into a single reindex event.
+`lib/daemon/watcher.ts` boots a Chokidar watcher at daemon startup (through `lib/daemon/lifecycle.ts`) scoped to per-skill `SKILL.md` and `graph-metadata.json` paths. When a skill declares additional tracked files via `derived.key_files` in its graph metadata, those paths are added dynamically. Unrelated writes under `.skilled/plugins/`, repo source code or other skill subfolders do not trigger a reindex. Daemon hardening added reindex-storm back-pressure so rapid bursts of writes debounce into a single reindex event.
 
 ---
 
@@ -31,14 +31,14 @@ Keep the advisor graph fresh without incurring the cost of watching the whole wo
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts` | Daemon | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts` | Daemon | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts` | Daemon | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts` | Daemon | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | watcher bring-up, scope assertions, debounce checks |
+| `.skilled/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | watcher bring-up, scope assertions, debounce checks |
 | `Playbook scenario [AU-001](../../manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md)` | Manual playbook | manual scope validation |
 
 ---

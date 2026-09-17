@@ -44,13 +44,13 @@ The advisor owns its SQLite state inside `system-skill-advisor`; adjacent packag
 The advisor database lives inside the standalone advisor skill package:
 
 ```text
-.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite
+.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite
 ```
 
 It must not live under:
 
 ```text
-.opencode/skills/system-spec-kit/runtime/database/
+.skilled/skills/system-spec-kit/runtime/database/
 ```
 
 SQLite sidecars stay beside the database file:
@@ -89,6 +89,6 @@ Production and operator docs should treat the package-local path as the default.
 
 ## 5. MIGRATION NOTES
 
-Current package state keeps the database under `runtime/database/` and serves it through the standalone daemon behind `node .opencode/bin/skill-advisor.cjs`.
+Current package state keeps the database under `runtime/database/` and serves it through the standalone daemon behind `node .skilled/bin/skill-advisor.cjs`.
 
 The `skill_graph_*` handlers and the lower-level `lib/skill-graph/` database/query library are advisor-owned and package-local.

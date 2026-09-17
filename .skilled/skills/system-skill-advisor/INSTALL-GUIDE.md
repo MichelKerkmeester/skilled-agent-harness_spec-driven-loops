@@ -7,7 +7,7 @@ description: "Bootstrap, verification, runtime hooks, local scorer, rollback, op
 
 <!-- sk-doc-template: skill_reference_install_guide -->
 
-This is the canonical install + setup guide for the Skill Advisor. The advisor runs as a resident daemon reached through one CLI front door, `node .opencode/bin/skill-advisor.cjs`, and owns its own SQLite database and scoring stack. It exposes nine commands: the eight public ones `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status` and `skill_graph_validate`, plus the trusted-caller-only `skill_graph_propagate_enhances`. The Python local scorer at `runtime/scripts/skill_advisor.py` answers `advisor_recommend` when the daemon is unreachable. This document merges the previously-separate `SET-UP_GUIDE.md` (runtime hooks, rollback CLI, operator states, reference commands) into the install bootstrap so there is a single source of truth.
+This is the canonical install + setup guide for the Skill Advisor. The advisor runs as a resident daemon reached through one CLI front door, `node .skilled/bin/skill-advisor.cjs`, and owns its own SQLite database and scoring stack. It exposes nine commands: the eight public ones `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status` and `skill_graph_validate`, plus the trusted-caller-only `skill_graph_propagate_enhances`. The Python local scorer at `runtime/scripts/skill_advisor.py` answers `advisor_recommend` when the daemon is unreachable. This document merges the previously-separate `SET-UP_GUIDE.md` (runtime hooks, rollback CLI, operator states, reference commands) into the install bootstrap so there is a single source of truth.
 
 ---
 
@@ -16,13 +16,13 @@ This is the canonical install + setup guide for the Skill Advisor. The advisor r
 Copy and paste this prompt to your AI assistant to get setup help:
 
 ```
-I want to set up the Skill Advisor from .opencode/skills/system-skill-advisor/runtime
+I want to set up the Skill Advisor from .skilled/skills/system-skill-advisor/runtime
 
 Please help me:
 1. Verify Node.js, npm and python3 are installed
 2. Install dependencies and build the advisor runtime
 3. Confirm the @spec-kit/shared package is linked (a missing link breaks the build)
-4. Verify the advisor CLI answers: node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
+4. Verify the advisor CLI answers: node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
 5. Confirm the prompt-time brief appears on a work-intent prompt
 
 Guide me through each step with the exact commands I need to run.
@@ -40,7 +40,7 @@ Your AI assistant will:
 
 ## 1. OVERVIEW
 
-The advisor is a TypeScript package under `.opencode/skills/system-skill-advisor/runtime/`, served through one CLI front door at `.opencode/bin/skill-advisor.cjs`. The CLI exposes 9 commands (`advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` and the trusted-only `skill_graph_propagate_enhances`) and reaches the resident daemon over a unix socket. The package owns the handlers, schemas, tools, launcher, plus the package-local SQLite DB at `.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite`. The Python scorer at `runtime/scripts/skill_advisor.py` is called in production: the CLI runs it when the daemon is unreachable and marks the answer degraded. Nothing registers per runtime, because the prompt-time hooks and the OpenCode plugin ship with the repository.
+The advisor is a TypeScript package under `.skilled/skills/system-skill-advisor/runtime/`, served through one CLI front door at `.skilled/bin/skill-advisor.cjs`. The CLI exposes 9 commands (`advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` and the trusted-only `skill_graph_propagate_enhances`) and reaches the resident daemon over a unix socket. The package owns the handlers, schemas, tools, launcher, plus the package-local SQLite DB at `.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite`. The Python scorer at `runtime/scripts/skill_advisor.py` is called in production: the CLI runs it when the daemon is unreachable and marks the answer degraded. Nothing registers per runtime, because the prompt-time hooks and the OpenCode plugin ship with the repository.
 
 ---
 
@@ -51,7 +51,7 @@ The advisor is a TypeScript package under `.opencode/skills/system-skill-advisor
 - Repository root as the working directory.
 - No runtime configuration: the prompt-time hooks and the OpenCode plugin are committed, and there is no MCP registration step.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless you are intentionally testing rollback.
-- The local shared package at `.opencode/skills/system-spec-kit/shared` is present; `npm install` links it into `runtime/node_modules/@spec-kit/shared`.
+- The local shared package at `.skilled/skills/system-spec-kit/shared` is present; `npm install` links it into `runtime/node_modules/@spec-kit/shared`.
 
 ---
 
@@ -60,14 +60,14 @@ The advisor is a TypeScript package under `.opencode/skills/system-skill-advisor
 The package ships source, not build output, so build it once:
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime install
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+npm --prefix .skilled/skills/system-skill-advisor/runtime install
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 ```
 
 Verify the local shared package link exists. Missing this link breaks the build with `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared`.
 
 ```bash
-test -e .opencode/skills/system-skill-advisor/runtime/node_modules/@spec-kit/shared && echo "shared dependency linked"
+test -e .skilled/skills/system-skill-advisor/runtime/node_modules/@spec-kit/shared && echo "shared dependency linked"
 ```
 
 That is the whole install. The CLI starts the daemon on first use, so there is nothing to register or start by hand.
@@ -79,9 +79,9 @@ That is the whole install. The CLI starts the daemon on first use, so there is n
 Verify the CLI answers:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --format json
-node .opencode/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --format json
+node .skilled/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
 ```
 
 The first two answer in about a second. `advisor_validate --confirm-heavy-run true` runs the heavier validation bundle and takes around ten seconds.
@@ -100,16 +100,16 @@ Expected:
 Run before declaring setup complete:
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime run typecheck
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
-node -e "import('./.opencode/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/lanes/semantic-shadow.js')"
-npm --prefix .opencode/skills/system-skill-advisor/runtime run test -- tests/handlers/advisor-recommend.vitest.ts tests/compat/shim.vitest.ts --reporter=default
+npm --prefix .skilled/skills/system-skill-advisor/runtime run typecheck
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
+node -e "import('./.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/lanes/semantic-shadow.js')"
+npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/handlers/advisor-recommend.vitest.ts tests/compat/shim.vitest.ts --reporter=default
 ```
 
 For routing accuracy, run the validator and treat its JSON output as the baseline. One call returns the corpus, holdout, parity, safety and latency slices:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
+node .skilled/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
 ```
 
 ---
@@ -120,16 +120,16 @@ The prompt-time brief ships with the repository, so there is nothing to register
 
 | Runtime | Hook Surface |
 | --- | --- |
-| Claude Code | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`, with the runtime shim at `.opencode/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts` |
-| Codex and Devin | shims at `.opencode/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts` and `.../devin/user-prompt-submit.ts`, which delegate to the Claude shim |
-| Cursor | `.opencode/skills/system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts` |
-| Pi | `.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts`, loaded as a Pi extension through the symlink at `.pi/extensions/prompt-advisor.ts` |
-| OpenCode | `.opencode/plugins/system-skill-advisor.js` |
+| Claude Code | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`, with the runtime shim at `.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts` |
+| Codex and Devin | shims at `.skilled/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts` and `.../devin/user-prompt-submit.ts`, which delegate to the Claude shim |
+| Cursor | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts` |
+| Pi | `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts`, loaded as a Pi extension through the symlink at `.pi/extensions/prompt-advisor.ts` |
+| OpenCode | `.skilled/plugins/system-skill-advisor.js` |
 
 Every surface ends at the same stable entrypoint, the CLI:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "<request>" --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "<request>" --format json
 ```
 
 The CLI attaches to the daemon, starts it when the socket is cold and falls back to the Python local scorer when the daemon stays unreachable. The OpenCode plugin spawns this same CLI with a bounded timeout and fails open on expiry or exit `75`.
@@ -141,8 +141,8 @@ The CLI attaches to the daemon, starts it when the socket is cold and falls back
 `runtime/scripts/skill_advisor.py` is the advisor's local scorer. The CLI runs it in production whenever `advisor_recommend` cannot reach the daemon, and the answer it returns is marked degraded rather than live. Called directly, it probes the advisor first and falls back to local scoring when the probe is unavailable.
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "help me commit my changes"
-printf '%s' "help me commit my changes" | python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "help me commit my changes"
+printf '%s' "help me commit my changes" | python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin
 ```
 
 Mode meanings:
@@ -157,11 +157,11 @@ Mode meanings:
 Testing controls:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "save this context"
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local "save this context"
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "save this context"
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local "save this context"
 ```
 
-Prompt-time surfaces run the same scorer, which is why a shim smoke test doubles as a hook smoke test. There is no plugin bridge or MCP client in the chain: the hooks and the OpenCode plugin shell out to `.opencode/bin/skill-advisor.cjs`, and the CLI starts the daemon through `.opencode/bin/system-skill-advisor-launcher.cjs` when the socket is cold.
+Prompt-time surfaces run the same scorer, which is why a shim smoke test doubles as a hook smoke test. There is no plugin bridge or MCP client in the chain: the hooks and the OpenCode plugin shell out to `.skilled/bin/skill-advisor.cjs`, and the CLI starts the daemon through `.skilled/bin/system-skill-advisor-launcher.cjs` when the socket is cold.
 
 ---
 
@@ -184,7 +184,7 @@ export SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1
 export SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1
 
 # CLI-only Python path.
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local "your prompt"
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local "your prompt"
 ```
 
 Unset variables after recovery:
@@ -203,7 +203,7 @@ unset SPECKIT_SKILL_ADVISOR_FORCE_LOCAL
 Use `advisor_status` as the prompt-safe health source:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
 ```
 
 State interpretation:
@@ -220,7 +220,7 @@ State interpretation:
 Manual recovery scenarios live at:
 
 ```text
-.opencode/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+.skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
 ```
 
 ### Indexer scan-vs-index counts
@@ -235,7 +235,7 @@ H5 operator scenarios live in the manual playbook under `operator-h5/`.
 
 | What You See | Cause | Fix |
 | --- | --- | --- |
-| Build or CLI startup fails with `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared` | The advisor package is installed but the local shared package link is missing from `runtime/node_modules`. | Run `npm --prefix .opencode/skills/system-skill-advisor/runtime install` then `npm --prefix .opencode/skills/system-skill-advisor/runtime run build`. |
+| Build or CLI startup fails with `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared` | The advisor package is installed but the local shared package link is missing from `runtime/node_modules`. | Run `npm --prefix .skilled/skills/system-skill-advisor/runtime install` then `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. |
 | The brief says `Advisor: stale`, or `advisor_recommend` returns `degraded: true` | The daemon was unreachable, so the CLI answered from the Python local scorer. | A degraded answer is usable. Check `python3` is on PATH and retry; pass `--warm-only` to make the CLI fail instead of degrading. |
 
 ---
@@ -244,30 +244,30 @@ H5 operator scenarios live in the manual playbook under `operator-h5/`.
 
 ```bash
 # Build and typecheck the runtime package
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
-npm --prefix .opencode/skills/system-skill-advisor/runtime run typecheck
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
+npm --prefix .skilled/skills/system-skill-advisor/runtime run typecheck
 
 # Advisor health and recommendation through the CLI
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "create a pull request on github" --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "create a pull request on github" --format json
 
 # Trusted graph mutation
-node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
+node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
 
 # Python local scorer, direct
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "create a pull request on github"
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "create a pull request on github"
 printf '%s' "save this conversation context to memory" | \
-  python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin
+  python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin
 
 # Native required
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "save this context"
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "save this context"
 
 # Python fallback required
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local "save this context"
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local "save this context"
 
 # Regression compatibility
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py \
-  --dataset .opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py \
+  --dataset .skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl
 ```
 
 ---
@@ -321,7 +321,7 @@ There are two operator-facing surfaces. **Neither is an environment variable.**
 import Database from 'better-sqlite3';
 import { setActiveEmbedder } from './runtime/dist/.../lib/embedders/schema.js';
 
-const db = new Database('.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite');
+const db = new Database('.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite');
 setActiveEmbedder(db, 'jina-embeddings-v3', 1024);
 ```
 
@@ -391,13 +391,13 @@ Most "match my setup" needs are signal additions, not lane-weight changes:
 
 1. Edit `intent_signals` (and optionally `derived.trigger_phrases` / `derived.key_topics`) in the per-skill `graph-metadata.json`:
    ```bash
-   $EDITOR .opencode/skills/<name>/graph-metadata.json
+   $EDITOR .skilled/skills/<name>/graph-metadata.json
    ```
 2. Re-index the SQLite graph — REQUIRED, or the edit has ZERO effect on routing:
-   - Trusted CLI: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`
-3. Verify: `node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "your test phrase" --format json` — your skill should now appear.
+   - Trusted CLI: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`
+3. Verify: `node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "your test phrase" --format json` — your skill should now appear.
 
-> **Critical:** the advisor reads scoring inputs from `.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite`, NOT from `graph-metadata.json` directly. Editing JSON without re-indexing produces identical pre-edit scores.
+> **Critical:** the advisor reads scoring inputs from `.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite`, NOT from `graph-metadata.json` directly. Editing JSON without re-indexing produces identical pre-edit scores.
 
 ### 14.2 Full tuning — `/doctor skill-advisor`
 
@@ -410,32 +410,32 @@ For batch optimization across all skills plus lane-weight tuning, run the gated 
 | Tune one lane only | `/doctor skill-advisor --scope=explicit` (or `derived` / `lexical`) |
 | Skip post-apply tests (not recommended) | `/doctor skill-advisor --skip-tests` |
 
-Five phases gated behind operator approval: Discovery → Analysis → Proposal → Apply → Verify. Phase 3 (Apply) rebuilds `dist/`, runs `skill_graph_scan`, runs the advisor test suite, and writes a per-run rollback script. Full reference: `.opencode/commands/doctor/speckit.md` and `.opencode/commands/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`.
+Five phases gated behind operator approval: Discovery → Analysis → Proposal → Apply → Verify. Phase 3 (Apply) rebuilds `dist/`, runs `skill_graph_scan`, runs the advisor test suite, and writes a per-run rollback script. Full reference: `.skilled/commands/doctor/speckit.md` and `.skilled/commands/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`.
 
 ### 14.3 What tuning touches
 
 Mutates only:
 
-- `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` (`TOKEN_BOOSTS`, `PHRASE_BOOSTS`)
-- `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts` (`CATEGORY_HINTS`)
-- `.opencode/skills/<name>/graph-metadata.json` (`intent_signals`, `derived.trigger_phrases`, `derived.key_topics`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` (`TOKEN_BOOSTS`, `PHRASE_BOOSTS`)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts` (`CATEGORY_HINTS`)
+- `.skilled/skills/<name>/graph-metadata.json` (`intent_signals`, `derived.trigger_phrases`, `derived.key_topics`)
 
 Never touches any `SKILL.md` content, `weights-config.ts`, the fusion scorer, or daemon code. Any MANUAL edit to these files (e.g. the Quick-tuning recipe above) requires a re-index (`skill_graph_scan`) — the SQLite graph is the runtime source of truth.
 
 ### 14.4 Tuning rollback
 
-`/doctor skill-advisor` Phase 3 writes a per-run rollback script at `<packet_scratch>/rollback-<timestamp>.sh` (under `<spec-folder>/scratch/` or `.opencode/scratch/`) that restores only the files that run modified — unrelated WIP is preserved — and rebuilds the package at the end. Prefer it over a broad `git checkout HEAD -- ...`, which would discard unrelated WIP.
+`/doctor skill-advisor` Phase 3 writes a per-run rollback script at `<packet_scratch>/rollback-<timestamp>.sh` (under `<spec-folder>/scratch/` or `.skilled/scratch/`) that restores only the files that run modified — unrelated WIP is preserved — and rebuilds the package at the end. Prefer it over a broad `git checkout HEAD -- ...`, which would discard unrelated WIP.
 
 If the per-run script is unavailable (the run failed before Phase 3 completed), stash unrelated WIP first, then restore from HEAD and rebuild:
 
 ```bash
 git stash push -m "skill-advisor-rollback-safety" -- \
-  .opencode/skills/system-skill-advisor/runtime/lib/ \
-  .opencode/skills/*/graph-metadata.json
+  .skilled/skills/system-skill-advisor/runtime/lib/ \
+  .skilled/skills/*/graph-metadata.json
 
 git restore --source=HEAD -- \
-  .opencode/skills/system-skill-advisor/runtime/lib/ \
-  .opencode/skills/*/graph-metadata.json
+  .skilled/skills/system-skill-advisor/runtime/lib/ \
+  .skilled/skills/*/graph-metadata.json
 
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 ```

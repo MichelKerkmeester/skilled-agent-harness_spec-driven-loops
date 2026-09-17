@@ -44,7 +44,7 @@ Extraction is complete; future work here is documentation alignment unless a new
 The `lib/skill-graph/` library resides inside the advisor skill package:
 
 ```text
-.opencode/skills/system-skill-advisor/runtime/lib/skill-graph/
+.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/
 ```
 
 The directory contains three files:

@@ -34,8 +34,8 @@ Validate the OpenCode plugin path, which spawns the advisor CLI and falls back t
 ## 2. SCENARIO CONTRACT
 
 - Advisor runtime build is current.
-- Plugin host file exists at `.opencode/plugins/system-skill-advisor.js`.
-- The plugin reaches the advisor by spawning `.opencode/bin/skill-advisor.cjs`.
+- Plugin host file exists at `.skilled/plugins/system-skill-advisor.js`.
+- The plugin reaches the advisor by spawning `.skilled/bin/skill-advisor.cjs`.
 
 ---
 
@@ -44,21 +44,21 @@ Validate the OpenCode plugin path, which spawns the advisor CLI and falls back t
 1. Build the advisor runtime the CLI and daemon run from:
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime install
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+npm --prefix .skilled/skills/system-skill-advisor/runtime install
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 ```
 
 2. Run the plugin's advisor call path directly:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" \
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" \
   --options '{"topK":3,"includeAttribution":false,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}' --format json
 ```
 
 3. Inspect the plugin status tool through its test (runs without an interactive OpenCode session):
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts
+npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts
 ```
 
 ### Expected Signals
@@ -66,7 +66,7 @@ npm --prefix .opencode/skills/system-skill-advisor/runtime run test -- tests/sys
 - The advisor call returns JSON with `status: "ok"` or a prompt-safe fail-open status.
 - Native success carries an `Advisor:` brief rendered from the CLI payload (`route: "cli"`, or `cli-local-scorer` when the daemon was unreachable).
 - The payload's `effectiveThresholds` report the 014 threshold pair: `confidenceThreshold: 0.8`, `uncertaintyThreshold: 0.35`, `confidenceOnly: false`.
-- The plugin spawns `.opencode/bin/skill-advisor.cjs` and never private handler paths.
+- The plugin spawns `.skilled/bin/skill-advisor.cjs` and never private handler paths.
 - `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` (or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` for the plugin alone) yields a disabled brief without spawning the advisor. The legacy `SPECKIT_`-prefixed names still work.
 
 ### Failure Modes
@@ -81,9 +81,9 @@ npm --prefix .opencode/skills/system-skill-advisor/runtime run test -- tests/sys
 
 ## 4. SOURCE FILES
 
-- `.opencode/plugins/system-skill-advisor.js`
-- `.opencode/bin/skill-advisor.cjs`
-- `.opencode/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts`
+- `.skilled/plugins/system-skill-advisor.js`
+- `.skilled/bin/skill-advisor.cjs`
+- `.skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts`
 
 ---
 
@@ -101,16 +101,16 @@ npm --prefix .opencode/skills/system-skill-advisor/runtime run test -- tests/sys
 Preconditions observed:
 
 ```text
-.opencode/plugins/system-skill-advisor.js read successfully; total 1476 lines.
-.opencode/bin/skill-advisor.cjs read successfully; total 116 lines.
-.opencode/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js present; 15675 bytes.
-.opencode/skills/system-skill-advisor/runtime/dist/runtime/lib/render.js present; 15501 bytes.
+.skilled/plugins/system-skill-advisor.js read successfully; total 1476 lines.
+.skilled/bin/skill-advisor.cjs read successfully; total 116 lines.
+.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js present; 15675 bytes.
+.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/render.js present; 15501 bytes.
 ```
 
 Advisor CLI command (step 2), run from the repository root:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" \
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" \
   --options '{"topK":3,"includeAttribution":false,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}' --format json
 ```
 
@@ -135,7 +135,7 @@ The call exits 0 whether the daemon answer is `live` or `stale`; `stale` is the 
 Plugin test command (step 3):
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts
+npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts
 ```
 
 Plugin test output:
@@ -155,7 +155,7 @@ Disable-flag evidence, from the same test file selected with `-t opt-out`:
 
 The three opt-out paths are `env opt-out disables bridge invocation`, `shared hook env opt-out disables bridge invocation` and `config opt-out disables bridge invocation`. Each asserts that no advisor process is spawned and that the status tool reports `enabled=false` with the matching `disabled_reason`.
 
-Plugin source evidence from `.opencode/plugins/system-skill-advisor.js`:
+Plugin source evidence from `.skilled/plugins/system-skill-advisor.js`:
 
 ```js
 const ADVISOR_CLI_PATH = fileURLToPath(new URL('../bin/skill-advisor.cjs', import.meta.url));

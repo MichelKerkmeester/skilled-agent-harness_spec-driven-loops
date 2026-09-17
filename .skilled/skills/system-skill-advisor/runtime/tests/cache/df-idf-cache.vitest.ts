@@ -27,8 +27,8 @@ describe('DF-IDF corpus cold-start cache', () => {
   it('persists corpus stats under the advisor database and reuses matching graph-metadata mtimes', () => {
     const root = tempRoot();
     const documents = [
-      { skillId: 'alpha', sourcePath: '.opencode/skills/alpha/graph-metadata.json', terms: ['route', 'alpha'], graphMetadataMtimeMs: 100 },
-      { skillId: 'beta', sourcePath: '.opencode/skills/beta/graph-metadata.json', terms: ['route', 'beta'], graphMetadataMtimeMs: 200 },
+      { skillId: 'alpha', sourcePath: '.skilled/skills/alpha/graph-metadata.json', terms: ['route', 'alpha'], graphMetadataMtimeMs: 100 },
+      { skillId: 'beta', sourcePath: '.skilled/skills/beta/graph-metadata.json', terms: ['route', 'beta'], graphMetadataMtimeMs: 200 },
     ];
 
     const first = computeCorpusStatsCached(documents, {
@@ -45,7 +45,7 @@ describe('DF-IDF corpus cold-start cache', () => {
     expect(second.stats).toEqual(first.stats);
     expect(first.cachePath).toBe(join(
       root,
-      '.opencode',
+      '.skilled',
       'skills',
       'system-skill-advisor',
       'runtime',
@@ -59,10 +59,10 @@ describe('DF-IDF corpus cold-start cache', () => {
     const root = tempRoot();
     const cachePath = join(root, 'database', 'df-idf-corpus-cache.json');
     const documents = [
-      { skillId: 'alpha', sourcePath: '.opencode/skills/alpha/graph-metadata.json', terms: ['route'], graphMetadataMtimeMs: 100 },
+      { skillId: 'alpha', sourcePath: '.skilled/skills/alpha/graph-metadata.json', terms: ['route'], graphMetadataMtimeMs: 100 },
     ];
     const changedDocuments = [
-      { skillId: 'alpha', sourcePath: '.opencode/skills/alpha/graph-metadata.json', terms: ['route'], graphMetadataMtimeMs: 101 },
+      { skillId: 'alpha', sourcePath: '.skilled/skills/alpha/graph-metadata.json', terms: ['route'], graphMetadataMtimeMs: 101 },
     ];
 
     const first = computeCorpusStatsCached(documents, { cachePath, now: new Date('2026-05-15T00:00:00Z') });

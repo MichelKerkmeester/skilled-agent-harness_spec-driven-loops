@@ -58,13 +58,13 @@ printf 'corrupt' > /tmp/path-to-copy/.opencode/skills/system-skill-advisor/runti
 2. Detect the failure:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 3. Trigger rebuild via scan:
 
 ```text
-node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
+node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
 ```
 
 4. Re-check status and call `advisor_recommend` for a known-routable prompt.
@@ -96,7 +96,7 @@ printf 'corrupt' > /tmp/path-to-copy/.opencode/skills/system-skill-advisor/runti
 The task-level allowed write path is only:
 
 ```text
-.opencode/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/rebuild-from-source.md
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/rebuild-from-source.md
 ```
 
 No disposable workspace copy path or database backup path was provided, and creating or corrupting `/tmp/path-to-copy/.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` would modify a file outside the allowed write path. Therefore Step 1, Step 2, Step 3, and Step 4 were not executed.
@@ -120,7 +120,7 @@ BLOCKED - Missing disposable workspace copy and backup required by the scenario 
 - Scenario [OP-003](../../manual-testing-playbook/operator-h5/unavailable-daemon.md), operator recovery flow.
 - Scenario [AU-004](../../manual-testing-playbook/auto-update-daemon/generation-publication.md), generation publication after rebuild.
 - Feature [`daemon-and-freshness/rebuild-from-source.md`](../../feature-catalog/daemon-and-freshness/rebuild-from-source.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/freshness/rebuild-from-source.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/freshness/rebuild-from-source.ts`.
 
 ---
 

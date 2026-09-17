@@ -34,7 +34,7 @@ function skill(overrides: Partial<SkillProjection> & Pick<SkillProjection, 'id'>
     intentSignals: [],
     derivedTriggers: [],
     derivedKeywords: [],
-    sourcePath: `.opencode/skills/${overrides.id}/graph-metadata.json`,
+    sourcePath: `.skilled/skills/${overrides.id}/graph-metadata.json`,
     lifecycleStatus: 'active',
     ...Object.fromEntries(Object.entries(overrides).filter(([key]) => key !== 'id')),
   };
@@ -62,7 +62,7 @@ describe('derived-content freshness projection contract', () => {
   it('loads derived.generated_at as the canonical per-skill freshness over a stray last_updated_at', () => {
     const root = mkdtempSync(join(tmpdir(), 'advisor-projection-freshness-'));
     try {
-      const skillDir = join(root, '.opencode', 'skills', 'alpha');
+      const skillDir = join(root, '.skilled', 'skills', 'alpha');
       mkdirSync(skillDir, { recursive: true });
       writeFileSync(join(skillDir, 'SKILL.md'), '---\nname: alpha\ndescription: alpha skill\n---\n', 'utf8');
       writeFileSync(join(skillDir, 'graph-metadata.json'), JSON.stringify({

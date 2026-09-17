@@ -30,7 +30,7 @@ The caller-supplied `workspaceRoot` is bounded by `schemas/advisor-tool-schemas.
 
 ### Compiled-Routing Enrichment (`compiledRoute`)
 
-Each recommendation carries an optional `compiledRoute` field (`schemas/advisor-tool-schemas.ts:221`, `z.record(z.string(), z.unknown()).optional()`). `handlers/advisor-recommend.ts`'s `enrichCompiledRoutes()` attaches it only when at least one recommended `skillId` is both in the fixed 7-hub `COMPILED_ROUTING_HUBS` set and currently permitted by the tri-state `SPECKIT_COMPILED_ROUTING` flag (`compiledRoutingEnabledForHub()`, from `../lib/compiled-routing-flag.ts`); otherwise the schema re-parse is skipped entirely and the output returns unchanged. When enrichment runs, `compiledRouteForRecommendation()` shells out to `.opencode/bin/compiled-route.cjs --hub <skillId> --prompt <prompt>` and attaches the parsed result — UNLESS that result's `servingAuthority` is `"legacy"`, in which case the field stays absent (a legacy sentinel is never surfaced as if it were a compiled decision). A subprocess failure is handled the same way: silently no `compiledRoute` field, with an optional debug-gated stderr breadcrumb via `SPECKIT_COMPILED_ROUTING_DEBUG`, so a probe failure degrades to exactly what an ineligible or flag-off recommendation already looks like. In short: `compiledRoute` is attached only for an eligible, flag-permitted hub that is genuinely serving compiled; it is intentionally absent for every other combination (flag off, hub not in `COMPILED_ROUTING_HUBS`, legacy sentinel, or probe failure). See [`feature-flag-governance.md`](../../../system-spec-kit/feature-catalog/governance/feature-flag-governance.md) for the flag's phased-default and serving-status contract, and each eligible hub's own `compiled-routing-and-legacy-fallback.md` catalog leaf for the hub-side directive this enrichment mirrors.
+Each recommendation carries an optional `compiledRoute` field (`schemas/advisor-tool-schemas.ts:221`, `z.record(z.string(), z.unknown()).optional()`). `handlers/advisor-recommend.ts`'s `enrichCompiledRoutes()` attaches it only when at least one recommended `skillId` is both in the fixed 7-hub `COMPILED_ROUTING_HUBS` set and currently permitted by the tri-state `SPECKIT_COMPILED_ROUTING` flag (`compiledRoutingEnabledForHub()`, from `../lib/compiled-routing-flag.ts`); otherwise the schema re-parse is skipped entirely and the output returns unchanged. When enrichment runs, `compiledRouteForRecommendation()` shells out to `.skilled/bin/compiled-route.cjs --hub <skillId> --prompt <prompt>` and attaches the parsed result — UNLESS that result's `servingAuthority` is `"legacy"`, in which case the field stays absent (a legacy sentinel is never surfaced as if it were a compiled decision). A subprocess failure is handled the same way: silently no `compiledRoute` field, with an optional debug-gated stderr breadcrumb via `SPECKIT_COMPILED_ROUTING_DEBUG`, so a probe failure degrades to exactly what an ineligible or flag-off recommendation already looks like. In short: `compiledRoute` is attached only for an eligible, flag-permitted hub that is genuinely serving compiled; it is intentionally absent for every other combination (flag off, hub not in `COMPILED_ROUTING_HUBS`, legacy sentinel, or probe failure). See [`feature-flag-governance.md`](../../../system-spec-kit/feature-catalog/governance/feature-flag-governance.md) for the flag's phased-default and serving-status contract, and each eligible hub's own `compiled-routing-and-legacy-fallback.md` catalog leaf for the hub-side directive this enrichment mirrors.
 
 ---
 
@@ -40,20 +40,20 @@ Each recommendation carries an optional `compiledRoute` field (`schemas/advisor-
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/tools/` | Command surface | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts` | Shared | `COMPILED_ROUTING_HUBS` eligibility set, `DEFAULT_ON_HUBS` cohort, and the tri-state flag parser the enrichment gate reads. |
-| `.opencode/bin/compiled-route.cjs` | Script | Promoted CLI front door `compiledRouteForRecommendation()` shells out to. |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/tools/` | Command surface | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts` | Shared | `COMPILED_ROUTING_HUBS` eligibility set, `DEFAULT_ON_HUBS` cohort, and the tri-state flag parser the enrichment gate reads. |
+| `.skilled/bin/compiled-route.cjs` | Script | Promoted CLI front door `compiledRouteForRecommendation()` shells out to. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts` | Automated test | Validation reference |
-| `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` | Automated test | Validation reference |
-| `.opencode/skills/system-skill-advisor/runtime/tests/compiled-routing-consumption.vitest.ts` | Automated test | Bridge child-env allowlist forwarding, `buildNativeBrief` decision threading, and `=0` cache-invalidation coverage for the `compiledRoute` enrichment. |
-| `.opencode/bin/compiled-routing-flag-propagation.vitest.ts` | Automated test | Tri-state flag propagation coverage. |
+| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts` | Automated test | Validation reference |
+| `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` | Automated test | Validation reference |
+| `.skilled/skills/system-skill-advisor/runtime/tests/compiled-routing-consumption.vitest.ts` | Automated test | Bridge child-env allowlist forwarding, `buildNativeBrief` decision threading, and `=0` cache-invalidation coverage for the `compiledRoute` enrichment. |
+| `.skilled/bin/compiled-routing-flag-propagation.vitest.ts` | Automated test | Tri-state flag propagation coverage. |
 | `Playbook scenarios [NC-001](../../manual-testing-playbook/native-cli-tools/native-recommend-happy-path.md), [NC-004](../../manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md), [NC-005](../../manual-testing-playbook/native-cli-tools/lifecycle-redirect-metadata.md).` | Manual playbook | Source reference |
 
 ---

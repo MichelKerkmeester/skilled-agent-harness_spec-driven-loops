@@ -40,7 +40,7 @@ const ROUTING = resolve(HERE, '../../scripts/routing-accuracy');
 const BASELINE_PATH = join(ROUTING, 'scorer-eval-baseline.json');
 const HOLDOUT_PATH = join(ROUTING, 'holdout-prompts.jsonl');
 const CORPUS_PATH = join(ROUTING, 'labeled-prompts.jsonl');
-const SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
+const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
 
 function normalizeFamily(prompt: string): string {
   return prompt.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();

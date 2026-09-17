@@ -49,7 +49,7 @@ function write(filePath: string, content: string): void {
 }
 
 function skillDir(root: string, slug: string): string {
-  return join(root, '.opencode', 'skills', slug);
+  return join(root, '.skilled', 'skills', slug);
 }
 
 function writeSkill(root: string, slug: string, options: { malformedSkill?: boolean; keyFiles?: string[] } = {}): void {
@@ -422,7 +422,7 @@ describe('freshness and generation foundation', () => {
     write(dbPath, 'not sqlite');
     const indexer = vi.fn(async () => ({ scannedFiles: 1 }));
 
-    const result = await rebuildFromSource({ dbPath, skillsRoot: join(root, '.opencode', 'skills'), indexer });
+    const result = await rebuildFromSource({ dbPath, skillsRoot: join(root, '.skilled', 'skills'), indexer });
 
     expect(result.rebuilt).toBe(true);
     expect(result.stateDuringRebuild).toBe('unavailable');

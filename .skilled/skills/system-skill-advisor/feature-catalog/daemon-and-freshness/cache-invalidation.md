@@ -31,14 +31,14 @@ Prevent stale cache reads after a graph reindex. Every cache entry is tagged wit
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/lib/freshness/cache-invalidation.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/prompt-cache.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/freshness/cache-invalidation.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-cache.vitest.ts` | Automated test | prompt cache TTL and invalidation |
+| `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-cache.vitest.ts` | Automated test | prompt cache TTL and invalidation |
 | `Playbook scenario [AU-004](../../manual-testing-playbook/auto-update-daemon/generation-publication.md).` | Manual playbook | Source reference |
 
 ---

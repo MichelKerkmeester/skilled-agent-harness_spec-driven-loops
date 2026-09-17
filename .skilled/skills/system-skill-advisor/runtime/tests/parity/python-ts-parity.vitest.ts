@@ -69,7 +69,7 @@ const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
 
 function findWorkspaceRoot(): string {
   const start = dirname(fileURLToPath(import.meta.url));
-  const sentinel = '.opencode/skills/system-spec-kit/SKILL.md';
+  const sentinel = '.skilled/skills/system-spec-kit/SKILL.md';
   const candidate = findAdvisorWorkspaceRoot(start, { maxDepth: 12, sentinel });
   if (!existsSync(resolve(candidate, sentinel))) {
     throw new Error('Unable to locate workspace root.');
@@ -78,7 +78,7 @@ function findWorkspaceRoot(): string {
 }
 
 const WORKSPACE_ROOT = findWorkspaceRoot();
-const SPECKIT_BENCH_CORPUS_PATH = '.opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl';
+const SPECKIT_BENCH_CORPUS_PATH = '.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl';
 const CORPUS_PATH = resolve(WORKSPACE_ROOT, SPECKIT_BENCH_CORPUS_PATH);
 
 function loadCorpus(): CorpusRow[] {
@@ -96,7 +96,7 @@ function runPython(prompts: readonly string[]): PythonRow[] {
   const script = `
 import importlib.util, json, os, sys
 workspace = sys.argv[1]
-path = os.path.join(workspace, '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py')
+path = os.path.join(workspace, '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py')
 spec = importlib.util.spec_from_file_location('skill_advisor', path)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)

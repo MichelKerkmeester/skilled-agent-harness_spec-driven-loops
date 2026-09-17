@@ -57,7 +57,7 @@ function write(filePath: string, content: string): void {
 }
 
 function skillDir(root: string, slug: string): string {
-  return join(root, '.opencode', 'skills', slug);
+  return join(root, '.skilled', 'skills', slug);
 }
 
 function writeSkill(root: string, slug: string): void {
@@ -144,7 +144,7 @@ describe('new-root ingestion: the skills root announces newborn skills', () => {
       backpressure: { debounceMs: 20, stableWriteMs: 5 },
     });
 
-    const skillsRoot = join(root, '.opencode', 'skills');
+    const skillsRoot = join(root, '.skilled', 'skills');
     expect(harness.watchedPaths).toContain(skillsRoot);
     expect(harness.watchOptions.depth).toBe(0);
 
@@ -198,7 +198,7 @@ describe('new-root ingestion: the skills root announces newborn skills', () => {
     });
 
     harness.emit('addDir', join(skillDir(root, 'alpha'), 'references'));
-    harness.emit('addDir', join(root, '.opencode', 'skills', '.hidden'));
+    harness.emit('addDir', join(root, '.skilled', 'skills', '.hidden'));
     await vi.advanceTimersByTimeAsync(50);
     await watcher.flush();
 

@@ -72,10 +72,10 @@ Tool response transcript showing validation categories and severity state.
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/handlers/skill-graph/validate.ts`
-- `.opencode/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts`
-- `.opencode/skills/system-skill-advisor/runtime/tests/skill-graph-handlers.vitest.ts`
-- `.opencode/skills/system-skill-advisor/runtime/tests/skill-graph-db.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/validate.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-handlers.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-db.vitest.ts`
 
 ---
 

@@ -52,8 +52,8 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, ${JSON.stringify(rootDepth)});
-const launcher = path.join(root, '.opencode/bin/${launcherName}');
-const holder = path.join(root, '.opencode/bin/daemon-holder.js');
+const launcher = path.join(root, '.skilled/bin/${launcherName}');
+const holder = path.join(root, '.skilled/bin/daemon-holder.js');
 const child = spawn(process.execPath, [holder, launcher], { cwd: root, env: process.env, detached: true, stdio: 'ignore' });
 child.unref();
 setTimeout(() => {
@@ -97,7 +97,7 @@ const fs = require('fs');
 const path = require('path');
 
 function leasePath() {
-  const dir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR || path.join(process.cwd(), '.opencode/skills/system-skill-advisor/runtime/database');
+  const dir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR || path.join(process.cwd(), '.skilled/skills/system-skill-advisor/runtime/database');
   return path.join(dir, 'skill-graph-daemon-lease.sqlite');
 }
 
@@ -125,7 +125,7 @@ function createTriSandbox(): TriSandbox {
   // package scope, which crashes the CommonJS `.js` stub children at startup.
   // A short prefix also keeps derived socket paths under Darwin's sun_path limit.
   const root = mkdtempSync('/tmp/tri-');
-  const binDir = join(root, '.opencode/bin');
+  const binDir = join(root, '.skilled/bin');
   const binLibDir = join(binDir, 'lib');
   mkdirSync(binLibDir, { recursive: true });
   for (const fileName of [
@@ -133,9 +133,9 @@ function createTriSandbox(): TriSandbox {
     'system-code-index-launcher.cjs',
     'system-skill-advisor-launcher.cjs',
   ]) {
-    copyFileSync(join(repoRoot, '.opencode/bin', fileName), join(binDir, fileName));
+    copyFileSync(join(repoRoot, '.skilled/bin', fileName), join(binDir, fileName));
   }
-  cpSync(join(repoRoot, '.opencode/bin/lib'), binLibDir, { recursive: true });
+  cpSync(join(repoRoot, '.skilled/bin/lib'), binLibDir, { recursive: true });
   writeExecutable(join(binDir, 'daemon-holder.js'), holderSource());
 
   const codeIndexDbDir = join(root, 'runtime/code-graph-db');
@@ -147,7 +147,7 @@ function createTriSandbox(): TriSandbox {
   const advisorChildPidFile = join(root, 'runtime/skill-advisor-child.pid');
   const advisorDaemonLeaseFile = join(skillAdvisorDbDir, 'skill-graph-daemon-lease.sqlite');
   const advisorOwnerLeaseFile = join(skillAdvisorDbDir, '.skill-advisor-owner.json');
-  const advisorLeaseModulePath = join(root, '.opencode/skills/system-skill-advisor/runtime/dist/runtime/lib/daemon/lease.js');
+  const advisorLeaseModulePath = join(root, '.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/daemon/lease.js');
 
   for (const dir of [
     codeIndexDbDir,
@@ -162,7 +162,7 @@ function createTriSandbox(): TriSandbox {
     stubCliSource('../../../../..', 'system-code-index-launcher.cjs', 'system-code-index'),
   );
   writeExecutable(
-    join(root, '.opencode/skills/system-skill-advisor/runtime/dist/runtime/skill-advisor-cli.js'),
+    join(root, '.skilled/skills/system-skill-advisor/runtime/dist/runtime/skill-advisor-cli.js'),
     stubCliSource('../../../../../..', 'system-skill-advisor-launcher.cjs', 'system-skill-advisor'),
   );
   writeFileSync(
@@ -170,7 +170,7 @@ function createTriSandbox(): TriSandbox {
     'utf8',
   );
   writeFileSync(
-    join(root, '.opencode/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js'),
+    join(root, '.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js'),
     longRunningServerSource(
       advisorChildPidFile,
       `fs.mkdirSync(${JSON.stringify(skillAdvisorDbDir)}, { recursive: true });\nfs.writeFileSync(${JSON.stringify(advisorDaemonLeaseFile)}, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }));`,

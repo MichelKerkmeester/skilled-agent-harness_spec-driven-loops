@@ -21,7 +21,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
 const advisorScript = resolve(
   repoRoot,
-  '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
+  '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
 );
 
 type DeepMode = 'research' | 'review' | 'ai-council';

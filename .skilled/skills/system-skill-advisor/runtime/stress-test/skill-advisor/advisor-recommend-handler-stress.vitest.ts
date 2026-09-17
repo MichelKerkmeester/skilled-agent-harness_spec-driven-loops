@@ -86,7 +86,7 @@ describe('sa-025 — advisor_recommend MCP tool', () => {
   }
 
   function writeSkill(index: number): void {
-    const skillDir = join(workspaceRoot, '.opencode', 'skills', `recommend-${index}`);
+    const skillDir = join(workspaceRoot, '.skilled', 'skills', `recommend-${index}`);
     mkdirSync(skillDir, { recursive: true });
     writeFileSync(
       join(skillDir, 'graph-metadata.json'),

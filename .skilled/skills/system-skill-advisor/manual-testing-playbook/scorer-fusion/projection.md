@@ -47,7 +47,7 @@ Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges
 1. Trigger a recommend call that exercises the graph_causal lane:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"includeAttribution":true}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"includeAttribution":true}' --format json
 ```
 
 2. In the response, inspect the lane attribution: laneBreakdown entries expose exactly lane, rawScore, weightedScore, weight, and shadowOnly (the strict schema; projected node ids and edge types are not part of the shipped response).
@@ -55,13 +55,13 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit 
 4. Run the routing drift guard:
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime test -- routing-registry-drift-guard.vitest.ts
+npm --prefix .skilled/skills/system-skill-advisor/runtime test -- routing-registry-drift-guard.vitest.ts
 ```
 
 5. Trigger a generated deep-loop alias and verify `workflowMode` appears:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "run a deep review loop" --options '{"includeAttribution":true}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "run a deep review loop" --options '{"includeAttribution":true}' --format json
 ```
 
 6. Run `advisor_validate` and inspect the parity slice against Python fallback to confirm projection consistency.
@@ -92,10 +92,10 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "run a deep revi
 - Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md), fusion weights.
 - Scenario [NC-003](../../manual-testing-playbook/native-cli-tools/native-validate-slices.md), validate slices.
 - Feature [`scorer-fusion/projection.md`](../../feature-catalog/scorer-fusion/projection.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/scorer/projection.ts`.
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts`.
-- Source: `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`.
-- Test: `.opencode/skills/system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`.
+- Test: `.skilled/skills/system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts`.
 
 ---
 

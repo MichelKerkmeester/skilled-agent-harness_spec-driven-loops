@@ -50,7 +50,7 @@ function skill(overrides: Partial<SkillProjection> & Pick<SkillProjection, 'id'>
     intentSignals: [],
     derivedTriggers: [],
     derivedKeywords: [],
-    sourcePath: `.opencode/skills/${id}/graph-metadata.json`,
+    sourcePath: `.skilled/skills/${id}/graph-metadata.json`,
     lifecycleStatus: 'active',
     ...rest,
   };

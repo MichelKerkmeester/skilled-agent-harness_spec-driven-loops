@@ -114,7 +114,7 @@ describe('skill-advisor CLI rebuild and scan job semantics', () => {
       'skill_graph_scan',
       '--trusted',
       '--skills-root',
-      '.opencode/skills',
+      '.skilled/skills',
       '--format',
       'json',
       '--timeout-ms',

@@ -45,22 +45,22 @@ Validate that derived extraction in `lib/derived/extract.ts` produces determinis
 1. Capture pre-state of the target skill:
 
 ```bash
-cp .opencode/skills/sk-doc/graph-metadata.json /tmp/pre-derived.json
-cp .opencode/skills/sk-doc/SKILL.md /tmp/pre-skill.md
+cp .skilled/skills/sk-doc/graph-metadata.json /tmp/pre-derived.json
+cp .skilled/skills/sk-doc/SKILL.md /tmp/pre-skill.md
 ```
 
 2. Touch the target skill to force reindex:
 
 ```bash
-touch .opencode/skills/sk-doc/SKILL.md
+touch .skilled/skills/sk-doc/SKILL.md
 ```
 
 3. Wait for debounce + reindex.
 4. Recompute with a repeat touch and capture again:
 
 ```bash
-touch .opencode/skills/sk-doc/SKILL.md
-cp .opencode/skills/sk-doc/graph-metadata.json /tmp/post-derived.json
+touch .skilled/skills/sk-doc/SKILL.md
+cp .skilled/skills/sk-doc/graph-metadata.json /tmp/post-derived.json
 ```
 
 5. Diff `graph-metadata.json` pre vs post and compare `SKILL.md` pre vs post.
@@ -87,7 +87,7 @@ cp .opencode/skills/sk-doc/graph-metadata.json /tmp/post-derived.json
 - Scenario [AI-002](../../manual-testing-playbook/auto-indexing/sanitizer-boundaries.md), A7 sanitizer boundary enforcement.
 - Scenario [AI-003](../../manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md), provenance and trust lane tagging.
 - Feature [`auto-indexing/derived-extraction.md`](../../feature-catalog/auto-indexing/derived-extraction.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/derived/extract.ts` and `lib/derived/sync.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/derived/extract.ts` and `lib/derived/sync.ts`.
 
 ---
 

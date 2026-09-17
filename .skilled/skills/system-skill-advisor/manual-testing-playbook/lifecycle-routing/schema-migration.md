@@ -50,7 +50,7 @@ cp /tmp/path-to-copy/.opencode/skills/system-skill-advisor/runtime/database/skil
 2. Trigger migration by bringing up the daemon against the v1 workspace:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 3. Inspect the post-migration state and verify new v2 fields are populated while v1 fields remain identical.
@@ -78,7 +78,7 @@ node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-t
 - Scenario [LC-005](../../manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md), lifecycle rollback.
 - Scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md), rebuild-from-source.
 - Feature [`lifecycle-routing/schema-migration.md`](../../feature-catalog/lifecycle-routing/schema-migration.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/schema-migration.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/schema-migration.ts`.
 
 ---
 

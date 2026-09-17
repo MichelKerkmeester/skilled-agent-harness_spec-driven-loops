@@ -38,16 +38,16 @@ Unsanitized labels never leak to readers.
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/derived/sync.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/derived/sync.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` | Automated test | boundary sanitization |
-| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts` | Automated test | envelope sanitization |
+| `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` | Automated test | boundary sanitization |
+| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts` | Automated test | envelope sanitization |
 | `Playbook scenario [AI-002](../../manual-testing-playbook/auto-indexing/sanitizer-boundaries.md).` | Manual playbook | Source reference |
 
 ---

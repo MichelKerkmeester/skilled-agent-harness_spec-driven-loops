@@ -2,11 +2,11 @@
 // MODULE: Command-binding existence gate
 // ───────────────────────────────────────────────────────────────
 // Every command id a hub declares (mode-registry `command` fields, and any hub-level
-// command-metadata.json) must resolve to a real command file under .opencode/commands/**,
+// command-metadata.json) must resolve to a real command file under .skilled/commands/**,
 // or be in an explicit allowlist with a reason. Today these bindings are honor-system in
 // every direction — the checker never reads them — so a rename or a typo leaves a dead
 // binding that passes every gate (e.g. /doc:quality binds create-quality-control but no
-// .opencode/commands/doc/ exists). This test makes the binding real.
+// .skilled/commands/doc/ exists). This test makes the binding real.
 //
 // SCOPE: declared registry + command-metadata bindings (gate-free). The advisor scorer's
 // own dead command ids (/deep:start-*-loop, etc.) live in the operator-gated scorer track
@@ -27,11 +27,11 @@ function repoRoot(): string {
 }
 const R = repoRoot();
 
-// A declared command id resolves when .opencode/commands/<namespace>/<name>.md exists.
+// A declared command id resolves when .skilled/commands/<namespace>/<name>.md exists.
 function commandResolves(id: string): boolean {
   const m = id.match(/^\/([a-z][a-z0-9-]*):([a-z0-9-]+)$/);
   if (!m) return false;
-  return existsSync(join(R, '.opencode', 'commands', m[1], `${m[2]}.md`));
+  return existsSync(join(R, '.skilled', 'commands', m[1], `${m[2]}.md`));
 }
 
 // Genuinely-dead bindings that are tracked, not resolvable today. Each MUST carry a reason.
@@ -47,12 +47,12 @@ const HUBS = ['sk-code', 'sk-doc', 'system-deep-loop'] as const;
 function declaredCommandIds(): Array<{ id: string; source: string }> {
   const out: Array<{ id: string; source: string }> = [];
   for (const hub of HUBS) {
-    const reg = JSON.parse(readFileSync(join(R, '.opencode', 'skills', hub, 'mode-registry.json'), 'utf8'));
+    const reg = JSON.parse(readFileSync(join(R, '.skilled', 'skills', hub, 'mode-registry.json'), 'utf8'));
     for (const mode of reg.modes ?? []) {
       if (typeof mode.command === 'string') out.push({ id: mode.command, source: `${hub} registry` });
     }
     // Optional hub-level command-metadata.json (advisor-facing per-command projection).
-    const cmPath = join(R, '.opencode', 'skills', hub, 'command-metadata.json');
+    const cmPath = join(R, '.skilled', 'skills', hub, 'command-metadata.json');
     if (existsSync(cmPath)) {
       const cm = JSON.parse(readFileSync(cmPath, 'utf8'));
       const entries = Array.isArray(cm) ? cm : Object.values(cm);
@@ -86,7 +86,7 @@ describe('command-binding existence', () => {
   });
 
   it('sanity: the command namespaces the gate resolves against exist', () => {
-    const namespaces = new Set(readdirSync(join(R, '.opencode', 'commands'), { withFileTypes: true })
+    const namespaces = new Set(readdirSync(join(R, '.skilled', 'commands'), { withFileTypes: true })
       .filter((e) => e.isDirectory()).map((e) => e.name));
     for (const ns of ['create', 'deep']) expect(namespaces.has(ns)).toBe(true);
   });

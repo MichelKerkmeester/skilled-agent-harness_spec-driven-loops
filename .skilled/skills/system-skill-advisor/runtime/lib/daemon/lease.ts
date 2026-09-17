@@ -53,7 +53,7 @@ const DEFAULT_STALE_AFTER_MS = 30_000;
 const DEFAULT_HEARTBEAT_MS = 5_000;
 const LEASE_DB_FILENAME = 'skill-graph-daemon-lease.sqlite';
 const LEGACY_LEASE_RELATIVE_PATH = join(
-  '.opencode',
+  '.skilled',
   'skills',
   '.state',
   'advisor',
@@ -88,7 +88,7 @@ function resolveSkillAdvisorDbDir(workspaceRoot: string): string {
   }
   return canonicalizePath(join(
     canonicalizePath(workspaceRoot),
-    '.opencode',
+    '.skilled',
     'skills',
     'system-skill-advisor',
     'runtime',

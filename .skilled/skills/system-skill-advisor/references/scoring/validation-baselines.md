@@ -65,13 +65,13 @@ The measurement authority is [`scorer-eval-baseline.json`](../../runtime/scripts
 `advisor_validate` is a heavy operation. It runs the full corpus plus holdout plus parity plus safety plus latency slices in one pass. Require `confirmHeavyRun=true` to invoke.
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
+node .skilled/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
 ```
 
 For a single-skill check (skip corpus + holdout):
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --json '{"skillSlug":"sk-code"}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --json '{"skillSlug":"sk-code"}' --format json
 ```
 
 Response fields to retain for baseline tracking:

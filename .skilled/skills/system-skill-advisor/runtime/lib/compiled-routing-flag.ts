@@ -22,7 +22,7 @@ export const COMPILED_ROUTING_HUBS: ReadonlySet<string> = new Set([
 // Per-hub default-on cohort. Mirrors the runtime resolver's own default-on
 // cohort (all 7 hubs verified compiled-serving, 0 drift — see
 // `011-runtime-engine/lib/resolve.cjs`): this enrichment shells out to the same
-// public front door (`.opencode/bin/compiled-route.cjs`), which delegates to
+// public front door (`.skilled/bin/compiled-route.cjs`), which delegates to
 // that identical resolver, so surfacing it here attaches only additive
 // metadata and never changes which skill is recommended. An unset flag now
 // attaches `compiledRoute` for these hubs; SPECKIT_COMPILED_ROUTING=0 remains

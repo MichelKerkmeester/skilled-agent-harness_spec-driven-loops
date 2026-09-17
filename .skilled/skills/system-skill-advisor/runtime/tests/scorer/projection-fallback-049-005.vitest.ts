@@ -17,7 +17,7 @@ import { loadAdvisorProjection } from '../../lib/scorer/projection.js';
 
 const workspaces: string[] = [];
 const ADVISOR_DB_RELATIVE_PATH = join(
-  '.opencode',
+  '.skilled',
   'skills',
   'system-skill-advisor',
   'runtime',
@@ -25,7 +25,7 @@ const ADVISOR_DB_RELATIVE_PATH = join(
   'skill-graph.sqlite',
 );
 const DERIVED_PATH_FIXTURE = {
-  key_files: ['.opencode/skills/x/assets/patterns/wait-patterns.js'],
+  key_files: ['.skilled/skills/x/assets/patterns/wait-patterns.js'],
   source_docs: ['references/architecture.md'],
 };
 
@@ -41,7 +41,7 @@ function write(filePath: string, content: string | Buffer): void {
 }
 
 function writeFilesystemSkill(root: string): string {
-  const skillDir = join(root, '.opencode', 'skills', 'sample-skill');
+  const skillDir = join(root, '.skilled', 'skills', 'sample-skill');
   write(join(skillDir, 'SKILL.md'), [
     '---',
     'name: sample-skill',
@@ -129,7 +129,7 @@ describe('F-004-A4-01: loadAdvisorProjection surfaces SQLite failures explicitly
   it('returns source=filesystem when the SQLite DB does not exist (legitimate first run)', () => {
     const root = workspace('advisor-projection-no-db');
     // Create a single skill on disk so the filesystem projection has content.
-    const skillDir = join(root, '.opencode', 'skills', 'sample-skill');
+    const skillDir = join(root, '.skilled', 'skills', 'sample-skill');
     write(join(skillDir, 'SKILL.md'), [
       '---',
       'name: sample-skill',
@@ -210,7 +210,7 @@ describe('F-004-A4-01: loadAdvisorProjection surfaces SQLite failures explicitly
     const dbPath = join(root, ADVISOR_DB_RELATIVE_PATH);
     write(dbPath, Buffer.from('this is not a valid SQLite database'));
     // Also add a filesystem skill so the fallback has content to return.
-    const skillDir = join(root, '.opencode', 'skills', 'sample-skill');
+    const skillDir = join(root, '.skilled', 'skills', 'sample-skill');
     write(join(skillDir, 'SKILL.md'), [
       '---',
       'name: sample-skill',

@@ -37,14 +37,14 @@ If either gap is within margin, the response carries an ambiguity signal that th
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/render.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | ambiguity window behavior |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | ambiguity window behavior |
 | `Playbook scenarios [SC-003](../../manual-testing-playbook/scorer-fusion/ambiguity.md) and [NC-004](../../manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md).` | Manual playbook | Source reference |
 
 ---

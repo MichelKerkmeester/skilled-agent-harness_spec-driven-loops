@@ -45,7 +45,7 @@ Validate that `lib/lifecycle/supersession.ts` implements asymmetric routing: a s
 2. Call `advisor_recommend` with a prompt that historically mapped to the superseded skill:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt mapping to superseded skill>" --options '{"topK":2,"includeAttribution":true}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt mapping to superseded skill>" --options '{"topK":2,"includeAttribution":true}' --format json
 ```
 
 3. Inspect the response for redirect metadata.
@@ -73,7 +73,7 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt mapping
 - Scenario [NC-005](../../manual-testing-playbook/native-cli-tools/lifecycle-redirect-metadata.md), native redirect metadata.
 - Scenario [LC-005](../../manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md), lifecycle-level rollback.
 - Feature [`lifecycle-routing/supersession.md`](../../feature-catalog/lifecycle-routing/supersession.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/supersession.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/supersession.ts`.
 
 ---
 
@@ -92,7 +92,7 @@ Precondition check for a superseded-successor pair in skill `graph-metadata.json
 
 ```text
 grep pattern: "supersession|redirect_to|redirect_from|superseded|successor"
-path: <repo-root>/.opencode/skills
+path: <repo-root>/.skilled/skills
 include: graph-metadata.json
 
 No files found
@@ -102,85 +102,85 @@ More specific metadata-field check:
 
 ```text
 grep pattern: "\"lifecycle_status\"|\"redirect_to\"|\"redirect_from\"|\"skill_id\""
-path: <repo-root>/.opencode/skills
+path: <repo-root>/.skilled/skills
 include: *graph-metadata.json
 
 Found 20 matches
-<repo-root>/.opencode/skills/mcp-chrome-devtools/graph-metadata.json:
+<repo-root>/.skilled/skills/mcp-chrome-devtools/graph-metadata.json:
   Line 3:   "skill_id": "mcp-chrome-devtools",
 
 
-<repo-root>/.opencode/skills/sk-git/graph-metadata.json:
+<repo-root>/.skilled/skills/sk-git/graph-metadata.json:
   Line 3:   "skill_id": "sk-git",
 
 
-<repo-root>/.opencode/skills/cli-opencode/graph-metadata.json:
+<repo-root>/.skilled/skills/cli-opencode/graph-metadata.json:
   Line 3:   "skill_id": "cli-opencode",
 
 
-<repo-root>/.opencode/skills/z_archive/cli-codex-retired/graph-metadata.json:
+<repo-root>/.skilled/skills/z_archive/cli-codex-retired/graph-metadata.json:
   Line 3:   "skill_id": "cli-codex",
 
 
-.opencode/skills/sk-design/graph-metadata.json:
+.skilled/skills/sk-design/graph-metadata.json:
   Line 3:   "skill_id": "sk-design",
 
 
-<repo-root>/.opencode/skills/mcp-code-mode/graph-metadata.json:
+<repo-root>/.skilled/skills/mcp-code-mode/graph-metadata.json:
   Line 3:   "skill_id": "mcp-code-mode",
 
 
-<repo-root>/.opencode/skills/system-spec-kit/graph-metadata.json:
+<repo-root>/.skilled/skills/system-spec-kit/graph-metadata.json:
   Line 3:   "skill_id": "system-spec-kit",
 
 
-<repo-root>/.opencode/skills/cli-claude-code/graph-metadata.json:
+<repo-root>/.skilled/skills/cli-claude-code/graph-metadata.json:
   Line 3:   "skill_id": "cli-claude-code",
 
 
-<repo-root>/.opencode/skills/mcp-click-up/graph-metadata.json:
+<repo-root>/.skilled/skills/mcp-click-up/graph-metadata.json:
   Line 3:   "skill_id": "mcp-click-up",
 
 
-<repo-root>/.opencode/skills/sk-doc/graph-metadata.json:
+<repo-root>/.skilled/skills/sk-doc/graph-metadata.json:
   Line 3:   "skill_id": "sk-doc",
 
 
-<repo-root>/.opencode/skills/sk-prompt/graph-metadata.json:
+<repo-root>/.skilled/skills/sk-prompt/graph-metadata.json:
   Line 3:   "skill_id": "sk-prompt",
 
 
-<repo-root>/.opencode/skills/mcp-figma/graph-metadata.json:
+<repo-root>/.skilled/skills/mcp-figma/graph-metadata.json:
   Line 3:   "skill_id": "mcp-figma",
 
 
-<repo-root>/.opencode/skills/system-deep-loop/runtime/graph-metadata.json:
+<repo-root>/.skilled/skills/system-deep-loop/runtime/graph-metadata.json:
   Line 4:   "skill_id": "deep-loop-runtime",
 
 
 
 
-<repo-root>/.opencode/skills/sk-code/sk-code-review/graph-metadata.json:
+<repo-root>/.skilled/skills/sk-code/sk-code-review/graph-metadata.json:
   Line 3:   "skill_id": "sk-code-review",
 
 
-<repo-root>/.opencode/skills/sk-prompt-models/graph-metadata.json:
+<repo-root>/.skilled/skills/sk-prompt-models/graph-metadata.json:
   Line 3:   "skill_id": "sk-prompt-models",
 
 
-<repo-root>/.opencode/skills/sk-design/graph-metadata.json:
+<repo-root>/.skilled/skills/sk-design/graph-metadata.json:
   Line 3:   "skill_id": "sk-design",
 
 
-<repo-root>/.opencode/skills/sk-code/graph-metadata.json:
+<repo-root>/.skilled/skills/sk-code/graph-metadata.json:
   Line 3:   "skill_id": "sk-code",
 
 
-<repo-root>/.opencode/skills/system-skill-advisor/graph-metadata.json:
+<repo-root>/.skilled/skills/system-skill-advisor/graph-metadata.json:
   Line 3:   "skill_id": "system-skill-advisor",
 
 
-<repo-root>/.opencode/skills/system-deep-loop/graph-metadata.json:
+<repo-root>/.skilled/skills/system-deep-loop/graph-metadata.json:
   Line 4:   "skill_id": "system-deep-loop",
 ```
 

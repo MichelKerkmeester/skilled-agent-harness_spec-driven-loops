@@ -5,7 +5,7 @@
 
 """Runtime helpers for skill_advisor.py.
 
-Usage: imported by `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
+Usage: imported by `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
 Output: cached skill records with normalized metadata and mtime invalidation.
 """
 

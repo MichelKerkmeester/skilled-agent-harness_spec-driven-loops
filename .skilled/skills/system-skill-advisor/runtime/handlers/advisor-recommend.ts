@@ -334,7 +334,7 @@ function compiledRouteForRecommendation(
   if (!COMPILED_ROUTING_HUBS.has(skillId)) return undefined;
   try {
     const output = execFileSync(process.execPath, [
-      resolve(workspaceRoot, '.opencode', 'bin', 'compiled-route.cjs'),
+      resolve(workspaceRoot, '.skilled', 'bin', 'compiled-route.cjs'),
       '--hub',
       skillId,
       '--prompt',

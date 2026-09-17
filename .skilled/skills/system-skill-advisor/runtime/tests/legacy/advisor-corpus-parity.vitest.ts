@@ -48,7 +48,7 @@ const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
 const workspaceRoot = findAdvisorWorkspaceRoot(import.meta.dirname);
 const corpusPath = join(
   workspaceRoot,
-  '.opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl',
+  '.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl',
 );
 function loadCorpus(): CorpusRow[] {
   return readFileSync(corpusPath, 'utf8')
@@ -61,7 +61,7 @@ function directPythonTopSkills(rows: readonly CorpusRow[]): Array<string | null>
   const script = `
 import importlib.util, json, os, sys
 workspace = sys.argv[1]
-path = os.path.join(workspace, '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py')
+path = os.path.join(workspace, '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py')
 spec = importlib.util.spec_from_file_location('skill_advisor', path)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)

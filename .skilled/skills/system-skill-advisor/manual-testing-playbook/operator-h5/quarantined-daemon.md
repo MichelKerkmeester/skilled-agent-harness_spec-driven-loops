@@ -46,7 +46,7 @@ Validate the quarantine path for malformed skill metadata without damaging the l
 4. Detect:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 5. Inspect quarantine table or daemon logs for the offending skill path.
@@ -72,8 +72,8 @@ node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-t
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts`
-- `.opencode/skills/system-skill-advisor/runtime/schemas/daemon-status.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts`
+- `.skilled/skills/system-skill-advisor/runtime/schemas/daemon-status.ts`
 
 ---
 
@@ -116,7 +116,7 @@ Do NOT modify, create, or delete any file OTHER than the single scenario file na
 - The scenario's own execution step 1 requires creating a temporary workspace, and steps 2 and 6 require modifying a copied `SKILL.md`; those writes are outside the only allowed write path:
 
 ```text
-.opencode/skills/system-skill-advisor/manual-testing-playbook/operator-h5/quarantined-daemon.md (this file only)
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/quarantined-daemon.md (this file only)
 ```
 
 ---

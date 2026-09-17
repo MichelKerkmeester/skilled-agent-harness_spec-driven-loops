@@ -274,11 +274,11 @@ export function resolveSkillGraphDbDir(baseRoot: string = process.cwd()): string
   }
   // Anchor to the real repo root. A default `process.cwd()` inside a
   // specs/<packet> directory would otherwise plant the skill-graph database
-  // under that packet; the anchored resolver can never land inside an .opencode
+  // under that packet; the anchored resolver can never land inside an .skilled
   // tree, so the DB always resolves to one file at the workspace root.
   return resolve(
     findAdvisorWorkspaceRoot(baseRoot),
-    '.opencode',
+    '.skilled',
     'skills',
     'system-skill-advisor',
     'runtime',

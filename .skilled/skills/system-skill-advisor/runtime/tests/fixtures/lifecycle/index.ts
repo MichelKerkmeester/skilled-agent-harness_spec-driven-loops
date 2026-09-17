@@ -19,12 +19,12 @@ export const lifecycleFixtures = {
   },
   archived: {
     skillId: 'archived-skill',
-    sourcePath: '.opencode/skills/z_archive/archived-skill/graph-metadata.json',
+    sourcePath: '.skilled/skills/z_archive/archived-skill/graph-metadata.json',
     lifecycleStatus: 'archived',
   },
   future: {
     skillId: 'future-skill',
-    sourcePath: '.opencode/skills/z-future/future-skill/graph-metadata.json',
+    sourcePath: '.skilled/skills/z-future/future-skill/graph-metadata.json',
     lifecycleStatus: 'future',
   },
   rolledBack: {

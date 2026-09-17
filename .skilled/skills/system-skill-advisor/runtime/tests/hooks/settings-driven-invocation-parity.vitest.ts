@@ -50,7 +50,7 @@
 // contents. Only true Claude interpreter behavior belongs behind a Claude
 // runtime guard; this suite intentionally stays at the checked-in JSON
 // boundary. The committed commands use the portable form
-// `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/...'` so they
+// `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .skilled/...'` so they
 // resolve correctly across worktrees and machines, rather than pinning an
 // absolute repo root or an absolute node binary.
 //
@@ -195,7 +195,7 @@ describe('settings-driven invocation parity (F23.1 / F25 / F46 / F56)', () => {
           expect(cmd).toContain('cd "${CLAUDE_PROJECT_DIR:-$PWD}"');
           // Bare `node` (relying on PATH) running the relative adapter path —
           // not a pinned absolute node binary.
-          expect(cmd).toMatch(/&& node \.opencode\/skills\/system-spec-kit\/runtime\/dist\/hooks\/claude\//);
+          expect(cmd).toMatch(/&& node \.skilled\/skills\/system-spec-kit\/runtime\/dist\/hooks\/claude\//);
           expect(cmd).not.toContain('git rev-parse');
           expect(cmd).not.toContain('|| pwd');
         });
@@ -227,7 +227,7 @@ describe('settings-driven invocation parity (F23.1 / F25 / F46 / F56)', () => {
         const hooks = SETTINGS.hooks?.SessionStart?.[0]?.hooks ?? [];
         expect(hooks[0]?.command).toContain(EXPECTED_HANDLER_FRAGMENTS.SessionStart);
         expect(hooks[1]?.type).toBe('command');
-        expect(hooks[1]?.command).toContain('bash .opencode/bin/worktree-guard.sh');
+        expect(hooks[1]?.command).toContain('bash .skilled/bin/worktree-guard.sh');
       });
     });
 

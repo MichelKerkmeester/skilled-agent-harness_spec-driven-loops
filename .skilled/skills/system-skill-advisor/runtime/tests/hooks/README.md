@@ -49,7 +49,7 @@ hooks/
 Run from the repository root.
 
 ```bash
-npx vitest run .opencode/skills/system-skill-advisor/runtime/tests/hooks
+npx vitest run .skilled/skills/system-skill-advisor/runtime/tests/hooks
 ```
 
 Expected result: the settings shape and adapter checks pass.

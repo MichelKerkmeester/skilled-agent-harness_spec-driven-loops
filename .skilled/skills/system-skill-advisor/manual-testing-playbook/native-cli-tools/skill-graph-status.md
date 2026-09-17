@@ -75,9 +75,9 @@ The status call returns a non-error payload with live graph totals and database 
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/handlers/skill-graph/status.ts`
-- `.opencode/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts`
-- `.opencode/skills/system-skill-advisor/runtime/tests/skill-graph-handlers.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/status.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-handlers.vitest.ts`
 
 ---
 

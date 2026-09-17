@@ -46,7 +46,7 @@ Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `w
 1. Call with attribution enabled:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "review this pull request" --options '{"topK":1,"includeAttribution":true}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "review this pull request" --options '{"topK":1,"includeAttribution":true}' --format json
 ```
 
 2. Inspect `laneBreakdown[]` and `why_recommended` for the top recommendation.
@@ -203,8 +203,8 @@ BLOCKED - The required precondition "Any prompt that routes to a known skill" is
 - Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md), fusion weights sanity.
 - Scenario [SC-005](./ablation.md), ablation protocol.
 - Feature [`scorer-fusion/attribution.md`](../../feature-catalog/scorer-fusion/attribution.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/scorer/attribution.ts`.
-- Source: `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/attribution.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`.
 
 ---
 

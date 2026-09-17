@@ -18,7 +18,7 @@ import { getSkillGraphGenerationPath } from '../lib/freshness/generation.js';
 import { resolveSkillGraphDbDir } from '../lib/skill-graph/skill-graph-db.js';
 import { workspaceRootFor } from '../../hooks/claude/user-prompt-submit.js';
 
-const SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
+const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
 const tmpRoots: string[] = [];
 
 // Build a throwaway repo (sentinel present) with a nested specs/<packet> dir,
@@ -26,7 +26,7 @@ const tmpRoots: string[] = [];
 function repoWithSpecDir(): { repo: string; specDir: string } {
   const repo = mkdtempSync(join(tmpdir(), 'advisor-containment-'));
   tmpRoots.push(repo);
-  mkdirSync(join(repo, '.opencode', 'skills', 'system-spec-kit'), { recursive: true });
+  mkdirSync(join(repo, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
   writeFileSync(join(repo, SENTINEL), '# sentinel\n');
   const specDir = join(repo, 'specs', 'system-skill-advisor', '017-x', '001-y');
   mkdirSync(specDir, { recursive: true });
@@ -46,7 +46,7 @@ describe('advisor state containment — generation counter path', () => {
   it('anchors a specs/<packet> root to the repo root, not the packet dir', () => {
     const { repo, specDir } = repoWithSpecDir();
     const path = getSkillGraphGenerationPath(specDir);
-    expect(path.startsWith(join(repo, '.opencode') + sep)).toBe(true);
+    expect(['.skilled', '.opencode'].some((root) => path.startsWith(join(repo, root) + sep))).toBe(true);
     expect(path).not.toContain(join('specs', 'system-skill-advisor'));
   });
 });
@@ -55,7 +55,7 @@ describe('advisor state containment — skill-graph DB dir', () => {
   it('anchors a specs/<packet> baseRoot to the repo root', () => {
     const { repo, specDir } = repoWithSpecDir();
     const dir = resolveSkillGraphDbDir(specDir);
-    expect(dir.startsWith(join(repo, '.opencode') + sep)).toBe(true);
+    expect(['.skilled', '.opencode'].some((root) => dir.startsWith(join(repo, root) + sep))).toBe(true);
     expect(dir).not.toContain(join('specs', 'system-skill-advisor'));
   });
 

@@ -31,7 +31,7 @@ import { seedSkillEmbeddings, type SeedResult } from './fixtures/seed-skill-embe
 // anchor on a spec-packet path that was renamed away in the reorg, so the
 // suite resolves the workspace root regardless of packet renumbering.
 const WORKSPACE_ROOT_MARKER = join(
-  '.opencode',
+  '.skilled',
   'skills',
   'system-skill-advisor',
   'runtime',
@@ -43,7 +43,7 @@ const WORKSPACE_ROOT_MARKER = join(
 // (gitignored), which keeps the destination stable and avoids recreating
 // deleted packet folders via mkdir.
 const PACKET_RELATIVE_PATH = join(
-  '.opencode',
+  '.skilled',
   'skills',
   'system-skill-advisor',
   'runtime',
@@ -54,7 +54,7 @@ const PACKET_RELATIVE_PATH = join(
 );
 
 const HARDER_PACKET_RELATIVE_PATH = join(
-  '.opencode',
+  '.skilled',
   'skills',
   'system-skill-advisor',
   'runtime',

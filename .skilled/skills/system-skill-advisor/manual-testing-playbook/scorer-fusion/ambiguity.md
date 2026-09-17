@@ -46,7 +46,7 @@ Validate that `lib/scorer/ambiguity.ts` returns an ambiguous brief when the top 
 1. Call `advisor_recommend` with the ambiguous prompt:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "<ambiguous prompt from corpus>" --options '{"topK":2,"includeAttribution":true}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "<ambiguous prompt from corpus>" --options '{"topK":2,"includeAttribution":true}' --format json
 ```
 
 2. Inspect the response: every member of the ambiguity cluster carries an `ambiguousWith` array listing the other members.
@@ -75,7 +75,7 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "<ambiguous prom
 - Scenario [NC-004](../../manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md), ambiguous brief rendering.
 - Scenario [SC-004](../../manual-testing-playbook/scorer-fusion/lane-attribution.md), lane attribution.
 - Feature [`scorer-fusion/ambiguity.md`](../../feature-catalog/scorer-fusion/ambiguity.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts`.
 
 ---
 

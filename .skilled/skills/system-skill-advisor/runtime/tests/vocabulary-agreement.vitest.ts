@@ -65,17 +65,17 @@ function pipePlaceholder(src: string, anchor: string): Set<string> {
   return new Set(region.replace(/^\s*"?\[/, '').split('|').map((t) => t.trim()).filter(Boolean));
 }
 
-const SGDB = '.opencode/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts';
-const COMPILER = '.opencode/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py';
-const TOOLS = '.opencode/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts';
-const CLI_MANIFEST = '.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts';
-const QUERY = '.opencode/skills/system-skill-advisor/runtime/handlers/skill-graph/query.ts';
-const CHECKER = '.opencode/commands/doctor/scripts/parent-skill-check.cjs';
-const TEMPLATE = '.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json';
-const DRIFT_GUARD = '.opencode/skills/system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts';
+const SGDB = '.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts';
+const COMPILER = '.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py';
+const TOOLS = '.skilled/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts';
+const CLI_MANIFEST = '.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts';
+const QUERY = '.skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/query.ts';
+const CHECKER = '.skilled/commands/doctor/scripts/parent-skill-check.cjs';
+const TEMPLATE = '.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json';
+const DRIFT_GUARD = '.skilled/skills/system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts';
 // gated scorer-track read-only subsets — flagged, never asserted-equal
-const ADVISOR_PY = '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py';
-const GRAPH_CAUSAL = '.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/graph-causal.ts';
+const ADVISOR_PY = '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py';
+const GRAPH_CAUSAL = '.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/graph-causal.ts';
 
 const CANON_FAMILY = new Set(['cli', 'mcp', 'sk-code', 'sk-hub', 'deep-loop', 'sk-util', 'system']);
 const CANON_EDGE = new Set(['depends_on', 'enhances', 'siblings', 'conflicts_with', 'prerequisite_for']);

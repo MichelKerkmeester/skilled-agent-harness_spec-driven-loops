@@ -20,7 +20,7 @@ trigger_phrases:
 Current state:
 
 - `advisor-server.ts` is the advisor daemon entrypoint. It serves the IPC socket (`startIpcSocketServer`), dispatches command frames into `tools/`, manages daemon lifecycle and triggers skill metadata indexing on startup. Its caller-context builder resolves trust **fail-closed**: a caller that asserts no authority is untrusted, and only `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon's own environment (unforgeable by callers) restores a default-trusted posture for maintenance flows.
-- `skill-advisor-cli.ts` (with `skill-advisor-cli-manifest.ts`) is the daemon-backed CLI over the same 9 commands, fronted by the `.opencode/bin/skill-advisor.cjs` shim: the single front door. Calls are sent untrusted by default; `--trusted` / `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` marks maintainer mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`), and the gate fails closed with a usage error (exit `64`) otherwise. Shared exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes and exits `75` instead of cold-spawning the daemon.
+- `skill-advisor-cli.ts` (with `skill-advisor-cli-manifest.ts`) is the daemon-backed CLI over the same 9 commands, fronted by the `.skilled/bin/skill-advisor.cjs` shim: the single front door. Calls are sent untrusted by default; `--trusted` / `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` marks maintainer mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`), and the gate fails closed with a usage error (exit `64`) otherwise. Shared exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes and exits `75` instead of cold-spawning the daemon.
 - `tools/` defines command descriptors and dispatches calls. `tools/index.ts` registers `TOOL_DEFINITIONS` with 4 advisor commands plus the spread of skill-graph commands.
 - `handlers/` owns orchestration for advisor tools (recommend, rebuild, status, validate) and skill-graph subhandlers (scan, query, status, validate, propagate_enhances).
 - `lib/` carries runtime helpers across active subdirectories including `scorer/`, `daemon/`, `freshness/`, `lifecycle/`, `derived/`, `compat/`, `auth/`, `corpus/`, `cross-skill-edges/`, `context/`, `shadow/`, `skill-graph/`, `embedders/`, `ipc/`, `shared/` and `utils/`, plus several flat modules.
@@ -205,7 +205,7 @@ runtime/
 | File | Responsibility |
 |---|---|
 | `advisor-server.ts` | Advisor daemon entrypoint: IPC socket server, command dispatch, daemon startup, skill graph indexing via `indexSkillMetadata`, and the fail-closed trusted-caller resolution (`resolveTrustedCaller` honors `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` from the daemon env only). |
-| `skill-advisor-cli.ts` | Daemon-backed CLI over the same 9 tools (built to `dist/runtime/skill-advisor-cli.js`, fronted by `.opencode/bin/skill-advisor.cjs`). Untrusted-by-default `_meta` (`callerAuthority`), trusted-mutation gate for `advisor_rebuild` / `skill_graph_scan` / apply-mode `skill_graph_propagate_enhances`, warm-only probe support, launcher auto-spawn, exit taxonomy `0`/`1`/`64`/`69`/`75`. |
+| `skill-advisor-cli.ts` | Daemon-backed CLI over the same 9 tools (built to `dist/runtime/skill-advisor-cli.js`, fronted by `.skilled/bin/skill-advisor.cjs`). Untrusted-by-default `_meta` (`callerAuthority`), trusted-mutation gate for `advisor_rebuild` / `skill_graph_scan` / apply-mode `skill_graph_propagate_enhances`, warm-only probe support, launcher auto-spawn, exit taxonomy `0`/`1`/`64`/`69`/`75`. |
 | `skill-advisor-cli-manifest.ts` | Hand-maintained CLI tool manifest asserted at CLI startup and covered by the manifest parity suite so command schemas stay byte-identical to the tool registry. |
 | `tools/index.ts` (lines 1-70) | Tool descriptor registry (`TOOL_DEFINITIONS` at line 37) and dispatch router for 9 public tools. |
 | `tools/skill-graph-tools.ts` (lines 1-143) | Skill graph tool definitions for scan, query, status, validate and propagate_enhances. |
@@ -286,7 +286,7 @@ The runtime defines 9 public commands (4 advisor + 5 skill_graph) in `tools/inde
 | `skill_graph_status` | Tool | Reports skill graph health and counts. |
 | `skill_graph_validate` | Tool | Validates skill graph for schema drift, broken edges, cycles, weight bands, reciprocal symmetry, orphan skills and derived-freshness warnings. |
 | `skill_graph_propagate_enhances` | Tool | Detects and (opt-in) applies missing inbound enhance edges across skills. |
-| `node .opencode/bin/skill-advisor.cjs <command>` | CLI | Daemon-backed front door for all 9 commands (shim guards dist freshness, exit `69`; `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` dev override; `list-tools` answers offline; `--trusted` for maintainer mutations). |
+| `node .skilled/bin/skill-advisor.cjs <command>` | CLI | Daemon-backed front door for all 9 commands (shim guards dist freshness, exit `69`; `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` dev override; `list-tools` answers offline; `--trusted` for maintainer mutations). |
 | `npm run build` | Command | Builds TypeScript into `dist/`. |
 | `npm test` | Command | Runs Vitest and Python test coverage. The tri-daemon CLI drill (`tests/tri-daemon-drill.vitest.ts`) is env-gated: it runs only with `SPECKIT_RUN_TRI_DAEMON_DRILL=1` and skips otherwise. |
 
@@ -305,8 +305,8 @@ npm test
 Focused documentation checks from the repository root:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/runtime/README.md
-python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-skill-advisor/runtime/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/README.md
+python3 .skilled/skills/sk-doc/scripts/extract_structure.py .skilled/skills/system-skill-advisor/runtime/README.md
 ```
 
 Expected result: build and tests exit 0, README validation reports no blocking issues and structure extraction returns a README document profile.

@@ -12,7 +12,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
 const pythonCompatPath = resolve(
   repoRoot,
-  '.opencode/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py',
+  '.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py',
 );
 
 describe('python compatibility suite', () => {

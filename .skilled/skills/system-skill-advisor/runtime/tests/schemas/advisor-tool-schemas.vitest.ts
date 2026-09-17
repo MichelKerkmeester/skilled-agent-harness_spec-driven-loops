@@ -35,7 +35,7 @@ describe('AdvisorRecommendInputSchema workspaceRoot bounding (F-005-A5-01)', () 
 
   it('accepts the repo root', () => {
     // The advisor schema's repo-root detection walks up from cwd looking
-    // for .opencode/skill. When tests run from the mcp_server directory,
+    // for .skilled/skill. When tests run from the mcp_server directory,
     // resolve('../..') is the repo root.
     const repoRoot = resolve(process.cwd(), '..', '..', '..');
     expect(isAllowedWorkspaceRoot(repoRoot) || isAllowedWorkspaceRoot(resolve(process.cwd()))).toBe(true);

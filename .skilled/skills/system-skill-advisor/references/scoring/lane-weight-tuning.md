@@ -66,8 +66,8 @@ Every weight change requires a baseline plus a comparison run. The measurement c
 **Step 1: Capture baseline.**
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
-node .opencode/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
+node .skilled/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
 ```
 
 Save the response. Key fields to retain: `overallAccuracy`, `slices.corpus.full_corpus_top1`, `slices.corpus.unknown_count`, `slices.holdout.holdout_top1`, `slices.parity`, `slices.safety`, `slices.latency.regression_suite_status`, `telemetry`, `perSkill[]`.
@@ -75,8 +75,8 @@ Save the response. Key fields to retain: `overallAccuracy`, `slices.corpus.full_
 **Step 2: Run the lane-weight sweep.**
 
 ```bash
-npx vitest run --config .opencode/skills/system-skill-advisor/runtime/vitest.config.ts \
-  .opencode/skills/system-skill-advisor/runtime/tests/scorer/lane-weight-sweep.vitest.ts
+npx vitest run --config .skilled/skills/system-skill-advisor/runtime/vitest.config.ts \
+  .skilled/skills/system-skill-advisor/runtime/tests/scorer/lane-weight-sweep.vitest.ts
 ```
 
 This harness exercises each lane weight individually across a small grid plus reports which weight permutations move accuracy. It is the canonical input for any weight change proposal.
@@ -138,9 +138,9 @@ Rollback procedure:
 
 ```bash
 git revert <commit-sha>
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
-node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json
-node .opencode/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
+node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json
+node .skilled/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
 ```
 
 Confirm the baseline numbers return. Document the rollback rationale in the original packet's `implementation-summary.md`.

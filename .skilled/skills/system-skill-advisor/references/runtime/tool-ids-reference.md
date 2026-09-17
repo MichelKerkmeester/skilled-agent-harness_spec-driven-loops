@@ -56,7 +56,7 @@ The CLI is the only front door, and the per-command ids are the compatibility co
 
 | Tool | Purpose | Key Input | Output Shape Signal |
 |---|---|---|---|
-| `skill_graph_scan` | Index or re-index all `.opencode/skills/*/graph-metadata.json` files into `skill-graph.sqlite` using the hash-aware SQLite indexer. | optional `skillsRoot` (default `.opencode/skills`) | `scanResult`, `embeddings`, `sourceSignature` |
+| `skill_graph_scan` | Index or re-index all `.skilled/skills/*/graph-metadata.json` files into `skill-graph.sqlite` using the hash-aware SQLite indexer. | optional `skillsRoot` (default `.skilled/skills`) | `scanResult`, `embeddings`, `sourceSignature` |
 | `skill_graph_query` | Query the SQLite-backed skill graph using structural relationship traversals. Supports `depends_on`, `dependents`, `enhances`, `enhanced_by`, `family_members`, `conflicts`, `transitive_path`, `hub_skills`, `orphans` and `subgraph`. | `queryType` plus query-specific arguments | varies by `queryType` (`relationships[]`, `members[]`, `path[]`, `skills[]`, `graph{}`) |
 | `skill_graph_status` | Report skill graph health from the live SQLite database. | (none) | `totalSkills`, `totalEdges`, `lastIndexedAt`, `families`, `categories`, `schemaVersions`, `staleness`, `validation`, `dbStatus` |
 | `skill_graph_validate` | Validate the live skill graph for schema-version drift, broken edges, weight-band violations, reciprocal symmetry and dependency cycles. | (none) | `isValid`, `errorCount`, `warningCount`, `checkedNodes`, `checkedEdges`, `errors[]`, `warnings[]` |
@@ -79,14 +79,14 @@ Untrusted callers are rejected before detection runs. No separate internal-tool 
 Every id is invoked through the single CLI front door:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs <command> --format json
+node .skilled/bin/skill-advisor.cjs <command> --format json
 ```
 
 Worked examples:
 
-- `advisor_recommend` is invoked as `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`.
-- `skill_graph_query` is invoked as `node .opencode/bin/skill-advisor.cjs skill_graph_query --json '{"queryType":"hub_skills"}' --format json`.
-- `skill_graph_propagate_enhances` is invoked as `node .opencode/bin/skill-advisor.cjs skill_graph_propagate_enhances --format json`; apply writes add `--trusted`.
+- `advisor_recommend` is invoked as `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`.
+- `skill_graph_query` is invoked as `node .skilled/bin/skill-advisor.cjs skill_graph_query --json '{"queryType":"hub_skills"}' --format json`.
+- `skill_graph_propagate_enhances` is invoked as `node .skilled/bin/skill-advisor.cjs skill_graph_propagate_enhances --format json`; apply writes add `--trusted`.
 
 Stable ids survive migrations: the invocation form is frozen and the per-command ids do not change.
 

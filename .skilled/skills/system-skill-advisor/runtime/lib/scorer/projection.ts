@@ -58,7 +58,7 @@ export interface CommandBridgeProjection extends SkillProjection {
 const advisorDbDirOverride = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 const SKILL_GRAPH_DB = advisorDbDirOverride
   ? join(advisorDbDirOverride, 'skill-graph.sqlite')
-  : join('.opencode', 'skills', 'system-skill-advisor', 'runtime', 'database', 'skill-graph.sqlite');
+  : join('.skilled', 'skills', 'system-skill-advisor', 'runtime', 'database', 'skill-graph.sqlite');
 
 export const HAND_AUTHORED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   {
@@ -1140,7 +1140,7 @@ function loadSqliteProjection(workspaceRoot: string): AdvisorProjection | null {
 }
 
 function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
-  const skillRoot = join(workspaceRoot, '.opencode', 'skills');
+  const skillRoot = join(workspaceRoot, '.skilled', 'skills');
   const skills: SkillProjection[] = [];
   const edges: SkillEdgeProjection[] = [];
   if (!existsSync(skillRoot)) {

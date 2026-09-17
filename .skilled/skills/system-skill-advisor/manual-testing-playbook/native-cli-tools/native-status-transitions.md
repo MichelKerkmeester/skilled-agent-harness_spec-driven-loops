@@ -44,10 +44,10 @@ Validate that `advisor_status` reports live, stale and absent states with the Ph
 1. Live check:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
-2. Stale check in a disposable copy: touch a copied `.opencode/skills/*/graph-metadata.json` after the copied SQLite artifact timestamp, then call `advisor_status` with that copy as `workspaceRoot`.
+2. Stale check in a disposable copy: touch a copied `.skilled/skills/*/graph-metadata.json` after the copied SQLite artifact timestamp, then call `advisor_status` with that copy as `workspaceRoot`.
 3. Absent check in a disposable copy: move the copied `skill-graph.sqlite` out of the way, ensure no usable generation metadata is present, then call `advisor_status`.
 
 ### Expected Signals
@@ -70,8 +70,8 @@ node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/p
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-status.ts`
-- `.opencode/skills/system-skill-advisor/runtime/lib/freshness/`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/freshness/`
 
 ---
 

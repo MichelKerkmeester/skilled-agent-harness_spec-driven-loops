@@ -41,7 +41,7 @@ function derivedFixture(index = 0): SkillDerivedV2 {
     provenance_fingerprint: `sha256:${String(index).padStart(64, '0').slice(-64)}`,
     generated_at: '2026-04-30T00:00:00.000Z',
     source_docs: ['SKILL.md'],
-    key_files: [`.opencode/skills/skill-${index}/SKILL.md`],
+    key_files: [`.skilled/skills/skill-${index}/SKILL.md`],
     demotion: 1,
     trust_lane: 'derived_generated',
     sanitizer_version: 'sanitizeSkillLabel:v1',
@@ -129,21 +129,21 @@ describe('sa-014..sa-018 — lifecycle routing stress behavior', () => {
     const entries: CorpusEntry[] = [
       ...Array.from({ length: 500 }, (_, index) => ({
         skillId: `active-${index}`,
-        sourcePath: `.opencode/skills/active-${index}/graph-metadata.json`,
+        sourcePath: `.skilled/skills/active-${index}/graph-metadata.json`,
       })),
       ...Array.from({ length: 240 }, (_, index) => ({
         skillId: `archived-${index}`,
-        sourcePath: `.opencode/skills/z_archive/archived-${index}/graph-metadata.json`,
+        sourcePath: `.skilled/skills/z_archive/archived-${index}/graph-metadata.json`,
       })),
       ...Array.from({ length: 160 }, (_, index) => ({
         skillId: `future-${index}`,
-        sourcePath: `.opencode\\skill\\z_future\\future-${index}\\graph-metadata.json`,
+        sourcePath: `.skilled\\skill\\z_future\\future-${index}\\graph-metadata.json`,
       })),
     ];
     const routed = filterDefaultRoutable(entries);
     const corpusEligible = filterCorpusStatEligible(entries);
-    const archivedPolicy = routePolicyForPath('.opencode/skills/z_archive/old/graph-metadata.json');
-    const futurePolicy = routePolicyForPath('.opencode\\skill\\z_future\\planned\\graph-metadata.json');
+    const archivedPolicy = routePolicyForPath('.skilled/skills/z_archive/old/graph-metadata.json');
+    const futurePolicy = routePolicyForPath('.skilled\\skill\\z_future\\planned\\graph-metadata.json');
 
     expect(entries.every((entry) => routePolicyForPath(entry.sourcePath).structurallyIndexed)).toBe(true);
     expect(routed).toHaveLength(500);
@@ -183,7 +183,7 @@ describe('sa-014..sa-018 — lifecycle routing stress behavior', () => {
       expect(migration.metadata.retained_author_field).toEqual(records[index].retained_author_field);
       expect(migration.metadata.schema_version).toBe(2);
       expect(mixed.schemaVersion).toBe(2);
-      expect(mixed.derived?.key_files).toEqual([`.opencode/skills/skill-${index}/SKILL.md`]);
+      expect(mixed.derived?.key_files).toEqual([`.skilled/skills/skill-${index}/SKILL.md`]);
       expect(migration.routableDuringTransition).toBe(index % 5 !== 0);
     }
 

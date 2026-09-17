@@ -16,7 +16,7 @@ This folder holds package-local SQLite runtime state for the standalone Skill Ad
 
 ## 1. OVERVIEW
 
-The default database path is `.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite`, created at runtime and absent from a fresh checkout. SQLite sidecars such as `-wal` and `-shm`, launcher lease files and duplicate generated JSON fallbacks live beside it when the database is active, but they are ignored runtime state.
+The default database path is `.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite`, created at runtime and absent from a fresh checkout. SQLite sidecars such as `-wal` and `-shm`, launcher lease files and duplicate generated JSON fallbacks live beside it when the database is active, but they are ignored runtime state.
 
 ---
 
@@ -45,8 +45,8 @@ The tracked JSON fallback remains `../scripts/skill-graph.json`. Do not commit d
 Run from the repository root.
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --health
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/runtime/database/README.md
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --health
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/database/README.md
 ```
 
 ---

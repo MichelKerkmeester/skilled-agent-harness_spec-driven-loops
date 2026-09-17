@@ -29,7 +29,7 @@ describe('sa-003 — Daemon lifecycle restarts', () => {
   }
 
   function writeSkill(slug: string): void {
-    write(`.opencode/skills/${slug}/SKILL.md`, [
+    write(`.skilled/skills/${slug}/SKILL.md`, [
       '---',
       `name: ${slug}`,
       'description: Lifecycle stress fixture',
@@ -37,7 +37,7 @@ describe('sa-003 — Daemon lifecycle restarts', () => {
       '---',
       '',
     ].join('\n'));
-    write(`.opencode/skills/${slug}/graph-metadata.json`, JSON.stringify({
+    write(`.skilled/skills/${slug}/graph-metadata.json`, JSON.stringify({
       schema_version: 1,
       skill_id: slug,
       family: 'stress',
@@ -148,7 +148,7 @@ describe('sa-003b — Watcher flush serialization (F-001-A1-01)', () => {
   }
 
   function writeSkill(slug: string): void {
-    write(`.opencode/skills/${slug}/SKILL.md`, [
+    write(`.skilled/skills/${slug}/SKILL.md`, [
       '---',
       `name: ${slug}`,
       'description: Mutex stress fixture',
@@ -156,7 +156,7 @@ describe('sa-003b — Watcher flush serialization (F-001-A1-01)', () => {
       '---',
       '',
     ].join('\n'));
-    write(`.opencode/skills/${slug}/graph-metadata.json`, JSON.stringify({
+    write(`.skilled/skills/${slug}/graph-metadata.json`, JSON.stringify({
       schema_version: 1,
       skill_id: slug,
       family: 'stress',
@@ -228,10 +228,10 @@ describe('sa-003b — Watcher flush serialization (F-001-A1-01)', () => {
       backpressure: { debounceMs: 5, stableWriteMs: 1 },
     });
 
-    const skillPath = join(tmpDir, '.opencode', 'skills', 'alpha', 'SKILL.md');
+    const skillPath = join(tmpDir, '.skilled', 'skills', 'alpha', 'SKILL.md');
 
     // Fire the first event and wait for it to enter reindexSkill.
-    write('.opencode/skills/alpha/SKILL.md', readFileSync(skillPath, 'utf8') + '\n# pulse 1\n');
+    write('.skilled/skills/alpha/SKILL.md', readFileSync(skillPath, 'utf8') + '\n# pulse 1\n');
     harness.emit('change', skillPath);
     await new Promise((resolveOnce) => setTimeout(resolveOnce, 25));
     expect(inFlight).toBe(1);
@@ -240,7 +240,7 @@ describe('sa-003b — Watcher flush serialization (F-001-A1-01)', () => {
     // change events. The pre-fix code would start a second concurrent flush
     // because `pending` was cleared BEFORE the first await.
     for (let index = 2; index <= 5; index += 1) {
-      write('.opencode/skills/alpha/SKILL.md', readFileSync(skillPath, 'utf8') + `\n# pulse ${index}\n`);
+      write('.skilled/skills/alpha/SKILL.md', readFileSync(skillPath, 'utf8') + `\n# pulse ${index}\n`);
       harness.emit('change', skillPath);
     }
     await new Promise((resolveOnce) => setTimeout(resolveOnce, 25));
@@ -298,8 +298,8 @@ describe('sa-003b — Watcher flush serialization (F-001-A1-01)', () => {
       backpressure: { debounceMs: 5, stableWriteMs: 1 },
     });
 
-    const skillPath = join(tmpDir, '.opencode', 'skills', 'alpha', 'SKILL.md');
-    write('.opencode/skills/alpha/SKILL.md', readFileSync(skillPath, 'utf8') + '\n# kick\n');
+    const skillPath = join(tmpDir, '.skilled', 'skills', 'alpha', 'SKILL.md');
+    write('.skilled/skills/alpha/SKILL.md', readFileSync(skillPath, 'utf8') + '\n# kick\n');
     harness.emit('change', skillPath);
     await new Promise((resolveOnce) => setTimeout(resolveOnce, 25));
     expect(inFlight).toBe(1);

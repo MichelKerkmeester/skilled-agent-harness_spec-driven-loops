@@ -82,7 +82,7 @@ interface SourceSnapshot {
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────
 
-const SKILL_ROOT_RELATIVE_PATH = join('.opencode', 'skills');
+const SKILL_ROOT_RELATIVE_PATH = join('.skilled', 'skills');
 const ADVISOR_SCRIPT_ROOT_RELATIVE_PATH = join(
   SKILL_ROOT_RELATIVE_PATH,
   'system-skill-advisor',

@@ -32,7 +32,7 @@ interface CliRecommendPayload {
 const scopes: IsolatedCliScope[] = [];
 const canonicalSkillGraphDb = join(
   repoRoot,
-  '.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite',
+  '.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite',
 );
 
 const parityPrompts: ReadonlyArray<{ readonly skill: string; readonly prompt: string }> = [
@@ -137,7 +137,7 @@ describe('skill-advisor CLI local/native parity fixture', () => {
     seedCliProjection(scope);
 
     for (const row of parityPrompts) {
-      expect(existsSync(join(repoRoot, '.opencode/skills', row.skill, 'SKILL.md'))).toBe(true);
+      expect(existsSync(join(repoRoot, '.skilled/skills', row.skill, 'SKILL.md'))).toBe(true);
     }
 
     const mismatches: Array<{ prompt: string; pythonTop: string | null; cliTop: string | null }> = [];

@@ -7,7 +7,7 @@
 # models on first use; can fail silently if disk or network is
 # constrained at install time.
 #
-# Usage: bash .opencode/skills/system-skill-advisor/scripts/doctor.sh [--strict]
+# Usage: bash .skilled/skills/system-skill-advisor/scripts/doctor.sh [--strict]
 #
 # Exit Codes:
 #   0  - Health checks passed (or advisory mode complete)

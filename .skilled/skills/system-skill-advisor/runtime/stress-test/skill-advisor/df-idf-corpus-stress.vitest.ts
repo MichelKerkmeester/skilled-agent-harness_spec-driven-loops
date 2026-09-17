@@ -24,7 +24,7 @@ describe('sa-013 — DF-IDF corpus stats', () => {
   function makeDocument(index: number, termCount: number): CorpusDocument {
     return {
       skillId: `skill-${index}`,
-      sourcePath: join(tmpDir, `.opencode/skills/skill-${index}/SKILL.md`),
+      sourcePath: join(tmpDir, `.skilled/skills/skill-${index}/SKILL.md`),
       terms: Array.from({ length: termCount }, (_, termIndex) => `skill-${index}-term-${termIndex}`),
     };
   }
@@ -48,12 +48,12 @@ describe('sa-013 — DF-IDF corpus stats', () => {
     const stats = computeCorpusStats([
       {
         skillId: 'active-skill',
-        sourcePath: join(tmpDir, '.opencode/skills/active-skill/SKILL.md'),
+        sourcePath: join(tmpDir, '.skilled/skills/active-skill/SKILL.md'),
         terms: ['active-only-term', 'shared-term'],
       },
       {
         skillId: 'archived-skill',
-        sourcePath: join(tmpDir, '.opencode/skills/z_archive/archived-skill/SKILL.md'),
+        sourcePath: join(tmpDir, '.skilled/skills/z_archive/archived-skill/SKILL.md'),
         terms: ['archived-only-term', 'shared-term'],
       },
     ]);

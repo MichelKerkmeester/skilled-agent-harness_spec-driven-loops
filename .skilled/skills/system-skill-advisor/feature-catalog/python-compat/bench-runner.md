@@ -31,8 +31,8 @@ Keep latency visible from the Python surface so routing performance regressions 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_bench.py` | Script | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/bench/` | Implementation | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_bench.py` | Script | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/bench/` | Implementation | Source reference |
 
 ### Validation And Tests
 

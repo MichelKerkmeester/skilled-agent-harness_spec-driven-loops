@@ -15,7 +15,7 @@ describe('derived.entities object-shape preservation', () => {
   const objectEntity = {
     name: 'sk-design',
     kind: 'skill',
-    path: '.opencode/skills/sk-design/SKILL.md',
+    path: '.skilled/skills/sk-design/SKILL.md',
     source: 'derived',
   };
 

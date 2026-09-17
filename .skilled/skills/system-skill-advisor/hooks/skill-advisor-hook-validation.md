@@ -39,22 +39,22 @@ Run from the repository root:
 
 ```bash
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-npm --prefix .opencode/skills/system-spec-kit/runtime run build
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+npm --prefix .skilled/skills/system-spec-kit/runtime run build
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 ```
 
 Required files:
 
 | File | Purpose |
 |------|---------|
-| `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md` | Operator reference (native tool table + runtime matrix + shared threshold/render contract) |
-| `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md` | This playbook |
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | `advisor_recommend` handler (must accept `workspaceRoot`) |
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts` | `advisor_validate` handler (must surface `thresholdSemantics` + telemetry totals) |
-| `.opencode/skills/system-skill-advisor/runtime/lib/render.ts` | Shared `renderAdvisorBrief(...)` invariants |
-| `.opencode/skills/system-skill-advisor/runtime/lib/metrics.ts` | Durable JSONL diagnostics sink + metric labels |
-| `.opencode/plugins/system-skill-advisor.js` | OpenCode plugin |
-| `.opencode/bin/skill-advisor.cjs` | Advisor CLI the hooks and OpenCode plugin shell out to |
+| `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md` | Operator reference (native tool table + runtime matrix + shared threshold/render contract) |
+| `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md` | This playbook |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | `advisor_recommend` handler (must accept `workspaceRoot`) |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts` | `advisor_validate` handler (must surface `thresholdSemantics` + telemetry totals) |
+| `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | Shared `renderAdvisorBrief(...)` invariants |
+| `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` | Durable JSONL diagnostics sink + metric labels |
+| `.skilled/plugins/system-skill-advisor.js` | OpenCode plugin |
+| `.skilled/bin/skill-advisor.cjs` | Advisor CLI the hooks and OpenCode plugin shell out to |
 
 ---
 
@@ -66,14 +66,14 @@ Goal: verify `advisor_recommend` accepts explicit `workspaceRoot` and surfaces t
 
 ```bash
 npx vitest run tests/hooks/claude-user-prompt-submit-hook.vitest.ts tests/hooks/runtime-parity.vitest.ts \
-  --config .opencode/skills/system-skill-advisor/runtime/vitest.config.ts \
+  --config .skilled/skills/system-skill-advisor/runtime/vitest.config.ts \
   --reporter verbose
 ```
 
 Manual check (CLI or REPL):
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "implement a TypeScript hook" --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "implement a TypeScript hook" --format json
 ```
 
 Pass condition: the response includes `data.workspaceRoot` for the current checkout and `data.effectiveThresholds` with the resolved confidence/uncertainty numbers used for routing.
@@ -83,7 +83,7 @@ Pass condition: the response includes `data.workspaceRoot` for the current check
 Goal: verify `advisor_validate` surfaces `workspaceRoot`, `thresholdSemantics`, and prompt-safe `telemetry.outcomes.totals`.
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":null,"workspaceRoot":"<repo-root>"}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":null,"workspaceRoot":"<repo-root>"}' --format json
 ```
 
 Pass conditions:
@@ -114,7 +114,7 @@ Pass condition: sinks are bounded (rotation/truncation visible), contain closed-
 Goal: confirm the OpenCode plugin's CLI path is wired and routes through the shared render contract.
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt 'implement a TypeScript hook' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt 'implement a TypeScript hook' --format json
 ```
 
 Pass conditions:
@@ -138,7 +138,7 @@ Copilot deterministic smoke:
 ```bash
 export SPECKIT_COPILOT_INSTRUCTIONS_PATH="$(mktemp -d)/copilot-instructions.md"
 printf '%s' '{"prompt":"implement a TypeScript hook","cwd":"'"$PWD"'"}' | \
-  node .opencode/skills/system-spec-kit/runtime/dist/hooks/copilot/user-prompt-submit.js
+  node .skilled/skills/system-spec-kit/runtime/dist/hooks/copilot/user-prompt-submit.js
 rg -n "SPEC-KIT-COPILOT-CONTEXT|Active Advisor Brief|Advisor:" "$SPECKIT_COPILOT_INSTRUCTIONS_PATH"
 ```
 
@@ -155,7 +155,7 @@ export SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1
 Run a fast direct-hook smoke:
 
 ```bash
-cd .opencode/skills/system-skill-advisor/runtime
+cd .skilled/skills/system-skill-advisor/runtime
 npx vitest run tests/hooks/claude-user-prompt-submit-hook.vitest.ts \
   --config vitest.config.ts \
   --reporter verbose
@@ -175,14 +175,14 @@ Confirm no runtime or plugin still routes through a bespoke formatter or a non-s
 
 ```bash
 rg -n "renderAdvisorBrief|effectiveThresholds|thresholdSemantics|workspaceRoot" \
-  .opencode/skills/system-skill-advisor/runtime \
-  .opencode/plugins/system-skill-advisor.js \
-  .opencode/skills/system-spec-kit/runtime/hooks
+  .skilled/skills/system-skill-advisor/runtime \
+  .skilled/plugins/system-skill-advisor.js \
+  .skilled/skills/system-spec-kit/runtime/hooks
 
 rg -n "formatAdvisorBrief|legacyAdvisorRender|custom formatter" \
-  .opencode/skills/system-spec-kit/runtime \
-  .opencode/plugins \
-  .opencode/plugins
+  .skilled/skills/system-spec-kit/runtime \
+  .skilled/plugins \
+  .skilled/plugins
 ```
 
 Pass condition: the first grep returns the expected shared-contract references; the second grep returns no hits (no drift back to branch-specific rendering).
@@ -192,7 +192,7 @@ Pass condition: the first grep returns the expected shared-contract references; 
 Confirm metric names match the reference doc:
 
 ```bash
-rg -n "speckit_advisor_hook_" .opencode/skills/system-skill-advisor/runtime/lib/metrics.ts
+rg -n "speckit_advisor_hook_" .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts
 ```
 
 Expected metric names:
@@ -224,13 +224,13 @@ Pass condition: rollback and re-enable need no state cleanup.
 
 | Symptom | Root Cause | Fix |
 |---------|------------|-----|
-| `workspaceRoot` missing from `advisor_recommend` / `advisor_validate` output | Handler not rebuilt or `workspaceRoot` resolver returning undefined | Rebuild the advisor runtime, confirm the request includes `workspaceRoot`, check the resolver in `.opencode/skills/system-skill-advisor/runtime/lib/` |
-| `thresholdSemantics` absent from `advisor_validate` | Validator on a stale build or unified-builder path bypassed | Check `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts` and confirm it imports the shared threshold contract |
+| `workspaceRoot` missing from `advisor_recommend` / `advisor_validate` output | Handler not rebuilt or `workspaceRoot` resolver returning undefined | Rebuild the advisor runtime, confirm the request includes `workspaceRoot`, check the resolver in `.skilled/skills/system-skill-advisor/runtime/lib/` |
+| `thresholdSemantics` absent from `advisor_validate` | Validator on a stale build or unified-builder path bypassed | Check `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts` and confirm it imports the shared threshold contract |
 | Different brief bodies from OpenCode vs OpenCode for equivalent input | One path still routes through a custom formatter | Run Step 7 grep; any `formatAdvisorBrief`/`legacyAdvisorRender` hit is drift to fix |
 | No brief appears in any runtime | Disable flag set, advisor script missing, or prompt policy skipped | Unset `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, check `skill_advisor.py`, use a work-intent prompt |
 | Brief appears in Claude but not Copilot | Runtime registration drift or Copilot custom-instructions target mismatch | Check `.github/hooks/*.json`, `SPECKIT_COPILOT_INSTRUCTIONS_PATH`, and the managed block in `$HOME/.copilot/copilot-instructions.md` |
-| JSONL sink empty or unbounded | Metrics root misconfigured, `SKILL_ADVISOR_DEBUG` unset, or rotation disabled | Check `TMPDIR`, confirm `SKILL_ADVISOR_DEBUG=1`, confirm `.opencode/skills/system-skill-advisor/runtime/lib/metrics.ts` sink wiring, and verify rotation bounds |
-| `freshness: "unavailable"` persists | Probe failure, missing graph, or corrupt generation counter | Check `.opencode/skills/.state/advisor/generation.json`, `skill-graph.sqlite`, and JSONL `errorCode` |
+| JSONL sink empty or unbounded | Metrics root misconfigured, `SKILL_ADVISOR_DEBUG` unset, or rotation disabled | Check `TMPDIR`, confirm `SKILL_ADVISOR_DEBUG=1`, confirm `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` sink wiring, and verify rotation bounds |
+| `freshness: "unavailable"` persists | Probe failure, missing graph, or corrupt generation counter | Check `.skilled/skills/.state/advisor/generation.json`, `skill-graph.sqlite`, and JSONL `errorCode` |
 | Fail-open rate exceeds 5% | Python missing, timeout, invalid JSON, SQLite busy or script missing | Inspect `speckit_advisor_hook_fail_open_total` by `errorCode`, then fix the top code |
 
 ---

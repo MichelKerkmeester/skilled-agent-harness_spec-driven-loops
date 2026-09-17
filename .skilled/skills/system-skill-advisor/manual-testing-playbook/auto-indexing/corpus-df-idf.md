@@ -45,9 +45,9 @@ Validate that `lib/corpus/df-idf.ts` computes document-frequency and inverse-doc
 2. Touch three active skills in quick succession (within the debounce window):
 
 ```bash
-touch .opencode/skills/sk-git/SKILL.md
-touch .opencode/skills/sk-doc/SKILL.md
-touch .opencode/skills/system-spec-kit/SKILL.md
+touch .skilled/skills/sk-git/SKILL.md
+touch .skilled/skills/sk-doc/SKILL.md
+touch .skilled/skills/system-spec-kit/SKILL.md
 ```
 
 3. Wait for debounce to elapse and capture statistics again.
@@ -104,41 +104,41 @@ Read-only advisor status check:
 Active `SKILL.md` path check:
 
 ```text
-<repo-root>/.opencode/skills/sk-git/SKILL.md
-<repo-root>/.opencode/skills/cli-opencode/SKILL.md
-<repo-root>/.opencode/skills/mcp-click-up/SKILL.md
-<repo-root>/.opencode/skills/system-deep-loop/SKILL.md
-<repo-root>/.opencode/skills/system-deep-loop/deep-research/SKILL.md
-<repo-root>/.opencode/skills/mcp-code-mode/SKILL.md
-<repo-root>/.opencode/skills/sk-doc/SKILL.md
-<repo-root>/.opencode/skills/mcp-figma/SKILL.md
-<repo-root>/.opencode/skills/system-deep-loop/SKILL.md
-<repo-root>/.opencode/skills/sk-design/sk-design-md-generator/SKILL.md
-<repo-root>/.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md
-.opencode/skills/sk-design/SKILL.md
-<repo-root>/.opencode/skills/sk-code/sk-code-review/SKILL.md
-<repo-root>/.opencode/skills/sk-design/SKILL.md
-<repo-root>/.opencode/skills/system-skill-advisor/SKILL.md
-<repo-root>/.opencode/skills/sk-design/design-foundations/SKILL.md
-<repo-root>/.opencode/skills/system-deep-loop/deep-improvement/SKILL.md
-<repo-root>/.opencode/skills/system-deep-loop/deep-review/SKILL.md
-<repo-root>/.opencode/skills/sk-design/design-audit/SKILL.md
-<repo-root>/.opencode/skills/sk-design/design-motion/SKILL.md
-.opencode/skills/sk-design/SKILL.md
-<repo-root>/.opencode/skills/system-deep-loop/runtime/SKILL.md
-<repo-root>/.opencode/skills/sk-prompt-models/SKILL.md
-<repo-root>/.opencode/skills/system-spec-kit/SKILL.md
-<repo-root>/.opencode/skills/sk-code/SKILL.md
-<repo-root>/.opencode/skills/cli-claude-code/SKILL.md
-<repo-root>/.opencode/skills/sk-prompt/SKILL.md
-<repo-root>/.opencode/skills/mcp-chrome-devtools/SKILL.md
+<repo-root>/.skilled/skills/sk-git/SKILL.md
+<repo-root>/.skilled/skills/cli-opencode/SKILL.md
+<repo-root>/.skilled/skills/mcp-click-up/SKILL.md
+<repo-root>/.skilled/skills/system-deep-loop/SKILL.md
+<repo-root>/.skilled/skills/system-deep-loop/deep-research/SKILL.md
+<repo-root>/.skilled/skills/mcp-code-mode/SKILL.md
+<repo-root>/.skilled/skills/sk-doc/SKILL.md
+<repo-root>/.skilled/skills/mcp-figma/SKILL.md
+<repo-root>/.skilled/skills/system-deep-loop/SKILL.md
+<repo-root>/.skilled/skills/sk-design/sk-design-md-generator/SKILL.md
+<repo-root>/.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md
+.skilled/skills/sk-design/SKILL.md
+<repo-root>/.skilled/skills/sk-code/sk-code-review/SKILL.md
+<repo-root>/.skilled/skills/sk-design/SKILL.md
+<repo-root>/.skilled/skills/system-skill-advisor/SKILL.md
+<repo-root>/.skilled/skills/sk-design/design-foundations/SKILL.md
+<repo-root>/.skilled/skills/system-deep-loop/deep-improvement/SKILL.md
+<repo-root>/.skilled/skills/system-deep-loop/deep-review/SKILL.md
+<repo-root>/.skilled/skills/sk-design/design-audit/SKILL.md
+<repo-root>/.skilled/skills/sk-design/design-motion/SKILL.md
+.skilled/skills/sk-design/SKILL.md
+<repo-root>/.skilled/skills/system-deep-loop/runtime/SKILL.md
+<repo-root>/.skilled/skills/sk-prompt-models/SKILL.md
+<repo-root>/.skilled/skills/system-spec-kit/SKILL.md
+<repo-root>/.skilled/skills/sk-code/SKILL.md
+<repo-root>/.skilled/skills/cli-claude-code/SKILL.md
+<repo-root>/.skilled/skills/sk-prompt/SKILL.md
+<repo-root>/.skilled/skills/mcp-chrome-devtools/SKILL.md
 ```
 
 Archive/future precondition checks:
 
 ```text
 z_archive glob output included:
-<repo-root>/.opencode/skills/z_archive/cli-codex-retired/SKILL.retired.md
+<repo-root>/.skilled/skills/z_archive/cli-codex-retired/SKILL.retired.md
 
 z_future glob output:
 No files found
@@ -147,12 +147,12 @@ No files found
 The required scenario commands were not executed:
 
 ```bash
-touch .opencode/skills/sk-git/SKILL.md
-touch .opencode/skills/sk-doc/SKILL.md
-touch .opencode/skills/system-spec-kit/SKILL.md
+touch .skilled/skills/sk-git/SKILL.md
+touch .skilled/skills/sk-doc/SKILL.md
+touch .skilled/skills/system-spec-kit/SKILL.md
 ```
 
-Reason: the session-level allowed write path is only `.opencode/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/corpus-df-idf.md`; the scenario commands would modify `.opencode/skills/sk-git/SKILL.md`, `.opencode/skills/sk-doc/SKILL.md`, and `.opencode/skills/system-spec-kit/SKILL.md` mtimes outside the allowed write path. The archived-skill touch step would also require modifying a file under `.opencode/skills/z_archive/`, which is outside the allowed write path.
+Reason: the session-level allowed write path is only `.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/corpus-df-idf.md`; the scenario commands would modify `.skilled/skills/sk-git/SKILL.md`, `.skilled/skills/sk-doc/SKILL.md`, and `.skilled/skills/system-spec-kit/SKILL.md` mtimes outside the allowed write path. The archived-skill touch step would also require modifying a file under `.skilled/skills/z_archive/`, which is outside the allowed write path.
 
 ### Pass/Fail
 
@@ -165,7 +165,7 @@ BLOCKED - The scenario cannot be executed under the provided write restrictions 
 - Scenario [LC-003](../../manual-testing-playbook/lifecycle-routing/archive-handling.md), archive indexing but not routing.
 - Scenario [SC-002](../scorer-fusion/projection.md), projection input for scorer.
 - Feature [`auto-indexing/df-idf-corpus.md`](../../feature-catalog/auto-indexing/df-idf-corpus.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/corpus/df-idf.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/corpus/df-idf.ts`.
 
 ---
 

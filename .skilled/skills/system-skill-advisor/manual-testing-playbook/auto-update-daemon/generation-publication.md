@@ -45,20 +45,20 @@ Validate that generation counter increments are atomic, persisted through temp-f
 1. Capture baseline generation:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 2. Touch the `SKILL.md` of an active skill in the workspace:
 
 ```bash
-touch .opencode/skills/sk-git/SKILL.md
+touch .skilled/skills/sk-git/SKILL.md
 ```
 
 3. Wait for the watcher debounce plus reindex to complete.
 4. Re-read status:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 5. Call `advisor_recommend` with a prompt that maps to the touched skill and inspect `cache.generation` if present.
@@ -113,18 +113,18 @@ Baseline `advisor_status({"workspaceRoot":"/Users/michelkerkmeester/MEGA/Develop
 Step 2 was not executed because the scenario command requires this write outside the allowed path:
 
 ```bash
-touch .opencode/skills/sk-git/SKILL.md
+touch .skilled/skills/sk-git/SKILL.md
 ```
 
 Allowed write paths for this run only permitted:
 
 ```text
-.opencode/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/generation-publication.md
+.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/generation-publication.md
 ```
 
 ### Pass/Fail
 
-BLOCKED - Step 2 requires modifying `.opencode/skills/sk-git/SKILL.md`, but this run explicitly allowed writes only to `.opencode/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/generation-publication.md`; the daemon was also not live at baseline (`freshness`: `unavailable`, `trustState.state`: `stale`, `trustState.reason`: `SIGTERM`).
+BLOCKED - Step 2 requires modifying `.skilled/skills/sk-git/SKILL.md`, but this run explicitly allowed writes only to `.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/generation-publication.md`; the daemon was also not live at baseline (`freshness`: `unavailable`, `trustState.state`: `stale`, `trustState.reason`: `SIGTERM`).
 
 ---
 
@@ -133,7 +133,7 @@ BLOCKED - Step 2 requires modifying `.opencode/skills/sk-git/SKILL.md`, but this
 - Scenario [AU-001](../../manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md), watcher scope.
 - Scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md), recovery when snapshot unreadable.
 - Feature [`daemon-and-freshness/generation.md`](../../feature-catalog/daemon-and-freshness/generation.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/freshness/generation.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts`.
 
 ---
 

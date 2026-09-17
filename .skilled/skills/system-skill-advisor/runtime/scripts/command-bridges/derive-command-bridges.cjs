@@ -9,7 +9,7 @@ const { join, relative, resolve, sep } = require('node:path');
 
 const COMMAND_BRIDGES_DIR = __dirname;
 const REPO_ROOT = resolve(COMMAND_BRIDGES_DIR, '../../../../../..');
-const SKILLS_ROOT = join(REPO_ROOT, '.opencode', 'skills');
+const SKILLS_ROOT = join(REPO_ROOT, '.skilled', 'skills');
 const ALLOW_LIST_PATH = join(COMMAND_BRIDGES_DIR, 'allow-list.json');
 const COMPATIBILITY_PATH = join(COMMAND_BRIDGES_DIR, 'scoring-compatibility.json');
 const OUTPUT_PATH = join(COMMAND_BRIDGES_DIR, 'command-bridges.generated.json');

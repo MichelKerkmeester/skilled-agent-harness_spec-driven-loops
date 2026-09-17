@@ -46,13 +46,13 @@ Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical 
 1. Call status and capture `laneWeights`:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 2. Call `advisor_recommend` with a prompt that hits multiple lanes and `includeAttribution: true`:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --options '{"topK":3,"includeAttribution":true}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --options '{"topK":3,"includeAttribution":true}' --format json
 ```
 
 3. For the top recommendation, record each lane's `rawScore`, `weight` and `weightedScore`.
@@ -80,7 +80,7 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conve
 
 - Scenario [SC-004](../../manual-testing-playbook/scorer-fusion/lane-attribution.md), lane attribution metadata.
 - Feature [`scorer-fusion/five-lane-fusion.md`](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` and `lib/scorer/weights-config.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` and `lib/scorer/weights-config.ts`.
 
 ---
 

@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------
 // MODULE: Skill Advisor CLI Exit-Taxonomy Tests
 // -----------------------------------------------------------------------------
-// Proves the documented exit taxonomy end to end through the .opencode/bin shim:
+// Proves the documented exit taxonomy end to end through the .skilled/bin shim:
 // each runnable case invokes the real front door and reads its numeric exit code
 // plus its JSON envelope. The two reserved codes are asserted at the constant,
 // because forcing a protocol mismatch or a daemon kill would disturb shared state.

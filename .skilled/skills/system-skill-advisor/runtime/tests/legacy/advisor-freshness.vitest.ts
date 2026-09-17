@@ -28,7 +28,7 @@ import {
 import { clearAdvisorSourceCache } from '../../lib/source-cache.js';
 
 const ADVISOR_DB_RELATIVE_PATH = join(
-  '.opencode',
+  '.skilled',
   'skills',
   'system-skill-advisor',
   'runtime',
@@ -44,7 +44,7 @@ function writeFile(filePath: string, content: string, mtimeMs: number): void {
 }
 
 function writeSkill(workspaceRoot: string, slug: string, mtimeMs: number): void {
-  const skillDirectory = join(workspaceRoot, '.opencode', 'skills', slug);
+  const skillDirectory = join(workspaceRoot, '.skilled', 'skills', slug);
   writeFile(join(skillDirectory, 'SKILL.md'), `# ${slug}\n`, mtimeMs);
   writeFile(join(skillDirectory, 'graph-metadata.json'), `{"skill_id":"${slug}"}\n`, mtimeMs);
 }
@@ -52,7 +52,7 @@ function writeSkill(workspaceRoot: string, slug: string, mtimeMs: number): void 
 function writeAdvisorSources(workspaceRoot: string, mtimeMs: number): void {
   const scriptDirectory = join(
     workspaceRoot,
-    '.opencode',
+    '.skilled',
     'skills',
     'system-skill-advisor',
     'runtime',
@@ -75,7 +75,7 @@ function writeJsonFallback(workspaceRoot: string, mtimeMs: number): void {
   writeFile(
     join(
       workspaceRoot,
-      '.opencode',
+      '.skilled',
       'skills',
       'system-skill-advisor',
       'runtime',
@@ -171,8 +171,8 @@ describe('getAdvisorFreshness', () => {
   it('AS4 returns unavailable when the source probe fails', () => {
     const workspaceRoot = createWorkspace();
     workspaces.push(workspaceRoot);
-    mkdirSync(join(workspaceRoot, '.opencode'), { recursive: true });
-    writeFileSync(join(workspaceRoot, '.opencode', 'skills'), 'not a directory', 'utf8');
+    mkdirSync(join(workspaceRoot, '.skilled'), { recursive: true });
+    writeFileSync(join(workspaceRoot, '.skilled', 'skills'), 'not a directory', 'utf8');
 
     const result = getAdvisorFreshness(workspaceRoot);
 
@@ -191,7 +191,7 @@ describe('getAdvisorFreshness', () => {
     const first = getAdvisorFreshness(workspaceRoot);
     expect(first.skillFingerprints.has('beta')).toBe(true);
 
-    rmSync(join(workspaceRoot, '.opencode', 'skills', 'beta'), { recursive: true, force: true });
+    rmSync(join(workspaceRoot, '.skilled', 'skills', 'beta'), { recursive: true, force: true });
     const second = getAdvisorFreshness(workspaceRoot);
 
     expect(second.skillFingerprints.has('alpha')).toBe(true);
@@ -253,7 +253,7 @@ describe('getAdvisorFreshness', () => {
     const first = getAdvisorFreshness(workspaceRoot);
     clearAdvisorSourceCache();
 
-    const skillMdPath = join(workspaceRoot, '.opencode', 'skills', 'alpha', 'SKILL.md');
+    const skillMdPath = join(workspaceRoot, '.skilled', 'skills', 'alpha', 'SKILL.md');
     writeFile(skillMdPath, '# omega\n', 1_000);
     const second = getAdvisorFreshness(workspaceRoot);
 

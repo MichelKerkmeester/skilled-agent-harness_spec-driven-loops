@@ -23,7 +23,7 @@ function skill(id: string): SkillProjection {
     intentSignals: [],
     derivedTriggers: [],
     derivedKeywords: [],
-    sourcePath: `.opencode/skills/${id}/graph-metadata.json`,
+    sourcePath: `.skilled/skills/${id}/graph-metadata.json`,
     lifecycleStatus: 'active',
   };
 }

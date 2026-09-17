@@ -57,7 +57,7 @@ describe('skill_graph_scan caller authority', () => {
   it('rejects untrusted callers before mutating the graph', async () => {
     const root = mkdtempSync(join(tmpdir(), 'skill-graph-scan-auth-'));
     const workspace = join(root, 'workspace');
-    const skillRoot = join(workspace, '.opencode', 'skill');
+    const skillRoot = join(workspace, '.skilled', 'skill');
 
     try {
       mkdirSync(skillRoot, { recursive: true });
@@ -87,7 +87,7 @@ describe('skill_graph_scan caller authority', () => {
   it.skip('allows trusted callers to scan and publish graph data', async () => {
     const root = mkdtempSync(join(tmpdir(), 'skill-graph-scan-auth-'));
     const workspace = join(root, 'workspace');
-    const skillRoot = join(workspace, '.opencode', 'skill');
+    const skillRoot = join(workspace, '.skilled', 'skill');
 
     try {
       mkdirSync(skillRoot, { recursive: true });

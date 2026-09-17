@@ -14,8 +14,8 @@ const INSTRUCTION_SHAPED_PATTERN = /\b(ignore|disregard|override|forget)\b.{0,48
 
 function workspaceRootForSource(sourcePath: string): string {
   const resolved = resolve(sourcePath);
-  const marker = `${sep}.opencode${sep}skills${sep}`;
-  const index = resolved.indexOf(marker);
+  const markers = [`${sep}.skilled${sep}skills${sep}`, `${sep}.opencode${sep}skills${sep}`];
+  const index = Math.max(...markers.map((marker) => resolved.indexOf(marker)));
   if (index >= 0) return resolved.slice(0, index);
   return dirname(dirname(sourcePath));
 }

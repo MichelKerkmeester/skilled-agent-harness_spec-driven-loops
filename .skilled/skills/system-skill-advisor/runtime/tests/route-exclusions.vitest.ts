@@ -62,9 +62,9 @@ describe('route-exclusions loader', () => {
 
   it('drops an excluded id at the path-based route-policy seam and keeps others', () => {
     const entries = [
-      { sourcePath: '.opencode/skills/sk-code/graph-metadata.json', skillId: 'sk-code' },
-      { sourcePath: '.opencode/skills/sk-communication/graph-metadata.json', skillId: 'sk-communication' },
-      { sourcePath: '.opencode/skills/z_archive/old/graph-metadata.json', skillId: 'old' },
+      { sourcePath: '.skilled/skills/sk-code/graph-metadata.json', skillId: 'sk-code' },
+      { sourcePath: '.skilled/skills/sk-communication/graph-metadata.json', skillId: 'sk-communication' },
+      { sourcePath: '.skilled/skills/z_archive/old/graph-metadata.json', skillId: 'old' },
     ];
     // sk-communication is dropped by the exclusion; z_archive is dropped by
     // lifecycle; only the active, non-excluded sk-code survives.

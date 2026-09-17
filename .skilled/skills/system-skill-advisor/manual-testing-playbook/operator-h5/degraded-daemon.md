@@ -43,7 +43,7 @@ Validate the operator path for a degraded advisor daemon, usually caused by stal
 1. Detect:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 2. Confirm stale/degraded signals: `freshness: "stale"` or trust reason such as `SOURCE_NEWER_THAN_SKILL_GRAPH`.
@@ -51,8 +51,8 @@ node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/p
 4. Remediate:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 ### Expected Signals
@@ -73,8 +73,8 @@ node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/p
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/lib/daemon/`
-- `.opencode/skills/system-skill-advisor/runtime/lib/freshness/`
+- `.skilled/skills/system-skill-advisor/runtime/lib/daemon/`
+- `.skilled/skills/system-skill-advisor/runtime/lib/freshness/`
 
 ---
 
@@ -118,25 +118,25 @@ Command run: `advisor_status({"workspaceRoot":"/Users/michelkerkmeester/MEGA/Dev
 }
 ```
 
-Command run: `glob("**/*log*", ".opencode/skills/system-skill-advisor")`
+Command run: `glob("**/*log*", ".skilled/skills/system-skill-advisor")`
 
 ```text
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature-catalog/feature-catalog.md
 ```
 
-Command run: `glob("runtime/**/*.log", ".opencode/skills/system-skill-advisor")`
+Command run: `glob("runtime/**/*.log", ".skilled/skills/system-skill-advisor")`
 
 ```text
 No files found
 ```
 
-Command run: `glob("runtime/**/*stderr*", ".opencode/skills/system-skill-advisor")`
+Command run: `glob("runtime/**/*stderr*", ".skilled/skills/system-skill-advisor")`
 
 ```text
 No files found
 ```
 
-Command run: `glob("runtime/**/*err*", ".opencode/skills/system-skill-advisor")`
+Command run: `glob("runtime/**/*err*", ".skilled/skills/system-skill-advisor")`
 
 ```text
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/runtime/tests/__fixtures__/errors.ts
@@ -151,7 +151,7 @@ Command run: `skill_graph_scan({})`
 ```json
 {
   "status": "error",
-  "error": "Skill graph scan failed: .opencode/skills/z_archive/cli-codex-retired/graph-metadata.json: skill_id \"cli-codex\" does not match folder name \"cli-codex-retired\""
+  "error": "Skill graph scan failed: .skilled/skills/z_archive/cli-codex-retired/graph-metadata.json: skill_id \"cli-codex\" does not match folder name \"cli-codex-retired\""
 }
 ```
 
@@ -190,4 +190,4 @@ Command run: `advisor_status({"workspaceRoot":"/Users/michelkerkmeester/MEGA/Dev
 
 BLOCKED
 
-Reason: The degraded state was visible (`freshness: "unavailable"`, `trustState.reason: "SIGTERM"`), but the scenario precondition requiring access to MCP server logs or stderr was not satisfied by any discoverable current system-skill-advisor log/stderr file, and remediation was blocked by `.opencode/skills/z_archive/cli-codex-retired/graph-metadata.json` containing `skill_id "cli-codex"` while the folder name is `cli-codex-retired`.
+Reason: The degraded state was visible (`freshness: "unavailable"`, `trustState.reason: "SIGTERM"`), but the scenario precondition requiring access to MCP server logs or stderr was not satisfied by any discoverable current system-skill-advisor log/stderr file, and remediation was blocked by `.skilled/skills/z_archive/cli-codex-retired/graph-metadata.json` containing `skill_id "cli-codex"` while the folder name is `cli-codex-retired`.

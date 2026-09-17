@@ -52,7 +52,7 @@ function write(filePath: string, content: string): void {
 }
 
 function skillDir(root: string, slug: string): string {
-  return join(root, '.opencode', 'skills', slug);
+  return join(root, '.skilled', 'skills', slug);
 }
 
 function writeSkill(

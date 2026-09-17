@@ -126,10 +126,10 @@ function sleep(ms: number): Promise<void> {
 }
 
 function defaultSkillsRoot(workspaceRoot: string): string {
-  // Centralized canonicalize step; the relative `.opencode/skills` suffix is
+  // Centralized canonicalize step; the relative `.skilled/skills` suffix is
   // unique to this caller. See `lib/utils/workspace-root.ts` for the shared
   // walk-up helper used by handlers/bench/test code.
-  return join(findAdvisorWorkspaceRoot(workspaceRoot, { maxDepth: 0 }), '.opencode', 'skills');
+  return join(findAdvisorWorkspaceRoot(workspaceRoot, { maxDepth: 0 }), '.skilled', 'skills');
 }
 
 function isSqliteBusyError(error: unknown): boolean {
@@ -292,7 +292,7 @@ function hasValidSkillMarkdown(skillPath: string): boolean {
 }
 
 function quarantineDbPath(workspaceRoot: string, override?: string): string {
-  return override ?? join(resolve(workspaceRoot), '.opencode', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite');
+  return override ?? join(resolve(workspaceRoot), '.skilled', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite');
 }
 
 function initializeQuarantineDb(db: { exec: (sql: string) => void }): void {

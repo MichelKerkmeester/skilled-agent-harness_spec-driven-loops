@@ -57,7 +57,7 @@ This enforcement is gated by the `SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER` env
 
 Daemon attempts lease acquisition on startup. The lease database lives next to the canonical skill graph database directory as `skill-graph-daemon-lease.sqlite`. Canonical means lexical `path.resolve()` followed by `fs.realpathSync.native()` when the path exists; if the directory did not exist yet, the daemon creates it and canonicalizes again before deriving the `workspace_key`.
 
-With the default configuration that directory is `.opencode/skills/system-skill-advisor/runtime/database/`. With `SYSTEM_SKILL_ADVISOR_DB_DIR` or `SYSTEM_SKILL_ADVISOR_DB_DIR`, the override relocates both `skill-graph.sqlite` and `skill-graph-daemon-lease.sqlite` together. On success the lease row records:
+With the default configuration that directory is `.skilled/skills/system-skill-advisor/runtime/database/`. With `SYSTEM_SKILL_ADVISOR_DB_DIR` or `SYSTEM_SKILL_ADVISOR_DB_DIR`, the override relocates both `skill-graph.sqlite` and `skill-graph-daemon-lease.sqlite` together. On success the lease row records:
 
 - holder PID
 - holder owner ID
@@ -108,7 +108,7 @@ The lease row deletion is guarded by owner ID. If two daemons race on stale-leas
 
 ### Legacy Probe During Rolling Starts
 
-During the Phase 006 compatibility window, launcher startup also probes the old lease database at `.opencode/skills/.state/advisor/skill-graph-daemon-lease.sqlite`. If that legacy database contains a live owner, the launcher exits `0` with `LEASE_HELD_BY:<pid> ... (legacy path)` and does not open the skill graph DB. If the legacy owner is stale or dead, startup logs the stale legacy observation and proceeds with the canonical lease beside the resolved DB directory. The launcher observes but does not migrate the legacy database.
+During the Phase 006 compatibility window, launcher startup also probes the old lease database at `.skilled/skills/.state/advisor/skill-graph-daemon-lease.sqlite`. If that legacy database contains a live owner, the launcher exits `0` with `LEASE_HELD_BY:<pid> ... (legacy path)` and does not open the skill graph DB. If the legacy owner is stale or dead, startup logs the stale legacy observation and proceeds with the canonical lease beside the resolved DB directory. The launcher observes but does not migrate the legacy database.
 
 ---
 

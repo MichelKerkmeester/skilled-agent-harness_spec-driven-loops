@@ -23,7 +23,7 @@ Give operators an explicit repair path for stale, absent or unavailable advisor 
 
 `advisor_rebuild` is the explicit repair command that keeps rebuild behavior out of `advisor_status`. The handler reads the current status first. If status is `live` and `force` is not true, it skips the rebuild and returns a diagnostic telling the caller to pass `force:true` when a live rebuild is intentional.
 
-When rebuild proceeds, it indexes `.opencode/skills/`, publishes a fresh skill-graph generation with `reason: "advisor_rebuild"`, rereads status and returns freshness before/after, generation before/after, skill count, indexing summary and warnings. `advisor_status` remains diagnostic-only and never repairs stale state.
+When rebuild proceeds, it indexes `.skilled/skills/`, publishes a fresh skill-graph generation with `reason: "advisor_rebuild"`, rereads status and returns freshness before/after, generation before/after, skill count, indexing summary and warnings. `advisor_status` remains diagnostic-only and never repairs stale state.
 
 The command manifest and dispatcher register `advisor_rebuild` alongside `advisor_recommend`, `advisor_status` and `advisor_validate`. The CLI exposes nine public commands: four `advisor_*` commands and five `skill_graph_*` commands.
 
@@ -35,19 +35,19 @@ The command manifest and dispatcher register `advisor_rebuild` alongside `adviso
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:46-101` | Handler core | Reads status, skips live non-forced rebuilds, indexes skills, publishes generation and returns before/after diagnostics |
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:103-115` | Handler | Serializes the rebuild output and exports the snake_case compatibility alias |
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:89-94` | Handler contract | Documents that status is diagnostic-only and points repair callers to `advisor_rebuild` |
-| `.opencode/skills/system-skill-advisor/runtime/tools/advisor-rebuild.ts:8-17` | Tool descriptor | Declares the command and `force` option |
-| `.opencode/skills/system-spec-kit/runtime/tools/index.ts:56-72` | Dispatcher | Registers `advisor_rebuild` in the advisor command set |
-| `.opencode/skills/system-spec-kit/runtime/tool-schemas.ts:954-962` | Server registry | Includes `advisor_rebuild` in `TOOL_DEFINITIONS` |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:46-101` | Handler core | Reads status, skips live non-forced rebuilds, indexes skills, publishes generation and returns before/after diagnostics |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:103-115` | Handler | Serializes the rebuild output and exports the snake_case compatibility alias |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:89-94` | Handler contract | Documents that status is diagnostic-only and points repair callers to `advisor_rebuild` |
+| `.skilled/skills/system-skill-advisor/runtime/tools/advisor-rebuild.ts:8-17` | Tool descriptor | Declares the command and `force` option |
+| `.skilled/skills/system-spec-kit/runtime/tools/index.ts:56-72` | Dispatcher | Registers `advisor_rebuild` in the advisor command set |
+| `.skilled/skills/system-spec-kit/runtime/tool-schemas.ts:954-962` | Server registry | Includes `advisor_rebuild` in `TOOL_DEFINITIONS` |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` | Vitest | Covers skip, forced rebuild, stale rebuild and output schema behavior |
-| `.opencode/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` | Vitest | Validates strict input schemas for registered commands |
+| `.skilled/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` | Vitest | Covers skip, forced rebuild, stale rebuild and output schema behavior |
+| `.skilled/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` | Vitest | Validates strict input schemas for registered commands |
 
 ---
 
@@ -55,8 +55,8 @@ The command manifest and dispatcher register `advisor_rebuild` alongside `adviso
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` | Automated test | Validation reference |
-| `.opencode/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` | Automated test | Validation reference |
+| `.skilled/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` | Automated test | Validation reference |
+| `.skilled/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` | Automated test | Validation reference |
 
 ---
 

@@ -8,7 +8,7 @@ import { resolve } from 'node:path';
 
 const REPO_ROOT = resolve(import.meta.dirname, '../../../../../../');
 const CLAUDE_SETTINGS = resolve(REPO_ROOT, '.claude/settings.json');
-const OPENCODE_PLUGIN = resolve(REPO_ROOT, '.opencode/plugins/system-skill-advisor.js');
+const OPENCODE_PLUGIN = resolve(REPO_ROOT, '.skilled/plugins/system-skill-advisor.js');
 
 function readJson(path: string): Record<string, unknown> {
   expect(existsSync(path)).toBe(true);
@@ -30,7 +30,7 @@ describe('sa-030 / sa-031 / sa-032 / sa-033 — hooks parity layer', () => {
 
   it('OpenCode wires the same prompt-submit and session-start equivalents through its plugin, not a settings/dist script pair', () => {
     // OpenCode has no settings.json + dist/hooks/<runtime>/*.js pattern; its
-    // integration point is an auto-discovered plugin under .opencode/plugins/
+    // integration point is an auto-discovered plugin under .skilled/plugins/
     // that registers lifecycle hooks directly.
     const plugin = readSource(OPENCODE_PLUGIN);
 

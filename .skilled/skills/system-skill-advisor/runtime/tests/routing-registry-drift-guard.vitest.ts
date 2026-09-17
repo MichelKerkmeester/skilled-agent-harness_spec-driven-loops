@@ -21,9 +21,9 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
 const advisorScript = resolve(
   repoRoot,
-  '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
+  '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
 );
-const registryPath = resolve(repoRoot, '.opencode/skills/system-deep-loop/mode-registry.json');
+const registryPath = resolve(repoRoot, '.skilled/skills/system-deep-loop/mode-registry.json');
 
 type RoutingClass = 'lexical' | 'alias-fold' | 'metadata' | 'command-bridge';
 

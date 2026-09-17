@@ -16,8 +16,8 @@
 #             canonical card instead (prevents the precedence drift class).
 #
 # Canonical locations (allowed to carry the tables / the Tier-3 list):
-#   .opencode/skills/sk-prompt/assets/cli-prompt-quality-card.md
-#   .opencode/skills/sk-prompt/references/patterns-evaluation.md
+#   .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+#   .skilled/skills/sk-prompt/references/patterns-evaluation.md
 #
 # Exit codes:
 #   0 — all checks pass
@@ -51,13 +51,13 @@ has_clear_matrix() {
 }
 
 cli_cards=(
-  "$ROOT/.opencode/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md"
-  "$ROOT/.opencode/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md"
-  "$ROOT/.opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md"
-  "$ROOT/.opencode/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md"
-  "$ROOT/.opencode/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md"
-  "$ROOT/.opencode/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md"
-  "$ROOT/.opencode/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md"
+  "$ROOT/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md"
+  "$ROOT/.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md"
+  "$ROOT/.skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md"
+  "$ROOT/.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md"
+  "$ROOT/.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md"
+  "$ROOT/.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md"
+  "$ROOT/.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md"
 )
 
 echo "CHECK 1 — framework / CLEAR table inlining"
@@ -87,13 +87,13 @@ done
 echo "CHECK 2 — Deep-path pointer-only (no inlined escalation triggers)"
 cli_skills=(cli-external-orchestration/cli-opencode cli-external-orchestration/cli-claude-code cli-external-orchestration/cli-cursor cli-external-orchestration/cli-pi cli-external-orchestration/cli-codex cli-external-orchestration/cli-devin cli-external-orchestration/cli-hermes)
 for skill in "${cli_skills[@]}"; do
-  f="$ROOT/.opencode/skills/$skill/SKILL.md"
+  f="$ROOT/.skilled/skills/$skill/SKILL.md"
   if [[ ! -f "$f" ]]; then echo "  MISSING: $skill/SKILL.md"; overall_exit=1; continue; fi
   if grep -Eiq -- 'stakeholder' "$f" && grep -Eiq -- 'ambiguous requirement' "$f"; then
     printf '  FAIL  %s/SKILL.md  [re-enumerates deep-path triggers — point to the canonical card instead]\n' "$skill"
     overall_exit=1
   elif ! grep -q 'cli-prompt-quality-card.md' "$f"; then
-    local_card="$ROOT/.opencode/skills/$skill/assets/prompt-quality-card.md"
+    local_card="$ROOT/.skilled/skills/$skill/assets/prompt-quality-card.md"
     if [[ -f "$local_card" ]] && grep -q 'cli-prompt-quality-card.md' "$local_card"; then
       printf '  PASS  %s/SKILL.md  [canonical card delegated through local prompt-quality card]\n' "$skill"
     else

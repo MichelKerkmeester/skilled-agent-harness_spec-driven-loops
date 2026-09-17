@@ -18,7 +18,7 @@ Prompt: Operator check for the daemon-backed skill-advisor CLI shipped by the 02
 
 ## 1. OVERVIEW
 
-This scenario validates the 028 CLI fallback for the advisor daemon. `node .opencode/bin/skill-advisor.cjs` exposes 9 commands with byte-identical schemas to `TOOL_DEFINITIONS`, sends calls untrusted by default behind a fail-closed trusted-mutation gate, and shares the program exit taxonomy 0/1/64/69/75. All checks below run against a sandboxed socket directory and refuse-before-IPC paths, so host daemons are never contacted and nothing is spawned.
+This scenario validates the 028 CLI fallback for the advisor daemon. `node .skilled/bin/skill-advisor.cjs` exposes 9 commands with byte-identical schemas to `TOOL_DEFINITIONS`, sends calls untrusted by default behind a fail-closed trusted-mutation gate, and shares the program exit taxonomy 0/1/64/69/75. All checks below run against a sandboxed socket directory and refuse-before-IPC paths, so host daemons are never contacted and nothing is spawned.
 
 The program-wide CLI scenarios live in the spec-kit playbook (427 parity, 428 warm-only, 431 trusted gate, 432 tri-daemon drill, 438 trust-gate fuzz); this scenario is the advisor-local smoke an operator can run in under a minute.
 
@@ -44,12 +44,12 @@ SANDBOX=$(mktemp -d /tmp/cli-playbook.XXXXXX)
 export SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock"
 export SPECKIT_DAEMON_REELECTION=0
 
-node .opencode/bin/skill-advisor.cjs list-tools --format json \
+node .skilled/bin/skill-advisor.cjs list-tools --format json \
   | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['status'], d['data']['count'])"
 
-node .opencode/bin/skill-advisor.cjs advisor_status --workspaceRoot . --warm-only --timeout-ms 3000 >/dev/null 2>&1; echo "warm-only exit=$?"
-node .opencode/bin/skill-advisor.cjs advisor_rebuild --force true --warm-only >/dev/null 2>&1; echo "untrusted exit=$?"
-node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --warm-only >/dev/null 2>&1; echo "trusted exit=$?"
+node .skilled/bin/skill-advisor.cjs advisor_status --workspaceRoot . --warm-only --timeout-ms 3000 >/dev/null 2>&1; echo "warm-only exit=$?"
+node .skilled/bin/skill-advisor.cjs advisor_rebuild --force true --warm-only >/dev/null 2>&1; echo "untrusted exit=$?"
+node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --warm-only >/dev/null 2>&1; echo "trusted exit=$?"
 
 ls "$SANDBOX/sock" 2>/dev/null || echo "socket dir empty"
 rm -rf "$SANDBOX"
@@ -91,7 +91,7 @@ Count drift means the manifest no longer tracks `TOOL_DEFINITIONS` — run the p
 
 | File | Role |
 |---|---|
-| `.opencode/bin/skill-advisor.cjs` | Stable shim with recursive source-mtime dist guard (exit 69) |
+| `.skilled/bin/skill-advisor.cjs` | Stable shim with recursive source-mtime dist guard (exit 69) |
 | `runtime/skill-advisor-cli.ts` | Dispatcher, trusted-mutation gate, warm-only probe, exit taxonomy |
 | `runtime/skill-advisor-cli-manifest.ts` | Manifest generated from `TOOL_DEFINITIONS` |
 | `runtime/tests/skill-advisor-cli-parity.vitest.ts` | Parity fixture (local real-python3 vs native) |

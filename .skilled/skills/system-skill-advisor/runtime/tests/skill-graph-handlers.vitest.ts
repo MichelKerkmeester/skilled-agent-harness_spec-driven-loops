@@ -89,7 +89,7 @@ describe('skill graph handlers', () => {
   it('preserves the live graph when a custom scan root contains no skills', async () => {
     const root = mkdtempSync(join(tmpdir(), 'skill-graph-handlers-'));
     const workspace = join(root, 'workspace');
-    const skillRoot = join(workspace, '.opencode', 'skills');
+    const skillRoot = join(workspace, '.skilled', 'skills');
     const emptyRoot = join(workspace, 'empty-skills');
 
     try {

@@ -45,7 +45,7 @@ Validate that `lib/derived/sanitizer.ts` is invoked at every public write bounda
 1. Call `advisor_recommend` with a benign prompt that should match an active skill:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --options '{"topK":2,"includeAttribution":true}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --options '{"topK":2,"includeAttribution":true}' --format json
 ```
 
 2. Inspect `laneBreakdown`, `trustState`, `cache` and `warnings` for any non-slug skill labels.
@@ -138,7 +138,7 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conve
 
 Step 2 could not inspect `laneBreakdown` because the `advisor_recommend` envelope did not include `laneBreakdown`; it returned `recommendations: []`, `freshness: "unavailable"`, `trustState.reason: "advisor_unavailable"`, and `warnings: ["advisor_unavailable"]`.
 
-Step 3 could not be executed because it requires injecting a fixture skill with control characters or unsafe path segments in a disposable copy, but this run's allowed write paths permit editing only `.opencode/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/sanitizer-boundaries.md` and explicitly ban modifying, creating, or deleting any other file.
+Step 3 could not be executed because it requires injecting a fixture skill with control characters or unsafe path segments in a disposable copy, but this run's allowed write paths permit editing only `.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/sanitizer-boundaries.md` and explicitly ban modifying, creating, or deleting any other file.
 
 Step 5 could not be executed because no injected fixture could be created under the allowed write path constraint, so there was no injected fixture `graph-metadata.json.derived` block to read.
 
@@ -153,7 +153,7 @@ BLOCKED - The advisor was unavailable (`freshness: "unavailable"`, `trustState.r
 - Scenario [AI-001](../../manual-testing-playbook/auto-indexing/derived-extraction.md), derived extraction correctness.
 - Scenario [AI-005](../../manual-testing-playbook/auto-indexing/anti-stuffing.md), repetition-density and adversarial rejection.
 - Feature [`auto-indexing/sanitizer.md`](../../feature-catalog/auto-indexing/sanitizer.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts`.
 
 ---
 

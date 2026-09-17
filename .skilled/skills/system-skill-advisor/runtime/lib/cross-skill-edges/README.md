@@ -65,8 +65,8 @@ Callers should pass `mode: "apply"` only when a selected candidate set has been 
 Run from the repository root.
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime run typecheck
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/runtime/lib/cross-skill-edges/README.md
+npm --prefix .skilled/skills/system-skill-advisor/runtime run typecheck
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/README.md
 ```
 
 ---

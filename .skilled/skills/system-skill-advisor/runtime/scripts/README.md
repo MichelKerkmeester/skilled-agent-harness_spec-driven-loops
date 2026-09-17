@@ -101,7 +101,7 @@ prompt, fixture or skill graph source
 Run from the repository root.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/runtime/scripts/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/scripts/README.md
 ```
 
 Expected result: exit code `0`.

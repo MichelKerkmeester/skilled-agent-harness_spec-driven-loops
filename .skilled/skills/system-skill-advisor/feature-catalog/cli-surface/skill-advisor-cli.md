@@ -15,7 +15,7 @@ version: 0.8.0.2
 
 ## 1. OVERVIEW
 
-The CLI front door `node .opencode/bin/skill-advisor.cjs` is the only surface over the advisor daemon contract. The CLI exposes 9 commands through a hand-maintained manifest whose schemas are held byte-identical to the server `TOOL_DEFINITIONS` by a dedicated parity suite (`tests/skill-advisor-cli-manifest-parity.vitest.ts`) — drift between the two registries fails tests rather than shipping. `skill-advisor list-tools --format json` returns `{ status: "ok", data: { count: 9 } }` as the runtime parity check. The Python facade `skill_advisor.py` stayed untouched, and the OpenCode plugin plus the Claude/OpenCode prompt-submit hooks shell out to the CLI.
+The CLI front door `node .skilled/bin/skill-advisor.cjs` is the only surface over the advisor daemon contract. The CLI exposes 9 commands through a hand-maintained manifest whose schemas are held byte-identical to the server `TOOL_DEFINITIONS` by a dedicated parity suite (`tests/skill-advisor-cli-manifest-parity.vitest.ts`) — drift between the two registries fails tests rather than shipping. `skill-advisor list-tools --format json` returns `{ status: "ok", data: { count: 9 } }` as the runtime parity check. The Python facade `skill_advisor.py` stayed untouched, and the OpenCode plugin plus the Claude/OpenCode prompt-submit hooks shell out to the CLI.
 
 ---
 
@@ -27,7 +27,7 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 
 ### Shim guards and exit taxonomy
 
-`.opencode/bin/skill-advisor.cjs` defaults the socket dir to `/tmp/system-skill-advisor`, walks the TypeScript source tree for mtimes and refuses stale dist with exit 69 (`SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override in development), and maps spawn failure to 75. The entrypoint shares the program taxonomy: 0 success, 1 runtime, 64 usage/validation/trust refusal, 69 protocol, 75 retryable. `--warm-only` (default via `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`) probes the socket and exits 75 instead of auto-spawning.
+`.skilled/bin/skill-advisor.cjs` defaults the socket dir to `/tmp/system-skill-advisor`, walks the TypeScript source tree for mtimes and refuses stale dist with exit 69 (`SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override in development), and maps spawn failure to 75. The entrypoint shares the program taxonomy: 0 success, 1 runtime, 64 usage/validation/trust refusal, 69 protocol, 75 retryable. `--warm-only` (default via `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`) probes the socket and exits 75 instead of auto-spawning.
 
 ### Scan job semantics
 
@@ -41,11 +41,11 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/bin/skill-advisor.cjs` | Script | Stable shim: socket-dir defaulting, recursive source-mtime dist guard, spawn-failure mapping |
+| `.skilled/bin/skill-advisor.cjs` | Script | Stable shim: socket-dir defaulting, recursive source-mtime dist guard, spawn-failure mapping |
 | `runtime/skill-advisor-cli.ts` | CLI entrypoint | Dispatcher, trusted-mutation gate, caller-authority tagging, warm-only probe, exit taxonomy |
 | `runtime/skill-advisor-cli-manifest.ts` | CLI manifest | Hand-maintained command registry, held byte-identical to `TOOL_DEFINITIONS` by the manifest parity suite |
 | `runtime/advisor-server.ts` | Daemon | Daemon-side trust default (`SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`) |
-| `.opencode/bin/skill-advisor.cjs` | Advisor CLI | The plugin's advisor path: front door over the daemon-backed commands |
+| `.skilled/bin/skill-advisor.cjs` | Advisor CLI | The plugin's advisor path: front door over the daemon-backed commands |
 | `hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared warm-only CLI fallback for Claude/OpenCode prompt-submit hooks |
 
 ### Validation And Tests

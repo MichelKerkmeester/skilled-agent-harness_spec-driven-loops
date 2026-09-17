@@ -38,7 +38,7 @@ function skill(overrides: Partial<SkillProjection> & Pick<SkillProjection, 'id'>
     intentSignals: [],
     derivedTriggers: [],
     derivedKeywords: [],
-    sourcePath: `.opencode/skills/${overrides.id}/graph-metadata.json`,
+    sourcePath: `.skilled/skills/${overrides.id}/graph-metadata.json`,
     lifecycleStatus: 'active',
     ...Object.fromEntries(Object.entries(overrides).filter(([key]) => key !== 'id')),
   };

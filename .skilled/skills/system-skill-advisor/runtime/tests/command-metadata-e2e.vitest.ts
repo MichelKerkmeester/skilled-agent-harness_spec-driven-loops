@@ -27,7 +27,7 @@ interface LeafAlias {
 }
 
 const REPO_ROOT = findAdvisorWorkspaceRoot(import.meta.dirname);
-const SKILLS_ROOT = join(REPO_ROOT, '.opencode', 'skills');
+const SKILLS_ROOT = join(REPO_ROOT, '.skilled', 'skills');
 const GENERATED_PATH = join(
   SKILLS_ROOT,
   'system-skill-advisor',
@@ -40,7 +40,7 @@ const GENERATED_PATH = join(
 function commandPath(command: string): string {
   const match = command.match(/^\/([a-z][a-z0-9-]*):([a-z0-9-]+)$/);
   if (!match) throw new Error(`invalid command id ${command}`);
-  return join(REPO_ROOT, '.opencode', 'commands', match[1], `${match[2]}.md`);
+  return join(REPO_ROOT, '.skilled', 'commands', match[1], `${match[2]}.md`);
 }
 
 describe('command metadata dense e2e', () => {
@@ -65,7 +65,7 @@ describe('command metadata dense e2e', () => {
       }
     }
 
-    // A census of every command declared across .opencode/skills/*/command-metadata.json,
+    // A census of every command declared across .skilled/skills/*/command-metadata.json,
     // not a target: retiring or adding a command moves it, so recount the declarations
     // and update this number rather than relaxing it. Dropped from 21 when the
     // skill-benchmark lane was retired and took its command declaration with it.

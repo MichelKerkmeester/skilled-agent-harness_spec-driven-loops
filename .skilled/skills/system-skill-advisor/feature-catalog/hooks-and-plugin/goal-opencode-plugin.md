@@ -26,7 +26,7 @@ This entry lives with the Skill Advisor hook/plugin documentation because it use
 
 ### State Store And Command Router
 
-`.opencode/plugins/opencode-goal.js` stores one JSON goal record per OpenCode session under `.opencode/skills/.state/goal/` by default, keyed by a sanitized session id. Writes go through an in-process mutation queue and atomic temp-file rename. `.opencode/commands/goal-opencode.md` is a thin router: empty arguments and `show` call `opencode_goal_status`, while `bind <packet-path>`, `unbind`, `resent`, `log <item> | <state> | <evidence>`, `packet <packet-path>`, `set`, `set --budget N`, bare text, `history`, `doctor`, `health`, `clear`, `complete`, `pause` and `resume` call `opencode_goal`. The packet projections come from `.opencode/hooks/goal/lib/goal-slice.cjs`, shared with the runtime-neutral goal core.
+`.skilled/plugins/opencode-goal.js` stores one JSON goal record per OpenCode session under `.skilled/skills/.state/goal/` by default, keyed by a sanitized session id. Writes go through an in-process mutation queue and atomic temp-file rename. `.skilled/commands/goal-opencode.md` is a thin router: empty arguments and `show` call `opencode_goal_status`, while `bind <packet-path>`, `unbind`, `resent`, `log <item> | <state> | <evidence>`, `packet <packet-path>`, `set`, `set --budget N`, bare text, `history`, `doctor`, `health`, `clear`, `complete`, `pause` and `resume` call `opencode_goal`. The packet projections come from `.skilled/hooks/goal/lib/goal-slice.cjs`, shared with the runtime-neutral goal core.
 
 ### Passive Injection
 
@@ -54,24 +54,24 @@ Live verification: the plugin is registered and driven end-to-end in a real Open
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/plugins/opencode-goal.js` | OpenCode plugin | State store, passive injection, tools, supervisor verification and guarded continuation |
-| `.opencode/commands/goal-opencode.md` | Slash command | Thin command router for `opencode_goal` and `opencode_goal_status` |
-| `.opencode/hooks/goal/lib/goal-slice.cjs` | Shared module | Packet `goal.md` projections the plugin renders from |
-| `.opencode/skills/.state/goal/` | State directory | Default per-session JSON state location |
+| `.skilled/plugins/opencode-goal.js` | OpenCode plugin | State store, passive injection, tools, supervisor verification and guarded continuation |
+| `.skilled/commands/goal-opencode.md` | Slash command | Thin command router for `opencode_goal` and `opencode_goal_status` |
+| `.skilled/hooks/goal/lib/goal-slice.cjs` | Shared module | Packet `goal.md` projections the plugin renders from |
+| `.skilled/skills/.state/goal/` | State directory | Default per-session JSON state location |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/plugins/tests/opencode-goal-state.test.cjs` | Automated test | State persistence, generated prompt fields, injection, caps, sanitization, redaction, and status output. |
-| `.opencode/plugins/tests/opencode-goal-export-contract.test.cjs` | Automated test | Export surface contract and full test helper key list |
-| `.opencode/plugins/tests/opencode-goal-render-parity.test.cjs` | Automated test | Cross-implementation injection label parity and brief cache key sensitivity |
-| `.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` | Automated test | Speckit goal-offer presentation and router contract. |
-| `.opencode/plugins/tests/opencode-goal-capabilities.test.cjs` | Automated test | History, doctor/health, resume, budget, env caps, provider-limit detection and retry-after recovery |
-| `.opencode/plugins/tests/opencode-goal-tool-path.test.cjs` | Automated test | Real tool execute path and ToolContext session resolution |
-| `.opencode/plugins/tests/opencode-goal-supervisor.test.cjs` | Automated test | Supervisor verdict mapping, injected precedence, default verifier safety matrix, LLM verifier mode and provenance |
-| `.opencode/plugins/tests/opencode-goal-continuation.test.cjs` | Automated test | Default-off autonomy gates, smoke mode, active promptAsync dispatch and caps |
-| `.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` | Automated test | Usage accounting, lifecycle suppression and budget limits |
+| `.skilled/plugins/tests/opencode-goal-state.test.cjs` | Automated test | State persistence, generated prompt fields, injection, caps, sanitization, redaction, and status output. |
+| `.skilled/plugins/tests/opencode-goal-export-contract.test.cjs` | Automated test | Export surface contract and full test helper key list |
+| `.skilled/plugins/tests/opencode-goal-render-parity.test.cjs` | Automated test | Cross-implementation injection label parity and brief cache key sensitivity |
+| `.skilled/plugins/tests/speckit-goal-offer-contract.test.cjs` | Automated test | Speckit goal-offer presentation and router contract. |
+| `.skilled/plugins/tests/opencode-goal-capabilities.test.cjs` | Automated test | History, doctor/health, resume, budget, env caps, provider-limit detection and retry-after recovery |
+| `.skilled/plugins/tests/opencode-goal-tool-path.test.cjs` | Automated test | Real tool execute path and ToolContext session resolution |
+| `.skilled/plugins/tests/opencode-goal-supervisor.test.cjs` | Automated test | Supervisor verdict mapping, injected precedence, default verifier safety matrix, LLM verifier mode and provenance |
+| `.skilled/plugins/tests/opencode-goal-continuation.test.cjs` | Automated test | Default-off autonomy gates, smoke mode, active promptAsync dispatch and caps |
+| `.skilled/plugins/tests/opencode-goal-lifecycle.test.cjs` | Automated test | Usage accounting, lifecycle suppression and budget limits |
 | `manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | Manual playbook | Operator scenario for `/goal` command and plugin behavior |
 
 ---

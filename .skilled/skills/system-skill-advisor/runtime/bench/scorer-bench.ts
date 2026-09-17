@@ -23,7 +23,7 @@ function percentile(values: readonly number[], pct: number): number {
 
 function workspaceRoot(): string {
   const start = dirname(fileURLToPath(import.meta.url));
-  const sentinel = '.opencode/skills/system-spec-kit/SKILL.md';
+  const sentinel = '.skilled/skills/system-spec-kit/SKILL.md';
   const candidate = findAdvisorWorkspaceRoot(start, { maxDepth: 12, sentinel });
   return existsSync(resolve(candidate, sentinel))
     ? candidate

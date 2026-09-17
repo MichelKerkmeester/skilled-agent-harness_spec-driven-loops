@@ -34,17 +34,17 @@ The same opt-in response also includes `why_recommended`, a prompt-safe explanat
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/attribution.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Library | semantic-lane attribution source |
-| `.opencode/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/attribution.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Library | semantic-lane attribution source |
+| `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts` | Automated test | attribution shape and prompt-safe `why_recommended` gating |
-| `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` | Automated test | no prompt leakage |
+| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts` | Automated test | attribution shape and prompt-safe `why_recommended` gating |
+| `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` | Automated test | no prompt leakage |
 | `Playbook scenario [SC-004](../../manual-testing-playbook/scorer-fusion/lane-attribution.md).` | Manual playbook | Source reference |
 
 ---
