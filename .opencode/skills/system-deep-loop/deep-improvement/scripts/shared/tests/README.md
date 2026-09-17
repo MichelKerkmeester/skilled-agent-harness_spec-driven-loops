@@ -42,6 +42,7 @@ scripts/
 |   +-- run-benchmark-hardening.vitest.ts
 |   `-- scorer.vitest.ts
 `-- shared/tests/
+    +-- check-agent-mirror-sync.vitest.ts  # covers check-agent-mirror-sync.cjs
     +-- improvement-journal.vitest.ts
     +-- loop-host.vitest.ts
     +-- materialize-fixture-id.vitest.ts
@@ -82,6 +83,7 @@ scripts/
 
 | File | Covers |
 |---|---|
+| `check-agent-mirror-sync.vitest.ts` | `check-agent-mirror-sync.cjs` agent path matching and its drift exit, run from a fixture copy. |
 | `improvement-journal.vitest.ts` | `shared/improvement-journal.cjs` append-only journal and enum validation. |
 | `loop-host.vitest.ts` | `shared/loop-host.cjs` mode switching and lane path resolution. |
 | `materialize-fixture-id.vitest.ts` | `shared/materialize-benchmark-fixtures.cjs` fixture-id sanitization. |
