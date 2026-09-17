@@ -73,48 +73,48 @@
       "reduce tool context"
     ],
     "key_files": [
-      ".opencode/skills/mcp-code-mode/SKILL.md",
-      ".opencode/skills/mcp-code-mode/README.md",
-      ".opencode/skills/mcp-code-mode/references/architecture.md",
-      ".opencode/skills/mcp-code-mode/references/tool-catalog.md",
-      ".opencode/skills/mcp-code-mode/mcp-server/index.ts",
-      ".opencode/skills/mcp-code-mode/scripts/validate_config.py"
+      ".skilled/skills/mcp-code-mode/SKILL.md",
+      ".skilled/skills/mcp-code-mode/README.md",
+      ".skilled/skills/mcp-code-mode/references/architecture.md",
+      ".skilled/skills/mcp-code-mode/references/tool-catalog.md",
+      ".skilled/skills/mcp-code-mode/mcp-server/index.ts",
+      ".skilled/skills/mcp-code-mode/scripts/validate_config.py"
     ],
     "entities": [
       {
         "name": "mcp-code-mode",
         "kind": "skill",
-        "path": ".opencode/skills/mcp-code-mode/SKILL.md",
+        "path": ".skilled/skills/mcp-code-mode/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README",
         "kind": "reference",
-        "path": ".opencode/skills/mcp-code-mode/README.md",
+        "path": ".skilled/skills/mcp-code-mode/README.md",
         "source": "derived"
       },
       {
         "name": "architecture",
         "kind": "reference",
-        "path": ".opencode/skills/mcp-code-mode/references/architecture.md",
+        "path": ".skilled/skills/mcp-code-mode/references/architecture.md",
         "source": "derived"
       },
       {
         "name": "tool_catalog",
         "kind": "reference",
-        "path": ".opencode/skills/mcp-code-mode/references/tool-catalog.md",
+        "path": ".skilled/skills/mcp-code-mode/references/tool-catalog.md",
         "source": "derived"
       },
       {
         "name": "index",
         "kind": "script",
-        "path": ".opencode/skills/mcp-code-mode/mcp-server/index.ts",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/index.ts",
         "source": "derived"
       },
       {
         "name": "validate_config",
         "kind": "script",
-        "path": ".opencode/skills/mcp-code-mode/scripts/validate_config.py",
+        "path": ".skilled/skills/mcp-code-mode/scripts/validate_config.py",
         "source": "derived"
       }
     ],

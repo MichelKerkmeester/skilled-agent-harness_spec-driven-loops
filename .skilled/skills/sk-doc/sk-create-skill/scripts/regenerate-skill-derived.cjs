@@ -30,9 +30,9 @@ const { spawnSync } = require('node:child_process');
 // 1. PATHS + CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// scripts/ -> sk-create-skill/ -> sk-doc/ -> skills/ -> .opencode/ -> repo root
+// scripts/ -> sk-create-skill/ -> sk-doc/ -> skills/ -> .skilled/ -> repo root
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const SKILLS_DIR = path.join(REPO_ROOT, '.opencode', 'skills');
+const SKILLS_DIR = path.join(REPO_ROOT, '.skilled', 'skills');
 
 // The authored/curated fields that must survive a regenerator run untouched:
 // semantic vocabulary and lifecycle state encode human judgment and cannot be

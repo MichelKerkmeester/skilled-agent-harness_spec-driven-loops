@@ -153,69 +153,69 @@
       "owner-first branch naming"
     ],
     "key_files": [
-      ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/sk-git/README.md",
-      ".opencode/skills/sk-git/references/worktree-workflows.md",
-      ".opencode/skills/sk-git/references/commit-workflows.md",
-      ".opencode/skills/sk-git/references/finish-workflows.md",
-      ".opencode/skills/sk-git/references/github-mcp-integration.md",
-      ".opencode/skills/sk-git/references/gitkraken-mcp-integration.md",
-      ".opencode/skills/sk-git/assets/commit-message-template.md",
-      ".opencode/skills/sk-git/assets/pr-template.md"
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/README.md",
+      ".skilled/skills/sk-git/references/worktree-workflows.md",
+      ".skilled/skills/sk-git/references/commit-workflows.md",
+      ".skilled/skills/sk-git/references/finish-workflows.md",
+      ".skilled/skills/sk-git/references/github-mcp-integration.md",
+      ".skilled/skills/sk-git/references/gitkraken-mcp-integration.md",
+      ".skilled/skills/sk-git/assets/commit-message-template.md",
+      ".skilled/skills/sk-git/assets/pr-template.md"
     ],
     "entities": [
       {
         "name": "sk-git",
         "kind": "skill",
-        "path": ".opencode/skills/sk-git/SKILL.md",
+        "path": ".skilled/skills/sk-git/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README",
         "kind": "reference",
-        "path": ".opencode/skills/sk-git/README.md",
+        "path": ".skilled/skills/sk-git/README.md",
         "source": "derived"
       },
       {
         "name": "worktree_workflows",
         "kind": "reference",
-        "path": ".opencode/skills/sk-git/references/worktree-workflows.md",
+        "path": ".skilled/skills/sk-git/references/worktree-workflows.md",
         "source": "derived"
       },
       {
         "name": "commit_workflows",
         "kind": "reference",
-        "path": ".opencode/skills/sk-git/references/commit-workflows.md",
+        "path": ".skilled/skills/sk-git/references/commit-workflows.md",
         "source": "derived"
       },
       {
         "name": "finish_workflows",
         "kind": "reference",
-        "path": ".opencode/skills/sk-git/references/finish-workflows.md",
+        "path": ".skilled/skills/sk-git/references/finish-workflows.md",
         "source": "derived"
       },
       {
         "name": "commit_message_template",
         "kind": "reference",
-        "path": ".opencode/skills/sk-git/assets/commit-message-template.md",
+        "path": ".skilled/skills/sk-git/assets/commit-message-template.md",
         "source": "derived"
       },
       {
         "name": "pr_template",
         "kind": "reference",
-        "path": ".opencode/skills/sk-git/assets/pr-template.md",
+        "path": ".skilled/skills/sk-git/assets/pr-template.md",
         "source": "derived"
       },
       {
         "name": "gitkraken_mcp_integration",
         "kind": "reference",
-        "path": ".opencode/skills/sk-git/references/gitkraken-mcp-integration.md",
+        "path": ".skilled/skills/sk-git/references/gitkraken-mcp-integration.md",
         "source": "derived"
       },
       {
         "name": "github_mcp_integration",
         "kind": "reference",
-        "path": ".opencode/skills/sk-git/references/github-mcp-integration.md",
+        "path": ".skilled/skills/sk-git/references/github-mcp-integration.md",
         "source": "derived"
       }
     ],

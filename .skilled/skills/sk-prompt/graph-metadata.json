@@ -99,31 +99,31 @@
       "rewrite instructions"
     ],
     "key_files": [
-      ".opencode/skills/sk-prompt/SKILL.md",
-      ".opencode/skills/sk-prompt/references/depth-framework.md",
-      ".opencode/skills/sk-prompt/references/patterns-evaluation.md",
-      ".opencode/skills/sk-prompt/assets/framework-registry.json",
-      ".opencode/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+      ".skilled/skills/sk-prompt/SKILL.md",
+      ".skilled/skills/sk-prompt/references/depth-framework.md",
+      ".skilled/skills/sk-prompt/references/patterns-evaluation.md",
+      ".skilled/skills/sk-prompt/assets/framework-registry.json",
+      ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
       ".claude/agents/prompt-improver.md",
-      ".opencode/agents/prompt-improver.md"
+      ".skilled/agents/prompt-improver.md"
     ],
     "entities": [
       {
         "name": "sk-prompt",
         "kind": "skill",
-        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "path": ".skilled/skills/sk-prompt/SKILL.md",
         "source": "derived"
       },
       {
         "name": "DEPTH framework",
         "kind": "reference",
-        "path": ".opencode/skills/sk-prompt/references/depth-framework.md",
+        "path": ".skilled/skills/sk-prompt/references/depth-framework.md",
         "source": "derived"
       },
       {
         "name": "CLI prompt quality card",
         "kind": "reference",
-        "path": ".opencode/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+        "path": ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
         "source": "derived"
       },
       {
@@ -135,7 +135,7 @@
       {
         "name": "@prompt-improver",
         "kind": "agent",
-        "path": ".opencode/agents/prompt-improver.md",
+        "path": ".skilled/agents/prompt-improver.md",
         "source": "derived"
       }
     ],

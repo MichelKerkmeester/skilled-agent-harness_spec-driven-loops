@@ -89,13 +89,13 @@
       "depth"
     ],
     "key_files": [
-      ".opencode/skills/sk-communication/SKILL.md"
+      ".skilled/skills/sk-communication/SKILL.md"
     ],
     "entities": [
       {
         "name": "sk-communication",
         "kind": "skill",
-        "path": ".opencode/skills/sk-communication/SKILL.md",
+        "path": ".skilled/skills/sk-communication/SKILL.md",
         "source": "derived"
       }
     ],

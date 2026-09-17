@@ -337,13 +337,13 @@
       "design review findings"
     ],
     "key_files": [
-      ".opencode/skills/sk-design/SKILL.md"
+      ".skilled/skills/sk-design/SKILL.md"
     ],
     "entities": [
       {
         "name": "sk-design",
         "kind": "skill",
-        "path": ".opencode/skills/sk-design/SKILL.md",
+        "path": ".skilled/skills/sk-design/SKILL.md",
         "source": "authored"
       }
     ],
