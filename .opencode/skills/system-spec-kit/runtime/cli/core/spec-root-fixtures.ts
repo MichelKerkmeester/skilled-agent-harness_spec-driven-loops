@@ -146,23 +146,15 @@ export function materializeRootFixture(
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'spec-root-fixture-'));
   const workspaceDir = path.join(tempDir, 'workspace');
   const canonicalRoot = path.join(workspaceDir, 'specs');
-  // Resolvers know the legacy root by its one `.opencode/specs` spelling. Under a
-  // `.skilled` tree the entry is written inside `.skilled`, so only an `.opencode` link
-  // can expose it, and a `.skilled`-only workspace has no legacy root to report.
+  // Root enumeration knows the legacy root by its one `.opencode/specs` spelling. Under
+  // a `.skilled` tree the entry is written inside `.skilled`, so only an `.opencode` link
+  // exposes it as the legacy root, and a `.skilled`-only workspace lists none. Path
+  // containment can still follow the entry into the canonical root.
   const legacyRoot = path.join(workspaceDir, '.opencode', 'specs');
   const sourceRootDir = path.join(workspaceDir, layout === 'today' ? '.opencode' : '.skilled');
   const legacyEntry = path.join(sourceRootDir, 'specs');
   const legacyVisible = layout !== 'skilled-only';
   const physicalRoots: PhysicalRoot[] = [];
-
-  fs.mkdirSync(workspaceDir, { recursive: true });
-  // The legacy entry nests one level deeper than canonicalRoot, so pre-create its
-  // parent: fixtures that write directly at the entry (a symlink or a plain file, not
-  // addLegacyRoot()'s directory) never fail on a missing intermediate directory.
-  fs.mkdirSync(sourceRootDir, { recursive: true });
-  if (layout === 'whole-link') {
-    fs.symlinkSync('.skilled', path.join(workspaceDir, '.opencode'), 'dir');
-  }
 
   const addCanonicalRoot = (): void => {
     fs.mkdirSync(canonicalRoot, { recursive: true });
@@ -173,7 +165,17 @@ export function materializeRootFixture(
     if (legacyVisible) physicalRoots.push({ rootPath: legacyRoot, kind: 'legacy' });
   };
 
+  // Setup that can fail, such as a denied symlink, runs inside the guard that removes
+  // the temporary directory.
   try {
+    fs.mkdirSync(workspaceDir, { recursive: true });
+    // The legacy entry nests one level deeper than canonicalRoot, so pre-create its
+    // parent: fixtures that write directly at the entry (a symlink or a plain file, not
+    // addLegacyRoot()'s directory) never fail on a missing intermediate directory.
+    fs.mkdirSync(sourceRootDir, { recursive: true });
+    if (layout === 'whole-link') {
+      fs.symlinkSync('.skilled', path.join(workspaceDir, '.opencode'), 'dir');
+    }
     switch (fixture.id) {
       case 'R1':
         addCanonicalRoot();
