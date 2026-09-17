@@ -38,7 +38,7 @@ that itself contains source.**
 ### Key Sources
 
 - `002-repo-convention-audit/audit.json` → `folderDocs` — the measured owing list below
-- `$HUB/.opencode/skills/sk-code/sk-code-mobile-cli/references/folder-docs.md` — the mirrored
+- `$HUB/.skilled/skills/sk-code/sk-code-mobile-cli/references/folder-docs.md` — the mirrored
   source convention
 
 ---

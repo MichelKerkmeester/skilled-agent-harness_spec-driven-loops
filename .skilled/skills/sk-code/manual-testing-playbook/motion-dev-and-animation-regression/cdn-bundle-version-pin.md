@@ -20,7 +20,7 @@ Operators run the exact prompt and command sequence for `MR-002` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| `MR-002` | CDN Bundle Version Pin | Prove Motion CDN imports use pinned versions and avoid `@latest` | `Audit Motion CDN URLs for @latest, record pinned versions, and verify animate, inView, scroll, and motionValue exports.` | `rg "motion@|dist/motion|cdn.jsdelivr.net/npm/motion" a_nobel_en_zn .opencode/skills/sk-code` -> create `/tmp/skc-MR002-version-pin.txt` -> run sandbox export probe against each pinned version | no production `motion@latest`; pinned URL found; export probe reports expected functions | `/tmp/skc-MR002-version-pin.txt`, `/tmp/skc-MR002-export-probe.txt` | PASS iff all production Motion CDN URLs are pinned and required exports exist for the pinned version | If `@latest` appears, classify path as docs/example vs production; if production, fail and file remediation |
+| `MR-002` | CDN Bundle Version Pin | Prove Motion CDN imports use pinned versions and avoid `@latest` | `Audit Motion CDN URLs for @latest, record pinned versions, and verify animate, inView, scroll, and motionValue exports.` | `rg "motion@|dist/motion|cdn.jsdelivr.net/npm/motion" a_nobel_en_zn .skilled/skills/sk-code` -> create `/tmp/skc-MR002-version-pin.txt` -> run sandbox export probe against each pinned version | no production `motion@latest`; pinned URL found; export probe reports expected functions | `/tmp/skc-MR002-version-pin.txt`, `/tmp/skc-MR002-export-probe.txt` | PASS iff all production Motion CDN URLs are pinned and required exports exist for the pinned version | If `@latest` appears, classify path as docs/example vs production; if production, fail and file remediation |
 
 ---
 
@@ -36,7 +36,7 @@ Audit Motion CDN URLs for @latest, record pinned versions, and verify animate, i
 
 1. Search production and sk-code playbook surfaces:
    ```bash
-   rg -n "motion@|dist/motion|cdn.jsdelivr.net/npm/motion" a_nobel_en_zn .opencode/skills/sk-code/manual-testing-playbook > /tmp/skc-MR002-version-pin.txt
+   rg -n "motion@|dist/motion|cdn.jsdelivr.net/npm/motion" a_nobel_en_zn .skilled/skills/sk-code/manual-testing-playbook > /tmp/skc-MR002-version-pin.txt
    ```
 2. Confirm any `@latest` hit is documentation/example-only, not production runtime code.
 3. For each production pinned ESM version, create a small browser or Node-compatible module probe that imports `animate`, `inView`, `scroll`, and `motionValue`.

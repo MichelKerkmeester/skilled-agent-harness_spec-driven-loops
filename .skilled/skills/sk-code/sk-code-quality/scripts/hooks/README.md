@@ -1,6 +1,6 @@
 ---
 title: "Hooks: Legacy Post-Edit Quality Predecessor"
-description: "Holds only the legacy, unregistered claude-posttooluse.sh predecessor; the live post-edit-quality hooks moved to .opencode/hooks/post-edit-quality/."
+description: "Holds only the legacy, unregistered claude-posttooluse.sh predecessor; the live post-edit-quality hooks moved to .skilled/hooks/post-edit-quality/."
 trigger_phrases:
   - "legacy post edit hook"
   - "claude posttooluse sh"
@@ -14,7 +14,7 @@ trigger_phrases:
 
 `hooks/` holds one file: `claude-posttooluse.sh`, the predecessor Python hook (despite the `.sh` extension) for Claude Code `PostToolUse` on `Write`/`Edit`. It shells out to `../check-comment-hygiene.sh` and `../check-dist-staleness.sh` directly and is **not currently registered** in any runtime config, kept for reference only.
 
-The live post-edit-quality hooks (the `.cjs` adapters and their shared router) moved to [`.opencode/hooks/post-edit-quality/`](../../../../../hooks/post-edit-quality/README.md). The checker scripts they spawn still live one level up in `../`, owned by this skill.
+The live post-edit-quality hooks (the `.cjs` adapters and their shared router) moved to [`.skilled/hooks/post-edit-quality/`](../../../../../hooks/post-edit-quality/README.md). The checker scripts they spawn still live one level up in `../`, owned by this skill.
 
 ---
 

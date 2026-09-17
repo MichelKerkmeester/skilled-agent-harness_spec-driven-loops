@@ -1,6 +1,6 @@
 ---
 title: "SD-002: OPENCODE Surface Detection"
-description: "Verify sk-code routes system-code prompts (paths under .opencode/) to the OPENCODE surface and loads the opencode/* reference and asset trees with correct sub-language detection."
+description: "Verify sk-code routes system-code prompts (paths under .skilled/) to the OPENCODE surface and loads the opencode/* reference and asset trees with correct sub-language detection."
 version: 3.5.0.6
 ---
 
@@ -8,7 +8,7 @@ version: 3.5.0.6
 
 ## 1. OVERVIEW
 
-This scenario verifies that sk-code's smart router identifies OPENCODE as the active code surface when the prompt's CWD or target file path contains `/.opencode/`. OPENCODE covers all `.opencode/` system code across JavaScript, TypeScript, Python, Shell, and JSON/JSONC.
+This scenario verifies that sk-code's smart router identifies OPENCODE as the active code surface when the prompt's CWD or target file path contains `/.skilled/`. OPENCODE covers all `.skilled/` system code across JavaScript, TypeScript, Python, Shell, and JSON/JSONC.
 
 When OPENCODE is detected, the router proceeds to language sub-detection (handled separately by LS-* scenarios) and loads the appropriate sub-language reference set.
 
@@ -22,13 +22,13 @@ Detection markers are defined verbatim in `shared/references/stack-detection.md:
 
 **Exact prompt**:
 ```
-Handle empty prompts in .opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.
+Handle empty prompts in .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.
 ```
 
-Prompt: `Handle empty prompts in .opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.`
+Prompt: `Handle empty prompts in .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.`
 
 **Expected detection**:
-- Surface: `OPENCODE` (target path contains `/.opencode/`)
+- Surface: `OPENCODE` (target path contains `/.skilled/`)
 - Sub-language: `TYPESCRIPT` (target file extension `.ts`)
 
 **Expected references loaded**:
@@ -46,9 +46,9 @@ Prompt: `Handle empty prompts in .opencode/skills/system-skill-advisor/runtime/l
 
 **Expected NOT loaded**: any `sk-code-webflow/references/*`, `sk-code-opencode/references/python/*`, `sk-code-opencode/references/shell/*`, `sk-code-opencode/references/config/*`.
 
-**Expected agent dispatch**: `@code` (LEAF) for the edit, via `@orchestrate` (Depth: 1 marker), per the orchestrator-only convention in §0 of `.opencode/agents/code.md`.
+**Expected agent dispatch**: `@code` (LEAF) for the edit, via `@orchestrate` (Depth: 1 marker), per the orchestrator-only convention in §0 of `.skilled/agents/code.md`.
 
-**Desired user-visible outcome**: The AI applies the edit to `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`, runs `verify_alignment_drift.py` for OPENCODE alignment evidence, and confirms the modification with a TypeScript-aware fix (early-return + console.error).
+**Desired user-visible outcome**: The AI applies the edit to `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`, runs `verify_alignment_drift.py` for OPENCODE alignment evidence, and confirms the modification with a TypeScript-aware fix (early-return + console.error).
 
 ---
 
@@ -56,16 +56,16 @@ Prompt: `Handle empty prompts in .opencode/skills/system-skill-advisor/runtime/l
 
 ### Preconditions
 
-1. `.opencode/skills/sk-code/SKILL.md` is at HEAD-of-main.
-2. The target file exists: `bash: test -f .opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`.
-3. The sub-language reference set exists: `bash: ls .opencode/skills/sk-code/sk-code-opencode/references/typescript/` returns `style-guide.md quality-standards.md quick-reference.md`.
+1. `.skilled/skills/sk-code/SKILL.md` is at HEAD-of-main.
+2. The target file exists: `bash: test -f .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`.
+3. The sub-language reference set exists: `bash: ls .skilled/skills/sk-code/sk-code-opencode/references/typescript/` returns `style-guide.md quality-standards.md quick-reference.md`.
 4. Skill advisor callable.
 
 ### Exact Command Sequence
 
 1. **Advisor probe**:
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Handle empty prompts in .opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback." --threshold 0.8 > /tmp/skc-SD002-advisor.txt
+   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Handle empty prompts in .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback." --threshold 0.8 > /tmp/skc-SD002-advisor.txt
    ```
 2. **Verify**: top-1 == `sk-code`, score ≥ 0.80.
 3. **Invoke sk-code** with the same prompt.
@@ -92,7 +92,7 @@ Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-re
 ### Failure Triage
 
 1. If advisor doesn't win sk-code: check `skill-graph.json` for sk-code signals "opencode", "system code", "typescript".
-2. If surface != OPENCODE: verify target path detection in `shared/references/stack-detection.md:39-40`. The path `.opencode/...` should match.
+2. If surface != OPENCODE: verify target path detection in `shared/references/stack-detection.md:39-40`. The path `.skilled/...` should match.
 3. If sub-language != TYPESCRIPT: verify `.ts` extension is in the TYPESCRIPT extension list in SKILL.md sub-detection table (lines 78-90).
 4. If `sk-code-webflow/references/*` is loaded: the router has a leak — the WEBFLOW markers (motion.dev, GSAP, etc.) MUST NOT match this prompt. Verify the marker grep patterns are anchored correctly.
 
@@ -101,12 +101,12 @@ Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-re
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/sk-code/SKILL.md` — Smart router + sub-detection table (lines 53-90).
-- `.opencode/skills/sk-code/shared/references/stack-detection.md` — OPENCODE marker definition (lines 39-40).
-- `.opencode/skills/sk-code/sk-code-opencode/references/typescript/` — Expected-loaded TypeScript references.
-- `.opencode/skills/sk-code/sk-code-opencode/references/shared/` — Expected-loaded shared OPENCODE references.
-- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` — OPENCODE alignment verifier (run after the edit for evidence).
-- `.opencode/agents/code.md` — @code agent dispatch convention.
+- `.skilled/skills/sk-code/SKILL.md` — Smart router + sub-detection table (lines 53-90).
+- `.skilled/skills/sk-code/shared/references/stack-detection.md` — OPENCODE marker definition (lines 39-40).
+- `.skilled/skills/sk-code/sk-code-opencode/references/typescript/` — Expected-loaded TypeScript references.
+- `.skilled/skills/sk-code/sk-code-opencode/references/shared/` — Expected-loaded shared OPENCODE references.
+- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` — OPENCODE alignment verifier (run after the edit for evidence).
+- `.skilled/agents/code.md` — @code agent dispatch convention.
 
 ---
 
@@ -117,6 +117,6 @@ Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-re
 - **Created**: 2026-05-04
 - **Critical path**: Yes
 - **Destructive**: No (read-only routing test; the target file edit is described but not actually applied in routing tests)
-- **Sandbox**: production read-only; do not actually edit `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` during the routing test.
+- **Sandbox**: production read-only; do not actually edit `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` during the routing test.
 - **Concurrent-safe**: Yes
 - **Last validated**: pending first manual run

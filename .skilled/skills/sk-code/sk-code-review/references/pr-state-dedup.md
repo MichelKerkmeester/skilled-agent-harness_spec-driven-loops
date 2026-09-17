@@ -38,7 +38,7 @@ SIGNATURE=$(echo -n "$SUBJECT"$'\x1f'"$DIFF_HASH" | sha256sum | awk '{print $1}'
 
 ## Cache Format
 
-**Path:** `.opencode/.code-review-cache/<repo-ref>.jsonl`
+**Path:** `.skilled/.code-review-cache/<repo-ref>.jsonl`
 
 - `<repo-ref>` = `sha256(git remote get-url origin).slice(0, 12)`
 - One JSON object per line (JSONL format)

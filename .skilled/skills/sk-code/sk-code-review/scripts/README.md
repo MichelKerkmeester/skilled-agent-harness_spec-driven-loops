@@ -27,7 +27,7 @@ description: "Locks load-bearing rule wording (review-status vocabulary, the Iro
 Run from the repository root:
 
 ```bash
-node .opencode/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
+node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
 ```
 
 Expected: `OK: all rule invariants present (4 exact-string file(s) + 3 Iron Law file(s)).` and exit code 0.
@@ -35,7 +35,7 @@ Expected: `OK: all rule invariants present (4 exact-string file(s) + 3 Iron Law 
 Or run the test harness from anywhere:
 
 ```bash
-bash .opencode/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh
+bash .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh
 ```
 
 Expected: `All rule-canary test cases passed`.

@@ -74,12 +74,12 @@ Retint the slash-panel option accent to a warmer role.
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/cross-cli-dispatch/short-prompt-baseline.md`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/cross-cli-dispatch/short-prompt-baseline.md`
 2. Dispatch the exact prompt through `cli-claude-code`; capture the resolved surface, intent, and resource
    list.
 3. Dispatch the exact prompt through `cli-opencode`; capture the resolved surface, intent, and resource
    list.
-4. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md references/design-system/component-tokens.md references/design-system/retint-recipes.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md assets/token-retint-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md references/design-system/component-tokens.md references/design-system/retint-recipes.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md assets/token-retint-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

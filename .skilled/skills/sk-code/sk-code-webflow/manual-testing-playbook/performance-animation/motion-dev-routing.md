@@ -69,9 +69,9 @@ Add a motion.dev inview scroll animation with animate() and stagger() for a Webf
 
 ### Commands
 
-1. `sed -n '1,23p' .opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/motion-dev-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"MOTION_DEV": \[/,/\],/p'`
-3. `for p in references/animation/quick-start.md references/animation/animation-principles.md references/animation/animate-and-timelines.md references/animation/scroll-and-gestures.md references/animation/integration-patterns.md references/animation/decision-matrix.md references/animation/performance-and-pitfalls.md assets/animation/install-card.md assets/animation/snippets/principled-reveal.js assets/animation/snippets/README.md; do test -e ".opencode/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,23p' .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/motion-dev-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"MOTION_DEV": \[/,/\],/p'`
+3. `for p in references/animation/quick-start.md references/animation/animation-principles.md references/animation/animate-and-timelines.md references/animation/scroll-and-gestures.md references/animation/integration-patterns.md references/animation/decision-matrix.md references/animation/performance-and-pitfalls.md assets/animation/install-card.md assets/animation/snippets/principled-reveal.js assets/animation/snippets/README.md; do test -e ".skilled/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

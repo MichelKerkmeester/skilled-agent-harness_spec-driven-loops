@@ -61,9 +61,9 @@ Run a quality gate for lint, format, naming, and code smell risks in a Webflow c
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook/implementation-quality/code-quality-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"CODE_QUALITY": \[/,/\],/p'`
-3. `for p in references/shared/cross-language-rules.md references/shared/enforcement.md; do test -e ".opencode/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,15p' .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/implementation-quality/code-quality-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"CODE_QUALITY": \[/,/\],/p'`
+3. `for p in references/shared/cross-language-rules.md references/shared/enforcement.md; do test -e ".skilled/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

@@ -23,7 +23,7 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 
 ### Usage
 
-- Use this when authoring a new skill under `.opencode/skills/`.
+- Use this when authoring a new skill under `.skilled/skills/`.
 - Use this when modifying an existing skill's frontmatter, `SKILL.md` structure, allowed tools, bundled references, assets, or scripts.
 - Use this when promoting a skill from a local draft into the shared OpenCode skill inventory.
 - Use this when a skill changes routing behavior, resource discovery, or version metadata.
@@ -33,11 +33,11 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 
 ## 2. PRE-CHECKS
 
-- [ ] Read the live parent-hub example at `.opencode/skills/sk-code/SKILL.md`, `.opencode/skills/sk-code/graph-metadata.json`, `.opencode/skills/sk-code/mode-registry.json`, and `.opencode/skills/sk-code/hub-router.json` before copying a hub pattern.
-- [ ] Read `sk-doc` source rules at `.opencode/skills/sk-doc/sk-create-skill/references/README.md` and the parent-hub pattern at `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
+- [ ] Read the live parent-hub example at `.skilled/skills/sk-code/SKILL.md`, `.skilled/skills/sk-code/graph-metadata.json`, `.skilled/skills/sk-code/mode-registry.json`, and `.skilled/skills/sk-code/hub-router.json` before copying a hub pattern.
+- [ ] Read `sk-doc` source rules at `.skilled/skills/sk-doc/sk-create-skill/references/README.md` and the parent-hub pattern at `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
 - [ ] Decide the skill shape: flat skill or parent-hub skill. A parent hub has one advisor-routable identity and nested mode packets.
 - [ ] For any parent hub, require hub-level `graph-metadata.json`, `mode-registry.json`, `hub-router.json`, and `description.json`; nested packets must not carry their own `graph-metadata.json`.
-- [ ] Verify whether the target skill uses a 3-part version or a 4-part version; `.opencode/skills/sk-code/SKILL.md` uses a 4-part version.
+- [ ] Verify whether the target skill uses a 3-part version or a 4-part version; `.skilled/skills/sk-code/SKILL.md` uses a 4-part version.
 - [ ] Confirm skill frontmatter `allowed-tools` is explicit and no broader than the workflow needs.
 - [ ] Keep the frontmatter description to 1-2 sentences that explain when the skill should activate.
 - [ ] Verify bundled `references/`, `assets/`, and `scripts/` are separated by purpose, not convenience.
@@ -63,18 +63,18 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 
 ## 4. POST-CHECKS
 
-- [ ] Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` against the owning spec folder when the skill change is part of a spec folder.
-- [ ] Run `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code` for the live parent-hub example; use the same script with the actual target skill root when reviewing another skill.
+- [ ] Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` against the owning spec folder when the skill change is part of a spec folder.
+- [ ] Run `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/sk-code` for the live parent-hub example; use the same script with the actual target skill root when reviewing another skill.
 - [ ] For a flat skill, verify the skill frontmatter includes `description`, `allowed-tools`, and `version` when the skill's family uses versions.
 - [ ] For a parent hub, verify `mode-registry.json` has `modes[]` entries with `workflowMode`, `packetKind`, `backendKind`, `packet`, `packetSkillName`, `toolSurface`, and `advisorRouting`.
 - [ ] For a parent hub, verify `hub-router.json` resources resolve on disk and the hub-level `graph-metadata.json` is the only graph identity for the skill family.
-- [ ] grep verification for the live parent-hub example: `rg -n "mode-registry.json|graph-metadata.json|packetKind|advisorRouting|hub-router.json" .opencode/skills/sk-code/SKILL.md .opencode/skills/sk-code/mode-registry.json .opencode/skills/sk-code/graph-metadata.json .opencode/skills/sk-code/hub-router.json`.
+- [ ] grep verification for the live parent-hub example: `rg -n "mode-registry.json|graph-metadata.json|packetKind|advisorRouting|hub-router.json" .skilled/skills/sk-code/SKILL.md .skilled/skills/sk-code/mode-registry.json .skilled/skills/sk-code/graph-metadata.json .skilled/skills/sk-code/hub-router.json`.
 
 ---
 
 ## 5. RELATED RESOURCES
 
-- `.opencode/skills/sk-doc/sk-create-skill/references/README.md` (source index for skill structure rules)
-- `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-hub structure and metadata contract)
-- Parent-hub example: `.opencode/skills/sk-code/SKILL.md`, `.opencode/skills/sk-code/graph-metadata.json`, `.opencode/skills/sk-code/mode-registry.json`, `.opencode/skills/sk-code/hub-router.json`
-- Verification recipes: `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md`
+- `.skilled/skills/sk-doc/sk-create-skill/references/README.md` (source index for skill structure rules)
+- `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-hub structure and metadata contract)
+- Parent-hub example: `.skilled/skills/sk-code/SKILL.md`, `.skilled/skills/sk-code/graph-metadata.json`, `.skilled/skills/sk-code/mode-registry.json`, `.skilled/skills/sk-code/hub-router.json`
+- Verification recipes: `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md`

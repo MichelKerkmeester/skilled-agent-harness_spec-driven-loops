@@ -71,9 +71,9 @@ I'm working in the Obsidian Note Database plugin repo — manifest.json declares
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/obsidian-surface-resolution.md`
-2. `sed -n '/^## 1\. WHEN THE HUB BUNDLES THIS/,/^## 2\. REFERENCE MAP/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md`
-3. `test -e .opencode/skills/sk-code/sk-code-obsidian/references/obsidian-plugin-api.md && echo "OK references/obsidian-plugin-api.md" || echo "MISS references/obsidian-plugin-api.md"`
+1. `sed -n '1,15p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/obsidian-surface-resolution.md`
+2. `sed -n '/^## 1\. WHEN THE HUB BUNDLES THIS/,/^## 2\. REFERENCE MAP/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md`
+3. `test -e .skilled/skills/sk-code/sk-code-obsidian/references/obsidian-plugin-api.md && echo "OK references/obsidian-plugin-api.md" || echo "MISS references/obsidian-plugin-api.md"`
 
 ### Expected
 

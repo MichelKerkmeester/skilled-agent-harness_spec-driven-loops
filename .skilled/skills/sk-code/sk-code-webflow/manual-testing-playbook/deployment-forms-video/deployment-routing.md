@@ -65,9 +65,9 @@ Deploy the Webflow client script to the cdn with wrangler, minify it, and verify
 
 ### Commands
 
-1. `sed -n '1,19p' .opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook/deployment-forms-video/deployment-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"DEPLOYMENT": \[/,/\],/p'`
-3. `for p in references/deployment/cdn-deployment.md references/deployment/minification-guide/overview-terser-and-patterns.md references/deployment/minification-guide/workflow-verification-and-debugging.md references/deployment/minification-guide/batch-rules-and-related.md references/deployment/webflow-staging-production.md assets/scripts/README.md; do test -e ".opencode/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,19p' .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/deployment-forms-video/deployment-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"DEPLOYMENT": \[/,/\],/p'`
+3. `for p in references/deployment/cdn-deployment.md references/deployment/minification-guide/overview-terser-and-patterns.md references/deployment/minification-guide/workflow-verification-and-debugging.md references/deployment/minification-guide/batch-rules-and-related.md references/deployment/webflow-staging-production.md assets/scripts/README.md; do test -e ".skilled/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

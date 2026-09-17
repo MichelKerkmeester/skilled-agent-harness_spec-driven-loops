@@ -26,7 +26,7 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 
 **Expected surface**: `UNKNOWN` or `N/A`
 
-**Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
+**Expected references loaded** (exact relative paths under `.skilled/skills/sk-code/`):
 - `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `sk-code-webflow/references/animation/quick-start.md`
@@ -87,9 +87,9 @@ Evidence: `/tmp/skc-CS-005-<cli>.txt` (raw per-runtime transcript) and `results/
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` - Root directory page and scenario summary.
-- `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/in-view-reveal.js` - Required reusable snippet.
-- `.opencode/skills/sk-code/sk-code-webflow/references/animation/integration-patterns.md` - Cross-stack integration guidance.
-- `.opencode/skills/sk-code/sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md` - Snake_case caveat source.
+- `.skilled/skills/sk-code/sk-code-webflow/assets/animation/snippets/in-view-reveal.js` - Required reusable snippet.
+- `.skilled/skills/sk-code/sk-code-webflow/references/animation/integration-patterns.md` - Cross-stack integration guidance.
+- `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md` - Snake_case caveat source.
 
 ---
 

@@ -75,10 +75,10 @@ Is styles.css really the plugin's only stylesheet, or is there a scoped-style bu
 
 ### Commands
 
-1. `sed -n '1,18p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/references-only-isolation.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"STACK_STANDARDS":/,/\],/p'`
-3. `for p in references/obsidian-plugin-api.md references/stylesheet-ownership.md references/db-class-naming.md references/screenshot-harness.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
-4. `grep -c '^  - assets/' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/references-only-isolation.md`
+1. `sed -n '1,18p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/references-only-isolation.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"STACK_STANDARDS":/,/\],/p'`
+3. `for p in references/obsidian-plugin-api.md references/stylesheet-ownership.md references/db-class-naming.md references/screenshot-harness.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `grep -c '^  - assets/' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/references-only-isolation.md`
 
 ### Expected
 

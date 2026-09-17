@@ -8,9 +8,9 @@ version: 3.5.0.3
 
 ## 1. OVERVIEW
 
-This scenario verifies that the skill advisor correctly distinguishes documentation work from code work. Prompts that mention code-related terms (skill names, file paths under `.opencode/skills/`, technical vocabulary) but actually request a documentation edit MUST route to `sk-doc`, not `sk-code`.
+This scenario verifies that the skill advisor correctly distinguishes documentation work from code work. Prompts that mention code-related terms (skill names, file paths under `.skilled/skills/`, technical vocabulary) but actually request a documentation edit MUST route to `sk-doc`, not `sk-code`.
 
-The risk this scenario guards against: sk-code's broad signal coverage ("opencode", "skill", "typescript", "python") could falsely capture doc-edit prompts that target SKILL.md, README.md, or other markdown files inside `.opencode/skills/` directories.
+The risk this scenario guards against: sk-code's broad signal coverage ("opencode", "skill", "typescript", "python") could falsely capture doc-edit prompts that target SKILL.md, README.md, or other markdown files inside `.skilled/skills/` directories.
 
 ---
 
@@ -54,7 +54,7 @@ Prompt: `Update the sk-code SKILL.md headline section to clarify the two-axis ro
 
 1. **Advisor probe**:
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Update the sk-code SKILL.md headline section to clarify the two-axis routing model and add a one-line summary at the top." --threshold 0.8 > /tmp/skc-RD002-advisor.txt
+   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Update the sk-code SKILL.md headline section to clarify the two-axis routing model and add a one-line summary at the top." --threshold 0.8 > /tmp/skc-RD002-advisor.txt
    ```
 2. **Parse**: extract top-1 skill, top-1 score, top-2 skill, top-2 score, gap.
 3. **Verify**: top-1 == `sk-doc` AND sk-code is NOT in top-1.
@@ -81,9 +81,9 @@ Evidence: `/tmp/skc-RD002-advisor.txt` (advisor probe output: top-1 skill, top-1
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/system-skill-advisor/runtime/scripts/skill-graph.json` — Skill signals for both sk-code and sk-doc.
-- `.opencode/skills/sk-code/SKILL.md` — sk-code routing scope.
-- `.opencode/skills/sk-doc/SKILL.md` — sk-doc routing scope (markdown specialist).
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` — Skill signals for both sk-code and sk-doc.
+- `.skilled/skills/sk-code/SKILL.md` — sk-code routing scope.
+- `.skilled/skills/sk-doc/SKILL.md` — sk-doc routing scope (markdown specialist).
 
 ---
 

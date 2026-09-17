@@ -38,10 +38,10 @@ This reference defines patterns that apply universally across JavaScript, TypeSc
 
 | Pattern | Source File | Line Reference |
 |---------|-------------|----------------|
-| Reference comments | `.opencode/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts` | Near file top and import blocks |
-| Section organization | `.opencode/skills/system-spec-kit/runtime/cli/core/config.ts` | Numbered divider blocks |
-| Naming conventions | `.opencode/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts` | Throughout |
-| Python docstrings | `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Module and function docstrings |
+| Reference comments | `.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts` | Near file top and import blocks |
+| Section organization | `.skilled/skills/system-spec-kit/runtime/cli/core/config.ts` | Numbered divider blocks |
+| Naming conventions | `.skilled/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts` | Throughout |
+| Python docstrings | `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Module and function docstrings |
 
 ---
 
@@ -240,10 +240,10 @@ Comment hygiene is not a soft style preference in OpenCode system code. Ephemera
 
 This is enforced in two real hooks:
 
-- `.opencode/scripts/git-hooks/pre-commit` is the installed Git hook selected by the global `core.hooksPath`; it runs the shared checker against staged code files and blocks the commit when violations are found.
-- `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs` is the Claude `Write|Edit` adapter wired by `.claude/settings.json`; it runs the shared checker and surfaces immediate comment-hygiene warnings for the edited file.
+- `.skilled/scripts/git-hooks/pre-commit` is the installed Git hook selected by the global `core.hooksPath`; it runs the shared checker against staged code files and blocks the commit when violations are found.
+- `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` is the Claude `Write|Edit` adapter wired by `.claude/settings.json`; it runs the shared checker and surfaces immediate comment-hygiene warnings for the edited file.
 
-The older `.opencode/hooks/git/pre-commit` and `sk-code-quality/scripts/hooks/claude-posttooluse.sh` files remain compatibility helpers for direct tests only; neither is an installed runtime hook.
+The older `.skilled/hooks/git/pre-commit` and `sk-code-quality/scripts/hooks/claude-posttooluse.sh` files remain compatibility helpers for direct tests only; neither is an installed runtime hook.
 
 ### Allowed Reference Comments
 

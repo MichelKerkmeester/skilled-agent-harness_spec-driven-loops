@@ -79,7 +79,7 @@ Intent classification scores task text against weighted keyword signals to pick 
 
 ### Doc-only edit anti-signals
 
-Doc-only prose changes subtract from `sk-code` intent scoring and add to `sk-doc` scoring, even when the target file is under `.opencode/skills/`.
+Doc-only prose changes subtract from `sk-code` intent scoring and add to `sk-doc` scoring, even when the target file is under `.skilled/skills/`.
 
 | Prompt signal | Effect |
 | --- | --- |
@@ -93,7 +93,7 @@ Do not apply this anti-signal when the same request asks to modify executable co
 
 Multi-symptom prompts like `fix Webflow animation flicker` should load both DEBUGGING and ANIMATION. Prompts like `update TypeScript advisor fixture` should load OPENCODE plus LANGUAGE_STANDARDS and CODE_QUALITY.
 
-Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. If the target files are Webflow files, keep the surface as WEBFLOW and add `sk-code-webflow/references/animation/` for cross-stack API/decision context; if the target is `.opencode/`, keep the surface as OPENCODE and load Motion only as reference material.
+Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. If the target files are Webflow files, keep the surface as WEBFLOW and add `sk-code-webflow/references/animation/` for cross-stack API/decision context; if the target is `.skilled/`, keep the surface as OPENCODE and load Motion only as reference material.
 
 ### Surface-specific intent notes
 
@@ -108,7 +108,7 @@ Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. 
 
 | Tier | When | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation | Universal code quality + error recovery from `.opencode/skills/sk-code/shared/references/universal/` and `.opencode/skills/sk-code/shared/references/phase-detection.md` |
+| ALWAYS | Every invocation | Universal code quality + error recovery from `.skilled/skills/sk-code/shared/references/universal/` and `.skilled/skills/sk-code/shared/references/phase-detection.md` |
 | SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`sk-code-webflow/references/shared/*` or `sk-code-opencode/references/shared/*`) |
 | INTENT | After intent classification | Implementation, debugging, verification, performance, etc. matching the top-1 intent (and top-2 when ambiguous) |
 | LANGUAGE | OPENCODE only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-opencode/references/<lang>/` resources |
@@ -247,8 +247,8 @@ When OPENCODE intent is `authoring-new-X`, additionally load the matching author
 
 | Surface | Required verification evidence |
 | --- | --- |
-| WEBFLOW | `node .opencode/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs`; `node .opencode/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs`; `node .opencode/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs`; plus desktop/mobile browser console clean evidence when runtime behavior changes |
-| OPENCODE | `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root <changed-scope>`; plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
+| WEBFLOW | `node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs`; `node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs`; `node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs`; plus desktop/mobile browser console clean evidence when runtime behavior changes |
+| OPENCODE | `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root <changed-scope>`; plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
 | UNKNOWN | User-selected verification command set before completion claim |
 
 ---
@@ -257,7 +257,7 @@ When OPENCODE intent is `authoring-new-X`, additionally load the matching author
 
 If no supported surface matches, ask:
 
-1. Is this Webflow/frontend code or `.opencode/` system code?
+1. Is this Webflow/frontend code or `.skilled/` system code?
 2. Which files or directories are changing?
 3. Which verification command proves the claim?
 4. Should a new `sk-code` route be planned before implementation?
@@ -300,7 +300,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 - [`./stack-detection.md`](shared/references/stack-detection.md) — surface detection (WEBFLOW/OPENCODE/UNKNOWN) + OPENCODE language sub-detection
 - [`./phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
-- Barter equivalent: `barter/.opencode/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)
+- Barter equivalent: `barter/.skilled/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)
 
 ---
 
@@ -308,7 +308,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 This is the single machine-readable projection of the prose Intent Model (§2) and the per-surface maps (§4 Webflow, §5 Motion.dev, §6 OpenCode). The prose sections above are the human-facing contract; this block is the byte-for-byte source a deterministic router-replay parses. Keep the two in sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here.
 
-A drift guard (`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts`) keeps this block honest: it fails if any path here is missing on disk, if any routable `references/`/`assets/` doc stops being covered, or if an explicit full path named in the prose maps is absent here. Run it standalone with `npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts` from `.opencode/skills/system-deep-loop/deep-improvement/scripts`.
+A drift guard (`.skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts`) keeps this block honest: it fails if any path here is missing on disk, if any routable `references/`/`assets/` doc stops being covered, or if an explicit full path named in the prose maps is absent here. Run it standalone with `npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts` from `.skilled/skills/system-deep-loop/deep-improvement/scripts`.
 
 This projection is intentionally lossy in two documented ways the flat dictionary cannot express, both enforced by the prose contract and the surface-detection pseudocode in `SKILL.md` §2:
 
@@ -647,7 +647,7 @@ The router does NOT load the whole matched-intent union. After surface detection
 - only the **detected surface's** slice (`<surface>/references/*`) for the matched intents, plus
 - the Motion.dev overlay (`sk-code-webflow/references/animation/*`) when a `MOTION_DEV` intent fires.
 
-It does not load the other surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within OpenCode it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-opencode/references/typescript/*` plus the language-agnostic `sk-code-opencode/references/shared/*`, not the Python, shell, config, or JavaScript folders. Webflow has no language sub-slice — a frontend task legitimately spans CSS, HTML, and JavaScript together. A task that genuinely spans both surfaces (mixed `.opencode/` and Webflow markers) keeps both surface slices; an `UNKNOWN` surface falls back to the preamble plus the universal tier and the Motion overlay only. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
+It does not load the other surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within OpenCode it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-opencode/references/typescript/*` plus the language-agnostic `sk-code-opencode/references/shared/*`, not the Python, shell, config, or JavaScript folders. Webflow has no language sub-slice — a frontend task legitimately spans CSS, HTML, and JavaScript together. A task that genuinely spans both surfaces (mixed `.skilled/` and Webflow markers) keeps both surface slices; an `UNKNOWN` surface falls back to the preamble plus the universal tier and the Motion overlay only. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
 
 ---
 

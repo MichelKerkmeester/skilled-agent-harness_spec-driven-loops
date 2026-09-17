@@ -66,10 +66,10 @@ Review this auth handler for injection, vulnerability, race, and secret-handling
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/security.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-review/SKILL.md | grep '"SECURITY"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-review/SKILL.md | grep '"SECURITY"'`
-4. `for p in references/review-core.md references/review-ux-single-pass.md assets/security-checklist.md assets/code-quality-checklist.md assets/fix-completeness-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-review/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/security.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-review/SKILL.md | grep '"SECURITY"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-review/SKILL.md | grep '"SECURITY"'`
+4. `for p in references/review-core.md references/review-ux-single-pass.md assets/security-checklist.md assets/code-quality-checklist.md assets/fix-completeness-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-review/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

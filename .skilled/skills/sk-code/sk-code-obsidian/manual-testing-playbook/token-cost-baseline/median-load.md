@@ -74,9 +74,9 @@ Before I add MODULE banners to every file in src/data/, does that folder already
 
 ### Commands
 
-1. `sed -n '1,16p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/median-load.md`
-2. `grep -c '^  - ' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/median-load.md`
-3. `for p in references/folder-docs.md references/comment-grammar.md references/standards/code-standards.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,16p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/median-load.md`
+2. `grep -c '^  - ' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/median-load.md`
+3. `for p in references/folder-docs.md references/comment-grammar.md references/standards/code-standards.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

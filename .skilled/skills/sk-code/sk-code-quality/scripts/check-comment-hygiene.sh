@@ -11,7 +11,7 @@ Exit codes:
 
 Escape: add "hygiene-ok" anywhere on a comment line to suppress it.
 
-See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
+See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
 """
 import sys
 import os

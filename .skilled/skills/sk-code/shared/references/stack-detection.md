@@ -25,9 +25,9 @@ Detect **where the work is happening** before deciding which standards apply.
 
 | Surface | Owns | Does Not Own |
 | --- | --- | --- |
-| WEBFLOW | Webflow / vanilla HTML, CSS, JavaScript, animation libraries, CDN/minification, browser behavior | `.opencode/` system code |
-| OPENCODE | `.opencode/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | Webflow/browser behavior |
-| PI_REMOTE | The Pi Remote Mobile-CLI app family (`app-mobile/` — a SvelteKit + Svelte-runes PWA with component-scoped `<style>` blocks — plus `app-relay/` and `packages/pi-*` / `@pi-remote/*`) and its formalized design system (`--pi-*` tokens, `@ds` grammar, browser-free verification) | `.opencode/` system code; Webflow browser artifacts |
+| WEBFLOW | Webflow / vanilla HTML, CSS, JavaScript, animation libraries, CDN/minification, browser behavior | `.skilled/` system code |
+| OPENCODE | `.skilled/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | Webflow/browser behavior |
+| PI_REMOTE | The Pi Remote Mobile-CLI app family (`app-mobile/` — a SvelteKit + Svelte-runes PWA with component-scoped `<style>` blocks — plus `app-relay/` and `packages/pi-*` / `@pi-remote/*`) and its formalized design system (`--pi-*` tokens, `@ds` grammar, browser-free verification) | `.skilled/` system code; Webflow browser artifacts |
 | OBSIDIAN | The Note Database Obsidian plugin (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`, `from "obsidian"` imports, the single `styles.css` carrying `.db-*` classes) and its worktrees | `.opencode/` hub code reached through the repo's symlinks; Webflow browser artifacts |
 | UNKNOWN | Fallback for unsupported or ambiguous surfaces | No standards applied until clarified |
 
@@ -37,11 +37,11 @@ Detect **where the work is happening** before deciding which standards apply.
 
 ## 2. DETECTION ORDER
 
-**Precedence**: OPENCODE > OBSIDIAN > PI_REMOTE > WEBFLOW > UNKNOWN. An OPENCODE target/CWD wins, but only when its **resolved** real path lands inside the hub's own `.opencode/` directory — see the symlink guard below. OBSIDIAN follows, because an Obsidian plugin repository is structurally a generic TypeScript + `package.json` tree that would otherwise fall through to UNKNOWN. PI_REMOTE then wins over WEBFLOW, and WEBFLOW over UNKNOWN. Use early-return logic — later branches must not overwrite earlier matches.
+**Precedence**: OPENCODE > OBSIDIAN > PI_REMOTE > WEBFLOW > UNKNOWN. An OPENCODE target/CWD wins, but only when its **resolved** real path lands inside the hub's own `.skilled/` directory — see the symlink guard below. OBSIDIAN follows, because an Obsidian plugin repository is structurally a generic TypeScript + `package.json` tree that would otherwise fall through to UNKNOWN. PI_REMOTE then wins over WEBFLOW, and WEBFLOW over UNKNOWN. Use early-return logic — later branches must not overwrite earlier matches.
 
 ```bash
 # 1. OPENCODE (highest precedence — disambiguates mixed-marker workspaces)
-# CWD under .opencode/ OR any changed/target file under .opencode/
+# CWD under .skilled/ OR any changed/target file under .skilled/
 
 # 2. OBSIDIAN (the Note Database plugin repository and its worktrees)
 # Repo-root markers, checked before the generic-Node fallback can claim the tree:
@@ -67,7 +67,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 # Ask which surface and verification commands apply.
 ```
 
-**Why OPENCODE wins precedence**: `.opencode/` system tools (e.g. preview servers, mock fixtures, animation demos under `.opencode/skills/sk-doc/scripts/`) may import vanilla animation libraries internally without being WEBFLOW-shipping artifacts. A first-match-WEBFLOW order would mis-route this work to the wrong standards. The target/CWD path is the strongest unambiguous signal of which surface owns the work.
+**Why OPENCODE wins precedence**: `.skilled/` system tools (e.g. preview servers, mock fixtures, animation demos under `.skilled/skills/sk-doc/scripts/`) may import vanilla animation libraries internally without being WEBFLOW-shipping artifacts. A first-match-WEBFLOW order would mis-route this work to the wrong standards. The target/CWD path is the strongest unambiguous signal of which surface owns the work.
 
 **Symlink guard — required for OPENCODE detection.** The Obsidian plugin repository symlinks
 `.opencode`, `.claude`, `.codex`, `.cursor`, and `.devin` at its root back to this hub, so hub skills
@@ -75,7 +75,7 @@ and agents are visible to tooling that expects those folders at a repo root. A l
 `.opencode/` segment at or above CWD" test therefore reports OPENCODE for **every** task in that
 repository, including one that never touches a hub file. Resolve symlinks before testing: OPENCODE
 holds only when the **resolved** real path of the CWD or of a changed/target file lands inside the
-hub's actual `.opencode/` directory. A plugin source file reached through the repo root's symlink
+hub's actual `.skilled/` directory. A plugin source file reached through the repo root's symlink
 does not; a genuine hub file reached through it does, so OPENCODE still wins for real hub work. The
 guard changes how the test is performed, not which surface wins.
 
@@ -86,7 +86,7 @@ mode.
 
 **Why PI_REMOTE sits above WEBFLOW**: the Pi Remote web app is React 19 + Vite + Tailwind, not a Webflow project. Scoping it by its workspace paths keeps a stray vanilla-web or animation marker from mis-routing app work to Webflow standards. `.opencode/` targets still win over it, so editing a skill, agent, or command inside the repo stays OPENCODE. When PI_REMOTE is the surface, the hub bundles the read-only `sk-code-mobile-cli` evidence packet behind the chosen workflow mode.
 
-**Generic-Node guard**: WEBFLOW markers are gated to actual Webflow signals (vendor globals, Webflow paths, `wrangler.toml`, `src/2_javascript/`). Bare Motion package imports and generic Motion documentation mentions are MOTION_DEV intent signals after surface selection, not WEBFLOW surface markers. Generic Node.js outside `.opencode/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
+**Generic-Node guard**: WEBFLOW markers are gated to actual Webflow signals (vendor globals, Webflow paths, `wrangler.toml`, `src/2_javascript/`). Bare Motion package imports and generic Motion documentation mentions are MOTION_DEV intent signals after surface selection, not WEBFLOW surface markers. Generic Node.js outside `.skilled/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
 
 ### Explicit Non-Webflow Guards
 
@@ -128,7 +128,7 @@ After OPENCODE surface detection, select language resources by extension first:
 
 When multiple languages are touched, load shared OpenCode guidance plus each touched language quick reference/checklist. Rust is a touched-language-set case, not a first-match override: a napi-rs/WASM parity task that touches both `.rs` and `.ts` loads the Rust trio AND the TypeScript trio plus shared guidance, because the Rust module must be verified byte-for-byte against its TypeScript oracle. Cargo markers (`Cargo.toml`/`Cargo.lock`) are evaluated only after OPENCODE surface detection, never as a cross-project surface signal.
 
-YAML is a live OpenCode config-adjacent genre for command routers, command auto/confirm assets, and workflow contracts. A live-surface scan found 65 YAML/YML files under `.opencode/commands` and `.opencode/skills`, excluding `node_modules` and `dist`.
+YAML is a live OpenCode config-adjacent genre for command routers, command auto/confirm assets, and workflow contracts. A live-surface scan found 65 YAML/YML files under `.skilled/commands` and `.skilled/skills`, excluding `node_modules` and `dist`.
 
 ---
 
@@ -136,20 +136,20 @@ YAML is a live OpenCode config-adjacent genre for command routers, command auto/
 
 | Context | Expected Surface | Reason |
 | --- | --- | --- |
-| `src/2_javascript/`, `package.json` | WEBFLOW | Webflow marker wins (no `.opencode/` target present) |
+| `src/2_javascript/`, `package.json` | WEBFLOW | Webflow marker wins (no `.skilled/` target present) |
 | HTML/CSS/JS with GSAP or Lenis | WEBFLOW | Vanilla animation web signal |
-| CWD `.opencode/skills/sk-code` | OPENCODE | Skill/system code context |
-| Changed `.opencode/agents/code.md` | OPENCODE | Target file under `.opencode/` |
+| CWD `.skilled/skills/sk-code` | OPENCODE | Skill/system code context |
+| Changed `.skilled/agents/code.md` | OPENCODE | Target file under `.skilled/` |
 | CWD or target under `app-mobile/` (SvelteKit + Svelte runes + scoped styles) | PI_REMOTE | Pi Remote app workspace; the design-system evidence surface is bundled behind the workflow mode |
 | CWD or target under the Obsidian plugin repo (`manifest.json` + `esbuild.config.mjs` present) | OBSIDIAN | Plugin repo-root markers resolve; the read-only `sk-code-obsidian` evidence packet is bundled |
 | CWD `Obsidian Plugin/.worktrees/001-*/src/views`, target `DatabaseView.ts` | OBSIDIAN | No **resolved** target path lands in the hub tree, despite the `.opencode` symlink at the repo root |
 | Target `Obsidian Plugin/.opencode/skills/sk-code/...`, resolving inside the hub | OPENCODE | The symlink genuinely targets hub content; OPENCODE wins once the path is resolved |
 | Literal path string contains `.opencode/` but resolves outside the hub | not OPENCODE | The realpath gate refuses OPENCODE on a string match alone |
-| Root `package.json`, no `manifest.json`, no `.opencode/` target | UNKNOWN | Generic Node is not owned; OBSIDIAN needs its positive markers, not merely the absence of other surfaces |
+| Root `package.json`, no `manifest.json`, no `.skilled/` target | UNKNOWN | Generic Node is not owned; OBSIDIAN needs its positive markers, not merely the absence of other surfaces |
 | Changed `app-mobile/src/app.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins even inside the Pi Remote repo |
-| WEBFLOW marker (Lenis, GSAP) AND changed `.opencode/skills/sk-doc/scripts/preview-server.js` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
+| WEBFLOW marker (Lenis, GSAP) AND changed `.skilled/skills/sk-doc/scripts/preview-server.js` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
 | Prompt says `NOT Webflow no Webflow Designer` and asks for Motion.dev guidance | **UNKNOWN/N/A** | Explicit non-Webflow guard blocks WEBFLOW promotion |
-| Root `package.json` with no `.opencode/` target | UNKNOWN | Generic Node.js is not owned |
+| Root `package.json` with no `.skilled/` target | UNKNOWN | Generic Node.js is not owned |
 | `go.mod` or `next.config.js` only | UNKNOWN | Go/NextJS placeholder routes were removed |
 
 ---

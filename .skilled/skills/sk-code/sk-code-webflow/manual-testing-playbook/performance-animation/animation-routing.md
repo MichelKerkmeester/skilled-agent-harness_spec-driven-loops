@@ -66,9 +66,9 @@ Design a Webflow animation transition with easing, stagger, parallax, and carous
 
 ### Commands
 
-1. `sed -n '1,20p' .opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/animation-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"ANIMATION": \[/,/\],/p'`
-3. `for p in references/implementation/animation-workflows/overview-decision-tree-and-css.md references/implementation/animation-workflows/motion-dev-and-performance.md references/implementation/animation-workflows/testing-and-common-issues.md references/implementation/animation-workflows/motion-dev-advanced.md references/implementation/swiper-patterns/overview-timeline-and-marquee.md references/implementation/swiper-patterns/autoplay-accessibility-and-naming.md references/implementation/swiper-patterns/initialization-and-troubleshooting.md; do test -e ".opencode/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,20p' .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/animation-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"ANIMATION": \[/,/\],/p'`
+3. `for p in references/implementation/animation-workflows/overview-decision-tree-and-css.md references/implementation/animation-workflows/motion-dev-and-performance.md references/implementation/animation-workflows/testing-and-common-issues.md references/implementation/animation-workflows/motion-dev-advanced.md references/implementation/swiper-patterns/overview-timeline-and-marquee.md references/implementation/swiper-patterns/autoplay-accessibility-and-naming.md references/implementation/swiper-patterns/initialization-and-troubleshooting.md; do test -e ".skilled/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

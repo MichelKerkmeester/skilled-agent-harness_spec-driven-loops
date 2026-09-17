@@ -51,8 +51,8 @@ Add a scroll-triggered reveal animation to my Webflow site using GSAP and Inters
 
 Capture this hub's compiled-routing parity evidence with the live front door and serving-status probe:
 ```
-node .opencode/bin/compiled-route-status.cjs --hub sk-code
-node .opencode/bin/compiled-route.cjs --hub sk-code --prompt "<the exact prompt in section 2>"
+node .skilled/bin/compiled-route-status.cjs --hub sk-code
+node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<the exact prompt in section 2>"
 ```
 
 ## Pass/Fail Criteria

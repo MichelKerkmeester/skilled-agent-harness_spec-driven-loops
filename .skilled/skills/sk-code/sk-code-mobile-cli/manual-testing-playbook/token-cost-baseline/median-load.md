@@ -71,9 +71,9 @@ Verify the token retint preserved every frozen value in both themes before the c
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/token-cost-baseline/median-load.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"VERIFICATION":/,/\],/p'`
-3. `for p in references/verification/verification.md references/verification/verification.md references/verification/skill-reference-integrity.md assets/ds-verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/token-cost-baseline/median-load.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"VERIFICATION":/,/\],/p'`
+3. `for p in references/verification/verification.md references/verification/verification.md references/verification/skill-reference-integrity.md assets/ds-verification-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

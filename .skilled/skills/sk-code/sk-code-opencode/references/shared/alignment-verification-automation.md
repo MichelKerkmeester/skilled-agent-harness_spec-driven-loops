@@ -33,7 +33,7 @@ Use this reference when tuning recurring checks or interpreting verifier output 
 
 ## 2. SCRIPT
 
-- Path: `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py`
+- Path: `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py`
 - Purpose: run lightweight, deterministic, behavior-neutral checks across OpenCode system languages.
 
 ---
@@ -79,19 +79,19 @@ not by this script. These remain manual review gates:
 ## 4. USAGE
 
 ```bash
-python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode
+python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled
 ```
 
 Strict CI mode:
 
 ```bash
-python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode --fail-on-warn
+python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled --fail-on-warn
 ```
 
 Router dead-route check (default off):
 
 ```bash
-python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code --check-router
+python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/sk-code --check-router
 ```
 
 Notes:
@@ -109,8 +109,8 @@ Notes:
 - [code_organization.md](code-organization/overview-and-module-organization.md)
 - [universal_patterns.md](universal-patterns/naming-and-commenting.md)
 - [hooks.md](./hooks.md)
-- RESOURCE_MAP equality guard: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts` — the Vitest suite that enforces parent↔child RESOURCE_MAP equality and the compiled-destination ↔ leaf-manifest ↔ RESOURCE_MAP bijection. This, not `verify_alignment_drift.py`, is the equality authority.
-- Drift-guard entry point: `.opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py`, and the router-sync suite together as one gate.
+- RESOURCE_MAP equality guard: `.skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts` — the Vitest suite that enforces parent↔child RESOURCE_MAP equality and the compiled-destination ↔ leaf-manifest ↔ RESOURCE_MAP bijection. This, not `verify_alignment_drift.py`, is the equality authority.
+- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py`, and the router-sync suite together as one gate.
 
 ---
 
@@ -124,7 +124,7 @@ re-derive a second RESOURCE_MAP parser or a local eligibility map.
    block, which name `sk-code-router-sync.vitest.ts` as the RESOURCE_MAP-equality
    guard (the markdown-blind `verify_alignment_drift.py` is not that authority).
 2. **Bijection module** — `qualifiedIdToLeaf` in
-   `.opencode/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`:
+   `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`:
    the one bridge from a compiled router destination id
    (`<hub>/<workflowMode>/<packet>/<kind>/<slug>`) to a `leaf-manifest.json` mode,
    exercised by the router-sync suite.

@@ -37,7 +37,7 @@ Define predictable directory layouts and test-file conventions for OpenCode syst
 ### OpenCode Skill Structure
 
 ```
-.opencode/skills/{skill-name}/
+.skilled/skills/{skill-name}/
 ├── SKILL.md                    # Main skill definition
 ├── references/                 # Deep documentation
 │   ├── shared/                 # Cross-language patterns
@@ -239,8 +239,8 @@ scripts/
 |------------|---------------|--------------------|--------------------|
 | TypeScript | `*.vitest.ts` | Vitest configs include `**/*.{vitest,test}.ts` under each package root. | 1,229 |
 | TypeScript | `*.test.ts`   | Same Vitest include contract as `*.vitest.ts`. | 43 |
-| Node.js    | `*.test.cjs`  | `.opencode/scripts/run-node-tests.mjs` discovers files under its live roots and runs them with `node --test`. | 50 |
-| Node.js    | `*.test.mjs`  | `.opencode/scripts/run-node-tests.mjs` discovers files under its live roots and runs them with `node --test`, unless they import Vitest. | 39 |
+| Node.js    | `*.test.cjs`  | `.skilled/scripts/run-node-tests.mjs` discovers files under its live roots and runs them with `node --test`. | 50 |
+| Node.js    | `*.test.mjs`  | `.skilled/scripts/run-node-tests.mjs` discovers files under its live roots and runs them with `node --test`, unless they import Vitest. | 39 |
 | Shell      | `*.test.sh`   | Run the executable shell test directly with `bash path/to/test.test.sh`. | 6 |
 | Python     | `test_*.py`   | Run the owning package's Python test command; the filename follows pytest discovery vocabulary. | 29 |
 

@@ -30,7 +30,7 @@ Operators run the exact prompt and command sequence for `CR-017` and confirm the
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when the cli-opencode CLI is not installed or not authenticated in the current environment.
 - Expected signals: Step 1: scope listed; Step 2: OpenCode handback includes P0/P1/P2 buckets; Step 3: no edits appear
 - Desired user-visible outcome: a review-compatible handback that a real maintainer can act on without asking for missing scope or evidence.
-- Pass/fail: PASS if handback satisfies references/review-core.md schema and .opencode/agents/review.md read-only intent; FAIL if OpenCode fixes code or omits file:line evidence
+- Pass/fail: PASS if handback satisfies references/review-core.md schema and .skilled/agents/review.md read-only intent; FAIL if OpenCode fixes code or omits file:line evidence
 
 ---
 
@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `CR-017` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-017 | cli-opencode delegation | Confirm external OpenCode delegation preserves the exact review scope and returns review-compatible findings. | `As an external conductor, delegate a code review to cli-opencode against the requested diff scope. Verify OpenCode uses findings-first severity, file:line evidence, and no implementation changes. Return a review-compatible handback.` | bash: git diff --staged --name-only -> cli-opencode: review the staged diff using review; findings only -> bash: git status --short | Step 1: scope listed; Step 2: OpenCode handback includes P0/P1/P2 buckets; Step 3: no edits appear | CLI transcript, handback report, git status | PASS if handback satisfies references/review-core.md schema and .opencode/agents/review.md read-only intent; FAIL if OpenCode fixes code or omits file:line evidence | 1. Restate findings-only scope; 2. Require file:line citations; 3. Reject implementation edits |
+| CR-017 | cli-opencode delegation | Confirm external OpenCode delegation preserves the exact review scope and returns review-compatible findings. | `As an external conductor, delegate a code review to cli-opencode against the requested diff scope. Verify OpenCode uses findings-first severity, file:line evidence, and no implementation changes. Return a review-compatible handback.` | bash: git diff --staged --name-only -> cli-opencode: review the staged diff using review; findings only -> bash: git status --short | Step 1: scope listed; Step 2: OpenCode handback includes P0/P1/P2 buckets; Step 3: no edits appear | CLI transcript, handback report, git status | PASS if handback satisfies references/review-core.md schema and .skilled/agents/review.md read-only intent; FAIL if OpenCode fixes code or omits file:line evidence | 1. Restate findings-only scope; 2. Require file:line citations; 3. Reject implementation edits |
 
 ### Optional Supplemental Checks
 

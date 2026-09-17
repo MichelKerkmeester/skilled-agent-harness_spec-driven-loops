@@ -203,6 +203,6 @@ bdg stop 2>&1
 npm install -g browser-debugger-cli@alpha
 ```
 
-**See:** [`.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`](../../../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for complete CLI workflows.
+**See:** [`.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`](../../../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for complete CLI workflows.
 
 ---

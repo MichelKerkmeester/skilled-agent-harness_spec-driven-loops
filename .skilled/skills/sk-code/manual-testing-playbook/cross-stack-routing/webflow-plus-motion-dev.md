@@ -32,7 +32,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 **Expected surface**: `WEBFLOW`
 
-**Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
+**Expected references loaded** (exact relative paths under `.skilled/skills/sk-code/`):
 - `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
@@ -99,10 +99,10 @@ Evidence: `/tmp/skc-CS-001-<cli>.txt` (raw per-runtime transcript) and `results/
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` - Root directory page and scenario summary.
-- `.opencode/skills/sk-code/shared/references/stack-detection.md` - WEBFLOW marker block.
-- `.opencode/skills/sk-code/ROUTER.md` - WEBFLOW plus MOTION_DEV loading rules.
-- `.opencode/skills/sk-code/sk-code-webflow/references/animation/quick-start.md` - Motion install and import guidance.
-- `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/in-view-reveal.js` - Required snippet.
+- `.skilled/skills/sk-code/shared/references/stack-detection.md` - WEBFLOW marker block.
+- `.skilled/skills/sk-code/ROUTER.md` - WEBFLOW plus MOTION_DEV loading rules.
+- `.skilled/skills/sk-code/sk-code-webflow/references/animation/quick-start.md` - Motion install and import guidance.
+- `.skilled/skills/sk-code/sk-code-webflow/assets/animation/snippets/in-view-reveal.js` - Required snippet.
 
 ---
 

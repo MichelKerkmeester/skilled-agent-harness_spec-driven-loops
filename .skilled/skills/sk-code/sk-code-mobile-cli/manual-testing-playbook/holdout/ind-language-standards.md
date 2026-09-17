@@ -75,8 +75,8 @@ What's this codebase's rule for how a new UI file should be named, and where wou
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/ind-language-standards.md`
-2. `for p in references/design-system/token-library.md references/design-system/component-tokens.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md references/design-system/css-class-naming-bem.md references/svelte/svelte.md references/conventions/comment-grammar.md references/conventions/folder-docs.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/ind-language-standards.md`
+2. `for p in references/design-system/token-library.md references/design-system/component-tokens.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md references/design-system/css-class-naming-bem.md references/svelte/svelte.md references/conventions/comment-grammar.md references/conventions/folder-docs.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

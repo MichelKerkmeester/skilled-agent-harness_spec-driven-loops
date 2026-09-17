@@ -71,8 +71,8 @@ Before you tell me this is done, prove the colors actually resolved the way we e
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/ind-verification.md`
-2. `for p in references/verification/verification.md references/verification/verification.md references/verification/skill-reference-integrity.md assets/ds-verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/ind-verification.md`
+2. `for p in references/verification/verification.md references/verification/verification.md references/verification/skill-reference-integrity.md assets/ds-verification-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

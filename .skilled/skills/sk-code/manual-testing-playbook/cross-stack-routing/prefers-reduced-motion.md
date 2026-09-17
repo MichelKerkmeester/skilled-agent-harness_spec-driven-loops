@@ -32,7 +32,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 **Expected surface**: `WEBFLOW`
 
-**Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
+**Expected references loaded** (exact relative paths under `.skilled/skills/sk-code/`):
 - `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
@@ -97,10 +97,10 @@ Evidence: `/tmp/skc-CS-007-<cli>.txt` (raw per-runtime transcript) and `results/
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` - Root directory page and scenario summary.
-- `.opencode/skills/sk-code/sk-code-webflow/references/animation/performance-and-pitfalls.md` - Motion reduced-motion guidance.
-- `.opencode/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md` - Webflow animation accessibility guidance.
-- `.opencode/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md` - Browser evidence expectations.
-- `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/hover-gesture.js` - Reduced-motion snippet pattern.
+- `.skilled/skills/sk-code/sk-code-webflow/references/animation/performance-and-pitfalls.md` - Motion reduced-motion guidance.
+- `.skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md` - Webflow animation accessibility guidance.
+- `.skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md` - Browser evidence expectations.
+- `.skilled/skills/sk-code/sk-code-webflow/assets/animation/snippets/hover-gesture.js` - Reduced-motion snippet pattern.
 
 ---
 

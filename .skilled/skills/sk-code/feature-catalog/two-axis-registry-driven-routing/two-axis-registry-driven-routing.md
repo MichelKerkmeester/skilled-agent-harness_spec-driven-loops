@@ -39,16 +39,16 @@ The WORKFLOW axis is process: `quality` (`backendKind: surface-router`) and `cod
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-code/SKILL.md` | Shared | States the routing contract, the workflow/surface discriminator, and the bundling rule. |
-| `.opencode/skills/sk-code/ROUTER.md` | Shared | Owns stage-two intent/resource maps and the explicit hub-shared control allowlist. |
-| `.opencode/skills/sk-code/mode-registry.json` | Shared | Declarative two-axis registry; single source of truth for `workflowMode`/`packetKind`/`backendKind`/`advisorRoutingContract` per packet. |
-| `.opencode/skills/sk-code/hub-router.json` | Shared | Router signal and tie-break data consumed alongside the registry. |
+| `.skilled/skills/sk-code/SKILL.md` | Shared | States the routing contract, the workflow/surface discriminator, and the bundling rule. |
+| `.skilled/skills/sk-code/ROUTER.md` | Shared | Owns stage-two intent/resource maps and the explicit hub-shared control allowlist. |
+| `.skilled/skills/sk-code/mode-registry.json` | Shared | Declarative two-axis registry; single source of truth for `workflowMode`/`packetKind`/`backendKind`/`advisorRoutingContract` per packet. |
+| `.skilled/skills/sk-code/hub-router.json` | Shared | Router signal and tie-break data consumed alongside the registry. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the invariant that hub `allowed-tools` equals the union of every registered mode's `toolSurface.allowed`. |
+| `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the invariant that hub `allowed-tools` equals the union of every registered mode's `toolSurface.allowed`. |
 
 ---
 

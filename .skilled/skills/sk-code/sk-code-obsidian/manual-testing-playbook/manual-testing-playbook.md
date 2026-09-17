@@ -96,12 +96,12 @@ note below).
 
 ## Global Preconditions
 
-1. `.opencode/skills/sk-code/sk-code-obsidian/SKILL.md` is at HEAD-of-main and contains the §1
+1. `.skilled/skills/sk-code/sk-code-obsidian/SKILL.md` is at HEAD-of-main and contains the §1
    surface-detection block and the §2b `INTENT_SIGNALS`/`RESOURCE_MAP` block this corpus exercises.
 2. Every path cited in every scenario's `expected_resources` resolves under
-   `.opencode/skills/sk-code/sk-code-obsidian/` — verified directly with `test -e`, never assumed
+   `.skilled/skills/sk-code/sk-code-obsidian/` — verified directly with `test -e`, never assumed
    from `SKILL.md` §2b's `RESOURCE_MAP` text alone (see the honesty note below).
-3. For `OB-021`, `.opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md` §1 is present and documents
+3. For `OB-021`, `.skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md` §1 is present and documents
    its own `PI_REMOTE` markers, since the negative control's pass condition depends on that sibling
    packet's markers staying accurate.
 4. For `OB-014`, at least two CLI runtimes (`cli-opencode`, `cli-claude-code`) are installed and

@@ -81,9 +81,9 @@ Turn 3: Before I merge both changes, run the full verification gate and report t
 
 ### Commands
 
-1. `sed -n '1,16p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"IMPLEMENTATION":/,/\],/p;/"CODE_QUALITY":/,/\],/p;/"VERIFICATION":/,/\],/p'`
-3. `for p in references/view-renderer-architecture.md references/folder-docs.md references/verification.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,16p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"IMPLEMENTATION":/,/\],/p;/"CODE_QUALITY":/,/\],/p;/"VERIFICATION":/,/\],/p'`
+3. `for p in references/view-renderer-architecture.md references/folder-docs.md references/verification.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 4. Dispatch the three-turn sequence in one shared session and capture each turn's reported
    surface/intent/resource set separately.
 

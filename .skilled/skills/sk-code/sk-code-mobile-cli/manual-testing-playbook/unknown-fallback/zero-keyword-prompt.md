@@ -72,10 +72,10 @@ Take a look at the composer in app-mobile and tell me what you notice about it.
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^INTENT_SIGNALS = {/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | grep 'DEFAULT_RESOURCE'`
-3. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md`
-4. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,15p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^INTENT_SIGNALS = {/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md | grep 'DEFAULT_RESOURCE'`
+3. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md`
+4. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

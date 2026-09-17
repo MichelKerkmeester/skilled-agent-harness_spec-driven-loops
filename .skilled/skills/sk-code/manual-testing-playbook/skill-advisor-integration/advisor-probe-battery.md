@@ -10,7 +10,7 @@ version: 3.5.0.9
 
 This scenario verifies the END-TO-END accuracy of sk-code routing via the skill advisor. Unlike SD-* / LS-* / RD-* scenarios that test single prompts, SA-001 runs a battery of ≥15 positive controls (should win sk-code at ≥0.80) and ≥5 negative controls (should NOT win sk-code).
 
-Baseline: per `.opencode/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl` (2026-05-03), sk-code accuracy is **50%** (4/8 correct), well below deep-research (88.6%) and deep-review (81.8%). This scenario establishes a fresh accuracy measurement against a curated probe set.
+Baseline: per `.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl` (2026-05-03), sk-code accuracy is **50%** (4/8 correct), well below deep-research (88.6%) and deep-review (81.8%). This scenario establishes a fresh accuracy measurement against a curated probe set.
 
 ---
 
@@ -24,7 +24,7 @@ Prompt: this scenario runs the full P1-P15 / N1-N5 probe battery listed below th
 
 | ID | Surface | Sub-language | Prompt |
 |---|---|---|---|
-| P1 | OPENCODE | TypeScript | `Refactor the parseExecutorConfig function in .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.` |
+| P1 | OPENCODE | TypeScript | `Refactor the parseExecutorConfig function in .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.` |
 | P2 | OPENCODE | TypeScript | `Implement a negative-trigger whitelist in gate-3-classifier.ts and run the targeted tests.` (golden set rr-iter2-001) |
 | P3 | OPENCODE | Python | `Refactor skill_advisor.py to surface raw ambiguity counts in debug output.` (golden set rr-iter2-004) |
 | P4 | OPENCODE | TypeScript | `Write a Vitest covering classifyPrompt() for the resume deep review phrase.` (golden set rr-iter2-006) |
@@ -34,7 +34,7 @@ Prompt: this scenario runs the full P1-P15 / N1-N5 probe battery listed below th
 | P8 | OPENCODE | Config | `Generate a replacement gate3-baseline.json fixture for the first 100 prompts.` (golden set rr-iter3-064) |
 | P9 | OPENCODE | TypeScript | `Refactor the corpus scoring helper so it emits stable JSONL keys in sorted order.` (golden set rr-iter3-065) |
 | P10 | OPENCODE | Shell | `Build a tiny script that counts how many prompts mention /speckit:resume.` (golden set rr-iter3-070) |
-| P11 | OPENCODE | Shell | `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.` |
+| P11 | OPENCODE | Shell | `Add set -euo pipefail and a trap to .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.` |
 | P12 | WEBFLOW | n/a | `Add a Lenis smooth-scroll initializer to src/2_javascript/scroll.js and gate it behind an IntersectionObserver.` |
 | P13 | WEBFLOW | n/a | `Wire up a GSAP timeline that animates the hero section on page load with motion.dev fallback.` |
 | P14 | WEBFLOW | n/a | `Initialize an HLS.js video player on .video-hero with adaptive bitrate fallback.` |
@@ -71,7 +71,7 @@ Prompt: this scenario runs the full P1-P15 / N1-N5 probe battery listed below th
 
 1. **For each prompt in the battery** (P1-P15, N1-N5):
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<prompt>" --threshold 0.8 >> /tmp/skc-SA001-advisor-results.jsonl
+   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<prompt>" --threshold 0.8 >> /tmp/skc-SA001-advisor-results.jsonl
    ```
 2. **Parse aggregate** (use `jq` or a small Python script): count positive wins, negative false-positives, compute accuracy.
 3. **Compare to baseline**: 50% (per smart-router-measurement-results.jsonl). New accuracy should be measurably higher OR identical (no regression).
@@ -101,7 +101,7 @@ Evidence: `/tmp/skc-SA001-advisor-results.jsonl` (per-prompt advisor output) and
 
 If positive accuracy < 0.80:
 1. Identify which positives lost. Common patterns:
-   - Missing surface marker in prompt (e.g. doesn't mention `.opencode/` explicitly)
+   - Missing surface marker in prompt (e.g. doesn't mention `.skilled/` explicitly)
    - sk-code-review or system-spec-kit captured the prompt due to higher signal weight on shared keywords
 2. Propose `signals` array additions to sk-code (Phase E5 gate — DO NOT commit without user approval). Candidate additions based on lost prompts:
    - "verify alignment", "alignment verifier" (covers verify_alignment_drift.py prompts)
@@ -118,10 +118,10 @@ If negative FPR > 0:
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` — advisor binary.
-- `.opencode/skills/system-skill-advisor/runtime/scripts/skill-graph.json` — sk-code signals + adjacency.
-- `.opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl` — golden set source (used for P2-P10).
-- `.opencode/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl` — baseline accuracy reference (50% for sk-code per that file's own recorded measurement).
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` — advisor binary.
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` — sk-code signals + adjacency.
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl` — golden set source (used for P2-P10).
+- `.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl` — baseline accuracy reference (50% for sk-code per that file's own recorded measurement).
 
 ---
 

@@ -45,7 +45,7 @@ resource set without contradictory evidence.
 Review this python .py argparse helper for docstring and quality standards.
 ```
 
-- Expected execution process: the hub detects `OPENCODE` (work under `.opencode/`), the `PYTHON`
+- Expected execution process: the hub detects `OPENCODE` (work under `.skilled/`), the `PYTHON`
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-opencode/`, and each one
@@ -65,10 +65,10 @@ Review this python .py argparse helper for docstring and quality standards.
 
 ### Commands
 
-1. `sed -n '/^---$/,/^---$/p' .opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/python-standards.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"PYTHON"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"PYTHON": \[/,/\],/p'`
-4. `for p in references/python/style-guide.md references/python/quality-standards.md references/python/quick-reference.md; do test -e ".opencode/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/python-standards.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"PYTHON"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"PYTHON": \[/,/\],/p'`
+4. `for p in references/python/style-guide.md references/python/quality-standards.md references/python/quick-reference.md; do test -e ".skilled/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

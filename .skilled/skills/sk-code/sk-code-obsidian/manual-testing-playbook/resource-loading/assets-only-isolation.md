@@ -73,10 +73,10 @@ I already know tsc, build, vitest, and screenshots:verify — just give me the p
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/assets-only-isolation.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"VERIFICATION":/,/\],/p'`
-3. `test -e .opencode/skills/sk-code/sk-code-obsidian/assets/verification-checklist.md && echo "OK assets/verification-checklist.md" || echo "MISS assets/verification-checklist.md"`
-4. `grep -c '^  - references/' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/assets-only-isolation.md`
+1. `sed -n '1,14p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/assets-only-isolation.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"VERIFICATION":/,/\],/p'`
+3. `test -e .skilled/skills/sk-code/sk-code-obsidian/assets/verification-checklist.md && echo "OK assets/verification-checklist.md" || echo "MISS assets/verification-checklist.md"`
+4. `grep -c '^  - references/' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/assets-only-isolation.md`
 
 ### Expected
 

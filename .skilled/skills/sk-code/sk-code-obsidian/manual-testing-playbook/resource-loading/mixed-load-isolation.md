@@ -77,10 +77,10 @@ src/views/modals/ has 17 files and no README.md or CODE.md yet — does it owe t
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/mixed-load-isolation.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"CODE_QUALITY":/,/\],/p'`
-3. `for p in references/folder-docs.md references/comment-grammar.md assets/folder-docs-checklist.md assets/comment-banner-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
-4. `grep -c '^  - references/' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/mixed-load-isolation.md; grep -c '^  - assets/' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/mixed-load-isolation.md`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/mixed-load-isolation.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"CODE_QUALITY":/,/\],/p'`
+3. `for p in references/folder-docs.md references/comment-grammar.md assets/folder-docs-checklist.md assets/comment-banner-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `grep -c '^  - references/' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/mixed-load-isolation.md; grep -c '^  - assets/' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/resource-loading/mixed-load-isolation.md`
 
 ### Expected
 

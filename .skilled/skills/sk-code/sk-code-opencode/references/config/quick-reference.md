@@ -154,7 +154,7 @@ Use when implementing or reviewing JSON/JSONC configuration and a concise patter
 ```jsonc
 {
   "paths": {
-    "database": ".opencode/database.sqlite",
+    "database": ".skilled/database.sqlite",
     "templates": "templates/",
     "output": "./output"
   }
@@ -169,7 +169,7 @@ Use when implementing or reviewing JSON/JSONC configuration and a concise patter
 
 ```jsonc
 {
-  "path": ".opencode/config.json",
+  "path": ".skilled/config.json",
   "model": "voyage-4",
   "style": "minimal"
 }
@@ -301,7 +301,7 @@ Use when implementing or reviewing JSON/JSONC configuration and a concise patter
 ## 10. FILE LOCATIONS
 
 ```
-.opencode/
+.skilled/
 ├── config/
 │   └── opencode.json
 └── skill/

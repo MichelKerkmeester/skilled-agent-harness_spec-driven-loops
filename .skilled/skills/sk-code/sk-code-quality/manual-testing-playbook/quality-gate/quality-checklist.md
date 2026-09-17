@@ -69,9 +69,9 @@ Run the comment hygiene quality gate and check P0/P1/P2 standards before marking
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md`
-2. `sed -n '/^INTENT_SIGNALS/,/^RESOURCE_MAP/p' .opencode/skills/sk-code/sk-code-quality/SKILL.md`
-3. `for p in assets/code-quality-checklist/overview-header-and-comments.md assets/code-quality-checklist/naming-init-formatting-and-css.md assets/code-quality-checklist/verification-quick-reference-and-related.md; do test -e ".opencode/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,14p' .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md`
+2. `sed -n '/^INTENT_SIGNALS/,/^RESOURCE_MAP/p' .skilled/skills/sk-code/sk-code-quality/SKILL.md`
+3. `for p in assets/code-quality-checklist/overview-header-and-comments.md assets/code-quality-checklist/naming-init-formatting-and-css.md assets/code-quality-checklist/verification-quick-reference-and-related.md; do test -e ".skilled/skills/sk-code/sk-code-quality/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

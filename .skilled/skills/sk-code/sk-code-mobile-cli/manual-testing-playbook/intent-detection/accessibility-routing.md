@@ -70,9 +70,9 @@ Confirm the retint keeps WCAG AA contrast in both themes and doesn't rely on cla
 
 ### Commands
 
-1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/accessibility-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"ACCESSIBILITY":/,/\],/p'`
-3. `for p in references/conventions/editability-guardrails.md references/verification/verification.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,12p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/accessibility-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"ACCESSIBILITY":/,/\],/p'`
+3. `for p in references/conventions/editability-guardrails.md references/verification/verification.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

@@ -136,7 +136,7 @@ fitted-vs-held-out generalization gap.
 
 ## Global Preconditions
 
-1. `.opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md` is at HEAD-of-main and contains the §1 surface-detection triggers, the §2b `INTENT_SIGNALS`/`RESOURCE_MAP`/`DEFAULT_RESOURCE` block, and the §5 rules this corpus cites.
+1. `.skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md` is at HEAD-of-main and contains the §1 surface-detection triggers, the §2b `INTENT_SIGNALS`/`RESOURCE_MAP`/`DEFAULT_RESOURCE` block, and the §5 rules this corpus cites.
 2. Every path named in every scenario's `expected_resources` resolves on disk under
    `sk-code-mobile-cli/references/` or `sk-code-mobile-cli/assets/` — verified with `test -e`, not assumed
    from `SKILL.md` §2b's prose.

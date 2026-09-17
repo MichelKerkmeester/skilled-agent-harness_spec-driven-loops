@@ -73,8 +73,8 @@ Update the composer component under app-mobile/src/pages/chat.
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/surface-detection/pi-remote-positive-detection.md`
-2. `sed -n '/^## 1\. WHEN THE HUB BUNDLES THIS/,/^## 2\. REFERENCE MAP/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md`
+1. `sed -n '1,15p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/surface-detection/pi-remote-positive-detection.md`
+2. `sed -n '/^## 1\. WHEN THE HUB BUNDLES THIS/,/^## 2\. REFERENCE MAP/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md`
 3. Dispatch trigger 1 (`app-mobile/` path); capture the resolved surface.
 4. Dispatch trigger 2 (`app-relay/` path); capture the resolved surface.
 5. Dispatch trigger 3 (`packages/pi-rpc-protocol/` path); capture the resolved surface.

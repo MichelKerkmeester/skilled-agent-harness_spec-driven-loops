@@ -49,7 +49,7 @@ resource set without contradictory evidence.
 For an OpenCode TypeScript module, apply the typescript .ts standards before I implement a feature.
 ```
 
-- Expected execution process: the hub detects `OPENCODE` (work under `.opencode/`), the `TYPESCRIPT`
+- Expected execution process: the hub detects `OPENCODE` (work under `.skilled/`), the `TYPESCRIPT`
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-opencode/`, and each one
@@ -69,10 +69,10 @@ For an OpenCode TypeScript module, apply the typescript .ts standards before I i
 
 ### Commands
 
-1. `sed -n '/^---$/,/^---$/p' .opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/typescript-standards.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"TYPESCRIPT"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"TYPESCRIPT": \[/,/\],/p'`
-4. `for p in references/typescript/style-guide/overview-strict-and-naming.md references/typescript/style-guide/formatting-imports-and-coexistence.md references/typescript/quality-standards/overview-and-type-system.md references/typescript/quality-standards/tsdoc-errors-and-async.md references/typescript/quality-standards/tsconfig-and-modules.md references/typescript/quick-reference/template-naming-and-types.md references/typescript/quick-reference/imports-errors-and-tsconfig.md; do test -e ".opencode/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/typescript-standards.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"TYPESCRIPT"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"TYPESCRIPT": \[/,/\],/p'`
+4. `for p in references/typescript/style-guide/overview-strict-and-naming.md references/typescript/style-guide/formatting-imports-and-coexistence.md references/typescript/quality-standards/overview-and-type-system.md references/typescript/quality-standards/tsdoc-errors-and-async.md references/typescript/quality-standards/tsconfig-and-modules.md references/typescript/quick-reference/template-naming-and-types.md references/typescript/quick-reference/imports-errors-and-tsconfig.md; do test -e ".skilled/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

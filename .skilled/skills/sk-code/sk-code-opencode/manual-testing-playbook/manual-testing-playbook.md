@@ -2,7 +2,7 @@
 
 Routing-recall corpus for the `code-opencode` surface. These scenarios exercise the machine-readable
 intent signals and resource map in `SKILL.md` §2b, and the surface detection (`OPENCODE`, work under
-`.opencode/`) that causes the hub to bundle this packet. The corpus is derived from the walked tree
+`.skilled/`) that causes the hub to bundle this packet. The corpus is derived from the walked tree
 below, split into three category folders by resource domain.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
@@ -33,7 +33,7 @@ below, split into three category folders by resource domain.
 | 9 | OC-009 | RUST | [rust-standards.md](language-standards/rust-standards.md) |
 
 Every scenario assumes the hub's surface detection has already resolved **OPENCODE** (work under
-`.opencode/`, per `SKILL.md` §1) and bundled this packet behind a workflow mode; the scenario then
+`.skilled/`, per `SKILL.md` §1) and bundled this packet behind a workflow mode; the scenario then
 exercises which reference/asset set the sample prompt's intent should load. A scenario's verdict is
 `PASS` when every path in its `expected_resources` resolves under the skill root and its frontmatter
 surface/intent agree with the table above, `FAIL` when either check fails, and `SKIP` only when a

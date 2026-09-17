@@ -59,10 +59,10 @@ Every finding carries one severity level from `references/review-core.md`, share
 **Step 1: Invoke it.** Gate 2 routing fires on review keywords. You can also dispatch the `@review` agent directly. The dispatcher prepends `CODE-REVIEW` as the first line of the rendered prompt so the reviewer knows it is operating as the baseline.
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review my staged changes" --threshold 0.8
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review my staged changes" --threshold 0.8
 ```
 
-The advisor prints the recommended skill route when confidence lands at or above 0.8. To read the runtime contract directly, open `.opencode/skills/sk-code/sk-code-review/SKILL.md`.
+The advisor prints the recommended skill route when confidence lands at or above 0.8. To read the runtime contract directly, open `.skilled/skills/sk-code/sk-code-review/SKILL.md`.
 
 **Step 2: Run the primary workflow.** Every review follows the same shape. Findings come before summary. Security and correctness checks run first. The review ends with one exact status line.
 
@@ -108,7 +108,7 @@ The final line is always exactly one of the three status values below, with no t
 **Step 3: Verify before you rely on it.**
 
 ```bash
-node .opencode/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
+node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
 ```
 
 Exits 0 when the verdict triplet and the Iron Law wording stay in lockstep across the skill docs. Run the playbook scenarios from the manual testing playbook for the full behavior gate.
@@ -131,7 +131,7 @@ All findings publish in one message with a next-action prompt. Findings never dr
 
 ### PR-State Efficiency
 
-Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `.opencode/.code-review-cache/`. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings.
+Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `.skilled/.code-review-cache/`. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings.
 
 The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists this routing for a session. `ultra` biases toward the deep-dive reference set. `lite` maps to the conservative skip. Neither relaxes the security and correctness floor.
 
@@ -194,9 +194,9 @@ A: Downstream automation reads the final line by exact string match to decide wh
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/sk-code-review/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` |
-| Rule invariants | `node .opencode/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0 (canary locking the `Review status:` verdict triplet and the cross-doc Iron Law wording) |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-review/README.md --type readme` reports zero issues |
+| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` |
+| Rule invariants | `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0 (canary locking the `Review status:` verdict triplet and the cross-doc Iron Law wording) |
 | Behavior | Run the playbook scenarios under `manual-testing-playbook/<NN>--<topic>/` in a live session |
 
 ---

@@ -131,7 +131,7 @@ function processData(input, options) {
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts`
+**Evidence**: `.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts`
 
 ### Try-Catch Pattern
 
@@ -149,7 +149,7 @@ async function fetchData(query) {
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts`
+**Evidence**: `.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts`
 
 ### Custom Error Classes
 
@@ -179,7 +179,7 @@ class SpecFolderError extends Error {
 module.exports = { SpecFolderError };
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts`
+**Evidence**: `.skilled/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts`
 
 ### Error Response Pattern
 
@@ -208,7 +208,7 @@ console.error(`[folder-discovery] Description merge failed: ${error.message}`);
 console.warn(`[config] Using default value for missing key: ${key}`);
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts`
+**Evidence**: `.skilled/skills/system-spec-kit/runtime/lib/storage/transaction-manager.ts`
 
 ### Log Levels
 
@@ -250,7 +250,7 @@ async function lookupTriggers(query, options = {}) {
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`
+**Evidence**: `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`
 
 ### Type Annotations
 

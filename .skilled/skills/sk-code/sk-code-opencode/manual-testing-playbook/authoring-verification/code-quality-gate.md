@@ -51,7 +51,7 @@ resource set without contradictory evidence.
 Run a quality gate for lint, format, naming, standards, and code smell risks in OpenCode system code.
 ```
 
-- Expected execution process: the hub detects `OPENCODE` (work under `.opencode/`), the `CODE_QUALITY`
+- Expected execution process: the hub detects `OPENCODE` (work under `.skilled/`), the `CODE_QUALITY`
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-opencode/`, and each one
@@ -71,10 +71,10 @@ Run a quality gate for lint, format, naming, standards, and code smell risks in 
 
 ### Commands
 
-1. `sed -n '/^---$/,/^---$/p' .opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"CODE_QUALITY"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"CODE_QUALITY": \[/,/\],/p'`
-4. `for p in assets/checklists/universal-checklist.md assets/checklists/javascript-checklist.md assets/checklists/typescript-checklist.md assets/checklists/python-checklist.md assets/checklists/shell-checklist.md assets/checklists/rust-checklist/overview-and-p0-parity.md assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md assets/checklists/rust-checklist/p1-required.md assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md; do test -e ".opencode/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"CODE_QUALITY"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"CODE_QUALITY": \[/,/\],/p'`
+4. `for p in assets/checklists/universal-checklist.md assets/checklists/javascript-checklist.md assets/checklists/typescript-checklist.md assets/checklists/python-checklist.md assets/checklists/shell-checklist.md assets/checklists/rust-checklist/overview-and-p0-parity.md assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md assets/checklists/rust-checklist/p1-required.md assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md; do test -e ".skilled/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

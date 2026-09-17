@@ -32,7 +32,7 @@ import path from 'node:path';
 // required there.
 const EXACT_INVARIANTS = [
   {
-    file: '.opencode/skills/sk-code/sk-code-review/SKILL.md',
+    file: '.skilled/skills/sk-code/sk-code-review/SKILL.md',
     strings: [
       'Review status: APPROVED',
       'Review status: REQUESTED_CHANGES',
@@ -40,7 +40,7 @@ const EXACT_INVARIANTS = [
     ],
   },
   {
-    file: '.opencode/skills/sk-code/sk-code-review/README.md',
+    file: '.skilled/skills/sk-code/sk-code-review/README.md',
     strings: [
       'Review status: APPROVED',
       'Review status: REQUESTED_CHANGES',
@@ -48,11 +48,11 @@ const EXACT_INVARIANTS = [
     ],
   },
   {
-    file: '.opencode/skills/sk-code/sk-code-review/changelog/v1.3.0.0.md',
+    file: '.skilled/skills/sk-code/sk-code-review/changelog/v1.3.0.0.md',
     strings: ['Review status: COMMENTED'],
   },
   {
-    file: '.opencode/skills/sk-code/sk-code-review/references/pr-state-dedup.md',
+    file: '.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md',
     strings: ['Review status: COMMENTED'],
   },
 ];
@@ -63,7 +63,7 @@ const EXACT_INVARIANTS = [
 // forcing files to identical wording (one says "surface", another "stack").
 // The full statement lives in the shared verify workflow doctrine that each surface consumes.
 const IRON_LAW_FILES = [
-  '.opencode/skills/sk-code/shared/references/workflow-verify.md',
+  '.skilled/skills/sk-code/shared/references/workflow-verify.md',
   'CLAUDE.md',
   'AGENTS.md',
 ];

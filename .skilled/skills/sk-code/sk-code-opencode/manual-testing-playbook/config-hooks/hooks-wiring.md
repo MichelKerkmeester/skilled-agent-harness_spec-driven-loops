@@ -43,7 +43,7 @@ resource set without contradictory evidence.
 Explain how session-prime and pre-tool-use hooks should be wired for an OpenCode plugin bridge.
 ```
 
-- Expected execution process: the hub detects `OPENCODE` (work under `.opencode/`), the `HOOKS`
+- Expected execution process: the hub detects `OPENCODE` (work under `.skilled/`), the `HOOKS`
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-opencode/`, and each one
@@ -63,10 +63,10 @@ Explain how session-prime and pre-tool-use hooks should be wired for an OpenCode
 
 ### Commands
 
-1. `sed -n '/^---$/,/^---$/p' .opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/hooks-wiring.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"HOOKS"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"HOOKS": \[/,/\],/p'`
-4. `for p in references/shared/hooks.md; do test -e ".opencode/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/hooks-wiring.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"HOOKS"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"HOOKS": \[/,/\],/p'`
+4. `for p in references/shared/hooks.md; do test -e ".skilled/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

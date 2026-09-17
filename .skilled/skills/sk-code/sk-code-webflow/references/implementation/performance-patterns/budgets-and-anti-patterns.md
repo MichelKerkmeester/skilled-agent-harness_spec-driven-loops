@@ -194,7 +194,7 @@ echo "✅ PASS: Animation performance budgets met"
 
 **CI/CD Integration**: These performance checks could be automated with shell scripts in your CI pipeline. Use the patterns above as a starting point.
 
-**See:** `.opencode/skills/mcp-tooling/mcp-chrome-devtools/` for complete CLI automation patterns
+**See:** `.skilled/skills/mcp-tooling/mcp-chrome-devtools/` for complete CLI automation patterns
 
 ---
 

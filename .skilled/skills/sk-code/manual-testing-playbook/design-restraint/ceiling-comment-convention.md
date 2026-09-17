@@ -20,13 +20,13 @@ It is a durable WHY, not a brand or tool prefix (a brand prefix reads as a peris
 
 **Exact prompt**:
 ```
-Add a small in-memory rate limiter to the sk-doc local preview server at .opencode/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.
+Add a small in-memory rate limiter to the sk-doc local preview server at .skilled/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.
 ```
 
-Prompt: `Add a small in-memory rate limiter to the sk-doc local preview server at .opencode/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.`
+Prompt: `Add a small in-memory rate limiter to the sk-doc local preview server at .skilled/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.`
 
 **Expected detection**:
-- Surface: `OPENCODE` (target path contains `/.opencode/`)
+- Surface: `OPENCODE` (target path contains `/.skilled/`)
 - Intent: implementation (write work)
 - Sub-language: `TYPESCRIPT` (target file extension `.ts`)
 
@@ -43,9 +43,9 @@ Prompt: `Add a small in-memory rate limiter to the sk-doc local preview server a
 
 ### Preconditions
 
-1. `.opencode/skills/sk-code/shared/references/universal/code-style-guide.md` §4 documents the `ceiling:` convention: `bash: rg -n "ceiling:" .opencode/skills/sk-code/shared/references/universal/code-style-guide.md`.
-2. The comment-hygiene checker resolves: `bash: test -f .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`.
-3. `ceiling:` is NOT in the checker's allowed-pattern list: `bash: rg -n "ALLOWED_PATTERN|allowed" .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` returns no `ceiling` entry.
+1. `.skilled/skills/sk-code/shared/references/universal/code-style-guide.md` §4 documents the `ceiling:` convention: `bash: rg -n "ceiling:" .skilled/skills/sk-code/shared/references/universal/code-style-guide.md`.
+2. The comment-hygiene checker resolves: `bash: test -f .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`.
+3. `ceiling:` is NOT in the checker's allowed-pattern list: `bash: rg -n "ALLOWED_PATTERN|allowed" .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` returns no `ceiling` entry.
 
 ### Exact Command Sequence
 
@@ -53,7 +53,7 @@ Prompt: `Add a small in-memory rate limiter to the sk-doc local preview server a
 2. **Capture the emitted comment**: confirm it is a `ceiling:` comment with shortcut, ceiling, and upgrade trigger.
 3. **Run comment-hygiene** on the produced file:
    ```
-   bash: python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh /tmp/skc-DR003-sandbox/preview-server.ts
+   bash: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh /tmp/skc-DR003-sandbox/preview-server.ts
    ```
 4. **Verify**: exit 0 (clean), and the checker's allowed-pattern list was not modified.
 5. **Persist evidence** to `/tmp/skc-DR003-hygiene.txt`.
@@ -85,8 +85,8 @@ Evidence: `/tmp/skc-DR003-hygiene.txt` (comment-hygiene checker output).
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/sk-code/shared/references/universal/code-style-guide.md` — §4 neutral `ceiling:` intentional-simplification convention.
-- `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker the convention must pass without an allow-list entry.
+- `.skilled/skills/sk-code/shared/references/universal/code-style-guide.md` — §4 neutral `ceiling:` intentional-simplification convention.
+- `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker the convention must pass without an allow-list entry.
 
 ---
 

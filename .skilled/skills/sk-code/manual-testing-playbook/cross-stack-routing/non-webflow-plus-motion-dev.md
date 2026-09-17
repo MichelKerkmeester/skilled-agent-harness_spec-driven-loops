@@ -21,12 +21,12 @@ For a non-Webflow vanilla JS page, which Motion.dev references and snippets shou
 
 **Expected detection markers** (verbatim from `shared/references/stack-detection.md`):
 ```text
-Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor globals, Webflow paths, `wrangler.toml`, `src/2_javascript/`). Bare Motion package imports and generic Motion documentation mentions are MOTION_DEV intent signals after surface selection, not WEBFLOW surface markers. Generic Node.js outside `.opencode/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
+Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor globals, Webflow paths, `wrangler.toml`, `src/2_javascript/`). Bare Motion package imports and generic Motion documentation mentions are MOTION_DEV intent signals after surface selection, not WEBFLOW surface markers. Generic Node.js outside `.skilled/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
 ```
 
 **Expected surface**: `UNKNOWN` or `N/A`
 
-**Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
+**Expected references loaded** (exact relative paths under `.skilled/skills/sk-code/`):
 - `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
@@ -94,10 +94,10 @@ Evidence: `/tmp/skc-CS-002-<cli>.txt` (raw per-runtime transcript) and `results/
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` - Root directory page and scenario summary.
-- `.opencode/skills/sk-code/shared/references/stack-detection.md` - generic-node guard.
-- `.opencode/skills/sk-code/ROUTER.md` - MOTION_DEV signals.
-- `.opencode/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md` - CSS/Motion/WAAPI trade-offs.
-- `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/hover-gesture.js` - Required snippet.
+- `.skilled/skills/sk-code/shared/references/stack-detection.md` - generic-node guard.
+- `.skilled/skills/sk-code/ROUTER.md` - MOTION_DEV signals.
+- `.skilled/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md` - CSS/Motion/WAAPI trade-offs.
+- `.skilled/skills/sk-code/sk-code-webflow/assets/animation/snippets/hover-gesture.js` - Required snippet.
 
 ---
 

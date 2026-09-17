@@ -80,12 +80,12 @@ We've been going back and forth on the model-sheet accent retint for a while now
 
 ### Commands
 
-1. `sed -n '1,20p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md`
+1. `sed -n '1,20p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md`
 2. Dispatch the exact prompt through `cli-claude-code`; capture the resolved surface, intent, and resource
    list.
 3. Dispatch the exact prompt through `cli-opencode`, applying that runtime's stdin-redirection mitigation
    for long inputs if required; capture the resolved surface, intent, and resource list.
-4. `for p in references/verification/verification.md references/verification/verification.md references/verification/skill-reference-integrity.md assets/ds-verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `for p in references/verification/verification.md references/verification/verification.md references/verification/skill-reference-integrity.md assets/ds-verification-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 
