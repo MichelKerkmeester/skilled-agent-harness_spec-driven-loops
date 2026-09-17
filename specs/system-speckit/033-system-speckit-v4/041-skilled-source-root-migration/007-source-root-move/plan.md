@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 7: Source-Root Move"
-description: "Delete the .skilled placeholder, move each top-level .opencode entry with its own verified git mv into one rename-only commit, add the compatibility entries phase 004 chose in a separate commit and hand measured push, link and naming evidence to later phases."
+description: "Delete the .skilled placeholder, move each top-level .opencode entry with its own verified git mv into one commit of exact renames that also adds the .opencode link phase 004 chose, and hand measured push, link and naming evidence to later phases."
 trigger_phrases:
   - "source root move plan"
   - "per entry git mv verification"
@@ -31,7 +31,7 @@ contextType: "implementation"
 
 ### Overview
 
-The phase lands three commits on `worktrees/055-skilled-source-root-migration`, four when the ignore twins are missing. C0 adds `.skilled/` twins of the ignore rules anchored at `.opencode/`, and only runs when no earlier phase added them. C1 deletes the `.skilled/` placeholder. C2 moves the 16 tracked top-level entries, one `git mv` each, every one verified in the index before the next, and commits them together. C3 adds the compatibility entries phase 004 chose. Nothing is pushed, the main checkout never takes the move and the global hooks stay as they are.
+The phase lands two commits on `worktrees/055-skilled-source-root-migration`, three when the ignore twins are missing. C0 adds `.skilled/` twins of the ignore rules anchored at `.opencode/`, and only runs when no earlier phase added them. C1 deletes the `.skilled/` placeholder. C2 moves the 16 tracked top-level entries, one `git mv` each, every one verified in the index before the next, and commits them together with the `.opencode -> .skilled` link phase 004 chose, as its cutover step 11 has it. The operator chose that shape on 2026-09-17 over a separate link commit. Nothing is pushed, the main checkout never takes the move and the global hooks stay as they are.
 
 Paths below use two roots: `WT` is `/Users/michelkerkmeester/worktrees/public/055-skilled-source-root-migration` and `MAIN` is `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.
 <!-- /ANCHOR:summary -->
@@ -42,17 +42,17 @@ Paths below use two roots: `WT` is `/Users/michelkerkmeester/worktrees/public/05
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 004 has frozen the `.opencode/` shape (option A, B or C in §3), its keep-list and the packet's rollback boundary
-- [ ] Phases 003 to 006 print `RESULT: PASSED` from `MAIN`'s `validate.sh --strict`
-- [ ] Phase 005's independent move check exists and passes on the pre-move tree
-- [ ] The index is empty and no tracked file is modified (T003)
-- [ ] `PRE_MOVE_SHA` and the rollback commands in §7 are written into `goal.md`'s log (T007)
+- [x] Phase 004 has frozen the `.opencode/` shape (option A, B or C in §3), its keep-list and the packet's rollback boundary
+- [x] Phases 003 to 006 print `RESULT: PASSED` from `MAIN`'s `validate.sh --strict`
+- [x] Phase 005's independent move check exists and passes on the pre-move tree
+- [x] The index is empty and no tracked file is modified (T003)
+- [x] `PRE_MOVE_SHA` and the rollback commands in §7 are written into `goal.md`'s log (T007)
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met` with observed evidence
-- [ ] C2 prints only `R100` lines, and the path map prints no difference
-- [ ] Handoff notes for phases 008, 010 and 011 are in `goal.md`'s log, and `scratch/` holds no census output
-- [ ] `MAIN`'s `validate.sh --strict` prints `RESULT: PASSED` for this folder
+- [x] Every row in `acceptance-criteria.md` is `Met` with observed evidence
+- [x] C2 prints only `R100` lines apart from the link's `A` line, and the path map prints no difference
+- [x] Handoff notes for phases 008, 010 and 011 are in `goal.md`'s log, and `scratch/` holds no census output
+- [x] `MAIN`'s `validate.sh --strict` prints `RESULT: PASSED` for this folder
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -62,15 +62,15 @@ Paths below use two roots: `WT` is `/Users/michelkerkmeester/worktrees/public/05
 
 ### Pattern
 
-A rename wave with a compatibility layer: one rename-only commit, a preparation commit before it and a compatibility commit after it. That follows the runbook's rule that renames and edits never share a commit (`.opencode/skills/sk-git/references/large-reorg-playbook.md:82-85`).
+A rename wave with a compatibility layer: a preparation commit, then one commit of exact renames that also adds the compatibility link. Adding a link edits no moved file, so the runbook's rule that renames and edits never share a commit still holds (`.opencode/skills/sk-git/references/large-reorg-playbook.md:82-85`).
 
 ### Key Components
 
 - **C0, ignore twins (conditional)**: `.gitignore` holds 56 rules anchored at `.opencode/`, 4 nested-only rules and 2 comments that name it. Without twins, the moved `skills/.state/advisor/skill-graph-generation.json` stops matching `.gitignore:108` and surfaces as an untracked file, and the other anchored rules, such as `.gitignore:79-84` for compiled files under `system-spec-kit/shared/`, stop applying at the new root.
 - **C1, placeholder removal**: a commit of its own because the placeholder is the empty blob, like 10 files under `.opencode/`. In the rename commit, git could pair its deletion with one of those destinations and blur the R-status evidence.
-- **C2, the rename commit**: one `git mv` per top-level entry, each checked in the index, one commit for all of them.
-- **C3, compatibility entries**: 004's shape, staged by explicit path.
-- **Census units**: read-only commands run by DeepSeek V4.1 Flash max on cli-pi, outputs in `scratch/`, each re-checked by the orchestrator (§ Delegation).
+- **C2, the rename commit**: one `git mv` per top-level entry, each checked in the index, one commit for all of them and the link.
+- **The link**: 004's shape, `.opencode -> .skilled`, staged by explicit path into C2 once the renames are verified.
+- **Census units**: read-only commands run by DeepSeek V4.1 Flash on the parent's lanes, outputs in `scratch/`, each re-checked by the orchestrator (§ Delegation).
 
 ### Commit Strategy: One Rename Commit
 
@@ -83,7 +83,7 @@ The decision is one rename commit, not one per top-level entry.
 
 ### Compatibility Shape by Phase 004 Option
 
-Phase 004 had not frozen the shape when this plan was written, so each option carries its own steps. T001 records which one applies.
+Phase 004 had not frozen the shape when this plan was written, so each option carries its own steps. Phase 004 then froze option A, and T001 recorded it.
 
 | Step | Option A: single link | Option B: link farm | Option C: runtime-only namespace |
 |------|----------------------|---------------------|----------------------------------|
@@ -91,9 +91,9 @@ Phase 004 had not frozen the shape when this plan was written, so each option ca
 | Excluded from the move | Nothing | Nothing | Entries 004 keeps as real files |
 | Before C2, on disk | `find .opencode -mindepth 1 -maxdepth 1` prints nothing after T031, then `rmdir .opencode && ln -s .skilled .opencode` | `ln -s ../.skilled/E .opencode/E` for each entry | Links for kept link entries only |
 | `.opencode/node_modules` | Relocates to `.skilled/node_modules` | Stays or relocates by phase 003's plugin-loading probe | Stays with the kept `package.json` if 004 keeps it |
-| Staged for C3 | `git add -- .opencode` | `git add -- .opencode/E` per entry | `git add -- .opencode/E` per kept link |
-| Expected C3 status | One `A` line, mode `120000` | One `A` line per entry, all mode `120000` | One `A` line per kept link |
-| Expected dangling links after C3 | The pre-move 8: 4 inside the tree, now at `.skilled/` paths, and 4 in past-run records under `specs/` | Same as A | The pre-move 8 plus every external link that resolves through a dropped entry. External links per entry at authoring: `commands` 66, `skills` 61, `hooks` 27, `bin` 15, `scripts` 4 and `agents` 1 (`../002-per-runtime-reference-map/research/maps/map-a-symlinks.tsv`). Phase 008 receives the resulting list |
+| Staged with the renames | `git add -- .opencode` | `git add -- .opencode/E` per entry | `git add -- .opencode/E` per kept link |
+| Expected link lines in C2 | One `A` line, mode `120000` | One `A` line per entry, all mode `120000` | One `A` line per kept link |
+| Expected dangling links after C2 | The pre-move 8: 4 inside the tree, now at `.skilled/` paths, and 4 in past-run records under `specs/` | Same as A | The pre-move 8 plus every external link that resolves through a dropped entry. External links per entry at authoring: `commands` 66, `skills` 61, `hooks` 27, `bin` 15, `scripts` 4 and `agents` 1 (`../002-per-runtime-reference-map/research/maps/map-a-symlinks.tsv`). Phase 008 receives the resulting list |
 | Staging beyond the link | Expected to be refused for `.opencode/...` paths. T046 records it for phase 009 | Same as A | Only for paths under kept links |
 | Hook and guard lookups | Resolve two hops through the link | Same as A | If `scripts/` is dropped, `pre-push` stops sourcing the deletion guard and fails open (`.opencode/scripts/git-hooks/pre-push:34-47`), and the global hooks dangle once the main checkout takes the move |
 
@@ -106,11 +106,11 @@ The placeholder's own name records the operator's original intent, a move with a
 - At authoring, `MAIN`'s `pre-commit` mentions `skilled` zero times. Whether phase 005's changes reach `MAIN`'s hook bodies before this phase runs is unknown, so T014 records it and the independent check in T034 is the evidence, not a green hook.
 - A block from any gate halts the phase and the fix goes to 005 or 006. The documented bypass variables are not used.
 - `install-git-hooks.sh` builds its source path from `$REPO_ROOT/.opencode/scripts/git-hooks` and links into `git rev-parse --git-path hooks` (`.opencode/scripts/install-git-hooks.sh:30-31`, `:145`), which is the global hooks path here. Run from `WT`, it would point every repository's hooks at worktree 055. It never runs in this phase.
-- **Coordination with phase 010.** Phase 010 reinstalls the hooks, and the event it has to precede is `MAIN` taking C2. Under options A and B the absolute links still resolve afterwards, through `.opencode`. Under option C they dangle unless `scripts/` is kept. What git does with a dangling hook is still open (`../001-deep-research/research/research.md:164`). This phase hands 010 the observed hook output of C2 and C3 and the `readlink` record from T007.
+- **Coordination with phase 010.** Phase 010 reinstalls the hooks, and the event it has to precede is `MAIN` taking C2. Under options A and B the absolute links still resolve afterwards, through `.opencode`. Under option C they dangle unless `scripts/` is kept. What git does with a dangling hook is still open (`../001-deep-research/research/research.md:164`). This phase hands 010 the observed hook output of C1 and C2 and the `readlink` record from T007.
 
 ### Data Flow
 
-`C1_SHA:.opencode` is the source of truth. The index after the per-entry moves must equal it with the prefix rewritten, and C2 freezes that index. C3 adds the compatibility entries on top. Every census reads trees and the working tree and writes only to `scratch/`.
+`C1_SHA:.opencode` is the source of truth. The index after the per-entry moves must equal it with the prefix rewritten, and C2 freezes that index. C2 also adds the link. Every census reads trees and the working tree and writes only to `scratch/`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -120,12 +120,12 @@ The placeholder's own name records the operator's original intent, a move with a
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/**`, 17,767 tracked files | The authored tree, and the root sentinel `.opencode/skills/system-spec-kit/SKILL.md` (`.opencode/skills/system-spec-kit/shared/workspace/repo-root.mjs:27`) | Moved in C2 | AC-002, AC-003 |
+| `.opencode/**`, 17,773 tracked files | The authored tree, and the root sentinel `.opencode/skills/system-spec-kit/SKILL.md` (`.opencode/skills/system-spec-kit/shared/workspace/repo-root.mjs:27`) | Moved in C2 | AC-002, AC-003 |
 | `.skilled/` placeholder | Marks the move as future work | Deleted in C1 | AC-001 |
-| `.opencode` compatibility entries | Absent today | Created in C3 by option | AC-004 |
+| `.opencode` link | Absent before the move | Created in C2 under option A | AC-004 |
 | 56 anchored `.gitignore` rules | Ignore runtime state and build output at `.opencode/` | Twinned for `.skilled/` in C0 when missing | T013, `git check-ignore -v --no-index` |
 | 208 links inside `.opencode/` | 203 need no change, 4 already dangle, `specs` depends on layout (`../002-per-runtime-reference-map/research/research.md:20`, `:60`) | Moved unchanged | T041 |
-| 174 links into `.opencode/` from runtime directories and `specs/` | Consumers of the tree | Unchanged, resolve through C3 | T041 |
+| 174 links into `.opencode/` from runtime directories and `specs/` | Consumers of the tree | Unchanged, resolve through the link in C2 | T041 |
 | Seven global hooks | Run on every commit, bodies from `MAIN` | Unchanged | T045 |
 | Pre-push deletion ceiling | Blocks a range that deletes more than 100 tracked files | Not triggered in this phase, measured for 011 | T042 |
 | CI naming guard | Reports newly introduced snake_case names on push to `skilled/v*` | Not triggered in this phase, previewed for 011 | T043 |
@@ -155,7 +155,7 @@ Task state lives in `tasks.md`. The steps below give the commands and the expect
 6. **No open files (T006).** `lsof -nP | grep -F "$WT/.opencode/"` prints nothing. A daemon holding a database under the tree would keep writing to a path that no longer exists.
 7. **Rollback record (T007).** Write `PRE_MOVE_SHA=$(git rev-parse HEAD)`, the §7 commands and `readlink ~/.config/git/hooks/*` into `goal.md`'s log.
 8. **Snapshot (T008).** Copy `skills/system-skill-advisor/runtime/database/skill-graph.sqlite`, `skill-graph-daemon-lease.sqlite` and `skills/.state/advisor/skill-graph-generation.json` to a dated directory outside the repository. `git reset` cannot restore an ignored file (`.opencode/skills/sk-git/feature-catalog/workflow-playbooks/large-reorg-playbook.md:32`).
-9. **Baseline census (T009 to T011).** Expected at authoring: 17,767 tracked files in 16 entries, 208 links (159 crossing entries, 48 inside one, 1 outside), 4 dangling links inside `.opencode/` and 4 more in past-run records under `specs/`, 12 ignored entries, 10 empty-blob files.
+9. **Baseline census (T009 to T011).** Expected at authoring: 17,767 tracked files in 16 entries, 208 links (159 crossing entries, 48 inside one, 1 outside), 4 dangling links inside `.opencode/` and 4 more in past-run records under `specs/`, 12 ignored entries, 10 empty-blob files. Measured at `048d16d725`: 17,773 files and 18 ignored entries, the rest as at authoring.
 10. **Placeholder only (T012).** `git ls-files .skilled` prints one path, and `find .skilled -mindepth 1` prints that path and its directory.
 11. **Ignore coverage (T013).** For each ignored entry from the census, `git check-ignore -v --no-index <old path>` names the rule that ignores it today. A root `.gitignore` rule anchored at `.opencode/` needs a twin and schedules C0. A nested `.gitignore` inside the tree moves with it, and an unanchored rule such as `**/node_modules` (`.gitignore:44`) or `dist/` (`.gitignore:51`) applies unchanged. At authoring only the `.state` file depends on an anchored rule (`.gitignore:108`).
 12. **Hook bodies (T014).** `grep -c skilled "$MAIN/.opencode/scripts/git-hooks/pre-commit"` is recorded. It prints 0 at authoring.
@@ -182,10 +182,10 @@ move_entry() {
 
 | Order | Entry | Kind | Tracked files | Links out to other entries | External links in |
 |-------|-------|------|---------------|----------------------------|-------------------|
-| 1 | `skills` | directory | 17,182 | 2 | 61 |
+| 1 | `skills` | directory | 17,185 | 2 | 61 |
 | 2 | `hooks` | directory | 179 | 101 | 27 |
 | 3 | `commands` | directory | 162 | 0 | 66 |
-| 4 | `bin` | directory | 95 | 0 | 15 |
+| 4 | `bin` | directory | 98 | 0 | 15 |
 | 5 | `changelog` | directory | 49 | 49 | 0 |
 | 6 | `plugins` | directory | 41 | 1 | 0 |
 | 7 | `scripts` | directory | 30 | 0 | 4 |
@@ -198,11 +198,11 @@ move_entry() {
 A non-zero return stops the sequence at that entry. Under option C, kept entries are skipped.
 
 5. **Whole-index gate (T029).** `git diff --cached -M --name-status | cut -f1 | sort | uniq -c` prints one line, `R100` with the moved count. `git diff --cached --name-only | grep -c '^specs/'` prints 0. `git ls-files -- .opencode | wc -l` prints 0, or the kept count under option C.
-6. **Ignored trees (T030 to T032).** `git ls-files --others --ignored --exclude-standard --directory -- .opencode .skilled` shows where each of the 12 entries now sits. Dependency trees and local state left at an old path move with a plain `mv` to the same relative path under `.skilled/`. `.opencode/node_modules` came from npm (`.opencode/node_modules/.package-lock.json` exists next to `.opencode/package-lock.json`), so each dependency tree is proven with `npm ls --depth=0` in its directory, with `npm ci` as the fallback. Build output is rebuilt rather than trusted: `npm run build` in `.skilled/skills/system-spec-kit` (`.opencode/skills/system-spec-kit/package.json:15`) and in `.skilled/skills/system-skill-advisor/runtime` (`.opencode/skills/system-skill-advisor/runtime/package.json:8`). Every tool runs by its `.skilled/` path, because an entry point reached through a link can exit 0 having done nothing (`.opencode/skills/sk-git/references/worktree-workflows.md:537-539`). Afterwards `git status --porcelain --untracked-files=all -- .skilled .opencode` prints nothing.
+6. **Ignored trees (T030 to T032).** `git ls-files --others --ignored --exclude-standard --directory -- .opencode .skilled` shows where each of the 18 entries now sits. Dependency trees and local state left at an old path move with a plain `mv` to the same relative path under `.skilled/`. `.opencode/node_modules` came from npm (`.opencode/node_modules/.package-lock.json` exists next to `.opencode/package-lock.json`), so each dependency tree is proven with `npm ls --depth=0` in its directory, with `npm ci` as the fallback. Build output is rebuilt rather than trusted: `npm run build` in `.skilled/skills/system-spec-kit` (`.opencode/skills/system-spec-kit/package.json:15`) and in `.skilled/skills/system-skill-advisor/runtime` (`.opencode/skills/system-skill-advisor/runtime/package.json:8`). Every tool runs by its `.skilled/` path, because an entry point reached through a link can exit 0 having done nothing (`.opencode/skills/sk-git/references/worktree-workflows.md:537-539`). Afterwards `git status --porcelain --untracked-files=all -- .skilled .opencode` prints nothing.
 7. **Compatibility shape on disk (T033).** Build the option's shape from §3 without staging it. Under A and B, `test -f .opencode/skills/system-spec-kit/SKILL.md` exits 0.
 8. **Independent check (T034).** Run 005's move check on the working tree and record output and exit status.
-9. **C2 (T035).** Re-read `git diff --cached --name-status`, then commit with `SPECKIT_AUTOSYNC=0` and stderr captured to `scratch/commit-c2-hooks.txt`. Subject `refactor(source-root): move the authored asset tree from .opencode to .skilled`. `commit-msg` wants a body once four or more paths are staged (`.opencode/scripts/git-hooks/commit-msg:232-244`), so the body states the entry count, the file count and that every change is an exact rename. Record exit status, `C2_SHA` and whether `git log -1 --format=%B` carries a `Commit-Id:` trailer. A block halts the phase.
-10. **C3 (T036).** Stage the compatibility entries by explicit path. `git diff --cached --name-status` prints only the expected `A` lines, `git ls-files -s -- .opencode` shows mode `120000` for every link and `git check-ignore -v --no-index` matches none of them. The global excludes file ignores `/.opencode/` as a directory (`~/.gitignore_global:16`), and a link is not a directory to git, which this check confirms. Commit with subject `refactor(source-root): keep .opencode resolvable after the move`, send stderr to `scratch/commit-c3-hooks.txt` and record `C3_SHA`.
+9. **C2 (T035).** Stage the link by explicit path with `git add -- .opencode`. `git diff --cached -M --name-status` then prints 17,773 `R100` lines and one `A` line, `git ls-files -s -- .opencode` shows mode `120000` and `git check-ignore -v --no-index` matches nothing. The global excludes file ignores `/.opencode/` as a directory (`~/.gitignore_global:16`), and a link is not a directory to git, which this check confirms. Commit with `SPECKIT_AUTOSYNC=0` and stderr captured to `scratch/commit-c2-hooks.txt`. Subject `refactor(source-root): move the authored asset tree from .opencode to .skilled`. `commit-msg` wants a body once four or more paths are staged (`.opencode/scripts/git-hooks/commit-msg:232-244`), so the body states the entry count, the file count, that every change is an exact rename and that the link keeps old paths resolving. Record exit status, `C2_SHA` and whether `git log -1 --format=%B` carries a `Commit-Id:` trailer. A block halts the phase.
+10. **No C3 (T036).** The operator's single-commit choice on 2026-09-17 folded the link commit into C2.
 
 ### Phase 3: Verification and handoff
 
@@ -210,7 +210,7 @@ A non-zero return stops the sequence at that entry. Under option C, kept entries
 2. **Unit verification (T044).** The orchestrator recomputes one headline number per unit and rejects a unit whose number differs.
 3. **Untouched surfaces (T045).** After `git fetch origin`, `git branch -r --contains "$C2_SHA"` prints nothing, `git -C "$MAIN" merge-base --is-ancestor "$C2_SHA" HEAD` exits 1 and `readlink ~/.config/git/hooks/*` matches the T007 record.
 4. **Staging beyond a link (T046).** Under A or B, record whether `git add --dry-run -- .opencode/skills/sk-git/SKILL.md` is refused. Phase 009 needs this for every tool that stages `.opencode/...` paths.
-5. **Handoff (T047).** Copy evidence into `goal.md`'s log and the acceptance rows. Write notes for 008 (link census, dangling set), 010 (hook output of C2 and C3, the `readlink` record, whether `MAIN`'s bodies carry 005's changes) and 011 (deletion count, naming preview, bypass rule). Remove `scratch/` outputs.
+5. **Handoff (T047).** Copy evidence into `goal.md`'s log and the acceptance rows. Write notes for 008 (link census, dangling set), 010 (hook output of C1 and C2, the `readlink` record, whether `MAIN`'s bodies carry 005's changes) and 011 (deletion count, naming preview, bypass rule). Remove `scratch/` outputs.
 6. **Metadata and validation (T048).** `node "$MAIN/.opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs" --folder <this folder> --apply`, then `bash "$MAIN/.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh" <this folder> --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phases -->
 
@@ -236,7 +236,7 @@ No push happens in this phase. Phase 011 publishes, and this section is what it 
 
 ### What This Phase's Commits Will Count
 
-C1 to C3 on their own are expected to count 1 deletion, the placeholder. The endpoint diff holds 11 empty-blob deletions (the placeholder and 10 files under `.opencode/`) against 10 empty-blob additions under `.skilled/`, so exactly one stays unpaired whichever way git pairs them. Git does pair empty files: `git diff -M --raw --no-abbrev` on `11471df9b1` reports 66 empty-blob renames as `R100`. T042 records the real number with the guard's own command.
+C1 and C2 on their own are expected to count 1 deletion, the placeholder. The endpoint diff holds 11 empty-blob deletions (the placeholder and 10 files under `.opencode/`) against 10 empty-blob additions under `.skilled/`, so exactly one stays unpaired whichever way git pairs them. Git does pair empty files: `git diff -M --raw --no-abbrev` on `11471df9b1` reports 66 empty-blob renames as `R100`. T042 records the real number with the guard's own command.
 
 ### The Hazard
 
@@ -253,7 +253,7 @@ A push whose range joins C2 with phase 008 or 009 edits is compared endpoint to 
 
 - The skill-root metadata gate warns locally and CI enforces it on `main` and `skilled/v*` (`pre-push:208-231`).
 - The compiled-routing guard blocks, and its commit-parity pathspecs name `.opencode/...` (`pre-push:250-307`).
-- CI's naming guard compares rename destinations against every path at the base (`.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py:142-177`, `:267-284`) on push to `skilled/v*` (`.github/workflows/naming-standard-guard.yml:3-7`, `:45-46`). Run with the guard's own functions over the 17,767 paths, it will report four grandfathered names as new: `commands/prompt/assets/prompt_improve_auto.yaml`, `prompt_improve_confirm.yaml`, `prompt_improve_presentation.txt` and `skills/system-spec-kit/runtime/cli/tests/fixtures/grep-convention/naming-exception/Spec_Draft.md`. Phase 005 owns the answer before 011 pushes.
+- CI's naming guard compares rename destinations against every path at the base (`.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py:142-177`, `:267-284`) on push to `skilled/v*` (`.github/workflows/naming-standard-guard.yml:3-7`, `:45-46`). Run at authoring with the guard's own functions over the 17,767 paths then tracked, it reported four grandfathered names as new: `commands/prompt/assets/prompt_improve_auto.yaml`, `prompt_improve_confirm.yaml`, `prompt_improve_presentation.txt` and `skills/system-spec-kit/runtime/cli/tests/fixtures/grep-convention/naming-exception/Spec_Draft.md`. Phase 005 owned the answer and gave it: a rename that keeps its basename passes, and the preview at `ec33385ae5` reports no offender.
 <!-- /ANCHOR:push-strategy -->
 
 ---
@@ -265,7 +265,7 @@ A push whose range joins C2 with phase 008 or 009 edits is compared endpoint to 
 |-----------|-------|-------|
 | Integrity | Mode, blob id and path per entry before C2, whole tree after C2 | `git ls-tree --format`, `git ls-files --format`, `diff` |
 | Rename detection | R-status census of C2, one `--follow` sample per moved entry | `git show -M --name-status`, `git log --follow` |
-| Integration | Root sentinel, 174 external links, 005's independent check, hooks on C2 and C3 | Python link census, 005's check, hook stderr |
+| Integration | Root sentinel, 174 external links, 005's independent check, hooks on C1 and C2 | Python link census, 005's check, hook stderr |
 | Gate preview | Deletion count, naming offenders | The guard's own commands |
 | Documentation | This folder | `MAIN`'s `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
@@ -277,11 +277,11 @@ A push whose range joins C2 with phase 008 or 009 edits is compared endpoint to 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 004 layout decision, keep-list and rollback boundary | Internal | Red: scaffold at authoring | No compatibility branch, T001 halts |
-| Phase 005 independent check and hook changes | Internal | Red: scaffold at authoring | T034 cannot run and green hooks prove nothing |
-| Phase 006 dual-root suites | Internal | Red: scaffold at authoring | Mirror checks can block C2 |
-| Phase 003 probes on linked plugin directories and dangling hooks | Internal | Red: scaffold at authoring | Option B's `.opencode/node_modules` placement is open |
-| cli-pi with `llmgateway/deepseek-v4.1-flash` | External | Yellow: live-verified 2026-09-10 (`.opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:113`) | The orchestrator runs the census commands itself and logs the deviation |
+| Phase 004 layout decision, keep-list and rollback boundary | Internal | Green: option A (L1) frozen, no entry kept in place | No compatibility branch, T001 halts |
+| Phase 005 independent check and hook changes | Internal | Green: the gate-input check passes, and the main checkout's `pre-commit` names `skilled` 16 times | T034 cannot run and green hooks prove nothing |
+| Phase 006 dual-root suites | Internal | Green: validated PASSED and published at `dadf2d19dd` | Mirror checks can block C2 |
+| Phase 003 probes on linked plugin directories and dangling hooks | Internal | Green: validated PASSED, dangling hooks are skipped silently and plugins load through the whole-directory link | Option B's `.opencode/node_modules` placement is open |
+| cli-pi with `llmgateway/deepseek-v4.1-flash` | External | Green: seven units returned on 2026-09-17, first live-verified 2026-09-10 (`.opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:113`) | The orchestrator runs the census commands itself and logs the deviation |
 | `MAIN`'s toolchain | Internal | Green | Validation and metadata regeneration |
 <!-- /ANCHOR:dependencies -->
 
@@ -297,8 +297,8 @@ A push whose range joins C2 with phase 008 or 009 edits is compared endpoint to 
 |-------|-------|----------|
 | R0 | Before C1 | Nothing to undo |
 | R1 | Entries moved in the index, C2 not committed | Remove the unstaged compatibility shape (`rm .opencode` under A, the entry links under B and C), `git reset --hard "$C1_SHA"`, move travelled ignored trees back to `.opencode/` or rebuild them there, restore T008's snapshots if a database changed |
-| R2 | C2 or C3 committed, nothing shared | `git reset --hard "$PRE_MOVE_SHA"` on the worktree branch, then the same ignored-tree handling. The reflog keeps the phase commits reachable |
-| R3 | A commit containing C2 is shared | `git revert --no-edit "$C3_SHA" "$C2_SHA" "$C1_SHA"`, plus C0 when it exists, newest first, pushed through the same ceiling. The revert of C2 is exact renames again |
+| R2 | C2 committed, nothing shared | `git reset --hard "$PRE_MOVE_SHA"` on the worktree branch, then the same ignored-tree handling. The reflog keeps the phase commits reachable |
+| R3 | A commit containing C2 is shared | `git revert --no-edit "$C2_SHA" "$C1_SHA"`, newest first, pushed through the same ceiling. The revert of C2 is exact renames again plus the link's removal |
 
 - **Point of no return**: the first time a commit containing C2 reaches a shared ref, meaning a push to origin or `MAIN` taking it by merge, fast-forward or pull. Before it, rollback leaves no trace. After it, rollback is a public revert. Once phase 010 has pointed the global hooks and home configs at `.skilled/`, reverting the tree alone breaks them again, so from there rollback starts with 010's recorded rollback, and the packet-wide boundary is phase 004's to name.
 <!-- /ANCHOR:rollback -->
@@ -308,7 +308,7 @@ A push whose range joins C2 with phase 008 or 009 edits is compared endpoint to 
 <!-- ANCHOR:delegation -->
 ## DELEGATION
 
-Parent decision D3 (`../goal.md:48`) splits the work. The move is ordering-critical and hard to undo once shared, so the orchestrator runs every state change itself. DeepSeek V4.1 Flash max on cli-pi through the LLM Gateway runs bounded read-only units.
+Parent decision D3 (`../goal.md:48`) splits the work. The move is ordering-critical and hard to undo once shared, so the orchestrator runs every state change itself. DeepSeek V4.1 Flash runs bounded read-only units on the parent's parallel lanes: Pi through the LLM Gateway at `--thinking max`, Pi through Cline at `--thinking xhigh` and Devin at its max tier.
 
 **Orchestrator only**: every `git mv`, `git rm`, `git add`, `git commit`, `git reset`, `git revert`, plain `mv`, `ln`, `rmdir` and `npm` command, the compatibility shape, and tasks T001 to T009, T011 to T036 and T044 to T048.
 
@@ -327,10 +327,10 @@ Parent decision D3 (`../goal.md:48`) splits the work. The move is ordering-criti
 
 **Dispatch rules**:
 - Read `cli-pi/SKILL.md` before the first brief (T009).
-- Dispatch from `MAIN`, whose `.pi/` links do not depend on the moved tree, with `git -C "$WT"` in every command.
+- Dispatch with absolute paths in every command and the Pi agent directory outside the repository. The units ran from `WT` after C2, where `.pi/` resolves through the `.opencode` link.
 - Model `llmgateway/deepseek-v4.1-flash` at `--thinking max` (`.opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:103`, `:113`), print mode with `--offline` and stdin from `/dev/null` (`.opencode/skills/cli-external-orchestration/cli-pi/SKILL.md:189-195`), `AI_SESSION_CHILD=1` plus the child preamble (`SKILL.md:217`), and `GIT_OPTIONAL_LOCKS=0` so a status read never takes the index lock.
-- One unit at a time, never while the orchestrator stages or commits.
-- Brief shape, five lines at most: the literal commands, the kebab-case output path, "read-only, write nothing else" and "print DONE and the output's line count".
+- Units run in parallel, two per lane, only after C2 is committed and never while the orchestrator stages or commits. The runner compares HEAD, the index and `git status` before and after. Devin's `accept-edits` mode prompts for shell commands, so a Devin unit reads files only.
+- Brief shape, five lines at most: the literal commands, the kebab-case output path, "read-only, write nothing else" and "print DONE and the output's first line".
 - A unit that writes anywhere else, or whose number the orchestrator cannot reproduce, is discarded and run by the orchestrator, and the log records why.
 <!-- /ANCHOR:delegation -->
 
@@ -347,7 +347,7 @@ Phase 1 (Pre-move checks) --> Phase 2 (Move and compatibility shape) --> Phase 3
 |-------|------------|--------|
 | Pre-move checks | Phases 003 to 006 validated, 004's decision frozen | Move and compatibility shape |
 | Move and compatibility shape | Pre-move checks, rollback record written | Verification and handoff |
-| Verification and handoff | C2 and C3 committed | Phase 008 |
+| Verification and handoff | C1 and C2 committed | Phase 008 |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -369,14 +369,14 @@ Phase 1 (Pre-move checks) --> Phase 2 (Move and compatibility shape) --> Phase 3
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] `PRE_MOVE_SHA` and the R1 to R3 commands are in `goal.md`'s log (T007)
-- [ ] The ignored databases and state file are snapshotted outside the repository (T008)
-- [ ] Autosync is off in the executing shell (T004)
+- [x] `PRE_MOVE_SHA` and the R1 to R3 commands are in `goal.md`'s log (T007)
+- [x] The ignored databases and state file are snapshotted outside the repository (T008)
+- [x] Autosync is off in the executing shell (T004)
 
 ### Rollback Procedure
 1. Stop at the failing step and record its output and exit status in `goal.md`'s log.
 2. Find the point reached (R0 to R3 in §7) and run that row's commands.
-3. Verify the rollback: `git ls-files .opencode | wc -l` prints 17,767 (or the integrated base's count), `git ls-files .skilled` prints the placeholder unless C1 stays and `test -f .opencode/skills/system-spec-kit/SKILL.md` exits 0.
+3. Verify the rollback: `git ls-files .opencode | wc -l` prints 17,773 (or the integrated base's count), `git ls-files .skilled` prints the placeholder unless C1 stays and `test -f .opencode/skills/system-spec-kit/SKILL.md` exits 0.
 4. Re-run the ignored-entry census from T010 and restore or rebuild any entry that differs.
 
 ### Data Reversal
