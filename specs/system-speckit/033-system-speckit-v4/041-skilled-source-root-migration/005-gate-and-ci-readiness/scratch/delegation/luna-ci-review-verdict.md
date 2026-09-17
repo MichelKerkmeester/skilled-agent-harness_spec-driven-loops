@@ -1,0 +1,14 @@
+# Verdict on the GPT-5.6 Luna review of the CI changes
+
+The reviewer was GPT-5.6 Luna at `xhigh` on the fast tier through cli-codex, in a read-only sandbox, from 2026-09-17 05:27Z to 05:35Z. A worktree fingerprint before and after matched apart from the return file. This is the phase's required contract review of the independent check, the fail-closed steps and the drill (T031 and T034).
+
+The reviewer judged the check not ready and raised three P1 findings and one P2 finding. The orchestrator reproduced each one with a fixture run against the committed check before changing anything.
+
+| ID | Checked by | Verdict | Disposition |
+|----|------------|---------|-------------|
+| F-001 | A step running `node --import ./.opencode/skills/gone/node_modules/tsx/dist/loader.mjs`, and another running `.opencode/skills/gone/runtime/dist/cli.js`, each printed `RESULT: PASSED` | Confirmed in part. A checkout never holds installed or built output, so resolving the whole path would fail every run, but the check also skipped the directory that produces it | Fixed in `c58a37b8d8`: that directory must exist. Case 13 in `51f90025c4` failed against the earlier check |
+| F-002 | The legacy helper with `CHECKER=".opencode/bin/gone.sh"` and one resolving `$REPO_ROOT` input printed `RESULT: PASSED` | Confirmed | Fixed in `c58a37b8d8`: a variable assigned a literal `.opencode/` path, quoted or not, resolves as a hook input. Case 14 failed against the earlier check. On the tree the helper's checker path now resolves |
+| F-003 | A hook pathspec and a workflow filter whose twins sat only in comments each printed `RESULT: PASSED`, and so did a filter whose twin sat only in another event's filter. On a copy of the real `pre-push`, moving the `:149` twin into a comment also passed | Confirmed, and wider than reported | Fixed in `c58a37b8d8`: a twin must sit in the same workflow filter, dependabot update entry, hook array or hook command, joined over continuation lines. Cases 15 to 17 failed against the earlier check. Removing a real twin from the continuation block at `pre-commit:308` or the array at `:360` still fails, and the unchanged tree keeps its 167 twin pairs |
+| F-004 | A step running `echo "See .opencode/docs/not-a-gate.md"` failed `workflow-inputs` | Confirmed | Fixed in `c58a37b8d8`: workflow `echo` and `printf` lines are messages, as the hook parser already treated them. Case 18 failed against the earlier check. The two informational lines at `changed-packet-validation.yml:154` and `comment-hygiene.yml:43` no longer count, so the tree reports 136 resolved inputs where it reported 137 |
+
+After the fix the fixture suite passes 18 of 18 under `/bin/bash` 3.2.57, the check prints `RESULT: PASSED` on the tree, and an always-pass stub fails 14 of the 18 cases. The runner's awk is untested locally, because only BWK awk is installed here, so CI on the pushed tip is the first gawk run. GPT-5.6 Luna reviews the fix in `luna-fix-review`.

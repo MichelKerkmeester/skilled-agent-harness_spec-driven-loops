@@ -9,12 +9,12 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness"
-    last_updated_at: "2026-09-17T00:30:00Z"
+    last_updated_at: "2026-09-17T06:20:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Implemented and verified every unit locally; the five contract reviews wait for Codex quota"
-    next_safe_action: "Run the contract reviews, then publish"
+    recent_action: "Fixed the Luna CI findings and the agent mirror checker, and their review is running"
+    next_safe_action: "Close the fix review, validate, then publish per phase 004 step 5"
     blockers:
-      - "GPT-5.6 Luna contract reviews pending"
+      - "GPT-5.6 Luna review of the fixes pending"
     key_files:
       - "plan.md"
       - "tasks.md"
@@ -48,7 +48,7 @@ Frozen. Changing one is an amendment.
 | D1 | Gate scripts keep literal `.opencode/` paths that resolve through phase 004's tracked link. Each gate file defines `_in_toolchain_repo` to decide whether a missing script is loud. Amended under L1 on 2026-09-16 after a GPT-5.6 scope review, replacing the copied two-root block |
 | D2 | Where the spec-kit sentinel resolves under either root, a missing gate script never passes: blocking gates block and name the path, and gates that cannot block warn. Any other repository sees no change. |
 | D3 | DeepSeek V4.1 Flash max on cli-pi through the LLM Gateway makes the literal edits, one workflow or hook section per brief, suite-verified before the next. The block, the missing-script rule, the fail-closed workflows, the check and the drill are drafted by the orchestrator or DeepSeek, reviewed by GPT-5.6 Luna at xhigh on the fast tier through cli-codex and verified by the orchestrator. Amended 2026-09-17 by the operator: GPT-5.6 Luna xhigh fast replaced GPT-5.6 sol after Codex quota returned, and SWE-2, tried in between, is no longer used |
-| D4 | The scripts the gates call and the human-facing text naming `.opencode` stay as they are in this phase. Phase 006 teaches those scripts and phase 009 rewrites that text. |
+| D4 | The scripts the gates call and the human-facing text naming `.opencode` stay as they are in this phase. Phase 006 teaches those scripts and phase 009 rewrites that text. The one exception is the agent mirror checker's path pattern, which this phase fixes. Amended 2026-09-17 by the operator |
 
 ### Operator copy
 
@@ -104,7 +104,15 @@ Everything below is VOLATILE.
 | T026 and T032, READMEs | Committed `0e60909b2e`, `452cc9b6dc` | Byte-matched, and `validate_document.py` reports 0 issues on each of the three |
 | Mass-deletion harness scrub | Committed `27dd545510` | Found by CHK-FIX-006: under a caller with `GIT_DIR` set the harness failed 4 of 12, and after the scrub it passes 12 of 12 with and without that caller |
 | T035 to T041 verification | Observed 2026-09-17 | Every harness passes plain, under a hostile caller and with spaced temporary paths. Other repositories: every hook exits 0 in a clean repository and one with a dangling `.opencode` link. Comment hygiene 0 violations, naming guard `PASS:` since `7085ec3290`, 20 workflows parse, no-op pre-commit median 546 ms against 559 ms |
-| T012, T031, T034, T047 reviews and T042 publish | Blocked | All wait for Codex quota, back on 2026-09-19 at 10:29, or an approved substitute reviewer |
+| T025, T031, T034 and T047 reviews | Done 2026-09-17 | GPT-5.6 Luna at xhigh on the fast tier, read-only, each followed by a matching worktree fingerprint. Hook rules: sound, F1 fixed by T050 and T051, F2 answered. CI changes: four findings, each reproduced by a fixture and fixed by T049, which leaves T012 open until its fixes are reviewed. Naming guard: no finding. Verdicts in `scratch/delegation/luna-*-verdict.md` |
+| T049, the CI review's fixes | Committed `51f90025c4`, `c58a37b8d8` | DeepSeek byte-matched both units, each confined to its file, the check's 13 edits arriving in 7 tool calls. The six new cases failed against the committed check, and an always-pass stub fails 14 of the 18. Afterwards the suite passes 18 of 18 and the tree reports 136 inputs, 8 dynamic and 167 twin pairs. On a copy of the real hooks, removing a twin from the continuation block at `pre-commit:308` or the array at `:360` fails under both checks, and moving the `pre-push:149` twin into a comment now fails where it passed |
+| T050 and T051, the agent mirror checker | Committed `ad6d47b2aa`, `4ff3b14bac` | Both new cases failed against the committed checker, one on "no agent files to check" and one on exit 0, and pass after the fix. DeepSeek byte-matched all three units. The write tool dropped the new suite's final newline, which the orchestrator appended. The deep-improvement suite passes 393 of 394, with the one failure it had before, and the tests index validates with 0 issues |
+| Suites and drill from `4ff3b14bac` | Observed under `/bin/bash` 3.2.57 | autostash-orphan-guard 9, commit-msg 17, mass-deletion-guard 12, pre-commit 49, pre-push 32, prepare-commit-msg 56, `check-git-hooks.test.sh` 4 and `check-gate-inputs.test.sh` 18, all passing. The drill passes 48 of 48 in 44 s |
+| T052, review of the fixes | Done 2026-09-17 06:06Z to 06:18Z | GPT-5.6 Luna raised five P1 and three P2 findings. Seven check findings were each turned into a fixture case that failed against `c58a37b8d8`, and the checker's README count was answered as older than this phase (`luna-fix-review-verdict.md`) |
+| T053, the second round of check fixes | Committed `057c3664c0`, `a220c9b904` | DeepSeek byte-matched both units. The write tool dropped the rewritten check's final newline, which the orchestrator appended, and the executable bit held. Nine new cases and a reworked parser-miss case failed against the committed check. The suite passes 27 of 27, the tree keeps 136 inputs, 8 dynamic and 167 twin pairs with every root-naming line read, and nine of ten probe shapes behave as intended. The tenth, a `case` pattern listing both roots split by `\|`, fails loudly as a false positive, and no gate file uses that shape |
+| Suites and drill from `a220c9b904` | Observed under `/bin/bash` 3.2.57 | The six hook harnesses pass 175, `check-git-hooks.test.sh` 4 and `check-gate-inputs.test.sh` 27. The drill passes 48 of 48 in 62 s |
+| T012 and T054, review of the reworked check | Running | GPT-5.6 Luna reviews T053 in `luna-fix2-review` |
+| T042 publish | Waits for T054 | Both remote branches still point at `728c4f3efc`, so the push is a fast-forward |
 ### Deviations and findings
 
 | Item | Note |
@@ -136,4 +144,10 @@ Everything below is VOLATILE.
 | Rename-only naming guard | Committed `9e1bc29d87`, `904bcd479c`. The copy case failed against the guard that skipped copies, the suite passes 8 of 8, and the rehearsal clone still prints `PASS:` for the move |
 | Reviewer changed again 2026-09-17 | Once Codex usage returned, the operator chose GPT-5.6 Luna at xhigh on the fast tier and DeepSeek V4.1 Flash max as the only models from here. The SWE-2 hook review had failed once under `auto`, where Devin refused a shell command, and its second run was stopped before a verdict. A worktree fingerprint showed it wrote nothing |
 | Luna hook review | GPT-5.6 Luna xhigh fast, read-only, 2026-09-17 05:16Z to 05:25Z. Rules A to D covered and all five decisions sound. F1 confirmed: the agent mirror checker drops `.skilled` names, and the plans contradict each other on its owner, since this phase hands it to 006 and 006's spec excludes it as hook work. That waits for the operator. F2 answered: the linked-layout case is a deliberate control |
+| Operator decision on the checker, 2026-09-17 | "Fix it in phase 005 (Recommended)": the checker's pattern admits `.skilled`, with a case that shows a real drift caught, as DeepSeek units reviewed by Luna. D4, REQ-013, AC-013 and T050 to T052 record it. Phase 006's exclusion of the checker now agrees |
+| One workspace link was missing in the worktree | The checker requires `@spec-kit/shared`, which resolves through `.opencode/skills/system-deep-loop/node_modules/@spec-kit/shared` in the main checkout. The worktree had no such link, so the checker failed with "Cannot find module". The orchestrator created the same relative link `npm install` makes, under the ignored `node_modules`, and nothing tracked changed. Rollback: remove that `node_modules` directory |
+| The CI review found more than it reported | A twin in another event's filter or another dependabot update also satisfied the old rule, and so did a twin moved into a comment on the real `pre-push:149`. The fix matches twins within their group, which covers all of these |
+| The runner's awk is untested locally | Only BWK awk 20200816 is installed here. The check uses POSIX constructs only, and the first gawk run is CI on the pushed tip, read under T042 |
+| Adjacent, not fixed: the agent workflow installs nothing | `agent-mirror-sync.yml` runs the checker straight after checkout, and without workspace packages the checker exits 1 on its missing parser, which the step reports as drift. Its five latest runs were dependabot pull requests that changed no agent, so no run has reached that path |
+| Handoff addition | `lib/mirror-sync-verify.cjs:109-110` normalizes `.opencode`, `.claude` and `.pi` agent paths in agent bodies but not `.skilled`, so a body that phase 009 rewrites to name `.skilled/agents/` would read as drift. It joins the phase 006 handoff list |
 <!-- /ANCHOR:log -->

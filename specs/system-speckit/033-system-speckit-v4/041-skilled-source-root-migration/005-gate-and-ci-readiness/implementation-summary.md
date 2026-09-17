@@ -67,11 +67,15 @@ Eight workflows gained a `.skilled/` twin for each of their 56 path filters, dep
 
 ### The independent check and the drill
 
-`.github/scripts/check-gate-inputs.sh` reads the hooks, workflows and dependabot as text and fails when a gate file is missing, when a hook or workflow input resolves nowhere, when a filter names one root or when a file that names a root yields no input. `gate-inputs.yml` runs it with its fixture test on every push to `main` and `skilled/**` and every pull request, with no path filter. `.github/scripts/tests/broken-move-drill.sh` clones the repository, moves the tree with a link back and breaks each of fourteen gate inputs in turn.
+`.github/scripts/check-gate-inputs.sh` reads the hooks, workflows and dependabot as text and fails when a gate file is missing, when a hook or workflow input resolves nowhere, when a filter names one root or when a file that names a root yields no input. A twin counts only inside the workflow filter, dependabot entry, hook array or hook command segment that holds its partner, so a comment, a second command or another event's filter cannot stand in for it. Every line that names a root outside a comment must be read by a rule or recognized as a message, a label or a path read through the link, so a shape the parsers do not know fails instead of passing beside a real input. `gate-inputs.yml` runs it with its fixture test on every push to `main` and `skilled/**` and every pull request, with no path filter. `.github/scripts/tests/broken-move-drill.sh` clones the repository, moves the tree with a link back and breaks each of fourteen gate inputs in turn.
 
 ### Naming guard
 
 The guard's changed-since mode now passes a rename that keeps its basename, so the four grandfathered snake_case names that move with the tree no longer fail. A new snake_case name, a new snake_case directory on the destination path and a copy that keeps a snake_case name still do.
+
+### Agent mirror checker
+
+The checker the agent gates call kept only `.opencode` and `.claude` agent paths, so an agent staged under `.skilled/agents/` reached it and was dropped with "nothing verified". Its pattern now admits `.skilled`, and a Vitest suite runs a copy of the checker against an in-sync and a drifted mirror named through a `.skilled` path. The operator placed this fix in this phase on 2026-09-17, after the plans for phases 005 and 006 had each left it to the other.
 
 ### Files Changed
 
@@ -91,7 +95,9 @@ The guard's changed-since mode now passes a rename that keeps its basename, so t
 | `.github/workflows/gate-inputs.yml` | Created | Runs the check on every push and pull request |
 | Eight filtered workflows, `agent-mirror-sync.yml`, `.github/dependabot.yml` | Modified | `.skilled/` twins |
 | `advisory-checks.yml`, `comment-hygiene.yml`, `markdown-link-integrity.yml`, `prompt-card-sync.yml`, `skill-doc-frontmatter.yml` | Modified | Fail closed on a missing guard |
-| `.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py` and its test | Modified | A basename-preserving move passes |
+| `.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py` and its test | Modified | A rename that keeps its basename passes |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs` | Modified | The agent path pattern admits `.skilled` |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts`, `shared/tests/README.md` | Created, modified | Cases through a `.skilled` agent path, and the suite's index row |
 | `.opencode/scripts/git-hooks/README.md`, `tests/README.md`, `.github/workflows/README.md` | Modified | The rule, the new cases and the new workflow |
 <!-- /ANCHOR:what-built -->
 
@@ -106,15 +112,17 @@ The orchestrator wrote each unit's exact edits and its expected files first, the
 
 | Executor | Units | Result |
 |----------|-------|--------|
-| DeepSeek V4.1 Flash, `--thinking max` | 37 dispatches across T010, T011, T013 to T024, T026 to T028, T032, T045, T046 and the mass-deletion harness | 35 applied their edits. T013's first dispatch, in text mode, wrote nothing, so every later dispatch ran in JSON mode. T019's first dispatch spent its 32,768-token output cap on reasoning, and the unit went out again as a hook brief and a harness brief. The write tool dropped the final newline of three created files, which the orchestrator appended, with the executable bit on the two scripts |
-| GPT-5.6 sol, `xhigh`, read-only | T025 attempted | Stopped at Codex's usage limit before a verdict. T012, T031, T034 and T047 wait for the same quota |
+| DeepSeek V4.1 Flash, `--thinking max` | 48 dispatches across T010, T011, T013 to T024, T026 to T028, T032, T045, T046, T049 to T051, T053, the mass-deletion harness, the SessionStart harness pin, the filter-shape cases and the rename-only guard | 46 applied their edits. T013's first dispatch, in text mode, wrote nothing, so every later dispatch ran in JSON mode. T019's first dispatch spent its 32,768-token output cap on reasoning, and the unit went out again as a hook brief and a harness brief. The write tool dropped the final newline of five written files, which the orchestrator appended, with the executable bit on the two new scripts |
+| GPT-5.6 Luna, `xhigh`, fast tier, read-only | The hook rules, the CI changes, the naming guard, the CI fixes with the agent mirror checker, and the reworked check | Five reviews on 2026-09-17, each followed by a worktree fingerprint that matched apart from its return file and the orchestrator's own document edits. Findings and dispositions are in the review table below |
+| GPT-5.6 sol, `xhigh`, read-only | T025 attempted | Stopped at Codex's usage limit before a verdict |
+| SWE-2 on cli-devin | T025 attempted twice, as the operator's interim reviewer | No verdict. Devin refused a shell command under `auto`, and the second run was stopped when the operator chose GPT-5.6 Luna. A worktree fingerprint showed no write |
 | Orchestrator | T009, T030, T033 and every verification task | As assigned in the plan |
 
 Briefs, payloads and returns are kept in `scratch/delegation/`.
 
 ### Commits
 
-`259f4f6cf4`, `a17d8ab9ce`, `50eca95e28`, `f7165195e2`, `b5f179bd0e`, `576ac3c930` (pre-commit), `5fa1f39da8`, `5ae40d3c1a` (pre-push), `4866bc8eea`, `6ad37a5a13`, `ae007f51a2`, `8ffe7e8dc3` (other hooks), `5cad25db6b`, `fc6305eb69`, `ecf3812ea1` (check, test, workflow), `60605917a9`, `f4f6ea659e`, `9f009e8dd3` (workflows), `be0c3974ab` (drill), `33f2d87531`, `60635ffca5` (naming guard), `0e60909b2e`, `452cc9b6dc` (READMEs), `27dd545510` (mass-deletion harness), `610374769a` (SessionStart harness pin), `fcc0b50028`, `07039dea39` (filter shapes), `9e1bc29d87`, `904bcd479c` (rename-only guard). None is pushed.
+`259f4f6cf4`, `a17d8ab9ce`, `50eca95e28`, `f7165195e2`, `b5f179bd0e`, `576ac3c930` (pre-commit), `5fa1f39da8`, `5ae40d3c1a` (pre-push), `4866bc8eea`, `6ad37a5a13`, `ae007f51a2`, `8ffe7e8dc3` (other hooks), `5cad25db6b`, `fc6305eb69`, `ecf3812ea1` (check, test, workflow), `60605917a9`, `f4f6ea659e`, `9f009e8dd3` (workflows), `be0c3974ab` (drill), `33f2d87531`, `60635ffca5` (naming guard), `0e60909b2e`, `452cc9b6dc` (READMEs), `27dd545510` (mass-deletion harness), `610374769a` (SessionStart harness pin), `fcc0b50028`, `07039dea39` (filter shapes), `9e1bc29d87`, `904bcd479c` (rename-only guard), `51f90025c4`, `c58a37b8d8`, `057c3664c0`, `a220c9b904` (the check's review fixes), `ad6d47b2aa`, `4ff3b14bac` (agent mirror checker). None is pushed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -142,11 +150,12 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 | Check | Result |
 |-------|--------|
 | Hook harnesses from the tip, `/bin/bash` 3.2.57 | PASS: autostash-orphan-guard 9, commit-msg 17, mass-deletion-guard 12, pre-commit 49, pre-push 32, prepare-commit-msg 56. That is 175 against the 126 baseline, with no case removed |
-| New harnesses | PASS: `check-git-hooks.test.sh` 4 of 4, `check-gate-inputs.test.sh` 12 of 12 |
+| New harnesses | PASS: `check-git-hooks.test.sh` 4 of 4, `check-gate-inputs.test.sh` 27 of 27, `check-agent-mirror-sync.vitest.ts` 2 of 2 |
+| Deep-improvement Vitest suite | PASS for this phase's change: 393 of 394 across 34 files. The one failure, a `remediation.vitest.ts` case on the cli-pi default model, fails the same way before the change. The worktree needed the `@spec-kit/shared` workspace link that `npm install` creates, added under the ignored `node_modules` |
 | New cases seen failing first | Each unit's new assertions failed against the files before it. Controls that guard an exemption pass both before and after, and are named as controls in `goal.md` |
 | Hostile caller and spaced paths | PASS: every harness with `GIT_DIR`, `GIT_INDEX_FILE` and a global `core.hooksPath` set, and with temporary paths containing a space |
-| `bash .github/scripts/check-gate-inputs.sh` | PASS: 32 files, 137 inputs resolved, 8 dynamic, 167 twin pairs, `RESULT: PASSED` in 0.6 s. Its fixture test passes 12 of 12 |
-| `bash .github/scripts/tests/broken-move-drill.sh` | PASS: 48 expectations, `RESULT: PASSED` in 49 s, including the earlier hooks passing every silent break without a word |
+| `bash .github/scripts/check-gate-inputs.sh` | PASS: 32 files, 136 inputs resolved, 8 dynamic, 167 twin pairs, every root-naming line read, `RESULT: PASSED` in about 1 s. Before the review fixes it counted 137, because two informational `echo` lines in workflows counted as inputs and the legacy helper's quoted checker path did not |
+| `bash .github/scripts/tests/broken-move-drill.sh` | PASS: 48 expectations, `RESULT: PASSED` in 62 s from `a220c9b904`, including the earlier hooks passing every silent break without a word |
 | Other repositories | PASS: in a clean repository and one with a dangling `.opencode` link, every hook exits 0 and prints nothing beyond two warnings the earlier hooks also printed |
 | Naming guard | PASS: suite 8 of 8 with `-p no:cacheprovider`. `--changed-since 7085ec3290` prints `PASS:`, and on a rehearsal clone with the move staged the changed guard passes where the earlier one reports the four names |
 | Comment hygiene, run directly | PASS: 0 violations. 12 files checked, 24 skipped by type and no id in the comments added to extensionless hooks |
@@ -158,11 +167,12 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 
 | Unit | Findings | Disposition |
 |------|----------|-------------|
-| Missing-script rule in the hooks (T025) | None recorded | Blocked: the review stopped at Codex's usage limit. A supplementary GLM-5.3-Flash review raised two P2 findings: F1 was left to the phase 006 handoff and F2 was fixed in `610374769a` (`scratch/delegation/supplementary-hook-review-verdict.md`) |
-| Independent check and workflow (T012) | Not started | Blocked on the same limit. A supplementary GLM-5.3-Flash review of the CI changes confirmed one P2 finding, a filter shape the check could not read, fixed in `07039dea39` (`scratch/delegation/supplementary-ci-review-verdict.md`) |
-| Fail-closed workflow steps (T031) | Not started | Blocked on the same limit |
-| Broken-move drill (T034) | Not started | Blocked on the same limit |
-| Naming guard rule (T047) | Not started | Blocked on the same limit. A supplementary GLM-5.3-Flash review found that a copy whose source also changed lets a new snake_case name through, which awaits an operator decision on REQ-012, and two handoff gaps, since recorded (`scratch/delegation/supplementary-naming-review-verdict.md`) |
+| Missing-script rule in the hooks (T025) | 2 | F1 confirmed: the agent mirror checker dropped `.skilled` names, fixed in this phase by the operator's decision (T050, T051). F2 answered: the linked-layout harness case is a deliberate control (`luna-hook-review-verdict.md`). An earlier supplementary GLM-5.3-Flash review found the same checker gap and a harness that depended on the system hooks path, fixed in `610374769a` |
+| Independent check and workflow (T012) | 4, then 8 in the review of their fixes | Every check finding confirmed by a fixture case that failed first, and fixed in `c58a37b8d8` and `a220c9b904`. The review of `a220c9b904` (T054) is running (`luna-ci-review-verdict.md`, `luna-fix-review-verdict.md`). A supplementary GLM-5.3-Flash review had found one filter shape the check could not read, fixed in `07039dea39` |
+| Fail-closed workflow steps (T031) | None | Reviewed with the CI changes |
+| Broken-move drill (T034) | None | Reviewed with the CI changes |
+| Naming guard rule (T047) | None | Citations checked (`luna-naming-review-verdict.md`). The supplementary GLM-5.3-Flash review's copy finding was closed by the operator's renames-only decision in `904bcd479c` |
+| Agent mirror checker (T052) | 1 | Answered: the checker counts `README.txt` as an agent checked, which it already did under `.opencode` before this phase, and no drift can pass through it (`luna-fix-review-verdict.md`) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -171,7 +181,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 ## Known Limitations
 
 1. **The phase cannot close yet.** The five GPT-5.6 reviews wait for Codex quota, which returns on 2026-09-19 at 10:29, or for an approved substitute reviewer. Nothing is published until they complete, so the pushed-tip CI evidence waits too.
-2. **Adjacent defects, not fixed.** The card-sync and mutation-class triggers pipe `git diff` into `grep -q` under `pipefail`, so a trigger listed first can be missed on a commit that stages thousands of files. The comment hygiene checker skips files without an extension, so no git hook is ever scanned. The git-hooks README still describes a removed naming gate and a doc-model check that moved to CI.
+2. **Adjacent defects, not fixed.** The card-sync and mutation-class triggers pipe `git diff` into `grep -q` under `pipefail`, so a trigger listed first can be missed on a commit that stages thousands of files. The comment hygiene checker skips files without an extension, so no git hook is ever scanned. The git-hooks README still describes a removed naming gate and a doc-model check that moved to CI. `agent-mirror-sync.yml` runs the checker without installing workspace packages, and in a checkout without them the checker cannot load its frontmatter parser, exits 1 and the step reports drift. No CI run has reached that path, because the workflow has run only on dependabot pull requests that change no agent.
 3. **`ci-skill-root-metadata.cjs` needs installed workspace packages.** In a checkout without them it exits with "Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'", which pre-push reports as stale metadata and does not block.
 
 ### Handoff to phase 006
@@ -180,8 +190,8 @@ These scripts, called by the gates, keep their own root literals:
 
 | Script | Line | What remains |
 |--------|------|--------------|
-| `check-agent-mirror-sync.cjs` | 28 and 32 | Agents read from `.opencode/agents`, and the path filter admits `.opencode` and `.claude` only |
-| `lib/mirror-sync-verify.cjs` | 19 | The opencode agent template path |
+| `check-agent-mirror-sync.cjs` | 28 | Agents read from `.opencode/agents`, which resolves through the link. The path pattern at `:32` is fixed in this phase |
+| `lib/mirror-sync-verify.cjs` | 19, 109 and 110 | The opencode agent template path, and a body normalization that maps `.opencode`, `.claude` and `.pi` agent paths but not `.skilled`, so an agent body rewritten to name `.skilled/agents/` would read as drift |
 | `hooks/shared/hook-flags.sh` | 15 | The hook-flags config path |
 | `sk-git/scripts/worktree-naming.sh` | 145 | The remote allowlist file path |
 | `compiled-route-manifest.cjs` | `--skill-root` | How the tool treats a skill root under either spelling |
