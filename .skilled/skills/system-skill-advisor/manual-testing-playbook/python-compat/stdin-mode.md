@@ -42,7 +42,7 @@ Validate that `scripts/skill_advisor.py --stdin` reads exactly one prompt from s
 1. Run the shim with a prompt piped into stdin:
 
 ```bash
-printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --threshold 0.8
+printf '%s' "save this conversation context to memory" | python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --threshold 0.8
 ```
 
 2. Inspect the JSON-array output.
@@ -70,7 +70,7 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 - Scenario [CP-001](../../manual-testing-playbook/compat-and-disable/python-shim-stdin.md), original shim stdin scenario.
 - Scenario [PC-002](../../manual-testing-playbook/python-compat/force-native-force-local.md), force toggles.
 - Feature [`python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`.
 
 ---
 
@@ -143,7 +143,7 @@ Skill advisor MCP availability observed before scenario execution:
 Scenario command 1:
 
 ```bash
-printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --threshold 0.8
+printf '%s' "save this conversation context to memory" | python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --threshold 0.8
 ```
 
 Observed output:
@@ -187,7 +187,7 @@ Skill graph: loaded from SQLite
 Scenario command 2:
 
 ```bash
-printf '' | python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --threshold 0.8
+printf '' | python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --threshold 0.8
 ```
 
 Observed output:

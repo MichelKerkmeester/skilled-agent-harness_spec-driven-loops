@@ -46,13 +46,13 @@ Validate that ambiguous advisor results surface as ambiguity rather than a false
 1. Run the ambiguity-focused unit test:
 
 ```bash
-cd .opencode/skills/system-skill-advisor/runtime && npm exec -- vitest run tests/handlers/advisor-recommend.vitest.ts tests/legacy/advisor-renderer.vitest.ts --reporter=default
+cd .skilled/skills/system-skill-advisor/runtime && npm exec -- vitest run tests/handlers/advisor-recommend.vitest.ts tests/legacy/advisor-renderer.vitest.ts --reporter=default
 ```
 
 2. Call a broad prompt likely to place two skills close together:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "review opencode docs and improve the prompt package" --options '{"topK":2,"includeAttribution":true}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "review opencode docs and improve the prompt package" --options '{"topK":2,"includeAttribution":true}' --format json
 ```
 
 3. Inspect `data.ambiguous`.
@@ -82,8 +82,8 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "review opencode
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts`
-- `.opencode/skills/system-skill-advisor/runtime/lib/render.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts`
 
 ---
 

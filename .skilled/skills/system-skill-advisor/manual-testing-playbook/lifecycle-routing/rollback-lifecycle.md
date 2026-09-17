@@ -64,12 +64,12 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 
 ### Evidence
 
-- Read scenario file in full: `.opencode/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md` lines 1-72.
+- Read scenario file in full: `.skilled/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md` lines 1-72.
 - MCP/file glob check for built server output:
   ```text
   No files found
   ```
-- Package entry point and build scripts observed in `.opencode/skills/system-skill-advisor/runtime/package.json`:
+- Package entry point and build scripts observed in `.skilled/skills/system-skill-advisor/runtime/package.json`:
   ```json
   {
     "name": "@spec-kit/system-skill-advisor",
@@ -84,7 +84,7 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
       "test": "vitest run"
     },
   ```
-- Referenced rollback source observed in `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts`:
+- Referenced rollback source observed in `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts`:
   ```ts
   export function rollbackGraphMetadataFile(graphMetadataPath: string): RollbackResult {
     const parsed: unknown = JSON.parse(readFileSync(graphMetadataPath, 'utf8'));
@@ -114,7 +114,7 @@ BLOCKED - Missing built MCP server output (`dist/**` returned `No files found`),
 
 - Scenario [LC-004](../../manual-testing-playbook/lifecycle-routing/schema-migration.md), schema migration rollback.
 - Feature [`lifecycle-routing/rollback.md`](../../feature-catalog/lifecycle-routing/rollback.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts`.
 
 ---
 

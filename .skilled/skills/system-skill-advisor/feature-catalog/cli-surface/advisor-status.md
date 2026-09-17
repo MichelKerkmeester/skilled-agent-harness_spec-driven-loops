@@ -36,17 +36,17 @@ When callers pass `includeSemanticHealth` or `debug`, the status envelope also i
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:89-197` | Handler | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/freshness/trust-state.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Library | semantic-lane disabled-reason source |
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:46-51` | Handler | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:89-197` | Handler | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/freshness/trust-state.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Library | semantic-lane disabled-reason source |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:46-51` | Handler | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | Automated test | compact status, semantic health fields and degraded-vector reason coverage |
+| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | Automated test | compact status, semantic health fields and degraded-vector reason coverage |
 | `Playbook scenario [NC-002](../../manual-testing-playbook/native-cli-tools/native-status-transitions.md).` | Manual playbook | Source reference |
 
 ---

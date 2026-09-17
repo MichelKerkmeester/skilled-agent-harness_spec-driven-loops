@@ -47,7 +47,7 @@ Validate that `lib/derived/provenance.ts` writes provenance fingerprints for eac
 4. Touch the target skill to force a reindex:
 
 ```bash
-touch .opencode/skills/sk-doc/SKILL.md
+touch .skilled/skills/sk-doc/SKILL.md
 ```
 
 5. Re-read `graph-metadata.json.derived` and verify fingerprints are stable for unchanged sources and changed for mutated sources.
@@ -74,7 +74,7 @@ Precondition check, MCP skill graph status:
 ```json
 ```
 
-Target skill metadata read from `.opencode/skills/sk-doc/graph-metadata.json`:
+Target skill metadata read from `.skilled/skills/sk-doc/graph-metadata.json`:
 
 ```json
 {
@@ -148,14 +148,14 @@ Target skill metadata read from `.opencode/skills/sk-doc/graph-metadata.json`:
       "build install guide"
     ],
     "key_files": [
-      ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/skills/sk-doc/README.md",
-      ".opencode/skills/sk-doc/shared/references/validation.md",
-      ".opencode/skills/sk-doc/sk-create-skill/references/README.md",
-      ".opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md",
-      ".opencode/skills/sk-doc/scripts/validate_document.py",
-      ".opencode/skills/sk-doc/scripts/extract_structure.py",
-      ".opencode/skills/sk-doc/shared/assets/template-rules.json"
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/README.md",
+      ".skilled/skills/sk-doc/shared/references/validation.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/README.md",
+      ".skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+      ".skilled/skills/sk-doc/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/scripts/extract_structure.py",
+      ".skilled/skills/sk-doc/shared/assets/template-rules.json"
     ],
     "causal_summary": "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts, install guides, feature catalogs, and manual testing playbooks. It matters because it gives the workspace a single specialist for creating and validating high-quality markdown components and documentation artifacts.",
     "source_docs": [
@@ -174,7 +174,7 @@ Target skill metadata read from `.opencode/skills/sk-doc/graph-metadata.json`:
 Derived provenance/trust field check:
 
 ```bash
-jq '.derived | {provenance_fingerprint, trust_lane, intent_signals, source_docs}' '.opencode/skills/sk-doc/graph-metadata.json'
+jq '.derived | {provenance_fingerprint, trust_lane, intent_signals, source_docs}' '.skilled/skills/sk-doc/graph-metadata.json'
 ```
 
 ```json
@@ -218,15 +218,15 @@ Local docs/assets source check returned paths including:
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-readme/references/README.md
 ```
 
-The scenario command below was not run because this manual execution was constrained to write only this scenario file, and `touch` would modify `.opencode/skills/sk-doc/SKILL.md` metadata:
+The scenario command below was not run because this manual execution was constrained to write only this scenario file, and `touch` would modify `.skilled/skills/sk-doc/SKILL.md` metadata:
 
 ```bash
-touch .opencode/skills/sk-doc/SKILL.md
+touch .skilled/skills/sk-doc/SKILL.md
 ```
 
 ### Pass/Fail
 
-BLOCKED. The scenario requires `touch .opencode/skills/sk-doc/SKILL.md` to force reindexing, but the execution request allowed writes only to `.opencode/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md`. Read-only evidence also showed `provenance_fingerprint: null` and `trust_lane: null` in the current derived block, so the expected provenance/trust fields were not observable before the blocked reindex step.
+BLOCKED. The scenario requires `touch .skilled/skills/sk-doc/SKILL.md` to force reindexing, but the execution request allowed writes only to `.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md`. Read-only evidence also showed `provenance_fingerprint: null` and `trust_lane: null` in the current derived block, so the expected provenance/trust fields were not observable before the blocked reindex step.
 
 ---
 
@@ -235,7 +235,7 @@ BLOCKED. The scenario requires `touch .opencode/skills/sk-doc/SKILL.md` to force
 - Scenario [AI-001](../../manual-testing-playbook/auto-indexing/derived-extraction.md), deterministic extraction.
 - Scenario [SC-004](../../manual-testing-playbook/scorer-fusion/lane-attribution.md), lane attribution on the read side.
 - Feature [`auto-indexing/provenance-and-trust-lanes.md`](../../feature-catalog/auto-indexing/provenance-and-trust-lanes.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/derived/provenance.ts` and `lib/derived/trust-lanes.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/derived/provenance.ts` and `lib/derived/trust-lanes.ts`.
 
 ---
 

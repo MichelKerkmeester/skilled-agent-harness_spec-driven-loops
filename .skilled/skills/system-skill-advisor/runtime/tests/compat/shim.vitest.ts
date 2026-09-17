@@ -10,7 +10,7 @@ import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
-const shimPath = resolve(repoRoot, '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py');
+const shimPath = resolve(repoRoot, '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py');
 
 function runShim(args: string[], input = '', env: NodeJS.ProcessEnv = {}) {
   return spawnSync('python3', [shimPath, ...args], {

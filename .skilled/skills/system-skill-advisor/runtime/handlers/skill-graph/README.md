@@ -41,7 +41,7 @@ Keep response formatting in `response-envelope.ts`. Database and traversal logic
 Run the owning package test command from the repository root:
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime test -- --no-file-parallelism --maxWorkers=1
+npm --prefix .skilled/skills/system-skill-advisor/runtime test -- --no-file-parallelism --maxWorkers=1
 ```
 
 ---

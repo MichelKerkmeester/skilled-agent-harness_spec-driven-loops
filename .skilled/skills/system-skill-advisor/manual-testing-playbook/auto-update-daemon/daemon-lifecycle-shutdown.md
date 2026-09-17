@@ -48,7 +48,7 @@ Validate graceful boot, health reporting, SIGTERM-based shutdown and launcher id
 1. Bring the daemon up:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 2. Capture PID, generation, `skillCount` and `trustState` from the response.
@@ -129,8 +129,8 @@ BLOCKED - `/tmp/path-to-copy` does not exist, and `advisor_status({"workspaceRoo
 - Scenario [AU-002](../../manual-testing-playbook/auto-update-daemon/lease-single-writer.md), single-writer lease reclaim.
 - Scenario [OP-001](../../manual-testing-playbook/operator-h5/degraded-daemon.md), degraded state detection.
 - Feature [`daemon-and-freshness/lifecycle.md`](../../feature-catalog/daemon-and-freshness/lifecycle.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts`.
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/ipc/launcher-idle-timeout.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/ipc/launcher-idle-timeout.ts`.
 
 ---
 

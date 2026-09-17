@@ -25,7 +25,7 @@ function repoRoot(): string {
   throw new Error('repo root not found');
 }
 const R = repoRoot();
-const SCRIPTS = join(R, '.opencode/skills/system-skill-advisor/runtime/scripts');
+const SCRIPTS = join(R, '.skilled/skills/system-skill-advisor/runtime/scripts');
 
 // The Python compiler's own depth-1 discovery, invoked read-only.
 function pythonIdentities(skillsDir: string): string[] {

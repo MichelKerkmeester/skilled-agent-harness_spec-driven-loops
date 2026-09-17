@@ -84,7 +84,7 @@ import {
 import { setActiveEmbedder } from '../../lib/embedders/schema.js';
 
 function seedSkillTree(rootDir: string, skillName: string, description: string): string {
-  const skillDir = join(rootDir, '.opencode', 'skills', skillName);
+  const skillDir = join(rootDir, '.skilled', 'skills', skillName);
   mkdirSync(skillDir, { recursive: true });
   writeFileSync(
     join(skillDir, 'SKILL.md'),
@@ -133,7 +133,7 @@ describe('010/004 refreshSkillEmbeddings round-trip', () => {
   it('adapter path: when active pointer set, writes to vec_<dim> via getAdapter', async () => {
     seedSkillTree(tmpRoot, 'sk-alpha', 'alpha skill for round-trip test');
     seedSkillTree(tmpRoot, 'sk-beta', 'beta skill for round-trip test');
-    indexSkillMetadata(join(tmpRoot, '.opencode', 'skills'));
+    indexSkillMetadata(join(tmpRoot, '.skilled', 'skills'));
 
     setActiveEmbedder(getDb(), 'mock-1024', 1024);
 
@@ -155,7 +155,7 @@ describe('010/004 refreshSkillEmbeddings round-trip', () => {
 
   it('adapter path: re-running with no source changes skips (idempotent)', async () => {
     seedSkillTree(tmpRoot, 'sk-only', 'only skill for idempotency');
-    indexSkillMetadata(join(tmpRoot, '.opencode', 'skills'));
+    indexSkillMetadata(join(tmpRoot, '.skilled', 'skills'));
     setActiveEmbedder(getDb(), 'mock-1024', 1024);
 
     const first = await refreshSkillEmbeddings();
@@ -168,7 +168,7 @@ describe('010/004 refreshSkillEmbeddings round-trip', () => {
 
   it('adapter path: returns ADAPTER-UNAVAILABLE warning when manifest is unknown', async () => {
     seedSkillTree(tmpRoot, 'sk-unknown', 'unknown skill');
-    indexSkillMetadata(join(tmpRoot, '.opencode', 'skills'));
+    indexSkillMetadata(join(tmpRoot, '.skilled', 'skills'));
     // Set pointer to a name that's neither in real MANIFESTS nor our mock
     setActiveEmbedder(getDb(), 'definitely-not-a-real-embedder', 1024);
 
@@ -184,7 +184,7 @@ describe('010/004 refreshSkillEmbeddings round-trip', () => {
 
   it('adapter path: fails fast on adapter-vs-pointer dim mismatch (P1-1)', async () => {
     seedSkillTree(tmpRoot, 'sk-mismatch', 'dim mismatch test');
-    indexSkillMetadata(join(tmpRoot, '.opencode', 'skills'));
+    indexSkillMetadata(join(tmpRoot, '.skilled', 'skills'));
     // Pointer says dim=768 but the mock adapter reports dim=1024
     setActiveEmbedder(getDb(), 'mock-1024', 768);
 
@@ -201,7 +201,7 @@ describe('010/004 refreshSkillEmbeddings round-trip', () => {
 
   it('legacy path: when pointer NOT set, falls back to createEmbeddingsProvider', async () => {
     seedSkillTree(tmpRoot, 'sk-legacy', 'legacy-path skill');
-    indexSkillMetadata(join(tmpRoot, '.opencode', 'skills'));
+    indexSkillMetadata(join(tmpRoot, '.skilled', 'skills'));
     // NOTE: deliberately NOT calling setActiveEmbedder; pointer remains unset
 
     const result = await refreshSkillEmbeddings();

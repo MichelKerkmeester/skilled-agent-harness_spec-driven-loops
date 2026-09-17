@@ -10,8 +10,8 @@
 # Exit 1 = duplicates found (zombie state — investigate).
 #
 # Usage:
-#   bash .opencode/skills/system-skill-advisor/runtime/scripts/verify-zombie-soak.sh
-#   bash .opencode/skills/system-skill-advisor/runtime/scripts/verify-zombie-soak.sh --verbose
+#   bash .skilled/skills/system-skill-advisor/runtime/scripts/verify-zombie-soak.sh
+#   bash .skilled/skills/system-skill-advisor/runtime/scripts/verify-zombie-soak.sh --verbose
 #
 # Evidence capture:
 #   bash .../verify-zombie-soak.sh --verbose > /tmp/soak-evidence-$(date +%Y%m%d).log 2>&1
@@ -60,12 +60,12 @@ if [ "$CODE_INDEX_COUNT" -gt 1 ]; then
 fi
 
 # Verify any leftover .corrupt files (carry-over hygiene check).
-CORRUPT_COUNT=$(find .opencode/skills/system-skill-advisor/runtime/database -name "*.corrupt*" 2>/dev/null | wc -l | tr -d '[:space:]')
+CORRUPT_COUNT=$(find .skilled/skills/system-skill-advisor/runtime/database -name "*.corrupt*" 2>/dev/null | wc -l | tr -d '[:space:]')
 printf "Quarantine files (.corrupt*) on disk: %s\n" "$CORRUPT_COUNT"
 if [ "$CORRUPT_COUNT" -gt 0 ]; then
   printf "WARN: %s .corrupt* files present — soak window may have produced corruption.\n" "$CORRUPT_COUNT" >&2
   if [ "$VERBOSE" -eq 1 ]; then
-    find .opencode/skills/system-skill-advisor/runtime/database -name "*.corrupt*" 2>/dev/null
+    find .skilled/skills/system-skill-advisor/runtime/database -name "*.corrupt*" 2>/dev/null
   fi
 fi
 

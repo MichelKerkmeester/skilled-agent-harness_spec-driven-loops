@@ -58,7 +58,7 @@ Current state:
 Run from the repository root.
 
 ```bash
-cd .opencode/skills/system-skill-advisor/runtime && npm test -- tests/scorer/lane-weight-sweep.vitest.ts
+cd .skilled/skills/system-skill-advisor/runtime && npm test -- tests/scorer/lane-weight-sweep.vitest.ts
 ```
 
 Expected result: exit code 0.

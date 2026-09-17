@@ -28,7 +28,7 @@ function mcpServerNames(relativePath: string, mcpKey: string): string[] {
 
 describe('system_skill_advisor decommission invariants', () => {
   it('names the launcher binary and state command under the system identity', () => {
-    const launcherSource = readRepoFile('.opencode/bin/system-skill-advisor-launcher.cjs');
+    const launcherSource = readRepoFile('.skilled/bin/system-skill-advisor-launcher.cjs');
 
     expect(launcherSource).toContain('.system-skill-advisor-launcher.json');
     expect(launcherSource).toContain("command: 'system-skill-advisor-launcher'");
@@ -56,7 +56,7 @@ describe('system_skill_advisor decommission invariants', () => {
   });
 
   it('applies the repo env defaults when the environment is silent, and an explicit value still wins', () => {
-    const launcherPath = resolve(repoRoot, '.opencode/bin/system-skill-advisor-launcher.cjs');
+    const launcherPath = resolve(repoRoot, '.skilled/bin/system-skill-advisor-launcher.cjs');
 
     const probe = (overrides: Record<string, string>): Record<string, string | null> => {
       const script = `require(${JSON.stringify(launcherPath)});`
@@ -81,7 +81,7 @@ describe('system_skill_advisor decommission invariants', () => {
   });
 
   it('keeps the advisor package directory named runtime/', () => {
-    const advisorRoot = resolve(repoRoot, '.opencode/skills/system-skill-advisor');
+    const advisorRoot = resolve(repoRoot, '.skilled/skills/system-skill-advisor');
 
     expect(existsSync(resolve(advisorRoot, 'runtime'))).toBe(true);
     expect(existsSync(resolve(advisorRoot, 'mcp-server'))).toBe(false);

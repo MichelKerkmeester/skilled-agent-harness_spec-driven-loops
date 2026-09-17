@@ -82,7 +82,7 @@ function runPython(prompts) {
   const script = `
 import importlib.util, json, os, sys
 workspace = sys.argv[1]
-path = os.path.join(workspace, '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py')
+path = os.path.join(workspace, '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py')
 spec = importlib.util.spec_from_file_location('skill_advisor_capture', path)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)

@@ -94,7 +94,7 @@ Trust states transition based on three signals: a generation counter, a source-f
 
 Trigger details:
 
-- `live → stale`: daemon detects a hash mismatch on any `.opencode/skills/*/SKILL.md` or `graph-metadata.json` file.
+- `live → stale`: daemon detects a hash mismatch on any `.skilled/skills/*/SKILL.md` or `graph-metadata.json` file.
 - `stale → live`: `advisor_rebuild` completes successfully plus the generation counter advances.
 - `live → absent`: SQLite database file is deleted or fails integrity check.
 - `absent → live`: `advisor_rebuild` runs from scratch plus succeeds.
@@ -114,7 +114,7 @@ Every caller that uses an advisor response must inspect `trustState` plus act ac
 | Python shim (`skill_advisor.py`) | Use native response | Pass through with stale annotation | Compute fallback locally | Compute fallback locally |
 | Validation harness (`advisor_validate`) | Run as configured | Trigger rebuild before measurement | Trigger rebuild before measurement | Fail the validate run with clear error |
 
-Probe the daemon directly when `unavailable` is reported: `node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --warm-only --format json`. Exit `75` means the daemon itself is unavailable and the failure is retryable. When the daemon stays unreachable, the CLI answers from the local Python scorer and marks the result degraded.
+Probe the daemon directly when `unavailable` is reported: `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --warm-only --format json`. Exit `75` means the daemon itself is unavailable and the failure is retryable. When the daemon stays unreachable, the CLI answers from the local Python scorer and marks the result degraded.
 
 The caller must NOT:
 
@@ -129,7 +129,7 @@ The caller must NOT:
 
 The freshness daemon (`runtime/lib/daemon/`) is responsible for:
 
-- Watching `.opencode/skills/*/SKILL.md` plus `.opencode/skills/*/graph-metadata.json` for mtime changes.
+- Watching `.skilled/skills/*/SKILL.md` plus `.skilled/skills/*/graph-metadata.json` for mtime changes.
 - Recomputing the source-hash signature on any watched-file change.
 - Bumping the generation counter when the signature changes.
 - Invalidating the prompt cache when the generation bumps.
@@ -151,7 +151,7 @@ The daemon is NOT responsible for:
 | Daemon dies | `advisor_status.daemon = "down"`, trustState may stay `live` until next file change but freshness detection lags | Restart the daemon (the next CLI call cold-starts it) |
 | Lease contention | `advisor_rebuild` fails with lease-busy error | Wait for current rebuild to finish, then retry. If stuck, kill the process holding the lease |
 | SQLite corruption | `advisor_status.trustState = "absent"` even after rebuild attempts | Delete `runtime/database/skill-graph.sqlite{,-wal,-shm}`, run `advisor_rebuild --force` |
-| File watcher overflow (too many files) | Daemon stops detecting changes | Restart the daemon. Long-term: prune `.opencode/skills/` excludes |
+| File watcher overflow (too many files) | Daemon stops detecting changes | Restart the daemon. Long-term: prune `.skilled/skills/` excludes |
 | Cache poisoning (stale entry survives generation bump) | Recommendations return outdated skill names | Run `advisor_rebuild --force` to invalidate caches |
 | Source-hash regression (rebuild succeeds but state stays stale) | trustState stays `stale` after `advisor_rebuild` | File a bug. The hash computation is broken |
 

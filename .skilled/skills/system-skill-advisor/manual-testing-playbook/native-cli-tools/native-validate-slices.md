@@ -44,7 +44,7 @@ Validate that `advisor_validate` runs the real native validation bundle and surf
 1. Call:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":null}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":null}' --format json
 ```
 
 2. Capture the full response.
@@ -52,7 +52,7 @@ node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun"
 4. Run a focused slice with explicit outcome events so `recordedThisRun` and the totals delta can be checked deterministically:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":"system-spec-kit","outcomeEvents":[{"runtime":"opencode","outcome":"accepted","skillId":"system-spec-kit"},{"runtime":"opencode","outcome":"corrected","skillId":"system-spec-kit","correctedSkillId":"skill-installer"},{"runtime":"opencode","outcome":"ignored","skillId":"system-spec-kit"}]}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":"system-spec-kit","outcomeEvents":[{"runtime":"opencode","outcome":"accepted","skillId":"system-spec-kit"},{"runtime":"opencode","outcome":"corrected","skillId":"system-spec-kit","correctedSkillId":"skill-installer"},{"runtime":"opencode","outcome":"ignored","skillId":"system-spec-kit"}]}' --format json
 ```
 
 5. Compare `data.telemetry.outcomes` from step 4 against the baseline snapshot from step 1. In an isolated workspace, `scope.kind` should flip to `skill`, `scope.skillSlug` should be `system-spec-kit` and `accepted`, `corrected` and `ignored` totals should each increase by exactly 1.
@@ -88,9 +88,9 @@ node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun"
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts`
-- `.opencode/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts`
-- `.opencode/skills/system-skill-advisor/runtime/bench/`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts`
+- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts`
+- `.skilled/skills/system-skill-advisor/runtime/bench/`
 
 ---
 
@@ -120,7 +120,7 @@ MCP error -32001: backend recycled; retry
 Fallback real backend CLI call used after native MCP backend recycled twice:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":null}' --warm-only --format json --timeout-ms 120000
+node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":null}' --warm-only --format json --timeout-ms 120000
 ```
 
 Output:
@@ -295,7 +295,7 @@ Output:
 Focused real backend CLI call:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":"system-spec-kit","outcomeEvents":[{"runtime":"opencode","outcome":"accepted","skillId":"system-spec-kit"},{"runtime":"opencode","outcome":"corrected","skillId":"system-spec-kit","correctedSkillId":"skill-installer"},{"runtime":"opencode","outcome":"ignored","skillId":"system-spec-kit"}]}' --warm-only --format json --timeout-ms 120000
+node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":"system-spec-kit","outcomeEvents":[{"runtime":"opencode","outcome":"accepted","skillId":"system-spec-kit"},{"runtime":"opencode","outcome":"corrected","skillId":"system-spec-kit","correctedSkillId":"skill-installer"},{"runtime":"opencode","outcome":"ignored","skillId":"system-spec-kit"}]}' --warm-only --format json --timeout-ms 120000
 ```
 
 Output:

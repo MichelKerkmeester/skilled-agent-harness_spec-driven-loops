@@ -14,7 +14,7 @@
       "command": "/create:agent",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-agent",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -61,7 +61,7 @@
       "command": "/create:benchmark",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-benchmark",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -76,7 +76,7 @@
       "command": "/create:changelog",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-changelog",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -99,7 +99,7 @@
       "command": "/create:command",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-command",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -114,7 +114,7 @@
       "command": "/create:diff",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-diff",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -129,7 +129,7 @@
       "command": "/create:feature-catalog",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-feature-catalog",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -152,7 +152,7 @@
       "command": "/create:manual-testing-playbook",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-manual-testing-playbook",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -199,7 +199,7 @@
       "command": "/create:readme",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-readme",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -222,7 +222,7 @@
       "command": "/create:repo-rule",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-repo-rule",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -237,7 +237,7 @@
       "command": "/create:skill",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-skill",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -260,7 +260,7 @@
       "command": "/create:skill-parent",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-skill-parent",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -275,7 +275,7 @@
       "command": "/create:with-human-voice",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-with-human-voice",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -290,7 +290,7 @@
       "command": "/deep:agent-improvement",
       "skillId": "system-deep-loop",
       "ownerMode": "agent-improvement",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "source": ".skilled/skills/system-deep-loop/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -313,7 +313,7 @@
       "command": "/deep:ai-council",
       "skillId": "system-deep-loop",
       "ownerMode": "ai-council",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "source": ".skilled/skills/system-deep-loop/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -328,7 +328,7 @@
       "command": "/deep:model-benchmark",
       "skillId": "system-deep-loop",
       "ownerMode": "model-benchmark",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "source": ".skilled/skills/system-deep-loop/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -368,7 +368,7 @@
       "command": "/deep:research",
       "skillId": "system-deep-loop",
       "ownerMode": "research",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "source": ".skilled/skills/system-deep-loop/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -392,7 +392,7 @@
       "command": "/deep:review",
       "skillId": "system-deep-loop",
       "ownerMode": "review",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "source": ".skilled/skills/system-deep-loop/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -416,7 +416,7 @@
       "command": "/design:chart",
       "skillId": "sk-design",
       "ownerMode": "sk-design-chart",
-      "source": ".opencode/skills/sk-design/command-metadata.json",
+      "source": ".skilled/skills/sk-design/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -431,7 +431,7 @@
       "command": "/design:diagram",
       "skillId": "sk-design",
       "ownerMode": "sk-design-diagram",
-      "source": ".opencode/skills/sk-design/command-metadata.json",
+      "source": ".skilled/skills/sk-design/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -446,7 +446,7 @@
       "command": "/design:extract",
       "skillId": "sk-design",
       "ownerMode": "sk-design-md-generator",
-      "source": ".opencode/skills/sk-design/command-metadata.json",
+      "source": ".skilled/skills/sk-design/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false

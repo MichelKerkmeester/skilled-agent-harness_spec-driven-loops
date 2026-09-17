@@ -30,7 +30,7 @@ import type {
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
 
-const SKILL_ROOT = join('.opencode', 'skills');
+const SKILL_ROOT = join('.skilled', 'skills');
 const DEFAULT_MAX_METADATA_FILES = 5_000;
 type SemanticLaneHealth = NonNullable<AdvisorStatusOutput['semanticLaneHealth']>;
 

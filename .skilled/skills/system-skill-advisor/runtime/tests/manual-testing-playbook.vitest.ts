@@ -12,7 +12,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
 const playbookRoot = resolve(
   repoRoot,
-  '.opencode/skills/system-skill-advisor/manual-testing-playbook',
+  '.skilled/skills/system-skill-advisor/manual-testing-playbook',
 );
 const rootPlaybook = resolve(playbookRoot, 'manual-testing-playbook.md');
 

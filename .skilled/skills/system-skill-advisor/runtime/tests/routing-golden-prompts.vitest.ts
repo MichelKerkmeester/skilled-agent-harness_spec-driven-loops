@@ -27,7 +27,7 @@ import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
 const fixturePath = resolve(here, '../scripts/fixtures/gate2-golden-prompts.jsonl');
-const compiledRouteScript = resolve(repoRoot, '.opencode/bin/compiled-route.cjs');
+const compiledRouteScript = resolve(repoRoot, '.skilled/bin/compiled-route.cjs');
 
 // Pinned force-local regime — must precede the scorer import so the scorer
 // picks it up at module load, matching the baseline capture exactly.
@@ -44,7 +44,7 @@ const { COMPILED_ROUTING_HUBS } = await import('../lib/compiled-routing-flag.js'
 
 const workspaceRoot = findAdvisorWorkspaceRoot(here, {
   maxDepth: 20,
-  sentinel: '.opencode/skills/system-spec-kit/SKILL.md',
+  sentinel: '.skilled/skills/system-spec-kit/SKILL.md',
 });
 
 interface GoldenCase {

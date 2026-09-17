@@ -52,34 +52,34 @@ Validate the separation between `advisor_status` and `advisor_rebuild`. `advisor
 WORK="/tmp/skill-advisor-nc-006-$(date +%s)"
 rsync -a --exclude node_modules --exclude .git ./ "$WORK/"
 cd "$WORK"
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
-touch .opencode/skills/system-spec-kit/graph-metadata.json
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
+touch .skilled/skills/system-spec-kit/graph-metadata.json
 ```
 
 2. Capture diagnostic status twice:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --format json
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --format json
 ```
 
 3. Rebuild explicitly:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_rebuild --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --trusted --format json
+node .skilled/bin/skill-advisor.cjs advisor_rebuild --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --trusted --format json
 ```
 
 4. Confirm status after rebuild:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --format json
 ```
 
 5. Confirm live skip and force rebuild:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_rebuild --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --trusted --format json
-node .opencode/bin/skill-advisor.cjs advisor_rebuild --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --trusted --force true --format json
+node .skilled/bin/skill-advisor.cjs advisor_rebuild --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --trusted --format json
+node .skilled/bin/skill-advisor.cjs advisor_rebuild --workspace-root /tmp/skill-advisor-nc-006-<timestamp> --trusted --force true --format json
 ```
 
 ### Expected Output / Verification

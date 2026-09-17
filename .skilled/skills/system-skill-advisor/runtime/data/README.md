@@ -50,7 +50,7 @@ data/
 |---|---|
 | Imports | JSON data files are read by advisor runtime code, not imported as modules. |
 | Exports | This folder exports no runtime code. |
-| Ownership | Track static JSON inputs here. Put runtime logs here only as ignored local state via `.opencode/.gitignore`. |
+| Ownership | Track static JSON inputs here. Put runtime logs here only as ignored local state via `.skilled/.gitignore`. |
 
 Main flow:
 
@@ -77,7 +77,7 @@ build or runtime path
 Run from the repository root.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/runtime/data/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/data/README.md
 ```
 
 Expected result: exit code `0`.

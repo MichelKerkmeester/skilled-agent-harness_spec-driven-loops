@@ -18,7 +18,7 @@ version: 0.8.0.10
 
 ## 1. OVERVIEW
 
-`skill_graph_scan` indexes `.opencode/skills/*/graph-metadata.json` files into
+`skill_graph_scan` indexes `.skilled/skills/*/graph-metadata.json` files into
 the SQLite skill graph. It is the maintenance entry point for refreshing skill
 relationships before structural skill queries.
 

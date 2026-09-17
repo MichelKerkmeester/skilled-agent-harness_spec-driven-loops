@@ -56,7 +56,7 @@ delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
 const { scoreAdvisorPrompt } = await import(join(DIST, 'lib/scorer/fusion.js'));
 const { findAdvisorWorkspaceRoot } = await import(join(DIST, 'lib/utils/workspace-root.js'));
 
-const SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
+const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
 const WORKSPACE_ROOT = findAdvisorWorkspaceRoot(HERE, { maxDepth: 14, sentinel: SENTINEL });
 
 function topTwoMargin(prompt) {

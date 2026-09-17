@@ -270,7 +270,7 @@ export async function runAdvisorSubprocess(
   const scriptPath = options.scriptPath
     ?? join(
       options.workspaceRoot,
-      '.opencode',
+      '.skilled',
       'skills',
       'system-skill-advisor',
       'runtime',

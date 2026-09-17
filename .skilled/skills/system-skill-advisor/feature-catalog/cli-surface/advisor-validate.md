@@ -69,18 +69,18 @@ Default-off feedback calibration is available only when `SPECKIT_ADVISOR_FEEDBAC
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts` | Handler | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/feedback-calibration.ts` | Library | default-off shadow calibration reducer and report persistence |
-| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts` | Library | read-only proposal builder that leaves live defaults unchanged |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts` | Handler | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/feedback-calibration.ts` | Library | default-off shadow calibration reducer and report persistence |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts` | Library | read-only proposal builder that leaves live defaults unchanged |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts` | Automated test | Validation reference |
-| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/advisor-feedback-calibration.vitest.ts` | Automated test | reducer guardrails and byte-identical live scoring |
-| `.opencode/skills/system-skill-advisor/runtime/tests/parity/` | Automated test | Python/TS parity harness |
+| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts` | Automated test | Validation reference |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/advisor-feedback-calibration.vitest.ts` | Automated test | reducer guardrails and byte-identical live scoring |
+| `.skilled/skills/system-skill-advisor/runtime/tests/parity/` | Automated test | Python/TS parity harness |
 | `Playbook scenario [NC-003](../../manual-testing-playbook/native-cli-tools/native-validate-slices.md).` | Manual playbook | Source reference |
 
 ---

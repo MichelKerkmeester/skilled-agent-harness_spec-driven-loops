@@ -67,8 +67,8 @@ Compiled output belongs under `runtime/dist/runtime/lib/embedders/`.
 Run from the repository root.
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime run test -- tests/embedders
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/runtime/lib/embedders/README.md
+npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/embedders
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/lib/embedders/README.md
 ```
 
 ---

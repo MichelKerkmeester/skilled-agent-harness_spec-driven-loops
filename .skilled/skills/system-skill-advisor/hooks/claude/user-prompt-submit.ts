@@ -44,7 +44,7 @@ const requireFromAdvisor = createRequire(import.meta.url);
 function skillAdvisorHookEnabled(): boolean {
   try {
     const { isHookEnabled } = requireFromAdvisor(
-      fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)),
+      fileURLToPath(new URL('../../../../../../../.skilled/hooks/shared/hook-flags.cjs', import.meta.url)),
     ) as { isHookEnabled?: (concern: string) => boolean };
     return typeof isHookEnabled !== 'function' || isHookEnabled('skill-advisor') !== false;
   } catch {

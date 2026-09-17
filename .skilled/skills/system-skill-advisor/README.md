@@ -39,7 +39,7 @@ The advisor answers the "which skill" question with a calibrated score and an ex
 
 system-skill-advisor is the standalone Gate 2 routing surface for Spec Kit. It runs as a resident daemon behind one CLI front door, so routing can be tuned and rolled back without touching memory or code-graph systems. It fuses five scoring lanes into one calibrated recommendation, returns per-lane attribution without leaking prompt content and surfaces a trust state on every response so the caller knows whether to use the result or treat it as degraded.
 
-The single front door is the daemon-backed CLI at `.opencode/bin/skill-advisor.cjs`, which speaks the advisor's own newline-delimited protocol over a unix socket. When the daemon is unreachable, the CLI answers from the Python scorer at `runtime/scripts/skill_advisor.py` and marks the response degraded, so the prompt-time brief reports `Advisor: stale` rather than claiming live. The skill also owns the documentation for the OpenCode plugin surface and the `/goal` plugin.
+The single front door is the daemon-backed CLI at `.skilled/bin/skill-advisor.cjs`, which speaks the advisor's own newline-delimited protocol over a unix socket. When the daemon is unreachable, the CLI answers from the Python scorer at `runtime/scripts/skill_advisor.py` and marks the response degraded, so the prompt-time brief reports `Advisor: stale` rather than claiming live. The skill also owns the documentation for the OpenCode plugin surface and the `/goal` plugin.
 
 ### The Five-Lane Scorer
 
@@ -58,7 +58,7 @@ The single front door is the daemon-backed CLI at `.opencode/bin/skill-advisor.c
 **Step 1: Check advisor health.**
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
 ```
 
 Expected result: a payload with `freshness`, `generation`, `trustState`, lane weights and `skillCount`. A `trustState` of `live` means the index is fresh and you can trust the next recommendation.
@@ -66,7 +66,7 @@ Expected result: a payload with `freshness`, `generation`, `trustState`, lane we
 **Step 2: Ask for a recommendation.**
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"create a new agent"}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"create a new agent"}' --format json
 ```
 
 Expected result: a `recommendations[]` array of skill candidates ranked by score, with `freshness`, `trustState`, prompt-safe attribution metadata. Public responses never echo raw prompt content.
@@ -74,7 +74,7 @@ Expected result: a `recommendations[]` array of skill candidates ranked by score
 **Step 3: Rebuild when status reports a non-live state.**
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json
+node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json
 ```
 
 Expected result: `rebuilt: true`, generation deltas, refreshed `skillCount`, diagnostics. Run when `advisor_status` reports a non-live or unavailable index.
@@ -86,8 +86,8 @@ Use the CLI as the Gate 2 path when no hook brief is present, when scripting a c
 Two guardrails apply. First, callers bound the CLI call with their own timeout and fail open on expiry or exit `75`; the CLI starts the daemon when the socket is cold and answers from the local scorer when the daemon stays unreachable. A degraded answer is stale, not missing. Second, CLI calls are sent untrusted by default: the mutation commands `advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances` require `--trusted` (or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`), which is the maintainer path. There is no MCP transport to fall back to.
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
-node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
+node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
 ```
 
 ### Runtime Environment Ownership
@@ -120,7 +120,7 @@ Shadow-delta JSONL recording is opt-in. `advisor_recommend` includes the prompt-
 
 ### Freshness and the Trust Contract
 
-A daemon watches every `SKILL.md` and `graph-metadata.json` under `.opencode/skills/`. When a watched source changes, the daemon schedules an incremental reindex, publishes a fresh generation after the rebuild and invalidates the recommendation cache. It holds a single-writer lease. Explicit trusted mutation paths are `advisor_rebuild`, `skill_graph_scan` and real `skill_graph_propagate_enhances` apply writes (`mode: apply` with `dryRun !== true`). Corrupt-database recovery may also move aside and recreate the database during lazy initialization.
+A daemon watches every `SKILL.md` and `graph-metadata.json` under `.skilled/skills/`. When a watched source changes, the daemon schedules an incremental reindex, publishes a fresh generation after the rebuild and invalidates the recommendation cache. It holds a single-writer lease. Explicit trusted mutation paths are `advisor_rebuild`, `skill_graph_scan` and real `skill_graph_propagate_enhances` apply writes (`mode: apply` with `dryRun !== true`). Corrupt-database recovery may also move aside and recreate the database during lazy initialization.
 
 Every response carries a trust state so the caller knows what to do next.
 
@@ -190,7 +190,7 @@ Skill-root metadata ownership follows the [canonical contract](../sk-doc/sk-crea
 | `advisor_validate` reports outside the dated bounded-delta gate | Scorer behavior changed or fixtures drifted | Inspect `perSkill[]`, `slices.corpus`, [`validation-baselines.md`](./references/scoring/validation-baselines.md) |
 | Recommendations omit a newly-added skill | The daemon has not observed the new file yet | Call `advisor_rebuild` or wait for the watcher to fire |
 | CLI reports a mutation `requires --trusted` (exit 64) | The trusted-mutation gate fails closed on untrusted calls | Re-run with `--trusted` or set `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` if you are the maintainer |
-| CLI exits 69 with a stale-build message | The dist build is older than the sources | Rebuild with `npm --prefix .opencode/skills/system-skill-advisor/runtime run build`, then rerun |
+| CLI exits 69 with a stale-build message | The dist build is older than the sources | Rebuild with `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`, then rerun |
 
 ---
 
@@ -214,7 +214,7 @@ A: Memory, spec folders and continuity stay in `system-spec-kit`. The advisor de
 
 **Q: Where are the runtime hooks documented?**
 
-A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across every runtime (Claude, Codex, Cursor, Devin, Pi) and the OpenCode plugin. The source adapters live under `.opencode/skills/system-skill-advisor/hooks/`.
+A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across every runtime (Claude, Codex, Cursor, Devin, Pi) and the OpenCode plugin. The source adapters live under `.skilled/skills/system-skill-advisor/hooks/`.
 
 ---
 
@@ -222,10 +222,10 @@ A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across eve
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/README.md --type readme` reports zero issues |
-| TypeScript build | `npm --prefix .opencode/skills/system-skill-advisor/runtime run typecheck && npm --prefix .opencode/skills/system-skill-advisor/runtime run build` exits 0 |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/README.md --type readme` reports zero issues |
+| TypeScript build | `npm --prefix .skilled/skills/system-skill-advisor/runtime run typecheck && npm --prefix .skilled/skills/system-skill-advisor/runtime run build` exits 0 |
 | Playbook | Run the manual testing playbook scenarios under `manual-testing-playbook/` in a live session |
-| Validation battery | `node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true}' --format json` reports within the dated bounded-delta gate in [`validation-baselines.md`](./references/scoring/validation-baselines.md) |
+| Validation battery | `node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true}' --format json` reports within the dated bounded-delta gate in [`validation-baselines.md`](./references/scoring/validation-baselines.md) |
 
 ---
 

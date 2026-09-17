@@ -12,11 +12,11 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
 const compilerPath = resolve(
   repoRoot,
-  '.opencode/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py',
+  '.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py',
 );
 const advisorPath = resolve(
   repoRoot,
-  '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
+  '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
 );
 
 describe('advisor graph health', () => {

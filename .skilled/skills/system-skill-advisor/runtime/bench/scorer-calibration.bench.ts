@@ -67,14 +67,14 @@ interface CalibrationReport {
   readonly passed: boolean;
 }
 
-const SPECKIT_BENCH_CORPUS_PATH = '.opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl';
+const SPECKIT_BENCH_CORPUS_PATH = '.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl';
 const BASELINE_FILENAME = 'scorer-calibration-baseline.json';
 const BUCKET_COUNT = 10;
 const BENCH_TIMEOUT_MS = process.env.CI ? 300_000 : 180_000;
 
 function workspaceRoot(): string {
   const start = dirname(fileURLToPath(import.meta.url));
-  const sentinel = '.opencode/skills/system-spec-kit/SKILL.md';
+  const sentinel = '.skilled/skills/system-spec-kit/SKILL.md';
   const candidate = findAdvisorWorkspaceRoot(start, { maxDepth: 12, sentinel });
   if (!existsSync(resolve(candidate, sentinel))) {
     throw new Error('Unable to locate workspace root.');

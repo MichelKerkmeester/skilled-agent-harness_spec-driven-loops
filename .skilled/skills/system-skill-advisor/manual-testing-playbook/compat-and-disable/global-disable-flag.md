@@ -45,7 +45,7 @@ Validate the common disable flag across the native CLI, Python shim, runtime hoo
 SANDBOX=$(mktemp -d /tmp/cp003.XXXXXX)
 SYSTEM_SKILL_ADVISOR_DB_DIR="$SANDBOX/db" SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock" \
 SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 \
-  node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" \
+  node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" \
   --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
 rm -rf "$SANDBOX"
 ```
@@ -53,19 +53,19 @@ rm -rf "$SANDBOX"
 2. Python shim:
 
 ```bash
-SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "help me commit my changes"
+SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "help me commit my changes"
 ```
 
 3. OpenCode plugin:
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts -t "opt-out"
+npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts -t "opt-out"
 ```
 
 4. One hook adapter:
 
 ```bash
-printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit"}' | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js
+printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit"}' | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js
 ```
 
 ### Expected Signals
@@ -87,9 +87,9 @@ printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
-- `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
-- `.opencode/plugins/system-skill-advisor.js`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
+- `.skilled/plugins/system-skill-advisor.js`
 
 ---
 

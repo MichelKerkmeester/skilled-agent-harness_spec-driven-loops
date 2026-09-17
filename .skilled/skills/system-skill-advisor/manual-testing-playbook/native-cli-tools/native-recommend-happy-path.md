@@ -36,7 +36,7 @@ Validate the native `advisor_recommend` command with a prompt that should map to
 ## 2. SCENARIO CONTRACT
 
 - Repo root is the working directory.
-- Advisor runtime has been built with `npm --prefix .opencode/skills/system-skill-advisor/runtime run build`.
+- Advisor runtime has been built with `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset.
 
 ---
@@ -46,7 +46,7 @@ Validate the native `advisor_recommend` command with a prompt that should map to
 1. Call the command:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --options '{"topK":1,"includeAttribution":true,"includeAbstainReasons":true}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --options '{"topK":1,"includeAttribution":true,"includeAbstainReasons":true}' --format json
 ```
 
 2. Save the JSON response.
@@ -89,8 +89,8 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conve
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
-- `.opencode/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
+- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts`
 
 ---
 

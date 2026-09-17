@@ -24,8 +24,8 @@ function repoRoot(): string {
   throw new Error('repo root not found from ' + process.cwd());
 }
 const R = repoRoot();
-const CHECKER = join(R, '.opencode/commands/doctor/scripts/parent-skill-check.cjs');
-const GOLDEN_HUB = join(R, '.opencode/skills/sk-doc'); // a canon-clean workflow-only hub
+const CHECKER = join(R, '.skilled/commands/doctor/scripts/parent-skill-check.cjs');
+const GOLDEN_HUB = join(R, '.skilled/skills/sk-doc'); // a canon-clean workflow-only hub
 
 function runChecker(hubDir: string): { code: number; out: string } {
   try {

@@ -12,7 +12,7 @@ contextType: "reference"
 ---
 # Contract: the skill advisor CLI front door
 
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 > The single entry point for every advisor capability. Callers read this rather than the CLI
 > source. Field names and exit codes here are frozen: a change to either is a breaking change.
@@ -22,7 +22,7 @@ contextType: "reference"
 ## 1. INVOCATION
 
 ```
-node .opencode/bin/skill-advisor.cjs <command> [--arg value ...] --format json
+node .skilled/bin/skill-advisor.cjs <command> [--arg value ...] --format json
 ```
 
 The shim resolves the built CLI, verifies the build is current, and reaches the daemon over a

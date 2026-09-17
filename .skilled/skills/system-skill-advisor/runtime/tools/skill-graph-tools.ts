@@ -20,12 +20,12 @@ type MCPResponse = {
 
 export const skillGraphScanTool: ToolDefinition = {
   name: 'skill_graph_scan',
-  description: '[L7:Maintenance] Index or re-index all .opencode/skills/*/graph-metadata.json files into skill-graph.sqlite using the hash-aware SQLite indexer. Token Budget: 800.',
+  description: '[L7:Maintenance] Index or re-index all .skilled/skills/*/graph-metadata.json files into skill-graph.sqlite using the hash-aware SQLite indexer. Token Budget: 800.',
   inputSchema: {
     type: 'object',
     additionalProperties: false,
     properties: {
-      skillsRoot: { type: 'string', description: 'Optional skills root to scan (default: .opencode/skills). Must resolve to a path under the current workspace; paths escaping the workspace are rejected.' },
+      skillsRoot: { type: 'string', description: 'Optional skills root to scan (default: .skilled/skills). Must resolve to a path under the current workspace; paths escaping the workspace are rejected.' },
     },
     required: [],
   },
@@ -70,7 +70,7 @@ export const skillGraphPropagateEnhancesTool: ToolDefinition = {
     type: 'object',
     additionalProperties: false,
     properties: {
-      skillsRoot: { type: 'string', description: 'Defaults to .opencode/skills' },
+      skillsRoot: { type: 'string', description: 'Defaults to .skilled/skills' },
       mode: { type: 'string', enum: ['report', 'propose', 'apply'], default: 'report' },
       minConfidence: { type: 'number', minimum: 0, maximum: 1, default: 0.75 },
       targetSkillIds: { type: 'array', items: { type: 'string' } },

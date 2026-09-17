@@ -57,7 +57,7 @@ Humans may edit `allow-list.json`, `derive-command-bridges.cjs`, `scoring-compat
 Run the deriver in check mode from the repository root:
 
 ```bash
-node .opencode/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check
+node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check
 ```
 
 ---

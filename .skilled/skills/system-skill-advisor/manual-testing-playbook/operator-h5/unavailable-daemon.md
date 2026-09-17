@@ -44,19 +44,19 @@ Validate the recovery path when the native advisor graph state is unavailable be
 2. Detect:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 3. Confirm `freshness: "unavailable"` or trust reason indicating database failure.
 4. Trigger rebuild:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
+node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 5. If the CLI cannot reach the daemon, delete only the corrupt copied database; the next CLI call cold-starts the daemon and recreates it.
-6. Negative auth check: call `node .opencode/bin/skill-advisor.cjs skill_graph_scan --format json` without `--trusted` and confirm the CLI exits `64` with the trusted-mutation refusal, with no graph mutation.
+6. Negative auth check: call `node .skilled/bin/skill-advisor.cjs skill_graph_scan --format json` without `--trusted` and confirm the CLI exits `64` with the trusted-mutation refusal, with no graph mutation.
 
 ### Expected Signals
 
@@ -77,8 +77,8 @@ node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-t
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/lib/freshness/rebuild-from-source.ts`
-- `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/freshness/rebuild-from-source.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts`
 
 ---
 
@@ -126,7 +126,7 @@ Do NOT modify, create, or delete any file OTHER than the single scenario file na
 - The scenario's own execution step 1 requires creating and corrupting a copied `skill-graph.sqlite`, and step 5 may require deleting the corrupt copied database; those writes are outside the only allowed write path:
 
 ```text
-.opencode/skills/system-skill-advisor/manual-testing-playbook/operator-h5/unavailable-daemon.md (this file only)
+.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/unavailable-daemon.md (this file only)
 ```
 
 ---

@@ -38,7 +38,7 @@ function skill(overrides: Partial<SkillProjection> & Pick<SkillProjection, 'id'>
     intentSignals: [],
     derivedTriggers: [],
     derivedKeywords: [],
-    sourcePath: `.opencode/skills/${overrides.id}/graph-metadata.json`,
+    sourcePath: `.skilled/skills/${overrides.id}/graph-metadata.json`,
     lifecycleStatus: 'active',
     ...Object.fromEntries(Object.entries(overrides).filter(([key]) => key !== 'id')),
   };
@@ -425,7 +425,7 @@ describe('027/003 native scorer units', () => {
     // sources; now they are distinct.
     const root = mkdtempSync(join(tmpdir(), 'advisor-projection-'));
     try {
-      const skillDir = join(root, '.opencode', 'skills', 'alpha');
+      const skillDir = join(root, '.skilled', 'skills', 'alpha');
       mkdirSync(skillDir, { recursive: true });
       writeFileSync(join(skillDir, 'SKILL.md'), '---\nname: alpha\ndescription: alpha skill\n---\n', 'utf8');
       writeFileSync(join(skillDir, 'graph-metadata.json'), JSON.stringify({
@@ -454,11 +454,11 @@ describe('027/003 native scorer units', () => {
   it('falls back to filesystem projection when the SQLite graph is corrupt', () => {
     const root = mkdtempSync(join(tmpdir(), 'advisor-projection-corrupt-'));
     try {
-      const dbDir = join(root, '.opencode', 'skills', 'system-skill-advisor', 'runtime', 'database');
+      const dbDir = join(root, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'database');
       mkdirSync(dbDir, { recursive: true });
       writeFileSync(join(dbDir, 'skill-graph.sqlite'), 'not a sqlite database', 'utf8');
 
-      const skillDir = join(root, '.opencode', 'skills', 'alpha');
+      const skillDir = join(root, '.skilled', 'skills', 'alpha');
       mkdirSync(skillDir, { recursive: true });
       writeFileSync(join(skillDir, 'SKILL.md'), '---\nname: alpha\ndescription: alpha skill\n---\n', 'utf8');
       writeFileSync(join(skillDir, 'graph-metadata.json'), JSON.stringify({

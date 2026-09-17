@@ -55,7 +55,7 @@ compat/
 Run from the repository root.
 
 ```bash
-npx vitest run .opencode/skills/system-skill-advisor/runtime/tests/compat
+npx vitest run .skilled/skills/system-skill-advisor/runtime/tests/compat
 ```
 
 Expected result: all compatibility tests pass.

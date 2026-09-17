@@ -43,15 +43,15 @@ Compiled consumers import the equivalent at `dist/runtime/compat/index.js`; the 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/compat/index.ts` | Implementation | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/compat/daemon-probe.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/compat/index.ts` | Implementation | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/compat/daemon-probe.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
-| `.opencode/skills/system-skill-advisor/runtime/tests/compat/shim.vitest.ts` | Automated test | Validation reference |
+| `.skilled/skills/system-skill-advisor/runtime/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
+| `.skilled/skills/system-skill-advisor/runtime/tests/compat/shim.vitest.ts` | Automated test | Validation reference |
 | `Playbook scenarios [CL-005](../../manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md) and [CP-001..CP-004](../../manual-testing-playbook/compat-and-disable).` | Manual playbook | Source reference |
 
 ---

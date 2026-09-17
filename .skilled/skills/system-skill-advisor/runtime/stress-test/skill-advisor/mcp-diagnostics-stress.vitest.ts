@@ -12,7 +12,7 @@ import { handleAdvisorValidate } from '../../handlers/advisor-validate.js';
 import { AdvisorStatusOutputSchema, AdvisorValidateOutputSchema } from '../../schemas/advisor-tool-schemas.js';
 
 const BOGUS_DAEMON_PID = '999999999';
-const ADVISOR_DB_RELATIVE_PATH = '.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite';
+const ADVISOR_DB_RELATIVE_PATH = '.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite';
 
 function writeFile(root: string, relativePath: string, content: string): void {
   const filePath = join(root, relativePath);
@@ -21,7 +21,7 @@ function writeFile(root: string, relativePath: string, content: string): void {
 }
 
 function writeGeneration(root: string, state: 'live' | 'stale' | 'absent' | 'unavailable', generation: number): void {
-  writeFile(root, '.opencode/skills/.state/advisor/skill-graph-generation.json', `${JSON.stringify({
+  writeFile(root, '.skilled/skills/.state/advisor/skill-graph-generation.json', `${JSON.stringify({
     generation,
     updatedAt: '2026-04-20T00:00:00.000Z',
     sourceSignature: `stress-${state}`,
@@ -32,7 +32,7 @@ function writeGeneration(root: string, state: 'live' | 'stale' | 'absent' | 'una
 
 function createDegradedWorkspace(): string {
   const root = mkdtempSync(join(tmpdir(), 'sa-027-status-'));
-  writeFile(root, '.opencode/skills/alpha/graph-metadata.json', '{"skill_id":"alpha"}\n');
+  writeFile(root, '.skilled/skills/alpha/graph-metadata.json', '{"skill_id":"alpha"}\n');
   writeFile(root, ADVISOR_DB_RELATIVE_PATH, '');
   writeGeneration(root, 'live', 42);
   return root;
@@ -84,7 +84,7 @@ describe('sa-027 / sa-028 — MCP diagnostics under degraded daemon state', () =
     const root = createDegradedWorkspace();
     try {
       const dbPath = join(root, ADVISOR_DB_RELATIVE_PATH);
-      const metadataPath = join(root, '.opencode/skills/alpha/graph-metadata.json');
+      const metadataPath = join(root, '.skilled/skills/alpha/graph-metadata.json');
       utimesSync(dbPath, new Date('2026-04-19T00:00:00.000Z'), new Date('2026-04-19T00:00:00.000Z'));
       utimesSync(metadataPath, new Date('2026-04-21T00:00:00.000Z'), new Date('2026-04-21T00:00:00.000Z'));
 

@@ -72,7 +72,7 @@ const CORPUS_PATH = join(ROUTING, 'labeled-prompts.jsonl');
 const HOLDOUT_PATH = join(ROUTING, 'holdout-prompts.jsonl');
 const AMBIGUITY_PATH = join(ROUTING, 'ambiguity-prompts.jsonl');
 const DELEGATION_PATH = resolve(HERE, 'fixtures/executor-delegation-cases.json');
-const SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
+const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
 
 // Minimum bucket sizes below which a slice is statistically meaningless. The
 // review slice holds 31 read-only prompts in the current frozen corpus; the

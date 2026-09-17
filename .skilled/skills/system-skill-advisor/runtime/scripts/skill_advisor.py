@@ -39,7 +39,7 @@ from typing import Any, Dict, List, Optional, Set
 # ───────────────────────────────────────────────────────────────
 
 # Path to skill directory.
-# This script lives in .opencode/skills/system-skill-advisor/runtime/scripts/.
+# This script lives in .skilled/skills/system-skill-advisor/runtime/scripts/.
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 SKILLS_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", ".."))
 REPO_ROOT = os.path.dirname(os.path.dirname(SKILLS_DIR))
@@ -48,7 +48,7 @@ FORCE_LOCAL_ENV = "SPECKIT_SKILL_ADVISOR_FORCE_LOCAL"
 NATIVE_TIMEOUT_SECONDS = 2.5
 NATIVE_ADVISOR_STATUS = os.path.join(
     REPO_ROOT,
-    ".opencode",
+    ".skilled",
     "skills",
     "system-skill-advisor",
     "runtime",
@@ -59,7 +59,7 @@ NATIVE_ADVISOR_STATUS = os.path.join(
 )
 NATIVE_ADVISOR_COMPAT = os.path.join(
     REPO_ROOT,
-    ".opencode",
+    ".skilled",
     "skills",
     "system-skill-advisor",
     "runtime",
@@ -70,7 +70,7 @@ NATIVE_ADVISOR_COMPAT = os.path.join(
 )
 NATIVE_GENERATION_MODULE = os.path.join(
     REPO_ROOT,
-    ".opencode",
+    ".skilled",
     "skills",
     "system-skill-advisor",
     "runtime",
@@ -2101,7 +2101,7 @@ PHRASE_INTENT_BOOSTERS = {
     "use cli-opencode": [("cli-opencode", 3.4)],
     "cli-claude-code": [("cli-claude-code", 2.8)],
     "/cli-claude-code": [("cli-claude-code", 2.8)],
-    ".opencode/skills/cli-external-orchestration/cli-claude-code": [("cli-claude-code", 3.0)],
+    ".skilled/skills/cli-external-orchestration/cli-claude-code": [("cli-claude-code", 3.0)],
     # --- Copilot CLI cross-AI orchestration ---
     # --- Prompt Improver: prompt engineering and enhancement ---
     "improve my prompt": [("sk-prompt", 2.5)],
@@ -2118,7 +2118,7 @@ PHRASE_INTENT_BOOSTERS = {
     "depth processing": [("sk-prompt", 2.0)],
     "sk-prompt": [("sk-prompt", 2.8)],
     "/sk-prompt": [("sk-prompt", 2.8)],
-    ".opencode/skills/sk-prompt": [("sk-prompt", 3.0)],
+    ".skilled/skills/sk-prompt": [("sk-prompt", 3.0)],
 
     # ─────────────────────────────────────────────────────────────────
     # FOLLOW-UP: Hyphenated-token migrations from INTENT_BOOSTERS
@@ -3579,7 +3579,7 @@ EXECUTOR_DELEGATION_CUES_RE = re.compile(
     r"\b(use|delegate to|ask|run|invoke|dispatch|hand off to|second opinion|small[- ]model)\b"
 )
 # The negative guard forces NON-delegation: "opencode {standards|route|...}" and a
-# bare ".opencode/" path are the code hub's own opencode surface, not a handoff.
+# bare ".skilled/" path are the code hub's own opencode surface, not a handoff.
 EXECUTOR_NEGATIVE_GUARD_RE = re.compile(
     r"\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.opencode/"
 )

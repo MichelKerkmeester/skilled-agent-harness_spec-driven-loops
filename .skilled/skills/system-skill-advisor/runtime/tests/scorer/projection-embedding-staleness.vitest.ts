@@ -15,7 +15,7 @@ import { createFixtureProjection, loadAdvisorProjection } from '../../lib/scorer
 import type { AdvisorProjection, SkillProjection } from '../../lib/scorer/types.js';
 
 const ADVISOR_DB_RELATIVE_PATH = join(
-  '.opencode',
+  '.skilled',
   'skills',
   'system-skill-advisor',
   'runtime',
@@ -49,7 +49,7 @@ function vector(values: readonly number[] = [1, 0]): Buffer {
 }
 
 function writeSkill(root: string, skillId: string): string {
-  const skillDir = join(root, '.opencode', 'skills', skillId);
+  const skillDir = join(root, '.skilled', 'skills', skillId);
   const metadataPath = join(skillDir, 'graph-metadata.json');
   write(join(skillDir, 'SKILL.md'), [
     '---',
@@ -164,7 +164,7 @@ function skill(overrides: Partial<SkillProjection> & Pick<SkillProjection, 'id'>
     intentSignals: [],
     derivedTriggers: [],
     derivedKeywords: [],
-    sourcePath: `.opencode/skills/${overrides.id}/graph-metadata.json`,
+    sourcePath: `.skilled/skills/${overrides.id}/graph-metadata.json`,
     lifecycleStatus: 'active',
     ...Object.fromEntries(Object.entries(overrides).filter(([key]) => key !== 'id')),
   };

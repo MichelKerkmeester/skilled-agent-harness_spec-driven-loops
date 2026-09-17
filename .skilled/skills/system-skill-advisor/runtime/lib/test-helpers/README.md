@@ -23,7 +23,7 @@ description: "Test-only helper for the skill-advisor runtime lib, not product co
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts`
 
 ---
 

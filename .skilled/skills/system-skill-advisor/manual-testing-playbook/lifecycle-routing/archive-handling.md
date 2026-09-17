@@ -43,10 +43,10 @@ Validate that `lib/lifecycle/archive-handling.ts` keeps `z_archive/` and `z-futu
 1. Call `advisor_status` and capture `skillCount`:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
-2. Manually enumerate skills under `.opencode/skills/` plus any nested `z_archive/` and `z-future/` locations.
+2. Manually enumerate skills under `.skilled/skills/` plus any nested `z_archive/` and `z-future/` locations.
 3. Call `advisor_recommend` with a prompt that historically mapped to the archived skill and capture the top-k recommendations.
 4. Inspect whether any archived or future slug appears in `recommendations[]`.
 
@@ -72,7 +72,7 @@ node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/p
 - Scenario [AI-004](../../manual-testing-playbook/auto-indexing/corpus-df-idf.md), active-only corpus.
 - Scenario [LC-002](./supersession.md), supersession routing.
 - Feature [`lifecycle-routing/archive-handling.md`](../../feature-catalog/lifecycle-routing/archive-handling.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/archive-handling.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/archive-handling.ts`.
 
 ---
 

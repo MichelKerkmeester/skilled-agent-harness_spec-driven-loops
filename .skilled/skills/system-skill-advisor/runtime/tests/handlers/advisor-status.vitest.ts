@@ -13,7 +13,7 @@ import { handleAdvisorStatus, readAdvisorStatus } from '../../handlers/advisor-s
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
 
 const ADVISOR_DB_RELATIVE_PATH = join(
-  '.opencode',
+  '.skilled',
   'skills',
   'system-skill-advisor',
   'runtime',
@@ -23,15 +23,15 @@ const ADVISOR_DB_RELATIVE_PATH = join(
 
 function workspace(name: string): string {
   const root = mkdtempSync(join(tmpdir(), `advisor-status-${name}-`));
-  mkdirSync(join(root, '.opencode', 'skills', '.state', 'advisor'), { recursive: true });
-  mkdirSync(join(root, '.opencode', 'skills', 'system-skill-advisor', 'runtime', 'database'), { recursive: true });
-  mkdirSync(join(root, '.opencode', 'skills', 'alpha'), { recursive: true });
-  writeFileSync(join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json'), '{"skill_id":"alpha"}\n', 'utf8');
+  mkdirSync(join(root, '.skilled', 'skills', '.state', 'advisor'), { recursive: true });
+  mkdirSync(join(root, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'database'), { recursive: true });
+  mkdirSync(join(root, '.skilled', 'skills', 'alpha'), { recursive: true });
+  writeFileSync(join(root, '.skilled', 'skills', 'alpha', 'graph-metadata.json'), '{"skill_id":"alpha"}\n', 'utf8');
   return root;
 }
 
 function writeGeneration(root: string, state: 'live' | 'stale' | 'absent' | 'unavailable', generation = 1): void {
-  writeFileSync(join(root, '.opencode', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), `${JSON.stringify({
+  writeFileSync(join(root, '.skilled', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), `${JSON.stringify({
     generation,
     updatedAt: '2026-04-20T00:00:00.000Z',
     sourceSignature: null,
@@ -166,11 +166,11 @@ describe('advisor_status handler', () => {
     const root = workspace('signed-live');
     writeDb(root);
     const dbPath = join(root, ADVISOR_DB_RELATIVE_PATH);
-    const metadataPath = join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json');
+    const metadataPath = join(root, '.skilled', 'skills', 'alpha', 'graph-metadata.json');
     utimesSync(dbPath, new Date('2026-04-19T00:00:00.000Z'), new Date('2026-04-19T00:00:00.000Z'));
     utimesSync(metadataPath, new Date('2026-04-21T00:00:00.000Z'), new Date('2026-04-21T00:00:00.000Z'));
     const sourceSignature = computeAdvisorSourceSignature(root);
-    writeFileSync(join(root, '.opencode', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), `${JSON.stringify({
+    writeFileSync(join(root, '.skilled', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), `${JSON.stringify({
       generation: 9,
       updatedAt: '2026-04-22T00:00:00.000Z',
       sourceSignature,
@@ -190,7 +190,7 @@ describe('advisor_status handler', () => {
     writeDb(root);
     writeGeneration(root, 'live', 6);
     const dbPath = join(root, ADVISOR_DB_RELATIVE_PATH);
-    const metadataPath = join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json');
+    const metadataPath = join(root, '.skilled', 'skills', 'alpha', 'graph-metadata.json');
     utimesSync(dbPath, new Date('2026-04-19T00:00:00.000Z'), new Date('2026-04-19T00:00:00.000Z'));
     utimesSync(metadataPath, new Date('2026-04-21T00:00:00.000Z'), new Date('2026-04-21T00:00:00.000Z'));
 
@@ -224,7 +224,7 @@ describe('advisor_status handler', () => {
   // drift: verified against shipped behavior during Unit H
   it('reports unavailable for corrupt generation metadata', () => {
     const root = workspace('unavailable');
-    writeFileSync(join(root, '.opencode', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), '{', 'utf8');
+    writeFileSync(join(root, '.skilled', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), '{', 'utf8');
 
     const status = readAdvisorStatus({ workspaceRoot: root });
 
@@ -248,8 +248,8 @@ describe('advisor_status handler', () => {
     const root = workspace('scan-cap');
     writeDb(root);
     writeGeneration(root, 'live', 7);
-    mkdirSync(join(root, '.opencode', 'skills', 'beta'), { recursive: true });
-    writeFileSync(join(root, '.opencode', 'skills', 'beta', 'graph-metadata.json'), '{"skill_id":"beta"}\n', 'utf8');
+    mkdirSync(join(root, '.skilled', 'skills', 'beta'), { recursive: true });
+    writeFileSync(join(root, '.skilled', 'skills', 'beta', 'graph-metadata.json'), '{"skill_id":"beta"}\n', 'utf8');
 
     const status = readAdvisorStatus({ workspaceRoot: root, maxMetadataFiles: 1 });
 

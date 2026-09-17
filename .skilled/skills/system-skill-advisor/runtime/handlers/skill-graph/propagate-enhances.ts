@@ -50,7 +50,7 @@ export async function handleSkillGraphPropagateEnhances(
     }
 
     const cwd = process.cwd();
-    const skillsRoot = resolve(cwd, args.skillsRoot ?? '.opencode/skills');
+    const skillsRoot = resolve(cwd, args.skillsRoot ?? '.skilled/skills');
 
     // Workspace escape guard: resolved path must stay under cwd
     if (!skillsRoot.startsWith(cwd + '/') && skillsRoot !== cwd) {

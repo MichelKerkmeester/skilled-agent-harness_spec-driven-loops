@@ -31,14 +31,14 @@ Guarantee the Python compatibility surface does not regress on hand-curated P0 c
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py` | Script | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl` | Script | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py` | Script | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl` | Script | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/parity/` | Automated test | Python/TS parity harness consuming the same corpus |
+| `.skilled/skills/system-skill-advisor/runtime/tests/parity/` | Automated test | Python/TS parity harness consuming the same corpus |
 | `Playbook scenario [PC-004](../../manual-testing-playbook/python-compat/regression-suite.md).` | Manual playbook | Source reference |
 
 ---

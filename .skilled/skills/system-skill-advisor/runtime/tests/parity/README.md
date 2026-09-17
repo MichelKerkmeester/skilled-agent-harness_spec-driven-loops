@@ -47,7 +47,7 @@ parity/
 Run from the repository root.
 
 ```bash
-cd .opencode/skills/system-spec-kit/runtime && npx vitest run skill_advisor/tests/parity
+cd .skilled/skills/system-spec-kit/runtime && npx vitest run skill_advisor/tests/parity
 ```
 
 Expected result: parity and ablation assertions pass.

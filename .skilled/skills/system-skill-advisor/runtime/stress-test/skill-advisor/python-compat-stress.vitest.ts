@@ -19,15 +19,15 @@ const PYTHON_AVAILABLE = (() => {
 const REPO_ROOT = resolve(import.meta.dirname, '../../../../../../');
 const SHIM_SCRIPT = resolve(
   REPO_ROOT,
-  '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
+  '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
 );
 const REGRESSION_SCRIPT = resolve(
   REPO_ROOT,
-  '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py',
+  '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py',
 );
 const REGRESSION_DATASET = resolve(
   REPO_ROOT,
-  '.opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl',
+  '.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl',
 );
 
 function runPython(args: readonly string[], input = '') {

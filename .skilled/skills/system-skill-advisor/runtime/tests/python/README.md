@@ -47,7 +47,7 @@ python/
 Run from the repository root.
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py
+python3 .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py
 ```
 
 Expected result: the harness exits 0 and prints passing checks.

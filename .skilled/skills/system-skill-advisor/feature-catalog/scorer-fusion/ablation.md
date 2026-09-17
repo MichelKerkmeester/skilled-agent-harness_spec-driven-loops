@@ -31,14 +31,14 @@ Quantify each lane's contribution to accuracy so lane weights can be reasoned ab
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/ablation.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts` | Handler | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/ablation.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts` | Handler | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts` | Automated test | ablation slices |
+| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts` | Automated test | ablation slices |
 | `Playbook scenario [SC-005](../../manual-testing-playbook/scorer-fusion/ablation.md).` | Manual playbook | Source reference |
 
 ---

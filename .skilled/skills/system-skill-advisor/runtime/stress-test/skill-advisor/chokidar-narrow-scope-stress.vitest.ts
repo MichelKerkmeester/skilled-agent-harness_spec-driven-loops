@@ -24,7 +24,7 @@ describe('sa-001 — Chokidar narrow-scope watcher', () => {
   }
 
   function writeSkill(slug: string): void {
-    write(`.opencode/skills/${slug}/SKILL.md`, [
+    write(`.skilled/skills/${slug}/SKILL.md`, [
       '---',
       `name: ${slug}`,
       'description: Stress fixture',
@@ -32,7 +32,7 @@ describe('sa-001 — Chokidar narrow-scope watcher', () => {
       '---',
       '',
     ].join('\n'));
-    write(`.opencode/skills/${slug}/graph-metadata.json`, JSON.stringify({
+    write(`.skilled/skills/${slug}/graph-metadata.json`, JSON.stringify({
       schema_version: 1,
       skill_id: slug,
       family: 'stress',
@@ -46,7 +46,7 @@ describe('sa-001 — Chokidar narrow-scope watcher', () => {
   it('narrows discovery to SKILL.md and graph-metadata.json amid 100 unrelated files', async () => {
     writeSkill('alpha');
     for (let index = 0; index < 125; index += 1) {
-      write(`.opencode/skills/alpha/noise/file-${index}.txt`, `noise-${index}\n`);
+      write(`.skilled/skills/alpha/noise/file-${index}.txt`, `noise-${index}\n`);
     }
 
     const targets = discoverWatchTargets(tmpDir);
@@ -54,8 +54,8 @@ describe('sa-001 — Chokidar narrow-scope watcher', () => {
 
     expect(targets).toHaveLength(2);
     expect(targetNames).toEqual([
-      '/.opencode/skills/alpha/SKILL.md',
-      '/.opencode/skills/alpha/graph-metadata.json',
+      '/.skilled/skills/alpha/SKILL.md',
+      '/.skilled/skills/alpha/graph-metadata.json',
     ]);
     expect(targets.every((target) => target.reason === 'skill-md' || target.reason === 'graph-metadata')).toBe(true);
   });
@@ -63,8 +63,8 @@ describe('sa-001 — Chokidar narrow-scope watcher', () => {
   it('discovers narrow targets under 100ms with deep unrelated directories', async () => {
     writeSkill('alpha');
     for (let index = 0; index < 40; index += 1) {
-      write(`.opencode/skills/alpha/deep/a/b/c/d/e/f/noise-${index}.md`, '# ignored\n');
-      write(`.opencode/skills/alpha/deep/a/b/c/d/e/f/g/h/noise-${index}.json`, '{}\n');
+      write(`.skilled/skills/alpha/deep/a/b/c/d/e/f/noise-${index}.md`, '# ignored\n');
+      write(`.skilled/skills/alpha/deep/a/b/c/d/e/f/g/h/noise-${index}.json`, '{}\n');
     }
 
     const startedAt = performance.now();

@@ -211,11 +211,11 @@ function summarizeScopedOutcomeTotals(
 
 function findWorkspaceRoot(start = dirname(fileURLToPath(import.meta.url))): string {
   // SKILL.md is the marker file in this caller because the cwd-based default
-  // sentinel ('.opencode/skills') would also match sibling workspaces when the
+  // sentinel ('.skilled/skills') would also match sibling workspaces when the
   // validator is invoked from a sub-directory. The shared helper's fallback
   // is `resolve(start)`; this caller's contract has historically used
   // `process.cwd()` instead, so we re-check existence on the result.
-  const sentinel = '.opencode/skills/system-spec-kit/SKILL.md';
+  const sentinel = '.skilled/skills/system-spec-kit/SKILL.md';
   const candidate = findAdvisorWorkspaceRoot(start, { maxDepth: 14, sentinel });
   return existsSync(resolve(candidate, sentinel)) ? candidate : process.cwd();
 }
@@ -236,7 +236,7 @@ function canonicalizeWorkspaceRoot(input: string): string {
 function loadCorpus(workspaceRoot: string): CorpusRow[] {
   const corpusPath = resolve(
     workspaceRoot,
-    '.opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl',
+    '.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl',
   );
   const lines = readFileSync(corpusPath, 'utf8').trim().split('\n');
   // Validate each JSONL row against CorpusRowSchema with
@@ -264,7 +264,7 @@ function loadCorpus(workspaceRoot: string): CorpusRow[] {
 function loadRegressionCases(workspaceRoot: string): RegressionCase[] {
   const fixturePath = resolve(
     workspaceRoot,
-    '.opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl',
+    '.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl',
   );
   const lines = readFileSync(fixturePath, 'utf8').trim().split('\n');
   // Validate each JSONL row against RegressionCaseSchema with
@@ -291,7 +291,7 @@ function loadRegressionCases(workspaceRoot: string): RegressionCase[] {
 function loadDelegationCases(workspaceRoot: string): DelegationCase[] {
   const fixturePath = resolve(
     workspaceRoot,
-    '.opencode/skills/system-skill-advisor/runtime/tests/parity/fixtures/executor-delegation-cases.json',
+    '.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/executor-delegation-cases.json',
   );
   const parsed: unknown = JSON.parse(readFileSync(fixturePath, 'utf8'));
   const result = DelegationFixtureSchema.safeParse(parsed);
@@ -339,7 +339,7 @@ function skill(overrides: Partial<SkillProjection> & Pick<SkillProjection, 'id'>
     intentSignals: [],
     derivedTriggers: [],
     derivedKeywords: [],
-    sourcePath: `.opencode/skills/${id}/graph-metadata.json`,
+    sourcePath: `.skilled/skills/${id}/graph-metadata.json`,
     lifecycleStatus: 'active',
     ...rest,
   };
@@ -388,7 +388,7 @@ function runPythonTopSkills(rows: readonly CorpusRow[], workspaceRoot: string): 
   const script = `
 import importlib.util, json, os, sys
 workspace = sys.argv[1]
-path = os.path.join(workspace, '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py')
+path = os.path.join(workspace, '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py')
 spec = importlib.util.spec_from_file_location('skill_advisor', path)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)

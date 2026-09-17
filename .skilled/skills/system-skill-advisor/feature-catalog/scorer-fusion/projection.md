@@ -39,21 +39,21 @@ Expose the scorer projection data the advisor needs, including the generated dee
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/projection.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts` | Library | Generated deep routing projection and workflowMode mapping |
-| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/graph-causal.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Publishes workflowMode and includes projection hash in cache signature |
-| `.opencode/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Optional workflowMode response field |
-| `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Compatibility script | Emits the routing projection and Python parity constants |
-| `.opencode/commands/create/assets/create_parent_skill_auto.yaml` | Command asset | Requires projection emission for lexical/alias-fold parent-skill modes |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts` | Library | Generated deep routing projection and workflowMode mapping |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/graph-causal.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Publishes workflowMode and includes projection hash in cache signature |
+| `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Optional workflowMode response field |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Compatibility script | Emits the routing projection and Python parity constants |
+| `.skilled/commands/create/assets/create_parent_skill_auto.yaml` | Command asset | Requires projection emission for lexical/alias-fold parent-skill modes |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | graph-causal lane behavior |
-| `.opencode/skills/system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts` | Automated test | Registry hash freshness and projection drift guard |
-| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts` | Automated test | workflowMode publication on generated deep-loop aliases |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | graph-causal lane behavior |
+| `.skilled/skills/system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts` | Automated test | Registry hash freshness and projection drift guard |
+| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts` | Automated test | workflowMode publication on generated deep-loop aliases |
 | `Playbook scenario [SC-002](../../manual-testing-playbook/scorer-fusion/projection.md).` | Manual playbook | Source reference |
 
 ---

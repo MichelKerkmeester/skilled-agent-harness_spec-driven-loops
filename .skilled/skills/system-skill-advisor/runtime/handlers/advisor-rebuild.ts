@@ -85,7 +85,7 @@ export function rebuildAdvisorIndex(
     });
   }
 
-  const skillsRoot = resolve(workspaceRoot, '.opencode', 'skills');
+  const skillsRoot = resolve(workspaceRoot, '.skilled', 'skills');
   const summary = (dependencies.indexSkills ?? indexSkillMetadata)(skillsRoot);
   (dependencies.publishGeneration ?? publishSkillGraphGeneration)({
     workspaceRoot,

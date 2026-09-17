@@ -1,6 +1,6 @@
 ---
 title: "system skill advisor runtime scripts routing accuracy: Code README"
-description: "Code-facing README for .opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy."
+description: "Code-facing README for .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy."
 trigger_phrases:
   - "system-skill-advisor runtime/scripts/routing-accuracy"
   - "code README"
@@ -16,7 +16,7 @@ Operator and maintenance scripts for this skill.
 
 ### Purpose
 
-This README documents the code-bearing folder `.opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -36,12 +36,12 @@ Use this file to identify the folder boundary, the likely verification path and 
 
 **Step 1: Confirm the owner.**
 
-Start with `.opencode/skills/system-skill-advisor/SKILL.md` for runtime routing and workflow boundaries.
+Start with `.skilled/skills/system-skill-advisor/SKILL.md` for runtime routing and workflow boundaries.
 
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy
+rg --files .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -85,7 +85,7 @@ Run individual scripts from the repository root with the documented arguments.
 **Audit this folder**
 
 ```text
-User request: Check .opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy for sk-code and README coverage.
+User request: Check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded in the 026 audit report.
 ```

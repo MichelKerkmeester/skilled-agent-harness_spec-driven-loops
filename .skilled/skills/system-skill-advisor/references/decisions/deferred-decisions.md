@@ -51,10 +51,10 @@ Deferred decisions stay visible until they are explicitly resolved, superseded o
 
 `.devin/hooks.v1.json` registers two hooks:
 
-1. `UserPromptSubmit` pointing to `.opencode/skills/system-spec-kit/runtime/dist/system-spec-kit/runtime/hooks/devin/user-prompt-submit.js`
-2. `SessionStart` pointing to `.opencode/skills/system-spec-kit/runtime/dist/system-spec-kit/runtime/hooks/devin/session-start.js`
+1. `UserPromptSubmit` pointing to `.skilled/skills/system-spec-kit/runtime/dist/system-spec-kit/runtime/hooks/devin/user-prompt-submit.js`
+2. `SessionStart` pointing to `.skilled/skills/system-spec-kit/runtime/dist/system-spec-kit/runtime/hooks/devin/session-start.js`
 
-Both paths point to the OLD `system-spec-kit` location. The NEW location at `.opencode/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/devin/` exists plus contains a compiled `user-prompt-submit.js` but lacks `session-start.js`.
+Both paths point to the OLD `system-spec-kit` location. The NEW location at `.skilled/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/devin/` exists plus contains a compiled `user-prompt-submit.js` but lacks `session-start.js`.
 
 ### Blocker
 
@@ -64,10 +64,10 @@ A complete migration of both hooks requires building `session-start.js` at the N
 
 **Option A (preferred)**: Build the missing `session-start.js` at the NEW location, then migrate both hook entries in one commit:
 
-1. Verify `.opencode/skills/system-skill-advisor/hooks/devin/session-start.ts` exists. If not, copy from system-spec-kit OLD location plus update import paths.
+1. Verify `.skilled/skills/system-skill-advisor/hooks/devin/session-start.ts` exists. If not, copy from system-spec-kit OLD location plus update import paths.
 2. Add it to the package build (typically `tsc -p tsconfig.build.json` will pick it up if it is in `include[]`).
-3. Run `npm --prefix .opencode/skills/system-skill-advisor/runtime run build`.
-4. Verify `.opencode/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/devin/session-start.js` exists.
+3. Run `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`.
+4. Verify `.skilled/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/devin/session-start.js` exists.
 5. Edit `.devin/hooks.v1.json` to point both hooks to the NEW paths in one atomic edit.
 6. Restart Devin or have the operator restart their Devin session to pick up the new config.
 
@@ -97,12 +97,12 @@ Mid-window audit while preparing for the 2026-08-16 removal:
 **Runtime configs — ALL migrated to NEW:**
 - `.claude/settings.local.json` — no hook entries (Claude consumes MCP only).
 - `opencode.json` — no hook entries.
-- OpenCode plugin (`.opencode/plugins/spec-kit-skill-advisor.js`) — owns its own loading, not affected.
+- OpenCode plugin (`.skilled/plugins/spec-kit-skill-advisor.js`) — owns its own loading, not affected.
 - Cross-runtime grep for `system-spec-kit/runtime/hooks/`: zero hits in active runtime config files. Two hits in documentation (`README.md` lines 767, 769 and `DEPLOYMENT.md` line 7). Remaining hits are historical research/impl logs.
 
 **Compiled NEW dist is self-contained:**
-- Imports in `.opencode/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/devin/user-prompt-submit.js` only resolve to `../../runtime/lib/*.js` (skill-internal). No imports from OLD `system-spec-kit/runtime/hooks/` in the compiled output.
-- `grep -rE "system-spec-kit/runtime/hooks" .opencode/skills/system-skill-advisor/runtime/dist` returns zero hits.
+- Imports in `.skilled/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/devin/user-prompt-submit.js` only resolve to `../../runtime/lib/*.js` (skill-internal). No imports from OLD `system-spec-kit/runtime/hooks/` in the compiled output.
+- `grep -rE "system-spec-kit/runtime/hooks" .skilled/skills/system-skill-advisor/runtime/dist` returns zero hits.
 
 **OLD location contents that DO have non-hook consumers — must not be removed naively:**
 
@@ -132,8 +132,8 @@ A future packet (`006-skill-advisor/010-old-hooks-helper-migration` or similar) 
 
 Hooks exist at TWO locations:
 
-- OLD: `.opencode/skills/system-spec-kit/runtime/hooks/{claude,opencode,devin}/` with source TS plus compiled JS
-- NEW: `.opencode/skills/system-skill-advisor/hooks/{claude,opencode,devin}/` with source TS, plus `.opencode/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/{claude,opencode}/` with compiled JS (devin missing session-start.js per F4)
+- OLD: `.skilled/skills/system-spec-kit/runtime/hooks/{claude,opencode,devin}/` with source TS plus compiled JS
+- NEW: `.skilled/skills/system-skill-advisor/hooks/{claude,opencode,devin}/` with source TS, plus `.skilled/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/{claude,opencode}/` with compiled JS (devin missing session-start.js per F4)
 
 No README or doc explains which location is canonical or when OLD will deprecate.
 
@@ -141,10 +141,10 @@ No README or doc explains which location is canonical or when OLD will deprecate
 
 Mark OLD as deprecated with a 90-day migration window. Concrete steps:
 
-1. Add a top-banner deprecation note to every README under `.opencode/skills/system-spec-kit/runtime/hooks/*/README.md`:
+1. Add a top-banner deprecation note to every README under `.skilled/skills/system-spec-kit/runtime/hooks/*/README.md`:
 
    ```markdown
-   > **DEPRECATED 2026-05-16.** This hook location is being migrated to `.opencode/skills/system-skill-advisor/hooks/`. Update any runtime config (e.g. `.devin/hooks.v1.json`) before 2026-08-16. After that date this location may be removed without further notice.
+   > **DEPRECATED 2026-05-16.** This hook location is being migrated to `.skilled/skills/system-skill-advisor/hooks/`. Update any runtime config (e.g. `.devin/hooks.v1.json`) before 2026-08-16. After that date this location may be removed without further notice.
    ```
 
 2. Track migration completeness per runtime in a tracker doc or this doc's appendix:
@@ -154,7 +154,7 @@ Mark OLD as deprecated with a 90-day migration window. Concrete steps:
    | Claude | `.claude/settings.local.json` hooks block | yes | Update Claude config |
    | OpenCode | `opencode.json` hooks section | yes | Update OpenCode config |
    | Devin | `.devin/hooks.v1.json` | partial (session-start.js missing) | Resolve F4 first |
-   | OpenCode plugin | `.opencode/plugins/system-skill-advisor.js` | n/a (plugin owns its loading) | No change needed |
+   | OpenCode plugin | `.skilled/plugins/system-skill-advisor.js` | n/a (plugin owns its loading) | No change needed |
 
 3. After all runtime configs are migrated plus the 90-day window passes, delete the OLD location in a separate cleanup packet.
 

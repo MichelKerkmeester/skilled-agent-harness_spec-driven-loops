@@ -84,10 +84,10 @@ describe('advisor_rebuild handler', () => {
       skillCount: 2,
     });
     // drift: 026 release
-    expect(indexSkills).toHaveBeenCalledWith('/workspace/project/.opencode/skills');
+    expect(indexSkills).toHaveBeenCalledWith('/workspace/project/.skilled/skills');
     expect(publishGeneration).toHaveBeenCalledWith({
       workspaceRoot: '/workspace/project',
-      changedPaths: ['/workspace/project/.opencode/skills'],
+      changedPaths: ['/workspace/project/.skilled/skills'],
       reason: 'advisor_rebuild',
       state: 'live',
       sourceSignature: 'source-signature',
@@ -147,7 +147,7 @@ describe('advisor_rebuild handler', () => {
       generationAfter: 4,
     });
     // drift: 026 release
-    expect(indexSkills).toHaveBeenCalledWith('/workspace/project/.opencode/skills');
+    expect(indexSkills).toHaveBeenCalledWith('/workspace/project/.skilled/skills');
     expect(publishGeneration).toHaveBeenCalledWith(expect.objectContaining({
       state: 'live',
       reason: 'advisor_rebuild',
@@ -182,10 +182,10 @@ describe('advisor_rebuild handler', () => {
     expect(result.rebuilt).toBe(true);
     expect(readStatus).toHaveBeenNthCalledWith(1, { workspaceRoot: alternateRoot, checkArtifactIntegrity: true });
     // drift: 026 release
-    expect(indexSkills).toHaveBeenCalledWith(`${alternateRoot}/.opencode/skills`);
+    expect(indexSkills).toHaveBeenCalledWith(`${alternateRoot}/.skilled/skills`);
     expect(publishGeneration).toHaveBeenCalledWith(expect.objectContaining({
       workspaceRoot: alternateRoot,
-      changedPaths: [`${alternateRoot}/.opencode/skills`],
+      changedPaths: [`${alternateRoot}/.skilled/skills`],
     }));
   });
 });

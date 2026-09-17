@@ -44,13 +44,13 @@ Validate lifecycle redirect metadata for non-active skill states.
 1. Run lifecycle tests:
 
 ```bash
-cd .opencode/skills/system-skill-advisor/runtime && npm exec -- vitest run tests/lifecycle-derived-metadata.vitest.ts tests/compat/redirect-metadata.vitest.ts --reporter=default
+cd .skilled/skills/system-skill-advisor/runtime && npm exec -- vitest run tests/lifecycle-derived-metadata.vitest.ts tests/compat/redirect-metadata.vitest.ts --reporter=default
 ```
 
 2. If a runtime fixture is available, call:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "route a superseded lifecycle fixture" --options '{"topK":3}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "route a superseded lifecycle fixture" --options '{"topK":3}' --format json
 ```
 
 3. Inspect recommendation metadata.
@@ -74,8 +74,8 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "route a superse
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/`
-- `.opencode/skills/system-skill-advisor/runtime/lib/render.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/`
+- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts`
 
 ---
 

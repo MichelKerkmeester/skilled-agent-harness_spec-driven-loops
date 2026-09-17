@@ -31,14 +31,14 @@ Keep routing sensitive to currency without discounting author-declared signals. 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/age-haircut.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/age-haircut.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | derived-lane decay application |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | derived-lane decay application |
 | `Playbook scenario [LC-001](../../manual-testing-playbook/lifecycle-routing/age-haircut.md).` | Manual playbook | Source reference |
 
 ---

@@ -27,14 +27,14 @@ Prompt: Manual validation that the daemon Chokidar watcher subscribes only to SK
 
 ## 1. OVERVIEW
 
-Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `SKILL.md`, `graph-metadata.json` and dynamic `derived.key_files` paths and that unrelated file writes under `.opencode/` or repo root do not trigger a reindex.
+Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `SKILL.md`, `graph-metadata.json` and dynamic `derived.key_files` paths and that unrelated file writes under `.skilled/` or repo root do not trigger a reindex.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
 - Repo root is the working directory.
-- Advisor runtime has been built with `npm --prefix .opencode/skills/system-skill-advisor/runtime run build`.
+- Advisor runtime has been built with `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`.
 - The advisor daemon is running (started through the launcher or on-demand through `advisor_status`).
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset.
 - Terminal capture is enabled so daemon stderr or structured logs are recorded.
@@ -48,25 +48,25 @@ Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `
 1. Capture baseline generation:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
-2. Touch an unrelated file under `.opencode/`:
+2. Touch an unrelated file under `.skilled/`:
 
 ```bash
-touch .opencode/plugins/system-skill-advisor.js
+touch .skilled/plugins/system-skill-advisor.js
 ```
 
 3. Wait 3 seconds and recheck status:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 4. Touch a tracked skill file:
 
 ```bash
-touch .opencode/skills/sk-doc/SKILL.md
+touch .skilled/skills/sk-doc/SKILL.md
 ```
 
 5. Wait 3 seconds and recheck status again.
@@ -93,7 +93,7 @@ touch .opencode/skills/sk-doc/SKILL.md
 - Scenario [AU-002](../../manual-testing-playbook/auto-update-daemon/lease-single-writer.md), single-writer lease semantics.
 - Scenario [AU-004](../../manual-testing-playbook/auto-update-daemon/generation-publication.md), generation bump publication.
 - Feature [`daemon-and-freshness/watcher.md`](../../feature-catalog/daemon-and-freshness/watcher.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts`.
 
 ---
 

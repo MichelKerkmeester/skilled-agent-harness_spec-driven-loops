@@ -47,8 +47,8 @@ function resolveSkillGraphDbPath(): string {
 
 function resolveSkillGraphSourceDir(): string | null {
   const candidates = Array.from(new Set([
-    path.resolve(process.cwd(), '.opencode', 'skills'),
-    path.resolve(import.meta.dirname, '..', '..', '..', '..', '.opencode', 'skills'),
+    path.resolve(process.cwd(), '.skilled', 'skills'),
+    path.resolve(import.meta.dirname, '..', '..', '..', '..', '.skilled', 'skills'),
   ]));
 
   for (const candidate of candidates) {
@@ -62,14 +62,14 @@ function resolveSkillGraphSourceDir(): string | null {
 
 function resolveWorkspaceRoot(): string {
   // Walk up from this module's own location to the repo root — the directory
-  // whose .opencode/skills tree contains this advisor. This is robust to the
+  // whose .skilled/skills tree contains this advisor. This is robust to the
   // source-vs-dist depth difference (the compiled file lives one level deeper
   // under dist/runtime/) and can never resolve a subdirectory cwd, which is
-  // what created stray nested .opencode/.state/advisor directories whenever the
+  // what created stray nested .skilled/.state/advisor directories whenever the
   // advisor ran with a subdirectory as its working directory.
   let dir = import.meta.dirname;
   for (let i = 0; i < 12; i += 1) {
-    if (fs.existsSync(path.join(dir, '.opencode', 'skills', 'system-skill-advisor'))) {
+    if (fs.existsSync(path.join(dir, '.skilled', 'skills', 'system-skill-advisor'))) {
       return dir;
     }
     const parent = path.dirname(dir);
@@ -88,8 +88,8 @@ function resolveWorkspaceRoot(): string {
 async function loadSkillGraphWatchFactory(): Promise<(paths: string[], options: Record<string, unknown>) => SkillGraphFsWatcher> {
   const workspaceRoot = resolveWorkspaceRoot();
   const candidates = [
-    path.join(workspaceRoot, '.opencode', 'skills', 'system-skill-advisor', 'runtime', 'node_modules', 'chokidar', 'index.js'),
-    path.join(workspaceRoot, '.opencode', 'skills', 'system-spec-kit', 'runtime', 'node_modules', 'chokidar', 'index.js'),
+    path.join(workspaceRoot, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'node_modules', 'chokidar', 'index.js'),
+    path.join(workspaceRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'node_modules', 'chokidar', 'index.js'),
   ];
   const chokidarPath = candidates.find((candidate) => fs.existsSync(candidate));
   if (!chokidarPath) {

@@ -45,7 +45,7 @@ function sessionIdFromContext(ctx: { sessionManager?: { getSessionId?: () => unk
 // lifecycle code directly removes that stall and lets its module-level prompt
 // cache work.
 const ADVISOR_HOOK_MODULE =
-  "../../.opencode/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js";
+  "../../.skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js";
 const ADVISOR_HOOK_FALLBACK_MODULE =
   "../../runtime/dist/hooks/claude/user-prompt-submit.js";
 

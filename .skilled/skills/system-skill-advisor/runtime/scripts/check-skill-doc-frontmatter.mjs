@@ -144,7 +144,7 @@ function listMarkdownFiles(dir) {
 }
 
 const { root, mode, skill } = parseArgs(process.argv.slice(2));
-const skillsRoot = join(root, '.opencode', 'skills');
+const skillsRoot = join(root, '.skilled', 'skills');
 
 let skillDirs;
 try {

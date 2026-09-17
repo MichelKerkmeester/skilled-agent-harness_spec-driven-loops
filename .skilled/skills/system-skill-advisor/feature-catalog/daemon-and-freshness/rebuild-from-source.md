@@ -21,7 +21,7 @@ Ensure the advisor never gets stuck in an unrecoverable state when SQLite storag
 
 ## 2. HOW IT WORKS
 
-`lib/freshness/rebuild-from-source.ts` detects a corrupt or unreadable SQLite store via the daemon lifecycle, then walks `.opencode/skills/*/SKILL.md` plus each `graph-metadata.json`, applies the auto-indexing derivation pipeline and republishes a fresh snapshot. Throughout the rebuild, readers see `unavailable` trust state and fail-open responses rather than exceptions. Rebuild is also the canonical recovery path for the H5 operator playbook.
+`lib/freshness/rebuild-from-source.ts` detects a corrupt or unreadable SQLite store via the daemon lifecycle, then walks `.skilled/skills/*/SKILL.md` plus each `graph-metadata.json`, applies the auto-indexing derivation pipeline and republishes a fresh snapshot. Throughout the rebuild, readers see `unavailable` trust state and fail-open responses rather than exceptions. Rebuild is also the canonical recovery path for the H5 operator playbook.
 
 ---
 
@@ -31,14 +31,14 @@ Ensure the advisor never gets stuck in an unrecoverable state when SQLite storag
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/lib/freshness/rebuild-from-source.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts` | Daemon | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/freshness/rebuild-from-source.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts` | Daemon | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | rebuild trigger paths |
+| `.skilled/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | rebuild trigger paths |
 | `Playbook scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md) and [OP-003](../../manual-testing-playbook/operator-h5/unavailable-daemon.md).` | Manual playbook | Source reference |
 
 ---

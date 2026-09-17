@@ -76,7 +76,7 @@ function normalizeTerms(terms: readonly string[]): string[] {
 function defaultCorpusStatsCachePath(workspaceRoot = process.cwd()): string {
   return join(
     workspaceRoot,
-    '.opencode',
+    '.skilled',
     'skills',
     'system-skill-advisor',
     'runtime',

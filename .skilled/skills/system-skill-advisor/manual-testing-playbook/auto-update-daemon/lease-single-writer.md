@@ -47,7 +47,7 @@ Validate that only one daemon holds the workspace lease at a time and that a sta
 1. In shell A, trigger a daemon bring-up via a CLI status call:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 2. Capture the `trustState` and `lastScanAt` timestamp.
@@ -92,7 +92,7 @@ BLOCKED - missing disposable workspace copy at `/tmp/path-to-copy`; scenario com
 - Scenario [AU-003](../../manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md), graceful shutdown and SIGTERM.
 - Scenario [OP-003](../../manual-testing-playbook/operator-h5/unavailable-daemon.md), recovery from unreadable DB.
 - Feature [`daemon-and-freshness/lease.md`](../../feature-catalog/daemon-and-freshness/lease.md).
-- Source: `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lease.ts`.
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/daemon/lease.ts`.
 
 ---
 

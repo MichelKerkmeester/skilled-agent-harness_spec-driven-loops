@@ -61,7 +61,7 @@ const FREEZE_NET_CORRECTNESS_TOLERANCE = 3;
 // Stable repo-root marker: the skill's own package.json, so the suite resolves
 // the workspace root regardless of how spec folders are renumbered.
 const WORKSPACE_ROOT_MARKER = join(
-  '.opencode',
+  '.skilled',
   'skills',
   'system-skill-advisor',
   'runtime',
@@ -69,7 +69,7 @@ const WORKSPACE_ROOT_MARKER = join(
 );
 
 const CORPUS_RELATIVE_PATH = join(
-  '.opencode',
+  '.skilled',
   'skills',
   'system-skill-advisor',
   'runtime',

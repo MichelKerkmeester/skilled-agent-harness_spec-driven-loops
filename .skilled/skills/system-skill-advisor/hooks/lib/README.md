@@ -9,7 +9,7 @@ description: "Warm-daemon CLI fallback that the skill-advisor prompt hook falls 
 
 ## 1. OVERVIEW
 
-`hooks/lib/` holds the CLI fallback path for the `system-skill-advisor` prompt hook. When the in-process advisor brief returns `fail_open` or a degraded, unavailable-freshness result, this module probes the warm advisor daemon socket, shells out to `.opencode/bin/skill-advisor.cjs advisor_recommend`, and reshapes the CLI response back into the same `AdvisorHookResult` envelope the hook already understands, so a cold in-process path does not have to mean a silent miss.
+`hooks/lib/` holds the CLI fallback path for the `system-skill-advisor` prompt hook. When the in-process advisor brief returns `fail_open` or a degraded, unavailable-freshness result, this module probes the warm advisor daemon socket, shells out to `.skilled/bin/skill-advisor.cjs advisor_recommend`, and reshapes the CLI response back into the same `AdvisorHookResult` envelope the hook already understands, so a cold in-process path does not have to mean a silent miss.
 
 ---
 
@@ -23,13 +23,13 @@ description: "Warm-daemon CLI fallback that the skill-advisor prompt hook falls 
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`
+- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts`
 
 ---
 

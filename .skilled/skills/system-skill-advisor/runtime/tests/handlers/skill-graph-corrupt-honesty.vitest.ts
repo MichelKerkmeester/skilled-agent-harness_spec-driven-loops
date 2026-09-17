@@ -19,7 +19,7 @@ import { closeDb, DB_FILENAME } from '../../lib/skill-graph/skill-graph-db.js';
 const GARBAGE = Buffer.from('this is plainly not a sqlite database file, only garbage bytes '.repeat(4));
 
 const ADVISOR_DB_RELATIVE_PATH = join(
-  '.opencode', 'skills', 'system-skill-advisor', 'runtime', 'database', 'skill-graph.sqlite',
+  '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'database', 'skill-graph.sqlite',
 );
 
 function parseData(response: { content: Array<{ text: string }> }): Record<string, unknown> {
@@ -62,11 +62,11 @@ describe('advisor status corruption downgrades freshness', () => {
 
   function workspace(): string {
     const root = mkdtempSync(join(tmpdir(), 'advisor-corrupt-'));
-    mkdirSync(join(root, '.opencode', 'skills', '.state', 'advisor'), { recursive: true });
-    mkdirSync(join(root, '.opencode', 'skills', 'system-skill-advisor', 'runtime', 'database'), { recursive: true });
-    mkdirSync(join(root, '.opencode', 'skills', 'alpha'), { recursive: true });
-    writeFileSync(join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json'), '{"skill_id":"alpha"}\n', 'utf8');
-    writeFileSync(join(root, '.opencode', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), `${JSON.stringify({
+    mkdirSync(join(root, '.skilled', 'skills', '.state', 'advisor'), { recursive: true });
+    mkdirSync(join(root, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'database'), { recursive: true });
+    mkdirSync(join(root, '.skilled', 'skills', 'alpha'), { recursive: true });
+    writeFileSync(join(root, '.skilled', 'skills', 'alpha', 'graph-metadata.json'), '{"skill_id":"alpha"}\n', 'utf8');
+    writeFileSync(join(root, '.skilled', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), `${JSON.stringify({
       generation: 3,
       updatedAt: '2026-04-20T00:00:00.000Z',
       sourceSignature: null,

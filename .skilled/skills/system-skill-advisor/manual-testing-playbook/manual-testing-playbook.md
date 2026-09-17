@@ -60,7 +60,7 @@ Coverage note (2026-05-07): the prior operator scenario corpus now lives under `
 3. The advisor runtime build is current:
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 ```
 
 4. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless a scenario explicitly sets it.
@@ -85,7 +85,7 @@ npm --prefix .opencode/skills/system-skill-advisor/runtime run build
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 - CLI commands shown as `bash: <command>`.
-- CLI calls shown as `node .opencode/bin/skill-advisor.cjs <command> --format json`.
+- CLI calls shown as `node .skilled/bin/skill-advisor.cjs <command> --format json`.
 - Hook stdin payloads shown as JSON piped into the compiled hook script.
 - `->` separates sequential steps inside one scenario contract.
 - File references use repo-root-relative paths unless otherwise stated.
@@ -291,14 +291,14 @@ This category validates python compat scenarios `PC-001..PC-005`.
 
 ## 16. AUTOMATED TEST CROSS-REFERENCE
 
-The active inventory check lives at `.opencode/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the scenario package count.
+The active inventory check lives at `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the scenario package count.
 
 | Area | Automated test anchors |
 |---|---|
-| Native command surface | `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` |
-| Hooks and plugin | `.opencode/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-runtime-parity.vitest.ts`; `.opencode/plugins/tests/opencode-goal-state.test.cjs`; `.opencode/plugins/tests/opencode-goal-continuation.test.cjs` |
-| Compatibility and Python entrypoints | `.opencode/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts`; `.opencode/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` |
-| Scoring, lifecycle, indexing and daemon state | `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` |
+| Native command surface | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.skilled/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` |
+| Hooks and plugin | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-runtime-parity.vitest.ts`; `.skilled/plugins/tests/opencode-goal-state.test.cjs`; `.skilled/plugins/tests/opencode-goal-continuation.test.cjs` |
+| Compatibility and Python entrypoints | `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts`; `.skilled/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` |
+| Scoring, lifecycle, indexing and daemon state | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` |
 
 Validator limitation: `validate_document.py` validates this root document and per-feature documents individually, but it does not prove that every command can execute in the current sandbox. Operators must capture execution evidence during release review.
 

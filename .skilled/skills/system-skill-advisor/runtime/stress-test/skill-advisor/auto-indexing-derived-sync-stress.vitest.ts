@@ -51,7 +51,7 @@ function writeSkillFixture(options: SkillFixtureOptions): string {
   const referenceCount = options.referenceCount ?? 12;
   const assetCount = options.assetCount ?? 8;
   const keyFileCount = options.keyFileCount ?? 6;
-  const skillRoot = `.opencode/skills/${options.slug}`;
+  const skillRoot = `.skilled/skills/${options.slug}`;
   const skillDir = join(tmpDir, skillRoot);
   const keyFiles = Array.from({ length: keyFileCount }, (_, index) => {
     const relativePath = `${skillRoot}/docs/key-${index}.md`;
@@ -161,8 +161,8 @@ describe('sa-008..sa-011 — auto-indexing derived metadata stress behavior', ()
   });
 
   it('sa-010 keeps provenance stable under ordering changes and changes when dependencies change', () => {
-    const sourcePath = write('.opencode/skills/provenance/SKILL.md', '# Provenance\n');
-    const graphPath = write('.opencode/skills/provenance/graph-metadata.json', '{}\n');
+    const sourcePath = write('.skilled/skills/provenance/SKILL.md', '# Provenance\n');
+    const graphPath = write('.skilled/skills/provenance/graph-metadata.json', '{}\n');
     const baseBuckets = {
       frontmatter: ['alpha', 'beta'],
       headings: ['Routing Heading'],
@@ -172,31 +172,31 @@ describe('sa-008..sa-011 — auto-indexing derived metadata stress behavior', ()
       assets: ['diagram'],
       intent_signals: ['author route'],
       source_docs: ['SKILL.md'],
-      key_files: ['.opencode/skills/provenance/SKILL.md'],
+      key_files: ['.skilled/skills/provenance/SKILL.md'],
     };
     const first = computeProvenanceFingerprint(baseBuckets, [
-      fileDependency(tmpDir, '.opencode/skills/provenance/SKILL.md'),
-      fileDependency(tmpDir, '.opencode/skills/provenance/graph-metadata.json'),
+      fileDependency(tmpDir, '.skilled/skills/provenance/SKILL.md'),
+      fileDependency(tmpDir, '.skilled/skills/provenance/graph-metadata.json'),
     ]);
     const reordered = computeProvenanceFingerprint({
       ...baseBuckets,
       frontmatter: ['beta', 'alpha'],
     }, [
-      fileDependency(tmpDir, '.opencode/skills/provenance/graph-metadata.json'),
-      fileDependency(tmpDir, '.opencode/skills/provenance/SKILL.md'),
+      fileDependency(tmpDir, '.skilled/skills/provenance/graph-metadata.json'),
+      fileDependency(tmpDir, '.skilled/skills/provenance/SKILL.md'),
     ]);
 
     writeFileSync(sourcePath, '# Provenance Changed\n', 'utf8');
     const changed = computeProvenanceFingerprint(baseBuckets, [
-      fileDependency(tmpDir, '.opencode/skills/provenance/SKILL.md'),
-      fileDependency(tmpDir, '.opencode/skills/provenance/graph-metadata.json'),
+      fileDependency(tmpDir, '.skilled/skills/provenance/SKILL.md'),
+      fileDependency(tmpDir, '.skilled/skills/provenance/graph-metadata.json'),
     ]);
 
     expect(first.provenanceFingerprint).toBe(reordered.provenanceFingerprint);
     expect(hasFingerprintChanged(first.provenanceFingerprint, changed.provenanceFingerprint)).toBe(true);
     expect(first.dependencies.map((dependency) => dependency.path).sort()).toEqual([
-      '.opencode/skills/provenance/SKILL.md',
-      '.opencode/skills/provenance/graph-metadata.json',
+      '.skilled/skills/provenance/SKILL.md',
+      '.skilled/skills/provenance/graph-metadata.json',
     ]);
     expect(graphPath).toContain('graph-metadata.json');
   });

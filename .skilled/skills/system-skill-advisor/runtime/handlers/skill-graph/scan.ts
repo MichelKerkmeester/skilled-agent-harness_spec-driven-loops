@@ -41,7 +41,7 @@ export async function handleSkillGraphScan(
     // subdir targets the workspace skills tree — and writes its generation
     // counter there — instead of planting stray state under the subdir.
     const cwd = findAdvisorWorkspaceRoot(process.cwd());
-    const skillsRoot = resolve(cwd, args.skillsRoot ?? '.opencode/skills');
+    const skillsRoot = resolve(cwd, args.skillsRoot ?? '.skilled/skills');
 
     // Workspace escape guard: resolved path must stay under cwd
     if (!skillsRoot.startsWith(cwd + '/') && skillsRoot !== cwd) {

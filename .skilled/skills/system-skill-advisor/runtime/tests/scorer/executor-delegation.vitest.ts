@@ -44,7 +44,7 @@ interface PythonRow {
 
 function findWorkspaceRoot(): string {
   const start = dirname(fileURLToPath(import.meta.url));
-  const sentinel = '.opencode/skills/system-spec-kit/SKILL.md';
+  const sentinel = '.skilled/skills/system-spec-kit/SKILL.md';
   const candidate = findAdvisorWorkspaceRoot(start, { maxDepth: 12, sentinel });
   if (!existsSync(resolve(candidate, sentinel))) {
     throw new Error('Unable to locate workspace root.');
@@ -87,7 +87,7 @@ function runPython(prompts: readonly string[]): PythonRow[] {
   const script = `
 import importlib.util, json, os, sys
 workspace = sys.argv[1]
-path = os.path.join(workspace, '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py')
+path = os.path.join(workspace, '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py')
 spec = importlib.util.spec_from_file_location('skill_advisor', path)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
@@ -151,7 +151,7 @@ describe('executor-delegation resolver (pure detector)', () => {
       table,
     )).toBeNull();
     expect(resolveExecutorDelegation(
-      'inspect `.opencode/agents` and tell me which agent names are defined.',
+      'inspect `.skilled/agents` and tell me which agent names are defined.',
       table,
     )).toBeNull();
   });

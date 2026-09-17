@@ -41,13 +41,13 @@ Validate two fallback paths: the Python shim routes to local scoring when native
 1. Python local fallback:
 
 ```bash
-SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "help me commit my changes"
+SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "help me commit my changes"
 ```
 
 2. Native absent check in disposable workspace:
 
 ```text
-node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json
 ```
 
 3. Inspect `freshness`, `trustState` and recommendations.
@@ -74,8 +74,8 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit 
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
-- `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
 
 ---
 
@@ -93,7 +93,7 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit 
 Command:
 
 ```bash
-SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "help me commit my changes"
+SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "help me commit my changes"
 ```
 
 Output:

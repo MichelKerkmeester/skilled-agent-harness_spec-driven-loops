@@ -107,7 +107,7 @@ function canonicalizePath(pathValue) {
 function leaseFile(workspaceRoot) {
   const dir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR
     ? canonicalizePath(process.env.SYSTEM_SKILL_ADVISOR_DB_DIR)
-    : path.join(workspaceRoot, '.opencode', 'skills', 'system-skill-advisor', 'runtime', 'database');
+    : path.join(workspaceRoot, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'database');
   return path.join(dir, '.system-skill-advisor-launcher.json');
 }
 
@@ -144,20 +144,20 @@ exports.isLeaseHeld = function isLeaseHeld(workspaceRoot) {
 function createWorkspace(): Workspace {
   const root = mkdtempSync('/tmp/sao-');
   tempDirs.push(root);
-  const launcherPath = join(root, '.opencode/bin/system-skill-advisor-launcher.cjs');
-  const bridgePath = join(root, '.opencode/bin/lib/launcher-ipc-bridge.cjs');
-  const sessionProxyPath = join(root, '.opencode/bin/lib/launcher-session-proxy.cjs');
+  const launcherPath = join(root, '.skilled/bin/system-skill-advisor-launcher.cjs');
+  const bridgePath = join(root, '.skilled/bin/lib/launcher-ipc-bridge.cjs');
+  const sessionProxyPath = join(root, '.skilled/bin/lib/launcher-session-proxy.cjs');
   const childPidFile = join(root, 'runtime', 'advisor-child.pid');
-  const advisorServer = join(root, '.opencode/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js');
-  const leaseModule = join(root, '.opencode/skills/system-skill-advisor/runtime/dist/runtime/lib/daemon/lease.js');
+  const advisorServer = join(root, '.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js');
+  const leaseModule = join(root, '.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/daemon/lease.js');
   mkdirSync(dirname(launcherPath), { recursive: true });
   mkdirSync(dirname(bridgePath), { recursive: true });
   mkdirSync(dirname(sessionProxyPath), { recursive: true });
   mkdirSync(dirname(advisorServer), { recursive: true });
   mkdirSync(dirname(leaseModule), { recursive: true });
-  copyFileSync(join(repoRoot, '.opencode/bin/system-skill-advisor-launcher.cjs'), launcherPath);
-  copyFileSync(join(repoRoot, '.opencode/bin/lib/launcher-ipc-bridge.cjs'), bridgePath);
-  copyFileSync(join(repoRoot, '.opencode/bin/lib/launcher-session-proxy.cjs'), sessionProxyPath);
+  copyFileSync(join(repoRoot, '.skilled/bin/system-skill-advisor-launcher.cjs'), launcherPath);
+  copyFileSync(join(repoRoot, '.skilled/bin/lib/launcher-ipc-bridge.cjs'), bridgePath);
+  copyFileSync(join(repoRoot, '.skilled/bin/lib/launcher-session-proxy.cjs'), sessionProxyPath);
   writeFileSync(advisorServer, advisorServerSource(childPidFile), 'utf8');
   writeFileSync(leaseModule, leaseModuleSource(), 'utf8');
   const dbDir = join(root, 'skill-advisor-db');

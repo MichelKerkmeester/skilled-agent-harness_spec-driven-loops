@@ -23,7 +23,7 @@ description: "Fixture-only folder for the skill-advisor runtime test suite, not 
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`
 
 ---
 

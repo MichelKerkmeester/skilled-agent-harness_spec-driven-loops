@@ -47,7 +47,7 @@ describe('system_skill_advisor dispatch', () => {
     await expect(dispatchTool('advisor_validate', {})).resolves.toMatchObject({
       content: [{ type: 'text', text: expect.stringContaining('"advisor-validate"') }],
     });
-    await expect(dispatchTool('skill_graph_scan', { skillsRoot: '.opencode/skills' })).resolves.toMatchObject({
+    await expect(dispatchTool('skill_graph_scan', { skillsRoot: '.skilled/skills' })).resolves.toMatchObject({
       content: [{ type: 'text', text: expect.stringContaining('"scan"') }],
     });
     await expect(dispatchTool('skill_graph_query', { queryType: 'hub_skills' })).resolves.toMatchObject({

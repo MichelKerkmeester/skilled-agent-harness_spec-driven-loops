@@ -4,7 +4,7 @@
 // Canonical EmbedderAdapter contract lives in `@spec-kit/shared`. This file
 // is a thin re-export shim so existing relative-path imports continue to
 // resolve. The contract surface moved to
-// `.opencode/skills/system-spec-kit/shared/embeddings/`.
+// `.skilled/skills/system-spec-kit/shared/embeddings/`.
 // ───────────────────────────────────────────────────────────────
 
 export * from '@spec-kit/shared/embeddings/adapter.js';

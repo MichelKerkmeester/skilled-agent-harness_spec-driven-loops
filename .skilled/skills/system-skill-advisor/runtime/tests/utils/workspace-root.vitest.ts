@@ -2,8 +2,8 @@
 // MODULE: Advisor Workspace-Root Resolver Tests
 // ───────────────────────────────────────────────────────────────
 // Guards the sentinel-not-found fallback. The resolver must never hand back a
-// directory inside an `.opencode/` tree, because the advisor writes runtime
-// state under whatever root it returns; a root inside `.opencode/` materializes
+// directory inside an `.skilled/` tree, because the advisor writes runtime
+// state under whatever root it returns; a root inside `.skilled/` materializes
 // a nested tree that then satisfies every future walk-up, making the leak
 // permanent.
 //
@@ -22,7 +22,7 @@ import { afterAll, describe, expect, it } from 'vitest';
 
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
-const SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
+const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
 const tmpRoots: string[] = [];
 
 function makeTmpRoot(): string {
@@ -45,8 +45,8 @@ afterAll(() => {
 describe('findAdvisorWorkspaceRoot — sentinel walk-up', () => {
   it('returns the directory that holds the sentinel (happy path)', () => {
     const repo = makeTmpRoot();
-    const seat = mkdirp(join(repo, '.opencode', 'skills', 'sk-doc', 'create-diff'));
-    mkdirp(join(repo, '.opencode', 'skills', 'system-spec-kit'));
+    const seat = mkdirp(join(repo, '.skilled', 'skills', 'sk-doc', 'create-diff'));
+    mkdirp(join(repo, '.skilled', 'skills', 'system-spec-kit'));
     writeFileSync(join(repo, SENTINEL), '# sentinel\n');
     expect(findAdvisorWorkspaceRoot(seat)).toBe(resolve(repo));
   });
@@ -85,7 +85,7 @@ describe('findAdvisorWorkspaceRoot — fallback never lands inside an .opencode 
 });
 
 describe('findAdvisorWorkspaceRoot — ordinary paths keep prior fallback', () => {
-  it('returns the start dir for a path with no sentinel and no .opencode segment', () => {
+  it('returns the start dir for a path with no sentinel and no .skilled segment', () => {
     const repo = makeTmpRoot();
     const plain = mkdirp(join(repo, 'src', 'lib'));
     expect(findAdvisorWorkspaceRoot(plain)).toBe(resolve(plain));

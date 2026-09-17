@@ -30,12 +30,12 @@ interface ProcessRow {
 }
 
 export const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
-export const skillAdvisorShim = join(repoRoot, '.opencode/bin/skill-advisor.cjs');
+export const skillAdvisorShim = join(repoRoot, '.skilled/bin/skill-advisor.cjs');
 export const pythonAdvisorScript = join(
   repoRoot,
-  '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
+  '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py',
 );
-export const testsDir = join(repoRoot, '.opencode/skills/system-skill-advisor/runtime/tests');
+export const testsDir = join(repoRoot, '.skilled/skills/system-skill-advisor/runtime/tests');
 
 function uniqueSuffix(label: string): string {
   const safeLabel = label.replace(/[^a-z0-9-]/gi, '-').toLowerCase();

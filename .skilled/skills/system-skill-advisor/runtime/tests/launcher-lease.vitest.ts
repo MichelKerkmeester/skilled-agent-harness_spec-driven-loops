@@ -22,7 +22,7 @@ interface Workspace {
 }
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
-const launcherRelativePath = '.opencode/bin/system-skill-advisor-launcher.cjs';
+const launcherRelativePath = '.skilled/bin/system-skill-advisor-launcher.cjs';
 
 function leaseModuleSource(): string {
   return `
@@ -42,12 +42,12 @@ function canonicalizePath(pathValue) {
 function leaseFile(workspaceRoot) {
   const dir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR
     ? canonicalizePath(process.env.SYSTEM_SKILL_ADVISOR_DB_DIR)
-    : path.join(workspaceRoot, '.opencode', 'skills', 'system-skill-advisor', 'runtime', 'database');
+    : path.join(workspaceRoot, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'database');
   return path.join(dir, '.system-skill-advisor-launcher.json');
 }
 
 function legacyLeaseFile(workspaceRoot) {
-  return path.join(canonicalizePath(workspaceRoot), '.opencode', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite');
+  return path.join(canonicalizePath(workspaceRoot), '.skilled', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite');
 }
 
 function readLease(filePath) {
@@ -190,8 +190,8 @@ describe('system-skill-advisor launcher lease', () => {
     mkdirSync(dirname(launcherPath), { recursive: true });
     copyFileSync(join(repoRoot, launcherRelativePath), launcherPath);
 
-    const advisorServer = join(root, '.opencode/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js');
-    const leaseModule = join(root, '.opencode/skills/system-skill-advisor/runtime/dist/runtime/lib/daemon/lease.js');
+    const advisorServer = join(root, '.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js');
+    const leaseModule = join(root, '.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/daemon/lease.js');
     mkdirSync(dirname(advisorServer), { recursive: true });
     mkdirSync(dirname(leaseModule), { recursive: true });
     writeFileSync(advisorServer, advisorServerSource({ ignoreSigterm: options.ignoreChildSigterm }), 'utf8');
@@ -382,7 +382,7 @@ describe('system-skill-advisor launcher lease', () => {
     const workspace = createWorkspace();
     const holder = await createLivePid();
     const startedAt = '2026-05-18T00:00:00.000Z';
-    const legacyPath = join(workspace.root, '.opencode', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite');
+    const legacyPath = join(workspace.root, '.skilled', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite');
 
     try {
       mkdirSync(dirname(legacyPath), { recursive: true });

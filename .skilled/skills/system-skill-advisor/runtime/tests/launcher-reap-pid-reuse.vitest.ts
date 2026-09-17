@@ -114,7 +114,7 @@ describe('system-skill-advisor heartbeat self-shutdown escalation', () => {
     const { fileURLToPath } = await import('node:url');
     const { dirname, resolve } = await import('node:path');
     const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', '..', '..');
-    const src = readFileSync(resolve(repoRoot, '.opencode/bin/system-skill-advisor-launcher.cjs'), 'utf8');
+    const src = readFileSync(resolve(repoRoot, '.skilled/bin/system-skill-advisor-launcher.cjs'), 'utf8');
     const heartbeat = src.slice(src.indexOf('startOwnerLeaseHeartbeat'), src.indexOf('function ownsOwnerLeaseFile'));
     expect(heartbeat).toContain("childProcess.kill('SIGTERM')");
     expect(heartbeat).toContain('waitForChildExit(childProcess, 5000)');

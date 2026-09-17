@@ -55,7 +55,7 @@ handlers/
 Run from the repository root.
 
 ```bash
-npx vitest run .opencode/skills/system-skill-advisor/runtime/tests/handlers
+npx vitest run .skilled/skills/system-skill-advisor/runtime/tests/handlers
 ```
 
 Expected result: all handler tests pass.

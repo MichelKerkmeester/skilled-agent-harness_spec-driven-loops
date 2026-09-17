@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 //
 // Every slash-command id cited by an advisor command bridge must resolve to a
-// real command file under `.opencode/commands/`. A dead id (e.g. a retired
+// real command file under `.skilled/commands/`. A dead id (e.g. a retired
 // `/deep:start-*-loop`) means a user typing the real command routes only by
 // natural-language luck, and a bridge that points at nothing silently rots.
 // Bridge-resolution checks cover the hand-authored surfaces (BASE_ALIAS_GROUPS
@@ -26,10 +26,10 @@ import { COMMAND_BRIDGES } from '../lib/scorer/projection.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = findAdvisorWorkspaceRoot(here);
-const commandsRoot = resolve(repoRoot, '.opencode/commands');
+const commandsRoot = resolve(repoRoot, '.skilled/commands');
 
 // A slash id is `/<namespace>:<name>`; it maps to
-// `.opencode/commands/<namespace>/<name>.md`.
+// `.skilled/commands/<namespace>/<name>.md`.
 const SLASH_ID = /^\/([a-z0-9-]+):([a-z0-9-]+)$/;
 const DEAD_ID = /start-[a-z-]+-loop/;
 
@@ -66,7 +66,7 @@ describe('command-bridge → live-command resolution guard', () => {
     expect(malformed, `malformed bridge ids: ${JSON.stringify(malformed)}`).toEqual([]);
   });
 
-  it('every bridge slash id resolves to a file under .opencode/commands/', () => {
+  it('every bridge slash id resolves to a file under .skilled/commands/', () => {
     const unresolved = slashIds.filter(({ id }) => {
       const file = commandFileForSlashId(id);
       return file === null || !existsSync(file);
@@ -96,7 +96,7 @@ describe('command-bridge → live-command resolution guard', () => {
   });
 
   it('no retired /deep:start-*-loop dead id survives in the Python scorer routing surfaces', () => {
-    const py = resolve(repoRoot, '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py');
+    const py = resolve(repoRoot, '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py');
     const deadLines = readFileSync(py, 'utf8')
       .split('\n')
       .map((line, index) => ({ line, lineNo: index + 1 }))

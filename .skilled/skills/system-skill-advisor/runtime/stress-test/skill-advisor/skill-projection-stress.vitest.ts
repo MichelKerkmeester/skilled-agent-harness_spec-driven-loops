@@ -41,7 +41,7 @@ describe('sa-020 — Skill projection', () => {
   });
 
   function writeSkill(index: number): void {
-    const skillDir = join(workspaceRoot, '.opencode', 'skills', `projection-${index}`);
+    const skillDir = join(workspaceRoot, '.skilled', 'skills', `projection-${index}`);
     mkdirSync(skillDir, { recursive: true });
     writeFileSync(
       join(skillDir, 'graph-metadata.json'),

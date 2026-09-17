@@ -72,7 +72,7 @@ const ALIAS_STOPLIST: ReadonlySet<string> = new Set([
 const DELEGATION_CUES = /\b(use|delegate to|ask|run|invoke|dispatch|hand off to|second opinion|small[- ]model)\b/;
 
 // The negative guard forces NON-delegation. "opencode {standards|route|…}" and a
-// bare ".opencode/" path are the code hub's own opencode surface, not an
+// bare ".skilled/" path are the code hub's own opencode surface, not an
 // executor handoff, so they must never lift an executor.
 const NEGATIVE_GUARD = /\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.opencode\//;
 
@@ -216,7 +216,7 @@ function stringArray(value: unknown): string[] {
 
 function loadFilesystemAliasData(workspaceRoot: string | undefined): FilesystemAliasData {
   const cacheKey = workspaceRoot ?? '';
-  const skillsRoot = join(workspaceRoot ?? process.cwd(), '.opencode', 'skills');
+  const skillsRoot = join(workspaceRoot ?? process.cwd(), '.skilled', 'skills');
   const archiveRoot = join(skillsRoot, 'z_archive');
   const cliHubRegistryPath = join(skillsRoot, 'cli-external-orchestration', 'mode-registry.json');
   const cached = filesystemAliasCache.get(cacheKey);

@@ -33,17 +33,17 @@ The advisor daemon also participates in the shared launcher idle-timeout guardra
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts` | Daemon | Source reference |
-| `.opencode/skills/system-skill-advisor/runtime/lib/ipc/launcher-idle-timeout.ts` | IPC lifecycle | Shared idle-timeout monitor |
-| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-status.ts` | Handler | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts` | Daemon | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/ipc/launcher-idle-timeout.ts` | IPC lifecycle | Shared idle-timeout monitor |
+| `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts` | Handler | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | Automated test | status envelope assertions |
-| `.opencode/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | boot and shutdown sequence |
-| `.opencode/skills/system-skill-advisor/runtime/tests/launcher-idle-timeout.vitest.ts` | Automated test | idle timeout parsing and shutdown behavior |
+| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | Automated test | status envelope assertions |
+| `.skilled/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | boot and shutdown sequence |
+| `.skilled/skills/system-skill-advisor/runtime/tests/launcher-idle-timeout.vitest.ts` | Automated test | idle timeout parsing and shutdown behavior |
 | `Playbook scenario [AU-003](../../manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md).` | Manual playbook | Source reference |
 
 ---

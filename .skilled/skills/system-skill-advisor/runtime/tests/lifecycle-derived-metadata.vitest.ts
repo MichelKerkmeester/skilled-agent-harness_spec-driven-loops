@@ -56,7 +56,7 @@ function write(filePath: string, content: string): void {
 }
 
 function skillDir(root: string, slug = 'alpha'): string {
-  return join(root, '.opencode', 'skills', slug);
+  return join(root, '.skilled', 'skills', slug);
 }
 
 function writeSkillFixture(root: string, slug = 'alpha'): string {
@@ -89,7 +89,7 @@ function writeSkillFixture(root: string, slug = 'alpha'): string {
     intent_signals: ['intent signal route'],
     derived: {
       source_docs: ['references/guide.md'],
-      key_files: [join('.opencode', 'skills', slug, 'docs', 'key-file.md')],
+      key_files: [join('.skilled', 'skills', slug, 'docs', 'key-file.md')],
     },
     edges: {},
   }, null, 2));
@@ -160,7 +160,7 @@ describe('027/002 derived metadata acceptance', () => {
     //
     expect(first.sourceDocs).toContain('references/guide.md');
     expect(first.keyFiles.join(' ')).toContain('key-file.md');
-    expect(first.keyFiles).toContain('.opencode/skills/alpha/docs/key-file.md');
+    expect(first.keyFiles).toContain('.skilled/skills/alpha/docs/key-file.md');
   });
 
   // drift: verified against shipped behavior during Unit H
@@ -231,10 +231,10 @@ describe('027/002 derived metadata acceptance', () => {
       ...graph,
       derived: {
         key_files: [
-          '.opencode/skills/alpha/docs/key-file.md',
+          '.skilled/skills/alpha/docs/key-file.md',
           outsideSecret,
           relative(root, outsideSecret),
-          '.opencode/skills/alpha/docs/outside-link.md',
+          '.skilled/skills/alpha/docs/outside-link.md',
         ],
       },
     }, null, 2));
@@ -243,10 +243,10 @@ describe('027/002 derived metadata acceptance', () => {
     write(outsideSecret, 'outside secret v2');
     const second = extractDerivedMetadata({ workspaceRoot: root, skillDir: dir });
 
-    expect(first.keyFiles).toContain('.opencode/skills/alpha/docs/key-file.md');
+    expect(first.keyFiles).toContain('.skilled/skills/alpha/docs/key-file.md');
     expect(first.keyFiles).not.toContain(outsideSecret);
     expect(first.keyFiles).not.toContain(relative(root, outsideSecret));
-    expect(first.keyFiles).not.toContain('.opencode/skills/alpha/docs/outside-link.md');
+    expect(first.keyFiles).not.toContain('.skilled/skills/alpha/docs/outside-link.md');
     // Prior key_files no longer flow into buckets — escape
     // protection is enforced by `workspaceKeyFiles` filtering at the entry
     // point and by `addDep` deduplication in extract.ts. The provenance
@@ -404,9 +404,9 @@ describe('027/002 derived metadata acceptance', () => {
 
   it('AC-7 keeps z_archive and z_future structurally indexed but out of routing and corpus stats', () => {
     const entries = [
-      { sourcePath: '.opencode/skills/active/graph-metadata.json', terms: ['active'], skillId: 'active' },
-      { sourcePath: '.opencode/skills/z_archive/old/graph-metadata.json', terms: ['old'], skillId: 'old' },
-      { sourcePath: '.opencode/skills/z-future/planned/graph-metadata.json', terms: ['planned'], skillId: 'planned' },
+      { sourcePath: '.skilled/skills/active/graph-metadata.json', terms: ['active'], skillId: 'active' },
+      { sourcePath: '.skilled/skills/z_archive/old/graph-metadata.json', terms: ['old'], skillId: 'old' },
+      { sourcePath: '.skilled/skills/z-future/planned/graph-metadata.json', terms: ['planned'], skillId: 'planned' },
     ];
 
     expect(routePolicyForPath(entries[1].sourcePath)).toMatchObject({
@@ -422,9 +422,9 @@ describe('027/002 derived metadata acceptance', () => {
 
   it('AC-8 computes startup DF/IDF and debounced graph-change updates under the active corpus only', async () => {
     const documents = [
-      { skillId: 'active-a', sourcePath: '.opencode/skills/a/graph-metadata.json', terms: ['route', 'route', 'alpha'] },
-      { skillId: 'active-b', sourcePath: '.opencode/skills/b/graph-metadata.json', terms: ['route', 'beta'] },
-      { skillId: 'future', sourcePath: '.opencode/skills/z-future/f/graph-metadata.json', terms: ['future'] },
+      { skillId: 'active-a', sourcePath: '.skilled/skills/a/graph-metadata.json', terms: ['route', 'route', 'alpha'] },
+      { skillId: 'active-b', sourcePath: '.skilled/skills/b/graph-metadata.json', terms: ['route', 'beta'] },
+      { skillId: 'future', sourcePath: '.skilled/skills/z-future/f/graph-metadata.json', terms: ['future'] },
     ];
     const stats = computeCorpusStats(documents, new Date('2026-04-20T00:00:00Z'));
     const updates: string[] = [];
