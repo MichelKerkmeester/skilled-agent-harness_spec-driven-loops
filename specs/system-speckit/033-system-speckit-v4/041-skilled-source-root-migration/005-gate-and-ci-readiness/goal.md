@@ -9,12 +9,12 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness"
-    last_updated_at: "2026-09-17T06:20:00Z"
+    last_updated_at: "2026-09-17T09:05:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Fixed the Luna CI findings and the agent mirror checker, and their review is running"
-    next_safe_action: "Close the fix review, validate, then publish per phase 004 step 5"
+    recent_action: "Closed the review loop on the gate-input check and added the hook test scripts to CI"
+    next_safe_action: "Merge 0aa71350e4, publish per phase 004 step 5, read CI, then close the phase"
     blockers:
-      - "GPT-5.6 Luna review of the fixes pending"
+      - "Publish and pushed-tip CI pending"
     key_files:
       - "plan.md"
       - "tasks.md"
@@ -47,7 +47,7 @@ Frozen. Changing one is an amendment.
 |----|----------|
 | D1 | Gate scripts keep literal `.opencode/` paths that resolve through phase 004's tracked link. Each gate file defines `_in_toolchain_repo` to decide whether a missing script is loud. Amended under L1 on 2026-09-16 after a GPT-5.6 scope review, replacing the copied two-root block |
 | D2 | Where the spec-kit sentinel resolves under either root, a missing gate script never passes: blocking gates block and name the path, and gates that cannot block warn. Any other repository sees no change. |
-| D3 | DeepSeek V4.1 Flash max on cli-pi through the LLM Gateway makes the literal edits, one workflow or hook section per brief, suite-verified before the next. The block, the missing-script rule, the fail-closed workflows, the check and the drill are drafted by the orchestrator or DeepSeek, reviewed by GPT-5.6 Luna at xhigh on the fast tier through cli-codex and verified by the orchestrator. Amended 2026-09-17 by the operator: GPT-5.6 Luna xhigh fast replaced GPT-5.6 sol after Codex quota returned, and SWE-2, tried in between, is no longer used |
+| D3 | DeepSeek V4.1 Flash max on cli-pi through the LLM Gateway makes the literal edits, one workflow or hook section per brief, suite-verified before the next. The block, the missing-script rule, the fail-closed workflows, the check and the drill are drafted by the orchestrator or DeepSeek, reviewed by GPT-5.6 Luna at xhigh on the fast tier through cli-codex and verified by the orchestrator. Amended 2026-09-17 by the operator: GPT-5.6 Luna xhigh fast replaced GPT-5.6 sol after Codex quota returned, and SWE-2, tried in between, is no longer used. A second amendment the same day, after five review rounds of the independent check each found new shapes: its fifth round of fixes and the CI step that runs the hook test scripts are verified by failing-first cases without a further review |
 | D4 | The scripts the gates call and the human-facing text naming `.opencode` stay as they are in this phase. Phase 006 teaches those scripts and phase 009 rewrites that text. The one exception is the agent mirror checker's path pattern, which this phase fixes. Amended 2026-09-17 by the operator |
 
 ### Operator copy
@@ -64,7 +64,7 @@ A change here that alters a parent decision or criterion is applied to the paren
 - [x] `bash .github/scripts/tests/broken-move-drill.sh` prints `RESULT: PASSED`, which it does only when every deliberate break failed both the check and its hook
 - [x] The six hook test scripts pass above their 126-case baseline with no case removed, and every new test script passes
 - [x] Every workflow `paths:` entry naming `.opencode/` has a `.skilled/` twin, and no workflow exits 0 on a missing guard
-- [ ] Every contract change has a GPT-5.6 Luna xhigh review with no open finding
+- [x] Every contract change has a GPT-5.6 Luna xhigh review with no open finding, apart from the final check fixes the operator exempted
 - [ ] The phase validates PASSED
 <!-- /ANCHOR:completion -->
 
@@ -111,8 +111,17 @@ Everything below is VOLATILE.
 | T052, review of the fixes | Done 2026-09-17 06:06Z to 06:18Z | GPT-5.6 Luna raised five P1 and three P2 findings. Seven check findings were each turned into a fixture case that failed against `c58a37b8d8`, and the checker's README count was answered as older than this phase (`luna-fix-review-verdict.md`) |
 | T053, the second round of check fixes | Committed `057c3664c0`, `a220c9b904` | DeepSeek byte-matched both units. The write tool dropped the rewritten check's final newline, which the orchestrator appended, and the executable bit held. Nine new cases and a reworked parser-miss case failed against the committed check. The suite passes 27 of 27, the tree keeps 136 inputs, 8 dynamic and 167 twin pairs with every root-naming line read, and nine of ten probe shapes behave as intended. The tenth, a `case` pattern listing both roots split by `\|`, fails loudly as a false positive, and no gate file uses that shape |
 | Suites and drill from `a220c9b904` | Observed under `/bin/bash` 3.2.57 | The six hook harnesses pass 175, `check-git-hooks.test.sh` 4 and `check-gate-inputs.test.sh` 27. The drill passes 48 of 48 in 62 s |
-| T012 and T054, review of the reworked check | Running | GPT-5.6 Luna reviews T053 in `luna-fix2-review` |
-| T042 publish | Waits for T054 | Both remote branches still point at `728c4f3efc`, so the push is a fast-forward |
+| T054, review of the reworked check | Done 2026-09-17 06:38Z to 06:53Z | Four P1 and one P2 findings, none of whose shapes occurs in the repository today. Four were reproduced by fixture cases and fixed in T055. The fifth, a regex that puts syntax between the dot and the root name, is answered as beyond a text check, and the check's header states that limit (`luna-fix2-review-verdict.md`) |
+| T055, the third round of check fixes | Committed `7116f95e09`, `da38873e31` | The whole-file rewrite hit two gateway stream errors and then the output cap after about 400,000 characters of reasoning, writing nothing. Five edit units then applied it, one of them misreporting two unchanged declarations that a sixth unit corrected, and the file matched the expected result byte for byte. Four new cases failed against `a220c9b904`, and the suite passed 31 of 31 |
+| T056, review of the third round | Done 2026-09-17 07:45Z to 07:55Z | Four P1 findings, each an ordinary edit: git by its full path, the root directory as a pathspec behind a variable, a command after an array's closing paren, and declared inputs. All four reproduced (`luna-fix3-review-verdict.md`) |
+| Operator decision on the review loop, 2026-09-17 | "Fix, then review again" | Offered because four rounds had each found new shapes, with the alternatives of fixing and publishing without another review, or publishing the reviewed state with the findings open |
+| T057, the fourth round of check fixes | Committed `3f8803e0d0`, `2f9d3bcdd2` | Four edit units, each matched to its expected intermediate. Broader git recognition first failed a correct log write at `autostash-orphan-guard.sh:38`, whose continuation line calls `$(git rev-parse ...)`, and the fix made a command substitution a command of its own. Five new cases failed against `da38873e31`, the suite passes 36 of 36, and the tree keeps 167 twin pairs with 130 inputs resolved |
+| Suites and drill from `2f9d3bcdd2` | Observed under `/bin/bash` 3.2.57 | The six hook harnesses pass 175, `check-git-hooks.test.sh` 4 and `check-gate-inputs.test.sh` 36. The drill passes 48 of 48 in 70 s |
+| T058, review of the fourth round | Done 2026-09-17 08:21Z to 08:39Z | Five P1 findings and one P2, each an ordinary edit and each reproduced against `2f9d3bcdd2`: an array of variable paths expanded into git, a path that continues into a variable counted as resolved, two one-root regexes joined on one line, an option value counted as a pathspec twin, a flow-style dependabot entry, and a false failure on a `?` glob. It found no portability defect and no case that passes without its change (`luna-fix4-review-verdict.md`) |
+| Second operator decision on the review loop, 2026-09-17 | "Fix six, add tests to CI now" | Offered because five rounds had found 4, 8, 5, 4 and 6 shapes and no workflow ran the hook test scripts. The alternatives were a sixth review, publishing with the six open, or fixing and publishing with the scripts added to CI later. REQ-009 and D3 record the exception |
+| T059 and T060, the fifth round and the CI step | Committed `a55d308ba4`, `26b2360c80`, `9bc50c4ce8` | Six DeepSeek units, each matched to its expected state. The six new cases failed against `2f9d3bcdd2`, the suite passes 42 of 42, and the tree passes with 132 inputs resolved, 8 dynamic and 167 twin pairs. `gate-inputs.yml` now runs the six hook test scripts and the SessionStart check's test script, which pass locally and have never run on Linux |
+| Suites, drill and guards from `9bc50c4ce8` | Observed under `/bin/bash` 3.2.57 | The six hook harnesses pass 175, `check-git-hooks.test.sh` 4 and `check-gate-inputs.test.sh` 42. The drill passes 48 of 48 in 65 s, the naming guard prints `PASS:` since `7085ec3290`, and the 20 workflows and dependabot parse |
+| T042 publish | Next | The operator asked on 2026-09-17 to publish the other session's unpushed commit `0aa71350e4` with this phase. It changes only `sk-create-manual-testing-playbook/SKILL.md`, so it is merged into the worktree branch, which keeps its id and the ids these records cite. Both remote branches still point at `728c4f3efc` |
 ### Deviations and findings
 
 | Item | Note |

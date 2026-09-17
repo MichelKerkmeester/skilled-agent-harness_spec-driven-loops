@@ -117,7 +117,7 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 |-----------|-------------|-------------|
 | `.github/scripts/source-root.sh` | Not created | Withdrawn by the L1 amendment |
 | `.github/scripts/check-gate-inputs.sh` | Create | Independent check that fails when a gate names an input that exists under neither root |
-| `.github/workflows/gate-inputs.yml` | Create | Runs the check and its tests on every push to `main` and `skilled/**` and on every pull request, with no path filter |
+| `.github/workflows/gate-inputs.yml` | Create | Runs the check, its tests and the hook test scripts on every push to `main` and `skilled/**` and on every pull request, with no path filter |
 | `.github/scripts/tests/source-root.test.sh` | Not created | Withdrawn with the block by the L1 amendment |
 | `.github/scripts/tests/check-gate-inputs.test.sh` | Create | Fixture test for the check |
 | `.github/scripts/tests/broken-move-drill.sh` | Create | Deliberately broken dry run in a disposable clone |
@@ -161,7 +161,7 @@ Before anything moves, every gate finds its scripts under `.skilled/` or `.openc
 | ID | Requirement |
 |----|-------------|
 | REQ-008 | Every gate change has test coverage. The six existing hook test scripts keep their 126 passing cases, and each new case is seen failing against the unchanged file before its change lands. |
-| REQ-009 | Every contract change carries a GPT-5.6 Luna review at xhigh on the fast tier (amended 2026-09-17 by the operator), with each finding fixed or answered before its commit. The contract changes are the missing-script rule, the fail-closed workflows, the independent check, the drill, the naming guard rule and the agent mirror checker's path pattern. |
+| REQ-009 | Every contract change carries a GPT-5.6 Luna review at xhigh on the fast tier (amended 2026-09-17 by the operator), with each finding fixed or answered before its commit. The contract changes are the missing-script rule, the fail-closed workflows, the independent check, the drill, the naming guard rule and the agent mirror checker's path pattern. One exception, set by the operator on 2026-09-17 after five review rounds of the independent check each found new shapes: the fifth round's fixes and the CI step that runs the hook test scripts are verified by test cases that fail first, with no further review. |
 | REQ-010 | No new code comment carries a spec path, packet or phase number or task id, and every new file name is kebab-case. |
 | REQ-011 | The handoff to phase 006 names each script the gates call whose own root literal this phase leaves in place, with its line. |
 | REQ-012 | The naming guard's changed-since mode reports no offender for a rename that keeps its basename, so a pure move of a grandfathered name passes. A copy that keeps a snake_case basename still fails, because it adds a second snake_case name (amended 2026-09-17 by the operator). A new snake_case basename, and a new snake_case directory on the destination path, still fail. Today four tracked names would fail once moved: `commands/prompt/assets/prompt_improve_auto.yaml`, `prompt_improve_confirm.yaml`, `prompt_improve_presentation.txt` and the grep-convention fixture `naming-exception/Spec_Draft.md`, whose name is the fixture's purpose (`.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py:143-176`, `:266-282`). |
