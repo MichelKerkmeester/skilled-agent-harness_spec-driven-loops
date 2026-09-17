@@ -47,7 +47,7 @@ Each gate file gets one marked block that looks up a root-relative path under `.
 ### Definition of Done
 - [ ] Every row in `acceptance-criteria.md` is Met with its evidence
 - [ ] The hook test scripts, the block's matrix test, the check's test and the drill pass from the final state
-- [ ] Every contract change carries a SWE-2 max review with no open finding
+- [ ] Every contract change carries a GPT-5.6 Luna xhigh review with no open finding
 - [ ] `validate.sh --strict` prints `RESULT: PASSED` from the main checkout's toolchain
 <!-- /ANCHOR:quality-gates -->
 
@@ -241,7 +241,7 @@ Regression baseline, observed at `728c4f3efc`: the six existing test scripts pas
 |------------|------|--------|-------------------|
 | Phase 004's frozen layout | Internal | Red until phase 004 validates | The phase cannot start (parent decision D1) |
 | DevPass route `llmgateway/deepseek-v4.1-flash` at `--thinking max` on cli-pi | External | Yellow: metered per token, live-verified on 2026-09-10 (`cli-pi/references/providers-and-models.md:113`) | Literal edits fall to the orchestrator, recorded as a deviation |
-| `swe-2-max` on cli-devin, replacing `gpt-5.6-sol` on cli-codex after its quota ran out | External | Green: operator decision 2026-09-17 | Contract changes wait, and are never merged unreviewed |
+| `gpt-5.6-luna` at `xhigh`, fast tier, on cli-codex | External | Green: operator decision 2026-09-17 | Contract changes wait, and are never merged unreviewed |
 | GitHub Actions on a pushed tip | External | Yellow: UNKNOWN which tip first carries this phase | CI evidence waits for that push, and local evidence does not stand in for it |
 | Ruby `yaml` for workflow parsing | Internal | Green: loads on this machine, as does Python's `yaml` | Python's `yaml` takes over |
 <!-- /ANCHOR:dependencies -->

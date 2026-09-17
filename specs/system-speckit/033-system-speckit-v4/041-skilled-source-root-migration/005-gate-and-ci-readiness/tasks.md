@@ -27,7 +27,7 @@ contextType: "implementation"
 
 **Task Format**: `T### [P?] Description (file path)`
 
-Every task names its executor in square brackets at the end. `DeepSeek` is DeepSeek V4.1 Flash as `llmgateway/deepseek-v4.1-flash` at `--thinking max` on cli-pi. `SWE-2 max` is `swe-2-max` on cli-devin with `--permission-mode auto`, read-only, which replaced `gpt-5.6-sol` on cli-codex when its quota ran out. `Orchestrator` is the session that owns this phase and verifies every return. Row IDs such as H09 and C04 point at the change list in `plan.md` §3.
+Every task names its executor in square brackets at the end. `DeepSeek` is DeepSeek V4.1 Flash as `llmgateway/deepseek-v4.1-flash` at `--thinking max` on cli-pi. `GPT-5.6 Luna` is `gpt-5.6-luna` at `xhigh` on the fast tier through cli-codex, read-only, chosen by the operator on 2026-09-17. `Orchestrator` is the session that owns this phase and verifies every return. Row IDs such as H09 and C04 point at the change list in `plan.md` §3.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -50,11 +50,11 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 ### Two-root block and independent check
 - T006 withdrawn by the L1 amendment (plan §AMENDMENT): Draft the canonical block with `source_root_resolve`, `source_root_toolchain`, `source_root_report` and the `export` mode (`.github/scripts/source-root.sh`) [DeepSeek]
 - T007 withdrawn by the L1 amendment: Write the layout-matrix test and watch it fail against an empty stub before it passes (`.github/scripts/tests/source-root.test.sh`) [DeepSeek]
-- T008 withdrawn by the L1 amendment: Review T006 and T007, and fix or answer every finding [SWE-2 max, then Orchestrator]
+- T008 withdrawn by the L1 amendment: Review T006 and T007, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
 - [x] T009 Draft the independent check with the five rules in plan §AMENDMENT (`.github/scripts/check-gate-inputs.sh`) [Orchestrator]
 - [x] T010 Write the check's fixture test: one failing case per rule and a whole-tree rename that passes (`.github/scripts/tests/check-gate-inputs.test.sh`) [DeepSeek]
 - [x] T011 Create the always-on workflow for the check and both tests (`.github/workflows/gate-inputs.yml`) [DeepSeek]
-- [B] T012 Review T009 to T011, and fix or answer every finding [SWE-2 max, then Orchestrator]
+- [B] T012 Review T009 to T011, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
 
 ### Hooks, one section per brief with its test cases
 - [x] T013 H04 and H05: agent filter and mirror pathspec twins (`.opencode/scripts/git-hooks/pre-commit:95`, `:125-145`) [DeepSeek]
@@ -69,7 +69,7 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 - [x] T022 H18 to H20: autostash library, kill switch, `git-sync.sh` and log root (`post-commit`, `post-merge`, `post-rewrite`, `lib/autostash-orphan-guard.sh`) [DeepSeek]
 - [x] T023 H21 and H22: legacy hygiene helper (`.opencode/hooks/git/pre-commit`) [DeepSeek]
 - [x] T024 H23 and H24: SessionStart hook check and its new test script (`.opencode/bin/check-git-hooks.sh`, `.opencode/bin/tests/check-git-hooks.test.sh`) [DeepSeek]
-- [B] T025 Review the rule diffs from T014 to T016, T018 and T020 to T024, and fix or answer every finding [SWE-2 max, then Orchestrator]
+- [B] T025 Review the rule diffs from T014 to T016, T018 and T020 to T024, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
 - [x] T026 Describe the missing-script rule and the new cases (`.opencode/scripts/git-hooks/README.md`, `.opencode/scripts/git-hooks/tests/README.md`) [DeepSeek]
 
 ### CI, one workflow per brief
@@ -77,17 +77,17 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 - [x] T028 [P] C02 and C03: dependabot twin and agent name filter (`.github/dependabot.yml:13`, `.github/workflows/agent-mirror-sync.yml:29`) [DeepSeek]
 - T029 withdrawn by the L1 amendment: C04: export step and `$SOURCE_ROOT` paths in all 21 jobs, nineteen briefs (`.github/workflows/*.yml`) [DeepSeek]
 - [x] T030 C05: fail-closed replacements for the six skip conditionals (`advisory-checks.yml`, `comment-hygiene.yml`, `markdown-link-integrity.yml`, `prompt-card-sync.yml`, `skill-doc-frontmatter.yml`) [Orchestrator]
-- [B] T031 Review T030, and fix or answer every finding [SWE-2 max, then Orchestrator]
+- [B] T031 Review T030, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
 - [x] T032 Add the `gate-inputs.yml` row and the trigger notes (`.github/workflows/README.md`) [DeepSeek]
 
 ### Broken-move drill
 - [x] T033 Draft the drill with its four sections: moved and whole, moved and broken, pre-change control, foreign control (`.github/scripts/tests/broken-move-drill.sh`) [Orchestrator]
-- [B] T034 Review T033, and fix or answer every finding [SWE-2 max, then Orchestrator]
+- [B] T034 Review T033, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
 
 ### Naming guard, a move keeps its name
 - [x] T045 Write the four REQ-012 cases, the fourth a copy that must still fail, in the guard's pytest suite and watch the first fail against today's guard (`.opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py`) [DeepSeek]
 - [x] T046 Skip the destination basename of an `R` record, never a `C` record, when it equals the source basename, still checking every other destination component (`.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py`) [DeepSeek]
-- [B] T047 Review T045 and T046, and fix or answer every finding [SWE-2 max, then Orchestrator]
+- [B] T047 Review T045 and T046, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
 - [x] T048 Run the suite with `-p no:cacheprovider`, then the guard with `--changed-since` on a rehearsal clone where `.opencode` is moved to `.skilled`, and read the `PASS:` line [Orchestrator]
 <!-- /ANCHOR:phase-2 -->
 
