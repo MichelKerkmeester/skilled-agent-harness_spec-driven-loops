@@ -1,30 +1,39 @@
+## Edit 1
+
+File: `.opencode/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts`
+
+OLD:
+
+~~~~text
+// TEST: Workspace Identity
+// Covers canonical .opencode identity matching across repo-root variants
+import fs from 'node:fs';
+~~~~
+
+NEW:
+
+~~~~text
 // TEST: Workspace Identity
 // Covers canonical source-root identity matching across repo-root variants, under
 // a real .opencode tree, a real .skilled tree and an .opencode link to .skilled
 import fs from 'node:fs';
-import os from 'node:os';
-import path from 'node:path';
+~~~~
 
-import { afterEach, describe, expect, it } from 'vitest';
+## Edit 2
 
-import {
-  buildWorkspaceIdentity,
-  isSameWorkspacePath,
-  toWorkspaceRelativePath,
-} from '../utils';
+File: `.opencode/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts`
 
-const tempRoots: string[] = [];
+OLD:
 
-function makeTempRoot(prefix: string): string {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
-  tempRoots.push(root);
-  return root;
-}
+~~~~text
+});
 
-afterEach(() => {
-  while (tempRoots.length > 0) {
-    fs.rmSync(tempRoots.pop()!, { recursive: true, force: true });
-  }
+describe('workspace identity normalization', () => {
+~~~~
+
+NEW:
+
+~~~~text
 });
 
 type Layout = 'today' | 'skilled-only' | 'whole-link';
@@ -40,55 +49,22 @@ function makeLayoutRepo(prefix: string, layout: Layout): string {
 }
 
 describe('workspace identity normalization', () => {
-  it('treats the repo-local .opencode directory as the canonical workspace anchor', () => {
-    const repoRoot = makeTempRoot('speckit-workspace-');
-    const opencodeRoot = path.join(repoRoot, '.opencode');
-    fs.mkdirSync(opencodeRoot, { recursive: true });
+~~~~
 
-    const identity = buildWorkspaceIdentity(opencodeRoot);
+## Edit 3
 
-    expect(identity.canonicalOpencodePath).toMatch(/\/\.opencode$/);
-    expect(identity.workspaceRoot).toMatch(/speckit-workspace-/);
-    expect(identity.matchPaths).toEqual(expect.arrayContaining([repoRoot, opencodeRoot]));
-    expect(isSameWorkspacePath(opencodeRoot, opencodeRoot)).toBe(true);
-    expect(isSameWorkspacePath(opencodeRoot, repoRoot)).toBe(true);
+File: `.opencode/skills/system-spec-kit/runtime/cli/tests/workspace-identity.vitest.ts`
+
+OLD:
+
+~~~~text
   });
+});
+~~~~
 
-  it('accepts repo-root and nested paths that resolve to the same .opencode workspace', () => {
-    const repoRoot = makeTempRoot('speckit-workspace-');
-    const opencodeRoot = path.join(repoRoot, '.opencode');
-    // drift: 026 release
-    const nestedSkillDir = path.join(opencodeRoot, 'skills', 'system-spec-kit');
-    fs.mkdirSync(nestedSkillDir, { recursive: true });
+NEW:
 
-    expect(isSameWorkspacePath(opencodeRoot, repoRoot)).toBe(true);
-    expect(isSameWorkspacePath(opencodeRoot, nestedSkillDir)).toBe(true);
-    expect(toWorkspaceRelativePath(opencodeRoot, path.join(repoRoot, '.opencode', 'skills', 'system-spec-kit', 'runtime', 'cli', 'core', 'workflow.ts')))
-      .toBe('.opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts');
-    expect(toWorkspaceRelativePath(opencodeRoot, path.join(repoRoot, 'README.md'))).toBe('README.md');
-  });
-
-  it('rejects unrelated repos even when their basenames are similar', () => {
-    const repoRoot = makeTempRoot('speckit-workspace-a-');
-    const otherRepoRoot = makeTempRoot('speckit-workspace-b-');
-    fs.mkdirSync(path.join(repoRoot, '.opencode'), { recursive: true });
-    fs.mkdirSync(path.join(otherRepoRoot, '.opencode'), { recursive: true });
-
-    expect(isSameWorkspacePath(path.join(repoRoot, '.opencode'), otherRepoRoot)).toBe(false);
-    expect(isSameWorkspacePath(path.join(repoRoot, '.opencode'), path.join(otherRepoRoot, '.opencode'))).toBe(false);
-  });
-
-  it('keeps symlinked and trailing-slash variants equivalent', () => {
-    const repoRoot = makeTempRoot('speckit-workspace-link-');
-    const opencodeRoot = path.join(repoRoot, '.opencode');
-    fs.mkdirSync(opencodeRoot, { recursive: true });
-
-    const symlinkRoot = path.join(os.tmpdir(), `speckit-workspace-link-alias-${Date.now()}`);
-    fs.symlinkSync(repoRoot, symlinkRoot, 'dir');
-    tempRoots.push(symlinkRoot);
-
-    expect(isSameWorkspacePath(`${opencodeRoot}/`, `${symlinkRoot}/`)).toBe(true);
-    expect(isSameWorkspacePath(opencodeRoot, path.join(symlinkRoot, '.opencode'))).toBe(true);
+~~~~text
   });
 });
 
@@ -143,3 +119,4 @@ describe('workspace identity under either source-root name', () => {
     expect(isSameWorkspacePath(path.join(skilledRepo, '.skilled'), path.join(opencodeRepo, '.opencode', 'skills'))).toBe(false);
   });
 });
+~~~~
