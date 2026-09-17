@@ -6,11 +6,15 @@
 // 1. WORKSPACE IDENTITY
 // ───────────────────────────────────────────────────────────────────
 // Normalizes backend-native workspace paths to the canonical repo-local
-// .opencode anchor so native session capture can match equivalent roots
-// across different CLI transcript formats.
+// source-root anchor so native session capture can match equivalent roots
+// across different CLI transcript formats. The source tree sits under
+// .skilled or .opencode, and a checkout may link one name to the other, so
+// either name anchors a workspace and two paths match by workspace root.
 
 import * as fs from 'fs';
 import * as path from 'path';
+
+import { SOURCE_ROOT_NAMES } from '@spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 /** Canonical workspace paths and every raw/realpath variant that should match it. */
 export interface WorkspaceIdentity {
@@ -60,6 +64,10 @@ function safeStat(filePath: string): fs.Stats | null {
   }
 }
 
+function isSourceRootName(name: string): boolean {
+  return SOURCE_ROOT_NAMES.includes(name);
+}
+
 function findNearestOpencodeDirectoryRaw(candidatePath: string): string | null {
   let current = normalizeRequestedPath(candidatePath);
   const initialStats = safeStat(current);
@@ -69,14 +77,15 @@ function findNearestOpencodeDirectoryRaw(candidatePath: string): string | null {
   }
 
   while (true) {
-    if (path.posix.basename(current) === '.opencode') {
+    if (isSourceRootName(path.posix.basename(current))) {
       return current;
     }
 
-    const nestedOpencode = path.join(current, '.opencode');
-    const nestedStats = safeStat(nestedOpencode);
-    if (nestedStats?.isDirectory()) {
-      return normalizeRequestedPath(nestedOpencode);
+    for (const name of SOURCE_ROOT_NAMES) {
+      const nestedSourceRoot = path.join(current, name);
+      if (safeStat(nestedSourceRoot)?.isDirectory()) {
+        return normalizeRequestedPath(nestedSourceRoot);
+      }
     }
 
     const parent = normalizeRequestedPath(path.dirname(current));
@@ -96,14 +105,15 @@ function findNearestOpencodeDirectory(candidatePath: string): string | null {
   }
 
   while (true) {
-    if (path.posix.basename(current) === '.opencode') {
+    if (isSourceRootName(path.posix.basename(current))) {
       return current;
     }
 
-    const nestedOpencode = path.join(current, '.opencode');
-    const nestedStats = safeStat(nestedOpencode);
-    if (nestedStats?.isDirectory()) {
-      return normalizeAbsolutePath(nestedOpencode);
+    for (const name of SOURCE_ROOT_NAMES) {
+      const nestedSourceRoot = path.join(current, name);
+      if (safeStat(nestedSourceRoot)?.isDirectory()) {
+        return normalizeAbsolutePath(nestedSourceRoot);
+      }
     }
 
     const parent = normalizeAbsolutePath(path.dirname(current));
@@ -135,16 +145,16 @@ function uniquePaths(paths: Array<string | null | undefined>): string[] {
   return ordered;
 }
 
-/** Resolve a workspace path to its canonical .opencode anchor plus every path variant that should match it. */
+/** Resolve a workspace path to its canonical source-root anchor plus every path variant that should match it. */
 export function buildWorkspaceIdentity(workspacePath: string): WorkspaceIdentity {
   const requestedPath = normalizeRequestedPath(workspacePath);
   const inputPath = normalizeAbsolutePath(workspacePath);
   const rawCanonicalOpencodePath = findNearestOpencodeDirectoryRaw(requestedPath) ?? requestedPath;
   const canonicalOpencodePath = findNearestOpencodeDirectory(inputPath) ?? inputPath;
-  const rawWorkspaceRoot = path.posix.basename(rawCanonicalOpencodePath) === '.opencode'
+  const rawWorkspaceRoot = isSourceRootName(path.posix.basename(rawCanonicalOpencodePath))
     ? normalizeRequestedPath(path.dirname(rawCanonicalOpencodePath))
     : rawCanonicalOpencodePath;
-  const workspaceRoot = path.posix.basename(canonicalOpencodePath) === '.opencode'
+  const workspaceRoot = isSourceRootName(path.posix.basename(canonicalOpencodePath))
     ? normalizeAbsolutePath(path.dirname(canonicalOpencodePath))
     : canonicalOpencodePath;
 
@@ -182,8 +192,10 @@ export function isSameWorkspacePath(workspacePath: string, candidatePath: string
     return true;
   }
 
-  const candidateIdentity = findNearestOpencodeDirectory(normalizedCandidate) ?? findNearestOpencodeDirectoryRaw(requestedCandidate);
-  return candidateIdentity !== null && normalizeAbsolutePath(candidateIdentity) === identity.canonicalOpencodePath;
+  // A linked checkout reaches one tree through two anchor names, so anchors can differ
+  // while the workspace is the same. The root above the anchor is what must agree.
+  const candidateAnchor = findNearestOpencodeDirectory(normalizedCandidate) ?? findNearestOpencodeDirectoryRaw(requestedCandidate);
+  return candidateAnchor !== null && normalizeAbsolutePath(path.dirname(candidateAnchor)) === identity.workspaceRoot;
 }
 
 /** Make a file path relative to the workspace root when it falls under any known workspace path variant. */
