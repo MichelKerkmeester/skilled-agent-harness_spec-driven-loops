@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Every git hook and CI workflow now matches changes under .skilled/ as well as .opencode/, and a gate script missing from this repository blocks or warns instead of passing, proven by an independent check and a broken-move drill. The GPT-5.6 contract reviews are still pending."
+description: "Every git hook and CI workflow now matches changes under .skilled/ as well as .opencode/, and a gate script missing from this repository blocks or warns instead of passing, proven by an independent check, a broken-move drill and the hook test scripts in CI. Publishing and the pushed-tip CI read are pending."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,12 +11,12 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness"
-    last_updated_at: "2026-09-16T22:20:00Z"
+    last_updated_at: "2026-09-17T09:05:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Implemented and verified every hook, CI, check, drill and naming-guard unit locally"
-    next_safe_action: "Run the five contract reviews, then publish"
+    recent_action: "Closed the Luna review loop and added the hook test scripts to CI"
+    next_safe_action: "Merge 0aa71350e4, publish, read CI on the pushed tip, then close"
     blockers:
-      - "Codex usage limit until 2026-09-19 10:29 blocks the GPT-5.6 reviews"
+      - "Publish and pushed-tip CI pending"
     key_files:
       - ".github/scripts/check-gate-inputs.sh"
       - ".github/scripts/tests/broken-move-drill.sh"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "041-005-gate-and-ci-readiness"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-gate-and-ci-readiness |
-| **Completed** | Not yet: the contract reviews and the pushed-tip CI runs are pending |
+| **Completed** | Not yet: publishing and the pushed-tip CI runs are pending |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -63,7 +63,7 @@ One gate needed more than a twin. Git refuses to stage a path that runs through 
 
 ### CI
 
-Eight workflows gained a `.skilled/` twin for each of their 56 path filters, dependabot scans `/.skilled/**` too and the agent mirror workflow's name filter admits `skilled`. Six guard steps that exited 0 on a missing script now fail the step.
+Eight workflows gained a `.skilled/` twin for each of their 56 path filters, dependabot scans `/.skilled/**` too and the agent mirror workflow's name filter admits `skilled`. Six guard steps that exited 0 on a missing script now fail the step, and `gate-inputs.yml` runs the six hook test scripts and the SessionStart check's test script, so CI exercises the real gates against staged changes under both roots.
 
 ### The independent check and the drill
 
@@ -92,7 +92,7 @@ The checker the agent gates call kept only `.opencode` and `.claude` agent paths
 | `.opencode/bin/tests/check-git-hooks.test.sh` | Created | Harness for the SessionStart check |
 | `.github/scripts/check-gate-inputs.sh`, `.github/scripts/tests/check-gate-inputs.test.sh` | Created | Independent check and its fixture test |
 | `.github/scripts/tests/broken-move-drill.sh` | Created | Local broken-move drill |
-| `.github/workflows/gate-inputs.yml` | Created | Runs the check on every push and pull request |
+| `.github/workflows/gate-inputs.yml` | Created | Runs the check, its fixture test and the hook test scripts on every push and pull request |
 | Eight filtered workflows, `agent-mirror-sync.yml`, `.github/dependabot.yml` | Modified | `.skilled/` twins |
 | `advisory-checks.yml`, `comment-hygiene.yml`, `markdown-link-integrity.yml`, `prompt-card-sync.yml`, `skill-doc-frontmatter.yml` | Modified | Fail closed on a missing guard |
 | `.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py` and its test | Modified | A rename that keeps its basename passes |
@@ -112,8 +112,8 @@ The orchestrator wrote each unit's exact edits and its expected files first, the
 
 | Executor | Units | Result |
 |----------|-------|--------|
-| DeepSeek V4.1 Flash, `--thinking max` | 48 dispatches across T010, T011, T013 to T024, T026 to T028, T032, T045, T046, T049 to T051, T053, the mass-deletion harness, the SessionStart harness pin, the filter-shape cases and the rename-only guard | 46 applied their edits. T013's first dispatch, in text mode, wrote nothing, so every later dispatch ran in JSON mode. T019's first dispatch spent its 32,768-token output cap on reasoning, and the unit went out again as a hook brief and a harness brief. The write tool dropped the final newline of five written files, which the orchestrator appended, with the executable bit on the two new scripts |
-| GPT-5.6 Luna, `xhigh`, fast tier, read-only | The hook rules, the CI changes, the naming guard, the CI fixes with the agent mirror checker, and the reworked check | Five reviews on 2026-09-17, each followed by a worktree fingerprint that matched apart from its return file and the orchestrator's own document edits. Findings and dispositions are in the review table below |
+| DeepSeek V4.1 Flash, `--thinking max` | 65 dispatches across T010, T011, T013 to T024, T026 to T028, T032, T045, T046, T049 to T051, T053, T055, T057, T059, T060, the mass-deletion harness, the SessionStart harness pin, the filter-shape cases and the rename-only guard | 62 applied their edits. T013's first dispatch, in text mode, wrote nothing, so every later dispatch ran in JSON mode. T019's first dispatch, and later T055's whole-file rewrite of the check after two gateway stream errors, spent the 32,768-token output cap on reasoning before any edit, so both went out again as smaller edit units. One of T055's units reported every edit applied but left two declarations unchanged, which a two-edit unit corrected. The write tool dropped the final newline of five written files, which the orchestrator appended, with the executable bit on the two new scripts |
+| GPT-5.6 Luna, `xhigh`, fast tier, read-only | The hook rules, the CI changes, the naming guard, and four rounds of CI fixes with the agent mirror checker | Seven reviews on 2026-09-17, each followed by a worktree fingerprint that matched apart from its return file and the orchestrator's own document edits. Findings and dispositions are in the review table below |
 | GPT-5.6 sol, `xhigh`, read-only | T025 attempted | Stopped at Codex's usage limit before a verdict |
 | SWE-2 on cli-devin | T025 attempted twice, as the operator's interim reviewer | No verdict. Devin refused a shell command under `auto`, and the second run was stopped when the operator chose GPT-5.6 Luna. A worktree fingerprint showed no write |
 | Orchestrator | T009, T030, T033 and every verification task | As assigned in the plan |
@@ -122,7 +122,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 
 ### Commits
 
-`259f4f6cf4`, `a17d8ab9ce`, `50eca95e28`, `f7165195e2`, `b5f179bd0e`, `576ac3c930` (pre-commit), `5fa1f39da8`, `5ae40d3c1a` (pre-push), `4866bc8eea`, `6ad37a5a13`, `ae007f51a2`, `8ffe7e8dc3` (other hooks), `5cad25db6b`, `fc6305eb69`, `ecf3812ea1` (check, test, workflow), `60605917a9`, `f4f6ea659e`, `9f009e8dd3` (workflows), `be0c3974ab` (drill), `33f2d87531`, `60635ffca5` (naming guard), `0e60909b2e`, `452cc9b6dc` (READMEs), `27dd545510` (mass-deletion harness), `610374769a` (SessionStart harness pin), `fcc0b50028`, `07039dea39` (filter shapes), `9e1bc29d87`, `904bcd479c` (rename-only guard), `51f90025c4`, `c58a37b8d8`, `057c3664c0`, `a220c9b904` (the check's review fixes), `ad6d47b2aa`, `4ff3b14bac` (agent mirror checker). None is pushed.
+`259f4f6cf4`, `a17d8ab9ce`, `50eca95e28`, `f7165195e2`, `b5f179bd0e`, `576ac3c930` (pre-commit), `5fa1f39da8`, `5ae40d3c1a` (pre-push), `4866bc8eea`, `6ad37a5a13`, `ae007f51a2`, `8ffe7e8dc3` (other hooks), `5cad25db6b`, `fc6305eb69`, `ecf3812ea1` (check, test, workflow), `60605917a9`, `f4f6ea659e`, `9f009e8dd3` (workflows), `be0c3974ab` (drill), `33f2d87531`, `60635ffca5` (naming guard), `0e60909b2e`, `452cc9b6dc` (READMEs), `27dd545510` (mass-deletion harness), `610374769a` (SessionStart harness pin), `fcc0b50028`, `07039dea39` (filter shapes), `9e1bc29d87`, `904bcd479c` (rename-only guard), `51f90025c4`, `c58a37b8d8`, `057c3664c0`, `a220c9b904`, `7116f95e09`, `da38873e31`, `3f8803e0d0`, `2f9d3bcdd2`, `a55d308ba4`, `26b2360c80` (the check's review fixes), `9bc50c4ce8` (hook test scripts in CI), `ad6d47b2aa`, `4ff3b14bac` (agent mirror checker). None is pushed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -150,12 +150,12 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 | Check | Result |
 |-------|--------|
 | Hook harnesses from the tip, `/bin/bash` 3.2.57 | PASS: autostash-orphan-guard 9, commit-msg 17, mass-deletion-guard 12, pre-commit 49, pre-push 32, prepare-commit-msg 56. That is 175 against the 126 baseline, with no case removed |
-| New harnesses | PASS: `check-git-hooks.test.sh` 4 of 4, `check-gate-inputs.test.sh` 27 of 27, `check-agent-mirror-sync.vitest.ts` 2 of 2 |
+| New harnesses | PASS: `check-git-hooks.test.sh` 4 of 4, `check-gate-inputs.test.sh` 42 of 42, `check-agent-mirror-sync.vitest.ts` 2 of 2 |
 | Deep-improvement Vitest suite | PASS for this phase's change: 393 of 394 across 34 files. The one failure, a `remediation.vitest.ts` case on the cli-pi default model, fails the same way before the change. The worktree needed the `@spec-kit/shared` workspace link that `npm install` creates, added under the ignored `node_modules` |
 | New cases seen failing first | Each unit's new assertions failed against the files before it. Controls that guard an exemption pass both before and after, and are named as controls in `goal.md` |
 | Hostile caller and spaced paths | PASS: every harness with `GIT_DIR`, `GIT_INDEX_FILE` and a global `core.hooksPath` set, and with temporary paths containing a space |
-| `bash .github/scripts/check-gate-inputs.sh` | PASS: 32 files, 136 inputs resolved, 8 dynamic, 167 twin pairs, every root-naming line read, `RESULT: PASSED` in about 1 s. Before the review fixes it counted 137, because two informational `echo` lines in workflows counted as inputs and the legacy helper's quoted checker path did not |
-| `bash .github/scripts/tests/broken-move-drill.sh` | PASS: 48 expectations, `RESULT: PASSED` in 62 s from `a220c9b904`, including the earlier hooks passing every silent break without a word |
+| `bash .github/scripts/check-gate-inputs.sh` | PASS from `9bc50c4ce8`: 32 files, 132 inputs resolved, 8 dynamic, 167 twin pairs, every root-naming command segment read, `RESULT: PASSED` in about 1 s. Before the review fixes it counted 137. Two informational `echo` lines in workflows and six `$REPO_ROOT` paths inside hook messages no longer count as inputs, each of those six is still checked where a command uses it, the legacy helper's quoted checker path now counts, and the two script paths of the new CI step count too |
+| `bash .github/scripts/tests/broken-move-drill.sh` | PASS: 48 expectations, `RESULT: PASSED` in 65 s from `9bc50c4ce8`, including the earlier hooks passing every silent break without a word |
 | Other repositories | PASS: in a clean repository and one with a dangling `.opencode` link, every hook exits 0 and prints nothing beyond two warnings the earlier hooks also printed |
 | Naming guard | PASS: suite 8 of 8 with `-p no:cacheprovider`. `--changed-since 7085ec3290` prints `PASS:`, and on a rehearsal clone with the move staged the changed guard passes where the earlier one reports the four names |
 | Comment hygiene, run directly | PASS: 0 violations. 12 files checked, 24 skipped by type and no id in the comments added to extensionless hooks |
@@ -168,7 +168,7 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 | Unit | Findings | Disposition |
 |------|----------|-------------|
 | Missing-script rule in the hooks (T025) | 2 | F1 confirmed: the agent mirror checker dropped `.skilled` names, fixed in this phase by the operator's decision (T050, T051). F2 answered: the linked-layout harness case is a deliberate control (`luna-hook-review-verdict.md`). An earlier supplementary GLM-5.3-Flash review found the same checker gap and a harness that depended on the system hooks path, fixed in `610374769a` |
-| Independent check and workflow (T012) | 4, then 8 in the review of their fixes | Every check finding confirmed by a fixture case that failed first, and fixed in `c58a37b8d8` and `a220c9b904`. The review of `a220c9b904` (T054) is running (`luna-ci-review-verdict.md`, `luna-fix-review-verdict.md`). A supplementary GLM-5.3-Flash review had found one filter shape the check could not read, fixed in `07039dea39` |
+| Independent check and workflow (T012) | 4, 8, 5, 4 and 6, across five review rounds | Every check finding but one confirmed by a fixture case that failed first, and fixed in `c58a37b8d8`, `a220c9b904`, `da38873e31`, `2f9d3bcdd2` and `26b2360c80`. The exception, a root spelled in pieces, is beyond what a text check can read, and the check's header says so. After the fourth round the operator chose another review, and after the fifth chose to fix its six findings without a sixth review and to run the hook test scripts in CI (`9bc50c4ce8`), which test the gates' behavior however they are spelled (`luna-ci-review-verdict.md` to `luna-fix4-review-verdict.md`). A supplementary GLM-5.3-Flash review had found one filter shape the check could not read, fixed in `07039dea39` |
 | Fail-closed workflow steps (T031) | None | Reviewed with the CI changes |
 | Broken-move drill (T034) | None | Reviewed with the CI changes |
 | Naming guard rule (T047) | None | Citations checked (`luna-naming-review-verdict.md`). The supplementary GLM-5.3-Flash review's copy finding was closed by the operator's renames-only decision in `904bcd479c` |
@@ -180,9 +180,10 @@ Briefs, payloads and returns are kept in `scratch/delegation/`.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The phase cannot close yet.** The five GPT-5.6 reviews wait for Codex quota, which returns on 2026-09-19 at 10:29, or for an approved substitute reviewer. Nothing is published until they complete, so the pushed-tip CI evidence waits too.
+1. **The phase cannot close yet.** It closes once the tip is pushed and CI on it is read against the failure baseline recorded before this phase. The hook test scripts in `gate-inputs.yml` have only run on macOS, so that CI run is their first on Linux.
 2. **Adjacent defects, not fixed.** The card-sync and mutation-class triggers pipe `git diff` into `grep -q` under `pipefail`, so a trigger listed first can be missed on a commit that stages thousands of files. The comment hygiene checker skips files without an extension, so no git hook is ever scanned. The git-hooks README still describes a removed naming gate and a doc-model check that moved to CI. `agent-mirror-sync.yml` runs the checker without installing workspace packages, and in a checkout without them the checker cannot load its frontmatter parser, exits 1 and the step reports drift. No CI run has reached that path, because the workflow has run only on dependabot pull requests that change no agent.
-3. **`ci-skill-root-metadata.cjs` needs installed workspace packages.** In a checkout without them it exits with "Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'", which pre-push reports as stale metadata and does not block.
+3. **The independent check reads text, so it has stated limits.** A root spelled in pieces, such as a regex that puts syntax between the dot and the name or a variable that holds the name, is beyond it, and the hook test scripts cover that behavior by staging `.skilled` paths through each gate. Two shapes fail loudly as false positives instead: a `case` pattern that lists both roots separated by `|`, and a quoted string that spans lines.
+4. **`ci-skill-root-metadata.cjs` needs installed workspace packages.** In a checkout without them it exits with "Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'", which pre-push reports as stale metadata and does not block.
 
 ### Handoff to phase 006
 

@@ -54,7 +54,7 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 - [x] T009 Draft the independent check with the five rules in plan §AMENDMENT (`.github/scripts/check-gate-inputs.sh`) [Orchestrator]
 - [x] T010 Write the check's fixture test: one failing case per rule and a whole-tree rename that passes (`.github/scripts/tests/check-gate-inputs.test.sh`) [DeepSeek]
 - [x] T011 Create the always-on workflow for the check and both tests (`.github/workflows/gate-inputs.yml`) [DeepSeek]
-- [ ] T012 Review T009 to T011, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
+- [x] T012 Review T009 to T011, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
 - [x] T049 Fix the four findings of the T012 review, cases first: literal path assignments resolve, a generated path's producing directory must exist, twins match within their group and `echo` text is not an input (`.github/scripts/tests/check-gate-inputs.test.sh`, `.github/scripts/check-gate-inputs.sh`) [DeepSeek]
 
 ### Hooks, one section per brief with its test cases
@@ -96,7 +96,13 @@ Every task names its executor in square brackets at the end. `DeepSeek` is DeepS
 - [x] T051 Admit `.skilled` in the checker's agent path pattern and list the new suite in the tests index (`check-agent-mirror-sync.cjs:32`, `shared/tests/README.md`) [DeepSeek]
 - [x] T052 Review T049 to T051, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
 - [x] T053 Fix the findings of the T052 review, cases first: comments, shell operators, inline and declared arrays, plain dependabot values, quoted run scalars, commands beside an echo, pathspecs without `--`, and a `parser-miss` failure for every root-naming line no rule reads (`.github/scripts/tests/check-gate-inputs.test.sh`, `.github/scripts/check-gate-inputs.sh`) [DeepSeek]
-- [ ] T054 Review T053, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
+- [x] T054 Review T053, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
+- [x] T055 Fix the findings of the T054 review, cases first: negated filters, pathspecs behind a variable, commands joined to an echo, comments that hold a regex, and accounting by command segment (`.github/scripts/tests/check-gate-inputs.test.sh`, `.github/scripts/check-gate-inputs.sh`) [DeepSeek]
+- [x] T056 Review T055, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
+- [x] T057 Fix the findings of the T056 review, as the operator chose on 2026-09-17, cases first: git by its full path, the root directory as a pathspec, commands after an array's closing paren, declared inputs, and command substitutions as their own commands (`.github/scripts/tests/check-gate-inputs.test.sh`, `.github/scripts/check-gate-inputs.sh`) [DeepSeek]
+- [x] T058 Review T057, and fix or answer every finding [GPT-5.6 Luna, then Orchestrator]
+- [x] T059 Fix the findings of the T058 review, as the operator chose on 2026-09-17, cases first and with no further review: arrays expanded into git, paths that continue into a variable, regexes per command, option values, flow-style dependabot entries and `?` globs (`.github/scripts/tests/check-gate-inputs.test.sh`, `.github/scripts/check-gate-inputs.sh`) [DeepSeek]
+- [x] T060 Run the six hook test scripts and the SessionStart check's test script in the gate-input workflow (`.github/workflows/gate-inputs.yml`) [DeepSeek]
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration"
-    last_updated_at: "2026-09-17T06:25:00Z"
+    last_updated_at: "2026-09-17T09:05:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Phase 005 reviewed by GPT-5.6 Luna and its findings fixed locally"
-    next_safe_action: "Close the review of phase 005's fixes, publish via step 5, validate, then start phase 006"
+    recent_action: "Phase 005 reviews closed and the hook test scripts added to CI"
+    next_safe_action: "Publish phase 005 with 0aa71350e4 via step 5, read CI, validate, then start phase 006"
     blockers: []
     key_files: []
     session_dedup:
@@ -109,7 +109,7 @@ and findings belong here.
 | Phases 003 to 011 planned | Done, committed locally `d26f0c60ca` | Nine Opus agents, 17:57Z to 18:36Z; each wrote only its own five or six files; 746 `file:line` citations resolve inside their files, none out of range |
 | Phase 003 layout probes | Done, committed locally `951f4fae18` | Nine records, strict validation PASSED; not pushed |
 | Phase 004 migration design | Done, committed locally `7085ec3290` | L1 accepted; 25-step cutover amended by 7 GPT-5.6 findings; strict validation PASSED |
-| Phase 005 gate and CI readiness | Implemented, reviewed and fixed locally, 44 commits ahead of `728c4f3efc`, none pushed | GPT-5.6 Luna reviewed the hook rules, the CI changes and the naming guard on 2026-09-17. Its four CI findings and the agent mirror checker gap are fixed, and Luna's review of those fixes is running. From `4ff3b14bac` the check and the drill print `RESULT: PASSED`, the hook harnesses pass 175 cases against the 126 baseline and the check's fixture test 18. AC-006 waits for CI on the pushed tip and AC-009 for the last review |
+| Phase 005 gate and CI readiness | Implemented, reviewed and fixed locally, ready to publish | GPT-5.6 Luna reviewed the hook rules, the naming guard, the agent mirror checker and the CI check in five rounds on 2026-09-17. The operator chose to close the check's review loop after the fifth round and to run the hook test scripts in CI. From `9bc50c4ce8` the check and the drill print `RESULT: PASSED`, the hook harnesses pass 175 cases against the 126 baseline and the check's fixture test 42. AC-006 waits for CI on the pushed tip, which will also carry the other session's commit `0aa71350e4` at the operator's request |
 | CI on the pushed tip | Checked | All 22 runs for `1d198996ca` and `728c4f3efc` completed; the naming guard went red, then green at `728c4f3efc` |
 
 ### Deviations and findings
