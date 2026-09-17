@@ -25,20 +25,20 @@ const DIST_PACKAGES = Object.freeze([
   {
     id: 'system-spec-kit/shared',
     name: '@spec-kit/shared',
-    root: '.opencode/skills/system-spec-kit/shared',
+    root: '.skilled/skills/system-spec-kit/shared',
     distEntries: { default: 'dist/tsconfig.tsbuildinfo' },
-    rebuildCommand: 'cd .opencode/skills/system-spec-kit/shared && npm run build',
+    rebuildCommand: 'cd .skilled/skills/system-spec-kit/shared && npm run build',
     sourceCandidates: ['.'],
   },
   {
     id: 'system-spec-kit/runtime/cli',
     name: '@spec-kit/cli',
-    root: '.opencode/skills/system-spec-kit/runtime/cli',
+    root: '.skilled/skills/system-spec-kit/runtime/cli',
     distEntries: {
       default: 'dist/tsconfig.tsbuildinfo',
       'is-phase-parent': 'dist/spec/is-phase-parent.js',
     },
-    rebuildCommand: 'cd .opencode/skills/system-spec-kit/runtime/cli && npm run build',
+    rebuildCommand: 'cd .skilled/skills/system-spec-kit/runtime/cli && npm run build',
     sourceCandidates: ['.'],
     // is-phase-parent.ts imports only Node builtins (fs, path) -- no local
     // project dependencies -- so its own freshness check is scoped to just
@@ -55,12 +55,12 @@ const DIST_PACKAGES = Object.freeze([
   {
     id: 'system-spec-kit/runtime',
     name: '@spec-kit/runtime',
-    root: '.opencode/skills/system-spec-kit/runtime',
+    root: '.skilled/skills/system-spec-kit/runtime',
     distEntries: {
       default: 'dist/tsconfig.tsbuildinfo',
       'validation-orchestrator': 'dist/lib/validation/orchestrator.js',
     },
-    rebuildCommand: 'cd .opencode/skills/system-spec-kit/runtime && npm run build',
+    rebuildCommand: 'cd .skilled/skills/system-spec-kit/runtime && npm run build',
     sourceCandidates: [
       'package.json',
       'tsconfig.json',
@@ -90,20 +90,20 @@ const DIST_PACKAGES = Object.freeze([
   {
     id: 'mcp-code-mode/mcp-server',
     name: '@utcp/code-mode-mcp',
-    root: '.opencode/skills/mcp-code-mode/mcp-server',
+    root: '.skilled/skills/mcp-code-mode/mcp-server',
     distEntries: { default: 'dist/index.js' },
-    rebuildCommand: 'cd .opencode/skills/mcp-code-mode/mcp-server && npm run build',
+    rebuildCommand: 'cd .skilled/skills/mcp-code-mode/mcp-server && npm run build',
     sourceCandidates: ['package.json', 'tsconfig.json', 'index.ts'],
   },
   {
     id: 'system-skill-advisor/runtime',
     name: '@spec-kit/system-skill-advisor',
-    root: '.opencode/skills/system-skill-advisor/runtime',
+    root: '.skilled/skills/system-skill-advisor/runtime',
     distEntries: {
       default: 'dist/runtime/advisor-server.js',
       'skill-advisor-cli': 'dist/runtime/skill-advisor-cli.js',
     },
-    rebuildCommand: 'cd .opencode/skills/system-skill-advisor/runtime && npm run build',
+    rebuildCommand: 'cd .skilled/skills/system-skill-advisor/runtime && npm run build',
     sourceCandidates: [
       'package.json',
       'tsconfig.json',
@@ -135,9 +135,9 @@ const DIST_PACKAGES = Object.freeze([
   {
     id: 'sk-design-md-generator/backend',
     name: 'design-system-extractor',
-    root: '.opencode/skills/sk-design/sk-design-md-generator/backend',
+    root: '.skilled/skills/sk-design/sk-design-md-generator/backend',
     distEntries: { default: 'dist/cli.js' },
-    rebuildCommand: 'cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build',
+    rebuildCommand: 'cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build',
     sourceCandidates: ['package.json', 'tsconfig.json', 'tsconfig.build.json', 'scripts'],
     excludedSegments: ['tests', 'output'],
   },
