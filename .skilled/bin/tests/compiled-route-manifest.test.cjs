@@ -38,10 +38,10 @@ const engine = require(path.join(runtimeEngineRoot, 'compiled-route.cjs'));
 // ─────────────────────────────────────────────────────────────────────────────
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..');
-const CLI_PATH = path.join(REPO_ROOT, '.opencode', 'bin', 'compiled-route-manifest.cjs');
-const ROUTE_CLI_PATH = path.join(REPO_ROOT, '.opencode', 'bin', 'compiled-route.cjs');
-const SYNC_PATH = path.join(REPO_ROOT, '.opencode', 'bin', 'compiled-route-sync.cjs');
-const SOURCE_ROOT = path.join(REPO_ROOT, '.opencode', 'skills', 'sk-code');
+const CLI_PATH = path.join(REPO_ROOT, '.skilled', 'bin', 'compiled-route-manifest.cjs');
+const ROUTE_CLI_PATH = path.join(REPO_ROOT, '.skilled', 'bin', 'compiled-route.cjs');
+const SYNC_PATH = path.join(REPO_ROOT, '.skilled', 'bin', 'compiled-route-sync.cjs');
+const SOURCE_ROOT = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-code');
 const TEMP_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), 'compiled-route-manifest-'));
 const PRIMARY_HUB = `manifest-test-${process.pid}`;
 const RACE_HUB = `manifest-race-${process.pid}`;
@@ -1324,7 +1324,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     assert.equal(trailingSyncArgument.stdout, '');
     assert.match(trailingSyncArgument.stderr, /^usage:/);
     const source = fs.readFileSync(
-      path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-route-manifest.cjs'),
+      path.join(REPO_ROOT, '.skilled', 'bin', 'lib', 'compiled-route-manifest.cjs'),
       'utf8',
     );
     assert.match(source, /registry-compiler\.cjs/);
