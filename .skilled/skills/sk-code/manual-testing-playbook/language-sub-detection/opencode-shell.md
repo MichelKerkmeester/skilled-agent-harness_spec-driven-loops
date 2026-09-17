@@ -18,10 +18,10 @@ Verify language sub-detection for `.sh` / `.bash` files within OPENCODE. Shell r
 
 **Exact prompt**:
 ```
-Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.
+Add set -euo pipefail and a trap to .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.
 ```
 
-Prompt: `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.`
+Prompt: `Add set -euo pipefail and a trap to .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.`
 
 **Expected detection**:
 - Surface: `OPENCODE`
@@ -44,7 +44,7 @@ Prompt: `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/ru
 
 ### Preconditions
 
-1. Target file exists: `bash: test -f .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh`
+1. Target file exists: `bash: test -f .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`
 2. Shell sub-language reference set intact: 3 files under `sk-code-opencode/references/shell/`.
 
 ### Exact Command Sequence
@@ -74,8 +74,8 @@ Evidence: `/tmp/skc-LS003-loaded-refs.txt` (loaded-refs transcript).
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
-- `.opencode/skills/sk-code/sk-code-opencode/references/shell/{style_guide,quality_standards,quick_reference}.md`.
+- `.skilled/skills/sk-code/SKILL.md` (sub-detection table).
+- `.skilled/skills/sk-code/sk-code-opencode/references/shell/{style_guide,quality_standards,quick_reference}.md`.
 
 ---
 

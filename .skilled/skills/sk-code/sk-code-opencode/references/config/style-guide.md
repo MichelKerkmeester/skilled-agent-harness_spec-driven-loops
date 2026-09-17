@@ -30,17 +30,17 @@ Use when writing or reviewing JSONC behavior config or strict-JSON machine descr
 ### Scope
 
 Applies to two config genres:
-- **JSONC behavior config** — human-maintained runtime settings such as `.opencode/skills/system-spec-kit/config/config.jsonc`. Comments and trailing commas are syntactically allowed; keep comments purposeful and follow the local file's existing comma style.
+- **JSONC behavior config** — human-maintained runtime settings such as `.skilled/skills/system-spec-kit/config/config.jsonc`. Comments and trailing commas are syntactically allowed; keep comments purposeful and follow the local file's existing comma style.
 - **Strict-JSON machine descriptors** — no comments and no trailing commas. This includes advisor descriptors (`description.json`), skill-graph identity (`graph-metadata.json`), hub registries (`mode-registry.json`), and the root OpenCode runtime config (`opencode.json`).
 
 ### Key Sources
 
 | File | Evidence |
 |------|----------|
-| `.opencode/skills/system-spec-kit/config/config.jsonc` | Header format, section comments, structure |
-| `.opencode/skills/sk-code/description.json` | Advisor descriptor shape |
-| `.opencode/skills/sk-code/graph-metadata.json` | Skill-graph identity shape |
-| `.opencode/skills/sk-code/mode-registry.json` | Hub registry shape |
+| `.skilled/skills/system-spec-kit/config/config.jsonc` | Header format, section comments, structure |
+| `.skilled/skills/sk-code/description.json` | Advisor descriptor shape |
+| `.skilled/skills/sk-code/graph-metadata.json` | Skill-graph identity shape |
+| `.skilled/skills/sk-code/mode-registry.json` | Hub registry shape |
 | `opencode.json` | Root OpenCode runtime config shape |
 
 ---
@@ -62,7 +62,7 @@ Use the standard comment header for JSONC behavior config files:
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:1-3`
+**Evidence**: `.skilled/skills/system-spec-kit/config/config.jsonc:1-3`
 
 ### Section Organization
 
@@ -86,7 +86,7 @@ Organize JSONC behavior configuration into numbered sections:
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:5-24`
+**Evidence**: `.skilled/skills/system-spec-kit/config/config.jsonc:5-24`
 
 ---
 
@@ -111,7 +111,7 @@ Organize JSONC behavior configuration into numbered sections:
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc` throughout
+**Evidence**: `.skilled/skills/system-spec-kit/config/config.jsonc` throughout
 
 ### Boolean Properties
 
@@ -148,7 +148,7 @@ Use descriptive names for nested configuration sections:
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:19-30`
+**Evidence**: `.skilled/skills/system-spec-kit/config/config.jsonc:19-30`
 
 ---
 
@@ -168,7 +168,7 @@ Use consistent section header format:
 
 The divider line should be 67 characters (same as header width).
 
-**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:5-7`
+**Evidence**: `.skilled/skills/system-spec-kit/config/config.jsonc:5-7`
 
 ### Inline Comments
 
@@ -205,7 +205,7 @@ Add documentation comments for complex settings:
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:39-47`
+**Evidence**: `.skilled/skills/system-spec-kit/config/config.jsonc:39-47`
 
 ---
 
@@ -217,7 +217,7 @@ Use double quotes for all strings:
 
 ```jsonc
 {
-  "databasePath": ".opencode/database.sqlite",
+  "databasePath": ".skilled/database.sqlite",
   "embeddingModel": "voyage-4",
   "styleFallback": "minimal"
 }
@@ -275,7 +275,7 @@ Use `null` for explicitly unset values:
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:19-24`
+**Evidence**: `.skilled/skills/system-spec-kit/config/config.jsonc:19-24`
 
 ### Tier/Level Configuration
 
@@ -291,7 +291,7 @@ Use `null` for explicitly unset values:
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:53-60`
+**Evidence**: `.skilled/skills/system-spec-kit/config/config.jsonc:53-60`
 
 ### Rule Configuration
 
@@ -309,7 +309,7 @@ Use `null` for explicitly unset values:
 }
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:76-87`
+**Evidence**: `.skilled/skills/system-spec-kit/config/config.jsonc:76-87`
 
 ---
 
@@ -382,18 +382,18 @@ Use 2 spaces for indentation (consistent with JSON convention):
 
 | Type | Pattern | Example |
 |------|---------|---------|
-| JSONC behavior config | `config.jsonc` | `.opencode/skills/system-spec-kit/config/config.jsonc` |
-| Advisor descriptor | `description.json` | `.opencode/skills/sk-code/description.json` |
-| Skill-graph identity | `graph-metadata.json` | `.opencode/skills/sk-code/graph-metadata.json` |
-| Hub registry | `mode-registry.json` | `.opencode/skills/sk-code/mode-registry.json` |
+| JSONC behavior config | `config.jsonc` | `.skilled/skills/system-spec-kit/config/config.jsonc` |
+| Advisor descriptor | `description.json` | `.skilled/skills/sk-code/description.json` |
+| Skill-graph identity | `graph-metadata.json` | `.skilled/skills/sk-code/graph-metadata.json` |
+| Hub registry | `mode-registry.json` | `.skilled/skills/sk-code/mode-registry.json` |
 | Root OpenCode runtime config | `opencode.json` | `opencode.json` |
-| Command route assets | `*.yaml` | `.opencode/commands/create/assets/create-skill-auto.yaml` |
+| Command route assets | `*.yaml` | `.skilled/commands/create/assets/create-skill-auto.yaml` |
 
 ### Location
 
 ```
 opencode.json                         # Root OpenCode runtime config (strict JSON)
-.opencode/
+.skilled/
 ├── commands/
 │   ├── doctor/_routes.yaml           # Command router table (YAML)
 │   └── [command]/assets/

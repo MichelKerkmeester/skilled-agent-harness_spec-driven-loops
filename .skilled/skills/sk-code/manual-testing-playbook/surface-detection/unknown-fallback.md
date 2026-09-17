@@ -8,7 +8,7 @@ version: 3.5.0.4
 
 ## 1. OVERVIEW
 
-This scenario verifies that sk-code DOES NOT silently proceed when the prompt targets an unsupported stack. Per AGENTS.md "Multi-Repository Architecture" table, supported stacks are WEBFLOW (vanilla HTML/CSS/JS) and OPENCODE (`.opencode/` system code). Everything else — Go, Swift, React Native, generic React/Next.js, generic Node.js — is UNKNOWN and MUST trigger a disambiguation question.
+This scenario verifies that sk-code DOES NOT silently proceed when the prompt targets an unsupported stack. Per AGENTS.md "Multi-Repository Architecture" table, supported stacks are WEBFLOW (vanilla HTML/CSS/JS) and OPENCODE (`.skilled/` system code). Everything else — Go, Swift, React Native, generic React/Next.js, generic Node.js — is UNKNOWN and MUST trigger a disambiguation question.
 
 The disambiguation question MUST ask for:
 1. The explicit runtime surface (which stack are you on?).
@@ -49,14 +49,14 @@ Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and
 
 ### Preconditions
 
-1. `.opencode/skills/sk-code/SKILL.md` is at HEAD-of-main and the "Unsupported / Unknown" row in the Multi-Repository Architecture table is intact.
+1. `.skilled/skills/sk-code/SKILL.md` is at HEAD-of-main and the "Unsupported / Unknown" row in the Multi-Repository Architecture table is intact.
 2. Skill advisor callable.
 
 ### Exact Command Sequence
 
 1. **Advisor probe**:
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header." --threshold 0.8 > /tmp/skc-SD003-advisor.txt
+   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header." --threshold 0.8 > /tmp/skc-SD003-advisor.txt
    ```
 2. **Verify advisor result**: sk-code MAY win (the prompt mentions "middleware" and "HTTP server" which align with code work generally) but SHOULD have a low confidence (closer to 0.50 than 0.90), OR another skill may win. EITHER outcome is acceptable for this scenario — what matters is the sk-code BEHAVIOR after invocation.
 3. **Invoke sk-code** with the prompt.
@@ -85,15 +85,15 @@ Evidence: `/tmp/skc-SD003-response.txt` (surface decision, AI disambiguation res
 
 1. If sk-code silently proceeds (worst case): re-read SKILL.md "Unsupported / Unknown" row in the Multi-Repository Architecture table. The expected behavior is documented as "Ask for explicit runtime surface and verification commands".
 2. If `sk-code-webflow/references/*` is incorrectly loaded: the router is matching some marker. Check whether `motion`, `gsap`, or `lenis` substrings exist in the prompt unintentionally (they don't here, but always verify).
-3. If `sk-code-opencode/references/*` is incorrectly loaded: the CWD probably contains `/.opencode/` — but this prompt explicitly targets `cmd/api/main.go` (Go path). Check whether the CWD-based detection is overriding target-path detection (it should not).
+3. If `sk-code-opencode/references/*` is incorrectly loaded: the CWD probably contains `/.skilled/` — but this prompt explicitly targets `cmd/api/main.go` (Go path). Check whether the CWD-based detection is overriding target-path detection (it should not).
 
 ---
 
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/sk-code/SKILL.md` — Multi-Repository Architecture table with "Unsupported / Unknown" row.
-- `.opencode/skills/sk-code/shared/references/stack-detection.md` — Marker definitions (none should match Go).
+- `.skilled/skills/sk-code/SKILL.md` — Multi-Repository Architecture table with "Unsupported / Unknown" row.
+- `.skilled/skills/sk-code/shared/references/stack-detection.md` — Marker definitions (none should match Go).
 - `AGENTS.md` (project root) — Multi-Repository Architecture table cross-reference.
 
 ---

@@ -27,7 +27,7 @@ under, instead of treating the repository as generic, unowned Node.js.
 ### Why This Surface Exists
 
 Before this packet, code work on the Note Database plugin detected as **UNKNOWN**: a generic
-TypeScript/Node.js tree with no Webflow, Pi Remote, or `.opencode/` markers fell through surface
+TypeScript/Node.js tree with no Webflow, Pi Remote, or `.skilled/` markers fell through surface
 detection, so the hub could not auto-load the plugin's Obsidian API boundary, its single-stylesheet
 grammar, its screenshot-fixture harness, or its real verification gate. This surface closes that gap:
 OBSIDIAN now detects, and the plugin's design-system evidence loads with the workflow.
@@ -106,7 +106,7 @@ surface after).
 
 ### When The Hub Bundles This Surface
 
-`node .opencode/bin/compiled-route.cjs --hub sk-code --prompt "<obsidian plugin task>"` resolves the
+`node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<obsidian plugin task>"` resolves the
 workflow mode and appends `sk-code-obsidian` as read-only evidence, e.g. a quality gate on the plugin
 returns `[sk-code-quality, sk-code-obsidian]`.
 
@@ -146,7 +146,7 @@ the single `sk-code` identity and the hub bundles this surface.
 
 - Packet conforms to the surface contract: `packetKind: surface`, `backendKind: evidence-base`, read-only
   `toolSurface`, `routingClass: metadata`, `folder == packetSkillName`, no packet-level advisor metadata.
-- Fleet gate: `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` exits 0.
+- Fleet gate: `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` exits 0.
 - Routing: `compiled-route.cjs --hub sk-code --prompt "code work on the Note Database plugin"` bundles
   this surface instead of returning `defer`.
 

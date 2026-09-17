@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 This playbook provides 30 deterministic scenarios across 8 categories validating the `review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by `SKILL.md` §2's `INTENT_SIGNALS` and `RESOURCE_MAP`. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.opencode/agents/` on disk.
+Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by `SKILL.md` §2's `INTENT_SIGNALS` and `RESOURCE_MAP`. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.skilled/agents/` on disk.
 
 ### Realistic Test Model
 
@@ -58,8 +58,8 @@ Coverage note: the playbook covers single-pass review flow, security/correctness
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is the repository root.
-2. `.opencode/skills/sk-code/sk-code-review/SKILL.md` and all files under `.opencode/skills/sk-code/sk-code-review/references/` resolve on disk.
-3. `.opencode/agents/review.md` and `.opencode/agents/deep-review.md` resolve on disk for native and iterative-review consumer checks.
+2. `.skilled/skills/sk-code/sk-code-review/SKILL.md` and all files under `.skilled/skills/sk-code/sk-code-review/references/` resolve on disk.
+3. `.skilled/agents/review.md` and `.skilled/agents/deep-review.md` resolve on disk for native and iterative-review consumer checks.
 4. The operator can run `git diff`, `git status`, `rg`, and line-number inspection commands such as `nl -ba`.
 5. External CLI scenarios require the named CLI surface to be installed and authenticated; otherwise use SKIP with the exact missing binary or auth blocker.
 6. Review agents and external CLI delegates remain read-only. Scenario fixtures may create a reversible local diff only when the scenario explicitly requires it; the operator must restore the working tree before recording the final verdict.
@@ -749,7 +749,7 @@ The current repository has no dedicated automated test module for `review/manual
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` | Skill-advisor routing cases for `review`, `deep-review`, and review/write disambiguation | CR-016, CR-017, CR-018 |
+| `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` | Skill-advisor routing cases for `review`, `deep-review`, and review/write disambiguation | CR-016, CR-017, CR-018 |
 | Internal design notes | Stress fixture that maps review channel behavior to `review` | CR-016 |
 | Internal design notes | Earlier stress fixture for review channel expectations | CR-016 |
 

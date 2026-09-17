@@ -79,10 +79,10 @@ Explain how the kebab-case file naming grammar and the BEM block--element CSS cl
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/resource-loading/references-only-load.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"LANGUAGE_STANDARDS":/,/\],/p'`
-3. `for p in references/design-system/token-library.md references/design-system/component-tokens.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md references/design-system/css-class-naming-bem.md references/svelte/svelte.md references/conventions/comment-grammar.md references/conventions/folder-docs.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
-4. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"LANGUAGE_STANDARDS":/,/\],/p' | grep -c 'assets/'`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/resource-loading/references-only-load.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"LANGUAGE_STANDARDS":/,/\],/p'`
+3. `for p in references/design-system/token-library.md references/design-system/component-tokens.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md references/design-system/css-class-naming-bem.md references/svelte/svelte.md references/conventions/comment-grammar.md references/conventions/folder-docs.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"LANGUAGE_STANDARDS":/,/\],/p' | grep -c 'assets/'`
 
 ### Expected
 

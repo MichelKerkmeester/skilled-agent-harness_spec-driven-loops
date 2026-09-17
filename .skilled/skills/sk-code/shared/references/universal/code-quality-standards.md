@@ -126,13 +126,13 @@ When you reach Phase 1.5 Code Quality Gate:
 1. Identify the file type and code surface (the smart router does this; or check via the surface-detection block in SKILL.md §2).
 2. Run the comment-hygiene checker on each modified file before committing:
    ```bash
-   .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <file>
+   .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <file>
    ```
    Zero violations required. To suppress a specific line that is a known false-positive, append `// hygiene-ok` to that line.
 
    The same check is enforced automatically at three gates — manual invocation here is early feedback, not the only safety net:
    - **Write-time** (Claude Code only): `claude-posttooluse.sh` fires on every Write/Edit tool call and warns inline before the next AI turn
-   - **Commit-time**: `.opencode/hooks/git/pre-commit` blocks any commit with violations; bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`
+   - **Commit-time**: `.skilled/hooks/git/pre-commit` blocks any commit with violations; bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`
    - **CI**: `.github/workflows/comment-hygiene.yml` re-validates on every PR to main; cannot be bypassed with `--no-verify`
 
 3. Load the matching surface checklist (see §6).

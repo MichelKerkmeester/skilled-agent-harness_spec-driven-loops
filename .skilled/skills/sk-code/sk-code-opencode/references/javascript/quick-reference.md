@@ -158,7 +158,7 @@ module.exports = {
 ## 6. EXPORT PATTERN TEMPLATE
 
 Use this template for non-plugin `.js/.cjs` utility modules. For
-`.opencode/plugins/`, use ESM instead.
+`.skilled/plugins/`, use ESM instead.
 
 ```javascript
 module.exports = {

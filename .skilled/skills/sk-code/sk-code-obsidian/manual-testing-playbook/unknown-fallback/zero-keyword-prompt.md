@@ -73,9 +73,9 @@ This plugin lets a vault owner treat a folder of notes like rows in a spreadshee
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/^DEFAULT_RESOURCE/,/^\]/p'`
-3. `for p in references/obsidian-plugin-api.md references/comment-grammar.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,15p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/^DEFAULT_RESOURCE/,/^\]/p'`
+3. `for p in references/obsidian-plugin-api.md references/comment-grammar.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

@@ -26,7 +26,7 @@ For a hover state on cards, should I use motion.dev or plain CSS? I need the rou
 
 **Expected surface**: `UNKNOWN` or `N/A`
 
-**Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
+**Expected references loaded** (exact relative paths under `.skilled/skills/sk-code/`):
 - `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
@@ -87,9 +87,9 @@ Evidence: `/tmp/skc-CS-004-<cli>.txt` (raw per-runtime transcript) and `results/
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` - Root directory page and scenario summary.
-- `.opencode/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md` - Required decision reference.
-- `.opencode/skills/sk-code/sk-code-webflow/references/animation/performance-and-pitfalls.md` - Performance and reduced-motion caveats.
-- `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/hover-gesture.js` - Hover example when Motion.dev is justified.
+- `.skilled/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md` - Required decision reference.
+- `.skilled/skills/sk-code/sk-code-webflow/references/animation/performance-and-pitfalls.md` - Performance and reduced-motion caveats.
+- `.skilled/skills/sk-code/sk-code-webflow/assets/animation/snippets/hover-gesture.js` - Hover example when Motion.dev is justified.
 
 ---
 

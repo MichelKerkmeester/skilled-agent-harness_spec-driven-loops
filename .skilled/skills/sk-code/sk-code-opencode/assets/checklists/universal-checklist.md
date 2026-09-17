@@ -263,7 +263,7 @@ These improve quality but can be deferred.
    - Shell: ShellCheck
 
 2. Run comment-hygiene checker on each modified file
-   - .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <file>
+   - .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <file>
    - Zero violations required
    - Escape: add `// hygiene-ok` to suppress a specific line
 

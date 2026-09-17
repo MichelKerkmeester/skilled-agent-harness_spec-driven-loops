@@ -8,7 +8,7 @@ version: 3.5.0.5
 
 ## 1. OVERVIEW
 
-This scenario verifies mixed-marker precedence. A `.opencode/` TypeScript tool may include a Motion.dev preview or animation fixture, but the target path still owns the work. The AI must detect `OPENCODE`, load TypeScript/OpenCode standards, and use `motion_dev/` only as supplementary API context.
+This scenario verifies mixed-marker precedence. A `.skilled/` TypeScript tool may include a Motion.dev preview or animation fixture, but the target path still owns the work. The AI must detect `OPENCODE`, load TypeScript/OpenCode standards, and use `motion_dev/` only as supplementary API context.
 
 ---
 
@@ -16,18 +16,18 @@ This scenario verifies mixed-marker precedence. A `.opencode/` TypeScript tool m
 
 **Realistic user prompt**:
 ```text
-Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion demo, how should sk-code route the request?
+Before editing .skilled/skills/sk-doc/scripts/preview-server.ts for a Motion demo, how should sk-code route the request?
 ```
 
 **Expected detection markers** (verbatim from `shared/references/stack-detection.md`):
 ```bash
 # 1. OPENCODE (highest precedence — disambiguates mixed-marker workspaces)
-# CWD under .opencode/ OR any changed/target file under .opencode/
+# CWD under .skilled/ OR any changed/target file under .skilled/
 ```
 
 **Expected surface**: `OPENCODE`
 
-**Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
+**Expected references loaded** (exact relative paths under `.skilled/skills/sk-code/`):
 - `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
@@ -64,7 +64,7 @@ Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion de
 
 ### Prompt
 
-- Prompt: `Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion demo, how should sk-code route the request?`
+- Prompt: `Before editing .skilled/skills/sk-doc/scripts/preview-server.ts for a Motion demo, how should sk-code route the request?`
 
 ### Commands
 
@@ -97,10 +97,10 @@ Evidence: `/tmp/skc-CS-003-<cli>.txt` (raw per-runtime transcript) and `results/
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` - Root directory page and scenario summary.
-- `.opencode/skills/sk-code/shared/references/stack-detection.md` - OPENCODE precedence rule.
-- `.opencode/skills/sk-code/ROUTER.md` - OPENCODE and MOTION_DEV maps.
-- `.opencode/skills/sk-code/sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md` - Expected TypeScript route.
-- `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/es-module-bootstrap.js` - Supplementary Motion ESM pattern.
+- `.skilled/skills/sk-code/shared/references/stack-detection.md` - OPENCODE precedence rule.
+- `.skilled/skills/sk-code/ROUTER.md` - OPENCODE and MOTION_DEV maps.
+- `.skilled/skills/sk-code/sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md` - Expected TypeScript route.
+- `.skilled/skills/sk-code/sk-code-webflow/assets/animation/snippets/es-module-bootstrap.js` - Supplementary Motion ESM pattern.
 
 ---
 

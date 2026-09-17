@@ -74,9 +74,9 @@ Add a screenshot scenario for FormulaModal.ts — it's one of the seventeen moda
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/modal-screenshot-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"IMPLEMENTATION":/,/\],/p'`
-3. `for p in references/view-renderer-architecture.md references/screenshot-harness.md assets/fixture-authoring-checklist.md assets/screenshot-coverage-checklist.md assets/modal-coverage-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/modal-screenshot-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"IMPLEMENTATION":/,/\],/p'`
+3. `for p in references/view-renderer-architecture.md references/screenshot-harness.md assets/fixture-authoring-checklist.md assets/screenshot-coverage-checklist.md assets/modal-coverage-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

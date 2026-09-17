@@ -3,7 +3,7 @@
 Claude Code PostToolUse compatibility adapter — source edit warnings.
 
 The installed Claude adapter is the Node entrypoint under
-.opencode/hooks/post-edit-quality/claude; this script remains for direct
+.skilled/hooks/post-edit-quality/claude; this script remains for direct
 regression tests and is not wired by the runtime settings.
 
 Reads the hook stdin JSON, extracts tool_input.file_path, runs the shared
@@ -14,10 +14,10 @@ Always exits 0 (fail-safe): never blocks the tool even if the checker fails.
 Hook entry (settings.json):
   { "matcher": "Write|Edit",
     "hooks": [{ "type": "command",
-                "command": "bash -c 'cd \"/...repo...\" && python3 .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh'",
+                "command": "bash -c 'cd \"/...repo...\" && python3 .skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh'",
                 "timeout": 10 }] }
 
-See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
+See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
 """
 import sys
 import os
@@ -25,8 +25,8 @@ import json
 import subprocess
 import time
 
-COMMENT_CHECKER_REL = ".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
-DIST_CHECKER_REL = ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh"
+COMMENT_CHECKER_REL = ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+DIST_CHECKER_REL = ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh"
 HOOK_BUDGET_SECONDS = 9.0
 CHECKER_TIMEOUT_SECONDS = 8.0
 MIN_CHECKER_SECONDS = 0.5
@@ -106,7 +106,7 @@ def main():
                     print(f"Violations in {file_path}:")
                     for line in lines:
                         print(f"  {line}")
-                    print("See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4")
+                    print("See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4")
                     print("Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.")
                     print()
 

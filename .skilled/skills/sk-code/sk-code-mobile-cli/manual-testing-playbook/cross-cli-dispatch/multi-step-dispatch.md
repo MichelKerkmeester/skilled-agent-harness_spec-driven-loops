@@ -85,13 +85,13 @@ Retint the model-effort-sheet accent so it reads a warmer accent role without to
 
 ### Commands
 
-1. `sed -n '1,20p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md`
+1. `sed -n '1,20p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md`
 2. Dispatch turn one in a fresh session; capture the resolved surface, intent, and resource list.
 3. Dispatch turn two in the same session, immediately after turn one; capture the resolved surface,
    intent, and resource list.
 4. Dispatch turn three in the same session, immediately after turn two; capture the resolved surface,
    intent, and resource list.
-5. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md references/design-system/component-tokens.md references/design-system/retint-recipes.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md assets/token-retint-checklist.md references/conventions/editability-guardrails.md assets/guardrail-audit-checklist.md references/verification/verification.md assets/ds-verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+5. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md references/design-system/component-tokens.md references/design-system/retint-recipes.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md assets/token-retint-checklist.md references/conventions/editability-guardrails.md assets/guardrail-audit-checklist.md references/verification/verification.md assets/ds-verification-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

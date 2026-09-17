@@ -34,8 +34,8 @@ its JSON output, and blocks any file that scores below the bar. The score is ful
 The extractor is `extract_structure.py` in the sk-doc skill, reachable from the hub root:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/extract_structure.py \
-  .opencode/skills/sk-code/sk-code-obsidian/references/obsidian-plugin-api.md
+python3 .skilled/skills/sk-doc/scripts/extract_structure.py \
+  .skilled/skills/sk-code/sk-code-obsidian/references/obsidian-plugin-api.md
 ```
 
 The command prints one JSON object to stdout. The DQI sits in `dqi.total`, the band name in
@@ -43,10 +43,10 @@ The command prints one JSON object to stdout. The DQI sits in `dqi.total`, the b
 `dqi.breakdown` names every contributing check. A sweep over this packet's references:
 
 ```bash
-for f in .opencode/skills/sk-code/sk-code-obsidian/references/*.md \
-         .opencode/skills/sk-code/sk-code-obsidian/references/{operations,quality,release,setup,standards}/*.md
+for f in .skilled/skills/sk-code/sk-code-obsidian/references/*.md \
+         .skilled/skills/sk-code/sk-code-obsidian/references/{operations,quality,release,setup,standards}/*.md
 do
-  python3 .opencode/skills/sk-doc/scripts/extract_structure.py "$f"
+  python3 .skilled/skills/sk-doc/scripts/extract_structure.py "$f"
 done
 ```
 
@@ -89,7 +89,7 @@ Run in review order:
 
 ```bash
 git show HEAD:path/to/file.md > /tmp/base.md
-python3 .opencode/skills/sk-doc/scripts/extract_structure.py /tmp/base.md
+python3 .skilled/skills/sk-doc/scripts/extract_structure.py /tmp/base.md
 ```
 
 3. A new file reaches its class target, or the change carries a documented plan naming the file

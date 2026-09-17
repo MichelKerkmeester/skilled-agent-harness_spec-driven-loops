@@ -8,7 +8,7 @@ version: 4.1.0.4
 
 ## 1. OVERVIEW
 
-This scenario verifies the structural guard `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py`. The code-opencode skill documents stack evidence by language, and each known language must resolve to a real `references/<language>/` folder. The `references/shared/` folder is expected cross-language material, not a language folder.
+This scenario verifies the structural guard `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py`. The code-opencode skill documents stack evidence by language, and each known language must resolve to a real `references/<language>/` folder. The `references/shared/` folder is expected cross-language material, not a language folder.
 
 The validator asserts that every known language resolves to an on-disk references folder and that every directory under `references/` is either a known language or `shared/`. It exits non-zero with a per-problem report when the documented language set and the folders disagree.
 
@@ -42,28 +42,28 @@ Prompt: `Run the language reference folder validator, confirm a clean pass, then
 
 ### Preconditions
 
-1. The validator resolves: `bash: test -f .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py`.
+1. The validator resolves: `bash: test -f .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py`.
 2. The references tree contains the expected language folders plus `shared/`.
 
 ### Exact Command Sequence
 
 1. **Clean run**:
    ```
-   bash: python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py; printf 'exit=%s\n' "$?"
+   bash: python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py; printf 'exit=%s\n' "$?"
    ```
 2. **Verify**: exit 0 and the report lists `config, javascript, python, shell, typescript`.
 3. **Introduce an orphan**:
    ```
-   bash: mkdir -p .opencode/skills/sk-code/sk-code-opencode/references/zzz_fake_language
+   bash: mkdir -p .skilled/skills/sk-code/sk-code-opencode/references/zzz_fake_language
    ```
 4. **Re-run and expect failure**:
    ```
-   bash: python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py; printf 'exit=%s\n' "$?"
+   bash: python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py; printf 'exit=%s\n' "$?"
    ```
 5. **Verify**: exit 1 and the report names the orphan references folder.
 6. **Restore**:
    ```
-   bash: rmdir .opencode/skills/sk-code/sk-code-opencode/references/zzz_fake_language
+   bash: rmdir .skilled/skills/sk-code/sk-code-opencode/references/zzz_fake_language
    ```
 7. **Re-run** and confirm exit 0 again.
 
@@ -77,7 +77,7 @@ Prompt: `Run the language reference folder validator, confirm a clean pass, then
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: the clean run exits 0 AND an orphan folder in `references/` produces exit 1 naming the orphan, per `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py`.
+- **PASS** iff: the clean run exits 0 AND an orphan folder in `references/` produces exit 1 naming the orphan, per `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py`.
 - **FAIL** iff: an orphan is not caught (including when the orphan run reports the problem text but exits 0 instead of 1), a known language is wrongly flagged, `shared/` is wrongly flagged, or the clean run errors.
 
 Evidence: the exit code and report text captured from each `verify_stack_folders.py` invocation in steps 1, 4, and 7.
@@ -93,8 +93,8 @@ Evidence: the exit code and report text captured from each `verify_stack_folders
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py` — code-opencode language reference folder validator.
-- `.opencode/skills/sk-code/sk-code-opencode/references/` — language reference folders and shared cross-language material checked by the validator.
+- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py` — code-opencode language reference folder validator.
+- `.skilled/skills/sk-code/sk-code-opencode/references/` — language reference folders and shared cross-language material checked by the validator.
 
 ---
 

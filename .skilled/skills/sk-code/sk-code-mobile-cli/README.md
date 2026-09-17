@@ -26,7 +26,7 @@ actually ships under: instead of treating `app-mobile/` as a generic, unowned fr
 ### Why This Surface Exists
 
 Before this packet, code work on `app-mobile/` detected as **UNKNOWN**: a SvelteKit app with no
-Webflow markers and outside `.opencode/` fell through surface detection, so the hub could not
+Webflow markers and outside `.skilled/` fell through surface detection, so the hub could not
 auto-load the app's token library, comment convention, or editability guardrails. A designer or an agent
 editing the system had no surface telling them where the seams are and where the frozen lines sit. This
 surface closes that gap: PI_REMOTE now detects, and the design-system evidence loads with the workflow.
@@ -97,7 +97,7 @@ then bundles this surface behind the chosen workflow mode via `routerPolicy.outc
 
 ### When The Hub Bundles This Surface
 
-`node .opencode/bin/compiled-route.cjs --hub sk-code --prompt "<pi-remote task>"` resolves the workflow
+`node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<pi-remote task>"` resolves the workflow
 mode and appends `sk-code-mobile-cli` as read-only evidence: e.g. a quality gate on the app returns
 `[sk-code-quality, sk-code-mobile-cli]`.
 
@@ -132,7 +132,7 @@ the single `sk-code` identity and the hub bundles this surface.
 
 - Packet conforms to the surface contract: `packetKind: surface`, `backendKind: evidence-base`, read-only
   `toolSurface`, `routingClass: metadata`, `folder == packetSkillName`, no packet-level advisor metadata.
-- Fleet gate: `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` exits 0.
+- Fleet gate: `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` exits 0.
 - Routing: `compiled-route.cjs --hub sk-code --prompt "code work on app-mobile"` bundles this
   surface instead of returning `defer`.
 

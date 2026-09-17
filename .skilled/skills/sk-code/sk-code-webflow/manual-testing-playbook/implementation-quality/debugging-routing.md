@@ -67,9 +67,9 @@ Debug a broken Webflow interaction with a console error, stack trace, and regres
 
 ### Commands
 
-1. `sed -n '1,21p' .opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook/implementation-quality/debugging-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"DEBUGGING": \[/,/\],/p'`
-3. `for p in references/debugging/debugging-workflows/systematic-four-phases.md references/debugging/debugging-workflows/rules-and-root-cause.md references/debugging/debugging-workflows/performance-debugging.md references/debugging/debugging-workflows/quick-reference-and-lenis.md references/debugging/debugging-workflows/sub-agent-verification.md references/debugging/debugging-workflows/scroll-interceptor-and-related.md references/debugging/error-recovery.md assets/webflow-debugging-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,21p' .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/implementation-quality/debugging-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"DEBUGGING": \[/,/\],/p'`
+3. `for p in references/debugging/debugging-workflows/systematic-four-phases.md references/debugging/debugging-workflows/rules-and-root-cause.md references/debugging/debugging-workflows/performance-debugging.md references/debugging/debugging-workflows/quick-reference-and-lenis.md references/debugging/debugging-workflows/sub-agent-verification.md references/debugging/debugging-workflows/scroll-interceptor-and-related.md references/debugging/error-recovery.md assets/webflow-debugging-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

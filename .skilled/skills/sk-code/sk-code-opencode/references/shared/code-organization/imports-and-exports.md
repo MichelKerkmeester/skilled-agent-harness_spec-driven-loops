@@ -154,7 +154,7 @@ module.exports = {
 };
 ```
 
-Do not use this pattern for `.mjs` or `.opencode/plugins/`; those are
+Do not use this pattern for `.mjs` or `.skilled/plugins/`; those are
 ESM surfaces.
 
 ### TypeScript ES Module Exports

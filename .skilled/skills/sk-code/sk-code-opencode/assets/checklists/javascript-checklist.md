@@ -147,7 +147,7 @@ export default async function ExamplePlugin(ctx, options = {}) {
 }
 ```
 
-**Plugin paths**: Files in `.opencode/plugins/` MUST use ESM (`export default`)
+**Plugin paths**: Files in `.skilled/plugins/` MUST use ESM (`export default`)
 — see `quality-standards.md` §10 OpenCode Plugin Exemption Tier.
 
 **Plugin runtime output (P0)**:

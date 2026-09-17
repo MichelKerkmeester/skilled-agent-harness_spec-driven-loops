@@ -44,7 +44,7 @@ resource set without contradictory evidence.
 Verify the alignment drift gate and completion claim type-check signals before saying the change is passing.
 ```
 
-- Expected execution process: the hub detects `OPENCODE` (work under `.opencode/`), the `VERIFICATION`
+- Expected execution process: the hub detects `OPENCODE` (work under `.skilled/`), the `VERIFICATION`
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-opencode/`, and each one
@@ -64,10 +64,10 @@ Verify the alignment drift gate and completion claim type-check signals before s
 
 ### Commands
 
-1. `sed -n '/^---$/,/^---$/p' .opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"VERIFICATION"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"VERIFICATION": \[/,/\],/p'`
-4. `for p in references/shared/alignment-verification-automation.md assets/scripts/README.md; do test -e ".opencode/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"VERIFICATION"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"VERIFICATION": \[/,/\],/p'`
+4. `for p in references/shared/alignment-verification-automation.md assets/scripts/README.md; do test -e ".skilled/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

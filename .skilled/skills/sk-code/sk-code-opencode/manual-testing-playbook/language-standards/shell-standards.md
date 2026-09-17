@@ -48,7 +48,7 @@ resource set without contradictory evidence.
 Check this shell script bash .sh wrapper against standards before release.
 ```
 
-- Expected execution process: the hub detects `OPENCODE` (work under `.opencode/`), the `SHELL`
+- Expected execution process: the hub detects `OPENCODE` (work under `.skilled/`), the `SHELL`
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-opencode/`, and each one
@@ -68,10 +68,10 @@ Check this shell script bash .sh wrapper against standards before release.
 
 ### Commands
 
-1. `sed -n '/^---$/,/^---$/p' .opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/shell-standards.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"SHELL"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"SHELL": \[/,/\],/p'`
-4. `for p in references/shell/style-guide/overview-structure-and-naming.md references/shell/style-guide/variables-functions-and-output.md references/shell/quality-standards/overview-and-priority-blockers.md references/shell/quality-standards/validation-security-and-shellcheck.md references/shell/quick-reference/template-variables-and-loops.md references/shell/quick-reference/functions-strings-and-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/shell-standards.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"SHELL"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"SHELL": \[/,/\],/p'`
+4. `for p in references/shell/style-guide/overview-structure-and-naming.md references/shell/style-guide/variables-functions-and-output.md references/shell/quality-standards/overview-and-priority-blockers.md references/shell/quality-standards/validation-security-and-shellcheck.md references/shell/quick-reference/template-variables-and-loops.md references/shell/quick-reference/functions-strings-and-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

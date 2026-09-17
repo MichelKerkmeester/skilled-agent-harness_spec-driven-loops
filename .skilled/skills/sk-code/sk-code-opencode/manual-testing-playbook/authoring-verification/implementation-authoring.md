@@ -51,7 +51,7 @@ resource set without contradictory evidence.
 Implement a new OpenCode skill-authoring module and include command-authoring and mcp server authoring considerations.
 ```
 
-- Expected execution process: the hub detects `OPENCODE` (work under `.opencode/`), the `IMPLEMENTATION`
+- Expected execution process: the hub detects `OPENCODE` (work under `.skilled/`), the `IMPLEMENTATION`
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-opencode/`, and each one
@@ -71,10 +71,10 @@ Implement a new OpenCode skill-authoring module and include command-authoring an
 
 ### Commands
 
-1. `sed -n '/^---$/,/^---$/p' .opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"IMPLEMENTATION"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"IMPLEMENTATION": \[/,/\],/p'`
-4. `for p in references/shared/universal-patterns/naming-and-commenting.md references/shared/universal-patterns/organization-security-and-examples.md references/shared/code-organization/overview-and-module-organization.md references/shared/code-organization/imports-and-exports.md references/shared/code-organization/directory-and-test-conventions.md assets/checklists/agent-authoring.md assets/checklists/command-authoring.md assets/checklists/skill-authoring.md assets/checklists/mcp-server-authoring.md; do test -e ".opencode/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"IMPLEMENTATION"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"IMPLEMENTATION": \[/,/\],/p'`
+4. `for p in references/shared/universal-patterns/naming-and-commenting.md references/shared/universal-patterns/organization-security-and-examples.md references/shared/code-organization/overview-and-module-organization.md references/shared/code-organization/imports-and-exports.md references/shared/code-organization/directory-and-test-conventions.md assets/checklists/agent-authoring.md assets/checklists/command-authoring.md assets/checklists/skill-authoring.md assets/checklists/mcp-server-authoring.md; do test -e ".skilled/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

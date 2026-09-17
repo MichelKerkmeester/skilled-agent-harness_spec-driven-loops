@@ -30,16 +30,16 @@ Use when writing or reviewing Python scripts in the OpenCode development environ
 ### Scope
 
 Applies to all Python files in:
-- `.opencode/skills/system-skill-advisor/runtime/scripts/` - Skill routing scripts
-- `.opencode/skills/*/scripts/` - Skill-specific scripts
+- `.skilled/skills/system-skill-advisor/runtime/scripts/` - Skill routing scripts
+- `.skilled/skills/*/scripts/` - Skill-specific scripts
 - `scripts/` - Project-level automation
 
 ### Key Sources
 
 | File | Evidence |
 |------|----------|
-| `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Header format, naming conventions, docstrings |
-| `.opencode/skills/sk-doc/scripts/package_skill.py` | Function structure, early returns, type hints |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Header format, naming conventions, docstrings |
+| `.skilled/skills/sk-doc/scripts/package_skill.py` | Function structure, early returns, type hints |
 
 ---
 
@@ -53,7 +53,7 @@ Applies to all Python files in:
 #!/usr/bin/env python3
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1`
+**Evidence**: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1`
 
 ### File Header
 
@@ -75,7 +75,7 @@ Use the box-style header for component identification:
 # ╚══════════════════════════════════════════════════════════════════════════╝
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1-4`
+**Evidence**: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1-4`
 
 ### Module Docstring
 
@@ -94,7 +94,7 @@ Options:
 """
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:6-16`
+**Evidence**: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:6-16`
 
 ### Import Order
 
@@ -116,7 +116,7 @@ import yaml
 from .utils import helper_function
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:17-22`, `.opencode/skills/sk-doc/scripts/package_skill.py:25-30`
+**Evidence**: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:17-22`, `.skilled/skills/sk-doc/scripts/package_skill.py:25-30`
 
 ### Section Comments
 
@@ -137,7 +137,7 @@ def validate_something():
     pass
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:25-27`, `.opencode/skills/sk-doc/scripts/package_skill.py:32-34`
+**Evidence**: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:25-27`, `.skilled/skills/sk-doc/scripts/package_skill.py:32-34`
 
 ---
 
@@ -161,7 +161,7 @@ file_path = Path("/some/path")
 is_valid = True
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.opencode/skills/sk-doc/scripts/package_skill.py:87`
+**Evidence**: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.skilled/skills/sk-doc/scripts/package_skill.py:87`
 
 ### Classes
 
@@ -185,7 +185,7 @@ REQUIRED_FRONTMATTER_FIELDS = ['name', 'description']
 MAX_SKILL_MD_WORDS = 5000
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:31-49`, `.opencode/skills/sk-doc/scripts/package_skill.py:37-81`
+**Evidence**: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:31-49`, `.skilled/skills/sk-doc/scripts/package_skill.py:37-81`
 
 ### Private Functions
 
@@ -215,7 +215,7 @@ def process_data(data: Dict[str, Any], strict: bool = True) -> Optional[str]:
     pass
 ```
 
-**Evidence**: `.opencode/skills/sk-doc/scripts/package_skill.py:87-93`
+**Evidence**: `.skilled/skills/sk-doc/scripts/package_skill.py:87-93`
 
 ### Common Type Patterns
 
@@ -261,7 +261,7 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict]:
     pass
 ```
 
-**Evidence**: `.opencode/skills/sk-doc/scripts/package_skill.py:87-93`
+**Evidence**: `.skilled/skills/sk-doc/scripts/package_skill.py:87-93`
 
 ### Class Docstrings
 
@@ -295,11 +295,11 @@ Usage:
     python package_skill.py <path/to/skill-folder> --check
 
 Example:
-    python package_skill.py .opencode/skills/my-skill
+    python package_skill.py .skilled/skills/my-skill
 """
 ```
 
-**Evidence**: `.opencode/skills/sk-doc/scripts/package_skill.py:6-23`
+**Evidence**: `.skilled/skills/sk-doc/scripts/package_skill.py:6-23`
 
 ### Inline Comments
 
@@ -367,7 +367,7 @@ def validate(data):
     return True, None
 ```
 
-**Evidence**: `.opencode/skills/sk-doc/scripts/package_skill.py:98-104`
+**Evidence**: `.skilled/skills/sk-doc/scripts/package_skill.py:98-104`
 
 ### Guard Clauses
 
@@ -435,7 +435,7 @@ return False, f"Name '{name}' must be hyphen-case (lowercase letters, digits, an
 return False, "Invalid name format"
 ```
 
-**Evidence**: `.opencode/skills/sk-doc/scripts/package_skill.py:117`
+**Evidence**: `.skilled/skills/sk-doc/scripts/package_skill.py:117`
 
 ---
 

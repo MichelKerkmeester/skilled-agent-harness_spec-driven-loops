@@ -66,9 +66,9 @@ Audit the Webflow motion for prefers-reduced-motion, reduced motion fallback, an
 
 ### Commands
 
-1. `sed -n '1,20p' .opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/accessibility-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"ACCESSIBILITY": \[/,/\],/p'`
-3. `for p in references/animation/performance-and-pitfalls.md references/implementation/animation-workflows/overview-decision-tree-and-css.md references/implementation/animation-workflows/motion-dev-and-performance.md references/implementation/animation-workflows/testing-and-common-issues.md references/implementation/animation-workflows/motion-dev-advanced.md references/verification/verification-workflows/gate-and-automated-options.md references/verification/verification-workflows/requirements-rules-and-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,20p' .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/accessibility-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"ACCESSIBILITY": \[/,/\],/p'`
+3. `for p in references/animation/performance-and-pitfalls.md references/implementation/animation-workflows/overview-decision-tree-and-css.md references/implementation/animation-workflows/motion-dev-and-performance.md references/implementation/animation-workflows/testing-and-common-issues.md references/implementation/animation-workflows/motion-dev-advanced.md references/verification/verification-workflows/gate-and-automated-options.md references/verification/verification-workflows/requirements-rules-and-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

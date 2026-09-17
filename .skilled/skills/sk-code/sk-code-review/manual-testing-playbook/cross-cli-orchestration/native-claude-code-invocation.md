@@ -30,7 +30,7 @@ Operators run the exact prompt and command sequence for `CR-016` and confirm the
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when the native @review agent is unavailable in the current runtime.
 - Expected signals: Step 1: target files listed; Step 2: @review report names baseline; Step 3: status shows no target edits by reviewer
 - Desired user-visible outcome: a native agent review transcript that a real maintainer can act on without asking for missing scope or evidence.
-- Pass/fail: PASS if @review remains read-only per .opencode/agents/review.md and output follows references/review-core.md; FAIL if it edits files or delegates
+- Pass/fail: PASS if @review remains read-only per .skilled/agents/review.md and output follows references/review-core.md; FAIL if it edits files or delegates
 
 ---
 
@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `CR-016` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-016 | Native Claude Code invocation | Confirm native review-agent invocation obeys read-only leaf constraints and review doctrine. | `As an orchestrator, dispatch the native review agent against the target diff inside Claude Code or OpenCode. Verify @review stays read-only, loads review, and returns findings-first output. Return a native agent review transcript.` | bash: git diff --staged --name-only -> agent: @review review staged diff -> bash: git status --short | Step 1: target files listed; Step 2: @review report names baseline; Step 3: status shows no target edits by reviewer | Agent transcript, git status before/after, final report | PASS if @review remains read-only per .opencode/agents/review.md and output follows references/review-core.md; FAIL if it edits files or delegates | 1. Check agent permission block; 2. Compare git status; 3. Re-run as read-only findings-only |
+| CR-016 | Native Claude Code invocation | Confirm native review-agent invocation obeys read-only leaf constraints and review doctrine. | `As an orchestrator, dispatch the native review agent against the target diff inside Claude Code or OpenCode. Verify @review stays read-only, loads review, and returns findings-first output. Return a native agent review transcript.` | bash: git diff --staged --name-only -> agent: @review review staged diff -> bash: git status --short | Step 1: target files listed; Step 2: @review report names baseline; Step 3: status shows no target edits by reviewer | Agent transcript, git status before/after, final report | PASS if @review remains read-only per .skilled/agents/review.md and output follows references/review-core.md; FAIL if it edits files or delegates | 1. Check agent permission block; 2. Compare git status; 3. Re-run as read-only findings-only |
 
 ### Optional Supplemental Checks
 

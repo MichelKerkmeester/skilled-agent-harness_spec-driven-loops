@@ -8,7 +8,7 @@ version: 3.5.0.7
 
 ## 1. OVERVIEW
 
-This scenario verifies sk-code's behavior when surface detection is genuinely ambiguous: the prompt mentions a WEBFLOW library (e.g. Lenis) AND targets a file under `.opencode/`. Expected behavior is one of:
+This scenario verifies sk-code's behavior when surface detection is genuinely ambiguous: the prompt mentions a WEBFLOW library (e.g. Lenis) AND targets a file under `.skilled/`. Expected behavior is one of:
 
 A) Apply a documented precedence rule (e.g. "OPENCODE target path overrides WEBFLOW library marker").
 B) Ask the user for explicit clarification.
@@ -21,24 +21,24 @@ Either is acceptable IF the chosen behavior is documented in SKILL.md. What is N
 
 ## 2. SCENARIO CONTRACT
 
-**Realistic user request**: A maintainer wants to add Lenis smooth-scroll to a local preview server's index page (the preview server is itself an `.opencode/` system tool).
+**Realistic user request**: A maintainer wants to add Lenis smooth-scroll to a local preview server's index page (the preview server is itself an `.skilled/` system tool).
 
 **Exact prompt**:
 ```
-Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for the local preview index page.
+Add Lenis smooth-scroll to .skilled/skills/sk-doc/scripts/preview-server.js for the local preview index page.
 ```
 
-Prompt: `Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for the local preview index page.`
+Prompt: `Add Lenis smooth-scroll to .skilled/skills/sk-doc/scripts/preview-server.js for the local preview index page.`
 
 **Markers present**:
 - WEBFLOW library marker: `Lenis` (matches `shared/references/stack-detection.md:30-37`)
-- OPENCODE path marker: `.opencode/skills/sk-doc/scripts/preview-server.js`
+- OPENCODE path marker: `.skilled/skills/sk-doc/scripts/preview-server.js`
 
 **Expected behavior** (one of two acceptable outcomes):
 
 **Outcome A (documented precedence)**: SKILL.md states OPENCODE target path overrides WEBFLOW library marker. sk-code reports `SURFACE: OPENCODE`, `LANGUAGE: JAVASCRIPT`, loads `sk-code-opencode/references/javascript/*` + shared. Does NOT load `sk-code-webflow/references/*`.
 
-**Outcome B (clarification ask)**: sk-code reports `SURFACE: AMBIGUOUS` and asks: "Is this an OpenCode internal tool (use OPENCODE) or a Webflow shipping artifact you happened to place under `.opencode/` (use WEBFLOW)?"
+**Outcome B (clarification ask)**: sk-code reports `SURFACE: AMBIGUOUS` and asks: "Is this an OpenCode internal tool (use OPENCODE) or a Webflow shipping artifact you happened to place under `.skilled/` (use WEBFLOW)?"
 
 **Unacceptable**: Silent choice (e.g. WEBFLOW silently wins because of marker order in pseudocode) without documenting the precedence.
 
@@ -82,8 +82,8 @@ Evidence: `/tmp/skc-RD001-response.txt` (surface decision and clarification ques
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/sk-code/SKILL.md` §2 "Code Surface Detection (FIRST)" — post-remediation pseudocode with explicit if/elif/else precedence.
-- `.opencode/skills/sk-code/shared/references/stack-detection.md` §2 "DETECTION ORDER" — post-remediation precedence wording + new mixed-marker test case in §4 TEST CASES.
+- `.skilled/skills/sk-code/SKILL.md` §2 "Code Surface Detection (FIRST)" — post-remediation pseudocode with explicit if/elif/else precedence.
+- `.skilled/skills/sk-code/shared/references/stack-detection.md` §2 "DETECTION ORDER" — post-remediation precedence wording + new mixed-marker test case in §4 TEST CASES.
 - Internal design notes — F-NEW-001 source (historical gpt-5.5 high adversarial pass).
 
 ---

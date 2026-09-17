@@ -44,7 +44,7 @@ Prompt: `Add a derived.last_active_child_id field to the graph-metadata.json fil
 
 ### Preconditions
 
-1. Target file exists at the specified path (or any equivalent `.json` under `.opencode/`).
+1. Target file exists at the specified path (or any equivalent `.json` under `.skilled/`).
 2. Config sub-language reference set intact: 3 files under `sk-code-opencode/references/config/`.
 
 ### Exact Command Sequence
@@ -74,8 +74,8 @@ Evidence: `/tmp/skc-LS004-loaded-refs.txt` (loaded-refs transcript).
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
-- `.opencode/skills/sk-code/sk-code-opencode/references/config/{style_guide,quality_standards,quick_reference}.md`.
+- `.skilled/skills/sk-code/SKILL.md` (sub-detection table).
+- `.skilled/skills/sk-code/sk-code-opencode/references/config/{style_guide,quality_standards,quick_reference}.md`.
 
 ---
 

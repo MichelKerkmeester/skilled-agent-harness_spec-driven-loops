@@ -253,7 +253,7 @@ OpenCode plugin entrypoints and helper modules are exempt from the CommonJS expo
 ### Scope
 
 This exemption applies to:
-- `.opencode/plugins/*.{js,mjs,ts}`
+- `.skilled/plugins/*.{js,mjs,ts}`
 
 ### Exempted Standards
 
@@ -280,7 +280,7 @@ OpenCode's TUI paints plugin `stdout`/`stderr` onto the prompt input line, where
 | Channel | Use for |
 |---|---|
 | `experimental.chat.system.transform` — push a **bounded** string to `output.system` | Agent-actionable notices the model should see and can act on or relay |
-| Append-only log file (e.g. `.opencode/logs/*.log`, fail-open) | Durable operator/audit record |
+| Append-only log file (e.g. `.skilled/logs/*.log`, fail-open) | Durable operator/audit record |
 | A plugin `tool` the agent can call | On-demand status the user explicitly requests |
 
 `stderr` diagnostics are allowed only behind an explicit debug env flag that defaults off (matching `opencode-goal`'s `OPENCODE_GOAL_DEBUG`). Reference implementations: `system-dist-freshness-guard.js` (injection + log) and `system-deep-loop-guard.js` (log-only).

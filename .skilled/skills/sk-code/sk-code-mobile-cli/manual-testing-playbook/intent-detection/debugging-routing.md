@@ -68,9 +68,9 @@ Debug why the model-sheet accent retint leaked into the slash panel after a comp
 
 ### Commands
 
-1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/debugging-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"DEBUGGING":/,/\],/p'`
-3. `for p in references/verification/verification.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,12p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/debugging-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"DEBUGGING":/,/\],/p'`
+3. `for p in references/verification/verification.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

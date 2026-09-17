@@ -29,7 +29,7 @@ def _hook_flags_config():
     try:
         override = os.environ.get("HOOK_FLAGS_CONFIG")
         path = override if override else os.path.join(
-            repo_root_from_script(), ".opencode", "hooks", "hook-flags.env"
+            repo_root_from_script(), ".skilled", "hooks", "hook-flags.env"
         )
         cfg = {}
         with open(path, "r", encoding="utf-8") as fh:
@@ -66,12 +66,12 @@ def _hook_enabled(concern):
     return True
 
 
-CHECKER_REL = ".opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs"
+CHECKER_REL = ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs"
 
 
 def repo_root_from_script() -> str:
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    # scripts -> code-quality -> sk-code -> skills -> .opencode -> repo root
+    # scripts -> code-quality -> sk-code -> skills -> .skilled -> repo root
     return os.path.abspath(os.path.join(script_dir, "../../../../.."))
 
 

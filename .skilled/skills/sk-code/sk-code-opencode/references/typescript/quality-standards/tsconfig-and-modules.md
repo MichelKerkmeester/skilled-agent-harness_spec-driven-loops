@@ -38,7 +38,7 @@ Defines TypeScript compiler baselines, workspace build rules, and module organiz
 Current system-spec-kit TypeScript is package-aware, not a single global
 CommonJS project:
 
-- Root `.opencode/skills/system-spec-kit/tsconfig.json`: shared defaults,
+- Root `.skilled/skills/system-spec-kit/tsconfig.json`: shared defaults,
   `module: "commonjs"`, `moduleResolution: "node"`, `strict: true`, project
   references.
 - `shared/`: package `"type": "module"` with `module: "nodenext"` and
@@ -98,7 +98,7 @@ MCP server package rule.
 
 After editing TypeScript source files, the compiled `dist/` output must be rebuilt. The MCP server and CLI scripts run from `dist/`, not from `.ts` source directly.
 
-**Build command** (from skill root, e.g. `.opencode/skills/system-spec-kit/`):
+**Build command** (from skill root, e.g. `.skilled/skills/system-spec-kit/`):
 
 ```bash
 # Standard build (type checks + emit)

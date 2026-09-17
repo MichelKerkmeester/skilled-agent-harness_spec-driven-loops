@@ -80,10 +80,10 @@ Debug the reported contrast regression and verify it before we make the completi
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"DEBUGGING":/p;/"VERIFICATION":/p'`
-3. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"DEBUGGING":/,/\],/p'`
-4. `for p in references/verification/verification.md references/design-system/component-tokens.md references/svelte/svelte.md assets/runes-effect-audit-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"DEBUGGING":/p;/"VERIFICATION":/p'`
+3. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"DEBUGGING":/,/\],/p'`
+4. `for p in references/verification/verification.md references/design-system/component-tokens.md references/svelte/svelte.md assets/runes-effect-audit-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

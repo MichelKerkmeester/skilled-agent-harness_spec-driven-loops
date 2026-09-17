@@ -56,12 +56,12 @@ The mode's headline strength is routing by target path: every surface family lan
 
 **Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-webflow` or `sk-code-opencode`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.
 
-**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md). For `.opencode/` targets it also loads the matching checklist under [`../sk-code-opencode/assets/checklists/`](../sk-code-opencode/assets/checklists/).
+**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md). For `.skilled/` targets it also loads the matching checklist under [`../sk-code-opencode/assets/checklists/`](../sk-code-opencode/assets/checklists/).
 
 **Step 3: Run comment hygiene per modified file.**
 
 ```bash
-bash .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>
+bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>
 ```
 
 The script reports zero violations and exits 0 when every comment keeps durable WHY and drops ephemeral artifact labels.
@@ -112,9 +112,9 @@ Use it when a change is already written and needs standards enforcement before f
 
 | Check | How to run it |
 |---|---|
-| Comment hygiene | `bash .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>` reports zero violations and exits 0 |
-| Distribution drift | `bash .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` exits 0 when generated artifacts are current |
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/sk-code-quality/README.md --type readme` reports zero issues |
+| Comment hygiene | `bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>` reports zero violations and exits 0 |
+| Distribution drift | `bash .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` exits 0 when generated artifacts are current |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-quality/README.md --type readme` reports zero issues |
 | Final claim | Hand to the surface verification workflow (`workflow-verify.md`). This mode does not make done or works claims |
 
 ---

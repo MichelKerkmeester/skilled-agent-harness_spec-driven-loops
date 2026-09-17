@@ -76,8 +76,8 @@ measurement rather than mechanism verification already covered by `OB-001`.
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/implementation-natural.md`
-2. `for p in references/view-renderer-architecture.md references/data-layer.md references/db-class-naming.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,14p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/implementation-natural.md`
+2. `for p in references/view-renderer-architecture.md references/data-layer.md references/db-class-naming.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

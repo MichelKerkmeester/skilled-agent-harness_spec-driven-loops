@@ -73,9 +73,9 @@ I'm adding a new primitive token to app-mobile/src/shared/primitives/ in the Mob
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/negative-control-non-obsidian.md`
-2. `sed -n '/^## 1\. WHEN THE HUB BUNDLES THIS/,/^## 2\. REFERENCE MAP/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | grep -n "PI_REMOTE\|app-mobile\|app-relay\|pi-rpc-protocol"`
-3. `grep -c '^  - ' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/negative-control-non-obsidian.md`
+1. `sed -n '1,15p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/negative-control-non-obsidian.md`
+2. `sed -n '/^## 1\. WHEN THE HUB BUNDLES THIS/,/^## 2\. REFERENCE MAP/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md | grep -n "PI_REMOTE\|app-mobile\|app-relay\|pi-rpc-protocol"`
+3. `grep -c '^  - ' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/negative-control-non-obsidian.md`
 
 ### Expected
 

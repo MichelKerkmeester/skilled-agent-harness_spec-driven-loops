@@ -24,7 +24,7 @@ Use this mode when the request involves:
 - Running the post-implementation quality gate before a completion claim.
 - Applying P0/P1/P2 author-side checks to changed code, scripts, skills, agents, commands, MCP servers, or spec docs.
 - Checking comment hygiene on modified files and removing ephemeral artifact references from comments while preserving durable WHY.
-- Loading an OpenCode authoring checklist for `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, `.opencode/specs/`, MCP server source, or language-specific OpenCode files.
+- Loading an OpenCode authoring checklist for `.skilled/skills/`, `.skilled/agents/`, `.skilled/commands/`, `.opencode/specs/`, MCP server source, or language-specific OpenCode files.
 - Applying Webflow/frontend quality standards after implementation and before runtime verification.
 - Fixing quality-gate failures in place with `Edit` when the fix belongs to the already-authored file.
 
@@ -100,9 +100,9 @@ Phase 1 Implementation writes or changes files
 | ALWAYS | Any quality-gate invocation | `../shared/references/stack-detection.md`, `../ROUTER.md`, `../shared/references/phase-detection.md` |
 | ALWAYS | Before any implementation-done claim | `assets/code-quality-checklist/overview-header-and-comments.md`, `../shared/references/universal/code-quality-standards.md`, `../shared/references/universal/code-style-guide.md` |
 | ALWAYS | Any modified file with comments or comment-capable syntax | `scripts/check-comment-hygiene.sh` |
-| CONDITIONAL | `.opencode/skills/` target | `../sk-code-opencode/assets/checklists/skill-authoring.md` |
-| CONDITIONAL | `.opencode/agents/` target | `../sk-code-opencode/assets/checklists/agent-authoring.md` |
-| CONDITIONAL | `.opencode/commands/` target | `../sk-code-opencode/assets/checklists/command-authoring.md` |
+| CONDITIONAL | `.skilled/skills/` target | `../sk-code-opencode/assets/checklists/skill-authoring.md` |
+| CONDITIONAL | `.skilled/agents/` target | `../sk-code-opencode/assets/checklists/agent-authoring.md` |
+| CONDITIONAL | `.skilled/commands/` target | `../sk-code-opencode/assets/checklists/command-authoring.md` |
 | CONDITIONAL | `.opencode/specs/` target | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) |
 | CONDITIONAL | MCP server source | `../sk-code-opencode/assets/checklists/mcp-server-authoring.md` |
 | CONDITIONAL | OpenCode JavaScript, TypeScript, Python, Shell, Rust, JSON, or JSONC files | `../sk-code-opencode/assets/checklists/javascript-checklist.md`, `../sk-code-opencode/assets/checklists/typescript-checklist.md`, `../sk-code-opencode/assets/checklists/python-checklist.md`, `../sk-code-opencode/assets/checklists/shell-checklist.md`, `../sk-code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p1-required.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `../sk-code-opencode/assets/checklists/config-checklist.md` as applicable |
@@ -113,9 +113,9 @@ Phase 1 Implementation writes or changes files
 
 | Target Path | Authoring Checklist | Gate Behavior |
 | --- | --- | --- |
-| `.opencode/skills/` | `../sk-code-opencode/assets/checklists/skill-authoring.md` | Check frontmatter, section structure, resource layout, routing, version, allowed tools, and validation path. |
-| `.opencode/agents/` | `../sk-code-opencode/assets/checklists/agent-authoring.md` | Check agent frontmatter, prompt boundary, tool access, and role clarity. |
-| `.opencode/commands/` | `../sk-code-opencode/assets/checklists/command-authoring.md` | Check command metadata, arguments, routing, and execution contract. |
+| `.skilled/skills/` | `../sk-code-opencode/assets/checklists/skill-authoring.md` | Check frontmatter, section structure, resource layout, routing, version, allowed tools, and validation path. |
+| `.skilled/agents/` | `../sk-code-opencode/assets/checklists/agent-authoring.md` | Check agent frontmatter, prompt boundary, tool access, and role clarity. |
+| `.skilled/commands/` | `../sk-code-opencode/assets/checklists/command-authoring.md` | Check command metadata, arguments, routing, and execution contract. |
 | `.opencode/specs/` | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) | Check spec-folder structure and packet-document consistency. |
 | MCP server source | `../sk-code-opencode/assets/checklists/mcp-server-authoring.md` | Check tool contracts, input/output schemas, transport assumptions, and failure handling. |
 | OpenCode language/config files | language/config checklist in `../sk-code-opencode/assets/checklists/` | Check language-specific quality and style expectations. |
@@ -128,10 +128,10 @@ This mode owns the author-side check and knows the three independent enforcement
 | Gate | Where | Effect |
 | --- | --- | --- |
 | Write-time warning | `scripts/hooks/claude-posttooluse.sh` | Warns during authoring when a comment carries ephemeral artifact labels. |
-| Pre-commit block | `.opencode/hooks/git/pre-commit` | Blocks commits with forbidden comment patterns across runtimes. |
+| Pre-commit block | `.skilled/hooks/git/pre-commit` | Blocks commits with forbidden comment patterns across runtimes. |
 | CI block | `.github/workflows/comment-hygiene.yml` | Blocks pull requests with forbidden comment patterns. |
 
-Note that the `.opencode/hooks/git/pre-commit` hook additionally enforces a staged agent-mirror-sync drift gate, independent of comment hygiene, documented in `.opencode/hooks/git/README.md`.
+Note that the `.skilled/hooks/git/pre-commit` hook additionally enforces a staged agent-mirror-sync drift gate, independent of comment hygiene, documented in `.skilled/hooks/git/README.md`.
 
 Run `scripts/check-comment-hygiene.sh <file>` on each modified file that can contain comments. Zero violations are required before a quality pass.
 
@@ -232,7 +232,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 1. Read target files before editing them.
 2. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any implementation-done or quality-pass claim.
 3. Resolve surface identity through `../shared/references/stack-detection.md`; do not re-author surface detection in this packet.
-4. Load the correct OpenCode authoring checklist by target path before checking `.opencode/` work.
+4. Load the correct OpenCode authoring checklist by target path before checking `.skilled/` work.
 5. Run `scripts/check-comment-hygiene.sh <file>` on each modified comment-capable file.
 6. Fix P0 issues before handing to verification unless the only safe action is escalation.
 7. Keep fixes scoped to quality-gate failures in files already in scope.

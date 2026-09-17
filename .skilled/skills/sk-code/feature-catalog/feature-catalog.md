@@ -50,7 +50,7 @@ A default-on, flag-gated, additive directive in `sk-code`'s `SKILL.md` asks the 
 
 #### Current Reality
 
-The directive is on by default for `sk-code`, one of the seven activated hubs: with `SPECKIT_COMPILED_ROUTING` unset, `node .opencode/bin/compiled-route.cjs --hub sk-code --prompt "<task>"` returns the authoritative decision and the hub follows it directly. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch that forces legacy `mode-registry.json` routing; any error or a `{"servingAuthority":"legacy"}` sentinel also leaves routing unchanged.
+The directive is on by default for `sk-code`, one of the seven activated hubs: with `SPECKIT_COMPILED_ROUTING` unset, `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"` returns the authoritative decision and the hub follows it directly. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch that forces legacy `mode-registry.json` routing; any error or a `{"servingAuthority":"legacy"}` sentinel also leaves routing unchanged.
 
 #### Source Files
 

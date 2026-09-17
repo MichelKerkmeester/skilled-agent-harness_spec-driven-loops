@@ -80,9 +80,9 @@ Run the quality gate and verify everything passes before I merge this .db-* rena
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"CODE_QUALITY":/,/\],/p;/"VERIFICATION":/,/\],/p'`
-3. `for p in references/db-class-naming.md references/stylesheet-ownership.md references/verification.md assets/verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"CODE_QUALITY":/,/\],/p;/"VERIFICATION":/,/\],/p'`
+3. `for p in references/db-class-naming.md references/stylesheet-ownership.md references/verification.md assets/verification-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

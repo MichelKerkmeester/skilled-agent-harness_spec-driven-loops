@@ -32,7 +32,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 **Expected surface**: `WEBFLOW`
 
-**Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
+**Expected references loaded** (exact relative paths under `.skilled/skills/sk-code/`):
 - `shared/references/stack-detection.md`
 - `ROUTER.md`
 - `ROUTER.md`
@@ -97,9 +97,9 @@ Evidence: `/tmp/skc-CS-006-<cli>.txt` (raw per-runtime transcript) and `results/
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` - Root directory page and scenario summary.
-- `.opencode/skills/sk-code/sk-code-webflow/references/performance/cwv-remediation.md` - Required Webflow CWV reference.
-- `.opencode/skills/sk-code/sk-code-webflow/references/animation/performance-and-pitfalls.md` - Required Motion performance reference.
-- `.opencode/skills/sk-code/shared/references/performance-loading-checklist.md` - Expected asset.
+- `.skilled/skills/sk-code/sk-code-webflow/references/performance/cwv-remediation.md` - Required Webflow CWV reference.
+- `.skilled/skills/sk-code/sk-code-webflow/references/animation/performance-and-pitfalls.md` - Required Motion performance reference.
+- `.skilled/skills/sk-code/shared/references/performance-loading-checklist.md` - Expected asset.
 
 ---
 

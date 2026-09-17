@@ -22,13 +22,13 @@ The rule is defined in SKILL.md §4 ALWAYS. It is the behavioral guard that keep
 
 **Exact prompt**:
 ```
-Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/runtime/lib/config/load.ts. It only runs once at startup.
+Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .skilled/skills/system-spec-kit/runtime/lib/config/load.ts. It only runs once at startup.
 ```
 
-Prompt: `Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/runtime/lib/config/load.ts. It only runs once at startup.`
+Prompt: `Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .skilled/skills/system-spec-kit/runtime/lib/config/load.ts. It only runs once at startup.`
 
 **Expected detection**:
-- Surface: `OPENCODE` (target path contains `/.opencode/`)
+- Surface: `OPENCODE` (target path contains `/.skilled/`)
 - Intent: implementation (write work)
 
 **Expected behavior**:
@@ -44,15 +44,15 @@ Prompt: `Add a retry wrapper with exponential backoff, jitter, a circuit breaker
 
 ### Preconditions
 
-1. `.opencode/skills/sk-code/SKILL.md` is at HEAD-of-main and §4 contains the implementer anti-stall ALWAYS bullet.
-2. The anti-stall rule resolves: `bash: rg -n "anti-stall|does not stall|scope-amendment" .opencode/skills/sk-code/SKILL.md`.
+1. `.skilled/skills/sk-code/SKILL.md` is at HEAD-of-main and §4 contains the implementer anti-stall ALWAYS bullet.
+2. The anti-stall rule resolves: `bash: rg -n "anti-stall|does not stall|scope-amendment" .skilled/skills/sk-code/SKILL.md`.
 3. Skill advisor callable.
 
 ### Exact Command Sequence
 
 1. **Advisor probe**:
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call." --threshold 0.8 > /tmp/skc-DR002-advisor.txt
+   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call." --threshold 0.8 > /tmp/skc-DR002-advisor.txt
    ```
 2. **Verify**: top-1 == `sk-code`, score >= 0.80.
 3. **Invoke sk-code** with the exact prompt.
@@ -86,8 +86,8 @@ Evidence: `/tmp/skc-DR002-advisor.txt` (advisor probe output) and `/tmp/skc-DR00
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/sk-code/SKILL.md` — §4 ALWAYS implementer anti-stall bullet and SCOPE-LOCK.
-- `.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md` — Design Restraint Ladder the anti-stall rule complements.
+- `.skilled/skills/sk-code/SKILL.md` — §4 ALWAYS implementer anti-stall bullet and SCOPE-LOCK.
+- `.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md` — Design Restraint Ladder the anti-stall rule complements.
 
 ---
 

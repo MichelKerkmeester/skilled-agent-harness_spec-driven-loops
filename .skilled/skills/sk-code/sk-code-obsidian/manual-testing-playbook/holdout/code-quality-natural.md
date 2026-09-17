@@ -73,8 +73,8 @@ package are — by frontmatter/path agreement, not by a live command transcript.
 
 ### Commands
 
-1. `sed -n '1,13p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/code-quality-natural.md`
-2. `for p in references/db-class-naming.md references/stylesheet-ownership.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,13p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/code-quality-natural.md`
+2. `for p in references/db-class-naming.md references/stylesheet-ownership.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

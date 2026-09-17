@@ -68,9 +68,9 @@ Fix the largest contentful paint and cls jank on the hero so core web vitals pas
 
 ### Commands
 
-1. `sed -n '1,22p' .opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/performance-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"PERFORMANCE": \[/,/\],/p'`
-3. `for p in references/performance/cwv-remediation.md references/performance/interaction-gated-loading.md references/performance/resource-loading.md references/performance/third-party.md references/performance/webflow-constraints.md references/verification/performance-checklist.md references/implementation/performance-patterns/overview-and-checklist.md references/implementation/performance-patterns/budgets-and-anti-patterns.md references/animation/performance-and-pitfalls.md; do test -e ".opencode/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,22p' .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/performance-animation/performance-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"PERFORMANCE": \[/,/\],/p'`
+3. `for p in references/performance/cwv-remediation.md references/performance/interaction-gated-loading.md references/performance/resource-loading.md references/performance/third-party.md references/performance/webflow-constraints.md references/verification/performance-checklist.md references/implementation/performance-patterns/overview-and-checklist.md references/implementation/performance-patterns/budgets-and-anti-patterns.md references/animation/performance-and-pitfalls.md; do test -e ".skilled/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

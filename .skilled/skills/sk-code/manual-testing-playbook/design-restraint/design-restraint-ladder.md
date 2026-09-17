@@ -22,13 +22,13 @@ The ladder is defined in `shared/references/universal/code-quality-standards.md`
 
 **Exact prompt**:
 ```
-Add a helper to .opencode/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.
+Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.
 ```
 
-Prompt: `Add a helper to .opencode/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.`
+Prompt: `Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.`
 
 **Expected detection**:
-- Surface: `OPENCODE` (target path contains `/.opencode/`)
+- Surface: `OPENCODE` (target path contains `/.skilled/`)
 - Intent: implementation (write work)
 - Sub-language: `TYPESCRIPT` (target file extension `.ts`)
 
@@ -52,16 +52,16 @@ Prompt: `Add a helper to .opencode/skills/system-spec-kit/runtime/lib/util/uniqu
 
 ### Preconditions
 
-1. `.opencode/skills/sk-code/SKILL.md` is at HEAD-of-main and its Phase Overview names the Design Restraint Ladder.
-2. The ladder reference exists: `bash: rg -n "Design Restraint Ladder" .opencode/skills/sk-code/shared/references/universal/code-quality-standards.md`.
-3. The Phase 0 to 1 gate exists: `bash: rg -n "laziest viable" .opencode/skills/sk-code/shared/references/phase-detection.md`.
+1. `.skilled/skills/sk-code/SKILL.md` is at HEAD-of-main and its Phase Overview names the Design Restraint Ladder.
+2. The ladder reference exists: `bash: rg -n "Design Restraint Ladder" .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md`.
+3. The Phase 0 to 1 gate exists: `bash: rg -n "laziest viable" .skilled/skills/sk-code/shared/references/phase-detection.md`.
 4. Skill advisor callable.
 
 ### Exact Command Sequence
 
 1. **Advisor probe**:
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a helper to .opencode/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array." --threshold 0.8 > /tmp/skc-DR001-advisor.txt
+   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array." --threshold 0.8 > /tmp/skc-DR001-advisor.txt
    ```
 2. **Verify**: top-1 == `sk-code`, score >= 0.80.
 3. **Invoke sk-code** with the exact prompt.
@@ -95,9 +95,9 @@ Evidence: `/tmp/skc-DR001-advisor.txt` (advisor probe output) and `/tmp/skc-DR00
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md` — The pre-write Design Restraint Ladder.
-- `.opencode/skills/sk-code/shared/references/phase-detection.md` — Phase 0 to 1 gate requiring the laziest viable rung for implementation intent.
-- `.opencode/skills/sk-code/SKILL.md` — Phase Overview naming the ladder; surface precedence and Iron Law.
+- `.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md` — The pre-write Design Restraint Ladder.
+- `.skilled/skills/sk-code/shared/references/phase-detection.md` — Phase 0 to 1 gate requiring the laziest viable rung for implementation intent.
+- `.skilled/skills/sk-code/SKILL.md` — Phase Overview naming the ladder; surface precedence and Iron Law.
 
 ---
 

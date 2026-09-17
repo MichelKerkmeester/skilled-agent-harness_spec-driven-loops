@@ -86,9 +86,9 @@ Give me a full pre-release audit of this plugin — architecture, the .db-* gram
 
 ### Commands
 
-1. `sed -n '1,26p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md`
-2. `grep -c '^  - ' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md`
-3. `for p in references/view-renderer-architecture.md references/data-layer.md references/db-class-naming.md references/stylesheet-ownership.md references/folder-docs.md references/comment-grammar.md references/mobile-and-touch.md references/verification.md references/obsidian-plugin-api.md references/accessibility.md references/screenshot-harness.md references/standards/platform-support.md references/standards/code-standards.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,26p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md`
+2. `grep -c '^  - ' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md`
+3. `for p in references/view-renderer-architecture.md references/data-layer.md references/db-class-naming.md references/stylesheet-ownership.md references/folder-docs.md references/comment-grammar.md references/mobile-and-touch.md references/verification.md references/obsidian-plugin-api.md references/accessibility.md references/screenshot-harness.md references/standards/platform-support.md references/standards/code-standards.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

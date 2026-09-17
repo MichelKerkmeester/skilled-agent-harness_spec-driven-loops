@@ -116,7 +116,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 
 | Check | Result |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/README.md --type readme` reports zero issues |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/README.md --type readme` reports zero issues |
 | Routing scenarios | The manual testing playbook runs every routing and disambiguation scenario behind the hub |
 
 ---

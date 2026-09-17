@@ -60,8 +60,8 @@ same header but follow ESM module syntax instead of CommonJS.
 - The older 78-character `╔═╗` box is accepted where it already exists; do not
   introduce it in new files
 
-**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:1-4`,
-`.opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:1-4`
+**Evidence**: `.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:1-4`,
+`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:1-4`
 
 ---
 
@@ -104,7 +104,7 @@ Large files are organized using numbered section dividers.
 | 4     | CORE LOGIC       | Main implementation               |
 | 5     | EXPORTS          | Module public interface           |
 
-**Evidence**: `.opencode/skills/system-spec-kit/runtime/cli/core/config.ts`
+**Evidence**: `.skilled/skills/system-spec-kit/runtime/cli/core/config.ts`
 
 ---
 
@@ -143,7 +143,7 @@ const maxRetries = 3;       // camelCase
 const max_retries = 3;      // snake_case (reserved for variables)
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/runtime/core/config.ts`
+**Evidence**: `.skilled/skills/system-spec-kit/runtime/core/config.ts`
 
 ### Class Names
 
@@ -160,7 +160,7 @@ class specFolderError { }   // camelCase
 class spec_folder_error { } // snake_case
 ```
 
-**Evidence**: `.opencode/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts`
+**Evidence**: `.skilled/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts`
 
 ### Variable Names
 

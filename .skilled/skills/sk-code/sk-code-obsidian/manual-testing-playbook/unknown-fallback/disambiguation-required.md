@@ -84,9 +84,9 @@ The calendar renderer has a wrong render on mobile since the last edit, and I al
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/disambiguation-required.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"DEBUGGING":/,/\],/p;/"IMPLEMENTATION":/,/\],/p'`
-3. `for p in references/mobile-and-touch.md references/view-renderer-architecture.md references/data-layer.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,15p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/unknown-fallback/disambiguation-required.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"DEBUGGING":/,/\],/p;/"IMPLEMENTATION":/,/\],/p'`
+3. `for p in references/mobile-and-touch.md references/view-renderer-architecture.md references/data-layer.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

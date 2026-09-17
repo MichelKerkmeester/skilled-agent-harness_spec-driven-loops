@@ -71,10 +71,10 @@ Update the Webflow component library's button variant styling in the sk-code-web
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/surface-detection/negative-control-non-mobile-cli.md`
-2. `sed -n '/^## 1\. WHEN THE HUB BUNDLES THIS/,/^## 2\. REFERENCE MAP/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md`
+1. `sed -n '1,15p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/surface-detection/negative-control-non-mobile-cli.md`
+2. `sed -n '/^## 1\. WHEN THE HUB BUNDLES THIS/,/^## 2\. REFERENCE MAP/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md`
 3. Dispatch the exact prompt; capture the resolved surface list and every packet whose resources loaded.
-4. `test -e .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md && echo "OK SKILL.md exists for negative-control confirmation"`
+4. `test -e .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md && echo "OK SKILL.md exists for negative-control confirmation"`
 
 ### Expected
 

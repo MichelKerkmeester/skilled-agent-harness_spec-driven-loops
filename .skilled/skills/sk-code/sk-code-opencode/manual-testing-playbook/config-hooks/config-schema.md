@@ -46,7 +46,7 @@ resource set without contradictory evidence.
 Review the jsonc descriptor config schema for a skill and point out schema issues.
 ```
 
-- Expected execution process: the hub detects `OPENCODE` (work under `.opencode/`), the `CONFIG`
+- Expected execution process: the hub detects `OPENCODE` (work under `.skilled/`), the `CONFIG`
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-opencode/`, and each one
@@ -66,10 +66,10 @@ Review the jsonc descriptor config schema for a skill and point out schema issue
 
 ### Commands
 
-1. `sed -n '/^---$/,/^---$/p' .opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/config-schema.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"CONFIG"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"CONFIG": \[/,/\],/p'`
-4. `for p in references/config/style-guide.md references/config/quality-standards.md references/config/quick-reference.md assets/checklists/config-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/config-hooks/config-schema.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"CONFIG"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"CONFIG": \[/,/\],/p'`
+4. `for p in references/config/style-guide.md references/config/quality-standards.md references/config/quick-reference.md assets/checklists/config-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

@@ -67,10 +67,10 @@ Review this cleanup plan to remove dead code and deprecate obsolete behavior saf
 
 ### Commands
 
-1. `sed -n '1,18p' .opencode/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/removal.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-review/SKILL.md | grep '"REMOVAL"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-review/SKILL.md | grep '"REMOVAL"'`
-4. `for p in references/review-core.md references/review-ux-single-pass.md assets/security-checklist.md assets/code-quality-checklist.md assets/fix-completeness-checklist.md assets/removal-plan.md; do test -e ".opencode/skills/sk-code/sk-code-review/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,18p' .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/removal.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-review/SKILL.md | grep '"REMOVAL"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-review/SKILL.md | grep '"REMOVAL"'`
+4. `for p in references/review-core.md references/review-ux-single-pass.md assets/security-checklist.md assets/code-quality-checklist.md assets/fix-completeness-checklist.md assets/removal-plan.md; do test -e ".skilled/skills/sk-code/sk-code-review/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

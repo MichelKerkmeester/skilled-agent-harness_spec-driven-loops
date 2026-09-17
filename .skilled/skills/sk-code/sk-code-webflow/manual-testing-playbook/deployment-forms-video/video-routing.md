@@ -63,9 +63,9 @@ Add an hls adaptive stream video player to the Webflow page and handle vendor lo
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook/deployment-forms-video/video-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"VIDEO": \[/,/\],/p'`
-3. `for p in references/implementation/third-party-integrations/overview-hls-and-lenis.md references/implementation/third-party-integrations/botpoison-and-finsweet.md references/implementation/third-party-integrations/filepond.md references/implementation/third-party-integrations/best-practices-and-summary.md; do test -e ".opencode/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/deployment-forms-video/video-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"VIDEO": \[/,/\],/p'`
+3. `for p in references/implementation/third-party-integrations/overview-hls-and-lenis.md references/implementation/third-party-integrations/botpoison-and-finsweet.md references/implementation/third-party-integrations/filepond.md references/implementation/third-party-integrations/best-practices-and-summary.md; do test -e ".skilled/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

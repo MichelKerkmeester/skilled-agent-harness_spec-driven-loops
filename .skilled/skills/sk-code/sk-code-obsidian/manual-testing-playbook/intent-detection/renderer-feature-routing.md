@@ -76,9 +76,9 @@ Add a new computed-percentage column type to the table renderer's row pipeline, 
 
 ### Commands
 
-1. `sed -n '1,16p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/renderer-feature-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"IMPLEMENTATION":/,/\],/p'`
-3. `for p in references/view-renderer-architecture.md references/data-layer.md references/db-class-naming.md references/stylesheet-ownership.md references/workflow-implement.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,16p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/renderer-feature-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"IMPLEMENTATION":/,/\],/p'`
+3. `for p in references/view-renderer-architecture.md references/data-layer.md references/db-class-naming.md references/stylesheet-ownership.md references/workflow-implement.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

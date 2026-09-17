@@ -75,9 +75,9 @@ Find the right presentation comment to restyle the composer's loading state with
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/comment-convention-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"IMPLEMENTATION":/,/\],/p'`
-3. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md references/design-system/component-tokens.md references/design-system/retint-recipes.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md assets/token-retint-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,15p' .skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/comment-convention-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"IMPLEMENTATION":/,/\],/p'`
+3. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md references/design-system/component-tokens.md references/design-system/retint-recipes.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md assets/token-retint-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

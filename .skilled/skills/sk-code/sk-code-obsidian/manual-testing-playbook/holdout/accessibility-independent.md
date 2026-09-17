@@ -77,9 +77,9 @@ command transcript, since this probe's entire point is whether an unmapped file 
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md`
-2. `test -e .opencode/skills/sk-code/sk-code-obsidian/references/accessibility.md && echo "OK references/accessibility.md" || echo "MISS references/accessibility.md"`
-3. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | grep -c accessibility`
+1. `sed -n '1,14p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md`
+2. `test -e .skilled/skills/sk-code/sk-code-obsidian/references/accessibility.md && echo "OK references/accessibility.md" || echo "MISS references/accessibility.md"`
+3. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | grep -c accessibility`
 
 ### Expected
 

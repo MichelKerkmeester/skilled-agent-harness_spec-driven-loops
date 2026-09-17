@@ -29,12 +29,12 @@ The gate keeps app documentation machine-checkable and consistent. It uses the s
 
 ## 2. SCORER AND INVOCATION
 
-The extractor is `extract_structure.py` in the sk-doc skill. From the app root it resolves through the dotfile symlink at `.opencode/skills/sk-doc/scripts/extract_structure.py`.
+The extractor is `extract_structure.py` in the sk-doc skill. From the app root it resolves through the dotfile symlink at `.skilled/skills/sk-doc/scripts/extract_structure.py`.
 
 Run it on one file:
 
 ```
-python3 .opencode/skills/sk-doc/scripts/extract_structure.py docs/setup.md
+python3 .skilled/skills/sk-doc/scripts/extract_structure.py docs/setup.md
 ```
 
 The command prints one JSON object to stdout. The DQI sits in the `dqi.total` key and the band name in `dqi.band`. The `dqi.components` object breaks the score into structure, content, and style, and `dqi.breakdown` names every contributing check.
@@ -44,7 +44,7 @@ A full sweep over the app docs uses the same command in a loop:
 ```
 for f in docs/*.md
 do
-  python3 .opencode/skills/sk-doc/scripts/extract_structure.py "$f"
+  python3 .skilled/skills/sk-doc/scripts/extract_structure.py "$f"
 done
 ```
 
@@ -94,7 +94,7 @@ Check 2 is measured, not looked up. Because the scorer is deterministic, the rev
 
 ```bash
 git show HEAD:path/to/file.md > /tmp/base.md
-python3 .opencode/skills/sk-doc/scripts/extract_structure.py /tmp/base.md
+python3 .skilled/skills/sk-doc/scripts/extract_structure.py /tmp/base.md
 ```
 
 The comparison is against the file's own prior revision, never against a stored score table. A checked-in table drifts the moment a doc changes outside the gate; re-measuring the base revision cannot.
@@ -107,9 +107,9 @@ The document shape itself is defined once, by the create-skill templates, and is
 
 | Document class | Canonical template |
 | -------------- | ------------------ |
-| Skill reference file | `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md` |
-| Skill asset file | `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md` |
-| README | `.opencode/skills/sk-doc/sk-create-readme/` |
+| Skill reference file | `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md` |
+| Skill asset file | `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md` |
+| README | `.skilled/skills/sk-doc/sk-create-readme/` |
 
 What belongs here is only the part the templates do not carry: how the scorer converts that shape into points. The style component is worth 30 and breaks down as follows.
 

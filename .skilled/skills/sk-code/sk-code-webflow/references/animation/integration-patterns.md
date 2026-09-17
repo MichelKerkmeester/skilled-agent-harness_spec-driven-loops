@@ -80,9 +80,9 @@ External/historical anchor: `a_nobel_en_zn/2_javascript/slider/testimonial.js` u
 ## 4. WEBFLOW-CDN-SPECIFIC NOTES
 
 For Webflow, link to the existing Webflow references rather than duplicating all Webflow operational detail here:
-- `.opencode/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
-- `.opencode/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/overview-and-checklist.md`
-- `.opencode/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`
+- `.skilled/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
+- `.skilled/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/overview-and-checklist.md`
+- `.skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`
 
 Webflow patterns in this repo include:
 - `window.Webflow.push(start)` when available,
@@ -137,7 +137,7 @@ Use the stack's native client-only lifecycle:
 })();
 ```
 
-This mirrors local Webflow safety patterns and keeps Motion optional for non-critical interactions (External/historical example: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `.opencode/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`).
+This mirrors local Webflow safety patterns and keeps Motion optional for non-critical interactions (External/historical example: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `.skilled/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`).
 
 ### ESM bootstrap
 

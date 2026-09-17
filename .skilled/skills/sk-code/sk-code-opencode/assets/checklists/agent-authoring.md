@@ -32,14 +32,14 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
 
 ## 2. PRE-CHECKS
 
-- [ ] Read the mirrored `code` agent examples at `.opencode/agents/code.md` and `.claude/agents/code.md`.
-- [ ] Read `sk-doc` source rules at `.opencode/skills/sk-doc/sk-create-agent/references/README.md`.
-- [ ] Read the mirror checker at `.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs`; it treats `.opencode/agents/` as canonical and `.claude/agents/` as the runtime mirror.
+- [ ] Read the mirrored `code` agent examples at `.skilled/agents/code.md` and `.claude/agents/code.md`.
+- [ ] Read `sk-doc` source rules at `.skilled/skills/sk-doc/sk-create-agent/references/README.md`.
+- [ ] Read the mirror checker at `.skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs`; it treats `.skilled/agents/` as canonical and `.claude/agents/` as the runtime mirror.
 - [ ] Decide whether the agent is LEAF-only or an orchestrator before granting task/delegation authority.
 - [ ] Confirm the dispatch contract: who may invoke the agent, what inputs it expects, and what outputs it returns.
 - [ ] Set runtime permissions to the least authority that supports the role: OpenCode agent frontmatter uses `permission:`, while Claude mirrors use `tools:`.
-- [ ] Do not use `allowed-tools:` in agent frontmatter; current agent frontmatter uses `permission:` in `.opencode/agents/` and `tools:` in `.claude/agents/`.
-- [ ] Identify the repo-managed mirror set: `.opencode/agents/`, `.claude/agents/`, and `.codex/agents/`. All three are live runtime mirrors — `.codex/agents/*.toml` mirrors the `.opencode/agents/` roster one-to-one, alongside `.codex/hooks.json` and `.codex/config.toml`.
+- [ ] Do not use `allowed-tools:` in agent frontmatter; current agent frontmatter uses `permission:` in `.skilled/agents/` and `tools:` in `.claude/agents/`.
+- [ ] Identify the repo-managed mirror set: `.skilled/agents/`, `.claude/agents/`, and `.codex/agents/`. All three are live runtime mirrors — `.codex/agents/*.toml` mirrors the `.skilled/agents/` roster one-to-one, alongside `.codex/hooks.json` and `.codex/config.toml`.
 - [ ] When adding or renaming an agent, mirror it across all three surfaces; `.codex/agents/` uses TOML (`[agents.<name>]` in `.codex/config.toml` pointing at `.codex/agents/<name>.toml`), not the OpenCode/Claude frontmatter form.
 
 ---
@@ -52,25 +52,25 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
 4. Write the workflow as operational instructions, not a copied skill reference.
 5. State LEAF constraints or orchestration permissions explicitly.
 6. Add verification expectations and failure/escalation rules.
-7. Keep `.opencode/agents/` and `.claude/agents/` in sync for shared behavior; retain only intentional frontmatter/runtime wording differences.
+7. Keep `.skilled/agents/` and `.claude/agents/` in sync for shared behavior; retain only intentional frontmatter/runtime wording differences.
 
 ---
 
 ## 4. POST-CHECKS
 
-- [ ] Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` against the owning spec folder when the agent change is part of a spec folder.
-- [ ] grep verification for OpenCode frontmatter shape: `rg -n "^(name|description|mode|permission):" .opencode/agents/code.md`.
+- [ ] Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` against the owning spec folder when the agent change is part of a spec folder.
+- [ ] grep verification for OpenCode frontmatter shape: `rg -n "^(name|description|mode|permission):" .skilled/agents/code.md`.
 - [ ] grep verification for Claude frontmatter shape: `rg -n "^(name|description|tools):" .claude/agents/code.md`.
-- [ ] grep verification that agent frontmatter is not using the command/skill field: `rg -n "^allowed-tools:" .opencode/agents .claude/agents` should return no agent matches.
-- [ ] Mirror parity check: run `node .opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` after editing agent mirrors.
+- [ ] grep verification that agent frontmatter is not using the command/skill field: `rg -n "^allowed-tools:" .skilled/agents .claude/agents` should return no agent matches.
+- [ ] Mirror parity check: run `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` after editing agent mirrors.
 - [ ] Verify dispatch references in commands or orchestrators point to the new agent name.
 
 ---
 
 ## 5. RELATED RESOURCES
 
-- `.opencode/skills/sk-doc/sk-create-agent/references/README.md` (source-of-truth for agent content rules)
-- Mirror checker: `.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs`
-- Mirrored example: `.opencode/agents/code.md` and `.claude/agents/code.md`
-- Runtime directories: `.opencode/agents/` and `.claude/agents/`
-- Verification recipes: `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md`
+- `.skilled/skills/sk-doc/sk-create-agent/references/README.md` (source-of-truth for agent content rules)
+- Mirror checker: `.skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs`
+- Mirrored example: `.skilled/agents/code.md` and `.claude/agents/code.md`
+- Runtime directories: `.skilled/agents/` and `.claude/agents/`
+- Verification recipes: `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md`

@@ -4,7 +4,7 @@
 // ───────────────────────────────────────────────────────────────
 //
 // Usage:
-//   node .opencode/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs
+//   node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs
 //
 // Verifies that critical patterns are preserved after minification:
 // - Data attribute selectors (e.g., [data-target='hero-item'])

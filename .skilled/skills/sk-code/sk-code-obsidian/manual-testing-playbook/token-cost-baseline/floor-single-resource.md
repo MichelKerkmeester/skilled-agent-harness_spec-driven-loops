@@ -69,9 +69,9 @@ Does isDesktopOnly: false in manifest.json actually forbid any API, or is it jus
 
 ### Commands
 
-1. `sed -n '1,13p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/floor-single-resource.md`
-2. `grep -c '^  - ' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/floor-single-resource.md`
-3. `test -e .opencode/skills/sk-code/sk-code-obsidian/references/obsidian-plugin-api.md && echo "OK references/obsidian-plugin-api.md" || echo "MISS references/obsidian-plugin-api.md"`
+1. `sed -n '1,13p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/floor-single-resource.md`
+2. `grep -c '^  - ' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/floor-single-resource.md`
+3. `test -e .skilled/skills/sk-code/sk-code-obsidian/references/obsidian-plugin-api.md && echo "OK references/obsidian-plugin-api.md" || echo "MISS references/obsidian-plugin-api.md"`
 
 ### Expected
 

@@ -5,7 +5,7 @@ set -euo pipefail
 # are resolved relative to this script, not the caller's CWD.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CHECKER="$SCRIPT_DIR/check-rule-copies.js"
-# scripts -> review -> sk-code -> skills -> .opencode -> repo root
+# scripts -> review -> sk-code -> skills -> .skilled -> repo root
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../../../.." && pwd)"
 TMP_DIR="$(mktemp -d)"
 
@@ -20,11 +20,11 @@ failures=0
 # throwaway tree so the resulting failure is attributable to the one mutation,
 # not to incidentally-missing files.
 TARGETS=(
-  ".opencode/skills/sk-code/sk-code-review/SKILL.md"
-  ".opencode/skills/sk-code/sk-code-review/README.md"
-  ".opencode/skills/sk-code/sk-code-review/changelog/v1.3.0.0.md"
-  ".opencode/skills/sk-code/sk-code-review/references/pr-state-dedup.md"
-  ".opencode/skills/sk-code/SKILL.md"
+  ".skilled/skills/sk-code/sk-code-review/SKILL.md"
+  ".skilled/skills/sk-code/sk-code-review/README.md"
+  ".skilled/skills/sk-code/sk-code-review/changelog/v1.3.0.0.md"
+  ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md"
+  ".skilled/skills/sk-code/SKILL.md"
   "CLAUDE.md"
 )
 
@@ -67,7 +67,7 @@ run_case 0 "real_repo_root_consistent" real_repo_run
 CASE_DELETED="$TMP_DIR/deleted_status"
 seed_tree "$CASE_DELETED"
 node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").replace("Review status: APPROVED",""));' \
-  "$CASE_DELETED/.opencode/skills/sk-code/sk-code-review/SKILL.md"
+  "$CASE_DELETED/.skilled/skills/sk-code/sk-code-review/SKILL.md"
 run_case 1 "missing_review_status_approved" node "$CHECKER" --root "$CASE_DELETED"
 
 # FAIL: tampered tree whose CLAUDE.md Iron Law line is reworded to drop "verification".

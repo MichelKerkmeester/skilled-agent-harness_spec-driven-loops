@@ -76,9 +76,9 @@ Prove this change is safe to merge — run tsc, build, vitest, and screenshots:v
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/verification-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"VERIFICATION":/,/\],/p'`
-3. `for p in references/verification.md assets/verification-checklist.md references/screenshot-harness.md references/workflow-verify.md references/release/release-verification.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,17p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/verification-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"VERIFICATION":/,/\],/p'`
+3. `for p in references/verification.md assets/verification-checklist.md references/screenshot-harness.md references/workflow-verify.md references/release/release-verification.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

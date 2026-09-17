@@ -33,7 +33,7 @@ A task touching Webflow-published pages or CDN-delivered client scripts needs fr
 
 ### What It Carries
 
-This surface holds the Webflow and browser evidence in five domains: language standards, implementation patterns, performance and Core Web Vitals remediation, CDN deployment, browser debugging and verification procedures. Detection markers are `src/2_javascript`, `webflow`, `--vw-` custom properties and CDN-delivered client scripts. Its sibling `code-opencode` carries `.opencode/` system-code evidence instead. The hub picks one surface by detection. The interaction-gated loading and Core Web Vitals gates here are non-negotiable, never a report-only check.
+This surface holds the Webflow and browser evidence in five domains: language standards, implementation patterns, performance and Core Web Vitals remediation, CDN deployment, browser debugging and verification procedures. Detection markers are `src/2_javascript`, `webflow`, `--vw-` custom properties and CDN-delivered client scripts. Its sibling `code-opencode` carries `.skilled/` system-code evidence instead. The hub picks one surface by detection. The interaction-gated loading and Core Web Vitals gates here are non-negotiable, never a report-only check.
 
 ### The Frontend Evidence Layer
 
@@ -91,7 +91,7 @@ Use this surface when the task touches Webflow-published pages or CDN-delivered 
 | Skill | Relationship |
 |---|---|
 | `sk-code` | Parent hub that detects the surface and bundles it with the active workflow mode |
-| `code-opencode` | Sibling surface carrying `.opencode/` system-code evidence, picked by the same detection |
+| `code-opencode` | Sibling surface carrying `.skilled/` system-code evidence, picked by the same detection |
 | `code-review` | Owns formal findings-first review after the workflow phases |
 | `code-quality` | Owns author-side quality gates |
 
@@ -105,7 +105,7 @@ A: It is evidence, not a worker. A surface that mutated would blur who owns the 
 
 **Q: What happens when a frontend task does not match this surface's markers?**
 
-A: The hub picks the surface by detection, so `.opencode/` system-code work matches `code-opencode` instead. The workflow mode proceeds with the references the bundled surface carries.
+A: The hub picks the surface by detection, so `.skilled/` system-code work matches `code-opencode` instead. The workflow mode proceeds with the references the bundled surface carries.
 
 ---
 
@@ -113,7 +113,7 @@ A: The hub picks the surface by detection, so `.opencode/` system-code work matc
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/sk-code-webflow/README.md --type readme` reports zero issues |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-webflow/README.md --type readme` reports zero issues |
 | Surface checklists | `assets/webflow-debugging-checklist.md` and `assets/webflow-verification-checklist.md` cover the browser debugging and verification gates |
 | Manual playbook | `manual-testing-playbook/manual-testing-playbook.md` runs every scenario behind the checklists |
 

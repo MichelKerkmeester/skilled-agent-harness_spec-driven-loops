@@ -40,8 +40,8 @@ The recovery hierarchy is universal. Specific commands and tools change per stac
 
 ### Key Sources
 
-- Surface debugging docs: `.opencode/skills/sk-code/sk-code-webflow/references/debugging/error-recovery.md` and `.opencode/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md`.
-- Universal debugging discipline: `.opencode/skills/sk-code/shared/references/universal-debugging-checklist.md` (4-phase workflow).
+- Surface debugging docs: `.skilled/skills/sk-code/sk-code-webflow/references/debugging/error-recovery.md` and `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md`.
+- Universal debugging discipline: `.skilled/skills/sk-code/shared/references/universal-debugging-checklist.md` (4-phase workflow).
 
 ---
 
@@ -105,8 +105,8 @@ If 3+ retries with isolation + prerequisite verification fail, STOP iterating bl
 
 | Surface  | Reference                                                                              |
 | -------- | -------------------------------------------------------------------------------------- |
-| WEBFLOW  | `.opencode/skills/sk-code/sk-code-webflow/references/debugging/error-recovery.md` (CDN, minification, version mismatch) |
-| OPENCODE | `.opencode/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` and language refs    |
+| WEBFLOW  | `.skilled/skills/sk-code/sk-code-webflow/references/debugging/error-recovery.md` (CDN, minification, version mismatch) |
+| OPENCODE | `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` and language refs    |
 
 ---
 
@@ -126,8 +126,8 @@ State: what failed (verbatim), what you tried, what you suspect, and what you pr
 
 ## 5. RELATED RESOURCES
 
-- `.opencode/skills/sk-code/shared/references/universal-debugging-checklist.md` - 4-phase debugging workflow that wraps this recovery flow.
-- `.opencode/skills/sk-code/shared/references/universal-verification-checklist.md` - runs after recovery completes, before any "done" claim.
-- `.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md` - severity contract (recovery failures are typically P0).
-- `.opencode/skills/sk-code/shared/references/phase-detection.md` - Phase 2 Debugging position in the sk-code lifecycle.
+- `.skilled/skills/sk-code/shared/references/universal-debugging-checklist.md` - 4-phase debugging workflow that wraps this recovery flow.
+- `.skilled/skills/sk-code/shared/references/universal-verification-checklist.md` - runs after recovery completes, before any "done" claim.
+- `.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md` - severity contract (recovery failures are typically P0).
+- `.skilled/skills/sk-code/shared/references/phase-detection.md` - Phase 2 Debugging position in the sk-code lifecycle.
 - Surface-specific debugging refs under `references/webflow/` and `references/opencode/`.

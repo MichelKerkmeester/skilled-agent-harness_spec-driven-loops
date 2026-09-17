@@ -64,9 +64,9 @@ Build a Webflow form upload flow with filepond, field validation, and a focus tr
 
 ### Commands
 
-1. `sed -n '1,18p' .opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook/deployment-forms-video/forms-routing.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"FORMS": \[/,/\],/p'`
-3. `for p in references/implementation/form-upload-workflows/overview-architecture-and-filepond.md references/implementation/form-upload-workflows/state-machine-worker-and-forms.md references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md references/implementation/focus-management/selector-and-focus-trap.md references/implementation/focus-management/restoration-touch-and-anti-patterns.md; do test -e ".opencode/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,18p' .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/deployment-forms-video/forms-routing.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-webflow/SKILL.md | sed -n '/"FORMS": \[/,/\],/p'`
+3. `for p in references/implementation/form-upload-workflows/overview-architecture-and-filepond.md references/implementation/form-upload-workflows/state-machine-worker-and-forms.md references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md references/implementation/focus-management/selector-and-focus-trap.md references/implementation/focus-management/restoration-touch-and-anti-patterns.md; do test -e ".skilled/skills/sk-code/sk-code-webflow/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

@@ -26,7 +26,7 @@ description: "Single entry point that runs all sk-code drift guards as one compl
 Run from any working directory, the script resolves its own paths:
 
 ```bash
-bash .opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
 ```
 
 Expected: `run-all-drift-guards: all 3 guards PASSED` and exit code 0.

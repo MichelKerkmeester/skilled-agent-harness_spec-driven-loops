@@ -75,10 +75,10 @@ I've been working on this Obsidian plugin for a while now and wanted to give you
 
 ### Commands
 
-1. `sed -n '1,18p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md`
-2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"VERIFICATION":/,/\],/p'`
-3. `for p in references/verification.md assets/verification-checklist.md references/screenshot-harness.md references/workflow-verify.md references/release/release-verification.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
-4. `diff <(sed -n '/^expected_resources:/,/^version:/p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/verification-routing.md) <(sed -n '/^expected_resources:/,/^version:/p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md)`
+1. `sed -n '1,18p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md`
+2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .skilled/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"VERIFICATION":/,/\],/p'`
+3. `for p in references/verification.md assets/verification-checklist.md references/screenshot-harness.md references/workflow-verify.md references/release/release-verification.md; do test -e ".skilled/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `diff <(sed -n '/^expected_resources:/,/^version:/p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/verification-routing.md) <(sed -n '/^expected_resources:/,/^version:/p' .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md)`
 
 ### Expected
 

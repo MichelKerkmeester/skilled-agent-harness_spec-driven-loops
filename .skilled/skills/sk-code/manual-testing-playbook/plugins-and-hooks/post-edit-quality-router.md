@@ -46,11 +46,11 @@ or `Edit` tool call in Claude Code (`PostToolUse`) or a `write`/`edit`/`patch`/`
 call in OpenCode; the exact adapter invocations exercised are the live commands in §3 TEST EXECUTION.
 
 - Preconditions:
-  - `.opencode/plugins/sk-code-post-edit-quality.js` exists (OpenCode plugin adapter).
-  - `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs` exists (Claude adapter).
-  - `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs` exists (shared core).
+  - `.skilled/plugins/sk-code-post-edit-quality.js` exists (OpenCode plugin adapter).
+  - `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` exists (Claude adapter).
+  - `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` exists (shared core).
   - `.claude/settings.json` wires `PostToolUse` matcher `Write|Edit` to the Claude adapter above.
-  - `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs` (38 tests) is present.
+  - `.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs` (38 tests) is present.
   - All six canonical checker paths in `CHECKER_RELATIVE_PATHS` exist on disk (comment-hygiene,
     flowchart, frontmatter-versions, placeholders, wikilinks, dist-staleness) -- verified present.
   - Node `v22.23.1` available on PATH (confirmed via `node --version`).
@@ -91,7 +91,7 @@ call in OpenCode; the exact adapter invocations exercised are the live commands 
 1. Run the real unit-test suite (hermetic fixtures, no live session required):
 
 ```bash
-node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
+node --test .skilled/plugins/tests/sk-code-post-edit-quality.test.cjs
 ```
 
 Expected: `# tests 38`, `# pass 38`, `# fail 0`, `# cancelled 0`.
@@ -101,13 +101,13 @@ Expected: `# tests 38`, `# pass 38`, `# fail 0`, `# cancelled 0`.
    then removed):
 
 ```bash
-TMPDIR_LIVE=$(mktemp -d ".opencode/plugins/tests/.tmp-manual-scenario-live-XXXXXX")
+TMPDIR_LIVE=$(mktemp -d ".skilled/plugins/tests/.tmp-manual-scenario-live-XXXXXX")
 cat > "$TMPDIR_LIVE/edited.ts" <<'EOF'
 // See ADR-042 for details
 export const liveSample = 1;
 EOF
 printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"$PWD/$TMPDIR_LIVE/edited.ts\"},\"cwd\":\"$PWD\"}" \
-  | node .opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs
+  | node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs
 echo "EXIT_CODE=$?"
 rm -rf "$TMPDIR_LIVE"
 ```
@@ -122,13 +122,13 @@ Expected: stdout contains `COMMENT HYGIENE WARNING`, `EXIT_CODE=0`.
    already produces empty stdout):
 
 ```bash
-TMPDIR_KILL=$(mktemp -d ".opencode/plugins/tests/.tmp-manual-scenario-kill-XXXXXX")
+TMPDIR_KILL=$(mktemp -d ".skilled/plugins/tests/.tmp-manual-scenario-kill-XXXXXX")
 cat > "$TMPDIR_KILL/edited.ts" <<'EOF'
 // See ADR-042 for details
 export const liveSample = 1;
 EOF
 printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"$PWD/$TMPDIR_KILL/edited.ts\"},\"cwd\":\"$PWD\"}" \
-  | SK_CODE_POST_EDIT_QUALITY_DISABLED=1 node .opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs
+  | SK_CODE_POST_EDIT_QUALITY_DISABLED=1 node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs
 echo "EXIT_CODE=$?"
 rm -rf "$TMPDIR_KILL"
 ```
@@ -142,22 +142,22 @@ just showed.
    comment-hygiene checker so the run stays hermetic and fast):
 
 ```bash
-TMPDIR_LIVE=$(mktemp -d ".opencode/plugins/tests/.tmp-manual-scenario-oc-XXXXXX")
-mkdir -p "$TMPDIR_LIVE/.opencode/skills/sk-code/sk-code-quality/scripts"
+TMPDIR_LIVE=$(mktemp -d ".skilled/plugins/tests/.tmp-manual-scenario-oc-XXXXXX")
+mkdir -p "$TMPDIR_LIVE/.skilled/skills/sk-code/sk-code-quality/scripts"
 cat > "$TMPDIR_LIVE/edited.ts" <<'EOF'
 // See ADR-042 for details
 export const liveSample = 1;
 EOF
-cat > "$TMPDIR_LIVE/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh" <<'HYG'
+cat > "$TMPDIR_LIVE/.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh" <<'HYG'
 #!/usr/bin/env bash
 echo "$1:1: fake ADR-style violation (live scenario fixture checker)"
 exit 1
 HYG
-chmod +x "$TMPDIR_LIVE/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+chmod +x "$TMPDIR_LIVE/.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
 
 cat > "$TMPDIR_LIVE/live-invoke.mjs" <<EOF
 import path from 'node:path';
-const { default: MkPostEditQualityPlugin } = await import(new URL('file://$PWD/.opencode/plugins/sk-code-post-edit-quality.js'));
+const { default: MkPostEditQualityPlugin } = await import(new URL('file://$PWD/.skilled/plugins/sk-code-post-edit-quality.js'));
 const projectDir = '$PWD/$TMPDIR_LIVE';
 const editedFile = path.join(projectDir, 'edited.ts');
 const hooks = await MkPostEditQualityPlugin({ directory: projectDir });
@@ -189,7 +189,7 @@ cat > /private/tmp/sk-code-post-edit-quality-outside-root-check/outside-root.ts 
 export const liveSample = 1;
 EOF
 printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"/private/tmp/sk-code-post-edit-quality-outside-root-check/outside-root.ts\"},\"cwd\":\"$PWD\"}" \
-  | node .opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs
+  | node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs
 echo "EXIT_CODE=$?"
 rm -rf /private/tmp/sk-code-post-edit-quality-outside-root-check
 ```
@@ -212,10 +212,10 @@ check, and `.claude/settings.json` wiring).
 
 ### Failure Triage
 
-1. If the unit-test suite is not fully green, re-run `node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs` and inspect the first failing assertion before touching any live invocation.
+1. If the unit-test suite is not fully green, re-run `node --test .skilled/plugins/tests/sk-code-post-edit-quality.test.cjs` and inspect the first failing assertion before touching any live invocation.
 2. If the live Claude adapter invocation (Command 2) produces no `COMMENT HYGIENE WARNING` banner, confirm the fixture file's comment still carries an `ADR-<n>`-style pointer and that `check-comment-hygiene.sh` is executable.
 3. If the kill-switch invocation (Command 3) is not empty, verify `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` is exported into the same process that invokes `claude-posttooluse.cjs`, and that the adapter reads it before dispatch.
-4. If the OpenCode plugin invocation (Command 4) does not surface the buffered finding, confirm the fixture `check-comment-hygiene.sh` under the throwaway `.opencode/skills/sk-code/sk-code-quality/scripts/` path is executable and that `tool.execute.before` ran before `tool.execute.after`.
+4. If the OpenCode plugin invocation (Command 4) does not surface the buffered finding, confirm the fixture `check-comment-hygiene.sh` under the throwaway `.skilled/skills/sk-code/sk-code-quality/scripts/` path is executable and that `tool.execute.before` ran before `tool.execute.after`.
 5. If the outside-root invocation (Command 5) unexpectedly produces a finding, inspect `relativeSegments()` in `post-edit-router.cjs` for a containment regression.
 6. SKIP applies only to the real end-to-end OpenCode TUI session path (a live OpenCode runtime session is unavailable in this sandboxed evidence pass) — see §6 EVIDENCE for the named blocker and its unit-test/direct-import fallback evidence; every other path in this scenario is exercised live, not skipped.
 
@@ -224,18 +224,18 @@ check, and `.claude/settings.json` wiring).
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- OpenCode plugin adapter: `.opencode/plugins/sk-code-post-edit-quality.js`
-- Claude PostToolUse adapter: `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
-- Shared runtime-neutral core: `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs`
-- Unit-test suite (38 tests): `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs`
+- OpenCode plugin adapter: `.skilled/plugins/sk-code-post-edit-quality.js`
+- Claude PostToolUse adapter: `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
+- Shared runtime-neutral core: `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`
+- Unit-test suite (38 tests): `.skilled/plugins/tests/sk-code-post-edit-quality.test.cjs`
 - Hook wiring: `.claude/settings.json` (`PostToolUse` -> matcher `Write|Edit`)
 - Checkers dispatched by the router:
-  - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`
-  - `.opencode/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh`
-  - `.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh`
-  - `.opencode/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh`
-  - `.opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh`
-  - `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`
+  - `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`
+  - `.skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh`
+  - `.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh`
+  - `.skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh`
+  - `.skilled/skills/system-spec-kit/runtime/cli/rules/check-links.sh`
+  - `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`
 
 ---
 
@@ -253,7 +253,7 @@ check, and `.claude/settings.json` wiring).
 Unit-test suite command and real tail output:
 
 ```bash
-node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
+node --test .skilled/plugins/tests/sk-code-post-edit-quality.test.cjs
 ```
 
 ```text
@@ -279,9 +279,9 @@ export const liveSample = 1;
 
 COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.
 These references are unstable and will rot. Replace each with the durable WHY.
-Violations in .opencode/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:
-  .opencode/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:1: // See ADR-042 for details
-See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
+Violations in .skilled/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:
+  .skilled/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:1: // See ADR-042 for details
+See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
 Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.
 
 EXIT_CODE=0
@@ -302,7 +302,7 @@ Live OpenCode plugin module invocation (real dynamic import, real hooks, fixture
 --- live OpenCode plugin invocation (real import, real hooks, fixture checker) ---
 {
   "system": [
-    "[post-edit-quality] Advisory findings from recent edits:\n- [comment-hygiene] .opencode/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts: .opencode/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts:1: fake ADR-style violation (live scenario fixture checker)"
+    "[post-edit-quality] Advisory findings from recent edits:\n- [comment-hygiene] .skilled/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts: .skilled/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts:1: fake ADR-style violation (live scenario fixture checker)"
   ]
 }
 EXIT_CODE=0
@@ -316,7 +316,7 @@ cat > /private/tmp/.../scratchpad/live-edit-sample.ts <<'EOF'
 export const liveSample = 1;
 EOF
 printf '%s' '{"tool_name":"Write","tool_input":{"file_path":".../scratchpad/live-edit-sample.ts"},"cwd":"'"$PWD"'"}' \
-  | node .opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs
+  | node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs
 echo "EXIT_CODE=$?"
 ```
 
@@ -331,12 +331,12 @@ unit test.)
 Checker-path existence check (all six canonical paths `post-edit-router.cjs` dispatches to):
 
 ```text
-OK  .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh
-OK  .opencode/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh
-OK  .opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh
-OK  .opencode/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh
-OK  .opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh
-OK  .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
+OK  .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh
+OK  .skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh
+OK  .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh
+OK  .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh
+OK  .skilled/skills/system-spec-kit/runtime/cli/rules/check-links.sh
+OK  .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
 ```
 
 `.claude/settings.json` wiring evidence (`PostToolUse` matcher `Write|Edit`):
@@ -347,7 +347,7 @@ OK  .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
   "hooks": [
     {
       "type": "command",
-      "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs'",
+      "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs'",
       "timeout": 10
     },
     {
@@ -367,7 +367,7 @@ unit-test suite's `OpenCode plugin: before/after correlation...with zero termina
 additionally proves the console/stdout/stderr are never touched during that sequence -- both stand in
 as the concrete fallback evidence for the runtime-session-only path.
 
-Working-tree note: `.opencode/plugins/sk-code-post-edit-quality.js` shows as modified (`git diff --stat`,
+Working-tree note: `.skilled/plugins/sk-code-post-edit-quality.js` shows as modified (`git diff --stat`,
 9 insertions/9 deletions) in this repo's working tree independent of this scenario -- this scenario
 only ever used `Read` on that file and ran throwaway fixtures under `mktemp`-created, removed-after-use
 directories; it made no edits to any source file.

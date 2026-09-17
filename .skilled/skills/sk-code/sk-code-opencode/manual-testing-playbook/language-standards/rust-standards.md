@@ -59,7 +59,7 @@ resource set without contradictory evidence.
 For an OpenCode Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.
 ```
 
-- Expected execution process: the hub detects `OPENCODE` (work under `.opencode/`), the `RUST`
+- Expected execution process: the hub detects `OPENCODE` (work under `.skilled/`), the `RUST`
   `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
   `expected_resources` resolves under the skill root.
 - Expected signals: every path in `expected_resources` exists under `sk-code-opencode/`, and each one
@@ -79,10 +79,10 @@ For an OpenCode Rust napi-rs or WASM module, apply the Rust standards and TypeSc
 
 ### Commands
 
-1. `sed -n '/^---$/,/^---$/p' .opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/rust-standards.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"RUST"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"RUST": \[/,/\],/p'`
-4. `for p in references/rust/style-guide/overview-and-file-header.md references/rust/style-guide/toolchain-and-project-structure.md references/rust/style-guide/naming-conventions.md references/rust/style-guide/formatting-and-imports.md references/rust/style-guide/commenting-and-rustdoc.md references/rust/style-guide/interop-model.md references/rust/style-guide/interop-errors-and-parity.md references/rust/quality-standards/overview-and-data-ownership.md references/rust/quality-standards/modeling-collections-and-api.md references/rust/quality-standards/docs-errors-and-async.md references/rust/quality-standards/build-and-organization.md references/rust/quality-standards/determinism-and-parity.md references/rust/quick-reference/overview-and-boundary-template.md references/rust/quick-reference/naming-ordering-and-signatures.md references/rust/quick-reference/collections-imports-and-errors.md references/rust/quick-reference/rustdoc-and-cargo.md references/rust/quick-reference/determinism-parity-and-related.md; do test -e ".opencode/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '/^---$/,/^---$/p' .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/language-standards/rust-standards.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | grep -F '"RUST"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-opencode/SKILL.md | sed -n '/"RUST": \[/,/\],/p'`
+4. `for p in references/rust/style-guide/overview-and-file-header.md references/rust/style-guide/toolchain-and-project-structure.md references/rust/style-guide/naming-conventions.md references/rust/style-guide/formatting-and-imports.md references/rust/style-guide/commenting-and-rustdoc.md references/rust/style-guide/interop-model.md references/rust/style-guide/interop-errors-and-parity.md references/rust/quality-standards/overview-and-data-ownership.md references/rust/quality-standards/modeling-collections-and-api.md references/rust/quality-standards/docs-errors-and-async.md references/rust/quality-standards/build-and-organization.md references/rust/quality-standards/determinism-and-parity.md references/rust/quick-reference/overview-and-boundary-template.md references/rust/quick-reference/naming-ordering-and-signatures.md references/rust/quick-reference/collections-imports-and-errors.md references/rust/quick-reference/rustdoc-and-cargo.md references/rust/quick-reference/determinism-parity-and-related.md; do test -e ".skilled/skills/sk-code/sk-code-opencode/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

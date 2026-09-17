@@ -67,10 +67,10 @@ Review this architecture for SOLID design, coupling, cohesion, module boundaries
 
 ### Commands
 
-1. `sed -n '1,18p' .opencode/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/solid.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-review/SKILL.md | grep '"SOLID"'`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-review/SKILL.md | grep '"SOLID"'`
-4. `for p in references/review-core.md references/review-ux-single-pass.md assets/security-checklist.md assets/code-quality-checklist.md assets/fix-completeness-checklist.md assets/solid-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-review/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,18p' .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/solid.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/sk-code/sk-code-review/SKILL.md | grep '"SOLID"'`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/sk-code/sk-code-review/SKILL.md | grep '"SOLID"'`
+4. `for p in references/review-core.md references/review-ux-single-pass.md assets/security-checklist.md assets/code-quality-checklist.md assets/fix-completeness-checklist.md assets/solid-checklist.md; do test -e ".skilled/skills/sk-code/sk-code-review/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 
