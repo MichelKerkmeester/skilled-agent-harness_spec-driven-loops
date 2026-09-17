@@ -23,7 +23,7 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const LINT_SCRIPT_RELATIVE = '.opencode/hooks/dispatch/claude/dispatch-preflight-lint.mjs';
+const LINT_SCRIPT_RELATIVE = '.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs';
 const CHILD_TIMEOUT_MS = 5_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 

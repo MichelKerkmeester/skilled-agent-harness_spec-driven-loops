@@ -243,7 +243,7 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 /create:feature-catalog system-spec-kit create :confirm
 /create:manual-testing-playbook system-spec-kit update :auto
 /create:skill my-new-skill full-create :auto
-/deep:agent-improvement .opencode/agents/review.md :confirm
+/deep:agent-improvement .skilled/agents/review.md :confirm
 /prompt:improve $improve "Build a clearer CLI handoff prompt" :auto
 /speckit:save specs/007-feature
 /speckit:plan "Add user authentication" :auto

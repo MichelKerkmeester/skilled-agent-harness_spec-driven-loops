@@ -21,8 +21,8 @@ Load the presentation contract before showing startup questions, setup dashboard
 
 | Purpose | Asset |
 |---------|-------|
-| Route manifest | `.opencode/commands/doctor/_routes.yaml` |
-| Presentation source of truth | `.opencode/commands/doctor/assets/doctor-speckit-presentation.txt` |
+| Route manifest | `.skilled/commands/doctor/_routes.yaml` |
+| Presentation source of truth | `.skilled/commands/doctor/assets/doctor-speckit-presentation.txt` |
 
 ---
 
@@ -45,33 +45,33 @@ These existing YAML assets are referenced only. The router must not modify them.
 
 | Target | Workflow |
 |--------|----------|
-| `speckit-retrieval` | `.opencode/commands/doctor/assets/doctor-speckit-retrieval.yaml` |
-| `embeddings` | `.opencode/commands/doctor/assets/doctor-embeddings.yaml` |
-| `deep-loop` | `.opencode/commands/doctor/assets/doctor-deep-loop.yaml` |
-| `skill-advisor` | `.opencode/commands/doctor/assets/doctor-skill-advisor.yaml` |
-| `skill-budget` | `.opencode/commands/doctor/assets/doctor-skill-budget.yaml` |
-| `parent-skill` | `.opencode/commands/doctor/assets/doctor-parent-skill.yaml` |
-| `skill-graph-freshness` | `.opencode/commands/doctor/assets/doctor-skill-graph-freshness.yaml` |
-| `fable-mode` | `.opencode/commands/doctor/assets/doctor-fable-mode.yaml` |
-| `router-reach` | `.opencode/commands/doctor/assets/doctor-router-reach.yaml` |
-| `runtime-mirrors` | `.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` |
+| `speckit-retrieval` | `.skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml` |
+| `embeddings` | `.skilled/commands/doctor/assets/doctor-embeddings.yaml` |
+| `deep-loop` | `.skilled/commands/doctor/assets/doctor-deep-loop.yaml` |
+| `skill-advisor` | `.skilled/commands/doctor/assets/doctor-skill-advisor.yaml` |
+| `skill-budget` | `.skilled/commands/doctor/assets/doctor-skill-budget.yaml` |
+| `parent-skill` | `.skilled/commands/doctor/assets/doctor-parent-skill.yaml` |
+| `skill-graph-freshness` | `.skilled/commands/doctor/assets/doctor-skill-graph-freshness.yaml` |
+| `fable-mode` | `.skilled/commands/doctor/assets/doctor-fable-mode.yaml` |
+| `router-reach` | `.skilled/commands/doctor/assets/doctor-router-reach.yaml` |
+| `runtime-mirrors` | `.skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml` |
 
-1. Read `.opencode/commands/doctor/assets/doctor-speckit-presentation.txt`.
-2. Read `.opencode/commands/doctor/_routes.yaml`.
+1. Read `.skilled/commands/doctor/assets/doctor-speckit-presentation.txt`.
+2. Read `.skilled/commands/doctor/_routes.yaml`.
 3. Parse the first positional token from `$ARGUMENTS` as `target`; support `list`, `?`, `--list`, and compatibility alias `--target=<name>`.
 4. If target is unresolved, ask the presentation contract's target-resolution prompt and wait.
 5. If target is unknown, render the presentation contract's unknown-target failure and stop.
 6. Resolve `yaml`, `setup_vars`, `allowed_flags`, `mutating`, `mcp_tools`, and script invocations from `_routes.yaml`.
 7. Parse remaining flags using only the resolved target's `allowed_flags`; reject cross-target flags using the presentation contract's error wording.
 8. Resolve any missing setup variables using the presentation contract's per-target setup prompts.
-9. Load the resolved workflow YAML from `.opencode/commands/doctor/assets/<yaml>` and execute it step by step.
+9. Load the resolved workflow YAML from `.skilled/commands/doctor/assets/<yaml>` and execute it step by step.
 10. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/doctor/assets/doctor-speckit-presentation.txt`:
+The following content lives only in `.skilled/commands/doctor/assets/doctor-speckit-presentation.txt`:
 
 - Target-resolution menu, help text, accepted answers, and failure wording.
 - Per-target setup prompts for unresolved fields.

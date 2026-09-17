@@ -49,12 +49,12 @@ const { findRepoRoot: resolveRepoRoot } = require('@spec-kit/shared/workspace/re
 const REPO_ROOT = findRepoRoot(__dirname);
 const CONTRACT_PATH = path.join(
   REPO_ROOT,
-  '.opencode/skills/sk-doc/sk-create-command/assets/command-contract.json'
+  '.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json'
 );
-const COMMANDS_DIR = path.join(REPO_ROOT, '.opencode/commands');
+const COMMANDS_DIR = path.join(REPO_ROOT, '.skilled/commands');
 
 // A router asset path, always repo-relative and backtick-wrapped in the tables.
-const ASSET_PATH_RE = /\.opencode\/commands\/[A-Za-z0-9._/-]+\.(?:txt|ya?ml)/g;
+const ASSET_PATH_RE = /\.skilled\/commands\/[A-Za-z0-9._/-]+\.(?:txt|ya?ml)/g;
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS

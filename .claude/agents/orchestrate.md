@@ -152,7 +152,7 @@ Before every Task tool dispatch, compare the selected route, loaded agent defini
 | @markdown | `.claude/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
 | @deep-research | `.claude/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
 | @deep-review | `.claude/agents/deep-review.md` | LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state |
-| @ai-council | `.claude/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). If the LEAF's returned report shows `max_rounds` reached without a converged plan (check `current_round >= max_rounds` in `ai-council-config.json`), add `--not-converged` to that invocation — the helper cannot detect max-round exhaustion on its own and defaults to `convergence:true` otherwise. |
+| @ai-council | `.claude/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). If the LEAF's returned report shows `max_rounds` reached without a converged plan (check `current_round >= max_rounds` in `ai-council-config.json`), add `--not-converged` to that invocation — the helper cannot detect max-round exhaustion on its own and defaults to `convergence:true` otherwise. |
 | @review   | `.claude/agents/review.md`   | Codebase-agnostic quality scoring                                                      |
 | @debug    | `.claude/agents/debug.md`    | Isolated by design (no conversation context)                                           |
 | @code     | `.claude/agents/code.md`     | Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify |
@@ -174,7 +174,7 @@ TASK #N: [Descriptive Title]
 ├─ Scope: [Explicit inclusions AND exclusions]
 ├─ Boundary: [What this agent MUST NOT do]
 ├─ Agent: @code | @context | @markdown | @deep-research | @deep-review | @ai-council | @review | @debug
-├─ Deep Route: [for deep routes only: mode=<workflowMode>; target_agent=@<agent>; execution=<single_iteration|loop|session>; source_of_truth=.opencode/skills/system-deep-loop/mode-registry.json | none]
+├─ Deep Route: [for deep routes only: mode=<workflowMode>; target_agent=@<agent>; execution=<single_iteration|loop|session>; source_of_truth=.skilled/skills/system-deep-loop/mode-registry.json | none]
 ├─ Subagent Type: "general" (ALL dispatches use "general" — exploration routes through @context)
 ├─ Agent Definition: [.claude/agents/<name>.md — MUST be read and included in prompt | "built-in" for @general-purpose]
 ├─ Skills: [Specific skills the agent should use]
@@ -195,7 +195,7 @@ TASK #N: [Descriptive Title]
 └─ Est. Tool Calls: [N] ([breakdown]) → [Single agent | Split: M agents × ~K calls] (§8 TCB)
 ```
 
-**`Deep Route:` resolution rule (registry-backed, not judgment):** for any of the 4 `@deep-*`/`@ai-council` agents, `mode`, `target_agent`, and `execution` MUST be looked up directly from that agent's matching entry in `.opencode/skills/system-deep-loop/mode-registry.json` (`workflowMode`, `agent`, and the entry's own execution semantics) — never inferred or guessed. A reviewer must be able to verify correctness by diffing the emitted `Deep Route:` line against the registry entry. If the registry has no matching entry for the requested mode, stop before dispatch rather than fabricating a route.
+**`Deep Route:` resolution rule (registry-backed, not judgment):** for any of the 4 `@deep-*`/`@ai-council` agents, `mode`, `target_agent`, and `execution` MUST be looked up directly from that agent's matching entry in `.skilled/skills/system-deep-loop/mode-registry.json` (`workflowMode`, `agent`, and the entry's own execution semantics) — never inferred or guessed. A reviewer must be able to verify correctness by diffing the emitted `Deep Route:` line against the registry entry. If the registry has no matching entry for the requested mode, stop before dispatch rather than fabricating a route.
 
 Optional dispatch header:
 
@@ -394,7 +394,7 @@ TASK #2: Implement Notification System
 
 ### Rule 2b: Skill/Agent/Command Component Creation Routing
 
-**Trigger:** Task creates or substantively writes `.opencode/skills/**`, `.opencode/agents/**`, or `.opencode/commands/**` component definitions, role files, command workflows, templates, metadata, or package docs.
+**Trigger:** Task creates or substantively writes `.skilled/skills/**`, `.skilled/agents/**`, or `.skilled/commands/**` component definitions, role files, command workflows, templates, metadata, or package docs.
 
 **Action:** Route actual `/create:*` component commands, scoped markdown authoring, and spec-doc creation through `@markdown` or another explicitly write-capable documentation lane. Do NOT dispatch `@code` for component scaffolding or prose/package authoring.
 
@@ -464,7 +464,7 @@ TASK #2: Implement Notification System
 
 1. **Opt-in only.** NEVER select an external executor on your own initiative. An advisor score, a hook hint, or a "this would be faster" judgment is not a user request. No executor named → dispatch a native LEAF agent as usual.
 2. **The skill route still owns the work.** AGENTS.md GATE 4, verbatim: "Executor CLI ≠ skill route. 'Use cli-opencode gpt-5.5 high' is the HOW — it still runs INSIDE the skill's workflow. Never let the executor name override the skill-owned route." Its companion tiebreaker binds too: when `command-spec-kit` matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins — the CLI executor is a tool inside the command's workflow, not a replacement for it.
-3. **Read the mode's own contract first.** Before composing ANY `cli-X` prompt you MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md`. The advisor recommendation alone does not waive this. The hub's persona-injection rule applies too: attach the resolved agent persona to every external-CLI dispatch — the right agent per subtask, never a bare task.
+3. **Read the mode's own contract first.** Before composing ANY `cli-X` prompt you MUST `Read` `.skilled/skills/cli-external-orchestration/cli-X/SKILL.md`. The advisor recommendation alone does not waive this. The hub's persona-injection rule applies too: attach the resolved agent persona to every external-CLI dispatch — the right agent per subtask, never a bare task.
 4. **An external run is a LEAF at depth 1.** It inherits the frozen scope, cannot widen it, and cannot dispatch further. Never let a mode dispatch itself — the self-invocation guard is packet-owned and non-negotiable.
 5. **The brief pre-resolves every gate the external run cannot ask about.** Nobody is at its prompt, so a gate that stops and waits stops forever and then reports success; put the decision in the prompt rather than permission to skip it. Carry the sandbox facts the run depends on: `codex exec` defaults to `--sandbox read-only`, so file-modification tasks silently no-op unless `--sandbox workspace-write` is passed, and `--sandbox danger-full-access` requires the user's explicit approval; Cursor's `auto` model router is banned because it can silently resolve to a model outside the enforced allowlist.
 6. **What comes back is a claim, not evidence.** An external run's `COMPLETE`, its iteration count, and its exit status are all the run describing itself. Confirm against the artifacts and state it actually wrote before quoting any of it. A lane whose sandbox cannot reach the browser cannot produce a browser number, however confidently it reports one.
@@ -647,7 +647,7 @@ I've enhanced the validation [implemented by @general-purpose] to include RFC 53
 **Trigger:** 15+ tool calls, 5+ files modified, user says "stopping"/"continue later", or session approaching context limits.
 **Action:** Suggest `/speckit:save` → mandate sub-agents save context → compile orchestration decisions summary → preserve task state, pending work, blockers.
 
-After complex multi-agent workflows, save orchestration context via JSON mode: `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"###-folder","sessionSummary":"..."}' specs/###-folder/`
+After complex multi-agent workflows, save orchestration context via JSON mode: `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"###-folder","sessionSummary":"..."}' specs/###-folder/`
 
 #### Context Health Monitoring
 
@@ -814,7 +814,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | Dispatch 5+ agents without a CWB check | Unconstrained parallel dispatch floods the orchestrator's context window, causing irrecoverable "Context limit reached" errors — all work lost despite agents completing successfully | §8 |
 | Use sub-orchestrator delegation | Creates illegal nesting chains under single-hop NDP; run additional waves directly from the top-level orchestrator instead | §3 |
 | Dispatch a single agent for 13+ estimated tool calls | Exceeds system execution limits, returns "Tool execution aborted," loses all progress; split at 12+ | §8 |
-| Improvise custom agent instructions instead of loading the definition file | Every custom agent has a definition file in `.claude/agents/` (this runtime's mirror; the canonical source lives in `.opencode/agents/`) with specialized templates, enforcement rules, and quality standards; "you are @debug" in a prompt loses the actual debugging workflow | §2 |
+| Improvise custom agent instructions instead of loading the definition file | Every custom agent has a definition file in `.claude/agents/` (this runtime's mirror; the canonical source lives in `.skilled/agents/`) with specialized templates, enforcement rules, and quality standards; "you are @debug" in a prompt loses the actual debugging workflow | §2 |
 | Dispatch beyond maximum depth 2 | Nested chains are illegal; if a task can't complete at depth 1, return partial results and escalate to the parent | §2 |
 | Let LEAF agents dispatch sub-agents | Violates NDP; always include the LEAF Enforcement Instruction when dispatching a LEAF agent | §2 |
 | Read 3+ large files back-to-back in main context | Floods the orchestrator's context window; delegate bulk reads to `@context` for a summarized Context Package | §8 |
@@ -834,5 +834,5 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 - `.claude/agents/ai-council.md` — the LEAF for multi-strategy planning and architecture synthesis.
 - `.claude/agents/deep-research.md` — the LEAF for evidence-first iterative investigation.
 - `.claude/agents/deep-review.md` — the LEAF for `/deep:review` iterative code-audit passes.
-- `.opencode/skills/cli-external-orchestration/SKILL.md` — the hub that routes the seven external CLI executor modes, and owns their invariants (§4 Rule 7).
+- `.skilled/skills/cli-external-orchestration/SKILL.md` — the hub that routes the seven external CLI executor modes, and owns their invariants (§4 Rule 7).
 - `repo-rules/delegation-and-orchestration.md` — the orchestrating posture: what a brief must carry, and why a delegate's return is unverified.

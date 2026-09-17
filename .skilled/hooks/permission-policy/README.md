@@ -84,7 +84,7 @@ permission-policy/
 | `system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs` | The adapter. Parses the `PermissionRequest` payload, validates identity, classifies the tool as `write` / `exec` / unknown, delegates to the shared cores, and emits the decision envelope. Fails closed on every error path. |
 | `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` | The shared write-target policy core (`isExemptTargetPath`) that `evaluateWrite` delegates to. Not in this folder. |
 | `hooks/dispatch/lib/dispatch-rule-checks.mjs` | The shared dispatch hard-rule evaluator (`evaluate`, `readHardRules`) that `evaluateExec` delegates to. Hard rules are read from `cli-external-orchestration/cli-opencode/SKILL.md`. Not in this folder. |
-| `.opencode/hooks/shared/hook-flags.cjs` | The shared kill-switch resolver the adapter imports (`isHookEnabled('permission-policy')`). |
+| `.skilled/hooks/shared/hook-flags.cjs` | The shared kill-switch resolver the adapter imports (`isHookEnabled('permission-policy')`). |
 
 The hub entry under `devin/` is a relative symlink into `system-spec-kit`; edit the source, not the symlink.
 
@@ -99,7 +99,7 @@ The policy is enabled by default. Truthy disable values are `1`, `true`, `yes`, 
 | `SYSTEM_PERMISSION_POLICY_DISABLED=1` | Canonical kill-switch. When disabled, the adapter emits `allow` for every request (the explicit escape hatch). The resolver wrapper is fail-closed: a *missing* resolver leaves the policy enabled, not disabled. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -120,7 +120,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 
 ```bash
 printf '%s' '{"hook_event_name":"PermissionRequest","tool_name":"bash","tool_use_id":"t1","session_id":"s1","prompt_id":"p1","tool_input":{"command":"echo hi"}}' | \
-  node .opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
+  node .skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
 echo "exit: $?"
 ```
 
@@ -128,14 +128,14 @@ Expected result: a JSON decision envelope (`{"decision":"approve"|"block",...}`)
 
 ```bash
 printf '%s' 'not-json' | \
-  node .opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
+  node .skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
 ```
 
 Expected result: a `{"decision":"block",...}` envelope with reason "request payload is not valid JSON" (fail-closed on malformed input).
 
 ```bash
 printf '%s' '{"hook_event_name":"PermissionRequest","tool_name":"bash","tool_use_id":"t1","session_id":"s1","prompt_id":"p1","tool_input":{"command":"rm -rf /"}}' | \
-  SYSTEM_PERMISSION_POLICY_DISABLED=1 node .opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
+  SYSTEM_PERMISSION_POLICY_DISABLED=1 node .skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
 ```
 
 Expected result: a `{"decision":"approve",...}` envelope with reason "permission policy is disabled" (kill-switch escape hatch).

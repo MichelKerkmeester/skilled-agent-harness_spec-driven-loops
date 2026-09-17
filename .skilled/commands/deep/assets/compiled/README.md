@@ -16,7 +16,7 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-`.opencode/commands/deep/assets/compiled/` stores the three flattened command contracts used by deep-command injection tooling.
+`.skilled/commands/deep/assets/compiled/` stores the three flattened command contracts used by deep-command injection tooling.
 
 The generated contracts combine maintained command, workflow, skill, reference and agent sources into grep-checkable executor instructions. Maintained source files remain authoritative.
 
@@ -64,7 +64,7 @@ Generated contracts record:
 The compiler named in generated headers is:
 
 ```text
-.opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs
+.skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs
 ```
 
 Regenerate a contract when any maintained source digest changes.
@@ -105,7 +105,7 @@ Check the JSONL structure from the repository root:
 ```bash
 node -e '
 const fs = require("fs");
-const lines = fs.readFileSync(".opencode/commands/deep/assets/compiled/manifest.jsonl", "utf8").trim().split("\n");
+const lines = fs.readFileSync(".skilled/commands/deep/assets/compiled/manifest.jsonl", "utf8").trim().split("\n");
 for (const line of lines) JSON.parse(line);
 console.log(`OK ${lines.length} manifest rows`);
 '

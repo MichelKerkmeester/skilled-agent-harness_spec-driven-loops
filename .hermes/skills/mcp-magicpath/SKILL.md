@@ -20,7 +20,7 @@ Look up **MagicPath** components, projects, teams, design systems, and the live 
 
 > **Design authority (read before any work).** Every MagicPath surface is a design surface: components, themes, CSS variables, fonts, canvas state. This packet therefore loads **`sk-design` unconditionally** and operates under the **design agent persona** resolved from the active runtime's agent directory. The transport retrieves; `sk-design` decides. Neither the persona nor the pairing widens this packet's authority — the transport's own tool surface stays narrower than the persona's and wins on every conflict. Full contract: [`references/design-authority.md`](references/design-authority.md).
 
-> **Transport shape (read first).** This is a `cli` transport manual, not an `mcp` one. The manual command (`node .opencode/bin/magicpath-utcp-manual.cjs`) emits the UTCP manual that lists the fourteen tools; each tool then runs through `node .opencode/bin/magicpath-utcp-exec.cjs`, which shells out to the `magicpath-ai` binary. Code Mode's naming convention is `{manual}.{tool}`, so the callable form is `magicpath.<tool>(...)` (for example `magicpath.search_components`), and discovery names appear dotted as `magicpath.<tool>`. The tool names have no `magicpath_` prefix of their own, so the prefix is applied once, not doubled. Confirm the exact callable with `tool_info` per session and fail closed on drift.
+> **Transport shape (read first).** This is a `cli` transport manual, not an `mcp` one. The manual command (`node .skilled/bin/magicpath-utcp-manual.cjs`) emits the UTCP manual that lists the fourteen tools; each tool then runs through `node .skilled/bin/magicpath-utcp-exec.cjs`, which shells out to the `magicpath-ai` binary. Code Mode's naming convention is `{manual}.{tool}`, so the callable form is `magicpath.<tool>(...)` (for example `magicpath.search_components`), and discovery names appear dotted as `magicpath.<tool>`. The tool names have no `magicpath_` prefix of their own, so the prefix is applied once, not doubled. Confirm the exact callable with `tool_info` per session and fail closed on drift.
 
 > **Calling convention (hard).** Inside `call_tool_chain`, tools are **synchronous**. Call them directly. Do **not** use `await`, do **not** use top-level `await`, and do **not** return a Promise — a returned Promise silently marshals as `{}` with no error. Plain JavaScript only; TypeScript type annotations fail to parse. A failing command does **not** throw. It returns the error text or a JSON error object as an ordinary value, so callers must inspect the returned value rather than rely on `try`/`catch`.
 
@@ -233,7 +233,7 @@ def route_magicpath_resources(request: str):
 
 ### First Step (Always): confirm wiring, then discover
 
-The `magicpath` manual is **already registered** in this repo's `.utcp_config.json` (`call_template_type: "cli"`; the manual command runs `node .opencode/bin/magicpath-utcp-manual.cjs`, which prints the UTCP manual; tool execution runs through `node .opencode/bin/magicpath-utcp-exec.cjs`, which shells out to `magicpath-ai`). Verify it is present (read-only grep), never re-add it, and never edit it. Then discover the live callables through Code Mode before any call:
+The `magicpath` manual is **already registered** in this repo's `.utcp_config.json` (`call_template_type: "cli"`; the manual command runs `node .skilled/bin/magicpath-utcp-manual.cjs`, which prints the UTCP manual; tool execution runs through `node .skilled/bin/magicpath-utcp-exec.cjs`, which shells out to `magicpath-ai`). Verify it is present (read-only grep), never re-add it, and never edit it. Then discover the live callables through Code Mode before any call:
 
 ```javascript
 // Discovery and callable names are the same: magicpath.search_components
@@ -311,7 +311,7 @@ Inspect every returned value. A failing command does not throw; it returns the e
 
 ### ALWAYS
 
-1. **ALWAYS load `sk-design` and adopt the design agent persona before anything else**, on every invocation, without waiting for the request to look design-shaped. Resolve the persona from the ACTIVE runtime's agent directory (`.opencode/agents/design.md`, `.claude/agents/design.md`, and the sibling runtime paths) rather than hardcoding one runtime. Loading is not citing: a route named but not read does not satisfy this. A packet already in context is not re-read.
+1. **ALWAYS load `sk-design` and adopt the design agent persona before anything else**, on every invocation, without waiting for the request to look design-shaped. Resolve the persona from the ACTIVE runtime's agent directory (`.skilled/agents/design.md`, `.claude/agents/design.md`, and the sibling runtime paths) rather than hardcoding one runtime. Loading is not citing: a route named but not read does not satisfy this. A packet already in context is not re-read.
 2. **ALWAYS confirm callables with `tool_info` after registration and before first use.** The `magicpath.<tool>` form is the documented convention; fail closed on any drift from the fourteen documented tools.
 3. **ALWAYS call synchronously inside the `call_tool_chain` body** (no `await`, no top-level `await`, no returned Promise) and use plain JavaScript only; TypeScript type annotations fail to parse.
 4. **ALWAYS inspect the returned value instead of relying on `try`/`catch`.** A failing command returns the error text or a JSON error object as an ordinary value; it does not throw.
@@ -395,7 +395,7 @@ Inspect every returned value. A failing command does not throw; it returns the e
 ### External Tools
 
 - **`magicpath-ai`** (Node CLI, installed version 2.6.1): the external service this transport reaches. Not vendored, not mirrored; must be on PATH.
-- **`magicpath-utcp-exec.cjs`** and **`magicpath-utcp-manual.cjs`** (this repo's `.opencode/bin/`): the wrapper that strips unfilled argument placeholders before shelling out, and the manual emitter. The wrapper emits structured JSON errors (`MISSING_REQUIRED_ARGUMENT`, `CLI_UNAVAILABLE`) so a caller parsing JSON meets one shape whether it succeeded or not.
+- **`magicpath-utcp-exec.cjs`** and **`magicpath-utcp-manual.cjs`** (this repo's `.skilled/bin/`): the wrapper that strips unfilled argument placeholders before shelling out, and the manual emitter. The wrapper emits structured JSON errors (`MISSING_REQUIRED_ARGUMENT`, `CLI_UNAVAILABLE`) so a caller parsing JSON meets one shape whether it succeeded or not.
 
 ### Knowledge Base Dependencies
 

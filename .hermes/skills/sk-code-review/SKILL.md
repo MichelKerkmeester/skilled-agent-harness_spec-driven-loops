@@ -226,7 +226,7 @@ def detect_surface_evidence(task, workspace_files=None, changed_files=None) -> s
     text = _task_text(task)
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
-    if ".opencode/" in files or keyword_present("jsonc", text) or keyword_present("mcp", text):
+    if ".skilled/" in files or ".opencode/" in files or keyword_present("jsonc", text) or keyword_present("mcp", text):
         return "sk-code:code-opencode"
     if any(keyword_present(term, text) for term in ["frontend", "web", "css", "dom", "browser"]) or any(
         marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
@@ -454,7 +454,7 @@ Downstream automation parses this final line via exact string match — do not v
 
 ## 7. INTEGRATION POINTS
 
-- Primary review baseline for `@review` agents in `.opencode/agents/review.md`.
+- Primary review baseline for `@review` agents in `.skilled/agents/review.md`.
 - Referenced by review-dispatch steps in `spec_kit` and `create` command YAML workflows.
 - Complements, but does not replace, sibling ownership: the surface skills (`code-webflow` / `code-opencode`) apply fixes and own the implement → debug → verify workflow doctrine, and `code-quality` owns author-side gates.
 
@@ -466,7 +466,7 @@ Start with `references/quick-reference.md`, then load task-specific doctrine, as
 
 ### Manual Testing Playbook
 
-Manual testing scenarios for the `code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Run scenarios via `bash .opencode/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.
+Manual testing scenarios for the `code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Run scenarios via `bash .skilled/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.
 
 ---
 
@@ -484,7 +484,7 @@ signature         = sha256(commit_subject + "\u001f" + diff_content_hash)
 Where `commit_subject` is the first line of `git log <base-ref>...HEAD --format=%s` (latest commit subject).
 
 **Cache storage:**
-- Path: `.opencode/.code-review-cache/<repo-ref>.jsonl`
+- Path: `.skilled/.code-review-cache/<repo-ref>.jsonl`
 - `<repo-ref>` is computed as `sha256(git remote get-url origin).slice(0, 12)`
 - Each line is a JSON object: `{"signature": "<sha256-hex>", "timestamp": "<ISO-8601>", "prev_sha": "<commit-sha>"}`
 - Retention: keep last **100 entries** per repo-ref, prune older entries on write

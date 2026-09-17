@@ -42,7 +42,7 @@ development_philosophy:
   mandate: "Ask for approval at the category/scenario plan and root-playbook preview checkpoints"
 
 runtime_agent_path_resolution:
-  default: .opencode/agents
+  default: .skilled/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────
@@ -135,7 +135,7 @@ documentation_level:
   note: "Testing playbook package creation typically needs verification because it spans root and per-feature docs"
 
 defaults:
-  skill_path: .opencode/skills/
+  skill_path: .skilled/skills/
   playbook_dirname: manual-testing-playbook
   execution_mode: :confirm
   dqi_hard_minimum: 75
@@ -155,17 +155,17 @@ operation_router:
       - manual-testing-playbook/category-name/scenario-name.md
 
 reference_sources:
-  specific_creation: .opencode/skills/sk-doc/sk-create-manual-testing-playbook/references/README.md
-  core_standards: .opencode/skills/sk-doc/shared/references/core-standards.md
-  validation: .opencode/skills/sk-doc/shared/references/validation.md
+  specific_creation: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/README.md
+  core_standards: .skilled/skills/sk-doc/shared/references/core-standards.md
+  validation: .skilled/skills/sk-doc/shared/references/validation.md
 
 template_sources:
-  root_playbook: .opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md
-  feature_file: .opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md
+  root_playbook: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md
+  feature_file: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md
 
 validation_scripts:
-  validate_document: .opencode/skills/sk-doc/scripts/validate_document.py
-  extract_structure: .opencode/skills/sk-doc/scripts/extract_structure.py
+  validate_document: .skilled/skills/sk-doc/scripts/validate_document.py
+  extract_structure: .skilled/skills/sk-doc/scripts/extract_structure.py
 
 quality_standards:
   template_first: required
@@ -187,8 +187,8 @@ quality_standards:
     - subagent_utilization_ledger.md
     - snippets/
   validation_pipeline:
-    - "python3 .opencode/skills/sk-doc/scripts/validate_document.py [playbook_root]/manual-testing-playbook.md"
-    - "python3 .opencode/skills/sk-doc/scripts/extract_structure.py [playbook_root]/manual-testing-playbook.md"
+    - "python3 .skilled/skills/sk-doc/scripts/validate_document.py [playbook_root]/manual-testing-playbook.md"
+    - "python3 .skilled/skills/sk-doc/scripts/extract_structure.py [playbook_root]/manual-testing-playbook.md"
 
 gate_logic:
   hard:
@@ -251,7 +251,7 @@ context_loading:
       - "Read {spec_path}/handover.md when present and recent"
       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
-      - "Only for a still-missing named gap, run the packet-scoped context recipe from .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+      - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
   behavior:
     memory_choice_A: "Load handover.md plus implementation-summary.md _memory.continuity for spec_path; sets memory_loaded: handover"
@@ -295,9 +295,9 @@ workflow:
     - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
     templates:
     # Use Level 2 templates as default for testing playbook package creation
-    - .opencode/skills/system-spec-kit/templates/examples/level-2/spec.md
-    - .opencode/skills/system-spec-kit/templates/examples/level-2/plan.md
-    - .opencode/skills/system-spec-kit/templates/examples/level-2/tasks.md
+    - .skilled/skills/system-spec-kit/templates/examples/level-2/spec.md
+    - .skilled/skills/system-spec-kit/templates/examples/level-2/plan.md
+    - .skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md
     outputs:
     - spec_path_resolved
     - spec.md: created_or_updated
@@ -384,7 +384,7 @@ workflow:
     - Create or update implementation-summary.md with timestamp
     - Index implementation-summary.md for immediate search availability
     tool_invocation:
-      command: 'Read(".opencode/skills/system-spec-kit/SKILL.md")'
+      command: 'Read(".skilled/skills/system-spec-kit/SKILL.md")'
       note: "Activate context saving via memory skill"
     outputs:
     - implementation_summary: "[spec_path]/implementation-summary.md"
@@ -399,9 +399,9 @@ workflow:
 
     write_continuity:
       purpose: "Refresh the packet continuity frontmatter and generated metadata"
-      writer: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
+      writer: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
       invocation: |
-        node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
+        node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
           /tmp/save-context-data-<session-id>.json [spec_path]
       critical_note: "The writer is the whole write: it keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it. The target is the canonical spec packet; standalone memory/*.md files are retired and the runtime rejects them."
       when: "Immediately after implementation-summary.md is written to disk"

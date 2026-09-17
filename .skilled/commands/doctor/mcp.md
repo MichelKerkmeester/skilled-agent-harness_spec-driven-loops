@@ -21,9 +21,9 @@ Load the presentation contract before showing startup questions, setup dashboard
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/doctor/assets/doctor-mcp-presentation.txt` |
-| Install workflow | `.opencode/commands/doctor/assets/doctor-mcp-install.yaml` |
-| Debug workflow | `.opencode/commands/doctor/assets/doctor-mcp-debug.yaml` |
+| Presentation source of truth | `.skilled/commands/doctor/assets/doctor-mcp-presentation.txt` |
+| Install workflow | `.skilled/commands/doctor/assets/doctor-mcp-install.yaml` |
+| Debug workflow | `.skilled/commands/doctor/assets/doctor-mcp-debug.yaml` |
 
 ---
 
@@ -41,13 +41,13 @@ Load the presentation contract before showing startup questions, setup dashboard
 
 ## 4. EXECUTION TARGETS
 
-1. Read `.opencode/commands/doctor/assets/doctor-mcp-presentation.txt`.
+1. Read `.skilled/commands/doctor/assets/doctor-mcp-presentation.txt`.
 2. Parse the first positional token from `$ARGUMENTS` as `sub_action`.
 3. If `sub_action` is missing, ask the presentation contract's sub-action prompt and wait.
 4. If `sub_action` is not `install` or `debug`, render the presentation contract's unknown-sub-action failure and stop.
 5. Bind the workflow asset:
-   - `install` -> `.opencode/commands/doctor/assets/doctor-mcp-install.yaml`
-   - `debug` -> `.opencode/commands/doctor/assets/doctor-mcp-debug.yaml`
+   - `install` -> `.skilled/commands/doctor/assets/doctor-mcp-install.yaml`
+   - `debug` -> `.skilled/commands/doctor/assets/doctor-mcp-debug.yaml`
 6. Parse remaining flags using only the selected sub-action schema:
    - `install`: `--server <name>`, `--runtime <name>`
    - `debug`: `--fix`, `--server <name>`
@@ -59,7 +59,7 @@ Load the presentation contract before showing startup questions, setup dashboard
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/doctor/assets/doctor-mcp-presentation.txt`:
+The following content lives only in `.skilled/commands/doctor/assets/doctor-mcp-presentation.txt`:
 
 - Sub-action menu, accepted answers, and cancellation display.
 - Unknown-sub-action and cross-sub-action flag errors.

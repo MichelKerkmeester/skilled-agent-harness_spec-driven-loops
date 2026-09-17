@@ -262,7 +262,7 @@ Journal emission is orchestrator-only (ADR-001) — the target agent never write
 
 **Resume caveat (current release):** sessions support only `new` lineage today. Every `/deep:agent-improvement` invocation starts a fresh session id and generation 1 — `resume`/`restart`/`fork`/`completed-continue` have no shipped runtime wiring despite appearing in earlier drafts. To continue evaluating an agent, archive the prior session folder and re-invoke the command; the reducer never carries ancestry across sessions.
 
-Static benchmark assets (profile, fixtures, materializer, runner) ship with the skill under `assets/model-benchmark/` and `scripts/shared/materialize-benchmark-fixtures.cjs` / `scripts/model-benchmark/run-benchmark.cjs`. Output location depends on the caller: the static `default.json` regression check embedded in every `/deep:agent-improvement` iteration (Lane A) writes spec-locally to `{spec_folder}/improvement/benchmark-outputs/`, while the standalone `/deep:model-benchmark` command (Lane B) writes to this skill's own benchmark tree (`.opencode/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/`), keyed by the operator-supplied `run_label`. `scripts/shared/mutation-coverage.cjs` tracks explored/exhausted mutation types with a signature-based dedup (`DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1` bypasses it); `scripts/agent-improvement/trade-off-detector.cjs` blocks promotion on Pareto-dominated candidates; `scripts/agent-improvement/candidate-lineage.cjs` (disabled by default) and `scripts/agent-improvement/benchmark-stability.cjs` (advisory-only weight recommendations) round out the coverage/trajectory tooling. The reducer (`scripts/shared/reduce-state.cjs`) replays `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` on every refresh into `journalSummary`, `candidateLineage`, and `mutationCoverage` registry fields, degrading gracefully to `null` when an artifact is missing.
+Static benchmark assets (profile, fixtures, materializer, runner) ship with the skill under `assets/model-benchmark/` and `scripts/shared/materialize-benchmark-fixtures.cjs` / `scripts/model-benchmark/run-benchmark.cjs`. Output location depends on the caller: the static `default.json` regression check embedded in every `/deep:agent-improvement` iteration (Lane A) writes spec-locally to `{spec_folder}/improvement/benchmark-outputs/`, while the standalone `/deep:model-benchmark` command (Lane B) writes to this skill's own benchmark tree (`.skilled/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/`), keyed by the operator-supplied `run_label`. `scripts/shared/mutation-coverage.cjs` tracks explored/exhausted mutation types with a signature-based dedup (`DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1` bypasses it); `scripts/agent-improvement/trade-off-detector.cjs` blocks promotion on Pareto-dominated candidates; `scripts/agent-improvement/candidate-lineage.cjs` (disabled by default) and `scripts/agent-improvement/benchmark-stability.cjs` (advisory-only weight recommendations) round out the coverage/trajectory tooling. The reducer (`scripts/shared/reduce-state.cjs`) replays `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` on every refresh into `journalSummary`, `candidateLineage`, and `mutationCoverage` registry fields, degrading gracefully to `null` when an artifact is missing.
 
 Full stop-reason tables, the journal event-type list, the mutation-signature formula, dimension-trajectory vs. plateau distinctions, and orchestrator/reducer boundary ownership are documented in `references/shared/runtime-truth-contracts.md`.
 
@@ -278,7 +278,7 @@ Full stop-reason tables, the journal event-type list, the mutation-signature for
 - Preserve repeatability evidence when benchmark claims are made
 - Prefer the simpler candidate when scores tie
 - Keep benchmark evidence separate from mirror-drift packaging work
-- Require integration evidence to name each expected runtime mirror path explicitly (`.claude/agents`, `.opencode/agents`, plus any declared extra mirrors) before trusting `integrationGate`
+- Require integration evidence to name each expected runtime mirror path explicitly (`.claude/agents`, `.skilled/agents`, plus any declared extra mirrors) before trusting `integrationGate`
 
 ### ⛔ NEVER
 
@@ -308,7 +308,7 @@ Core references: `README.md`, `references/shared/quick-reference.md`, `reference
 
 - `/deep:agent-improvement` initializes and runs the Lane A bounded workflow
 - `/deep:model-benchmark` initializes and runs the Lane B model-benchmark workflow
-- `.opencode/agents/deep-improvement.md` provides the mutator surface for deep-improvement runs
+- `.skilled/agents/deep-improvement.md` provides the mutator surface for deep-improvement runs
 - `sk-doc` validators enforce package-shape, README, and markdown document consistency
 - `system-spec-kit` packet validation proves phase records remain truthful
 

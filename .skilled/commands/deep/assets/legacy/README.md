@@ -16,7 +16,7 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-`.opencode/commands/deep/assets/legacy/` stores three fallback command bodies: `deep/ai-council`, `deep/research` and `deep/review`.
+`.skilled/commands/deep/assets/legacy/` stores three fallback command bodies: `deep/ai-council`, `deep/research` and `deep/review`.
 
 Each body acts as a thin router. It resolves command setup and selects workflow YAML while leaving iteration dispatch, artifact writes and convergence handling to the selected workflow.
 
@@ -95,9 +95,9 @@ Compiled contracts live in the sibling `compiled/` folder. Their maintained sour
 Confirm the expected files exist from the repository root:
 
 ```bash
-test -f .opencode/commands/deep/assets/legacy/deep-ai-council.body.md
-test -f .opencode/commands/deep/assets/legacy/deep-research.body.md
-test -f .opencode/commands/deep/assets/legacy/deep-review.body.md
+test -f .skilled/commands/deep/assets/legacy/deep-ai-council.body.md
+test -f .skilled/commands/deep/assets/legacy/deep-research.body.md
+test -f .skilled/commands/deep/assets/legacy/deep-review.body.md
 ```
 
 Expected result: every command exits with status `0`.
@@ -105,10 +105,10 @@ Expected result: every command exits with status `0`.
 Validate command references with the shared checker:
 
 ```bash
-node .opencode/commands/scripts/validate-command-references.cjs
+node .skilled/commands/scripts/validate-command-references.cjs
 ```
 
-Expected result: the checker reports the repository-wide resolution state of command-asset references. It scans every command family under `.opencode/commands/`, so an unresolved reference anywhere in that tree — including trees outside these assets, such as `design/` — appears in its output and exit status.
+Expected result: the checker reports the repository-wide resolution state of command-asset references. It scans every command family under `.skilled/commands/`, so an unresolved reference anywhere in that tree — including trees outside these assets, such as `design/` — appears in its output and exit status.
 
 ---
 

@@ -6,7 +6,7 @@
 # across all detected runtimes.
 #
 # Usage:
-#   bash .opencode/commands/mcp_doctor/scripts/mcp-doctor.sh [OPTIONS]
+#   bash .skilled/commands/mcp_doctor/scripts/mcp-doctor.sh [OPTIONS]
 #
 # Options:
 #   --help              Show this help message
@@ -40,7 +40,7 @@ show_help() {
   cat <<'HELP'
 MCP Doctor — Unified MCP Diagnostic Command
 
-Usage: bash .opencode/scripts/mcp-doctor.sh [OPTIONS]
+Usage: bash .skilled/scripts/mcp-doctor.sh [OPTIONS]
 
 Options:
   --help              Show this help message
@@ -138,10 +138,10 @@ fi
 # ── Code Mode ─────────────────────────────────────────────────
 diagnose_code_mode() {
   local srv="code_mode"
-  local skill_dir="$PROJECT_ROOT/.opencode/skills/mcp-code-mode"
+  local skill_dir="$PROJECT_ROOT/.skilled/skills/mcp-code-mode"
   local dist_entry="$skill_dir/mcp-server/dist/index.js"
-  local resolver="$PROJECT_ROOT/.opencode/bin/lib/node-engine-resolver.cjs"
-  local launcher="$PROJECT_ROOT/.opencode/bin/mcp-code-mode-launcher.cjs"
+  local resolver="$PROJECT_ROOT/.skilled/bin/lib/node-engine-resolver.cjs"
+  local launcher="$PROJECT_ROOT/.skilled/bin/mcp-code-mode-launcher.cjs"
   local manifest="$skill_dir/mcp-server/package.json"
   local utcp_config="$PROJECT_ROOT/.utcp_config.json"
   local needs_fix=false

@@ -49,7 +49,7 @@ Pre-bound setup schema:
 ```yaml
 PRE-BOUND SETUP ANSWERS:
   operation: readme
-  target_path: .opencode/skills/system-spec-kit
+  target_path: .skilled/skills/system-spec-kit
   readme_type: skill
   project_name: semantic-search-mcp
   platforms: all
@@ -88,7 +88,7 @@ README questions (if operation = readme)
 
 Q_R1. Target Path (if not provided)
 Where should the README be created?
-Examples: .opencode/skills/my-skill, src/components, ./
+Examples: .skilled/skills/my-skill, src/components, ./
 
 Q_R2. README Type (if not provided via --type)
 A) Project - Main project documentation

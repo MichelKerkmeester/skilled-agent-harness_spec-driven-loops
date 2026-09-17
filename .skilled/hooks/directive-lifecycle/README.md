@@ -101,7 +101,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR=<path>` | Overrides the durable store directory. |
 | `SPECKIT_DIRECTIVE_LIFECYCLE_BOUNDARY_TARGET=<path>` | Overrides the compiled boundary target the Spec-Kit bridge spawns (must exist). |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -123,7 +123,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 Build the advisor package (produces the compiled boundary target the bridge spawns):
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 ```
 
 Expected result: build succeeds and `dist/hooks/claude/directive-lifecycle-boundary.js` is produced.
@@ -131,7 +131,7 @@ Expected result: build succeeds and `dist/hooks/claude/directive-lifecycle-bound
 Run the advisor package test suite (covers the directive-lifecycle decision core and store):
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/runtime test -- --reporter=default
+npm --prefix .skilled/skills/system-skill-advisor/runtime test -- --reporter=default
 ```
 
 Expected result: all tests pass.
@@ -140,7 +140,7 @@ Smoke-test the canonical boundary adapter (advances the store, exits 0):
 
 ```bash
 printf '%s' '{"session_id":"smoke","boundary":"startup"}' | \
-  node .opencode/skills/system-skill-advisor/runtime/dist/hooks/claude/directive-lifecycle-boundary.js
+  node .skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/directive-lifecycle-boundary.js
 echo "exit: $?"
 ```
 

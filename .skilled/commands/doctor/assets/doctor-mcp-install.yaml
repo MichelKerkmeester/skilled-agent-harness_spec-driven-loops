@@ -40,9 +40,9 @@ upstream_assets:
     spec: "spec.md"
     decision_record: "decision-record.md"
   install_guides:
-    code_mode: ".opencode/install-guides/MCP - Code Mode.md"
+    code_mode: ".skilled/install-guides/MCP - Code Mode.md"
   scripts:
-    health_check: ".opencode/commands/doctor/scripts/mcp-doctor.sh"
+    health_check: ".skilled/commands/doctor/scripts/mcp-doctor.sh"
   pass_policy:
     prerequisite_check_required: true
     user_approval_per_server: true
@@ -89,7 +89,7 @@ arguments:
 # REFERENCE: INSTALL GUIDES (read these during workflow)
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  code_mode: .opencode/install-guides/MCP - Code Mode.md
+  code_mode: .skilled/install-guides/MCP - Code Mode.md
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: SERVER DEFINITIONS
@@ -98,7 +98,7 @@ servers:
   code_mode:
     label: "Code Mode"
     runtime: node
-    skill_dir: ".opencode/skills/mcp-code-mode"
+    skill_dir: ".skilled/skills/mcp-code-mode"
     entry_point: "mcp-server/dist/index.js"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # installer: writes config + npm install
@@ -124,28 +124,28 @@ servers:
 cli_skill_diagnostics:
   mcp-figma:
     label: "Figma (CLI)"
-    skill_dir: ".opencode/skills/mcp-tooling/mcp-figma"
+    skill_dir: ".skilled/skills/mcp-tooling/mcp-figma"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # installer: npm/git install of figma-ds-cli
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; no install/connect/patch
-    install_guide: ".opencode/skills/mcp-tooling/mcp-figma/INSTALL-GUIDE.md"
+    install_guide: ".skilled/skills/mcp-tooling/mcp-figma/INSTALL-GUIDE.md"
   mcp-chrome-devtools:
     label: "Chrome DevTools (CLI)"
-    skill_dir: ".opencode/skills/mcp-tooling/mcp-chrome-devtools"
+    skill_dir: ".skilled/skills/mcp-tooling/mcp-chrome-devtools"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # installer: npm install + PATH/profile edits
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; no install
-    install_guide: ".opencode/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md"
+    install_guide: ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md"
   mcp-click-up:
     label: "ClickUp (CLI)"
-    skill_dir: ".opencode/skills/mcp-tooling/mcp-click-up"
+    skill_dir: ".skilled/skills/mcp-tooling/mcp-click-up"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # installer: pipx/pip install of cupt
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; token presence check
-    install_guide: ".opencode/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md"
+    install_guide: ".skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md"
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: CONFIG TEMPLATES
@@ -272,11 +272,11 @@ workflow:
     name: "Verify"
     purpose: "Run full diagnostic to confirm everything works"
     activities:
-      - "Run: bash .opencode/commands/doctor/scripts/mcp-doctor.sh --json"
+      - "Run: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json"
       - "Parse JSON results"
       - "Compare with step_2 assessment: what improved"
       - "Report any remaining issues"
-    command: "bash .opencode/commands/doctor/scripts/mcp-doctor.sh --json"
+    command: "bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json"
     on_remaining_failures:
       action: "Suggest /doctor:mcp debug for remaining issues"
     outputs:

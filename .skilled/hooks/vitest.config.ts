@@ -7,7 +7,7 @@ import path from 'node:path';
 import { defineConfig } from 'vitest/config';
 
 const REPO_ROOT = path.resolve(import.meta.dirname, '..', '..');
-const OPENCODE_ROOT = path.join(REPO_ROOT, '.opencode');
+const OPENCODE_ROOT = path.join(REPO_ROOT, '.skilled');
 
 // Hook sources load through runtime symlinks, so their relative imports are written
 // against the link's base; the alias resolves those same imports from the real tree.
@@ -16,7 +16,7 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: /^(\.\.\/)+\.opencode\//,
+        find: /^(\.\.\/)+\.(?:skilled|opencode)\//,
         replacement: `${OPENCODE_ROOT}/`,
       },
     ],

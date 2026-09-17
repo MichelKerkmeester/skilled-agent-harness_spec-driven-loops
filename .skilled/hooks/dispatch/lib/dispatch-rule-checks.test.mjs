@@ -107,16 +107,16 @@ test('other checks discriminate correctly', () => {
 test('every runtime with a preflight adapter has it registered', () => {
   const REPO = path.resolve(HERE, '../../../..');
   const adapters = {
-    claude: '.opencode/hooks/dispatch/claude/dispatch-preflight-lint.mjs',
-    codex: '.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs',
-    devin: '.opencode/hooks/dispatch/devin/dispatch-preflight-lint.mjs',
-    cursor: '.opencode/hooks/dispatch/cursor/dispatch-preflight-lint.mjs',
+    claude: '.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs',
+    codex: '.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs',
+    devin: '.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs',
+    cursor: '.skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs',
   };
   for (const [runtime, rel] of Object.entries(adapters)) {
     assert.ok(fs.existsSync(path.join(REPO, rel)), `${runtime} preflight adapter missing: ${rel}`);
   }
   const registry = JSON.parse(fs.readFileSync(
-    path.join(REPO, '.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json'), 'utf8'));
+    path.join(REPO, '.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json'), 'utf8'));
   const entry = registry.hooks.find((h) => h.id === 'dispatch-preflight-lint');
   assert.ok(entry, 'dispatch-preflight-lint is absent from the hook registry');
   for (const runtime of Object.keys(adapters)) {
@@ -125,7 +125,7 @@ test('every runtime with a preflight adapter has it registered', () => {
     assert.equal(bindings[0].script, adapters[runtime], `${runtime} binding points elsewhere`);
   }
   // OpenCode enforces in-process rather than through a registered command hook.
-  const ocPlugin = fs.readFileSync(path.join(REPO, '.opencode/plugins/cli-dispatch-audit.js'), 'utf8');
+  const ocPlugin = fs.readFileSync(path.join(REPO, '.skilled/plugins/cli-dispatch-audit.js'), 'utf8');
   assert.match(ocPlugin, /tool\.execute\.before/, 'the opencode plugin has no pre-execution hook');
 });
 

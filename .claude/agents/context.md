@@ -54,11 +54,11 @@ This agent is LEAF-only and read-only. Nested sub-agent dispatch and file mutati
 | `List` | Codebase | Directory listing | Inspect known directories without guessing file names |
 | `Glob` | Codebase | File discovery by pattern | Find files by name, extension, or scoped path pattern |
 | `Grep` | Codebase | Exact text/code pattern search | Find symbols, literals, function calls, imports, or known strings |
-| `Read` on `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` | Retrieval | Trigger phrase matching | Surface packets whose authors declared a phrase matching the request |
+| `Read` on `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | Retrieval | Trigger phrase matching | Surface packets whose authors declared a phrase matching the request |
 | `Grep` with the recipes in `retrieval-conventions.md` | Retrieval | Free-text evidence over spec docs and skill docs | Find a phrase anywhere in the corpus when continuity leaves gaps |
 | `Glob` on `specs/<track>/<packet>/` | Retrieval | Packet inventory | List the documents a relevant spec folder actually holds |
 
-**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Bash is denied for this agent, so run the ripgrep recipes from `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` through the Grep tool and read `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` directly. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Bash is denied for this agent, so run the ripgrep recipes from `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` through the Grep tool and read `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` directly. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ### Denied Capability Guard
 
@@ -150,7 +150,7 @@ Every exploration uses the layers needed for a complete answer within scope. If 
 - Inspect `handover.md` when present; it is the first continuity input for interrupted work.
 - Read `_memory.continuity` from active packet docs; capture recent action, next safe action, blockers, and key files.
 - Read relevant packet docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`) for canonical state.
-- Read `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` and match the request against its declared trigger phrases to surface prior work.
+- Read `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and match the request against its declared trigger phrases to surface prior work.
 - Run a ripgrep recipe from `retrieval-conventions.md` through the Grep tool only when packet-local continuity leaves gaps or broader history is needed.
 
 **Output**: Packet-local continuity summary plus matching packets with titles, trigger matches, and brief findings.
@@ -173,7 +173,7 @@ Every exploration uses the layers needed for a complete answer within scope. If 
 **Tools**: `Grep` running the recipes in `retrieval-conventions.md`, plus `Glob` and `Read`.
 
 **Strategy**:
-- Run the path-only recipe for prior decisions, cross-packet lessons and historical evidence: `rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'phrase' specs .opencode`.
+- Run the path-only recipe for prior decisions, cross-packet lessons and historical evidence: `rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'phrase' specs .skilled`.
 - Add `-C 2` and `--json` for bounded context when the caller asks for broad background, and rank the parsed hits yourself. Ripgrep returns matches, never relevance.
 - Narrow by positional path (`specs/<track>/<NNN-name>`) to inventory one spec folder.
 - Exit `1` is a clean no-hit and exit `2` or higher is a broken invocation. Never report the second as the first.
@@ -412,9 +412,9 @@ Use exact tools when the query gives exact evidence handles. When it does not, G
 ## 11. RELATED RESOURCES
 
 - `.claude/agents/orchestrate.md` — the orchestrator that routes ALL exploration through @context (Rules 1 and 4).
-- `.opencode/skills/system-spec-kit/SKILL.md` — the continuity-ladder discipline behind the Query Routing Matrix.
-- `.opencode/commands/speckit/plan.md` — dispatches @context to ground a spec folder before planning.
-- `.opencode/commands/create/agent.md` — dispatches @context before scaffolding a new agent.
+- `.skilled/skills/system-spec-kit/SKILL.md` — the continuity-ladder discipline behind the Query Routing Matrix.
+- `.skilled/commands/speckit/plan.md` — dispatches @context to ground a spec folder before planning.
+- `.skilled/commands/create/agent.md` — dispatches @context before scaffolding a new agent.
 
 ---
 

@@ -2,7 +2,7 @@
 # ─────────────────────────────────────────────────────────────────
 # route-validate.sh
 # ─────────────────────────────────────────────────────────────────
-# CI assertion script for .opencode/commands/doctor/_routes.yaml.
+# CI assertion script for .skilled/commands/doctor/_routes.yaml.
 # Validates the canonical route manifest against the on-disk YAML
 # assets, the router's frontmatter allowed-tools union, and
 # internal consistency rules.
@@ -14,8 +14,8 @@
 #   3  — missing dependency (python3 with PyYAML)
 #
 # Usage:
-#   bash .opencode/commands/doctor/scripts/route-validate.sh
-#   bash .opencode/commands/doctor/scripts/route-validate.sh --self-test
+#   bash .skilled/commands/doctor/scripts/route-validate.sh
+#   bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 #
 # Dependencies:
 #   - python3 with PyYAML (universally available on macOS / Linux)
@@ -104,7 +104,7 @@ routes:
     mcp_tools: []
     trigger_phrases: ["fixture missing script"]
     script_invocations:
-      - 'node .opencode/commands/doctor/scripts/does-not-exist-fixture.cjs'
+      - 'node .skilled/commands/doctor/scripts/does-not-exist-fixture.cjs'
 EOF
 
   # Fixture 5: target-set parity (assertion J) — target name absent from speckit.md/presentation

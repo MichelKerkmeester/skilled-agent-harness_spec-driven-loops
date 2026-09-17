@@ -20,20 +20,20 @@ operating_mode:
 
 speckit_retrieval_doctor_invariant: |
   This doctor is read-only by contract and needs no background service. It treats the
-  generated trigger index at .opencode/skills/system-spec-kit/runtime/data/trigger-index.json as
+  generated trigger index at .skilled/skills/system-spec-kit/runtime/data/trigger-index.json as
   the artifact it diagnoses but never regenerates. Regeneration is owned by the
   /doctor:update orchestrator, which runs the generator over the whole corpus in one pass.
 
 upstream_assets:
   contract: "local command design contract"
-  conventions: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
-  index_path: ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json"
-  lookup_command: 'node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"'
+  conventions: ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+  index_path: ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+  lookup_command: 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"'
   lookup_policy: "The lookup reads a file and exits. There is no socket to probe and no daemon to start. Exit 0 = at least one candidate, exit 1 = clean no-hit reported as an empty result, exit 2 or higher = an execution error reported with stderr attached and never as a no-hit."
-  generator_command: "node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+  generator_command: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
   files:
     acceptance: "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md"  # the bar the index and lookup were accepted against
-    latency_report: ".opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/latency-report.json"  # cold-lookup budget evidence
+    latency_report: ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/latency-report.json"  # cold-lookup budget evidence
   pass_policy:
     lookup_exit_class: "0 or 1 on the probe prompt and on every prompt in fixtures/prompt-set.json; 2 or higher fails"  # the lookup contract, never a result count
     cold_lookup_p95_budget_ms: 200  # the budget the latency report was accepted under
@@ -67,15 +67,15 @@ mutation_boundaries:
     - "<packet_scratch>/doctor-speckit-retrieval-report.*.md"  # the diagnostic report only
     - "<packet_scratch>/doctor-speckit-retrieval-state.*.json"  # the diagnostic state log only
   forbidden_targets:
-    - ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json"  # never regenerate from the doctor
+    - ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"  # never regenerate from the doctor
     - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor speckit-retrieval
     - "<active-spec-folder>/description.json"  # spec metadata belongs to the continuity writer
     - "<active-spec-folder>/graph-metadata.json"  # graph metadata is not a doctor target
-    - ".opencode/skills/**/SKILL.md"  # never edit skill bodies
-    - ".opencode/skills/**/graph-metadata.json"
-    - ".opencode/agents/**/*.md"
-    - ".opencode/commands/doctor/*.md"
-    - ".opencode/commands/doctor/assets/doctor_*.yaml"
+    - ".skilled/skills/**/SKILL.md"  # never edit skill bodies
+    - ".skilled/skills/**/graph-metadata.json"
+    - ".skilled/agents/**/*.md"
+    - ".skilled/commands/doctor/*.md"
+    - ".skilled/commands/doctor/assets/doctor_*.yaml"
   enforcement: "This command is READ-ONLY by contract. No mutation phases exist in this YAML. Any attempted write halts with STATUS=FAIL and ERROR='confirm-mode-mutation-violation'."
   validator:
     name: validate_targets
@@ -150,16 +150,16 @@ workflow:
   phase_0_discovery:
     purpose: Confirm the index exists, the lookup runs and a ripgrep recipe resolves; capture baseline
     activities:
-      - "Bash: test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json (index present)"
-      - "Bash: stat -f '%m %z' .opencode/skills/system-spec-kit/runtime/data/trigger-index.json (mtime + size)"
+      - "Bash: test -f .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (index present)"
+      - "Bash: stat -f '%m %z' .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (mtime + size)"
       - "Run upstream_assets.lookup_command with a known probe prompt; record exit status, indexHash, manifestHash and candidatePhraseCount"
-      - "Run the lookup once per prompt in .opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/prompt-set.json; any exit of 2 or higher is the lookup_exit_error signal"
-      - "Bash: compare the manifestHash field of .opencode/skills/system-spec-kit/runtime/data/trigger-index.json with the manifestHash fields of .opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json, generation-diagnostics.json and phrase-variants.json; any unequal value is the committed_pair_mismatch signal, since one generator run writes all four"
-      - "Optional, when the operator asks about latency: node .opencode/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs --json --out <packet scratch path>; exit 1 means the cold-start budget was exceeded. Never write the committed fixtures/latency-report.json from a diagnostic run"
+      - "Run the lookup once per prompt in .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/prompt-set.json; any exit of 2 or higher is the lookup_exit_error signal"
+      - "Bash: compare the manifestHash field of .skilled/skills/system-spec-kit/runtime/data/trigger-index.json with the manifestHash fields of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json, generation-diagnostics.json and phrase-variants.json; any unequal value is the committed_pair_mismatch signal, since one generator run writes all four"
+      - "Optional, when the operator asks about latency: node .skilled/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs --json --out <packet scratch path>; exit 1 means the cold-start budget was exceeded. Never write the committed fixtures/latency-report.json from a diagnostic run"
       - "Run the path-only recipe from retrieval-conventions.md section 2.2 for a known phrase, with the exact flags that section lists (--no-config --hidden and the five exclusion globs); record exit status and path count"
       - "Run the same recipe once more without --no-config; a different path set is the ripgrep_ambient_config signal"
       - "Re-run that recipe with the roots set to a path that does not exist; confirm exit 2 with stderr, proving the wrapper can tell a broken invocation from a clean miss"
-      - "Gate 1 reach, per runtime: Bash: grep -c lookup-trigger-index.mjs AGENTS.md (claude, via the CLAUDE.md symlink; pi, which loads AGENTS.md from the working directory per its resource loader); node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check (codex through .codex/AGENTS.md; cursor and devin through .cursor/rules/skill-routing.md). Any missing count or a non-zero exit is the gate1_instruction_parity signal"
+      - "Gate 1 reach, per runtime: Bash: grep -c lookup-trigger-index.mjs AGENTS.md (claude, via the CLAUDE.md symlink; pi, which loads AGENTS.md from the working directory per its resource loader); node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check (codex through .codex/AGENTS.md; cursor and devin through .cursor/rules/skill-routing.md). Any missing count or a non-zero exit is the gate1_instruction_parity signal"
       - "Interactive gate: before_phase_1_analysis"
     outputs:
       - index_present: true|false
@@ -186,7 +186,7 @@ workflow:
       - "Sample up to 5 packets flagged as staleness candidates"
       - "For each sample, read its frontmatter trigger_phrases and compare against the phrases the index holds for that path (read-only)"
       - "For each sample, count <!-- ANCHOR:id --> openers against <!-- /ANCHOR:id --> closers; an unmatched pair is the anchor_marker_drift signal"
-      - "Read the phraseQuality bucket of .opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; report every non-zero negative class with its phrase and owning-document counts as the corpus_pollution signal, whether or not any packet is stale"
+      - "Read the phraseQuality bucket of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; report every non-zero negative class with its phrase and owning-document counts as the corpus_pollution signal, whether or not any packet is stale"
       - "Aggregate signals into a staleness_classes count map"
       - "Interactive gate: before_phase_2_recommendation"
     outputs:

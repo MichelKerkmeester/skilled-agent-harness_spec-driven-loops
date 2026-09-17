@@ -21,9 +21,9 @@ Route /create:command to its presentation contract and workflow YAML for creatin
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation contract | `.opencode/commands/create/assets/create-command-presentation.txt` |
-| Auto workflow | `.opencode/commands/create/assets/create-command-auto.yaml` |
-| Confirm workflow | `.opencode/commands/create/assets/create-command-confirm.yaml` |
+| Presentation contract | `.skilled/commands/create/assets/create-command-presentation.txt` |
+| Auto workflow | `.skilled/commands/create/assets/create-command-auto.yaml` |
+| Confirm workflow | `.skilled/commands/create/assets/create-command-confirm.yaml` |
 
 ---
 
@@ -32,7 +32,7 @@ Route /create:command to its presentation contract and workflow YAML for creatin
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-1. Read `.opencode/commands/create/assets/create-command-presentation.txt`.
+1. Read `.skilled/commands/create/assets/create-command-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
 4. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
@@ -45,14 +45,14 @@ Route /create:command to its presentation contract and workflow YAML for creatin
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.opencode/commands/create/assets/create-command-auto.yaml` |
-| `:confirm` or omitted mode | `.opencode/commands/create/assets/create-command-confirm.yaml` |
+| `:auto` | `.skilled/commands/create/assets/create-command-auto.yaml` |
+| `:confirm` or omitted mode | `.skilled/commands/create/assets/create-command-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/create/assets/create-command-presentation.txt`:
+The following content lives only in `.skilled/commands/create/assets/create-command-presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, confirmation prompts, status display, completion display, and next-step text.
 

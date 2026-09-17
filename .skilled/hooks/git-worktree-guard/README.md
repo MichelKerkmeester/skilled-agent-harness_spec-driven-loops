@@ -19,7 +19,7 @@ contextType: "reference"
 
 It is the detect-and-warn companion to `worktree-session.sh`. A SessionStart hook cannot relocate an already-started process into a worktree, but it can warn. It is intentionally non-fatal: it prints one line to stderr and always exits 0, so it never blocks a session the operator chose to run there.
 
-One real script backs all four editor runtimes; the per-runtime entries are relative symlinks into `.opencode/bin/`.
+One real script backs all four editor runtimes; the per-runtime entries are relative symlinks into `.skilled/bin/`.
 
 ---
 
@@ -33,7 +33,7 @@ On each SessionStart, `worktree-guard.sh`:
 4. Otherwise prints one warning line to stderr:
 
    ```text
-   [worktree-guard] This top-level session is running on the shared '<branch>' checkout, not an isolated worktree. Concurrent AI sessions here can collide (shared working tree + MCP databases). To isolate next time, launch via: bash .opencode/bin/worktree-session.sh <runtime>. (silence: SPECKIT_WORKTREE_GUARD=off)
+   [worktree-guard] This top-level session is running on the shared '<branch>' checkout, not an isolated worktree. Concurrent AI sessions here can collide (shared working tree + MCP databases). To isolate next time, launch via: bash .skilled/bin/worktree-session.sh <runtime>. (silence: SPECKIT_WORKTREE_GUARD=off)
    ```
 
 It always exits 0.
@@ -44,14 +44,14 @@ It always exits 0.
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **Claude** | `claude/worktree-guard.sh` (symlink → `../../../bin/worktree-guard.sh`) | SessionStart hook chain (`bash /abs/path/.opencode/bin/worktree-guard.sh`) | One stderr warning line on the shared checkout; always exits 0 |
+| **Claude** | `claude/worktree-guard.sh` (symlink → `../../../bin/worktree-guard.sh`) | SessionStart hook chain (`bash /abs/path/.skilled/bin/worktree-guard.sh`) | One stderr warning line on the shared checkout; always exits 0 |
 | **Codex** | `codex/worktree-guard.sh` (symlink) | SessionStart hook chain | One stderr warning line |
 | **Cursor** | `cursor/worktree-guard.sh` (symlink) | SessionStart hook chain | One stderr warning line |
 | **Devin** | `devin/worktree-guard.sh` (symlink) | SessionStart hook chain | One stderr warning line |
 | **OpenCode** | — | — | Not applicable. OpenCode session guards run inside the owning `mk-*` plugins; this check is wired into the editor runtimes' SessionStart chains. |
 | **Pi** | — | — | Not applicable. |
 
-One real file backs all four runtimes; the per-runtime entries are symlinks into `.opencode/bin/`.
+One real file backs all four runtimes; the per-runtime entries are symlinks into `.skilled/bin/`.
 
 ---
 
@@ -72,9 +72,9 @@ git-worktree-guard/
 
 | File | Responsibility |
 |---|---|
-| `.opencode/bin/worktree-guard.sh` | The guard. Checks the silence switch and shared kill-switch, skips orchestrated children, detects a shared vs isolated checkout via `git-dir` / `git-common-dir`, and warns on stderr. Always exits 0. |
-| `.opencode/bin/worktree-session.sh` | The companion launcher the warning names as the fix (launches a runtime inside an isolated worktree). Not in this folder. |
-| `.opencode/hooks/shared/hook-flags.sh` | The shared shell kill-switch resolver (`hook_enabled git-worktree-guard`, plus the legacy `SYSTEM_WORKTREE_GUARD_DISABLED` alias). Sourced fail-open if absent. |
+| `.skilled/bin/worktree-guard.sh` | The guard. Checks the silence switch and shared kill-switch, skips orchestrated children, detects a shared vs isolated checkout via `git-dir` / `git-common-dir`, and warns on stderr. Always exits 0. |
+| `.skilled/bin/worktree-session.sh` | The companion launcher the warning names as the fix (launches a runtime inside an isolated worktree). Not in this folder. |
+| `.skilled/hooks/shared/hook-flags.sh` | The shared shell kill-switch resolver (`hook_enabled git-worktree-guard`, plus the legacy `SYSTEM_WORKTREE_GUARD_DISABLED` alias). Sourced fail-open if absent. |
 
 ---
 
@@ -90,7 +90,7 @@ The guard is enabled by default. Truthy disable values are `1`, `true`, `yes`, a
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 | `AI_SESSION_CHILD=1` | Not a kill-switch, but an exemption: orchestrated children share the parent's tree and are never warned. |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -102,26 +102,26 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 | Scope | Warns only for a top-level session on the shared checkout. A linked worktree is already isolated (no warning); an orchestrated child is expected to share the parent's tree (no warning). |
 | Fail-open | Not a git repo, or absent shared resolver → exit 0 with no warning. |
 | Imports | Bash only; sources the shared `hook-flags.sh` fail-open. Nothing outside the repo. |
-| Real code | Stays in `.opencode/bin/`; the hub entries are relative symlinks. |
+| Real code | Stays in `.skilled/bin/`; the hub entries are relative symlinks. |
 
 ---
 
 ## 8. VALIDATION
 
 ```bash
-bash .opencode/bin/worktree-guard.sh; echo "exit: $?"
+bash .skilled/bin/worktree-guard.sh; echo "exit: $?"
 ```
 
 Expected result: `exit: 0`, with a `[worktree-guard] ...` warning line on stderr when run on the shared main checkout, or no output when run inside a linked worktree.
 
 ```bash
-SPECKIT_WORKTREE_GUARD=off bash .opencode/bin/worktree-guard.sh; echo "exit: $?"
+SPECKIT_WORKTREE_GUARD=off bash .skilled/bin/worktree-guard.sh; echo "exit: $?"
 ```
 
 Expected result: `exit: 0`, no output (caller-side silence switch short-circuits).
 
 ```bash
-AI_SESSION_CHILD=1 bash .opencode/bin/worktree-guard.sh; echo "exit: $?"
+AI_SESSION_CHILD=1 bash .skilled/bin/worktree-guard.sh; echo "exit: $?"
 ```
 
 Expected result: `exit: 0`, no output (orchestrated-child exemption).

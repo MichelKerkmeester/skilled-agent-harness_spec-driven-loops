@@ -15,11 +15,11 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`git-hooks-check/` is the index for the SessionStart guard that verifies the repository's managed git hooks are installed and current. A fresh clone or a forgotten install step leaves a versioned hook under `.opencode/scripts/git-hooks/` with no matching effective symlink in `.git/hooks`: a silent gap that can drop commit-msg, pre-commit, or pre-push coverage. This guard detects that state and warns the operator, so the commit/push guardrails stay in force.
+`git-hooks-check/` is the index for the SessionStart guard that verifies the repository's managed git hooks are installed and current. A fresh clone or a forgotten install step leaves a versioned hook under `.skilled/scripts/git-hooks/` with no matching effective symlink in `.git/hooks`: a silent gap that can drop commit-msg, pre-commit, or pre-push coverage. This guard detects that state and warns the operator, so the commit/push guardrails stay in force.
 
 It is the detect-and-warn companion to `install-git-hooks.sh`. A SessionStart hook cannot install missing git hooks into an already-running session without side effects, but it can warn: and, when the live-sync loop is enabled, self-heal from the main checkout. It is intentionally non-fatal: it prints one warning line to stderr and always exits 0, so it never blocks a session.
 
-One real script backs all four editor runtimes; the per-runtime entries are relative symlinks into `.opencode/bin/`.
+One real script backs all four editor runtimes; the per-runtime entries are relative symlinks into `.skilled/bin/`.
 
 ---
 
@@ -54,14 +54,14 @@ It always exits 0.
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **Claude** | `claude/check-git-hooks.sh` (symlink → `../../../bin/check-git-hooks.sh`) | SessionStart hook chain (`bash /abs/path/.opencode/bin/check-git-hooks.sh`) | One stderr warning line on drift; always exits 0 |
+| **Claude** | `claude/check-git-hooks.sh` (symlink → `../../../bin/check-git-hooks.sh`) | SessionStart hook chain (`bash /abs/path/.skilled/bin/check-git-hooks.sh`) | One stderr warning line on drift; always exits 0 |
 | **Codex** | `codex/check-git-hooks.sh` (symlink) | SessionStart hook chain | One stderr warning line on drift |
 | **Cursor** | `cursor/check-git-hooks.sh` (symlink) | SessionStart hook chain | One stderr warning line on drift |
 | **Devin** | `devin/check-git-hooks.sh` (symlink) | SessionStart hook chain | One stderr warning line on drift |
 | **OpenCode** | — | — | Not applicable. OpenCode session guards run inside the owning `mk-*` plugins; this check is wired into the editor runtimes' SessionStart chains. |
 | **Pi** | — | — | Not applicable. |
 
-One real file backs all four runtimes; the per-runtime entries are symlinks into `.opencode/bin/`.
+One real file backs all four runtimes; the per-runtime entries are symlinks into `.skilled/bin/`.
 
 ---
 
@@ -82,7 +82,7 @@ git-hooks-check/
 
 | File | Responsibility |
 |---|---|
-| `.opencode/bin/check-git-hooks.sh` | The guard. Resolves source/target hook dirs, classifies each versioned hook's effective symlink (`missing` / `broken` / `mismatched` / `non-executable`), warns on stderr, and self-heals from the main checkout when live-sync is on. Always exits 0. |
+| `.skilled/bin/check-git-hooks.sh` | The guard. Resolves source/target hook dirs, classifies each versioned hook's effective symlink (`missing` / `broken` / `mismatched` / `non-executable`), warns on stderr, and self-heals from the main checkout when live-sync is on. Always exits 0. |
 | `.opencode/scripts/install-git-hooks.sh` | The installer the self-heal leg runs (and the fix command the warning names). Not in this folder. |
 | `.opencode/hooks/shared/hook-flags.sh` | The shared shell kill-switch resolver (`hook_enabled git-hooks-check`, `hook_enabled live-sync`). Sourced fail-open if absent. |
 
@@ -99,7 +99,7 @@ The guard is enabled by default. Truthy disable values are `1`, `true`, `yes`, a
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 | `SYSTEM_LIVE_SYNC_DISABLED=1` | Disables the live-sync loop, which turns off the self-heal leg. The drift warning still fires; only the automatic repair is suppressed. |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -111,20 +111,20 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 | Self-heal scope | Auto-runs the installer from the MAIN checkout only. Never auto-installs from a linked worktree (shared hooks dir would point at scripts that vanish on worktree removal). |
 | Fail-open | Not a git repo, missing source/target dir, or absent shared resolver → exit 0 with no warning. A failed self-heal install prints a manual-fix line and still exits 0. |
 | Imports | Bash only; sources the shared `hook-flags.sh` fail-open. Shells out to `install-git-hooks.sh` for the self-heal. Nothing outside the repo. |
-| Real code | Stays in `.opencode/bin/`; the hub entries are relative symlinks. |
+| Real code | Stays in `.skilled/bin/`; the hub entries are relative symlinks. |
 
 ---
 
 ## 8. VALIDATION
 
 ```bash
-bash .opencode/bin/check-git-hooks.sh; echo "exit: $?"
+bash .skilled/bin/check-git-hooks.sh; echo "exit: $?"
 ```
 
 Expected result: `exit: 0`, with a `[check-git-hooks] ...` warning line on stderr only when a versioned hook's effective symlink is missing, broken, mismatched, or non-executable.
 
 ```bash
-SPECKIT_GIT_HOOKS_GUARD=off bash .opencode/bin/check-git-hooks.sh; echo "exit: $?"
+SPECKIT_GIT_HOOKS_GUARD=off bash .skilled/bin/check-git-hooks.sh; echo "exit: $?"
 ```
 
 Expected result: `exit: 0`, no output (caller-side silence switch short-circuits).

@@ -34,8 +34,8 @@ Guardrails:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation | `.opencode/commands/speckit/assets/search-presentation.txt` |
-| Retrieval contract | `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` |
+| Presentation | `.skilled/commands/speckit/assets/search-presentation.txt` |
+| Retrieval contract | `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` |
 
 This is a direct-dispatch command: it runs a local lookup script and `rg` directly, and owns no workflow YAML by design. Nothing it calls needs a background service.
 
@@ -48,7 +48,7 @@ Before asking startup questions or displaying results, read the presentation ass
 Execution order:
 
 1. Read the §1 ROUTER CONTRACT argument-resolution output: `ARGS_PRESENT` and `QUERY` are already computed for you.
-2. Read `.opencode/commands/speckit/assets/search-presentation.txt` before rendering any response.
+2. Read `.skilled/commands/speckit/assets/search-presentation.txt` before rendering any response.
 3. **If `ARGS_PRESENT=true`:** route `QUERY` to the matching lane in §4 EXECUTION TARGETS. Execute now — do NOT ask the startup question.
 4. **ONLY IF `ARGS_PRESENT=false`:** follow startup routing (below) and ask the one open-ended question.
 5. Render the response from the presentation contract.
@@ -74,7 +74,7 @@ The two lanes answer different questions. Prompt-to-declared-phrase matching is 
 The keyed lookup over the generated index. Reads a file and exits.
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<QUERY>"
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<QUERY>"
 ```
 
 1. Run the command with the resolved `QUERY`.
@@ -98,10 +98,10 @@ Structured JSONL, the default:
 ```bash
 rg --no-config --hidden --json --fixed-strings --ignore-case \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
-  -- '<QUERY>' specs .opencode
+  -- '<QUERY>' specs .skilled
 ```
 
-1. Resolve the search roots. Narrow by positional path, never by pattern: `specs .opencode` for everything, `specs/<track>` for one track, `specs/<track>/<NNN-name>` for one packet, `specs/<track>/<NNN-name>/<NNN-child-name>` for one phase child. `--packet <specFolder>` replaces the roots with that path.
+1. Resolve the search roots. Narrow by positional path, never by pattern: `specs .skilled` for everything, `specs/<track>` for one track, `specs/<track>/<NNN-name>` for one packet, `specs/<track>/<NNN-name>/<NNN-child-name>` for one phase child. `--packet <specFolder>` replaces the roots with that path.
 2. Run exactly one recipe. Never combine `--json` with the path-only or count mode: ripgrep does not reject the combination, the last output-mode flag wins silently, and a JSONL parser handed count output sees an empty result rather than an error.
 3. Branch on the exit status: `0` = matches, `1` = no match returned as an empty result, `2` or higher = an execution or configuration error.
 4. Order results with the ranking tuple in `retrieval-conventions.md` Section 5 — evidence field, then normalized match class, then relative path and one-based line. Ripgrep supplies matches, paths and lines; it never ranks relevance, and no rendered output may imply that it does.
@@ -123,7 +123,7 @@ Render the Section 6 unsupported notice from the presentation asset and stop. Do
 
 ## 5. PRESENTATION BOUNDARY
 
-The full presentation contract lives in `.opencode/commands/speckit/assets/search-presentation.txt`. This router may only inline the lane-selection rules and recipe mechanics above.
+The full presentation contract lives in `.skilled/commands/speckit/assets/search-presentation.txt`. This router may only inline the lane-selection rules and recipe mechanics above.
 
 The following content must come from the presentation asset, not from router prose:
 

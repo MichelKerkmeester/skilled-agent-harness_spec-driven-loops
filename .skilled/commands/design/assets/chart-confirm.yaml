@@ -34,16 +34,16 @@ development_philosophy:
 skill_reference:
   skill: sk-design
   mode: sk-design-chart
-  skill_md: .opencode/skills/sk-design/sk-design-chart/SKILL.md
+  skill_md: .skilled/skills/sk-design/sk-design-chart/SKILL.md
   references:
-    catalog: .opencode/skills/sk-design/sk-design-chart/references/catalog.md
-    template_contract: .opencode/skills/sk-design/sk-design-chart/references/template-contract.md
-    colour_systems: .opencode/skills/sk-design/sk-design-chart/references/color-system.md
+    catalog: .skilled/skills/sk-design/sk-design-chart/references/catalog.md
+    template_contract: .skilled/skills/sk-design/sk-design-chart/references/template-contract.md
+    colour_systems: .skilled/skills/sk-design/sk-design-chart/references/color-system.md
   assets:
-    forms: .opencode/skills/sk-design/sk-design-chart/assets/templates/
-    palettes: .opencode/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/palettes.json
+    forms: .skilled/skills/sk-design/sk-design-chart/assets/templates/
+    palettes: .skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/palettes.json
   scripts:
-    corpus_check: .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs
+    corpus_check: .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs
 
 confidence_framework:
   thresholds:
@@ -133,7 +133,7 @@ field_handling:
     validation: "must be one of: neutral, ordered, categorical"
     default: neutral
   defaults:
-    forms_dir: .opencode/skills/sk-design/sk-design-chart/assets/templates/
+    forms_dir: .skilled/skills/sk-design/sk-design-chart/assets/templates/
     one_system_per_delivery: true
 
 documentation_level:
@@ -241,7 +241,7 @@ workflow:
     checkpoint: Show the corpus check RESULT line and its per-check assertion counts.
     steps:
       step_corpus_check:
-        action: "Run `node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs`"
+        action: "Run `node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs`"
         verify:
           - "The run prints RESULT: PASSED"
           - "Every check reports a nonzero assertion count"

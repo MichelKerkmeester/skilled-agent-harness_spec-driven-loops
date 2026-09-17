@@ -18,8 +18,8 @@ operating_mode:
   # All .doctor-update.* runtime state lives in the advisor's database directory: it is
   # tracked, gitignore-managed, and already a mutation target of this command. The
   # spec-kit runtime/database directory that used to hold it left with its server.
-  state_dir: ".opencode/skills/system-skill-advisor/runtime/database"
-  state_log: ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json"
+  state_dir: ".skilled/skills/system-skill-advisor/runtime/database"
+  state_log: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json"
 
 
 # ─────────────────────────────────────────────────────────────────
@@ -101,31 +101,31 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - ".opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"  # standalone advisor routing graph DB
-    - ".opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite.pre-doctor-update.*.bak"
-    - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
-    - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
-    - ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.flock"  # single-instance lock
-    - ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.lock"
-    - ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json"  # orchestrator state log
-    - ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.bootstrap.json"  # pre-MCP bootstrap state
-    - ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.bootstrap.lockdir"  # pre-MCP bootstrap lock
-    - ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.*.log"  # per-phase orchestrator logs
-    - ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.config-instructions"  # manual remediation notes
+    - ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"  # standalone advisor routing graph DB
+    - ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite.pre-doctor-update.*.bak"
+    - ".skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
+    - ".skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.flock"  # single-instance lock
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.lock"
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json"  # orchestrator state log
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.bootstrap.json"  # pre-MCP bootstrap state
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.bootstrap.lockdir"  # pre-MCP bootstrap lock
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.*.log"  # per-phase orchestrator logs
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.config-instructions"  # manual remediation notes
     - ".opencode/skill"  # compatibility symlink only
     - ".opencode/skill_legacy_backup_*"  # legacy layout backup before symlink bridge
-    - ".opencode/skills/system-spec-kit/runtime/dist/**"  # generated MCP runtime output
-    - ".opencode/skills/system-spec-kit/runtime/cli/dist/**"  # generated migration helper output
+    - ".skilled/skills/system-spec-kit/runtime/dist/**"  # generated MCP runtime output
+    - ".skilled/skills/system-spec-kit/runtime/cli/dist/**"  # generated migration helper output
   forbidden_targets:
     - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:update
     - "<active-spec-folder>/description.json"  # spec metadata belongs to memory-save tooling
     - "<active-spec-folder>/graph-metadata.json"  # graph metadata not an orchestrator DB target
-    - ".opencode/skills/**/SKILL.md"  # never edit skill bodies
-    - ".opencode/skills/**/graph-metadata.json"
-    - ".opencode/skills/system-spec-kit/runtime/**/*.ts"
-    - ".opencode/agents/**/*.md"
-    - ".opencode/commands/doctor/*.md"
-    - ".opencode/commands/doctor/assets/doctor_*.yaml"
+    - ".skilled/skills/**/SKILL.md"  # never edit skill bodies
+    - ".skilled/skills/**/graph-metadata.json"
+    - ".skilled/skills/system-spec-kit/runtime/**/*.ts"
+    - ".skilled/agents/**/*.md"
+    - ".skilled/commands/doctor/*.md"
+    - ".skilled/commands/doctor/assets/doctor_*.yaml"
     - "**/migration-manifest.json"
     - "direct SQL outside VACUUM INTO snapshot and snapshot restore"
   validator:
@@ -172,11 +172,11 @@ workflow:
     council_line: 0
     approval: "auto-acknowledge before database flock; this phase uses Bash/Node only, no MCP tools"
     purpose: "Resolve the fresh-start paradox: OpenCode can only register MCP tools at process startup, so missing dist/layout must be fixed before MCP-dependent phases run."
-    retrieval_lane: "Needs no bootstrap and no launcher entry: node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs reads a generated file and exits. Do not add a daemon or launcher contract for it."
+    retrieval_lane: "Needs no bootstrap and no launcher entry: node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs reads a generated file and exits. Do not add a daemon or launcher contract for it."
     command_preflight:
-      script: ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
-      command: "bash .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh --root . --json"
-      state_log: ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.bootstrap.json"
+      script: ".skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
+      command: "bash .skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh --root . --json"
+      state_log: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.bootstrap.json"
       no_mcp_tools_allowed: true
     resume_rule:
       if_resume_bootstrap_true: "require bootstrap state status=complete and generated artifacts present; continue to phase_1_flock_acquire"
@@ -184,8 +184,8 @@ workflow:
       restart_message: "BOOTSTRAP_COMPLETE_RESTART_REQUIRED: restart OpenCode so MCP tools register, then rerun /doctor:update --resume-bootstrap"
       max_reentry_count: 1
     required_artifacts:
-      - ".opencode/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js"
-      - ".opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js"
+      - ".skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js"
+      - ".skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js"
     failure:
       emit_error: "runtime bootstrap failed before MCP registration; inspect .doctor-update.bootstrap.json"
       final_status: "failed"
@@ -194,8 +194,8 @@ workflow:
   phase_1_flock_acquire:
     council_line: 1
     approval: "prompt before acquiring lock"
-    flock: "ACQUIRE flock at .opencode/skills/system-skill-advisor/runtime/database/.doctor-update.flock; refuse if held"
-    pid_file: ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.lock"
+    flock: "ACQUIRE flock at .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.flock; refuse if held"
+    pid_file: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.lock"
     stale_lock_rule: "refuse if PID-file stale-locked >2h"
     refusal_message: "holding PID + start timestamp"
     flock_release_invariant: "On ANY abort path from this phase forward (failure, SIGINT, exception), release the flock file BEFORE exit. Each downstream phase inherits this invariant."
@@ -214,8 +214,8 @@ workflow:
       OR (
         file_system_signals_detected >= 2 of [
           (.opencode/skill exists AND is a directory NOT a symlink),
-          (.opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js does NOT exist),
-          (find . -path './.opencode' -prune -o -name 'memory' -type d -print | grep -q .),
+          (.skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js does NOT exist),
+          (find . \( -path './.skilled' -o -path './.opencode' \) -prune -o -name 'memory' -type d -print | grep -q .),
           (find specs -mindepth 2 -name 'spec.md' | first-match dirname has no description.json)
         ]
       )
@@ -225,7 +225,7 @@ workflow:
         check: "[ -d .opencode/skill ] && [ ! -L .opencode/skill ]"
         meaning: "v3.3-era singular directory present as a real directory (not bridge symlink)"
       signal_b:
-        check: "[ ! -f .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js ]"
+        check: "[ ! -f .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js ]"
         meaning: "scripts dist missing — fresh tarball install or post-clone state. This is the artifact Phase 8 itself invokes, and the one the Phase 0 bootstrap builds, so its absence is the same fresh-install signal the retired MCP server dist used to give."
       signal_c:
         check: "find specs -name 'memory' -type d -print -quit 2>/dev/null | grep -q ."
@@ -249,20 +249,20 @@ workflow:
     migration: "run migration-manifest.json Phase 0 before snapshots"
     gap_detected: "refuse to proceed if manifest gap detected"
     directory_layout_bridge:
-      precondition: "both .opencode/skill/ and .opencode/skills/ directories exist (legacy v3.3 layout + current v3.4 layout)"
+      precondition: "both .opencode/skill/ and .skilled/skills/ directories exist (legacy v3.3 layout + current v3.4 layout)"
       detect_command: |
-        [ -d .opencode/skill ] && [ -d .opencode/skills ] && [ ! -L .opencode/skill ]
+        [ -d .opencode/skill ] && [ -d .skilled/skills ] && [ ! -L .opencode/skill ]
       bridge_action: |
         rm -rf .opencode/skill_legacy_backup_$(date -u +%Y%m%dT%H%M%SZ) 2>/dev/null
         mv .opencode/skill .opencode/skill_legacy_backup_$(date -u +%Y%m%dT%H%M%SZ)
         ln -sf skills .opencode/skill
       on_symlink_failure:
         action: "write per-file remediation instructions"
-        instruction_file: ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.config-instructions"
+        instruction_file: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.config-instructions"
         content_template: |
           # /doctor:update remediation: directory rename
           # Run these commands manually to update v3.3 -> v3.4 paths:
-          sed -i.bak 's|\.opencode/skill/|.opencode/skills/|g' .mcp.json opencode.json 2>/dev/null
+          sed -i.bak 's|\.opencode/skill/|.skilled/skills/|g' .mcp.json opencode.json 2>/dev/null
           # Then manually verify .mcp.json and opencode.json are correct.
       idempotency: "if .opencode/skill is already a symlink to skills, skip"
     spec_metadata_backfill:
@@ -277,8 +277,8 @@ workflow:
           # the memory index scope. Per the archive-retention fix (commit b062b12b4), z_archive content IS
           # indexed into the memory DB and deprioritized via ARCHIVE_MULTIPLIERS 0.1; only
           # graph-metadata backfill's path-validator skips it.
-          node .opencode/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js --active-only 2>&1 \
-            | tee .opencode/skills/system-skill-advisor/runtime/database/.doctor-update.backfill-graph.log
+          node .skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js --active-only 2>&1 \
+            | tee .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.backfill-graph.log
         timeout_seconds: 300
         on_failure: "warn but proceed (Phase 5.2 indexing will be partial); record failure in state log"
       step_b_description_backfill:
@@ -291,7 +291,7 @@ workflow:
             dir=$(dirname "$spec_md")
             if [ ! -f "$dir/description.json" ]; then
               missing_count=$((missing_count + 1))
-              if node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js \
+              if node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js \
                 "$dir" "$(pwd)" >/dev/null 2>&1; then
                 created_count=$((created_count + 1))
               else
@@ -300,7 +300,7 @@ workflow:
             fi
           done < <(find specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null)
           echo "{\"missing\":$missing_count,\"created\":$created_count,\"failed\":$failed_count}" \
-            > .opencode/skills/system-skill-advisor/runtime/database/.doctor-update.backfill-description.log
+            > .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.backfill-description.log
         timeout_seconds: 600
         on_failure: "warn per-folder; aggregate failed_count for state log"
       report_to_dashboard: "Phase 4 dashboard adds row 'spec-metadata-backfill: created=N, failed=M' when this sub-action runs"
@@ -310,11 +310,11 @@ workflow:
       detection: |
         find specs -mindepth 2 -maxdepth 6 -path '*/memory/*.md' \
           -not -path '*/scratch/*' -not -path '*/z_archive/*' 2>/dev/null \
-          | tee .opencode/skills/system-skill-advisor/runtime/database/.doctor-update.legacy-memory-files.log \
+          | tee .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.legacy-memory-files.log \
           | wc -l
       action_on_findings:
         do_not_auto_migrate: "respecting manifest M-3.3.0.0-001 'review first' policy"
-        write_summary_log: ".opencode/skills/system-skill-advisor/runtime/database/.doctor-update.legacy-memory-files.log"
+        write_summary_log: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.legacy-memory-files.log"
         recommend_to_user: |
           # Emit at end of Phase 8:
           if [ "$LEGACY_MEMORY_COUNT" -gt 0 ]; then
@@ -366,7 +366,7 @@ workflow:
       state_log_requirement: "Record injected_failure=true, failed_step=<step>, and final_status=rolled_back when rollback is selected."
     execute:
       trigger-index:
-        action: "node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs  # full regeneration; the generator reads frontmatter and writes the index file, with no daemon and no incremental mode"
+        action: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs  # full regeneration; the generator reads frontmatter and writes the index file, with no daemon and no incremental mode"
       skill-graph: "system_skill_advisor.skill_graph_scan({})"
       advisor: "system_skill_advisor.advisor_rebuild({ force: true }) + system_skill_advisor.advisor_validate({})"
       deep-loop-graph: "deep_loop_graph_upsert(...)"

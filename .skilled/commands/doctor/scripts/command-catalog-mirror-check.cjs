@@ -5,7 +5,7 @@
 //
 // WHY THIS EXISTS: a command's own frontmatter is the only place its identity is
 // stated once. Everything else that names commands is a copy — the repo-wide
-// index at .opencode/commands/README.txt, the per-family indexes beside it, and
+// index at .skilled/commands/README.txt, the per-family indexes beside it, and
 // the command-metadata.json each hub keeps so the skill advisor can route to a
 // command it owns. Adding, renaming or deleting a command updates the file and
 // none of the copies, and nothing notices: the runtime still dispatches, the
@@ -42,13 +42,13 @@ const path = require('node:path');
 
 const DEFAULT_REPO = path.resolve(__dirname, '../../../..');
 
-// Directories under .opencode/commands/ that hold support files rather than
+// Directories under .skilled/commands/ that hold support files rather than
 // commands. Anything else with .md files in it is a command namespace.
 const NON_NAMESPACE_DIRS = new Set(['assets', 'scripts']);
 
 // Hubs keep their command-metadata beside their SKILL.md. Only hubs that own
 // commands carry entries; a hub with none carries an empty array.
-const METADATA_GLOB_ROOT = '.opencode/skills';
+const METADATA_GLOB_ROOT = '.skilled/skills';
 
 // A slash-command id: /name for a root utility, /family:name for a namespaced
 // one. The same grammar the metadata schema enforces.
@@ -302,7 +302,7 @@ function checkMetadata(meta, commands, repo) {
 
 function main() {
   const opts = parseArgs(process.argv.slice(2));
-  const commandsDir = path.join(opts.root, '.opencode/commands');
+  const commandsDir = path.join(opts.root, '.skilled/commands');
   if (!fs.existsSync(commandsDir)) fail(`commands directory not found: ${commandsDir}`);
 
   const commands = readCommandTree(commandsDir);
@@ -313,10 +313,10 @@ function main() {
   const prose = [];
 
   console.log('\n/doctor command-catalog-mirror — read-only coverage check');
-  console.log(`canonical: .opencode/commands frontmatter (${commands.length} commands)\n`);
+  console.log(`canonical: .skilled/commands frontmatter (${commands.length} commands)\n`);
 
   const catalogs = findCatalogs(commandsDir, [...namespaces].sort());
-  if (catalogs.length === 0) drift.push('catalog: no README.txt index found under .opencode/commands');
+  if (catalogs.length === 0) drift.push('catalog: no README.txt index found under .skilled/commands');
   for (const catalog of catalogs) {
     const result = checkCatalog(catalog, commands, namespaces);
     const mark = result.problems.length === 0 ? 'OK  ' : 'DRIFT';

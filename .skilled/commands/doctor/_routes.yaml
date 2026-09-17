@@ -2,13 +2,13 @@
 # DOCTOR ROUTER — CANONICAL ROUTE MANIFEST
 # ─────────────────────────────────────────────────────────────────
 # Source of truth for /doctor <target> dispatch.
-# Read by: .opencode/commands/doctor/speckit.md (the router)
-# Validated by: .opencode/commands/doctor/scripts/route-validate.sh
+# Read by: .skilled/commands/doctor/speckit.md (the router)
+# Validated by: .skilled/commands/doctor/scripts/route-validate.sh
 # Consumed by: NOT currently harvested by either Skill Advisor implementation.
 #   Both harvesters (Python skill_advisor.py:810-871 _DOC_HARVEST_SUBDIRS =
 #   ("references","assets") rooted at SKILLS_DIR; TS doc-frontmatter.ts:23)
-#   walk only .opencode/skills/*/{references,assets}/*.md frontmatter — a
-#   .yaml file under .opencode/commands/doctor/ is out of scope by both file
+#   walk only .skilled/skills/*/{references,assets}/*.md frontmatter — a
+#   .yaml file under .skilled/commands/doctor/ is out of scope by both file
 #   type and root. /doctor <target> dispatch is presentation-menu/argv-driven
 #   (see speckit.md), not advisor-driven. The trigger_phrases field below is
 #   retained for a possible future doctor-routes harvester but is inert today.
@@ -38,8 +38,8 @@ routes:
     gate3_location: "<packet_scratch>/doctor-speckit-retrieval-report.<timestamp>.md + <packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
     mcp_tools: []   # file-and-script diagnostic; no MCP calls and no background service
     script_invocations:
-      - 'node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "resume work session context"  # index present AND lookup runs: exit 0 = hits, 1 = clean no-hit, 2+ = missing or unreadable index, reported with stderr and never as a no-hit'
-      - "rg --no-config --hidden --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' -- 'trigger index generator' specs .opencode  # the section 2.2 recipe, flags verbatim"
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "resume work session context"  # index present AND lookup runs: exit 0 = hits, 1 = clean no-hit, 2+ = missing or unreadable index, reported with stderr and never as a no-hit'
+      - "rg --no-config --hidden --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' -- 'trigger index generator' specs .skilled  # the section 2.2 recipe, flags verbatim"
     trigger_phrases:
       - "trigger index drift"
       - "trigger index lookup fails"
@@ -53,7 +53,7 @@ routes:
     mutating: read-only
     gate3_location: "n/a (read-only provider and model-server status)"
     cli_commands:
-      - 'node .opencode/bin/skill-advisor.cjs advisor_status --format json'   # the shared HF model-server's surviving owner
+      - 'node .skilled/bin/skill-advisor.cjs advisor_status --format json'   # the shared HF model-server's surviving owner
     trigger_phrases:
       - "embedding provider status"
       - "hf-local model-server health"
@@ -68,9 +68,9 @@ routes:
     gate3_location: "<packet_scratch>/doctor-deep-loop-state.<timestamp>.json"
     mcp_tools: []
     script_invocations:
-      - 'node .opencode/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
-      - 'node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --query-type "{query_type}"'
-      - 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
+      - 'node .skilled/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
+      - 'node .skilled/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --query-type "{query_type}"'
+      - 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
     trigger_phrases:
       - "deep-loop coverage"
       - "deep-loop graph rebuild"
@@ -82,18 +82,18 @@ routes:
     setup_vars: [execution_mode, scope, skip_tests, dry_run]
     allowed_flags: ["--skip-tests", "--dry-run", "--scope=all|explicit|derived|lexical"]
     mutating: mutates
-    gate3_location: "lib/scorer/lanes/*.ts + .opencode/skills/*/graph-metadata.json"
+    gate3_location: "lib/scorer/lanes/*.ts + .skilled/skills/*/graph-metadata.json"
     cli_commands:
-      - 'node .opencode/bin/skill-advisor.cjs advisor_recommend --format json'
-      - 'node .opencode/bin/skill-advisor.cjs advisor_status --format json'
-      - 'node .opencode/bin/skill-advisor.cjs advisor_validate --format json'
-      - 'node .opencode/bin/skill-advisor.cjs advisor_rebuild --format json'
-      - 'node .opencode/bin/skill-advisor.cjs skill_graph_scan --format json'
-      - 'node .opencode/bin/skill-advisor.cjs skill_graph_validate --format json'
-      - 'node .opencode/bin/skill-advisor.cjs skill_graph_query --format json'
-      - 'node .opencode/bin/skill-advisor.cjs skill_graph_status --format json'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_recommend --format json'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_status --format json'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_validate --format json'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_rebuild --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_scan --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_validate --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_query --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_status --format json'
     script_invocations:
-      - 'Warm-only: probe the existing system-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
+      - 'Warm-only: probe the existing system-skill-advisor IPC socket first; only when it answers, run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:
       - "skill advisor scoring"
       - "skill advisor rebuild"
@@ -108,7 +108,7 @@ routes:
     gate3_location: "n/a (read-only audit; no spec folder required)"
     mcp_tools: []   # script-only audit; no MCP calls
     script_invocations:
-      - 'Warm-only: probe the existing system-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
+      - 'Warm-only: probe the existing system-skill-advisor IPC socket first; only when it answers, run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:
       - "skill budget audit"
       - "description budget check"
@@ -126,8 +126,8 @@ routes:
       # The fleet class gate runs first: it starts from SKILL.md, so it is the only
       # check that can report a metadata file a root never wrote. The per-hub audit
       # then goes deep on the one directory the operator named.
-      - 'node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs'
-      - 'node .opencode/commands/doctor/scripts/parent-skill-check.cjs "{parent_skill_dir}"'
+      - 'node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs'
+      - 'node .skilled/commands/doctor/scripts/parent-skill-check.cjs "{parent_skill_dir}"'
     trigger_phrases:
       - "parent skill structure audit"
       - "nested mode packet check"
@@ -144,7 +144,7 @@ routes:
     gate3_location: "n/a (read-only diagnostic; 3-way diffs the skill-graph representations and reports drift, writes nothing)"
     mcp_tools: []   # script-only read; no MCP calls
     script_invocations:
-      - 'node .opencode/commands/doctor/scripts/skill-graph-freshness.cjs'
+      - 'node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs'
     trigger_phrases:
       - "skill graph freshness"
       - "skill-graph zombie ghost nodes"
@@ -159,7 +159,7 @@ routes:
     gate3_location: "n/a (read-only routing diagnostic; probes the live advisor for every declared phrase and reports, writes nothing)"
     mcp_tools: []   # spawns the advisor CLI per phrase; no MCP calls
     script_invocations:
-      - 'node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs'
+      - 'node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs'
     trigger_phrases:
       - "router reach check"
       - "does a declared phrase reach its hub"
@@ -175,7 +175,7 @@ routes:
     gate3_location: "n/a (read-only behavioral-metric diagnostic; reads deep-loop state + iteration markdown + baseline snapshot, writes no files)"
     mcp_tools: []   # script-only behavioral-metric read; no MCP calls
     script_invocations:
-      - 'node .opencode/commands/doctor/scripts/fable-mode-check.cjs --dir "{target_dir}"'
+      - 'node .skilled/commands/doctor/scripts/fable-mode-check.cjs --dir "{target_dir}"'
     trigger_phrases:
       - "fable-5 behavioral metrics"
       - "fable mode efficiency check"
@@ -190,12 +190,12 @@ routes:
     gate3_location: "n/a (read-only mirror-parity diagnostic; every checker runs in its check-only form and writes nothing)"
     mcp_tools: []   # script-only mirror parity read; no MCP calls
     script_invocations:
-      - 'node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check'
-      - 'node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check'
-      - 'node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check'
-      - 'node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs'
-      - 'node .opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs'
-      - 'node .opencode/bin/install-codex-hooks.mjs --check'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check'
+      - 'node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs'
+      - 'node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs'
+      - 'node .skilled/bin/install-codex-hooks.mjs --check'
     trigger_phrases:
       - "runtime mirror drift"
       - "agent command mirror parity"
@@ -206,7 +206,7 @@ routes:
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)
 # ─────────────────────────────────────────────────────────────────
-# /doctor:mcp dispatches via its own command (.opencode/commands/doctor/mcp.md).
+# /doctor:mcp dispatches via its own command (.skilled/commands/doctor/mcp.md).
 # These rows are tracked here for advisor + CI visibility only — the mcp.md
 # command parses its own sub-action argv and dispatches to the right YAML.
 # ─────────────────────────────────────────────────────────────────
@@ -235,12 +235,12 @@ mcp_subroutes:
 # ─────────────────────────────────────────────────────────────────
 # ORCHESTRATOR (NOT routed through /doctor — kept here for reference)
 # ─────────────────────────────────────────────────────────────────
-# /doctor:update is a STANDALONE command at .opencode/commands/doctor/update.md.
+# /doctor:update is a STANDALONE command at .skilled/commands/doctor/update.md.
 # It does NOT route through /doctor. This block exists for advisor visibility.
 # ─────────────────────────────────────────────────────────────────
 standalone:
   - command: /doctor:update
-    file: .opencode/commands/doctor/update.md
+    file: .skilled/commands/doctor/update.md
     yaml: doctor-update.yaml
     mutating: mutates
     trigger_phrases:

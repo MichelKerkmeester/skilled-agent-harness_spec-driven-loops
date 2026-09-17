@@ -59,10 +59,10 @@
       "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md"
     ],
     "create-changelog-auto.yaml": [
-      ".opencode/changelog/{primary_component}/v{next_version}.md"
+      ".skilled/changelog/{primary_component}/v{next_version}.md"
     ],
     "create-changelog-confirm.yaml": [
-      ".opencode/changelog/{primary_component}/v{next_version}.md"
+      ".skilled/changelog/{primary_component}/v{next_version}.md"
     ],
     "create-command-auto.yaml": [
       "Creates router .md plus -auto.yaml, -confirm.yaml, and -presentation.txt assets"
@@ -84,7 +84,7 @@
       "feature-catalog/category-name/feature-name.md"
     ],
     "create-feature-catalog-presentation.txt": [
-      ".opencode/skills/system-spec-kit/feature-catalog"
+      ".skilled/skills/system-spec-kit/feature-catalog"
     ],
     "create-manual-testing-playbook-auto.yaml": [
       "manual-testing-playbook/manual-testing-playbook.md",
@@ -95,7 +95,7 @@
       "manual-testing-playbook/category-name/scenario-name.md"
     ],
     "create-manual-testing-playbook-presentation.txt": [
-      ".opencode/skills/system-spec-kit/manual-testing-playbook"
+      ".skilled/skills/system-spec-kit/manual-testing-playbook"
     ],
     "create-readme-auto.yaml": [
       "example: \"mcp-semantic-search.md\"",

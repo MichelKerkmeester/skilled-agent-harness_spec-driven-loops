@@ -20,9 +20,9 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/speckit/assets/speckit-implement-presentation.txt` |
-| Workflow (all execution modes) | `.opencode/commands/speckit/assets/speckit-implement.yaml` |
-| Shared save-context tail | `.opencode/commands/speckit/assets/speckit-save-context-tail.yaml` |
+| Presentation source of truth | `.skilled/commands/speckit/assets/speckit-implement-presentation.txt` |
+| Workflow (all execution modes) | `.skilled/commands/speckit/assets/speckit-implement.yaml` |
+| Shared save-context tail | `.skilled/commands/speckit/assets/speckit-save-context-tail.yaml` |
 
 ---
 
@@ -55,9 +55,9 @@ values without an interactive prompt.
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` auto: confirm-only checkpoint blocks skipped |
-| `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` autopilot and branch-preserved failure semantics |
-| `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` confirm: every `applies_to: confirm` checkpoint runs and `mode_overrides.confirm` wording applies |
+| `:auto` | `.skilled/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` auto: confirm-only checkpoint blocks skipped |
+| `:autopilot`, `:unattended`, or `--unattended` | `.skilled/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` autopilot and branch-preserved failure semantics |
+| `:confirm` or interactive choice | `.skilled/commands/speckit/assets/speckit-implement.yaml` with `execution_mode` confirm: every `applies_to: confirm` checkpoint runs and `mode_overrides.confirm` wording applies |
 
 ### UNATTENDED TERMINATION
 
@@ -76,7 +76,7 @@ On any of those results, preserve the active branch, do not merge, and emit one 
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/speckit/assets/speckit-implement-presentation.txt`:
+The following content lives only in `.skilled/commands/speckit/assets/speckit-implement-presentation.txt`:
 
 - Startup-question wording and reply format.
 - `:auto` pre-bound setup answer schema, default table, targeted-ask rules, and fail-fast display.

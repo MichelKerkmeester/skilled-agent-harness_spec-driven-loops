@@ -5,7 +5,7 @@
 // ║          compatibility, hardening, verifier verdicts, and CLI envelope   ║
 // ║          coverage for the goal core + manage CLI. Every test points      ║
 // ║          `stateDir` at a fresh temp directory so the real                ║
-// ║          `.opencode/skills/.state/goal/` tree is never touched.          ║
+// ║          `.skilled/skills/.state/goal/` tree is never touched.          ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -200,7 +200,7 @@ test('runtime and workspace namespaces cannot collide', () => {
   const pi = core.resolveGoalScope(scopedOpts('pi', 'same-session'));
   const cursor = core.resolveGoalScope(scopedOpts('cursor', 'same-session'));
   const otherWorkspaceRoot = join(stateDir, 'other-workspace');
-  mkdirSync(join(otherWorkspaceRoot, '.opencode', 'skills'), { recursive: true });
+  mkdirSync(join(otherWorkspaceRoot, '.skilled', 'skills'), { recursive: true });
   const otherWorkspace = core.resolveGoalScope({
     stateDir,
     scope: { runtime: 'pi', sessionId: 'same-session', workspace: otherWorkspaceRoot },
@@ -217,7 +217,7 @@ test('nested workspace paths canonicalize to one repository scope', () => {
   });
   const nestedScope = core.resolveGoalScope({
     stateDir,
-    scope: { runtime: 'pi', sessionId: 'same-session', workspace: join(repositoryRoot, '.opencode', 'hooks') },
+    scope: { runtime: 'pi', sessionId: 'same-session', workspace: join(repositoryRoot, '.skilled', 'hooks') },
   });
   assert.equal(nestedScope.workspace, rootScope.workspace);
   assert.equal(nestedScope.scopeKey, rootScope.scopeKey);
@@ -226,8 +226,8 @@ test('nested workspace paths canonicalize to one repository scope', () => {
 test('same explicit state root keeps different workspaces isolated', () => {
   const workspaceA = join(stateDir, 'workspace-a');
   const workspaceB = join(stateDir, 'workspace-b');
-  mkdirSync(join(workspaceA, '.opencode', 'skills'), { recursive: true });
-  mkdirSync(join(workspaceB, '.opencode', 'skills'), { recursive: true });
+  mkdirSync(join(workspaceA, '.skilled', 'skills'), { recursive: true });
+  mkdirSync(join(workspaceB, '.skilled', 'skills'), { recursive: true });
   const optionsA = { stateDir, scope: { runtime: 'pi', sessionId: 'same-session', workspace: workspaceA } };
   const optionsB = { stateDir, scope: { runtime: 'pi', sessionId: 'same-session', workspace: workspaceB } };
   core.setGoal({ objective: 'Workspace A goal' }, optionsA);
@@ -966,7 +966,7 @@ test('the packet lock root follows the workspace, not the record store, so diver
     await Promise.all([run('one', stateDir), run('two', otherStateDir)]);
     const rows = (readFileSync(goalPath, 'utf8').match(/\| (one|two)-\d \| Done \| x \|/g) || []).length;
     assert.equal(rows, 10, 'every row from both record stores must survive');
-    assert.ok(existsSync(join(stateDir, '.opencode', 'skills', '.state', 'goal', '.locks')), 'the lock lives under the workspace');
+    assert.ok(existsSync(join(stateDir, '.skilled', 'skills', '.state', 'goal', '.locks')), 'the lock lives under the workspace');
   } finally {
     rmSync(otherStateDir, { recursive: true, force: true });
   }

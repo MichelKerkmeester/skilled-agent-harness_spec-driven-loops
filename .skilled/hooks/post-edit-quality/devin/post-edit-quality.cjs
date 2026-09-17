@@ -60,7 +60,7 @@ function buildCommentHygieneFinding(finding, filePath) {
     if (line.trim()) lines.push(`  ${line}`);
   }
   lines.push(
-    'See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4',
+    'See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4',
     "Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.",
     '',
   );

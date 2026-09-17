@@ -51,7 +51,7 @@ mode loads. The two layers stay separate: the hub never emits leaf paths, and th
 never re-decides the mode.
 
 > **Compiled routing: not yet.** The other five hubs resolve through a compiled router contract
-> first (`node .opencode/bin/compiled-route.cjs --hub <id> --prompt "<task>"`). This hub is not in
+> first (`node .skilled/bin/compiled-route.cjs --hub <id> --prompt "<task>"`). This hub is not in
 > that closure: the same call returns `{"servingAuthority":"legacy","hubId":"sk-design"}`, so the
 > routing below is the only path. Joining needs a rollout package mirroring the five that exist plus
 > registration in the engine's hub table and the guard's hub list. Until then, do not quote a

@@ -18,13 +18,13 @@ metadata:
 
 # opencode Surface — System-Code Evidence
 
-**Domain evidence** and shared workflow doctrine for OpenCode system code (the `.opencode/` tree: skills, agents, commands, plugins, MCP servers, config, changelogs, and runtime bridge wiring). This surface owns the implement -> debug -> verify phases through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides.
+**Domain evidence** and shared workflow doctrine for OpenCode system code (the `.skilled/` tree: skills, agents, commands, plugins, MCP servers, config, changelogs, and runtime bridge wiring). This surface owns the implement -> debug -> verify phases through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides.
 
-Detection is two-step. First, the surface trigger is work under `.opencode/` (including `SKILL.md`, descriptors, commands, agents, plugins, MCP servers, assets, scripts, and changelogs). Second, once the OpenCode surface is selected, file extensions and local markers select the language trio: `.cjs`/`.mjs`/`.js` -> JavaScript, `.ts`/`.tsx`/`.mts`/`.d.ts` -> TypeScript, `.py` plus `argparse` -> Python, `.sh`/`.bash` -> shell, `.rs` -> Rust, `.json`/`.jsonc`/`.yaml`/`.yml` plus `graph-metadata` or `spec-folder` -> config. For Rust, when no `.rs` file is present, local `Cargo.toml`/`Cargo.lock` markers select it after the OpenCode surface is established; napi-rs and wasm-bindgen vocabulary are additional intent signals, not cross-project surface detectors.
+Detection is two-step. First, the surface trigger is work under `.skilled/` (including `SKILL.md`, descriptors, commands, agents, plugins, MCP servers, assets, scripts, and changelogs). Second, once the OpenCode surface is selected, file extensions and local markers select the language trio: `.cjs`/`.mjs`/`.js` -> JavaScript, `.ts`/`.tsx`/`.mts`/`.d.ts` -> TypeScript, `.py` plus `argparse` -> Python, `.sh`/`.bash` -> shell, `.rs` -> Rust, `.json`/`.jsonc`/`.yaml`/`.yml` plus `graph-metadata` or `spec-folder` -> config. For Rust, when no `.rs` file is present, local `Cargo.toml`/`Cargo.lock` markers select it after the OpenCode surface is established; napi-rs and wasm-bindgen vocabulary are additional intent signals, not cross-project surface detectors.
 
 ## 1. WHEN THE HUB BUNDLES THIS
 
-- The task touches `.opencode/` system code — a skill, agent, command, plugin, MCP server, or descriptor/config.
+- The task touches `.skilled/` system code — a skill, agent, command, plugin, MCP server, or descriptor/config.
 - The active workflow phase needs a language standard, a language-agnostic organization pattern, a hook contract, an alignment-verification procedure, or an authoring checklist.
 - This surface owns edits, tests, and verification through the workflow references; hand off formal findings-first review to `code-review` and author-side quality gates to `code-quality`.
 
@@ -32,7 +32,7 @@ Detection is two-step. First, the surface trigger is work under `.opencode/` (in
 
 ## 2. REFERENCE MAP
 
-Language standards — after `.opencode/` selects this surface, load the exact split resources for the detected language:
+Language standards — after `.skilled/` selects this surface, load the exact split resources for the detected language:
 - TypeScript — `references/typescript/style-guide/overview-strict-and-naming.md`, `references/typescript/style-guide/formatting-imports-and-coexistence.md`, `references/typescript/quality-standards/overview-and-type-system.md`, `references/typescript/quality-standards/tsdoc-errors-and-async.md`, `references/typescript/quality-standards/tsconfig-and-modules.md`, `references/typescript/quick-reference/template-naming-and-types.md`, `references/typescript/quick-reference/imports-errors-and-tsconfig.md`
 - Python — `references/python/style-guide.md`, `references/python/quality-standards.md`, `references/python/quick-reference.md`
 - Shell — `references/shell/style-guide/overview-structure-and-naming.md`, `references/shell/style-guide/variables-functions-and-output.md`, `references/shell/quality-standards/overview-and-priority-blockers.md`, `references/shell/quality-standards/validation-security-and-shellcheck.md`, `references/shell/quick-reference/template-variables-and-loops.md`, `references/shell/quick-reference/functions-strings-and-checklist.md`
@@ -177,7 +177,7 @@ RESOURCE_MAP = {
 - **Descriptors are load-bearing.** `graph-metadata.json` / `description.json` shape drives discovery; validate JSON/JSONC against `references/config/quality-standards.md`.
 - **Alignment drift is a verification gate.** System-code changes re-run all three sk-code drift guards before any completion claim — `assets/scripts/verify_alignment_drift.py` (language integrity; add `--check-router` for dead RESOURCE_MAP routes), `assets/scripts/verify_stack_folders.py` (language reference folders resolve), and the `sk-code-router-sync.vitest.ts` suite (machine router vs filesystem/prose, plus the compiled-destination ↔ leaf-manifest ↔ RESOURCE_MAP bijection) — through the single entry point `scripts/run-all-drift-guards.sh`. See `references/shared/alignment-verification-automation.md`. The wrapper scans repository content only: files git tracks, so ignored trees, sibling worktrees and vendored clones stay out of a gate they can never pass. It exits 0 on a clean tree, so a completion claim requires wrapper rc 0 rather than a delta against a backlog.
 - **Rust preserves the TypeScript contract.** Rust napi-rs, WASM/WASI, and sidecar modules are compatibility implementations, not independent behavior authorities. JS-visible bytes, six-decimal numeric behavior, comparator tie-breaks, deterministic IDs, collection order, DTOs, and error shapes must remain identical to the TypeScript oracle.
-- **Touched-language set, not one-per-task.** Most `.opencode/` tasks touch a single language — keep that slice tight and lean on the shared tier for cross-language rules. An interop task that spans a language pair (a napi-rs / WASM / sidecar Rust module held to its TypeScript oracle) legitimately touches both languages: the router slices to the set the task actually touches and loads both trios plus the shared tier, because you cannot hold Rust byte-identical to TypeScript without seeing both standards.
+- **Touched-language set, not one-per-task.** Most `.skilled/` tasks touch a single language — keep that slice tight and lean on the shared tier for cross-language rules. An interop task that spans a language pair (a napi-rs / WASM / sidecar Rust module held to its TypeScript oracle) legitimately touches both languages: the router slices to the set the task actually touches and loads both trios plus the shared tier, because you cannot hold Rust byte-identical to TypeScript without seeing both standards.
 
 ---
 

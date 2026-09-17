@@ -21,9 +21,9 @@ Route /design:diagram to its presentation contract and workflow YAML for produci
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation contract | `.opencode/commands/design/assets/diagram-presentation.txt` |
-| Auto workflow | `.opencode/commands/design/assets/diagram-auto.yaml` |
-| Confirm workflow | `.opencode/commands/design/assets/diagram-confirm.yaml` |
+| Presentation contract | `.skilled/commands/design/assets/diagram-presentation.txt` |
+| Auto workflow | `.skilled/commands/design/assets/diagram-auto.yaml` |
+| Confirm workflow | `.skilled/commands/design/assets/diagram-confirm.yaml` |
 
 ---
 
@@ -32,7 +32,7 @@ Route /design:diagram to its presentation contract and workflow YAML for produci
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-1. Read `.opencode/commands/design/assets/diagram-presentation.txt`.
+1. Read `.skilled/commands/design/assets/diagram-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Treat the following as workflow inputs rather than execution modes: the positional target path (`.html` for a diagram, `.md` for a flowchart), the remaining positional text as the description, `--import <src>` to redraw an existing draw.io or Mermaid source instead of describing one, `--type <t>` to name one of the 27 diagram types, `--format <f>` to choose the export format (`png`, `svg`, or `html+png`), and `--output-format` to choose the artifact family. Under `:auto`, a `PRE-BOUND SETUP ANSWERS:` block in the prompt body supplies the setup answers non-interactively.
 4. Resolve output format before selecting a diagram type or ASCII pattern: `html-svg` is the default; `ascii-markdown` is selected by `--output-format ascii-markdown`, a markdown target, or ASCII/flowchart request signals. Preserve `--format` for export formats. If the output format is ambiguous, use the presentation contract's `UNKNOWN_FALLBACK` path rather than guessing.
@@ -47,14 +47,14 @@ Route /design:diagram to its presentation contract and workflow YAML for produci
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.opencode/commands/design/assets/diagram-auto.yaml` |
-| `:confirm` or omitted mode | `.opencode/commands/design/assets/diagram-confirm.yaml` |
+| `:auto` | `.skilled/commands/design/assets/diagram-auto.yaml` |
+| `:confirm` or omitted mode | `.skilled/commands/design/assets/diagram-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/design/assets/diagram-presentation.txt`:
+The following content lives only in `.skilled/commands/design/assets/diagram-presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, confirmation prompts, status display, completion display, and next-step text.
 

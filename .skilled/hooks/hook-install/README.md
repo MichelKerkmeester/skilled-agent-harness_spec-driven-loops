@@ -19,7 +19,7 @@ contextType: "reference"
 
 It is tooling that *installs* hooks rather than a runtime event hook. It is explicitly invoked as a reconcile step, not run on every turn, and is indexed here so the hub shows every hook-related executable in one place. The same installer backs a non-mutating `--check` mode that the [`codex-watchdog`](../codex-watchdog/README.md) plugin calls on each OpenCode session start to surface drift.
 
-One real installer backs the wired runtimes. Claude, Cursor, and Devin carry relative symlinks into `.opencode/bin/`; Codex itself carries no copy: it is the install target, not an installer host.
+One real installer backs the wired runtimes. Claude, Cursor, and Devin carry relative symlinks into `.skilled/bin/`; Codex itself carries no copy: it is the install target, not an installer host.
 
 ---
 
@@ -29,7 +29,7 @@ One real installer backs the wired runtimes. Claude, Cursor, and Devin carry rel
 
 | Mode | Invocation | Effect |
 |---|---|---|
-| Reconcile (default) | `node .opencode/bin/install-codex-hooks.mjs` | Writes the reconciled target. Backs up the existing target to `<target>.bak-<timestamp>` when changed, then atomically writes (temp file + rename, mode preserved). Prints a JSON report. |
+| Reconcile (default) | `node .skilled/bin/install-codex-hooks.mjs` | Writes the reconciled target. Backs up the existing target to `<target>.bak-<timestamp>` when changed, then atomically writes (temp file + rename, mode preserved). Prints a JSON report. |
 | Check (non-mutating) | `node ... install-codex-hooks.mjs --check` | Exits 0 with `install-codex-hooks: OK <path>` when in sync; exits 1 with a `DRIFT` report on stderr when drift is detected. No write. |
 | Dry-run | `node ... install-codex-hooks.mjs --dry-run` | Prints the JSON report plus a `drift` object; no write. `--check` and `--dry-run` are mutually exclusive. |
 
@@ -38,7 +38,7 @@ One real installer backs the wired runtimes. Claude, Cursor, and Devin carry rel
 The installer treats hook **identity** as the first adapter path in a command (`node`/`bash`/`python` + a `.js`/`.mjs`/`.cjs`/`.sh` file). Against the user-global target it:
 
 - **Removes** hooks whose identity matches a source hook (the source is authoritative for command shape, so the old entry is replaced).
-- **Removes repo orphans**: any identity under `.opencode/` that no longer exists on disk. Ownership follows the `.opencode/` namespace, so a renamed script orphans its installed entry rather than silently surviving.
+- **Removes repo orphans**: any identity under `.skilled/` that no longer exists on disk. Ownership follows the `.skilled/` namespace, so a renamed script orphans its installed entry rather than silently surviving.
 - **Keeps third-party hooks**: anything the repo does not own is preserved untouched.
 - **Appends** the canonical source groups, with the portable anchor `${CODEX_PROJECT_DIR:-$PWD}` rewritten to the resolved repo path.
 
@@ -63,7 +63,7 @@ The installer treats hook **identity** as the first adapter path in a command (`
 | **OpenCode** | — | — | Not applicable. OpenCode observes Codex hook health through the `codex-watchdog` plugin, which calls this installer's `--check` mode. |
 | **Pi** | — | — | Not applicable. |
 
-One real installer backs the wired runtimes; the per-runtime entries are symlinks into `.opencode/bin/`.
+One real installer backs the wired runtimes; the per-runtime entries are symlinks into `.skilled/bin/`.
 
 ---
 
@@ -83,10 +83,10 @@ hook-install/
 
 | File | Responsibility |
 |---|---|
-| `.opencode/bin/install-codex-hooks.mjs` | The installer. Argument parsing, hook-identity matching, source/target reconciliation (remove owned, remove repo orphans, keep third-party, append canonical), drift classification, repo-anchor safety, atomic write with backup, and `--check` / `--dry-run` modes. |
-| `.opencode/.codex/hooks.json` | The versioned source the installer reads (repo-authoritative hook set). Not in this folder. |
+| `.skilled/bin/install-codex-hooks.mjs` | The installer. Argument parsing, hook-identity matching, source/target reconciliation (remove owned, remove repo orphans, keep third-party, append canonical), drift classification, repo-anchor safety, atomic write with backup, and `--check` / `--dry-run` modes. |
+| `.skilled/.codex/hooks.json` | The versioned source the installer reads (repo-authoritative hook set). Not in this folder. |
 | `~/.codex/hooks.json` | The user-global target the installer reconciles into. Lives outside the repo. |
-| `.opencode/hooks/shared/hook-flags.cjs` | The shared kill-switch resolver the installer imports (`isHookEnabled('hook-install')`). |
+| `.skilled/hooks/shared/hook-flags.cjs` | The shared kill-switch resolver the installer imports (`isHookEnabled('hook-install')`). |
 
 ---
 
@@ -110,7 +110,7 @@ Flags and options:
 | `--dry-run` | Print the report only; no write. Mutually exclusive with `--check`. |
 | `--allow-worktree` | Permit anchoring at a linked worktree (otherwise refused). |
 
-Set a kill-switch inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a kill-switch inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -120,31 +120,31 @@ Set a kill-switch inline for one command, export it for a session, or persist it
 |---|---|
 | Explicitly invoked | Runs as a reconcile step, not on every turn. No runtime event hook. |
 | Source-authoritative | The repo's `.codex/hooks.json` owns command shape; owned entries are replaced, not merged field-by-field. |
-| Third-party preservation | Any hook the repo does not own is kept untouched. Only `.opencode/`-namespaced orphans are removed. |
+| Third-party preservation | Any hook the repo does not own is kept untouched. Only `.skilled/`-namespaced orphans are removed. |
 | Worktree safety | Refuses to anchor at a linked worktree unless `--allow-worktree` is passed. |
 | Atomic + backed up | A changed target is backed up to `<target>.bak-<timestamp>` and written via temp-file + rename with mode preserved. |
 | Non-fatal check | `--check` never writes; it only reports drift and sets the exit code. |
 | Imports | Node builtins only, plus `../hooks/shared/hook-flags.cjs` via `createRequire`. Nothing outside the repo. |
-| Real code | Stays in `.opencode/bin/`; the hub entries are relative symlinks. |
+| Real code | Stays in `.skilled/bin/`; the hub entries are relative symlinks. |
 
 ---
 
 ## 8. VALIDATION
 
 ```bash
-node .opencode/bin/install-codex-hooks.mjs --check; echo "exit: $?"
+node .skilled/bin/install-codex-hooks.mjs --check; echo "exit: $?"
 ```
 
 Expected result: `exit: 0` with `install-codex-hooks: OK <target>` when the user-global file is in sync, or `exit: 1` with an `install-codex-hooks: DRIFT <target> (...)` report on stderr when drift is detected.
 
 ```bash
-node .opencode/bin/install-codex-hooks.mjs --dry-run | head -n 1
+node .skilled/bin/install-codex-hooks.mjs --dry-run | head -n 1
 ```
 
 Expected result: a JSON object whose first line opens with `{` and includes `"dryRun": true`, `"changed": <bool>`, and the `drift` object. No file is written.
 
 ```bash
-SYSTEM_HOOK_INSTALL_DISABLED=1 node .opencode/bin/install-codex-hooks.mjs --check; echo "exit: $?"
+SYSTEM_HOOK_INSTALL_DISABLED=1 node .skilled/bin/install-codex-hooks.mjs --check; echo "exit: $?"
 ```
 
 Expected result: `exit: 0`, no output (kill-switch short-circuits before any read or write).

@@ -51,8 +51,8 @@ context_loading:
       - "{spec_folder}/handover.md when present"
       - "the _memory.continuity frontmatter block in {spec_folder}/implementation-summary.md"
       - "the packet's canonical spec docs, spec.md and decision-record.md, for what the first two steps leave open"
-    free_text_recipe: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '{review_target}' specs .opencode"
-    recipe_contract: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+    free_text_recipe: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '{review_target}' specs .skilled"
+    recipe_contract: ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
     exit_status: "0 is a hit set, 1 is a clean no-hit, 2 or higher is a failure that must be surfaced instead of reported as no-hit"
     ranking: "Ripgrep does not rank. Order the hits caller-side with the tuple in retrieval-conventions.md section 5."
   when_to_skip: ["User says 'skip context' or 'fresh start'"]
@@ -65,21 +65,21 @@ context_loading:
 # ─────────────────────────────────────────────────────────────────
 skill_reference:
   skill: system-deep-loop
-  skill_md: .opencode/skills/system-deep-loop/deep-review/SKILL.md
+  skill_md: .skilled/skills/system-deep-loop/deep-review/SKILL.md
   references:
-    loop_protocol: .opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md
-    state_format: .opencode/skills/system-deep-loop/deep-review/references/state/state-format.md
-    convergence: .opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md
+    loop_protocol: .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md
+    state_format: .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md
+    convergence: .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md
   templates:
-    config: .opencode/skills/system-deep-loop/deep-review/assets/deep-review-config.json
-    strategy: .opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md
+    config: .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json
+    strategy: .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md
 
 # ─────────────────────────────────────────────────────────────────
 # AGENT CONFIGURATION
 # ─────────────────────────────────────────────────────────────────
 agent_config:
   agent: deep-review
-  agent_file: ".opencode/agents/deep-review.md"
+  agent_file: ".skilled/agents/deep-review.md"
   # Canonical path. Runtime-specific directories (e.g. .claude/agents/) reference this source.
   mode: subagent
   model: opus
@@ -96,7 +96,7 @@ agent_config:
 # ─────────────────────────────────────────────────────────────────
 state_write_protocol:
   mechanism: "append-gateway"
-  command: "node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode review --run-directory {artifact_dir} --event-json <record file>"
+  command: "node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode review --run-directory {artifact_dir} --event-json <record file>"
   applies_to: "every append_to_jsonl and append_jsonl directive in this workflow"
   refusal_handling: "halt on exit 2; never fall back to a direct file write"
   contract: |
@@ -160,7 +160,7 @@ workflow:
         artifact_subfolder: null
         artifact_archive_root: "{config.fanout_lineage_artifact_dir}/_archive"
     if_absent:
-      command: "node -e \"const { resolveArtifactRoot } = require('./.opencode/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'review')));\""
+      command: "node -e \"const { resolveArtifactRoot } = require('./.skilled/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'review')));\""
       outputs:
         - artifact_root_dir: "Resolved local review owner directory"
         - artifact_subfolder: "Local packet subfolder ({ownerSlug}-pt-{NN}), else null"
@@ -216,7 +216,7 @@ workflow:
         description: "Spawn all native and CLI lineages in capped worker pool"
         skip_when: "no entries in config.fanout.executors"
         command: |
-          node .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
+          node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
             --spec-folder {spec_folder} \
             --loop-type review \
             --fanout-config-json '{config.fanout_json}' \
@@ -290,11 +290,11 @@ workflow:
         on_canonical_present: "Leave canonical review/ state untouched and do not overwrite it with legacy scratch artifacts."
         on_legacy_detected: "Move only the review-specific whitelist, append a migration event to the canonical JSONL, and leave unrelated scratch files untouched."
         on_conflict: "If canonical review/ state and legacy scratch review state both exist but disagree, halt for operator repair instead of merging contradictory state."
-        command: "mkdir -p {state_paths.iteration_dir} && if [ ! -e {state_paths.config} ] && [ ! -e {state_paths.state_log} ] && [ ! -e {state_paths.strategy} ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {state_paths.config}; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {state_paths.state_log}; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {state_paths.strategy}; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {state_paths.dashboard}; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {state_paths.pause_sentinel}; [ -e {state_paths.legacy_root_report} ] && mv {state_paths.legacy_root_report} {state_paths.review_output}; if [ -e {state_paths.state_log} ]; then MIGRATION_EVENT=$(mktemp); GATEWAY=.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs; [ -f \"$GATEWAY\" ] || GATEWAY=scripts/append-mode-event.cjs; printf '%s\n' '{\"stem\":\"deep_review.migration\",\"scope\":{\"runId\":\"{session_id}\",\"sessionId\":\"{session_id}\"},\"data\":{\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"]}}' > \"$MIGRATION_EVENT\"; node \"$GATEWAY\" --mode review --run-directory \"$(dirname {state_paths.state_log})\" --event-json \"$MIGRATION_EVENT\"; MIGRATION_STATUS=$?; rm -f \"$MIGRATION_EVENT\"; [ \"$MIGRATION_STATUS\" -eq 0 ] || exit \"$MIGRATION_STATUS\"; fi; fi; find {state_paths.local_packet_dir} -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; 2>/dev/null || true"
+        command: "mkdir -p {state_paths.iteration_dir} && if [ ! -e {state_paths.config} ] && [ ! -e {state_paths.state_log} ] && [ ! -e {state_paths.strategy} ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {state_paths.config}; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {state_paths.state_log}; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {state_paths.strategy}; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {state_paths.dashboard}; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {state_paths.pause_sentinel}; [ -e {state_paths.legacy_root_report} ] && mv {state_paths.legacy_root_report} {state_paths.review_output}; if [ -e {state_paths.state_log} ]; then MIGRATION_EVENT=$(mktemp); GATEWAY=.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs; [ -f \"$GATEWAY\" ] || GATEWAY=scripts/append-mode-event.cjs; printf '%s\n' '{\"stem\":\"deep_review.migration\",\"scope\":{\"runId\":\"{session_id}\",\"sessionId\":\"{session_id}\"},\"data\":{\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"]}}' > \"$MIGRATION_EVENT\"; node \"$GATEWAY\" --mode review --run-directory \"$(dirname {state_paths.state_log})\" --event-json \"$MIGRATION_EVENT\"; MIGRATION_STATUS=$?; rm -f \"$MIGRATION_EVENT\"; [ \"$MIGRATION_STATUS\" -eq 0 ] || exit \"$MIGRATION_STATUS\"; fi; fi; find {state_paths.local_packet_dir} -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; 2>/dev/null || true"
 
       step_acquire_lock:
         action: "Acquire the single-writer advisory lock before session classification"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder}"
+        command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder}"
         on_acquire: "Capture ownerPid from the JSON output and reuse it for every release below. If acquired=false, fail closed — another deep-review run already holds this packet."
         note: "Uses the promoted runtime/ loop-lock CLI (single source of truth: stale-lock reclaim, clean owner-scoped release). macOS/BSD locking is advisory — best-effort single-writer, not a hard mutex across host calls; stale-lock override is confirm-only or explicit recovery-only."
         # Lock-cleanup contract: the lock file MUST be released on every terminal exit path that follows acquisition.
@@ -302,13 +302,13 @@ workflow:
         on_halt:
           action: "Release the lock before any terminal halt branch returns control"
           applies_to: ["step_classify_session.on_invalid_state", "step_classify_session.on_completed_session"]
-          command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; failures here are logged but do not block the halt"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; failures here are logged but do not block the halt"
         on_cancel:
           action: "Release the lock on user cancel or pause-sentinel detection before sentinel processing"
-          command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; cancel completes regardless of cleanup result"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; cancel completes regardless of cleanup result"
         on_workflow_exit:
           action: "Release the lock as the final step of any workflow exit path (success or failure)"
-          command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; idempotent — safe to invoke when already released"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; idempotent — safe to invoke when already released"
 
       step_classify_session:
         action: "Classify the session before writing files"
@@ -361,13 +361,13 @@ workflow:
             5. Discover test files associated with the implementation files
             6. Set scope = all discovered implementation and test files
           skill: |
-            1. Read SKILL.md from .opencode/skills/{skill_name}/
+            1. Read SKILL.md from .skilled/skills/{skill_name}/
             2. Discover references/, assets/, scripts/ contents
             3. Find agent definitions referencing this skill across runtimes
             4. Find command entry points referencing this skill
             5. Set scope = all discovered files
           agent: |
-            1. Find agent definition across repo-managed runtimes (.claude/agents/, .opencode/agents/)
+            1. Find agent definition across repo-managed runtimes (.claude/agents/, .skilled/agents/)
             2. Compare agent definitions for consistency
             3. Set scope = all discovered agent files
           track: |
@@ -423,7 +423,7 @@ workflow:
 
       step_create_config:
         action: "Create deep-review-config.json from template with review-specific fields"
-        template: .opencode/skills/system-deep-loop/deep-review/assets/deep-review-config.json
+        template: .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json
         populate:
           topic: "Review: {review_target}"
           mode: "review"
@@ -474,7 +474,7 @@ workflow:
 
       step_create_strategy:
         action: "Create review strategy file from deep-review-strategy.md template"
-        template: .opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md
+        template: .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md
         populate:
           review_target: "{review_target}"
           review_target_type: "{review_target_type}"
@@ -496,7 +496,7 @@ workflow:
           4. Bind coverage_seed_source to "scope_discovery" and coverage_seed_confidence to 0.50.
           5. When scope discovery yields no files, emit [] for both arrays; the upsert script
              returns a warning and review continues with an empty graph.
-        bash: "node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{config.sessionId}\" --nodes '{coverage_seed_nodes_json}' --edges '{coverage_seed_edges_json}' --seed-source \"{coverage_seed_source}\" --seed-confidence \"{coverage_seed_confidence}\""
+        bash: "node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{config.sessionId}\" --nodes '{coverage_seed_nodes_json}' --edges '{coverage_seed_edges_json}' --seed-source \"{coverage_seed_source}\" --seed-confidence \"{coverage_seed_confidence}\""
         outputs:
           - coverage_seed_nodes_json: "Seed nodes for review SLICE and FILE kinds only"
           - coverage_seed_edges_json: "Seed COVERS edges where review target groupings resolved"
@@ -597,7 +597,7 @@ workflow:
           3. Preserve raw graph signals and blockers for reducer rollup and blocked-stop evidence.
           4. Normalize blockers to both JSON array and CSV forms for downstream stop handling.
           5. Set graph_stop_blocked = true only when graph_decision == "STOP_BLOCKED".
-        bash: 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --convergence-mode "{convergence_mode}"'
+        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --convergence-mode "{convergence_mode}"'
         note: "Invoke the runtime script directly. Review-side graph convergence must run before the inline review stop vote."
         append_jsonl: '{"type":"event","event":"graph_convergence","mode":"review","run":{current_iteration},"decision":"{graph_decision}","signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
         outputs:
@@ -761,14 +761,14 @@ workflow:
               step_prepare_divergent_pivot:
                 action: "Generate state-grounded read-only review candidates and prepare or resume the pivot transaction"
                 command: |
-                  node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+                  node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
                   import {
                     buildReviewPivotPreparationInput,
                     renderReviewPivotSeatPrompt,
-                  } from './.opencode/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts';
+                  } from './.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts';
                   import {
                     preparePivotTransaction,
-                  } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
 
                   const input = buildReviewPivotPreparationInput({
                     artifactRoot: '{state_paths.packet_dir}',
@@ -833,8 +833,8 @@ workflow:
                 action: "Durably record the seat-001 native dispatch outcome"
                 skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-001'"
                 command: |
-                  node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-                  import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+                  import { recordPivotSeatResult } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
                   const status = '{pivot_seat_001_dispatch_status}';
                   const outcome = status === 'fulfilled'
                     ? { status, output: {pivot_seat_001_output_json}, startedAtIso: '{pivot_seat_001_started_at_iso}', completedAtIso: '{pivot_seat_001_completed_at_iso}', durationMs: Number('{pivot_seat_001_duration_ms}') }
@@ -866,8 +866,8 @@ workflow:
                 action: "Durably record the seat-002 native dispatch outcome"
                 skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-002'"
                 command: |
-                  node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-                  import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+                  import { recordPivotSeatResult } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
                   const status = '{pivot_seat_002_dispatch_status}';
                   const outcome = status === 'fulfilled'
                     ? { status, output: {pivot_seat_002_output_json}, startedAtIso: '{pivot_seat_002_started_at_iso}', completedAtIso: '{pivot_seat_002_completed_at_iso}', durationMs: Number('{pivot_seat_002_duration_ms}') }
@@ -899,8 +899,8 @@ workflow:
                 action: "Durably record the seat-003 native dispatch outcome"
                 skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-003'"
                 command: |
-                  node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-                  import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+                  import { recordPivotSeatResult } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
                   const status = '{pivot_seat_003_dispatch_status}';
                   const outcome = status === 'fulfilled'
                     ? { status, output: {pivot_seat_003_output_json}, startedAtIso: '{pivot_seat_003_started_at_iso}', completedAtIso: '{pivot_seat_003_completed_at_iso}', durationMs: Number('{pivot_seat_003_duration_ms}') }
@@ -913,8 +913,8 @@ workflow:
                 action: "Finalize the prepared pivot after all missing native seats are durable"
                 skip_when: "pivot_prepare_status != 'pending'"
                 command: |
-                  node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-                  import { finalizePivotTransaction } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
+                  node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+                  import { finalizePivotTransaction } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
                   process.stdout.write(`${JSON.stringify(finalizePivotTransaction({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', resumed: {pivot_resumed} }))}\n`);
                   EOF
                 working_directory: "{repo_root}"
@@ -935,7 +935,7 @@ workflow:
                     next_dimension: "{pivot_result.restoredFocus}"
                     pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
                     saturated_directions: "{pivot_result.completedEvent.saturatedDirections}"
-                  command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
+                  command: "node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
                   log: "Divergent review pivot {pivot_result.pivotId} restored focus to {pivot_result.restoredFocus}; continuing iteration {current_iteration}."
                   proceed_to: step_normalize_pause_events
                 if_failed:
@@ -1019,7 +1019,7 @@ workflow:
         action: "Dispatch @deep-review agent for one review iteration"
         resolve_executor:
           source: "config.executor"
-          loader: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
+          loader: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
         pre_dispatch:
           generate_summary: |
             STATE SUMMARY (auto-generated):
@@ -1034,8 +1034,8 @@ workflow:
             Stuck count: {stuck_count}
             Provisional Verdict: {PASS|CONDITIONAL|FAIL|PENDING} hasAdvisories={has_advisories}
           render_prompt_pack:
-            template_path: ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl"
-            renderer: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
+            template_path: ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl"
+            renderer: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
             variables:
               state_summary: "{state_summary}"
@@ -1057,7 +1057,7 @@ workflow:
               state_paths_delta_pattern: "{state_paths.delta_pattern}"
         pre_dispatch_audit:
           skip_when: "config.executor.kind == 'native'"
-          call: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
+          call: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
           args:
             stateLogPath: "{state_paths.state_log}"
             executor: "{config.executor}"
@@ -1071,12 +1071,12 @@ workflow:
           wait_for_completion: true
         if_cli_copilot:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync, writeFileSync } from 'node:fs';
             import { createHash } from 'node:crypto';
 
-            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
-            import { buildCopilotPromptArg } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
+            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { buildCopilotPromptArg } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
 
             const promptPath = '{state_paths.prompt_dir}/iteration-{current_iteration}.md';
             const prompt = readFileSync(promptPath, 'utf8');
@@ -1165,16 +1165,16 @@ workflow:
             - "copilot has no stdin support; prompt is positional"
             - "Size check uses 16KB threshold; above that uses @PROMPT_PATH wrapper prompt"
             - "Large-prompt path relies on copilot honoring @path references within its prompt string"
-            - "buildCopilotPromptArg attaches a TARGET AUTHORITY preamble bound to the workflow-approved spec folder; recovered context cannot override it (authority guard source: .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml)"
+            - "buildCopilotPromptArg attaches a TARGET AUTHORITY preamble bound to the workflow-approved spec folder; recovered context cannot override it (authority guard source: .skilled/commands/speckit/assets/speckit_deep-review_auto.yaml)"
             - "If spec_folder is missing/malformed/unresolved on a write-intent dispatch, the helper enforces plan-only by replacing the prompt with a Gate-3 question and stripping --allow-all-tools"
             - "Large-prompt wrapper mode rewrites the prompt file at promptPath to include the TARGET AUTHORITY preamble (prefix + divider + original body); the argv becomes a bare @promptPath reference"
         if_cli_claude_code:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { createHash } from 'node:crypto';
 
-            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
 
             const configDir = '{optional_claude_config_dir}';
             const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
@@ -1250,16 +1250,16 @@ workflow:
             - "claude-code supports --effort for reasoning depth"
         if_cli_opencode:
           command: |
-            GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
             [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
             EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-review-baseline.XXXXXX")"
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module - "$EVENT_DIR" <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module - "$EVENT_DIR" <<'EOF'
             import { execFileSync } from 'node:child_process';
             import { readFileSync, readlinkSync, realpathSync, writeFileSync } from 'node:fs';
             import { createHash } from 'node:crypto';
             import { basename, dirname, isAbsolute, join, relative, resolve } from 'node:path';
 
-            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
 
             const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
             const executor = {
@@ -1421,14 +1421,14 @@ workflow:
           notes:
             - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
             - "Fail closed before dispatch unless the rendered containment sections exist, --dir is an isolated linked worktree, the primary worktree is clean, and current-worktree changes are confined to artifact_dir both by name and after every path component is resolved through symlinks; append the recovery-baseline commit to state_log"
-            - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode v1.14.39 reads stdin at startup and hangs at 0% CPU after +60s snapshot prune without it (the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §4 ALWAYS rule)"
+            - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode v1.14.39 reads stdin at startup and hangs at 0% CPU after +60s snapshot prune without it (the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §4 ALWAYS rule)"
             - "opencode run takes a positional message; prompt is the route-proof preamble + iteration body"
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
-            - "cli-opencode self-invocation guard: this single-executor branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). Explicit parallel-detached cli-opencode fan-out is handled by step_fanout_spawn_cli/fanout-run.cjs, not this branch. the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
+            - "cli-opencode self-invocation guard: this single-executor branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). Explicit parallel-detached cli-opencode fan-out is handled by step_fanout_spawn_cli/fanout-run.cjs, not this branch. the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         if_cli_codex:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { execFileSync } from 'node:child_process';
 
@@ -1437,11 +1437,11 @@ workflow:
               formatRecursionGuardRefusal,
               runAuditedExecutorCommand,
               validateExecutorDispatchAllowed,
-            } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
             import {
               snapshotOutOfScopeDirtyPaths,
               enforceWriteContainment,
-            } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
+            } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
 
             // Fail closed: a requested codex executor must dispatch codex or abort,
             // never silently degrade to another executor. Undetected absence is what
@@ -1564,15 +1564,15 @@ workflow:
             - "--sandbox workspace-write is required so the iteration can write its own iteration file/delta/state record (read-only would fail the post-dispatch artifact gate); -c approval_policy=never keeps it non-interactive; --model omitted when unset so ~/.codex/config.toml default applies"
         if_cli_cursor:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { createRequire } from 'node:module';
-            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
-            import { resolveSandboxMode, resolveClaudePermissionMode } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
+            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveSandboxMode, resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
             import {
               snapshotOutOfScopeDirtyPaths,
               enforceWriteContainment,
-            } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
+            } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
 
             // cursor-agent/devin/pi have no single-executor branch of their own, so
             // without this they silently degrade to native. The command builder is the
@@ -1581,7 +1581,7 @@ workflow:
             // It throws (fail closed) when the binary is absent or the model is off the
             // allowlist, so a requested CLI executor never becomes native.
             const require = createRequire(import.meta.url);
-            const { buildLineageCommand } = require('./.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const { buildLineageCommand } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
             const kind = '{config.executor.kind}';
             const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
@@ -1654,15 +1654,15 @@ workflow:
             - "Fails closed when cursor-agent is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-cursor executor never degrades to native"
         if_cli_devin:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { createRequire } from 'node:module';
-            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
-            import { resolveSandboxMode, resolveClaudePermissionMode } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
+            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveSandboxMode, resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
             import {
               snapshotOutOfScopeDirtyPaths,
               enforceWriteContainment,
-            } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
+            } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
 
             // cursor-agent/devin/pi have no single-executor branch of their own, so
             // without this they silently degrade to native. The command builder is the
@@ -1671,7 +1671,7 @@ workflow:
             // It throws (fail closed) when the binary is absent or the model is off the
             // allowlist, so a requested CLI executor never becomes native.
             const require = createRequire(import.meta.url);
-            const { buildLineageCommand } = require('./.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const { buildLineageCommand } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
             const kind = '{config.executor.kind}';
             const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
@@ -1744,15 +1744,15 @@ workflow:
             - "Fails closed when devin is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-devin executor never degrades to native"
         if_cli_pi:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { createRequire } from 'node:module';
-            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
-            import { resolveSandboxMode, resolveClaudePermissionMode } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
+            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveSandboxMode, resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
             import {
               snapshotOutOfScopeDirtyPaths,
               enforceWriteContainment,
-            } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
+            } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
 
             // cursor-agent/devin/pi have no single-executor branch of their own, so
             // without this they silently degrade to native. The command builder is the
@@ -1761,7 +1761,7 @@ workflow:
             // It throws (fail closed) when the binary is absent or the model is off the
             // allowlist, so a requested CLI executor never becomes native.
             const require = createRequire(import.meta.url);
-            const { buildLineageCommand } = require('./.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const { buildLineageCommand } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
             const kind = '{config.executor.kind}';
             const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
@@ -1834,8 +1834,8 @@ workflow:
             - "Fails closed when pi is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-pi executor never degrades to native"
             - "cli-hermes single-executor: the same shared builder emits `hermes chat -Q --oneshot --query-file -` with the prompt on stdin, the two-id llmgateway roster and the max reasoning pin; fails closed when hermes is absent or the model is off the roster"
         post_dispatch_validate:
-          validator: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
-          command: "node .opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type review --artifact-dir {artifact_dir} --iteration {current_iteration}"
+          validator: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type review --artifact-dir {artifact_dir} --iteration {current_iteration}"
           command_note: "Mechanical leaf-reliability gate: exit 0 = complete; non-zero prints one machine reason (iteration_file_missing|iteration_verdict_missing|state_record_missing|route_proof_missing|route_proof_mismatch|delta_file_missing). The script enforces the artifact + route-proof contract instead of trusting the leaf to self-report, and a non-zero exit triggers on_failure.redispatch_once."
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
@@ -1913,7 +1913,7 @@ workflow:
           # The row is staged for the append gateway: the state log is a projection of the
           # ledger, so a directly appended error row is dropped by the next refresh.
           command: |
-            GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
             [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
             EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-iteration-error.XXXXXX")"
             cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
@@ -1937,7 +1937,7 @@ workflow:
           # the state log is a projection of the ledger, so a write beside it is dropped
           # by the next refresh.
           command: |
-            GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
             [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
             EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-claim-adjudication.XXXXXX")"
             cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
@@ -1953,7 +1953,7 @@ workflow:
           set:
             claim_adjudication_passed: false
           command: |
-            GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
             [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
             EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-claim-adjudication.XXXXXX")"
             cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
@@ -1967,7 +1967,7 @@ workflow:
 
       step_reduce_review_state:
         action: "Run reducer to refresh the canonical findings registry before dashboard generation"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
+        command: "node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
         read:
           - "{state_paths.state_log}"
           - "{state_paths.iteration_pattern}"
@@ -1998,7 +1998,7 @@ workflow:
           5. Merge optional graphEvents edges after normalizing relation = uppercase(event.relation); keep only COVERS, EVIDENCE_FOR, CONTRADICTS, RESOLVES, CONFIRMS, ESCALATES, IN_DIMENSION, IN_FILE.
           6. Emit nodes as { id, type, name, iteration, metadata } and edges as { id, relation, sourceId, targetId, metadata }, deduplicated by id.
           7. Discard malformed or unknown optional events without discarding canonical dimension and file coverage.
-        bash: "node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{session_id}\" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'"
+        bash: "node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{session_id}\" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'"
         note: "Invoke the runtime script directly. Canonical iteration fields provide baseline coverage; graphEvents add richer evidence."
         outputs:
           - graph_nodes_json: "JSON array of canonical and optional review graph nodes"
@@ -2083,7 +2083,7 @@ workflow:
         description: "Merge N lineage registries with strongest-restriction; bind p0/p1/p2 counts for step_derive_verdict; skip when single-executor"
         skip_when: "config.fanout is absent"
         command: |
-          node .opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs \
+          node .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs \
             --loop-type review \
             --artifact-dir {artifact_dir}
         working_directory: "{repo_root}"
@@ -2179,7 +2179,7 @@ workflow:
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged review deltas unless config.resource_map.emit is false"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors --emit-resource-map"
+        command: "node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors --emit-resource-map"
         read:
           - "{state_paths.config}"
           - "{state_paths.delta_dir}/iter-*.jsonl"
@@ -2255,7 +2255,7 @@ workflow:
       step_convergence_report:
         action: "Append convergence report to JSONL"
         command: |
-          GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+          GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
           [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
           EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-review-synthesis.XXXXXX")"
           node --input-type=module - "$EVENT_DIR" <<'EOF'
@@ -2488,7 +2488,7 @@ workflow:
 
       step_generate_context:
         action: "Route continuity content into the correct canonical spec document via generate-context.js"
-        command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"
+        command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"
         critical_rule: "NEVER manually author files under retired memory/ paths (the runtime rejects them); use generate-context.js so the save routes into decision-record.md, implementation-summary.md, or handover.md"
 
       step_verify_save:
@@ -2498,7 +2498,7 @@ workflow:
 
       step_release_lock:
         action: "Release the single-writer lock after save, skip-save, or cancellation cleanup has resolved"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}"
+        command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}"
         append_to_jsonl: '{"type":"event","event":"lock_released","path":"{state_paths.lock_file}","releasePhase":"save","timestamp":"{ISO_8601_NOW}"}'
 
   # ═══════════════════════════════════════════════════════════════

@@ -33,15 +33,15 @@ development_philosophy:
 skill_reference:
   skill: sk-doc
   mode: sk-create-with-human-voice
-  skill_md: .opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md
-  standard: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md
+  skill_md: .skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md
+  standard: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md
   references:
-    scope: .opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md
-    scoring: .opencode/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md
+    scope: .skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md
+    scoring: .skilled/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md
   templates:
-    report: .opencode/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md
+    report: .skilled/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md
   scripts:
-    scan: .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py
+    scan: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py
 
 confidence_framework:
   thresholds:
@@ -121,7 +121,7 @@ field_handling:
       Code, commands, identifiers and fenced samples are out of scope by default. Turning
       this on is for scanning a sample deliberately, never for a normal voice pass.
   defaults:
-    standard: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md
+    standard: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md
     publish_band: 85
     revise_band: 70
     long_document_lines: 400
@@ -186,7 +186,7 @@ workflow:
     steps:
       step_scan:
         action: "Run hvr_scan.py against the target and read its exit status"
-        command: "python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py {target}"
+        command: "python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py {target}"
         on_fail:
           action: "Exit 2 means the standard could not be parsed. HALT and report. Never substitute a hand count."
     checkpoint: "Show the grouped scan output, the exit status and the three numbers."

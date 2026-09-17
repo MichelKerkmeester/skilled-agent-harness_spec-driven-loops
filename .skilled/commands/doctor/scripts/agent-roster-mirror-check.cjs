@@ -34,7 +34,7 @@ const LINKED = [
 // Independently-authored surfaces: a different frontmatter dialect is expected,
 // so only presence is checked, never content equality.
 const AUTHORED = [
-  { id: 'opencode', rel: (n) => `.opencode/agents/${n}.md`, ext: '.md' },
+  { id: 'opencode', rel: (n) => `.skilled/agents/${n}.md`, ext: '.md' },
   { id: 'codex', rel: (n) => `.codex/agents/${n}.toml`, ext: '.toml' },
   // Pi agents are generated real files (sync-agents-pi.cjs), not symlinks.
   { id: 'pi', rel: (n) => `.pi/agents/${n}.md`, ext: '.md' },

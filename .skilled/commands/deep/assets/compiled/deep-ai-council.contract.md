@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/ai-council.md",
-      "sha256": "1f80feded36159fdee6b9314fbe6848e01d0cdac687a47ea388772dd73c06bc4",
+      "sha256": "661979dd4bc2db547c5087d215fe2e87b5b24e408a84c632a8f82737b9d71121",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-ai-council-presentation.txt",
-      "sha256": "7abb4d64cddf66db70d23dd611a53441b10e2878ffa6177dad59b3c825b6fed8",
+      "sha256": "4a16cd870660dd3c34e40745e9fc4c7e0b75338e28e89b9b90a2dc5172980864",
       "section": "full"
     },
     {
@@ -22,32 +22,32 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-ai-council-auto.yaml",
-      "sha256": "614ec1afcea27214179473ab69db01c8da2da3b420251672eac530aa69ba6e63",
+      "sha256": "473cfa7fe9ae4520eeffd2753455d4cb7d44fddccffbcd3c89b14886553b336e",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-ai-council-confirm.yaml",
-      "sha256": "0d153a90f63732d741f097a250406af992b083b107f2607ec8ea4e44059ee7b9",
+      "sha256": "cd75ade45a3d96bbf95b86a98373d0830e192049e86fcf423cd63b81fea7aa4a",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "be93642be72b6ca2f214216fc8977225f1a75b4a40bf4d893cd14c34b61f74b0",
+      "sha256": "04825049b20d5f021609c58f336514eba2fb5d2dd33ca11bd34005c2a64dbd92",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "50ec2328086ca97d4002f0f0e5ecfac3600488aa0fc178a05334b579a3d86b46",
+      "sha256": "86fbea0cffb982535a26692e4311ec31e0a5e1168a6b80cadbafc4662ec1ed72",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "65b3b86da06d73c209d94e6fae27927bf0263357bf596ef1c7281c1a92255197",
+      "sha256": "cce4eced0df237b81e90099c24eac11338c40a87edd6fc26e5736024512fb8d0",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md",
-      "sha256": "6ff4996ab0654404880724cc38f2dd52c561d71c16091dd8f4770053b5d2d3a8",
+      "sha256": "6500622279ecd121d6e3dc69221b5fc4e97a91b32a295e51ea933aa815f9e6fc",
       "section": "full"
     },
     {
@@ -57,12 +57,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md",
-      "sha256": "a60fb8372b2a21b93afa94ad223b3baa7707ec4970025f492876fc2c1619cb4f",
+      "sha256": "4ce67e274916df1827962e9066804be96a3fe850899c64e2d7c932ab94478983",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md",
-      "sha256": "bda20e5c028760c3d86630e038240a943984927581ea67bddb5206f381cc9120",
+      "sha256": "15a5b5e518e5f52b9d177446ad69058f39adc460ddc177597f3f96f4cbda49bc",
       "section": "full"
     },
     {
@@ -72,52 +72,52 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md",
-      "sha256": "96eefc0561163ea9a6566eed725c5318a9a0eb21f3d4ad55b48523ce35f121b2",
+      "sha256": "c9b53394f4701e76ef5f1cffa73b2f7146fe13f95187a10c23d4f89eb37c7a95",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
-      "sha256": "b60e696ab7b39a1a641367409e5611c6a942efd3f4481e606ae172e746815af6",
+      "sha256": "cd49ca2e40f36ae7e0fd0ce9351fe265816242a98e7b5cc56732c5beeaf83d9f",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md",
-      "sha256": "ba7ba4080f65eb69eef42647a019297f930c043c0bff375e3f6f16a01611a03b",
+      "sha256": "7b111503710f6b78455d4c5181232e54aeae797ebd677b6d527a6ab369146ea5",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md",
-      "sha256": "2c2ed8cfbccb824f086a625862e711c19145575d3f280207dfb4b9cb6875cef7",
+      "sha256": "2f6164b108b48c8d5ae023fcbae06b4d9aa05191fb81b34526506b3dd037add5",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md",
-      "sha256": "cb0a4686bc4dc86d9c6bf9bf0d158214161e262820b308bf25736502f7f74c06",
+      "sha256": "d877a16c2aea2265fdeccf649734b88ffd70071c5a5bbab6dcbc99f603ea5c62",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md",
-      "sha256": "853c29ee97a5b88a29ba683fea09bb96d1dcf52091b22dd7e40ee18d082b9dda",
+      "sha256": "7b556e6a8d977b20d4be867d054bbc90a6f349fb131b695c1d286f8694731ea0",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md",
-      "sha256": "21fb38f24553af0d3f2b8948a9af8a5ce6e4544dcd007e6635aea376f52871a6",
+      "sha256": "0a56325f781f7e47343c598d7230e657b066b0ee58ac62540b3773e341fb93c1",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md",
-      "sha256": "7fa13ead2b38466a301d904104cc045727def19e91fa2ff71c836c193c8c11f0",
+      "sha256": "6123b080627300509e2e9512486b60a29dc31fc24209ca2694ffa288303fb89b",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
-      "sha256": "88800794f9b9b053ae067bfcb42201b095d693c3f218765064f57c92735c669b",
+      "sha256": "9840d697908f2f365e68849fa8d6e5a3b5defa92066ce5d1fff48ec288fb3500",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-      "sha256": "4478c099a704ff47778f721339d36664103bfad2c61a4b94efd567058b906650",
+      "sha256": "979bc37ab2913dc32dc217182ffba633e01b05735244981106a6925b3f819a72",
       "section": "full"
     },
     {
@@ -132,12 +132,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/assets/runtime-capabilities.json",
-      "sha256": "4575814ff4d1379753d19829576e46963ece546e3cdf949acfd4c13383a34de2",
+      "sha256": "0aae2a543d8fcaa2d8720377ece227ee0bc04d100361c1badb9216cadcf0d2f5",
       "section": "full"
     },
     {
       "path": ".skilled/agents/ai-council.md",
-      "sha256": "70789a46a1026a3d33d34e9ac20723daf185e80da2580319fe87cecb19b37a20",
+      "sha256": "012fe48a22510f3636635411ddd24e5ffb34530330d0152a78317630c39779ff",
       "section": "full"
     },
     {
@@ -146,7 +146,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "c76400d59ce122b76e5fa5220fdd57890e7e28a4483a4fc8503c6ffd6f5d04e3"
+  "compiledBodyDigest": "13f8e90bcb7f90ca2eda2be15ad451bc7798673f2a149876038ed47999fb2270"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:ai-council
@@ -227,11 +227,11 @@ Rule: render the marked block verbatim; do not paraphrase, summarize, reorder, o
 ~~~markdown
 ### `:auto` Setup Resolution
 
-Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
+Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
 
 Under `execution_mode = AUTONOMOUS` from the `:auto` suffix, follow the three-tier flow:
 
-1. **Tier 1 - Resolve confidently**: parse `$ARGUMENTS` flags, the `PRE-BOUND SETUP ANSWERS:` block, and the Default Resolution Table below. When every required field is resolved, persist to `{spec_folder}/ai-council/council-session.json` or the YAML-designated setup artifact, bind runtime YAML placeholders, set `STATUS: PASSED`, and load `.opencode/commands/deep/assets/deep-ai-council-auto.yaml`. End Section 0.
+1. **Tier 1 - Resolve confidently**: parse `$ARGUMENTS` flags, the `PRE-BOUND SETUP ANSWERS:` block, and the Default Resolution Table below. When every required field is resolved, persist to `{spec_folder}/ai-council/council-session.json` or the YAML-designated setup artifact, bind runtime YAML placeholders, set `STATUS: PASSED`, and load `.skilled/commands/deep/assets/deep-ai-council-auto.yaml`. End Section 0.
 2. **Tier 2 - Targeted ask**: when one or two required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2 fields: `spec_folder` and `topics` when the prompt contains multiple plausible topic lists. Missing `deliberation_topic` is absence, not ambiguity - go to Tier 3.
 3. **Tier 3 - Fail fast**: emit the named-missing-inputs error format with `/deep:ai-council:auto` as the command name. Exit non-zero. Do not load YAML.
 
@@ -253,7 +253,7 @@ PRE-BOUND SETUP ANSWERS:
   convergenceThreshold: 0.20
   executor:
     mode: in-cli  # in-cli | external-cli
-    cli: native  # native | cli-opencode | cli-cursor | cli-devin | cli-pi (alias `opencode` -> `cli-opencode`). cli-codex and cli-claude-code are REJECTED as council seats; `resolveExecutorKind` in `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs` is authoritative
+    cli: native  # native | cli-opencode | cli-cursor | cli-devin | cli-pi (alias `opencode` -> `cli-opencode`). cli-codex and cli-claude-code are REJECTED as council seats; `resolveExecutorKind` in `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs` is authoritative
     model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
     reasoning: ""  # optional reasoning effort or variant
     service_tier: ""  # optional, executor-specific
@@ -341,7 +341,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 4 -type d 2>/dev/null | sort | tail -10
 
 5. Search for prior work (background):
-   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$DELIBERATION_TOPIC" specs .opencode
+   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$DELIBERATION_TOPIC" specs .skilled
    - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
    - Store: prior_work_found = [yes/no]
 
@@ -369,7 +369,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      C) cli-cursor - one external Cursor round.
      D) cli-devin - one external Devin round.
      E) cli-pi - one external Pi round.
-     cli-codex and cli-claude-code are NOT council seat executors and are rejected at resolve time; use /deep:review or /deep:research for codex- or Claude-Code-backed loops. cli-cursor, cli-devin and cli-pi enforce a model allowlist (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`).
+     cli-codex and cli-claude-code are NOT council seat executors and are rejected at resolve time; use /deep:review or /deep:research for codex- or Claude-Code-backed loops. cli-cursor, cli-devin and cli-pi enforce a model allowlist (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`).
 
    Reply format examples:
    - `"runtime boundary strategy, A, A"`

@@ -34,7 +34,7 @@ Bind routing to these resolved `ARGS_PRESENT`, `QUERY`, `FIRST`, and `REST` valu
 **Inputs:** `$ARGUMENTS` — `bind <packet-path> | resent | packet <packet-path> | set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume`
 **Outputs:** `STATUS=<OK|FAIL> ACTION=<bind|resent|packet|set|clear|complete|pause|resume|history|doctor|health|show>`
 
-This command is state-free. It never reads or writes `.opencode/skills/.state/goal` directly.
+This command is state-free. It never reads or writes `.skilled/skills/.state/goal` directly.
 
 - Empty arguments or `show` route to `opencode_goal_status`.
 - `bind <packet-path>` routes to `opencode_goal` with `action: "bind"` and `packetPath`. The packet's `goal.md` becomes the directive: the objective is derived from it, the injection renders from the file on every turn, and the frontmatter never leaves the file.

@@ -121,7 +121,7 @@ Each binding line must appear on its own line, grep-checkable verbatim. Missing 
 1. **RECEIVE** -> Parse the `/create:*` command or scoped markdown/spec-doc task, caller marker, setup values, active spec folder, and output contract.
 2. **VERIFY INVOCATION + SCOPE** -> Run the Phase 0 invocation and scope gate. Refuse ambiguous or unscoped writes before touching targets.
 3. **SCOPE LOCK** -> Resolve writable output paths, read-only evidence paths, overwrite policy, and command mode.
-4. **LOAD sk-doc** -> Read `.opencode/skills/sk-doc/SKILL.md` on every invocation and select the matching resource from Section 4.
+4. **LOAD sk-doc** -> Read `.skilled/skills/sk-doc/SKILL.md` on every invocation and select the matching resource from Section 4.
 5. **LOAD TEMPLATE** -> Read the selected template before writing any artifact.
 6. **EXECUTE DIRECTLY** -> Create or update the requested artifact using only allowed tools and resolved setup values.
 7. **VERIFY** -> Check template alignment, required sections, frontmatter when applicable, DQI score, line/path expectations, and command status contract.
@@ -176,20 +176,20 @@ Read `sk-doc` first, then read the matching template before writing.
 
 | Command                    | Output                                                  | Template                                                                                                                                         |
 | -------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `/create:agent`            | New OpenCode agent `.md` plus requested runtime mirrors | `.opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md`                                                                                               |
-| `/create:skill`         | New skill `SKILL.md` or doc-only skill resource         | `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md` and, when needed, `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md` |
-| `/create:skill-parent`     | Parent skill with nested mode packets (hub + registry + N `deep-<mode>` packets + `shared/`, one hub `graph-metadata.json`, root `ROUTER.md` stage-two control document) | `.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md`, `.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-registry-template.json`, and `.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md` (root `ROUTER.md` two-state authoring) |
-| `/create:feature-catalog`  | `feature-catalog/` package                              | `.opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md`                                                                     |
-| `/create:manual-testing-playbook` | `manual-testing-playbook/` package                      | `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md`                                                            |
-| `/create:readme`    | `README.md` or install-guide markdown                   | `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md`                                                                                       |
-| `/create:changelog`        | Versioned changelog markdown                            | `.opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`                                                                                           |
-| `/create:command`          | New or updated slash command set plus workflow assets   | `.opencode/skills/sk-doc/sk-create-command/assets/command-template.md`                                                                      |
-| `/create:benchmark`        | MCP benchmark folder plus report markdown               | `.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md`                                                         |
-| `/create:diff`             | Self-contained before/after document diff report        | `.opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py` (comparison engine renders the report; no markdown template) |
-| `/create:repo-rule`        | Repo rule under `repo-rules/` plus its `REPO RULES.md` router row | `.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md` and, when the router itself is created, `.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md` |
-| `/create:with-human-voice` | Human Voice Rules pass over existing prose, or a voice score report | `.opencode/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md` (score mode; apply mode edits the document in place) |
-| `spec-doc`                 | Spec folder documentation                               | `.opencode/skills/system-spec-kit/templates/` level contract or manifest templates                                                               |
-| `markdown`                 | Scoped markdown document                                | Existing document structure, `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md`, or the closest matching sk-doc template                 |
+| `/create:agent`            | New OpenCode agent `.md` plus requested runtime mirrors | `.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md`                                                                                               |
+| `/create:skill`         | New skill `SKILL.md` or doc-only skill resource         | `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md` and, when needed, `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md` |
+| `/create:skill-parent`     | Parent skill with nested mode packets (hub + registry + N `deep-<mode>` packets + `shared/`, one hub `graph-metadata.json`, root `ROUTER.md` stage-two control document) | `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md`, `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-registry-template.json`, and `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md` (root `ROUTER.md` two-state authoring) |
+| `/create:feature-catalog`  | `feature-catalog/` package                              | `.skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md`                                                                     |
+| `/create:manual-testing-playbook` | `manual-testing-playbook/` package                      | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md`                                                            |
+| `/create:readme`    | `README.md` or install-guide markdown                   | `.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md`                                                                                       |
+| `/create:changelog`        | Versioned changelog markdown                            | `.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`                                                                                           |
+| `/create:command`          | New or updated slash command set plus workflow assets   | `.skilled/skills/sk-doc/sk-create-command/assets/command-template.md`                                                                      |
+| `/create:benchmark`        | MCP benchmark folder plus report markdown               | `.skilled/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md`                                                         |
+| `/create:diff`             | Self-contained before/after document diff report        | `.skilled/skills/sk-doc/sk-create-diff/scripts/create_diff.py` (comparison engine renders the report; no markdown template) |
+| `/create:repo-rule`        | Repo rule under `repo-rules/` plus its `REPO RULES.md` router row | `.skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md` and, when the router itself is created, `.skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md` |
+| `/create:with-human-voice` | Human Voice Rules pass over existing prose, or a voice score report | `.skilled/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md` (score mode; apply mode edits the document in place) |
+| `spec-doc`                 | Spec folder documentation                               | `.skilled/skills/system-spec-kit/templates/` level contract or manifest templates                                                               |
+| `markdown`                 | Scoped markdown document                                | Existing document structure, `.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md`, or the closest matching sk-doc template                 |
 
 If the command or markdown workflow asks for a template not listed here and no existing document structure applies, return:
 
@@ -279,14 +279,14 @@ Treat hook-injected skill-advisor recommendations as routing hints only. They ne
 
 | Resource                                                                              | Purpose                                                            |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| `.opencode/skills/sk-doc/SKILL.md`                                                    | Required skill routing and documentation creation standards        |
-| `.opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md`                                    | Production agent structure, BINDING, REFUSE, and summary contracts |
-| `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md`                           | Skill creation template for `/create:skill`                     |
-| `.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md`  | Root `ROUTER.md` stage-two authoring template for `/create:skill-parent` |
-| `.opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md`          | Feature catalog package template                                   |
-| `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md` | Manual testing playbook package template                           |
-| `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md`                            | README template for `/create:readme`                        |
-| `.opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`                                | Changelog template for `/create:changelog`                         |
+| `.skilled/skills/sk-doc/SKILL.md`                                                    | Required skill routing and documentation creation standards        |
+| `.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md`                                    | Production agent structure, BINDING, REFUSE, and summary contracts |
+| `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md`                           | Skill creation template for `/create:skill`                     |
+| `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md`  | Root `ROUTER.md` stage-two authoring template for `/create:skill-parent` |
+| `.skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md`          | Feature catalog package template                                   |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md` | Manual testing playbook package template                           |
+| `.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md`                            | README template for `/create:readme`                        |
+| `.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`                                | Changelog template for `/create:changelog`                         |
 
 ---
 

@@ -5,7 +5,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
-import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
+import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
 
 function resultText(findings: unknown[]): string {
   return findings.map((finding) => {
@@ -27,7 +27,7 @@ export default function postEditQuality(pi: ExtensionAPI): void {
       const filePath = resolve(ctx.cwd, rawPath);
       if (!existsSync(filePath)) return;
 
-      const router = await import("../../.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs");
+      const router = await import("../../.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs");
       const entries = router.resolveDispatch(filePath, ctx.cwd);
       const findings = router.runChecks(entries, router.CLAUDE_HOOK_BUDGET_MS, {
         perChildTimeoutMs: router.CLAUDE_CHECKER_TIMEOUT_MS,

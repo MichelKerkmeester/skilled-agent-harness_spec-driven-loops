@@ -408,5 +408,5 @@ test('the Pi prompt fallback never invokes the unbound manage CLI', () => {
   const prompt = readFileSync(PROMPT_PATH, 'utf8');
   assert.match(prompt, /registers the authoritative `\/goal-pi` command/);
   assert.doesNotMatch(prompt, /OPENCODE_GOAL_RUNTIME_LABEL=/);
-  assert.doesNotMatch(prompt, /node\s+\.opencode\/hooks\/goal\/bin\/goal\.cjs/);
+  assert.doesNotMatch(prompt, /node\s+\.skilled\/hooks\/goal\/bin\/goal\.cjs/);
 });

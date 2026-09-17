@@ -33,11 +33,11 @@ skill_budget_doctor_invariant: |
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
   contract: "local command design contract"
-  audit_script: ".opencode/commands/doctor/scripts/audit_descriptions.py"
-  cli_health_command: "node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only"
+  audit_script: ".skilled/commands/doctor/scripts/audit_descriptions.py"
+  cli_health_command: "node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only"
   cli_health_policy: "Warm-only: probe the existing system-skill-advisor IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable and continue the read-only audit."
-  reference_doc: ".opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md"
-  doc_reference: ".opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md#description-budget--trim-style"
+  reference_doc: ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md"
+  doc_reference: ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md#description-budget--trim-style"
 
 # ─────────────────────────────────────────────────────────────────
 # USER INPUTS

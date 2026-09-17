@@ -75,7 +75,7 @@ function printCommentHygieneFinding(finding, filePath) {
   for (const line of String(finding.stdout || '').split('\n')) {
     if (line.trim()) process.stdout.write(`  ${line}\n`);
   }
-  process.stdout.write('See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4\n');
+  process.stdout.write('See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4\n');
   process.stdout.write("Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.\n");
   process.stdout.write('\n');
 }

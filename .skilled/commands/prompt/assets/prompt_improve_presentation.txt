@@ -156,7 +156,7 @@ STATUS=FAIL ERROR="[specific message]"
 ```
 
 Standard failure messages:
-- Skill missing: `sk-prompt skill not found at .opencode/skills/sk-prompt/SKILL.md`
+- Skill missing: `sk-prompt skill not found at .skilled/skills/sk-prompt/SKILL.md`
 - CLEAR below threshold after 3 iterations: `CLEAR score below threshold after 3 iterations: [SCORE]/50`
 - User cancels: emit `STATUS=CANCELLED`
 

@@ -4,7 +4,7 @@
 Hermes keeps shell hooks in the operator's user-level config, so a repository cannot carry them.
 A project plugin under ``./.hermes/plugins`` can be carried, and its hook surface reaches every
 guard core this repository already runs for the other runtimes. This plugin re-implements none
-of them: each hook shells out to the existing core under ``.opencode/`` with the same JSON payload
+of them: each hook shells out to the existing core under ``.skilled/`` with the same JSON payload
 the Devin adapters use, and maps the core's answer onto Hermes's directive shapes.
 
 No callback here raises into the session, so a guard that cannot run cannot block a session: the
@@ -28,26 +28,26 @@ from typing import Any, Dict, List, Optional, Tuple
 
 # The plugin lives at <repo>/.hermes/plugins/repo-guards, so the repository root is three levels up.
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
-DISPATCH_PREFLIGHT = REPO_ROOT / ".opencode" / "hooks" / "dispatch" / "devin" / "dispatch-preflight-lint.mjs"
+DISPATCH_PREFLIGHT = REPO_ROOT / ".skilled" / "hooks" / "dispatch" / "devin" / "dispatch-preflight-lint.mjs"
 COMPLETION_EVIDENCE_STOP = (
-    REPO_ROOT / ".opencode" / "skills" / "system-spec-kit" / "runtime" / "hooks" / "devin" / "completion-evidence-stop.cjs"
+    REPO_ROOT / ".skilled" / "skills" / "system-spec-kit" / "runtime" / "hooks" / "devin" / "completion-evidence-stop.cjs"
 )
-SESSION_START = REPO_ROOT / ".opencode" / "skills" / "system-spec-kit" / "runtime" / "dist" / "hooks" / "devin" / "session-start.js"
-SESSION_STOP = REPO_ROOT / ".opencode" / "skills" / "system-spec-kit" / "runtime" / "dist" / "hooks" / "devin" / "session-stop.js"
-GIT_PREFLIGHT_ADVISORY = REPO_ROOT / ".opencode" / "hooks" / "git-preflight" / "shared" / "git-preflight-advisory.mjs"
-SK_VISION = REPO_ROOT / ".opencode" / "hooks" / "sk-vision" / "devin" / "sk-vision.mjs"
+SESSION_START = REPO_ROOT / ".skilled" / "skills" / "system-spec-kit" / "runtime" / "dist" / "hooks" / "devin" / "session-start.js"
+SESSION_STOP = REPO_ROOT / ".skilled" / "skills" / "system-spec-kit" / "runtime" / "dist" / "hooks" / "devin" / "session-stop.js"
+GIT_PREFLIGHT_ADVISORY = REPO_ROOT / ".skilled" / "hooks" / "git-preflight" / "shared" / "git-preflight-advisory.mjs"
+SK_VISION = REPO_ROOT / ".skilled" / "hooks" / "sk-vision" / "devin" / "sk-vision.mjs"
 POST_EDIT_QUALITY = (
-    REPO_ROOT / ".opencode" / "hooks" / "post-edit-quality" / "devin" / "post-edit-quality.cjs"
+    REPO_ROOT / ".skilled" / "hooks" / "post-edit-quality" / "devin" / "post-edit-quality.cjs"
 )
 MCP_ROUTE_GUARD = (
-    REPO_ROOT / ".opencode" / "hooks" / "mcp-route-guard" / "devin" / "mcp-route-guard.cjs"
+    REPO_ROOT / ".skilled" / "hooks" / "mcp-route-guard" / "devin" / "mcp-route-guard.cjs"
 )
 TASK_DISPATCH_GUARD = (
-    REPO_ROOT / ".opencode" / "hooks" / "task-dispatch" / "devin" / "task-dispatch-guard.cjs"
+    REPO_ROOT / ".skilled" / "hooks" / "task-dispatch" / "devin" / "task-dispatch-guard.cjs"
 )
-SESSION_CLEANUP = REPO_ROOT / ".opencode" / "hooks" / "session-cleanup" / "devin" / "session-cleanup.sh"
-ADVISOR_CLI = REPO_ROOT / ".opencode" / "bin" / "skill-advisor.cjs"
-SPEC_GATE_CLASSIFY = REPO_ROOT / ".opencode" / "hooks" / "spec-gate" / "devin" / "spec-gate-classify.mjs"
+SESSION_CLEANUP = REPO_ROOT / ".skilled" / "hooks" / "session-cleanup" / "devin" / "session-cleanup.sh"
+ADVISOR_CLI = REPO_ROOT / ".skilled" / "bin" / "skill-advisor.cjs"
+SPEC_GATE_CLASSIFY = REPO_ROOT / ".skilled" / "hooks" / "spec-gate" / "devin" / "spec-gate-classify.mjs"
 
 # Prompt-time context rides Hermes's user-message injection channel rather than the system
 # prompt, so it is re-derived per turn: the advisor's brief follows every prompt, while the
@@ -96,10 +96,10 @@ ADVISOR_DIRECTIVE_CAPSULE = (
 # feeding it to bash yields parse errors instead of a verdict. The dist checker also reports on
 # stdout, so a guard's warning is whichever stream it wrote.
 SESSION_START_GUARDS: Tuple[Tuple[str, Path, Tuple[str, ...]], ...] = (
-    ("worktree-guard", REPO_ROOT / ".opencode" / "hooks" / "git-worktree-guard" / "devin" / "worktree-guard.sh", ("bash",)),
-    ("dist-freshness", REPO_ROOT / ".opencode" / "hooks" / "dist-freshness" / "devin" / "check-dist-staleness.sh", ("python3", "--all")),
-    ("git-hooks-check", REPO_ROOT / ".opencode" / "hooks" / "git-hooks-check" / "devin" / "check-git-hooks.sh", ("bash",)),
-    ("git-primary-reconcile", REPO_ROOT / ".opencode" / "hooks" / "git-primary-reconcile" / "pi" / "git-primary-reconcile.sh", ("bash",)),
+    ("worktree-guard", REPO_ROOT / ".skilled" / "hooks" / "git-worktree-guard" / "devin" / "worktree-guard.sh", ("bash",)),
+    ("dist-freshness", REPO_ROOT / ".skilled" / "hooks" / "dist-freshness" / "devin" / "check-dist-staleness.sh", ("python3", "--all")),
+    ("git-hooks-check", REPO_ROOT / ".skilled" / "hooks" / "git-hooks-check" / "devin" / "check-git-hooks.sh", ("bash",)),
+    ("git-primary-reconcile", REPO_ROOT / ".skilled" / "hooks" / "git-primary-reconcile" / "pi" / "git-primary-reconcile.sh", ("bash",)),
 )
 
 
@@ -121,7 +121,7 @@ READ_ONLY_MESSAGE = (
 # the shared goal core binds and serves the goal per session; the environment packet is the
 # fallback for a session that has no bound goal of its own.
 SPEC_FOLDER_ENV = "HERMES_SPEC_FOLDER"
-GOAL_CLI = REPO_ROOT / ".opencode" / "hooks" / "goal" / "bin" / "goal.cjs"
+GOAL_CLI = REPO_ROOT / ".skilled" / "hooks" / "goal" / "bin" / "goal.cjs"
 GOAL_RUNTIME = "hermes"
 
 # Hermes caps every plugin prompt section at 4000 characters and skips a section that exceeds

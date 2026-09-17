@@ -14,7 +14,7 @@ version: 1.0.2.0
 
 # Create Command
 
-`create-command` is the command-authoring workflow packet of the `sk-doc` parent hub. It creates and improves OpenCode slash commands under `.opencode/commands/` with executable workflows, precise frontmatter, required input gates, least-privilege tools, and router/presentation separation when needed.
+`create-command` is the command-authoring workflow packet of the `sk-doc` parent hub. It creates and improves OpenCode slash commands under `.skilled/commands/` with executable workflows, precise frontmatter, required input gates, least-privilege tools, and router/presentation separation when needed.
 
 This SKILL.md contains the core creation workflow. Use the `references/` route map (`references/README.md`), `assets/command-template.md`, `assets/command-router-template.md`, `assets/command-presentation-template.md`, and `../shared/` only for exhaustive examples, edge cases, and validator implementation detail.
 
@@ -121,15 +121,15 @@ Use a skill instead when the content is reusable reference knowledge, domain gui
 
 Determine the command invocation before writing:
 
-- Root command: `.opencode/commands/<command>.md` becomes `/<command>`.
-- Namespace command: `.opencode/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`.
+- Root command: `.skilled/commands/<command>.md` becomes `/<command>`.
+- Namespace command: `.skilled/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`.
 - Namespace and action names use lowercase hyphen-case.
 - Each command, namespace and action segment matches `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject underscores, empty segments and ambiguous normalization; the emitted `.md` stem must equal the validated action name.
 
 For grouped related actions, prefer a namespace directory:
 
 ```text
-.opencode/commands/
+.skilled/commands/
 └── <namespace>/
     ├── <action1>.md
     ├── <action2>.md
@@ -154,7 +154,7 @@ Choose the smallest command type that fits:
 | Router | Thin dispatcher: verify agent, resolve mode/args, hand off to owned assets | Router `.md` plus owned presentation `.txt` and optional workflow YAML or scripts |
 | Argument dispatch | Multiple action keywords or query forms | ASCII routing tree plus handlers |
 | Destructive | Deletes data or irreversible changes | Explicit confirmation, affected-state display, recovery guidance |
-| Namespace | Related commands grouped together | Directory under `.opencode/commands/` |
+| Namespace | Related commands grouped together | Directory under `.skilled/commands/` |
 
 If the command combines patterns, parse mode first, then dispatch remaining arguments.
 
@@ -163,22 +163,22 @@ If the command combines patterns, parse mode first, then dispatch remaining argu
 For a simple or medium command, create or update:
 
 ```text
-.opencode/commands/<command>.md
+.skilled/commands/<command>.md
 ```
 
 For a namespace command, create or update:
 
 ```text
-.opencode/commands/<namespace>/<action>.md
+.skilled/commands/<namespace>/<action>.md
 ```
 
 For a split mode-based workflow command, create or update:
 
 ```text
-.opencode/commands/<namespace>/<action>.md
-.opencode/commands/<namespace>/assets/<namespace>-<action>-presentation.txt
-.opencode/commands/<namespace>/assets/<namespace>-<action>-auto.yaml
-.opencode/commands/<namespace>/assets/<namespace>-<action>-confirm.yaml
+.skilled/commands/<namespace>/<action>.md
+.skilled/commands/<namespace>/assets/<namespace>-<action>-presentation.txt
+.skilled/commands/<namespace>/assets/<namespace>-<action>-auto.yaml
+.skilled/commands/<namespace>/assets/<namespace>-<action>-confirm.yaml
 ```
 
 Use `-auto.yaml` and `-confirm.yaml` only for workflow-backed families that route execution into workflow assets. Direct-router families dispatch directly to tools/scripts and do not need workflow YAML.
@@ -188,8 +188,8 @@ Use `-auto.yaml` and `-confirm.yaml` only for workflow-backed families that rout
 For a compiled-stub router, the `.md` is a generated thin stub carrying the `render-command-contract` marker; its section shape is rendered from a compiled source at invocation, not authored in the file. Do not hand-write section headings into a compiled stub, and keep its owned presentation/workflow assets alongside it:
 
 ```text
-.opencode/commands/<namespace>/<action>.md            # compiled stub (render-command-contract marker)
-.opencode/commands/<namespace>/assets/<namespace>-<action>-presentation.txt
+.skilled/commands/<namespace>/<action>.md            # compiled stub (render-command-contract marker)
+.skilled/commands/<namespace>/assets/<namespace>-<action>-presentation.txt
 ```
 
 ### Step 6: Author Frontmatter First

@@ -18,7 +18,7 @@ Proposal-only mutator for bounded deep-improvement experiments. This agent write
 
 **CRITICAL**: This agent MUST stay proposal-only. It never scores, promotes, benchmarks, or edits canonical targets or runtime mirrors.
 
-**IMPORTANT**: Use `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging concerns.
+**IMPORTANT**: Use `.skilled/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging concerns.
 
 ---
 
@@ -75,7 +75,7 @@ This agent is LEAF-only and write-capable, and its writes are confined to one ca
 | `list` | Inspect runtime directories | When packet-local structure is unclear |
 | `bash` (node) | Run scan-integration and generate-profile scripts | When integration surface or dynamic profile is needed |
 
-**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Keyed lookup runs `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Keyed lookup runs `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ---
 
@@ -235,11 +235,11 @@ When the orchestrator provides a coverage graph summary in the dispatch context,
 
 ## 7. RELATED RESOURCES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` — the deep-loop hub this agent's improvement mode is packaged under.
-- `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` — the improvement-mode packet: charter, control file, target profile, evaluator.
-- `.opencode/skills/sk-doc/SKILL.md` — template alignment when candidate language must stay crisp and explicit.
-- `.opencode/skills/system-spec-kit/SKILL.md` — packet discipline and evidence handling when operating inside a spec folder.
-- `.opencode/commands/deep/agent-improvement.md` — the dispatch entry point for this experiment loop.
+- `.skilled/skills/system-deep-loop/SKILL.md` — the deep-loop hub this agent's improvement mode is packaged under.
+- `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md` — the improvement-mode packet: charter, control file, target profile, evaluator.
+- `.skilled/skills/sk-doc/SKILL.md` — template alignment when candidate language must stay crisp and explicit.
+- `.skilled/skills/system-spec-kit/SKILL.md` — packet discipline and evidence handling when operating inside a spec folder.
+- `.skilled/commands/deep/agent-improvement.md` — the dispatch entry point for this experiment loop.
 
 ---
 

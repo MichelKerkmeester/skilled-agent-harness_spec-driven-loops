@@ -38,8 +38,8 @@ const { isAbsolute, join } = require('node:path');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const REGISTRY_RELATIVE_PATH = '.opencode/skills/system-deep-loop/mode-registry.json';
-const LOOP_GUARD_STATE_DIR_RELATIVE_PATH = '.opencode/skills/.state/loop-guard';
+const REGISTRY_RELATIVE_PATH = '.skilled/skills/system-deep-loop/mode-registry.json';
+const LOOP_GUARD_STATE_DIR_RELATIVE_PATH = '.skilled/skills/.state/loop-guard';
 const LOOP_GUARD_ARCHIVE_DIR_NAME = '.archive';
 const WARN_LOG_FILENAME = 'guard-warnings.log';
 const WARN_LOG_BACKUP_SUFFIX = '.1';

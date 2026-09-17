@@ -43,9 +43,9 @@ development_philosophy:
   mandate: "Command contract first, then routing assets, then presentation text"
 
 runtime_command_path_resolution:
-  root_command: .opencode/commands/[command].md
-  namespace_command: .opencode/commands/[namespace]/[action].md
-  split_assets: .opencode/commands/[namespace]/assets/[namespace]_[action]_[kind]
+  root_command: .skilled/commands/[command].md
+  namespace_command: .skilled/commands/[namespace]/[action].md
+  split_assets: .skilled/commands/[namespace]/assets/[namespace]_[action]_[kind]
 
 # ─────────────────────────────────────────────────────────────────
 # CONFIDENCE & CLARIFICATION FRAMEWORK
@@ -77,7 +77,7 @@ confidence_framework:
 # REQUEST ANALYSIS FRAMEWORK
 # ─────────────────────────────────────────────────────────────────
 request_analysis_framework:
-  code_search_note: "Use Grep/Glob for existing command files and direct Read for exact contents. The ripgrep recipes in .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2 are for spec docs and skill docs, not arbitrary code."
+  code_search_note: "Use Grep/Glob for existing command files and direct Read for exact contents. The ripgrep recipes in .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2 are for spec docs and skill docs, not arbitrary code."
   solution_flow:
   - "Parse carefully: What slash command is ACTUALLY requested?"
   - "Gather Context: Read target packet resources and nearby commands"
@@ -135,7 +135,7 @@ field_handling:
     note: "Creates router .md plus -auto.yaml, -confirm.yaml, and -presentation.txt assets"
 
   defaults:
-    commands_root: ".opencode/commands/"
+    commands_root: ".skilled/commands/"
     execution_mode: "confirm_when_omitted"
     spec_path_from_phase: "FROM USER CHOICE IN SETUP PHASE"
 
@@ -164,19 +164,19 @@ documentation_level:
 # COMMAND CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 command_templates:
-  command_markdown: .opencode/skills/sk-doc/sk-create-command/assets/command-template.md
-  presentation_contract: .opencode/skills/sk-doc/sk-create-command/assets/command-presentation-template.md
+  command_markdown: .skilled/skills/sk-doc/sk-create-command/assets/command-template.md
+  presentation_contract: .skilled/skills/sk-doc/sk-create-command/assets/command-presentation-template.md
 
 command_scripts:
   packet_local: "No packet-local scripts are wired; follow create-command/SKILL.md validation instructions."
 
 command_references:
-  command_creation: .opencode/skills/sk-doc/sk-create-command/SKILL.md
-  route_map: .opencode/skills/sk-doc/sk-create-command/references/README.md
-  worked_example: .opencode/skills/sk-doc/sk-create-command/references/worked-example.md
-  router_presentation_split: .opencode/skills/sk-doc/sk-create-command/references/router-presentation-split.md
-  argument_hints_and_modes: .opencode/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md
-  common_pitfalls: .opencode/skills/sk-doc/sk-create-command/references/common-pitfalls.md
+  command_creation: .skilled/skills/sk-doc/sk-create-command/SKILL.md
+  route_map: .skilled/skills/sk-doc/sk-create-command/references/README.md
+  worked_example: .skilled/skills/sk-doc/sk-create-command/references/worked-example.md
+  router_presentation_split: .skilled/skills/sk-doc/sk-create-command/references/router-presentation-split.md
+  argument_hints_and_modes: .skilled/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md
+  common_pitfalls: .skilled/skills/sk-doc/sk-create-command/references/common-pitfalls.md
 
 # ─────────────────────────────────────────────────────────────────
 # CONTEXT LOADING
@@ -193,7 +193,7 @@ context_loading:
       - "Read {spec_path}/handover.md when present and recent"
       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
-      - "Only for a still-missing named gap, run the packet-scoped context recipe from .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+      - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
   output: memory_loaded
 
@@ -290,7 +290,7 @@ workflow:
     gate_type: SOFT_BLOCK
     enforcement: "Warn if similar command exists, allow user override"
     activities:
-    - "Use Glob to list .opencode/commands/**/*.md"
+    - "Use Glob to list .skilled/commands/**/*.md"
     - "Use Grep to search for matching invocation names, descriptions, and workflow phrases"
     - "Read exact matches and nearby namespace commands before planning"
     validation:
@@ -468,7 +468,7 @@ workflow:
     - IF validation fails: Fix issues and re-run
     - Repeat until passing
     validation_command: |
-      Run the validators specified by .opencode/skills/sk-doc/sk-create-command/SKILL.md Step 13 when available.
+      Run the validators specified by .skilled/skills/sk-doc/sk-create-command/SKILL.md Step 13 when available.
       grep -R "[source-workflow-name]" [generated-file-list]
     quality_gates:
       frontmatter_parse: "must pass"
@@ -508,7 +508,7 @@ workflow:
     description_budget:
       soft_target: 110
       hard_cap: 1536
-      reference: ".opencode/skills/sk-doc/sk-create-command/assets/command-template.md"
+      reference: ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md"
     outputs:
     - quality_score: number
     - validation_findings: list
@@ -543,9 +543,9 @@ workflow:
     # ── CONTINUITY WRITE ─────────────────────────────────
     write_continuity:
       purpose: "Refresh the packet continuity frontmatter and generated metadata"
-      writer: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
+      writer: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
       invocation: |
-        node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
+        node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
           /tmp/save-context-data-<session-id>.json [spec_path]
       critical_note: "The writer is the whole write: it keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it. The target is the canonical spec packet; standalone memory/*.md files are retired and the runtime rejects them."
       when: "Immediately after implementation-summary.md is written to disk"
@@ -655,7 +655,7 @@ quality_standards:
     stage_4: "Resource path existence check"
     stage_5: "Leftover source-name grep"
   template_adherence: required
-  core_standards_reference: ".opencode/skills/sk-doc/sk-create-command/SKILL.md"
+  core_standards_reference: ".skilled/skills/sk-doc/sk-create-command/SKILL.md"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT TEMPLATE

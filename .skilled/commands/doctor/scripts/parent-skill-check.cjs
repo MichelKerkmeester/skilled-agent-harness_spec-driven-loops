@@ -83,12 +83,12 @@ const DIRECTORY_ALLOWLIST = new Set([
 // point at ITS OWN drift-guard (advisorRoutingContract.driftGuard or the
 // advisor-projection extension); this is only the fallback for deep-loop.
 const DEEP_LOOP_DRIFT_GUARD =
-  '.opencode/skills/system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts';
+  '.skilled/skills/system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts';
 
 // Advisor entrypoint for the optional dynamic cross-check of the registry's
 // lexical projection against the live hardcoded map.
 const ADVISOR_SCRIPT =
-  '.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py';
+  '.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py';
 const ADVISOR_SCRIPT_ABS = path.resolve(REPO_ROOT, ADVISOR_SCRIPT);
 
 // The single global advisor projection map only mirrors this hub, so the
@@ -97,7 +97,7 @@ const ADVISOR_SCRIPT_ABS = path.resolve(REPO_ROOT, ADVISOR_SCRIPT);
 // still run the check.
 const GLOBAL_MAP_OWNER = 'system-deep-loop';
 
-const DEFAULT_TARGET = '.opencode/skills/system-deep-loop';
+const DEFAULT_TARGET = '.skilled/skills/system-deep-loop';
 
 // Canon checks are FAIL by default now that every parent hub carries the canon
 // fields (packetKind, toolSurface, grandfatheredFolderMismatch, hub-router,
@@ -580,7 +580,7 @@ function main() {
         // silently escalates the mode's declared tool contract (3j covers the hub frontmatter).
         if (typeof mode.command === 'string' && ts && typeof ts === 'object' && Array.isArray(ts.allowed)) {
           const cm = mode.command.match(/^\/([a-z][a-z0-9-]*):([a-z0-9-]+)$/);
-          const cmdFile = cm ? path.join(REPO_ROOT, '.opencode', 'commands', cm[1], `${cm[2]}.md`) : null;
+          const cmdFile = cm ? path.join(REPO_ROOT, '.skilled', 'commands', cm[1], `${cm[2]}.md`) : null;
           if (cmdFile && fs.existsSync(cmdFile)) {
             const fm = fs.readFileSync(cmdFile, 'utf8').match(/^allowed-tools:\s*\[([^\]]*)\]/m);
             if (fm) {

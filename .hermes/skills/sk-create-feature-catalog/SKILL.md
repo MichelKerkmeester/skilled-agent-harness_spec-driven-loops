@@ -333,17 +333,17 @@ Validation workflow — run from the repo root so the validator resolves the `fe
 ```bash
 # New-content naming guard. The staging root must contain only the newly authored
 # canonical feature-catalog package, never an ancestor with shipped legacy roots.
-python3 .opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py <new-content-staging-root>
+python3 .skilled/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py <new-content-staging-root>
 
 # Root catalog (detected as the readme doc type)
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/feature-catalog.md
-python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <target-skill>/feature-catalog/feature-catalog.md
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/feature-catalog.md
+python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <target-skill>/feature-catalog/feature-catalog.md
 
 # Each per-feature leaf (detected as the feature_catalog doc type; validates the Validation And Tests table taxonomy)
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/<category-name>/feature-name.md
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/<category-name>/feature-name.md
 ```
 
-The staging scope is mandatory until shipped underscore roots are migrated. Do not run this guard against `.opencode/skills` or another ancestor containing legacy `feature_catalog/` or `manual_testing_playbook/` trees.
+The staging scope is mandatory until shipped underscore roots are migrated. Do not run this guard against `.skilled/skills` or another ancestor containing legacy `feature_catalog/` or `manual_testing_playbook/` trees.
 
 The validator machine-checks the root-catalog structure and each leaf's Validation And Tests table, but not cross-file link targets or source-anchor accuracy. Manually verify:
 
@@ -357,7 +357,7 @@ The validator machine-checks the root-catalog structure and each leaf's Validati
 
 ### Package Validator Enforcement
 
-`scripts/validate_catalog_package.py` is the package-level enforcement surface. Discovery is presence-based: every canonical `feature-catalog/` directory below `.opencode/skills/` is a package, keyed by its path relative to that root. The measured starting corpus is 26 packages and 804 leaves. The validator carries explicit runtime-data exclusion rulings for any root that could gain a same-named directory without a skill contract.
+`scripts/validate_catalog_package.py` is the package-level enforcement surface. Discovery is presence-based: every canonical `feature-catalog/` directory below `.skilled/skills/` is a package, keyed by its path relative to that root. The measured starting corpus is 26 packages and 804 leaves. The validator carries explicit runtime-data exclusion rulings for any root that could gain a same-named directory without a skill contract.
 
 The validator compares root filenames and root-link targets case-insensitively. This preserves the `mcp-click-up` package's uppercase `FEATURE-CATALOG.md` without counting the root itself as an orphan.
 

@@ -60,7 +60,7 @@ Routing is **registry-driven**. `mode-registry.json` is the single source of tru
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
-> node .opencode/bin/compiled-route.cjs --hub sk-code --prompt "<task>"
+> node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"
 > ```
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-code`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
 
@@ -200,5 +200,5 @@ The `surface-router` backend is the shared surface-detection router under `share
 - Registry: `mode-registry.json` (two-axis: `packetKind` discriminates workflow vs surface).
 - Hub router signals + surface bundling: `hub-router.json`.
 - Surface router and shared controls: `ROUTER.md`.
-- Parent-skill pattern: `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
-- Sibling example: `.opencode/skills/sk-prompt/`.
+- Parent-skill pattern: `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
+- Sibling example: `.skilled/skills/sk-prompt/`.

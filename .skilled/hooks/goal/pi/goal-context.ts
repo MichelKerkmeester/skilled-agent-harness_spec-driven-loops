@@ -17,8 +17,8 @@ import type {
 
 const RUNTIME = "pi";
 const RUNTIME_LABEL = "Pi";
-const DISCOVERY_CORE_PATH = "../../.opencode/hooks/goal/lib/goal-core.cjs";
-const MANAGE_CLI_RELATIVE_PATH = ".opencode/hooks/goal/bin/goal.cjs";
+const DISCOVERY_CORE_PATH = "../../.skilled/hooks/goal/lib/goal-core.cjs";
+const MANAGE_CLI_RELATIVE_PATH = ".skilled/hooks/goal/bin/goal.cjs";
 
 type GoalRecord = {
   goalId?: string;

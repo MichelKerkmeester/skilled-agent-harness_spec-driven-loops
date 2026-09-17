@@ -1,6 +1,6 @@
 ---
 title: "Codex Hook Discovery Mirror"
-description: "Discovery-only symlinks for the repository's Codex hook scripts; runtime wiring remains in .codex/hooks.json and points to real .opencode paths."
+description: "Discovery-only symlinks for the repository's Codex hook scripts; runtime wiring remains in .codex/hooks.json and points to real .skilled paths."
 ---
 # Codex Hook Discovery Mirror
 
@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Codex hook scripts; r
 
 ## 1. OVERVIEW
 
-`.codex/hooks/` contains 18 symlinks to hook scripts owned under `.opencode/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, and `post-edit-quality.cjs` target `.opencode/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.opencode/hooks/README.md)); the rest target their owning skill under `.opencode/skills/`. Codex executes the real paths declared in `.codex/hooks.json`. The user-global Codex hook file is managed separately by the repository installer and should not be repointed to this mirror.
+`.codex/hooks/` contains 18 symlinks to hook scripts owned under `.skilled/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, and `post-edit-quality.cjs` target `.skilled/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.skilled/hooks/README.md)); the rest target their owning skill under `.skilled/skills/`. Codex executes the real paths declared in `.codex/hooks.json`. The user-global Codex hook file is managed separately by the repository installer and should not be repointed to this mirror.
 
 Two compiled ESM adapters do not execute through their symlink because their direct-entry guards compare the invocation path with the resolved module URL. Invoke those files through the real command path used by `hooks.json`.
 
@@ -39,13 +39,13 @@ Two compiled ESM adapters do not execute through their symlink because their dir
 ## 4. VALIDATION
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .codex/hooks/README.md
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .codex/hooks/README.md
 ```
 
 Expected result: exit 0 with zero document issues.
 
 ```bash
-node .opencode/bin/install-codex-hooks.mjs --check
+node .skilled/bin/install-codex-hooks.mjs --check
 ```
 
 Expected result: the managed Codex hook installation reports no drift.
@@ -58,5 +58,5 @@ Expected result: the managed Codex hook installation reports no drift.
 - [Claude mirror](../../.claude/hooks/README.md)
 - [Cursor mirror](../../.cursor/hooks/README.md)
 - [Devin mirror](../../.devin/hooks/README.md)
-- [Injection contract](../../.opencode/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
-- [Runtime hooks tree](../../.opencode/hooks/README.md): the four fully-portable guard cores this mirror points at outside `.opencode/skills/`
+- [Injection contract](../../.skilled/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
+- [Runtime hooks tree](../../.skilled/hooks/README.md): the four fully-portable guard cores this mirror points at outside `.skilled/skills/`

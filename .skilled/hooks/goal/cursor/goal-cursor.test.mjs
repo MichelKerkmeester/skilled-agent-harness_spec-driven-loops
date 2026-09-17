@@ -4,7 +4,7 @@
 // ║ PURPOSE: Injection-when-active, no-op-when-none/paused/disabled, and      ║
 // ║          fail-open-on-malformed-stdin coverage for goal-inject.mjs.       ║
 // ║          Every case points OPENCODE_GOAL_STATE_DIR at a fresh temp directory    ║
-// ║          so the real `.opencode/skills/.state/goal/` tree is never       ║
+// ║          so the real `.skilled/skills/.state/goal/` tree is never       ║
 // ║          touched, and every hook invocation runs as a real spawned       ║
 // ║          process (execFileSync) so stdin/stdout/exit-code behavior is    ║
 // ║          exercised exactly as Cursor would drive it.                     ║
@@ -212,7 +212,7 @@ test('the Cursor command is fail-closed for management and only ever invokes the
   const command = readFileSync(COMMAND_PATH, 'utf8');
   assert.match(command, /code=UNSUPPORTED_SESSION_BINDING/);
   assert.doesNotMatch(command, /OPENCODE_GOAL_RUNTIME_LABEL=/);
-  const invocations = command.match(/node\s+\.opencode\/hooks\/goal\/bin\/goal\.cjs\s+\S+/g) || [];
+  const invocations = command.match(/node\s+\.skilled\/hooks\/goal\/bin\/goal\.cjs\s+\S+/g) || [];
   assert.ok(invocations.length > 0, 'the packet read is the one allowed invocation');
   for (const invocation of invocations) {
     assert.match(invocation, /goal\.cjs\s+packet$/, `only the packet read may be invoked: ${invocation}`);

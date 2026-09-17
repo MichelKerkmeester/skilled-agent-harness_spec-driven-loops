@@ -77,7 +77,7 @@ session-lifecycle/
               session-start-context.ts, session-stop-context.ts                    # real files; .pi/extensions/ symlinks here
 ```
 
-The real code lives in `.opencode/skills/system-spec-kit/runtime/hooks/<runtime>/`. The `.js` siblings are relative symlinks into `system-spec-kit`'s built `dist/hooks/`, so they resolve after a build. There is no `opencode/` subfolder (by-design. OpenCode session events run inside the owning plugins).
+The real code lives in `.skilled/skills/system-spec-kit/runtime/hooks/<runtime>/`. The `.js` siblings are relative symlinks into `system-spec-kit`'s built `dist/hooks/`, so they resolve after a build. There is no `opencode/` subfolder (by-design. OpenCode session events run inside the owning plugins).
 
 ---
 
@@ -111,7 +111,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 
 Optional tuning variables: `SPECKIT_STOP_HOOK_SPEC_TAIL_BYTES` (spec-folder detection tail size, default 50 KiB), `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT=1` (opt-in authored snapshot worker on PreCompact), `HOOK_TIMEOUT_MS` (per-hook deadline), `COMPACTION_TOKEN_BUDGET` / `SESSION_PRIME_TOKEN_BUDGET` (output budgets). The `session-start-advisories` Pi extension additionally honors each guard's own concern kill-switch (`git-worktree-guard`, `git-hooks-check`, `live-sync`, `dist-freshness`, `hook-install`).
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -132,19 +132,19 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 ## 8. VALIDATION
 
 ```bash
-cd .opencode/skills/system-spec-kit/runtime && npm run build
+cd .skilled/skills/system-spec-kit/runtime && npm run build
 ```
 
 Expected result: `tsc --build` succeeds and `dist/hooks/<runtime>/*.js` are produced (the deployed entrypoints the runtime configs point at).
 
 ```bash
-cd .opencode/skills/system-spec-kit/runtime && npm run typecheck
+cd .skilled/skills/system-spec-kit/runtime && npm run typecheck
 ```
 
 Expected result: no type errors (confirms the `.ts` sources here still compile against the skill's shared modules).
 
 ```bash
-node -e "import('./.opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js').then(()=>console.log('ok'))"
+node -e "import('./.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js').then(()=>console.log('ok'))"
 ```
 
 Expected result: `ok`, with no module-resolution error (repeat for `session-stop.js`, `compact-inject.js`, and the `codex/`/`cursor/`/`devin/` siblings: confirms the deployed entrypoints resolve).

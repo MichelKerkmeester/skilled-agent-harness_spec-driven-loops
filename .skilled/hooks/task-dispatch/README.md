@@ -15,7 +15,7 @@ trigger_phrases:
 
 `task-dispatch/` gates Task-tool dispatches before they execute. The main concern is deep-loop protection: `lib/dispatch-guard.cjs` recognizes dispatches that target deep-loop sub-agents and distinguishes a bounded external handoff from repeated handoffs that recreate a command-owned iteration loop outside its parent command. A second, Claude-only guard enforces the Fable-model subagent policy.
 
-The core returns a transport-free `allow`/`warn`/`reject` decision; adapters translate it into their runtime's envelope. Warning state persists under `.opencode/skills/.state/loop-guard/` so both OpenCode and Claude share one bounded audit trail. The core performs the loop-state persistence and state-directory maintenance but never writes stdout/stderr and never writes the warning log itself: the adapter appends warnings/audits so both runtimes share one bounded log path.
+The core returns a transport-free `allow`/`warn`/`reject` decision; adapters translate it into their runtime's envelope. Warning state persists under `.skilled/skills/.state/loop-guard/` so both OpenCode and Claude share one bounded audit trail. The core performs the loop-state persistence and state-directory maintenance but never writes stdout/stderr and never writes the warning log itself: the adapter appends warnings/audits so both runtimes share one bounded log path.
 
 ---
 
@@ -59,7 +59,7 @@ Every covered runtime evaluates the **same** `lib/dispatch-guard.cjs` core. What
 | **Claude** | `claude/fable-subagent-guard.mjs` | `PreToolUse` on `Task\|Agent` | Reads the active main-loop model from `payload.transcript_path`; denies the three Fable shapes above | `permissionDecision: 'deny'` + per-shape reason. Claude-only; no other runtime has this guard. |
 | **Devin** | `devin/task-dispatch-guard.cjs` | `PreToolUse` on `run_subagent` (`.devin/hooks.v1.json`) | `tool_name: 'run_subagent'`; accepts `subagent_type`/`subagentType`/`agent_type`/`agentType`; whitespace-only `cwd` falls back to `DEVIN_PROJECT_DIR` | Same deny/advisory envelope as Claude. No Fable guard. |
 | **Cursor** | `cursor/task-dispatch-guard.mjs` | `preToolUse` (matcher `Task`) | `tool_name: 'Task'`; forwards the payload unchanged (the Claude core already reads the shape Cursor emits) | `spawnSync`s the Claude adapter, then translates its `hookSpecificOutput` into Cursor's envelope: deny → `{permission: 'deny', user_message, agent_message}` (exit 2); warn → `{permission: 'allow', agent_message}`. |
-| **OpenCode** | `.opencode/plugins/system-deep-loop-guard.js` (mirrored at `opencode/`) | Plugin: `tool.execute.before` on `task` + `event` on `session.created` | `input.tool: 'task'`; reads `args.subagent_type`/`subagentType` + `args.prompt` | reject → throws `Error(result.detail)` (OpenCode treats a thrown `before` error as a denial); warn → state-dir log only, **never** stdout/stderr. `session.created` triggers a throttled state-directory sweep. |
+| **OpenCode** | `.skilled/plugins/system-deep-loop-guard.js` (mirrored at `opencode/`) | Plugin: `tool.execute.before` on `task` + `event` on `session.created` | `input.tool: 'task'`; reads `args.subagent_type`/`subagentType` + `args.prompt` | reject → throws `Error(result.detail)` (OpenCode treats a thrown `before` error as a denial); warn → state-dir log only, **never** stdout/stderr. `session.created` triggers a throttled state-directory sweep. |
 | **Codex** | — | — | — | `unverified`: `PreToolUse` exists but no confirmed agent-spawn tool event; no adapter is wired. |
 | **Pi** | — | — | — | `~ partial`: intercepts direct `subagent` calls; workflow-nested (`runs.run`) dispatches not yet covered. No per-runtime adapter file lives in this concern's folder. |
 
@@ -94,7 +94,7 @@ task-dispatch/
 | `claude/fable-subagent-guard.mjs` | Claude-only `PreToolUse(Task\|Agent)` Fable-model policy. Reads the active model from the session transcript; denies `fork`, missing `model`, and non-opus/sonnet `model` when Fable drives the main loop. Fails open when the transcript is unreadable. |
 | `devin/task-dispatch-guard.cjs` | Devin `PreToolUse(run_subagent)` adapter over the same core. Accepts the four `subagent_type`/`agent_type` field aliases. |
 | `cursor/task-dispatch-guard.mjs` | Cursor `preToolUse` (matcher `Task`) adapter; `spawnSync`s the Claude adapter and translates its envelope into Cursor's permission shape. |
-| `.opencode/plugins/system-deep-loop-guard.js` | OpenCode plugin. `tool.execute.before` runs the policy (reject → thrown error); `event` on `session.created` runs the state-directory sweep. |
+| `.skilled/plugins/system-deep-loop-guard.js` | OpenCode plugin. `tool.execute.before` runs the policy (reject → thrown error); `event` on `session.created` runs the state-directory sweep. |
 
 ---
 
@@ -113,7 +113,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `SYSTEM_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS` | Days an archived state file survives before pruning (default 90). |
 | `SYSTEM_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS` | Throttle for the state-directory sweep (default 1 hour). |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -122,7 +122,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 | Boundary | Rule |
 |---|---|
 | Imports | The core imports Node builtins only. Adapters import `../lib/` and (CommonJS ones) `../../shared/hook-adapter-shared.cjs` + `../../shared/hook-flags.cjs`: nothing outside this tree. The Cursor adapter imports `hook-flags.mjs` and shells out to the Claude adapter by repo-relative path. |
-| State | Loop-repeat counters and warning logs live in `.opencode/skills/.state/loop-guard/`, written by adapters (never the core) so both runtimes share one bounded log. State files are session-keyed and written atomically (temp + rename). |
+| State | Loop-repeat counters and warning logs live in `.skilled/skills/.state/loop-guard/`, written by adapters (never the core) so both runtimes share one bounded log. State files are session-keyed and written atomically (temp + rename). |
 | Decisions | `allow`, `warn`, or `reject`. Reject is reserved for confirmed mode mismatch (under the reject env) and confirmed loop-recreation (count ≥ 3 under the reject-loop env), plus the Fable policy's three forbidden shapes. |
 | Failure | Fails open on malformed stdin, missing/unreadable registry or state, or any internal error. A persistence failure under a reject env emits an audit line (`appendRejectModeDegradedAudit`) but still allows the dispatch. |
 
@@ -131,13 +131,13 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 ## 8. VALIDATION
 
 ```bash
-node --test .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs .opencode/plugins/tests/system-deep-loop-guard.test.cjs
+node --test .skilled/plugins/tests/claude-task-dispatch-guard.test.cjs .skilled/plugins/tests/system-deep-loop-guard.test.cjs
 ```
 
 Expected result: all tests pass (includes the forged-iteration-marker regression cases).
 
 ```bash
-node -e "import('./.opencode/plugins/system-deep-loop-guard.js').then(()=>console.log('ok'))"
+node -e "import('./.skilled/plugins/system-deep-loop-guard.js').then(()=>console.log('ok'))"
 ```
 
 Expected result: `ok`, with no module-resolution error (confirms the OpenCode adapter still resolves this core).

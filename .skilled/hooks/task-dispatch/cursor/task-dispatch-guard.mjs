@@ -39,7 +39,7 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const GUARD_SCRIPT_RELATIVE = '.opencode/hooks/task-dispatch/claude/task-dispatch-guard.cjs';
+const GUARD_SCRIPT_RELATIVE = '.skilled/hooks/task-dispatch/claude/task-dispatch-guard.cjs';
 const CHILD_TIMEOUT_MS = 5_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 

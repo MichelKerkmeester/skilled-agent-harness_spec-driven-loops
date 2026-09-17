@@ -136,9 +136,9 @@ Execute the following steps in order:
 #### Branch A: Native In-Context Engine (`native`)
 - No environment variable modification is required (no external or local model process runs).
 - Load the wording standard. This file does not restate it:
-  - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`, the standard itself: voice directives, punctuation standards, structural patterns and the word lists.
-  - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`, the scope gate: which spans of the target a rewrite may touch, and which it carries rather than owns.
-  - `.opencode/skills/sk-communication/SKILL.md` section 3, "The Wording Standard", for the part of the standard a projection excludes and the reason.
+  - `.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`, the standard itself: voice directives, punctuation standards, structural patterns and the word lists.
+  - `.skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`, the scope gate: which spans of the target a rewrite may touch, and which it carries rather than owns.
+  - `.skilled/skills/sk-communication/SKILL.md` section 3, "The Wording Standard", for the part of the standard a projection excludes and the reason.
 - Rewrite the resolved target text in-context under that standard. Two projection constraints override it wherever they collide:
   - **Preserve exact meaning**: Every factual statement, logical relationship, instruction and conclusion survives. The original author's claims are the accuracy baseline, so a hedge they meant stays even where the standard prefers certainty.
   - **Exact span fidelity**: Re-insert every protected span identified in Step 2 byte-for-byte.
@@ -146,12 +146,12 @@ Execute the following steps in order:
 
 #### Branch B: External AI CLI Skill (`cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`, `cli-hermes`)
 - Validate the chosen CLI skill against the seven supported external skills, then map `cli-<skill>` to its engine id: `cli-claude-code` → `claude-code`; `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`, `cli-hermes` → `codex`, `cursor`, `devin`, `opencode`, `pi`, `hermes`.
-- **Model resolution**: The entrypoint supplies a documented default model for `claude-code`, `codex`, `cursor`, `devin`, and `opencode` when the model argument is omitted, so an engine-only invocation runs. `pi` has no default and needs an explicit `provider/model` id. To pin a considered model, read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` and pass it explicitly.
+- **Model resolution**: The entrypoint supplies a documented default model for `claude-code`, `codex`, `cursor`, `devin`, and `opencode` when the model argument is omitted, so an engine-only invocation runs. `pi` has no default and needs an explicit `provider/model` id. To pin a considered model, read `.skilled/skills/cli-external-orchestration/<cli-skill>/SKILL.md` and pass it explicitly.
 - Route the rewrite through the package's external-cli provider entrypoint, passing the target text on stdin and scoping projection to this single process. Pass an explicit model, or omit it to use the engine's documented default (required for `pi`):
   ```bash
   printf '%s' "<target-text>" \
     | COMMUNICATION_PROJECTION_ENABLED=1 node \
-        .opencode/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs \
+        .skilled/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs \
         <engine> [model]
   ```
 - The entrypoint builds the `external-cli-<engine>` provider record, runs the rewrite through the CLI subprocess, and drives it through the package's privacy routing (hosted-retained under egress consent), fidelity validation, and exact-original fallback. It prints the projected plain-English text — or the byte-exact original on any denied route, dispatch failure, or rejected rewrite — to stdout, and a `STATUS=` line to stderr.
@@ -165,7 +165,7 @@ Execute the following steps in order:
   ```bash
   printf '%s' "<target-text>" \
     | COMMUNICATION_PROJECTION_ENABLED=1 node \
-        .opencode/skills/sk-communication/cli-communication-projection/bin/local-project.mjs
+        .skilled/skills/sk-communication/cli-communication-projection/bin/local-project.mjs
   ```
 - The entrypoint builds the local provider record from `enablement.local.json` and drives the target text through the package's privacy routing (local-only, no egress), fidelity validation, and exact-original fallback. It prints the projected plain-English text — or the byte-exact original on any denied route, provider failure, or rejected rewrite — to stdout, and a `STATUS=` line to stderr.
 - Capture the entrypoint's stdout as the projection result.
@@ -249,4 +249,4 @@ STATUS=OK
 - **Pipeline Routing (Branch B):** The external-cli path runs through the package's `external-cli-project` entrypoint, so every cli-* rewrite passes the same privacy routing, fidelity validation, and exact-original fallback as the local provider path. A denied route, dispatch failure, or rejected rewrite returns the byte-exact original.
 - **Supported External CLIs:** The seven supported external CLI skills are `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`, and `cli-hermes`.
 - **The Standard Reaches Branch A Only:** Branches B and C hand the target to another model under the package's copy-editing instruction. `resolveCopyEditingInstruction()` in `src/config/copy-editing-instruction.ts` builds it. The function reads the wording standard's reply base from the sk-doc skill the first time a prompt profile is built and caches the result, so the standard has one home and the package carries no copy. The instruction is changed under the package gate rather than from a command file. An external or local rewrite is therefore held to that instruction, to fidelity validation and to the exact-original fallback, and Branch A alone loads the Human Voice Rules.
-- **Preload Requirement:** The executing agent must read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` prior to external dispatch.
+- **Preload Requirement:** The executing agent must read `.skilled/skills/cli-external-orchestration/<cli-skill>/SKILL.md` prior to external dispatch.

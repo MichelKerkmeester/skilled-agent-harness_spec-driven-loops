@@ -8,9 +8,9 @@ Audit the total description-budget consumption across all project surfaces
 that feed Claude Code's available-skills list.
 
 Surfaces walked:
-- .opencode/skills/<name>/SKILL.md            (YAML frontmatter)
-- .opencode/commands/**/<name>.md             (YAML frontmatter)
-- .opencode/agents/<name>.md                  (YAML frontmatter)
+- .skilled/skills/<name>/SKILL.md            (YAML frontmatter)
+- .skilled/commands/**/<name>.md             (YAML frontmatter)
+- .skilled/agents/<name>.md                  (YAML frontmatter)
 - .claude/agents/<name>.md                   (YAML frontmatter, often a symlink)
 
 For agents, the repo-managed runtime mirrors usually share identical text. The audit
@@ -26,7 +26,7 @@ Outputs:
 Constants come from the same source-of-truth as quick_validate.py:
 130/110 soft, 1536 hard, 5600 project ceiling.
 
-Reference: .opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md
+Reference: .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md
            § "Description Budget & Trim Style"
 """
 
@@ -152,7 +152,7 @@ class Item:
 
 def walk_skills(repo: Path) -> List[Item]:
     items: List[Item] = []
-    base = repo / ".opencode" / "skills"
+    base = repo / ".skilled" / "skills"
     if not base.is_dir():
         return items
     for skill_dir in sorted(base.iterdir()):
@@ -180,7 +180,7 @@ def walk_skills(repo: Path) -> List[Item]:
 
 def walk_commands(repo: Path) -> List[Item]:
     items: List[Item] = []
-    base = repo / ".opencode" / "commands"
+    base = repo / ".skilled" / "commands"
     if not base.is_dir():
         return items
     for cmd in sorted(base.rglob("*.md")):
@@ -215,7 +215,7 @@ def walk_commands(repo: Path) -> List[Item]:
 def walk_agents(repo: Path) -> List[Item]:
     """Walk repo-managed runtime agent surfaces, dedupe by name, annotate mirrors."""
     surfaces = [
-        (repo / ".opencode" / "agents", "yaml"),
+        (repo / ".skilled" / "agents", "yaml"),
         (repo / ".claude" / "agents", "yaml"),
     ]
     by_name: Dict[str, Item] = {}
@@ -420,7 +420,7 @@ def main() -> None:
     if not items:
         msg = (
             f"FAIL: zero items audited (no skills, commands, or agents found under "
-            f"{repo}/.opencode/{{skills,commands,agents}}). Likely cause: misconfigured "
+            f"{repo}/.skilled/{{skills,commands,agents}}). Likely cause: misconfigured "
             f"--repo-root or stale singular paths post-rename."
         )
         if args.json_output:

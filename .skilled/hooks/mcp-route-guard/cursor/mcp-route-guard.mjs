@@ -34,7 +34,7 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const GUARD_SCRIPT_RELATIVE = '.opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs';
+const GUARD_SCRIPT_RELATIVE = '.skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs';
 const CHILD_TIMEOUT_MS = 3_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 

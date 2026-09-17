@@ -30,7 +30,7 @@ COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.
 These references are unstable and will rot. Replace each with the durable WHY.
 Violations in <file>:
   <file>:<line>: <offending comment excerpt>
-See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
+See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
 Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.
 ```
 
@@ -47,9 +47,9 @@ The dispatch table rows, in priority order (`resolveDispatch` returns the first 
 |---|---|---|---|---|
 | 1 | `comment-hygiene` | In-scope source file (`.ts`/`.tsx`/`.js`/`.mjs`/`.cjs`/`.py`/`.sh`/`.bash`/`.jsonc`) outside `dist`/`node_modules`/`.git` | `check-comment-hygiene.sh` | `exit1-with-stdout` (exit 1 AND non-empty stdout) |
 | 2 | `flowchart` | `.md` file whose name contains "flowchart" or lives under `sk-design-diagram/ascii-patterns/` | `validate-flowchart.sh` | `exit1` |
-| 3 | `frontmatter-versions` | Versioned skill doc under `.opencode/skills/` (`SKILL.md`, `README.md` adjacent to a `SKILL.md`, or any file under `references`/`assets`/`feature-catalog`/`manual-testing-playbook`) | `check-frontmatter-versions.sh --skill <name>` | `exit1` (deduped per skill per session) |
+| 3 | `frontmatter-versions` | Versioned skill doc under `.skilled/skills/` (`SKILL.md`, `README.md` adjacent to a `SKILL.md`, or any file under `references`/`assets`/`feature-catalog`/`manual-testing-playbook`) | `check-frontmatter-versions.sh --skill <name>` | `exit1` (deduped per skill per session) |
 | 4 | `placeholders` | Spec doc (`spec.md`/`plan.md`/`tasks.md`/`checklist.md`/`decision-record.md`) under `specs/` | `check-placeholders.sh <dir>` | `exit1` |
-| 5 | `wikilinks` | `.md` under `.opencode/skills/`, opt-in only (`SPECKIT_VALIDATE_LINKS=true`) | `rules/check-links.sh <skill dir>` | `exit1` |
+| 5 | `wikilinks` | `.md` under `.skilled/skills/`, opt-in only (`SPECKIT_VALIDATE_LINKS=true`) | `rules/check-links.sh <skill dir>` | `exit1` |
 
 A separate entrypoint, `runDistStalenessCheck`, preserves the legacy dist-staleness coverage that runs alongside comment hygiene. It is kept out of the shared dispatch table because it is unconditional per edited file rather than path-matched, and because OpenCode already has independent dist-freshness coverage via `system-dist-freshness-guard.js`: folding it into the table would double-run it there. It prints `STALE DIST WARNING: <package> -- run: <rebuild command>` when a watched package's compiled output is older than its newest source.
 
@@ -68,7 +68,7 @@ Every runtime evaluates the **same** `lib/post-edit-router.cjs` core. What diffe
 | **Devin** | `devin/post-edit-quality.cjs` | `PostToolUse` on `edit` (`.devin/hooks.v1.json`) | `file_path`/`filePath`/`path`; resolves relative paths against `DEVIN_PROJECT_DIR` | Plain stdout. |
 | **Cursor** | `cursor/post-tool-use.mjs` | `postToolUse` event | Multiplexed proxy: `Write` tool_name → shapes a Claude payload and `spawnSync`s `claude-posttooluse.cjs`; `Shell` → dispatch audit (separate concern) | Findings returned as `agent_message` in the `{permission: 'allow'}` envelope. |
 | **Pi** | `pi/post-edit-quality.ts` | `tool_result` event, discovered via `.pi/extensions/` | `toolName: 'edit'`/`'write'`; `event.input.path` resolved against `ctx.cwd` | Appends findings as `{type: "text", text}` content to the tool result, model-visible. |
-| **OpenCode** | `.opencode/plugins/sk-code-post-edit-quality.js` (mirrored at `opencode/`) | Plugin: `tool.execute.before` + `tool.execute.after` + `experimental.chat.system.transform` | `after` carries only a `callID`, so `before` stashes the file path in a bounded correlation map and `after` retrieves+evicts it; watches `write`/`edit`/`patch`/`multiedit`/`apply_patch` | Findings buffered, then drained into the next turn's system context (model-visible) via the transform hook. Also written to a rotated log `.opencode/logs/post-edit-quality.log` (256 KB). **Never** stdout/stderr. OpenCode's TUI paints console output onto the prompt line. 4s budget, 3s per checker, per-skill dedupe. |
+| **OpenCode** | `.skilled/plugins/sk-code-post-edit-quality.js` (mirrored at `opencode/`) | Plugin: `tool.execute.before` + `tool.execute.after` + `experimental.chat.system.transform` | `after` carries only a `callID`, so `before` stashes the file path in a bounded correlation map and `after` retrieves+evicts it; watches `write`/`edit`/`patch`/`multiedit`/`apply_patch` | Findings buffered, then drained into the next turn's system context (model-visible) via the transform hook. Also written to a rotated log `.skilled/logs/post-edit-quality.log` (256 KB). **Never** stdout/stderr. OpenCode's TUI paints console output onto the prompt line. 4s budget, 3s per checker, per-skill dedupe. |
 
 The three CommonJS adapters (Claude, Codex, Devin) share the same structure: read stdin JSON, fast-exit on a non-edit tool name, resolve the file, run the router, print findings. They share the Claude budget constants. Cursor deliberately does not reimplement the check: it reshapes its `Write` payload and shells out to the Claude adapter. Pi and OpenCode deliver findings into model-visible channels (tool-result content and the system transform respectively) rather than stdout.
 
@@ -102,7 +102,7 @@ post-edit-quality/
 | `devin/post-edit-quality.cjs` | Devin `PostToolUse(edit)` adapter. Accepts `file_path`/`filePath`/`path` and resolves relative paths against the project dir. |
 | `cursor/post-tool-use.mjs` | Multiplexed Cursor proxy. For `Write`, shapes a Claude payload and `spawnSync`s the Claude adapter, returning findings as `agent_message`. Real home is under `system-spec-kit`; indexed here as a symlink. |
 | `pi/post-edit-quality.ts` | Pi `tool_result` extension. Resolves the path, runs the router, appends findings as text content to the tool result. |
-| `.opencode/plugins/sk-code-post-edit-quality.js` | OpenCode plugin. `before`/`after` correlate the file path by callID; `after` runs the router under the OpenCode budget with dedupe; `experimental.chat.system.transform` drains buffered findings into the next turn's system context. Also writes a rotated log. |
+| `.skilled/plugins/sk-code-post-edit-quality.js` | OpenCode plugin. `before`/`after` correlate the file path by callID; `after` runs the router under the OpenCode budget with dedupe; `experimental.chat.system.transform` drains buffered findings into the next turn's system context. Also writes a rotated log. |
 
 ---
 
@@ -116,7 +116,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 | `SPECKIT_VALIDATE_LINKS=true` | Opt-in. Enables the wikilinks checker row (the heaviest checker: a whole-tree scan), scoped to markdown edits inside a skill directory. Off by default. |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -134,13 +134,13 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 ## 8. VALIDATION
 
 ```bash
-node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
+node --test .skilled/plugins/tests/sk-code-post-edit-quality.test.cjs
 ```
 
 Expected result: all tests pass (covers the router and the Claude/Codex adapters, including multi-file patch coverage).
 
 ```bash
-node -e "import('./.opencode/plugins/sk-code-post-edit-quality.js').then(()=>console.log('ok'))"
+node -e "import('./.skilled/plugins/sk-code-post-edit-quality.js').then(()=>console.log('ok'))"
 ```
 
 Expected result: `ok`, with no module-resolution error (confirms the OpenCode adapter still resolves this core).

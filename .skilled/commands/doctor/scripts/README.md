@@ -16,7 +16,7 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-`.opencode/commands/doctor/scripts/` contains shell, JavaScript and Python tools that support doctor routes.
+`.skilled/commands/doctor/scripts/` contains shell, JavaScript and Python tools that support doctor routes.
 
 The scripts validate route manifests, inspect MCP installations, audit parent skill hubs, report graph freshness and prepare runtime dependencies for update workflows. Some scripts are read-only while bootstrap and repair paths can mutate local state.
 
@@ -25,7 +25,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 ## 2. DIRECTORY TREE
 
 ```text
-.opencode/commands/doctor/scripts/
+.skilled/commands/doctor/scripts/
 +-- agent-roster-mirror-check.cjs
 +-- audit_descriptions.py
 +-- command-catalog-mirror-check.cjs
@@ -82,13 +82,13 @@ The validator checks:
 Run it from the repository root:
 
 ```bash
-bash .opencode/commands/doctor/scripts/route-validate.sh
+bash .skilled/commands/doctor/scripts/route-validate.sh
 ```
 
 Run its negative fixture suite:
 
 ```bash
-bash .opencode/commands/doctor/scripts/route-validate.sh --self-test
+bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 ```
 
 ---
@@ -97,13 +97,13 @@ bash .opencode/commands/doctor/scripts/route-validate.sh --self-test
 
 | Command | Purpose |
 |---|---|
-| `bash .opencode/commands/doctor/scripts/mcp-doctor.sh` | Diagnose all supported MCP servers. |
-| `bash .opencode/commands/doctor/scripts/mcp-doctor.sh --json` | Emit machine-readable MCP diagnostics. |
-| `node .opencode/commands/doctor/scripts/parent-skill-check.cjs <skill-dir>` | Audit one parent skill hub. |
-| `node .opencode/commands/doctor/scripts/skill-graph-freshness.cjs` | Report skill graph drift. |
-| `node .opencode/commands/doctor/scripts/fable-mode-check.cjs [artifact-dir]` | Report behavioral metrics. |
-| `python3 .opencode/commands/doctor/scripts/audit_descriptions.py --repo-root .` | Audit description budgets. |
-| `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` | Report agent-roster coverage drift across runtimes. |
+| `bash .skilled/commands/doctor/scripts/mcp-doctor.sh` | Diagnose all supported MCP servers. |
+| `bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json` | Emit machine-readable MCP diagnostics. |
+| `node .skilled/commands/doctor/scripts/parent-skill-check.cjs <skill-dir>` | Audit one parent skill hub. |
+| `node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs` | Report skill graph drift. |
+| `node .skilled/commands/doctor/scripts/fable-mode-check.cjs [artifact-dir]` | Report behavioral metrics. |
+| `python3 .skilled/commands/doctor/scripts/audit_descriptions.py --repo-root .` | Audit description budgets. |
+| `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | Report agent-roster coverage drift across runtimes. |
 
 ---
 
@@ -129,16 +129,16 @@ Do not invoke a mutating path from a route classified as read-only.
 Run syntax checks from the repository root:
 
 ```bash
-bash -n .opencode/commands/doctor/scripts/check-mcp-mutation-class.sh
-bash -n .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh
-bash -n .opencode/commands/doctor/scripts/mcp-doctor-lib.sh
-bash -n .opencode/commands/doctor/scripts/mcp-doctor.sh
-bash -n .opencode/commands/doctor/scripts/route-validate.sh
-node --check .opencode/commands/doctor/scripts/fable-mode-check.cjs
-node --check .opencode/commands/doctor/scripts/parent-skill-check.cjs
-node --check .opencode/commands/doctor/scripts/skill-graph-freshness.cjs
-python3 -m py_compile .opencode/commands/doctor/scripts/audit_descriptions.py
-python3 -m py_compile .opencode/commands/doctor/scripts/route-validate.py
+bash -n .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh
+bash -n .skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh
+bash -n .skilled/commands/doctor/scripts/mcp-doctor-lib.sh
+bash -n .skilled/commands/doctor/scripts/mcp-doctor.sh
+bash -n .skilled/commands/doctor/scripts/route-validate.sh
+node --check .skilled/commands/doctor/scripts/fable-mode-check.cjs
+node --check .skilled/commands/doctor/scripts/parent-skill-check.cjs
+node --check .skilled/commands/doctor/scripts/skill-graph-freshness.cjs
+python3 -m py_compile .skilled/commands/doctor/scripts/audit_descriptions.py
+python3 -m py_compile .skilled/commands/doctor/scripts/route-validate.py
 ```
 
 Expected result: every command exits with status `0` and produces no syntax error.

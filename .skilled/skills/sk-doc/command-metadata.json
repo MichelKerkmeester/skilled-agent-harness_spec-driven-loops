@@ -16,19 +16,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-skill",
-        "resource": ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
         "action": "load the standalone-skill scaffolding mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-skill",
-        "resource": ".opencode/commands/create/assets/create-skill-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-skill-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],
@@ -59,19 +59,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-skill",
-        "resource": ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
         "action": "load the parent-hub scaffolding mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-skill",
-        "resource": ".opencode/commands/create/assets/create-skill-parent-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-skill-parent-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],
@@ -102,19 +102,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-readme",
-        "resource": ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
         "action": "load the README authoring mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-readme",
-        "resource": ".opencode/commands/create/assets/create-readme-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-readme-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ]
@@ -136,19 +136,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-agent",
-        "resource": ".opencode/skills/sk-doc/sk-create-agent/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
         "action": "load the agent-authoring mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-agent",
-        "resource": ".opencode/commands/create/assets/create-agent-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-agent-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ]
@@ -170,19 +170,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-command",
-        "resource": ".opencode/skills/sk-doc/sk-create-command/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
         "action": "load the slash-command authoring mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-command",
-        "resource": ".opencode/commands/create/assets/create-command-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-command-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ]
@@ -204,19 +204,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-feature-catalog",
-        "resource": ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
         "action": "load the feature-catalog authoring mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-feature-catalog",
-        "resource": ".opencode/commands/create/assets/create-feature-catalog-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-feature-catalog-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ]
@@ -238,19 +238,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-manual-testing-playbook",
-        "resource": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
         "action": "load the manual-testing-playbook authoring mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-manual-testing-playbook",
-        "resource": ".opencode/commands/create/assets/create-manual-testing-playbook-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ]
@@ -272,19 +272,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-benchmark",
-        "resource": ".opencode/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
         "action": "load the benchmark-authoring mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-benchmark",
-        "resource": ".opencode/commands/create/assets/create-benchmark-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-benchmark-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ]
@@ -306,19 +306,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-changelog",
-        "resource": ".opencode/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
         "action": "load the changelog authoring mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-changelog",
-        "resource": ".opencode/commands/create/assets/create-changelog-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-changelog-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ]
@@ -340,19 +340,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-diff",
-        "resource": ".opencode/skills/sk-doc/sk-create-diff/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-diff/SKILL.md",
         "action": "load the document-diff mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-diff",
-        "resource": ".opencode/commands/create/assets/create-diff-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-diff-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ]
@@ -375,19 +375,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-repo-rule",
-        "resource": ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
         "action": "load the repo-rule authoring mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-repo-rule",
-        "resource": ".opencode/commands/create/assets/create-repo-rule-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-repo-rule-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],
@@ -423,19 +423,19 @@
       {
         "order": 1,
         "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-with-human-voice",
-        "resource": ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
+        "resource": ".skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
         "action": "load the voice-application mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-with-human-voice",
-        "resource": ".opencode/commands/create/assets/create-with-human-voice-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-with-human-voice-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],

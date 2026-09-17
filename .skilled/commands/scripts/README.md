@@ -16,7 +16,7 @@ importance_tier: "normal"
 
 ## 1. OVERVIEW
 
-`.opencode/commands/scripts/` owns repository-level checks shared by command families.
+`.skilled/commands/scripts/` owns repository-level checks shared by command families.
 
 `validate-command-references.cjs` scans command assets for concrete references that should resolve on disk. It ignores parameterized paths, bare directories and supported runtime placeholders that cannot be resolved statically.
 
@@ -25,7 +25,7 @@ importance_tier: "normal"
 ## 2. DIRECTORY TREE
 
 ```text
-.opencode/commands/scripts/
+.skilled/commands/scripts/
 +-- fixtures/
 |   `-- broken-command-refs.yaml
 +-- validate-command-references.cjs
@@ -61,7 +61,7 @@ It validates three reference classes:
 | Class | Check |
 |---|---|
 | Runtime agent | Confirms the referenced agent filename exists in a supported runtime agent directory. |
-| Skill asset | Confirms a concrete file-shaped path under `.opencode/skills/` exists. |
+| Skill asset | Confirms a concrete file-shaped path under `.skilled/skills/` exists. |
 | Runtime directory | Rejects phantom agent directories outside the supported runtime roots. |
 
 ---
@@ -85,19 +85,19 @@ The fixture intentionally contains unresolved references. Do not repair those fi
 Run the default repository scan:
 
 ```bash
-node .opencode/commands/scripts/validate-command-references.cjs
+node .skilled/commands/scripts/validate-command-references.cjs
 ```
 
 Scan specific files or directories:
 
 ```bash
-node .opencode/commands/scripts/validate-command-references.cjs <path>
+node .skilled/commands/scripts/validate-command-references.cjs <path>
 ```
 
 Request machine-readable output:
 
 ```bash
-node .opencode/commands/scripts/validate-command-references.cjs --json
+node .skilled/commands/scripts/validate-command-references.cjs --json
 ```
 
 ---
@@ -107,7 +107,7 @@ node .opencode/commands/scripts/validate-command-references.cjs --json
 Run the self-test from the repository root:
 
 ```bash
-node .opencode/commands/scripts/validate-command-references.cjs --self-test
+node .skilled/commands/scripts/validate-command-references.cjs --self-test
 ```
 
 Expected result:

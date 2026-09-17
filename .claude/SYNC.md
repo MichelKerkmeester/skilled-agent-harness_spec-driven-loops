@@ -1,11 +1,11 @@
 ---
 title: "Claude Code — Runtime Sync Manifest"
-description: "How .claude derives from .opencode: which surfaces are symlinks, which is a guarded fork, which are hand-authored, and how to detect drift."
+description: "How .claude derives from .skilled: which surfaces are symlinks, which is a guarded fork, which are hand-authored, and how to detect drift."
 ---
 
 # Claude Code Sync Manifest
 
-> `.opencode/` is the source of truth for shared content. `.claude/` is mostly a set of whole-directory or generated per-file symlinks onto it — with one deliberate content fork, `agents/`, held in step by a pre-commit gate.
+> `.skilled/` is the source of truth for shared content. `.claude/` is mostly a set of whole-directory or generated per-file symlinks onto it — with one deliberate content fork, `agents/`, held in step by a pre-commit gate.
 
 ---
 
@@ -15,7 +15,7 @@ Claude Code reads this directory for its hooks, agents, MCP servers and runtime 
 
 The exception matters. `.claude/agents/` holds **real files**, not symlinks, because Claude's agent dialect (`tools:`) differs from OpenCode's (`mode`/`temperature`/`permission:`). The bodies are otherwise the same document. A blocking pre-commit gate keeps the pair aligned.
 
-**Canonical source is not uniform across this repo.** `.claude/agents/` is canonical for Cursor and Devin (they symlink into it, because they parse the Claude dialect), while `.opencode/agents/` is canonical for `.claude/agents/` itself and for the generated Codex TOMLs. Two upstreams, deliberately.
+**Canonical source is not uniform across this repo.** `.claude/agents/` is canonical for Cursor and Devin (they symlink into it, because they parse the Claude dialect), while `.skilled/agents/` is canonical for `.claude/agents/` itself and for the generated Codex TOMLs. Two upstreams, deliberately.
 
 ---
 
@@ -23,28 +23,28 @@ The exception matters. `.claude/agents/` holds **real files**, not symlinks, bec
 
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
-| `commands/**/*.md` (33) | filtered per-file symlinks | `.opencode/commands/**/*.md` | Yes — guarded by the mirror generator; OpenCode-only entries are excluded |
-| `skills` | whole-dir symlink | `../.opencode/skills` | No |
+| `commands/**/*.md` (33) | filtered per-file symlinks | `.skilled/commands/**/*.md` | Yes — guarded by the mirror generator; OpenCode-only entries are excluded |
+| `skills` | whole-dir symlink | `../.skilled/skills` | No |
 | `specs` | whole-dir symlink | `../.opencode/specs` | No |
-| `changelog` | whole-dir symlink | `../.opencode/changelog` | No |
-| `manual-testing-playbook` | whole-dir symlink | `../.opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook` | No |
+| `changelog` | whole-dir symlink | `../.skilled/changelog` | No |
+| `manual-testing-playbook` | whole-dir symlink | `../.skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook` | No |
 | `.utcp_config.json` | symlink | `../.utcp_config.json` | No |
-| `agents/*.md` (13) | **real forked copy** | `.opencode/agents/*.md` | **Yes** — guarded by pre-commit gate |
+| `agents/*.md` (13) | **real forked copy** | `.skilled/agents/*.md` | **Yes** — guarded by pre-commit gate |
 | `agents/README.txt` | real file | hand-maintained | Yes — no gate |
-| `hooks/*` (18 symlinks) | per-file symlinks | scattered `.opencode/**` | Yes — guarded by the mirror generator |
+| `hooks/*` (18 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — guarded by the mirror generator |
 | `settings.json` | **hand-authored** | — | n/a — no counterpart to sync with |
 | `mcp.json` | **real file, and it is canonical** | — | Root `.mcp.json` symlinks *to it*; Cursor reaches it via that hop |
 | `statusline-command.sh` | real file | — | n/a |
 | `CLAUDE.md` | **hand-authored** runtime routing overlay | — | n/a — distinct from repo-root `CLAUDE.md`, which symlinks to `AGENTS.md` |
 | `settings.local.json` | operator-local | — | gitignored, never synced |
 
-`hooks/` is a **discovery mirror only**. Every command string in `settings.json` targets `.opencode/...` directly, so the symlinks exist for humans and tooling to find adapters, not for execution. See `hooks/README.md`.
+`hooks/` is a **discovery mirror only**. Every command string in `settings.json` targets `.skilled/...` directly, so the symlinks exist for humans and tooling to find adapters, not for execution. See `hooks/README.md`.
 
 ---
 
 ## 3. WHEN TO SYNC
 
-- An agent changes in `.opencode/agents/` → the `.claude/agents/` twin must be updated in the same commit, or the pre-commit gate blocks you.
+- An agent changes in `.skilled/agents/` → the `.claude/agents/` twin must be updated in the same commit, or the pre-commit gate blocks you.
 - A new agent is added → add it to both trees, to `agents/README.txt`, and run the mirror generator so Cursor and Devin pick it up.
 - A hook is registered in `settings.json` → run the mirror generator to add the matching `hooks/` symlink.
 - A command is added, removed, or changes runtime scope → run the mirror generator; ordinary edits to an already-linked command need no relink.
@@ -55,14 +55,14 @@ The exception matters. `.claude/agents/` holds **real files**, not symlinks, bec
 ## 4. SYNC WORKFLOW
 
 ```bash
-# 1. Verify the agent fork is still aligned with .opencode (this is the pre-commit gate)
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all
+# 1. Verify the agent fork is still aligned with .skilled (this is the pre-commit gate)
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all
 
 # 2. Refresh every symlink tree this repo owns (includes .claude/hooks)
-node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
 
 # 3. Confirm coverage across all five runtime surfaces
-node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
+node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
 ```
 
 ---
@@ -90,7 +90,7 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 
 - 13 agents, same names, in all five surfaces.
 - 34 shared commands reachable from Claude's repository command tree. OpenCode-only commands are excluded. The count moves as commands are added or retired; the drift check below is authoritative.
-- An agent added here must reach `.opencode/agents`, `.codex/agents`, `.cursor/agents` and `.devin/agents`.
+- An agent added here must reach `.skilled/agents`, `.codex/agents`, `.cursor/agents` and `.devin/agents`.
 - `agents/README.txt` lists every agent present in the directory.
 
 ---
@@ -99,9 +99,9 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 
 | Check | Command | Exit |
 |---|---|---|
-| Agent fork alignment | `node .opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` | 0 ok / non-zero blocks commit |
-| Symlink trees incl. `hooks/` | `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
-| Roster coverage, all runtimes | `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift / 2 canonical missing |
+| Agent fork alignment | `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` | 0 ok / non-zero blocks commit |
+| Symlink trees incl. `hooks/` | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
+| Roster coverage, all runtimes | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift / 2 canonical missing |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
 
 ---
@@ -122,4 +122,4 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 | [`hooks/README.md`](hooks/README.md) | Why `hooks/` is discovery-only and not the execution path |
 | [`agents/README.txt`](agents/README.txt) | Agent roster |
 | [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) · [`../.pi/SYNC.md`](../.pi/SYNC.md) | Sibling runtime manifests |
-| `.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs` | The symlink-tree generator |
+| `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs` | The symlink-tree generator |

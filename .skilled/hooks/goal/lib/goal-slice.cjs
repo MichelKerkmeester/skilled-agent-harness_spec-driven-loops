@@ -23,7 +23,7 @@ const LOG_ANCHOR = '<!-- ANCHOR:log -->';
 // through as body, which is the one leak this module exists to prevent.
 const FRONTMATTER_PATTERN = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---[ \t]*\n([\s\S]*?)\n---[ \t]*(?:\n|$)/;
 const FRONTMATTER_OPENER_PATTERN = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---[ \t]*\n/;
-const BUDGET_MANIFEST = '.opencode/skills/system-spec-kit/templates/spec-kit-docs.json';
+const BUDGET_MANIFEST = '.skilled/skills/system-spec-kit/templates/spec-kit-docs.json';
 const HTML_COMMENT_PATTERN = /<!--[\s\S]*?-->\n?/g;
 const ANCHOR_BODY_PATTERN = (id) => new RegExp(`<!-- ANCHOR:${id} -->([\\s\\S]*?)<!-- /ANCHOR:${id} -->`);
 
@@ -217,7 +217,7 @@ function renderResendReminderText(packetPath, options = {}) {
 function resolveWorkspaceRoot(startDir) {
   let dir = resolve(startDir || process.cwd());
   for (let depth = 0; depth < WORKSPACE_WALK_MAX_DEPTH; depth += 1) {
-    if (existsSync(join(dir, '.git')) || existsSync(join(dir, '.opencode', 'skills'))) return dir;
+    if (existsSync(join(dir, '.git')) || existsSync(join(dir, '.skilled', 'skills'))) return dir;
     const parent = dirname(dir);
     if (parent === dir) break;
     dir = parent;

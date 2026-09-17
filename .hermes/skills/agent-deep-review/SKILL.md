@@ -11,7 +11,7 @@ description: "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 fin
 
 Executes ONE review iteration within an autonomous review loop: read externalized state, review one focused dimension, produce P0/P1/P2 findings with file:line evidence, record edge cases and integration touchpoints, and update state for the next iteration.
 
-**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
@@ -175,7 +175,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 #### Step 6: Classify Findings
 
-- Load `.opencode/skills/sk-code/sk-code-review/references/review-core.md` before assigning severity.
+- Load `.skilled/skills/sk-code/sk-code-review/references/review-core.md` before assigning severity.
 - Use shared `P0` / `P1` / `P2` definitions and tag each finding with `correctness`, `security`, `traceability`, or `maintainability`.
 - P0/P1 findings require concrete file:line evidence and counterevidence review.
 - P2 findings require actionable evidence and may include documented inference.
@@ -228,7 +228,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 **Record through the gateway**:
 
 ```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
   --mode review \
   --run-directory <resolved review packet root> \
   --event-json <record file>
@@ -265,7 +265,7 @@ Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declare
 
 - The ripgrep recipes in `retrieval-conventions.md`: broader history only after packet continuity is insufficient.
 - `Grep` plus `Glob`: discovery when exact symbols are unknown; verify hits with direct reads.
-- **Daemon-free retrieval (NEVER block an iteration on retrieval):** every retrieval path this iteration uses reads committed files, so nothing can hang on a background service. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit. Keyed lookup runs `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+- **Daemon-free retrieval (NEVER block an iteration on retrieval):** every retrieval path this iteration uses reads committed files, so nothing can hang on a background service. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit. Keyed lookup runs `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ### Skills
 
@@ -278,9 +278,9 @@ Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declare
 
 | Integration | Canonical Surface | Agent Contract |
 |-------------|-------------------|----------------|
-| Dispatcher command | `.opencode/commands/deep/review.md` (`/deep:review`) | Owns the loop and dispatches this agent once per iteration |
-| Auto workflow | `.opencode/commands/deep/assets/deep-review-auto.yaml` | Owns loop state and reducer refresh |
-| Confirm workflow | `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Owns approval pauses and reducer refresh |
+| Dispatcher command | `.skilled/commands/deep/review.md` (`/deep:review`) | Owns the loop and dispatches this agent once per iteration |
+| Auto workflow | `.skilled/commands/deep/assets/deep-review-auto.yaml` | Owns loop state and reducer refresh |
+| Confirm workflow | `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Owns approval pauses and reducer refresh |
 | Orchestrator agent | `@orchestrate` | Caller/coordinator only; this agent must not call it back |
 | Single-pass reviewer | `@review` | Separate non-iterative reviewer; do not delegate to it |
 | Research agent | `@deep-research` | Separate research iteration agent; do not delegate review work to it |
@@ -297,7 +297,7 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 
 ## 3. REVIEW CONTRACT
 
-This agent loads shared review doctrine from `.opencode/skills/sk-code/sk-code-review/references/review-core.md` for severity definitions, evidence requirements, and baseline check families.
+This agent loads shared review doctrine from `.skilled/skills/sk-code/sk-code-review/references/review-core.md` for severity definitions, evidence requirements, and baseline check families.
 
 ### Review Dimensions
 
@@ -360,14 +360,14 @@ Promotion is blocked by active P0 or failed binary gates, conditional with activ
 - `resume`: continue the active review session; same `sessionId`, no archive.
 - `restart`: archive existing `review/`, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event with non-null `archivedPath`.
 - Deferred: `fork`, `completed-continue`.
-- Canonical event contract: `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md §Lifecycle Branches (current release)`.
+- Canonical event contract: `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md §Lifecycle Branches (current release)`.
 
 Required read-only lineage metadata: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`.
 
 Reducer boundary:
 
 - `review/deep-review-findings-registry.json` is reducer-owned canonical finding state.
-- `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` owns registry/dashboard/report refresh.
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` owns registry/dashboard/report refresh.
 - This leaf agent may read registry for continuity and deduplication.
 - This leaf agent must not overwrite reducer-owned files.
 
@@ -557,12 +557,12 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 
 ## 9. RELATED RESOURCES
 
-- `.opencode/commands/deep/review.md` — the `/deep:review` loop owner that dispatches this agent once per iteration.
-- `.opencode/skills/sk-code/sk-code-review/references/review-core.md` — the shared review doctrine for severity and evidence.
-- `.opencode/skills/system-deep-loop/deep-review/SKILL.md` — the review-mode packet skill.
-- `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` — the reducer this agent's iterations feed.
-- `.opencode/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.
-- `.opencode/agents/deep-research.md` — the separate research-iteration agent this agent must not delegate review work to.
+- `.skilled/commands/deep/review.md` — the `/deep:review` loop owner that dispatches this agent once per iteration.
+- `.skilled/skills/sk-code/sk-code-review/references/review-core.md` — the shared review doctrine for severity and evidence.
+- `.skilled/skills/system-deep-loop/deep-review/SKILL.md` — the review-mode packet skill.
+- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` — the reducer this agent's iterations feed.
+- `.skilled/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.
+- `.skilled/agents/deep-research.md` — the separate research-iteration agent this agent must not delegate review work to.
 
 ---
 

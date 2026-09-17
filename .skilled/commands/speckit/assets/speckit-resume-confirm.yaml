@@ -72,7 +72,7 @@ session_detection:
       method: "glob {.opencode/,}specs/**/implementation-summary.md | filter active folders | sort by mtime | head -3"
       fallback: "tier_3"
     tier_3_triggers:
-      method: "node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- \"resume work session context\" (exit 0 = hits, 1 = clean no-hit, 2+ = error; a no-hit falls through, never guesses)"
+      method: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- \"resume work session context\" (exit 0 = hits, 1 = clean no-hit, 2+ = error; a no-hit falls through, never guesses)"
       fallback: "tier_4"
     tier_4_recent_artifacts:
       method: "glob {.opencode/,}specs/**/{handover.md,implementation-summary.md,tasks.md} | filter active folders | sort by mtime | head -1"
@@ -112,7 +112,7 @@ memory_loading:
       - "Read {spec_folder_path}/handover.md when present and recent"
       - "Read the _memory.continuity frontmatter block in {spec_folder_path}/implementation-summary.md"
       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md, resource-map.md"
-      - "Only for a still-missing named gap, run the context recipe from .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_folder_path} as the search root"
+      - "Only for a still-missing named gap, run the context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_folder_path} as the search root"
     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. Recovery is lexical and file-local; a miss is a clean no-hit reported as such, never an inferred session state."
 
 smart_memory_logic:
@@ -211,7 +211,7 @@ workflow:
       - Extract Project State Snapshot (Phase, Active File, Last confirmed action, Next safe action, Blockers)
       - Parse and summarize combined context
     retrieval_recipe:
-      reference: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+      reference: ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
       note: "Use it only after the canonical packet is still thin, scoped to {detected_spec_folder}. Exit 1 is a clean no-hit and is reported as such; exit 2 or higher is an error with stderr attached, never reported as no-hit."
       command: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'resume previous work continue session' {detected_spec_folder}"
     outputs: { memory_loaded: true, context_source: "handover|continuity|spec_docs|ripgrep_context|ripgrep_anchor|combined", context_summary: extracted_context, resume_packet: "now|last|next|blockers|artifact" }

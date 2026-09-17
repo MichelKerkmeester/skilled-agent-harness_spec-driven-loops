@@ -32,7 +32,7 @@ skill_advisor_doctor_invariant: |
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
   contract: "local command design contract"
-  cli_health_command: "node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only"
+  cli_health_command: "node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only"
   cli_health_policy: "Warm-only: probe the existing system-skill-advisor IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
   files:
     spec: "spec.md"  # advisor system requirements
@@ -73,12 +73,12 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - ".opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
-    - ".opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts"
-    - ".opencode/skills/*/graph-metadata.json"
+    - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+    - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts"
+    - ".skilled/skills/*/graph-metadata.json"
   forbidden_targets:
-    - ".opencode/skills/*/SKILL.md (content)"
-    - ".opencode/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts"
+    - ".skilled/skills/*/SKILL.md (content)"
+    - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts"
     - "Any fusion scorer or daemon code"
   enforcement: "Phase 3 first activity (validate_targets) runs canonical-path validation BEFORE any write. Failure halts before mutation."
   validator:
@@ -87,7 +87,7 @@ mutation_boundaries:
     steps:
       - "For each target in proposal_diff: resolve via realpath; reject absolute paths; reject paths containing `..` or symlinks escaping repo root"
       - "Assert resolved target is repo-relative (under repo_root)"
-      - "Match resolved target against allowed_targets patterns: exact match for explicit.ts/lexical.ts; glob match for .opencode/skills/<name>/graph-metadata.json where <name> exists in system_skill_advisor.skill_graph_status"
+      - "Match resolved target against allowed_targets patterns: exact match for explicit.ts/lexical.ts; glob match for .skilled/skills/<name>/graph-metadata.json where <name> exists in system_skill_advisor.skill_graph_status"
       - "Reject any match against forbidden_targets patterns"
       - "On first violation: abort phase 3 entirely, append violation to validation_log, exit STATUS=FAIL with diagnostic"
     on_pass: "proceed to baseline capture + edit activities"
@@ -200,16 +200,16 @@ approval_gates:
 # ─────────────────────────────────────────────────────────────────
 scoring_sources:
   explicit_ts:
-    path: ".opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+    path: ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
     fields: ["TOKEN_BOOSTS", "PHRASE_BOOSTS"]
   lexical_ts:
-    path: ".opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts"
+    path: ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts"
     fields: ["CATEGORY_HINTS"]
   weights_config_ts:
-    path: ".opencode/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts"
+    path: ".skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts"
     fields: ["read-only - lane weights"]
   graph_metadata_per_skill:
-    path: ".opencode/skills/{skill}/graph-metadata.json"
+    path: ".skilled/skills/{skill}/graph-metadata.json"
     fields: ["derived.trigger_phrases", "derived.key_topics"]
 
 # ─────────────────────────────────────────────────────────────────
@@ -219,7 +219,7 @@ workflow:
   phase_0_discovery:
     purpose: List skills, check graph health, detect repo context
     activities:
-      - "List all skill folders: ls -d .opencode/skills/*/"
+      - "List all skill folders: ls -d .skilled/skills/*/"
       - "Read each SKILL.md frontmatter (name, description, trigger phrases)"
       - "Check skill graph status: system_skill_advisor.skill_graph_status({})"
       - "Apply upstream_assets.cli_health_policy, then run upstream_assets.cli_health_command only when the warm socket probe succeeds; report CLI availability, freshness, trustState, and exit code"
@@ -240,7 +240,7 @@ workflow:
     activities:
       - "Read explicit.ts → parse TOKEN_BOOSTS and PHRASE_BOOSTS"
       - "Read lexical.ts → parse CATEGORY_HINTS"
-      - "Read each .opencode/skills/*/graph-metadata.json → extract derived.trigger_phrases and derived.key_topics"
+      - "Read each .skilled/skills/*/graph-metadata.json → extract derived.trigger_phrases and derived.key_topics"
       - "Cross-reference: which skills have explicit lane coverage? which lack derived triggers?"
       - "Identify gaps: missing tokens, missing phrases, missing category hints, sparse derived triggers"
       - "Display coverage summary, then trigger pre_phase_2 approval gate"
@@ -298,7 +298,7 @@ workflow:
       - "STEP 6 edit explicit.ts (only when approved scoped diff contains explicit changes)"
       - "STEP 7 edit lexical.ts (only when approved scoped diff contains lexical changes)"
       - "STEP 8 update graph-metadata.json per skill (only when approved scoped diff contains derived changes)"
-      - "STEP 9 rebuild dist: npm --prefix .opencode/skills/system-skill-advisor/runtime run build"
+      - "STEP 9 rebuild dist: npm --prefix .skilled/skills/system-skill-advisor/runtime run build"
       - "STEP 10 track applied changes per file for audit trail"
       - "STEP 11 display summary, then trigger pre_phase_4 approval gate"
     outputs:

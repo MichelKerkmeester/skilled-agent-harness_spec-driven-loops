@@ -22,7 +22,7 @@ permission:
 
 Read-only code review specialist providing quality scoring, pattern validation, security assessment, and standards enforcement for PRs and code changes across any codebase.
 
-**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
@@ -95,7 +95,7 @@ Before every non-diff `Read`, state the specific reason for that read in one sen
 | `Read` | File content access | Detailed line-by-line analysis       |
 | `Bash` | CLI commands        | `git diff`, `git log`, `gh pr view`  |
 
-**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Keyed lookup runs `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Keyed lookup runs `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ### Tool Access Patterns
 
@@ -466,11 +466,11 @@ Before sending: (1) Run self-check protocol, (2) Verify all evidence exists, (3)
 
 ## 12. RELATED RESOURCES
 
-- `.opencode/skills/sk-code/SKILL.md` — router-selected style, process, build, and test standards.
-- `.opencode/skills/sk-code/sk-code-review/SKILL.md` — the code-review mode baseline every invocation loads first.
-- `.opencode/agents/orchestrate.md` — the dispatcher for quality-gate validation (pre/mid/post execution).
-- `.opencode/agents/context.md` — the optional Context Package provider that lets this agent skip Layer-1 memory checks.
-- `.opencode/agents/deep-review.md` — the separate iterative reviewer for `/deep:review`, not a delegation target.
+- `.skilled/skills/sk-code/SKILL.md` — router-selected style, process, build, and test standards.
+- `.skilled/skills/sk-code/sk-code-review/SKILL.md` — the code-review mode baseline every invocation loads first.
+- `.skilled/agents/orchestrate.md` — the dispatcher for quality-gate validation (pre/mid/post execution).
+- `.skilled/agents/context.md` — the optional Context Package provider that lets this agent skip Layer-1 memory checks.
+- `.skilled/agents/deep-review.md` — the separate iterative reviewer for `/deep:review`, not a delegation target.
 
 ---
 

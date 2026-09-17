@@ -54,7 +54,7 @@ Every runtime evaluates the **same** `lib/mcp-route-guard.cjs` core. What differ
 | **Devin** | `devin/mcp-route-guard.cjs` | Devin hook entry (`.devin/hooks.v1.json`) | Same packed shape via stdin | Runtime advisory envelope |
 | **Cursor** | `cursor/mcp-route-guard.mjs` | `beforeMCPExecution` event | Payload splits server and tool into SEPARATE fields (`mcp_server_name` + a bare `tool_name`); a bare tool name matches nothing, so the adapter recombines them into the packed shape first | Recombines, then `spawnSync`s the Claude adapter so the two runtimes cannot drift |
 | **Pi** | `pi/mcp-route-guard.ts` | `tool_call` event, discovered via `.pi/extensions/` | Filters on the `mcp_` prefix, then dynamic-imports the core | Attaches the core's warnings to the tool call |
-| **OpenCode** | `.opencode/plugins/mcp-route-guard.js` | Plugin, loaded by OpenCode's flat glob over `.opencode/plugins/` | Native OpenCode plugin API | Plugin advisory |
+| **OpenCode** | `.skilled/plugins/mcp-route-guard.js` | Plugin, loaded by OpenCode's flat glob over `.opencode/plugins/` | Native OpenCode plugin API | Plugin advisory |
 
 The three CommonJS adapters (`claude`, `codex`, `devin`) share one stdin parser, `../../shared/hook-adapter-shared.cjs`, which collects raw stdin and fail-open-parses the JSON. Cursor deliberately does not reimplement the decision: it reshapes its payload and shells out to the Claude adapter, so a future change to the advisory logic lands in both without a second edit.
 
@@ -89,7 +89,7 @@ mcp-route-guard/
 | `cursor/mcp-route-guard.mjs` | Cursor `beforeMCPExecution` adapter. Recombines the split server/tool fields into the packed shape, then `spawnSync`s the Claude adapter. |
 | `pi/mcp-route-guard.ts` | Pi `tool_call` extension. Prefix-filters, honors the kill-switch, dynamic-imports the core. |
 
-`.opencode/plugins/mcp-route-guard.js` is the OpenCode adapter; it imports this same `lib/` core.
+`.skilled/plugins/mcp-route-guard.js` is the OpenCode adapter; it imports this same `lib/` core.
 
 ---
 
@@ -103,7 +103,7 @@ The guard is enabled by default. Truthy disable values are `1`, `true`, `yes`, a
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 | `MCP_ROUTE_GUARD_BROAD_MODE=1` | Opt-in. Also advise on external servers the manifest cannot route yet, so the operator is nudged to register a manual. Off by default so every advisory stays actionable. |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -121,13 +121,13 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 ## 8. VALIDATION
 
 ```bash
-node --test .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs
+node --test .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs
 ```
 
 Expected result: all tests pass.
 
 ```bash
-node -e "import('./.opencode/plugins/mcp-route-guard.js').then(()=>console.log('ok'))"
+node -e "import('./.skilled/plugins/mcp-route-guard.js').then(()=>console.log('ok'))"
 ```
 
 Expected result: `ok`, with no module-resolution error (confirms the OpenCode adapter still resolves this core).

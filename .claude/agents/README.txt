@@ -5,10 +5,10 @@ This directory contains agent definitions for the Claude Code runtime.
 Each .md file carries a `tools:` frontmatter line and behavioral instructions, and is
 symlinked to by the .cursor and .devin trees.
 
-Sibling runtime: .opencode/agents/ (.md)
+Sibling runtime: .skilled/agents/ (.md)
 Inventory rule: if an agent file is not present in this directory, it is not a live runtime surface here.
 
-Translation contract: .opencode/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md
+Translation contract: .skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md
   How every frontmatter declaration lands in each runtime tree, which differences are sanctioned,
   and what stands in for a declaration a runtime cannot carry.
 Model and effort: no agent file here pins a model. Dispatched routes pass model and effort

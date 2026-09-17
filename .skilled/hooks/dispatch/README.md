@@ -49,7 +49,7 @@ The five checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`
 
 A check returns `true` when the command *satisfies* the rule; `false` means violated. An unknown check id is skipped (the CI validator catches typos, not this hot path), and a throwing check resolves to satisfied so it can never block a dispatch.
 
-**Audit** injects nothing into the model. After each completed dispatch it appends one scrubbed, truncated JSONL line to the size-rotated log at `.opencode/logs/cli-dispatch-audit.log` (512 KB cap, rotated to a `.1` backup):
+**Audit** injects nothing into the model. After each completed dispatch it appends one scrubbed, truncated JSONL line to the size-rotated log at `.skilled/logs/cli-dispatch-audit.log` (512 KB cap, rotated to a `.1` backup):
 
 ```json
 {"schema_version":1,"ts":"<ISO>","runtime":"<claude|codex|devin|opencode|pi>","sessionID":"...","callID":"...","skill":"...","command":"<scrubbed>","commandTruncated":false,"model":"...","target":"...","durationMs":1234,"exitCode":0,"outputBytes":5678}
@@ -70,7 +70,7 @@ Every runtime evaluates the **same** `lib/` cores. What differs is the event eac
 | **Devin** | `devin/dispatch-preflight-lint.mjs`, `devin/dispatch-audit-posttooluse.mjs` | `PreToolUse`/`PostToolUse` on `exec` (`.devin/hooks.v1.json`) | `tool_name: 'exec'`; whitespace-only `cwd` treated as absent, falls back to `DEVIN_PROJECT_DIR` | Same deny/advisory envelope; audit tagged `runtime: 'devin'`. |
 | **Cursor** | `cursor/post-tool-use.mjs` | `postToolUse` event | Multiplexed proxy: `Shell` tool_name → normalizes to `Bash` and `spawnSync`s `claude/dispatch-audit-posttooluse.mjs`; `Write` → post-edit-quality (separate concern). Cursor's `tool_output` is a JSON-stringified string, parsed back into `{stdout, exitCode}`. | Audit only (no preflight). Proxy emits `{permission: 'allow'}` and never blocks. |
 | **Pi** | `pi/dispatch-preflight-lint.ts`, `pi/dispatch-audit.ts` | `tool_call` / `tool_result` events, discovered via `.pi/extensions/` | `toolName: 'bash'`. Preflight is richer: captures raw user input on the `input` event, then runs `shouldDenyPiDispatch` authorization (ambiguous denied; direct-but-unnamed denied unless the user text explicitly names the executor or a `/deep:... --executor cli-*` carries it) *before* evaluating hard rules. | Preflight: `{block: true, reason}` on deny/block; `{reason}` on warn. Audit: `recordDispatch` tagged `runtime: 'pi'`. |
-| **OpenCode** | `.opencode/plugins/cli-dispatch-audit.js` (mirrored at `opencode/`) | Plugin, `tool.execute.after` event | `input.tool: 'bash'`; anchors the log path to the repo root via `findRepoRoot` so a nested working directory cannot plant a stray `.opencode` tree | Audit only. Tagged `runtime: 'opencode'`. |
+| **OpenCode** | `.skilled/plugins/cli-dispatch-audit.js` (mirrored at `opencode/`) | Plugin, `tool.execute.after` event | `input.tool: 'bash'`; anchors the log path to the repo root via `findRepoRoot` so a nested working directory cannot plant a stray `.opencode` tree | Audit only. Tagged `runtime: 'opencode'`. |
 
 The three CommonJS/ESM preflight-and-audit pairs (Claude, Codex, Devin) share the same structure: read stdin JSON, fast-exit on a non-dispatch tool name or non-matching command, evaluate the core, emit the result. Cursor deliberately does not reimplement the audit: it reshapes its `Shell` payload and shells out to the Claude audit adapter, so a future change to the audit logic lands in both without a second edit. Pi is the only runtime that adds an authorization layer on top of the hard-rule lint, because a direct dispatch must be authorized by the operator's own request.
 
@@ -109,7 +109,7 @@ dispatch/
 | `pi/dispatch-preflight-lint.ts` | Pi `tool_call` extension. Captures raw user input on the `input` event, runs `shouldDenyPiDispatch` authorization (unnamed-direct denial), then evaluates hard rules. |
 | `pi/dispatch-audit.ts` | Pi `tool_result` extension. Calls `recordDispatch` tagged `runtime: 'pi'`. |
 
-`.opencode/plugins/cli-dispatch-audit.js` is the OpenCode adapter; it imports this concern's `lib/dispatch-audit.mjs` core and the shared `hook-flags.cjs` resolver.
+`.skilled/plugins/cli-dispatch-audit.js` is the OpenCode adapter; it imports this concern's `lib/dispatch-audit.mjs` core and the shared `hook-flags.cjs` resolver.
 
 ---
 
@@ -123,7 +123,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `CLI_DISPATCH_AUDIT_DISABLED=1` | Legacy alias of the canonical flag. Also the audit core's own `KILL_SWITCH_ENV`: the audit adapters additionally call `isAuditDisabled`, so setting this name disables the audit surface directly. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -141,14 +141,14 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 ## 8. VALIDATION
 
 ```bash
-node --test .opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
-npx vitest run .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+npx vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
 ```
 
 Expected result: all tests pass.
 
 ```bash
-node -e "import('./.opencode/plugins/cli-dispatch-audit.js').then(()=>console.log('ok'))"
+node -e "import('./.skilled/plugins/cli-dispatch-audit.js').then(()=>console.log('ok'))"
 ```
 
 Expected result: `ok`, with no module-resolution error (confirms the OpenCode adapter still resolves this core).

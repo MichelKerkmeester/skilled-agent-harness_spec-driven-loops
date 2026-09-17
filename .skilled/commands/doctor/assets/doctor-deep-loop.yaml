@@ -80,10 +80,10 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # coverage graph DB
-    - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.pre-doctor-deep-loop.*.bak"  # deep-loop snapshot files only
-    - ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite"  # council graph DB
-    - ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite.pre-doctor-deep-loop.*.bak"  # council snapshot files only
+    - ".skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # coverage graph DB
+    - ".skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.pre-doctor-deep-loop.*.bak"  # deep-loop snapshot files only
+    - ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite"  # council graph DB
+    - ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite.pre-doctor-deep-loop.*.bak"  # council snapshot files only
   forbidden_targets:
     - "<active-spec-folder>/research/iterations/*.md"  # read-only source inputs, never rewritten
     - "<active-spec-folder>/review/iterations/*.md"  # read-only source inputs, never rewritten
@@ -91,11 +91,11 @@ mutation_boundaries:
     - "<active-spec-folder>/**/*.md"  # no spec packet doc writes from deep-loop doctor
     - "<active-spec-folder>/description.json"  # metadata not deep-loop storage
     - "<active-spec-folder>/graph-metadata.json"
-    - ".opencode/skills/**/SKILL.md"
-    - ".opencode/skills/**/graph-metadata.json"
-    - ".opencode/agents/**/*.md"
-    - ".opencode/commands/doctor/*.md"
-    - ".opencode/commands/doctor/assets/doctor_*.yaml"
+    - ".skilled/skills/**/SKILL.md"
+    - ".skilled/skills/**/graph-metadata.json"
+    - ".skilled/agents/**/*.md"
+    - ".skilled/commands/doctor/*.md"
+    - ".skilled/commands/doctor/assets/doctor_*.yaml"
     - "direct SQL graph mutation"
   policy: "read-only diagnostic; iteration files are read-only inputs, never mutation targets"
   enforcement: "This command is READ-ONLY by contract. Any attempted write halts with STATUS=FAIL and ERROR='confirm-mode-mutation-violation'."
@@ -161,8 +161,8 @@ workflow:
       - "Glob: <active-spec-folder>/research/iterations/*.md when scope includes research."
       - "Glob: <active-spec-folder>/review/iterations/*.md when scope includes review."
       - "Glob: <active-spec-folder>/ai-council/** when scope includes council."
-      - "Bash: stat -f '%m %z' .opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite when present."
-      - "Bash: stat -f '%m %z' .opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite when present and scope includes council."
+      - "Bash: stat -f '%m %z' .skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite when present."
+      - "Bash: stat -f '%m %z' .skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite when present and scope includes council."
       - "Group iteration files and ai-council artifacts by specFolder, loopType (research|review|context|council), and inferred sessionId from metadata or folder path."
       - "Run deep_loop_graph_status({specFolder, loopType, sessionId}) for up to 10 sampled packet/session namespaces; use loopType='council' for ai-council namespaces when scope includes council."
       - "Set lazy_init.available=true when empty_graph=true and (iteration_folder_count > 0 or ai_council_artifact_count > 0)."

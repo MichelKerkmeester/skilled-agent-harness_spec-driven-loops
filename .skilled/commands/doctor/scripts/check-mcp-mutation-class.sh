@@ -11,12 +11,12 @@
 # network or mutation call fails before it merges.
 #
 # Manifest (source of truth for declared class):
-#   .opencode/commands/doctor/assets/doctor-mcp-install.yaml
+#   .skilled/commands/doctor/assets/doctor-mcp-install.yaml
 #     servers[*].install_script + .install_script_mutation_class
 #     cli_skill_diagnostics[*].install_script / .doctor_script
 #       + their *_mutation_class fields
 # Plus nested embedded-server installers discovered on disk:
-#   .opencode/skills/mcp-*/mcp-servers/*/setup.sh  (treated as mutating)
+#   .skilled/skills/mcp-*/mcp-servers/*/setup.sh  (treated as mutating)
 #
 # Contract enforced:
 #   read-only scripts (doctors) — FAIL on an unguarded mutation or an
@@ -41,7 +41,7 @@
 set -euo pipefail
 
 ROOT="${1:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"
-MANIFEST="$ROOT/.opencode/commands/doctor/assets/doctor-mcp-install.yaml"
+MANIFEST="$ROOT/.skilled/commands/doctor/assets/doctor-mcp-install.yaml"
 
 command -v python3 >/dev/null 2>&1 || { echo "ERROR: python3 required" >&2; exit 2; }
 [ -f "$MANIFEST" ] || { echo "ERROR: manifest not found: $MANIFEST" >&2; exit 2; }
@@ -84,7 +84,7 @@ for name, sdef in (doc.get("cli_skill_diagnostics") or {}).items():
         f"cli_skill_diagnostics.{name}.doctor_script")
 
 # Discovered nested embedded-server installers (not in the manifest).
-for p in sorted(glob.glob(os.path.join(root, ".opencode/skills/mcp-*/mcp-servers/*/setup.sh"))):
+for p in sorted(glob.glob(os.path.join(root, ".skilled/skills/mcp-*/mcp-servers/*/setup.sh"))):
     rows.append((p, "mutating", "discovered:mcp-servers/*/setup.sh"))
 
 for path, klass, origin in rows:

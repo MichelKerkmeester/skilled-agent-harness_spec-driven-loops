@@ -19,7 +19,7 @@ contextType: "reference"
 
 It acts only in the main checkout, only on the resolved live branch, and only when tracked files are clean. It never loses a commit: a rebase conflict is aborted back to the exact pre-rebase HEAD, a pre-existing rebase is refused rather than touched, and a blocked push leaves local commits preserved but unpublished. Every internal failure is non-fatal (exit 0) so session start always continues.
 
-One real script backs the wired runtimes. Claude, Codex, and Pi carry relative symlinks into `.opencode/bin/`; OpenCode launches the same script from its session-start plugin (see [`session-cleanup/`](../session-cleanup/README.md)).
+One real script backs the wired runtimes. Claude, Codex, and Pi carry relative symlinks into `.skilled/bin/`; OpenCode launches the same script from its session-start plugin (see [`session-cleanup/`](../session-cleanup/README.md)).
 
 ---
 
@@ -50,7 +50,7 @@ On each SessionStart, `git-primary-reconcile.sh` runs this flow (every branch ex
    | Gate | Fix |
    |---|---|
    | `mass-deletion` | `After inspection: SPECKIT_ALLOW_MASS_DELETION=1 git push <REMOTE> HEAD:<LIVE>` |
-   | `skill-root-metadata` | `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` |
+   | `skill-root-metadata` | `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` |
    | `remote-create` | `Creating a branch on origin is a decision: SPECKIT_ALLOW_REMOTE_PUSH=<branch> git push <REMOTE> HEAD:<LIVE>` |
    | `remote-permission` | `After explicit approval, retry that one push with SPECKIT_ALLOW_REMOTE_PUSH=1.` |
    | `test-suites` | `Fix the reported test failure or use only the documented operator policy.` |
@@ -67,11 +67,11 @@ Every outcome is recorded as a tab-separated line in `<common-dir>/git-primary-r
 | **Claude** | `claude/git-primary-reconcile.sh` (symlink → `../../../bin/git-primary-reconcile.sh`) | SessionStart hook chain | Stderr status lines (`ADVANCE` / `PUBLISH` / `BLOCK` / `SKIP`); log line in the common dir; always exits 0 |
 | **Codex** | `codex/git-primary-reconcile.sh` (symlink) | SessionStart hook chain | Same |
 | **Pi** | `pi/git-primary-reconcile.sh` (symlink) | SessionStart hook chain | Same |
-| **OpenCode** | launched by `.opencode/plugins/session-cleanup.js` | Plugin `event` on `session.created` | Same script, backgrounded by the session-start plugin; no per-runtime symlink adapter |
+| **OpenCode** | launched by `.skilled/plugins/session-cleanup.js` | Plugin `event` on `session.created` | Same script, backgrounded by the session-start plugin; no per-runtime symlink adapter |
 | **Cursor** | — | — | Not applicable. No Cursor symlink is wired for this concern. |
 | **Devin** | — | — | Not applicable. No Devin symlink is wired for this concern. |
 
-One real file backs the wired runtimes; the per-runtime entries are symlinks into `.opencode/bin/`.
+One real file backs the wired runtimes; the per-runtime entries are symlinks into `.skilled/bin/`.
 
 ---
 
@@ -91,9 +91,9 @@ git-primary-reconcile/
 
 | File | Responsibility |
 |---|---|
-| `.opencode/bin/git-primary-reconcile.sh` | The reconcile script. Worktree gate, kill-switches, single-flight lock, live-branch resolution, bounded fetch, fast-forward / rebase-publish, rebase-abort safety assertion, push-gate classification, and tab-separated logging. Always exits 0. |
-| `.opencode/plugins/session-cleanup.js` | The OpenCode session-start plugin that launches this script on `session.created` (see [`session-cleanup/`](../session-cleanup/README.md)). Not in this folder. |
-| `.opencode/hooks/shared/hook-flags.sh` | The shared shell kill-switch resolver (`hook_enabled live-sync`, `hook_enabled primary-reconcile`). Sourced fail-open. |
+| `.skilled/bin/git-primary-reconcile.sh` | The reconcile script. Worktree gate, kill-switches, single-flight lock, live-branch resolution, bounded fetch, fast-forward / rebase-publish, rebase-abort safety assertion, push-gate classification, and tab-separated logging. Always exits 0. |
+| `.skilled/plugins/session-cleanup.js` | The OpenCode session-start plugin that launches this script on `session.created` (see [`session-cleanup/`](../session-cleanup/README.md)). Not in this folder. |
+| `.skilled/hooks/shared/hook-flags.sh` | The shared shell kill-switch resolver (`hook_enabled live-sync`, `hook_enabled primary-reconcile`). Sourced fail-open. |
 
 ---
 
@@ -111,7 +111,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `SPECKIT_PRIMARY_RECONCILE_TIMEOUT=<s>` | Network timeout for fetch and push (default `12`). |
 | `SPECKIT_PRIMARY_RECONCILE_LOCK_TTL=<s>` | Single-flight lock TTL (default `45`). |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -125,20 +125,20 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 | Non-fatal | Every internal failure, missing git, unresolvable dirs, fetch failure/timeout, missing tips, rebase failure, push rejection, exits 0 so session start continues. |
 | Bounded | Fetch and push run under the network timeout via `timeout`/`gtimeout`/`perl alarm`; if no bounded runner exists, network access is refused (skip). Single-flight lock prevents concurrent runs. |
 | Imports | Bash only; sources the shared `hook-flags.sh` fail-open. Nothing outside the repo. |
-| Real code | Stays in `.opencode/bin/`; the hub entries are relative symlinks. |
+| Real code | Stays in `.skilled/bin/`; the hub entries are relative symlinks. |
 
 ---
 
 ## 8. VALIDATION
 
 ```bash
-bash .opencode/bin/git-primary-reconcile.sh; echo "exit: $?"
+bash .skilled/bin/git-primary-reconcile.sh; echo "exit: $?"
 ```
 
 Expected result: `exit: 0`, with a `[primary-reconcile] ...` status line on stderr (`SKIP` / `ADVANCE` / `BLOCK` / `PUBLISH`) and a recorded line in `<common-dir>/git-primary-reconcile.log`.
 
 ```bash
-SYSTEM_PRIMARY_RECONCILE_DISABLED=1 bash .opencode/bin/git-primary-reconcile.sh; echo "exit: $?"
+SYSTEM_PRIMARY_RECONCILE_DISABLED=1 bash .skilled/bin/git-primary-reconcile.sh; echo "exit: $?"
 ```
 
 Expected result: `exit: 0`, a recorded `skip` (disabled by `SYSTEM_PRIMARY_RECONCILE_DISABLED`), no network call.

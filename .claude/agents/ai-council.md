@@ -18,7 +18,7 @@ The Multi-AI Council is a scoped-write planning architect that seeks diverse AI 
 
 ## Deep Mode Availability
 
-Single-round council behavior remains the default for this agent. Iterative multi-topic deep mode is available through `/deep:ai-council`, which wraps the council in session -> topic -> round state, cost guards, and adjudicator-verdict stability checks; see `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` Section "Deep Mode (Iterative Multi-Topic)".
+Single-round council behavior remains the default for this agent. Iterative multi-topic deep mode is available through `/deep:ai-council`, which wraps the council in session -> topic -> round state, cost guards, and adjudicator-verdict stability checks; see `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md` Section "Deep Mode (Iterative Multi-Topic)".
 
 ## Convergence Threshold Semantics
 
@@ -108,10 +108,10 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 | `Grep` | Pattern search | Finding relevant code patterns |
 | `Glob` | File discovery | Locating files for context |
 | `WebFetch` | External resources | Fetching documentation and references when current context is insufficient |
-| `Read` on `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` | Trigger index lookup | Supplemental context surfacing after packet continuity is checked |
+| `Read` on `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | Trigger index lookup | Supplemental context surfacing after packet continuity is checked |
 | `Grep` with the ripgrep recipes in `retrieval-conventions.md` | Free-text corpus evidence | Finding older decisions and patterns after canonical packet sources are exhausted |
 
-**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Bash is denied for this agent, so run the ripgrep recipes from `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` through the Grep tool and read `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` directly. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Bash is denied for this agent, so run the ripgrep recipes from `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` through the Grep tool and read `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` directly. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 > **Scoped-write permissions**: This agent has read/search access for analysis and may write/edit only packet-local `ai-council/**` artifacts.
 > Bash and Patch remain denied. Any write outside `ai-council/**` is an `OUT_OF_SCOPE_WRITE` violation.
@@ -405,7 +405,7 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 
 ## 8. OUTPUT FORMAT
 
-The canonical schema for §8 lives at `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md` — both this section and the `persist-artifacts.cjs` helper cite it. Schema changes require lockstep update of all three.
+The canonical schema for §8 lives at `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md` — both this section and the `persist-artifacts.cjs` helper cite it. Schema changes require lockstep update of all three.
 
 ### Multi-AI Council Report
 
@@ -627,7 +627,7 @@ File shape contracts:
 - `critiques/round-NNN-critique.md`: prior-round plan, critique prompts, new findings, severity, whether findings block convergence. Required for rounds > 1.
 - `council-report.md`: final synthesized plan with composition, comparison, recommended roadmap, rejected alternatives, risks, confidence, and convergence status.
 
-Reference: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md`.
+Reference: `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md`.
 
 ---
 
@@ -647,7 +647,7 @@ Reference: `.opencode/skills/system-deep-loop/deep-ai-council/references/structu
 2. **Subsequent call** (the `ai-council/` folder already exists at the resolved path): read `ai-council-config.json` and the `ai-council-state.jsonl` projection. Determine the next round from `(highest round_end event).round + 1`. Run new seats with prior deliberation as input, then follow steps 5-10 of the first-call sequence with the new round number. Record new state events through the append gateway; do not rewrite history.
 3. **Resume after interruption**: read the state log and resume from the next incomplete event. If `round_start` exists without matching `round_end`, redo that round (steps 4-7). If all `seat_returned` events exist but no `deliberation_synthesized`, run step 6 onward. If `deliberation_synthesized` exists without `round_end`, run step 7 then continue convergence handling.
 
-Reference: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`.
+Reference: `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`.
 
 ---
 
@@ -680,7 +680,7 @@ type ArtifactSuperseded = {event:"artifact_superseded"; original_path:string; ro
 
 Writer-emitted rows may prefix each event with `schema_version`, `protocol`, and `producer`. Missing `schema_version` means implicit `"1"`; v1.2 writers emit `"1.2"`, `protocol:"ai-council"`, and `producer:"persist-artifacts@1.2.0"`.
 
-Evolution is additive-only: v1 callers must keep working, and old rows are not rewritten. Full state-format rules live in `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`.
+Evolution is additive-only: v1 callers must keep working, and old rows are not rewritten. Full state-format rules live in `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`.
 
 ---
 
@@ -701,12 +701,12 @@ Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
 
 **Single writer authority:** The LEAF council is the sole writer authority for `ai-council/**` artifacts. The dispatching parent does not write to council artifacts; it only handles code/spec implementation after the council returns.
 
-The council writes packet artifacts directly through `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`. Use the named exports in order as each round closes: `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. Each writer resolves the target under `<packet>/ai-council/` and writes the artifact. State events -- including the `artifact_written` receipt (with byte count and sha256 checksum) for each artifact -- are recorded through the append gateway, which refreshes the read-only `ai-council-state.jsonl` projection from the ledger; the agent never writes that projection directly.
+The council writes packet artifacts directly through `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`. Use the named exports in order as each round closes: `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. Each writer resolves the target under `<packet>/ai-council/` and writes the artifact. State events -- including the `artifact_written` receipt (with byte count and sha256 checksum) for each artifact -- are recorded through the append gateway, which refreshes the read-only `ai-council-state.jsonl` projection from the ledger; the agent never writes that projection directly.
 
 **Record state through the append gateway**:
 
 ```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
   --mode ai-council \
   --run-directory <resolved ai-council packet root> \
   --event-json <event payload file>
@@ -727,15 +727,15 @@ Forward-only scope: this convention applies to council dispatches from this poin
 Fallback callers may add `--memory-save-payload-out FILE` when invoking the helper. On `council_complete`, the helper writes a `generate-context.js` compatible JSON payload; without the flag, no payload is written.
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> \
+node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> \
   --input-file council-report.md \
   --memory-save-payload-out /tmp/council-payload.json
 
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   /tmp/council-payload.json <packet>
 ```
 
-The payload routes through existing decision-record, implementation-summary, and handover categories. No new ANCHOR family is introduced. See `.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md`.
+The payload routes through existing decision-record, implementation-summary, and handover categories. No new ANCHOR family is introduced. See `.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md`.
 
 ---
 
@@ -754,14 +754,14 @@ Operator recovery steps:
 
 ## 18. RELATED RESOURCES
 
-- `.opencode/skills/system-spec-kit/SKILL.md` — context and decision preservation across council rounds.
-- `.opencode/skills/sk-code/SKILL.md` — coding guidance a council seat cites when a task needs implementation grounding.
-- `.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md` — the `cli-opencode` external AI vantage for implementation realism.
-- `.opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md` — the `cli-claude-code` external AI vantage for deep decomposition.
-- `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` — the iterative multi-topic wrapper behind `/deep:ai-council`.
+- `.skilled/skills/system-spec-kit/SKILL.md` — context and decision preservation across council rounds.
+- `.skilled/skills/sk-code/SKILL.md` — coding guidance a council seat cites when a task needs implementation grounding.
+- `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` — the `cli-opencode` external AI vantage for implementation realism.
+- `.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md` — the `cli-claude-code` external AI vantage for deep decomposition.
+- `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md` — the iterative multi-topic wrapper behind `/deep:ai-council`.
 - `.claude/agents/deep-research.md` — the evidence-first vantage this council seeks for requirements and unknowns.
 - `.claude/agents/review.md` — the independent critique this council escalates to after a risky or high-impact plan.
-- `.opencode/commands/deep/ai-council.md` — the `/deep:ai-council` dispatch entry point.
+- `.skilled/commands/deep/ai-council.md` — the `/deep:ai-council` dispatch entry point.
 
 ---
 

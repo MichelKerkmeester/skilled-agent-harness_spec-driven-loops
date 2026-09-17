@@ -9,7 +9,7 @@ description: "Generators that keep .pi/agents and .pi/prompts in sync with their
 
 ## 1. OVERVIEW
 
-`runtime/cli/pi/` keeps the Pi CLI runtime mirrors in sync with their `.opencode/` canonical sources. Each generator supports a `--check` drift report and a default write mode that regenerates the mirror. Neither generator modifies the canonical source files.
+`runtime/cli/pi/` keeps the Pi CLI runtime mirrors in sync with their `.skilled/` canonical sources. Each generator supports a `--check` drift report and a default write mode that regenerates the mirror. Neither generator modifies the canonical source files.
 
 ---
 
@@ -17,8 +17,8 @@ description: "Generators that keep .pi/agents and .pi/prompts in sync with their
 
 | File | Purpose |
 |------|---------|
-| `sync-agents-pi.cjs` | Generates flat `.pi/agents/*.md` files from `.opencode/agents/*.md`, mapping allowed OpenCode permissions onto Pi's built-in tool names and preserving each agent body. `--check` reports drift without writing. |
-| `sync-prompts-pi.cjs` | Generates flat `.pi/prompts/*.md` files from `.opencode/commands/*.md`, walking every command markdown file except `assets/`, `runtime/cli/` and `fixtures/` subfolders. `--check` reports drift without writing. |
+| `sync-agents-pi.cjs` | Generates flat `.pi/agents/*.md` files from `.skilled/agents/*.md`, mapping allowed OpenCode permissions onto Pi's built-in tool names and preserving each agent body. `--check` reports drift without writing. |
+| `sync-prompts-pi.cjs` | Generates flat `.pi/prompts/*.md` files from `.skilled/commands/*.md`, walking every command markdown file except `assets/`, `runtime/cli/` and `fixtures/` subfolders. `--check` reports drift without writing. |
 
 ---
 

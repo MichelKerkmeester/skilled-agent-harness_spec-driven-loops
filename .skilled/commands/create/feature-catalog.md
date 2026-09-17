@@ -21,9 +21,9 @@ Route /create:feature-catalog to its presentation contract and workflow YAML for
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation contract | `.opencode/commands/create/assets/create-feature-catalog-presentation.txt` |
-| Auto workflow | `.opencode/commands/create/assets/create-feature-catalog-auto.yaml` |
-| Confirm workflow | `.opencode/commands/create/assets/create-feature-catalog-confirm.yaml` |
+| Presentation contract | `.skilled/commands/create/assets/create-feature-catalog-presentation.txt` |
+| Auto workflow | `.skilled/commands/create/assets/create-feature-catalog-auto.yaml` |
+| Confirm workflow | `.skilled/commands/create/assets/create-feature-catalog-confirm.yaml` |
 
 ---
 
@@ -32,7 +32,7 @@ Route /create:feature-catalog to its presentation contract and workflow YAML for
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-1. Read `.opencode/commands/create/assets/create-feature-catalog-presentation.txt`.
+1. Read `.skilled/commands/create/assets/create-feature-catalog-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
 4. Resolve operation from setup: `create` or `update`.
@@ -46,14 +46,14 @@ Route /create:feature-catalog to its presentation contract and workflow YAML for
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.opencode/commands/create/assets/create-feature-catalog-auto.yaml` |
-| `:confirm` or omitted mode | `.opencode/commands/create/assets/create-feature-catalog-confirm.yaml` |
+| `:auto` | `.skilled/commands/create/assets/create-feature-catalog-auto.yaml` |
+| `:confirm` or omitted mode | `.skilled/commands/create/assets/create-feature-catalog-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/create/assets/create-feature-catalog-presentation.txt`:
+The following content lives only in `.skilled/commands/create/assets/create-feature-catalog-presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, operation display, status display, completion template, and next-step text.
 
