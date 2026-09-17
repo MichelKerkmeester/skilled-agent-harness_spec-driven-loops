@@ -5,5 +5,6 @@
 // share the one root-resolution algorithm instead of carrying a private walk-up.
 
 export const REPO_ROOT_SENTINEL: string;
+export const SOURCE_ROOT_NAMES: readonly string[];
 export function hoistAboveOpencodeTree(dir: string): string | null;
 export function findRepoRoot(start?: string, opts?: { maxDepth?: number; sentinel?: string }): string;
