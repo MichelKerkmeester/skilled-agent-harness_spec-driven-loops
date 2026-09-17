@@ -126,7 +126,7 @@ The promotion gate contract defines the five required gates that must pass befor
 ### Step 1: Accept Candidate
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs \
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs \
   --phase=accept \
   --candidate={spec_folder}/improvement/candidates/{candidate_id}.md \
   --target={canonical_target_path} \
@@ -154,7 +154,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-c
 ### Step 2: Ship Accepted Candidate
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs \
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs \
   --phase=ship \
   --acceptance-file={spec_folder}/improvement/archive/{target_name}.{timestamp}.accepted.json \
   --approve
@@ -194,7 +194,7 @@ Rollback is triggered when:
 ### Rollback Execution
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs \
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs \
   --target={canonical_target_path} \
   --backup={backup_path} \
   --config={config_path} \
@@ -204,7 +204,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-
 When rolling back a two-phase promotion, the accepted-state file can supply those paths:
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs \
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs \
   --acceptance-file={acceptance_file_path}
 ```
 
@@ -232,7 +232,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-
 {
   "eventType": "promotion_blocked_branch_preserved",
   "phase": "ship",
-  "target": ".opencode/agents/debug.md",
+  "target": ".skilled/agents/debug.md",
   "candidate": "improvement/archive/debug.md.accepted",
   "preservedBranch": "feature/improve-debug-agent",
   "branchPreservationPolicy": "preserve-on-failure"
@@ -244,7 +244,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-
 {
   "eventType": "promotion_attempt",
   "candidateId": "candidate-001",
-  "targetPath": ".opencode/agents/debug.md",
+  "targetPath": ".skilled/agents/debug.md",
   "gates": {
     "score": { "passed": true, "weightedScore": 78.5 },
     "benchmark": { "passed": true, "aggregateScore": 90 },
@@ -272,7 +272,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-
 ```json
 {
   "eventType": "rollback",
-  "targetPath": ".opencode/agents/debug.md",
+  "targetPath": ".skilled/agents/debug.md",
   "backupPath": "improvement/archive/20260523_debug.md.backup",
   "reason": "operator_request"
 }

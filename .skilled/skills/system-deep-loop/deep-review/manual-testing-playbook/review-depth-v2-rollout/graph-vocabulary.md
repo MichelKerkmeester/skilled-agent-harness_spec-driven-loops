@@ -32,7 +32,7 @@ Without graph-side persistence, the ledger has nowhere to project its richer sem
 
 ### Prerequisites
 
-- `review-depth-graph.vitest.ts` exists under `.opencode/skills/system-deep-loop/runtime/tests/integration/`.
+- `review-depth-graph.vitest.ts` exists under `.skilled/skills/system-deep-loop/runtime/tests/integration/`.
 - Graph upsert test fixtures can include `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` events with valid review-loop relations.
 - The graph test path can verify persisted review-loop nodes.
 
@@ -69,11 +69,11 @@ The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`,
 
 ## 4. SOURCE FILES
 
-- Allow-list: `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts` (`VALID_KINDS['review']` constant).
-- Upsert handler: `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts` (dynamic kind validation via `VALID_KINDS[loopType]`).
-- YAML event filter: `.opencode/commands/deep/assets/deep-review-auto.yaml` (event-normalization block).
-- Confirm mirror: `.opencode/commands/deep/assets/deep-review-confirm.yaml`.
-- Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts`.
+- Allow-list: `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts` (`VALID_KINDS['review']` constant).
+- Upsert handler: `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts` (dynamic kind validation via `VALID_KINDS[loopType]`).
+- YAML event filter: `.skilled/commands/deep/assets/deep-review-auto.yaml` (event-normalization block).
+- Confirm mirror: `.skilled/commands/deep/assets/deep-review-confirm.yaml`.
+- Fixture: `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts`.
 - Phase spec: complexity-ledger-led graph-vocab spec (see this skill's changelog for provenance).
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 

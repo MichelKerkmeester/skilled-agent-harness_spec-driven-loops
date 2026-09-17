@@ -27,7 +27,7 @@ This feature belongs to the coverage graph group and is catalogued as F039 in th
 
 `convergence.cjs` reads `minObservations` from argv/config/env, `coverage-graph-signals.ts` exposes observation signals, and sub-threshold leading findings are flagged as blockers without changing default parity.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

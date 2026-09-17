@@ -29,14 +29,14 @@ Turns a stream of ledger events into a deterministic, replay-verifiable metric. 
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/transactional-projections/` (bundle registry and engine)
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/`
+- `.skilled/skills/system-deep-loop/runtime/lib/transactional-projections/` (bundle registry and engine)
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts`
 - Also exercised by `transactional-projections.vitest.ts`.
 
 ---

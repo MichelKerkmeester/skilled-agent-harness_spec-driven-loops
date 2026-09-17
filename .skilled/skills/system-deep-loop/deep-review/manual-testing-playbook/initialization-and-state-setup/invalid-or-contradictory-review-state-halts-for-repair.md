@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate invalid deep-review state handling and report whether partial or contradictory state halts with a repair message.
 ### Commands
-1. `bash: rg -n 'invalid.state|on_invalid|halt|repair|contradictory|partial' .opencode/commands/deep/assets/deep-review-auto.yaml`
-2. `bash: rg -n 'invalid.state|on_invalid|halt|repair' .opencode/commands/deep/assets/deep-review-confirm.yaml`
-3. `bash: rg -n 'on_conflict|on_canonical_present|contradictory' .opencode/commands/deep/assets/deep-review-auto.yaml`
+1. `bash: rg -n 'invalid.state|on_invalid|halt|repair|contradictory|partial' .skilled/commands/deep/assets/deep-review-auto.yaml`
+2. `bash: rg -n 'invalid.state|on_invalid|halt|repair' .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'on_conflict|on_canonical_present|contradictory' .skilled/commands/deep/assets/deep-review-auto.yaml`
 ### Expected
 The classify step has an explicit "invalid-state" classification for partial or contradictory combinations. It halts with a descriptive message. The migration step halts on canonical/legacy conflicts.
 ### Evidence
@@ -71,9 +71,9 @@ Enumerate all possible partial-state combinations (config only, JSONL only, stra
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Session classification and migration, inspect `step_classify_session` and `step_migrate_legacy_review_state` |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Session classification, inspect `step_classify_session` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Session classification and migration, inspect `step_classify_session` and `step_migrate_legacy_review_state` |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Session classification, inspect `step_classify_session` |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance |
 
 ---
 
@@ -83,4 +83,4 @@ Enumerate all possible partial-state combinations (config only, JSONL only, stra
 - Playbook ID: DRV-006
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

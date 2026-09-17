@@ -46,7 +46,7 @@ The skill must not imply council seats write graph storage directly or that grap
 
 ### Commands
 
-1. `bash: rg -n "graph" .opencode/skills/system-deep-loop/deep-ai-council/SKILL.md`
+1. `bash: rg -n "graph" .skilled/skills/system-deep-loop/deep-ai-council/SKILL.md`
 
 ### Expected
 
@@ -69,7 +69,7 @@ Inspect Section 1, Section 4, Section 7, and `references/integration/graph-suppo
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-011 | Graph boundary | Verify graph support is derived and scoped | `As a planning-only validator, verify graph support remains a derived projection and not council-agent-owned state. Return the allowed interpretation.` | `bash: rg -n "graph" .opencode/skills/system-deep-loop/deep-ai-council/SKILL.md .opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md` | Derived projection and artifact source-of-truth language | Grep output | PASS if no seat-owned graph mutation | Inspect SKILL.md and graph-support.md scope language |
+| DAC-011 | Graph boundary | Verify graph support is derived and scoped | `As a planning-only validator, verify graph support remains a derived projection and not council-agent-owned state. Return the allowed interpretation.` | `bash: rg -n "graph" .skilled/skills/system-deep-loop/deep-ai-council/SKILL.md .skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md` | Derived projection and artifact source-of-truth language | Grep output | PASS if no seat-owned graph mutation | Inspect SKILL.md and graph-support.md scope language |
 
 ---
 
@@ -86,7 +86,7 @@ Inspect Section 1, Section 4, Section 7, and `references/integration/graph-suppo
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` | Skill scope rules |
+| `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md` | Skill scope rules |
 
 ---
 

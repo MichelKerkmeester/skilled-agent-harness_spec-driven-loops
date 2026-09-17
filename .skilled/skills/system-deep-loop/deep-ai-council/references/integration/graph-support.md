@@ -114,6 +114,6 @@ Never rewrite historical `ai-council-state.jsonl` rows to fit the graph.
 - State format: `references/structure/state-format.md`
 - Folder layout: `references/structure/folder-layout.md`
 - Convergence signals: `references/convergence/convergence-signals.md`
-- Runtime implementation: `.opencode/skills/system-deep-loop/runtime/lib/council/`
+- Runtime implementation: `.skilled/skills/system-deep-loop/runtime/lib/council/`
 - Graph replay script: `scripts/replay-graph-from-artifacts.cjs` (derives the council payload from `ai-council-state.jsonl` and writes it through `runtime//scripts/upsert.cjs --loop-type council`; run it after deleting stale derived rows during recovery)
 - Deep-mode state hierarchy: `references/convergence/deep-mode.md`

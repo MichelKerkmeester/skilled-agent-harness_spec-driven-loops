@@ -50,7 +50,7 @@ Operators run the exact command sequence and confirm the expected signals withou
 set -uo pipefail
 rm -rf /tmp/cp-053-sandbox /tmp/cp-053-sandbox-baseline /tmp/cp-053-spec
 mkdir -p /tmp/cp-053-spec
-.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-053-sandbox
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-053-sandbox
 cp -a /tmp/cp-053-sandbox /tmp/cp-053-sandbox-baseline
 cd "$(git rev-parse --show-toplevel)"
 git status --porcelain -- /tmp/cp-053-sandbox /tmp/cp-053-spec > /tmp/cp-053-pre.txt
@@ -88,9 +88,9 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | File | Lines | Role |
 |---|---:|---|
-| `.opencode/commands/deep/assets/deep-review-presentation.txt` | 271-278, 396-400 | Workflow outputs and read-only agent model |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 354-356, 414-420 | Executor invariants and quality gates |
-| `.opencode/agents/deep-review.md` | 80-98, 177-195 | Single-iteration sequence and output verification |
+| `.skilled/commands/deep/assets/deep-review-presentation.txt` | 271-278, 396-400 | Workflow outputs and read-only agent model |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 354-356, 414-420 | Executor invariants and quality gates |
+| `.skilled/agents/deep-review.md` | 80-98, 177-195 | Single-iteration sequence and output verification |
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 
 ---

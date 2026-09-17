@@ -35,7 +35,7 @@ Shared `progress_record` type, completion reducer allowlist and started/complete
 ## 4. VALIDATION
 
 ```bash
-node .opencode/skills/system-deep-loop/shared/progress/progress-record.test.cjs
+node .skilled/skills/system-deep-loop/shared/progress/progress-record.test.cjs
 ```
 
 Expected: `[progress-record] 13/13 assertions passed`.

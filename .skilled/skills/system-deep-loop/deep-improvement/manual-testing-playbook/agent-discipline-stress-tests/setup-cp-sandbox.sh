@@ -6,7 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # a level, this count moves with it or every path below resolves too shallow.
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../../../../../.." && pwd)"
 SANDBOX_DIR="/tmp/cp-improve-sandbox"
-FIXTURE_ROOT="${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-improvement/test-fixtures/060-stress-test"
+FIXTURE_ROOT="${REPO_ROOT}/.skilled/skills/system-deep-loop/deep-improvement/test-fixtures/060-stress-test"
 
 usage() {
   echo "Usage: setup-cp-sandbox.sh [--sandbox-dir PATH]"
@@ -87,15 +87,15 @@ copy_file() {
   cp -a "$source" "$target"
 }
 
-require_path "${REPO_ROOT}/.opencode/commands/deep"
-require_path "${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-improvement"
+require_path "${REPO_ROOT}/.skilled/commands/deep"
+require_path "${REPO_ROOT}/.skilled/skills/system-deep-loop/deep-improvement"
 # The sandboxed scenarios invoke helper scripts that resolve @spec-kit/shared by
 # walking up from their own path, so the sandbox carries the package and its one
 # runtime dependency; without them the helper steps fail MODULE_NOT_FOUND.
-require_path "${REPO_ROOT}/.opencode/skills/system-deep-loop/node_modules/@spec-kit"
-require_path "${REPO_ROOT}/.opencode/skills/system-spec-kit/shared"
-require_path "${REPO_ROOT}/.opencode/skills/system-spec-kit/node_modules/js-yaml"
-require_path "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.md"
+require_path "${REPO_ROOT}/.skilled/skills/system-deep-loop/node_modules/@spec-kit"
+require_path "${REPO_ROOT}/.skilled/skills/system-spec-kit/shared"
+require_path "${REPO_ROOT}/.skilled/skills/system-spec-kit/node_modules/js-yaml"
+require_path "${FIXTURE_ROOT}/.skilled/agents/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.claude/agents/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.cursor/agents/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.devin/agents/cp-improve-target/AGENT.md"
@@ -107,13 +107,13 @@ validate_sandbox_dir "$SANDBOX_DIR"
 rm -rf "$SANDBOX_DIR"
 mkdir -p "$SANDBOX_DIR"
 
-copy_dir "${REPO_ROOT}/.opencode/commands/deep" "${SANDBOX_DIR}/.opencode/commands/deep"
-copy_dir "${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-improvement" "${SANDBOX_DIR}/.opencode/skills/system-deep-loop/deep-improvement"
-copy_dir "${REPO_ROOT}/.opencode/skills/system-deep-loop/node_modules/@spec-kit" "${SANDBOX_DIR}/.opencode/skills/system-deep-loop/node_modules/@spec-kit"
-copy_dir "${REPO_ROOT}/.opencode/skills/system-spec-kit/shared" "${SANDBOX_DIR}/.opencode/skills/system-spec-kit/shared"
-copy_dir "${REPO_ROOT}/.opencode/skills/system-spec-kit/node_modules/js-yaml" "${SANDBOX_DIR}/.opencode/skills/system-spec-kit/node_modules/js-yaml"
+copy_dir "${REPO_ROOT}/.skilled/commands/deep" "${SANDBOX_DIR}/.skilled/commands/deep"
+copy_dir "${REPO_ROOT}/.skilled/skills/system-deep-loop/deep-improvement" "${SANDBOX_DIR}/.skilled/skills/system-deep-loop/deep-improvement"
+copy_dir "${REPO_ROOT}/.skilled/skills/system-deep-loop/node_modules/@spec-kit" "${SANDBOX_DIR}/.skilled/skills/system-deep-loop/node_modules/@spec-kit"
+copy_dir "${REPO_ROOT}/.skilled/skills/system-spec-kit/shared" "${SANDBOX_DIR}/.skilled/skills/system-spec-kit/shared"
+copy_dir "${REPO_ROOT}/.skilled/skills/system-spec-kit/node_modules/js-yaml" "${SANDBOX_DIR}/.skilled/skills/system-spec-kit/node_modules/js-yaml"
 
-copy_file "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.md" "${SANDBOX_DIR}/.opencode/agents/cp-improve-target.md"
+copy_file "${FIXTURE_ROOT}/.skilled/agents/cp-improve-target.md" "${SANDBOX_DIR}/.skilled/agents/cp-improve-target.md"
 copy_file "${FIXTURE_ROOT}/.claude/agents/cp-improve-target.md" "${SANDBOX_DIR}/.claude/agents/cp-improve-target.md"
 copy_file "${FIXTURE_ROOT}/.cursor/agents/cp-improve-target.md" "${SANDBOX_DIR}/.cursor/agents/cp-improve-target.md"
 copy_file "${FIXTURE_ROOT}/.devin/agents/cp-improve-target/AGENT.md" "${SANDBOX_DIR}/.devin/agents/cp-improve-target/AGENT.md"

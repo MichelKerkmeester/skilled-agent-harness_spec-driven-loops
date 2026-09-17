@@ -31,7 +31,7 @@ const path = require('node:path');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const CONTRACT_RELATIVE_PATH = '.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml';
+const CONTRACT_RELATIVE_PATH = '.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml';
 const SNAPSHOT_ARTIFACT_ID = 'review-contract-snapshot';
 const MAPPING_KEY_PATTERN = /^([A-Za-z_][A-Za-z0-9_]*):(?: (.*))?$/;
 const SNAPSHOT_FRONTMATTER = `---
@@ -474,7 +474,7 @@ function renderSnapshot(doc, snapshotArtifact) {
     'Human-readable rendering of the deep-review review-mode contract. Regenerate with:',
     '',
     '```bash',
-    'node .opencode/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs',
+    'node .skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs',
     '```',
     '',
     snapshotArtifact.markers.begin,

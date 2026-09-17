@@ -41,13 +41,13 @@ An agent is not just its `.md` file. It exists across canonical, mirrors, comman
 
 | Surface | Location Pattern | What It Checks |
 | --- | --- | --- |
-| Canonical | `.opencode/agents/{name}.md` | Exists, frontmatter parsed |
+| Canonical | `.skilled/agents/{name}.md` | Exists, frontmatter parsed |
 | Claude mirror | `.claude/agents/{name}.md` | Exists, sync status vs canonical |
-| Commands | `.opencode/commands/**/*.md` | Files containing `@{name}` dispatch |
-| YAML workflows | `.opencode/commands/**/assets/*.yaml` | Files referencing `@{name}` |
-| Skills | `.opencode/skills/*/SKILL.md` | Files referencing the agent |
+| Commands | `.skilled/commands/**/*.md` | Files containing `@{name}` dispatch |
+| YAML workflows | `.skilled/commands/**/assets/*.yaml` | Files referencing `@{name}` |
+| Skills | `.skilled/skills/*/SKILL.md` | Files referencing the agent |
 | Global docs | `CLAUDE.md` (a symlink to `AGENTS.md`) | Agent name references |
-| Skill advisor | `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Routing entries |
+| Skill advisor | `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Routing entries |
 
 ---
 
@@ -77,12 +77,12 @@ The output JSON includes a `summary` with `totalSurfaces`, `existingCount`, `mis
   "status": "complete",
   "agent": "{agent-name}",
   "surfaces": {
-    "canonical": { "path": ".opencode/agents/{agent-name}.md", "exists": true },
+    "canonical": { "path": ".skilled/agents/{agent-name}.md", "exists": true },
     "mirrors": [
       { "path": ".claude/agents/{agent-name}.md", "syncStatus": "aligned" }
     ],
-    "commands": [{ "path": ".opencode/commands/speckit/{agent-name}.md", "references": ["@{agent-name}"] }],
-    "skills": [{ "path": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md", "referenceCount": 2 }]
+    "commands": [{ "path": ".skilled/commands/speckit/{agent-name}.md", "references": ["@{agent-name}"] }],
+    "skills": [{ "path": ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md", "referenceCount": 2 }]
   },
   "summary": {
     "totalSurfaces": 27,

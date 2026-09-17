@@ -41,11 +41,11 @@ This playbook provides 55 deterministic scenarios across 10 categories validatin
 
 ## 2. GLOBAL PRECONDITIONS
 
-- `deep-review` skill exists at `.opencode/skills/system-deep-loop/deep-review/`.
-- `/deep:review` command exists at `.opencode/commands/deep/review.md`.
-- `@deep-review` agent definition exists at `.opencode/agents/deep-review.md` plus runtime variants.
-- Review YAML workflows exist at `.opencode/commands/deep/assets/deep-review-auto.yaml` and `.opencode/commands/deep/assets/deep-review-confirm.yaml`.
-- `review-mode-contract.yaml` exists at `.opencode/skills/system-deep-loop/deep-review/assets/`.
+- `deep-review` skill exists at `.skilled/skills/system-deep-loop/deep-review/`.
+- `/deep:review` command exists at `.skilled/commands/deep/review.md`.
+- `@deep-review` agent definition exists at `.skilled/agents/deep-review.md` plus runtime variants.
+- Review YAML workflows exist at `.skilled/commands/deep/assets/deep-review-auto.yaml` and `.skilled/commands/deep/assets/deep-review-confirm.yaml`.
+- `review-mode-contract.yaml` exists at `.skilled/skills/system-deep-loop/deep-review/assets/`.
 
 ---
 
@@ -611,26 +611,26 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 
 | Test File | Covered Runtime Surface |
 |---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-deltas-contract.vitest.ts` | Deep-review deltas contract |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts` | Deep-review ledger schema |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-projections-contract.vitest.ts` | Deep-review projections contract |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts` | Deep-review ledger reducers |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-sealed-artifacts.vitest.ts` | Deep-review sealed artifacts |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-state-contract.vitest.ts` | Deep-review state contract |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts` | Deep-review state reducer |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts` | Deep-review strategy heading handling |
-| `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` | Review-depth convergence integration |
-| `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts` | Review-depth graph integration |
-| `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts` | Review-depth validator integration |
-| `.opencode/skills/system-spec-kit/runtime/tests/deep-loop/review-depth-reducer.vitest.ts` | Review-depth reducer contract |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts` | Auto-restart contract |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts` | Command/runtime contract parity |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-review-reducer-schema.vitest.ts` | Reducer schema contract |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/post-save-review.vitest.ts` | Post-save review quality and score penalty |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/review-record-validation.vitest.ts` | Review-record packet validation |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/review-reducer-fail-closed.vitest.ts` | Reducer fail-closed behavior |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/review-research-paths.vitest.ts` | Review/research path resolution |
-| `.opencode/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-summary-fallback.test.cjs` | Reducer summary fallback |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-deltas-contract.vitest.ts` | Deep-review deltas contract |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts` | Deep-review ledger schema |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-projections-contract.vitest.ts` | Deep-review projections contract |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts` | Deep-review ledger reducers |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-sealed-artifacts.vitest.ts` | Deep-review sealed artifacts |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-contract.vitest.ts` | Deep-review state contract |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts` | Deep-review state reducer |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts` | Deep-review strategy heading handling |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` | Review-depth convergence integration |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts` | Review-depth graph integration |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts` | Review-depth validator integration |
+| `.skilled/skills/system-spec-kit/runtime/tests/deep-loop/review-depth-reducer.vitest.ts` | Review-depth reducer contract |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts` | Auto-restart contract |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts` | Command/runtime contract parity |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-reducer-schema.vitest.ts` | Reducer schema contract |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/post-save-review.vitest.ts` | Post-save review quality and score penalty |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/review-record-validation.vitest.ts` | Review-record packet validation |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/review-reducer-fail-closed.vitest.ts` | Reducer fail-closed behavior |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/review-research-paths.vitest.ts` | Review/research path resolution |
+| `.skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-summary-fallback.test.cjs` | Reducer summary fallback |
 
 ---
 

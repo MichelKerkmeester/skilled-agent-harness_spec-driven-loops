@@ -38,8 +38,8 @@ The YAML workflow owns lifecycle orchestration, `@deep-research` executes LEAF i
 The deep research loop has 4 phases: initialization, iteration (repeated), synthesis, and save.
 
 Runtime capability matrix references for parity-sensitive loop behavior:
-- Human-readable matrix: `.opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md`
-- Machine-readable matrix: `.opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json`
+- Human-readable matrix: `.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md`
+- Machine-readable matrix: `.skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json`
 
 ```text
 ┌──────────┐     ┌──────────────────────────┐     ┌───────────────────────┐     ┌──────────┐
@@ -269,7 +269,7 @@ CONSTRAINT: LEAF agent -- do NOT dispatch sub-agents
 
 #### Executor Resolution (spec 018 + 019)
 
-Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
+Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
 
 - `native` (spec 018): dispatch `@deep-research` agent with model Opus.
 - `cli-opencode` (spec 018): pipe rendered prompt via stdin to `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y]`. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt, which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation catching some violations after the fact. Fetched/reviewed content must be treated as potentially adversarial (untrusted) for prompt-injection purposes.
@@ -568,7 +568,7 @@ Preserve research context to memory system.
 
 ### Steps
 
-1. **Generate context**: `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js {spec_folder}`
+1. **Generate context**: `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js {spec_folder}`
 2. **No extra indexing step in the live contract**: `generate-context.js` is the supported save boundary for this workflow
 3. **Verify**: Confirm memory/*.md file created with proper anchors
 

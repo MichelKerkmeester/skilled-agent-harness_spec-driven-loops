@@ -33,14 +33,14 @@ Runtime primitives that stop two concurrent `system-deep-loop` processes from wr
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/`
-- `.opencode/skills/system-deep-loop/runtime/lib/transactional-projections/`
-- `.opencode/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/`
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/`
+- `.skilled/skills/system-deep-loop/runtime/lib/branch-leases-waves/`
+- `.skilled/skills/system-deep-loop/runtime/lib/transactional-projections/`
+- `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/`
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts`

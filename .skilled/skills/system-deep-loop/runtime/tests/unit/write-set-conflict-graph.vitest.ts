@@ -261,7 +261,7 @@ describe('write-set conflict graph', () => {
   });
 
   it('treats a directory writer and descendant reader as overlapping resources', () => {
-    const rootIdentity = 'file:.opencode/skills/system-deep-loop/adversarial-mode';
+    const rootIdentity = 'file:.skilled/skills/system-deep-loop/adversarial-mode';
     const childIdentity = `${rootIdentity}/scripts/reader.ts`;
     const rootResource = {
       ...testResource(rootIdentity, 'write'),
@@ -298,7 +298,7 @@ describe('write-set conflict graph', () => {
     peerAccess,
     edgeType,
   }) => {
-    const identity = 'file:.opencode/skills/system-deep-loop/adversarial-dir';
+    const identity = 'file:.skilled/skills/system-deep-loop/adversarial-dir';
     const writer = {
       ...testResource(identity, 'write'),
       kind: ResourceKinds.FILE,
@@ -330,7 +330,7 @@ describe('write-set conflict graph', () => {
   });
 
   it('continues to treat a true file prefix as a write-read conflict', () => {
-    const rootIdentity = 'file:.opencode/skills/system-deep-loop/a/b';
+    const rootIdentity = 'file:.skilled/skills/system-deep-loop/a/b';
     const childIdentity = `${rootIdentity}/c`;
     let declarations = replaceDeclaration(
       SHIPPED_MODE_CENSUS,
@@ -430,8 +430,8 @@ describe('write-set conflict graph', () => {
   });
 
   it('fails closed when path resources differ only by ASCII case', () => {
-    const upperIdentity = 'file:.opencode/Adversarial-Case.md';
-    const lowerIdentity = 'file:.opencode/adversarial-case.md';
+    const upperIdentity = 'file:.skilled/Adversarial-Case.md';
+    const lowerIdentity = 'file:.skilled/adversarial-case.md';
     let declarations = replaceDeclaration(
       SHIPPED_MODE_CENSUS,
       '001-deep-research',
@@ -482,9 +482,9 @@ describe('write-set conflict graph', () => {
     unicodeMode,
     rootMode,
   }) => {
-    const nfcPath = '.opencode/ComboCaseSlash-Caf\u00e9-dir';
+    const nfcPath = '.skilled/ComboCaseSlash-Caf\u00e9-dir';
     const casedPeerPath = caseMode === 'diff-case'
-      ? '.opencode/combocaseslash-caf\u00e9-dir'
+      ? '.skilled/combocaseslash-caf\u00e9-dir'
       : nfcPath;
     const peerPath = unicodeMode === 'NFD'
       ? casedPeerPath.normalize('NFD')
@@ -517,8 +517,8 @@ describe('write-set conflict graph', () => {
 
   it('conflicts for the pure-ASCII case-and-trailing-slash repro', () => {
     const graph = graphWithPathWrites(
-      'file:.opencode/ComboCaseSlash-dir',
-      'file:.opencode/combocaseslash-dir/',
+      'file:.skilled/ComboCaseSlash-dir',
+      'file:.skilled/combocaseslash-dir/',
     );
 
     expect(graph.schedule).toEqual(expect.objectContaining({
@@ -536,18 +536,18 @@ describe('write-set conflict graph', () => {
   it.each([
     {
       label: 'different filename',
-      leftIdentity: 'file:.opencode/comparable-alpha.md',
-      rightIdentity: 'file:.opencode/comparable-beta.md',
+      leftIdentity: 'file:.skilled/comparable-alpha.md',
+      rightIdentity: 'file:.skilled/comparable-beta.md',
     },
     {
       label: 'NFKC-only ligature difference',
-      leftIdentity: 'file:.opencode/comparable-o\ufb03ce.md',
-      rightIdentity: 'file:.opencode/comparable-office.md',
+      leftIdentity: 'file:.skilled/comparable-o\ufb03ce.md',
+      rightIdentity: 'file:.skilled/comparable-office.md',
     },
     {
       label: 'different accented filename',
-      leftIdentity: 'file:.opencode/comparable-caf\u00e9.md',
-      rightIdentity: 'file:.opencode/comparable-caf\u00e8.md',
+      leftIdentity: 'file:.skilled/comparable-caf\u00e9.md',
+      rightIdentity: 'file:.skilled/comparable-caf\u00e8.md',
     },
   ])('keeps $label paths independent', ({ leftIdentity, rightIdentity }) => {
     const graph = graphWithPathWrites(leftIdentity, rightIdentity);
@@ -562,8 +562,8 @@ describe('write-set conflict graph', () => {
   });
 
   it('treats NFC and NFD spellings of the same path as one write resource', () => {
-    const nfcIdentity = 'file:.opencode/adversarial-caf\u00e9.md';
-    const nfdIdentity = 'file:.opencode/adversarial-cafe\u0301.md';
+    const nfcIdentity = 'file:.skilled/adversarial-caf\u00e9.md';
+    const nfdIdentity = 'file:.skilled/adversarial-cafe\u0301.md';
     expect(nfcIdentity).not.toBe(nfdIdentity);
     expect(nfcIdentity.normalize('NFC')).toBe(nfdIdentity.normalize('NFC'));
 
@@ -602,8 +602,8 @@ describe('write-set conflict graph', () => {
   });
 
   it('keeps genuinely different Unicode filenames independent', () => {
-    const acuteIdentity = 'file:.opencode/adversarial-caf\u00e9.md';
-    const graveIdentity = 'file:.opencode/adversarial-caf\u00e8.md';
+    const acuteIdentity = 'file:.skilled/adversarial-caf\u00e9.md';
+    const graveIdentity = 'file:.skilled/adversarial-caf\u00e8.md';
     expect(acuteIdentity.normalize('NFC')).not.toBe(graveIdentity.normalize('NFC'));
 
     let declarations = replaceDeclaration(
@@ -876,7 +876,7 @@ describe('write-set conflict graph', () => {
         writeSet: [
           ...declaration.writeSet,
           {
-            ...testResource('file:.opencode/adversarial/report', 'write'),
+            ...testResource('file:.skilled/adversarial/report', 'write'),
             kind: ResourceKinds.FILE,
           },
         ],
@@ -890,7 +890,7 @@ describe('write-set conflict graph', () => {
         writeSet: [
           ...declaration.writeSet,
           {
-            ...testResource('file:.opencode/adversarial/report-backup', 'write'),
+            ...testResource('file:.skilled/adversarial/report-backup', 'write'),
             kind: ResourceKinds.FILE,
           },
         ],

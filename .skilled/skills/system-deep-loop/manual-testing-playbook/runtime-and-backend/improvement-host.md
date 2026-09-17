@@ -50,8 +50,8 @@ For an agent-improvement run, resolve the mode through the registry and state th
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `agent-improvement` mode entry.
-2. `.opencode/skills/system-deep-loop/SKILL.md` contains the backend and NEVER-infer rules.
+1. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `agent-improvement` mode entry.
+2. `.skilled/skills/system-deep-loop/SKILL.md` contains the backend and NEVER-infer rules.
 
 ### Prompt
 
@@ -90,8 +90,8 @@ For an agent-improvement run, resolve the mode through the registry and state th
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - backend and NEVER-infer rules.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `agent-improvement` backend fields.
+- `.skilled/skills/system-deep-loop/SKILL.md` - backend and NEVER-infer rules.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `agent-improvement` backend fields.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

@@ -38,7 +38,7 @@ node behavior-bench-run.cjs --scenario <file> --leg <name> --out-dir <dir>
 ## 4. TESTS
 
 ```bash
-node .opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs
+node .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs
 ```
 
 Runs hermetically against a fake executor leg. No live model session required. See `tests/README.md`.

@@ -18,7 +18,7 @@ This scenario validates that `runtime query CLI mode='unresolved_disagreements'`
 
 Council deliberation produces 5+ artifacts per seat per round. A 3-round, 3-seat run yields ≥45 artifact files. Triaging which DISAGREEMENT nodes remain unresolved by re-reading every critique is slow, error-prone, and breaks down when reviewing weeks-old sessions. The graph collapses this to one runtime CLI call.
 
-> **Automated test anchor:** `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-027 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/system-deep-loop/runtime/tests/council-graph-value-report.json`.
+> **Automated test anchor:** `.skilled/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-027 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.skilled/skills/system-deep-loop/runtime/tests/council-graph-value-report.json`.
 
 ---
 
@@ -99,10 +99,10 @@ If graph response includes resolved disagreements, inspect `lib/council/council-
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` | runtime CLI script for `runtime query CLI` |
-| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | `getUnresolvedDisagreements` helper |
-| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | "upserts prompt-safe council graph data and queries unresolved disagreements and decision support" |
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md` §3 | Documents the RESOLVES edge contract |
+| `.skilled/skills/system-deep-loop/runtime/scripts/query.cjs` | runtime CLI script for `runtime query CLI` |
+| `.skilled/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | `getUnresolvedDisagreements` helper |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | "upserts prompt-safe council graph data and queries unresolved disagreements and decision support" |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md` §3 | Documents the RESOLVES edge contract |
 
 ---
 

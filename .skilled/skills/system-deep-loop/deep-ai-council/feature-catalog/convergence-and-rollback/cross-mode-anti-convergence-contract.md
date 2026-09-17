@@ -42,8 +42,8 @@ The user-visible contract is concrete: council convergence still requires the tw
 |------|-------|------|
 | `assets/deep-ai-council-config.json` | Config | Declares `antiConvergence.minRounds: 2`, `convergenceMode: "default"`, and `stopPolicy: "fail-closed"`. |
 | `assets/runtime-capabilities.json` | Runtime matrix | Declares fail-closed stop policy and council round invariants. |
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs` | Shared runtime | Rejects missing or non-fail-closed stop policy. |
-| `.opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json` | Optimizer | Provides the shared anti-convergence invariant group for iteration-based modes. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs` | Shared runtime | Rejects missing or non-fail-closed stop policy. |
+| `.skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json` | Optimizer | Provides the shared anti-convergence invariant group for iteration-based modes. |
 
 ### Validation And Tests
 

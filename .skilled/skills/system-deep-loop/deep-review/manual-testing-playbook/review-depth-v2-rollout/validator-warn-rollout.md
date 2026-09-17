@@ -32,7 +32,7 @@ Without the warn surface, an operator cannot stage rollout: they would have to e
 
 ### Prerequisites
 
-- `review-depth-validator.vitest.ts` exists under `.opencode/skills/system-deep-loop/runtime/tests/integration/`.
+- `review-depth-validator.vitest.ts` exists under `.skilled/skills/system-deep-loop/runtime/tests/integration/`.
 - Shell can set `DEEP_REVIEW_V2_ENFORCEMENT=warn`.
 - A legacy iteration record fixture is available that omits `reviewDepthSchemaVersion`.
 
@@ -66,8 +66,8 @@ The validator surfaces `legacy_unversioned_record` while `DEEP_REVIEW_V2_ENFORCE
 
 ## 4. SOURCE FILES
 
-- Validator: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts` (`PostDispatchAdvisory`, `legacy_unversioned_record`).
-- Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts`.
+- Validator: `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts` (`PostDispatchAdvisory`, `legacy_unversioned_record`).
+- Fixture: `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts`.
 - Rollout policy: complexity-validator-v2-enforcement decision record, ADR-001 (see this skill's changelog for provenance).
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 

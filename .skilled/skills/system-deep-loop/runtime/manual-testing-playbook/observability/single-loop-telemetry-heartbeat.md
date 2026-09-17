@@ -44,10 +44,10 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 ### Commands
 
-1. Inspect `.opencode/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
+1. Inspect `.skilled/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
 2. Inspect `lib/deep-loop/atomic-state.ts` for the implementation contract.
 3. Inspect `tests/unit/atomic-state.vitest.ts` for the matching regression coverage.
-4. Run `bash: cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
+4. Run `bash: cd .skilled/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
 5. Capture the source lines and EXIT 0 test command output that prove the expected signals.
 6. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
@@ -57,7 +57,7 @@ Single-loop telemetry heartbeat matches the documented current reality, the sour
 
 ### Evidence
 
-- Source excerpts from `.opencode/commands/deep/assets/deep-research-auto.yaml`, `lib/deep-loop/atomic-state.ts` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Source excerpts from `.skilled/commands/deep/assets/deep-research-auto.yaml`, `lib/deep-loop/atomic-state.ts` showing the anchors named in the commands above, read from the current files rather than recalled.
 - Captured stdout and exit status for every command run in this section.
 - Output from `tests/unit/atomic-state.vitest.ts` naming the assertions that carry the expected signals.
 - A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
@@ -77,7 +77,7 @@ Single-loop telemetry heartbeat matches the documented current reality, the sour
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | single-loop telemetry heartbeat. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | single-loop telemetry heartbeat. |
 | `lib/deep-loop/atomic-state.ts` | single-loop telemetry heartbeat. |
 
 ### Validation

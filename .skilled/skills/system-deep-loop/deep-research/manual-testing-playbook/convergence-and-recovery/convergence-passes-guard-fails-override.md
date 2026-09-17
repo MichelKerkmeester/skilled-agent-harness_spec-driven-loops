@@ -47,11 +47,11 @@ Validate convergence STOP is overridden when quality guards fail, then the loop 
 
 ### Commands
 
-1. `bash: sed -n '165,175p' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-2. `bash: sed -n '104,139p' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-3. `bash: sed -n '218,247p' .opencode/commands/deep/assets/deep-research-auto.yaml`
-4. `bash: sed -n '97,107p' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-5. `bash: rg -n 'guard_violation' .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md`
+1. `bash: sed -n '165,175p' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+2. `bash: sed -n '104,139p' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+3. `bash: sed -n '218,247p' .skilled/commands/deep/assets/deep-research-auto.yaml`
+4. `bash: sed -n '97,107p' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+5. `bash: rg -n 'guard_violation' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
 
 ### Expected
 
@@ -84,10 +84,10 @@ Trace the path from convergence.md Decision Priority (canonical order) through a
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Canonical convergence math and quality guard definitions; use Decision Priority (step 4.5) and §2.4 Quality Guard Protocol |
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check for the override flow |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | JSONL event schema; use guard_violation event definition to confirm override logging |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; inspect `step_check_convergence` step 6 for the guardResult override block |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Canonical convergence math and quality guard definitions; use Decision Priority (step 4.5) and §2.4 Quality Guard Protocol |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check for the override flow |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | JSONL event schema; use guard_violation event definition to confirm override logging |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; inspect `step_check_convergence` step 6 for the guardResult override block |
 
 ---
 
@@ -97,4 +97,4 @@ Trace the path from convergence.md Decision Priority (canonical order) through a
 - Playbook ID: DR-023
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/convergence-passes-guard-fails-override.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

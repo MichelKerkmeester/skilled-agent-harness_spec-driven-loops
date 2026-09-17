@@ -63,7 +63,7 @@ The projected variant of this row is thin: only `type`, `topic`, `maxIterations`
   "type": "iteration", "mode": "review", "iteration": 3, "status": "complete",
   "focus": "D3 Traceability - skill/runtime alignment",
   "dimensions": ["traceability", "maintainability"],
-  "filesReviewed": [".opencode/skills/system-deep-loop/deep-research/README.md"],
+  "filesReviewed": [".skilled/skills/system-deep-loop/deep-research/README.md"],
   "sessionId": "rvw-2026-04-03T12-00-00Z",
   "parentSessionId": null,
   "lineageMode": "resume",
@@ -175,7 +175,7 @@ Concrete obligations for producers:
 3. **Edge source/target locality**: `source` and `target` in an edge event must name nodes already present in the same namespace. Cross-session edges are not a supported shape.
 4. **Persistence gate**: the reducer refuses to roll graph events forward when a record is missing `sessionId` on the surrounding iteration record, because the DB cannot route the write.
 
-The collision regression in `.opencode/skills/system-spec-kit/runtime/cli/tests/session-isolation.vitest.ts` ("shared-ID collisions" block) exercises this contract directly: two sessions upsert identical node and edge ids, and both rows must survive independently.
+The collision regression in `.skilled/skills/system-spec-kit/runtime/cli/tests/session-isolation.vitest.ts` ("shared-ID collisions" block) exercises this contract directly: two sessions upsert identical node and edge ids, and both rows must survive independently.
 
 ### Synthesis Event
 

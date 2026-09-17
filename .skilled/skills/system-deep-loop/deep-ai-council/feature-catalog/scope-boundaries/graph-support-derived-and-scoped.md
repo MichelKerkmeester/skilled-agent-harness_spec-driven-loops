@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Does the council write to g
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `scope-boundaries/graph-support-derived-and-scoped.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-011.
 
-Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md`, which the scenario identifies as skill scope rules. Validation is anchored by `manual-testing-playbook/scope-boundaries/graph-support-derived-and-scoped.md`, covering manual scenario contract.
+Current behavior is grounded in `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md`, which the scenario identifies as skill scope rules. Validation is anchored by `manual-testing-playbook/scope-boundaries/graph-support-derived-and-scoped.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify graph support is derived and scoped. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,7 +40,7 @@ The user-visible contract is concrete: Verify graph support is derived and scope
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` | Skill | Skill scope rules |
+| `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md` | Skill | Skill scope rules |
 
 ### Validation And Tests
 

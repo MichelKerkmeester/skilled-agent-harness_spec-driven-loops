@@ -47,8 +47,8 @@ Operators run the exact prompt and command sequence for `DAC-026` and confirm th
 
 ### Commands
 
-1. `bash: rg --no-config -n --glob '!**/z_archive/**' --glob '!**/node_modules/**' 'council[_]graph_(upsert|query|status|convergence)' .opencode`
-2. `bash: cd .opencode/skills/system-deep-loop/runtime && npx vitest run --no-coverage tests/integration/council-graph-script.vitest.ts`
+1. `bash: rg --no-config -n --glob '!**/z_archive/**' --glob '!**/node_modules/**' 'council[_]graph_(upsert|query|status|convergence)' .skilled`
+2. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage tests/integration/council-graph-script.vitest.ts`
 
 ### Expected
 
@@ -86,9 +86,9 @@ If a council graph tool declaration remains, inspect the declaring file directly
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` | Council node/edge projection writes |
-| `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` | Council graph query modes |
-| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Runtime council CLI coverage |
+| `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs` | Council node/edge projection writes |
+| `.skilled/skills/system-deep-loop/runtime/scripts/query.cjs` | Council graph query modes |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Runtime council CLI coverage |
 
 ---
 

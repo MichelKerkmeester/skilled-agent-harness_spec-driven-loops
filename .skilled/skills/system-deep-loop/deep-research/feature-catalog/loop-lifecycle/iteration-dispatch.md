@@ -24,7 +24,7 @@ Iteration dispatch is the main loop body. It gives the LEAF agent a clean contex
 
 ## 2. HOW IT WORKS
 
-Before each dispatch, the workflow reads `deep-research-config.json`, `deep-research-state.jsonl`, and `deep-research-strategy.md`, checks the optional pause sentinel, and builds a short state summary for the agent prompt. The agent contract is strict. `.opencode/agents/deep-research.md` reads the packet files first, chooses one focus, performs 3 to 5 research actions, writes a new `iteration-NNN.md` file, appends one JSONL record, and only updates `research/research.md` when `progressiveSynthesis` is enabled.
+Before each dispatch, the workflow reads `deep-research-config.json`, `deep-research-state.jsonl`, and `deep-research-strategy.md`, checks the optional pause sentinel, and builds a short state summary for the agent prompt. The agent contract is strict. `.skilled/agents/deep-research.md` reads the packet files first, chooses one focus, performs 3 to 5 research actions, writes a new `iteration-NNN.md` file, appends one JSONL record, and only updates `research/research.md` when `progressiveSynthesis` is enabled.
 
 After the agent finishes, the loop does not treat the strategy, dashboard, or findings registry as agent-owned surfaces. Instead, the workflow runs `reduce-state.cjs`, which rewrites the machine-owned strategy anchors, refreshes `findings-registry.json`, and regenerates `deep-research-dashboard.md`. That reducer pass is the live sync point between raw iteration output and the readable packet state.
 
@@ -36,20 +36,20 @@ After the agent finishes, the loop does not treat the strategy, dashboard, or fi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/deep/research.md` | Command | Describes the iterate phase, state-summary injection, and reducer sync boundary. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow | Dispatches the LEAF agent, checks the pause sentinel, and runs the reducer after each iteration. |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Mirrors dispatch flow with confirm-mode pause and review gates. |
-| `.opencode/agents/deep-research.md` | Agent | Defines the single-iteration read, research, write, and progressive-synthesis rules. |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Synchronizes strategy, findings registry, and dashboard from iteration artifacts and events. |
+| `.skilled/commands/deep/research.md` | Command | Describes the iterate phase, state-summary injection, and reducer sync boundary. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Dispatches the LEAF agent, checks the pause sentinel, and runs the reducer after each iteration. |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Mirrors dispatch flow with confirm-mode pause and review gates. |
+| `.skilled/agents/deep-research.md` | Agent | Defines the single-iteration read, research, write, and progressive-synthesis rules. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Synchronizes strategy, findings registry, and dashboard from iteration artifacts and events. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/iteration-reads-state-before-research.md` | Manual playbook | Verifies every iteration reads state before researching. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/iteration-writes-iteration-jsonl-and-strategy-update.md` | Manual playbook | Verifies the iteration file and JSONL append contract. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/strategy-next-focus-and-exhausted-approach-discipline.md` | Manual playbook | Verifies next-focus selection and exhausted-approach discipline. |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-research-reducer.vitest.ts` | Vitest | Verifies reducer sync writes stable registry, strategy, and dashboard outputs from iteration state. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/iteration-reads-state-before-research.md` | Manual playbook | Verifies every iteration reads state before researching. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/iteration-writes-iteration-jsonl-and-strategy-update.md` | Manual playbook | Verifies the iteration file and JSONL append contract. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/strategy-next-focus-and-exhausted-approach-discipline.md` | Manual playbook | Verifies next-focus selection and exhausted-approach discipline. |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-research-reducer.vitest.ts` | Vitest | Verifies reducer sync writes stable registry, strategy, and dashboard outputs from iteration state. |
 
 ---
 

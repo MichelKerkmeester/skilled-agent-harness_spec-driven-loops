@@ -8,19 +8,19 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const LIB = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib',
 );
 const REGISTRY_PATH = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/sk-prompt/assets/framework-registry.json',
+  '.skilled/skills/sk-prompt/assets/framework-registry.json',
 );
 const FIXTURE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures',
+  '.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures',
 );
 const PROFILE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles',
+  '.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles',
 );
 
 // The foundation modules are CommonJS; load them through a require bridge so the

@@ -45,10 +45,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the ideas backlog lifecycle across agent rules, JSONL docs, reducer promotion, YAML checks, and tests.
 ### Commands
-1. `bash: rg -n 'idea_observed|idea_promoted|idea_rejected|minIdeaObservations' .opencode/agents/deep-research.md .opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'resolveMinIdeaObservations|derivePromotedIdeas|appendIdeaPromotionEvents|idea_promoted|suppressedIdeas' .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
-3. `bash: rg -n 'step_ideas_backlog_lifecycle|minIdeaObservations|idea_promoted|idea_rejected' .opencode/commands/deep/assets/deep-research-auto.yaml`
-4. `bash: rg -n 'promotes observed ideas|idea_promoted|suppressedIdeas|minIdeaObservations' .opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts`
+1. `bash: rg -n 'idea_observed|idea_promoted|idea_rejected|minIdeaObservations' .skilled/agents/deep-research.md .skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+2. `bash: rg -n 'resolveMinIdeaObservations|derivePromotedIdeas|appendIdeaPromotionEvents|idea_promoted|suppressedIdeas' .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
+3. `bash: rg -n 'step_ideas_backlog_lifecycle|minIdeaObservations|idea_promoted|idea_rejected' .skilled/commands/deep/assets/deep-research-auto.yaml`
+4. `bash: rg -n 'promotes observed ideas|idea_promoted|suppressedIdeas|minIdeaObservations' .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts`
 ### Expected
 Leaf agents emit observed-only idea events, reducer promotes after the configured threshold, and rejected ideas are suppressed from promoted ideas and candidates.
 ### Evidence
@@ -56,7 +56,7 @@ Capture the agent prohibition, event definitions, reducer promotion function, YA
 ### Pass/Fail
 PASS if observed/promoted/rejected ownership is consistent across docs, runtime, and tests; FAIL if promotion can bypass the reducer.
 ### Failure Triage
-Privilege `.opencode/agents/deep-research.md` for leaf permissions and `reduce-state.cjs` for promotion behavior.
+Privilege `.skilled/agents/deep-research.md` for leaf permissions and `reduce-state.cjs` for promotion behavior.
 
 ---
 
@@ -73,12 +73,12 @@ Privilege `.opencode/agents/deep-research.md` for leaf permissions and `reduce-s
 
 | File | Role |
 |---|---|
-| `.opencode/agents/deep-research.md` | Leaf agent idea-event permissions |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | Idea event schemas |
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Ideas lifecycle and candidate rules |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Promotion, ranking, and suppression implementation |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow lifecycle step and threshold reads |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Unit coverage for promotion and rejection behavior |
+| `.skilled/agents/deep-research.md` | Leaf agent idea-event permissions |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | Idea event schemas |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Ideas lifecycle and candidate rules |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Promotion, ranking, and suppression implementation |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow lifecycle step and threshold reads |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Unit coverage for promotion and rejection behavior |
 
 ---
 

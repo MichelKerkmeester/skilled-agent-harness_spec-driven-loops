@@ -21,4 +21,4 @@ The JSON entry must carry the evidence mechanism alongside the mode:
 }
 ```
 
-Run `node .opencode/skills/system-deep-loop/shared/rollout/validate-rollout.cjs` before promotion. It fails closed when any required evidence field is absent or empty; a command may not claim `fix` without a passing validator run.
+Run `node .skilled/skills/system-deep-loop/shared/rollout/validate-rollout.cjs` before promotion. It fails closed when any required evidence field is absent or empty; a command may not claim `fix` without a passing validator run.

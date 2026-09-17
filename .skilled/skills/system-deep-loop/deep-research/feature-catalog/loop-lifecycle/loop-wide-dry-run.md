@@ -36,14 +36,14 @@ The dry-run control layer defines halt hooks for dispatch, state mutation, reduc
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/deep/research.md` | Command | Documents `--dry-run` as a first-class flag and describes preflight semantics. |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Defines dry-run halt hooks and terminal preview event policies. |
+| `.skilled/commands/deep/research.md` | Command | Documents `--dry-run` as a first-class flag and describes preflight semantics. |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Defines dry-run halt hooks and terminal preview event policies. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/loop-wide-dry-run.md` | Manual playbook | Verifies dry-run reads, previews, and mutation-boundary halts. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/loop-wide-dry-run.md` | Manual playbook | Verifies dry-run reads, previews, and mutation-boundary halts. |
 
 ---
 

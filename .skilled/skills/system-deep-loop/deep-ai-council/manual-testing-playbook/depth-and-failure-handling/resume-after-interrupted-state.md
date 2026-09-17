@@ -39,7 +39,7 @@ Operators run the exact prompt and command sequence for `DAC-018` and confirm th
 ### Recommended Orchestration Process
 
 1. Read `state-format.md` §6 RESUME SEMANTICS.
-2. Read `.opencode/agents/ai-council.md` §13 case 3.
+2. Read `.skilled/agents/ai-council.md` §13 case 3.
 3. Run the grep command and confirm the partial-event cases are documented.
 
 ### Prompt
@@ -48,7 +48,7 @@ Operators run the exact prompt and command sequence for `DAC-018` and confirm th
 
 ### Commands
 
-1. `bash: rg -n "RESUME SEMANTICS|round_start.*without|deliberation_synthesized.*missing" .opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
+1. `bash: rg -n "RESUME SEMANTICS|round_start.*without|deliberation_synthesized.*missing" .skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
 
 ### Expected
 
@@ -69,7 +69,7 @@ Update `state-format.md` from agent §13 resume semantics, then rerun the grep c
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-018 | Resume interrupted state | Verify resume from last JSONL event | `Resume an interrupted council run from the last completed JSONL event and continue toward council_complete.` | `bash: rg -n "RESUME SEMANTICS\|round_start.*without\|deliberation_synthesized.*missing" .opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md` | Resume semantics mention partial round and missing synthesis cases | Grep output | PASS if all resume cases are documented | Update state reference from agent source |
+| DAC-018 | Resume interrupted state | Verify resume from last JSONL event | `Resume an interrupted council run from the last completed JSONL event and continue toward council_complete.` | `bash: rg -n "RESUME SEMANTICS\|round_start.*without\|deliberation_synthesized.*missing" .skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md` | Resume semantics mention partial round and missing synthesis cases | Grep output | PASS if all resume cases are documented | Update state reference from agent source |
 
 ---
 
@@ -86,8 +86,8 @@ Update `state-format.md` from agent §13 resume semantics, then rerun the grep c
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md` | Resume semantics reference |
-| `.opencode/agents/ai-council.md` | Authoritative invocation and resume contract |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md` | Resume semantics reference |
+| `.skilled/agents/ai-council.md` | Authoritative invocation and resume contract |
 
 ---
 

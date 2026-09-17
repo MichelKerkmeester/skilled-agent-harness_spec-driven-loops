@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the confirm-mode deep-review entrypoint and report whether approval gates appear at every phase transition.
 ### Commands
-1. `bash: rg -n '/deep:review:confirm|approval|multi_gate' .opencode/skills/system-deep-loop/deep-review/README.md .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
-2. `bash: rg -n 'confirm|approval|gate|pause' .opencode/commands/deep/review.md`
-3. `bash: rg -n 'approvals|approval_gate|wait_for_approval|interactive' .opencode/commands/deep/assets/deep-review-confirm.yaml`
+1. `bash: rg -n '/deep:review:confirm|approval|multi_gate' .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
+2. `bash: rg -n 'confirm|approval|gate|pause' .skilled/commands/deep/review.md`
+3. `bash: rg -n 'approvals|approval_gate|wait_for_approval|interactive' .skilled/commands/deep/assets/deep-review-confirm.yaml`
 ### Expected
 The confirm YAML has `approvals: multi_gate`, approval steps appear in the loop, and the command entrypoint routes `:confirm` to the confirm YAML.
 ### Evidence
@@ -71,10 +71,10 @@ Compare the auto and confirm YAMLs side by side to verify the confirm variant ad
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` |
-| `.opencode/commands/deep/review.md` | Markdown setup and mode routing, use `## 0. UNIFIED SETUP PHASE` |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Confirm workflow contract, inspect `operating_mode`, `approvals`, and approval gate steps |
+| `.skilled/skills/system-deep-loop/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` |
+| `.skilled/commands/deep/review.md` | Markdown setup and mode routing, use `## 0. UNIFIED SETUP PHASE` |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Confirm workflow contract, inspect `operating_mode`, `approvals`, and approval gate steps |
 
 ---
 
@@ -84,4 +84,4 @@ Compare the auto and confirm YAMLs side by side to verify the confirm variant ad
 - Playbook ID: DRV-002
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `entry-points-and-modes/confirm-mode-checkpointed-review.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

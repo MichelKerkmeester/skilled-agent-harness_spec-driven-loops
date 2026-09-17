@@ -954,7 +954,7 @@ function isUnattributable(
  */
 function isRegenerableRuntimeState(repoRelativePath: string, artifactRelPosix?: string): boolean {
   const p = toPosix(repoRelativePath);
-  const runtimeDatabase = '.opencode/skills/system-deep-loop/runtime/database';
+  const runtimeDatabase = '.skilled/skills/system-deep-loop/runtime/database';
   const isRuntimeDatabasePath = p.startsWith(`${runtimeDatabase}/`);
   const isMemoryIndexBasename =
     p === 'description.json' ||

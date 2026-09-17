@@ -17,7 +17,7 @@ import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
-const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/deep-improvement/scripts');
+const SCRIPTS = path.join(WORKSPACE_ROOT, '.skilled/skills/system-deep-loop/deep-improvement/scripts');
 const PROMOTE = path.join(SCRIPTS, 'shared/promote-candidate.cjs');
 const require = createRequire(import.meta.url);
 const { issueApprovalReceipt } = require('../promotion-receipts.cjs') as {

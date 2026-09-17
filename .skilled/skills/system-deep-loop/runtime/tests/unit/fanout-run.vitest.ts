@@ -2373,7 +2373,7 @@ describe('fanout-run.cjs — module basics', () => {
           model: 'opencode-go/glm-5.1',
           assignment_model: 'wave',
           depends_on: ['prep'],
-          touches: ['.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs'],
+          touches: ['.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs'],
         },
       ],
       concurrency: 1,
@@ -4546,7 +4546,7 @@ describe('fanout-run.cjs — post-run packet metadata refresh', () => {
 
   it('resolves the generator dist paths from the repo root when no override is given', () => {
     const repoRoot = makeTempDir('fanout-metadata-repo2-');
-    const distDir = join(repoRoot, '.opencode', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist');
+    const distDir = join(repoRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist');
     mkdirSync(join(distDir, 'spec-folder'), { recursive: true });
     mkdirSync(join(distDir, 'graph'), { recursive: true });
     writeFileSync(join(distDir, 'spec-folder', 'generate-description.js'), '// stub\n');

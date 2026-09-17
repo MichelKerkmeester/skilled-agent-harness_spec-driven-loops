@@ -148,7 +148,7 @@ Unit tests protect the smallest contracts in the runtime spine: parsing, event e
 ## 5. VALIDATION
 
 ```bash
-.opencode/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts tests/unit
+.skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/unit
 ```
 
 ---

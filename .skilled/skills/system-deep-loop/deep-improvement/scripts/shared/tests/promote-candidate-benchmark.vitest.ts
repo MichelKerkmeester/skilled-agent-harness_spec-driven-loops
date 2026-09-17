@@ -16,7 +16,7 @@ import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
-const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/deep-improvement/scripts');
+const SCRIPTS = path.join(WORKSPACE_ROOT, '.skilled/skills/system-deep-loop/deep-improvement/scripts');
 const PROMOTE = path.join(SCRIPTS, 'shared/promote-candidate.cjs');
 const ROLLBACK = path.join(SCRIPTS, 'shared/rollback-candidate.cjs');
 const require = createRequire(import.meta.url);
@@ -44,7 +44,7 @@ function readJsonl(filePath: string) {
     .map((line) => JSON.parse(line));
 }
 
-// A target that is NOT an agent-definition file (not under .opencode/agents/),
+// A target that is NOT an agent-definition file (not under .skilled/agents/),
 // so the 4-runtime mirror-sync gate is skipped and the test stays focused on the
 // Lane B promotion gates.
 function buildBenchmarkPacket(opts: { recommendation: string; aggregateScore: number; reportExtras?: Record<string, unknown> }) {
@@ -546,8 +546,8 @@ describe('promote-candidate / rollback-candidate write-boundary containment', ()
   it('refuses to promote when the canonical target resolves outside the allowed roots, even though manifest/config agree', () => {
     const p = buildBenchmarkPacket({ recommendation: 'benchmark-pass', aggregateScore: 92 });
     // Strip the test-only allowlist the default fixture adds: the target
-    // lives in a hermetic tmpdir outside .opencode/agents, .claude/agents,
-    // and .opencode/skills, so without an explicit allowlist entry it must
+    // lives in a hermetic tmpdir outside .skilled/agents, .claude/agents,
+    // and .skilled/skills, so without an explicit allowlist entry it must
     // be refused even though target===config.target and target===manifest
     // canonical target both still hold.
     const config = readJson(p.config);

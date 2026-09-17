@@ -27,7 +27,7 @@ This feature belongs to the executor group and is catalogued as F042 in the `run
 
 Fallback routes can declare success and failure targets, every decision can carry `routeGroupId` and `hopIndex`, and `validateFallbackGraph()` checks missing targets, cycles, scope widening, and hop limits before dispatch.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

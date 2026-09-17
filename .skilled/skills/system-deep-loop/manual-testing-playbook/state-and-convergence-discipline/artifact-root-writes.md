@@ -49,8 +49,8 @@ Before starting an AI council deliberation, resolve the mode through the registr
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `ai-council` mode entry.
-2. `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` documents packet-local council artifact persistence.
+1. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `ai-council` mode entry.
+2. `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md` documents packet-local council artifact persistence.
 
 ### Prompt
 
@@ -90,9 +90,9 @@ Before starting an AI council deliberation, resolve the mode through the registr
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - packet artifact ownership.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `ai-council` artifact root.
-- `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` - council artifact persistence.
+- `.skilled/skills/system-deep-loop/SKILL.md` - packet artifact ownership.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `ai-council` artifact root.
+- `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md` - council artifact persistence.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

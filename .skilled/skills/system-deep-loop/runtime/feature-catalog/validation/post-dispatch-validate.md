@@ -28,7 +28,7 @@ This feature belongs to the validation group and is catalogued as F005 in the `r
 
 Iteration markdown, JSONL, delta validation, review-depth v2 enforcement, and verification confidence scoring.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

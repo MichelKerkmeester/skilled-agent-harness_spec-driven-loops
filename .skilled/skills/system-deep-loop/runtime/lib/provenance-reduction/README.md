@@ -27,4 +27,4 @@ Runtime primitives that merge multiple fan-out candidate results in `system-deep
 
 ## 3. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts`

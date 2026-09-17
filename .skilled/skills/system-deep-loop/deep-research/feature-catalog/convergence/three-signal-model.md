@@ -36,17 +36,17 @@ The model is selective about which iterations count. `thought` iterations are ig
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines hard stops, weighted signals, stop-score threshold, and status handling. |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference | Defines the `convergenceSignals` payload written into iteration records. |
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Places the statistical vote inside the live loop order before guard evaluation. |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines hard stops, weighted signals, stop-score threshold, and status handling. |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference | Defines the `convergenceSignals` payload written into iteration records. |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Places the statistical vote inside the live loop order before guard evaluation. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/composite-convergence-stop-behavior.md` | Manual playbook | Verifies weighted convergence behavior. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/insight-status-prevents-false-stuck.md` | Manual playbook | Verifies `insight` status prevents false stuck classification. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/thought-status-convergence-handling.md` | Manual playbook | Verifies `thought` iterations are excluded from convergence math. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/composite-convergence-stop-behavior.md` | Manual playbook | Verifies weighted convergence behavior. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/insight-status-prevents-false-stuck.md` | Manual playbook | Verifies `insight` status prevents false stuck classification. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/thought-status-convergence-handling.md` | Manual playbook | Verifies `thought` iterations are excluded from convergence math. |
 
 ---
 

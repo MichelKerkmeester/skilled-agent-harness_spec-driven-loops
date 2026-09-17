@@ -62,7 +62,7 @@ Fixtures provide deterministic inputs at the test edge of the runtime spine. The
 ## 6. VALIDATION
 
 ```bash
-.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json
+.skilled/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .skilled/skills/system-deep-loop/runtime/tsconfig.json
 ```
 
 ---

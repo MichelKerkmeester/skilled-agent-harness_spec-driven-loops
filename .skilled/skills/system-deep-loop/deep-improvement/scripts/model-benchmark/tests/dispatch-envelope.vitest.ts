@@ -7,7 +7,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
-const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/deep-improvement/scripts');
+const SCRIPTS = path.join(WORKSPACE_ROOT, '.skilled/skills/system-deep-loop/deep-improvement/scripts');
 const require = createRequire(import.meta.url);
 
 const DISPATCH_MODEL_PATH = path.join(SCRIPTS, 'model-benchmark/dispatch-model.cjs');

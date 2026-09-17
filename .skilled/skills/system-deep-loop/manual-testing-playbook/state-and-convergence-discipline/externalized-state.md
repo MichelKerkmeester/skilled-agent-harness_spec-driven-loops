@@ -50,8 +50,8 @@ Before running deep review, explain where iteration state is owned and confirm w
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `review` mode entry.
-2. `.opencode/skills/system-deep-loop/deep-review/SKILL.md` contains the forbidden invocation patterns and state ownership rules.
+1. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `review` mode entry.
+2. `.skilled/skills/system-deep-loop/deep-review/SKILL.md` contains the forbidden invocation patterns and state ownership rules.
 
 ### Prompt
 
@@ -91,9 +91,9 @@ Before running deep review, explain where iteration state is owned and confirm w
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - packet-owned state and hub logic boundary.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `review` route fields.
-- `.opencode/skills/system-deep-loop/deep-review/SKILL.md` - forbidden manual state and command-owned workflow rules.
+- `.skilled/skills/system-deep-loop/SKILL.md` - packet-owned state and hub logic boundary.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `review` route fields.
+- `.skilled/skills/system-deep-loop/deep-review/SKILL.md` - forbidden manual state and command-owned workflow rules.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

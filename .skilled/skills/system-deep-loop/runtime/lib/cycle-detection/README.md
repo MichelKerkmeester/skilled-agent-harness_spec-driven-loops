@@ -31,15 +31,15 @@ Repetition signal for `system-deep-loop` iterations. Cycle observation canonical
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-adapters.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/health-adapters.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-adapters.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/health-degeneration-harness/health-adapters.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/cycle-detection.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/cycle-detection.vitest.ts`
 
 ---
 

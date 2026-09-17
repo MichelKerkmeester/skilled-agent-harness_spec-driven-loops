@@ -14,13 +14,13 @@ const { parseFrontmatter: parseFrontmatterDoc } = require('@spec-kit/shared/fron
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 const MIRROR_TEMPLATES = [
-  '.opencode/agents/{name}.md',
+  '.skilled/agents/{name}.md',
   '.claude/agents/{name}.md',
 ];
 // The repo carries one instruction document. CLAUDE.md is a symlink to AGENTS.md,
 // so a second runtime-specific copy would only be a surface that can drift.
 const GLOBAL_DOC_PATHS = ['CLAUDE.md'];
-const SKILL_ADVISOR_PATH = '.opencode/skills/scripts/skill_advisor.py';
+const SKILL_ADVISOR_PATH = '.skilled/skills/scripts/skill_advisor.py';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -99,7 +99,7 @@ function checkMirrorSync(canonicalBody, mirrorContent) {
 }
 
 function scanCanonical(repoRoot, agentName) {
-  const relPath = `.opencode/agents/${agentName}.md`;
+  const relPath = `.skilled/agents/${agentName}.md`;
   const content = readOptional(path.join(repoRoot, relPath));
   return { path: relPath, exists: content !== null, frontmatter: content ? parseFrontmatter(content) : null };
 }
@@ -113,7 +113,7 @@ function scanMirrors(repoRoot, agentName, canonicalBody) {
 }
 
 function scanFilesByExt(repoRoot, agentName, ext, patternFn) {
-  const files = collectFiles(path.join(repoRoot, '.opencode/commands'));
+  const files = collectFiles(path.join(repoRoot, '.skilled/commands'));
   const pattern = patternFn(agentName);
   const results = [];
   for (const file of files) {
@@ -133,7 +133,7 @@ function scanCommands(repoRoot, agentName) {
 }
 
 function scanYamlWorkflows(repoRoot, agentName) {
-  const yamlFiles = collectFiles(path.join(repoRoot, '.opencode/commands'));
+  const yamlFiles = collectFiles(path.join(repoRoot, '.skilled/commands'));
   const pattern = new RegExp(`(?:@${agentName}|\\b${agentName}\\b)`, 'g');
   const results = [];
   for (const file of yamlFiles) {
@@ -149,7 +149,7 @@ function scanYamlWorkflows(repoRoot, agentName) {
 }
 
 function scanSkills(repoRoot, agentName) {
-  const skillDir = path.join(repoRoot, '.opencode/skills');
+  const skillDir = path.join(repoRoot, '.skilled/skills');
   if (!fs.existsSync(skillDir)) return [];
   const pattern = new RegExp(`\\b${agentName}\\b`, 'gi');
   const results = [];

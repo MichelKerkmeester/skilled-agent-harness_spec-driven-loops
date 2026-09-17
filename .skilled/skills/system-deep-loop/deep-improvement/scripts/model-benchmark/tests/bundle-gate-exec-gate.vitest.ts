@@ -25,7 +25,7 @@ const require = createRequire(import.meta.url);
 
 const BUNDLE_GATE = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/deterministic/bundle-gate.cjs',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/deterministic/bundle-gate.cjs',
 );
 const bundleGate = require(BUNDLE_GATE) as {
   scoreOutput: (

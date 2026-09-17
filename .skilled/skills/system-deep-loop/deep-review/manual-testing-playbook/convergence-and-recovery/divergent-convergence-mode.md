@@ -49,10 +49,10 @@ Validate the shipped deep-review divergent pivot, synthesis-only verdict mapping
 
 ### Commands
 
-1. `bash: rg -n -C 12 "LEGAL-STOP DECISION TREE|fixCompletenessReplayGate|if_divergent_eligible|eligible_reasons|excluded_reasons" .opencode/commands/deep/assets/deep-review-auto.yaml`
-2. `bash: rg -n -C 10 "step_apply_divergent_pivot_result|next_dimension|proceed_to: step_normalize_pause_events|skip_to: phase_synthesis" .opencode/commands/deep/assets/deep-review-auto.yaml`
-3. `bash: rg -n -C 12 "phase_synthesis:|step_derive_verdict|if p0_count > 0|elif p1_count > 0|verdict = \"PASS\"" .opencode/commands/deep/assets/deep-review-auto.yaml`
-4. `bash: rg -n -C 5 "seedViolatesReadOnlyBoundary|implement|apply (?:a )?fix|modify|expand (?:the )?(?:scope|target)|Review target is READ-ONLY|Do not implement fixes" .opencode/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts`
+1. `bash: rg -n -C 12 "LEGAL-STOP DECISION TREE|fixCompletenessReplayGate|if_divergent_eligible|eligible_reasons|excluded_reasons" .skilled/commands/deep/assets/deep-review-auto.yaml`
+2. `bash: rg -n -C 10 "step_apply_divergent_pivot_result|next_dimension|proceed_to: step_normalize_pause_events|skip_to: phase_synthesis" .skilled/commands/deep/assets/deep-review-auto.yaml`
+3. `bash: rg -n -C 12 "phase_synthesis:|step_derive_verdict|if p0_count > 0|elif p1_count > 0|verdict = \"PASS\"" .skilled/commands/deep/assets/deep-review-auto.yaml`
+4. `bash: rg -n -C 5 "seedViolatesReadOnlyBoundary|implement|apply (?:a )?fix|modify|expand (?:the )?(?:scope|target)|Review target is READ-ONLY|Do not implement fixes" .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts`
 
 ### Expected
 
@@ -85,10 +85,10 @@ Privilege YAML indentation and branch destinations for reachability. `phase_synt
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Nine-gate order, exact pivot eligibility, continuation path, and synthesis-only verdict derivation |
-| `.opencode/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` | Read-only candidate sources, mutation rejection, and seat-prompt prohibitions |
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Mechanics-only three-seat transaction and continuation lifecycle |
-| `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Four-value convergence-mode enum without verdict ownership |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Nine-gate order, exact pivot eligibility, continuation path, and synthesis-only verdict derivation |
+| `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` | Read-only candidate sources, mutation rejection, and seat-prompt prohibitions |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Mechanics-only three-seat transaction and continuation lifecycle |
+| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Four-value convergence-mode enum without verdict ownership |
 
 ---
 

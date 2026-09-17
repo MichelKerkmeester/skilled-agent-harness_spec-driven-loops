@@ -119,7 +119,7 @@ function repairJsonlTailInline(filePath) {
 // the atomic-write + jsonl-repair contracts) loaded in-process via the tsx CJS
 // register; fall back to the contract-equivalent inline implementations above so
 // the reducer stays runnable when the TS toolchain is absent.
-// Path depth from scripts/shared/ → three levels up reaches .opencode/skills/.
+// Path depth from scripts/shared/ → three levels up reaches .skilled/skills/.
 const TSX_CJS_REGISTER = path.join(__dirname, '..', '..', '..', '..', 'system-spec-kit', 'runtime', 'cli', 'node_modules', 'tsx', 'dist', 'cjs', 'index.cjs');
 const RUNTIME_DEEP_LOOP = path.join(__dirname, '..', '..', '..', 'runtime', 'lib', 'deep-loop');
 

@@ -28,14 +28,14 @@ Runtime primitives for `system-deep-loop` that reserve, settle, release and canc
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/voc-allocation/`
-- `.opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/`
-- `.opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/`
-- `.opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/`
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/voc-allocation/`
+- `.skilled/skills/system-deep-loop/runtime/lib/stopping-clocks/`
+- `.skilled/skills/system-deep-loop/runtime/lib/conditional-fanin/`
+- `.skilled/skills/system-deep-loop/runtime/lib/health-degeneration-harness/`
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/hierarchical-budgets/hierarchical-budgets.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/hierarchical-budgets/hierarchical-budgets.vitest.ts`

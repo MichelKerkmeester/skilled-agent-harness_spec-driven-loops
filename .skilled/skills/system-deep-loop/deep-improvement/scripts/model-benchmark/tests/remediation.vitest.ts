@@ -8,7 +8,7 @@ import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
-const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/deep-improvement/scripts');
+const SCRIPTS = path.join(WORKSPACE_ROOT, '.skilled/skills/system-deep-loop/deep-improvement/scripts');
 const require = createRequire(import.meta.url);
 
 const DISPATCH_MODEL_PATH = path.join(SCRIPTS, 'model-benchmark/dispatch-model.cjs');
@@ -488,7 +488,7 @@ describe('P2: pause resume hint targets the shipped loop-host', () => {
   it('resume hint removes the actual sentinel and runs scripts/shared/loop-host.cjs', () => {
     const sentinel = path.join(os.tmpdir(), 'whatever', '.benchmark-pause');
     const hint = dispatchModel.buildResumeHint(sentinel);
-    expect(hint).toContain('.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs');
+    expect(hint).toContain('.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs');
     expect(hint).toContain('--mode=model-benchmark');
     // Must NOT reference the stale `state/.benchmark-pause && re-run loop-host.cjs` form.
     expect(hint).not.toMatch(/re-run loop-host\.cjs/);

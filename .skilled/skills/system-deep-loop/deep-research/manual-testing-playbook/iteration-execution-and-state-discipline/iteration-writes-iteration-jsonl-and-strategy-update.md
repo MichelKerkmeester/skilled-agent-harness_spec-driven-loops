@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate each deep-research iteration writes iteration files, appends JSONL, and refreshes reducer-owned strategy artifacts.
 ### Commands
-1. `bash: rg -n 'iteration-{NNN}|Verify JSONL was appended|reducer refreshed' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'iteration-NNN|deep-research-state.jsonl|findings-registry.json|Reducer Contract' .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md .opencode/agents/deep-research.md`
-3. `bash: rg -n 'step_reduce_state|reduce-state.cjs|findings-registry.json|deep-research-dashboard.md' .opencode/commands/deep/assets/deep-research-auto.yaml .opencode/commands/deep/assets/deep-research-confirm.yaml`
+1. `bash: rg -n 'iteration-{NNN}|Verify JSONL was appended|reducer refreshed' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+2. `bash: rg -n 'iteration-NNN|deep-research-state.jsonl|findings-registry.json|Reducer Contract' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md .skilled/agents/deep-research.md`
+3. `bash: rg -n 'step_reduce_state|reduce-state.cjs|findings-registry.json|deep-research-dashboard.md' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
 ### Expected
 Iteration file creation, JSONL append, and reducer refresh are all mandatory parts of the loop, not optional side effects.
 ### Evidence
@@ -71,11 +71,11 @@ Use the reducer script and runtime agent write contract as the lower-level sourc
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Evaluation and write-back checks; use `ANCHOR:phase-iteration-loop` |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Schema expectations for JSONL and strategy; use `ANCHOR:state-log` and `ANCHOR:strategy-file` |
-| `.opencode/agents/deep-research.md` | Iteration write sequence; inspect `Step 4`, `Step 5`, and `Step 6` |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow verification after dispatch |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Workflow verification after dispatch |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Evaluation and write-back checks; use `ANCHOR:phase-iteration-loop` |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Schema expectations for JSONL and strategy; use `ANCHOR:state-log` and `ANCHOR:strategy-file` |
+| `.skilled/agents/deep-research.md` | Iteration write sequence; inspect `Step 4`, `Step 5`, and `Step 6` |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow verification after dispatch |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow verification after dispatch |
 
 ---
 
@@ -85,4 +85,4 @@ Use the reducer script and runtime agent write contract as the lower-level sourc
 - Playbook ID: DR-008
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/iteration-writes-iteration-jsonl-and-strategy-update.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

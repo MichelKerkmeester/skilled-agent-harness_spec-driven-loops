@@ -34,8 +34,8 @@ Every other `runtime/lib/` domain builds on this module for canonical bytes, env
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts`
-- `.opencode/skills/system-deep-loop/runtime/tests/fixtures/event-envelope-producers.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/fixtures/event-envelope-producers.ts`
 
 ---
 

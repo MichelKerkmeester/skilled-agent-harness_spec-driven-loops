@@ -28,7 +28,7 @@ This feature belongs to the council group and is catalogued as F019 in the `runt
 
 Single-writer guard via lockfile in the round's state directory. Before any append, the trailing JSONL is repaired (corrupt last line dropped or recovered per `jsonl-repair` semantics). fsync after every append ensures durability on crash. Reader API returns parsed round state for resume scenarios.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/council/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/council/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

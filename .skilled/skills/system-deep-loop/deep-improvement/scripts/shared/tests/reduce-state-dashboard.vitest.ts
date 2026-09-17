@@ -9,7 +9,7 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const REDUCE_SCRIPT = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs',
 );
 
 let tmpDir: string;

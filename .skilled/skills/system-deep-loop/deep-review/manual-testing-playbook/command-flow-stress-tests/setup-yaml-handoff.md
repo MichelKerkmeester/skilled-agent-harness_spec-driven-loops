@@ -51,7 +51,7 @@ Operators run the exact command sequence and judge only grep-checkable signals.
 set -uo pipefail
 rm -rf /tmp/cp-052-sandbox /tmp/cp-052-sandbox-baseline /tmp/cp-052-spec
 mkdir -p /tmp/cp-052-spec
-.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-052-sandbox
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-052-sandbox
 cp -a /tmp/cp-052-sandbox /tmp/cp-052-sandbox-baseline
 cd "$(git rev-parse --show-toplevel)"
 git status --porcelain -- /tmp/cp-052-sandbox /tmp/cp-052-spec > /tmp/cp-052-pre.txt
@@ -87,9 +87,9 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | File | Lines | Role |
 |---|---:|---|
-| `.opencode/commands/deep/review.md` | 7-25, 43-160, 238-245 | Setup-first command contract and YAML handoff |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 43-61, 253-346 | Command-only invocation and three-layer workflow |
-| `.opencode/agents/deep-review.md` | 23-33, 218-238 | Agent is single-iteration target and mirrors are read-only |
+| `.skilled/commands/deep/review.md` | 7-25, 43-160, 238-245 | Setup-first command contract and YAML handoff |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 43-61, 253-346 | Command-only invocation and three-layer workflow |
+| `.skilled/agents/deep-review.md` | 23-33, 218-238 | Agent is single-iteration target and mirrors are read-only |
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 
 ---

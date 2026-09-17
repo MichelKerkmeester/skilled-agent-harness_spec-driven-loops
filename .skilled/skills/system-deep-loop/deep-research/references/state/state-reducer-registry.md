@@ -50,7 +50,7 @@ The workflow reducer:
 
 It must fail closed before writing derived files when JSONL corruption is detected in strict mode.
 
-Under ledger authority the JSONL it reads is a projection of the ledger, bounded by the registered stems; the registered vocabulary and the producer census are in `state-format.md` section 7, and `.opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` holds the census to the emitter surface on disk.
+Under ledger authority the JSONL it reads is a projection of the ledger, bounded by the registered stems; the registered vocabulary and the producer census are in `state-format.md` section 7, and `.skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` holds the census to the emitter surface on disk.
 
 ---
 

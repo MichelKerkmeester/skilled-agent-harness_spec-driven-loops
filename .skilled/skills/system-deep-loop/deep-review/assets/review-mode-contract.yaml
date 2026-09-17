@@ -8,7 +8,7 @@ meta:
   reviewModeVersion: 2
   generatedNotice:
     warning: "Exactly one artifact is machine-generated from this file: render.artifacts[0] (review-contract-snapshot). Its begin/end markers live on that artifact entry, not here. Every other contract-taxonomy consumer is hand-authored; see authoredArtifacts."
-  sourceOfTruth: .opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml
+  sourceOfTruth: .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml
 
 # Core contract definitions consumed by workflows, agents, docs, and validators.
 contract:
@@ -378,9 +378,9 @@ contract:
 render:
   artifacts:
     - id: review-contract-snapshot
-      path: .opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md
+      path: .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md
       ownership: generated
-      generator: .opencode/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs
+      generator: .skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs
       format: markdown
       markers:
         begin: "<!-- BEGIN GENERATED: review-mode-contract/snapshot -->"
@@ -406,7 +406,7 @@ render:
 # tripwire that does not require full rendering.
 authoredArtifacts:
   - id: workflow-auto
-    path: .opencode/commands/deep/assets/deep-review-auto.yaml
+    path: .skilled/commands/deep/assets/deep-review-auto.yaml
     ownership: authored
     format: yaml
     enumParityChecked:
@@ -416,7 +416,7 @@ authoredArtifacts:
       - cross-reference-protocols
     note: Hand-maintained workflow YAML for the :auto command path. References this contract's taxonomy in prose; not machine-rendered from this manifest.
   - id: workflow-confirm
-    path: .opencode/commands/deep/assets/deep-review-confirm.yaml
+    path: .skilled/commands/deep/assets/deep-review-confirm.yaml
     ownership: authored
     format: yaml
     enumParityChecked:
@@ -426,7 +426,7 @@ authoredArtifacts:
       - cross-reference-protocols
     note: Hand-maintained workflow YAML for the :confirm command path. References this contract's taxonomy in prose; not machine-rendered from this manifest.
   - id: agent-opencode
-    path: .opencode/agents/deep-review.md
+    path: .skilled/agents/deep-review.md
     ownership: authored
     format: markdown
     enumParityChecked:
@@ -453,7 +453,7 @@ authoredArtifacts:
       - verdicts
     note: Generated Codex TOML mirror. Its sandbox is derived from the canonical source permissions and its tool surface is not compared as Markdown frontmatter.
   - id: quick-reference-review-mode
-    path: .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md
+    path: .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md
     ownership: authored
     format: markdown
     enumParityChecked:

@@ -48,9 +48,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review graphEvents records and confirm the coverage-graph reducer ingests them under loop_type=review.
 ### Commands
-1. `bash: rg -n 'graphEvents|review iteration records|graph-aware review convergence' .opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n "LoopType|loop_type.*review|coverage_nodes|coverage_edges" .opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts`
-3. `bash: rg -n 'loopType|review|VALID_KINDS' .opencode/skills/system-deep-loop/runtime/tests/unit/coverage-graph-db.vitest.ts`
+1. `bash: rg -n 'graphEvents|review iteration records|graph-aware review convergence' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+2. `bash: rg -n "LoopType|loop_type.*review|coverage_nodes|coverage_edges" .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts`
+3. `bash: rg -n 'loopType|review|VALID_KINDS' .skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-db.vitest.ts`
 ### Expected
 `graphEvents` used as iteration-record input in the convergence reference. `coverage-graph-db.ts` exports `LoopType` with `'review'` branch and persists nodes/edges keyed by `(spec_folder, loop_type, session_id)`. Live reducer tests exercise review-loop ingestion.
 ### Evidence
@@ -73,9 +73,9 @@ Privilege the convergence reference for the contract, the `coverage-graph-db.ts`
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Graph-aware review convergence contract, documents `graphEvents` as iteration-record input |
-| `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts` | Active coverage-graph reducer source, defines `LoopType = 'research' \| 'review'` and persists nodes/edges keyed by `(spec_folder, loop_type, session_id, iteration)` |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/coverage-graph-db.vitest.ts` | Live reducer tests exercising the review `loopType` path and asserting `VALID_KINDS.review` |
+| `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Graph-aware review convergence contract, documents `graphEvents` as iteration-record input |
+| `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts` | Active coverage-graph reducer source, defines `LoopType = 'research' \| 'review'` and persists nodes/edges keyed by `(spec_folder, loop_type, session_id, iteration)` |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-db.vitest.ts` | Live reducer tests exercising the review `loopType` path and asserting `VALID_KINDS.review` |
 
 ---
 
@@ -85,4 +85,4 @@ Privilege the convergence reference for the contract, the `coverage-graph-db.ts`
 - Playbook ID: DRV-015
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/graph-events-review.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

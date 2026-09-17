@@ -12,7 +12,7 @@ process, not only the presence of plausible artifacts.
 
 ## Files
 
-- `.opencode/agents/cp-improve-target.md` is the canonical flawed target.
+- `.skilled/agents/cp-improve-target.md` is the canonical flawed target.
 - `.claude/agents/cp-improve-target.md` is the authored Claude-dialect mirror.
 - `.cursor/agents/cp-improve-target.md` and `.devin/agents/cp-improve-target/AGENT.md`
   are symlinks onto the `.claude` file, matching the runtime tree shapes.

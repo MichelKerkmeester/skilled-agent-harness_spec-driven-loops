@@ -9,7 +9,7 @@ version: 1.4.0.15
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
 > outcome and reason are persisted into
-> `.opencode/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.
+> `.skilled/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.
 
 > **EXECUTION POLICY**: Every scenario MUST be executed against real files, scripts, and test fixtures. Acceptable verdicts are PASS, FAIL, or SKIP; use SKIP only when a concrete sandbox blocker prevents execution.
 
@@ -50,7 +50,7 @@ This playbook provides 54 deterministic scenarios across 12 categories validatin
 
 ## 2. GLOBAL PRECONDITIONS
 
-- `runtime/` exists at `.opencode/skills/system-deep-loop/runtime/`.
+- `runtime/` exists at `.skilled/skills/system-deep-loop/runtime/`.
 - Runtime libraries exist under `lib/deep-loop/` and `lib/coverage-graph/`.
 - Direct scripts exist under `scripts/` and emit JSON-only stdout.
 - Runtime tests exist under `tests/{unit,integration,lifecycle}/`.
@@ -73,7 +73,7 @@ This playbook provides 54 deterministic scenarios across 12 categories validatin
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 - Bash commands are shown as `bash: <command>`.
-- Script invocations use `node .opencode/skills/system-deep-loop/runtime/scripts/<name>.cjs ...`.
+- Script invocations use `node .skilled/skills/system-deep-loop/runtime/scripts/<name>.cjs ...`.
 - Source inspections use `rg` and `sed` from the repository root.
 - Test invocations use the existing Vitest surface when available.
 - `->` separates sequential steps.

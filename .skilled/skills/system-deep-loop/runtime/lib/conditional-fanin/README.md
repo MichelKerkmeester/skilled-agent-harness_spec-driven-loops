@@ -33,16 +33,16 @@ Decision layer for `system-deep-loop` fan-out waves that do not need to wait for
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/voc-allocation/fan-in-handoff.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/reducer.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/types.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/voc-allocation/fan-in-handoff.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/provenance-reduction/reducer.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/partial-failure-policy/types.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/conditional-fanin.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/conditional-fanin.vitest.ts`
 
 ---
 

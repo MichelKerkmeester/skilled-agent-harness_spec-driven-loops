@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Show me the canonical write
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `writer-library-contract/library-writer-call-sequence.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-013.
 
-Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`, which the scenario identifies as writer library and audit event implementation. Validation is anchored by `manual-testing-playbook/writer-library-contract/library-writer-call-sequence.md`, covering manual scenario contract.
+Current behavior is grounded in `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`, which the scenario identifies as writer library and audit event implementation. Validation is anchored by `manual-testing-playbook/writer-library-contract/library-writer-call-sequence.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify lib/persist-artifacts.cjs exports the 7 named writers and that they emit artifact_written events. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,8 +40,8 @@ The user-visible contract is concrete: Verify lib/persist-artifacts.cjs exports 
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` | Library | Writer library and audit event implementation |
-| `.opencode/agents/ai-council.md` | Runtime Mirror | Canonical writer sequence in invocation contract |
+| `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` | Library | Writer library and audit event implementation |
+| `.skilled/agents/ai-council.md` | Runtime Mirror | Canonical writer sequence in invocation contract |
 
 ### Validation And Tests
 

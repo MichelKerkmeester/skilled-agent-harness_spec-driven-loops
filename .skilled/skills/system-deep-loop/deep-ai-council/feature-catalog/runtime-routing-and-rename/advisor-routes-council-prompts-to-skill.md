@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Run an AI council deliberat
 
 The shipped surface is anchored by `deep-ai-council`, `native-scorer.vitest.ts`. The playbook scenario `runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-002.
 
-Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md`, which the scenario identifies as skill routing metadata. Validation is anchored by `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts`, covering advisor regression.
+Current behavior is grounded in `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md`, which the scenario identifies as skill routing metadata. Validation is anchored by `.skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts`, covering advisor regression.
 
 The user-visible contract is concrete: Verify scorer coverage for deep-ai-council. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,14 +40,14 @@ The user-visible contract is concrete: Verify scorer coverage for deep-ai-counci
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` | Skill | Skill routing metadata |
+| `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md` | Skill | Skill routing metadata |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md` | Automated test | Manual scenario contract |
-| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | Advisor regression |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | Advisor regression |
 
 ---
 

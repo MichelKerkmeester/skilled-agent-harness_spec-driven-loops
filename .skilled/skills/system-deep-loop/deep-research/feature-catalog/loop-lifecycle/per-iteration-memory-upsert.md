@@ -38,14 +38,14 @@ An earlier version of this step indexed each iteration through an MCP memory ups
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow | Declares the lineage context refresh step and the prompt line it feeds. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Declares the lineage context refresh step and the prompt line it feeds. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts` | Vitest | Verifies step ordering, non-fatal behavior, and prompt context injection. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/per-iteration-memory-upsert.md` | Manual playbook | Verifies lineage-local evidence persistence and context refresh behavior. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts` | Vitest | Verifies step ordering, non-fatal behavior, and prompt context injection. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/per-iteration-memory-upsert.md` | Manual playbook | Verifies lineage-local evidence persistence and context refresh behavior. |
 
 ---
 

@@ -7,7 +7,7 @@ import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
-const SCRIPTS_DIR = '.opencode/skills/system-deep-loop/deep-improvement/scripts';
+const SCRIPTS_DIR = '.skilled/skills/system-deep-loop/deep-improvement/scripts';
 
 const AGENT_NAME = 'mirror-sync-probe';
 const CANONICAL = `---
@@ -49,7 +49,7 @@ beforeEach(() => {
   // The copied verifier requires the shared frontmatter parser by package name.
   fs.mkdirSync(path.join(tmpDir, 'node_modules', '@spec-kit'), { recursive: true });
   fs.symlinkSync(
-    path.join(WORKSPACE_ROOT, '.opencode/skills/system-spec-kit/shared'),
+    path.join(WORKSPACE_ROOT, '.skilled/skills/system-spec-kit/shared'),
     path.join(tmpDir, 'node_modules', '@spec-kit', 'shared'),
   );
   writeFile(`.opencode/agents/${AGENT_NAME}.md`, CANONICAL);

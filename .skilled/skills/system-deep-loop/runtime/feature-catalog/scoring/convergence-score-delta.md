@@ -27,7 +27,7 @@ This feature belongs to the scoring group and is catalogued as F038 in the `runt
 
 `convergence.cjs` reads the prior snapshot before creating the new one, emits `scoreDelta` and `scoreDeltaNote`, and can add an opt-in `improvementEffect` trace when requested.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

@@ -45,10 +45,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate final synthesis records ruled-out directions from JSONL and iteration dead-end sections.
 ### Commands
-1. `bash: rg -n 'Eliminated Alternatives\|ruledOut\|Dead Ends\|negative knowledge' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'ruledOut\|Ruled Out\|Dead Ends' .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md`
-3. `bash: sed -n '/ANCHOR:ruled-out-directions/,/\/ANCHOR:ruled-out-directions/p' .opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
-4. `bash: rg -n 'rule.*10\|ruled-out' .opencode/skills/system-deep-loop/deep-research/SKILL.md`
+1. `bash: rg -n 'Eliminated Alternatives\|ruledOut\|Dead Ends\|negative knowledge' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+2. `bash: rg -n 'ruledOut\|Ruled Out\|Dead Ends' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
+3. `bash: sed -n '/ANCHOR:ruled-out-directions/,/\/ANCHOR:ruled-out-directions/p' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
+4. `bash: rg -n 'rule.*10\|ruled-out' .skilled/skills/system-deep-loop/deep-research/SKILL.md`
 ### Expected
 research/research.md has mandatory "Eliminated Alternatives" section as a table; iteration files have `## Ruled Out` and `## Dead Ends` sections; strategy.md has `## 10. Ruled Out Directions` section; JSONL records include `ruledOut` array; ALWAYS rule 10 mandates per-iteration documentation of ruled-out directions.
 ### Evidence
@@ -72,10 +72,10 @@ Privilege the loop protocol synthesis rules for the canonical consolidation cont
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop protocol; inspect `ANCHOR:phase-synthesis` for the Eliminated Alternatives consolidation rules (synthesis Step 3) |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | State format; inspect `ruledOut` array under `ANCHOR:state-log` (Negative Knowledge subsection) and iteration file requirements under `ANCHOR:iteration-files` |
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Strategy template; inspect `ANCHOR:ruled-out-directions` for section 10 (Ruled Out Directions) |
-| `.opencode/skills/system-deep-loop/deep-research/SKILL.md` | Skill rules; inspect ALWAYS rule 10: "Document ruled-out directions per iteration" |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop protocol; inspect `ANCHOR:phase-synthesis` for the Eliminated Alternatives consolidation rules (synthesis Step 3) |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | State format; inspect `ruledOut` array under `ANCHOR:state-log` (Negative Knowledge subsection) and iteration file requirements under `ANCHOR:iteration-files` |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Strategy template; inspect `ANCHOR:ruled-out-directions` for section 10 (Ruled Out Directions) |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Skill rules; inspect ALWAYS rule 10: "Document ruled-out directions per iteration" |
 
 ---
 
@@ -85,4 +85,4 @@ Privilege the loop protocol synthesis rules for the canonical consolidation cont
 - Playbook ID: DR-026
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

@@ -27,7 +27,7 @@ This feature belongs to the testing group and is catalogued as F049 in the `runt
 
 `recordScriptRun()` captures normalized argv/stdin/stdout/exit envelopes, `replayScriptRun()` compares current script behavior against a cassette, and convergence/fanout tests use the helpers for pinned regressions.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

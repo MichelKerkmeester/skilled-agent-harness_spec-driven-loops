@@ -36,17 +36,17 @@ The reducer and synthesis phases keep that information alive. `reduce-state.cjs`
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/agents/deep-research.md` | Agent | Requires `Ruled Out` and `Dead Ends` sections in iteration files and records ruled-out paths in JSONL. |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference | Defines the `ruledOut` JSONL payload and iteration-file requirements. |
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Defines the `Eliminated Alternatives` synthesis contract. |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Promotes ruled-out directions into synchronized strategy and registry state. |
+| `.skilled/agents/deep-research.md` | Agent | Requires `Ruled Out` and `Dead Ends` sections in iteration files and records ruled-out paths in JSONL. |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference | Defines the `ruledOut` JSONL payload and iteration-file requirements. |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Defines the `Eliminated Alternatives` synthesis contract. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Promotes ruled-out directions into synchronized strategy and registry state. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` | Manual playbook | Verifies ruled-out directions survive into final synthesis. |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-research-reducer.vitest.ts` | Vitest | Verifies reducer output retains ruled-out directions in the synchronized packet surfaces. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` | Manual playbook | Verifies ruled-out directions survive into final synthesis. |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-research-reducer.vitest.ts` | Vitest | Verifies reducer output retains ruled-out directions in the synchronized packet surfaces. |
 
 ---
 

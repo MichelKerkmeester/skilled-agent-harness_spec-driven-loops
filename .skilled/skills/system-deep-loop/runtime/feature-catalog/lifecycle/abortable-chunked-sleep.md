@@ -27,7 +27,7 @@ This feature belongs to the lifecycle group and is catalogued as F031 in the `ru
 
 `abortableSleep()` waits in `SLEEP_CHUNK_MS` slices, clears pending timeouts on abort, removes listeners on completion, rejects with `signal.reason`, and accepts composed abort signals for executor-run cancellation.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

@@ -38,7 +38,7 @@ Raw JSONL is append-only evidence. Reducer-owned files derive from it, but they 
 Canonical records are written by calling the append gateway, not by writing to the file:
 
 ```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
   --mode research \
   --run-directory <spec folder> \
   --event-json <path to one JSON record>
@@ -59,7 +59,7 @@ That split is authority-dependent: while the mode's authority record still names
 and no ledger backs it; the projection relationship begins when the record moves to
 `new_authoritative_reversible` or `new_authoritative_final` with `selectedWriter: "dark"`. The
 registered stems and their producer census live in `state-format.md` section 7, and
-`.opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` fails when the
+`.skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` fails when the
 census and the emitter surface on disk disagree.
 
 ---

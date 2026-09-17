@@ -36,17 +36,17 @@ The workflow surfaces those disagreements through `question_conflict` JSONL even
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Resolves inbox and registry conflicts and emits conflict records. |
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Asset | Marks key questions as a generated reducer projection and documents conflict handling. |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md` | Reference | Documents inbox, registry, and reducer ownership boundaries. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow | Records reducer-discovered `question_conflict` events in the loop state. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Resolves inbox and registry conflicts and emits conflict records. |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Asset | Marks key questions as a generated reducer projection and documents conflict handling. |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md` | Reference | Documents inbox, registry, and reducer ownership boundaries. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Records reducer-discovered `question_conflict` events in the loop state. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies conflict records, operator decisions, and event payload fields. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/question-conflict-ownership.md` | Manual playbook | Verifies conflict ownership and generated key-question behavior. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies conflict records, operator decisions, and event payload fields. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/question-conflict-ownership.md` | Manual playbook | Verifies conflict ownership and generated key-question behavior. |
 
 ---
 

@@ -1,5 +1,5 @@
 # Agent: cp-improve-target
-# Converted from: .opencode/agents/cp-improve-target.md
+# Converted from: .skilled/agents/cp-improve-target.md
 name = "cp-improve-target"
 description = "Generated-shape mirror for the deep-improvement stress-test fixture target"
 sandbox_mode = "workspace-write"

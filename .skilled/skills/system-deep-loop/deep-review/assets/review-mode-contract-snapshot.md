@@ -18,7 +18,7 @@ version: 1.11.0.0
 Human-readable rendering of the deep-review review-mode contract. Regenerate with:
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs
+node .skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs
 ```
 
 <!-- BEGIN GENERATED: review-mode-contract/snapshot -->
@@ -29,7 +29,7 @@ node .opencode/skills/system-deep-loop/deep-review/scripts/render-contract-snaps
 | --- | --- |
 | ownerSkill | deep-review |
 | reviewModeVersion | 2 |
-| sourceOfTruth | `.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml` |
+| sourceOfTruth | `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml` |
 | generatedNotice.warning | Exactly one artifact is machine-generated from this file: render.artifacts[0] (review-contract-snapshot). Its begin/end markers live on that artifact entry, not here. Every other contract-taxonomy consumer is hand-authored; see authoredArtifacts. |
 
 ## Target Types

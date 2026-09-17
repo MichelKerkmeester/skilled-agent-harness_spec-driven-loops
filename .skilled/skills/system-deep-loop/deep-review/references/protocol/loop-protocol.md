@@ -60,8 +60,8 @@ Each agent dispatch gets a fresh context window. State continuity comes from fil
 | Resource | Path | Purpose |
 |----------|------|---------|
 | Review contract | `assets/review-mode-contract.yaml` | Dimensions, verdicts, gates, protocols |
-| Auto workflow | `.opencode/commands/deep/assets/deep-review-auto.yaml` | Unattended review loop |
-| Confirm workflow | `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Step-by-step review with approval gates |
+| Auto workflow | `.skilled/commands/deep/assets/deep-review-auto.yaml` | Unattended review loop |
+| Confirm workflow | `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Step-by-step review with approval gates |
 | Agent | `@deep-review` (LEAF) | Single iteration executor, no sub-agents, no WebFetch |
 | Memory save | `generate-context.js` | Context preservation script |
 
@@ -274,7 +274,7 @@ CONSTRAINT: Target files are READ-ONLY -- never modify code under review
 
 #### Executor Resolution (spec 018 + 019)
 
-Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
+Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
 
 - `native` (spec 018): dispatch `@deep-review` agent with model Opus.
 - `cli-opencode` (spec 018): pipe rendered prompt via stdin to `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y]`. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt (`assets/prompt-pack-iteration.md.tmpl`), which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation (`validateIterationOutputs`) catching some violations after the fact. Because review targets are arbitrary code/spec files, they MUST be treated as potentially adversarial content (untrusted) for prompt-injection purposes — the same containment posture as untrusted fetched content in deep-research.
@@ -545,7 +545,7 @@ Preserve review context to the memory system for future session recovery and cro
 
 2. **Generate context**: Run the memory save script with structured JSON via `--stdin`, `--json`, or a session-scoped JSON file:
    ```bash
-   node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"{spec_folder}","sessionSummary":"Deep review completed; see review/review-report.md for verdict and findings."}' {spec_folder}
+   node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"{spec_folder}","sessionSummary":"Deep review completed; see review/review-report.md for verdict and findings."}' {spec_folder}
    ```
 
 3. **No extra indexing step in the live contract**: `generate-context.js` is the supported save boundary for this workflow.
@@ -713,8 +713,8 @@ Protocol documents from `deep-research` are cross-referenced, not duplicated:
 
 | Mode | Path |
 |------|------|
-| Auto (unattended) | `.opencode/commands/deep/assets/deep-review-auto.yaml` |
-| Confirm (step-by-step) | `.opencode/commands/deep/assets/deep-review-confirm.yaml` |
+| Auto (unattended) | `.skilled/commands/deep/assets/deep-review-auto.yaml` |
+| Confirm (step-by-step) | `.skilled/commands/deep/assets/deep-review-confirm.yaml` |
 
 ### Agent
 

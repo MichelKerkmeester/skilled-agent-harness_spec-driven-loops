@@ -586,7 +586,7 @@ describe('parseFanoutConfig', () => {
           kind: 'native',
           label: 'planner',
           depends_on: ['prep'],
-          touches: ['.opencode/skills/system-deep-loop/runtime/scripts/**'],
+          touches: ['.skilled/skills/system-deep-loop/runtime/scripts/**'],
         },
       ],
     });
@@ -594,7 +594,7 @@ describe('parseFanoutConfig', () => {
     expect(config.executors[0]).toMatchObject({
       assignment_model: 'flat_pool',
       depends_on: ['prep'],
-      touches: ['.opencode/skills/system-deep-loop/runtime/scripts/**'],
+      touches: ['.skilled/skills/system-deep-loop/runtime/scripts/**'],
     });
   });
 

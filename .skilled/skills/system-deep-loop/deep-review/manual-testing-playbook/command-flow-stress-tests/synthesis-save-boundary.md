@@ -50,7 +50,7 @@ Operators run the exact command sequence and inspect only grep-able transcript a
 set -uo pipefail
 rm -rf /tmp/cp-055-sandbox /tmp/cp-055-sandbox-baseline /tmp/cp-055-spec
 mkdir -p /tmp/cp-055-spec
-.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-055-sandbox
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-055-sandbox
 cp -a /tmp/cp-055-sandbox /tmp/cp-055-sandbox-baseline
 cd "$(git rev-parse --show-toplevel)"
 git status --porcelain -- /tmp/cp-055-sandbox /tmp/cp-055-spec > /tmp/cp-055-pre.txt
@@ -89,9 +89,9 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | File | Lines | Role |
 |---|---:|---|
-| `.opencode/commands/deep/assets/deep-review-presentation.txt` | 306-322, 345-361 | Success/failure output and memory integration |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 414-420, 430-434 | Loop completion, quality gates, continuity integration |
-| `.opencode/agents/deep-review.md` | 292-297, 503-520 | Reducer boundary and related resources |
+| `.skilled/commands/deep/assets/deep-review-presentation.txt` | 306-322, 345-361 | Success/failure output and memory integration |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 414-420, 430-434 | Loop completion, quality gates, continuity integration |
+| `.skilled/agents/deep-review.md` | 292-297, 503-520 | Reducer boundary and related resources |
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 
 ---

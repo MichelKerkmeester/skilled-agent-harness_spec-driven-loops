@@ -29,10 +29,10 @@ Runtime primitives that decide where a `system-deep-loop` research or review mod
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/cycle-detection/`
+- `.skilled/skills/system-deep-loop/runtime/lib/cycle-detection/`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/next-focus.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/next-focus.vitest.ts`

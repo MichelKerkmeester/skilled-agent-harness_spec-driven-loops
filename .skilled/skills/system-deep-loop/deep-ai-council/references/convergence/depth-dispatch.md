@@ -20,7 +20,7 @@ Depth controls whether a council may launch seats in parallel or must deliberate
 
 Deep mode is the iterative, multi-topic council workflow exposed through `/deep:ai-council`. It is additive to the existing single-round council behavior: regular `ai-council` runs still produce one planning report and packet-local `ai-council/**` artifacts, while deep mode owns a session loop with topic-by-topic rounds, adjudicator-verdict stability checks, and a session-wide findings registry.
 
-Use `/deep:ai-council:auto` for non-interactive bounded runs when setup answers are pre-bound, and `/deep:ai-council:confirm` when the operator should approve setup, loop, synthesis, and save gates. The command Markdown owns setup resolution and then loads `.opencode/commands/deep/assets/deep-ai-council-auto.yaml` or `.opencode/commands/deep/assets/deep-ai-council-confirm.yaml` for execution.
+Use `/deep:ai-council:auto` for non-interactive bounded runs when setup answers are pre-bound, and `/deep:ai-council:confirm` when the operator should approve setup, loop, synthesis, and save gates. The command Markdown owns setup resolution and then loads `.skilled/commands/deep/assets/deep-ai-council-auto.yaml` or `.skilled/commands/deep/assets/deep-ai-council-confirm.yaml` for execution.
 
 Deep mode uses a three-level state hierarchy:
 
@@ -296,7 +296,7 @@ Unless those tools actually ran (and were dispatched as separate rounds).
 
 ## 7. CROSS-REFERENCES
 
-- Agent body: `.opencode/agents/ai-council.md` §0 ILLEGAL NESTING and §5 PARALLEL VS SEQUENTIAL.
+- Agent body: `.skilled/agents/ai-council.md` §0 ILLEGAL NESTING and §5 PARALLEL VS SEQUENTIAL.
 - Caller patterns: `../patterns/command-wiring.md`.
 - Seat selection: `../patterns/seat-diversity-patterns.md`.
 - Failure policy: `failure-handling.md`.

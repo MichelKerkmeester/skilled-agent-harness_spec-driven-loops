@@ -46,7 +46,7 @@ The suite verifies budget evidence between runtime admission and durable settlem
 ## 5. VALIDATION
 
 ```bash
-.opencode/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts tests/hierarchical-budgets
+.skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/hierarchical-budgets
 ```
 
 ---

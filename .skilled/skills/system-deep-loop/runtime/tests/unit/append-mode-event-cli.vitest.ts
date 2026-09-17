@@ -540,7 +540,7 @@ describe('append-mode-event CLI subprocess execution', () => {
     // unset so the default resolution path is the one under test: the append
     // must still succeed, because the run directory is not the root.
     const runDir = createTempDir('runroot-not-authority');
-    const decoy = join(runDir, '.opencode', 'skills', '.state', 'authority');
+    const decoy = join(runDir, '.skilled', 'skills', '.state', 'authority');
     mkdirSync(decoy, { recursive: true });
     writeFileSync(join(decoy, 'authority-deep-research.json'), '{ not valid json', 'utf8');
 

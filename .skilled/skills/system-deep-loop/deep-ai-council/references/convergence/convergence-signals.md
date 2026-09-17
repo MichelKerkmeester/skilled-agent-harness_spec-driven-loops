@@ -46,7 +46,7 @@ ADR-001 keeps the convention lightweight. Sophisticated convergence math is non-
 State schema and convergence fields are convention-only for v1. If drift appears in real council artifacts, graduate to a typed validator in a follow-on packet.
 
 Cross-references:
-- Agent body: `.opencode/agents/ai-council.md` §16
+- Agent body: `.skilled/agents/ai-council.md` §16
 - Decision context: local doctor command ADRs ADR-001 and ADR-003
 
 ---

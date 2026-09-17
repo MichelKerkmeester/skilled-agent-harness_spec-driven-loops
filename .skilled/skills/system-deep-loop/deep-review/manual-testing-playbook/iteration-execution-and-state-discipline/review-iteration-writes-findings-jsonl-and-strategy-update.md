@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the deep-review per-iteration write contract for iteration markdown, JSONL severity counts, and strategy updates.
 ### Commands
-1. `bash: rg -n 'iteration-NNN\|iteration-{NNN}\|iteration_pattern\|Write.*iteration' .opencode/commands/deep/assets/deep-review-auto.yaml`
-2. `bash: rg -n 'step_validate_iteration\|iteration_file_written\|jsonl_appended\|strategy_updated\|on_missing_outputs' .opencode/commands/deep/assets/deep-review-auto.yaml`
-3. `bash: rg -n 'iteration-NNN\|JSONL\|strategy\|Write.*findings\|P0.*P1.*P2' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
+1. `bash: rg -n 'iteration-NNN\|iteration-{NNN}\|iteration_pattern\|Write.*iteration' .skilled/commands/deep/assets/deep-review-auto.yaml`
+2. `bash: rg -n 'step_validate_iteration\|iteration_file_written\|jsonl_appended\|strategy_updated\|on_missing_outputs' .skilled/commands/deep/assets/deep-review-auto.yaml`
+3. `bash: rg -n 'iteration-NNN\|JSONL\|strategy\|Write.*findings\|P0.*P1.*P2' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
 ### Expected
 The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy. The post-dispatch validation checks for all three. The quick reference checklist documents the same outputs.
 ### Evidence
@@ -71,10 +71,10 @@ Inspect the on_missing_outputs fallback to verify that error handling still appe
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Dispatch and validation, inspect `step_dispatch_review_agent` and `step_validate_iteration` |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Dispatch and validation, inspect `step_dispatch_review_agent` and `step_validate_iteration` |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
-| `.opencode/agents/deep-review.md` | Agent write contract, inspect iteration output requirements |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Dispatch and validation, inspect `step_dispatch_review_agent` and `step_validate_iteration` |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Dispatch and validation, inspect `step_dispatch_review_agent` and `step_validate_iteration` |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
+| `.skilled/agents/deep-review.md` | Agent write contract, inspect iteration output requirements |
 | `.claude/agents/deep-review.md` | Agent write contract, inspect iteration output requirements |
 
 ---
@@ -85,4 +85,4 @@ Inspect the on_missing_outputs fallback to verify that error handling still appe
 - Playbook ID: DRV-009
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

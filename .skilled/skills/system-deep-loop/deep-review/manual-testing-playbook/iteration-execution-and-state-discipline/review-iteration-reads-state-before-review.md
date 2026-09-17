@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate that each deep-review iteration reads JSONL and strategy state before any review actions.
 ### Commands
-1. `bash: rg -n 'step_read_state|current_iteration|next_focus|Read.*state' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
-2. `bash: rg -n 'Read.*state\|Read.*strategy\|Read.*JSONL\|step 1\|1\. Read' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .opencode/skills/system-deep-loop/deep-review/SKILL.md`
-3. `bash: sed -n '1,220p' .opencode/agents/deep-review.md && sed -n '1,220p' .claude/agents/deep-review.md`
+1. `bash: rg -n 'step_read_state|current_iteration|next_focus|Read.*state' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'Read.*state\|Read.*strategy\|Read.*JSONL\|step 1\|1\. Read' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md`
+3. `bash: sed -n '1,220p' .skilled/agents/deep-review.md && sed -n '1,220p' .claude/agents/deep-review.md`
 ### Expected
 Loop step order begins with state reads, the quick reference checklist says the same, and the agent definition starts with JSONL plus strategy reads.
 ### Evidence
@@ -71,10 +71,10 @@ Check the agent sequence under the iteration checklist if the higher-level docs 
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Loop state extraction, inspect `step_read_state` |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Loop state extraction, inspect `step_read_state` |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Skill-level iteration documentation |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Loop state extraction, inspect `step_read_state` |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Loop state extraction, inspect `step_read_state` |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Skill-level iteration documentation |
 | `.opencode/agents/deep-review.md` | OpenCode runtime agent sequence, inspect iteration protocol |
 | `.claude/agents/deep-review.md` | Claude runtime agent sequence, inspect iteration protocol |
 
@@ -86,4 +86,4 @@ Check the agent sequence under the iteration checklist if the higher-level docs 
 - Playbook ID: DRV-008
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/review-iteration-reads-state-before-review.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

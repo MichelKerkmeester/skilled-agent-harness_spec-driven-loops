@@ -337,7 +337,7 @@ Example:
 
 ## 7. CROSS-REFERENCES
 
-- Agent body: `.opencode/agents/ai-council.md` §6 SYNTHESIS PROTOCOL.
+- Agent body: `.skilled/agents/ai-council.md` §6 SYNTHESIS PROTOCOL.
 - Output schema: `../structure/output-schema.md` §4 Seat Section Fallback.
 - Council signals: `../convergence/convergence-signals.md`.
 - Seat diversity: `../patterns/seat-diversity-patterns.md`.

@@ -25,7 +25,7 @@ The directive is on by default for `system-deep-loop` (a member of the per-hub d
 
 ### Resolution Order
 
-By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .opencode/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"` before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `system-deep-loop`'s promoted activation manifest (`.opencode/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `system-deep-loop` routes unchanged. As of this writing, `system-deep-loop`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `system-deep-loop` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
+By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"` before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `system-deep-loop`'s promoted activation manifest (`.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `system-deep-loop` routes unchanged. As of this writing, `system-deep-loop`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `system-deep-loop` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
 
 ### Tri-State Flag
 
@@ -37,7 +37,7 @@ A served compiled decision returns one of four actions — `route` (use the retu
 
 ### Serving Status And Drift
 
-`node .opencode/bin/compiled-route-status.cjs --hub system-deep-loop` reports `system-deep-loop`'s current serving posture as one stable JSON record with a `causeCode`: `compiled-serving` when the flag permits, the manifest authorizes, and the engine actually routes; `flag-off` or `legacy-authority` when the manifest is ready but the flag or manifest authority withholds it (expected drift, not breakage); `missing-manifest` when no promoted manifest exists; `engine-throw` when the flag and manifest both authorize compiled serving but the engine itself fails (a genuine break, distinct from expected drift). See [`feature-flag-governance.md`](../../../system-spec-kit/feature-catalog/governance/feature-flag-governance.md) for the `SPECKIT_COMPILED_ROUTING` flag-governance entry.
+`node .skilled/bin/compiled-route-status.cjs --hub system-deep-loop` reports `system-deep-loop`'s current serving posture as one stable JSON record with a `causeCode`: `compiled-serving` when the flag permits, the manifest authorizes, and the engine actually routes; `flag-off` or `legacy-authority` when the manifest is ready but the flag or manifest authority withholds it (expected drift, not breakage); `missing-manifest` when no promoted manifest exists; `engine-throw` when the flag and manifest both authorize compiled serving but the engine itself fails (a genuine break, distinct from expected drift). See [`feature-flag-governance.md`](../../../system-spec-kit/feature-catalog/governance/feature-flag-governance.md) for the `SPECKIT_COMPILED_ROUTING` flag-governance entry.
 
 ---
 
@@ -47,18 +47,18 @@ A served compiled decision returns one of four actions — `route` (use the retu
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/SKILL.md` | Shared | Carries the default-on compiled-routing directive `system-deep-loop` follows. |
-| `.opencode/bin/compiled-route.cjs` | Script | Promoted CLI front door the directive shells out to. |
-| `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` | Shared | Tri-state flag parsing and the manifest serving-authority gate. |
-| `.opencode/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json` | Shared | `system-deep-loop`'s promoted activation manifest (serving authority, shadow status, selected policy). |
-| `.opencode/bin/compiled-route-status.cjs` | Script | Per-hub serving-status probe with a drift-vs-break `causeCode`. |
+| `.skilled/skills/system-deep-loop/SKILL.md` | Shared | Carries the default-on compiled-routing directive `system-deep-loop` follows. |
+| `.skilled/bin/compiled-route.cjs` | Script | Promoted CLI front door the directive shells out to. |
+| `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` | Shared | Tri-state flag parsing and the manifest serving-authority gate. |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json` | Shared | `system-deep-loop`'s promoted activation manifest (serving authority, shadow status, selected policy). |
+| `.skilled/bin/compiled-route-status.cjs` | Script | Per-hub serving-status probe with a drift-vs-break `causeCode`. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/bin/compiled-routing-foundation.vitest.ts` | Automated test | Resolver, tri-state flag, and promoted-closure parity coverage. |
-| `.opencode/skills/system-skill-advisor/runtime/tests/compiled-routing-consumption.vitest.ts` | Automated test | Advisor-side attach/consume/invalidate coverage shared by every eligible hub. |
+| `.skilled/bin/compiled-routing-foundation.vitest.ts` | Automated test | Resolver, tri-state flag, and promoted-closure parity coverage. |
+| `.skilled/skills/system-skill-advisor/runtime/tests/compiled-routing-consumption.vitest.ts` | Automated test | Advisor-side attach/consume/invalidate coverage shared by every eligible hub. |
 
 ---
 

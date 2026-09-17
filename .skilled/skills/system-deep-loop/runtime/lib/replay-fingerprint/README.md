@@ -36,7 +36,7 @@ Foundational primitive imported by most other `runtime/lib` domains. Direct cons
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts`
 
 ---
 

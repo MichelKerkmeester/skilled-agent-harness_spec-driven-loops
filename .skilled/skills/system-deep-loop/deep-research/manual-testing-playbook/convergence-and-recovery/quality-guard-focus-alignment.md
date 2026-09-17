@@ -45,11 +45,11 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate focus-alignment guards override STOP when answered questions drift from the original key questions.
 ### Commands
-1. `bash: sed -n '104,139p' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-2. `bash: rg -n 'focus_alignment\|originalKeyQuestions\|guard_violation' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-3. `bash: sed -n '97,107p' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-4. `bash: rg -n 'guard_violation\|focus_alignment' .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md`
-5. `bash: sed -n '236,243p' .opencode/commands/deep/assets/deep-research-auto.yaml`
+1. `bash: sed -n '104,139p' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+2. `bash: rg -n 'focus_alignment\|originalKeyQuestions\|guard_violation' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+3. `bash: sed -n '97,107p' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+4. `bash: rg -n 'guard_violation\|focus_alignment' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
+5. `bash: sed -n '236,243p' .skilled/commands/deep/assets/deep-research-auto.yaml`
 ### Expected
 guard_violation event logged with guard="focus_alignment", STOP decision overridden to CONTINUE, misaligned question flagged in violation detail.
 ### Evidence
@@ -73,10 +73,10 @@ Privilege convergence.md §2.4 for the canonical guard definition; use loop-prot
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Canonical quality guard definitions; use §2.4 Quality Guard Protocol |
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | JSONL event schema; use guard_violation event definition and supported guard values |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; inspect `step_check_convergence` guard override logic |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Canonical quality guard definitions; use §2.4 Quality Guard Protocol |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | JSONL event schema; use guard_violation event definition and supported guard values |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; inspect `step_check_convergence` guard override logic |
 
 ---
 
@@ -86,4 +86,4 @@ Privilege convergence.md §2.4 for the canonical guard definition; use loop-prot
 - Playbook ID: DR-021
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/quality-guard-focus-alignment.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

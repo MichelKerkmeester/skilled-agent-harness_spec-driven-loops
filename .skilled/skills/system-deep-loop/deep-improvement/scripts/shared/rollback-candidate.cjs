@@ -87,9 +87,9 @@ function resolveAllowedCanonicalTarget(manifestPath) {
 // to land outside the repo's real agent/skill target roots.
 
 const DEFAULT_ALLOWED_TARGET_ROOTS = Object.freeze([
-  '.opencode/agents',
+  '.skilled/agents',
   '.claude/agents',
-  '.opencode/skills',
+  '.skilled/skills',
 ]);
 
 // Resolve symlinks for whatever prefix of candidatePath already exists on

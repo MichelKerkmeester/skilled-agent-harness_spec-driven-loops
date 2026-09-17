@@ -36,17 +36,17 @@ The dynamic scorer is lenient in one important way: missing derived checks defau
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Contract reference | Documents the five-dimension rubric and the benchmark rubric that sits beside it. |
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scorer | Implements the five dimension functions, weights, and recommendation threshold. |
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs` | Profile builder | Supplies the derived structural, rule, output, integration, and mismatch checks that the rubric consumes. |
-| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-config.json` | Runtime config | Stores the default dimension weights and threshold delta. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Contract reference | Documents the five-dimension rubric and the benchmark rubric that sits beside it. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scorer | Implements the five dimension functions, weights, and recommendation threshold. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs` | Profile builder | Supplies the derived structural, rule, output, integration, and mismatch checks that the rubric consumes. |
+| `.skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-config.json` | Runtime config | Stores the default dimension weights and threshold delta. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/quick-reference.md` | Operator reference | Restates the shipped dimension weights for the live release. |
-| `.opencode/skills/system-deep-loop/deep-improvement/README.md` | Package reference | Mirrors the current recommendation threshold and weighted-score formula for operators. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/quick-reference.md` | Operator reference | Restates the shipped dimension weights for the live release. |
+| `.skilled/skills/system-deep-loop/deep-improvement/README.md` | Package reference | Mirrors the current recommendation threshold and weighted-score formula for operators. |
 
 ---
 

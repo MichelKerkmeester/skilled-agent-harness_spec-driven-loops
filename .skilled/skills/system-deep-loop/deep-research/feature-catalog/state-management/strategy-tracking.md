@@ -36,19 +36,19 @@ This same reducer pass also refreshes `findings-registry.json` and `deep-researc
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Asset | Defines the strategy anchors and machine-owned section boundaries. |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference | Defines the update protocol for strategy, dashboard, and reducer-owned state. |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Rebuilds the findings registry, updates strategy anchors, and regenerates the dashboard. |
-| `.opencode/agents/deep-research.md` | Agent | Defines how iteration files feed next-focus guidance and reducer-owned state refresh. |
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md` | Asset | Defines the dashboard sections the reducer fills from strategy and registry data. |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Asset | Defines the strategy anchors and machine-owned section boundaries. |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference | Defines the update protocol for strategy, dashboard, and reducer-owned state. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Rebuilds the findings registry, updates strategy anchors, and regenerates the dashboard. |
+| `.skilled/agents/deep-research.md` | Agent | Defines how iteration files feed next-focus guidance and reducer-owned state refresh. |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md` | Asset | Defines the dashboard sections the reducer fills from strategy and registry data. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/strategy-next-focus-and-exhausted-approach-discipline.md` | Manual playbook | Verifies next-focus selection and exhausted-approach handling. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual playbook | Verifies blocked-stop history and recovery guidance appear in reducer-owned outputs. |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/deep-research-reducer.vitest.ts` | Vitest | Verifies reducer output is idempotent and keeps strategy, registry, and dashboard aligned. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/strategy-next-focus-and-exhausted-approach-discipline.md` | Manual playbook | Verifies next-focus selection and exhausted-approach handling. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual playbook | Verifies blocked-stop history and recovery guidance appear in reducer-owned outputs. |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-research-reducer.vitest.ts` | Vitest | Verifies reducer output is idempotent and keeps strategy, registry, and dashboard aligned. |
 
 ---
 

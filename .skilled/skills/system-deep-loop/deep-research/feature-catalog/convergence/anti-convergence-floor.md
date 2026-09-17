@@ -36,15 +36,15 @@ During convergence checking, a STOP candidate is blocked while the completed ite
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Asset | Defines the anti-convergence defaults and locked config fields. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow | Reads the floor, validates compatibility with `maxIterations`, blocks early STOP, and emits floor events. |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Asset | Defines the anti-convergence defaults and locked config fields. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Reads the floor, validates compatibility with `maxIterations`, blocks early STOP, and emits floor events. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts` | Vitest | Verifies config shape, YAML guard behavior, and backward-compatible missing-field handling. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/anti-convergence-floor.md` | Manual playbook | Verifies the operator-visible floor and `convergenceMode` contract. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts` | Vitest | Verifies config shape, YAML guard behavior, and backward-compatible missing-field handling. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/anti-convergence-floor.md` | Manual playbook | Verifies the operator-visible floor and `convergenceMode` contract. |
 
 ---
 

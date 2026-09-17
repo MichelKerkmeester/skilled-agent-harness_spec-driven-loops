@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate progressive synthesis updates research/research.md during the loop while final synthesis still owns completion.
 ### Commands
-1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .opencode/skills/system-deep-loop/deep-research/README.md .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md .opencode/skills/system-deep-loop/deep-research/SKILL.md`
-2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .opencode/agents/deep-research.md`
-3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .opencode/commands/deep/assets/deep-research-auto.yaml .opencode/commands/deep/assets/deep-research-confirm.yaml`
+1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .skilled/skills/system-deep-loop/deep-research/README.md .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md .skilled/skills/system-deep-loop/deep-research/SKILL.md`
+2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .skilled/agents/deep-research.md`
+3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
 ### Expected
 The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs.
 ### Evidence
@@ -71,12 +71,12 @@ Use the runtime agent’s Step 7 and the README configuration table to resolve t
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/README.md` | Progressive synthesis defaults and state-file table; use `ANCHOR:overview` and `ANCHOR:configuration` |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical ownership wording; use `ANCHOR:overview` and `ANCHOR:config-file` |
-| `.opencode/skills/system-deep-loop/deep-research/SKILL.md` | Rule-level ownership statement; use `ANCHOR:rules` |
-| `.opencode/agents/deep-research.md` | Runtime progressive update rules; inspect `Step 7: Update Research` |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Synthesis and save workflow |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Synthesis and save workflow |
+| `.skilled/skills/system-deep-loop/deep-research/README.md` | Progressive synthesis defaults and state-file table; use `ANCHOR:overview` and `ANCHOR:configuration` |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical ownership wording; use `ANCHOR:overview` and `ANCHOR:config-file` |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Rule-level ownership statement; use `ANCHOR:rules` |
+| `.skilled/agents/deep-research.md` | Runtime progressive update rules; inspect `Step 7: Update Research` |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Synthesis and save workflow |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Synthesis and save workflow |
 
 ---
 
@@ -86,4 +86,4 @@ Use the runtime agent’s Step 7 and the README configuration table to resolve t
 - Playbook ID: DR-010
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/progressive-synthesis-behavior-for-research-md.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

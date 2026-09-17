@@ -25,7 +25,7 @@ Hermetic test suite for `../behavior-bench-run.cjs`. Pins the pure scoring and c
 ## 3. VALIDATION
 
 ```bash
-node .opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs
+node .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs
 ```
 
 Expected: `behavior-bench-run.test.cjs: all assertions passed`.

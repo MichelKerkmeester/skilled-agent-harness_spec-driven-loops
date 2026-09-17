@@ -28,15 +28,15 @@ Resume-identity substrate for `system-deep-loop`, so a session that stops and re
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-observation.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/claim-continuity/claim-service.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-observation.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/claim-continuity/claim-service.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/continuity-identities.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/continuity-identities.vitest.ts`
 
 ---
 

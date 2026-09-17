@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep research stops once all tracked key questions are answered.
 ### Commands
-1. `bash: rg -n 'all questions answered|countUnanswered|coverage' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md .opencode/skills/system-deep-loop/deep-research/README.md`
-2. `bash: rg -n 'remaining_questions == 0|all_questions_answered|answered_count|total_questions' .opencode/commands/deep/assets/deep-research-auto.yaml .opencode/commands/deep/assets/deep-research-confirm.yaml`
-3. `bash: rg -n 'Questions:|coverage|all questions answered' .opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md`
+1. `bash: rg -n 'all questions answered|countUnanswered|coverage' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md .skilled/skills/system-deep-loop/deep-research/README.md`
+2. `bash: rg -n 'remaining_questions == 0|all_questions_answered|answered_count|total_questions' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+3. `bash: rg -n 'Questions:|coverage|all questions answered' .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md`
 ### Expected
 Question completion is a named hard stop and is reflected in the convergence and usage docs.
 ### Evidence
@@ -71,11 +71,11 @@ Check the convergence pseudocode first, then verify the loop extracts `answered_
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Question-coverage hard stop; use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Remaining-question stop check; inspect `step_read_state` and `step_check_convergence` |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Remaining-question stop check; inspect `step_read_state` and `step_check_convergence` |
-| `.opencode/skills/system-deep-loop/deep-research/README.md` | Question-coverage framing; use `ANCHOR:usage-examples` |
-| `.opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Coverage visualization; use `ANCHOR:progress-visualization` |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Question-coverage hard stop; use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Remaining-question stop check; inspect `step_read_state` and `step_check_convergence` |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Remaining-question stop check; inspect `step_read_state` and `step_check_convergence` |
+| `.skilled/skills/system-deep-loop/deep-research/README.md` | Question-coverage framing; use `ANCHOR:usage-examples` |
+| `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Coverage visualization; use `ANCHOR:progress-visualization` |
 
 ---
 
@@ -85,4 +85,4 @@ Check the convergence pseudocode first, then verify the loop extracts `answered_
 - Playbook ID: DR-012
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/stop-when-all-key-questions-are-answered.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

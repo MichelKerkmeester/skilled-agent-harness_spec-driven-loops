@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate confirm mode approval checkpoints without changing deep-research's core loop or artifacts.
 ### Commands
-1. `bash: rg -n ':confirm|approval|interactive' .opencode/commands/deep/research.md .opencode/skills/system-deep-loop/deep-research/README.md`
-2. `bash: sed -n '1,300p' .opencode/commands/deep/assets/deep-research-confirm.yaml`
-3. `bash: rg -n 'gate_init_approval|phase_loop|phase_synthesis|research_output|research/iterations' .opencode/commands/deep/assets/deep-research-confirm.yaml`
+1. `bash: rg -n ':confirm|approval|interactive' .skilled/commands/deep/research.md .skilled/skills/system-deep-loop/deep-research/README.md`
+2. `bash: sed -n '1,300p' .skilled/commands/deep/assets/deep-research-confirm.yaml`
+3. `bash: rg -n 'gate_init_approval|phase_loop|phase_synthesis|research_output|research/iterations' .skilled/commands/deep/assets/deep-research-confirm.yaml`
 ### Expected
 Confirm mode is interactive, approval-gated, and still routes through initialization, loop, synthesis, and save rather than a separate workflow.
 ### Evidence
@@ -71,9 +71,9 @@ Inspect `gate_init_approval` first, then compare `phase_loop` and `state_paths` 
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/research.md` | Mode routing and workflow overview; use `## 0. UNIFIED SETUP PHASE` and `## 3. WORKFLOW OVERVIEW` |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Interactive workflow contract; inspect `gate_init_approval`, iteration approval steps, and `state_paths` |
-| `.opencode/skills/system-deep-loop/deep-research/README.md` | User-facing execution modes; use `ANCHOR:features` |
+| `.skilled/commands/deep/research.md` | Mode routing and workflow overview; use `## 0. UNIFIED SETUP PHASE` and `## 3. WORKFLOW OVERVIEW` |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Interactive workflow contract; inspect `gate_init_approval`, iteration approval steps, and `state_paths` |
+| `.skilled/skills/system-deep-loop/deep-research/README.md` | User-facing execution modes; use `ANCHOR:features` |
 
 ---
 
@@ -83,4 +83,4 @@ Inspect `gate_init_approval` first, then compare `phase_loop` and `state_paths` 
 - Playbook ID: DR-002
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `entry-points-and-modes/confirm-mode-checkpointed-execution.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

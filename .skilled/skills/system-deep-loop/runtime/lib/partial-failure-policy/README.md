@@ -30,10 +30,10 @@ Runtime primitives that replace ad hoc fan-out failure handling in `system-deep-
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/`
+- `.skilled/skills/system-deep-loop/runtime/lib/provenance-reduction/`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/partial-failure-policy.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/partial-failure-policy.vitest.ts`

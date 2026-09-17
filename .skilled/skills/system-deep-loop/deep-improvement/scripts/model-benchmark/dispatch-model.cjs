@@ -354,7 +354,7 @@ function buildResumeHint(sentinelPath) {
   const root = repoRoot();
   const relSentinel = path.relative(root, sentinelPath) || sentinelPath;
   const loopHost = path.join(
-    '.opencode', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'shared', 'loop-host.cjs',
+    '.skilled', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'shared', 'loop-host.cjs',
   );
   return `rm ${shellQuote(relSentinel)} && node ${shellQuote(loopHost)} --mode=model-benchmark --profile=<profile> --outputs-dir=<outputs-dir>`;
 }

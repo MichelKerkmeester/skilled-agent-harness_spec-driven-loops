@@ -50,7 +50,7 @@ Operators run the exact command sequence for `CP-046` and confirm the expected s
 ```bash
 rm -rf /tmp/cp-046-sandbox /tmp/cp-046-sandbox-baseline /tmp/cp-046-spec
 mkdir -p /tmp/cp-046-spec
-.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-046-sandbox
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-046-sandbox
 cp -a /tmp/cp-046-sandbox /tmp/cp-046-sandbox-baseline
 cat > /tmp/cp-046-spec/spec.md <<'EOF'
 ---
@@ -99,11 +99,11 @@ diff /tmp/cp-046-pre.txt /tmp/cp-046-post.txt > /tmp/cp-046-tripwire.diff; echo 
 
 | File | Anchor |
 |---|---|
-| `.opencode/commands/deep/research.md:7-23` | Markdown setup must resolve inputs before YAML load |
-| `.opencode/commands/deep/research.md:46-149` | single setup prompt and required bindings |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml:143-150` | preflight rejects missing bindings |
-| `.opencode/skills/system-deep-loop/deep-research/SKILL.md:46-64` | command-owned workflow is mandatory |
-| `.opencode/agents/deep-research.md:34-39` | agent body hard-blocks missing state |
+| `.skilled/commands/deep/research.md:7-23` | Markdown setup must resolve inputs before YAML load |
+| `.skilled/commands/deep/research.md:46-149` | single setup prompt and required bindings |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml:143-150` | preflight rejects missing bindings |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:46-64` | command-owned workflow is mandatory |
+| `.skilled/agents/deep-research.md:34-39` | agent body hard-blocks missing state |
 
 ---
 

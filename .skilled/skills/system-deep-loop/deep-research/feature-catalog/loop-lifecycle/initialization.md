@@ -36,21 +36,21 @@ Lineage handling is narrower than some older drafts. The runtime supports `new`,
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/deep/research.md` | Command | Defines the init phase inputs, packet outputs, and setup contract before the YAML workflow loads. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow | Creates canonical state files and applies the autonomous initialization path. |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Mirrors the init path with confirm-mode charter review and state checks. |
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Documents session classification, canonical names, and the resumed or restarted lifecycle event contract. |
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Asset | Supplies the default config shape written during initialization. |
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Asset | Supplies the initial strategy structure and anchor layout. |
+| `.skilled/commands/deep/research.md` | Command | Defines the init phase inputs, packet outputs, and setup contract before the YAML workflow loads. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Creates canonical state files and applies the autonomous initialization path. |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Mirrors the init path with confirm-mode charter review and state checks. |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Documents session classification, canonical names, and the resumed or restarted lifecycle event contract. |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Asset | Supplies the default config shape written during initialization. |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Asset | Supplies the initial strategy structure and anchor layout. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/fresh-initialization-creates-canonical-state-files.md` | Manual playbook | Verifies fresh initialization creates the canonical packet files. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-state.md` | Manual playbook | Verifies resume classification and restart-safe continuation from valid state. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/invalid-or-contradictory-state-halts-for-repair.md` | Manual playbook | Verifies contradictory packet state halts instead of guessing. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/research-charter-validation.md` | Manual playbook | Verifies the research charter sections exist before the loop proceeds. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/fresh-initialization-creates-canonical-state-files.md` | Manual playbook | Verifies fresh initialization creates the canonical packet files. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-state.md` | Manual playbook | Verifies resume classification and restart-safe continuation from valid state. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/invalid-or-contradictory-state-halts-for-repair.md` | Manual playbook | Verifies contradictory packet state halts instead of guessing. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/research-charter-validation.md` | Manual playbook | Verifies the research charter sections exist before the loop proceeds. |
 
 ---
 

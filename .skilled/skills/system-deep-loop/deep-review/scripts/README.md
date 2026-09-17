@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.opencode/skills/system-deep-loop/deep-review/scripts/` contains the code entrypoints used by the deep-review workflow. The folder has review pivot logic, contract snapshot rendering, runtime capability reporting and a nested test area.
+`.skilled/skills/system-deep-loop/deep-review/scripts/` contains the code entrypoints used by the deep-review workflow. The folder has review pivot logic, contract snapshot rendering, runtime capability reporting and a nested test area.
 
 ---
 

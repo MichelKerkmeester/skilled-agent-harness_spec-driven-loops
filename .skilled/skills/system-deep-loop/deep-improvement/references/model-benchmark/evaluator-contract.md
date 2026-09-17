@@ -40,7 +40,7 @@ Weak candidates and infrastructure failures must be distinguishable. The contrac
 
 ### Dynamic Profiles (only mode)
 
-Every agent file in `.opencode/agents/*.md` is evaluated using dynamic mode. The scorer generates a profile on the fly from the agent's own structure, rules, and permissions using `generate-profile.cjs`. No static profiles are shipped; dynamic mode is the sole scoring path.
+Every agent file in `.skilled/agents/*.md` is evaluated using dynamic mode. The scorer generates a profile on the fly from the agent's own structure, rules, and permissions using `generate-profile.cjs`. No static profiles are shipped; dynamic mode is the sole scoring path.
 
 ---
 

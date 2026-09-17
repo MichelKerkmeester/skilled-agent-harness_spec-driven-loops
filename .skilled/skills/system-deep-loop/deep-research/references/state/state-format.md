@@ -52,7 +52,7 @@ The deep-research loop persists continuity in packet files so each iteration can
 | `research.md` | Markdown | Final/progressive synthesis | Workflow-owned |
 | `resource-map.md` | Markdown | Optional evidence-derived resource map | Workflow-owned |
 
-The artifact directory is resolved by `resolveArtifactRoot(specFolder, 'research')` from `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs`.
+The artifact directory is resolved by `resolveArtifactRoot(specFolder, 'research')` from `.skilled/skills/system-spec-kit/shared/review-research-paths.cjs`.
 
 ---
 
@@ -129,12 +129,12 @@ The config file carries the protection map; details live in `state-reducer-regis
 
 ### Registered vocabulary
 
-The canonical dotted stems for this mode live in `.opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts`:
+The canonical dotted stems for this mode live in `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts`:
 
 - `DeepResearchEventStems` — the registered stems the ledger accepts.
 - `DEEP_RESEARCH_STEM_PRODUCERS` — one entry per stem recording whether a mechanical producer emits it today (`spoken`, with the producer files) or why nothing does (`reserved`).
 
-`.opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` scans the workflow assets and runtime scripts and fails (exit 2) when a registered stem has no producer, a spoken stem has no emitter, or a reserved stem is emitted anyway.
+`.skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` scans the workflow assets and runtime scripts and fails (exit 2) when a registered stem has no producer, a spoken stem has no emitter, or a reserved stem is emitted anyway.
 
 ### Which file is authoritative
 

@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the deep-research minIterations floor and convergenceMode behavior against config, YAML, and tests.
 ### Commands
-1. `bash: rg -n 'minIterations|convergenceMode|antiConvergence' .opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json`
-2. `bash: rg -n 'min_iterations|minIterationsNotReached|min_iterations_guard_pass|convergenceMode' .opencode/commands/deep/assets/deep-research-auto.yaml`
-3. `bash: sed -n '1,130p' .opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts`
+1. `bash: rg -n 'minIterations|convergenceMode|antiConvergence' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json`
+2. `bash: rg -n 'min_iterations|minIterationsNotReached|min_iterations_guard_pass|convergenceMode' .skilled/commands/deep/assets/deep-research-auto.yaml`
+3. `bash: sed -n '1,130p' .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts`
 ### Expected
 `minIterations` defaults to 3, early convergence STOP is overridden until the floor clears, `convergenceMode` is accepted, and older configs without the field keep prior behavior with a warning.
 ### Evidence
@@ -72,9 +72,9 @@ Privilege the auto YAML for live workflow behavior and the config asset for ship
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Anti-convergence defaults and locked config fields |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Live convergence guard, warning, and event emission path |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts` | Unit coverage for config and YAML guard behavior |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Anti-convergence defaults and locked config fields |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Live convergence guard, warning, and event emission path |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts` | Unit coverage for config and YAML guard behavior |
 
 ---
 

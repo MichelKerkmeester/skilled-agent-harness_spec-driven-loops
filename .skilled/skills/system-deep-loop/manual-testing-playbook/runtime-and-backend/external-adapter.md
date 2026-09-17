@@ -43,8 +43,8 @@ List every distinct backendKind value used across all modes in mode-registry.jso
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` is readable.
-2. `.opencode/skills/system-deep-loop/SKILL.md` is readable.
+1. `.skilled/skills/system-deep-loop/mode-registry.json` is readable.
+2. `.skilled/skills/system-deep-loop/SKILL.md` is readable.
 
 ### Prompt
 
@@ -52,8 +52,8 @@ List every distinct backendKind value used across all modes in mode-registry.jso
 
 ### Commands
 
-1. `grep -oE '"backendKind": *"[a-z-]+"' .opencode/skills/system-deep-loop/mode-registry.json | sort -u > /tmp/dlw-RB-004/backend-kinds.txt`
-2. `grep -c -i "external-adapter" .opencode/skills/system-deep-loop/mode-registry.json .opencode/skills/system-deep-loop/SKILL.md > /tmp/dlw-RB-004/external-adapter-matches.txt`
+1. `grep -oE '"backendKind": *"[a-z-]+"' .skilled/skills/system-deep-loop/mode-registry.json | sort -u > /tmp/dlw-RB-004/backend-kinds.txt`
+2. `grep -c -i "external-adapter" .skilled/skills/system-deep-loop/mode-registry.json .skilled/skills/system-deep-loop/SKILL.md > /tmp/dlw-RB-004/external-adapter-matches.txt`
 3. `wc -l < /tmp/dlw-RB-004/backend-kinds.txt`
 
 ### Expected
@@ -80,8 +80,8 @@ Step 1 produces exactly two distinct lines: `"backendKind": "runtime-loop-type"`
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `discriminator.backendKind` definition and per-mode `backendKind` values.
-- `.opencode/skills/system-deep-loop/SKILL.md` - backend routing rule that must stay consistent with the two-value discriminator.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `discriminator.backendKind` definition and per-mode `backendKind` values.
+- `.skilled/skills/system-deep-loop/SKILL.md` - backend routing rule that must stay consistent with the two-value discriminator.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

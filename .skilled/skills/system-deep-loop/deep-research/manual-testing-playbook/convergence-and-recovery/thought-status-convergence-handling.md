@@ -45,10 +45,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate thought-status iterations are excluded from stuck counting and rolling convergence averages.
 ### Commands
-1. `bash: rg -n 'thought' .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md`
-2. `bash: rg -n 'thought\|rolling.average\|stuckCount' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-3. `bash: rg -n 'thought\|insight\|stuck' .opencode/skills/system-deep-loop/deep-research/SKILL.md`
-4. `bash: rg -n 'stuck_count\|thought' .opencode/commands/deep/assets/deep-research-auto.yaml`
+1. `bash: rg -n 'thought' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
+2. `bash: rg -n 'thought\|rolling.average\|stuckCount' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+3. `bash: rg -n 'thought\|insight\|stuck' .skilled/skills/system-deep-loop/deep-research/SKILL.md`
+4. `bash: rg -n 'stuck_count\|thought' .skilled/commands/deep/assets/deep-research-auto.yaml`
 ### Expected
 Iteration with status="thought", convergence treats it appropriately (does not count as stuck, does not count toward rolling average).
 ### Evidence
@@ -72,10 +72,10 @@ Privilege state-format.md for the status taxonomy and convergence.md for the alg
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical JSONL schema; thought status definition and its convergence-neutral semantics |
-| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Convergence math; rolling average and stuckCount computation with thought exclusion |
-| `.opencode/skills/system-deep-loop/deep-research/SKILL.md` | Skill overview; iteration status taxonomy including thought |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; stuck_count update logic in step_update_state |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical JSONL schema; thought status definition and its convergence-neutral semantics |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Convergence math; rolling average and stuckCount computation with thought exclusion |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Skill overview; iteration status taxonomy including thought |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; stuck_count update logic in step_update_state |
 
 ---
 
@@ -85,4 +85,4 @@ Privilege state-format.md for the status taxonomy and convergence.md for the alg
 - Playbook ID: DR-030
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/thought-status-convergence-handling.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

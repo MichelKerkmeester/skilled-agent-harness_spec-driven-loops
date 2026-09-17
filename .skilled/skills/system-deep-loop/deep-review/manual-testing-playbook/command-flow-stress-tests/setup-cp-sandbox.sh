@@ -84,11 +84,11 @@ copy_file() {
   cp "$source" "$target"
 }
 
-require_path "${REPO_ROOT}/.opencode/commands/speckit"
-require_path "${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-review"
-require_path "${REPO_ROOT}/.opencode/skills/system-spec-kit"
-require_path "${REPO_ROOT}/.opencode/skills/sk-code"
-require_path "${REPO_ROOT}/.opencode/agents/deep-review.md"
+require_path "${REPO_ROOT}/.skilled/commands/speckit"
+require_path "${REPO_ROOT}/.skilled/skills/system-deep-loop/deep-review"
+require_path "${REPO_ROOT}/.skilled/skills/system-spec-kit"
+require_path "${REPO_ROOT}/.skilled/skills/sk-code"
+require_path "${REPO_ROOT}/.skilled/agents/deep-review.md"
 require_path "${REPO_ROOT}/.claude/agents/deep-review.md"
 
 validate_sandbox_dir "$SANDBOX_DIR"
@@ -96,12 +96,12 @@ validate_sandbox_dir "$SANDBOX_DIR"
 rm -rf "$SANDBOX_DIR"
 mkdir -p "$SANDBOX_DIR"
 
-copy_dir "${REPO_ROOT}/.opencode/commands/speckit" "${SANDBOX_DIR}/.opencode/commands/speckit"
-copy_dir "${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-review" "${SANDBOX_DIR}/.opencode/skills/system-deep-loop/deep-review"
-copy_dir "${REPO_ROOT}/.opencode/skills/system-spec-kit" "${SANDBOX_DIR}/.opencode/skills/system-spec-kit"
-copy_dir "${REPO_ROOT}/.opencode/skills/sk-code" "${SANDBOX_DIR}/.opencode/skills/sk-code"
+copy_dir "${REPO_ROOT}/.skilled/commands/speckit" "${SANDBOX_DIR}/.skilled/commands/speckit"
+copy_dir "${REPO_ROOT}/.skilled/skills/system-deep-loop/deep-review" "${SANDBOX_DIR}/.skilled/skills/system-deep-loop/deep-review"
+copy_dir "${REPO_ROOT}/.skilled/skills/system-spec-kit" "${SANDBOX_DIR}/.skilled/skills/system-spec-kit"
+copy_dir "${REPO_ROOT}/.skilled/skills/sk-code" "${SANDBOX_DIR}/.skilled/skills/sk-code"
 
-copy_file "${REPO_ROOT}/.opencode/agents/deep-review.md" "${SANDBOX_DIR}/.opencode/agents/deep-review.md"
+copy_file "${REPO_ROOT}/.skilled/agents/deep-review.md" "${SANDBOX_DIR}/.skilled/agents/deep-review.md"
 copy_file "${REPO_ROOT}/.claude/agents/deep-review.md" "${SANDBOX_DIR}/.claude/agents/deep-review.md"
 
 mkdir -p "${SANDBOX_DIR}/targets"

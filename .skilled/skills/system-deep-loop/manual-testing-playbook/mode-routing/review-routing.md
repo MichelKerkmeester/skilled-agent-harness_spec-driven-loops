@@ -59,15 +59,15 @@ Run a deep review of the current routing changes, iterate until findings converg
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/SKILL.md` is readable.
-2. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `review` mode entry.
+1. `.skilled/skills/system-deep-loop/SKILL.md` is readable.
+2. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `review` mode entry.
 3. Skill advisor is callable if the operator chooses an advisor probe.
 
 ### Exact Command Sequence
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict." --threshold 0.8 > /tmp/dlw-MO-002/advisor.txt
+   python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict." --threshold 0.8 > /tmp/dlw-MO-002/advisor.txt
    ```
 2. **Invoke hub**: `Skill(system-deep-loop, "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict.")`.
 3. **Capture route**: save the AI response to `/tmp/dlw-MO-002/response.txt`.
@@ -98,8 +98,8 @@ Run a deep review of the current routing changes, iterate until findings converg
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - hub routing rule and mode table.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `review` mode source of truth.
+- `.skilled/skills/system-deep-loop/SKILL.md` - hub routing rule and mode table.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `review` mode source of truth.
 
 ---
 

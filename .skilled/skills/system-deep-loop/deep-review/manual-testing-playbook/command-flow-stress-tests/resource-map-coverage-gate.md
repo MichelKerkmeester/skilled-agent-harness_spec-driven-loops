@@ -50,7 +50,7 @@ Operators run the exact command sequence and verify only file and text signals.
 set -uo pipefail
 rm -rf /tmp/cp-054-sandbox /tmp/cp-054-sandbox-baseline /tmp/cp-054-spec
 mkdir -p /tmp/cp-054-spec/applied
-.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-054-sandbox
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-054-sandbox
 cat > /tmp/cp-054-spec/resource-map.md <<'MAP'
 # Resource Map
 
@@ -99,9 +99,9 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | File | Lines | Role |
 |---|---:|---|
-| `.opencode/commands/deep/review.md` | 186-188, 238-245 | Review packet outputs and YAML handoff |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 233-251, 496-503 | Resource-map coverage behavior and report expectations |
-| `.opencode/agents/deep-review.md` | 245-252, 424-435 | Traceability dimension and pre-delivery verification |
+| `.skilled/commands/deep/review.md` | 186-188, 238-245 | Review packet outputs and YAML handoff |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | 233-251, 496-503 | Resource-map coverage behavior and report expectations |
+| `.skilled/agents/deep-review.md` | 245-252, 424-435 | Traceability dimension and pre-delivery verification |
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 
 ---

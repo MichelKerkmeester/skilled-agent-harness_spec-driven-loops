@@ -28,7 +28,7 @@ This feature belongs to the executor group and is catalogued as F003 in the `run
 
 Model registry lookup, fallback target selection, disabled fallback, and fail-fast reasons.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

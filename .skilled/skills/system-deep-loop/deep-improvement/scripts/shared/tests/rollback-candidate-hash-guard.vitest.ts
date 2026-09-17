@@ -27,11 +27,11 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const ROLLBACK = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs',
 );
 const PROMOTE = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs',
 );
 const require = createRequire(import.meta.url);
 const { issueApprovalReceipt } = require('../promotion-receipts.cjs') as {

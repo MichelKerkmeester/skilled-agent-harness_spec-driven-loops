@@ -27,7 +27,7 @@ This feature belongs to the fan-out group and is catalogued as F044 in the `runt
 
 `fanout-pool.cjs` accepts `lagCeilingMs` plus `lagCeilingAction:"abort-requeue"`, attaches abort handles per active slot, emits timeout failure-class ledger events, and leaves default pool behavior unchanged.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

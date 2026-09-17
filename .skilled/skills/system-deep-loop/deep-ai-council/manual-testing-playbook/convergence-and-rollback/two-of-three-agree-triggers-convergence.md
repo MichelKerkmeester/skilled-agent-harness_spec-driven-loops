@@ -46,8 +46,8 @@ Operators need a clear stop rule that does not pretend unanimity is required.
 
 ### Commands
 
-1. `bash: sed -n '1,120p' .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md`
-2. `bash: rg -n "two-of-three|2 of 3|convergence" .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md`
+1. `bash: sed -n '1,120p' .skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md`
+2. `bash: rg -n "two-of-three|2 of 3|convergence" .skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md`
 
 ### Expected
 
@@ -68,7 +68,7 @@ Check the convergence reference first, then the SKILL.md success criteria.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-008 | Two-of-three convergence | Verify convergence trigger | `Check whether this council has enough agreement to proceed and cite the convergence rule.` | `bash: sed -n '1,120p' .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md -> bash: rg -n "two-of-three|2 of 3|convergence" .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md` | Two-of-three rule present | Reference lines | PASS if explicit | Inspect convergence reference |
+| DAC-008 | Two-of-three convergence | Verify convergence trigger | `Check whether this council has enough agreement to proceed and cite the convergence rule.` | `bash: sed -n '1,120p' .skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md -> bash: rg -n "two-of-three|2 of 3|convergence" .skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md` | Two-of-three rule present | Reference lines | PASS if explicit | Inspect convergence reference |
 
 ---
 
@@ -85,7 +85,7 @@ Check the convergence reference first, then the SKILL.md success criteria.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md` | Convergence rule |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md` | Convergence rule |
 
 ---
 

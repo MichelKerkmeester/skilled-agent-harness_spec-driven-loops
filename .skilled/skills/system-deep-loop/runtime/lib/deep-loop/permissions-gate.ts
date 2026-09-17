@@ -240,7 +240,7 @@ function pathCandidates(rawPath: string): string[] | null {
     candidates.add(normalizeSeparators(path.relative(repoRoot, resolved)));
   }
 
-  const opencodeIndex = absolute.indexOf('/.opencode/');
+  const opencodeIndex = absolute.search(/\/\.(?:skilled|opencode)\//);
   if (opencodeIndex >= 0) {
     candidates.add(absolute.slice(opencodeIndex + 1));
   }

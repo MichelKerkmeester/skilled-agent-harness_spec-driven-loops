@@ -36,17 +36,17 @@ Candidate filtering checks exact normalized text first, then applies category-co
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Derives the bounded rejected-pattern index and filters rejected candidates. |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | Reference | Defines rejected-pattern lifecycle event records. |
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Documents suppression ordering, fuzzy matching, and overflow policy. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow | Runs the rejected-pattern check before candidate selection. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Derives the bounded rejected-pattern index and filters rejected candidates. |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | Reference | Defines rejected-pattern lifecycle event records. |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Documents suppression ordering, fuzzy matching, and overflow policy. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Runs the rejected-pattern check before candidate selection. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies exact suppression, removal, reset, bounded derivation, and fuzzy category matching. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/rejected-pattern-cache.md` | Manual playbook | Verifies rejected candidates stay out until removed or reset. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies exact suppression, removal, reset, bounded derivation, and fuzzy category matching. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/rejected-pattern-cache.md` | Manual playbook | Verifies rejected candidates stay out until removed or reset. |
 
 ---
 

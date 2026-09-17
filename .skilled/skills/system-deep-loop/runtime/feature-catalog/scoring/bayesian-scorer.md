@@ -28,7 +28,7 @@ This feature belongs to the scoring group and is catalogued as F010 in the `runt
 
 Smoothed success scoring and demotion threshold checks.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

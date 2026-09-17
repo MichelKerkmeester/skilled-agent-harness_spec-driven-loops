@@ -9,7 +9,7 @@ version: "2.0.0.0"
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
 > outcome and reason are persisted into
-> `.opencode/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.
+> `.skilled/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.
 
 > **EXECUTION POLICY**: Every scenario MUST be executed against the live `system-deep-loop` skill and its real `mode-registry.json` source of truth. No mocks, no stubs, and no invented routing behavior. Acceptable verdicts are PASS, FAIL, or SKIP with a documented sandbox blocker.
 
@@ -62,10 +62,10 @@ Coverage note: the playbook covers the hub's registry-driven routing at version 
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is the repository root.
-2. The hub skill is present at `.opencode/skills/system-deep-loop/`.
-3. `.opencode/skills/system-deep-loop/SKILL.md` states that `mode-registry.json` is the single source of truth and that the hub holds no per-mode convergence, state, or synthesis logic.
-4. `.opencode/skills/system-deep-loop/mode-registry.json` contains exactly 5 active modes in its `modes` array.
-5. The skill advisor at `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` is callable when advisor scenarios are executed.
+2. The hub skill is present at `.skilled/skills/system-deep-loop/`.
+3. `.skilled/skills/system-deep-loop/SKILL.md` states that `mode-registry.json` is the single source of truth and that the hub holds no per-mode convergence, state, or synthesis logic.
+4. `.skilled/skills/system-deep-loop/mode-registry.json` contains exactly 5 active modes in its `modes` array.
+5. The skill advisor at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` is callable when advisor scenarios are executed.
 6. The orchestrator runtime can invoke `Skill(system-deep-loop)` and can run `/deep:*` command prompts, or the operator can capture equivalent dry-run routing transcripts.
 7. Operator evidence is written under `/tmp/dlw-<SCENARIO-ID>/` and never into project source paths unless a scenario explicitly states the mode's real artifact-root contract.
 8. Multi-scenario waves cap at 5 parallel advisor probes. Command-bridge and state-discipline checks that may create artifacts run serially.
@@ -87,11 +87,11 @@ Coverage note: the playbook covers the hub's registry-driven routing at version 
 
 ## 4. DETERMINISTIC COMMAND NOTATION
 
-- Skill advisor probe: `python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<prompt>" --threshold 0.8`.
+- Skill advisor probe: `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<prompt>" --threshold 0.8`.
 - Skill hub invocation: `Skill(system-deep-loop, "<prompt>")`.
 - Command-surface invocation: enter the exact `/deep:*` command and prompt into the orchestrator runtime.
-- Registry check: read `.opencode/skills/system-deep-loop/mode-registry.json` and compare the selected mode to the matching `modes[]` entry.
-- Resource path notation: paths shown relative to `.opencode/skills/system-deep-loop/` unless explicitly stated otherwise.
+- Registry check: read `.skilled/skills/system-deep-loop/mode-registry.json` and compare the selected mode to the matching `modes[]` entry.
+- Resource path notation: paths shown relative to `.skilled/skills/system-deep-loop/` unless explicitly stated otherwise.
 - All evidence files live under `/tmp/dlw-<SCENARIO-ID>/`.
 
 ---

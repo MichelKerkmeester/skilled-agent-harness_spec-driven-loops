@@ -64,7 +64,7 @@ tests/
 Run the complete runtime test configuration from the repository root.
 
 ```bash
-.opencode/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts
+.skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts
 ```
 
 ---

@@ -50,7 +50,7 @@ Council tests verify the multi-seat branch of the runtime spine after event and 
 ## 5. VALIDATION
 
 ```bash
-.opencode/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts tests/council
+.skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/council
 ```
 
 ---

@@ -9,7 +9,7 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const SCORE_SCRIPT = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs',
 );
 
 let tmpDir: string;
@@ -65,7 +65,7 @@ Evidence is cited
 
 // A candidate whose RELATED RESOURCES inject hostile, traversal-shaped command/skill refs.
 // The skill ref "deep-improvement/../deep-improvement" is the load-bearing one:
-// if interpolated raw into `.opencode/skills/${sk}/SKILL.md` it RESOLVES to a real existing
+// if interpolated raw into `.skilled/skills/${sk}/SKILL.md` it RESOLVES to a real existing
 // SKILL.md, which is exactly the traversal-based existence oracle F017-P2-13b describes. The
 // guard must reject it on the separator, so it must NOT count as a valid ref.
 function writeHostileRefCandidate(filePath: string, agentName = 'hostile-ref-agent'): void {

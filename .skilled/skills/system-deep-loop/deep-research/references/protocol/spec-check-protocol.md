@@ -32,7 +32,7 @@ This protocol applies only to deep-research-owned `spec.md` mutations:
 - Anchor-bounded pre-init context updates to an existing `spec.md`
 - One generated findings block written after synthesis
 
-This protocol does not own the shared intake contract in `.opencode/skills/system-spec-kit/references/workflows/intake-contract.md`, nor `/speckit:plan` or `/speckit:complete` delegation behavior.
+This protocol does not own the shared intake contract in `.skilled/skills/system-spec-kit/references/workflows/intake-contract.md`, nor `/speckit:plan` or `/speckit:complete` delegation behavior.
 
 ### Relation to the Deep-Research Loop
 The workflow remains four-phase:
@@ -189,7 +189,7 @@ Every audit payload is typed. At minimum, emit:
 ### Topic Dedupe
 - Lowercase, strip punctuation, collapse whitespace, and trim before comparing research topics.
 - Re-running with the same `normalized_topic` must no-op instead of appending another pre-init note.
-- The shared intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake-contract.md` §5-§6) applies the same normalization before writing `feature_description` into `spec.md` Problem Statement or Purpose; equivalent normalized phrases emit `intake_topic_deduped` instead of overwriting the existing prose.
+- The shared intake contract (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §5-§6) applies the same normalization before writing `feature_description` into `spec.md` Problem Statement or Purpose; equivalent normalized phrases emit `intake_topic_deduped` instead of overwriting the existing prose.
 
 ### Marker-Based Placeholder Detection
 - Seed behavior depends on deterministic `<!-- DR-SEED:... -->` markers, not fuzzy prose matching.

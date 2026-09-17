@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the deep-review dimension coverage convergence signal and its stabilization requirement.
 ### Commands
-1. `bash: rg -n 'dimension.coverage|Dimension Coverage|0\.45|minStabilization|stabilization|all.*dimension|4.*dimension' .opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'dimension_coverage|0\.45|minStabilization|stabilization|all_dimensions|dimension.*covered' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
-3. `bash: rg -n 'Dimension Coverage|0\.45|minStabilization|stabilization|Covered|D1|D2|D3|D4|Correctness|Security|Traceability|Maintainability' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
+1. `bash: rg -n 'dimension.coverage|Dimension Coverage|0\.45|minStabilization|stabilization|all.*dimension|4.*dimension' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+2. `bash: rg -n 'dimension_coverage|0\.45|minStabilization|stabilization|all_dimensions|dimension.*covered' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'Dimension Coverage|0\.45|minStabilization|stabilization|Covered|D1|D2|D3|D4|Correctness|Security|Traceability|Maintainability' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
 ### Expected
 Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
 ### Evidence
@@ -71,12 +71,12 @@ Privilege the convergence reference for the signal formula and use the strategy 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, dimension coverage signal definition and minStabilizationPasses |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect dimension coverage check in `step_check_convergence` |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect dimension coverage check in `step_check_convergence` |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence signal table, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Review dimensions and convergence rules, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
-| `.opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template showing dimension tracking in "Covered" list |
+| `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, dimension coverage signal definition and minStabilizationPasses |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect dimension coverage check in `step_check_convergence` |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect dimension coverage check in `step_check_convergence` |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence signal table, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Review dimensions and convergence rules, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
+| `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template showing dimension tracking in "Covered" list |
 
 ---
 
@@ -86,4 +86,4 @@ Privilege the convergence reference for the signal formula and use the strategy 
 - Playbook ID: DRV-020
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/dimension-coverage-convergence-signal.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

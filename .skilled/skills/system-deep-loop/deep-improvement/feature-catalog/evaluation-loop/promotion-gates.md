@@ -36,18 +36,18 @@ The helper that enforces those rules is stricter than the current dynamic scorer
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Policy reference | Defines the keep, reject, tie-break, and promotion-prerequisite rules. |
-| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/loop-protocol.md` | Workflow reference | Places promotion after score, benchmark, and reduction stages. |
-| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-charter.md` | Runtime policy | Freezes legal-stop gates and approval rules inside the copied runtime control bundle. |
-| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-config.json` | Runtime config | Supplies `proposalOnly`, `promotionEnabled`, and `scoring.thresholdDelta` checks consumed by the helper. |
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Validates score, benchmark, repeatability, runtime config, manifest target, and approval before copying a candidate into the canonical target. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Policy reference | Defines the keep, reject, tie-break, and promotion-prerequisite rules. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/loop-protocol.md` | Workflow reference | Places promotion after score, benchmark, and reduction stages. |
+| `.skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-charter.md` | Runtime policy | Freezes legal-stop gates and approval rules inside the copied runtime control bundle. |
+| `.skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-config.json` | Runtime config | Supplies `proposalOnly`, `promotionEnabled`, and `scoring.thresholdDelta` checks consumed by the helper. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Validates score, benchmark, repeatability, runtime config, manifest target, and approval before copying a candidate into the canonical target. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Contract reference | Documents the current scorer output shape and recommendation labels. |
-| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Safety reference | Defines the conditions that should block expansion or promotion. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Contract reference | Documents the current scorer output shape and recommendation labels. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Safety reference | Defines the conditions that should block expansion or promotion. |
 
 ---
 

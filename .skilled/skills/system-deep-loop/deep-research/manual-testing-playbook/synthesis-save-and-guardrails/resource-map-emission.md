@@ -48,10 +48,10 @@ Validate resource-map emission from delta evidence and --no-resource-map suppres
 
 ### Commands
 
-1. `bash: rg -n 'resource-map|no-resource-map|emit-resource-map' .opencode/commands/deep/research.md .opencode/skills/system-deep-loop/deep-research/SKILL.md .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-2. `bash: rg -n 'resource_map|resource-map|emit-resource-map' .opencode/commands/deep/assets/deep-research-auto.yaml .opencode/commands/deep/assets/deep-research-confirm.yaml .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
-3. `bash: node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> --emit-resource-map`
-4. `bash: node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> --emit-resource-map` with `deep-research-config.json` edited to `"resource_map": { "emit": false }`
+1. `bash: rg -n 'resource-map|no-resource-map|emit-resource-map' .skilled/commands/deep/research.md .skilled/skills/system-deep-loop/deep-research/SKILL.md .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+2. `bash: rg -n 'resource_map|resource-map|emit-resource-map' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
+3. `bash: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> --emit-resource-map`
+4. `bash: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> --emit-resource-map` with `deep-research-config.json` edited to `"resource_map": { "emit": false }`
 
 ### Expected
 
@@ -84,12 +84,12 @@ Privilege the YAML synthesis step and reducer behavior over secondary docs if th
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/research.md` | Command entrypoint; opt-out and emitted-artifact contract |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Autonomous synthesis emission step |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Confirm-mode synthesis emission step |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer flag handling and write path |
-| `.opencode/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs` | Shared template renderer and research-shape adapter |
-| `.opencode/skills/system-spec-kit/runtime/tests/resource-map-extractor.vitest.ts` | Focused regression coverage for the emitted output shape |
+| `.skilled/commands/deep/research.md` | Command entrypoint; opt-out and emitted-artifact contract |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Autonomous synthesis emission step |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Confirm-mode synthesis emission step |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer flag handling and write path |
+| `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs` | Shared template renderer and research-shape adapter |
+| `.skilled/skills/system-spec-kit/runtime/tests/resource-map-extractor.vitest.ts` | Focused regression coverage for the emitted output shape |
 
 ---
 

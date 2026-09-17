@@ -43,12 +43,12 @@ If any `skip_when` guard is missing or `if_absent` was modified, every existing 
 
 ### Commands
 
-1. `bash: grep -n "if_absent\|skip_when\|resolveArtifactRoot" .opencode/commands/deep/assets/deep-research-auto.yaml | head -20`
-2. Confirm `if_absent.command` = `node -e "const { resolveArtifactRoot } = require('.opencode/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'research')));"` (unchanged from pre-fan-out).
+1. `bash: grep -n "if_absent\|skip_when\|resolveArtifactRoot" .skilled/commands/deep/assets/deep-research-auto.yaml | head -20`
+2. Confirm `if_absent.command` = `node -e "const { resolveArtifactRoot } = require('.skilled/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'research')));"` (unchanged from pre-fan-out).
 3. Confirm `step_fanout_spawn:` has `skip_when: "config.fanout is absent"`.
 4. Confirm `step_fanout_merge:` has `skip_when: "config.fanout is absent"`.
 5. Repeat for `deep-research-confirm.yaml`.
-6. `bash: cd .opencode/skills/system-deep-loop/runtime && npx vitest run tests/unit/`
+6. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/`
 7. Confirm 197/197 pass.
 
 ### RECOMMENDED ORCHESTRATION PROCESS
@@ -80,8 +80,8 @@ Source inspection confirms all guards. vitest suite passes 197/197 with no new f
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | `step_resolve_artifact_root` if_absent branch, `step_fanout_spawn` skip_when, `step_fanout_merge` skip_when |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Same (confirm variant) |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | `step_resolve_artifact_root` if_absent branch, `step_fanout_spawn` skip_when, `step_fanout_merge` skip_when |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Same (confirm variant) |
 
 ### Validation
 

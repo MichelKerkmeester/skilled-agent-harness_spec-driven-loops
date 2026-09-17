@@ -446,7 +446,7 @@ describe('legacy projection census and byte contracts', () => {
     expect(LEGACY_PROJECTION_MANIFEST_DIGEST).toMatch(/^[a-f0-9]{64}$/u);
     for (const entry of LEGACY_PROJECTION_MANIFEST) {
       const censusRow = censusRows.get(entry.surfaceId);
-      expect(censusRow?.resolvedPath).toBe(entry.pathTemplate);
+      expect(censusRow?.resolvedPath?.replace(/^\.(?:opencode|skilled)\//u, '')).toBe(entry.pathTemplate.replace(/^\.(?:opencode|skilled)\//u, ''));
       expect(censusRow?.owner).toBe(entry.legacyWriter);
       expect(censusRow?.archivalReader).toBe(entry.readers.join('; '));
       expect(censusRow?.fixture).toBe(entry.fixture);

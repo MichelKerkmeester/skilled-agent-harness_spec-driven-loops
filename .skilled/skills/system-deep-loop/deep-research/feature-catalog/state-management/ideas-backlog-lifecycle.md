@@ -36,18 +36,18 @@ Leaf agents may append `idea_observed` rows only when the dispatch explicitly al
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Accumulates observations, emits idempotent promotions, ranks ideas, and suppresses rejected ideas. |
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Documents observed, promoted, and rejected lifecycle semantics. |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | Reference | Defines idea lifecycle event payloads. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow | Reads idea thresholds and checks promoted or suppressed idea counts before dispatch. |
-| `.opencode/agents/deep-research.md` | Agent | Allows leaf agents to emit `idea_observed` only under explicit dispatch permission. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Accumulates observations, emits idempotent promotions, ranks ideas, and suppresses rejected ideas. |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Documents observed, promoted, and rejected lifecycle semantics. |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | Reference | Defines idea lifecycle event payloads. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Reads idea thresholds and checks promoted or suppressed idea counts before dispatch. |
+| `.skilled/agents/deep-research.md` | Agent | Allows leaf agents to emit `idea_observed` only under explicit dispatch permission. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies threshold promotion, idempotence, ranking, and rejection suppression. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/ideas-backlog-lifecycle.md` | Manual playbook | Verifies observed-only leaf behavior and reducer-owned promotion. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies threshold promotion, idempotence, ranking, and rejection suppression. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/ideas-backlog-lifecycle.md` | Manual playbook | Verifies observed-only leaf behavior and reducer-owned promotion. |
 
 ---
 

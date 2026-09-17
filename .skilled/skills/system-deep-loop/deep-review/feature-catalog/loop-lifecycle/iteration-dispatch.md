@@ -39,9 +39,9 @@ Before each dispatch, the loop reads `deep-review-state.jsonl`, `deep-review-fin
 | `references/protocol/loop-protocol.md` | Protocol | Defines the read-state, state-summary, dispatch, cross-reference execution, evaluation, claim-adjudication, dashboard, and loop-decision steps. |
 | `references/state/state-format.md` | Schema | Defines the required JSONL fields, iteration file structure, graph-event payloads, and traceability-check schema. |
 | `SKILL.md` | Skill contract | Declares the fresh-context model, leaf-only constraint, iteration rules, and tool-call envelope. |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Workflow | Runtime workflow surface for unattended dispatch and evaluation. |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Workflow | Runtime workflow surface for checkpointed dispatch with approval gates. |
-| `.opencode/agents/deep-review.md` | Agent | Runtime leaf-agent contract for one review cycle. |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow | Runtime workflow surface for unattended dispatch and evaluation. |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow | Runtime workflow surface for checkpointed dispatch with approval gates. |
+| `.skilled/agents/deep-review.md` | Agent | Runtime leaf-agent contract for one review cycle. |
 
 ### Validation And Tests
 
@@ -59,7 +59,7 @@ Before each dispatch, the loop reads `deep-review-state.jsonl`, `deep-review-fin
 - Group: Loop lifecycle
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `loop-lifecycle/iteration-dispatch.md`
-- Primary sources: `references/protocol/loop-protocol.md`, `references/state/state-format.md`, `SKILL.md`, `.opencode/commands/deep/assets/deep-review-auto.yaml`, `.opencode/commands/deep/assets/deep-review-confirm.yaml`
+- Primary sources: `references/protocol/loop-protocol.md`, `references/state/state-format.md`, `SKILL.md`, `.skilled/commands/deep/assets/deep-review-auto.yaml`, `.skilled/commands/deep/assets/deep-review-confirm.yaml`
 Related references:
 - [initialization.md](initialization.md) — Initialization
 - [convergence-check.md](../../feature-catalog/loop-lifecycle/convergence-check.md) — Convergence check

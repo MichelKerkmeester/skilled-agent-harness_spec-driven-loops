@@ -12,23 +12,23 @@ const {
 const { checkCommand } = require('./check-contract-drift.cjs');
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const MANIFEST_PATH = '.opencode/commands/deep/assets/compiled/manifest.jsonl';
+const MANIFEST_PATH = '.skilled/commands/deep/assets/compiled/manifest.jsonl';
 
 const COMMANDS = {
   'deep/ai-council': {
     slug: 'deep_ai-council',
-    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep-ai-council.body.md',
-    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep-ai-council.contract.md',
+    legacyBodyPath: '.skilled/commands/deep/assets/legacy/deep-ai-council.body.md',
+    compiledContractPath: '.skilled/commands/deep/assets/compiled/deep-ai-council.contract.md',
   },
   'deep/review': {
     slug: 'deep_review',
-    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep-review.body.md',
-    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep-review.contract.md',
+    legacyBodyPath: '.skilled/commands/deep/assets/legacy/deep-review.body.md',
+    compiledContractPath: '.skilled/commands/deep/assets/compiled/deep-review.contract.md',
   },
   'deep/research': {
     slug: 'deep_research',
-    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep-research.body.md',
-    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep-research.contract.md',
+    legacyBodyPath: '.skilled/commands/deep/assets/legacy/deep-research.body.md',
+    compiledContractPath: '.skilled/commands/deep/assets/compiled/deep-research.contract.md',
   },
 };
 

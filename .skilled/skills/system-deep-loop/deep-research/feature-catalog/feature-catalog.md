@@ -16,7 +16,7 @@ Use this catalog as the canonical inventory for the live `deep-research` feature
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
-| Loop lifecycle | 9 features | `.opencode/commands/deep/research.md`, auto and confirm YAML workflows, fan-out runtime primitives, operator controls |
+| Loop lifecycle | 9 features | `.skilled/commands/deep/research.md`, auto and confirm YAML workflows, fan-out runtime primitives, operator controls |
 | State management | 8 features | `research/deep-research-*.json`, `research/findings-registry.json`, reducer-owned strategy and dashboard surfaces |
 | Convergence | 6 features | `references/convergence/convergence.md`, workflow legal-stop gates, graph convergence hooks, minimum-iteration floor, divergent pivots |
 | Research output | 2 features | `research/research.md`, iteration files, reducer-backed negative knowledge surfaces |
@@ -51,7 +51,7 @@ Runs one fresh-context research cycle through the LEAF agent and reducer sync pa
 
 #### How It Works
 
-The loop reads config, JSONL state, and strategy state, generates a compact state summary, checks the pause sentinel, and dispatches `.opencode/agents/deep-research.md` for one iteration only. After the agent writes the iteration file and appends one JSONL line, the workflow runs the reducer to refresh `findings-registry.json`, the machine-owned strategy sections, and the dashboard.
+The loop reads config, JSONL state, and strategy state, generates a compact state summary, checks the pause sentinel, and dispatches `.skilled/agents/deep-research.md` for one iteration only. After the agent writes the iteration file and appends one JSONL line, the workflow runs the reducer to refresh `findings-registry.json`, the machine-owned strategy sections, and the dashboard.
 
 #### Source Files
 

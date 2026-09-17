@@ -36,17 +36,17 @@ Promotion now separates candidate acceptance from canonical shipping. The accept
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Implements `--phase=accept`, `--phase=ship`, accepted-state snapshots, canonical preimage checks, and `promotion_blocked_branch_preserved` events. |
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs` | Rollback helper | Restores the pre-acceptance backup to the canonical target and records `rollback_result` evidence. |
-| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/promotion-gate-contract.md` | Contract reference | Documents the accept and ship phases, gate sequence, and post-ship verification. |
-| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Policy reference | Defines the default `preserve-on-failure` branch preservation policy and no-go conditions. |
-| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-config.json` | Runtime config | Supplies the default `branchPreservationPolicy: "preserve-on-failure"` setting consumed by promotion and rollback. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Implements `--phase=accept`, `--phase=ship`, accepted-state snapshots, canonical preimage checks, and `promotion_blocked_branch_preserved` events. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs` | Rollback helper | Restores the pre-acceptance backup to the canonical target and records `rollback_result` evidence. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-gate-contract.md` | Contract reference | Documents the accept and ship phases, gate sequence, and post-ship verification. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Policy reference | Defines the default `preserve-on-failure` branch preservation policy and no-go conditions. |
+| `.skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-config.json` | Runtime config | Supplies the default `branchPreservationPolicy: "preserve-on-failure"` setting consumed by promotion and rollback. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts` | Automated test | Asserts accept leaves the canonical target unchanged, ship writes the accepted snapshot, rollback restores the original target, and ship drift emits `promotion_blocked_branch_preserved`. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts` | Automated test | Asserts accept leaves the canonical target unchanged, ship writes the accepted snapshot, rollback restores the original target, and ship drift emits `promotion_blocked_branch_preserved`. |
 
 ---
 

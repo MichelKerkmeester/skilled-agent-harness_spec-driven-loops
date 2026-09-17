@@ -52,8 +52,8 @@ Start deep review in review mode for an audit spec workflow and prepare converge
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/deep-review/SKILL.md` §2 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
-2. Every path in `expected_resources` exists under `.opencode/skills/system-deep-loop/deep-review/`.
+1. `.skilled/skills/system-deep-loop/deep-review/SKILL.md` §2 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS`.
+2. Every path in `expected_resources` exists under `.skilled/skills/system-deep-loop/deep-review/`.
 
 ### Prompt
 
@@ -61,8 +61,8 @@ Start deep review in review mode for an audit spec workflow and prepare converge
 
 ### Commands
 
-1. `sed -n '106,149p' .opencode/skills/system-deep-loop/deep-review/SKILL.md` - confirm the `REVIEW_SETUP` keyword list and resource map.
-2. `for p in references/protocol/quick-reference.md references/protocol/loop-protocol.md references/state/state-format.md references/state/state-outputs.md references/state/state-reducer-registry.md assets/deep-review-strategy.md references/state/state-jsonl.md; do test -e ".opencode/skills/system-deep-loop/deep-review/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
+1. `sed -n '106,149p' .skilled/skills/system-deep-loop/deep-review/SKILL.md` - confirm the `REVIEW_SETUP` keyword list and resource map.
+2. `for p in references/protocol/quick-reference.md references/protocol/loop-protocol.md references/state/state-format.md references/state/state-outputs.md references/state/state-reducer-registry.md assets/deep-review-strategy.md references/state/state-jsonl.md; do test -e ".skilled/skills/system-deep-loop/deep-review/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-review packet's router and capture which intent and resource set it reports.
 
 ### Expected
@@ -97,7 +97,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` §2 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` §2 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and `LOADING_LEVELS` this scenario exercises |
 
 ---
 

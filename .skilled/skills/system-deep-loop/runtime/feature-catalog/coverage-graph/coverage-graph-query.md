@@ -28,7 +28,7 @@ This feature belongs to the coverage graph group and is catalogued as F012 in th
 
 Session-scoped query helpers for research and review coverage graph reads.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

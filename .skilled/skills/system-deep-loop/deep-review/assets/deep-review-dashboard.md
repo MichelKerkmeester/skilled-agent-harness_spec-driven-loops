@@ -131,7 +131,7 @@ Reference snippet showing what a rendered review dashboard looks like after iter
 # Deep Review Dashboard - Session Overview
 
 ## 2. STATUS
-- Target: .opencode/skills/system-deep-loop/deep-research (skill)
+- Target: .skilled/skills/system-deep-loop/deep-research (skill)
 - Started: 2026-04-21T10:02:11+02:00
 - Status: ITERATING
 - Iteration: 4 of 7

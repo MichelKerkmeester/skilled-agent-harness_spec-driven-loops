@@ -66,7 +66,7 @@ Vantage = the CLI whose model bench supplies the round's seats. Each row below i
 | `cli-pi` | external Pi runtime | Pi's allowlisted model ids | Lightweight alternate reasoning path | Analytical or Research |
 | `cli-hermes` | external Hermes Agent runtime | `deepseek-v4.1-flash` or `glm-5.3-flash` through the operator's `llmgateway` provider | Read-only quiet oneshot seat, prompt on stdin | Analytical or Research |
 
-The resolver source is `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:175`; do not add `cli-codex` or `cli-claude-code` to this table because the resolver rejects them.
+The resolver source is `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:175`; do not add `cli-codex` or `cli-claude-code` to this table because the resolver rejects them.
 
 The default council run is an in-CLI round on the active runtime. External-CLI rounds are dispatched only when the active runtime cannot supply the required vantage or when explicit cross-AI validation is requested by the caller.
 
@@ -271,7 +271,7 @@ Respect user-selected custom strategies up to the maximum of three PER ROUND. If
 
 ## 7. CROSS-REFERENCES
 
-- Agent body: `.opencode/agents/ai-council.md` §3 and §16.
+- Agent body: `.skilled/agents/ai-council.md` §3 and §16.
 - Decision context: local doctor command ADRs ADR-001.
 - Scoring rubric: `../scoring/scoring-rubric.md`.
 - Depth dispatch: `../convergence/depth-dispatch.md`.

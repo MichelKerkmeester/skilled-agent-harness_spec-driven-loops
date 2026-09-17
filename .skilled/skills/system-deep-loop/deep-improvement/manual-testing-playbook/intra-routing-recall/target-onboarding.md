@@ -46,8 +46,8 @@ Onboard a new target with a target profile for a second target improvement run.
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` §2 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and the smart router pseudocode.
-2. Every path in `expected_resources` exists under `.opencode/skills/system-deep-loop/deep-improvement/`.
+1. `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md` §2 contains `INTENT_SIGNALS`, `RESOURCE_MAP`, and the smart router pseudocode.
+2. Every path in `expected_resources` exists under `.skilled/skills/system-deep-loop/deep-improvement/`.
 
 ### Prompt
 
@@ -55,8 +55,8 @@ Onboard a new target with a target profile for a second target improvement run.
 
 ### Commands
 
-1. `sed -n '104,126p' .opencode/skills/system-deep-loop/deep-improvement/SKILL.md` - confirm the `TARGET_ONBOARDING` keyword list and resource map.
-2. `for p in references/shared/quick-reference.md references/agent-improvement/target-onboarding.md; do test -e ".opencode/skills/system-deep-loop/deep-improvement/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
+1. `sed -n '104,126p' .skilled/skills/system-deep-loop/deep-improvement/SKILL.md` - confirm the `TARGET_ONBOARDING` keyword list and resource map.
+2. `for p in references/shared/quick-reference.md references/agent-improvement/target-onboarding.md; do test -e ".skilled/skills/system-deep-loop/deep-improvement/$p" && echo "OK $p" || echo "MISS $p"; done` - confirm every expected resource resolves on disk.
 3. Dispatch the exact prompt into the deep-improvement packet's router and capture which intent and resource set it reports.
 
 ### Expected
@@ -91,7 +91,7 @@ Command transcript from steps 1-2; the router transcript from step 3, saved to `
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` §2 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and smart router pseudocode this scenario exercises |
+| `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md` §2 | `INTENT_SIGNALS`, `RESOURCE_MAP`, and smart router pseudocode this scenario exercises |
 
 ---
 

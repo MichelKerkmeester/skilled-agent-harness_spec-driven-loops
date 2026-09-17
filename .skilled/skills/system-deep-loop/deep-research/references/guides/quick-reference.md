@@ -24,7 +24,7 @@ One-page operator cheat sheet for the autonomous deep research loop.
 Lookup surface during runs covering when to invoke the loop, what each phase produces, how convergence is computed, and where live state lives on disk. Defer to the full protocol and convergence references for deep reasoning.
 
 Operator contract source of truth for this page:
-- command syntax: `.opencode/commands/deep/research.md`
+- command syntax: `.skilled/commands/deep/research.md`
 - convergence stop contract: `references/convergence/convergence.md`, `references/convergence/convergence-signals.md`, and the deep-research YAML workflow
 - state packet contract: `references/state/state-format.md`, `references/state/state-jsonl.md`, `references/state/state-outputs.md`, and `references/state/state-reducer-registry.md`
 
@@ -98,7 +98,7 @@ Operator contract source of truth for this page:
 
 > **Canonical pause sentinel:** `research/.deep-research-pause`
 
-> **Runtime capability matrix:** `.opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md` and `.opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json`
+> **Runtime capability matrix:** `.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md` and `.skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json`
 
 ---
 

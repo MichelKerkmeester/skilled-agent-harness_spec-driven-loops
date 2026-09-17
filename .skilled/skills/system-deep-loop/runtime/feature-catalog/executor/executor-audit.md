@@ -28,7 +28,7 @@ This feature belongs to the executor group and is catalogued as F002 in the `run
 
 Recursion guard, executor audit record writing, dispatch-failure emission, and audited command spawning.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

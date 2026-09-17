@@ -77,7 +77,7 @@ This module is the coordination core beneath the runtime event spine. It prepare
 ## 6. VALIDATION
 
 ```bash
-.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json
+.skilled/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .skilled/skills/system-deep-loop/runtime/tsconfig.json
 ```
 
 ---

@@ -30,15 +30,15 @@ Records what a dispatched leaf task actually did. A leaf can succeed, fail, time
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/` (decision and reduction)
-- `.opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/` (evaluator and ledger events)
-- `.opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/` (reducer)
+- `.skilled/skills/system-deep-loop/runtime/lib/conditional-fanin/` (decision and reduction)
+- `.skilled/skills/system-deep-loop/runtime/lib/partial-failure-policy/` (evaluator and ledger events)
+- `.skilled/skills/system-deep-loop/runtime/lib/provenance-reduction/` (reducer)
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/result-envelopes.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/result-envelopes.vitest.ts`
 - Also exercised by `conditional-fanin.vitest.ts`, `partial-failure-policy.vitest.ts` and `provenance-reduction.vitest.ts`.
 
 ---

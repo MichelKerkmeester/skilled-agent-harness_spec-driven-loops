@@ -46,8 +46,8 @@ Operators need one current dispatch name across runtimes so council prompts do n
 
 ### Commands
 
-1. `bash: rg -n "ai-council" .opencode/agents/ .claude/agents/ .opencode/agents/`
-2. `bash: rg -n "multi-ai-council" .opencode/agents/ .claude/agents/ .opencode/agents/`
+1. `bash: rg -n "ai-council" .skilled/agents/ .claude/agents/ .skilled/agents/`
+2. `bash: rg -n "multi-ai-council" .skilled/agents/ .claude/agents/ .skilled/agents/`
 
 ### Expected
 
@@ -68,7 +68,7 @@ Check the mirror frontmatter/name first, then OpenCode TOML name, then any conve
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-001 | Runtime rename | Verify active runtime identity | `Use the deep AI council to compare two implementation plans and show which runtime agent name is active.` | `bash: rg -n "ai-council" .opencode/agents/ .claude/agents/ .opencode/agents/ -> bash: rg -n "multi-ai-council" .opencode/agents/ .claude/agents/ .opencode/agents/` | New identity appears; old identity is not active | Grep transcript | PASS if mirrors use `ai-council` | Inspect mirror name fields |
+| DAC-001 | Runtime rename | Verify active runtime identity | `Use the deep AI council to compare two implementation plans and show which runtime agent name is active.` | `bash: rg -n "ai-council" .skilled/agents/ .claude/agents/ .skilled/agents/ -> bash: rg -n "multi-ai-council" .skilled/agents/ .claude/agents/ .skilled/agents/` | New identity appears; old identity is not active | Grep transcript | PASS if mirrors use `ai-council` | Inspect mirror name fields |
 
 ---
 

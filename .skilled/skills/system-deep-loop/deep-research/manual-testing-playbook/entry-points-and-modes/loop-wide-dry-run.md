@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-research dry-run flag parsing and confirm-YAML halt boundaries.
 ### Commands
-1. `bash: rg -n 'dry_run|--dry-run|first-class flag|mutation boundary|workflow inputs' .opencode/commands/deep/research.md`
-2. `bash: rg -n 'dry_run_control|dry_run_halt|dry_run_boundary|dispatch|state-mutation|reducer-refresh|child-spawn' .opencode/commands/deep/assets/deep-research-confirm.yaml`
-3. `bash: rg -n 'dry_run_event_policy|terminal JSONL preview|do not append|do not write|skip_when:.*dry_run' .opencode/commands/deep/assets/deep-research-confirm.yaml`
+1. `bash: rg -n 'dry_run|--dry-run|first-class flag|mutation boundary|workflow inputs' .skilled/commands/deep/research.md`
+2. `bash: rg -n 'dry_run_control|dry_run_halt|dry_run_boundary|dispatch|state-mutation|reducer-refresh|child-spawn' .skilled/commands/deep/assets/deep-research-confirm.yaml`
+3. `bash: rg -n 'dry_run_event_policy|terminal JSONL preview|do not append|do not write|skip_when:.*dry_run' .skilled/commands/deep/assets/deep-research-confirm.yaml`
 ### Expected
 Dry-run performs safe preflight reads and prompt rendering when possible, emits preview-only `dry_run_halt` events, and stops before dispatch, persistent state mutation, reducer refresh, child spawn, or memory writes.
 ### Evidence
@@ -72,8 +72,8 @@ Privilege `research.md` for user-facing flag semantics and `deep-research-confir
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/research.md` | User-facing `--dry-run` flag and semantics |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Dry-run control, halt hooks, boundary labels, and preview policies |
+| `.skilled/commands/deep/research.md` | User-facing `--dry-run` flag and semantics |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Dry-run control, halt hooks, boundary labels, and preview policies |
 
 ---
 

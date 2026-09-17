@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Try to persist this incompl
 
 The shipped surface is anchored by `persist-artifacts.cjs`, `deep-ai-council`. The playbook scenario `artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-007.
 
-Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md`, which the scenario identifies as requiredness contract. Validation is anchored by `manual-testing-playbook/artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md`, covering manual scenario contract.
+Current behavior is grounded in `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md`, which the scenario identifies as requiredness contract. Validation is anchored by `manual-testing-playbook/artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify missing required report sections exit 1. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,8 +40,8 @@ The user-visible contract is concrete: Verify missing required report sections e
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md` | Reference | Requiredness contract |
-| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` | Script | Parser entrypoint |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md` | Reference | Requiredness contract |
+| `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` | Script | Parser entrypoint |
 
 ### Validation And Tests
 

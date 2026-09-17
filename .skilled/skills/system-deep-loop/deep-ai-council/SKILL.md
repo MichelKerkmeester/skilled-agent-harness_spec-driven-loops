@@ -324,8 +324,8 @@ STEP 3: Persist And Hand Off
 **Scripts**:
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>
-node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs <packet>
+node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>
+node .skilled/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs <packet>
 ```
 
 **References**: load `quick-reference.md` first, then intent-specific references through Section 3. Load `output-schema.md` before persistence or report validation.
@@ -429,7 +429,7 @@ Related skills: `deep-research` for evidence-first investigation vantages and `s
 Council alignment is complete when:
 
 - ✅ Council requests route to the `deep-ai-council` advisor/packet surface (`packetSkillName` and `legacyAdvisorId` in `mode-registry.json`); `deep-ai-council` is the packet folder/SKILL.md name (folder == name), while the dispatched agent identity remains `ai-council`.
-- ✅ Runtime mirrors dispatch `@ai-council` (`mode: subagent`, Task-dispatch only) under a consistent agent identity — both agent files (`.opencode/agents/ai-council.md`, `.claude/agents/ai-council.md`) declare `name: ai-council`, matching the registry `agent: ai-council` field.
+- ✅ Runtime mirrors dispatch `@ai-council` (`mode: subagent`, Task-dispatch only) under a consistent agent identity — both agent files (`.skilled/agents/ai-council.md`, `.claude/agents/ai-council.md`) declare `name: ai-council`, matching the registry `agent: ai-council` field.
 - ✅ Council references and scripts live inside this skill package.
 - ✅ Persisted artifacts and append-only state stay under packet-local `ai-council/**`.
 - ✅ Persistence helpers parse and write the existing council artifact contract while graph support remains a derived projection.
@@ -454,7 +454,7 @@ Council alignment is complete when:
 
 ### Validation Workflow Integration
 
-Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` before completion claims when spec docs are updated. Skill package structure is checked with `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/system-deep-loop/deep-ai-council`.
+Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` before completion claims when spec docs are updated. Skill package structure is checked with `python3 .skilled/skills/sk-doc/scripts/quick_validate.py .skilled/skills/system-deep-loop/deep-ai-council`.
 
 ### Cross-Workflow Contracts
 

@@ -45,11 +45,11 @@ If the `agent:` dispatch block uses the wrong agent name or omits
 
 ### Commands
 
-1. `bash: grep -n "step_fanout_spawn_native\|agent: deep-research\|fanout_lineage_artifact_dir" .opencode/commands/deep/assets/deep-research-auto.yaml`
+1. `bash: grep -n "step_fanout_spawn_native\|agent: deep-research\|fanout_lineage_artifact_dir" .skilled/commands/deep/assets/deep-research-auto.yaml`
 2. Confirm `agent: deep-research` appears in the native dispatch block.
 3. Confirm `context:` block includes `config.fanout_lineage_artifact_dir: {artifact_dir}/lineages/{lineage.label}`.
 4. Confirm `skip_when: "no entries in config.fanout.executors with kind == 'native'"`.
-5. `bash: grep -n "native.*count\|count.*native\|native fan-out" .opencode/commands/deep/research.md` — confirm native fan-out note in examples section.
+5. `bash: grep -n "native.*count\|count.*native\|native fan-out" .skilled/commands/deep/research.md` — confirm native fan-out note in examples section.
 
 ### RECOMMENDED ORCHESTRATION PROCESS
 
@@ -80,8 +80,8 @@ Source inspection confirms native dispatch block uses `agent: deep-research`, pa
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | `step_fanout_spawn_native`, `agent: deep-research` dispatch, `fanout_lineage_artifact_dir` context |
-| `.opencode/commands/deep/research.md` | Native fan-out note in EXAMPLES section |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | `step_fanout_spawn_native`, `agent: deep-research` dispatch, `fanout_lineage_artifact_dir` context |
+| `.skilled/commands/deep/research.md` | Native fan-out note in EXAMPLES section |
 
 ### Validation
 

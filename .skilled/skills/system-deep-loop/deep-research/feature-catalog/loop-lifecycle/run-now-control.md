@@ -36,14 +36,14 @@ If the loop is paused, the workflow emits `run_now_rejected` with reason `loop_p
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow | Defines the sentinel path, run-now check, pause precedence, consume-once behavior, and restore detection. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Defines the sentinel path, run-now check, pause precedence, consume-once behavior, and restore detection. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts` | Vitest | Verifies accepted, rejected, and restored run-now event behavior. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/run-now-control.md` | Manual playbook | Verifies operator-visible forced-run sentinel behavior. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts` | Vitest | Verifies accepted, rejected, and restored run-now event behavior. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/run-now-control.md` | Manual playbook | Verifies operator-visible forced-run sentinel behavior. |
 
 ---
 

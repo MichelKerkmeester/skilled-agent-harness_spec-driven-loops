@@ -27,7 +27,7 @@ This feature belongs to the coverage graph group and is catalogued as F041 in th
 
 `findSimilarNodes()` compares names inside one namespace and category, while `findConsolidationCandidates()` returns candidate clusters and leftovers; callers decide whether to merge results.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

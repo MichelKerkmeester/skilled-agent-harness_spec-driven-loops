@@ -48,12 +48,12 @@ export const GRAPH_CONTRACT_SOURCE_PATHS = [
     + '012-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph/spec.md',
   '.opencode/specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md',
   '.opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json',
-  '.opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/canonicalize.ts',
-  '.opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts',
-  '.opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/scheduler.ts',
-  '.opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/shipped-census.ts',
-  '.opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/stable-digest.ts',
-  '.opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts',
+  '.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/canonicalize.ts',
+  '.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts',
+  '.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/scheduler.ts',
+  '.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/shipped-census.ts',
+  '.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/stable-digest.ts',
+  '.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts',
 ] as const;
 
 const SEQUENCING_SOURCE = GRAPH_CONTRACT_SOURCE_PATHS[2];

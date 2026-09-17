@@ -27,7 +27,7 @@ This feature belongs to the observability group and is catalogued as F036 in the
 
 `post-dispatch-validate.ts` records `logOffset`, `logSize`, and `logPath` after transcript writes; the YAML schema declares the optional fields; `reduce-state.cjs` displays the region values for dashboard lookup.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -38,8 +38,8 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 | File | Layer | Role |
 |---|---|---|
 | `lib/deep-loop/post-dispatch-validate.ts` | Runtime | byte-offset log regions. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Integration | byte-offset log regions. |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Integration | byte-offset log regions. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Integration | byte-offset log regions. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Integration | byte-offset log regions. |
 
 ### Validation And Tests
 
@@ -47,7 +47,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 |---|---|---|
 | `tests/unit/post-dispatch-validate.vitest.ts` | Test | Primary regression coverage for Byte-offset log regions. |
 | `tests/unit/deep-research-reduce-state.vitest.ts` | Test | Primary regression coverage for Byte-offset log regions. |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` | Test | Primary regression coverage for Byte-offset log regions. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` | Test | Primary regression coverage for Byte-offset log regions. |
 
 ---
 
@@ -58,6 +58,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Feature ID: F036
 - Feature file path: `observability/byte-offset-log-regions.md`
 - Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//009-byte-offset-log-regions`
-- Primary sources: `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/commands/deep/assets/deep-research-auto.yaml`, `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`, `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs`
+- Primary sources: `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`, `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs`
 Related references:
 - [observability](../observability/) — Observability category

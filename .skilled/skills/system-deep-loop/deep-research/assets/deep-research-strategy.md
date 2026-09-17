@@ -181,8 +181,8 @@ Do not inline full source bodies. Do not dispatch the retired standalone context
 - Question injection surface: `{spec_folder}/research/inbox.jsonl`
 - Question conflict owner: reducer registry; `question_conflict` events surface inbox/registry disagreements for operator decision
 - Canonical pause sentinel: `research/.deep-research-pause`
-- Capability matrix: `.opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json`
-- Capability matrix doc: `.opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md`
-- Capability resolver: `.opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs`
+- Capability matrix: `.skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json`
+- Capability matrix doc: `.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md`
+- Capability resolver: `.skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs`
 - Current generation: [from config.lineage.generation]
 - Started: [timestamp]

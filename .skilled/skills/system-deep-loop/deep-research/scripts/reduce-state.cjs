@@ -3118,7 +3118,7 @@ if (require.main === module) {
 
   if (!specFolder) {
     process.stderr.write(
-      'Usage: node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> [--lenient] [--emit-resource-map]\n',
+      'Usage: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> [--lenient] [--emit-resource-map]\n',
     );
     process.exit(1);
   }

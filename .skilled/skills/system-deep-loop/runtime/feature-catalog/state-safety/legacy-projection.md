@@ -31,7 +31,7 @@ The projection refresh inside the append gateway is wired for deep-research only
 
 Measured through the shipped CLI, same command shape, fresh run directory each: research exits 0 with `projectionRefreshed` true and the legacy state file and watermark written; review exits 0 with `projectionRefreshed` false and no legacy state file; alignment exits 0 with `projectionRefreshed` false and no legacy state file. A caller must read `projectionRefreshed`, not the exit code, to know whether the legacy file was refreshed.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 
 const scorer = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs',
 )) as {
   score: (opts: Record<string, unknown>) => Promise<{
     fixtureId: string;

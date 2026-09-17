@@ -31,7 +31,7 @@ This feature belongs to the state safety group and is catalogued as F052 in the 
 
 A crash during the marker write itself still leaves a partial marker that fails the trailing-newline and recovery-hash checks in `readRecoveryEvidenceUnlocked()` -- that window is unchanged by this work because it existed identically under the old ordering.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

@@ -28,7 +28,7 @@ This feature belongs to the executor group and is catalogued as F001 in the `run
 
 Schema, parsing, defaults, supported flags, sandbox and permission-mode normalization.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

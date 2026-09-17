@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the deep-research dashboard sparkline trend across reducer output, dashboard assets, and tests.
 ### Commands
-1. `bash: rg -n 'renderSparkline|TREND|trend_flatline|ratioSparkline|scoreSparkline' .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
-2. `bash: rg -n '## 5\\. TREND|CONVERGENCE TREND' .opencode/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md`
-3. `bash: sed -n '1,90p' .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs`
+1. `bash: rg -n 'renderSparkline|TREND|trend_flatline|ratioSparkline|scoreSparkline' .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
+2. `bash: rg -n '## 5\\. TREND|CONVERGENCE TREND' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md`
+3. `bash: sed -n '1,90p' .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs`
 ### Expected
 The reducer renders trend sparklines for newInfoRatio and score histories, and flatline detection emits advisory evidence without becoming a stop decision.
 ### Evidence
@@ -72,9 +72,9 @@ Privilege `reduce-state.cjs` for live dashboard output and `reduce-state-sparkli
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Sparkline rendering, dashboard trend section, and flatline advisory event |
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md` | Dashboard template and trend section headings |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` | Rendering tests for sparkline output |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Sparkline rendering, dashboard trend section, and flatline advisory event |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md` | Dashboard template and trend section headings |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` | Rendering tests for sparkline output |
 
 ---
 

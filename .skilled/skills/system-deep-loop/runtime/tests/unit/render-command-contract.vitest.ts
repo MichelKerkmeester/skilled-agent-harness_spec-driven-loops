@@ -162,7 +162,7 @@ describe('render-command-contract', () => {
   });
 
   it.each(commands)('exposes a zero-diff compare CLI for %s', (command) => {
-    const scriptPath = workspacePath('.opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs');
+    const scriptPath = workspacePath('.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs');
     const result = spawnSync(process.execPath, [scriptPath, '--command', command, '--compare'], {
       cwd: renderer.WORKSPACE_ROOT,
       encoding: 'utf8',
@@ -182,10 +182,10 @@ describe('render-command-contract', () => {
 // site that omits a flag therefore pins that knob to the runner default and the
 // operator's configured value never reaches a lineage.
 const FANOUT_CALL_SITES = [
-  { command: 'deep/review', variant: 'auto', yaml: '.opencode/commands/deep/assets/deep-review-auto.yaml' },
-  { command: 'deep/review', variant: 'confirm', yaml: '.opencode/commands/deep/assets/deep-review-confirm.yaml' },
-  { command: 'deep/research', variant: 'auto', yaml: '.opencode/commands/deep/assets/deep-research-auto.yaml' },
-  { command: 'deep/research', variant: 'confirm', yaml: '.opencode/commands/deep/assets/deep-research-confirm.yaml' },
+  { command: 'deep/review', variant: 'auto', yaml: '.skilled/commands/deep/assets/deep-review-auto.yaml' },
+  { command: 'deep/review', variant: 'confirm', yaml: '.skilled/commands/deep/assets/deep-review-confirm.yaml' },
+  { command: 'deep/research', variant: 'auto', yaml: '.skilled/commands/deep/assets/deep-research-auto.yaml' },
+  { command: 'deep/research', variant: 'confirm', yaml: '.skilled/commands/deep/assets/deep-research-confirm.yaml' },
 ] as const;
 
 const FANOUT_FLAGS = [
@@ -253,16 +253,16 @@ describe('fan-out call-site contract', () => {
 const PARITY_PAIRS = [
   {
     command: 'deep/review',
-    auto: '.opencode/commands/deep/assets/deep-review-auto.yaml',
-    confirm: '.opencode/commands/deep/assets/deep-review-confirm.yaml',
+    auto: '.skilled/commands/deep/assets/deep-review-auto.yaml',
+    confirm: '.skilled/commands/deep/assets/deep-review-confirm.yaml',
     gatewaySteps: ['step_evaluate_results', 'step_post_iteration_claim_adjudication', 'step_convergence_report'],
     configBindings: ['stopPolicy: "{stop_policy}"'],
     recordBindings: ['"emit":{resource_map_emit}'],
   },
   {
     command: 'deep/research',
-    auto: '.opencode/commands/deep/assets/deep-research-auto.yaml',
-    confirm: '.opencode/commands/deep/assets/deep-research-confirm.yaml',
+    auto: '.skilled/commands/deep/assets/deep-research-auto.yaml',
+    confirm: '.skilled/commands/deep/assets/deep-research-confirm.yaml',
     gatewaySteps: ['step_convergence_report'],
     configBindings: ['lineage.sessionId: "{session_id_init}"'],
     recordBindings: ['"emit":{resource_map_emit}', '"lineage":{"sessionId":"{session_id_init}"'],

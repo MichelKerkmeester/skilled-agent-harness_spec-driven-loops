@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 
 const HARNESS_PATH = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs',
 );
 
 const harness = require(HARNESS_PATH) as {

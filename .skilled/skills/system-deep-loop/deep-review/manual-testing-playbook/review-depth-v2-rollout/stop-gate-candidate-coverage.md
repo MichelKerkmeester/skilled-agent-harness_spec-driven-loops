@@ -32,7 +32,7 @@ Without the gate, a review can terminate with PASS verdict even though the agent
 
 ### Prerequisites
 
-- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/system-deep-loop/runtime/tests/integration/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
+- `review-depth-convergence.vitest.ts` exists under `.skilled/skills/system-deep-loop/runtime/tests/integration/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
 - A standard or complex v2 session can set `searchCoverage` with uncovered required bug classes.
 - Reducer state can expose `candidateCoverage` and `searchDebt`.
 
@@ -68,10 +68,10 @@ The review cannot legally stop. The blocked_stop output names `candidateCoverage
 
 ## 4. SOURCE FILES
 
-- Workflow YAML: `.opencode/commands/deep/assets/deep-review-auto.yaml` (`step_check_convergence` legal-stop decision tree).
-- Confirm mirror: `.opencode/commands/deep/assets/deep-review-confirm.yaml`.
-- Reducer: `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (registry exposing `candidateCoverage`, `searchDebt`).
-- Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
+- Workflow YAML: `.skilled/commands/deep/assets/deep-review-auto.yaml` (`step_check_convergence` legal-stop decision tree).
+- Confirm mirror: `.skilled/commands/deep/assets/deep-review-confirm.yaml`.
+- Reducer: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (registry exposing `candidateCoverage`, `searchDebt`).
+- Fixture: `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: complexity-candidate-saturation-gates decision record (see this skill's changelog for provenance).
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 

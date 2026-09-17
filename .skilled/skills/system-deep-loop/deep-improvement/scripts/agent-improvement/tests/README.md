@@ -43,7 +43,7 @@ This folder contains the Vitest suites for the agent-improvement scripts in the 
 Run from the repository root when Vitest is installed in the workspace:
 
 ```bash example
-npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests
+npx vitest run .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests
 ```
 
 The command was attempted in this worktree. No local Vitest executable is installed, so `npx` could not resolve the package without network access. The source inventory and all non-Vitest command evidence remain independent of that dependency.

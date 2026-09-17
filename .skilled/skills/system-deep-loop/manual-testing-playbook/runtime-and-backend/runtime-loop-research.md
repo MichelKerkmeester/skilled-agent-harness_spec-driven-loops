@@ -49,8 +49,8 @@ For a deep research run, resolve the mode through the registry and state the bac
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
-2. `.opencode/skills/system-deep-loop/SKILL.md` contains the backend routing rule.
+1. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
+2. `.skilled/skills/system-deep-loop/SKILL.md` contains the backend routing rule.
 
 ### Prompt
 
@@ -89,8 +89,8 @@ For a deep research run, resolve the mode through the registry and state the bac
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - backend routing rule.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `research` backend fields.
+- `.skilled/skills/system-deep-loop/SKILL.md` - backend routing rule.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `research` backend fields.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

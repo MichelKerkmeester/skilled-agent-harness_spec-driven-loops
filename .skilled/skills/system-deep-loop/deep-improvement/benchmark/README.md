@@ -47,9 +47,9 @@ One row per run-label folder on disk; verdicts are read from each folder's repor
 ## 3. RE-RUNNING
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=model-benchmark \
-  --profile=.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json \
+  --profile=.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json \
   --outputs-dir=/tmp/di-bench
 ```
 

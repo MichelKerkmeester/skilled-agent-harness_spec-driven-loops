@@ -603,4 +603,4 @@ The following fields are runtime contracts and MUST NOT be modified by the optim
 ### Canonical Manifest
 
 The authoritative registry of tunable vs locked fields is maintained at:
-`.opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json`
+`.skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json`

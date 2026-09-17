@@ -113,7 +113,7 @@ scorer/
 Run from the repository root.
 
 ```bash
-npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts
+npx vitest run .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts
 ```
 
 Expected result: the scorer suite passes.

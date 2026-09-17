@@ -28,14 +28,14 @@ Clusters claims that mean the same thing, even when their wording differs, into 
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/path-coverage-termination/` (types and universe)
-- `.opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/` (novelty_decay clock type)
+- `.skilled/skills/system-deep-loop/runtime/lib/path-coverage-termination/` (types and universe)
+- `.skilled/skills/system-deep-loop/runtime/lib/stopping-clocks/` (novelty_decay clock type)
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts`
 - Also exercised by `path-coverage-termination.vitest.ts` and `stopping-clocks.vitest.ts`.
 
 ---

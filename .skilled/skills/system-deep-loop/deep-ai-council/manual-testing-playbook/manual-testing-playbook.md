@@ -70,7 +70,7 @@ Coverage note (2026-05-11): covers runtime rename, advisor routing, council deli
 
 ## 4. DETERMINISTIC COMMAND NOTATION
 
-- CLI commands shown as `node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>`.
+- CLI commands shown as `node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>`.
 - runtime CLI script calls shown as `tool_name({ key: value })`.
 - Bash commands shown as `bash: <command>`.
 - Agent prompts shown as `agent: <instruction>`.
@@ -79,8 +79,8 @@ Coverage note (2026-05-11): covers runtime rename, advisor routing, council deli
 Examples:
 
 ```text
-bash: node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>
-bash: node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <missing-required-section.md>; echo "exit=$?"
+bash: node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>
+bash: node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <missing-required-section.md>; echo "exit=$?"
 ```
 
 ---
@@ -400,14 +400,14 @@ Feature file: [DAC-032](../manual-testing-playbook/council-graph-value-compariso
 
 | Test File | Scenario IDs |
 | --- | --- |
-| `.opencode/skills/system-spec-kit/runtime/tests/multi-ai-council-runtime-parity.vitest.ts` | DAC-001 |
-| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | DAC-002 |
-| `.opencode/skills/system-spec-kit/runtime/tests/multi-ai-council-permission-scope.vitest.ts` | DAC-003, DAC-004, DAC-011, DAC-012, DAC-017 |
-| `.opencode/skills/system-spec-kit/runtime/tests/multi-ai-council-audit-trail.vitest.ts` | DAC-005, DAC-006, DAC-013 |
-| `.opencode/skills/system-spec-kit/runtime/tests/multi-ai-council-rollback.vitest.ts` | DAC-010 |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/multi-ai-council-persist-artifacts.vitest.ts` | DAC-005, DAC-007 |
-| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | DAC-019, DAC-020, DAC-021, DAC-022, DAC-023, DAC-024 |
-| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | DAC-027, DAC-028, DAC-029, DAC-030, DAC-031, DAC-032 |
+| `.skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-runtime-parity.vitest.ts` | DAC-001 |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | DAC-002 |
+| `.skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-permission-scope.vitest.ts` | DAC-003, DAC-004, DAC-011, DAC-012, DAC-017 |
+| `.skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-audit-trail.vitest.ts` | DAC-005, DAC-006, DAC-013 |
+| `.skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-rollback.vitest.ts` | DAC-010 |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/multi-ai-council-persist-artifacts.vitest.ts` | DAC-005, DAC-007 |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | DAC-019, DAC-020, DAC-021, DAC-022, DAC-023, DAC-024 |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | DAC-027, DAC-028, DAC-029, DAC-030, DAC-031, DAC-032 |
 | Operator A/B comparison (with-graph vs no-graph baseline) | Operator-runnable contract mirrors the automated DAC-027..DAC-032 fixtures |
 | Documentation reference validation | DAC-014, DAC-015, DAC-016, DAC-018, DAC-025, DAC-026, DAC-033 |
 

@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review resume classification from existing review state and report whether it skips directly to phase_loop.
 ### Commands
-1. `bash: rg -n 'step_classify_session|classify:|fresh|resume|invalid.state|completed.session' .opencode/commands/deep/assets/deep-review-auto.yaml`
-2. `bash: rg -n 'step_classify_session|resume|skip_to' .opencode/commands/deep/assets/deep-review-confirm.yaml`
-3. `bash: rg -n 'resume|prior state|existing state|pick up' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .opencode/skills/system-deep-loop/deep-review/SKILL.md`
+1. `bash: rg -n 'step_classify_session|classify:|fresh|resume|invalid.state|completed.session' .skilled/commands/deep/assets/deep-review-auto.yaml`
+2. `bash: rg -n 'step_classify_session|resume|skip_to' .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'resume|prior state|existing state|pick up' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md`
 ### Expected
 The classify step checks for config, JSONL, and strategy presence. Classifies as "resume" when all three exist and are consistent. And skips to phase_loop.
 ### Evidence
@@ -71,10 +71,10 @@ Verify the classify step inspects all three state files (config, JSONL, strategy
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Session classification logic, inspect `step_classify_session` |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Session classification logic, inspect `step_classify_session` |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Resume behavior documentation, use `ANCHOR:troubleshooting` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Session classification logic, inspect `step_classify_session` |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Session classification logic, inspect `step_classify_session` |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Resume behavior documentation, use `ANCHOR:troubleshooting` |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance |
 
 ---
 
@@ -84,4 +84,4 @@ Verify the classify step inspects all three state files (config, JSONL, strategy
 - Playbook ID: DRV-005
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

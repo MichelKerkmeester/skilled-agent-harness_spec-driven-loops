@@ -27,7 +27,7 @@ This feature belongs to the state safety group and is catalogued as F028 in the 
 
 Canonicalizes and serializes the incoming state, compares it against a per-path cache keyed by canonical path, returns `false` for no-change skips, and keeps `writeStateAtomic()` available for callers that must force a durable write.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

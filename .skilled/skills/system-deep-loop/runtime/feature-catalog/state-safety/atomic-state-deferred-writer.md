@@ -27,7 +27,7 @@ This feature belongs to the state safety group and is catalogued as F030 in the 
 
 `createDeferredAtomicWriter()` debounces writes, flushes the newest pending state, performs a dirty-again reflush if content changes during an in-flight fsync, and exposes `flushNow()` plus `close()` for deterministic draining.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

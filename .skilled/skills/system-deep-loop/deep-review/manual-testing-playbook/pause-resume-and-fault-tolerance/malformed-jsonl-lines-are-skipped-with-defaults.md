@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate malformed deep-review JSONL handling and report whether bad lines are skipped with safe defaults.
 ### Commands
-1. `bash: rg -n 'malformed|unparseable|skip.*line|parse.*error|JSON.*parse|graceful|default.*ratio|newFindingsRatio.*1\.0' .opencode/skills/system-deep-loop/deep-review/references/state/state-format.md .opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'malformed|parse_error|skip_line|graceful|default|JSON.*parse|error_handling' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
-3. `bash: rg -n 'malformed|corrupt|graceful|JSONL.*error|parse.*fail|default|error handling|fault tolerance' .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md .opencode/commands/deep/review.md`
+1. `bash: rg -n 'malformed|unparseable|skip.*line|parse.*error|JSON.*parse|graceful|default.*ratio|newFindingsRatio.*1\.0' .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+2. `bash: rg -n 'malformed|parse_error|skip_line|graceful|default|JSON.*parse|error_handling' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'malformed|corrupt|graceful|JSONL.*error|parse.*fail|default|error handling|fault tolerance' .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/commands/deep/review.md`
 ### Expected
 Malformed lines skipped, defaults applied (`newFindingsRatio = 1.0`), iteration count from valid lines, skip is observable.
 ### Evidence
@@ -71,13 +71,13 @@ Privilege the state format reference for JSONL schema rules and the convergence 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md` | JSONL schema and parsing rules, use the state log section |
-| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Default values on parse failure, graceful degradation rules |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Error handling in iteration loop, use the iteration loop section |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | JSONL parsing and error handling in state read steps |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | JSONL parsing and error handling in state read steps |
-| `.opencode/commands/deep/review.md` | Command routing; the error-handling display is owned by `.opencode/commands/deep/assets/deep-review-presentation.txt` (`Error Handling` section) |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Rules for state reading, use `ANCHOR:rules` Rule 1 |
+| `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md` | JSONL schema and parsing rules, use the state log section |
+| `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Default values on parse failure, graceful degradation rules |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Error handling in iteration loop, use the iteration loop section |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | JSONL parsing and error handling in state read steps |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | JSONL parsing and error handling in state read steps |
+| `.skilled/commands/deep/review.md` | Command routing; the error-handling display is owned by `.skilled/commands/deep/assets/deep-review-presentation.txt` (`Error Handling` section) |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Rules for state reading, use `ANCHOR:rules` Rule 1 |
 
 ---
 
@@ -87,4 +87,4 @@ Privilege the state format reference for JSONL schema rules and the convergence 
 - Playbook ID: DRV-023
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
