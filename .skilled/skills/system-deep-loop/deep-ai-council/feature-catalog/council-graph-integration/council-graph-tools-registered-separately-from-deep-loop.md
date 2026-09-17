@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Confirm council graph opera
 
 The shipped surface is anchored by `runtime//scripts/{upsert,query,status,convergence}.cjs --loop-type council`, plus `deep-ai-council/scripts/replay-graph-from-artifacts.cjs` for artifact replay. The playbook scenario `council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-026.
 
-Council state is a runtime-owned derived SQLite projection, rebuilt from `ai-council/**` artifacts. Validation is anchored by `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts`, covering runtime script behavior for upsert, query, status, convergence, and error contracts.
+Council state is a runtime-owned derived SQLite projection, rebuilt from `ai-council/**` artifacts. Validation is anchored by `.skilled/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts`, covering runtime script behavior for upsert, query, status, convergence, and error contracts.
 
 The user-visible contract is concrete: council graph behavior remains available, and no MCP tool family carries any part of it.
 
@@ -40,17 +40,17 @@ The user-visible contract is concrete: council graph behavior remains available,
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` | Runtime CLI | Council node/edge projection writes |
-| `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` | Runtime CLI | Council graph query modes |
-| `.opencode/skills/system-deep-loop/runtime/scripts/status.cjs` | Runtime CLI | Council readiness and recovery payload |
-| `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Runtime CLI | Council convergence bridge fields |
+| `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs` | Runtime CLI | Council node/edge projection writes |
+| `.skilled/skills/system-deep-loop/runtime/scripts/query.cjs` | Runtime CLI | Council graph query modes |
+| `.skilled/skills/system-deep-loop/runtime/scripts/status.cjs` | Runtime CLI | Council readiness and recovery payload |
+| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Runtime CLI | Council convergence bridge fields |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md` | Automated test | Manual scenario contract |
-| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Runtime council CLI coverage |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Runtime council CLI coverage |
 
 ---
 

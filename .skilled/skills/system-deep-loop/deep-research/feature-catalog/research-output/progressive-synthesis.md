@@ -36,18 +36,18 @@ The final workflow still owns synthesis. After convergence, the synth phase read
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Asset | Sets `progressiveSynthesis` to `true` by default in the live config template. |
-| `.opencode/agents/deep-research.md` | Agent | Defines when the iteration agent may create or update `research/research.md`. |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference | Defines progressive update rules for `research/research.md`. |
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Defines the final synthesis cleanup pass that consolidates the document. |
-| `.opencode/commands/deep/research.md` | Command | Publishes `research/research.md` as a canonical loop output. |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Asset | Sets `progressiveSynthesis` to `true` by default in the live config template. |
+| `.skilled/agents/deep-research.md` | Agent | Defines when the iteration agent may create or update `research/research.md`. |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Reference | Defines progressive update rules for `research/research.md`. |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Defines the final synthesis cleanup pass that consolidates the document. |
+| `.skilled/commands/deep/research.md` | Command | Publishes `research/research.md` as a canonical loop output. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/progressive-synthesis-behavior-for-research-md.md` | Manual playbook | Verifies iteration-time updates respect the progressive-synthesis contract. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies final synthesis still owns the terminal research document. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/progressive-synthesis-behavior-for-research-md.md` | Manual playbook | Verifies iteration-time updates respect the progressive-synthesis contract. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies final synthesis still owns the terminal research document. |
 
 ---
 

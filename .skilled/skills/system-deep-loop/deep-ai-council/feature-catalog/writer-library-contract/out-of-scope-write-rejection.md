@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Confirm council writes cann
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `writer-library-contract/out-of-scope-write-rejection.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-017.
 
-Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`, which the scenario identifies as path guard implementation. Validation is anchored by `manual-testing-playbook/writer-library-contract/out-of-scope-write-rejection.md`, covering manual scenario contract.
+Current behavior is grounded in `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`, which the scenario identifies as path guard implementation. Validation is anchored by `manual-testing-playbook/writer-library-contract/out-of-scope-write-rejection.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify writes outside ai-council/** are rejected with OUT_OF_SCOPE_WRITE before filesystem touch. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,8 +40,8 @@ The user-visible contract is concrete: Verify writes outside ai-council/** are r
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` | Library | Path guard implementation |
-| `.opencode/agents/ai-council.md` | Runtime Mirror | Scoped-write authority declaration |
+| `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` | Library | Path guard implementation |
+| `.skilled/agents/ai-council.md` | Runtime Mirror | Scoped-write authority declaration |
 
 ### Validation And Tests
 

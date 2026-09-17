@@ -84,12 +84,12 @@ copy_file() {
   cp "$source" "$target"
 }
 
-require_path "${REPO_ROOT}/.opencode/commands/deep/research.md"
-require_path "${REPO_ROOT}/.opencode/commands/deep/assets/deep-research-auto.yaml"
-require_path "${REPO_ROOT}/.opencode/commands/deep/assets/deep-research-confirm.yaml"
-require_path "${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-research"
-require_path "${REPO_ROOT}/.opencode/skills/system-spec-kit"
-require_path "${REPO_ROOT}/.opencode/agents/deep-research.md"
+require_path "${REPO_ROOT}/.skilled/commands/deep/research.md"
+require_path "${REPO_ROOT}/.skilled/commands/deep/assets/deep-research-auto.yaml"
+require_path "${REPO_ROOT}/.skilled/commands/deep/assets/deep-research-confirm.yaml"
+require_path "${REPO_ROOT}/.skilled/skills/system-deep-loop/deep-research"
+require_path "${REPO_ROOT}/.skilled/skills/system-spec-kit"
+require_path "${REPO_ROOT}/.skilled/agents/deep-research.md"
 require_path "${REPO_ROOT}/.claude/agents/deep-research.md"
 
 validate_sandbox_dir "$SANDBOX_DIR"
@@ -97,11 +97,11 @@ validate_sandbox_dir "$SANDBOX_DIR"
 rm -rf "$SANDBOX_DIR"
 mkdir -p "$SANDBOX_DIR"
 
-copy_dir "${REPO_ROOT}/.opencode/commands/speckit" "${SANDBOX_DIR}/.opencode/commands/speckit"
-copy_dir "${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-research" "${SANDBOX_DIR}/.opencode/skills/system-deep-loop/deep-research"
-copy_dir "${REPO_ROOT}/.opencode/skills/system-spec-kit" "${SANDBOX_DIR}/.opencode/skills/system-spec-kit"
+copy_dir "${REPO_ROOT}/.skilled/commands/speckit" "${SANDBOX_DIR}/.skilled/commands/speckit"
+copy_dir "${REPO_ROOT}/.skilled/skills/system-deep-loop/deep-research" "${SANDBOX_DIR}/.skilled/skills/system-deep-loop/deep-research"
+copy_dir "${REPO_ROOT}/.skilled/skills/system-spec-kit" "${SANDBOX_DIR}/.skilled/skills/system-spec-kit"
 
-copy_file "${REPO_ROOT}/.opencode/agents/deep-research.md" "${SANDBOX_DIR}/.opencode/agents/deep-research.md"
+copy_file "${REPO_ROOT}/.skilled/agents/deep-research.md" "${SANDBOX_DIR}/.skilled/agents/deep-research.md"
 copy_file "${REPO_ROOT}/.claude/agents/deep-research.md" "${SANDBOX_DIR}/.claude/agents/deep-research.md"
 
 echo "Created deep-research command sandbox at ${SANDBOX_DIR}"

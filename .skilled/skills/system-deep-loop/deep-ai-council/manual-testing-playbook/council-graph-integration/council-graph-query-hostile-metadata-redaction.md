@@ -88,10 +88,10 @@ If hostile metadata leaks, inspect `lib/council/council-graph-query.ts` allowlis
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | Allowlist + length bounds (P1-003 remediation) |
-| `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` | runtime CLI script: prompt-safe query envelope |
-| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Test: "redacts arbitrary metadata from prompt-safe query output" |
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md` | Documents the allowlist contract |
+| `.skilled/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | Allowlist + length bounds (P1-003 remediation) |
+| `.skilled/skills/system-deep-loop/runtime/scripts/query.cjs` | runtime CLI script: prompt-safe query envelope |
+| `.skilled/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Test: "redacts arbitrary metadata from prompt-safe query output" |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md` | Documents the allowlist contract |
 
 ---
 

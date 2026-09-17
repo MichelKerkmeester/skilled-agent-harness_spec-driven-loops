@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review JSONL reconstruction from iteration markdown and report whether resume still works.
 ### Commands
-1. `bash: rg -n 'iteration.*file|iteration-NNN|write.once|iterations/|reconstruction|reconstruct|redundant|backup' .opencode/skills/system-deep-loop/deep-review/references/state/state-format.md .opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'iteration.*file|write_once|iterations/|iteration-NNN|reconstruct' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
-3. `bash: rg -n 'iteration.*file|write-once|iterations/|iteration-NNN|reconstruct|recovery|backup' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md`
+1. `bash: rg -n 'iteration.*file|iteration-NNN|write.once|iterations/|reconstruction|reconstruct|redundant|backup' .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`
+2. `bash: rg -n 'iteration.*file|write_once|iterations/|iteration-NNN|reconstruct' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'iteration.*file|write-once|iterations/|iteration-NNN|reconstruct|recovery|backup' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
 ### Expected
 Iteration files contain JSONL-compatible metadata, reconstruction path documented, reconstructed JSONL allows resume, and iteration files are write-once.
 ### Evidence
@@ -71,12 +71,12 @@ Privilege the state format reference for both JSONL and iteration file schemas. 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md` | JSONL schema and iteration file schema, use the state log and findings registry sections |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Iteration file write-once contract and recovery guidance, use the iteration loop section |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Iteration file creation and state append steps |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Iteration file creation and state append steps |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | State file listing showing iterations/ directory, use `ANCHOR:state-files` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Rules for externalized state, use `ANCHOR:rules` Rule 3 |
+| `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md` | JSONL schema and iteration file schema, use the state log and findings registry sections |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Iteration file write-once contract and recovery guidance, use the iteration loop section |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Iteration file creation and state append steps |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Iteration file creation and state append steps |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | State file listing showing iterations/ directory, use `ANCHOR:state-files` |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Rules for externalized state, use `ANCHOR:rules` Rule 3 |
 
 ---
 
@@ -86,4 +86,4 @@ Privilege the state format reference for both JSONL and iteration file schemas. 
 - Playbook ID: DRV-024
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `pause-resume-and-fault-tolerance/jsonl-reconstruction-from-review-iteration-files.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

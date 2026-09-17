@@ -26,7 +26,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Title: Review reducer surfaces blocked-stop history across registry, dashboard, and next-focus.
 - Given: A review packet with at least one `blocked_stop` event whose `blockedBy` and `gateResults` use the review-specific legal-stop names `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`.
-- When: The operator runs `node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder>`.
+- When: The operator runs `node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder>`.
 - Then: `deep-review-findings-registry.json` exposes `blockedStopHistory` entries that preserve the review gate names, `deep-review-dashboard.md` renders `Blocked Stops`, and the `ANCHOR:next-focus` block in `deep-review-strategy.md` contains the blocked-stop recovery strategy.
 - Real user request: If review convergence gets blocked, where do I see which review gate failed and what next-focus guidance the reducer surfaced for recovery?
 - Prompt: `Validate blocked-stop reducer surfacing in deep-review dashboard and strategy recovery output.`
@@ -50,7 +50,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate blocked-stop reducer surfacing in deep-review dashboard and strategy recovery output.
 
 ### Commands
-1. `bash: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder}`
+1. `bash: node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder}`
 2. `bash: cat {spec_folder}/review/deep-review-findings-registry.json | jq '.blockedStopHistory'`
 3. `bash: grep -A 5 -i "Blocked Stops" {spec_folder}/review/deep-review-dashboard.md`
 4. `bash: sed -n '/ANCHOR:next-focus/,/\/ANCHOR:next-focus/p' {spec_folder}/review/deep-review-strategy.md`
@@ -81,9 +81,9 @@ Privilege `deep-review-findings-registry.json` as the reducer-owned source of tr
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Canonical reducer implementation, promotes `blocked_stop` into `blockedStopHistory`, renders `Blocked Stops`, and rewrites `ANCHOR:next-focus` |
-| `.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md` | Review state contract, defines `blockedStopHistory`, dashboard `Blocked Stops`, strategy next-focus override, and review-specific gate payload shape |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Review legal-stop workflow contract, defines the review-specific gate names used in `blocked_stop` events |
+| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Canonical reducer implementation, promotes `blocked_stop` into `blockedStopHistory`, renders `Blocked Stops`, and rewrites `ANCHOR:next-focus` |
+| `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md` | Review state contract, defines `blockedStopHistory`, dashboard `Blocked Stops`, strategy next-focus override, and review-specific gate payload shape |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Review legal-stop workflow contract, defines the review-specific gate names used in `blocked_stop` events |
 
 ---
 
@@ -93,4 +93,4 @@ Privilege `deep-review-findings-registry.json` as the reducer-owned source of tr
 - Playbook ID: DRV-033
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/blocked-stop-reducer-surfacing.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

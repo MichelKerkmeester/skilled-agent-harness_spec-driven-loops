@@ -54,8 +54,8 @@ Evaluate and score an agent candidate for promotion or rollback.
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/SKILL.md` states the single advisor identity rule.
-2. `.opencode/skills/system-deep-loop/mode-registry.json` contains the four tested mode entries.
+1. `.skilled/skills/system-deep-loop/SKILL.md` states the single advisor identity rule.
+2. `.skilled/skills/system-deep-loop/mode-registry.json` contains the four tested mode entries.
 3. Skill advisor is callable.
 
 ### Prompt
@@ -99,8 +99,8 @@ Evaluate and score an agent candidate for promotion or rollback.
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - public advisor identity and hub routing rule.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - advisor routing projection and mode fields.
+- `.skilled/skills/system-deep-loop/SKILL.md` - public advisor identity and hub routing rule.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - advisor routing projection and mode fields.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

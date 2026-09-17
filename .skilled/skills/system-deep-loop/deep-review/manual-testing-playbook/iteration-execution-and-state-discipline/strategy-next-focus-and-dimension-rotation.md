@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review dimension rotation through strategy Next Focus and skipped exhausted dimensions.
 ### Commands
-1. `bash: rg -n 'next_dimension|next_focus|dimensions_covered|dimension_queue|Next Focus' .opencode/commands/deep/assets/deep-review-auto.yaml`
-2. `bash: rg -n 'Next Focus|dimension.*rotation|dimension.*coverage|exhausted' .opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
-3. `bash: rg -n 'Dimension Coverage|dimensions.*covered|minStabilization' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
+1. `bash: rg -n 'next_dimension|next_focus|dimensions_covered|dimension_queue|Next Focus' .skilled/commands/deep/assets/deep-review-auto.yaml`
+2. `bash: rg -n 'Next Focus|dimension.*rotation|dimension.*coverage|exhausted' .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
+3. `bash: rg -n 'Dimension Coverage|dimensions.*covered|minStabilization' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
 ### Expected
 The read-state step extracts the next uncovered dimension. The dispatch step injects it as the focus. The strategy template has a "Next Focus" section. Convergence requires all dimensions covered.
 ### Evidence
@@ -71,10 +71,10 @@ Check the strategy template for explicit dimension tracking sections and verify 
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Loop dimension extraction and dispatch, inspect `step_read_state` and `step_dispatch_review_agent` |
-| `.opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template, inspect "Next Focus" and dimension tracking sections |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence signals, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
-| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Shared convergence algorithm, inspect dimension coverage signal |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Loop dimension extraction and dispatch, inspect `step_read_state` and `step_dispatch_review_agent` |
+| `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template, inspect "Next Focus" and dimension tracking sections |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence signals, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
+| `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Shared convergence algorithm, inspect dimension coverage signal |
 
 ---
 
@@ -84,4 +84,4 @@ Check the strategy template for explicit dimension tracking sections and verify 
 - Playbook ID: DRV-010
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/strategy-next-focus-and-dimension-rotation.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

@@ -39,9 +39,9 @@ Every ledger-backed `runtime/lib/` domain imports this module to append and repl
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts`
-- `.opencode/skills/system-deep-loop/runtime/tests/fixtures/authorized-ledger-fixtures.ts`
-- `.opencode/skills/system-deep-loop/runtime/tests/fixtures/authorized-ledger-worker.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/fixtures/authorized-ledger-fixtures.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/fixtures/authorized-ledger-worker.ts`
 
 ---
 

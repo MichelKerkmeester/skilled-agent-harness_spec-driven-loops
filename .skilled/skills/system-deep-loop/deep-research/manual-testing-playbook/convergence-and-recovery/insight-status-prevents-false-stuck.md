@@ -45,10 +45,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate insight-status iterations avoid false stuck counting despite low raw novelty.
 ### Commands
-1. `bash: rg -n 'insight' .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md`
-2. `bash: rg -n 'stuckCount\|stuck_count\|insight' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-3. `bash: rg -n 'insight\|thought\|stuck' .opencode/skills/system-deep-loop/deep-research/SKILL.md`
-4. `bash: rg -n 'stuck_count.*insight\|insight.*stuck' .opencode/commands/deep/assets/deep-research-auto.yaml`
+1. `bash: rg -n 'insight' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
+2. `bash: rg -n 'stuckCount\|stuck_count\|insight' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+3. `bash: rg -n 'insight\|thought\|stuck' .skilled/skills/system-deep-loop/deep-research/SKILL.md`
+4. `bash: rg -n 'stuck_count.*insight\|insight.*stuck' .skilled/commands/deep/assets/deep-research-auto.yaml`
 ### Expected
 Iteration with status="insight" and low newInfoRatio, stuck_count NOT incremented.
 ### Evidence
@@ -72,10 +72,10 @@ Privilege state-format.md for the status taxonomy and convergence.md for the stu
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical JSONL schema; insight status definition and its relationship to stuck counting |
-| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Convergence math; stuckCount computation and which statuses increment it |
-| `.opencode/skills/system-deep-loop/deep-research/SKILL.md` | Skill overview; iteration status taxonomy including insight |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; stuck_count update logic in step_update_state |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical JSONL schema; insight status definition and its relationship to stuck counting |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Convergence math; stuckCount computation and which statuses increment it |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Skill overview; iteration status taxonomy including insight |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; stuck_count update logic in step_update_state |
 
 ---
 
@@ -85,4 +85,4 @@ Privilege state-format.md for the status taxonomy and convergence.md for the stu
 - Playbook ID: DR-034
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/insight-status-prevents-false-stuck.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

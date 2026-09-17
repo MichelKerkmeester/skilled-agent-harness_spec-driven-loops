@@ -84,8 +84,8 @@ Run the completion advisory, then inspect helper output and report writes.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md` | State event contract |
-| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs` | Completion advisory |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md` | State event contract |
+| `.skilled/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs` | Completion advisory |
 
 ---
 

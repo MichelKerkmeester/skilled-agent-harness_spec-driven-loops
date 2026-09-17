@@ -26,8 +26,8 @@ The skill runs two lanes through one agent. Each category and feature below is t
 
 | Category | Coverage | Lane | Primary Runtime Surface |
 |---|---:|---|---|
-| Evaluation loop | 7 features | Lane A | `.opencode/commands/deep/agent-improvement.md`, deep-improvement YAML workflows, `scripts/*.cjs` |
-| Integration scanning | 3 features | Lane A | `scan-integration.cjs`, `/deep:agent-improvement`, `.opencode/agents/deep-improvement.md` |
+| Evaluation loop | 7 features | Lane A | `.skilled/commands/deep/agent-improvement.md`, deep-improvement YAML workflows, `scripts/*.cjs` |
+| Integration scanning | 3 features | Lane A | `scan-integration.cjs`, `/deep:agent-improvement`, `.skilled/agents/deep-improvement.md` |
 | Scoring system | 4 features | Shared | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs` |
 | Model-benchmark mode | 5 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs` |
 
@@ -165,7 +165,7 @@ Builds the inventory of files and references that define an agent beyond its can
 
 #### How It Works
 
-`scan-integration.cjs` scans the canonical agent file, three runtime mirrors, improve command markdown, YAML workflow assets, skill references, global docs, and a skill-advisor path constant. That path now points at `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, so the consolidated skill-advisor surface is included in the integration map.
+`scan-integration.cjs` scans the canonical agent file, three runtime mirrors, improve command markdown, YAML workflow assets, skill references, global docs, and a skill-advisor path constant. That path now points at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, so the consolidated skill-advisor surface is included in the integration map.
 
 #### Source Files
 
@@ -181,7 +181,7 @@ Checks whether the runtime-specific mirrors still reflect the canonical agent bo
 
 #### How It Works
 
-Mirror parity is signal-based, not byte-for-byte. The scanner strips frontmatter, extracts up to three emphasized signal strings from the canonical body, and marks a mirror `aligned` when at least two signals appear in the mirror body. It checks `.claude/agents` and `.opencode/agents` against the canonical `.opencode/agents`.
+Mirror parity is signal-based, not byte-for-byte. The scanner strips frontmatter, extracts up to three emphasized signal strings from the canonical body, and marks a mirror `aligned` when at least two signals appear in the mirror body. It checks `.claude/agents` and `.skilled/agents` against the canonical `.skilled/agents`.
 
 #### Source Files
 

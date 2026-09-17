@@ -30,8 +30,8 @@ Load this hub when deciding whether a deep-research loop should continue, recove
 
 ### Key Sources
 
-- Command syntax: `.opencode/commands/deep/research.md`
-- Workflow algorithm: `.opencode/commands/deep/assets/deep-research-auto.yaml` and `_confirm.yaml`
+- Command syntax: `.skilled/commands/deep/research.md`
+- Workflow algorithm: `.skilled/commands/deep/assets/deep-research-auto.yaml` and `_confirm.yaml`
 - Signal details: `references/convergence/convergence-signals.md`
 - Recovery details: `references/convergence/convergence-recovery.md`
 - Graph stop gates: `references/convergence/convergence-graph.md`

@@ -12,7 +12,7 @@ const require = createRequire(import.meta.url);
 
 const CHECK_SCRIPT = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/check-dispatch-cap.cjs',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/check-dispatch-cap.cjs',
 );
 
 type CheckResult = {
@@ -42,7 +42,7 @@ const checker = require(CHECK_SCRIPT) as {
 
 const journal = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs',
 )) as {
   emitEvent: (journalPath: string, event: object) => { success: boolean; errors?: string[] };
 };

@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review stuck recovery and report whether the loop switches to the least-covered dimension.
 ### Commands
-1. `bash: rg -n 'stuck|STUCK|noProgress|no_progress|stuckThreshold|recovery|widen|least.covered' .opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'stuck|STUCK|recovery|widen|least_covered|no_progress|stuckThreshold|RECOVERY' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
-3. `bash: rg -n 'stuck|recovery|dimension.*focus|noProgress|least.covered|Next Focus' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
+1. `bash: rg -n 'stuck|STUCK|noProgress|no_progress|stuckThreshold|recovery|widen|least.covered' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+2. `bash: rg -n 'stuck|STUCK|recovery|widen|least_covered|no_progress|stuckThreshold|RECOVERY' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'stuck|recovery|dimension.*focus|noProgress|least.covered|Next Focus' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
 ### Expected
 `stuckThreshold=2`, `noProgressThreshold=0.05`, recovery selects least-covered dimension, strategy.md "Next Focus" is updated, and stuck event logged to JSONL.
 ### Evidence
@@ -71,12 +71,12 @@ Privilege the convergence reference for stuck detection math and the YAML workfl
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, stuck detection and recovery rules |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect stuck recovery step |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect stuck recovery step |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence parameters including stuckThreshold, use `ANCHOR:convergence` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Rules for dimension focus and exhausted approaches, use `ANCHOR:rules` |
-| `.opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template showing "Next Focus" and dimension coverage tracking |
+| `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, stuck detection and recovery rules |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect stuck recovery step |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect stuck recovery step |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence parameters including stuckThreshold, use `ANCHOR:convergence` |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Rules for dimension focus and exhausted approaches, use `ANCHOR:rules` |
+| `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template showing "Next Focus" and dimension coverage tracking |
 
 ---
 
@@ -86,4 +86,4 @@ Privilege the convergence reference for stuck detection math and the YAML workfl
 - Playbook ID: DRV-019
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/stuck-recovery-widens-dimension-focus.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

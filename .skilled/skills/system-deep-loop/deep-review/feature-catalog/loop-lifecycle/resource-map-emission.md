@@ -36,18 +36,18 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs` | Shared script | Normalizes review evidence and renders the ten-category resource map. |
-| `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Reducer | Adds the `--emit-resource-map` path and honors `config.resource_map.emit`. |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Workflow | Triggers emission during synthesis after the final adjudication pass. |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Workflow | Mirrors the same synthesis-time emission path in confirm mode. |
-| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Reference | Documents the convergence-to-synthesis emission step and operator opt-out. |
+| `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs` | Shared script | Normalizes review evidence and renders the ten-category resource map. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Reducer | Adds the `--emit-resource-map` path and honors `config.resource_map.emit`. |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow | Triggers emission during synthesis after the final adjudication pass. |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow | Mirrors the same synthesis-time emission path in confirm mode. |
+| `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Reference | Documents the convergence-to-synthesis emission step and operator opt-out. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/runtime/tests/resource-map-extractor.vitest.ts` | Vitest | Covers review-shape normalization, category classification, and deterministic output. |
-| `.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md` | Manual playbook | Verifies synthesis emits the review resource map and that opt-out skips cleanly. |
+| `.skilled/skills/system-spec-kit/runtime/tests/resource-map-extractor.vitest.ts` | Vitest | Covers review-shape normalization, category classification, and deterministic output. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md` | Manual playbook | Verifies synthesis emits the review resource map and that opt-out skips cleanly. |
 
 ---
 
@@ -56,7 +56,7 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 - Group: Loop lifecycle
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `loop-lifecycle/resource-map-emission.md`
-- Primary sources: `.opencode/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `.opencode/commands/deep/assets/deep-review-auto.yaml`, `.opencode/commands/deep/assets/deep-review-confirm.yaml`
+- Primary sources: `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `.skilled/commands/deep/assets/deep-review-auto.yaml`, `.skilled/commands/deep/assets/deep-review-confirm.yaml`
 Related references:
 - [memory-save.md](../../feature-catalog/loop-lifecycle/memory-save.md) — Memory save
 - [resource-map-coverage-gate.md](../../feature-catalog/loop-lifecycle/resource-map-coverage-gate.md) — Resource Map Coverage Gate

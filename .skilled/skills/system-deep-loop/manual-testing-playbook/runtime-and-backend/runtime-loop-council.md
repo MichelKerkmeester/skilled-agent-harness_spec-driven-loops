@@ -49,8 +49,8 @@ For an AI council deliberation, resolve the mode through the registry and state 
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `ai-council` mode entry.
-2. `.opencode/skills/system-deep-loop/SKILL.md` contains the three-tier discriminator section.
+1. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `ai-council` mode entry.
+2. `.skilled/skills/system-deep-loop/SKILL.md` contains the three-tier discriminator section.
 
 ### Prompt
 
@@ -89,8 +89,8 @@ For an AI council deliberation, resolve the mode through the registry and state 
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - three-tier discriminator and council mapping.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `ai-council` backend fields.
+- `.skilled/skills/system-deep-loop/SKILL.md` - three-tier discriminator and council mapping.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `ai-council` backend fields.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-research resume classification inspects prior config, JSONL, and strategy before writing new files.
 ### Commands
-1. `bash: rg -n 'Auto-Resume Protocol|resume|completed-session|invalid-state' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'step_classify_session|on_resume|on_completed_session|on_invalid_state' .opencode/commands/deep/assets/deep-research-auto.yaml .opencode/commands/deep/assets/deep-research-confirm.yaml`
-3. `bash: rg -n 'Auto-resume|resume' .opencode/skills/system-deep-loop/deep-research/README.md`
+1. `bash: rg -n 'Auto-Resume Protocol|resume|completed-session|invalid-state' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+2. `bash: rg -n 'step_classify_session|on_resume|on_completed_session|on_invalid_state' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+3. `bash: rg -n 'Auto-resume|resume' .skilled/skills/system-deep-loop/deep-research/README.md`
 ### Expected
 A four-state classification model exists, resume skips init writes, and completed sessions route differently from active resumes.
 ### Evidence
@@ -71,10 +71,10 @@ Verify completed sessions route differently from active resumes and that both YA
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Resume contract; use `ANCHOR:phase-initialization` and `Auto-Resume Protocol` |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Session classification; inspect `step_classify_session` |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Session classification; inspect `step_classify_session` |
-| `.opencode/skills/system-deep-loop/deep-research/README.md` | User-facing auto-resume claim; use `ANCHOR:features` and `ANCHOR:faq` |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Resume contract; use `ANCHOR:phase-initialization` and `Auto-Resume Protocol` |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Session classification; inspect `step_classify_session` |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Session classification; inspect `step_classify_session` |
+| `.skilled/skills/system-deep-loop/deep-research/README.md` | User-facing auto-resume claim; use `ANCHOR:features` and `ANCHOR:faq` |
 
 ---
 
@@ -84,4 +84,4 @@ Verify completed sessions route differently from active resumes and that both YA
 - Playbook ID: DR-005
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `initialization-and-state-setup/resume-classification-from-valid-prior-state.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

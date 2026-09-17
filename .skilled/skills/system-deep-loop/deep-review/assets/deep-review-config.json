@@ -54,8 +54,8 @@
     ]
   },
   "qualityGateThreshold": true,
-  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
-  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
   "fileProtection": {
     "deep-review-config.json": "immutable",
     "deep-review-state.jsonl": "append-only",
@@ -89,7 +89,7 @@
   },
   "_optimizerManaged": {
     "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
-    "manifestPath": ".opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
     "tunableFields": ["convergenceThreshold", "stuckThreshold", "maxIterations"],
     "lockedFields": ["lineageMode", "reducer", "fileProtection", "sessionId", "mode", "reviewDimensions", "antiConvergence.convergenceMode", "antiConvergence.stopPolicy"],
     "promotionMode": "advisory-only"

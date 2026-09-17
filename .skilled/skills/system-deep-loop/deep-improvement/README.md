@@ -22,7 +22,7 @@ version: 1.17.0.38
 |---|---|
 | **Use it for** | Proving a bounded agent or model improved with measured evidence before you mutate the canonical file |
 | **Invoke with** | `/deep:agent-improvement` or `/deep:model-benchmark` |
-| **Works on** | Any agent `.md` under `.opencode/agents/`, or a model or prompt framework against repeatable fixtures |
+| **Works on** | Any agent `.md` under `.skilled/agents/`, or a model or prompt framework against repeatable fixtures |
 | **Produces** | Lane-specific candidates, benchmark reports, an append-only journal and a dashboard; output roots are defined by each lane's command contract |
 
 ---
@@ -41,12 +41,12 @@ Editing an agent prompt is normally guesswork. You reword a rule, the prompt rea
 
 ## 3. QUICK START
 
-**Step 1: Pick a target and a spec folder.** Choose any agent under `.opencode/agents/` and the spec folder where the run will live.
+**Step 1: Pick a target and a spec folder.** Choose any agent under `.skilled/agents/` and the spec folder where the run will live.
 
 **Step 2: Run the Lane A loop.**
 
 ```bash
-/deep:agent-improvement ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
+/deep:agent-improvement ".skilled/agents/debug.md" :confirm --spec-folder={spec_folder}
 ```
 
 The integration scan maps every surface the agent touches. A packet-local candidate lands under `{spec_folder}/improvement/candidates/`. The five-dimension scorer reports `candidate-acceptable` or `needs-improvement`, and a refreshed dashboard shows dimensional progress.
@@ -55,13 +55,13 @@ The integration scan maps every surface the agent touches. A packet-local candid
 
 ```bash
 # Scan every surface the agent touches
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs --agent=debug
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs --agent=debug
 
 # Derive a scoring profile from the agent itself
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs --agent=.opencode/agents/debug.md
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs --agent=.skilled/agents/debug.md
 
 # Score across five dimensions (dynamic mode is the only path)
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate=.opencode/agents/debug.md
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate=.skilled/agents/debug.md
 ```
 
 Each returns JSON with a five-dimension breakdown and a recommendation.
@@ -76,7 +76,7 @@ The loop never touches the canonical file until you tell it to. It copies the ta
 
 ### The Integration Scan
 
-An agent is more than its `.md` file. `scan-integration.cjs` inventories the canonical agent definition (`.opencode/agents/`), its Claude runtime mirror (`.claude/agents/`), command dispatch files, YAML workflow assets, skill references and the skill-advisor routing path. The scanner extracts emphasized strings from the canonical agent and marks a mirror aligned when enough of them appear. A drifted mirror shows up before it causes a runtime surprise, and the score reflects the whole integration surface, not the prompt in isolation. Mirror parity is also enforced repo-wide outside a scoring run: `scripts/check-agent-mirror-sync.cjs` gates commits (through `.opencode/hooks/git/pre-commit`) and pull requests into `main` (through `.github/workflows/agent-mirror-sync.yml`), so drifted runtime copies are caught before they merge. The commit hook fails open when Node or the checker is unavailable so it never blocks an unrelated commit; the CI gate on `main` is the fail-closed backstop.
+An agent is more than its `.md` file. `scan-integration.cjs` inventories the canonical agent definition (`.skilled/agents/`), its Claude runtime mirror (`.claude/agents/`), command dispatch files, YAML workflow assets, skill references and the skill-advisor routing path. The scanner extracts emphasized strings from the canonical agent and marks a mirror aligned when enough of them appear. A drifted mirror shows up before it causes a runtime surprise, and the score reflects the whole integration surface, not the prompt in isolation. Mirror parity is also enforced repo-wide outside a scoring run: `scripts/check-agent-mirror-sync.cjs` gates commits (through `.skilled/hooks/git/pre-commit`) and pull requests into `main` (through `.github/workflows/agent-mirror-sync.yml`), so drifted runtime copies are caught before they merge. The commit hook fails open when Node or the checker is unavailable so it never blocks an unrelated commit; the CI gate on `main` is the fail-closed backstop.
 
 ### Five Scoring Dimensions (Lane A)
 
@@ -90,7 +90,7 @@ Scoring is deterministic. Every check is a regex, string match or file-existence
 | Output Quality | 0.15 | Output-verification items present, no placeholder content |
 | System Fitness | 0.15 | Permission alignment, valid resource references, complete frontmatter |
 
-Profiles are generated dynamically from the target agent file via `generate-profile.cjs`. No static profiles ship, so any agent in `.opencode/agents/` is a valid target the moment it exists.
+Profiles are generated dynamically from the target agent file via `generate-profile.cjs`. No static profiles ship, so any agent in `.skilled/agents/` is a valid target the moment it exists.
 
 ### Guarded Promotion
 
@@ -105,7 +105,7 @@ Both lanes share the same candidate, dispatcher and scorer seams.
 | A: Agent-Improvement | `/deep:agent-improvement` | A bounded agent `.md` file |
 | B: Model-Benchmark | `/deep:model-benchmark` | A model or prompt framework against repeatable fixtures |
 
-Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/`; benchmark reports include `outcomeScoreDelta` and helped/hurt fixture deltas so promotion can block regressions instead of relying on pass/fail alone. Lane A is the default path when no mode flag is set.
+Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.skilled/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/`; benchmark reports include `outcomeScoreDelta` and helped/hurt fixture deltas so promotion can block regressions instead of relying on pass/fail alone. Lane A is the default path when no mode flag is set.
 
 ---
 
@@ -183,7 +183,7 @@ The `feature-catalog/` covers every capability across four categories: evaluatio
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/deep-improvement/README.md --type readme` reports zero issues |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/README.md --type readme` reports zero issues |
 | Behavior | Run the playbook scenarios under `manual-testing-playbook/` in a live session |
 
 ---

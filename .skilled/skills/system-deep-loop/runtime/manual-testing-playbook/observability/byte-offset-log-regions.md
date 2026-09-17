@@ -45,11 +45,11 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Commands
 
 1. Inspect `lib/deep-loop/post-dispatch-validate.ts` for the implementation contract.
-2. Inspect `.opencode/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
-3. Inspect `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` for the implementation contract.
+2. Inspect `.skilled/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
+3. Inspect `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` for the implementation contract.
 4. Inspect `tests/unit/post-dispatch-validate.vitest.ts` for the matching regression coverage.
 5. Inspect `tests/unit/deep-research-reduce-state.vitest.ts` for the matching regression coverage.
-6. Inspect `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` for the matching regression coverage.
+6. Inspect `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` for the matching regression coverage.
 7. Run or inspect the matching test assertions for this feature.
 8. Capture the source lines, command output, or test assertions that prove the expected signals.
 9. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
@@ -60,9 +60,9 @@ Byte-offset log regions matches the documented current reality, the source ancho
 
 ### Evidence
 
-- Source excerpts from `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/commands/deep/assets/deep-research-auto.yaml`, `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Source excerpts from `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` showing the anchors named in the commands above, read from the current files rather than recalled.
 - Captured stdout and exit status for every command run in this section.
-- Output from `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` naming the assertions that carry the expected signals.
+- Output from `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` naming the assertions that carry the expected signals.
 - A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
 
 ### Failure Triage
@@ -81,8 +81,8 @@ Byte-offset log regions matches the documented current reality, the source ancho
 | File | Role |
 |---|---|
 | `lib/deep-loop/post-dispatch-validate.ts` | byte-offset log regions. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | byte-offset log regions. |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | byte-offset log regions. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | byte-offset log regions. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | byte-offset log regions. |
 
 ### Validation
 
@@ -90,7 +90,7 @@ Byte-offset log regions matches the documented current reality, the source ancho
 |---|---|
 | `tests/unit/post-dispatch-validate.vitest.ts` | Primary regression coverage for Byte-offset log regions. |
 | `tests/unit/deep-research-reduce-state.vitest.ts` | Primary regression coverage for Byte-offset log regions. |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` | Primary regression coverage for Byte-offset log regions. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` | Primary regression coverage for Byte-offset log regions. |
 
 ---
 

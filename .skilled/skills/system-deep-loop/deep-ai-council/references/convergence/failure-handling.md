@@ -254,7 +254,7 @@ Then append `artifact_superseded` rows for artifacts from that round.
 
 ## 7. CROSS-REFERENCES
 
-- Agent body: `.opencode/agents/ai-council.md` §10 FAILURE HANDLING and §17 ROLLBACK FOR OPERATORS.
+- Agent body: `.skilled/agents/ai-council.md` §10 FAILURE HANDLING and §17 ROLLBACK FOR OPERATORS.
 - State format: `../structure/state-format.md`.
 - Scoring rubric: `../scoring/scoring-rubric.md`.
 - Convergence signals: `convergence-signals.md`.

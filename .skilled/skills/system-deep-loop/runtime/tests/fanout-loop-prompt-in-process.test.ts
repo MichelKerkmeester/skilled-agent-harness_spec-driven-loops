@@ -56,7 +56,7 @@ describe('fanout-run.cjs — buildLoopPrompt in-process execution directive', ()
     expect(prompt).toContain("no 'codex exec'");
 
     const directiveIndex = prompt.indexOf(DIRECTIVE_HEADLINE);
-    const readIndex = prompt.indexOf('Read .opencode/skills/system-deep-loop/deep-research/SKILL.md');
+    const readIndex = prompt.indexOf('Read .skilled/skills/system-deep-loop/deep-research/SKILL.md');
     expect(directiveIndex).toBeGreaterThanOrEqual(0);
     expect(readIndex).toBeGreaterThanOrEqual(0);
     expect(directiveIndex).toBeLessThan(readIndex);

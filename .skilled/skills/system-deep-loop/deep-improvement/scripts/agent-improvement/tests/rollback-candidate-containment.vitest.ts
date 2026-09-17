@@ -23,7 +23,7 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const ROLLBACK = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs',
 );
 const require = createRequire(import.meta.url);
 const { issueReceipt } = require('../../shared/promotion-receipts.cjs') as {
@@ -124,8 +124,8 @@ afterEach(() => {
 
 describe('agent-improvement/rollback-candidate.cjs write-boundary containment', () => {
   it('refuses to roll back when the target resolves outside the allowed roots, even though manifest/config agree', () => {
-    // Target lives in a hermetic tmpdir outside .opencode/agents,
-    // .claude/agents, and .opencode/skills, so it is unauthorized by
+    // Target lives in a hermetic tmpdir outside .skilled/agents,
+    // .claude/agents, and .skilled/skills, so it is unauthorized by
     // default — target===config.target and target===manifest canonical
     // target both still hold.
     const p = buildPacket(path.join(work, 'canonical-target.txt'));

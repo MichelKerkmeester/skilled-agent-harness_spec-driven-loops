@@ -43,7 +43,7 @@ Do not use it for implementation, single-answer lookup, or code review. Use `dee
 Persist a captured council report:
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> \
+node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> \
   --input-file <report> \
   --memory-save-payload-out <payload>
 ```
@@ -51,13 +51,13 @@ node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts
 Check completion:
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs <packet>
+node .skilled/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs <packet>
 ```
 
 Replay the derived graph projection from artifacts:
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs <packet> --dry-run
+node .skilled/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs <packet> --dry-run
 ```
 
 ---
@@ -92,14 +92,14 @@ Escalate instead of persisting when any of these hold:
 ## 6. VALIDATION
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/system-deep-loop/deep-ai-council --json
+python3 .skilled/skills/sk-doc/scripts/quick_validate.py .skilled/skills/system-deep-loop/deep-ai-council --json
 ```
 
 For rewritten references or assets:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py <file> --type reference --blocking-only
-python3 .opencode/skills/sk-doc/scripts/extract_structure.py <file>
+python3 .skilled/skills/sk-doc/scripts/validate_document.py <file> --type reference --blocking-only
+python3 .skilled/skills/sk-doc/scripts/extract_structure.py <file>
 ```
 
 ---

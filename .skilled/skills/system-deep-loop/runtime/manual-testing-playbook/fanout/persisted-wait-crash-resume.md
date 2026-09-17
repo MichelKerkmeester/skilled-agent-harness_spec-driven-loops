@@ -45,7 +45,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Commands
 
 1. Inspect `scripts/fanout-run.cjs` for the implementation contract.
-2. Inspect `.opencode/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
+2. Inspect `.skilled/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
 3. Inspect `tests/unit/fanout-run.vitest.ts` for the matching regression coverage.
 4. Run the matching test command for this feature and require EXIT 0; source inspection alone is not sufficient.
 5. Capture the source lines and EXIT 0 test command output that prove the expected signals.
@@ -57,7 +57,7 @@ Persisted-wait crash resume matches the documented current reality, the source a
 
 ### Evidence
 
-- Source excerpts from `scripts/fanout-run.cjs`, `.opencode/commands/deep/assets/deep-research-auto.yaml` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Source excerpts from `scripts/fanout-run.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml` showing the anchors named in the commands above, read from the current files rather than recalled.
 - Captured stdout and exit status for every command run in this section.
 - Output from `tests/unit/fanout-run.vitest.ts` naming the assertions that carry the expected signals.
 - A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
@@ -78,7 +78,7 @@ Persisted-wait crash resume matches the documented current reality, the source a
 | File | Role |
 |---|---|
 | `scripts/fanout-run.cjs` | persisted-wait crash resume. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | persisted-wait crash resume. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | persisted-wait crash resume. |
 
 ### Validation
 

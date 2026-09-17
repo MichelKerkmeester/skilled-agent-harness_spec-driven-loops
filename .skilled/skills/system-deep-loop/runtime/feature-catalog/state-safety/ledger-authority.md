@@ -31,7 +31,7 @@ Constructing the registry writes no record. A mode with no persisted record read
 
 The exit contract of the gateway CLI is: 0 = the event is durable in the ledger, 1 = script error where the input never reached authority, 2 = refused at the authority boundary. Exit 0 speaks only to ledger durability; it says nothing about the legacy projection.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

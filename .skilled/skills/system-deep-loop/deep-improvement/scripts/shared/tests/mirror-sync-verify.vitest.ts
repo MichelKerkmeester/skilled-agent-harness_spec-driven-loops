@@ -12,7 +12,7 @@ const require = createRequire(import.meta.url);
 
 const mirrorSync = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
 )) as {
   compareBodyTokens: (expectedBody: string, actualBody: string) => {
     matches: boolean;
@@ -58,7 +58,7 @@ function writeFile(relativePath: string, content: string): void {
 function writeAllMirrors(options: { claudeBody?: string; omitClaude?: boolean } = {}): void {
   writeFile(`.opencode/agents/${AGENT_NAME}.md`, CANONICAL);
   if (!options.omitClaude) {
-    const claudeBody = options.claudeBody || CANONICAL.replace('.opencode/agents/*.md', '.claude/agents/*.md');
+    const claudeBody = options.claudeBody || CANONICAL.replace('.skilled/agents/*.md', '.claude/agents/*.md');
     writeFile(`.claude/agents/${AGENT_NAME}.md`, claudeBody);
   }
 }

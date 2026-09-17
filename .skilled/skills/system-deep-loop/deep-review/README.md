@@ -76,7 +76,7 @@ Expected output: a review report at `{spec_folder}/review/review-report.md` with
 **Step 3: Verify the reducer output after the loop finishes.**
 
 ```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder>
+node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder>
 ```
 
 Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iterationsCompleted`, `findings` and convergence fields.
@@ -235,7 +235,7 @@ The `feature-catalog/` covers every capability across its categories: loop lifec
 Deterministic scenarios under `manual-testing-playbook/` cover loop lifecycle, state management, convergence, recovery and review output. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/deep-review/README.md --type readme
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/README.md --type readme
 ```
 
 Expected output: zero issues reported.

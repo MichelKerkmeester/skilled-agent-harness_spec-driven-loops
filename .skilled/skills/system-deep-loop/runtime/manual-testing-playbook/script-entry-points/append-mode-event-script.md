@@ -60,7 +60,7 @@ The append gateway is the sanctioned way every canonical record reaches a mode's
 4. Run the gateway against the scratch root:
 
    ```sh
-   MK_DEEP_LOOP_AUTHORITY_ROOT=<tmp>/auth node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+   MK_DEEP_LOOP_AUTHORITY_ROOT=<tmp>/auth node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
      --mode research --run-directory <tmp>/run --event-json <tmp>/ev.json
    ```
 

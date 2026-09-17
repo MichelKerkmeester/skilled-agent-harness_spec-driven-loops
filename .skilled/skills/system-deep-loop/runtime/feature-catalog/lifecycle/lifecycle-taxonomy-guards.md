@@ -27,7 +27,7 @@ This feature belongs to the lifecycle group and is catalogued as F032 in the `ru
 
 `lifecycle-taxonomy.cjs` exports `LoopActiveStatus`, `LoopStopReason`, `LEGAL_TRANSITIONS`, and `createPausedWaitGate()` so consumers share the same active-state, terminal-reason, and resume-resolution contract.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

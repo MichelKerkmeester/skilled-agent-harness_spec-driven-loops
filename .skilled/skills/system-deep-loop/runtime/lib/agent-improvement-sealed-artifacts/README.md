@@ -59,7 +59,7 @@ This folder owns the sealed artifacts step for Agent Improvement. It does not re
 Run the runtime typecheck from the repository root. The lane-specific unit suite, when present, uses the same runtime Vitest configuration.
 
 ```bash
-.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json
+.skilled/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .skilled/skills/system-deep-loop/runtime/tsconfig.json
 ```
 
 Expected result: exit code 0 with no TypeScript diagnostics.

@@ -33,14 +33,14 @@ Additive-dark service for `system-deep-loop` modes that need a counterfactual ve
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/reducer.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/provenance-reduction/reducer.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts`
 
 ---
 

@@ -22,6 +22,6 @@ This fixture is intended to exercise:
 Reducer entrypoint:
 
 ```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs \
-  .opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session
+node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs \
+  .skilled/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session
 ```

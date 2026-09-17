@@ -168,7 +168,7 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
   },
   {
     surfaceId: 'model-benchmark-hub-output', format: 'mixed',
-    pathTemplate: '.opencode/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/',
+    pathTemplate: '.skilled/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/',
     legacyWriter: 'model-benchmark lane', readers: ['model benchmark report and promotion tools'],
     fixture: CONTROL_FIXTURE, disposition: 'retain-legacy-input', serializerId: null,
     refreshBoundary: null, nonProjectableReason: 'Write-once benchmark evidence remains source-owned',
@@ -184,14 +184,14 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
   },
   {
     surfaceId: 'model-grader-cache', format: 'mixed',
-    pathTemplate: '.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/{index.jsonl,*.out.md}',
+    pathTemplate: '.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/{index.jsonl,*.out.md}',
     legacyWriter: 'model benchmark scorer', readers: ['model benchmark scorer'],
     fixture: EVENT_FIXTURE, disposition: 'project', serializerId: 'legacy-jsonl-row-v1',
     refreshBoundary: 'event', nonProjectableReason: null, laterOwner: null,
   },
   {
     surfaceId: 'runtime-observability', format: 'jsonl',
-    pathTemplate: '.opencode/skills/system-deep-loop/runtime/database/observability-events.jsonl',
+    pathTemplate: '.skilled/skills/system-deep-loop/runtime/database/observability-events.jsonl',
     legacyWriter: 'runtime observability emitter', readers: ['observability projections and tests'],
     fixture: EVENT_FIXTURE, disposition: 'project', serializerId: 'legacy-jsonl-row-v1',
     refreshBoundary: 'event', nonProjectableReason: null, laterOwner: null,
@@ -227,7 +227,7 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
   },
   {
     surfaceId: 'loop-guard-session-state', format: 'json',
-    pathTemplate: '.opencode/skills/.state/loop-guard/{hex(session_id)}.json',
+    pathTemplate: '.skilled/skills/.state/loop-guard/{hex(session_id)}.json',
     legacyWriter: 'runtime dispatch guard shared by OpenCode and Claude adapters',
     readers: ['dispatch guard reads active session state; operators may inspect archived state'],
     fixture: CONTROL_FIXTURE, disposition: 'project', serializerId: 'legacy-compact-json-v1',
@@ -235,7 +235,7 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
   },
   {
     surfaceId: 'loop-guard-archive', format: 'json',
-    pathTemplate: '.opencode/skills/.state/loop-guard/.archive/{hex(session_id)}.json',
+    pathTemplate: '.skilled/skills/.state/loop-guard/.archive/{hex(session_id)}.json',
     legacyWriter: 'runtime dispatch guard retention sweep',
     readers: ['operators only; the guard prunes by mtime and does not restore archived sessions'],
     fixture: CONTROL_FIXTURE, disposition: 'project', serializerId: 'legacy-compact-json-v1',
@@ -243,7 +243,7 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
   },
   {
     surfaceId: 'compiled-command-manifest', format: 'jsonl',
-    pathTemplate: '.opencode/commands/deep/assets/compiled/manifest.jsonl',
+    pathTemplate: '.skilled/commands/deep/assets/compiled/manifest.jsonl',
     legacyWriter: 'runtime command renderer',
     readers: ['developer audit only via the compiled README validation snippet; no shipped BASE runtime reader'],
     fixture: EVENT_FIXTURE, disposition: 'project', serializerId: 'legacy-jsonl-row-v1',

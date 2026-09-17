@@ -29,10 +29,10 @@ Runtime primitives that keep legacy JSON and JSONL readers fed while a `system-d
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts`

@@ -13,33 +13,33 @@
   "dynamicProfileEnabled": true,
 
   // Path to the script that generates a dynamic target profile on the fly.
-  "dynamicProfileScript": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs",
+  "dynamicProfileScript": ".skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs",
 
   // Path to the integration-surface scanner that checks mirror parity,
   // command coverage, permission alignment, and resource references
   // for a given target agent across all runtime directories.
-  "integrationScanScript": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs",
+  "integrationScanScript": ".skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs",
 
   // profileCatalog remains referenced for path consistency with config, but
   // the directory is intentionally empty (contains only .gitkeep).
-  "profileCatalog": ".opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/target-profiles",
+  "profileCatalog": ".skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/target-profiles",
   "targets": [],
 
   // `fixed` declares files deep-improvement MUST NEVER mutate. These paths
     // belong to LIVE spec-kit surfaces (commands + templates) outside this
     // skill; they are protections, not static profiles for the handover agent.
     "fixed": [
-      ".opencode/commands/speckit/handover.md",
+      ".skilled/commands/speckit/handover.md",
       ".agents/commands/speckit/handover.toml",
-      ".opencode/skills/system-spec-kit/templates/handover.md"
+      ".skilled/skills/system-spec-kit/templates/handover.md"
     ],
 
   // `forbidden` declares files deep-improvement MUST NEVER write to even
   // when a candidate superficially matches. Same rationale as `fixed`.
     "forbidden": [
-      ".opencode/commands/speckit/handover.md",
+      ".skilled/commands/speckit/handover.md",
       ".agents/commands/speckit/handover.toml",
-      ".opencode/skills/system-spec-kit/templates/handover.md"
+      ".skilled/skills/system-spec-kit/templates/handover.md"
     ],
   "packaging": {
     "mirrorSyncMode": "downstream-only",

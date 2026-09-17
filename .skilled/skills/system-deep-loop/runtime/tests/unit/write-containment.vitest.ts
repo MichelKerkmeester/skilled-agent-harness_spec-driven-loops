@@ -1008,12 +1008,12 @@ describe('write-containment — untracked baseline entries are compared by conte
 describe('write-containment — regenerable runtime state', () => {
   it('exempts only runtime database files and exact memory-index metadata basenames', () => {
     expect(__internals.isRegenerableRuntimeState(
-      '.opencode/skills/system-deep-loop/runtime/database/graph.sqlite',
+      '.skilled/skills/system-deep-loop/runtime/database/graph.sqlite',
     )).toBe(true);
     expect(__internals.isRegenerableRuntimeState('specs/descriptions.json')).toBe(true);
     expect(__internals.isRegenerableRuntimeState('specs/example/description.json')).toBe(true);
     expect(__internals.isRegenerableRuntimeState(
-      '.opencode/skills/system-deep-loop/runtime/lib/deep-loop/worker.ts',
+      '.skilled/skills/system-deep-loop/runtime/lib/deep-loop/worker.ts',
     )).toBe(false);
     expect(__internals.isRegenerableRuntimeState('specs/example/description.json.bak')).toBe(false);
     expect(__internals.isRegenerableRuntimeState('other/database/graph.sqlite')).toBe(false);
@@ -1028,18 +1028,18 @@ describe('write-containment — regenerable runtime state', () => {
     expect(__internals.isRegenerableRuntimeState('specs/track/999-other/description.json', artifactRelPosix)).toBe(false);
     // Runtime database exemption is unaffected by scoping (it's a fixed, global path).
     expect(__internals.isRegenerableRuntimeState(
-      '.opencode/skills/system-deep-loop/runtime/database/graph.sqlite',
+      '.skilled/skills/system-deep-loop/runtime/database/graph.sqlite',
       artifactRelPosix,
     )).toBe(true);
   });
 
   it('preserves tracked runtime database state as a non-fatal advisory', () => {
     const { root, artifactDir } = baselineRepo();
-    const databaseDir = join(root, '.opencode/skills/system-deep-loop/runtime/database');
+    const databaseDir = join(root, '.skilled/skills/system-deep-loop/runtime/database');
     const databasePath = join(databaseDir, 'observability-events.jsonl');
     mkdirSync(databaseDir, { recursive: true });
     writeFileSync(databasePath, '{"event":"baseline"}\n');
-    git(root, ['add', '-f', '.opencode/skills/system-deep-loop/runtime/database/observability-events.jsonl']);
+    git(root, ['add', '-f', '.skilled/skills/system-deep-loop/runtime/database/observability-events.jsonl']);
     git(root, ['commit', '-q', '-m', 'test(containment): add generated runtime state']);
     const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
 
@@ -1053,7 +1053,7 @@ describe('write-containment — regenerable runtime state', () => {
 
     expect(result.violations).toEqual([]);
     expect(result.advisories.map((violation) => violation.path)).toEqual([
-      '.opencode/skills/system-deep-loop/runtime/database/observability-events.jsonl',
+      '.skilled/skills/system-deep-loop/runtime/database/observability-events.jsonl',
     ]);
     expect(result.revertResult.reverted).toEqual([]);
     expect(readFileSync(databasePath, 'utf8')).toBe('{"event":"lineage"}\n');

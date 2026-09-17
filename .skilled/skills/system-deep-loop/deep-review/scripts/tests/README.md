@@ -25,7 +25,7 @@ Regression suite for `../` (deep-review's own scripts) and the shared reducer it
 ## 3. VALIDATION
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-summary-fallback.test.cjs
+node .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-summary-fallback.test.cjs
 ```
 
 ---

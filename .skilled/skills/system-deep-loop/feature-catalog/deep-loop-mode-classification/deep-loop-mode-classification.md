@@ -39,15 +39,15 @@ The advisor routes any deep-loop query to the single identity `system-deep-loop`
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/SKILL.md` | Shared | States the registry-driven classification contract and the three-tier discriminator. |
-| `.opencode/skills/system-deep-loop/mode-registry.json` | Shared | Declarative registry for all five `workflowMode` packets. |
-| `.opencode/skills/system-deep-loop/ROUTER.md` | Shared | Second-layer intent-to-leaf mapping consumed by router-replay benchmarking. |
+| `.skilled/skills/system-deep-loop/SKILL.md` | Shared | States the registry-driven classification contract and the three-tier discriminator. |
+| `.skilled/skills/system-deep-loop/mode-registry.json` | Shared | Declarative registry for all five `workflowMode` packets. |
+| `.skilled/skills/system-deep-loop/ROUTER.md` | Shared | Second-layer intent-to-leaf mapping consumed by router-replay benchmarking. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the tool-surface-union invariant this hub's broad `allowed-tools` grant satisfies. |
+| `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the tool-surface-union invariant this hub's broad `allowed-tools` grant satisfies. |
 
 ---
 

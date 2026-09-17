@@ -49,10 +49,10 @@ Validate the shipped deep-research divergent convergence branch, hard terminal b
 
 ### Commands
 
-1. `bash: rg -n "VALID_CONVERGENCE_MODES|parseConvergenceModeValue|sliding-window|divergent" .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`
-2. `bash: rg -n -C 8 "if iteration_count >= max_iterations|convergence_mode == \"off\"|reason = \"composite_converged\"|if_divergent_eligible|eligible_reasons|excluded_reasons" .opencode/commands/deep/assets/deep-research-auto.yaml`
-3. `bash: rg -n -C 10 "step_apply_divergent_pivot_result|next_focus|proceed_to: step_rejected_pattern_cache|skip_to: phase_synthesis" .opencode/commands/deep/assets/deep-research-auto.yaml`
-4. `bash: rg -n "Exactly three Council seat mandates|round: 1|recursionAllowed: false|divergent.*pivots|pivot_completed|next: 'CONTINUE'" .opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts`
+1. `bash: rg -n "VALID_CONVERGENCE_MODES|parseConvergenceModeValue|sliding-window|divergent" .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`
+2. `bash: rg -n -C 8 "if iteration_count >= max_iterations|convergence_mode == \"off\"|reason = \"composite_converged\"|if_divergent_eligible|eligible_reasons|excluded_reasons" .skilled/commands/deep/assets/deep-research-auto.yaml`
+3. `bash: rg -n -C 10 "step_apply_divergent_pivot_result|next_focus|proceed_to: step_rejected_pattern_cache|skip_to: phase_synthesis" .skilled/commands/deep/assets/deep-research-auto.yaml`
+4. `bash: rg -n "Exactly three Council seat mandates|round: 1|recursionAllowed: false|divergent.*pivots|pivot_completed|next: 'CONTINUE'" .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts`
 
 ### Expected
 
@@ -85,10 +85,10 @@ Privilege `step_handle_convergence` for eligibility and `step_check_convergence`
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Four-value enum and unchanged shared convergence computation |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Hard-stop precedence, exact eligibility reasons, native seat dispatch, and continuation path |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` | Research candidate sources and native seat mandates |
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Three-seat transaction, event lifecycle, agreement, and artifact path |
+| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Four-value enum and unchanged shared convergence computation |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Hard-stop precedence, exact eligibility reasons, native seat dispatch, and continuation path |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` | Research candidate sources and native seat mandates |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Three-seat transaction, event lifecycle, agreement, and artifact path |
 
 ---
 

@@ -11,7 +11,7 @@
   },
   "runtimes": {
     "opencode": {
-      "agentPath": ".opencode/agents/ai-council.md",
+      "agentPath": ".skilled/agents/ai-council.md",
       "supportsInCliSeats": true,
       "supportsExternalCliCapture": true,
       "notes": "OpenCode supplies in-runtime model diversity when available."
@@ -24,7 +24,7 @@
     }
   },
   "validation": {
-    "quickValidate": "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/system-deep-loop/deep-ai-council --json",
-    "completionAdvisory": "node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs <packet>"
+    "quickValidate": "python3 .skilled/skills/sk-doc/scripts/quick_validate.py .skilled/skills/system-deep-loop/deep-ai-council --json",
+    "completionAdvisory": "node .skilled/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs <packet>"
   }
 }

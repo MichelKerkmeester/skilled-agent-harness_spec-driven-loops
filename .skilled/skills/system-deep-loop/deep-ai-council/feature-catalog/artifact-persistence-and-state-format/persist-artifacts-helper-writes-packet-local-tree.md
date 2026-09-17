@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Persist this council report
 
 The shipped surface is anchored by `persist-artifacts.cjs`, `deep-ai-council`. The playbook scenario `artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-005.
 
-Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`, which the scenario identifies as cli wrapper. Validation is anchored by `manual-testing-playbook/artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md`, covering manual scenario contract.
+Current behavior is grounded in `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`, which the scenario identifies as cli wrapper. Validation is anchored by `manual-testing-playbook/artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify helper-created artifact layout. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,8 +40,8 @@ The user-visible contract is concrete: Verify helper-created artifact layout. Th
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` | Script | CLI wrapper |
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md` | Reference | Artifact layout |
+| `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` | Script | CLI wrapper |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md` | Reference | Artifact layout |
 
 ### Validation And Tests
 

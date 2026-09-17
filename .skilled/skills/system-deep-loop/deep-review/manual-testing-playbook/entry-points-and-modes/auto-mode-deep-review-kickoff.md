@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the autonomous deep-review entrypoint and report whether docs, command routing, YAML, and expected artifacts agree.
 ### Commands
-1. `bash: rg -n '/deep:review:auto|review/review-report.md|review/iterations' .opencode/skills/system-deep-loop/deep-review/README.md .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
-2. `bash: sed -n '1,220p' .opencode/commands/deep/review.md`
-3. `bash: sed -n '1,260p' .opencode/commands/deep/assets/deep-review-auto.yaml`
+1. `bash: rg -n '/deep:review:auto|review/review-report.md|review/iterations' .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
+2. `bash: sed -n '1,220p' .skilled/commands/deep/review.md`
+3. `bash: sed -n '1,260p' .skilled/commands/deep/assets/deep-review-auto.yaml`
 ### Expected
 The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `review/review-report.md`.
 ### Evidence
@@ -71,10 +71,10 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` and `ANCHOR:configuration` |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` and `ANCHOR:state-files` |
-| `.opencode/commands/deep/review.md` | Markdown setup and mode routing, use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Autonomous workflow contract, inspect `state_paths`, `phase_init`, and `phase_loop` |
+| `.skilled/skills/system-deep-loop/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` and `ANCHOR:configuration` |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` and `ANCHOR:state-files` |
+| `.skilled/commands/deep/review.md` | Markdown setup and mode routing, use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Autonomous workflow contract, inspect `state_paths`, `phase_init`, and `phase_loop` |
 
 ---
 
@@ -84,4 +84,4 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 - Playbook ID: DRV-001
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `entry-points-and-modes/auto-mode-deep-review-kickoff.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

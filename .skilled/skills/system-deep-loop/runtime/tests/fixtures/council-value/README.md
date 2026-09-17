@@ -62,7 +62,7 @@ These fixtures sit at the integration edge of the runtime spine. They create rep
 ## 6. VALIDATION
 
 ```bash
-.opencode/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts tests/integration/council-graph-value-scenarios.vitest.ts
+.skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/integration/council-graph-value-scenarios.vitest.ts
 ```
 
 ---

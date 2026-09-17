@@ -24,9 +24,9 @@ This feature covers the repository scan that feeds integration consistency scori
 
 ## 2. HOW IT WORKS
 
-`scan-integration.cjs` inventories the canonical `.opencode/agents/{name}.md` file, runtime mirrors, improve-command markdown, YAML workflow assets, skill references, global docs, and one skill-advisor lookup. Command markdown is scanned for `@{agent}` dispatch, while YAML is scanned for either `@{agent}` or bare agent-name references.
+`scan-integration.cjs` inventories the canonical `.skilled/agents/{name}.md` file, runtime mirrors, improve-command markdown, YAML workflow assets, skill references, global docs, and one skill-advisor lookup. Command markdown is scanned for `@{agent}` dispatch, while YAML is scanned for either `@{agent}` or bare agent-name references.
 
-The discovery map includes the consolidated advisor script at `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, so the skill-advisor surface is registered from its self-contained package location.
+The discovery map includes the consolidated advisor script at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, so the skill-advisor surface is registered from its self-contained package location.
 
 ---
 
@@ -36,17 +36,17 @@ The discovery map includes the consolidated advisor script at `.opencode/skills/
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs` | Scanner | Walks the repo and collects canonical, mirror, command, YAML, skill, global-doc, and skill-advisor surfaces. |
-| `.opencode/skills/system-deep-loop/deep-improvement/references/agent-improvement/integration-scanning.md` | Reference | Documents the intended scan taxonomy and output summary fields. |
-| `.opencode/commands/deep/agent-improvement.md` | Command | Uses the integration report as part of loop setup and review. |
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scoring consumer | Converts the scan results into the integration dimension score. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs` | Scanner | Walks the repo and collects canonical, mirror, command, YAML, skill, global-doc, and skill-advisor surfaces. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/agent-improvement/integration-scanning.md` | Reference | Documents the intended scan taxonomy and output summary fields. |
+| `.skilled/commands/deep/agent-improvement.md` | Command | Uses the integration report as part of loop setup and review. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scoring consumer | Converts the scan results into the integration dimension score. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Contract reference | Locks the scanner into the integration-consistency dimension and its weighted contribution. |
-| `.opencode/skills/system-deep-loop/deep-improvement/references/agent-improvement/target-onboarding.md` | Operator reference | Requires the integration scan before new targets enter the loop. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Contract reference | Locks the scanner into the integration-consistency dimension and its weighted contribution. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/agent-improvement/target-onboarding.md` | Operator reference | Requires the integration scan before new targets enter the loop. |
 
 ---
 

@@ -46,8 +46,8 @@ Council value comes from useful disagreement, not repeated copies of one default
 
 ### Commands
 
-1. `bash: sed -n '1,140p' .opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md`
-2. `bash: rg -n "DIVERSIFY|Lens diversity|Mandate diversity|N=3|max 3" .opencode/agents/ai-council.md`
+1. `bash: sed -n '1,140p' .skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md`
+2. `bash: rg -n "DIVERSIFY|Lens diversity|Mandate diversity|N=3|max 3" .skilled/agents/ai-council.md`
 
 ### Expected
 
@@ -68,7 +68,7 @@ Check the reference first, then the agent strategy section, then runtime mirrors
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-003 | Three-seat diverse deliberation | Verify diverse seats | `Run a deep AI council to compare these two implementation plans and show the distinct seat lenses.` | `bash: sed -n '1,140p' .opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md -> bash: rg -n "DIVERSIFY|Lens diversity|Mandate diversity|N=3|max 3" .opencode/agents/ai-council.md` | Distinct lens and mandate rules | Cited lines | PASS if diversity is explicit | Inspect agent strategy section |
+| DAC-003 | Three-seat diverse deliberation | Verify diverse seats | `Run a deep AI council to compare these two implementation plans and show the distinct seat lenses.` | `bash: sed -n '1,140p' .skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md -> bash: rg -n "DIVERSIFY|Lens diversity|Mandate diversity|N=3|max 3" .skilled/agents/ai-council.md` | Distinct lens and mandate rules | Cited lines | PASS if diversity is explicit | Inspect agent strategy section |
 
 ---
 
@@ -85,8 +85,8 @@ Check the reference first, then the agent strategy section, then runtime mirrors
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md` | Seat diversity contract |
-| `.opencode/agents/ai-council.md` | Runtime strategy rules |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md` | Seat diversity contract |
+| `.skilled/agents/ai-council.md` | Runtime strategy rules |
 
 ---
 

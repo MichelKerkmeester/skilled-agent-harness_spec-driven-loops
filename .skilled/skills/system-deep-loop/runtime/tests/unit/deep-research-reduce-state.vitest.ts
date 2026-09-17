@@ -275,8 +275,8 @@ describe('deep-research reduce-state recovery gate', () => {
     writeFileSync(compatibilityRegistry, registryBytes, 'utf8');
 
     for (const [label, source] of [
-      ['alpha', '.opencode/skills/sk-design/sk-design-interface/SKILL.md'],
-      ['beta', '.opencode/skills/sk-design/design-motion/SKILL.md'],
+      ['alpha', '.skilled/skills/sk-design/sk-design-interface/SKILL.md'],
+      ['beta', '.skilled/skills/sk-design/design-motion/SKILL.md'],
     ]) {
       const deltaDir = join(researchDir, 'lineages', label, 'deltas');
       mkdirSync(deltaDir, { recursive: true });
@@ -292,8 +292,8 @@ describe('deep-research reduce-state recovery gate', () => {
     expect(result.resourceMapSkipped).toBe(false);
     expect(result.deltaSourceCount).toBe(2);
     expect(result.resourceMap).toContain('- **Total references**: 2');
-    expect(result.resourceMap).toContain('.opencode/skills/sk-design/sk-design-interface/SKILL.md');
-    expect(result.resourceMap).toContain('.opencode/skills/sk-design/design-motion/SKILL.md');
+    expect(result.resourceMap).toContain('.skilled/skills/sk-design/sk-design-interface/SKILL.md');
+    expect(result.resourceMap).toContain('.skilled/skills/sk-design/design-motion/SKILL.md');
     expect(result.resourceMap).toContain('| alpha | lineages/alpha/deltas/iter-001.jsonl |');
     expect(result.resourceMap).toContain('| beta | lineages/beta/deltas/iter-001.jsonl |');
     expect(readFileSync(canonicalRegistry, 'utf8')).toBe(registryBytes);

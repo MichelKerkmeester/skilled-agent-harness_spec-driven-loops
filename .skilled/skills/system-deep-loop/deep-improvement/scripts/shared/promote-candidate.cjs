@@ -521,15 +521,15 @@ function isAgentDefinitionTarget(target) {
   const normalized = (path.isAbsolute(target) ? path.relative(process.cwd(), target) : target)
     .split(path.sep)
     .join('/');
-  return /^(\.\/)?\.(opencode|claude)\/agents\/[^/]+\.md$/.test(normalized)
-    || /^(\.\/)?\.opencode\/agents\/[^/]+\.toml$/.test(normalized);
+  return /^(\.\/)?\.(skilled|opencode|claude)\/agents\/[^/]+\.md$/.test(normalized)
+    || /^(\.\/)?\.(?:skilled|opencode)\/agents\/[^/]+\.toml$/.test(normalized);
 }
 
 function expectedFormatForTarget(target) {
   const normalized = (path.isAbsolute(target) ? path.relative(process.cwd(), target) : target)
     .split(path.sep)
     .join('/');
-  return normalized.includes('.opencode/agents/') ? 'opencode-toml' : 'markdown';
+  return /\.(?:skilled|opencode)\/agents\//.test(normalized) ? 'opencode-toml' : 'markdown';
 }
 
 function writeMirrorSyncState(stateFilePath, state) {
@@ -588,9 +588,9 @@ function resolveAllowedCanonicalTarget(manifestPath) {
 // be able to land outside the repo's real agent/skill target roots.
 
 const DEFAULT_ALLOWED_TARGET_ROOTS = Object.freeze([
-  '.opencode/agents',
+  '.skilled/agents',
   '.claude/agents',
-  '.opencode/skills',
+  '.skilled/skills',
 ]);
 
 // Resolve symlinks for whatever prefix of candidatePath already exists on

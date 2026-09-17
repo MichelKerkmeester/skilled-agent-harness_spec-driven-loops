@@ -27,7 +27,7 @@ This feature belongs to the state safety group and is catalogued as F029 in the 
 
 `computeIntegrityHash()` hashes canonical JSON, `stampIntegrity()` writes `_integrity`, and `verifyIntegrity()` recomputes the digest, warns on mismatch, and returns `false` without fail-fast blocking.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

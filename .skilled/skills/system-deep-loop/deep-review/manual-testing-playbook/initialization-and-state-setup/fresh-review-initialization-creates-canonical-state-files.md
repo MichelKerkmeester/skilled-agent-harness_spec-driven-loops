@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate fresh deep-review initialization and report whether all canonical review state files are created from live templates.
 ### Commands
-1. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_findings_registry|step_create_strategy' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
-2. `bash: sed -n '1,220p' .opencode/skills/system-deep-loop/deep-review/assets/deep-review-config.json && sed -n '1,220p' .opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
-3. `bash: rg -n 'state_paths|config:|state_log:|findings_registry:|strategy:|iteration_pattern' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
+1. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_findings_registry|step_create_strategy' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: sed -n '1,220p' .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json && sed -n '1,220p' .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
+3. `bash: rg -n 'state_paths|config:|state_log:|findings_registry:|strategy:|iteration_pattern' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
 ### Expected
 The review/ directory is created, config comes from the shared config template, the findings registry comes from the reducer contract, strategy comes from the deep-review strategy template, and the JSONL begins with a config record.
 ### Evidence
@@ -71,11 +71,11 @@ Check both YAML variants, verify the JSONL init step writes a config record, con
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Autonomous init steps, inspect `phase_init` and `state_paths` |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Confirm init steps, inspect `phase_init` |
-| `.opencode/skills/system-deep-loop/deep-review/assets/deep-review-config.json` | Config template |
-| `.opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | State files table, use `ANCHOR:state-files` |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Autonomous init steps, inspect `phase_init` and `state_paths` |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Confirm init steps, inspect `phase_init` |
+| `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json` | Config template |
+| `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | State files table, use `ANCHOR:state-files` |
 
 ---
 
@@ -85,4 +85,4 @@ Check both YAML variants, verify the JSONL init step writes a config record, con
 - Playbook ID: DRV-004
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `initialization-and-state-setup/fresh-review-initialization-creates-canonical-state-files.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

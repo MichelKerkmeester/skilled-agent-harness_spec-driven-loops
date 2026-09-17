@@ -27,7 +27,7 @@ This feature belongs to the fan-out group and is catalogued as F037 in the `runt
 
 `fanout-run.cjs` measures each slot with monotonic `process.hrtime`, persists `slotDurationMs`, derives clamped `skippedCount`, and the YAML schema declares both fields for persisted state readers.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -38,7 +38,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 | File | Layer | Role |
 |---|---|---|
 | `scripts/fanout-run.cjs` | Runtime | fixed-rate overrun accounting. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Integration | fixed-rate overrun accounting. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Integration | fixed-rate overrun accounting. |
 
 ### Validation And Tests
 
@@ -55,6 +55,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Feature ID: F037
 - Feature file path: `fanout/fixed-rate-overrun-accounting.md`
 - Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//010-fixed-rate-overrun-accounting`
-- Primary sources: `scripts/fanout-run.cjs`, `.opencode/commands/deep/assets/deep-research-auto.yaml`, `tests/unit/fanout-run.vitest.ts`
+- Primary sources: `scripts/fanout-run.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `tests/unit/fanout-run.vitest.ts`
 Related references:
 - [fanout](../fanout/) — Fan-out category

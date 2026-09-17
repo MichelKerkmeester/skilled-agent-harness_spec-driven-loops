@@ -106,8 +106,9 @@ function normalizeRuntimeSpecificText(body) {
     // Agent-file references include literal placeholders like `<name>`, so the
     // name class allows < and >. This normalizes the per-runtime path so a
     // real body difference elsewhere still registers as drift.
-    .replace(/\.(?:opencode|claude|pi)\/agents\/\*\.md/g, '<runtime-agent-path>')
-    .replace(/\.(?:opencode|claude|pi)\/agents\/[A-Za-z0-9_<>-]+\.md/g, '<runtime-agent-file>')
+    .replace(/\.(?:skilled|opencode|claude|pi)\/agents\/\*\.md/g, '<runtime-agent-path>')
+    .replace(/\.(?:skilled|opencode|claude|pi)\/agents\/[A-Za-z0-9_<>-]+\.md/g, '<runtime-agent-file>')
+    .replace(/\.(?:skilled|opencode|claude|pi)\/agents\/(?![A-Za-z0-9_<>*-])/g, '<runtime-agent-dir>')
     .replace(/\.codex\/agents\/[A-Za-z0-9_<>-]+\.toml/g, '<runtime-agent-file>')
     // Each mirror describes itself ("this runtime's mirror; the canonical source
     // lives in .opencode/agents/") in a parenthetical the .opencode canonical

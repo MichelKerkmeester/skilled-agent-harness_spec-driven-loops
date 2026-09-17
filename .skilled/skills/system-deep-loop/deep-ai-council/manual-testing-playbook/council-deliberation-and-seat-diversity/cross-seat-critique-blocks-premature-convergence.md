@@ -46,7 +46,7 @@ Immediate agreement can hide shared assumptions; critique forces the council to 
 
 ### Commands
 
-1. `bash: rg -n "cross-critique|critique|premature|convergence" .opencode/agents/ai-council.md .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md .opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md`
+1. `bash: rg -n "cross-critique|critique|premature|convergence" .skilled/agents/ai-council.md .skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md .skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md`
 
 ### Expected
 
@@ -67,7 +67,7 @@ Check convergence signals, then seat diversity, then agent workflow.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-004 | Cross-seat critique | Verify critique before convergence | `Use the council to pressure-test this plan before we implement it and call out whether convergence is real.` | `bash: rg -n "cross-critique|critique|premature|convergence" .opencode/agents/ai-council.md .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md .opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md` | Critique and escape-hatch rules present | Grep transcript | PASS if critique gates convergence | Inspect convergence guidance |
+| DAC-004 | Cross-seat critique | Verify critique before convergence | `Use the council to pressure-test this plan before we implement it and call out whether convergence is real.` | `bash: rg -n "cross-critique|critique|premature|convergence" .skilled/agents/ai-council.md .skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md .skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md` | Critique and escape-hatch rules present | Grep transcript | PASS if critique gates convergence | Inspect convergence guidance |
 
 ---
 
@@ -84,8 +84,8 @@ Check convergence signals, then seat diversity, then agent workflow.
 
 | File | Role |
 |---|---|
-| `.opencode/agents/ai-council.md` | Deliberation workflow |
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md` | Convergence escape hatches |
+| `.skilled/agents/ai-council.md` | Deliberation workflow |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md` | Convergence escape hatches |
 
 ---
 

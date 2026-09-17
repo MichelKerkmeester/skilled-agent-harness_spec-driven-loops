@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-research auto mode across docs, command entrypoint, YAML workflow, and expected artifacts.
 ### Commands
-1. `bash: rg -n '/deep:research:auto|research/research.md|research/iterations' .opencode/skills/system-deep-loop/deep-research/README.md .opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md`
-2. `bash: sed -n '1,220p' .opencode/commands/deep/research.md`
-3. `bash: sed -n '1,260p' .opencode/commands/deep/assets/deep-research-auto.yaml`
+1. `bash: rg -n '/deep:research:auto|research/research.md|research/iterations' .skilled/skills/system-deep-loop/deep-research/README.md .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md`
+2. `bash: sed -n '1,220p' .skilled/commands/deep/research.md`
+3. `bash: sed -n '1,260p' .skilled/commands/deep/assets/deep-research-auto.yaml`
 ### Expected
 The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `research/research.md`.
 ### Evidence
@@ -71,10 +71,10 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/README.md` | User-facing examples; use `ANCHOR:quick-start` and `ANCHOR:configuration` |
-| `.opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Cheat-sheet command contract; use `ANCHOR:commands` and `ANCHOR:state-files` |
-| `.opencode/commands/deep/research.md` | Markdown setup and mode routing; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 3. WORKFLOW OVERVIEW` |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Autonomous workflow contract; inspect `state_paths`, `phase_init`, and `phase_loop` |
+| `.skilled/skills/system-deep-loop/deep-research/README.md` | User-facing examples; use `ANCHOR:quick-start` and `ANCHOR:configuration` |
+| `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Cheat-sheet command contract; use `ANCHOR:commands` and `ANCHOR:state-files` |
+| `.skilled/commands/deep/research.md` | Markdown setup and mode routing; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 3. WORKFLOW OVERVIEW` |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Autonomous workflow contract; inspect `state_paths`, `phase_init`, and `phase_loop` |
 
 ---
 
@@ -84,4 +84,4 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 - Playbook ID: DR-001
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `entry-points-and-modes/auto-mode-deep-research-kickoff.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

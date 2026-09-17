@@ -51,7 +51,7 @@ deep-ai-council: run a planning council and converge on a recommendation.
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `research`, `review`, and `ai-council` entries.
+1. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `research`, `review`, and `ai-council` entries.
 2. Skill advisor is callable.
 
 ### Prompt
@@ -95,8 +95,8 @@ deep-ai-council: run a planning council and converge on a recommendation.
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - hub routing rule.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - lexical advisor routing fields.
+- `.skilled/skills/system-deep-loop/SKILL.md` - hub routing rule.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - lexical advisor routing fields.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

@@ -2279,7 +2279,7 @@ if (require.main === module) {
 
   if (!specFolder) {
     process.stderr.write(
-      'Usage: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder> [--artifact-dir <path>] [--lenient] [--create-missing-anchors] [--emit-resource-map]\n',
+      'Usage: node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder> [--artifact-dir <path>] [--lenient] [--create-missing-anchors] [--emit-resource-map]\n',
     );
     process.exit(3);
   }

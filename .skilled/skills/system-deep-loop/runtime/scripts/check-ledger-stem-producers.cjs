@@ -22,7 +22,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const RUNTIME_REL = path.join('.opencode', 'skills', 'system-deep-loop', 'runtime');
+const RUNTIME_REL = path.join('.skilled', 'skills', 'system-deep-loop', 'runtime');
 const REVIEW_TYPES_REL = path.join(
   RUNTIME_REL, 'lib', 'deep-review-ledger-schema', 'deep-review-ledger-types.ts',
 );
@@ -50,15 +50,15 @@ const MODES = Object.freeze([
 // runner. A file renamed out of this list fails as a missing surface rather
 // than passing unexamined.
 const PRODUCER_SURFACE = Object.freeze([
-  '.opencode/commands/deep/assets/deep-review-auto.yaml',
-  '.opencode/commands/deep/assets/deep-review-confirm.yaml',
-  '.opencode/commands/deep/assets/deep-research-auto.yaml',
-  '.opencode/commands/deep/assets/deep-research-confirm.yaml',
-  '.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs',
-  '.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs',
-  '.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs',
-  '.opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs',
-  '.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs',
+  '.skilled/commands/deep/assets/deep-review-auto.yaml',
+  '.skilled/commands/deep/assets/deep-review-confirm.yaml',
+  '.skilled/commands/deep/assets/deep-research-auto.yaml',
+  '.skilled/commands/deep/assets/deep-research-confirm.yaml',
+  '.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs',
+  '.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs',
+  '.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs',
+  '.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs',
+  '.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs',
 ]);
 
 // A `stem` key whose value is a dotted spelling. The escaped quotes are the

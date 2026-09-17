@@ -30,13 +30,13 @@ Gives replay and parity comparisons something stable to bind to. An artifact suc
 ## 3. CONSUMERS
 
 - The per-mode `*-sealed-artifacts` modules (artifact material, sets and types)
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/`
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts`
 
 ---
 

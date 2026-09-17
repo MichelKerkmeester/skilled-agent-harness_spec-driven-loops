@@ -27,7 +27,7 @@ This feature belongs to the testing group and is catalogued as F048 in the `runt
 
 `createHermeticEnv()` returns an isolated HOME, DB path, tmp dir, child process environment, and cleanup function; fanout-run tests inject that environment per test and clean it after execution.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

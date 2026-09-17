@@ -27,7 +27,7 @@ This feature belongs to the coverage graph group and is catalogued as F040 in th
 
 `timeDecayWeight()` applies half-life decay when `decayDays` is enabled and returns full weight when disabled; signal ranking multiplies edge weight by the decay result without mutating stored graph counts.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

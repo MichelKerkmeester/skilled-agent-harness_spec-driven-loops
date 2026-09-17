@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review finding deduplication and confirm the active registry preserves unique P0/P1/P2 findings.
 ### Commands
-1. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|Active Finding Registry|unique.*finding|merge.*finding|duplicate' .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md`
-2. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|active_finding|merge|duplicate|unique' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
-3. `bash: rg -n 'Active Finding Registry|Dedup|finalSeverity|finding.*registry|finding.*evidence|unique.*finding' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .opencode/commands/deep/review.md .opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
+1. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|Active Finding Registry|unique.*finding|merge.*finding|duplicate' .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
+2. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|active_finding|merge|duplicate|unique' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'Active Finding Registry|Dedup|finalSeverity|finding.*registry|finding.*evidence|unique.*finding' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/commands/deep/review.md .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
 ### Expected
 Findings compared across iterations, `finalSeverity` is highest severity encountered, Active Finding Registry has unique entries, P0 never downgraded, evidence included.
 ### Evidence
@@ -71,13 +71,13 @@ Privilege the SKILL.md rules for deduplication logic and the quick reference for
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Deduplication rules, severity classification, and synthesis contract, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
-| `.opencode/skills/system-deep-loop/deep-review/README.md` | Feature summary for finding deduplication and registry |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Synthesis step with deduplication logic |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Synthesis step with deduplication logic |
-| `.opencode/commands/deep/review.md` | Command entrypoint, output format and synthesis documentation |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Active Finding Registry section definition, use `ANCHOR:review-report-sections` |
-| `.opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template with findings tracking |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Deduplication rules, severity classification, and synthesis contract, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
+| `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary for finding deduplication and registry |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Synthesis step with deduplication logic |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Synthesis step with deduplication logic |
+| `.skilled/commands/deep/review.md` | Command entrypoint, output format and synthesis documentation |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Active Finding Registry section definition, use `ANCHOR:review-report-sections` |
+| `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template with findings tracking |
 
 ---
 
@@ -87,4 +87,4 @@ Privilege the SKILL.md rules for deduplication logic and the quick reference for
 - Playbook ID: DRV-028
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `synthesis-save-and-guardrails/finding-deduplication-and-registry.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

@@ -31,7 +31,7 @@ Operators run the exact prompt and command sequence for `CP-035` and confirm the
   Same task body for both calls:
   ```
   Task ID: CP-035-TASK-001.
-  In /tmp/cp-035-sandbox/, evaluate .opencode/agents/cp-improve-target.md and stop only if legal-stop gates prove convergence.
+  In /tmp/cp-035-sandbox/, evaluate .skilled/agents/cp-improve-target.md and stop only if legal-stop gates prove convergence.
   Stay strictly inside /tmp/cp-035-sandbox/ and /tmp/cp-035-spec/.
   Acceptance: Call B must emit legal_stop_evaluated with details.gateResults.contractGate, details.gateResults.behaviorGate, details.gateResults.integrationGate, details.gateResults.evidenceGate, details.gateResults.improvementGate, then blocked_stop with failedGates including evidenceGate; no stopReason:"converged".
   Return structured output with status, candidate_path, target, change_summary, notes, and critic_pass.
@@ -60,12 +60,12 @@ Operators run the exact prompt and command sequence for `CP-035` and confirm the
 ```bash
 rm -rf /tmp/cp-035-sandbox /tmp/cp-035-sandbox-baseline /tmp/cp-035-spec
 mkdir -p /tmp/cp-035-spec
-.opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-035-sandbox
+.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-035-sandbox
 cp -a /tmp/cp-035-sandbox /tmp/cp-035-sandbox-baseline
 git status --porcelain > /tmp/cp-035-pre.txt
 cat > /tmp/cp-035-task.txt <<'EOF'
 Task ID: CP-035-TASK-001.
-In /tmp/cp-035-sandbox/, evaluate .opencode/agents/cp-improve-target.md and stop only if legal-stop gates prove convergence.
+In /tmp/cp-035-sandbox/, evaluate .skilled/agents/cp-improve-target.md and stop only if legal-stop gates prove convergence.
 Stay strictly inside /tmp/cp-035-sandbox/ and /tmp/cp-035-spec/.
 Acceptance: Call B must emit legal_stop_evaluated with details.gateResults.contractGate, details.gateResults.behaviorGate, details.gateResults.integrationGate, details.gateResults.evidenceGate, details.gateResults.improvementGate, then blocked_stop with failedGates including evidenceGate; no stopReason:"converged".
 Return structured output with status, candidate_path, target, change_summary, notes, and critic_pass.
@@ -103,9 +103,9 @@ grep -c "gate_evaluation" /tmp/cp-035-B-combined.txt | tee /tmp/cp-035-B-generic
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-agent-improvement-auto.yaml` | Auto workflow journal boundary |
-| `.opencode/commands/deep/assets/deep-agent-improvement-confirm.yaml` | Confirm workflow journal boundary |
-| `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` | Legal-stop gate contract |
+| `.skilled/commands/deep/assets/deep-agent-improvement-auto.yaml` | Auto workflow journal boundary |
+| `.skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml` | Confirm workflow journal boundary |
+| `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md` | Legal-stop gate contract |
 
 ---
 

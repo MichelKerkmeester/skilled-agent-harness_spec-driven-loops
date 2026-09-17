@@ -61,7 +61,7 @@ model-benchmark/
 
 | File | Responsibility |
 |---|---|
-| `default.json` | Pattern-scoring profile (`profileId: default`) targeting `.opencode/agents/deep-improvement.md`. Selects `fixture-baseline`, `fixture-improved`, `fixture-edge`; sets `thresholdDelta` and `benchmark` gate thresholds. |
+| `default.json` | Pattern-scoring profile (`profileId: default`) targeting `.skilled/agents/deep-improvement.md`. Selects `fixture-baseline`, `fixture-improved`, `fixture-edge`; sets `thresholdDelta` and `benchmark` gate thresholds. |
 | `framework-bakeoff.json` | `mode: framework-bakeoff` profile running one `cli-opencode` model across `frameworks` `[rcaf, race, cidi, tidd-ec, costar]` on the `t3_*` fixtures with the weighted `5dim` scorer. |
 | `model-vs-model.json` | `mode: model-vs-model` profile running three model cells across `cli-opencode` and `cli-claude-code` on one framework (`rcaf`) over the `t3_*` fixtures, grouped by model with leaderboard and history. |
 
@@ -109,8 +109,8 @@ Run from the repository root.
 
 ```bash
 node -e 'for (const f of process.argv.slice(1)) JSON.parse(require("fs").readFileSync(f,"utf8"))' \
-  .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/*.json \
-  .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/*.json && echo OK
+  .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/*.json \
+  .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/*.json && echo OK
 ```
 
 Expected result: every fixture and profile parses as valid JSON and the command prints `OK`.

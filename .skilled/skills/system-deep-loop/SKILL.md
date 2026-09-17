@@ -40,7 +40,7 @@ Routing is **registry-driven** (invokable-hub, Option E) in two stages. Stage 1 
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
-> node .opencode/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"
+> node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"
 > ```
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `system-deep-loop`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
 
@@ -137,9 +137,9 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 
 ## 5. REFERENCES
 
-- Backend: `.opencode/skills/system-deep-loop/runtime/` (frozen, consumed by every mode; nested infrastructure, not a separate skill).
+- Backend: `.skilled/skills/system-deep-loop/runtime/` (frozen, consumed by every mode; nested infrastructure, not a separate skill).
 - Mode packets: `deep-research/SKILL.md`, `deep-review/SKILL.md`, `deep-ai-council/SKILL.md`, `deep-improvement/SKILL.md` (per-mode detail).
-- Commands: the active `/deep:*` commands under `.opencode/commands/deep/` (complementary surface).
+- Commands: the active `/deep:*` commands under `.skilled/commands/deep/` (complementary surface).
 - Registry: `mode-registry.json` (the routing contract — the authoritative `packet` paths).
 - Surface router: `ROUTER.md` (deep-loop intent to packet-local leaf sets).
 
@@ -171,6 +171,6 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 
 ## 8. RELATED RESOURCES
 
-- Pattern: `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
-- Sibling example: `.opencode/skills/sk-prompt/` (the same invokable-hub + `mode-registry.json` Option E pattern).
+- Pattern: `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
+- Sibling example: `.skilled/skills/sk-prompt/` (the same invokable-hub + `mode-registry.json` Option E pattern).
 - Registry: `mode-registry.json` (this hub's routing contract).

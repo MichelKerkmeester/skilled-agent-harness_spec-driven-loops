@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.opencode/skills/system-deep-loop/deep-research/scripts/` contains the code entrypoints used by the deep-research workflow. The modules cover divergent research pivots, state reduction and sparkline output, runtime capability reporting and YAML-backed script path checks.
+`.skilled/skills/system-deep-loop/deep-research/scripts/` contains the code entrypoints used by the deep-research workflow. The modules cover divergent research pivots, state reduction and sparkline output, runtime capability reporting and YAML-backed script path checks.
 
 ---
 

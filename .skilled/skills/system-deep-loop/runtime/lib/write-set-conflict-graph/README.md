@@ -37,7 +37,7 @@ No sibling `runtime/lib` domain imports this yet. It has no cross-domain depende
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts`
 
 ---
 

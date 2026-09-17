@@ -60,8 +60,8 @@ research: Investigate whether our deep review findings are repeating because the
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/SKILL.md` contains the mode-hint override rule.
-2. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
+1. `.skilled/skills/system-deep-loop/SKILL.md` contains the mode-hint override rule.
+2. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
 
 ### Exact Command Sequence
 
@@ -94,8 +94,8 @@ research: Investigate whether our deep review findings are repeating because the
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - mode-hint override rule.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `research` mode source of truth.
+- `.skilled/skills/system-deep-loop/SKILL.md` - mode-hint override rule.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `research` mode source of truth.
 
 ---
 

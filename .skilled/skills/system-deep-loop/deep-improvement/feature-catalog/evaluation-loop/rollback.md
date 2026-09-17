@@ -36,16 +36,16 @@ The rollback helper is deliberately narrow. It does not emit journal rows, re-ru
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs` | Rollback helper | Restores the archived backup after validating the runtime config and canonical manifest target. |
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Creates the archived backup that rollback later restores. |
-| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/rollback-runbook.md` | Runbook | Defines the operator steps around rollback and post-rollback proof. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs` | Rollback helper | Restores the archived backup after validating the runtime config and canonical manifest target. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Creates the archived backup that rollback later restores. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/rollback-runbook.md` | Runbook | Defines the operator steps around rollback and post-rollback proof. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/references/agent-improvement/mirror-drift-policy.md` | Policy reference | Separates rollback from later mirror-review work. |
-| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Policy reference | Defines when rollback-ready evidence must exist before promotion proceeds. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/agent-improvement/mirror-drift-policy.md` | Policy reference | Separates rollback from later mirror-review work. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md` | Policy reference | Defines when rollback-ready evidence must exist before promotion proceeds. |
 
 ---
 

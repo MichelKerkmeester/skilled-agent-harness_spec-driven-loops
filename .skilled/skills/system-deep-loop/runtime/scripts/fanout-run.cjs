@@ -1407,8 +1407,8 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
   assertActiveFanoutLoopType(loopType);
   const skillFile =
     loopType === 'review'
-      ? '.opencode/skills/system-deep-loop/deep-review/SKILL.md'
-      : '.opencode/skills/system-deep-loop/deep-research/SKILL.md';
+      ? '.skilled/skills/system-deep-loop/deep-review/SKILL.md'
+      : '.skilled/skills/system-deep-loop/deep-research/SKILL.md';
   const agentName = loopType === 'review' ? 'deep-review' : 'deep-research';
   const detachedIntro = lineage.kind === 'cli-opencode'
     ? [
@@ -2862,7 +2862,7 @@ function isHermesBinaryAvailable(env = process.env) {
 // after all lineages settle, and is strictly non-fatal: it never changes the
 // run's exit code, it only reports through the ledger and stderr.
 
-const SPEC_KIT_CLI_DIST_REL = path.join('.opencode', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist');
+const SPEC_KIT_CLI_DIST_REL = path.join('.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist');
 
 /** Metadata refresh defaults on; `--no-metadata-refresh` is the only opt-out. */
 function metadataRefreshRequested(args) {

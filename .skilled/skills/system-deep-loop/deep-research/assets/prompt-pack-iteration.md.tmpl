@@ -66,7 +66,7 @@ You MUST produce THREE artifacts per iteration. The YAML-owned post_dispatch_val
 Record this single JSON object through the append gateway — do NOT `echo`/`>>` it into `{state_paths_state_log}` (the gateway is its only writer and refreshes it from the ledger). Write the one-line record to a temp file, then run:
 
 ```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
   --mode research \
   --run-directory "$(dirname '{state_paths_state_log}')" \
   --event-json <that temp file>

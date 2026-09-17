@@ -27,7 +27,7 @@ This feature belongs to the observability group and is catalogued as F047 in the
 
 `observability-events.cjs` normalizes payloads into `schema_version`, `event_id`, `producer`, `stream`, `subject`, `event`, `status`, and native `payload`; fanout-run, convergence, status, council round-state, and research YAML producers append through it.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -42,7 +42,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 | `scripts/convergence.cjs` | Runtime | unified observability event envelope. |
 | `scripts/fanout-run.cjs` | Runtime | unified observability event envelope. |
 | `scripts/status.cjs` | Runtime | unified observability event envelope. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Integration | unified observability event envelope. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Integration | unified observability event envelope. |
 
 ### Validation And Tests
 
@@ -60,6 +60,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Feature ID: F047
 - Feature file path: `observability/unified-observability-event-envelope.md`
 - Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope`
-- Primary sources: `lib/deep-loop/observability-events.cjs`, `lib/council/round-state-jsonl.cjs`, `scripts/convergence.cjs`, `scripts/fanout-run.cjs`, `scripts/status.cjs`, `.opencode/commands/deep/assets/deep-research-auto.yaml`, `tests/unit/observability-events.vitest.ts`, `tests/integration/status-script.vitest.ts`
+- Primary sources: `lib/deep-loop/observability-events.cjs`, `lib/council/round-state-jsonl.cjs`, `scripts/convergence.cjs`, `scripts/fanout-run.cjs`, `scripts/status.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `tests/unit/observability-events.vitest.ts`, `tests/integration/status-script.vitest.ts`
 Related references:
 - [observability](../observability/) — Observability category

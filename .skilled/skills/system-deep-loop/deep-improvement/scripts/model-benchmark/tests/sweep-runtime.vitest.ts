@@ -8,16 +8,16 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const MB_ROOT = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark',
 );
 const LIB = path.join(MB_ROOT, 'lib');
 const FIXTURE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures',
+  '.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures',
 );
 const PROFILE_DIR = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles',
+  '.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles',
 );
 
 // The runtime modules are CommonJS; load them through a require bridge so the

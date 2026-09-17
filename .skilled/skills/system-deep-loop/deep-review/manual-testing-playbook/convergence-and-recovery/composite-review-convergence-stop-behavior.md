@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review composite convergence scoring, including rolling average, MAD noise floor, dimension coverage, and stop threshold.
 ### Commands
-1. `bash: rg -n 'COMPOSITE CONVERGENCE|rolling average|MAD noise|dimension coverage|0.60|severity.weighted|newFindingsRatio|0\.30|0\.25|0\.45' .opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'COMPOSITE|rolling_average|MAD|dimension_coverage|convergence|stop_score|severity.*weight|newFindingsRatio' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
-3. `bash: rg -n 'Convergence|Rolling Average|MAD|Dimension Coverage|0\.30|0\.25|0\.45|severity.weighted|newFindingsRatio' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md`
+1. `bash: rg -n 'COMPOSITE CONVERGENCE|rolling average|MAD noise|dimension coverage|0.60|severity.weighted|newFindingsRatio|0\.30|0\.25|0\.45' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+2. `bash: rg -n 'COMPOSITE|rolling_average|MAD|dimension_coverage|convergence|stop_score|severity.*weight|newFindingsRatio' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'Convergence|Rolling Average|MAD|Dimension Coverage|0\.30|0\.25|0\.45|severity.weighted|newFindingsRatio' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
 ### Expected
 Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
 ### Evidence
@@ -71,12 +71,12 @@ Privilege the convergence reference for exact math and use quick reference and S
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect `step_check_convergence` |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect `step_check_convergence` |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence signal summary, use `ANCHOR:convergence` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Convergence and rules documentation, use `ANCHOR:rules` and `ANCHOR:how-it-works` |
-| `.opencode/skills/system-deep-loop/deep-review/README.md` | Feature summary for review convergence |
+| `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect `step_check_convergence` |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect `step_check_convergence` |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence signal summary, use `ANCHOR:convergence` |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Convergence and rules documentation, use `ANCHOR:rules` and `ANCHOR:how-it-works` |
+| `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary for review convergence |
 
 ---
 
@@ -86,4 +86,4 @@ Privilege the convergence reference for exact math and use quick reference and S
 - Playbook ID: DRV-031
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/composite-review-convergence-stop-behavior.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

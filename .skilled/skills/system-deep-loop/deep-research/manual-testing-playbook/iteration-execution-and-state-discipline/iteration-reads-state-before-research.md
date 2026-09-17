@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate each deep-research iteration reads JSONL and strategy state before any research action.
 ### Commands
-1. `bash: rg -n 'Step 1: Read State|Read current state|read state first' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md .opencode/skills/system-deep-loop/deep-research/SKILL.md`
-2. `bash: rg -n 'step_read_state|current_iteration|next_focus' .opencode/commands/deep/assets/deep-research-auto.yaml .opencode/commands/deep/assets/deep-research-confirm.yaml`
-3. `bash: sed -n '1,220p' .opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md && sed -n '1,220p' .opencode/agents/deep-research.md`
+1. `bash: rg -n 'Step 1: Read State|Read current state|read state first' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-research/SKILL.md`
+2. `bash: rg -n 'step_read_state|current_iteration|next_focus' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+3. `bash: sed -n '1,220p' .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md && sed -n '1,220p' .skilled/agents/deep-research.md`
 ### Expected
 Loop step order begins with state reads, the quick reference checklist says the same, and the agent definition starts with JSONL plus strategy reads.
 ### Evidence
@@ -71,11 +71,11 @@ Check the agent sequence under `Single Iteration Protocol` if the higher-level d
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Iteration loop order; use `ANCHOR:phase-iteration-loop` |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Loop state extraction; inspect `step_read_state` |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Loop state extraction; inspect `step_read_state` |
-| `.opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Iteration checklist; use `ANCHOR:agent-iteration-checklist` |
-| `.opencode/agents/deep-research.md` | Canonical runtime agent sequence; inspect `## 1. CORE WORKFLOW` |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Iteration loop order; use `ANCHOR:phase-iteration-loop` |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Loop state extraction; inspect `step_read_state` |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Loop state extraction; inspect `step_read_state` |
+| `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Iteration checklist; use `ANCHOR:agent-iteration-checklist` |
+| `.skilled/agents/deep-research.md` | Canonical runtime agent sequence; inspect `## 1. CORE WORKFLOW` |
 
 ---
 
@@ -85,4 +85,4 @@ Check the agent sequence under `Single Iteration Protocol` if the higher-level d
 - Playbook ID: DR-007
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/iteration-reads-state-before-research.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

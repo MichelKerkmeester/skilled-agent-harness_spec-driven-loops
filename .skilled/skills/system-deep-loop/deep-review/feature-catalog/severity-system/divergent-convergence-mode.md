@@ -33,17 +33,17 @@ The auto workflow admits only the exact reason `all_dimensions_clean`, after all
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Workflow | Owns legal-stop gates, pivot eligibility, native seat dispatch, continuation, and synthesis-only verdict derivation. |
-| `.opencode/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` | Mode adapter | Builds evidence-grounded read-only candidates and rejects mutation-shaped directions. |
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Shared runtime | Owns the mechanics-only pivot transaction, event vocabulary, quorum, agreement, and artifact layout. |
-| `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Shared runtime | Validates the four-value convergence-mode enum without changing verdicts. |
-| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Reference | Defines the operator-facing mode, cost, verdict, and read-only contract. |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow | Owns legal-stop gates, pivot eligibility, native seat dispatch, continuation, and synthesis-only verdict derivation. |
+| `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` | Mode adapter | Builds evidence-grounded read-only candidates and rejects mutation-shaped directions. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Shared runtime | Owns the mechanics-only pivot transaction, event vocabulary, quorum, agreement, and artifact layout. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Shared runtime | Validates the four-value convergence-mode enum without changing verdicts. |
+| `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Reference | Defines the operator-facing mode, cost, verdict, and read-only contract. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/divergent-convergence-mode.md` | Manual playbook | Verifies pivot eligibility, verdict isolation, security-gate preservation, and read-only behavior. |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/divergent-convergence-mode.md` | Manual playbook | Verifies pivot eligibility, verdict isolation, security-gate preservation, and read-only behavior. |
 
 ---
 

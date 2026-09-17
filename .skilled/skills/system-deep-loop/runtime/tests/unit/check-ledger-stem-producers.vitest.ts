@@ -15,7 +15,7 @@ import { spawnSync } from 'node:child_process';
 const here = dirname(fileURLToPath(import.meta.url));
 const CLI_PATH = resolve(here, '..', '..', 'scripts', 'check-ledger-stem-producers.cjs');
 const REPO_ROOT = resolve(here, '..', '..', '..', '..', '..', '..');
-const RUNTIME_REL = join('.opencode', 'skills', 'system-deep-loop', 'runtime');
+const RUNTIME_REL = join('.skilled', 'skills', 'system-deep-loop', 'runtime');
 
 const REVIEW_TYPES_REL = join(
   RUNTIME_REL, 'lib', 'deep-review-ledger-schema', 'deep-review-ledger-types.ts',
@@ -25,19 +25,19 @@ const RESEARCH_TYPES_REL = join(
 );
 
 const PRODUCER_SURFACE = [
-  '.opencode/commands/deep/assets/deep-review-auto.yaml',
-  '.opencode/commands/deep/assets/deep-review-confirm.yaml',
-  '.opencode/commands/deep/assets/deep-research-auto.yaml',
-  '.opencode/commands/deep/assets/deep-research-confirm.yaml',
+  '.skilled/commands/deep/assets/deep-review-auto.yaml',
+  '.skilled/commands/deep/assets/deep-review-confirm.yaml',
+  '.skilled/commands/deep/assets/deep-research-auto.yaml',
+  '.skilled/commands/deep/assets/deep-research-confirm.yaml',
   join(RUNTIME_REL, 'scripts', 'fanout-run.cjs'),
   join(RUNTIME_REL, 'scripts', 'append-mode-event.cjs'),
   join(RUNTIME_REL, 'scripts', 'reduce-state.cjs'),
   join(RUNTIME_REL, 'scripts', 'verify-iteration.cjs'),
-  join('.opencode', 'skills', 'system-deep-loop', 'deep-research', 'scripts', 'reduce-state.cjs'),
+  join('.skilled', 'skills', 'system-deep-loop', 'deep-research', 'scripts', 'reduce-state.cjs'),
 ];
 
-const REVIEW_AUTO = '.opencode/commands/deep/assets/deep-review-auto.yaml';
-const REVIEW_CONFIRM = '.opencode/commands/deep/assets/deep-review-confirm.yaml';
+const REVIEW_AUTO = '.skilled/commands/deep/assets/deep-review-auto.yaml';
+const REVIEW_CONFIRM = '.skilled/commands/deep/assets/deep-review-confirm.yaml';
 
 const dirs: string[] = [];
 

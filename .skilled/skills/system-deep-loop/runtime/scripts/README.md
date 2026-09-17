@@ -76,7 +76,7 @@ Fan-out scripts additionally own subprocess coordination and salvage. State and 
 From the repository root, run a script with its documented arguments or run the runtime test suite.
 
 ```bash
-.opencode/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts
+.skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts
 ```
 
 ---

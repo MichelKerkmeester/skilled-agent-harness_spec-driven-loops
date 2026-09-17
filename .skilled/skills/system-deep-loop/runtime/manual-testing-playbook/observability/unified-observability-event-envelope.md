@@ -49,7 +49,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 3. Inspect `scripts/convergence.cjs` for the implementation contract.
 4. Inspect `scripts/fanout-run.cjs` for the implementation contract.
 5. Inspect `scripts/status.cjs` for the implementation contract.
-6. Inspect `.opencode/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
+6. Inspect `.skilled/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
 7. Inspect `tests/unit/observability-events.vitest.ts` for the matching regression coverage.
 8. Inspect `tests/integration/status-script.vitest.ts` for the matching regression coverage.
 9. Run or inspect the matching test assertions for this feature.
@@ -62,7 +62,7 @@ Unified observability event envelope matches the documented current reality, the
 
 ### Evidence
 
-- Source excerpts from `lib/deep-loop/observability-events.cjs`, `lib/council/round-state-jsonl.cjs`, `scripts/convergence.cjs`, `scripts/fanout-run.cjs`, `scripts/status.cjs`, `.opencode/commands/deep/assets/deep-research-auto.yaml` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Source excerpts from `lib/deep-loop/observability-events.cjs`, `lib/council/round-state-jsonl.cjs`, `scripts/convergence.cjs`, `scripts/fanout-run.cjs`, `scripts/status.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml` showing the anchors named in the commands above, read from the current files rather than recalled.
 - Captured stdout and exit status for every command run in this section.
 - Output from `tests/unit/observability-events.vitest.ts`, `tests/integration/status-script.vitest.ts` naming the assertions that carry the expected signals.
 - A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
@@ -87,7 +87,7 @@ Unified observability event envelope matches the documented current reality, the
 | `scripts/convergence.cjs` | unified observability event envelope. |
 | `scripts/fanout-run.cjs` | unified observability event envelope. |
 | `scripts/status.cjs` | unified observability event envelope. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | unified observability event envelope. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | unified observability event envelope. |
 
 ### Validation
 

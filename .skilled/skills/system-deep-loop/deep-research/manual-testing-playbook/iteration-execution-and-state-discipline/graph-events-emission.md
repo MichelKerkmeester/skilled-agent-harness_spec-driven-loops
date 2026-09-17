@@ -48,9 +48,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-research graphEvents stay flat in iteration records and use active event types.
 ### Commands
-1. `bash: rg -n 'graphEvents|Graph Events|type \\| \"question\"|type \\| \"finding\"|type \\| \"source\"|type \\| \"edge\"' .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md`
-2. `bash: rg -n 'graphEvents|iteration records|graph-aware convergence' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-3. `bash: rg -n \"kind: 'QUESTION'|kind: 'FINDING'|kind: 'SOURCE'\" .opencode/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts`
+1. `bash: rg -n 'graphEvents|Graph Events|type \\| \"question\"|type \\| \"finding\"|type \\| \"source\"|type \\| \"edge\"' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
+2. `bash: rg -n 'graphEvents|iteration records|graph-aware convergence' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+3. `bash: rg -n \"kind: 'QUESTION'|kind: 'FINDING'|kind: 'SOURCE'\" .skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts`
 ### Expected
 `graphEvents` documented as iteration-record input; the state-format example uses flat `type` values; live graph tests seed `QUESTION`, `FINDING`, and `SOURCE` node kinds.
 ### Evidence
@@ -73,9 +73,9 @@ Privilege `references/state/state-format.md` for the payload contract, `referenc
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical flat `graphEvents` payload example and field table |
-| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Graph-aware research convergence contract; documents `graphEvents` as iteration-record input |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts` | Live graph tests seeding `QUESTION` / `FINDING` / `SOURCE` node kinds |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical flat `graphEvents` payload example and field table |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Graph-aware research convergence contract; documents `graphEvents` as iteration-record input |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts` | Live graph tests seeding `QUESTION` / `FINDING` / `SOURCE` node kinds |
 
 ---
 
@@ -85,4 +85,4 @@ Privilege `references/state/state-format.md` for the payload contract, `referenc
 - Playbook ID: DR-029
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/graph-events-emission.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

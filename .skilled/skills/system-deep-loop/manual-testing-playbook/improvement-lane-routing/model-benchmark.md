@@ -53,7 +53,7 @@ This scenario verifies that the model benchmark lane is reached by its command b
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `model-benchmark` mode entry.
+1. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `model-benchmark` mode entry.
 2. The orchestrator can accept `/deep:model-benchmark` command prompts.
 
 ### Prompt
@@ -94,8 +94,8 @@ This scenario verifies that the model benchmark lane is reached by its command b
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `model-benchmark` source of truth.
+- `.skilled/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `model-benchmark` source of truth.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

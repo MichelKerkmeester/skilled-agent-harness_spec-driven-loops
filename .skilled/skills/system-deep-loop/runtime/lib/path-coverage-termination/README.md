@@ -29,11 +29,11 @@ Runtime primitives that decide whether a `system-deep-loop` workflow mode has do
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/mode-contract-types.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/`
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/mode-contract-types.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/stopping-clocks/`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/path-coverage-termination.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/path-coverage-termination.vitest.ts`

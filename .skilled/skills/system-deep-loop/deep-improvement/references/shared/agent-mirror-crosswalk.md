@@ -13,7 +13,7 @@ version: 1.17.0.0
 
 # Agent Mirror Crosswalk
 
-Six runtime trees ship the same twelve agents: `.opencode/agents/`, `.claude/agents/`,
+Six runtime trees ship the same twelve agents: `.skilled/agents/`, `.claude/agents/`,
 `.cursor/agents/`, `.pi/agents/`, `.codex/agents/` and `.devin/agents/`. Each tree speaks a
 different dialect, so a declaration made once lands six different ways — or does not land at all.
 This document is the contract between them: for each source key it names where the declaration
@@ -27,35 +27,35 @@ it is the failure mode this document exists to prevent.
 
 | Tree | Shape | What it is | How to change it |
 |------|-------|------------|------------------|
-| `.opencode/agents/` | `<name>.md` | authored source of truth, with the `permission:` map | edit directly |
-| `.claude/agents/` | `<name>.md` | authored fork in the Claude dialect (`tools:` CSV) | edit the `.opencode` twin in the same change |
+| `.skilled/agents/` | `<name>.md` | authored source of truth, with the `permission:` map | edit directly |
+| `.claude/agents/` | `<name>.md` | authored fork in the Claude dialect (`tools:` CSV) | edit the `.skilled` twin in the same change |
 | `.cursor/agents/` | `<name>.md` | symlink onto the `.claude` file | never — edit `.claude` instead |
 | `.devin/agents/` | `<name>/AGENT.md` | symlink onto the `.claude` file | never — edit `.claude` instead |
-| `.codex/agents/` | `<name>.toml` | generated from `.opencode` | edit `.opencode`, then run the Codex generator |
-| `.pi/agents/` | `<name>.md` | generated from `.opencode` | edit `.opencode`, then run the Pi generator |
+| `.codex/agents/` | `<name>.toml` | generated from `.skilled` | edit `.skilled`, then run the Codex generator |
+| `.pi/agents/` | `<name>.md` | generated from `.skilled` | edit `.skilled`, then run the Pi generator |
 
-There are two upstreams, deliberately: `.opencode` is canonical for `.codex` and `.pi`, while
+There are two upstreams, deliberately: `.skilled` is canonical for `.codex` and `.pi`, while
 `.claude` is canonical for `.cursor` and `.devin` because those runtimes parse the Claude dialect.
-`.claude` is itself kept in step with `.opencode` by hand. `.opencode/agents/` and `.claude/agents/`
+`.claude` is itself kept in step with `.skilled` by hand. `.skilled/agents/` and `.claude/agents/`
 are the only two trees that carry a `README.txt`; the other four have none.
 
 A generated tree is never hand-edited — write mode prunes anything the canonical tree no longer
 justifies, so an edit there survives only until the next sync:
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
-node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs
 ```
 
 What fails when a mirror drifts:
 
-- `node .opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all`
-  compares every agent body and declared tool surface from `.opencode` to `.claude` and `.codex`,
+- `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all`
+  compares every agent body and declared tool surface from `.skilled` to `.claude` and `.codex`,
   and fails on a missing or orphaned mirror.
-- `node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check` and
-  `node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check` fail when a
+- `node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check` and
+  `node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check` fail when a
   generated tree is stale against its canonical source.
-- `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` fails when a runtime is
+- `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` fails when a runtime is
   missing an agent, when a `.cursor`/`.devin` entry stops being a symlink onto `.claude`, or when a
   mirror survives an agent the repository no longer defines.
 
@@ -65,14 +65,14 @@ What fails when a mirror drifts:
 
 ### 2.1 `permission` — the allow/deny half
 
-`.opencode` is the only tree that carries a permission map, and the only one where it is enforced
+`.skilled` is the only tree that carries a permission map, and the only one where it is enforced
 by the runtime. Each agent declares its own vocabulary of `read`, `write`, `edit`, `bash`, `grep`,
 `glob`, `webfetch`, `chrome_devtools`, `task`, `list`, `patch` and `external_directory`, each
 `allow` or `deny`.
 
 | Tree | The allow half lands as | The deny half stands in as |
 |------|-------------------------|----------------------------|
-| `.opencode` | the `permission:` map itself, enforced by the runtime | the same map; the runtime refuses the tool |
+| `.skilled` | the `permission:` map itself, enforced by the runtime | the same map; the runtime refuses the tool |
 | `.claude` | a `tools:` CSV of TitleCase names; `task` becomes `Agent` | the tool is absent from that list, and the body's prose restates the important denials ("never runs shell commands", "READ-ONLY file access") |
 | `.cursor` | the `.claude` file, unchanged | as `.claude` |
 | `.devin` | the `.claude` file, unchanged | as `.claude` |
@@ -87,9 +87,9 @@ at all.
 
 **The `.pi` unmapped rule, stated as the contract it is.** The Pi generator maps `read`, `write`,
 `edit`, `bash` and `grep` by name, `glob` to `find`, and `list` to `ls`. Every other key that is
-`allow` in the `.opencode` map has no Pi tool, so the generator writes it into a single
+`allow` in the `.skilled` map has no Pi tool, so the generator writes it into a single
 `# Unmapped OpenCode permission keys:` comment in the generated frontmatter. A key is therefore
-commented exactly when it is `allow` in `.opencode` and absent from Pi's toolset — denied keys are
+commented exactly when it is `allow` in `.skilled` and absent from Pi's toolset — denied keys are
 simply omitted. The comment is generated, never hand-written: `PERMISSION_TOOL_MAP` and
 `mapPermissions()` in `sync-agents-pi.cjs` are the implementation, and the `tools:` list is always
 emitted (even empty) so a Pi loader can never fall back to its full built-in tool set.
@@ -102,12 +102,12 @@ permission map: it confines what the agent may touch, not which tools it may cal
 
 ### 2.2 `temperature`
 
-`.opencode` frontmatter sets `temperature` per agent — `0.1` for most, `0.2` for `debug`,
+`.skilled` frontmatter sets `temperature` per agent — `0.1` for most, `0.2` for `debug`,
 `deep-improvement` and `design`.
 
 | Tree | Lands as |
 |------|----------|
-| `.opencode` | the `temperature:` key, read by the runtime |
+| `.skilled` | the `temperature:` key, read by the runtime |
 | `.claude`, `.cursor`, `.devin` | no key; `ai-council` alone keeps the prose sentence about operating at a chosen temperature |
 | `.pi` | nothing — the generator emits `name`, `description` and `tools` only |
 | `.codex` | a different knob: `model_reasoning_effort`, not a sampling temperature |
@@ -118,37 +118,37 @@ repository promises otherwise.
 
 ### 2.3 `mode` — the role
 
-`.opencode` declares `mode: subagent` for ten agents, `mode: all` for `markdown` and
+`.skilled` declares `mode: subagent` for ten agents, `mode: all` for `markdown` and
 `mode: primary` for `orchestrate`.
 
 | Tree | Lands as |
 |------|----------|
-| `.opencode` | the `mode:` key; it decides how the agent can be reached |
+| `.skilled` | the `mode:` key; it decides how the agent can be reached |
 | `.claude`, `.cursor`, `.devin` | no key; the role survives only as description prose where the body states it |
 | `.pi` | nothing |
 | `.codex` | nothing |
 
 The role key translates nowhere as a key. Routing that depends on it must be read from the
-`.opencode` tree.
+`.skilled` tree.
 
 ### 2.4 `tools` — the lexicon
 
-There is no `tools:` key in the source: the `.opencode` permission map *is* the tool surface, and
+There is no `tools:` key in the source: the `.skilled` permission map *is* the tool surface, and
 each dialect re-expresses it.
 
 | Tree | Lexicon |
 |------|---------|
-| `.opencode` | the `permission:` map (see 2.1) |
+| `.skilled` | the `permission:` map (see 2.1) |
 | `.claude`, `.cursor`, `.devin` | `Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, Agent` — TitleCase CSV; only `ai-council` and `orchestrate` carry `Agent`, which is how nested delegation is granted |
 | `.pi` | `read, write, edit, bash, grep, find, ls` — lowercase list, `find` replaces `glob` and `ls` replaces `list` |
 | `.codex` | none; confinement is `sandbox_mode` and the body's prose |
 
 Provenance markers exist in one tree: every `.codex` agent opens with `# Agent: <name>` and
-`# Converted from: .opencode/agents/<name>.md`, so a reader of the TOML can find its source.
+`# Converted from: .skilled/agents/<name>.md`, so a reader of the TOML can find its source.
 
 ### 2.5 `model`
 
-No agent file in `.opencode`, `.claude`, `.pi`, `.cursor` or `.devin` declares a model. `.codex`
+No agent file in `.skilled`, `.claude`, `.pi`, `.cursor` or `.devin` declares a model. `.codex`
 pins one on all twelve: `model = "gpt-5.5"` with `model_reasoning_effort` — `high` for most,
 `low` for `context` and `medium` for `markdown` — alongside `sandbox_mode`.
 
@@ -162,10 +162,10 @@ explicitly, so the pin in `.codex` governs only invocation that reads the agent 
 The mirror gate compares bodies after normalizing exactly these differences, so anything else that
 differs is drift and fails the gate:
 
-- **Frontmatter dialect.** The `.opencode` `mode` / `temperature` / `permission` block, the
+- **Frontmatter dialect.** The `.skilled` `mode` / `temperature` / `permission` block, the
   `.claude` `tools:` line, and the `.codex` TOML keys are translations of each other, not copies.
 - **Per-runtime agent paths.** Each tree's body refers to its own agents directory
-  (`.opencode/agents/*.md`, `.claude/agents/*.md`); a path reference is normalized before
+  (`.skilled/agents/*.md`, `.claude/agents/*.md`); a path reference is normalized before
   comparison. A `.cursor` or `.devin` agent carries the `.claude` spelling because that is the
   file it is.
 - **Per-runtime self-description.** A mirror may describe itself — for example a parenthetical
@@ -193,7 +193,7 @@ expecting an agent file to carry it.
 
 ## 5. ADDING OR CHANGING AN AGENT
 
-1. Edit `.opencode/agents/<name>.md` — the canonical declaration.
+1. Edit `.skilled/agents/<name>.md` — the canonical declaration.
 2. Mirror the same body change into `.claude/agents/<name>.md` in the same change, including its
    `tools:` line when the permission map changed; `.cursor` and `.devin` follow by symlink.
 3. Regenerate both generated trees with the two sync scripts above.
@@ -205,7 +205,7 @@ expecting an agent file to carry it.
 
 ## 6. RELATED DOCUMENTS
 
-- `.opencode/agents/README.txt` and `.claude/agents/README.txt` — the human rosters, which point
+- `.skilled/agents/README.txt` and `.claude/agents/README.txt` — the human rosters, which point
   back at this crosswalk.
 - `.claude/SYNC.md`, `.codex/SYNC.md` and `.pi/SYNC.md` — the per-runtime sync manifests: which
   surfaces are symlinks, which are generated, and which command regenerates them.

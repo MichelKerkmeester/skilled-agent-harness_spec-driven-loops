@@ -27,7 +27,7 @@ This feature belongs to the validation group and is catalogued as F043 in the `r
 
 `post-dispatch-validate.ts` retries transient judge failures, strips markdown fences before fallback, emits a neutral `quarantined:true` card after exhausted parsing, and blocks quarantined cards from persistence, convergence, and coverage writes.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

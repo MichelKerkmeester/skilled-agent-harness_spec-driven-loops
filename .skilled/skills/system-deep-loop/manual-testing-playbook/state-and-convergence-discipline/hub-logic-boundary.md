@@ -50,8 +50,8 @@ Explain whether the system-deep-loop hub owns convergence, state, synthesis, or 
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/SKILL.md` contains the routing-only and packet-owned behavior rules.
-2. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `review` mode entry.
+1. `.skilled/skills/system-deep-loop/SKILL.md` contains the routing-only and packet-owned behavior rules.
+2. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `review` mode entry.
 
 ### Prompt
 
@@ -91,9 +91,9 @@ Explain whether the system-deep-loop hub owns convergence, state, synthesis, or 
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - routing-only boundary and packet ownership rules.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `review` route fields.
-- `.opencode/skills/system-deep-loop/deep-review/SKILL.md` - review packet behavior ownership.
+- `.skilled/skills/system-deep-loop/SKILL.md` - routing-only boundary and packet ownership rules.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `review` route fields.
+- `.skilled/skills/system-deep-loop/deep-review/SKILL.md` - review packet behavior ownership.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

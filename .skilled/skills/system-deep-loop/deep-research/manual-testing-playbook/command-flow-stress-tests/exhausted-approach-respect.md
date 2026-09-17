@@ -50,7 +50,7 @@ Operators run the exact command sequence for `CP-051` and grade only file and gr
 ```bash
 rm -rf /tmp/cp-051-sandbox /tmp/cp-051-sandbox-baseline /tmp/cp-051-spec
 mkdir -p /tmp/cp-051-spec/research/iterations /tmp/cp-051-spec/research/deltas /tmp/cp-051-spec/research/prompts
-.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-051-sandbox
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-051-sandbox
 cp -a /tmp/cp-051-sandbox /tmp/cp-051-sandbox-baseline
 cat > /tmp/cp-051-spec/spec.md <<'EOF'
 ---
@@ -116,12 +116,12 @@ diff /tmp/cp-051-pre.txt /tmp/cp-051-post.txt > /tmp/cp-051-tripwire.diff; echo 
 
 | File | Anchor |
 |---|---|
-| `.opencode/commands/deep/research.md:307-317` | command differences include externalized state and negative knowledge |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml:197-217` | resume classification and event |
-| `.opencode/agents/deep-research.md:77-97` | read state and hard-block missing state |
-| `.opencode/agents/deep-research.md:113-130` | focus selection and exhausted approach handling |
-| `.opencode/agents/deep-research.md:399-428` | always and never rules for state discipline |
-| `.opencode/skills/system-deep-loop/deep-research/SKILL.md:367-383` | skill-level state and exhausted approach rules |
+| `.skilled/commands/deep/research.md:307-317` | command differences include externalized state and negative knowledge |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml:197-217` | resume classification and event |
+| `.skilled/agents/deep-research.md:77-97` | read state and hard-block missing state |
+| `.skilled/agents/deep-research.md:113-130` | focus selection and exhausted approach handling |
+| `.skilled/agents/deep-research.md:399-428` | always and never rules for state discipline |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:367-383` | skill-level state and exhausted approach rules |
 
 ---
 

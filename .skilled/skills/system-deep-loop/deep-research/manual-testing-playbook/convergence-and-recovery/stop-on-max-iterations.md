@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the max-iterations cap stops deep research before softer convergence logic.
 ### Commands
-1. `bash: rg -n 'max iterations|Hard stop|max_iterations_reached' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'iteration_count >= max_iterations|max_iterations_reached' .opencode/commands/deep/assets/deep-research-auto.yaml .opencode/commands/deep/assets/deep-research-confirm.yaml`
-3. `bash: rg -n -- '--max-iterations|Maximum loop iterations' .opencode/skills/system-deep-loop/deep-research/README.md .opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md`
+1. `bash: rg -n 'max iterations|Hard stop|max_iterations_reached' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+2. `bash: rg -n 'iteration_count >= max_iterations|max_iterations_reached' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+3. `bash: rg -n -- '--max-iterations|Maximum loop iterations' .skilled/skills/system-deep-loop/deep-research/README.md .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md`
 ### Expected
 Max iterations is checked first, the stop reason is named explicitly, and the parameter is exposed consistently in the docs.
 ### Evidence
@@ -71,12 +71,12 @@ Resolve any ambiguity by privileging the convergence pseudocode and YAML algorit
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Hard-stop ordering; use `ANCHOR:shouldcontinue-algorithm` |
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop decision order; use `ANCHOR:phase-iteration-loop` |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Decision algorithm; inspect `step_check_convergence` |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Decision algorithm; inspect `step_check_convergence` |
-| `.opencode/skills/system-deep-loop/deep-research/README.md` | Parameter table and examples; use `ANCHOR:configuration` and `ANCHOR:usage-examples` |
-| `.opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Parameter defaults; use `ANCHOR:commands` |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Hard-stop ordering; use `ANCHOR:shouldcontinue-algorithm` |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop decision order; use `ANCHOR:phase-iteration-loop` |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Decision algorithm; inspect `step_check_convergence` |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Decision algorithm; inspect `step_check_convergence` |
+| `.skilled/skills/system-deep-loop/deep-research/README.md` | Parameter table and examples; use `ANCHOR:configuration` and `ANCHOR:usage-examples` |
+| `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Parameter defaults; use `ANCHOR:commands` |
 
 ---
 
@@ -86,4 +86,4 @@ Resolve any ambiguity by privileging the convergence pseudocode and YAML algorit
 - Playbook ID: DR-011
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/stop-on-max-iterations.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

@@ -7,7 +7,7 @@
   "input": {
     "repo_state": "A checklist says the command YAML was validated before the latest command edit.",
     "review_focus": "Detect stale completion evidence after an in-scope command change.",
-    "diff": "diff --git a/.opencode/commands/deep/model-benchmark.md b/.opencode/commands/deep/model-benchmark.md\n@@\n- Scoring: pattern\n+ Scoring: reviewer\n\ndiff --git a/.opencode/specs/example/checklist.md b/.opencode/specs/example/checklist.md\n@@\n-- [x] YAML parsed before command edit\n+- [x] YAML parsed before command edit"
+    "diff": "diff --git a/.skilled/commands/deep/model-benchmark.md b/.skilled/commands/deep/model-benchmark.md\n@@\n- Scoring: pattern\n+ Scoring: reviewer\n\ndiff --git a/.opencode/specs/example/checklist.md b/.opencode/specs/example/checklist.md\n@@\n-- [x] YAML parsed before command edit\n+- [x] YAML parsed before command edit"
   },
   "expectedVerdict": "fail",
   "expectedFindings": [
@@ -28,7 +28,7 @@
       "input": {
         "repo_state": "The implementation summary says the YAML parse passed, but the YAML asset changed after that result.",
         "review_focus": "Do not accept completion evidence that predates the changed file.",
-        "diff": "diff --git a/.opencode/commands/deep/assets/deep-model-benchmark-auto.yaml b/.opencode/commands/deep/assets/deep-model-benchmark-auto.yaml\n@@\n- scorer: pattern\n+ scorer: reviewer"
+        "diff": "diff --git a/.skilled/commands/deep/assets/deep-model-benchmark-auto.yaml b/.skilled/commands/deep/assets/deep-model-benchmark-auto.yaml\n@@\n- scorer: pattern\n+ scorer: reviewer"
       },
       "expectedVerdict": "fail",
       "expectedFindings": [

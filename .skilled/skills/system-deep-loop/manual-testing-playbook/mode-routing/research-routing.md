@@ -59,15 +59,15 @@ Use deep research to investigate why our advisor sometimes routes iterative inve
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/SKILL.md` is readable.
-2. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
+1. `.skilled/skills/system-deep-loop/SKILL.md` is readable.
+2. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
 3. Skill advisor is callable if the operator chooses an advisor probe.
 
 ### Exact Command Sequence
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary." --threshold 0.8 > /tmp/dlw-MO-001/advisor.txt
+   python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary." --threshold 0.8 > /tmp/dlw-MO-001/advisor.txt
    ```
 2. **Invoke hub**: `Skill(system-deep-loop, "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary.")`.
 3. **Capture route**: save the AI response to `/tmp/dlw-MO-001/response.txt`.
@@ -98,8 +98,8 @@ Use deep research to investigate why our advisor sometimes routes iterative inve
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - hub routing rule and mode table.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `research` mode source of truth.
+- `.skilled/skills/system-deep-loop/SKILL.md` - hub routing rule and mode table.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `research` mode source of truth.
 
 ---
 

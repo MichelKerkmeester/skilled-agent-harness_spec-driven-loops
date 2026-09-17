@@ -36,20 +36,20 @@ The runtime templates still use the `improvement_*` asset names in the skill fol
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/deep/agent-improvement.md` | Command | Collects target path, spec folder, mode, and iteration inputs before the loop starts. |
-| `.opencode/commands/deep/assets/deep-agent-improvement-auto.yaml` | Workflow | Creates the runtime directories, scans integration, generates the dynamic profile, and records the baseline in autonomous mode. |
-| `.opencode/commands/deep/assets/deep-agent-improvement-confirm.yaml` | Workflow | Mirrors the init path in interactive mode and adds approval gates before baseline recording. |
-| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-config.json` | Runtime template | Defines runtime paths, scoring weights, stop rules, and file protection defaults. |
-| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-charter.md` | Runtime template | Freezes the mission, policy boundary, audit-trail requirements, and legal-stop gates for the run. |
-| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-strategy.md` | Runtime template | Splits operator-owned hypothesis fields from reducer-owned progress fields. |
-| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/target-manifest.jsonc` | Runtime template | Carries target classification, dynamic-profile hooks, and fixed or forbidden surfaces. |
+| `.skilled/commands/deep/agent-improvement.md` | Command | Collects target path, spec folder, mode, and iteration inputs before the loop starts. |
+| `.skilled/commands/deep/assets/deep-agent-improvement-auto.yaml` | Workflow | Creates the runtime directories, scans integration, generates the dynamic profile, and records the baseline in autonomous mode. |
+| `.skilled/commands/deep/assets/deep-agent-improvement-confirm.yaml` | Workflow | Mirrors the init path in interactive mode and adds approval gates before baseline recording. |
+| `.skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-config.json` | Runtime template | Defines runtime paths, scoring weights, stop rules, and file protection defaults. |
+| `.skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-charter.md` | Runtime template | Freezes the mission, policy boundary, audit-trail requirements, and legal-stop gates for the run. |
+| `.skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-strategy.md` | Runtime template | Splits operator-owned hypothesis fields from reducer-owned progress fields. |
+| `.skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/target-manifest.jsonc` | Runtime template | Carries target classification, dynamic-profile hooks, and fixed or forbidden surfaces. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/loop-protocol.md` | Reference | Describes the initialization sequence and copied runtime artifacts. |
-| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/quick-reference.md` | Reference | Confirms the packet-local runtime layout and runtime file naming. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/loop-protocol.md` | Reference | Describes the initialization sequence and copied runtime artifacts. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/shared/quick-reference.md` | Reference | Confirms the packet-local runtime layout and runtime file naming. |
 
 ---
 

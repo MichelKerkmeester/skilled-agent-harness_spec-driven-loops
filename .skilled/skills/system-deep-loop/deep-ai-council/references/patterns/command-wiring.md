@@ -19,7 +19,7 @@ This reference defines the canonical post-dispatch wiring for callers that run `
 
 ## 1. OVERVIEW
 
-`@deep-ai-council` is planning-only. It returns a council report and cannot write, edit, patch, or run shell commands. The dispatching parent owns persistence by invoking `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` after the report is captured.
+`@deep-ai-council` is planning-only. It returns a council report and cannot write, edit, patch, or run shell commands. The dispatching parent owns persistence by invoking `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` after the report is captured.
 
 Future `/speckit:*` consumers and CLI-skill playbooks should use the same helper invocation so council artifacts, state JSONL, and optional memory-save payloads stay consistent.
 
@@ -71,13 +71,13 @@ CONVERGED_FLAG=""
 if [ "$(jq -r '.current_round >= .max_rounds' "$PACKET/ai-council-config.json")" = "true" ] && ! grep -q "converged" "$REPORT"; then
   CONVERGED_FLAG="--not-converged"
 fi
-node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs "$PACKET" \
+node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs "$PACKET" \
   --input-file "$REPORT" \
   --memory-save-payload-out "$PAYLOAD" \
   $CONVERGED_FLAG
 
 # 3. Optional: route payload through the existing canonical memory save workflow.
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   "$PAYLOAD" "$PACKET"
 ```
 
@@ -109,7 +109,7 @@ steps:
     # converged report — see §3's shell snippet for the equivalent config check.
     # The helper cannot detect max-round exhaustion itself; the caller must tell it.
     command: >
-      node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs
+      node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs
       "${packet.spec_folder}"
       --input-file "${runtime.tmp}/council-report.md"
       --memory-save-payload-out "${runtime.tmp}/council-payload.json"
@@ -119,7 +119,7 @@ steps:
     uses: shell.exec
     if: "${packet.enable_memory_save}"
     command: >
-      node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js
+      node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js
       "${runtime.tmp}/council-payload.json"
       "${packet.spec_folder}"
 ```
@@ -162,7 +162,7 @@ The helper exits `1` when required report sections are missing. It exits `2` whe
 The advisory checker remains informational:
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs "$PACKET"
+node .skilled/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs "$PACKET"
 ```
 
 It always exits `0` and is not part of `validate.sh --strict`.
@@ -171,8 +171,8 @@ It always exits `0` and is not part of `validate.sh --strict`.
 
 ## 8. CROSS-REFERENCES
 
-- Agent body §16: `.opencode/agents/ai-council.md`
-- Output schema: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md`
-- State format: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
-- Persistence helper: `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
-- Memory save entrypoint: `.opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`
+- Agent body §16: `.skilled/agents/ai-council.md`
+- Output schema: `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md`
+- State format: `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
+- Persistence helper: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
+- Memory save entrypoint: `.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`

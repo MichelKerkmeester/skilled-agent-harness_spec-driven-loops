@@ -33,17 +33,17 @@ The auto workflow admits the exact reasons `composite_converged` and `all_questi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Workflow | Owns STOP eligibility, native seat dispatch, continuation, and fail-closed synthesis routing. |
-| `.opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` | Mode adapter | Builds bounded research candidates and the three research seat mandates. |
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Shared runtime | Owns the mechanics-only pivot transaction, event vocabulary, quorum, agreement, and artifact layout. |
-| `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Shared runtime | Validates the four-value convergence-mode enum without translating STOP decisions. |
-| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines the operator-facing convergence-mode and cost contract. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Owns STOP eligibility, native seat dispatch, continuation, and fail-closed synthesis routing. |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` | Mode adapter | Builds bounded research candidates and the three research seat mandates. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Shared runtime | Owns the mechanics-only pivot transaction, event vocabulary, quorum, agreement, and artifact layout. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Shared runtime | Validates the four-value convergence-mode enum without translating STOP decisions. |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines the operator-facing convergence-mode and cost contract. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/divergent-convergence-mode.md` | Manual playbook | Verifies eligibility, hard boundaries, continuation, and existing-mode isolation. |
+| `.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/divergent-convergence-mode.md` | Manual playbook | Verifies eligibility, hard boundaries, continuation, and existing-mode isolation. |
 
 ---
 

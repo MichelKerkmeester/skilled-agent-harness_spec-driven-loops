@@ -54,7 +54,7 @@ Integration tests follow evidence from command input through graph storage, proj
 ## 5. VALIDATION
 
 ```bash
-.opencode/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts tests/integration
+.skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/integration
 ```
 
 ---

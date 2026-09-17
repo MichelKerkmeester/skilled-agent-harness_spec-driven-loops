@@ -49,7 +49,7 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 ### Preconditions
 
 1. The `sk-code` skill is registered in the same runtime.
-2. `.opencode/skills/system-deep-loop/SKILL.md` contains the When NOT to Use rule.
+2. `.skilled/skills/system-deep-loop/SKILL.md` contains the When NOT to Use rule.
 3. Skill advisor is callable.
 
 ### Prompt
@@ -60,7 +60,7 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Update the TypeScript helper that formats CLI output so it trims trailing blank lines and run the relevant tests." --threshold 0.8 > /tmp/dlw-AI-004/advisor.txt
+   python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Update the TypeScript helper that formats CLI output so it trims trailing blank lines and run the relevant tests." --threshold 0.8 > /tmp/dlw-AI-004/advisor.txt
    ```
 2. **Inspect top skill**: save parsed result to `/tmp/dlw-AI-004/parsed.txt`.
 3. **Invoke orchestrator** with the exact prompt and capture which skill is loaded.
@@ -94,8 +94,8 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - When NOT to Use and hub scope.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - finite list of deep-loop modes.
+- `.skilled/skills/system-deep-loop/SKILL.md` - When NOT to Use and hub scope.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - finite list of deep-loop modes.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

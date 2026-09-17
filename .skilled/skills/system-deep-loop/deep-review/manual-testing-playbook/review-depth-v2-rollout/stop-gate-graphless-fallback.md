@@ -32,7 +32,7 @@ Empty graph CONTINUE has historically meant "no graph data, proceed to inline vo
 
 ### Prerequisites
 
-- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/system-deep-loop/runtime/tests/integration/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
+- `review-depth-convergence.vitest.ts` exists under `.skilled/skills/system-deep-loop/runtime/tests/integration/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
 - A standard or complex v2 session can set `graphCoverageMode` to `graphless_fallback`.
 - The session can leave `searchLedger` empty for the gate to trip.
 
@@ -67,10 +67,10 @@ With `graphCoverageMode: 'graphless_fallback'` and empty `searchLedger`, the rev
 
 ## 4. SOURCE FILES
 
-- Workflow YAML: `.opencode/commands/deep/assets/deep-review-auto.yaml` (`step_check_convergence` legal-stop decision tree, graphlessFallbackGate branch).
-- Confirm mirror: `.opencode/commands/deep/assets/deep-review-confirm.yaml`.
-- Schema: `.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md` (`graphCoverageMode` enum + fallback-method conventions).
-- Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
+- Workflow YAML: `.skilled/commands/deep/assets/deep-review-auto.yaml` (`step_check_convergence` legal-stop decision tree, graphlessFallbackGate branch).
+- Confirm mirror: `.skilled/commands/deep/assets/deep-review-confirm.yaml`.
+- Schema: `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md` (`graphCoverageMode` enum + fallback-method conventions).
+- Fixture: `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: complexity-candidate-saturation-gates decision record (see this skill's changelog for provenance).
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 

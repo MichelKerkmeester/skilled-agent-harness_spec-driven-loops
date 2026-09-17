@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Apply the Hunter / Skeptic 
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `writer-library-contract/hunter-skeptic-referee-cross-critique.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-016.
 
-Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md`, which the scenario identifies as cross-critique reference. Validation is anchored by `manual-testing-playbook/writer-library-contract/hunter-skeptic-referee-cross-critique.md`, covering manual scenario contract.
+Current behavior is grounded in `.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md`, which the scenario identifies as cross-critique reference. Validation is anchored by `manual-testing-playbook/writer-library-contract/hunter-skeptic-referee-cross-critique.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify Hunter, Skeptic, and Referee roles are documented with the score adjustment rule and comparison-table treatment. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,8 +40,8 @@ The user-visible contract is concrete: Verify Hunter, Skeptic, and Referee roles
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md` | Reference | Cross-critique reference |
-| `.opencode/agents/ai-council.md` | Runtime Mirror | Authoritative synthesis protocol |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md` | Reference | Cross-critique reference |
+| `.skilled/agents/ai-council.md` | Runtime Mirror | Authoritative synthesis protocol |
 
 ### Validation And Tests
 

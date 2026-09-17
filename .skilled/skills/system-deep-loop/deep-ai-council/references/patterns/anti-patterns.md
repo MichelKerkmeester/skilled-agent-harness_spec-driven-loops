@@ -155,7 +155,7 @@ Action:
 
 ## 5. CROSS-REFERENCES
 
-- Agent body: `.opencode/agents/ai-council.md` §11 ANTI-PATTERNS.
+- Agent body: `.skilled/agents/ai-council.md` §11 ANTI-PATTERNS.
 - Scoring rubric: `../scoring/scoring-rubric.md`.
 - Seat diversity: `seat-diversity-patterns.md`.
 - Depth dispatch: `../convergence/depth-dispatch.md`.

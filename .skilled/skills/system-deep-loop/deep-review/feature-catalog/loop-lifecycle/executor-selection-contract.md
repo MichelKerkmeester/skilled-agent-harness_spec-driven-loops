@@ -50,7 +50,7 @@ Per-kind flag compatibility is enforced at config parse time by `EXECUTOR_KIND_F
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Runtime | `parseExecutorConfig`, `EXECUTOR_KIND_FLAG_SUPPORT`, `ExecutorConfigError`. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Runtime | `parseExecutorConfig`, `EXECUTOR_KIND_FLAG_SUPPORT`, `ExecutorConfigError`. |
 | `references/protocol/loop-protocol.md` | Protocol | Executor Resolution section: per-kind dispatch branches and shared steps. |
 | `SKILL.md` | Skill contract | Executor Selection Contract and Cross-CLI Delegation subsections. |
 

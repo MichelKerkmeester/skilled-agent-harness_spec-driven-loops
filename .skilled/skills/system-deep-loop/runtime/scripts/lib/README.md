@@ -47,7 +47,7 @@ The helper sits at the outer edge of the runtime spine. It protects the transiti
 Run the runtime typecheck and the script-focused tests through the runtime configuration.
 
 ```bash
-.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json
+.skilled/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .skilled/skills/system-deep-loop/runtime/tsconfig.json
 ```
 
 ---

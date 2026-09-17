@@ -20,7 +20,7 @@ const { spawnSync } = require('node:child_process');
 
 const RUNTIME_DIR = path.resolve(__dirname, '../../..');
 const REPOSITORY_ROOT = path.resolve(RUNTIME_DIR, '../../../..');
-const SKILLS_ROOT = path.join(REPOSITORY_ROOT, '.opencode', 'skills');
+const SKILLS_ROOT = path.join(REPOSITORY_ROOT, '.skilled', 'skills');
 const MANIFEST_PATH = path.join(__dirname, 'matrix-manifest.ts');
 const TEST_DIRECTORY = 'tests/stress/cli-adapter/';
 const FORBIDDEN_OVERCLAIM = /classif(?:y|ies|ication)|reaps? every descendant|full[- ]tree reap/iu;

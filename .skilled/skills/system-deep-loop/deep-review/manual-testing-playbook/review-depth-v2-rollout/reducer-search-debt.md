@@ -32,7 +32,7 @@ A v2 record may validate cleanly and still hide deferred or blocked candidate-se
 
 ### Prerequisites
 
-- `review-depth-reducer.vitest.ts` exists under `.opencode/skills/system-spec-kit/runtime/tests/deep-loop/`.
+- `review-depth-reducer.vitest.ts` exists under `.skilled/skills/system-spec-kit/runtime/tests/deep-loop/`.
 - A synthetic two-iteration session is available that includes deferred candidates in `searchLedger`.
 - Reducer output paths (registry, dashboard, report) are observable.
 
@@ -69,9 +69,9 @@ The reducer preserves `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `
 
 ## 4. SOURCE FILES
 
-- Reducer: `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (registry return shape + dashboard verdict + active-risks rendering).
-- Report compiler: `.opencode/commands/deep/assets/deep-review-auto.yaml` (Search Ledger section in report-output step).
-- Fixture: `.opencode/skills/system-spec-kit/runtime/tests/deep-loop/review-depth-reducer.vitest.ts`.
+- Reducer: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (registry return shape + dashboard verdict + active-risks rendering).
+- Report compiler: `.skilled/commands/deep/assets/deep-review-auto.yaml` (Search Ledger section in report-output step).
+- Fixture: `.skilled/skills/system-spec-kit/runtime/tests/deep-loop/review-depth-reducer.vitest.ts`.
 - ADR: complexity-search-ledger-persistence decision record (see this skill's changelog for provenance).
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 

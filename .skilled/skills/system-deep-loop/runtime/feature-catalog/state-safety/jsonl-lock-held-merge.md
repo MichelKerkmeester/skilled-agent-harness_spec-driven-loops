@@ -27,7 +27,7 @@ This feature belongs to the state safety group and is catalogued as F033 in the 
 
 `mergeJsonlUnderLock()` rereads current JSONL, unions incoming records by stable identity, writes the merged file atomically under the lock, and `fanout-salvage.cjs` uses it instead of bare append.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

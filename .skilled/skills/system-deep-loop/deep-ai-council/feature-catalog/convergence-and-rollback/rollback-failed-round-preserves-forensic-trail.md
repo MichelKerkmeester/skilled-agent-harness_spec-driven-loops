@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Roll back this failed counc
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-010.
 
-Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/rollback.cjs`, which the scenario identifies as rollback behavior. Validation is anchored by `manual-testing-playbook/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md`, covering manual scenario contract.
+Current behavior is grounded in `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/rollback.cjs`, which the scenario identifies as rollback behavior. Validation is anchored by `manual-testing-playbook/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify failed rounds move under failed/ and state records rollback events. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,9 +40,9 @@ The user-visible contract is concrete: Verify failed rounds move under failed/ a
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/rollback.cjs` | Library | Rollback behavior |
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md` | Reference | Failed folder layout |
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md` | Reference | Rollback state events |
+| `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/rollback.cjs` | Library | Rollback behavior |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md` | Reference | Failed folder layout |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md` | Reference | Rollback state events |
 
 ### Validation And Tests
 

@@ -12,7 +12,7 @@ CommonJS helpers shared by sibling deep-improvement CLI scripts.
 
 ## 1. OVERVIEW
 
-This directory holds reusable helper modules for the lane scripts under `.opencode/skills/system-deep-loop/deep-improvement/scripts/` (`agent-improvement/`, `model-benchmark/`, `shared/`).
+This directory holds reusable helper modules for the lane scripts under `.skilled/skills/system-deep-loop/deep-improvement/scripts/` (`agent-improvement/`, `model-benchmark/`, `shared/`).
 The modules are consumed by those sibling scripts only and are not a cross-skill import surface.
 
 ---

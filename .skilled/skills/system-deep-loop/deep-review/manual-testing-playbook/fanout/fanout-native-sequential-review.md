@@ -44,11 +44,11 @@ A wrong agent name silently runs the research loop in a review fan-out context.
 
 ### Commands
 
-1. `bash: grep -n "step_fanout_spawn_native\|agent: deep-review\|agent: deep-research\|fanout_lineage_artifact_dir" .opencode/commands/deep/assets/deep-review-auto.yaml`
+1. `bash: grep -n "step_fanout_spawn_native\|agent: deep-review\|agent: deep-research\|fanout_lineage_artifact_dir" .skilled/commands/deep/assets/deep-review-auto.yaml`
 2. Confirm `agent: deep-review` appears in the native dispatch block — NOT `agent: deep-research`.
 3. Confirm `context:` block includes `config.fanout_lineage_artifact_dir: {artifact_dir}/lineages/{lineage.label}`.
 4. Confirm `skip_when: "no entries in config.fanout.executors with kind == 'native'"`.
-5. `bash: grep -n "native.*count\|native fan-out" .opencode/commands/deep/review.md` — confirm native fan-out note in examples.
+5. `bash: grep -n "native.*count\|native fan-out" .skilled/commands/deep/review.md` — confirm native fan-out note in examples.
 
 ### RECOMMENDED ORCHESTRATION PROCESS
 
@@ -77,8 +77,8 @@ Source inspection confirms `agent: deep-review`, correct dir override, correct `
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | `step_fanout_spawn_native`, `agent: deep-review` dispatch, `fanout_lineage_artifact_dir` context |
-| `.opencode/commands/deep/review.md` | Native fan-out note in EXAMPLES section |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | `step_fanout_spawn_native`, `agent: deep-review` dispatch, `fanout_lineage_artifact_dir` context |
+| `.skilled/commands/deep/review.md` | Native fan-out note in EXAMPLES section |
 
 ### Validation
 

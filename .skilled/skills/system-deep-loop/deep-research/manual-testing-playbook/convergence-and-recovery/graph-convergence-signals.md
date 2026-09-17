@@ -48,9 +48,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate source-diversity threshold blocks STOP and records blockedStop persistence.
 ### Commands
-1. `bash: rg -n 'gate_evidence_density_pass|sourceDiversity|STOP_BLOCKED' .opencode/commands/deep/assets/deep-research-auto.yaml`
-2. `bash: rg -n 'blockedStop|blocked_stop|graph-aware convergence|graphEvents|sourceDiversity' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-3. `bash: rg -n 'sourceDiversity' .opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts`
+1. `bash: rg -n 'gate_evidence_density_pass|sourceDiversity|STOP_BLOCKED' .skilled/commands/deep/assets/deep-research-auto.yaml`
+2. `bash: rg -n 'blockedStop|blocked_stop|graph-aware convergence|graphEvents|sourceDiversity' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+3. `bash: rg -n 'sourceDiversity' .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts`
 ### Expected
 The command contract names `sourceDiversity` and `evidenceDepth` as the blockers that fail the evidence-density gate and force `STOP_BLOCKED`; the ledger schema carries `sourceDiversity` as a convergence gate status; deep-research convergence persists blocked-stop state when legal-stop gates fail.
 ### Evidence
@@ -73,9 +73,9 @@ Privilege the command contract for the enforcement rule and `references/converge
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | The stop rule: inline vote plus `graph_decision`, with `sourceDiversity` and `evidenceDepth` as the evidence-density blockers |
-| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Deep-research legal-stop and blocked-stop contract, including graph-aware convergence |
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts` | `sourceDiversity` as a typed convergence gate status |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | The stop rule: inline vote plus `graph_decision`, with `sourceDiversity` and `evidenceDepth` as the evidence-density blockers |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Deep-research legal-stop and blocked-stop contract, including graph-aware convergence |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts` | `sourceDiversity` as a typed convergence gate status |
 
 ---
 
@@ -85,4 +85,4 @@ Privilege the command contract for the enforcement rule and `references/converge
 - Playbook ID: DR-031
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/graph-convergence-signals.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

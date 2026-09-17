@@ -7,7 +7,7 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const MB_ROOT = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark',
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark',
 );
 
 // The runtime modules are CommonJS; load them through a require bridge so the

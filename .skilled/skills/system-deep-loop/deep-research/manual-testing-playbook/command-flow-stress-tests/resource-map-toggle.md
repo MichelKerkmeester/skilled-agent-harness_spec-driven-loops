@@ -50,7 +50,7 @@ Operators run the exact command sequence for `CP-048` and grade the result throu
 ```bash
 rm -rf /tmp/cp-048-sandbox /tmp/cp-048-sandbox-baseline /tmp/cp-048-spec
 mkdir -p /tmp/cp-048-spec
-.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-048-sandbox
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-048-sandbox
 cp -a /tmp/cp-048-sandbox /tmp/cp-048-sandbox-baseline
 cat > /tmp/cp-048-spec/spec.md <<'EOF'
 ---
@@ -99,11 +99,11 @@ diff /tmp/cp-048-pre.txt /tmp/cp-048-post.txt > /tmp/cp-048-tripwire.diff; echo 
 
 | File | Anchor |
 |---|---|
-| `.opencode/commands/deep/research.md:73-75` | `--no-resource-map` setup flag |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml:238-267` | config and state persist resource-map settings |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml:930-938` | reducer emits map unless disabled |
-| `.opencode/skills/system-deep-loop/deep-research/SKILL.md:443-448` | resource-map is expected unless disabled |
-| `.opencode/agents/deep-research.md:269-274` | progressive research output remains separate |
+| `.skilled/commands/deep/research.md:73-75` | `--no-resource-map` setup flag |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml:238-267` | config and state persist resource-map settings |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml:930-938` | reducer emits map unless disabled |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md:443-448` | resource-map is expected unless disabled |
+| `.skilled/agents/deep-research.md:269-274` | progressive research output remains separate |
 
 ---
 

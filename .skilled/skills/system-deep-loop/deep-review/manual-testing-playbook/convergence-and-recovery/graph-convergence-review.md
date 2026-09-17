@@ -48,9 +48,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the graph-backed legal-stop gate and report whether blocked-stop state persists when coverage fails.
 ### Commands
-1. `bash: rg -n 'blockedStop|dimensionCoverage|buildReviewLegalStop|graphEvents|graph-aware review convergence' .opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'dimensionCoverage|threshold|STOP_BLOCKED|blocking' .opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts`
-3. `bash: rg -n 'blocked_stop|blockedStop|dimensionCoverage' .opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl`
+1. `bash: rg -n 'blockedStop|dimensionCoverage|buildReviewLegalStop|graphEvents|graph-aware review convergence' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+2. `bash: rg -n 'dimensionCoverage|threshold|STOP_BLOCKED|blocking' .skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts`
+3. `bash: rg -n 'blocked_stop|blockedStop|dimensionCoverage' .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl`
 ### Expected
 Legal-stop docs map failed gate evaluation to `blockedStop`. The graph convergence handler evaluates review `dimensionCoverage`. Fixture evidence shows persisted `blocked_stop` blocked by `dimensionCoverage`.
 ### Evidence
@@ -73,9 +73,9 @@ Privilege `references/convergence/convergence.md` for the review stop contract a
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical review legal-stop and graph-aware convergence contract |
-| `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts` | Graph convergence handler, review `dimensionCoverage` threshold and blocking behavior |
-| `.opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl` | Concrete blocked-stop fixture showing `dimensionCoverage` in `blockedBy` |
+| `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical review legal-stop and graph-aware convergence contract |
+| `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts` | Graph convergence handler, review `dimensionCoverage` threshold and blocking behavior |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl` | Concrete blocked-stop fixture showing `dimensionCoverage` in `blockedBy` |
 
 ---
 
@@ -85,4 +85,4 @@ Privilege `references/convergence/convergence.md` for the review stop contract a
 - Playbook ID: DRV-032
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/graph-convergence-review.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

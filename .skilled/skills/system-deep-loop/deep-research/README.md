@@ -62,7 +62,7 @@ Expected output: a converged research report at `{spec_folder}/research/research
 **Step 3: Verify the reducer output after the loop finishes.**
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder>
+node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder>
 ```
 
 Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iterationsCompleted`, `findings` and convergence fields.
@@ -128,7 +128,7 @@ Skip it for a single-question lookup, where a direct web search or the `@context
 | Loop stops too early | The convergence threshold is too loose for the topic breadth | Lower `--convergence` (try 0.03) or raise `--max-iterations` (try 12) |
 | Loop never converges | The topic keeps yielding partial overlap that stays above the threshold, or the stuck-recovery path has triggered | Check the dashboard for stuck count. Tighten the focus in the strategy file or raise the convergence threshold. |
 | JSONL parse failure on resume | A trailing corrupt line in the append-only log | The reducer fails closed unless `--lenient` is explicitly passed. Inspect and repair the log before resuming. |
-| Strategy or dashboard drift from iteration files | The reducer did not run after the last iteration write | Run `node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder>` to regenerate derived files |
+| Strategy or dashboard drift from iteration files | The reducer did not run after the last iteration write | Run `node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder>` to regenerate derived files |
 | Packet resumes when you expected a new run | An active lineage exists in the config | Inspect `deep-research-config.json` for the current `sessionId`. Archive the existing `research/` tree and pass `--restart` or delete the config. |
 | Loop will not continue after pause | The pause file is still present | Remove `{spec_folder}/research/.deep-research-pause` and re-invoke the command |
 | Agent hits the tool-call cap every iteration | The focus area is too broad | Tighten the focus in `deep-research-strategy.md` to one sub-question per iteration |
@@ -179,7 +179,7 @@ The `feature-catalog/` covers every capability across its categories: loop lifec
 Deterministic scenarios under `manual-testing-playbook/` cover loop lifecycle, state management, convergence and recovery, and research output. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/deep-research/README.md --type readme
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-research/README.md --type readme
 ```
 
 Expected output: zero issues reported.
@@ -222,6 +222,6 @@ A feature change to this skill typically touches more than one surface. Before c
 - [ ] **`references/`** -- the owning protocol, state or convergence doc reflects the change (see section 9 table for which doc owns what)
 - [ ] **`feature-catalog/`** -- the feature's category package documents inputs, outputs, owner and acceptance criteria
 - [ ] **`manual-testing-playbook/`** -- a scenario exists (or is updated) with preconditions, expected signals and a pass/fail verdict
-- [ ] **command YAML/tests** -- `.opencode/commands/deep/assets/deep-research-auto.yaml` and `deep-research-confirm.yaml`, plus any `scripts/*.test.cjs`, cover the change
+- [ ] **command YAML/tests** -- `.skilled/commands/deep/assets/deep-research-auto.yaml` and `deep-research-confirm.yaml`, plus any `scripts/*.test.cjs`, cover the change
 - [ ] **`assets/`** -- templates (`deep-research-config.json`, `deep-research-strategy.md`, `deep-research-dashboard.md`, prompt pack) match the new shape
 - [ ] **`scripts/`** -- `reduce-state.cjs` and `runtime-capabilities.cjs` implement the change and stay idempotent

@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-research setup binding for topic, spec folder, max iterations, convergence, and YAML preflight.
 ### Commands
-1. `bash: sed -n '1,220p' .opencode/commands/deep/research.md`
-2. `bash: rg -n 'step_preflight_contract|required_values_present|spec_folder_is_within|max_iterations|convergence_threshold' .opencode/commands/deep/assets/deep-research-auto.yaml .opencode/commands/deep/assets/deep-research-confirm.yaml`
-3. `bash: sed -n '1,180p' .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md`
+1. `bash: sed -n '1,220p' .skilled/commands/deep/research.md`
+2. `bash: rg -n 'step_preflight_contract|required_values_present|spec_folder_is_within|max_iterations|convergence_threshold' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+3. `bash: sed -n '1,180p' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
 ### Expected
 The command explicitly names topic, spec folder, execution mode, max iterations, and convergence threshold; YAML preflight verifies them before file writes.
 ### Evidence
@@ -71,10 +71,10 @@ Compare both YAML files, not just one, and verify the config schema still names 
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/research.md` | Setup-binding source of truth; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Autonomous preflight guard; inspect `step_preflight_contract` |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Interactive preflight guard; inspect `step_preflight_contract` |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Config schema; use `ANCHOR:config-file` |
+| `.skilled/commands/deep/research.md` | Setup-binding source of truth; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Autonomous preflight guard; inspect `step_preflight_contract` |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Interactive preflight guard; inspect `step_preflight_contract` |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Config schema; use `ANCHOR:config-file` |
 
 ---
 
@@ -84,4 +84,4 @@ Compare both YAML files, not just one, and verify the config schema still names 
 - Playbook ID: DR-003
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

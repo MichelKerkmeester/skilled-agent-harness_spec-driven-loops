@@ -5,10 +5,10 @@ set -euo pipefail
 
 readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 readonly -a YAML_FILES=(
-  ".opencode/commands/deep/assets/deep-research-auto.yaml"
-  ".opencode/commands/deep/assets/deep-research-confirm.yaml"
-  ".opencode/commands/deep/assets/deep-review-auto.yaml"
-  ".opencode/commands/deep/assets/deep-review-confirm.yaml"
+  ".skilled/commands/deep/assets/deep-research-auto.yaml"
+  ".skilled/commands/deep/assets/deep-research-confirm.yaml"
+  ".skilled/commands/deep/assets/deep-review-auto.yaml"
+  ".skilled/commands/deep/assets/deep-review-confirm.yaml"
 )
 
 missing=0
@@ -30,7 +30,7 @@ for yaml_file in "${YAML_FILES[@]}"; do
       missing=$((missing + 1))
     fi
   done < <(
-    grep -Eho "node[[:space:]]+\\.opencode/[^\"'[:space:]]+\\.cjs" "$yaml_path" \
+    grep -Eho "node[[:space:]]+\\.(skilled|opencode)/[^\"'[:space:]]+\\.cjs" "$yaml_path" \
       | sed -E 's/^node[[:space:]]+//' \
       | sort -u
   )

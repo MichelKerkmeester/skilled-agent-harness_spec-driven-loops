@@ -44,7 +44,7 @@ Benchmark a model against prompt framework candidates.
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the command-bridge entry.
+1. `.skilled/skills/system-deep-loop/mode-registry.json` contains the command-bridge entry.
 2. Skill advisor is callable.
 
 ### Prompt
@@ -88,8 +88,8 @@ Benchmark a model against prompt framework candidates.
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - command-bridge entries and contract definition.
+- `.skilled/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - command-bridge entries and contract definition.
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---

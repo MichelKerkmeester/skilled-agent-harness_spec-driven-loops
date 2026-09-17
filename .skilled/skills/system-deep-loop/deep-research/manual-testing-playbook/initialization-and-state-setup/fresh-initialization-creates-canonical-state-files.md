@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate fresh deep-research initialization creates canonical config, JSONL state, and strategy files from live templates.
 ### Commands
-1. `bash: sed -n '1,220p' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_strategy' .opencode/commands/deep/assets/deep-research-auto.yaml .opencode/commands/deep/assets/deep-research-confirm.yaml`
-3. `bash: sed -n '1,220p' .opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json && sed -n '1,220p' .opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
+1. `bash: sed -n '1,220p' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+2. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_strategy' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+3. `bash: sed -n '1,220p' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json && sed -n '1,220p' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
 ### Expected
 The scratch directory is created, config and strategy come from the shipped assets, and the JSONL begins with a config record.
 ### Evidence
@@ -71,11 +71,11 @@ Check both YAML variants, verify the JSONL init step writes a config record, and
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Initialization lifecycle; use `ANCHOR:phase-initialization` |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Autonomous init steps; inspect `phase_init` |
-| `.opencode/commands/deep/assets/deep-research-confirm.yaml` | Interactive init steps; inspect `phase_init` |
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Config template |
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Strategy template |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Initialization lifecycle; use `ANCHOR:phase-initialization` |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Autonomous init steps; inspect `phase_init` |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Interactive init steps; inspect `phase_init` |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json` | Config template |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Strategy template |
 
 ---
 
@@ -85,4 +85,4 @@ Check both YAML variants, verify the JSONL init step writes a config record, and
 - Playbook ID: DR-004
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `initialization-and-state-setup/fresh-initialization-creates-canonical-state-files.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

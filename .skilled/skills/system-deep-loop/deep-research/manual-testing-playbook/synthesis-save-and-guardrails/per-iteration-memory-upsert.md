@@ -45,8 +45,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate lineage context refresh ordering and non-fatal state-read behavior.
 ### Commands
-1. `bash: rg -n 'step_reduce_state|step_graph_upsert|step_refresh_lineage_context|lineage_context_prompt_line|non-fatal' .opencode/commands/deep/assets/deep-research-auto.yaml`
-2. `bash: sed -n '55,95p' .opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts`
+1. `bash: rg -n 'step_reduce_state|step_graph_upsert|step_refresh_lineage_context|lineage_context_prompt_line|non-fatal' .skilled/commands/deep/assets/deep-research-auto.yaml`
+2. `bash: sed -n '55,95p' .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts`
 ### Expected
 The workflow refreshes the context line from the reducer-owned dashboard, registry and strategy files before the next prompt, and treats a missing or unreadable state file as a non-fatal advisory condition.
 ### Evidence
@@ -71,8 +71,8 @@ Privilege the auto YAML for live ordering and the unit test for required step se
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Lineage context refresh step and the prompt line it feeds |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts` | Unit coverage for step ordering, state reads, and advisory errors |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Lineage context refresh step and the prompt line it feeds |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts` | Unit coverage for step ordering, state reads, and advisory errors |
 
 ---
 

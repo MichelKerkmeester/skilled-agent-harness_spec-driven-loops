@@ -56,11 +56,11 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 
 **ALWAYS:**
 - Invoke via `/deep:review :auto` or `/deep:review :confirm`
-- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep-review-auto.yaml`)
+- Let the command's YAML workflow own dispatch (auto: `.skilled/commands/deep/assets/deep-review-auto.yaml`)
 - Record each leaf iteration through the append gateway (`runtime/scripts/append-mode-event.cjs --mode review --run-directory <spec folder> --event-json <file>`) — the gateway is the SINGLE state-log writer: it authorizes, fences, and receipts the write, then refreshes `{state_paths.state_log}` from the ledger
 - Treat `scripts/reduce-state.cjs` as the reducer for DERIVED artifacts only (finding registry, dashboard metrics, strategy updates); it never writes the state log
 - Require every iteration to produce BOTH the markdown narrative AND the JSONL delta (dispatch scripts must fail if either is missing)
-- Use `resolveArtifactRoot(specFolder, 'review')` from `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical review root
+- Use `resolveArtifactRoot(specFolder, 'review')` from `.skilled/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical review root
 
 ### Trigger Phrases
 
@@ -428,7 +428,7 @@ A review loop is complete only when convergence and every quality gate agree: th
 
 Nine binary quality gates must all pass before STOP is legal: config validity + lineage match, strategy initialization completeness, state/registry consistency, iteration completeness (markdown + JSONL delta), severity-field coverage on every finding (`severity`/`category`/`file:line`/`content_hash`), the advisory-only `riskScore` never gating verdict logic, adversarial P0 replay, dimension/protocol coverage stability, acceptance-coverage (advisory `AC_COVERAGE` signal when the spec-folder lifecycle predicate is active), and the security-sensitive override (`minStabilizationPasses=2` + fix-completeness replay) when the target touches security, path handling, env precedence, schema boundaries, persistence, or shared policy. Full gate-by-gate criteria and rationale: `references/protocol/completion-criteria.md`.
 
-Validate a completed run with `skill_advisor.py "run a deep review loop" --threshold 0.8` (skill still surfaces) and `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` (exits 0).
+Validate a completed run with `skill_advisor.py "run a deep review loop" --threshold 0.8` (skill still surfaces) and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` (exits 0).
 
 ---
 

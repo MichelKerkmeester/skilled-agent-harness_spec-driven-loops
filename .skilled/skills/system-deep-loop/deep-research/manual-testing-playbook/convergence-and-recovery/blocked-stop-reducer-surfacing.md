@@ -25,8 +25,8 @@ Blocked-stop events are only useful if operators can see them in all reducer-own
 Operators should run this as a real orchestrator-led check rather than a synthetic command-matrix exercise. The scenario is only complete when the operator can explain the behavior back to a user in plain language.
 
 - Title: Research reducer surfaces blocked-stop history across registry, dashboard, and next-focus.
-- Given: A research packet with at least one `blocked_stop` event, using `.opencode/skills/system-deep-loop/deep-research/scripts/tests/fixtures/interrupted-session/` once T048 lands or a hand-constructed minimal example that includes `blockedBy`, `gateResults`, `recoveryStrategy`, and `timestamp`.
-- When: The operator runs `node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder>`.
+- Given: A research packet with at least one `blocked_stop` event, using `.skilled/skills/system-deep-loop/deep-research/scripts/tests/fixtures/interrupted-session/` once T048 lands or a hand-constructed minimal example that includes `blockedBy`, `gateResults`, `recoveryStrategy`, and `timestamp`.
+- When: The operator runs `node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder>`.
 - Then: `findings-registry.json` exposes `blockedStopHistory` entries, `deep-research-dashboard.md` renders a `Blocked Stops` section for each entry, and the `ANCHOR:next-focus` block in `deep-research-strategy.md` contains the blocked-stop recovery strategy.
 - Real user request: If research STOP gets vetoed, where can I see that decision afterward and what guidance does the reducer surface so I know how to recover?
 - Prompt: `Validate blocked-stop reducer output surfaces history, dashboard guidance, and recovery-focused next focus.`
@@ -50,7 +50,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate blocked-stop reducer output surfaces history, dashboard guidance, and recovery-focused next focus.
 
 ### Commands
-1. `bash: node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}`
+1. `bash: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}`
 2. `bash: cat {spec_folder}/research/findings-registry.json | jq '.blockedStopHistory'`
 3. `bash: grep -A 5 -i "Blocked Stops" {spec_folder}/research/deep-research-dashboard.md`
 4. `bash: sed -n '/ANCHOR:next-focus/,/\/ANCHOR:next-focus/p' {spec_folder}/research/deep-research-strategy.md`
@@ -81,8 +81,8 @@ Privilege `findings-registry.json` as the reducer-owned source of truth. If the 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Canonical reducer implementation; promotes `blocked_stop` into `blockedStopHistory`, renders `Blocked Stops`, and rewrites `ANCHOR:next-focus` |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Research state contract; defines `blockedStopHistory`, dashboard `Blocked Stops`, and reducer-driven strategy next-focus override |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Canonical reducer implementation; promotes `blocked_stop` into `blockedStopHistory`, renders `Blocked Stops`, and rewrites `ANCHOR:next-focus` |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Research state contract; defines `blockedStopHistory`, dashboard `Blocked Stops`, and reducer-driven strategy next-focus override |
 
 ---
 
@@ -92,4 +92,4 @@ Privilege `findings-registry.json` as the reducer-owned source of truth. If the 
 - Playbook ID: DR-032
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/blocked-stop-reducer-surfacing.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

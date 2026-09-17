@@ -44,7 +44,7 @@ Lifecycle tests protect the storage boundary beneath graph queries and reducers.
 ## 5. VALIDATION
 
 ```bash
-.opencode/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts tests/lifecycle
+.skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/lifecycle
 ```
 
 ---

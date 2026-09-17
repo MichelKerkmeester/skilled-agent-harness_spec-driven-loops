@@ -19,11 +19,11 @@ const { spawnSync } = require('node:child_process');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const USAGE = `Usage:
-  node .opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder <path> --session-id <id> [--dry-run]
+  node .skilled/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder <path> --session-id <id> [--dry-run]
 
 Reads <repo-root>/<spec-folder>/ai-council/ai-council-state.jsonl and replays
 the derived graph through:
-  node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs --loop-type council
+  node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --loop-type council
 
 The derived payload shape is:
   { "specFolder": "...", "sessionId": "...", "nodes": [...], "edges": [...] }
@@ -53,7 +53,7 @@ function findRepoRoot(startDir) {
   while (current !== path.dirname(current)) {
     if (
       fs.existsSync(path.join(current, '.opencode'))
-      && fs.existsSync(path.join(current, '.opencode', 'skills', 'system-deep-loop', 'runtime', 'scripts', 'upsert.cjs'))
+      && fs.existsSync(path.join(current, '.skilled', 'skills', 'system-deep-loop', 'runtime', 'scripts', 'upsert.cjs'))
     ) return current;
     current = path.dirname(current);
   }
@@ -62,7 +62,7 @@ function findRepoRoot(startDir) {
 
 function runtimeUpsertScript(repoRoot) {
   return process.env.DEEP_AI_COUNCIL_REPLAY_UPSERT_SCRIPT
-    || path.join(repoRoot, '.opencode', 'skills', 'system-deep-loop', 'runtime', 'scripts', 'upsert.cjs');
+    || path.join(repoRoot, '.skilled', 'skills', 'system-deep-loop', 'runtime', 'scripts', 'upsert.cjs');
 }
 
 /**

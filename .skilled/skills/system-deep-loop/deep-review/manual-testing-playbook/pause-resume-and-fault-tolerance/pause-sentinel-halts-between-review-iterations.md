@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the deep-review pause sentinel and report whether the loop halts before synthesis.
 ### Commands
-1. `bash: rg -n '.deep-review-pause|paused|Delete.*pause|review/.deep-review-pause' .opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md`
-2. `bash: rg -n 'step_check_pause_sentinel|paused|halt.*true|review/.deep-review-pause|pause.*sentinel' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
-3. `bash: rg -n 'pause|sentinel|review/.deep-review-pause|Pause' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .opencode/commands/deep/review.md`
+1. `bash: rg -n '.deep-review-pause|paused|Delete.*pause|review/.deep-review-pause' .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
+2. `bash: rg -n 'step_check_pause_sentinel|paused|halt.*true|review/.deep-review-pause|pause.*sentinel' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'pause|sentinel|review/.deep-review-pause|Pause' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/commands/deep/review.md`
 ### Expected
 The sentinel is checked before dispatch, a paused event is logged to JSONL, the loop halts rather than flowing into synthesis, and the sentinel location is `review/.deep-review-pause`.
 ### Evidence
@@ -71,13 +71,13 @@ Use the loop protocol pause subsection as the canonical flow and verify both rev
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Pause sentinel contract, use the pause-handling subsection |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Pause check step, inspect `step_check_pause_sentinel` |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Pause check step, inspect `step_check_pause_sentinel` |
-| `.opencode/commands/deep/review.md` | Command entrypoint, review-specific pause documentation |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | State files showing pause sentinel location, use `ANCHOR:state-files` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Rule-level context, use `ANCHOR:rules` |
-| `.opencode/skills/system-deep-loop/deep-review/README.md` | User-facing pause FAQ |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Pause sentinel contract, use the pause-handling subsection |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Pause check step, inspect `step_check_pause_sentinel` |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Pause check step, inspect `step_check_pause_sentinel` |
+| `.skilled/commands/deep/review.md` | Command entrypoint, review-specific pause documentation |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | State files showing pause sentinel location, use `ANCHOR:state-files` |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Rule-level context, use `ANCHOR:rules` |
+| `.skilled/skills/system-deep-loop/deep-review/README.md` | User-facing pause FAQ |
 
 ---
 
@@ -87,4 +87,4 @@ Use the loop protocol pause subsection as the canonical flow and verify both rev
 - Playbook ID: DRV-021
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `pause-resume-and-fault-tolerance/pause-sentinel-halts-between-review-iterations.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

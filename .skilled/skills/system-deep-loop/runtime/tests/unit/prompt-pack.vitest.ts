@@ -121,12 +121,12 @@ describe('prompt-pack', () => {
       remaining_questions_list: '- Q1\n- Q2',
       carried_forward_open_questions: '- Runtime helper ownership? (iteration 1)',
       last_3_summaries: 'Iter 1: baseline',
-      state_paths_config: '.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json',
-      state_paths_state_log: '.opencode/skills/system-deep-loop/deep-research/runtime/state.jsonl',
-      state_paths_strategy: '.opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md',
-      state_paths_registry: '.opencode/skills/system-deep-loop/deep-research/runtime/registry.json',
-      state_paths_iteration_pattern: '.opencode/skills/system-deep-loop/deep-research/runtime/iteration-002.md',
-      state_paths_delta_pattern: '.opencode/skills/system-deep-loop/deep-research/runtime/deltas/iter-002.jsonl',
+      state_paths_config: '.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json',
+      state_paths_state_log: '.skilled/skills/system-deep-loop/deep-research/runtime/state.jsonl',
+      state_paths_strategy: '.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md',
+      state_paths_registry: '.skilled/skills/system-deep-loop/deep-research/runtime/registry.json',
+      state_paths_iteration_pattern: '.skilled/skills/system-deep-loop/deep-research/runtime/iteration-002.md',
+      state_paths_delta_pattern: '.skilled/skills/system-deep-loop/deep-research/runtime/deltas/iter-002.jsonl',
       pivot_lineage: 'Pivot pivot-1-abc123def456 selected candidate-001 from source iteration 2.',
       saturated_directions: '- Graph event capture',
     });
@@ -141,20 +141,20 @@ describe('prompt-pack', () => {
       p0_count: 0,
       p1_count: 1,
       p2_count: 2,
-      state_paths_config: '.opencode/skills/system-deep-loop/deep-review/assets/deep-review-config.json',
-      state_paths_state_log: '.opencode/skills/system-deep-loop/deep-review/runtime/state.jsonl',
-      state_paths_findings_registry: '.opencode/skills/system-deep-loop/deep-review/runtime/findings.json',
-      state_paths_strategy: '.opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md',
-      state_paths_iteration_pattern: '.opencode/skills/system-deep-loop/deep-review/runtime/iteration-003.md',
-      state_paths_delta_pattern: '.opencode/skills/system-deep-loop/deep-review/runtime/deltas/iter-003.jsonl',
+      state_paths_config: '.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json',
+      state_paths_state_log: '.skilled/skills/system-deep-loop/deep-review/runtime/state.jsonl',
+      state_paths_findings_registry: '.skilled/skills/system-deep-loop/deep-review/runtime/findings.json',
+      state_paths_strategy: '.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md',
+      state_paths_iteration_pattern: '.skilled/skills/system-deep-loop/deep-review/runtime/iteration-003.md',
+      state_paths_delta_pattern: '.skilled/skills/system-deep-loop/deep-review/runtime/deltas/iter-003.jsonl',
       pivot_lineage: 'Pivot pivot-1-fed654cba321 selected candidate-001 from source iteration 3.',
       saturated_directions: '- traceability',
     });
 
     expect(researchRendered).toContain('Research Topic: Deep loop coverage');
     expect(researchRendered).toContain('Runtime helper ownership?');
-    expect(researchRendered).toContain('State Log: .opencode/skills/system-deep-loop/deep-research/runtime/state.jsonl');
+    expect(researchRendered).toContain('State Log: .skilled/skills/system-deep-loop/deep-research/runtime/state.jsonl');
     expect(reviewRendered).toContain('Dimension: traceability');
-    expect(reviewRendered).toContain('Findings Registry: .opencode/skills/system-deep-loop/deep-review/runtime/findings.json');
+    expect(reviewRendered).toContain('Findings Registry: .skilled/skills/system-deep-loop/deep-review/runtime/findings.json');
   });
 });

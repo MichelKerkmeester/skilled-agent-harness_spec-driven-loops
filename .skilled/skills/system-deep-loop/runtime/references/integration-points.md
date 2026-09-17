@@ -12,7 +12,7 @@ version: 1.4.0.12
 
 # Deep Loop Runtime Integration Points
 
-Consumer catalog for the shared runtime boundary owned by `.opencode/skills/system-deep-loop/runtime/`.
+Consumer catalog for the shared runtime boundary owned by `.skilled/skills/system-deep-loop/runtime/`.
 
 ---
 
@@ -35,8 +35,8 @@ The removed MCP tool surface is not an integration point.
 
 | Surface | Call Shape | Purpose |
 |---|---|---|
-| `deep-review-auto.yaml` | `node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"` | Graph convergence before stop decision. |
-| `deep-review-auto.yaml` | `node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'` | Persist reducer graph events. |
+| `deep-review-auto.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"` | Graph convergence before stop decision. |
+| `deep-review-auto.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'` | Persist reducer graph events. |
 | `deep-review-confirm.yaml` | Same script family with confirm-mode sequencing. | Checkpointed graph upsert and convergence. |
 | `deep-review/assets/prompt-pack-iteration.md.tmpl` | Optional `graphEvents` array in iteration JSONL. | Produces coverage graph source events. |
 | `runtime/scripts/reduce-state.cjs` | Relocated into `runtime/scripts/` itself (deep-review's own import repointed here); imports coverage-graph runtime. | Consumes sibling runtime helpers from its new home. |
@@ -49,8 +49,8 @@ Review graph semantics: `loopType` is `review`; node kinds include `DIMENSION`, 
 
 | Surface | Call Shape | Purpose |
 |---|---|---|
-| `deep-research-auto.yaml` | `node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"` | Graph convergence before inline stop vote. |
-| `deep-research-auto.yaml` | `node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --nodes '{graph_upsert_nodes_json}' --edges '{graph_upsert_edges_json}'` | Persist research graph events. |
+| `deep-research-auto.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"` | Graph convergence before inline stop vote. |
+| `deep-research-auto.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --nodes '{graph_upsert_nodes_json}' --edges '{graph_upsert_edges_json}'` | Persist research graph events. |
 | `deep-research-confirm.yaml` | Same script family with confirm-mode sequencing. | Checkpointed graph upsert and convergence. |
 | `deep-research/assets/prompt-pack-iteration.md.tmpl` | Optional `graphEvents` array in iteration JSONL. | Produces research coverage graph source events. |
 
@@ -64,7 +64,7 @@ Research graph semantics: `loopType` is `research`; node kinds include `QUESTION
 
 | Route | Target | Mutation class |
 |---|---|---|
-| `deep-loop` | `.opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite` | `mutates` |
+| `deep-loop` | `.skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite` | `mutates` |
 
 Doctor integration patterns:
 
@@ -89,7 +89,7 @@ Relevant references:
 The runtime tests are discovered from the system-spec-kit runtime Vitest config:
 
 ```text
-.opencode/skills/system-spec-kit/runtime/vitest.config.ts
+.skilled/skills/system-spec-kit/runtime/vitest.config.ts
   '../runtime//tests/**/*.{vitest,test}.ts'
 ```
 
@@ -108,7 +108,7 @@ The dependency versions are kept in lockstep with `system-spec-kit` (see `packag
 ### Status
 
 ```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/status.cjs \
+node .skilled/skills/system-deep-loop/runtime/scripts/status.cjs \
   --spec-folder ".opencode/specs/example" \
   --loop-type review \
   --session-id example-session
@@ -117,7 +117,7 @@ node .opencode/skills/system-deep-loop/runtime/scripts/status.cjs \
 ### Query
 
 ```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs \
+node .skilled/skills/system-deep-loop/runtime/scripts/query.cjs \
   --spec-folder ".opencode/specs/example" \
   --loop-type review \
   --session-id example-session \
@@ -127,7 +127,7 @@ node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs \
 ### Upsert
 
 ```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs \
+node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs \
   --spec-folder ".opencode/specs/example" \
   --loop-type review \
   --session-id example-session \
@@ -138,7 +138,7 @@ node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs \
 ### Convergence
 
 ```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs \
+node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs \
   --spec-folder ".opencode/specs/example" \
   --loop-type review \
   --session-id example-session \
@@ -154,22 +154,22 @@ The following consumers were surfaced by a deep-research audit and were absent f
 
 | # | Consumer | Path | Integration Shape |
 |---|----------|------|-------------------|
-| 1 | `/deep:ai-council` command | `.opencode/commands/deep/assets/deep_ai_council_{auto,confirm}.yaml` | Loads 3 `lib/council/*.cjs` modules via require() for multi-seat dispatch + round-state JSONL + adjudicator scoring |
-| 2 | `deep-ai-council` orchestration | `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
-| 3 | `/doctor` route manifest | `.opencode/commands/doctor/_routes.yaml:88-104` | gate3_location + 4 script_invocations + 4 trigger_phrases routing operator commands to runtime/ scripts |
-| 4 | `/doctor` update command | `.opencode/commands/doctor/update.md:28, :220, :272` | References deep-loop scripts plus the `.pre-doctor-update.*.bak` backup-pattern reads |
-| 6 | Legacy MCP server READMEs | `.opencode/skills/system-spec-kit/runtime/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
-| 7 | Doctor + deep-improvement | `.opencode/commands/doctor/assets/doctor-deep-loop.yaml` + `doctor-update.yaml` + `.opencode/skills/system-deep-loop/deep-improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
+| 1 | `/deep:ai-council` command | `.skilled/commands/deep/assets/deep_ai_council_{auto,confirm}.yaml` | Loads 3 `lib/council/*.cjs` modules via require() for multi-seat dispatch + round-state JSONL + adjudicator scoring |
+| 2 | `deep-ai-council` orchestration | `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
+| 3 | `/doctor` route manifest | `.skilled/commands/doctor/_routes.yaml:88-104` | gate3_location + 4 script_invocations + 4 trigger_phrases routing operator commands to runtime/ scripts |
+| 4 | `/doctor` update command | `.skilled/commands/doctor/update.md:28, :220, :272` | References deep-loop scripts plus the `.pre-doctor-update.*.bak` backup-pattern reads |
+| 6 | Legacy MCP server READMEs | `.skilled/skills/system-spec-kit/runtime/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
+| 7 | Doctor + deep-improvement | `.skilled/commands/doctor/assets/doctor-deep-loop.yaml` + `doctor-update.yaml` + `.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
 
 ### Note: cross-package test discovery
 
 Three more surfaces of this hub live inside `system-spec-kit`'s runtime tree and are stable contracts, not incidental reach:
 
-- `.opencode/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, which the resource-map emission step calls as a script; its test is `runtime/scripts/tests/resource-map-extractor.vitest.ts` in the same tree.
-- `.opencode/skills/system-spec-kit/runtime/handlers/coverage-graph/convergence.ts`, which produces the graph-convergence verdict the research loop reads.
-- The deep-loop behaviour tests `deep-research-reducer`, `deep-research-contract-parity`, `graph-aware-stop` and `coverage-graph-cross-layer` under `.opencode/skills/system-spec-kit/runtime/cli/tests/`, which the spec-kit CI workflow runs.
+- `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, which the resource-map emission step calls as a script; its test is `runtime/scripts/tests/resource-map-extractor.vitest.ts` in the same tree.
+- `.skilled/skills/system-spec-kit/runtime/handlers/coverage-graph/convergence.ts`, which produces the graph-convergence verdict the research loop reads.
+- The deep-loop behaviour tests `deep-research-reducer`, `deep-research-contract-parity`, `graph-aware-stop` and `coverage-graph-cross-layer` under `.skilled/skills/system-spec-kit/runtime/cli/tests/`, which the spec-kit CI workflow runs.
 
-`.opencode/skills/system-spec-kit/runtime/tests/deep-loop/review-depth-reducer.vitest.ts:9` imports `'../../../../system-deep-loop/runtime/scripts/reduce-state.cjs'` - the test file lives in `mcp_server` but exercises the (now runtime-hosted) `deep-review` reducer, and is discovered via runtime/'s vitest glob in `vitest.config.ts:20`. Effective SC-007 boundary for any runtime/ change is therefore tighter than the literal directory listing: changes to `runtime/scripts/reduce-state.cjs` ALSO re-validate through runtime/'s test surface.
+`.skilled/skills/system-spec-kit/runtime/tests/deep-loop/review-depth-reducer.vitest.ts:9` imports `'../../../../system-deep-loop/runtime/scripts/reduce-state.cjs'` - the test file lives in `mcp_server` but exercises the (now runtime-hosted) `deep-review` reducer, and is discovered via runtime/'s vitest glob in `vitest.config.ts:20`. Effective SC-007 boundary for any runtime/ change is therefore tighter than the literal directory listing: changes to `runtime/scripts/reduce-state.cjs` ALSO re-validate through runtime/'s test surface.
 
 ---
 
@@ -194,8 +194,8 @@ Three more surfaces of this hub live inside `system-spec-kit`'s runtime tree and
 | `scripts/*.cjs` | Direct integration entry points. |
 | `lib/deep-loop/*.ts` | Shared executor, validation, state, scoring, and permission primitives. |
 | `lib/coverage-graph/*.ts` | Graph storage, query, and signal primitives. |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Review auto consumer. |
-| `.opencode/commands/deep/assets/deep-research-auto.yaml` | Research auto consumer. |
-| `.opencode/commands/doctor/speckit.md` | Doctor route boundary. |
-| `.opencode/skills/system-spec-kit/runtime/vitest.config.ts` | Runtime test discovery. |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Review auto consumer. |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Research auto consumer. |
+| `.skilled/commands/doctor/speckit.md` | Doctor route boundary. |
+| `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` | Runtime test discovery. |
 

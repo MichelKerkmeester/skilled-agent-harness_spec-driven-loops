@@ -36,17 +36,17 @@ The current release ships only this dynamic path. `target-manifest.jsonc` enable
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs` | Profile builder | Parses agent markdown and emits the derived checks used by the scorer. |
-| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/target-manifest.jsonc` | Manifest | Declares dynamic profiling as the canonical path and leaves the static target catalog empty. |
-| `.opencode/skills/system-deep-loop/deep-improvement/references/agent-improvement/target-onboarding.md` | Operator reference | Requires dynamic-profile generation when new targets are onboarded. |
-| `.opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Contract reference | Defines dynamic mode as the only scoring surface. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs` | Profile builder | Parses agent markdown and emits the derived checks used by the scorer. |
+| `.skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/target-manifest.jsonc` | Manifest | Declares dynamic profiling as the canonical path and leaves the static target catalog empty. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/agent-improvement/target-onboarding.md` | Operator reference | Requires dynamic-profile generation when new targets are onboarded. |
+| `.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md` | Contract reference | Defines dynamic mode as the only scoring surface. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/agents/deep-improvement.md` | Consumed target example | Shows the section, rules, capability scan, and related-resource patterns that the generator is designed to parse. |
-| `.opencode/skills/system-deep-loop/deep-improvement/README.md` | Package reference | Documents that no static profiles ship in the current release. |
+| `.skilled/agents/deep-improvement.md` | Consumed target example | Shows the section, rules, capability scan, and related-resource patterns that the generator is designed to parse. |
+| `.skilled/skills/system-deep-loop/deep-improvement/README.md` | Package reference | Documents that no static profiles ship in the current release. |
 
 ---
 

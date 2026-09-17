@@ -70,50 +70,50 @@ function declaration(
 }
 
 const researchReducer =
-  '.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs';
+  '.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs';
 const researchPivot =
-  '.opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts';
+  '.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts';
 const researchConfig =
-  '.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json';
+  '.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json';
 const reviewContract =
-  '.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml';
+  '.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml';
 const reviewPivot =
-  '.opencode/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts';
+  '.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts';
 const reviewLoopProtocol =
-  '.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md';
+  '.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md';
 const councilPersistence =
-  '.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs';
+  '.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs';
 const councilSession =
-  '.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs';
+  '.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs';
 const councilRoundState =
-  '.opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs';
+  '.skilled/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs';
 const commonLoopHost =
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs';
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs';
 const commonJournal =
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs';
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs';
 const commonPromotion =
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/lib/promotion-gates.cjs';
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/promotion-gates.cjs';
 const commonPacketContract =
-  '.opencode/skills/system-deep-loop/deep-improvement/SKILL.md';
+  '.skilled/skills/system-deep-loop/deep-improvement/SKILL.md';
 const agentScorer =
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs';
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs';
 const agentProfile =
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs';
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs';
 const modelRunner =
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs';
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs';
 const modelCache =
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs';
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs';
 const skillRunner =
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs';
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs';
 const skillAblation =
-  '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs';
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs';
 
 export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
   declaration(
     '001-deep-research',
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/runtime/lib/deep-loop',
+        'file:.skilled/skills/system-deep-loop/runtime/lib/deep-loop',
         ResourceKinds.FILE,
         'read',
         'mutable',
@@ -124,7 +124,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
         'repository',
       ),
       resource(
-        'file:.opencode/skills/system-deep-loop/shared/synthesis/resource-map.cjs',
+        'file:.skilled/skills/system-deep-loop/shared/synthesis/resource-map.cjs',
         ResourceKinds.FILE,
         'read',
         'mutable',
@@ -137,7 +137,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     ],
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-research',
+        'file:.skilled/skills/system-deep-loop/deep-research',
         ResourceKinds.FILE,
         'write',
         'mutable',
@@ -185,7 +185,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     '002-deep-review',
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/runtime/lib/deep-loop',
+        'file:.skilled/skills/system-deep-loop/runtime/lib/deep-loop',
         ResourceKinds.FILE,
         'read',
         'mutable',
@@ -198,7 +198,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     ],
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-review',
+        'file:.skilled/skills/system-deep-loop/deep-review',
         ResourceKinds.FILE,
         'write',
         'mutable',
@@ -259,7 +259,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     '003-deep-ai-council',
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/shared/progress/progress-record.cjs',
+        'file:.skilled/skills/system-deep-loop/shared/progress/progress-record.cjs',
         ResourceKinds.FILE,
         'read',
         'mutable',
@@ -272,7 +272,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     ],
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-ai-council',
+        'file:.skilled/skills/system-deep-loop/deep-ai-council',
         ResourceKinds.FILE,
         'write',
         'mutable',
@@ -283,7 +283,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
         'repository',
       ),
       resource(
-        'file:.opencode/skills/system-deep-loop/runtime/lib/council',
+        'file:.skilled/skills/system-deep-loop/runtime/lib/council',
         ResourceKinds.FILE,
         'write',
         'mutable',
@@ -333,7 +333,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     '004-deep-improvement-common',
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-improvement/SKILL.md',
+        'file:.skilled/skills/system-deep-loop/deep-improvement/SKILL.md',
         ResourceKinds.FILE,
         'read',
         'mutable',
@@ -346,7 +346,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     ],
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-improvement/scripts/shared',
+        'file:.skilled/skills/system-deep-loop/deep-improvement/scripts/shared',
         ResourceKinds.FILE,
         'write',
         'mutable',
@@ -357,7 +357,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
         'repository',
       ),
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-improvement/scripts/lib',
+        'file:.skilled/skills/system-deep-loop/deep-improvement/scripts/lib',
         ResourceKinds.FILE,
         'write',
         'mutable',
@@ -387,7 +387,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     '005-agent-improvement',
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-improvement/scripts/shared',
+        'file:.skilled/skills/system-deep-loop/deep-improvement/scripts/shared',
         ResourceKinds.FILE,
         'read',
         'mutable',
@@ -398,7 +398,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
         'repository',
       ),
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-improvement/scripts/lib',
+        'file:.skilled/skills/system-deep-loop/deep-improvement/scripts/lib',
         ResourceKinds.FILE,
         'read',
         'mutable',
@@ -411,7 +411,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     ],
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement',
+        'file:.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement',
         ResourceKinds.FILE,
         'write',
         'mutable',
@@ -452,7 +452,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     '006-model-benchmark',
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-improvement/scripts/shared',
+        'file:.skilled/skills/system-deep-loop/deep-improvement/scripts/shared',
         ResourceKinds.FILE,
         'read',
         'mutable',
@@ -465,7 +465,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     ],
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark',
+        'file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark',
         ResourceKinds.FILE,
         'write',
         'mutable',
@@ -516,7 +516,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     '007-skill-benchmark',
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-improvement/scripts/shared',
+        'file:.skilled/skills/system-deep-loop/deep-improvement/scripts/shared',
         ResourceKinds.FILE,
         'read',
         'mutable',
@@ -527,7 +527,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
         'repository',
       ),
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark',
+        'file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark',
         ResourceKinds.FILE,
         'read',
         'mutable',
@@ -540,7 +540,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     ],
     [
       resource(
-        'file:.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark',
+        'file:.skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark',
         ResourceKinds.FILE,
         'write',
         'mutable',

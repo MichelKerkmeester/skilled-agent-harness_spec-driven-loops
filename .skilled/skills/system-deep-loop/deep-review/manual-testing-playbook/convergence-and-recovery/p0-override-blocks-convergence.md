@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate that new P0 findings block deep-review convergence by forcing a high newFindingsRatio.
 ### Commands
-1. `bash: rg -n 'P0.*override|P0.*block|P0.*convergence|newFindingsRatio.*0\.50|severity.*override|P0.*ratio' .opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'P0|severity_override|newFindingsRatio|p0_override|p0_block' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
-3. `bash: rg -n 'P0 override|P0.*block.*convergence|newFindingsRatio.*0\.50|severity.*override' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md`
+1. `bash: rg -n 'P0.*override|P0.*block|P0.*convergence|newFindingsRatio.*0\.50|severity.*override|P0.*ratio' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+2. `bash: rg -n 'P0|severity_override|newFindingsRatio|p0_override|p0_block' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'P0 override|P0.*block.*convergence|newFindingsRatio.*0\.50|severity.*override' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
 ### Expected
 P0 finding sets `newFindingsRatio >= 0.50`, this blocks the rolling average signal, the composite score cannot reach 0.60, and the review continues.
 ### Evidence
@@ -71,12 +71,12 @@ Privilege the convergence reference for the exact P0 override rule and verify it
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, P0 override rule in severity-weighted section |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect P0 override in `step_check_convergence` |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect P0 override in `step_check_convergence` |
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | P0 override note, use `ANCHOR:convergence` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Severity classification and P0 blocking rules, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
-| `.opencode/skills/system-deep-loop/deep-review/README.md` | Feature summary for P0 override behavior |
+| `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, P0 override rule in severity-weighted section |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect P0 override in `step_check_convergence` |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect P0 override in `step_check_convergence` |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | P0 override note, use `ANCHOR:convergence` |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Severity classification and P0 blocking rules, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
+| `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary for P0 override behavior |
 
 ---
 
@@ -86,4 +86,4 @@ Privilege the convergence reference for the exact P0 override rule and verify it
 - Playbook ID: DRV-017
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/p0-override-blocks-convergence.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

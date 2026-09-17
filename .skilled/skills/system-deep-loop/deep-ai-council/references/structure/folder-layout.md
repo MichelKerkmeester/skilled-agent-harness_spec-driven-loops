@@ -61,15 +61,15 @@ specs/<track>/<NNN-name>/ai-council/
 
 `council-report.md` is the final synthesized plan. It includes council composition, comparison, roadmap, rejected alternatives, risks, confidence, and convergence status.
 
-**Canonical writer:** the council writes these artifacts directly with `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` named exports. Each writer is scoped to `ai-council/**` and appends an `artifact_written` audit event. `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` remains a helper fallback for non-council callers.
+**Canonical writer:** the council writes these artifacts directly with `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` named exports. Each writer is scoped to `ai-council/**` and appends an `artifact_written` audit event. `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` remains a helper fallback for non-council callers.
 
 **Schema authority:** the §8 OUTPUT FORMAT shape this layout is derived from is documented at `references/structure/output-schema.md`.
 
 Cross-references:
-- Agent body: `.opencode/agents/ai-council.md` §12 OUTPUT PROTOCOL (this layout) + §13 INVOCATION CONTRACT + §14 STATE SCHEMA + §16 COUNCIL PERSISTENCE PROTOCOL + §18 ROLLBACK FOR OPERATORS
-- Council writer library: `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`
-- Helper fallback: `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
-- Schema: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md`
-- State format: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
-- Command wiring: `.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md`
+- Agent body: `.skilled/agents/ai-council.md` §12 OUTPUT PROTOCOL (this layout) + §13 INVOCATION CONTRACT + §14 STATE SCHEMA + §16 COUNCIL PERSISTENCE PROTOCOL + §18 ROLLBACK FOR OPERATORS
+- Council writer library: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`
+- Helper fallback: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
+- Schema: `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md`
+- State format: `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
+- Command wiring: `.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md`
 - Decision records: ADR-002 (folder layout), ADR-004 (validator policy); the helper/schema/§17/parity ADRs; the v1.1 metadata + payload routing + advisor + command wiring ADRs

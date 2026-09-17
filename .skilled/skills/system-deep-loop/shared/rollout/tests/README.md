@@ -25,8 +25,8 @@ Test suite for `../resolve-injection-mode.cjs`. Pins the default `fallback` reso
 ## 3. VALIDATION
 
 ```bash
-node .opencode/skills/system-deep-loop/shared/rollout/tests/resolve-injection-mode.test.cjs
-node .opencode/skills/system-deep-loop/shared/rollout/tests/validate-rollout.test.cjs
+node .skilled/skills/system-deep-loop/shared/rollout/tests/resolve-injection-mode.test.cjs
+node .skilled/skills/system-deep-loop/shared/rollout/tests/validate-rollout.test.cjs
 ```
 
 Expected: both commands exit 0; the resolver reports 9 assertions and the validator reports 12 assertions.

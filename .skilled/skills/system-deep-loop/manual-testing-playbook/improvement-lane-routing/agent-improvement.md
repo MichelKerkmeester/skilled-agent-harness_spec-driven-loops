@@ -61,14 +61,14 @@ Evaluate and score the code agent candidate, compare it against the current base
 
 ### Preconditions
 
-1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `agent-improvement` mode entry.
+1. `.skilled/skills/system-deep-loop/mode-registry.json` contains the `agent-improvement` mode entry.
 2. The skill advisor is callable if the operator chooses an advisor probe.
 
 ### Exact Command Sequence
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Evaluate and score the code agent candidate, compare it against the current baseline, and recommend whether to promote or roll back the agent change." --threshold 0.8 > /tmp/dlw-IL-001/advisor.txt
+   python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Evaluate and score the code agent candidate, compare it against the current baseline, and recommend whether to promote or roll back the agent change." --threshold 0.8 > /tmp/dlw-IL-001/advisor.txt
    ```
 2. **Invoke hub**: `Skill(system-deep-loop, "Evaluate and score the code agent candidate, compare it against the current baseline, and recommend whether to promote or roll back the agent change.")`.
 3. **Capture route**: save the AI response to `/tmp/dlw-IL-001/response.txt`.
@@ -99,8 +99,8 @@ Evaluate and score the code agent candidate, compare it against the current base
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
-- `.opencode/skills/system-deep-loop/mode-registry.json` - `agent-improvement` source of truth.
+- `.skilled/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
+- `.skilled/skills/system-deep-loop/mode-registry.json` - `agent-improvement` source of truth.
 
 ---
 

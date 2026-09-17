@@ -32,11 +32,11 @@ function fail(err) {
   process.exit(1);
 }
 
-// scripts -> runtime -> system-deep-loop -> skills -> .opencode -> repo
+// scripts -> runtime -> system-deep-loop -> skills -> .skilled -> repo
 function defaultDir() {
   const scriptsDir = __dirname;
   const repoRoot = path.resolve(scriptsDir, '..', '..', '..', '..', '..');
-  return path.join(repoRoot, '.opencode', 'commands', 'deep', 'assets');
+  return path.join(repoRoot, '.skilled', 'commands', 'deep', 'assets');
 }
 
 function parseArgs(argv) {

@@ -32,7 +32,7 @@ The strict tier is the contract enforcement that gives the v2 schema operational
 
 ### Prerequisites
 
-- `review-depth-validator.vitest.ts` exists under `.opencode/skills/system-deep-loop/runtime/tests/integration/`.
+- `review-depth-validator.vitest.ts` exists under `.skilled/skills/system-deep-loop/runtime/tests/integration/`.
 - Shell can set `DEEP_REVIEW_V2_ENFORCEMENT=strict`.
 - Malformed v2 records can be selected or constructed with `reviewDepthSchemaVersion`, `reviewDepthApplicability`, `targetSelection`, `searchCoverage`, and `searchLedger`.
 
@@ -68,9 +68,9 @@ Under `DEEP_REVIEW_V2_ENFORCEMENT=strict`, all five v2 failure codes fire on the
 
 ## 4. SOURCE FILES
 
-- Validator: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts` (v2 strict checks branch + new failure-reason union members).
-- Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts`.
-- Schema: `.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md` (`## Review Depth Schema (v2)`).
+- Validator: `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts` (v2 strict checks branch + new failure-reason union members).
+- Fixture: `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts`.
+- Schema: `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md` (`## Review Depth Schema (v2)`).
 - [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 
 ---

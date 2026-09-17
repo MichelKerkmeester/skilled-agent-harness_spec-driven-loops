@@ -27,7 +27,7 @@ This feature belongs to the state safety group and is catalogued as F035 in the 
 
 `acquireLoopLock(..., { hostLocalSingleFlight: true })` probes a host-local lease before file-lock acquisition, refuses live same-host holders, and treats dead holder state as replaceable without changing the default durable file-lock path.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

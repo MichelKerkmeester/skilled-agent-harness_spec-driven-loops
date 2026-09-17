@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate research charter initialization adds Non-Goals and Stop Conditions, then surfaces them in confirm mode.
 ### Commands
-1. `bash: rg -n 'Step 7a\|Validate Research Charter\|Non-Goals\|Stop Conditions\|charter' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-2. `bash: sed -n '/ANCHOR:non-goals/,/\/ANCHOR:stop-conditions/p' .opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
-3. `bash: rg -n 'Non-Goals\|Stop Conditions\|charter' .opencode/skills/system-deep-loop/deep-research/README.md`
+1. `bash: rg -n 'Step 7a\|Validate Research Charter\|Non-Goals\|Stop Conditions\|charter' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+2. `bash: sed -n '/ANCHOR:non-goals/,/\/ANCHOR:stop-conditions/p' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
+3. `bash: rg -n 'Non-Goals\|Stop Conditions\|charter' .skilled/skills/system-deep-loop/deep-research/README.md`
 ### Expected
 strategy.md has "## 4. Non-Goals" section (may be empty but must exist); strategy.md has "## 5. Stop Conditions" section (may be empty but must exist); missing sections are appended as empty placeholders; confirm mode presents the charter for user review before proceeding; auto mode accepts the charter automatically.
 ### Evidence
@@ -71,8 +71,8 @@ Privilege the loop protocol Step 7a for the canonical charter validation contrac
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop protocol; inspect Step 7a (Validate Research Charter) under `ANCHOR:phase-initialization` |
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Strategy template; inspect `ANCHOR:non-goals` (section 4) and `ANCHOR:stop-conditions` (section 5) |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop protocol; inspect Step 7a (Validate Research Charter) under `ANCHOR:phase-initialization` |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Strategy template; inspect `ANCHOR:non-goals` (section 4) and `ANCHOR:stop-conditions` (section 5) |
 
 ---
 
@@ -82,4 +82,4 @@ Privilege the loop protocol Step 7a for the canonical charter validation contrac
 - Playbook ID: DR-027
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `initialization-and-state-setup/research-charter-validation.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

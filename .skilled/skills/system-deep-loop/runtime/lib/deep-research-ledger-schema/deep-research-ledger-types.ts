@@ -447,12 +447,12 @@ export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
   'deep_research.memory_save_completed': { status: 'reserved', reason: 'No writer emits it today: the save command writes its own artifacts. The save step would speak it once completion records its persistence receipts.' },
   'deep_research.memory_save_failed': { status: 'reserved', reason: 'No writer emits it today: a failed save surfaces to the operator directly. The save step would speak it once failure records its retryable reason code.' },
   'deep_research.run_completed': { status: 'reserved', reason: 'No writer emits it today: closure is the reducer inference from flat rows. The finalization step would speak it once terminal status and counts are appended.' },
-  'deep_research.run_now_requested': { status: 'spoken', producers: ['.opencode/commands/deep/assets/deep-research-auto.yaml'] },
-  'deep_research.run_now_rejected': { status: 'spoken', producers: ['.opencode/commands/deep/assets/deep-research-auto.yaml'] },
-  'deep_research.run_now_accepted': { status: 'spoken', producers: ['.opencode/commands/deep/assets/deep-research-auto.yaml'] },
-  'deep_research.run_now_restored': { status: 'spoken', producers: ['.opencode/commands/deep/assets/deep-research-auto.yaml'] },
-  'deep_research.synthesis_incomplete': { status: 'spoken', producers: ['.opencode/commands/deep/assets/deep-research-auto.yaml', '.opencode/commands/deep/assets/deep-research-confirm.yaml'] },
-  'deep_research.synthesis_complete': { status: 'spoken', producers: ['.opencode/commands/deep/assets/deep-research-auto.yaml', '.opencode/commands/deep/assets/deep-research-confirm.yaml'] },
+  'deep_research.run_now_requested': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml'] },
+  'deep_research.run_now_rejected': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml'] },
+  'deep_research.run_now_accepted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml'] },
+  'deep_research.run_now_restored': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml'] },
+  'deep_research.synthesis_incomplete': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml', '.skilled/commands/deep/assets/deep-research-confirm.yaml'] },
+  'deep_research.synthesis_complete': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml', '.skilled/commands/deep/assets/deep-research-confirm.yaml'] },
 } as const satisfies Readonly<Record<DeepResearchEventStem, DeepResearchStemProducerStatus>>);
 
 export const DeepResearchWireEventTypes = Object.freeze({

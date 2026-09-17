@@ -30,14 +30,14 @@ Fan-out primitives for `system-deep-loop` modes that run parallel branches. The 
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
-- `.opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/types.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
+- `.skilled/skills/system-deep-loop/runtime/lib/conditional-fanin/types.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/branch-leases-waves.vitest.ts`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/branch-leases-waves.vitest.ts`
 
 ---
 

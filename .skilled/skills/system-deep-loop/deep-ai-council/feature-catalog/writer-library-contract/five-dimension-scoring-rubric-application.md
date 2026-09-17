@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Score this hypothetical cou
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `writer-library-contract/five-dimension-scoring-rubric-application.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-015.
 
-Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md`, which the scenario identifies as rubric and comparison-table reference. Validation is anchored by `manual-testing-playbook/writer-library-contract/five-dimension-scoring-rubric-application.md`, covering manual scenario contract.
+Current behavior is grounded in `.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md`, which the scenario identifies as rubric and comparison-table reference. Validation is anchored by `manual-testing-playbook/writer-library-contract/five-dimension-scoring-rubric-application.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify the 5-dimension rubric is documented with weights matching agent 6 and can be applied to a hypothetical seat output. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,8 +40,8 @@ The user-visible contract is concrete: Verify the 5-dimension rubric is document
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md` | Reference | Rubric and comparison-table reference |
-| `.opencode/agents/ai-council.md` | Runtime Mirror | Authoritative synthesis protocol |
+| `.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md` | Reference | Rubric and comparison-table reference |
+| `.skilled/agents/ai-council.md` | Runtime Mirror | Authoritative synthesis protocol |
 
 ### Validation And Tests
 

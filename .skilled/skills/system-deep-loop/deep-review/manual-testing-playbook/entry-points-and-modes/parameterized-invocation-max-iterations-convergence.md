@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and YAML workflows.
 ### Commands
-1. `bash: rg -n 'max.iterations|convergence.*0\.10|convergence_threshold|maxIterations' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
-2. `bash: rg -n 'max.iterations|convergence|argument-hint' .opencode/commands/deep/review.md`
-3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
+1. `bash: rg -n 'max.iterations|convergence.*0\.10|convergence_threshold|maxIterations' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
+2. `bash: rg -n 'max.iterations|convergence|argument-hint' .skilled/commands/deep/review.md`
+3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
 ### Expected
 Default values of 7 and 0.10 appear consistently across all sources. The YAML writes these into `deep-review-config.json` during init.
 ### Evidence
@@ -71,11 +71,11 @@ Cross-reference the quick reference parameter table with the YAML `step_create_c
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Parameter defaults table, use `ANCHOR:commands` |
-| `.opencode/commands/deep/review.md` | Command argument-hint and setup phase |
-| `.opencode/commands/deep/assets/deep-review-auto.yaml` | Auto workflow user_inputs and config creation, inspect `user_inputs` and `step_create_config` |
-| `.opencode/commands/deep/assets/deep-review-confirm.yaml` | Confirm workflow user_inputs, inspect `user_inputs` |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Skill-level parameter documentation, use `ANCHOR:how-it-works` |
+| `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Parameter defaults table, use `ANCHOR:commands` |
+| `.skilled/commands/deep/review.md` | Command argument-hint and setup phase |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Auto workflow user_inputs and config creation, inspect `user_inputs` and `step_create_config` |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Confirm workflow user_inputs, inspect `user_inputs` |
+| `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Skill-level parameter documentation, use `ANCHOR:how-it-works` |
 
 ---
 
@@ -85,4 +85,4 @@ Cross-reference the quick reference parameter table with the YAML `step_create_c
 - Playbook ID: DRV-003
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

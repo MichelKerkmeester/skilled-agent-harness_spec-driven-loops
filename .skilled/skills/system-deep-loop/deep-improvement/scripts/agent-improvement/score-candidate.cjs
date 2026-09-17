@@ -430,12 +430,12 @@ function scoreDimSystemFitness(profile, content) {
     refsTotal++;
     if (!isSafeCommandRef(cmd)) { continue; }
     const cmdPath = cmd.replace(/^\//, '').replace(/:/g, '/');
-    if (fs.existsSync(`.opencode/commands/${cmdPath}.md`)) { refsValid++; }
+    if (fs.existsSync(`.skilled/commands/${cmdPath}.md`)) { refsValid++; }
   }
   for (const sk of skills) {
     refsTotal++;
     if (!isSafeRefSegment(sk)) { continue; }
-    if (fs.existsSync(`.opencode/skills/${sk}/SKILL.md`)) { refsValid++; }
+    if (fs.existsSync(`.skilled/skills/${sk}/SKILL.md`)) { refsValid++; }
   }
   const refScore = refsTotal > 0 ? Math.round(30 * refsValid / refsTotal) : 30;
   earned += refScore;

@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate focusTrack labels appear in JSONL iteration records and the dashboard Progress table.
 ### Commands
-1. `bash: rg -n 'focusTrack' .opencode/skills/system-deep-loop/deep-research/references/state/state-format.md`
-2. `bash: rg -n 'Track\|focusTrack' .opencode/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md`
-3. `bash: rg -n 'focusTrack' .opencode/skills/system-deep-loop/deep-research/README.md`
+1. `bash: rg -n 'focusTrack' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
+2. `bash: rg -n 'Track\|focusTrack' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md`
+3. `bash: rg -n 'focusTrack' .skilled/skills/system-deep-loop/deep-research/README.md`
 ### Expected
 JSONL iteration records with an optional focusTrack field, dashboard Progress table with a Track column.
 ### Evidence
@@ -71,9 +71,9 @@ Privilege state-format.md as the canonical schema; use the dashboard asset and R
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical JSONL schema; focusTrack field definition on iteration records |
-| `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md` | Dashboard template; Progress table with Track column |
-| `.opencode/skills/system-deep-loop/deep-research/README.md` | Feature summary; focusTrack mention under observability or iteration fields |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical JSONL schema; focusTrack field definition on iteration records |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md` | Dashboard template; Progress table with Track column |
+| `.skilled/skills/system-deep-loop/deep-research/README.md` | Feature summary; focusTrack mention under observability or iteration fields |
 
 ---
 
@@ -83,4 +83,4 @@ Privilege state-format.md as the canonical schema; use the dashboard asset and R
 - Playbook ID: DR-028
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/focus-track-labels-in-dashboard.md`
-- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.
+- Feature catalog status: `feature-catalog/` exists under `.skilled/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

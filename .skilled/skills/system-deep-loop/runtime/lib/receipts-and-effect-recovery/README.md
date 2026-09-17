@@ -57,7 +57,7 @@ Receipt and effect recovery sits after an intent is accepted and before a consum
 ## 5. VALIDATION
 
 ```bash
-.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json
+.skilled/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .skilled/skills/system-deep-loop/runtime/tsconfig.json
 ```
 
 ---
