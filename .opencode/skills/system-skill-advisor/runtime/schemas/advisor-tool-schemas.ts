@@ -45,20 +45,22 @@ export function detectRepoRoot(start: string = process.cwd()): string {
   // nearest source-root parent that holds the sentinel, else hoist above the
   // outermost source-root segment, so caller-supplied workspaceRoots are
   // bounded to the real root, not a nested subdir.
-  return sourceTreeParentWithSentinel(start, sentinels) ?? hoistAboveOpencodeTree(start) ?? resolve(start);
+  return nearestSentinelHolder(start, sentinels) ?? hoistAboveOpencodeTree(start) ?? resolve(start);
 }
 
-// Inlined twin of lib/utils/workspace-root.ts:sourceTreeParentWithSentinel, kept
-// local for the same reason as the hoist below. A capped walk misses the sentinel,
-// yet the root is still the parent of one source-root segment in the start path, so
-// testing those parents nearest first keeps a repository that sits under a
-// directory named .skilled or .opencode.
-function sourceTreeParentWithSentinel(dir: string, sentinels: readonly string[]): string | null {
+// Inlined twin of lib/utils/workspace-root.ts:nearestSentinelHolder, kept local for
+// the same reason as the hoist below. A capped walk misses the sentinel, yet the root
+// is still the start or the parent of one source-root segment in the start path, so
+// testing the start and then those parents nearest first keeps a repository that
+// sits under a directory named .skilled or .opencode.
+function nearestSentinelHolder(dir: string, sentinels: readonly string[]): string | null {
+  const holdsSentinel = (candidate: string): boolean => sentinels.some((sentinel) => existsSync(resolve(candidate, sentinel)));
+  if (holdsSentinel(dir)) return resolve(dir);
   const parts = resolve(dir).split(sep);
   for (let index = parts.length - 1; index >= 1; index -= 1) {
     if (!SOURCE_ROOT_NAMES.includes(parts[index])) continue;
     const parent = parts.slice(0, index).join(sep) || sep;
-    if (sentinels.some((sentinel) => existsSync(resolve(parent, sentinel)))) return parent;
+    if (holdsSentinel(parent)) return parent;
   }
   return null;
 }
