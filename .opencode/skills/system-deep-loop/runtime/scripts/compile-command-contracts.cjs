@@ -363,8 +363,18 @@ function relPath(absolutePath) {
   return path.relative(WORKSPACE_ROOT, absolutePath).split(path.sep).join('/');
 }
 
+// The source tree sits under .skilled or .opencode, and a checkout may link one name to
+// the other. Source paths spell the tree one way, so a path absent under its own spelling
+// resolves under the other name before it counts as missing.
+const SOURCE_ROOT_NAMES = ['.skilled', '.opencode'];
+
 function absolutePath(sourcePath) {
-  return path.resolve(WORKSPACE_ROOT, sourcePath);
+  const resolved = path.resolve(WORKSPACE_ROOT, sourcePath);
+  const [head, ...rest] = String(sourcePath).split('/');
+  if (rest.length === 0 || !SOURCE_ROOT_NAMES.includes(head) || fs.existsSync(resolved)) return resolved;
+  const otherName = SOURCE_ROOT_NAMES.find((name) => name !== head);
+  const otherResolved = path.resolve(WORKSPACE_ROOT, otherName, ...rest);
+  return fs.existsSync(otherResolved) ? otherResolved : resolved;
 }
 
 function sha256(input) {
@@ -661,7 +671,7 @@ function buildContract(command) {
 
 function outputPathFor(command) {
   const definition = getCommandDefinition(command);
-  return path.join(WORKSPACE_ROOT, '.opencode/commands/deep/assets/compiled', `${definition.slug}.contract.md`);
+  return path.join(absolutePath('.opencode/commands/deep/assets/compiled'), `${definition.slug}.contract.md`);
 }
 
 function parseArgs(argv) {
@@ -724,6 +734,7 @@ module.exports = {
   GENERATED_HEADER_END,
   GENERATED_HEADER_START,
   WORKSPACE_ROOT,
+  absolutePath,
   buildContract,
   buildContractBody,
   computeCompiledBodyDigest,
