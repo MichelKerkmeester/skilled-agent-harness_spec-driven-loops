@@ -55,6 +55,9 @@ class FixtureRepository:
         (self.root / destination).parent.mkdir(parents=True, exist_ok=True)
         self._git("mv", source, destination)
 
+    def stage_all(self) -> None:
+        self._git("add", ".")
+
     def commit(self, message: str) -> str:
         self._git("add", ".")
         self._git("commit", "--quiet", "-m", message)
@@ -139,6 +142,17 @@ class NoNewSnakeCaseGuardTests(unittest.TestCase):
         self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
         self.assertIn("new_dir_x", result.stdout)
         self.assertNotIn("new_dir_x/legacy_name.yaml", result.stdout)
+
+    def test_changed_since_still_rejects_a_copy_that_keeps_a_snake_name(self) -> None:
+        self.repo.write("config/legacy_name.yaml", "a\nb\nc\n")
+        base = self.repo.commit("base with a grandfathered name")
+
+        self.repo.write("copied-config/legacy_name.yaml", "a\nb\nc\n")
+        self.repo.write("config/legacy_name.yaml", "a\nb\nc\nd\n")
+        self.repo.stage_all()
+        result = self.repo.guard("--changed-since", base)
+        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+        self.assertIn("copied-config/legacy_name.yaml", result.stdout)
 
     def test_every_exemption_passes_both_modes(self) -> None:
         self.repo.write_many(
