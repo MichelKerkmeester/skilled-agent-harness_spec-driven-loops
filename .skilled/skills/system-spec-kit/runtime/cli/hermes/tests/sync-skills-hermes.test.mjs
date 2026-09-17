@@ -56,7 +56,7 @@ test('writes one markdown-only folder per SKILL.md, flat by frontmatter name, sk
     assert.ok(!existsSync(join(env.output, 'mode-a', 'scripts')));
     const copy = readFileSync(join(env.output, 'mode-a', 'SKILL.md'), 'utf8');
     assert.match(copy, /^---\nname: mode-a\n/);
-    assert.match(copy, /Canonical source: `\.opencode\/skills\/hub\/mode-a\/`/);
+    assert.match(copy, /Canonical source: `\.skilled\/skills\/hub\/mode-a\/`/);
     assert.match(copy, /# Mode A/);
     const plain = readFileSync(join(env.output, 'plain', 'SKILL.md'), 'utf8');
     assert.match(plain, /^---\nname: plain\n/);
