@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Root discovery, installers, launchers and two gates recognise the source root by the literal name `.opencode`",
     "created_at": "2026-09-16T17:54:07Z",
-    "last_save_at": "2026-09-16T18:43:45.230Z",
+    "last_save_at": "2026-09-17T09:30:54.262Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73d7e47075c710111855e052a09f3150ab4528dbde46a4c76bff98e20318547d",
+    "source_fingerprint": "sha256:5b0b4eb3e01e0dff2cfd93fbe75f73cad5cf88624c51c2967076cd3002dcb16a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a25776b754d2a4ed24c4dcb45bd7f02da936cf8bd86f084aef70ebca35c776c",
-      "plan.md": "42f0dfc6e245cedf7efb68e8781a4ef543eef2106b1299717dd4461ba74ebc87",
-      "tasks.md": "b5442d3627969ac8a25fd80fb65065ebde8a22fe5880f85ade830dab1c8dd2c0",
-      "implementation-summary.md": "dcd5c8645ec3fb51f7fbade03beeebf3cfd29f7d7078ce09e26c2932aa9fc5bc"
+      "plan.md": "e91a396a91143b06ce6cad7d41459de97218295aabdd225d429301df2ddc7bf6",
+      "tasks.md": "b3e83bc210d21ff5fd844a41acca81fe6f47d7c90ce5841d1aafd44811392819",
+      "implementation-summary.md": "62ea4e0cdf9689269430aceeff53ee0bffde4507aa85ed21c5402cf356959e44"
     },
     "last_active_at": null
   }

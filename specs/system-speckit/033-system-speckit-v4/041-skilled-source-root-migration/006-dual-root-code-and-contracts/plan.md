@@ -221,7 +221,7 @@ Component order: C1 first, because C5 and C6 import its export. Then C6, C5, C2 
 |------|----------|------------|------|
 | Planner and verifier | Orchestrator (Claude Opus) | Direct | The baseline, every brief and design choice, the rehearsal script, test runs, commits and evidence |
 | Drafter | DeepSeek V4.1 Flash, thinking `max`, on cli-pi through the LLM Gateway | Print mode with the provider-qualified `llmgateway/deepseek-v4.1-flash` and `--thinking max`, `AI_SESSION_CHILD=1` plus the child-dispatch preamble | One file per brief, source or test |
-| Reviewer | GPT-5.6 on cli-codex | `codex exec --model gpt-5.6-sol` with a read-only sandbox and stdin closed. Sol is the variant phase 004's goal D4 names for contract-file review, and the orchestrator sets the effort at dispatch | One review per component of its drafts against the brief |
+| Reviewer | GPT-5.6 Luna on cli-codex | `codex exec --model gpt-5.6-luna -c model_reasoning_effort="xhigh" -c service_tier="fast"` with a read-only sandbox and stdin closed. Luna replaced sol on 2026-09-17 by the operator's model decision (goal D4) | One review per component of its drafts against the brief |
 
 The cli-pi and cli-codex `SKILL.md` files own the flags, and the orchestrator reads them before composing the first dispatch of each kind.
 
@@ -276,10 +276,10 @@ Every result is read by content. An exit code alone never counts as a pass.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 005 gate-and-ci-readiness | Internal | Yellow (Draft) | Blocks the start of this phase (parent D1) |
-| Phase 004's shape for `.opencode/` | Internal | Yellow (Draft) | Sets the `skilled-only` expectation for C9 and C15 |
-| cli-pi with `llmgateway/deepseek-v4.1-flash` | External | Green (listed in `.pi/models.json`) | Blocks drafting. The orchestrator records a deviation before any substitute |
-| cli-codex with GPT-5.6 | External | UNKNOWN (not probed during planning) | Blocks review. T001 runs the cli-codex readiness check |
+| Phase 005 gate-and-ci-readiness | Internal | Green (strict validation PASSED at `cfeba3e1fb`) | Blocks the start of this phase (parent D1) |
+| Phase 004's shape for `.opencode/` | Internal | Green (ADR-001 Accepted: L1, one `.opencode -> .skilled` link) | Sets the `skilled-only` expectation for C9 and C15 |
+| cli-pi with `llmgateway/deepseek-v4.1-flash` | External | Green (readiness probe answered on 2026-09-17) | Blocks drafting. The orchestrator records a deviation before any substitute |
+| cli-codex with GPT-5.6 Luna | External | Green (readiness probe answered on 2026-09-17) | Blocks review |
 | `.opencode/node_modules/toml` | External | Green (present, transitive) | The C9 probe reads the TOML `command` and `args` lines directly |
 | APFS clone support for `cp -c` | External | UNKNOWN until T004 | The rehearsal falls back to `cp -R`, which is slower |
 <!-- /ANCHOR:dependencies -->
