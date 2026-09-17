@@ -8,6 +8,7 @@
 # But THIS repo is the SOURCE of .opencode/ content — it MUST be tracked.
 # Negation patterns below override the global ignore.
 !.opencode/
+!.skilled/
 !specs
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -50,6 +51,7 @@ node_modules/
 build/
 dist/
 .opencode/output/
+.skilled/output/
 
 # ───────────────────────────────────────────
 # Exceptions: vendored prebuilt artifacts
@@ -61,29 +63,48 @@ dist/
 # TypeScript compiler output: system-skill-advisor
 # ───────────────────────────────────────────
 .opencode/skills/system-skill-advisor/runtime/lib/**/*.js
+.skilled/skills/system-skill-advisor/runtime/lib/**/*.js
 .opencode/skills/system-skill-advisor/runtime/lib/**/*.js.map
+.skilled/skills/system-skill-advisor/runtime/lib/**/*.js.map
 .opencode/skills/system-skill-advisor/runtime/lib/**/*.d.ts
+.skilled/skills/system-skill-advisor/runtime/lib/**/*.d.ts
 .opencode/skills/system-skill-advisor/runtime/lib/**/*.d.ts.map
+.skilled/skills/system-skill-advisor/runtime/lib/**/*.d.ts.map
 .opencode/skills/system-skill-advisor/runtime/schemas/**/*.js
+.skilled/skills/system-skill-advisor/runtime/schemas/**/*.js
 .opencode/skills/system-skill-advisor/runtime/schemas/**/*.js.map
+.skilled/skills/system-skill-advisor/runtime/schemas/**/*.js.map
 .opencode/skills/system-skill-advisor/runtime/schemas/**/*.d.ts
+.skilled/skills/system-skill-advisor/runtime/schemas/**/*.d.ts
 .opencode/skills/system-skill-advisor/runtime/schemas/**/*.d.ts.map
+.skilled/skills/system-skill-advisor/runtime/schemas/**/*.d.ts.map
 
 # ───────────────────────────────────────────
 # TypeScript compiler output: system-spec-kit
 # ───────────────────────────────────────────
 .opencode/skills/system-spec-kit/runtime/lib/**/*.js
+.skilled/skills/system-spec-kit/runtime/lib/**/*.js
 .opencode/skills/system-spec-kit/runtime/lib/**/*.js.map
+.skilled/skills/system-spec-kit/runtime/lib/**/*.js.map
 .opencode/skills/system-spec-kit/runtime/lib/**/*.d.ts
+.skilled/skills/system-spec-kit/runtime/lib/**/*.d.ts
 .opencode/skills/system-spec-kit/runtime/lib/**/*.d.ts.map
+.skilled/skills/system-spec-kit/runtime/lib/**/*.d.ts.map
 .opencode/skills/system-spec-kit/shared/**/*.js
+.skilled/skills/system-spec-kit/shared/**/*.js
 .opencode/skills/system-spec-kit/shared/**/*.js.map
+.skilled/skills/system-spec-kit/shared/**/*.js.map
 .opencode/skills/system-spec-kit/shared/**/*.d.ts
+.skilled/skills/system-spec-kit/shared/**/*.d.ts
 # The hand-written ambient declaration for js-yaml is source, not emitted output; the shared build fails without it on a clean checkout.
 !.opencode/skills/system-spec-kit/shared/js-yaml.d.ts
+!.skilled/skills/system-spec-kit/shared/js-yaml.d.ts
 .opencode/skills/system-spec-kit/shared/**/*.d.ts.map
+.skilled/skills/system-spec-kit/shared/**/*.d.ts.map
 .opencode/skills/system-spec-kit/runtime/cli/tests/*.vitest.d.ts.map
+.skilled/skills/system-spec-kit/runtime/cli/tests/*.vitest.d.ts.map
 .opencode/skills/system-spec-kit/runtime/cli/tests/*.vitest.js.map
+.skilled/skills/system-spec-kit/runtime/cli/tests/*.vitest.js.map
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Database files
@@ -106,40 +127,61 @@ dist/
 # below impossible: git cannot re-include a file whose parent directory is
 # excluded. Matching one level in keeps each subsystem directory tracked.
 .opencode/skills/.state/*/*
+.skilled/skills/.state/*/*
 !.opencode/skills/.state/*/README.md
+!.skilled/skills/.state/*/README.md
 # Pre-consolidation state directories still written by some tooling. They are
 # runtime output, so they stay untracked wherever they reappear.
 .opencode/skills/.authority-state/
+.skilled/skills/.authority-state/
 .opencode/skills/.spec-gate-state/
+.skilled/skills/.spec-gate-state/
 
 # ───────────────────────────────────────────
 # Database: system-deep-loop/runtime
 # ───────────────────────────────────────────
 .opencode/skills/system-deep-loop/runtime/database/*.sqlite
+.skilled/skills/system-deep-loop/runtime/database/*.sqlite
 .opencode/skills/system-deep-loop/runtime/database/*.sqlite-shm
+.skilled/skills/system-deep-loop/runtime/database/*.sqlite-shm
 .opencode/skills/system-deep-loop/runtime/database/*.sqlite-wal
+.skilled/skills/system-deep-loop/runtime/database/*.sqlite-wal
 .opencode/skills/system-deep-loop/runtime/database/*.sqlite.bak*
+.skilled/skills/system-deep-loop/runtime/database/*.sqlite.bak*
 .opencode/skills/system-deep-loop/runtime/database/observability-events.jsonl
+.skilled/skills/system-deep-loop/runtime/database/observability-events.jsonl
 
 # ───────────────────────────────────────────
 # Database: system-skill-advisor
 # ───────────────────────────────────────────
 .opencode/skills/system-skill-advisor/runtime/database/*.db
+.skilled/skills/system-skill-advisor/runtime/database/*.db
 .opencode/skills/system-skill-advisor/runtime/database/*.db-*
+.skilled/skills/system-skill-advisor/runtime/database/*.db-*
 .opencode/skills/system-skill-advisor/runtime/database/*.sqlite
+.skilled/skills/system-skill-advisor/runtime/database/*.sqlite
 .opencode/skills/system-skill-advisor/runtime/database/*.sqlite-*
+.skilled/skills/system-skill-advisor/runtime/database/*.sqlite-*
 .opencode/skills/system-skill-advisor/runtime/database/*.sqlite.bak*
+.skilled/skills/system-skill-advisor/runtime/database/*.sqlite.bak*
 .opencode/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.json
+.skilled/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.json
 .opencode/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.lockdir/
+.skilled/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.lockdir/
 .opencode/skills/system-skill-advisor/runtime/database/skill-graph.json
+.skilled/skills/system-skill-advisor/runtime/database/skill-graph.json
 
 # ───────────────────────────────────────────
 # Daemon ownership/lease files
 # ───────────────────────────────────────────
 .opencode/skills/*/mcp-server/database/.*-owner.json
+.skilled/skills/*/mcp-server/database/.*-owner.json
 .opencode/skills/*/runtime/database/.*-owner.json
+.skilled/skills/*/runtime/database/.*-owner.json
 .opencode/skills/*/mcp-server/database/.*-launcher.lockdir/
+.skilled/skills/*/mcp-server/database/.*-launcher.lockdir/
 .opencode/skills/*/runtime/database/.*-launcher.lockdir/
+.skilled/skills/*/runtime/database/.*-launcher.lockdir/
 **/database/.crash-probe-receipt
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -150,6 +192,7 @@ dist/
 # Command-contract render manifest
 # ───────────────────────────────────────────
 .opencode/commands/deep/assets/compiled/manifest.jsonl
+.skilled/commands/deep/assets/compiled/manifest.jsonl
 
 # ───────────────────────────────────────────
 # Generated diagnostic reports
@@ -160,33 +203,45 @@ sweep-reports/
 # Runtime: system-skill-advisor
 # ───────────────────────────────────────────
 .opencode/skills/system-skill-advisor/runtime/config/route-exclusions.local.json
+.skilled/skills/system-skill-advisor/runtime/config/route-exclusions.local.json
 .opencode/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl
+.skilled/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl
 .opencode/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl.*
+.skilled/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl.*
 
 # ───────────────────────────────────────────
 # Runtime: system-spec-kit
 # ───────────────────────────────────────────
 .opencode/skills/system-spec-kit/runtime/.opencode/
+.skilled/skills/system-spec-kit/runtime/.opencode/
 .opencode/skills/system-spec-kit/runtime/skill_advisor/scripts/out/*.json
+.skilled/skills/system-spec-kit/runtime/skill_advisor/scripts/out/*.json
 
 # ───────────────────────────────────────────
 # Runtime state leaked into nested trees
 # ───────────────────────────────────────────
 /*/**/.opencode/logs/
+/*/**/.skilled/logs/
 /*/**/.opencode/skills/.advisor-state/
+/*/**/.skilled/skills/.advisor-state/
 /*/**/.opencode/skills/.spec-gate-state/
+/*/**/.skilled/skills/.spec-gate-state/
 # Runtime state was consolidated under .state/, but the leak these rules catch
 # is a process resolving the repo root to its own working directory. That can
 # recur against the new path just as easily, and the rules above would not see
 # it. Nested only — the real .state/ at the repository root stays visible.
 /*/**/.opencode/skills/.state/
+/*/**/.skilled/skills/.state/
 
 # ───────────────────────────────────────────
 # Routing test sandboxes
 # ───────────────────────────────────────────
 .opencode/bin/lib/compiled-routing/*/activation/manifest-race-*/
+.skilled/bin/lib/compiled-routing/*/activation/manifest-race-*/
 .opencode/bin/lib/compiled-routing/*/activation/manifest-test-*/
+.skilled/bin/lib/compiled-routing/*/activation/manifest-test-*/
 .opencode/bin/tests/.sandboxes/
+.skilled/bin/tests/.sandboxes/
 
 # ───────────────────────────────────────────
 # Native-module markers
@@ -234,7 +289,9 @@ tmp/
 # Archive & testing fixtures
 # ═══════════════════════════════════════════════════════════════════════════════
 .opencode/agents/.provider-backups/
+.skilled/agents/.provider-backups/
 .opencode/skills/system-spec-kit/manual-testing-playbook/_sandbox/*/fixtures/states/*.tar.gz
+.skilled/skills/system-spec-kit/manual-testing-playbook/_sandbox/*/fixtures/states/*.tar.gz
 /fixtures/
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -273,6 +330,7 @@ tmp/
 .codex/specs/anobel.com
 .codex/specs/barter
 .opencode/barter
+.skilled/barter
 specs/ai-systems
 specs/anobel.com
 specs/app-mobile-cli
@@ -285,6 +343,7 @@ specs/z-future
 # Hook configuration
 # ───────────────────────────────────────────
 .opencode/hooks/hook-flags.env
+.skilled/hooks/hook-flags.env
 
 # ───────────────────────────────────────────
 # Skill-advisor runtime launcher state (transient build/launch records)
@@ -307,3 +366,4 @@ specs/**/lineages/*/.codex-home/
 # holds sockets, leases and logs for a machine-local process, so it is state
 # rather than history.
 .opencode/skills/system-spec-kit/runtime/database/
+.skilled/skills/system-spec-kit/runtime/database/
