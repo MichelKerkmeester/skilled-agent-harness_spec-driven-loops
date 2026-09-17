@@ -14,7 +14,7 @@ _memory:
     recent_action: "Implemented and verified every unit locally; the five contract reviews wait for Codex quota"
     next_safe_action: "Run the contract reviews, then publish"
     blockers:
-      - "SWE-2 max contract reviews pending"
+      - "GPT-5.6 Luna contract reviews pending"
     key_files:
       - "plan.md"
       - "tasks.md"
@@ -47,7 +47,7 @@ Frozen. Changing one is an amendment.
 |----|----------|
 | D1 | Gate scripts keep literal `.opencode/` paths that resolve through phase 004's tracked link. Each gate file defines `_in_toolchain_repo` to decide whether a missing script is loud. Amended under L1 on 2026-09-16 after a GPT-5.6 scope review, replacing the copied two-root block |
 | D2 | Where the spec-kit sentinel resolves under either root, a missing gate script never passes: blocking gates block and name the path, and gates that cannot block warn. Any other repository sees no change. |
-| D3 | DeepSeek V4.1 Flash max on cli-pi through the LLM Gateway makes the literal edits, one workflow or hook section per brief, suite-verified before the next. The block, the missing-script rule, the fail-closed workflows, the check and the drill are drafted by the orchestrator or DeepSeek, reviewed by SWE-2 at max effort on cli-devin and verified by the orchestrator. Amended 2026-09-17 by the operator: SWE-2 max replaced GPT-5.6, whose Codex quota ran out |
+| D3 | DeepSeek V4.1 Flash max on cli-pi through the LLM Gateway makes the literal edits, one workflow or hook section per brief, suite-verified before the next. The block, the missing-script rule, the fail-closed workflows, the check and the drill are drafted by the orchestrator or DeepSeek, reviewed by GPT-5.6 Luna at xhigh on the fast tier through cli-codex and verified by the orchestrator. Amended 2026-09-17 by the operator: GPT-5.6 Luna xhigh fast replaced GPT-5.6 sol after Codex quota returned, and SWE-2, tried in between, is no longer used |
 | D4 | The scripts the gates call and the human-facing text naming `.opencode` stay as they are in this phase. Phase 006 teaches those scripts and phase 009 rewrites that text. |
 
 ### Operator copy
@@ -64,7 +64,7 @@ A change here that alters a parent decision or criterion is applied to the paren
 - [x] `bash .github/scripts/tests/broken-move-drill.sh` prints `RESULT: PASSED`, which it does only when every deliberate break failed both the check and its hook
 - [x] The six hook test scripts pass above their 126-case baseline with no case removed, and every new test script passes
 - [x] Every workflow `paths:` entry naming `.opencode/` has a `.skilled/` twin, and no workflow exits 0 on a missing guard
-- [ ] Every contract change has a SWE-2 max review with no open finding
+- [ ] Every contract change has a GPT-5.6 Luna xhigh review with no open finding
 - [ ] The phase validates PASSED
 <!-- /ANCHOR:completion -->
 
@@ -134,4 +134,5 @@ Everything below is VOLATILE.
 | Supplementary naming guard review | GLM-5.3-Flash `xhigh`, read-only, 2026-09-16 23:19Z to 23:39Z. Confirmed in a scratch repository: a copy whose source also changed pairs as `C100`, and the guard then passes a new snake_case file. Restricting the skip to renames would close it but narrows REQ-012, so it waits for the operator. The guard's `.opencode/specs` literals joined the phase 006 handoff, and phase 007's stale expectation is logged in the parent goal |
 | Operator decisions 2026-09-17 | Reviewer: "Swe 2 max". SWE-2 at max effort on cli-devin replaces the GPT-5.6 contract reviews, recorded in D3, REQ-009, AC-009 and the task executors. Naming guard: renames only, recorded in REQ-012, T045, T046 and AC-012 |
 | Rename-only naming guard | Committed `9e1bc29d87`, `904bcd479c`. The copy case failed against the guard that skipped copies, the suite passes 8 of 8, and the rehearsal clone still prints `PASS:` for the move |
+| Reviewer changed again 2026-09-17 | Once Codex usage returned, the operator chose GPT-5.6 Luna at xhigh on the fast tier and DeepSeek V4.1 Flash max as the only models from here. The SWE-2 hook review had failed once under `auto`, where Devin refused a shell command, and its second run was stopped before a verdict. A worktree fingerprint showed it wrote nothing |
 <!-- /ANCHOR:log -->
