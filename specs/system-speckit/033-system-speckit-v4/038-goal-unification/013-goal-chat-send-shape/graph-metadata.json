@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape",
+  "spec_folder": "system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape",
+  "parent_id": "system-speckit/033-system-speckit-v4/038-goal-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "goal chat slice",
+      "parent goal chat send cap",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "goal",
+      "chat",
+      "slice",
+      "parent"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/hooks/goal/lib/goal-slice.cjs",
+      ".opencode/hooks/goal/lib/goal-slice.test.cjs",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+      ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+      ".opencode/skills/system-spec-kit/runtime/cli/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
+      ".opencode/commands/speckit/assets/speckit-plan.yaml",
+      ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
+      ".hermes/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-slice.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-slice.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-slice.test.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-slice.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A session bound to a phase parent edited a criterion and resent the parent `goal.md` in chat",
+    "created_at": "2026-09-16T18:28:40Z",
+    "last_save_at": "2026-09-16T19:05:53.836Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c3b4f75087108f7f49ec9164774b0f5ea6347d900f0ff5ed823d8a46bd3ffa28",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b791d7d77b30cb9fd515528c715a19574f0ddf5a033ea64cde4dec1a746621d3",
+      "plan.md": "62b6b30cf64c565401019b01a7646e0686cc336ab451ef5e973b0410929ce5ee",
+      "tasks.md": "dea570189204da0c02d32b2ebdc61d61051db8141042bce25ae787fdd9a5b408",
+      "implementation-summary.md": "4de149315f0b079f1739161a6ee2cf86ee57e6213ab65fc1bf2454673ca46492"
+    },
+    "last_active_at": null
+  }
+}
