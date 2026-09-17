@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/compact-inject.js
+../../.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/compact-inject.js

@@ -1,1 +1,1 @@
-../../.opencode/bin/git-live-follow.sh
+../../.skilled/bin/git-live-follow.sh

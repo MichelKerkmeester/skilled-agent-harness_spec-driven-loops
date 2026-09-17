@@ -1,1 +1,1 @@
-../../.opencode/hooks/task-dispatch/pi/task-dispatch-guard.ts
+../../.skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts

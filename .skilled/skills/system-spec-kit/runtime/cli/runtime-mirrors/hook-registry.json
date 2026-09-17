@@ -77,7 +77,7 @@
             "slot": 5,
             "matcher": "",
             "runner": "python3",
-            "script": ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+            "script": ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
             "args": "--all",
             "timeout": 5,
             "fallback": "envelope"
@@ -90,7 +90,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "python3",
-            "script": ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+            "script": ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
             "args": "--all",
             "timeout": 5,
             "fallback": "envelope"
@@ -103,7 +103,7 @@
             "slot": 4,
             "matcher": null,
             "runner": "python3",
-            "script": ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+            "script": ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
             "args": "--all",
             "timeout": 10,
             "fallback": "envelope"
@@ -116,7 +116,7 @@
             "slot": 3,
             "matcher": "",
             "runner": "python3",
-            "script": ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+            "script": ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
             "args": "--all",
             "timeout": 5,
             "fallback": "none"
@@ -138,7 +138,7 @@
             "slot": 2,
             "matcher": "",
             "runner": "bash",
-            "script": ".opencode/bin/check-git-hooks.sh",
+            "script": ".skilled/bin/check-git-hooks.sh",
             "timeout": 3,
             "fallback": "envelope"
           }
@@ -150,7 +150,7 @@
             "slot": 2,
             "matcher": null,
             "runner": "bash",
-            "script": ".opencode/bin/check-git-hooks.sh",
+            "script": ".skilled/bin/check-git-hooks.sh",
             "timeout": 3,
             "fallback": "envelope"
           }
@@ -162,7 +162,7 @@
             "slot": 3,
             "matcher": null,
             "runner": "bash",
-            "script": ".opencode/bin/check-git-hooks.sh",
+            "script": ".skilled/bin/check-git-hooks.sh",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -174,7 +174,7 @@
             "slot": 2,
             "matcher": "",
             "runner": "bash",
-            "script": ".opencode/bin/check-git-hooks.sh",
+            "script": ".skilled/bin/check-git-hooks.sh",
             "timeout": 3,
             "fallback": "none"
           }
@@ -195,7 +195,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js",
             "timeout": 3,
             "fallback": "envelope"
           }
@@ -207,7 +207,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/compact-inject.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/compact-inject.js",
             "fallback": "envelope"
           }
         ]
@@ -227,7 +227,7 @@
             "slot": 1,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs",
             "timeout": 10,
             "fallback": "envelope",
             "async": true
@@ -240,7 +240,7 @@
             "slot": 1,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -252,7 +252,7 @@
             "slot": 1,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs",
             "timeout": 10,
             "fallback": "none"
           }
@@ -273,7 +273,7 @@
             "slot": 0,
             "matcher": "Bash",
             "runner": "node",
-            "script": ".opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs",
+            "script": ".skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -285,7 +285,7 @@
             "slot": 0,
             "matcher": "exec",
             "runner": "node",
-            "script": ".opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs",
+            "script": ".skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -297,7 +297,7 @@
             "slot": 0,
             "matcher": "^exec$",
             "runner": "node",
-            "script": ".opencode/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs",
+            "script": ".skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs",
             "timeout": 5,
             "fallback": "none"
           }
@@ -318,7 +318,7 @@
             "slot": 0,
             "matcher": "Bash",
             "runner": "node",
-            "script": ".opencode/hooks/dispatch/claude/dispatch-preflight-lint.mjs",
+            "script": ".skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -330,7 +330,7 @@
             "slot": 0,
             "matcher": "exec",
             "runner": "node",
-            "script": ".opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+            "script": ".skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -342,7 +342,7 @@
             "slot": 0,
             "matcher": "^exec$",
             "runner": "node",
-            "script": ".opencode/hooks/dispatch/devin/dispatch-preflight-lint.mjs",
+            "script": ".skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs",
             "timeout": 5,
             "fallback": "none"
           }
@@ -354,7 +354,7 @@
             "slot": 3,
             "matcher": "Shell",
             "runner": "node",
-            "script": ".opencode/hooks/dispatch/cursor/dispatch-preflight-lint.mjs",
+            "script": ".skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -375,7 +375,7 @@
             "slot": 0,
             "matcher": "Task|Agent",
             "runner": "node",
-            "script": ".opencode/hooks/task-dispatch/claude/fable-subagent-guard.mjs",
+            "script": ".skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -397,7 +397,7 @@
             "slot": 4,
             "matcher": "",
             "runner": "bash",
-            "script": ".opencode/bin/git-live-follow.sh",
+            "script": ".skilled/bin/git-live-follow.sh",
             "args": "--start",
             "timeout": 3,
             "fallback": "envelope"
@@ -410,7 +410,7 @@
             "slot": 4,
             "matcher": null,
             "runner": "bash",
-            "script": ".opencode/bin/git-live-follow.sh",
+            "script": ".skilled/bin/git-live-follow.sh",
             "args": "--start",
             "timeout": 3,
             "fallback": "envelope"
@@ -433,7 +433,7 @@
             "slot": 2,
             "matcher": "Bash",
             "runner": "node",
-            "script": ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+            "script": ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -445,7 +445,7 @@
             "slot": 1,
             "matcher": "exec",
             "runner": "node",
-            "script": ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+            "script": ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -457,7 +457,7 @@
             "slot": 2,
             "matcher": "Shell",
             "runner": "node",
-            "script": ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+            "script": ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -469,7 +469,7 @@
             "slot": 2,
             "matcher": "^exec$",
             "runner": "node",
-            "script": ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+            "script": ".skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
             "timeout": 5,
             "fallback": "envelope",
             "message": ""
@@ -491,7 +491,7 @@
             "slot": 3,
             "matcher": "",
             "runner": "bash",
-            "script": ".opencode/bin/git-primary-reconcile.sh",
+            "script": ".skilled/bin/git-primary-reconcile.sh",
             "timeout": 3,
             "fallback": "background"
           }
@@ -503,7 +503,7 @@
             "slot": 3,
             "matcher": null,
             "runner": "bash",
-            "script": ".opencode/bin/git-primary-reconcile.sh",
+            "script": ".skilled/bin/git-primary-reconcile.sh",
             "timeout": 3,
             "fallback": "background"
           }
@@ -525,7 +525,7 @@
             "slot": 6,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+            "script": ".skilled/hooks/goal/cursor/goal-inject.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -537,7 +537,7 @@
             "slot": 5,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/hooks/goal/devin/goal-inject.mjs",
+            "script": ".skilled/hooks/goal/devin/goal-inject.mjs",
             "timeout": 10,
             "fallback": "envelope"
           },
@@ -547,7 +547,7 @@
             "slot": 2,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/hooks/goal/devin/goal-inject.mjs",
+            "script": ".skilled/hooks/goal/devin/goal-inject.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -568,12 +568,12 @@
             "slot": 6,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/bin/install-codex-hooks.mjs",
+            "script": ".skilled/bin/install-codex-hooks.mjs",
             "args": "--check",
             "timeout": 5,
             "fallback": "envelope",
             "silence": true,
-            "message": "[codex-hooks] drift detected - run: node .opencode/bin/install-codex-hooks.mjs --check"
+            "message": "[codex-hooks] drift detected - run: node .skilled/bin/install-codex-hooks.mjs --check"
           }
         ],
         "cursor": [
@@ -583,11 +583,11 @@
             "slot": 5,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/bin/install-codex-hooks.mjs",
+            "script": ".skilled/bin/install-codex-hooks.mjs",
             "args": "--check",
             "timeout": 10,
             "fallback": "envelope",
-            "message": "[codex-hooks] drift detected - run: node .opencode/bin/install-codex-hooks.mjs --check"
+            "message": "[codex-hooks] drift detected - run: node .skilled/bin/install-codex-hooks.mjs --check"
           }
         ],
         "devin": [
@@ -597,11 +597,11 @@
             "slot": 4,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/bin/install-codex-hooks.mjs",
+            "script": ".skilled/bin/install-codex-hooks.mjs",
             "args": "--check",
             "timeout": 5,
             "fallback": "echo",
-            "message": "[codex-hooks] drift detected - run: node .opencode/bin/install-codex-hooks.mjs --check"
+            "message": "[codex-hooks] drift detected - run: node .skilled/bin/install-codex-hooks.mjs --check"
           }
         ]
       },
@@ -620,7 +620,7 @@
             "slot": 0,
             "matcher": "mcp__claude_ai_.*",
             "runner": "node",
-            "script": ".opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs",
+            "script": ".skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -632,7 +632,7 @@
             "slot": 0,
             "matcher": "mcp__.*",
             "runner": "node",
-            "script": ".opencode/hooks/mcp-route-guard/codex/mcp-route-guard.cjs",
+            "script": ".skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -644,7 +644,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs",
+            "script": ".skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -656,7 +656,7 @@
             "slot": 0,
             "matcher": "^mcp__.*$",
             "runner": "node",
-            "script": ".opencode/hooks/mcp-route-guard/devin/mcp-route-guard.cjs",
+            "script": ".skilled/hooks/mcp-route-guard/devin/mcp-route-guard.cjs",
             "timeout": 5,
             "fallback": "none"
           }
@@ -677,7 +677,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs",
             "timeout": 5,
             "fallback": "none"
           }
@@ -699,7 +699,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs",
             "timeout": 5,
             "fallback": "none"
           }
@@ -720,7 +720,7 @@
             "slot": 0,
             "matcher": "Write|Edit",
             "runner": "node",
-            "script": ".opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
+            "script": ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -732,7 +732,7 @@
             "slot": 0,
             "matcher": "apply_patch|edit",
             "runner": "node",
-            "script": ".opencode/hooks/post-edit-quality/codex/post-edit-quality.cjs",
+            "script": ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -744,7 +744,7 @@
             "slot": 0,
             "matcher": "^edit$",
             "runner": "node",
-            "script": ".opencode/hooks/post-edit-quality/devin/post-edit-quality.cjs",
+            "script": ".skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs",
             "timeout": 10,
             "fallback": "none"
           }
@@ -765,7 +765,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -787,7 +787,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/precompact.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/cursor/precompact.js",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -809,7 +809,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "bash",
-            "script": ".opencode/scripts/session-cleanup.sh",
+            "script": ".skilled/scripts/session-cleanup.sh",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -821,7 +821,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "bash",
-            "script": ".opencode/scripts/session-cleanup.sh",
+            "script": ".skilled/scripts/session-cleanup.sh",
             "timeout": 10,
             "fallback": "envelope",
             "silence": true
@@ -834,7 +834,7 @@
             "slot": 1,
             "matcher": null,
             "runner": "bash",
-            "script": ".opencode/scripts/session-cleanup.sh",
+            "script": ".skilled/scripts/session-cleanup.sh",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -846,7 +846,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "bash",
-            "script": ".opencode/scripts/session-cleanup.sh",
+            "script": ".skilled/scripts/session-cleanup.sh",
             "timeout": 10,
             "fallback": "none"
           }
@@ -868,7 +868,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-end.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/cursor/session-end.js",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -890,7 +890,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js",
             "timeout": 3,
             "fallback": "envelope"
           }
@@ -902,7 +902,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js",
             "timeout": 3,
             "fallback": "envelope"
           }
@@ -914,7 +914,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-start.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/cursor/session-start.js",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -926,7 +926,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/session-start.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/devin/session-start.js",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -947,7 +947,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js",
             "timeout": 10,
             "fallback": "envelope",
             "async": true
@@ -960,7 +960,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-stop.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/session-stop.js",
             "fallback": "envelope"
           }
         ],
@@ -971,7 +971,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/session-stop.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/devin/session-stop.js",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -992,7 +992,7 @@
             "slot": 1,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs",
             "timeout": 3,
             "fallback": "envelope"
           }
@@ -1004,7 +1004,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs",
             "timeout": 3,
             "fallback": "envelope"
           }
@@ -1016,7 +1016,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -1028,7 +1028,7 @@
             "slot": 1,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs",
             "timeout": 10,
             "fallback": "none"
           }
@@ -1049,7 +1049,7 @@
             "slot": 1,
             "matcher": "Bash",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs",
             "timeout": 5,
             "fallback": "envelope"
           },
@@ -1059,7 +1059,7 @@
             "slot": 0,
             "matcher": "Write|Edit",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -1071,7 +1071,7 @@
             "slot": 0,
             "matcher": "exec|apply_patch|edit",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -1083,7 +1083,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -1095,7 +1095,7 @@
             "slot": 1,
             "matcher": "^exec$",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs",
             "timeout": 5,
             "fallback": "none"
           },
@@ -1105,7 +1105,7 @@
             "slot": 0,
             "matcher": "^edit$",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs",
             "timeout": 5,
             "fallback": "none"
           }
@@ -1126,7 +1126,7 @@
             "slot": 1,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -1148,7 +1148,7 @@
             "slot": 0,
             "matcher": "Task",
             "runner": "node",
-            "script": ".opencode/hooks/task-dispatch/claude/task-dispatch-guard.cjs",
+            "script": ".skilled/hooks/task-dispatch/claude/task-dispatch-guard.cjs",
             "timeout": 5,
             "fallback": "envelope"
           }
@@ -1160,7 +1160,7 @@
             "slot": 1,
             "matcher": "Task",
             "runner": "node",
-            "script": ".opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs",
+            "script": ".skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -1172,7 +1172,7 @@
             "slot": 0,
             "matcher": "^run_subagent$",
             "runner": "node",
-            "script": ".opencode/hooks/task-dispatch/devin/task-dispatch-guard.cjs",
+            "script": ".skilled/hooks/task-dispatch/devin/task-dispatch-guard.cjs",
             "timeout": 5,
             "fallback": "none"
           }
@@ -1193,7 +1193,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
             "timeout": 3,
             "fallback": "envelope"
           }
@@ -1205,7 +1205,7 @@
             "slot": 0,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js",
             "timeout": 3,
             "fallback": "envelope"
           }
@@ -1217,7 +1217,7 @@
             "slot": 1,
             "matcher": null,
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/user-prompt-submit.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/cursor/user-prompt-submit.js",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -1229,7 +1229,7 @@
             "slot": 0,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/user-prompt-submit.js",
+            "script": ".skilled/skills/system-spec-kit/runtime/dist/hooks/devin/user-prompt-submit.js",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -1250,7 +1250,7 @@
             "slot": 1,
             "matcher": "",
             "runner": "bash",
-            "script": ".opencode/bin/worktree-guard.sh",
+            "script": ".skilled/bin/worktree-guard.sh",
             "timeout": 3,
             "fallback": "envelope"
           }
@@ -1262,7 +1262,7 @@
             "slot": 1,
             "matcher": null,
             "runner": "bash",
-            "script": ".opencode/bin/worktree-guard.sh",
+            "script": ".skilled/bin/worktree-guard.sh",
             "timeout": 3,
             "fallback": "envelope"
           }
@@ -1274,7 +1274,7 @@
             "slot": 2,
             "matcher": null,
             "runner": "bash",
-            "script": ".opencode/bin/worktree-guard.sh",
+            "script": ".skilled/bin/worktree-guard.sh",
             "timeout": 10,
             "fallback": "envelope"
           }
@@ -1286,7 +1286,7 @@
             "slot": 1,
             "matcher": "",
             "runner": "bash",
-            "script": ".opencode/bin/worktree-guard.sh",
+            "script": ".skilled/bin/worktree-guard.sh",
             "timeout": 3,
             "fallback": "none"
           }
@@ -1307,7 +1307,7 @@
             "slot": 3,
             "matcher": "",
             "runner": "node",
-            "script": ".opencode/hooks/sk-vision/devin/sk-vision.mjs",
+            "script": ".skilled/hooks/sk-vision/devin/sk-vision.mjs",
             "timeout": 60,
             "fallback": "envelope"
           }

@@ -1,1 +1,1 @@
-../../.opencode/commands/create/with-human-voice.md
+../../.skilled/commands/create/with-human-voice.md

@@ -1,1 +1,0 @@
-../sk-create-diagram/scripts/validate-flowchart.sh

@@ -1,5 +1,5 @@
 # Agent: deep-research
-# Converted from: .opencode/agents/deep-research.md
+# Converted from: .skilled/agents/deep-research.md
 name = "deep-research"
 description = "Autonomous deep research agent executing single iteration cycles with externalized state"
 sandbox_mode = "workspace-write"

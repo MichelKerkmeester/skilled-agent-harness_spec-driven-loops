@@ -1,1 +1,1 @@
-../../.opencode/hooks/dispatch/pi/dispatch-audit.ts
+../../.skilled/hooks/dispatch/pi/dispatch-audit.ts

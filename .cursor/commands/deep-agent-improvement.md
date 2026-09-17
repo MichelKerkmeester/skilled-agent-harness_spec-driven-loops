@@ -1,1 +1,1 @@
-../../.opencode/commands/deep/agent-improvement.md
+../../.skilled/commands/deep/agent-improvement.md

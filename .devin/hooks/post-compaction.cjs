@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs
+../../.skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs

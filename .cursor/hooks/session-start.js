@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/dist/hooks/cursor/session-start.js
+../../.skilled/skills/system-spec-kit/runtime/dist/hooks/cursor/session-start.js

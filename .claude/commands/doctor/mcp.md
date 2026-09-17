@@ -1,1 +1,1 @@
-../../../.opencode/commands/doctor/mcp.md
+../../../.skilled/commands/doctor/mcp.md

@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs
+../../.skilled/skills/system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs

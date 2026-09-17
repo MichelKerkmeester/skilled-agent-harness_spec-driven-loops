@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs
+../../.skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs

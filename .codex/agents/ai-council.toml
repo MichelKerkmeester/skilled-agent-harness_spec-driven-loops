@@ -1,5 +1,5 @@
 # Agent: ai-council
-# Converted from: .opencode/agents/ai-council.md
+# Converted from: .skilled/agents/ai-council.md
 name = "ai-council"
 description = "AI Council scoped-write planning architect: diverse AI lenses, multi-round deliberation, ai-council artifact writes only."
 sandbox_mode = "workspace-write"

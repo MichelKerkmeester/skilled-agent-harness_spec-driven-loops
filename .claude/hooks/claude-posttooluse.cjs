@@ -1,1 +1,1 @@
-../../.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs
+../../.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs

@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/hooks/pi/session-stop-context.ts
+../../.skilled/skills/system-spec-kit/runtime/hooks/pi/session-stop-context.ts

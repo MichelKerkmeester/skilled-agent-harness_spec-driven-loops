@@ -1,1 +1,1 @@
-../../../.opencode/commands/deep/model-benchmark.md
+../../../.skilled/commands/deep/model-benchmark.md

@@ -1,1 +1,1 @@
-../../.opencode/hooks/task-dispatch/claude/task-dispatch-guard.cjs
+../../.skilled/hooks/task-dispatch/claude/task-dispatch-guard.cjs

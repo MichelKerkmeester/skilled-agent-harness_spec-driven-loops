@@ -1,1 +1,1 @@
-../../../.opencode/commands/create/changelog.md
+../../../.skilled/commands/create/changelog.md

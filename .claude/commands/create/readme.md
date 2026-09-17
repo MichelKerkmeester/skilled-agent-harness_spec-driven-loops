@@ -1,1 +1,1 @@
-../../../.opencode/commands/create/readme.md
+../../../.skilled/commands/create/readme.md

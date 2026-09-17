@@ -1,1 +1,1 @@
-../../.opencode/bin/git-primary-reconcile.sh
+../../.skilled/bin/git-primary-reconcile.sh

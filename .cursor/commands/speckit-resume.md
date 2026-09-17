@@ -1,1 +1,1 @@
-../../.opencode/commands/speckit/resume.md
+../../.skilled/commands/speckit/resume.md

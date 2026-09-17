@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js
+../../.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js

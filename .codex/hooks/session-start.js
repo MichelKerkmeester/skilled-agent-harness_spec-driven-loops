@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js
+../../.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js

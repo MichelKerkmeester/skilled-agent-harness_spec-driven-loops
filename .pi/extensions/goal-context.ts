@@ -1,1 +1,1 @@
-../../.opencode/hooks/goal/pi/goal-context.ts
+../../.skilled/hooks/goal/pi/goal-context.ts

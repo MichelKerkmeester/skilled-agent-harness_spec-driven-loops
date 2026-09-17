@@ -1,5 +1,5 @@
 # Agent: prompt-improver
-# Converted from: .opencode/agents/prompt-improver.md
+# Converted from: .skilled/agents/prompt-improver.md
 name = "prompt-improver"
 description = "Prompt-improver specialist: framework selection, CLEAR validation, dispatch-ready packages."
 sandbox_mode = "read-only"

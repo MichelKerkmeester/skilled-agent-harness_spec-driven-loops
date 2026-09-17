@@ -35,10 +35,10 @@ const EXCLUDED_COMMAND_DIRS = new Set(['assets', 'scripts', 'fixtures']);
 
 // Cursor and Devin parse the Claude agent dialect (`tools:`), not OpenCode's
 // `permission:` block, so agents deliberately source from .claude/agents.
-// Commands have no dialect split and source from .opencode directly.
+// Commands have no dialect split and source from .skilled directly.
 const CLAUDE_AGENTS = '.claude/agents';
 const CLAUDE_COMMANDS = '.claude/commands';
-const OPENCODE_COMMANDS = '.opencode/commands';
+const OPENCODE_COMMANDS = '.skilled/commands';
 
 const HOOK_CONFIGS = [
   { runtime: 'claude', config: '.claude/settings.json', mirror: '.claude/hooks' },
@@ -107,7 +107,7 @@ function hookSourcesFromConfig(configRelative) {
   const absolute = path.join(REPO_ROOT, configRelative);
   if (!fs.existsSync(absolute)) return [];
   const raw = fs.readFileSync(absolute, 'utf8');
-  const matches = raw.match(/\.opencode\/[A-Za-z0-9_./-]+?\.(?:mjs|cjs|js|sh|py)/g) || [];
+  const matches = raw.match(/\.skilled\/[A-Za-z0-9_./-]+?\.(?:mjs|cjs|js|sh|py)/g) || [];
   return [...new Set(matches)].sort();
 }
 

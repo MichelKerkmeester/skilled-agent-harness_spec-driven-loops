@@ -1,1 +1,1 @@
-../../.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts
+../../.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts

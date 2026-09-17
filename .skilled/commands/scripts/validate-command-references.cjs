@@ -183,8 +183,12 @@ function scan(targets) {
 // non-invocable Markdown. Keeping that inventory here gives adapters one shared
 // source for discovery while the sync CLI remains the exact live parity gate.
 function commandSourceInventory(rootDir = REPO_ROOT) {
-  const commandsRoot = path.join(rootDir, '.opencode', 'commands');
-  if (!fs.existsSync(commandsRoot)) return [];
+  // The command tree sits under .skilled, or under .opencode in a checkout that predates
+  // the move, and each source path keeps the spelling of the root it was found under.
+  const commandsRoot = ['.skilled', '.opencode']
+    .map((rootName) => path.join(rootDir, rootName, 'commands'))
+    .find((candidate) => fs.existsSync(candidate));
+  if (!commandsRoot) return [];
   const sources = [];
   const walk = (directory) => {
     for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -253,7 +257,7 @@ function classifyCommandTopology(text) {
 }
 
 function mirrorRelativeForSource(sourceRelative) {
-  const commandRelative = sourceRelative.replace(/^\.opencode\/commands\//, '');
+  const commandRelative = sourceRelative.replace(/^\.(?:skilled|opencode)\/commands\//, '');
   const flatName = commandRelative.replace(/\.md$/, '').split('/').join('-');
   return `.codex/prompts/${flatName}.md`;
 }
@@ -358,7 +362,7 @@ function inspectCommandSurface(rootDir = REPO_ROOT) {
       const mirrorRelative = `.codex/prompts/${entry.name}`;
       if (expectedMirrors.has(mirrorRelative)) continue;
       const mirrorText = fs.readFileSync(path.join(mirrorRoot, entry.name), 'utf8');
-      const pointer = mirrorText.match(/`(\.opencode\/commands\/[^`]+\.md)`/);
+      const pointer = mirrorText.match(/`(\.(?:skilled|opencode)\/commands\/[^`]+\.md)`/);
       const owner = sources[0] || null;
       violations.push(makeSurfaceViolation(
         mirrorRelative,

@@ -1,1 +1,1 @@
-../../../.opencode/commands/design/chart.md
+../../../.skilled/commands/design/chart.md

@@ -1,1 +1,1 @@
-../../.opencode/scripts/session-cleanup.sh
+../../.skilled/scripts/session-cleanup.sh

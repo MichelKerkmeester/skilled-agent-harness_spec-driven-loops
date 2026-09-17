@@ -1,1 +1,1 @@
-../../.opencode/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts
+../../.skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts

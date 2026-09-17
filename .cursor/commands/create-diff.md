@@ -1,1 +1,1 @@
-../../.opencode/commands/create/diff.md
+../../.skilled/commands/create/diff.md

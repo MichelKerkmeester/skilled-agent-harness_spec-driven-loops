@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js
+../../.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js

@@ -1,1 +1,1 @@
-../../.opencode/commands/rewrite/response-by-external-agent.md
+../../.skilled/commands/rewrite/response-by-external-agent.md

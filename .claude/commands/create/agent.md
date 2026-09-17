@@ -1,1 +1,1 @@
-../../../.opencode/commands/create/agent.md
+../../../.skilled/commands/create/agent.md

@@ -18,7 +18,7 @@ const { parseFrontmatter: parseFrontmatterDoc } = require('@spec-kit/shared/fron
 
 const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
 const REPO_ROOT = findRepoRoot(__dirname);
-const SOURCE_DIR = path.join(REPO_ROOT, '.opencode', 'agents');
+const SOURCE_DIR = path.join(REPO_ROOT, '.skilled', 'agents');
 const OUTPUT_DIR = path.join(REPO_ROOT, '.codex', 'agents');
 const WRITABLE_TOOLS = new Set(['write', 'edit', 'bash']);
 const DEFAULT_SETTINGS = Object.freeze({
@@ -202,7 +202,7 @@ function renderAgent(sourceFile) {
 
   return [
     `# Agent: ${name}`,
-    `# Converted from: .opencode/agents/${sourceFile}`,
+    `# Converted from: .skilled/agents/${sourceFile}`,
     `name = ${tomlString(name)}`,
     `description = ${tomlString(description)}`,
     `sandbox_mode = ${tomlString(settings.sandboxMode)}`,

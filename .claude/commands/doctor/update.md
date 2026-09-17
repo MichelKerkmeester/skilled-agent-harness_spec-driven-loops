@@ -1,1 +1,1 @@
-../../../.opencode/commands/doctor/update.md
+../../../.skilled/commands/doctor/update.md

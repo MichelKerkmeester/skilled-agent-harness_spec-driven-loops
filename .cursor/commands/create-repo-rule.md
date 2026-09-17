@@ -1,1 +1,1 @@
-../../.opencode/commands/create/repo-rule.md
+../../.skilled/commands/create/repo-rule.md
