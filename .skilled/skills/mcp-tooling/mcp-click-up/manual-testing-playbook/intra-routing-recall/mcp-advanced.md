@@ -74,10 +74,10 @@ Create a ClickUp document, set quarterly OKR goals, and bulk-create the sprint t
 
 ### Commands
 
-1. `sed -n '1,10p' .opencode/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/mcp-advanced.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-4. `test -e .opencode/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md && echo "OK references/mcp-tools.md" || echo "MISS references/mcp-tools.md"`
+1. `sed -n '1,10p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/mcp-advanced.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+4. `test -e .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md && echo "OK references/mcp-tools.md" || echo "MISS references/mcp-tools.md"`
 
 ### Expected
 

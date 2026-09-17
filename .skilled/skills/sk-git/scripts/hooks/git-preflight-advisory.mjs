@@ -109,7 +109,7 @@ async function main() {
   const cursorRoot = payload?.workspace_roots?.[0];
   const cursorRootDir = typeof cursorRoot === 'string' && cursorRoot.trim() ? cursorRoot : '';
   const projectDir = payload?.cwd || cursorRootDir || process.env.CLAUDE_PROJECT_DIR || process.env.CODEX_PROJECT_DIR || process.cwd();
-  const rules = readHardRules(path.join(projectDir, '.opencode', 'skills', 'sk-git', 'SKILL.md'))
+  const rules = readHardRules(path.join(projectDir, '.skilled', 'skills', 'sk-git', 'SKILL.md'))
     .filter((r) => GIT_CHECKS[r.check] && !tiers.silenced(r.id));
   if (rules.length === 0) return approve();
 

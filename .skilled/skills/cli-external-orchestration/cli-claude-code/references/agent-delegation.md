@@ -26,7 +26,7 @@ The calling AI decides WHAT to do, Claude Code decides HOW to do it within the d
 
 ### Purpose
 
-Documents the active Claude Code agents in `.opencode/agents/` and how external AI assistants orchestrate them. The calling AI (OpenCode, Copilot, etc.) acts as the **conductor** (planner, validator, integrator) while Claude Code executes targeted tasks through its agent system.
+Documents the active Claude Code agents in `.skilled/agents/` and how external AI assistants orchestrate them. The calling AI (OpenCode, Copilot, etc.) acts as the **conductor** (planner, validator, integrator) while Claude Code executes targeted tasks through its agent system.
 
 ### When to Use
 
@@ -50,7 +50,7 @@ External AI (CONDUCTOR)               [OpenCode / Copilot / etc.]
   v
 Claude Code CLI (EXECUTOR)
   |
-  |-- Loads agent definition from .opencode/agents/<name>.md
+  |-- Loads agent definition from .skilled/agents/<name>.md
   |-- Loads CLAUDE.md context hierarchy (global → project → local)
   |-- Executes with agent-specific instructions and tool permissions
   |-- Returns output to stdout
@@ -65,7 +65,7 @@ External AI (CONDUCTOR)
 
 ### Invocation Pattern
 
-Claude Code agents are routed using the `--agent` flag with an agent name. Agent definitions live in `.opencode/agents/<name>.md` files. For read-only tasks, combine with `--permission-mode plan`.
+Claude Code agents are routed using the `--agent` flag with an agent name. Agent definitions live in `.skilled/agents/<name>.md` files. For read-only tasks, combine with `--permission-mode plan`.
 
 ```bash
 # Agent-based delegation (non-interactive)

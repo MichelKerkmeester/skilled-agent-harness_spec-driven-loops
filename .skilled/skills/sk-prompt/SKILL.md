@@ -453,7 +453,7 @@ The allowance list is closed (default-deny). A pair that matches no allowance cl
 
 An ineligible model must refuse the prompt-improve work, name the rule that denied it, and name an eligible (model, route) pair in its place, whether it was reached through this skill inline or through the agent. It must not do the work anyway with a caveat.
 
-The canonical home of this contract is `.opencode/agents/prompt-improver.md`, so future edits land in one place.
+The canonical home of this contract is `.skilled/agents/prompt-improver.md`, so future edits land in one place.
 
 ### Deterministic Agent Rules
 

@@ -55,9 +55,9 @@ Run several parallel browser sessions through code mode as a multi-tool mcp work
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/mcp.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md | sed -n '/"MCP":/p'`
-3. `for p in references/session-management.md references/cdp-patterns.md; do test -e ".opencode/skills/mcp-tooling/mcp-chrome-devtools/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,15p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/mcp.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md | sed -n '/"MCP":/p'`
+3. `for p in references/session-management.md references/cdp-patterns.md; do test -e ".skilled/skills/mcp-tooling/mcp-chrome-devtools/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

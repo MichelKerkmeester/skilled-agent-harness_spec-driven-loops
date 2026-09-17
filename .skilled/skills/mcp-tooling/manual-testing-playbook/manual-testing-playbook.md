@@ -10,7 +10,7 @@ version: 1.1.0.0
 
 This document is the hub-level operator directory for `mcp-tooling`'s routing behavior across its NINE modes — five workflow bridges (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`) and four design transports (`mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-magicpath`). It covers hub-level mode resolution only, not the internal behavior of any packet, which each packet's own testing material already covers (`<packet>/manual-testing-playbook/`, unchanged by the hub corpus).
 
-Source of truth for routing behavior: `.opencode/skills/mcp-tooling/SKILL.md` §2 Smart Routing, `.opencode/skills/mcp-tooling/hub-router.json` (including `routerPolicy.defaultResourceSemantics: "fallback-only"` and the discovery-only `routerPolicy.discoveryClasses`).
+Source of truth for routing behavior: `.skilled/skills/mcp-tooling/SKILL.md` §2 Smart Routing, `.skilled/skills/mcp-tooling/hub-router.json` (including `routerPolicy.defaultResourceSemantics: "fallback-only"` and the discovery-only `routerPolicy.discoveryClasses`).
 
 ---
 

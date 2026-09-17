@@ -128,7 +128,7 @@ Release readiness requires all of the following:
 2. GIT-008..GIT-011 are `PASS` or explicitly `SKIP` because the sandbox cannot run the safe inspection steps.
 3. Coverage is 100% of playbook scenarios defined by this root index and backed by per-feature files.
 4. No forbidden sidecar exists: `review_protocol.md`, `subagent_utilization_ledger.md`, or `snippets/`.
-5. The package validates at zero violations under `validate-playbook-package.cjs --package .opencode/skills/sk-git/manual-testing-playbook --strict`.
+5. The package validates at zero violations under `validate-playbook-package.cjs --package .skilled/skills/sk-git/manual-testing-playbook --strict`.
 
 ### Root-vs-Feature Rule
 
@@ -241,7 +241,7 @@ Expected signals: Subject uses Conventional Commits; staged diff is reviewed; bo
 
 #### Description
 
-Verify a change inside `.opencode/skills/sk-git/` yields a deterministic `sk-git` scope.
+Verify a change inside `.skilled/skills/sk-git/` yields a deterministic `sk-git` scope.
 
 #### Scenario Contract
 

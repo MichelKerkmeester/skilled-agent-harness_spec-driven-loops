@@ -65,17 +65,17 @@ Run from any location inside the clone. All subcommands operate on the shared co
 
 ```bash
 # Allocate and create in one step
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create add-oauth-login
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create add-oauth-login
 
 # Create a dedicated branch with no worktree
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-branch external-dep
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-branch external-dep
 
 # Reserve a number in either namespace
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh allocate worktrees
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh allocate branches
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh allocate worktrees
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh allocate branches
 
 # Reuse the validators from another script
-source .opencode/skills/sk-git/scripts/worktree-naming.sh
+source .skilled/skills/sk-git/scripts/worktree-naming.sh
 is_valid_branch "worktrees/007-add-oauth-login" && echo ok
 ```
 
@@ -86,7 +86,7 @@ is_valid_branch "worktrees/007-add-oauth-login" && echo ok
 Run from the repository root.
 
 ```bash
-bash .opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh
+bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh
 ```
 
 Expected result: the harness prints a summary line ending in `FAIL=0` (for example `worktree-naming tests: PASS=65 FAIL=0`).

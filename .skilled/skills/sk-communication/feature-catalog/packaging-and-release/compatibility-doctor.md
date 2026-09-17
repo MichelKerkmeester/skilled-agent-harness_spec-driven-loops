@@ -35,16 +35,16 @@ Each check returns `ok`, `warn`, or `block` with a reason code and operator-faci
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-communication/cli-communication-projection/src/doctor/doctor.ts` | Handler | Runs the check set and derives the overall route decision. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/doctor/checks.ts` | Shared | Implements version, capability, reachability, credential, privacy, and tier checks. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/doctor/types.ts` | Shared | Defines doctor inputs, findings, probes, and reports. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/doctor/doctor.ts` | Handler | Runs the check set and derives the overall route decision. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/doctor/checks.ts` | Shared | Implements version, capability, reachability, credential, privacy, and tier checks. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/doctor/types.ts` | Shared | Defines doctor inputs, findings, probes, and reports. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-communication/cli-communication-projection/test/doctor/checks.test.ts` | Unit | Covers each compatibility check and remediation result. |
-| `.opencode/skills/sk-communication/cli-communication-projection/test/doctor/doctor.test.ts` | Integration | Verifies overall ready, degraded, blocked, and malformed-input reports. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/doctor/checks.test.ts` | Unit | Covers each compatibility check and remediation result. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/doctor/doctor.test.ts` | Integration | Verifies overall ready, degraded, blocked, and malformed-input reports. |
 
 ---
 

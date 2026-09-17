@@ -72,7 +72,7 @@ Coverage note: the ten operator categories cover the sanctioned headless shape, 
 5. Every dispatch closes stdin with `</dev/null` or feeds it through `--query-file -`. An inherited terminal stdin can hang with zero output.
 6. Every dispatch is bounded by an outer wall-clock alarm. macOS has no `timeout`; use `perl -e 'alarm N; exec @ARGV' -- hermes ...`. The package's standard bound is 300 seconds per dispatch.
 7. Every dispatch is judged on stdout content, not on its exit code. A run that exits 0 with empty or fragmentary stdout has failed, and the caller's byte-and-content gate is what catches it.
-8. The `cli-hermes` skill references and assets exist under `.opencode/skills/cli-external-orchestration/cli-hermes/{references,assets}/`.
+8. The `cli-hermes` skill references and assets exist under `.skilled/skills/cli-external-orchestration/cli-hermes/{references,assets}/`.
 9. The project surfaces exist before execution: `.hermes/skills/<name>/SKILL.md` generated copies (`sync-skills-hermes.cjs --check` passes), `.hermes/prompts/*.md`, `.hermes/plugins/repo-guards/`, and `.hermes/SYNC.md`.
 10. Scenarios that exercise the project plugin set `HERMES_ENABLE_PROJECT_PLUGINS=1` and require `repo-guards` to be listed under `plugins.enabled` in the user-level config. Both are operator steps; `hermes plugins list` does not display project plugins, so the load proof is the `repo-guards-session-context` line in `~/.hermes/logs/agent.log`.
 11. Scenarios that bind a packet goal set `HERMES_SPEC_FOLDER` to a repository-relative packet path holding a `goal.md`.
@@ -316,17 +316,17 @@ The `cli-hermes` skill is an orchestrator wrapper around the Hermes binary and t
 
 | Test Surface | Coverage | Playbook Overlap |
 |---|---|---|
-| `.opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Routing, self-invocation guard, dispatch shape, the closed roster, and the hard rules | `HERMES-001`, `HERMES-003`, `HERMES-004`, `HERMES-007`, `HERMES-016`, `HERMES-018` |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md` | Flags, headless forms, exit codes, the non-empty-stdout requirement, approvals, isolation, environment | `HERMES-001`, `HERMES-002`, `HERMES-003`, `HERMES-011`, `HERMES-012`, `HERMES-013`, `HERMES-021`, `HERMES-022` |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md` | Toolsets, repo-local skills, project plugins, the `.hermes/` write guard | `HERMES-007`, `HERMES-016`, `HERMES-017`, `HERMES-019` |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md` | Operator MCP steps and deny-by-default per tool | `HERMES-019` |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md` | Shell hooks versus the project plugin, and the hook map for the repo's guard cores | `HERMES-007`, `HERMES-014`, `HERMES-015`, `HERMES-020`, `HERMES-018` |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Routing, self-invocation guard, dispatch shape, the closed roster, and the hard rules | `HERMES-001`, `HERMES-003`, `HERMES-004`, `HERMES-007`, `HERMES-016`, `HERMES-018` |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md` | Flags, headless forms, exit codes, the non-empty-stdout requirement, approvals, isolation, environment | `HERMES-001`, `HERMES-002`, `HERMES-003`, `HERMES-011`, `HERMES-012`, `HERMES-013`, `HERMES-021`, `HERMES-022` |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md` | Toolsets, repo-local skills, project plugins, the `.hermes/` write guard | `HERMES-007`, `HERMES-016`, `HERMES-017`, `HERMES-019` |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md` | Operator MCP steps and deny-by-default per tool | `HERMES-019` |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md` | Shell hooks versus the project plugin, and the hook map for the repo's guard cores | `HERMES-007`, `HERMES-014`, `HERMES-015`, `HERMES-020`, `HERMES-018` |
 | `.hermes/plugins/repo-guards/__init__.py` | Read-only refusal, self-dispatch refusal, deny forwarding, `transform_tool_result`, the system-prompt section and its goal slice, `pre_verify`, `on_session_end` | `HERMES-007`, `HERMES-014`, `HERMES-015`, `HERMES-020`, `HERMES-018` |
-| `.opencode/hooks/git-preflight/shared/git-preflight-advisory.mjs` | The shared sk-git advisory core the plugin shells out to for git-shaped commands | `HERMES-014` |
+| `.skilled/hooks/git-preflight/shared/git-preflight-advisory.mjs` | The shared sk-git advisory core the plugin shells out to for git-shaped commands | `HERMES-014` |
 | `.hermes/prompts/*.md` and `sync-prompts-hermes.cjs` | Generated prompt templates and their drift check | `HERMES-008`, `HERMES-009`, `HERMES-022` |
-| `.opencode/hooks/dispatch/devin/dispatch-preflight-lint.mjs` | The shared dispatch preflight core, whose deny decision the plugin forwards | `HERMES-014`, `HERMES-018` |
-| `.opencode/skills/sk-doc/shared/scripts/validate_document.py` | Root markdown structure validation | This root playbook |
-| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-hermes.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-hermes` adapter | `cli-hermes-EC-001` .. `cli-hermes-EC-014` |
+| `.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs` | The shared dispatch preflight core, whose deny decision the plugin forwards | `HERMES-014`, `HERMES-018` |
+| `.skilled/skills/sk-doc/shared/scripts/validate_document.py` | Root markdown structure validation | This root playbook |
+| `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-hermes.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-hermes` adapter | `cli-hermes-EC-001` .. `cli-hermes-EC-014` |
 
 There is no substitute automated test for a provider-backed Hermes model turn, the live approval boundary, the read-only refusal, project-skill loading, template delivery, goal-slice delivery, or MCP reach through the toolset list. Each of those is proved only by the live scenarios above.
 

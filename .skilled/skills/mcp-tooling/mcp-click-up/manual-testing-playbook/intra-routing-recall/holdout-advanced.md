@@ -87,10 +87,10 @@ Set up a new quarterly objective for the team and spin up a shared write-up page
 
 ### Commands
 
-1. `sed -n '1,20p' .opencode/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/holdout-advanced.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-3. `sed -n '/^```text$/,/^```$/p' .opencode/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/holdout-advanced.md | grep -io 'clickup mcp\|cupt\|\bmcp\b\|document\b\|\bgoal\b\|\bokr\b\|\bbulk\b' || echo "no obvious router keyword in the prompt body"`
-4. `test -e .opencode/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md && echo "OK references/mcp-tools.md" || echo "MISS references/mcp-tools.md"`
+1. `sed -n '1,20p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/holdout-advanced.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+3. `sed -n '/^```text$/,/^```$/p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/holdout-advanced.md | grep -io 'clickup mcp\|cupt\|\bmcp\b\|document\b\|\bgoal\b\|\bokr\b\|\bbulk\b' || echo "no obvious router keyword in the prompt body"`
+4. `test -e .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md && echo "OK references/mcp-tools.md" || echo "MISS references/mcp-tools.md"`
 
 ### Expected
 

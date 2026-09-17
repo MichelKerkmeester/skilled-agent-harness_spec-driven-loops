@@ -34,6 +34,6 @@ The Lane C harness reads this skill's manual-testing playbook as its default cor
 writes a dated run folder under `reports/`:
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
   --skill sk-design
 ```

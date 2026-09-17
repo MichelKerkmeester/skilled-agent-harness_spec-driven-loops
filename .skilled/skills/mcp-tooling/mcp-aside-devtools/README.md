@@ -179,9 +179,9 @@ A: Unresolved. Docs examples show `-m provider/model`. The installed help shows 
 | Check | How to run it |
 |---|---|
 | CLI health | `command -v aside && aside --version 2>&1 && aside account status 2>&1` all pass |
-| Doctor | `bash .opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` exits 0 and reports binary, version, account, MCP handshake state and the registered `aside` manual. A missing manual is an error |
+| Doctor | `bash .skilled/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` exits 0 and reports binary, version, account, MCP handshake state and the registered `aside` manual. A missing manual is an error |
 | MCP handshake | `examples/mcp-handshake-probe.sh` reports the protocol version and the discovered tool list. Expect `repl` on the pinned version and rediscover on yours |
-| Skill package | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-aside-devtools --check` reports 0 errors |
+| Skill package | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-aside-devtools --check` reports 0 errors |
 
 ---
 

@@ -356,7 +356,7 @@ Expected signals: Every input error message receives a category label. Response 
 
 ## 10. AGENT ROUTING
 
-This category covers 9 scenario summaries while the linked feature files remain the canonical execution contract. Claude Code agents are defined in `.opencode/agents/<name>.md` and dispatched via the `--agent` flag. The cli-claude-code skill documents 9 agent slots (context, debug, handover, orchestrate, research, review, speckit, ai-council, write) and this section covers all 9.
+This category covers 9 scenario summaries while the linked feature files remain the canonical execution contract. Claude Code agents are defined in `.skilled/agents/<name>.md` and dispatched via the `--agent` flag. The cli-claude-code skill documents 9 agent slots (context, debug, handover, orchestrate, research, review, speckit, ai-council, write) and this section covers all 9.
 
 ### CC-011 | Context agent codebase exploration
 
@@ -672,8 +672,8 @@ The cli-claude-code skill is a thin orchestration wrapper around the external An
 | `cli-opencode` | Manual playbook only | Cross-AI delegation pattern parallels (generate-review-fix, structured output) |
 | `cli-opencode` | Manual playbook only | Cross-AI delegation pattern parallels (cross-runtime handback) |
 | Goal README + runtime routing rule + runtime mirror generator | Documents and enforces the Claude repository boundary and current Pi/Cursor support matrix | `CC-029` |
-| `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Shared `PreToolUse` `Bash` advisory hook | `CC-028` |
-| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-claude-code.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-claude-code` adapter | `cli-claude-code-EC-001` .. `cli-claude-code-EC-014` |
+| `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Shared `PreToolUse` `Bash` advisory hook | `CC-028` |
+| `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-claude-code.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-claude-code` adapter | `cli-claude-code-EC-001` .. `cli-claude-code-EC-014` |
 
 The `intra-routing-recall/` category is also an exception to the manual-only pattern above: it
 re-derives its expected `INTENT_SIGNALS`/`RESOURCE_MAP` truth directly from SKILL.md on every run.

@@ -79,7 +79,7 @@ The full REPL transcript and, on success, the result-shape fixture (message text
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md` | Capability-gap fail-closed policy |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md` | Capability-gap fail-closed policy |
 
 ---
 

@@ -28,9 +28,9 @@ description: "Install and read-only diagnostic scripts for the mcp-obsidian tran
 Run from the repository root.
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/doctor.sh
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/install.sh --check-only
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/verify-notion-migration-parity.sh --vault /path/to/vault
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh --check-only
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/verify-notion-migration-parity.sh --vault /path/to/vault
 ```
 
 Expected result: `doctor.sh` prints a checklist with no red `✗` lines (warnings for absent optional pieces are expected). `install.sh --check-only` reports the `notesmd-cli` install status without installing anything. `verify-notion-migration-parity.sh` prints one `PASS`/`FAIL`/`SKIP` line per check and a summary count; it exits non-zero only when at least one check reports a real `FAIL`.

@@ -67,7 +67,7 @@ This is a prompt-only holdout scenario. It carries no command sequence or captur
 | File | Role |
 |---|---|
 | `../../SKILL.md` | The sk-doc router under test |
-| `.opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
 
 ---
 

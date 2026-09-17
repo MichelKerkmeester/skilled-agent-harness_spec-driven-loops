@@ -56,11 +56,11 @@ Describe the workflow to orchestrate a long job, then resume session state later
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/patterns.md`
+1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/patterns.md`
 2. `grep -n '"PATTERNS"' ../../SKILL.md` (confirms the `INTENT_SIGNALS` entry)
 3. `grep -A2 'RESOURCE_MAP = {' ../../SKILL.md | grep '"PATTERNS"'` (confirms the `RESOURCE_MAP` entry)
-4. `test -e .opencode/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
-5. `test -e .opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
+4. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md && echo "OK references/integration-patterns.md" || echo "MISS references/integration-patterns.md"`
+5. `test -e .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
 
 ### Expected
 

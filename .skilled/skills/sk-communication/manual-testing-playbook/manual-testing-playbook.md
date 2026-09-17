@@ -65,7 +65,7 @@ Evidence must remain content-free: never capture provider credentials, raw priva
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 - `bash: <command>` means run the command exactly in a POSIX-compatible shell.
-- `package: <command>` means run the command from `.opencode/skills/sk-communication/cli-communication-projection/`.
+- `package: <command>` means run the command from `.skilled/skills/sk-communication/cli-communication-projection/`.
 - `->` separates sequential steps in a single operator session.
 - Quoted Vitest names are exact focused-test filters, not descriptive placeholders.
 - An exit status of zero is required unless the feature file explicitly names a different observable result.
@@ -227,19 +227,19 @@ Prompt: `Verify that only a complete, fresh, passing, human-certified evidence b
 
 ## 11. AUTOMATED TEST CROSS-REFERENCE
 
-The complete automated suite lives under [`.opencode/skills/sk-communication/cli-communication-projection/test/`](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/). Focused scenario commands use only files in that tree; final release review also runs `npm run check` from the package directory.
+The complete automated suite lives under [`.skilled/skills/sk-communication/cli-communication-projection/test/`](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/). Focused scenario commands use only files in that tree; final release review also runs `npm run check` from the package directory.
 
 | Coverage Area | Automated Test Anchor | Scenario IDs |
 |---|---|---|
 | Advisor routing | [Advisor compatibility entry point](../../system-skill-advisor/runtime/scripts/skill_advisor.py) | `COMM-001` |
-| Fidelity fallback | [Protected spans](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/fidelity/protected-spans.test.ts), [fidelity validator](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/fidelity/validator.test.ts) | `COMM-002` |
-| Privacy routing | [Privacy router tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/providers/privacy.test.ts) | `COMM-003` |
-| External CLI provider | [External CLI provider tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts), [external CLI transport tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts) | `COMM-009` |
-| Full projection | [Client display tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/clients/display.test.ts) | `COMM-004` |
-| Safe-native | [Client display tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/clients/display.test.ts), [sidecar tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/clients/sidecar.test.ts) | `COMM-005` |
-| Provisional evaluation | [Proxy judge tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/evaluation/proxy-judge.test.ts), [release gate tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/release/release-gate.test.ts) | `COMM-006` |
-| Compatibility doctor | [Doctor tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/doctor/doctor.test.ts) | `COMM-007` |
-| Release readiness | [Release gate tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/release/release-gate.test.ts) | `COMM-008` |
+| Fidelity fallback | [Protected spans](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/fidelity/protected-spans.test.ts), [fidelity validator](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/fidelity/validator.test.ts) | `COMM-002` |
+| Privacy routing | [Privacy router tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/providers/privacy.test.ts) | `COMM-003` |
+| External CLI provider | [External CLI provider tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts), [external CLI transport tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts) | `COMM-009` |
+| Full projection | [Client display tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/clients/display.test.ts) | `COMM-004` |
+| Safe-native | [Client display tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/clients/display.test.ts), [sidecar tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/clients/sidecar.test.ts) | `COMM-005` |
+| Provisional evaluation | [Proxy judge tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/evaluation/proxy-judge.test.ts), [release gate tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/release/release-gate.test.ts) | `COMM-006` |
+| Compatibility doctor | [Doctor tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/doctor/doctor.test.ts) | `COMM-007` |
+| Release readiness | [Release gate tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/release/release-gate.test.ts) | `COMM-008` |
 
 ---
 

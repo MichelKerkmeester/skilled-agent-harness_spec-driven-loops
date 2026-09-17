@@ -16,7 +16,7 @@ Copy and paste this prompt to your AI assistant to get installation help:
 
 ```
 Run the embedded install script:
-  bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh
+  bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh
 
 It will:
   1. Install cupt via pipx (or pip fallback)

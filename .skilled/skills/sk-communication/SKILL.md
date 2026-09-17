@@ -9,9 +9,9 @@ version: 1.3.0.0
 
 # Communication Projection
 
-Make supported CLI and agent output read like careful plain English, across Claude, Codex, Pi, OpenCode, Devin, and Cursor, while leaving the canonical event stream, transcript, tool data, and model context byte-for-byte unchanged. Every unsafe or failed path returns the exact original. The implementation is the `@portable-cli/communication-projection` package under `.opencode/skills/sk-communication/cli-communication-projection/`; this skill routes you to the right part of it and enforces its invariants.
+Make supported CLI and agent output read like careful plain English, across Claude, Codex, Pi, OpenCode, Devin, and Cursor, while leaving the canonical event stream, transcript, tool data, and model context byte-for-byte unchanged. Every unsafe or failed path returns the exact original. The implementation is the `@portable-cli/communication-projection` package under `.skilled/skills/sk-communication/cli-communication-projection/`; this skill routes you to the right part of it and enforces its invariants.
 
-Projection is off by default for everyone. Nothing rewrites CLI output until an operator opts in on their own machine, by setting `COMMUNICATION_PROJECTION_ENABLED` or by adding a git-ignored `enablement.local.json` at the package root. Every activation path checks `isProjectionEnabled()` first. This skill is also held out of advisor routing on purpose. `sk-communication` is on the advisor route-exclusions denylist (`.opencode/skills/system-skill-advisor/runtime/config/route-exclusions.json`), so the recommender never surfaces it and you invoke it by hand.
+Projection is off by default for everyone. Nothing rewrites CLI output until an operator opts in on their own machine, by setting `COMMUNICATION_PROJECTION_ENABLED` or by adding a git-ignored `enablement.local.json` at the package root. Every activation path checks `isProjectionEnabled()` first. This skill is also held out of advisor routing on purpose. `sk-communication` is on the advisor route-exclusions denylist (`.skilled/skills/system-skill-advisor/runtime/config/route-exclusions.json`), so the recommender never surfaces it and you invoke it by hand.
 
 ### One lane
 
@@ -84,7 +84,7 @@ Read `src/<subsystem>/index.ts` for the exact public surface before integrating 
 
 ### Resource Domains
 
-- The package itself under `.opencode/skills/sk-communication/cli-communication-projection/` is the primary resource; its `docs/` folder holds install, configuration, privacy, support-matrix, rollback, and runbook guidance. The subsystem map above is the routing layer and lives inline in this document.
+- The package itself under `.skilled/skills/sk-communication/cli-communication-projection/` is the primary resource; its `docs/` folder holds install, configuration, privacy, support-matrix, rollback, and runbook guidance. The subsystem map above is the routing layer and lives inline in this document.
 - The design and requirements history lives in the spec epic under `specs/cli-external-orchestration/035-improved-communication/`.
 
 ### Loading Levels
@@ -200,7 +200,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 - Return the exact original bytes on any unsupported, unsafe, timed-out, cancelled, or failed path.
 - Make every runtime path declare full-projection or safe-native, and keep the two separate in any parity claim.
 - Keep telemetry content-free: reason codes only, never raw transcript, prompt, candidate, protected-span, or credential values; correlate with rotating keyed digests.
-- Revalidate OpenCode Go retention and training facts before the OpenCode Go preset's `expiresAt` (`.opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts`) and again at every release; a stale hosted-privacy fact blocks hosted routing.
+- Revalidate OpenCode Go retention and training facts before the OpenCode Go preset's `expiresAt` (`.skilled/skills/sk-communication/cli-communication-projection/src/providers/presets.ts`) and again at every release; a stale hosted-privacy fact blocks hosted routing.
 
 ### ❌ NEVER
 
@@ -222,8 +222,8 @@ Run the package's authoritative gate from the package directory: `npm run check`
 
 ### Core
 
-- `.opencode/skills/sk-communication/cli-communication-projection/` — the implementation; read `src/<subsystem>/index.ts` for the public surface.
-- `.opencode/skills/sk-communication/cli-communication-projection/docs/` — install, configuration, privacy, support-matrix, rollback, and runbook.
+- `.skilled/skills/sk-communication/cli-communication-projection/` — the implementation; read `src/<subsystem>/index.ts` for the public surface.
+- `.skilled/skills/sk-communication/cli-communication-projection/docs/` — install, configuration, privacy, support-matrix, rollback, and runbook.
 
 ### Deep Detail
 
@@ -231,7 +231,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 
 ### Related Skills
 
-- `sk-doc` → `sk-create-with-human-voice`, which owns the Human Voice Rules workflow this skill's rewrites are held to. The standard is at `.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`, the scope gate at that mode's `references/scope-and-exemptions.md`, and its `scripts/hvr_scan.py` scans a file rather than a live reply, so it audits this skill's own documents and never a projection in flight.
+- `sk-doc` → `sk-create-with-human-voice`, which owns the Human Voice Rules workflow this skill's rewrites are held to. The standard is at `.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`, the scope gate at that mode's `references/scope-and-exemptions.md`, and its `scripts/hvr_scan.py` scans a file rather than a live reply, so it audits this skill's own documents and never a projection in flight.
 - `sk-code` — builds and verifies integration code against the package.
 - `sk-design-md-generator` — extracts a measured Style Reference (design tokens from a live source).
 - `sk-git` — worktree, commits, and PR for the integration.

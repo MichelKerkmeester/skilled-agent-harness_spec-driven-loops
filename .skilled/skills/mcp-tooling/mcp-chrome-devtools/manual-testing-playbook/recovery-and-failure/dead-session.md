@@ -94,7 +94,7 @@ Capture all command outputs, exit codes, the post-kill error message verbatim, a
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg session lifecycle + error handling |
+| `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg session lifecycle + error handling |
 
 ---
 

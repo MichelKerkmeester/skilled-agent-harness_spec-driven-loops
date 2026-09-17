@@ -87,14 +87,14 @@ Capture the Code Mode script, returned object, and explicit boolean values for b
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `.opencode/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md` | CM playbook (CM-014..CM-016 Chrome via CM) |
+| `.skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md` | CM playbook (CM-014..CM-016 Chrome via CM) |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | evaluate_script reference (no dedicated cookie-retrieval tool is registered; cookies are read via `document.cookie` inside `evaluate_script`) |
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Code Mode invocation contract |
+| `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | evaluate_script reference (no dedicated cookie-retrieval tool is registered; cookies are read via `document.cookie` inside `evaluate_script`) |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Code Mode invocation contract |
 
 ---
 

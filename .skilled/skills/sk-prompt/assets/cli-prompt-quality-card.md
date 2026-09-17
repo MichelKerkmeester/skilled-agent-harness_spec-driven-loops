@@ -189,7 +189,7 @@ All three cli-* cards (`cli-claude-code`, `cli-opencode`, `cli-opencode`) are TH
 A duplication guard enforces this contract:
 
 ```
-.opencode/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh
+.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh
 ```
 
 The script asserts that no cli-* card re-inlines the framework selection table or the CLEAR 5-question table from this file. If the guard fails, remove the inlined content from the offending cli-* card and replace it with a link back to this file.

@@ -80,8 +80,8 @@ cat out.txt
 |---|---|
 | [SYNC.md](../../../../../../.hermes/SYNC.md) | What the plugin bridges and how |
 | [hook-contract.md](../../references/hook-contract.md) | The plugin hook map |
-| `.opencode/hooks/task-dispatch/devin/task-dispatch-guard.cjs` | The core the bridge runs |
-| `.opencode/hooks/task-dispatch/lib/dispatch-guard.cjs` | The reject switch and the mode-mismatch rule |
+| `.skilled/hooks/task-dispatch/devin/task-dispatch-guard.cjs` | The core the bridge runs |
+| `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs` | The reject switch and the mode-mismatch rule |
 
 ---
 

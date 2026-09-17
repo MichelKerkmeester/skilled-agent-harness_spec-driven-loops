@@ -78,7 +78,7 @@ Both outputs verbatim, with any account identifiers noted but credential-adjacen
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md` | SIGNED_OUT and ACCOUNT_AMBIGUOUS taxonomy |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md` | SIGNED_OUT and ACCOUNT_AMBIGUOUS taxonomy |
 
 ---
 

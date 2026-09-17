@@ -91,7 +91,7 @@ Capture the verbatim response, including any score/relevance metadata if present
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | search_tools API spec |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | search_tools API spec |
 | `.utcp_config.json` | Manual registry source |
 
 ---

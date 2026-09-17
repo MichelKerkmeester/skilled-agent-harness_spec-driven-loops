@@ -62,9 +62,9 @@ The headless page-debugging session keeps dropping halfway through a run and I c
 
 ### Commands
 
-1. `sed -n '1,18p' .opencode/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/holdout-troubleshoot.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md | sed -n '/"TROUBLESHOOT":/p;/"CLI":/p'`
-3. `for p in references/troubleshooting.md; do test -e ".opencode/skills/mcp-tooling/mcp-chrome-devtools/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,18p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/intra-routing-recall/holdout-troubleshoot.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md | sed -n '/"TROUBLESHOOT":/p;/"CLI":/p'`
+3. `for p in references/troubleshooting.md; do test -e ".skilled/skills/mcp-tooling/mcp-chrome-devtools/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

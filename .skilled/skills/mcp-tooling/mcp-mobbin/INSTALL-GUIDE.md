@@ -104,13 +104,13 @@ node -v && npx --version
 ## 3. VERIFY THE WIRING STATE (READ-ONLY)
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh
 ```
 
 `doctor.sh` is a non-interactive, read-only report. It checks Node and npx, greps `.utcp_config.json` for the `mobbin` manual (it never edits the file), states the auth and plan expectations, and optionally probes the endpoint. **Manual presence is the healthy result; absence now reports as an ERROR** — a broken or reverted registration to escalate, never to repair from this guide.
 
 ```bash
-MOBBIN_DOCTOR_LIVE=1 bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh
+MOBBIN_DOCTOR_LIVE=1 bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh
 ```
 
 The gated live probe sends one unauthenticated HTTPS request. **HTTP 401 is the healthy result**: it proves the endpoint is reachable and requires OAuth, matching the documented behavior (the observed challenge carries a `WWW-Authenticate` pointer to the OAuth protected-resource metadata).
@@ -205,11 +205,11 @@ See [`references/troubleshooting.md`](references/troubleshooting.md) for the ful
 
 | Document | Location | Purpose |
 | -------- | -------- | ------- |
-| README | `.opencode/skills/mcp-tooling/mcp-mobbin/README.md` | Human orientation and quick start |
-| SKILL.md | `.opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md` | Runtime instructions and routing |
-| Tool Surface | `.opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md` | The single-tool contract, intent workflows, plan gating, and rate limit |
-| MCP Wiring | `.opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md` | Registered manual, bridge, OAuth/DCR/PKCE, inferred naming, discovery |
-| Troubleshooting | `.opencode/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md` | Full failure-mode table |
+| README | `.skilled/skills/mcp-tooling/mcp-mobbin/README.md` | Human orientation and quick start |
+| SKILL.md | `.skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md` | Runtime instructions and routing |
+| Tool Surface | `.skilled/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md` | The single-tool contract, intent workflows, plan gating, and rate limit |
+| MCP Wiring | `.skilled/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md` | Registered manual, bridge, OAuth/DCR/PKCE, inferred naming, discovery |
+| Troubleshooting | `.skilled/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md` | Full failure-mode table |
 
 ### Licensing and Upstream
 

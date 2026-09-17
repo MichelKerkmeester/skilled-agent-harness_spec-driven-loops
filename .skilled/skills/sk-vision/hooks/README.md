@@ -6,12 +6,12 @@ The skill drives four coding hosts. Each reaches the same runtime through the st
 
 | Host | Attach model | Source in `hooks/` | Host load path |
 |------|--------------|--------------------|----------------|
-| **OpenCode** | in-process JS plugin with `/vision` hook | `opencode/sk-vision.ts` (built to `sk-vision.js`) | `.opencode/plugins/sk-vision.js` → symlink |
+| **OpenCode** | in-process JS plugin with `/vision` hook | `opencode/sk-vision.ts` (built to `sk-vision.js`) | `.skilled/plugins/sk-vision.js` → symlink |
 | **Pi** | in-process TS extension with hidden tools and `/vision` prompt | `pi/sk-vision.ts` | `.pi/extensions/sk-vision.ts` → symlink |
 | **Devin** | lifecycle hook that injects evidence at prompt time | `devin/sk-vision.mjs` | `.devin/hooks.v1.json` → `UserPromptSubmit` |
 | **Cursor** | the built CLI, invoked by a command and a rule | no adapter source; `cursor/vision-rule.md` carries the instruction | `.cursor/commands/vision.md` and `.cursor/rules/sk-vision.md` |
 
-The three adapter sources are mirrored into the shared hook hub at `.opencode/hooks/sk-vision/{pi,opencode,devin}` as per-file symlinks back here, so the fleet sees every host's entry in one place.
+The three adapter sources are mirrored into the shared hook hub at `.skilled/hooks/sk-vision/{pi,opencode,devin}` as per-file symlinks back here, so the fleet sees every host's entry in one place.
 
 Claude Code has no sk-vision integration and gains none here.
 

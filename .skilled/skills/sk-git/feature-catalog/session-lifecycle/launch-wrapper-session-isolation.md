@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-An operator opts into per-session isolation at the shell, not inside a running AI session — for example by aliasing `claude='bash .opencode/bin/worktree-session.sh claude'`. Because the wrapper acts before the AI session starts, at operator opt-in, it does not violate the in-session rule that an AI must never autonomously create a worktree; the operator made that choice by aliasing the launch.
+An operator opts into per-session isolation at the shell, not inside a running AI session — for example by aliasing `claude='bash .skilled/bin/worktree-session.sh claude'`. Because the wrapper acts before the AI session starts, at operator opt-in, it does not violate the in-session rule that an AI must never autonomously create a worktree; the operator made that choice by aliasing the launch.
 
 Each top-level (human-launched) session gets its own worktree, its own branch, and its own isolated MCP databases, so concurrent sessions on different runtimes never share a working tree or contend on a single-writer database lease. An orchestrated child (subagent, dispatched task, deep-loop iteration) shares its parent's worktree instead of nesting.
 
@@ -48,13 +48,13 @@ A PID-stamped marker file is written under the shared common git directory (neve
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/bin/worktree-session.sh` | Script | Child detection, worktree allocation, dependency symlinking, DB/socket isolation, session-marker write, continuous-integration env wiring |
+| `.skilled/bin/worktree-session.sh` | Script | Child detection, worktree allocation, dependency symlinking, DB/socket isolation, session-marker write, continuous-integration env wiring |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/bin/tests/worktree-session.test.sh` | Automated test | Exercises child detection, allocation, and dry-run behavior |
+| `.skilled/bin/tests/worktree-session.test.sh` | Automated test | Exercises child detection, allocation, and dry-run behavior |
 
 ---
 

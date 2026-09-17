@@ -54,9 +54,9 @@ Run app design research on Mobbin: an app comparison of how competitor banking a
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/intra-routing-recall/apps.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md | sed -n '/"APPS":/p'`
-3. `for p in references/tool-surface.md; do test -e ".opencode/skills/mcp-tooling/mcp-mobbin/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/intra-routing-recall/apps.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md | sed -n '/"APPS":/p'`
+3. `for p in references/tool-surface.md; do test -e ".skilled/skills/mcp-tooling/mcp-mobbin/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

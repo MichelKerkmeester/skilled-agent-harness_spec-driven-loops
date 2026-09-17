@@ -12,7 +12,7 @@ The minimum end-to-end verification of the Mobbin transport: one confirmed calla
 
 ## 1. PRECONDITIONS
 
-- `bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` reports `OK 'mobbin' manual registered`.
+- `bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` reports `OK 'mobbin' manual registered`.
 - Fresh Code Mode session (manuals load at startup).
 - **Operator OAuth completed** on a paid plan (Pro, Team, or Enterprise). If not: record `SKIP: operator OAuth pending — trigger any first mobbin.* call in a fresh Code Mode session and complete the browser authorization`, and stop here. SKIP is a valid result.
 

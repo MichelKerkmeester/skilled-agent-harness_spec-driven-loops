@@ -200,8 +200,8 @@ A: Most tools pin `2025-09-03`, the version that introduced data sources. The tw
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-tooling/mcp-notion/README.md --type readme` reports zero issues |
-| Install guide structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-tooling/mcp-notion/INSTALL-GUIDE.md --type install_guide` reports zero issues |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-notion/README.md --type readme` reports zero issues |
+| Install guide structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-notion/INSTALL-GUIDE.md --type install_guide` reports zero issues |
 | Token and connection | A `call_tool_chain(...)` call to `notion.notion_retrieve_bot_user` returns the bot identity for your integration |
 | MCP health | Confirm the `notion` tools appear in `list_tools()` and a `notion.notion_retrieve-a-database` call via `call_tool_chain(...)` returns database metadata for a shared database |
 

@@ -43,15 +43,15 @@ The router resolves to `single` (one dominant executor signal routes to one mode
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/cli-external-orchestration/SKILL.md` | Shared | States the two-axis model, routing rule, and outcome set. |
-| `.opencode/skills/cli-external-orchestration/mode-registry.json` | Shared | Declarative registry for the seven executor packets. |
-| `.opencode/skills/cli-external-orchestration/hub-router.json` | Shared | Router signals, vocabulary classes, and tie-break policy. |
+| `.skilled/skills/cli-external-orchestration/SKILL.md` | Shared | States the two-axis model, routing rule, and outcome set. |
+| `.skilled/skills/cli-external-orchestration/mode-registry.json` | Shared | Declarative registry for the seven executor packets. |
+| `.skilled/skills/cli-external-orchestration/hub-router.json` | Shared | Router signals, vocabulary classes, and tie-break policy. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the tool-surface-union invariant. |
+| `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the tool-surface-union invariant. |
 
 ---
 

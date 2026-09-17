@@ -77,7 +77,7 @@ The corpus holds twenty-nine chart forms across six question families. Every fam
 
 ## 2. GLOBAL PRECONDITIONS
 
-1. Working directory is the repository root, so every `.opencode/skills/sk-design/sk-design-chart/` subpath in this package resolves.
+1. Working directory is the repository root, so every `.skilled/skills/sk-design/sk-design-chart/` subpath in this package resolves.
 2. Node is on PATH. The corpus check is one file with no third-party dependency.
 3. A Chrome or Chromium binary is present for any scenario using `--render`, found on the usual paths or named by `CHROME_PATH`. A run without one records a `SKIP` naming the missing browser as the environment blocker.
 4. A desktop browser is available for the scenarios that need a rendered page read by eye. Those scenarios name the requirement in their own preconditions, and a headless-only machine records a `SKIP` naming the unavailable display as the blocker.
@@ -95,7 +95,7 @@ The corpus holds twenty-nine chart forms across six question families. Every fam
 - Agent-facing prompt used
 - Delegation or runtime-routing notes when applicable
 - For any scenario that reads a rendered page, what was read and what was concluded, written as observations rather than as a verdict
-- `git status --porcelain .opencode/skills/sk-design/sk-design-chart` for the packet path
+- `git status --porcelain .skilled/skills/sk-design/sk-design-chart` for the packet path
 - Scenario verdict with rationale (`PASS`, `FAIL` or `SKIP`)
 
 A transcript that quotes only the `RESULT:` line cannot be graded. Every check reports an assertion count on every run, and a check reporting zero assertions ran on nothing, which is not the same as a check that passed. The count of checks is not fixed either, so read the lines the run printed rather than the lines a document said to expect.
@@ -107,7 +107,7 @@ A transcript that quotes only the `RESULT:` line cannot be graded. Every check r
 - Bash commands shown as `bash: <command>`.
 - Agent prompts shown as `agent: <instruction>`. These scenarios are agent-driven, so a step is usually what an agent does: read a reference, copy a form, derive a claim or refuse to report a number.
 - `->` separates sequential steps.
-- Repo-relative paths are written as `.opencode/skills/sk-design/sk-design-chart/...`. The packet root means that directory wherever the packet is installed.
+- Repo-relative paths are written as `.skilled/skills/sk-design/sk-design-chart/...`. The packet root means that directory wherever the packet is installed.
 - Commands in this package avoid shell pipes, because an exit status read through a pipe is the pipe's status rather than the command's.
 
 ---

@@ -51,7 +51,7 @@ Prompt: `Run the manifest-indexed hermetic stress test for cli-hermes:EC-004 and
 Run from the repository root:
 
 ```bash
-cd .opencode/skills/system-deep-loop/runtime && \
+cd .skilled/skills/system-deep-loop/runtime && \
   npx --no-install vitest run tests/stress/cli-adapter/cli-hermes.vitest.ts \
   --configLoader runner --reporter=verbose \
   -t "times out and terminates the captured cli-hermes process" </dev/null

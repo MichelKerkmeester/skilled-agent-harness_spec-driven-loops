@@ -51,7 +51,7 @@ Prompt: `Run the manifest-indexed hermetic stress test for cli-cursor:EC-014 and
 Run from the repository root:
 
 ```bash
-cd .opencode/skills/system-deep-loop/runtime && \
+cd .skilled/skills/system-deep-loop/runtime && \
   npx --no-install vitest run tests/stress/cli-adapter/cli-cursor.vitest.ts \
   --configLoader runner --reporter=verbose \
   -t "blocks recursive cli-cursor fan-out before process spawn" </dev/null

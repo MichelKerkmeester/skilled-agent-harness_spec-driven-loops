@@ -37,10 +37,10 @@ The continuous-integration workflow resolves this by giving the operator one **l
 
 | Script | Role | Runs where |
 |--------|------|-----------|
-| `.opencode/bin/git-sync.sh` | Publish a session's commits to the live branch | Each session (via the `post-commit` hook, or manually) |
-| `.opencode/bin/git-live-follow.sh` | Fast-forward the IDE checkout as the live branch advances | The operator's primary checkout |
-| `.opencode/bin/git-primary-reconcile.sh` | Reconcile clean primary-checkout drift at SessionStart | The operator's primary checkout, backgrounded by each runtime |
-| `.opencode/bin/worktree-status.sh` | Glance dashboard of every worktree's ahead / behind / dirty state | Anywhere (read-only) |
+| `.skilled/bin/git-sync.sh` | Publish a session's commits to the live branch | Each session (via the `post-commit` hook, or manually) |
+| `.skilled/bin/git-live-follow.sh` | Fast-forward the IDE checkout as the live branch advances | The operator's primary checkout |
+| `.skilled/bin/git-primary-reconcile.sh` | Reconcile clean primary-checkout drift at SessionStart | The operator's primary checkout, backgrounded by each runtime |
+| `.skilled/bin/worktree-status.sh` | Glance dashboard of every worktree's ahead / behind / dirty state | Anywhere (read-only) |
 
 ### `git-sync.sh` — the publish primitive
 
@@ -115,7 +115,7 @@ Wrapper sessions inherit `SPECKIT_AUTOSYNC=1` while committing, so commit-time g
 | Pre-push | Mass-deletion ceiling | Yes, for updates to every branch | No exemption | Blocks real violations with `[gate:mass-deletion]`; hook and sync logs both persist the reason |
 | Pre-push | New-branch naming | Yes | Exact `$SPECKIT_LIVE_BRANCH` autosync is exempt, including first publication; another destination is not | Other invalid new branches block with `[gate:naming]` |
 | Pre-push | Remote permission | Yes | Exact `$SPECKIT_LIVE_BRANCH` autosync is exempt; another destination is not | Other non-allowlisted pushes block with `[gate:remote-permission]` |
-| Pre-push | Skill-root metadata | When the pushed per-ref range changes `.opencode/skills` | No safety exemption and no hook-side regeneration | Blocks with `[gate:skill-root-metadata]`, the exact `--fix` command, and a durable sync-log record |
+| Pre-push | Skill-root metadata | When the pushed per-ref range changes `.skilled/skills` | No safety exemption and no hook-side regeneration | Blocks with `[gate:skill-root-metadata]`, the exact `--fix` command, and a durable sync-log record |
 | Pre-push | Discovered tests | Yes when the runner exists | Report-only by default; no autosync exemption when enforcement is enabled | Enforced failures block with `[gate:test-suites]` and a durable sync-log record |
 
 The skill-root gate deliberately does not run `--fix` from `pre-push`. The commit already exists at that point. Regenerating only the working tree would make a re-check green while the stale committed bytes still reach the remote. The safe path is a loud block, run the exact repair command, then include the generated projection in a new commit so normal autosync can publish it.
@@ -150,10 +150,10 @@ Live-sync is **on by default** in the main checkout. No setup step is required: 
 
 3. **Glance at what's outstanding** any time:
    ```bash
-   bash .opencode/bin/worktree-status.sh --fetch
+   bash .skilled/bin/worktree-status.sh --fetch
    ```
 
-4. **Opt out** - the one master flag `SYSTEM_LIVE_SYNC_DISABLED=1` (truthy `1`/`true`/`on`) disables the whole loop: autosync publish, SessionStart reconcile, follower auto-start, and self-heal install. It honors the shared hook kill-switch convention, so `SYSTEM_HOOKS_DISABLED=1` or a line in `.opencode/hooks/hook-flags.env` also stops it. Finer per-leg switches stay available: `SPECKIT_AUTOSYNC=0` for a single publish, `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` for SessionStart reconciliation, and `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower alone.
+4. **Opt out** - the one master flag `SYSTEM_LIVE_SYNC_DISABLED=1` (truthy `1`/`true`/`on`) disables the whole loop: autosync publish, SessionStart reconcile, follower auto-start, and self-heal install. It honors the shared hook kill-switch convention, so `SYSTEM_HOOKS_DISABLED=1` or a line in `.skilled/hooks/hook-flags.env` also stops it. Finer per-leg switches stay available: `SPECKIT_AUTOSYNC=0` for a single publish, `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` for SessionStart reconciliation, and `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower alone.
 
 ---
 
@@ -166,7 +166,7 @@ The two SessionStart guards that make the model observable are `worktree-guard.s
 | Runtime | Guard wiring |
 |---------|--------------|
 | Claude | `.claude/settings.json` SessionStart |
-| OpenCode | `.opencode/plugins/session-cleanup.js` (runs guards and detached reconcile on `session.created`) |
+| OpenCode | `.skilled/plugins/session-cleanup.js` (runs guards and detached reconcile on `session.created`) |
 | Codex | `.codex/hooks.json` SessionStart |
 | Pi | `session-start-advisories.ts` advisory chain |
 

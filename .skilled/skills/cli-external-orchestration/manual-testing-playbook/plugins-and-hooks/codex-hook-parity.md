@@ -33,8 +33,8 @@ The adapters under test:
 | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | PreToolUse | `spec-gate-core.mjs` · `evaluateMutation` | deny-capable |
 | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | UserPromptSubmit | `spec-gate-core.mjs` · `classifyIntent` | advisory |
 | `hooks/post-edit-quality/codex/post-edit-quality.cjs` | PostToolUse | `post-edit-router.cjs` · `resolveDispatch`/`runChecks` | advisory |
-| `.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs` | PreToolUse(exec) | `dispatch-rule-checks.mjs` · `evaluate` | deny-capable |
-| `.opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` | PostToolUse(exec) | `dispatch-audit.mjs` primitives | observe |
+| `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs` | PreToolUse(exec) | `dispatch-rule-checks.mjs` · `evaluate` | deny-capable |
+| `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` | PostToolUse(exec) | `dispatch-audit.mjs` primitives | observe |
 | `system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` | Stop | `completion-evidence-sentinel.cjs` · `evaluateCompletionEvidence` | advisory |
 | `hooks/mcp-route-guard/codex/mcp-route-guard.cjs` | PreToolUse(`mcp__.*`) | `mcp-route-guard.cjs` · `evaluateNativeMcpCall` | advisory (dormant) |
 
@@ -60,22 +60,22 @@ This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (al
 ```bash
 # deny path — real permissionDecision:"deny". The apply_patch target lives in the
 # patch body (tool_input.command: "*** Add File: <path>"), not a file_path field.
-PROJ="$HOME/.codex-hook-fixtures/proj"; mkdir -p "$PROJ/.opencode/skills/.state/spec-gate"
+PROJ="$HOME/.codex-hook-fixtures/proj"; mkdir -p "$PROJ/.skilled/skills/.state/spec-gate"
 HEX=$(python3 -c "print('fix-sess'.encode().hex())")
-printf '{"status":"open","askedAtMs":1}\n' > "$PROJ/.opencode/skills/.state/spec-gate/$HEX.json"
+printf '{"status":"open","askedAtMs":1}\n' > "$PROJ/.skilled/skills/.state/spec-gate/$HEX.json"
 printf '%s' "{\"tool_name\":\"apply_patch\",\"tool_input\":{\"command\":\"*** Begin Patch\n*** Add File: src/app.ts\n+export const x=1;\n*** End Patch\"},\"cwd\":\"$PROJ\",\"session_id\":\"fix-sess\"}" \
-  | SYSTEM_SPEC_GATE_ENFORCE=1 node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs; echo "  exit=$?"
+  | SYSTEM_SPEC_GATE_ENFORCE=1 node .skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs; echo "  exit=$?"
 
 # fail-open — empty + malformed stdin exit 0 with no emit (every adapter)
-printf '' | node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs; echo "empty exit=$?"
-printf '{' | node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs; echo "malformed exit=$?"
+printf '' | node .skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs; echo "empty exit=$?"
+printf '{' | node .skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs; echo "malformed exit=$?"
 ```
 
 2. `spec-gate-classify` advisory on a mutation-intent prompt (fresh session dir → opens the gate, emits the Gate-3 menu):
 
 ```bash
 printf '%s' '{"prompt":"implement a new parser function and fix the failing test","cwd":"'"$HOME"'/.codex-hook-fixtures/fresh","session_id":"cls-1"}' \
-  | node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs; echo "  exit=$?"
+  | node .skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs; echo "  exit=$?"
 ```
 
 3. `dispatch-audit` records a `codex exec -p` dispatch shape (observe-only JSONL, no envelope):
@@ -83,8 +83,8 @@ printf '%s' '{"prompt":"implement a new parser function and fix the failing test
 ```bash
 PROJ="$HOME/.codex-hook-fixtures/proj"
 printf '%s' "{\"tool_name\":\"exec\",\"tool_input\":{\"command\":\"codex exec -p orchestrate 'do x'\"},\"cwd\":\"$PROJ\",\"session_id\":\"aud-1\",\"tool_response\":{\"stdout\":\"ok\"}}" \
-  | node .opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs
-tail -1 "$PROJ/.opencode/logs/cli-dispatch-audit.log"
+  | node .skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs
+tail -1 "$PROJ/.skilled/logs/cli-dispatch-audit.log"
 ```
 
 4. Live `codex exec` — fires the real SessionStart/UserPromptSubmit/Stop chains; a mutation-intent prompt makes `spec-gate-classify` open a session-scoped gate whose filename encodes the Codex session id:
@@ -93,15 +93,15 @@ tail -1 "$PROJ/.opencode/logs/cli-dispatch-audit.log"
 PROJ="$HOME/.codex-live-test/proj"; rm -rf "$HOME/.codex-live-test"; mkdir -p "$PROJ"
 timeout 90 codex exec -C "$PROJ" --skip-git-repo-check --dangerously-bypass-hook-trust -s read-only \
   "add a new function to parser.ts and fix the failing test" 2>&1 | grep -E 'hook: (SessionStart|UserPromptSubmit|Stop)|option E|no spec'
-find "$PROJ/.opencode/skills/.state/spec-gate" -name '*.json' -exec cat {} \;
+find "$PROJ/.skilled/skills/.state/spec-gate" -name '*.json' -exec cat {} \;
 ```
 
 5. Installer idempotency + preservation (dry-run then real, then re-run):
 
 ```bash
-node .opencode/bin/install-codex-hooks.mjs --repo "$PWD" --dry-run   # inspect added/skipped
-node .opencode/bin/install-codex-hooks.mjs --repo "$PWD"             # backs up ~/.codex/hooks.json.bak-<ts>
-node .opencode/bin/install-codex-hooks.mjs --repo "$PWD"             # re-run → added: 0 (idempotent)
+node .skilled/bin/install-codex-hooks.mjs --repo "$PWD" --dry-run   # inspect added/skipped
+node .skilled/bin/install-codex-hooks.mjs --repo "$PWD"             # backs up ~/.codex/hooks.json.bak-<ts>
+node .skilled/bin/install-codex-hooks.mjs --repo "$PWD"             # re-run → added: 0 (idempotent)
 grep -c 'notify.sh' "$HOME/.codex/hooks.json"                        # Superset entries preserved
 ```
 
@@ -176,7 +176,7 @@ hook: UserPromptSubmit Completed (×3)
 `spec-gate-classify` wrote a real session-scoped gate-state during the live run; the filename hex decodes to the exact Codex session id (`019f5cc0-5cc8-76e3-8c24-a5088e055c33`), proving the adapter read Codex's snake_case `session_id` + `cwd` and persisted state:
 
 ```text
-.opencode/skills/.state/spec-gate/30313966356363302d356363382d373665332d386332342d613530383865303535633333.json
+.skilled/skills/.state/spec-gate/30313966356363302d356363382d373665332d386332342d613530383865303535633333.json
 ```
 ```json
 { "status": "open", "askedAtMs": 1783967540852 }
@@ -220,15 +220,15 @@ Stop chain (resolved): an earlier run showed one `Stop Failed` while the other t
 ## 5. SOURCE FILES
 
 - Guard adapters (this parity set):
-  - `.opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs`
-  - `.opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs`
-  - `.opencode/hooks/post-edit-quality/codex/post-edit-quality.cjs`
-  - `.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs`
-  - `.opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs`
-  - `.opencode/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs`
-  - `.opencode/hooks/mcp-route-guard/codex/mcp-route-guard.cjs`
+  - `.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs`
+  - `.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs`
+  - `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs`
+  - `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs`
+  - `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs`
+  - `.skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs`
+  - `.skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs`
 - Repo hook registration (versioned source of truth): `.codex/hooks.json`
-- Installer (merge into user-global `~/.codex/hooks.json`): `.opencode/bin/install-codex-hooks.mjs`
+- Installer (merge into user-global `~/.codex/hooks.json`): `.skilled/bin/install-codex-hooks.mjs`
 - Spec packet: `.opencode/specs/skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity/`
 
 ---

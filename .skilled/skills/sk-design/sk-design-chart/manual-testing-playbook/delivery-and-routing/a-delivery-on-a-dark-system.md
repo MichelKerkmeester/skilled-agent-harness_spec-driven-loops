@@ -51,17 +51,17 @@ A desktop browser and an operating system whose colour scheme can be switched. A
 
 ### Commands
 
-1. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render > before.txt 2>&1`
+1. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render > before.txt 2>&1`
 2. `bash: echo $?`
 3. `agent: Set the operating system appearance to dark, open assets/templates/treemap.html from a file:// URL and read the card, the four category colours, the card edge and the table`
 4. `agent: Set the operating system appearance to light, reload the same file and read it again`
 5. `agent: With the appearance set to dark, print the same file to PDF and read the colours on the page`
-6. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/templates/bar-columns.html /tmp/keep.html`
+6. `bash: cp .skilled/skills/sk-design/sk-design-chart/assets/templates/bar-columns.html /tmp/keep.html`
 7. `agent: In bar-columns.html, change the dark block's media query to "@media (prefers-color-scheme: dark) and (min-width: 99999px)", which leaves every text check satisfied and stops the block ever painting`
-8. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render > broken.txt 2>&1`
-9. `bash: cp /tmp/keep.html .opencode/skills/sk-design/sk-design-chart/assets/templates/bar-columns.html`
-10. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render > after.txt 2>&1`
-11. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
+8. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render > broken.txt 2>&1`
+9. `bash: cp /tmp/keep.html .skilled/skills/sk-design/sk-design-chart/assets/templates/bar-columns.html`
+10. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render > after.txt 2>&1`
+11. `bash: git status --porcelain .skilled/skills/sk-design/sk-design-chart`
 
 Step 9 restores from the copy taken in step 6 rather than from version control, because a restore from the last commit throws away any uncommitted work in the same file and the run that follows then fails for a reason unrelated to the break.
 

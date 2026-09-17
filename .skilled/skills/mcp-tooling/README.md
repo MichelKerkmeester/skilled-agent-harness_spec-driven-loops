@@ -138,7 +138,7 @@ Reach for the hub whenever a request names one of its eight surfaces: browser de
 ## 6. VERIFICATION
 
 ```bash
-node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/mcp-tooling
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/mcp-tooling
 ```
 
 Expected: 0 invariant failures and 0 warnings with `PARENT_HUB_CHECK_STRICT=1`.

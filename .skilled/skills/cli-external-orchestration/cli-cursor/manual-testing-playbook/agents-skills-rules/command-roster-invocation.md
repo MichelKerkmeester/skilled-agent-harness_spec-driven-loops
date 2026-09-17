@@ -40,7 +40,7 @@ The command roster is a separate parity surface from custom agents. File presenc
    node <<'NODE'
    const fs = require("node:fs");
    const path = require("node:path");
-   const { isCanonicalMirrorExcluded } = require("./.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs");
+   const { isCanonicalMirrorExcluded } = require("./.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs");
    const excludedDirs = new Set(["assets", "scripts", "fixtures"]);
    const canonical = [];
    function walk(dir, relative = "") {
@@ -53,7 +53,7 @@ The command roster is a separate parity surface from custom agents. File presenc
        }
      }
    }
-   walk(".opencode/commands");
+   walk(".skilled/commands");
    const native = fs.existsSync(".cursor/commands/goal-cursor.md") ? 1 : 0;
    const expected = canonical.length + native;
    const actual = fs.readdirSync(".cursor/commands").filter((name) => name.endsWith(".md")).length;
@@ -95,7 +95,7 @@ The command roster is a separate parity surface from custom agents. File presenc
 |---|---|
 | `../../SKILL.md` | Cursor command-file parity boundary |
 | `../../../../.cursor/commands/` | Cursor-facing command roster |
-| `../../../../.opencode/commands/` | Canonical command bodies |
+| `../../../../.skilled/commands/` | Canonical command bodies |
 
 ---
 

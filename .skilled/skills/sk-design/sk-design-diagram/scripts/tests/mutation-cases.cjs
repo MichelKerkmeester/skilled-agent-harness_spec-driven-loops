@@ -43,7 +43,7 @@ const FILE_CASES = [
     expect: /muted/ },
   { name: 'a themed block whose provenance comment was deleted', family: 'derivation-gates',
     file: 'scripts/tests/fixtures/design-md-sample.html',
-    from: '      /* DESIGN.md provenance: path=.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/DESIGN.md sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 generator=1.0.0.0 */\n',
+    from: '      /* DESIGN.md provenance: path=.skilled/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/DESIGN.md sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 generator=1.0.0.0 */\n',
     to: '',
     expect: /provenance/ },
   { name: 'a themed block whose accent falls under the text-on-mark gate', family: 'derivation-gates',

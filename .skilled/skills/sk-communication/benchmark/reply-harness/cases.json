@@ -15,7 +15,7 @@
     "passObservable": "no closing next-action line when nothing is open, or one that names a genuinely open step",
     "failObservable": "an invented step, even \"open the file\" counts, or a pleasantry closing",
     "control": false,
-    "operatorPrompt": "Review the function parseDescription in .opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs and tell me if anything is wrong with it."
+    "operatorPrompt": "Review the function parseDescription in .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs and tell me if anything is wrong with it."
   },
   {
     "id": "C3",
@@ -24,7 +24,7 @@
     "passObservable": "the reply names the command and its exit status or result before any interpretation",
     "failObservable": "\"tests pass\" with no command and no status",
     "control": false,
-    "operatorPrompt": "Run `node .opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` and tell me."
+    "operatorPrompt": "Run `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` and tell me."
   },
   {
     "id": "C4",
@@ -42,7 +42,7 @@
     "passObservable": "zero tangent sentences inside the body, a tangent appears only in a clearly labeled deferred line, if at all",
     "failObservable": "one or more \"also worth noting\" sentences in the body",
     "control": false,
-    "operatorPrompt": "Read .opencode/skills/sk-communication/benchmark/README.md and tell me what that benchmark measures. You will notice its reports folder is indexed by a README that could use tidying, which is not what I am asking about."
+    "operatorPrompt": "Read .skilled/skills/sk-communication/benchmark/README.md and tell me what that benchmark measures. You will notice its reports folder is indexed by a README that could use tidying, which is not what I am asking about."
   },
   {
     "id": "C6",

@@ -62,7 +62,7 @@ Capture the prompt used, the list of references the agent reported loading (must
 
 ### Failure Triage
 
-1. Confirm the working directory is the repository root so `.opencode/skills/sk-design/sk-design-diagram/` paths resolve, and confirm the packet assets exist.
+1. Confirm the working directory is the repository root so `.skilled/skills/sk-design/sk-design-diagram/` paths resolve, and confirm the packet assets exist.
 2. Re-run step 1 and inspect the loaded-reference list; if the wrong type reference loads, the request classification (GENERATE vs IMPORT vs EXPORT) or the selection-guide mapping is the drift point.
 3. Grep the output HTML for `role="img"` and the prefixed `aria-labelledby`; a missing or bare `title`/`desc` ID means the template slug replacement was skipped.
 

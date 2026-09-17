@@ -10,7 +10,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 
 ## 1. OVERVIEW
 
-Invoke the real `/sk-doc` repository skill from a bounded read-only Devin print session. The skill is discovered natively from `.opencode/skills/sk-doc`; no command-file mirror is involved.
+Invoke the real `/sk-doc` repository skill from a bounded read-only Devin print session. The skill is discovered natively from `.skilled/skills/sk-doc`; no command-file mirror is involved.
 
 ### Why This Matters
 
@@ -59,7 +59,7 @@ Capture the Devin exit status, `/tmp/cli-devin-dv015.txt`, both status snapshots
 
 ### Failure Triage
 
-Confirm `/sk-doc` appears in `devin skills list`, verify `.opencode/skills/sk-doc/SKILL.md` exists, then inspect the captured transcript. Diagnose native discovery or invocation directly; do not create command mirrors.
+Confirm `/sk-doc` appears in `devin skills list`, verify `.skilled/skills/sk-doc/SKILL.md` exists, then inspect the captured transcript. Diagnose native discovery or invocation directly; do not create command mirrors.
 
 | Feature ID | Feature Name | Scenario Name/Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

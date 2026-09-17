@@ -67,7 +67,7 @@ The local Pi contract record captured identical unauthenticated dispatches retur
 | File | Role |
 |---|---|
 | `../../references/cli-reference.md` | Records the observed inconsistent failure exit codes |
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Runtime model allowlist used when a successful dispatch is later available |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Runtime model allowlist used when a successful dispatch is later available |
 
 ---
 

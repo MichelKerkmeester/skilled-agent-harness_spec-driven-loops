@@ -17,7 +17,7 @@ This snippet runs the manifest-indexed hermetic test for `fanout-run:EC-009`.
 Run from the repository root:
 
 ```bash
-cd .opencode/skills/system-deep-loop/runtime && \
+cd .skilled/skills/system-deep-loop/runtime && \
   npx --no-install vitest run tests/stress/cli-adapter/fanout.vitest.ts \
   --configLoader runner --reporter=verbose \
   -t "rejects lineage and aggregate budgets before provider process spawn" </dev/null

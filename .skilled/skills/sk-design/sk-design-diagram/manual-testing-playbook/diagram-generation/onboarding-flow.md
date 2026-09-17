@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `DIA-003` and confirm th
 3. `agent: Fetch 2–3 pages of https://example.com (calling session's own fetch tools); extract body background -> paper, body text -> ink, brand CTA -> accent, h1 font -> title, mono element -> sublabel`
 4. `agent: Fill the role-mapping table with confidence values, run AA contrast checks, and propose the style-guide.md diff`
 5. `agent: STOP — wait for approval; write the approved tokens into references/foundations/style-guide.md only after approval`
-6. `bash: git status .opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md` (confirm only the approved tokens changed)
+6. `bash: git status .skilled/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md` (confirm only the approved tokens changed)
 
 ### Expected
 

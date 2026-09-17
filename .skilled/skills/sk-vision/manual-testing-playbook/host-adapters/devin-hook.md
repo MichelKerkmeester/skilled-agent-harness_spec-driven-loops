@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-028` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-028 | Devin prompt-time injection | Verify registration, injection on a real image, and silence otherwise | What does `<FIXTURE>` say? | 1. bash: `node -e 'const h=require("./.devin/hooks.v1.json"); const hit=h.UserPromptSubmit[0].hooks.some(x=>x.command.includes("sk-vision.mjs")); if(!hit) throw new Error("not registered"); console.log("registered")'` -> 2. bash: `test -f .opencode/skills/sk-vision/vision-runtime/dist/prompt-evidence.js` -> 3. bash: `echo '{"prompt":"what does <FIXTURE> say?","cwd":"'$PWD'","hook_event_name":"UserPromptSubmit"}' \| node .opencode/skills/sk-vision/hooks/devin/sk-vision.mjs` -> 4. Devin: start a session in this repo and send the prompt naming `<FIXTURE>` -> 5. Devin: send a prompt naming no image | Step 1 prints `registered`. Step 2 exits 0. Step 3 prints an envelope whose `additionalContext` starts with `<SK-VISION EVIDENCE>`. Step 4 quotes text actually in the image. Step 5 produces no vision block and no GPU spin | Registration output, the adapter envelope, the live reply, and the silent no-image turn | PASS if the hook injects on a resolvable path, the model answers from that evidence, and the no-image case stays silent. FAIL on a missing registration, an empty envelope for a real image, or any stderr output | 1. Confirm the registration in `.devin/hooks.v1.json` -> 2. Run `bun run scripts/build.ts` in `vision-runtime/` -> 3. Confirm the path in the prompt resolves from `cwd` -> 4. Check `SYSTEM_SK_VISION_DISABLED` and `SYSTEM_HOOKS_DISABLED` -> 5. On a cold model, expect the 60-second timeout to skip the first turn |
+| VSN-028 | Devin prompt-time injection | Verify registration, injection on a real image, and silence otherwise | What does `<FIXTURE>` say? | 1. bash: `node -e 'const h=require("./.devin/hooks.v1.json"); const hit=h.UserPromptSubmit[0].hooks.some(x=>x.command.includes("sk-vision.mjs")); if(!hit) throw new Error("not registered"); console.log("registered")'` -> 2. bash: `test -f .skilled/skills/sk-vision/vision-runtime/dist/prompt-evidence.js` -> 3. bash: `echo '{"prompt":"what does <FIXTURE> say?","cwd":"'$PWD'","hook_event_name":"UserPromptSubmit"}' \| node .skilled/skills/sk-vision/hooks/devin/sk-vision.mjs` -> 4. Devin: start a session in this repo and send the prompt naming `<FIXTURE>` -> 5. Devin: send a prompt naming no image | Step 1 prints `registered`. Step 2 exits 0. Step 3 prints an envelope whose `additionalContext` starts with `<SK-VISION EVIDENCE>`. Step 4 quotes text actually in the image. Step 5 produces no vision block and no GPU spin | Registration output, the adapter envelope, the live reply, and the silent no-image turn | PASS if the hook injects on a resolvable path, the model answers from that evidence, and the no-image case stays silent. FAIL on a missing registration, an empty envelope for a real image, or any stderr output | 1. Confirm the registration in `.devin/hooks.v1.json` -> 2. Run `bun run scripts/build.ts` in `vision-runtime/` -> 3. Confirm the path in the prompt resolves from `cwd` -> 4. Check `SYSTEM_SK_VISION_DISABLED` and `SYSTEM_HOOKS_DISABLED` -> 5. On a cold model, expect the 60-second timeout to skip the first turn |
 
 ---
 
@@ -87,10 +87,10 @@ PASS if the hook injects on a resolvable path, the model answers from that evide
 
 | File | Role |
 |---|---|
-| `.opencode/skills/sk-vision/hooks/devin/sk-vision.mjs` | The adapter under test |
+| `.skilled/skills/sk-vision/hooks/devin/sk-vision.mjs` | The adapter under test |
 | `.devin/hooks.v1.json` | Devin registration on `UserPromptSubmit` |
 | `vision-runtime/src/evidence/prompt-evidence.ts` | Shared detection and analysis core |
-| `.opencode/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs` | Fail-open and wiring assertions |
+| `.skilled/skills/sk-vision/hooks/devin/sk-vision-devin.test.mjs` | Fail-open and wiring assertions |
 
 ---
 

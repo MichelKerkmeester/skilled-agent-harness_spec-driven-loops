@@ -954,11 +954,11 @@ lsof -i :9222
 
 | Document        | Location                                                                  | Purpose              |
 | --------------- | ------------------------------------------------------------------------- | -------------------- |
-| SKILL.md        | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`                      | Complete workflows   |
-| CDP Patterns    | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md`    | Domain patterns      |
-| Troubleshooting | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md` | Detailed fixes       |
-| Examples        | `.opencode/skills/mcp-tooling/mcp-chrome-devtools/examples/README.md`            | Production templates |
-| Code Mode Guide | `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md`                          | Code Mode setup      |
+| SKILL.md        | `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`                      | Complete workflows   |
+| CDP Patterns    | `.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md`    | Domain patterns      |
+| Troubleshooting | `.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md` | Detailed fixes       |
+| Examples        | `.skilled/skills/mcp-tooling/mcp-chrome-devtools/examples/README.md`            | Production templates |
+| Code Mode Guide | `.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md`                          | Code Mode setup      |
 
 ### Configuration Paths
 

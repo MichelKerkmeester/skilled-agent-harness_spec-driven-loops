@@ -29,7 +29,7 @@ Systematically complete development work by verifying tests, presenting integrat
 
 **Core principle**: Verify tests → Present options → Execute choice → Clean up = reliable completion workflow
 
-> **Continuous-integration note**: When a session runs under the launch wrapper's continuous-integration model, each commit is already **autosynced** to the shared live branch via `git-sync.sh` (see [continuous-integration.md](continuous-integration.md)), and the primary checkout follows it with `git-live-follow.sh`. In that mode the Step 5b manual reconciliation below is normally already done for you; "finish" is then just the final PR/merge decision. To publish outstanding commits on demand outside a commit, run `bash .opencode/bin/git-sync.sh` from the session worktree.
+> **Continuous-integration note**: When a session runs under the launch wrapper's continuous-integration model, each commit is already **autosynced** to the shared live branch via `git-sync.sh` (see [continuous-integration.md](continuous-integration.md)), and the primary checkout follows it with `git-live-follow.sh`. In that mode the Step 5b manual reconciliation below is normally already done for you; "finish" is then just the final PR/merge decision. To publish outstanding commits on demand outside a commit, run `bash .skilled/bin/git-sync.sh` from the session worktree.
 
 ---
 
@@ -387,7 +387,7 @@ git -C <primary-worktree> merge-base --is-ancestor <pushed-sha> HEAD \
    ```
 
 2. **Locate or create changelog**:
-   - Check for existing changelog at `.opencode/changelog/*/vX.X.X.X.md`
+   - Check for existing changelog at `.skilled/changelog/*/vX.X.X.X.md`
    - If found: use as release notes source
    - If not found: ask user whether to create one or use commit log
 
@@ -722,7 +722,7 @@ Agent: "I'm using the git-commit skill to commit, then creating the release."
 > git push origin main
 
 [Create Changelog]
-Created .opencode/changelog/01--system-spec-kit/v2.1.0.0.md
+Created .skilled/changelog/01--system-spec-kit/v2.1.0.0.md
 
 [Tag and Release]
 > git tag -a v2.1.0.0 -m "v2.1.0.0: OAuth2 authentication + API rate limiting"

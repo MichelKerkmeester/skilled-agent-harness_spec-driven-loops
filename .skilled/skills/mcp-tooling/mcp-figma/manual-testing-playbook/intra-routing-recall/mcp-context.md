@@ -57,9 +57,9 @@ Pull design context through code mode via the figma-developer-mcp wiring.
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/mcp-context.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-figma/SKILL.md | sed -n '/"MCP_CONTEXT":/p'`
-3. `for p in references/mcp-wiring.md assets/utcp-figma-manual.md assets/env-template.md references/figma-cli-reference.md; do test -e ".opencode/skills/mcp-tooling/mcp-figma/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,17p' .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/mcp-context.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-figma/SKILL.md | sed -n '/"MCP_CONTEXT":/p'`
+3. `for p in references/mcp-wiring.md assets/utcp-figma-manual.md assets/env-template.md references/figma-cli-reference.md; do test -e ".skilled/skills/mcp-tooling/mcp-figma/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

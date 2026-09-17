@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 
 Verify the sk-git preflight advisory reaches a Devin `PreToolUse` `exec` event on a directory-scoped commit that would silently drop an untracked file, and that the advisory never blocks the command.
 
-The advisory is the shared sk-git preflight hook at `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs`. It reads the 17 `hard_rules:` from `.opencode/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `hookSpecificOutput.additionalContext` starting with `⚠ sk-git advisory`. It never blocks, fails open, and caps at three advisories per command. Devin registers it directly under `.devin/hooks.v1.json` `PreToolUse` matcher `^exec$`, in the same `DEVIN_PROJECT_DIR` shell envelope its sibling hooks use, with an approval-JSON fallback so a resolution failure still approves.
+The advisory is the shared sk-git preflight hook at `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs`. It reads the 17 `hard_rules:` from `.skilled/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `hookSpecificOutput.additionalContext` starting with `⚠ sk-git advisory`. It never blocks, fails open, and caps at three advisories per command. Devin registers it directly under `.devin/hooks.v1.json` `PreToolUse` matcher `^exec$`, in the same `DEVIN_PROJECT_DIR` shell envelope its sibling hooks use, with an approval-JSON fallback so a resolution failure still approves.
 
 ### Why This Matters
 
@@ -28,7 +28,7 @@ Devin runs shell commands through the `exec` tool. A directory-scoped `git commi
 - Expected execution process: Confirm the `.devin/hooks.v1.json` registration under `PreToolUse` `^exec$` -> create a scratch repo with a modified tracked file and an untracked file under a subdir -> pipe an `exec` payload for `git commit --only <dir> -m x` through the shared hook -> observe the advisory naming `commit-scope-drops-untracked` -> repeat with `SKGIT_ADVISORY=0` and confirm silence -> run an ordinary clean commit and confirm silence.
 - Expected signals: `additionalContext` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`; no denial field; the commit still runs; the suppressed re-run prints nothing; the ordinary commit prints nothing; the registered fallback approves when the hook cannot resolve.
 - Desired user-visible outcome: A concise PASS, FAIL, or SKIP verdict with the advisory text and silence evidence.
-- Pass/fail: PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND suppression silences it. FAIL if the command is blocked or no advisory appears on the trap shape. SKIP applies only when the shared hook file `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` is missing from this checkout, blocking every step.
+- Pass/fail: PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND suppression silences it. FAIL if the command is blocked or no advisory appears on the trap shape. SKIP applies only when the shared hook file `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` is missing from this checkout, blocking every step.
 
 ---
 
@@ -41,8 +41,8 @@ Prompt: `As a git safety reviewer, run the sk-git preflight advisory under a Dev
 ### Commands
 
 1. `grep -n "git-preflight-advisory.mjs" .devin/hooks.v1.json` (confirm registration under `PreToolUse` matcher `^exec$`).
-2. Build a scratch repo: `repo=$(mktemp -d /tmp/dv-021.XXXXXX) && git -C "$repo" init -q && git -C "$repo" config core.hooksPath "$repo/.no-hooks" && git -C "$repo" config user.email t@example.invalid && git -C "$repo" config user.name T && git -C "$repo" config commit.gpgsign false && mkdir -p "$repo/.opencode/skills/sk-git" && cp .opencode/skills/sk-git/SKILL.md "$repo/.opencode/skills/sk-git/SKILL.md" && mkdir -p "$repo/src" && printf 'seed\n' > "$repo/src/tracked.txt" && git -C "$repo" add src/tracked.txt && git -C "$repo" commit -q -m seed && printf 'mod\n' > "$repo/src/tracked.txt" && printf 'untracked\n' > "$repo/src/untracked.txt"`.
-3. Trap payload: `printf '%s' '{"tool_name":"exec","tool_input":{"command":"git commit --only src -m x"},"cwd":"'"$repo"'"}' | node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` — expect advisory JSON naming `commit-scope-drops-untracked`.
+2. Build a scratch repo: `repo=$(mktemp -d /tmp/dv-021.XXXXXX) && git -C "$repo" init -q && git -C "$repo" config core.hooksPath "$repo/.no-hooks" && git -C "$repo" config user.email t@example.invalid && git -C "$repo" config user.name T && git -C "$repo" config commit.gpgsign false && mkdir -p "$repo/.skilled/skills/sk-git" && cp .skilled/skills/sk-git/SKILL.md "$repo/.skilled/skills/sk-git/SKILL.md" && mkdir -p "$repo/src" && printf 'seed\n' > "$repo/src/tracked.txt" && git -C "$repo" add src/tracked.txt && git -C "$repo" commit -q -m seed && printf 'mod\n' > "$repo/src/tracked.txt" && printf 'untracked\n' > "$repo/src/untracked.txt"`.
+3. Trap payload: `printf '%s' '{"tool_name":"exec","tool_input":{"command":"git commit --only src -m x"},"cwd":"'"$repo"'"}' | node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` — expect advisory JSON naming `commit-scope-drops-untracked`.
 4. Suppressed re-run: same payload piped through `SKGIT_ADVISORY=0 node ...` — expect zero stdout.
 5. Ordinary clean commit in a clean scratch repo — expect zero stdout.
 6. Fail-open check: run the registered envelope with `DEVIN_PROJECT_DIR` unset and a non-repo `cwd` — expect the fallback approval JSON, never a denied command.
@@ -66,7 +66,7 @@ confirmations from steps 4-5, and the fail-open approval JSON from step 6.
 - **Fail**: the command is blocked, or no advisory appears on the trap shape, or step 6 denies
   instead of falling open.
 - **Skip**: only when the shared hook file
-  `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` is missing from this checkout,
+  `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` is missing from this checkout,
   blocking every step; record that exact missing-file blocker.
 
 ### Failure Triage

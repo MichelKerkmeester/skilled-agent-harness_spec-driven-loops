@@ -78,7 +78,7 @@ Capture full search output and the grep match output.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg cdp --search usage |
+| `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg cdp --search usage |
 
 ---
 

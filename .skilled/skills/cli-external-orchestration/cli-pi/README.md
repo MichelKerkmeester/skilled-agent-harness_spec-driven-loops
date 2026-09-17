@@ -164,7 +164,7 @@ A: It is a common short word and a math constant. This packet uses multi-word al
 | Output handling | Text, JSON and RPC consumers use the matching parser |
 | Workspace safety | Returned changes pass the calling workflow's verification gates |
 | Package safety | Community packages remain explicitly labeled and trust-gated |
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-pi/README.md --type readme` reports zero issues |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-pi/README.md --type readme` reports zero issues |
 | Manual playbook | `manual-testing-playbook/manual-testing-playbook.md` runs every scenario behind these checks |
 
 ---

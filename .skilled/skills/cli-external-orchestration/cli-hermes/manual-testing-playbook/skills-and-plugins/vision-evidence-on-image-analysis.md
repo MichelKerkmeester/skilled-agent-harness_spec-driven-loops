@@ -83,7 +83,7 @@ cat out.txt
 |---|---|
 | [SYNC.md](../../../../../../.hermes/SYNC.md) | What the plugin bridges and how |
 | [hook-contract.md](../../references/hook-contract.md) | The plugin hook map |
-| `.opencode/hooks/sk-vision/devin/sk-vision.mjs` | The core the bridge runs |
+| `.skilled/hooks/sk-vision/devin/sk-vision.mjs` | The core the bridge runs |
 
 ---
 

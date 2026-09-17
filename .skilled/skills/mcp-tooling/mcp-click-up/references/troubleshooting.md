@@ -247,7 +247,7 @@ cat .utcp_config.json | grep -A10 '"clickup_official"'
 ```
 
 **Fix:**
-1. Run `bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh --mcp-only` to print the manual snippet
+1. Run `bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh --mcp-only` to print the manual snippet
 2. Add it to `.utcp_config.json` under `manual_call_templates`, and set `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` in the environment available to Code Mode
 3. Reconnect Code Mode and verify that the stdio server starts; there is no browser authorization step
 

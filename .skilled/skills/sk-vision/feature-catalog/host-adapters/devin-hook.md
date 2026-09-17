@@ -47,7 +47,7 @@ The core is loaded lazily, because `dist/` is gitignored and a fresh checkout re
 | `vision-runtime/src/evidence/prompt-evidence.ts` | Core | Image-path detection, analysis, evidence wrapping, teardown |
 | `vision-runtime/scripts/build.ts` | Script | Bundles the core to `dist/prompt-evidence.js`, node-targeted |
 | `.devin/hooks.v1.json` | Script | Devin registration on `UserPromptSubmit` |
-| `.opencode/hooks/sk-vision/devin/sk-vision.mjs` | Script | Shared hook-hub mirror symlink |
+| `.skilled/hooks/sk-vision/devin/sk-vision.mjs` | Script | Shared hook-hub mirror symlink |
 
 ### Validation And Tests
 

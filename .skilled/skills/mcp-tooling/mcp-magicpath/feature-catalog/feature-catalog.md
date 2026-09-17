@@ -17,7 +17,7 @@ This document is the canonical capability inventory for the `mcp-magicpath` skil
 
 > **Calling convention (hard).** Tools are synchronous inside `call_tool_chain`: no `await`, no top-level `await`, no returned Promise (a returned Promise silently marshals as `{}`). Plain JavaScript only; TypeScript type annotations fail to parse. A failing command does not throw; it returns the error text or a JSON error object as an ordinary value, so inspect the returned value rather than rely on `try`/`catch`.
 
-> **Verification note.** The tool rows below are the documented contract from the registered manual (`node .opencode/bin/magicpath-utcp-manual.cjs`), which is the source of truth for what an agent can call. `magicpath-ai info -o json`'s `cli.commands` list is stale and under-reports; `magicpath-ai --help` is authoritative. Most tools require a credential (`magicpath-ai login` or `MAGICPATH_TOKEN`); `info` is the exception and answers without one. Verify any argument or result field with `tool_info` before relying on it; the provider surface can grow, so unknown fields are preserved, never stripped.
+> **Verification note.** The tool rows below are the documented contract from the registered manual (`node .skilled/bin/magicpath-utcp-manual.cjs`), which is the source of truth for what an agent can call. `magicpath-ai info -o json`'s `cli.commands` list is stale and under-reports; `magicpath-ai --help` is authoritative. Most tools require a credential (`magicpath-ai login` or `MAGICPATH_TOKEN`); `info` is the exception and answers without one. Verify any argument or result field with `tool_info` before relying on it; the provider surface can grow, so unknown fields are preserved, never stripped.
 
 ---
 

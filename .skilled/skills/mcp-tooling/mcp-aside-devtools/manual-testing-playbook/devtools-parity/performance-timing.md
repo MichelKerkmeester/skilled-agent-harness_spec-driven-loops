@@ -79,8 +79,8 @@ The REPL transcript and parsed timing JSON, plus the written Lighthouse-gap stat
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/performance-timing.md` | Capability leaf with the repl code + Lighthouse gap |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json` | One-`repl`-tool inventory: no Lighthouse/trace tool |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/performance-timing.md` | Capability leaf with the repl code + Lighthouse gap |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json` | One-`repl`-tool inventory: no Lighthouse/trace tool |
 
 ---
 

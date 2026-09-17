@@ -86,7 +86,7 @@ PIDs, kill transcript, post-kill failure output, stderr contents, recovery probe
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md` | Dead-child vs daemon-unavailable distinction |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md` | Dead-child vs daemon-unavailable distinction |
 
 ---
 

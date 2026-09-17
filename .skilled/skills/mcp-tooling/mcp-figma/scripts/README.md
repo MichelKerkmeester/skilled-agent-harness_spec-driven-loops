@@ -33,8 +33,8 @@ description: "Install, connect, daemon, and read-only diagnostic scripts for the
 Run from the repository root.
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-figma/scripts/doctor.sh
-bash .opencode/skills/mcp-tooling/mcp-figma/scripts/install.sh --skip-verify
+bash .skilled/skills/mcp-tooling/mcp-figma/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-figma/scripts/install.sh --skip-verify
 ```
 
 Expected result: `doctor.sh` prints a checklist with no red `✗` lines. `install.sh` resolves a `figma-ds-cli` binary and reports its version. `connect-safe.sh`, `connect-yolo.sh`, `daemon.sh`, and `unpatch.sh` require an interactive session or a running Figma Desktop and are not part of automated validation.

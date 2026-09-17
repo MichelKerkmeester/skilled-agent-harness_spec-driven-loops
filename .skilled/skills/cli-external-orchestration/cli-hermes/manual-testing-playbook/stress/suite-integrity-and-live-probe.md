@@ -65,7 +65,7 @@ Prompt: `Run the cli-hermes stress file unfiltered and report PASS, FAIL, or SKI
 Run from the repository root:
 
 ```bash
-cd .opencode/skills/system-deep-loop/runtime && \
+cd .skilled/skills/system-deep-loop/runtime && \
   npx --no-install vitest run tests/stress/cli-adapter/cli-hermes.vitest.ts \
   --configLoader runner --reporter=verbose </dev/null
 ```
@@ -117,8 +117,8 @@ checks are named as passed and the live transport probe is named as skipped.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-hermes.vitest.ts` | The stress file this scenario runs whole |
-| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts` | The shared suite the adapter cells are built from |
+| `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-hermes.vitest.ts` | The stress file this scenario runs whole |
+| `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts` | The shared suite the adapter cells are built from |
 
 ---
 

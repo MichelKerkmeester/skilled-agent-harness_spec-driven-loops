@@ -45,18 +45,18 @@ The packet holds the Hermes workflow contract only. It adds no advisor identity 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/cli-external-orchestration/mode-registry.json` | Shared | The `cli-hermes` mode entry: packet kind, tool surface, aliases, advisor routing class. |
-| `.opencode/skills/cli-external-orchestration/hub-router.json` | Shared | Stage-one scoring: mode weight, vocabulary classes, and the resource to load. |
-| `.opencode/skills/cli-external-orchestration/ROUTER.md` | Shared | Stage-two leaf-intent model, including the `HERMES` intent and its resource map. |
-| `.opencode/skills/cli-external-orchestration/SKILL.md` | Shared | Hub mode table and the workflow-packet classification for all seven modes. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The packet contract: activation triggers, self-invocation guard, dispatch shape, hard rules. |
+| `.skilled/skills/cli-external-orchestration/mode-registry.json` | Shared | The `cli-hermes` mode entry: packet kind, tool surface, aliases, advisor routing class. |
+| `.skilled/skills/cli-external-orchestration/hub-router.json` | Shared | Stage-one scoring: mode weight, vocabulary classes, and the resource to load. |
+| `.skilled/skills/cli-external-orchestration/ROUTER.md` | Shared | Stage-two leaf-intent model, including the `HERMES` intent and its resource map. |
+| `.skilled/skills/cli-external-orchestration/SKILL.md` | Shared | Hub mode table and the workflow-packet classification for all seven modes. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The packet contract: activation triggers, self-invocation guard, dispatch shape, hard rules. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Operator scenarios for the shipped Hermes surface. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/integration-patterns.md` | Reference | Conductor and executor patterns the routed packet is expected to follow. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Operator scenarios for the shipped Hermes surface. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/integration-patterns.md` | Reference | Conductor and executor patterns the routed packet is expected to follow. |
 
 ---
 

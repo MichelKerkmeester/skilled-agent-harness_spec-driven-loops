@@ -46,8 +46,8 @@ Operators run the exact command sequence for `MANUAL-001` and confirm the expect
 
 PRE: This is a read-only scenario with no access requirement. It must never SKIP for any environment or credential blocker, since it never depends on live Refero access.
 
-1. `bash: bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh`  # -> OK 'refero' manual registered
-2. optional `bash: REFERO_DOCTOR_LIVE=1 bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh`  # -> HTTP 401 (auth required, as documented)
+1. `bash: bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh`  # -> OK 'refero' manual registered
+2. optional `bash: REFERO_DOCTOR_LIVE=1 bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh`  # -> HTTP 401 (auth required, as documented)
 3. agent reports wiring status + Pro-plan gate + operator-only OAuth step  # -> no edit proposed
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

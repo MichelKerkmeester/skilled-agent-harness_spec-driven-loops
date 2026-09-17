@@ -55,9 +55,9 @@ Verify the refero utcp manual wiring and explain how the mcp-remote oauth authen
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/mcp-tooling/mcp-refero/manual-testing-playbook/intra-routing-recall/wiring.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-refero/SKILL.md | sed -n '/"WIRING_AUTH":/p'`
-3. `for p in references/mcp-wiring.md assets/utcp-refero-manual.md; do test -e ".opencode/skills/mcp-tooling/mcp-refero/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,15p' .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/intra-routing-recall/wiring.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-refero/SKILL.md | sed -n '/"WIRING_AUTH":/p'`
+3. `for p in references/mcp-wiring.md assets/utcp-refero-manual.md; do test -e ".skilled/skills/mcp-tooling/mcp-refero/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

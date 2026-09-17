@@ -127,14 +127,14 @@ Capture the Code Mode script, the returned object (all six trial samples plus bo
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `.opencode/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md` | CM playbook (CM-012 parallel; CM-014..CM-016 Chrome via CM) |
+| `.skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md` | CM playbook (CM-012 parallel; CM-014..CM-016 Chrome via CM) |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | chrome_devtools_1/chrome_devtools_2 MCP reference |
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Code Mode parallel patterns |
+| `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | chrome_devtools_1/chrome_devtools_2 MCP reference |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Code Mode parallel patterns |
 
 ---
 

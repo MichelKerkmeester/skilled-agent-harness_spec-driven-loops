@@ -34,7 +34,7 @@ A stale checkout's "deletions" are usually files it has not received yet, not fi
 ### Context
 
 - The external auto-sync that used to commit and publish every session's WIP is **removed**. Nothing lands a session's work now except that session — but a commit is no longer orphaned by an automated reset, so committing and pushing your own work is safe.
-- A pre-commit guard blocks any commit deleting more than 100 tracked files (`SPECKIT_ALLOW_MASS_DELETION=1` to authorize an intended one). When it fires, treat it as the safety net catching a stale tree, not an obstacle to override blindly. See the mass-deletion guard in `.opencode/scripts/git-hooks/lib/`.
+- A pre-commit guard blocks any commit deleting more than 100 tracked files (`SPECKIT_ALLOW_MASS_DELETION=1` to authorize an intended one). When it fires, treat it as the safety net catching a stale tree, not an obstacle to override blindly. See the mass-deletion guard in `.skilled/scripts/git-hooks/lib/`.
 - The live branch referenced throughout is `skilled/v4.0.0.0`. Swap that token if a session targets a different branch.
 
 ---
@@ -184,4 +184,4 @@ counts, and ask before committing.
 - [remote-branch-policy.md](./remote-branch-policy.md) — which branches accept a push and when to ask.
 - [worktree-workflows.md](./worktree-workflows.md) — isolated worktrees, the preferred place for real work.
 - [continuous-integration.md](./continuous-integration.md) — the safe publish model that replaced the removed auto-sync.
-- Mass-deletion guard: `.opencode/scripts/git-hooks/lib/mass-deletion-guard.sh` and packet `specs/sk-git/019-mass-deletion-guard/`.
+- Mass-deletion guard: `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh` and packet `specs/sk-git/019-mass-deletion-guard/`.

@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-010` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-010 | Zooming | Verify an upscaled output file at the requested scale | Use sk_vision_zoom on the fixture at 2x and show me the result. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"zoom","params":{"source":{"type":"path","path":"<FIXTURE>"},"scale":2}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"zoom","path":"<cache>/zooms/...","scale":2,...}}` | The zoom response `path` and `scale`; verify the output file exists and is ~2x the fixture dimensions | PASS if `result.type == "zoom"`, `scale == 2`, and the output file exists with doubled dimensions; FAIL if the output file is missing, dimensions are wrong, or the request errors | 1. Confirm `scale` is within 1..8 (values outside are clamped) -> 2. For a `region`, use normalized 0..1 bbox values -> 3. Inspect stderr for Pillow resize/save errors |
+| VSN-010 | Zooming | Verify an upscaled output file at the requested scale | Use sk_vision_zoom on the fixture at 2x and show me the result. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"zoom","params":{"source":{"type":"path","path":"<FIXTURE>"},"scale":2}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"zoom","path":"<cache>/zooms/...","scale":2,...}}` | The zoom response `path` and `scale`; verify the output file exists and is ~2x the fixture dimensions | PASS if `result.type == "zoom"`, `scale == 2`, and the output file exists with doubled dimensions; FAIL if the output file is missing, dimensions are wrong, or the request errors | 1. Confirm `scale` is within 1..8 (values outside are clamped) -> 2. For a `region`, use normalized 0..1 bbox values -> 3. Inspect stderr for Pillow resize/save errors |
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `VSN-010` and confirm th
 1. `bash: printf '%s\n' \`
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"zoom","params":{"source":{"type":"path","path":"<FIXTURE>"},"scale":2}}'`
-4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

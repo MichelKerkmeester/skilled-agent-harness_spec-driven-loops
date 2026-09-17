@@ -48,10 +48,10 @@ Operators run the exact prompt and command sequence for `CHT-001` and confirm th
 ### Commands
 
 1. `agent: Read references/template-contract.md section 2 for what the headline part has to carry`
-2. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs`
+2. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs`
 3. `agent: For each file under assets/templates/, read the headline and the block between the CHART_DATA sentinels`
 4. `agent: Derive every comparative claim in the headline from those values and report the claim, the values and the arithmetic`
-5. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
+5. `bash: git status --porcelain .skilled/skills/sk-design/sk-design-chart`
 
 ### Expected
 

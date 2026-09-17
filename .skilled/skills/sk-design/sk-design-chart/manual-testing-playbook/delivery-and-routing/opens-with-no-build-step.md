@@ -47,15 +47,15 @@ Operators run the exact prompt and command sequence for `CHT-007` and confirm th
 
 ### Commands
 
-1. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > before.txt 2>&1`
-2. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/templates/treemap.html ~/chart-delivery-check.html`
+1. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > before.txt 2>&1`
+2. `bash: cp .skilled/skills/sk-design/sk-design-chart/assets/templates/treemap.html ~/chart-delivery-check.html`
 3. `agent: Turn the network off, open ~/chart-delivery-check.html from a file:// URL and read the rendered card`
-4. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/templates/treemap.html keep-treemap.html`
-5. `agent: Add a remote stylesheet link to .opencode/skills/sk-design/sk-design-chart/assets/templates/treemap.html`
-6. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > external.txt 2>&1`
-7. `bash: cp keep-treemap.html .opencode/skills/sk-design/sk-design-chart/assets/templates/treemap.html`
+4. `bash: cp .skilled/skills/sk-design/sk-design-chart/assets/templates/treemap.html keep-treemap.html`
+5. `agent: Add a remote stylesheet link to .skilled/skills/sk-design/sk-design-chart/assets/templates/treemap.html`
+6. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > external.txt 2>&1`
+7. `bash: cp keep-treemap.html .skilled/skills/sk-design/sk-design-chart/assets/templates/treemap.html`
 8. `bash: rm ~/chart-delivery-check.html keep-treemap.html`
-9. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
+9. `bash: git status --porcelain .skilled/skills/sk-design/sk-design-chart`
 
 ### Expected
 

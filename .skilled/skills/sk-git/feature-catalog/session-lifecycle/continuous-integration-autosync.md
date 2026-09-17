@@ -47,16 +47,16 @@ No session can clobber another's published work, because publication is non-forc
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/bin/git-sync.sh` | Script | Publish primitive: fetch, fast-forward-or-rebase, non-force push |
-| `.opencode/bin/git-live-follow.sh` | Script | Fast-forward-only IDE follower for the live branch |
-| `.opencode/bin/worktree-status.sh` | Script | Read-only ahead/behind/dirty dashboard across worktrees |
-| `.opencode/scripts/git-hooks/post-commit` | Script | Fires `git-sync.sh --auto` behind the triple wrapper/worktree/env gate |
+| `.skilled/bin/git-sync.sh` | Script | Publish primitive: fetch, fast-forward-or-rebase, non-force push |
+| `.skilled/bin/git-live-follow.sh` | Script | Fast-forward-only IDE follower for the live branch |
+| `.skilled/bin/worktree-status.sh` | Script | Read-only ahead/behind/dirty dashboard across worktrees |
+| `.skilled/scripts/git-hooks/post-commit` | Script | Fires `git-sync.sh --auto` behind the triple wrapper/worktree/env gate |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/scripts/git-hooks/tests/install-git-hooks-worktree-harness.sh` | Automated test | Verifies hook installation reaches a linked worktree's resolved hook path (installation only; does not exercise the autosync publish/rebase logic itself) |
+| `.skilled/scripts/git-hooks/tests/install-git-hooks-worktree-harness.sh` | Automated test | Verifies hook installation reaches a linked worktree's resolved hook path (installation only; does not exercise the autosync publish/rebase logic itself) |
 
 ---
 

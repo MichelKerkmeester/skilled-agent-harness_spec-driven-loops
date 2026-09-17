@@ -90,7 +90,7 @@ Capture the chain response (with full base64 truncated for brevity, just length 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | Chrome DevTools MCP tool catalog |
+| `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | Chrome DevTools MCP tool catalog |
 
 ---
 

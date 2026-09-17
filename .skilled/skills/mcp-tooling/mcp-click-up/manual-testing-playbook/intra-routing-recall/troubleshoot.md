@@ -71,11 +71,11 @@ The cupt command failed with a 403 error, it's not working, and every request is
 
 ### Commands
 
-1. `sed -n '1,10p' .opencode/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/troubleshoot.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-4. `sed -n '/scores.get("TROUBLESHOOT"/,/intent = max/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-5. `test -e .opencode/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md && echo "OK references/troubleshooting.md" || echo "MISS references/troubleshooting.md"`
+1. `sed -n '1,10p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/troubleshoot.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+4. `sed -n '/scores.get("TROUBLESHOOT"/,/intent = max/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+5. `test -e .skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md && echo "OK references/troubleshooting.md" || echo "MISS references/troubleshooting.md"`
 
 ### Expected
 

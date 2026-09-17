@@ -24,7 +24,7 @@ Every higher-level route depends on the binary being available, authenticated, n
 - Real user request: `Tell me which top-level directory contains the repository's CLI orchestration skills. Do not edit files.`
 - Prompt: `Identify the top-level directory that contains the repository's CLI orchestration skills. Do not edit files; answer with the path and one sentence of reasoning.`
 - Expected execution process: Run the command from the repository root with an explicit model and `normal` permission, capture combined output and the exit code, and inspect the response for the path.
-- Expected signals: Exit code 0; output names `.opencode/skills/cli-external-orchestration`; no repository mutation.
+- Expected signals: Exit code 0; output names `.skilled/skills/cli-external-orchestration`; no repository mutation.
 - Desired user-visible outcome: A usable, bounded answer from the default print dispatch.
 - Pass/fail: PASS when all signals are present; FAIL on a non-zero exit, missing path, or unexpected mutation; SKIP only when the global auth or availability precondition is blocked.
 

@@ -64,22 +64,22 @@ Before staging, the AI snapshots both the unstaged and already-staged state (`gi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/references/commit-workflows.md` | Shared | Seven-step commit workflow, decision matrix, scoped-staging procedure |
-| `.opencode/skills/sk-git/assets/commit-message-template.md` | Shared | Repository-specific worked message examples and AI author procedure |
-| `.opencode/scripts/git-hooks/commit-msg` | Script | Structural enforcement of the subject/body contract, including the trailer keys and the duplicate-id refusal |
-| `.opencode/scripts/git-hooks/prepare-commit-msg` | Script | Stamps the `Spec:` and `Commit-Id:` trailer paragraph, keeping an id on amend and re-minting on cherry-pick |
-| `.opencode/skills/sk-git/scripts/commit-id-naming.sh` | Script | Allocates the repository-wide ordinal under a lock and rebuilds the high-water mark from history |
+| `.skilled/skills/sk-git/references/commit-workflows.md` | Shared | Seven-step commit workflow, decision matrix, scoped-staging procedure |
+| `.skilled/skills/sk-git/assets/commit-message-template.md` | Shared | Repository-specific worked message examples and AI author procedure |
+| `.skilled/scripts/git-hooks/commit-msg` | Script | Structural enforcement of the subject/body contract, including the trailer keys and the duplicate-id refusal |
+| `.skilled/scripts/git-hooks/prepare-commit-msg` | Script | Stamps the `Spec:` and `Commit-Id:` trailer paragraph, keeping an id on amend and re-minting on cherry-pick |
+| `.skilled/skills/sk-git/scripts/commit-id-naming.sh` | Script | Allocates the repository-wide ordinal under a lock and rebuilds the high-water mark from history |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/manual-testing-playbook/commit-formation/conventional-commit-from-diff.md` | Manual playbook | Validates message construction from a real staged diff |
-| `.opencode/skills/sk-git/manual-testing-playbook/commit-formation/mixed-concerns-split-or-warn.md` | Manual playbook | Validates split-vs-single-commit decisioning |
-| `.opencode/skills/sk-git/manual-testing-playbook/commit-formation/scope-inference-skill-folder.md` | Manual playbook | Validates scope-selection priority order |
-| `.opencode/scripts/git-hooks/tests/prepare-commit-msg.test.sh` | Test harness | Validates stamping, amend, cherry-pick and foreign-repository handling |
-| `.opencode/skills/sk-git/scripts/tests/commit-id-naming.test.sh` | Test harness | Validates ordinal allocation, the lock and the high-water rebuild |
-| `.opencode/skills/sk-git/manual-testing-playbook/commit-formation/find-commits-by-packet-and-id.md` | Manual playbook | Validates that the packet query, the identifier query and the values query resolve a stamped commit |
+| `.skilled/skills/sk-git/manual-testing-playbook/commit-formation/conventional-commit-from-diff.md` | Manual playbook | Validates message construction from a real staged diff |
+| `.skilled/skills/sk-git/manual-testing-playbook/commit-formation/mixed-concerns-split-or-warn.md` | Manual playbook | Validates split-vs-single-commit decisioning |
+| `.skilled/skills/sk-git/manual-testing-playbook/commit-formation/scope-inference-skill-folder.md` | Manual playbook | Validates scope-selection priority order |
+| `.skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh` | Test harness | Validates stamping, amend, cherry-pick and foreign-repository handling |
+| `.skilled/skills/sk-git/scripts/tests/commit-id-naming.test.sh` | Test harness | Validates ordinal allocation, the lock and the high-water rebuild |
+| `.skilled/skills/sk-git/manual-testing-playbook/commit-formation/find-commits-by-packet-and-id.md` | Manual playbook | Validates that the packet query, the identifier query and the values query resolve a stamped commit |
 
 ---
 

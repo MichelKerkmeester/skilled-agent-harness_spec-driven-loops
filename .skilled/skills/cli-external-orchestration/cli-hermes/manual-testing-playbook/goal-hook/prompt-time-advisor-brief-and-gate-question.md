@@ -81,8 +81,8 @@ git status --short docs README.md
 |---|---|
 | [SYNC.md](../../../../../../.hermes/SYNC.md) | What the plugin bridges and how |
 | [hook-contract.md](../../references/hook-contract.md) | The plugin hook map |
-| `.opencode/hooks/spec-gate/devin/spec-gate-classify.mjs` | The gate core the bridge runs |
-| `.opencode/bin/skill-advisor.cjs` | The advisor CLI the bridge runs |
+| `.skilled/hooks/spec-gate/devin/spec-gate-classify.mjs` | The gate core the bridge runs |
+| `.skilled/bin/skill-advisor.cjs` | The advisor CLI the bridge runs |
 
 ---
 

@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-007` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-007 | Image diffing | Verify a description of visual differences between two images | Use sk_vision_diff to compare the fixture with fixture B and tell me what changed. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"diff","params":{"source":{"type":"path","path":"<FIXTURE>"},"otherPath":"<FIXTURE_B>","describe":true}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"diff",...}}` describing the differences when `describe` is true | The diff response plus both input file paths, saved with the transcript | PASS if `result.type == "diff"` and the result is non-empty (changes listed or described); FAIL if the response is empty or an error envelope (e.g. missing `otherPath`) | 1. Confirm `<FIXTURE_B>` exists and differs from `<FIXTURE>` -> 2. If `otherPath` fails, pass a base64 data URL via `otherImage` -> 3. Inspect stderr for the underlying exception |
+| VSN-007 | Image diffing | Verify a description of visual differences between two images | Use sk_vision_diff to compare the fixture with fixture B and tell me what changed. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"diff","params":{"source":{"type":"path","path":"<FIXTURE>"},"otherPath":"<FIXTURE_B>","describe":true}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"diff",...}}` describing the differences when `describe` is true | The diff response plus both input file paths, saved with the transcript | PASS if `result.type == "diff"` and the result is non-empty (changes listed or described); FAIL if the response is empty or an error envelope (e.g. missing `otherPath`) | 1. Confirm `<FIXTURE_B>` exists and differs from `<FIXTURE>` -> 2. If `otherPath` fails, pass a base64 data URL via `otherImage` -> 3. Inspect stderr for the underlying exception |
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `VSN-007` and confirm th
 1. `bash: printf '%s\n' \`
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"diff","params":{"source":{"type":"path","path":"<FIXTURE>"},"otherPath":"<FIXTURE_B>","describe":true}}'`
-4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

@@ -45,17 +45,17 @@ The engine parses just enough of the frontmatter to read the flat rule list, eva
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared | `parseHardRules`, `readHardRules`, the Hermes checks in `CHECKS`, and the severity mapping in `evaluate`. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The packet's `hard_rules` frontmatter: rule ids, check names, messages and severities. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md` | Handler | The hook boundary the hooks rule states. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md` | Handler | The operator boundary the MCP rule states. |
+| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared | `parseHardRules`, `readHardRules`, the Hermes checks in `CHECKS`, and the severity mapping in `evaluate`. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The packet's `hard_rules` frontmatter: rule ids, check names, messages and severities. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md` | Handler | The hook boundary the hooks rule states. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md` | Handler | The operator boundary the MCP rule states. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Automated test | Per-check pass and violation cases, including the Hermes rules and the severity mapping. |
-| `.opencode/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | The recognition half the preflight shares with the audit trail. |
+| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Automated test | Per-check pass and violation cases, including the Hermes rules and the severity mapping. |
+| `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | The recognition half the preflight shares with the audit trail. |
 
 ---
 

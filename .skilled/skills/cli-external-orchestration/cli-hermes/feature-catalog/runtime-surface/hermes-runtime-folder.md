@@ -47,16 +47,16 @@ Hermes's own file tools treat a write whose immediate parent directory is the ru
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs` | Script | Generates and prunes the prompt stubs from the command tree; `--check` reports drift. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md` | Handler | Project-skill loading, the trust grant, the scanner behavior and the write guard. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The dispatch-side rules that depend on this folder's contents. |
+| `.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs` | Script | Generates and prunes the prompt stubs from the command tree; `--check` reports drift. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md` | Handler | Project-skill loading, the trust grant, the scanner behavior and the write guard. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The dispatch-side rules that depend on this folder's contents. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Operator scenarios covering trust, skill loading and the prompt stubs. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md` | Reference | The operator steps this folder deliberately does not carry. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Operator scenarios covering trust, skill loading and the prompt stubs. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md` | Reference | The operator steps this folder deliberately does not carry. |
 
 ---
 

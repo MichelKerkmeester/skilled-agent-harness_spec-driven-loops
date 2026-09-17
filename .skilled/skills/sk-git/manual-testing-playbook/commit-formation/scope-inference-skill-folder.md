@@ -1,6 +1,6 @@
 ---
 title: "GIT-005 -- Scope inference skill folder"
-description: "This scenario validates Scope inference skill folder for `GIT-005`. It focuses on verify a change inside `.opencode/skills/sk-git/` yields a deterministic `sk-git` scope."
+description: "This scenario validates Scope inference skill folder for `GIT-005`. It focuses on verify a change inside `.skilled/skills/sk-git/` yields a deterministic `sk-git` scope."
 version: 1.1.0.4
 ---
 
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates Scope inference skill folder for `GIT-005`. It focuses on verify a change inside `.opencode/skills/sk-git/` yields a deterministic `sk-git` scope.
+This scenario validates Scope inference skill folder for `GIT-005`. It focuses on verify a change inside `.skilled/skills/sk-git/` yields a deterministic `sk-git` scope.
 
 ### Why This Matters
 
@@ -24,7 +24,7 @@ Scope inference keeps commit history scan-friendly. Skill-folder changes should 
 
 Operators run the exact prompt and command sequence for `GIT-005` and confirm the expected signals without contradictory evidence.
 
-- Objective: verify a change inside `.opencode/skills/sk-git/` yields a deterministic `sk-git` scope.
+- Objective: verify a change inside `.skilled/skills/sk-git/` yields a deterministic `sk-git` scope.
 - Real user request: `Commit these sk-git playbook docs. Infer the right scope from the changed path.`
 - Prompt: `Commit these sk-git playbook docs, infer the scope from the staged path, and show the scope is deterministic.`
 - Expected execution process: Run staged diff inspection twice, infer the scope from the top-level skill folder, and compare the proposed subjects.
@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `GIT-005` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GIT-005 | Scope inference skill folder | verify a change inside `.opencode/skills/sk-git/` yields a deterministic `sk-git` scope. | `Commit these sk-git playbook docs, infer the scope from the staged path, and show the scope is deterministic.` | 1. `bash: git diff --cached --name-only` -> 2. `agent: infer type and scope from changed paths` -> 3. `agent: repeat the same inference without changing inputs` -> 4. `bash: git diff --cached --stat` | Both passes produce the same scope, ideally `sk-git`, with no path-sensitive drift. | Changed-file list, two proposed subjects, and reasoning for scope choice. | PASS if scope inference is stable and follows first-match scope rules in `SKILL.md §4` and `assets/commit-message-template.md §4`. FAIL if the same diff produces different scopes or falls back to an unrelated generic scope without explanation. | Check path inventory first, then compare against `references/commit-workflows.md §3` Step 5 and `assets/commit-message-template.md §4`. |
+| GIT-005 | Scope inference skill folder | verify a change inside `.skilled/skills/sk-git/` yields a deterministic `sk-git` scope. | `Commit these sk-git playbook docs, infer the scope from the staged path, and show the scope is deterministic.` | 1. `bash: git diff --cached --name-only` -> 2. `agent: infer type and scope from changed paths` -> 3. `agent: repeat the same inference without changing inputs` -> 4. `bash: git diff --cached --stat` | Both passes produce the same scope, ideally `sk-git`, with no path-sensitive drift. | Changed-file list, two proposed subjects, and reasoning for scope choice. | PASS if scope inference is stable and follows first-match scope rules in `SKILL.md §4` and `assets/commit-message-template.md §4`. FAIL if the same diff produces different scopes or falls back to an unrelated generic scope without explanation. | Check path inventory first, then compare against `references/commit-workflows.md §3` Step 5 and `assets/commit-message-template.md §4`. |
 
 ### Optional Supplemental Checks
 

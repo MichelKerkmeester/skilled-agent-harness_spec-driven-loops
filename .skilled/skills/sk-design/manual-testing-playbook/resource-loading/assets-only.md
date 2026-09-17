@@ -120,7 +120,7 @@ Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare a
 | File | Role |
 |---|---|
 | `../../SKILL.md` | The sk-doc router under test |
-| `.opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
 
 ---
 

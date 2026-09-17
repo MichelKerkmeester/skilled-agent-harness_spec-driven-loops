@@ -83,7 +83,7 @@ grep "repo-guards-session-advisories" ~/.hermes/logs/agent.log | tail -1
 |---|---|
 | [SYNC.md](../../../../../../.hermes/SYNC.md) | What the plugin bridges and how |
 | [hook-contract.md](../../references/hook-contract.md) | The plugin hook map |
-| `.opencode/hooks/git-worktree-guard/devin/worktree-guard.sh` | One of the four guards the section runs |
+| `.skilled/hooks/git-worktree-guard/devin/worktree-guard.sh` | One of the four guards the section runs |
 
 ---
 

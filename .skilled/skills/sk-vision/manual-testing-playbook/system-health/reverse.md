@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-013` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-013 | Reverse image search | Verify a local perceptual-hash similarity search | Use sk_vision_reverse on the fixture and search the scratch folder for similar images. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"hash_search","params":{"source":{"type":"path","path":"<FIXTURE>"},"dir":"<FIXTURE_DIR>","limit":5}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"hash_search","matches":[...],"scanned":N,"limit":5}}` with N >= 1 | The `scanned` count and `matches` array with the transcript | PASS if `result.type == "hash_search"` and `scanned >= 1` (matches may legitimately be empty); FAIL if `scanned` is 0 or the request errors (missing dir or source) | 1. Confirm `dir` points at a readable directory of images -> 2. If `limit` was hit, raise it (max 25) -> 3. Inspect stderr for file-walk errors on unreadable entries |
+| VSN-013 | Reverse image search | Verify a local perceptual-hash similarity search | Use sk_vision_reverse on the fixture and search the scratch folder for similar images. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"hash_search","params":{"source":{"type":"path","path":"<FIXTURE>"},"dir":"<FIXTURE_DIR>","limit":5}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"hash_search","matches":[...],"scanned":N,"limit":5}}` with N >= 1 | The `scanned` count and `matches` array with the transcript | PASS if `result.type == "hash_search"` and `scanned >= 1` (matches may legitimately be empty); FAIL if `scanned` is 0 or the request errors (missing dir or source) | 1. Confirm `dir` points at a readable directory of images -> 2. If `limit` was hit, raise it (max 25) -> 3. Inspect stderr for file-walk errors on unreadable entries |
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `VSN-013` and confirm th
 1. `bash: printf '%s\n' \`
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"hash_search","params":{"source":{"type":"path","path":"<FIXTURE>"},"dir":"<FIXTURE_DIR>","limit":5}}'`
-4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

@@ -26,19 +26,19 @@ Run it from the repository root. The first form is the one to reach for by defau
 
 ```bash
 # derive themed copies from a local v3 Style Reference
-node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
+node .skilled/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
   path/to/DESIGN.md --forms grouped-bars,daily-line --out scratch/themed
-node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
+node .skilled/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
   --default --all --out scratch/themed      # the carried evilcharts reference; ordered forms are skipped with a note
 
 # structural checks over the whole corpus
-node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs
+node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs
 
 # the same, plus opening every template in a headless browser
-node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render
+node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render
 
 # check themed HTML outside the package with the same file-level families
-node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra scratch/themed
+node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra scratch/themed
 ```
 
 The applicator needs Node and no package dependency. Its input is a local file: URLs are refused.

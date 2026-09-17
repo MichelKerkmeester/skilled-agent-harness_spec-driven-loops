@@ -56,11 +56,11 @@ Have Claude extract the function signatures and return them as schema-validated 
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/structured-output.md`
+1. `sed -n '1,15p' .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/intra-routing-recall/structured-output.md`
 2. `grep -n '"STRUCTURED_OUTPUT"' ../../SKILL.md` (confirms the `INTENT_SIGNALS` entry)
 3. `grep -A2 'RESOURCE_MAP = {' ../../SKILL.md | grep '"STRUCTURED_OUTPUT"'` (confirms the `RESOURCE_MAP` entry)
-4. `test -e .opencode/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
-5. `test -e .opencode/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md && echo "OK references/claude-tools.md" || echo "MISS references/claude-tools.md"`
+4. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md && echo "OK references/cli-reference.md" || echo "MISS references/cli-reference.md"`
+5. `test -e .skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md && echo "OK references/claude-tools.md" || echo "MISS references/claude-tools.md"`
 
 ### Expected
 

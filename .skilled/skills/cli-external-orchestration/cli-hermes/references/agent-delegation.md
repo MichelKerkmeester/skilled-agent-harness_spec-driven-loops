@@ -20,7 +20,7 @@ This reference prevents a category error: Hermes profiles and `delegate_task` su
 
 ### Core Principle
 
-The repo's agents (`.opencode/agents/*.md`, the authored source) reach a Hermes dispatch only inside the prompt. Hermes has no flag that loads an agent file, its profiles are whole-home islands, and `delegate_task` children receive a goal and context, never an agent definition.
+The repo's agents (`.skilled/agents/*.md`, the authored source) reach a Hermes dispatch only inside the prompt. Hermes has no flag that loads an agent file, its profiles are whole-home islands, and `delegate_task` children receive a goal and context, never an agent definition.
 
 ---
 
@@ -39,7 +39,7 @@ Resolve the persona from the calling runtime's agent directory (AGENTS.md §9), 
 
 ## 3. COMMANDS
 
-The repo's nested commands under `.opencode/commands/**` have no Hermes equivalent: Hermes has no workflow engine and its slash commands are its own. The cli-pi precedent applies: flatten each command into a prompt template under `.hermes/prompts/` and carry it with `--query-file`. The runtime-folder phase generates those templates with a sync script; a dispatch loads the template text into its prompt file.
+The repo's nested commands under `.skilled/commands/**` have no Hermes equivalent: Hermes has no workflow engine and its slash commands are its own. The cli-pi precedent applies: flatten each command into a prompt template under `.hermes/prompts/` and carry it with `--query-file`. The runtime-folder phase generates those templates with a sync script; a dispatch loads the template text into its prompt file.
 
 ---
 

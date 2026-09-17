@@ -68,8 +68,8 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-g
 3. OpenCode CLI version is at or near the v1.3.17 baseline pinned in `references/cli-reference.md`. Drift handled per `references/cli-reference.md` §9.
 4. The OpenCode Go gateway (`opencode-go`) is configured so the canonical default `opencode-go/deepseek-v4-flash` resolves (confirm via `opencode models opencode-go`). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
 5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars are set: `env | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
-6. The skill's reference and asset files exist at `.opencode/skills/cli-external-orchestration/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
-7. The project's MCP servers (Skill Advisor, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) can call `advisor_status` and Code Graph search. Use case 3 (CO-021) additionally needs `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` present on disk.
+6. The skill's reference and asset files exist at `.skilled/skills/cli-external-orchestration/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
+7. The project's MCP servers (Skill Advisor, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) can call `advisor_status` and Code Graph search. Use case 3 (CO-021) additionally needs `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` present on disk.
 8. The operator's repo root resolves via `REPO_ROOT="$(pwd)"` (run from the project root). Most scenarios pass `--dir "$(pwd)"` directly so they portably target whichever repo the operator runs them in. The `<repo-root>` placeholders in prose refer to the same value. Adapt to a different absolute path only if a scenario explicitly requires a non-default repo (e.g., CO-029 cross-repo dispatch derives a sibling path via `dirname "$(pwd)"`).
 9. Destructive scenarios involving `--share` (CO-026, CO-027, CO-028) MUST follow strict sandboxing and recovery rules. Each MUST run with `--dir /tmp/co-share-sandbox-NNN/` (where NNN is the scenario ID). Each MUST NOT run with `--dir` pointing at the operator project tree. Each MUST NOT publish the share URL to anyone without explicit operator confirmation per CHK-033. Recovery is mandatory after every run (pass or fail). Step (a) revoke every captured share URL via `opencode session revoke ${SESSION_ID}`. Step (b) remove the sandbox tmpdir via `rm -rf /tmp/co-share-sandbox-NNN/`. The test only validates the session-creation path. No real URL publication occurs.
 
@@ -233,7 +233,7 @@ Verify `--dir <path>` pins the dispatched session's working directory rather tha
 
 Prompt summary: As an external-AI conductor verifying --dir pinning works, change to /tmp before dispatching, but pin --dir to the Public repo root. Ask the dispatched session to use its bash tool to print the working directory and the first three entries it sees. Verify the working directory matches the pinned --dir, not /tmp.
 
-Expected signals: Dispatched session reports CWD as the pinned path. Tool.result payloads do NOT mention `/tmp`. Project files (e.g., `AGENTS.md`, `.opencode/`) appear in the listing.
+Expected signals: Dispatched session reports CWD as the pinned path. Tool.result payloads do NOT mention `/tmp`. Project files (e.g., `AGENTS.md`, `.skilled/`) appear in the listing.
 
 #### Test Execution
 
@@ -363,7 +363,7 @@ This category covers 8 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify `--agent general` loads the project's general agent definition from `.opencode/agents/general.md` and the dispatched session demonstrates implementation-style behavior with full read/write/dispatch tool permissions.
+Verify `--agent general` loads the project's general agent definition from `.skilled/agents/general.md` and the dispatched session demonstrates implementation-style behavior with full read/write/dispatch tool permissions.
 
 #### Scenario Contract
 
@@ -383,7 +383,7 @@ Verify `--agent context` produces a structured architecture map of a target dire
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor needing a safe read-only architecture map of an unfamiliar module, dispatch --agent context against .opencode/skills/cli-external-orchestration/cli-opencode/. Snapshot mtimes before and after. Verify the response identifies SKILL.md as the entry point, references/ and assets/ as supporting structure and that no mtimes changed and no Edit/Write tool.call events appear.
+Prompt summary: As an external-AI conductor needing a safe read-only architecture map of an unfamiliar module, dispatch --agent context against .skilled/skills/cli-external-orchestration/cli-opencode/. Snapshot mtimes before and after. Verify the response identifies SKILL.md as the entry point, references/ and assets/ as supporting structure and that no mtimes changed and no Edit/Write tool.call events appear.
 
 Expected signals: Exit 0. Mtime diff is empty. No Edit/Write tool.calls. Response identifies entry point + supporting structure.
 
@@ -448,7 +448,7 @@ Verify `--agent deep-review` executes a single review iteration that surfaces at
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor (or `/deep:review` simulator) running a single audit iteration, dispatch `opencode run --agent deep-review --variant high --format json --dir <repo-root>` against `@./.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md` with state externalized at `/tmp/co-033-state.jsonl`. Verify the dispatch exits 0, the JSON event stream contains a session.completed event with severity-tagged findings, and that no Task or sub-agent tool.call events appear. Return a verdict naming the highest-severity finding and confirming LEAF compliance.
+Prompt summary: As an external-AI conductor (or `/deep:review` simulator) running a single audit iteration, dispatch `opencode run --agent deep-review --variant high --format json --dir <repo-root>` against `@./.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` with state externalized at `/tmp/co-033-state.jsonl`. Verify the dispatch exits 0, the JSON event stream contains a session.completed event with severity-tagged findings, and that no Task or sub-agent tool.call events appear. Return a verdict naming the highest-severity finding and confirming LEAF compliance.
 
 Expected signals: Exit 0. JSON parseable. >= 1 severity tag (P0, P1, or P2). >= 1 file or line citation. Zero Task tool.call events. Zero nested `opencode run` invocations. Dispatch line includes `--agent deep-review`.
 
@@ -540,7 +540,7 @@ Verify a OpenCode-originated cli-opencode dispatch routes to use case 3 (cross-A
 
 #### Scenario Contract
 
-Prompt summary: You are OpenCode (or a non-Anthropic external runtime) dispatching from a fresh shell into OpenCode for a spec-kit-specific workflow via cli-opencode use case 3. Goal: have OpenCode run `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "self-invocation guard"` and return the top 3 packet pointers.
+Prompt summary: You are OpenCode (or a non-Anthropic external runtime) dispatching from a fresh shell into OpenCode for a spec-kit-specific workflow via cli-opencode use case 3. Goal: have OpenCode run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "self-invocation guard"` and return the top 3 packet pointers.
 
 Expected signals: Exit 0. A tool.call running the lookup script appears. Session.completed references results, or attests a clean no-hit.
 
@@ -748,7 +748,7 @@ Expected signals: Layer 1 trips. SKILL.md `has_parallel_session_keywords` is the
 
 ## 16. GOAL HOOK (`CO-039`)
 
-This category covers 1 scenario while the linked feature file remains the canonical execution contract. It exercises the OpenCode-native `opencode-goal` plugin (`.opencode/plugins/opencode-goal.js`) directly in-process: the `/goal-opencode` action set, two-session isolation, fixed SHA-256 state keys, long-session persistence, validated lazy migration from the earlier hex layout, native token accounting, and `experimental.chat.system.transform` injection. `opencode-goal` remains separate from the runtime-neutral Pi/Cursor core validated as `CE-P03` in the hub playbook.
+This category covers 1 scenario while the linked feature file remains the canonical execution contract. It exercises the OpenCode-native `opencode-goal` plugin (`.skilled/plugins/opencode-goal.js`) directly in-process: the `/goal-opencode` action set, two-session isolation, fixed SHA-256 state keys, long-session persistence, validated lazy migration from the earlier hex layout, native token accounting, and `experimental.chat.system.transform` injection. `opencode-goal` remains separate from the runtime-neutral Pi/Cursor core validated as `CE-P03` in the hub playbook.
 
 ### CO-039 | Goal hook native opencode-goal validation
 
@@ -781,7 +781,7 @@ The cli-opencode skill is a thin orchestration wrapper around the external `open
 The `intra-routing-recall/` category and the `stress/` category are exceptions to the manual-only
 pattern above: `intra-routing-recall/` re-derives its expected `INTENT_SIGNALS`/`RESOURCE_MAP` truth
 directly from SKILL.md on every run, and `stress/` runs the shared hermetic Vitest suite at
-`.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-opencode.vitest.ts`, covering
+`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-opencode.vitest.ts`, covering
 `cli-opencode-EC-001` .. `cli-opencode-EC-014`.
 
 Validator support: the shared `validate_document.py` validates this root playbook structurally but does not recurse into category folders. Per-feature file completeness is checked manually via the link integrity and feature ID count gates documented in section 5.

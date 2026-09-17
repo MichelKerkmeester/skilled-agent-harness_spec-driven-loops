@@ -75,10 +75,10 @@ Refactor this Python function to use async and await, then add unit tests for th
 
 ### Commands
 
-1. `sed -n '1,10p' .opencode/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/negative.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-3. `sed -n '/^UNKNOWN_FALLBACK_CHECKLIST = \[/,/^\]/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-4. `sed -n '/if not scores:/,/"resources": loaded,$/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
+1. `sed -n '1,10p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/negative.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+3. `sed -n '/^UNKNOWN_FALLBACK_CHECKLIST = \[/,/^\]/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+4. `sed -n '/if not scores:/,/"resources": loaded,$/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
 
 ### Expected
 

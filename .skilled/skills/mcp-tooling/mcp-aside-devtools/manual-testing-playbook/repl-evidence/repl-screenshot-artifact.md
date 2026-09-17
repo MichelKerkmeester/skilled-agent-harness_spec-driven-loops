@@ -88,7 +88,7 @@ All command outputs, file size, and the xxd magic-byte line. Record the response
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/examples/repl-evidence-capture.sh` | Scripted equivalent with the same verification gate |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/examples/repl-evidence-capture.sh` | Scripted equivalent with the same verification gate |
 
 ---
 

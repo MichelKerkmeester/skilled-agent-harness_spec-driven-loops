@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-002` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-002 | Optical character recognition | Verify verbatim transcription of visible text | Use sk_vision_ocr on the fixture image and report the exact text. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"ocr","params":{"source":{"type":"path","path":"<FIXTURE>"},"kind":"all"}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"ocr","text":"<visible text>"}}` with the visible word transcribed | The transcript line containing the OCR `text` value; the expected word must appear verbatim | PASS if `result.text` contains the visible word from `<FIXTURE>` exactly; FAIL if `text` is empty, garbled, or the request returns an error envelope | 1. Confirm the image actually renders text; regenerate `<FIXTURE>` with a larger font -> 2. Try `kind` values `code` and `error` -> 3. If the model never loads, run VSN-012 and read the stderr traceback |
+| VSN-002 | Optical character recognition | Verify verbatim transcription of visible text | Use sk_vision_ocr on the fixture image and report the exact text. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"ocr","params":{"source":{"type":"path","path":"<FIXTURE>"},"kind":"all"}}' -> 4.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: `{"id":2,"result":{"type":"ocr","text":"<visible text>"}}` with the visible word transcribed | The transcript line containing the OCR `text` value; the expected word must appear verbatim | PASS if `result.text` contains the visible word from `<FIXTURE>` exactly; FAIL if `text` is empty, garbled, or the request returns an error envelope | 1. Confirm the image actually renders text; regenerate `<FIXTURE>` with a larger font -> 2. Try `kind` values `code` and `error` -> 3. If the model never loads, run VSN-012 and read the stderr traceback |
 
 ---
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `VSN-002` and confirm th
 1. `bash: printf '%s\n' \`
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"ocr","params":{"source":{"type":"path","path":"<FIXTURE>"},"kind":"all"}}'`
-4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+4. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `ASD-014` and confirm th
 
 ### Commands
 
-1. `bash: PATH=/usr/bin:/bin HOME=/tmp/asd014-home bash .opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh 2>&1` — the scratch HOME prevents the `~/.local/bin` hint from matching a real install
+1. `bash: PATH=/usr/bin:/bin HOME=/tmp/asd014-home bash .skilled/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh 2>&1` — the scratch HOME prevents the `~/.local/bin` hint from matching a real install
 2. `bash: command -v aside` — in the normal shell, confirm the real environment was untouched
 
 ### Expected
@@ -78,7 +78,7 @@ The full doctor transcript under the restricted PATH and the unchanged-environme
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` | CLI_MISSING diagnosis under test |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` | CLI_MISSING diagnosis under test |
 
 ---
 

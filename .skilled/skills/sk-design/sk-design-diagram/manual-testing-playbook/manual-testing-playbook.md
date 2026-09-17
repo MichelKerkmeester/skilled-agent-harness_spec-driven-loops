@@ -55,7 +55,7 @@ Coverage note (2026-08-12): every scenario is runnable today against the shipped
 
 ## 2. GLOBAL PRECONDITIONS
 
-1. Working directory is the repository root, so `.opencode/skills/sk-design/sk-design-diagram/` subpaths and the `.opencode/commands/create/` assets resolve.
+1. Working directory is the repository root, so `.skilled/skills/sk-design/sk-design-diagram/` subpaths and the `.skilled/commands/create/` assets resolve.
 2. Python 3.9+ is available on `PATH` for the extraction scripts (`drawio_extract.py` / `mermaid_extract.py`).
 3. For the PNG export step of IMP-003, Playwright (`playwright` Python package + Chromium) must be installed; otherwise IMP-003 is a documented `SKIP` with a named blocker and a surfaced install instruction.
 4. Generated artifacts (`.html`, `.svg`, `.png`) are written to a scratch or docs output directory outside the packet. The one documented in-package mutation is `references/foundations/style-guide.md` during the onboarding scenario (DIA-003), which runs on a scratch checkout or restores from a copy of the file taken before the scenario starts. Restore from a copy, not from `git checkout --`: that command reverts to the last commit rather than to the state the operator was working in, so on an uncommitted tree it silently throws the work away.
@@ -82,7 +82,7 @@ Coverage note (2026-08-12): every scenario is runnable today against the shipped
 - Bash commands shown as `bash: <command>`.
 - Agent prompts shown as `agent: <instruction>` — these scenarios are agent-driven, so the "command" is what an agent does: read a reference, run a script, write an HTML file.
 - `->` separates sequential steps.
-- Repo-relative paths are written as `.opencode/skills/sk-design/sk-design-diagram/...`; `<skill-dir>` means the packet root wherever the packet is installed.
+- Repo-relative paths are written as `.skilled/skills/sk-design/sk-design-diagram/...`; `<skill-dir>` means the packet root wherever the packet is installed.
 
 ---
 

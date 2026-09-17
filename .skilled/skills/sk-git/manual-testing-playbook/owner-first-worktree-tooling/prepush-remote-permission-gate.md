@@ -45,11 +45,11 @@ Operators run the exact prompt and command sequence for `GIT-043` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GIT-043 | Pre-push remote-permission gate on creation and update | prove creation and update need different approval forms and that only the release lane and the allowlist are exempt | See RCAF Prompt above | `bash .opencode/scripts/git-hooks/tests/pre-push.test.sh` for the full matrix, or feed one ref line directly: `printf 'refs/heads/demo/0001-x <sha> refs/heads/demo/0001-x 0000000000000000000000000000000000000000\n' \| bash .opencode/scripts/git-hooks/pre-push origin https://example.invalid/repo.git` | `BLOCKED [gate:remote-create]` on the unapproved creation, exit 0 once the branch is named in `SPECKIT_ALLOW_REMOTE_PUSH` | Hook stderr and exit codes for each of the five ref lines | PASS when every exit code and message matches the contract above | A creation that succeeds unapproved means the gate is not reached: check that the hook is installed at `.git/hooks/pre-push` and that no bypass variable is exported in the shell |
+| GIT-043 | Pre-push remote-permission gate on creation and update | prove creation and update need different approval forms and that only the release lane and the allowlist are exempt | See RCAF Prompt above | `bash .skilled/scripts/git-hooks/tests/pre-push.test.sh` for the full matrix, or feed one ref line directly: `printf 'refs/heads/demo/0001-x <sha> refs/heads/demo/0001-x 0000000000000000000000000000000000000000\n' \| bash .skilled/scripts/git-hooks/pre-push origin https://example.invalid/repo.git` | `BLOCKED [gate:remote-create]` on the unapproved creation, exit 0 once the branch is named in `SPECKIT_ALLOW_REMOTE_PUSH` | Hook stderr and exit codes for each of the five ref lines | PASS when every exit code and message matches the contract above | A creation that succeeds unapproved means the gate is not reached: check that the hook is installed at `.git/hooks/pre-push` and that no bypass variable is exported in the shell |
 
 ### Optional Supplemental Checks
 
-Add a pattern to `.opencode/skills/sk-git/scripts/remote-branch-allowlist.txt` and confirm an update to a branch matching it passes with no environment variable, then confirm a branch outside the pattern still blocks. This is the standing approval path an operator reaches for when one branch is pushed repeatedly.
+Add a pattern to `.skilled/skills/sk-git/scripts/remote-branch-allowlist.txt` and confirm an update to a branch matching it passes with no environment variable, then confirm a branch outside the pattern still blocks. This is the standing approval path an operator reaches for when one branch is pushed repeatedly.
 
 ---
 
@@ -67,9 +67,9 @@ No `feature-catalog/` package exists for sk-git; see `manual-testing-playbook.md
 
 | File | Role |
 |---|---|
-| `.opencode/scripts/git-hooks/pre-push` | The hook carrying the mass-deletion, remote-create and remote-permission gates |
-| `.opencode/skills/sk-git/scripts/remote-branch-allowlist.txt` | The standing approval list the gate reads |
-| `.opencode/scripts/git-hooks/tests/pre-push.test.sh` | The automated matrix this scenario mirrors |
+| `.skilled/scripts/git-hooks/pre-push` | The hook carrying the mass-deletion, remote-create and remote-permission gates |
+| `.skilled/skills/sk-git/scripts/remote-branch-allowlist.txt` | The standing approval list the gate reads |
+| `.skilled/scripts/git-hooks/tests/pre-push.test.sh` | The automated matrix this scenario mirrors |
 
 ---
 

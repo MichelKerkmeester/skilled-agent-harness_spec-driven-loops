@@ -42,10 +42,10 @@ Operators run the exact prompt and command sequence for `CMD-002` and confirm th
 
 ### Commands
 
-1. `agent: Grep .opencode/skills/sk-design/mode-registry.json for the sk-design-diagram entry; confirm workflowMode sk-design-diagram, command /design:diagram, and aliases including create diagram, drawio, mermaid diagram, redraw diagram, export diagram`
-2. `agent: Grep .opencode/skills/sk-design/leaf-manifest.json for the packet's leaves; confirm the references/types/type-*.md files plus the import and export references are listed`
-3. `agent: Confirm .opencode/skills/sk-design/sk-design-diagram/graph-metadata.json does not exist`
-4. `bash: python3 .opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .opencode/skills/sk-design/sk-design-diagram --strict`
+1. `agent: Grep .skilled/skills/sk-design/mode-registry.json for the sk-design-diagram entry; confirm workflowMode sk-design-diagram, command /design:diagram, and aliases including create diagram, drawio, mermaid diagram, redraw diagram, export diagram`
+2. `agent: Grep .skilled/skills/sk-design/leaf-manifest.json for the packet's leaves; confirm the references/types/type-*.md files plus the import and export references are listed`
+3. `agent: Confirm .skilled/skills/sk-design/sk-design-diagram/graph-metadata.json does not exist`
+4. `bash: python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/sk-design/sk-design-diagram --strict`
 
 ### Expected
 
@@ -63,7 +63,7 @@ Capture the two grep excerpts (registry entry and leaf list), the step-3 absence
 ### Failure Triage
 
 1. If the registry entry is missing, grep the exact `workflowMode` string `sk-design-diagram` — a typo in the packet name is the common drift.
-2. If a leaf path is missing from `leaf-manifest.json`, re-run the leaf-manifest generator (`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .opencode/skills/sk-design`) rather than hand-editing the manifest.
+2. If a leaf path is missing from `leaf-manifest.json`, re-run the leaf-manifest generator (`.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-design`) rather than hand-editing the manifest.
 3. If `graph-metadata.json` exists in the packet root, it was added in violation of the packet contract — remove it and re-verify the packet root's file listing.
 
 ### Optional Supplemental Checks
@@ -85,10 +85,10 @@ Spot-check one alias from the registry against the routing intent model in the p
 
 | File | Role |
 |---|---|
-| `.opencode/skills/sk-design/mode-registry.json` | Hub registration entry |
-| `.opencode/skills/sk-design/leaf-manifest.json` | Packet leaf references |
+| `.skilled/skills/sk-design/mode-registry.json` | Hub registration entry |
+| `.skilled/skills/sk-design/leaf-manifest.json` | Packet leaf references |
 | `SKILL.md` (family boundary) | No-packet-local-metadata rule |
-| `.opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py` | Package-structure validator |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py` | Package-structure validator |
 
 ---
 

@@ -61,9 +61,9 @@ Show me how real products take someone who lost their account credential back in
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/intra-routing-recall/holdout-flows.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md | sed -n '/"FLOWS":/p'`
-3. `for p in references/tool-surface.md; do test -e ".opencode/skills/mcp-tooling/mcp-mobbin/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,17p' .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/intra-routing-recall/holdout-flows.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md | sed -n '/"FLOWS":/p'`
+3. `for p in references/tool-surface.md; do test -e ".skilled/skills/mcp-tooling/mcp-mobbin/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

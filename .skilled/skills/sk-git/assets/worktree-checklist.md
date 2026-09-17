@@ -116,25 +116,25 @@ Choose a lifecycle, then let the allocator reserve the number in the matching na
 **Option A: Fast-merge** (default) — named branch off main
 - [ ] Create worktree
   ```bash
-  bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <slug> main
+  bash .skilled/skills/sk-git/scripts/worktree-naming.sh create <slug> main
   ```
 
 **Option B: Long-running** — same `worktrees/NNN-slug` branch, kept for PR review
 - [ ] Create worktree
   ```bash
-  bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <slug> main
+  bash .skilled/skills/sk-git/scripts/worktree-naming.sh create <slug> main
   ```
 
 **Option B2: Dedicated branch (no worktree)** — `branches/NNN-slug`
 - [ ] Create branch
   ```bash
-  bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-branch <slug> main
+  bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-branch <slug> main
   ```
 
 **Option C: Detached experiment** — no branch, allocator-managed directory
 - [ ] Create detached HEAD worktree
   ```bash
-  bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached <slug> main
+  bash .skilled/skills/sk-git/scripts/worktree-naming.sh create-detached <slug> main
   ```
 
 - [ ] **Navigate to worktree**
@@ -321,7 +321,7 @@ git worktree remove ".worktrees/${n}-${name}"
 git worktree prune
 
 # Try again
-bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <slug> main
+bash .skilled/skills/sk-git/scripts/worktree-naming.sh create <slug> main
 ```
 
 ### Issue: Tests Fail in New Worktree

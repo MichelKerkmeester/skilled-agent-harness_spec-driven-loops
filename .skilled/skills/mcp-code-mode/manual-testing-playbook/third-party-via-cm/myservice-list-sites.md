@@ -89,7 +89,7 @@ Capture the chain response with count, sample id (REDACTED if needed), sample na
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | MyService MCP integration notes |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | MyService MCP integration notes |
 
 ---
 

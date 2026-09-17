@@ -104,12 +104,12 @@ An ordinary fire rate of zero is valid only when at least one control shape fire
 Run from the repository root.
 
 ```bash
-node --test .opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
-node --check .opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs
-node --check .opencode/skills/sk-git/scripts/lib/git-context.mjs
-node --check .opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
-node --check .opencode/skills/sk-git/scripts/lib/advisory-noise-audit.mjs
-node .opencode/skills/sk-git/scripts/lib/advisory-noise-audit.mjs
+node --test .skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
+node --check .skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs
+node --check .skilled/skills/sk-git/scripts/lib/git-context.mjs
+node --check .skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
+node --check .skilled/skills/sk-git/scripts/lib/advisory-noise-audit.mjs
+node .skilled/skills/sk-git/scripts/lib/advisory-noise-audit.mjs
 ```
 
 Expected test result: 23 pass, 0 fail. The noise audit's exit status depends on the current repository state and reports its measured verdict explicitly.

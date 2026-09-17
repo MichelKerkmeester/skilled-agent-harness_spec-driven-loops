@@ -35,7 +35,7 @@ Operators run the exact prompt and command sequence for `VSN-026` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-026 | OpenCode `/vision` command | Verify default tool silence, question and bare forms and teardown | Use `/vision` to read the latest screenshot, then confirm that the vision runtime has closed. | 1. bash: `test -f .opencode/plugins/sk-vision.js && grep -q 'dist/plugin.js' .opencode/plugins/sk-vision.js` -> 2. OpenCode with `SK_VISION_AUTOINSPECT` unset: confirm no `sk_vision_*` tools are advertised -> 3. OpenCode: attach `<FIXTURE>` and run `/vision What does this screenshot say?` -> 4. OpenCode: run bare `/vision` -> 5. host: check the runtime process after each call | Step 1 exits 0. Step 2 lists no vision tools. Step 3 returns a `<SK-VISION COMMAND>` block. Step 4 returns scene, caption and OCR. Step 5 finds no runtime process | Load-path output, default tool list, both command responses and process checks | PASS if all five steps produce the expected signals. FAIL if the plugin is missing, a tool is advertised, evidence is missing or a runtime process remains. | 1. Rebuild `vision-runtime/dist` -> 2. Confirm `SK_VISION_AUTOINSPECT` is unset -> 3. Confirm `<FIXTURE>` is the latest image -> 4. Check the command hook output -> 5. Check `SK_VISION_TEARDOWN` and the process list |
+| VSN-026 | OpenCode `/vision` command | Verify default tool silence, question and bare forms and teardown | Use `/vision` to read the latest screenshot, then confirm that the vision runtime has closed. | 1. bash: `test -f .skilled/plugins/sk-vision.js && grep -q 'dist/plugin.js' .skilled/plugins/sk-vision.js` -> 2. OpenCode with `SK_VISION_AUTOINSPECT` unset: confirm no `sk_vision_*` tools are advertised -> 3. OpenCode: attach `<FIXTURE>` and run `/vision What does this screenshot say?` -> 4. OpenCode: run bare `/vision` -> 5. host: check the runtime process after each call | Step 1 exits 0. Step 2 lists no vision tools. Step 3 returns a `<SK-VISION COMMAND>` block. Step 4 returns scene, caption and OCR. Step 5 finds no runtime process | Load-path output, default tool list, both command responses and process checks | PASS if all five steps produce the expected signals. FAIL if the plugin is missing, a tool is advertised, evidence is missing or a runtime process remains. | 1. Rebuild `vision-runtime/dist` -> 2. Confirm `SK_VISION_AUTOINSPECT` is unset -> 3. Confirm `<FIXTURE>` is the latest image -> 4. Check the command hook output -> 5. Check `SK_VISION_TEARDOWN` and the process list |
 
 ---
 
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `VSN-026` and confirm th
 
 ### Commands
 
-1. `bash: test -f .opencode/plugins/sk-vision.js && grep -q 'dist/plugin.js' .opencode/plugins/sk-vision.js`
+1. `bash: test -f .skilled/plugins/sk-vision.js && grep -q 'dist/plugin.js' .skilled/plugins/sk-vision.js`
 2. `OpenCode with SK_VISION_AUTOINSPECT unset: confirm no sk_vision_* tools are advertised`
 3. `OpenCode: attach <FIXTURE> and run /vision What does this screenshot say?`
 4. `OpenCode: run bare /vision`
@@ -85,7 +85,7 @@ Capture the load-path check, default tool list, both command responses and the p
 
 | File | Role |
 |---|---|
-| `.opencode/plugins/sk-vision.js` | OpenCode load path |
+| `.skilled/plugins/sk-vision.js` | OpenCode load path |
 | `vision-runtime/src/plugin.ts` | Command hook and default registration posture |
 | `vision-runtime/src/opencode/command.ts` | `/vision` image read and teardown |
 | `vision-runtime/src/opencode/attachments.ts` | Legacy auto-inspect path |

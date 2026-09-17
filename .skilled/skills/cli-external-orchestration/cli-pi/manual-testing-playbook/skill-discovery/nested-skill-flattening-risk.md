@@ -65,7 +65,7 @@ Flattening every nested mode into an independent skill could create duplicate ro
 
 | File | Role |
 |---|---|
-| `.opencode/skills/` | Parent and nested skill inventory |
+| `.skilled/skills/` | Parent and nested skill inventory |
 | `.pi/settings.json` | Project-local settings inspected before a live fixture run |
 
 ---

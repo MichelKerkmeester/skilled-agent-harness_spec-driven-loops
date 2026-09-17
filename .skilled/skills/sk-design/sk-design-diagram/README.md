@@ -130,7 +130,7 @@ A: No: the packet has no network-fetch tool. Onboarding is agent-mediated: the c
 
 | Check | Result |
 |---|---|
-| Package structure | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .opencode/skills/sk-design/sk-design-diagram --strict` exits 0 |
+| Package structure | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/sk-design/sk-design-diagram --strict` exits 0 |
 | Connector rules | Every delivered diagram passes all five mandatory connector rules in `SKILL.md` RULES |
 | Accessible SVG | `role="img"`, `aria-labelledby`, first-child `<title>`, `<desc>`, and diagram/variant-prefixed IDs on every delivered SVG |
 | Import fidelity | Every import redraw reports a fidelity ledger, merged, collapsed, dropped |

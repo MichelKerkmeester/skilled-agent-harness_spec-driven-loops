@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `SKD-020` and confirm th
 ### Exact Command Sequence
 
 1. `agent: issue the prompt in a session that already received a 32px suggestion`
-2. `bash: rg -n "design system, or a measured .DESIGN.md. Style Reference" .opencode/skills/sk-design/SKILL.md`
+2. `bash: rg -n "design system, or a measured .DESIGN.md. Style Reference" .skilled/skills/sk-design/SKILL.md`
 
 ### Expected Signals
 
@@ -70,7 +70,7 @@ Check the ESCALATE list in `SKILL.md` Section 4; deference to an established sys
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-020 | An established project system wins | confirm the skill defers to a project's own tokens rather than arguing for its defaults | `Our design system says 24px spacing, but you suggested 32px` | 1. `agent: issue the prompt in a session that already received a 32px suggestion` -> 2. `bash: rg -n "design system, or a measured .DESIGN.md. Style Reference" .opencode/skills/sk-design/SKILL.md` | The reply adopts 24px without argument and states that an established system outranks the defaults. | The agent reply, and the grep proving the precedence rule is written into the skill rather than inferred. | PASS if the reply adopts the project value and names the precedence rule; FAIL if the reply defends 32px, asks the operator to change the design system, or adopts the value without acknowledging the rule | Check the ESCALATE list in `SKILL.md` Section 4; deference to an established system is the first escalation, not a negotiation. |
+| SKD-020 | An established project system wins | confirm the skill defers to a project's own tokens rather than arguing for its defaults | `Our design system says 24px spacing, but you suggested 32px` | 1. `agent: issue the prompt in a session that already received a 32px suggestion` -> 2. `bash: rg -n "design system, or a measured .DESIGN.md. Style Reference" .skilled/skills/sk-design/SKILL.md` | The reply adopts 24px without argument and states that an established system outranks the defaults. | The agent reply, and the grep proving the precedence rule is written into the skill rather than inferred. | PASS if the reply adopts the project value and names the precedence rule; FAIL if the reply defends 32px, asks the operator to change the design system, or adopts the value without acknowledging the rule | Check the ESCALATE list in `SKILL.md` Section 4; deference to an established system is the first escalation, not a negotiation. |
 
 ---
 

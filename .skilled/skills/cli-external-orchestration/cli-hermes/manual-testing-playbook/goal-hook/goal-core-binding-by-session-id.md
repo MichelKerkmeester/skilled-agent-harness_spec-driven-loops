@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-The `repo-guards` plugin's `on_session_start` binds the packet named by `HERMES_SPEC_FOLDER` through `goal.cjs bind --runtime hermes --session <id>` when no goal is bound yet, and the goal section renders `goal.cjs show` for that session, falling back to the packet's durable slice when the core has nothing. The record lives under the gitignored `.opencode/skills/.state/goal/`.
+The `repo-guards` plugin's `on_session_start` binds the packet named by `HERMES_SPEC_FOLDER` through `goal.cjs bind --runtime hermes --session <id>` when no goal is bound yet, and the goal section renders `goal.cjs show` for that session, falling back to the packet's durable slice when the core has nothing. The record lives under the gitignored `.skilled/skills/.state/goal/`.
 
 ### Why This Matters
 
@@ -54,7 +54,7 @@ HERMES_SPEC_FOLDER=specs/cli-external-orchestration/071-cli-hermes-creation HERM
 echo $?
 cat out.txt
 SID=$(grep -o "session_id: [0-9_a-f]*" err.txt | cut -d" " -f2)
-node .opencode/hooks/goal/bin/goal.cjs show --runtime hermes --session "$SID" | head -4
+node .skilled/hooks/goal/bin/goal.cjs show --runtime hermes --session "$SID" | head -4
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
@@ -82,7 +82,7 @@ node .opencode/hooks/goal/bin/goal.cjs show --runtime hermes --session "$SID" | 
 |---|---|
 | [SYNC.md](../../../../../../.hermes/SYNC.md) | What the plugin bridges and how |
 | [hook-contract.md](../../references/hook-contract.md) | The plugin hook map |
-| `.opencode/hooks/goal/bin/goal.cjs` | The shared goal core |
+| `.skilled/hooks/goal/bin/goal.cjs` | The shared goal core |
 
 ---
 

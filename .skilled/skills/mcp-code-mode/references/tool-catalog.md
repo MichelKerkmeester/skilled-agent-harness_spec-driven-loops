@@ -78,8 +78,8 @@ Do not infer a tool from a service label, a remembered catalog, or a similarly n
 The configured manual list is sourced from `.utcp_config.json`. The generated Code Mode `leaf-manifest.json` owns which catalog and workflow resources are routable. The live MCP session owns tool names, schemas, authentication state, and availability.
 
 ```bash
-node .opencode/skills/mcp-code-mode/scripts/generate-leaf-manifest.cjs \
-  --check .opencode/skills/mcp-code-mode
+node .skilled/skills/mcp-code-mode/scripts/generate-leaf-manifest.cjs \
+  --check .skilled/skills/mcp-code-mode
 ```
 
 The command above checks resource-manifest currency; it does not replace runtime tool discovery.

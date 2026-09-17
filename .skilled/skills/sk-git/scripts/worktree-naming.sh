@@ -142,11 +142,11 @@ is_backup_branch() {
 _wn_remote_allowlist_file() {
   local top
   top="$(_wn_toplevel)" || return 1
-  echo "$top/.opencode/skills/sk-git/scripts/remote-branch-allowlist.txt"
+  echo "$top/.skilled/skills/sk-git/scripts/remote-branch-allowlist.txt"
 }
 
 # True when a branch may reach origin without an explicit ask-first
-# confirmation for THIS push (see .opencode/scripts/git-hooks/pre-push).
+# confirmation for THIS push (see .skilled/scripts/git-hooks/pre-push).
 is_remote_push_allowlisted() {
   local branch="$1" file line trimmed
   # Only `main` is built in. The release line used to match a wildcard, which

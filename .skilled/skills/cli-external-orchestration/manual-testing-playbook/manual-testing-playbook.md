@@ -10,7 +10,7 @@ version: 1.4.0.12
 
 This document is the hub-level operator directory for `cli-external-orchestration`'s routing behavior. It covers the NEW routing surface introduced by the parent-hub fold-in (packet `125-cli-external-orchestration-parent`) — resolving `cli-opencode` vs `cli-claude-code` — not the internal dispatch behavior of either packet, which each packet's own testing material already covers (`cli-opencode/manual-testing-playbook/`, `cli-claude-code/manual-testing-playbook/`, unchanged by the fold-in).
 
-Source of truth for routing behavior: `.opencode/skills/cli-external-orchestration/SKILL.md` §2 Smart Routing, `.opencode/skills/cli-external-orchestration/hub-router.json`.
+Source of truth for routing behavior: `.skilled/skills/cli-external-orchestration/SKILL.md` §2 Smart Routing, `.skilled/skills/cli-external-orchestration/hub-router.json`.
 
 ---
 
@@ -44,7 +44,7 @@ Commands are shown from the repository root. Replace angle-bracket placeholders 
 
 ## 5. SCENARIOS
 
-Scenarios live as per-file YAML-frontmatter typed gold under `hub-routing/`. Each scenario's `expected_resources` paths are written relative to the hub root, `.opencode/skills/cli-external-orchestration/` — not to the repository root §4 uses for commands, and not to the scenario's own directory:
+Scenarios live as per-file YAML-frontmatter typed gold under `hub-routing/`. Each scenario's `expected_resources` paths are written relative to the hub root, `.skilled/skills/cli-external-orchestration/` — not to the repository root §4 uses for commands, and not to the scenario's own directory:
 
 | ID | File | Expected `workflowMode` |
 |----|------|--------------------------|

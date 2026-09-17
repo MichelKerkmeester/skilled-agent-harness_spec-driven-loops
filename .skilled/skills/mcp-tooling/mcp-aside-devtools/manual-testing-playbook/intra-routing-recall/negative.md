@@ -73,10 +73,10 @@ Draft a two-paragraph welcome email for the new marketing hire starting on Monda
 
 ### Commands
 
-1. `sed -n '1,12p' .opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/negative.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
-3. `sed -n '/^UNKNOWN_FALLBACK_CHECKLIST = \[/,/^\]/p' .opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
-4. `sed -n '/^    if max(scores.values/,/"resources": loaded,$/p' .opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
+1. `sed -n '1,12p' .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/intra-routing-recall/negative.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
+3. `sed -n '/^UNKNOWN_FALLBACK_CHECKLIST = \[/,/^\]/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
+4. `sed -n '/^    if max(scores.values/,/"resources": loaded,$/p' .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md`
 
 ### Expected
 

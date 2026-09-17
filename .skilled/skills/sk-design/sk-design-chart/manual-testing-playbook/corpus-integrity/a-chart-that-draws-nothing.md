@@ -51,12 +51,12 @@ This scenario needs a Chrome or Chromium binary on one of the usual paths or nam
 
 ### Commands
 
-1. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > structural.txt 2>&1`
+1. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > structural.txt 2>&1`
 2. `bash: echo $?`
-3. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render > rendered.txt 2>&1`
+3. `bash: node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --render > rendered.txt 2>&1`
 4. `bash: echo $?`
 5. `agent: Read both files and report the mode line, the scanned file count, every check row with its assertion count and the RESULT line`
-6. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
+6. `bash: git status --porcelain .skilled/skills/sk-design/sk-design-chart`
 
 ### Expected
 

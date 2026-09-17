@@ -45,7 +45,7 @@ $raw clean up my prompt's whitespace only; verify DEPTH and CLEAR stay skipped a
 ### Commands
 
 1. `sk-prompt: $raw I already wrote this prompt — just clean up whitespace, do not rewrite it. <draft body>`
-2. `bash: rg '\$raw' .opencode/skills/sk-prompt/SKILL.md` (confirm $raw alias documented)
+2. `bash: rg '\$raw' .skilled/skills/sk-prompt/SKILL.md` (confirm $raw alias documented)
 
 ### Expected
 

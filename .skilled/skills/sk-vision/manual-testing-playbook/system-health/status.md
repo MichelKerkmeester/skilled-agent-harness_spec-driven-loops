@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-012` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-012 | Runtime status | Verify model load state, device, and capabilities | Check whether the vision runtime is loaded and what device it is using. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"load","params":{}}' \ -> 4.   '{"id":3,"method":"status","params":{}}' -> 5.   \| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: status reports `model_loaded: true`, a `device` of `mps` or `cuda`, and non-empty `capabilities` | The status response (device, capabilities, request_count, uptime_s) with the transcript | PASS if `result.model_loaded` is `true` and `device` is `mps` or `cuda` with non-empty `capabilities`; FAIL if `model_loaded` stays false after load, or the response is an error envelope | 1. Status alone on a cold runtime reports `model_loaded: false` - always run a `load` first -> 2. If load fails, check the stderr traceback (torch/MPS availability) -> 3. Confirm the model cache exists under `~/.cache/huggingface`; a missing cache triggers the ~3.9GB download |
+| VSN-012 | Runtime status | Verify model load state, device, and capabilities | Check whether the vision runtime is loaded and what device it is using. | 1. bash: printf '%s\n' \ -> 2.   '{"id":1,"method":"load","params":{}}' \ -> 3.   '{"id":2,"method":"load","params":{}}' \ -> 4.   '{"id":3,"method":"status","params":{}}' -> 5.   \| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py | Step 1: load returns `{"result":{"loaded":true}}`; Step 2: status reports `model_loaded: true`, a `device` of `mps` or `cuda`, and non-empty `capabilities` | The status response (device, capabilities, request_count, uptime_s) with the transcript | PASS if `result.model_loaded` is `true` and `device` is `mps` or `cuda` with non-empty `capabilities`; FAIL if `model_loaded` stays false after load, or the response is an error envelope | 1. Status alone on a cold runtime reports `model_loaded: false` - always run a `load` first -> 2. If load fails, check the stderr traceback (torch/MPS availability) -> 3. Confirm the model cache exists under `~/.cache/huggingface`; a missing cache triggers the ~3.9GB download |
 
 ---
 
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `VSN-012` and confirm th
 2. `  '{"id":1,"method":"load","params":{}}' \`
 3. `  '{"id":2,"method":"load","params":{}}' \`
 4. `  '{"id":3,"method":"status","params":{}}'`
-5. `  | "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py`
+5. `  | "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py`
 
 ### Expected
 

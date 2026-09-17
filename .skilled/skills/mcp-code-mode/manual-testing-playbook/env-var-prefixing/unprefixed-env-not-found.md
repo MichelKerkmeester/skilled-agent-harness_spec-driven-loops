@@ -96,7 +96,7 @@ Capture the auth-error message verbatim. Capture the post-restore success.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Env-var prefixing rule (line 400-416) |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Env-var prefixing rule (line 400-416) |
 | `.env` (project root) | Env-var source |
 
 ---

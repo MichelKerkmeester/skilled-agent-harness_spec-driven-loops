@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `VSN-015` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-015 | Pi extension | Verify the extension path, hidden registrations, `/vision` forms and teardown | Use `/vision` to read the latest screenshot, then confirm that the vision runtime has closed. | 1. bash: test -L .pi/extensions/sk-vision.ts && readlink .pi/extensions/sk-vision.ts -> 2. bash: test -f .opencode/skills/sk-vision/pi/sk-vision.ts -> 3. bash: grep -c 'pi.registerTool' .opencode/skills/sk-vision/pi/sk-vision.ts -> 4. Pi with `SK_VISION_AUTOINSPECT` unset: confirm the 13 tools are hidden -> 5. Pi: attach `<FIXTURE>` and run `/vision What does this screenshot say?` -> 6. Pi: run bare `/vision` -> 7. host: check the runtime process after each call | Steps 1 and 2 exit 0. Step 3 prints `13`. Step 4 shows hidden tools. Step 5 returns evidence. Step 6 asks in the conversation or returns a full read. Step 7 finds no runtime process | Symlink output, grep count, hidden-tool view, both command responses and process check | PASS if the path works, the tools are hidden, both command forms behave as documented and the runtime exits after each call. FAIL if any check fails. | 1. Confirm the symlink and factory -> 2. Confirm `SK_VISION_AUTOINSPECT` is unset -> 3. Confirm the hidden registration -> 4. Confirm the command has a recent image -> 5. Check `SK_VISION_TEARDOWN` and the runtime process |
+| VSN-015 | Pi extension | Verify the extension path, hidden registrations, `/vision` forms and teardown | Use `/vision` to read the latest screenshot, then confirm that the vision runtime has closed. | 1. bash: test -L .pi/extensions/sk-vision.ts && readlink .pi/extensions/sk-vision.ts -> 2. bash: test -f .skilled/skills/sk-vision/pi/sk-vision.ts -> 3. bash: grep -c 'pi.registerTool' .skilled/skills/sk-vision/pi/sk-vision.ts -> 4. Pi with `SK_VISION_AUTOINSPECT` unset: confirm the 13 tools are hidden -> 5. Pi: attach `<FIXTURE>` and run `/vision What does this screenshot say?` -> 6. Pi: run bare `/vision` -> 7. host: check the runtime process after each call | Steps 1 and 2 exit 0. Step 3 prints `13`. Step 4 shows hidden tools. Step 5 returns evidence. Step 6 asks in the conversation or returns a full read. Step 7 finds no runtime process | Symlink output, grep count, hidden-tool view, both command responses and process check | PASS if the path works, the tools are hidden, both command forms behave as documented and the runtime exits after each call. FAIL if any check fails. | 1. Confirm the symlink and factory -> 2. Confirm `SK_VISION_AUTOINSPECT` is unset -> 3. Confirm the hidden registration -> 4. Confirm the command has a recent image -> 5. Check `SK_VISION_TEARDOWN` and the runtime process |
 
 ---
 
@@ -47,8 +47,8 @@ Operators run the exact prompt and command sequence for `VSN-015` and confirm th
 ### Commands
 
 1. `bash: test -L .pi/extensions/sk-vision.ts && readlink .pi/extensions/sk-vision.ts`
-2. `bash: test -f .opencode/skills/sk-vision/pi/sk-vision.ts`
-3. `bash: grep -c 'pi.registerTool' .opencode/skills/sk-vision/pi/sk-vision.ts`
+2. `bash: test -f .skilled/skills/sk-vision/pi/sk-vision.ts`
+3. `bash: grep -c 'pi.registerTool' .skilled/skills/sk-vision/pi/sk-vision.ts`
 4. `Pi with SK_VISION_AUTOINSPECT unset: confirm the 13 tools are hidden`
 5. `Pi: attach <FIXTURE> and run /vision What does this screenshot say?`
 6. `Pi: run bare /vision`
@@ -87,7 +87,7 @@ Symlink output, grep count, hidden-tool view, both command responses and the pro
 | File | Role |
 |---|---|
 | `.pi/extensions/sk-vision.ts` | Load-path symlink to the owned factory |
-| `.opencode/skills/sk-vision/pi/sk-vision.ts` | ExtensionFactory registering the 13 hidden tools and command path |
+| `.skilled/skills/sk-vision/pi/sk-vision.ts` | ExtensionFactory registering the 13 hidden tools and command path |
 | `.pi/prompts/vision.md` | Pi `/vision` prompt |
 | `vision-runtime/python/runtime.test.ts` | Runtime behavior the factory proxies |
 

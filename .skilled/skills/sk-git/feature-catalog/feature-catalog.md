@@ -52,7 +52,7 @@ Creating a branch on origin needs the branch named in the approval, because a ba
 
 #### Source Files
 
-See [`remote-branch-policy.md`](../references/remote-branch-policy.md) for the approval forms and the autosync exemption, and `.opencode/scripts/git-hooks/tests/pre-push.test.sh` for the automated matrix.
+See [`remote-branch-policy.md`](../references/remote-branch-policy.md) for the approval forms and the autosync exemption, and `.skilled/scripts/git-hooks/tests/pre-push.test.sh` for the automated matrix.
 
 ### Launch-wrapper session isolation
 

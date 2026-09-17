@@ -89,7 +89,7 @@ Capture the chain response with count + sample fields.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | GitHub MCP integration notes |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | GitHub MCP integration notes |
 
 ---
 

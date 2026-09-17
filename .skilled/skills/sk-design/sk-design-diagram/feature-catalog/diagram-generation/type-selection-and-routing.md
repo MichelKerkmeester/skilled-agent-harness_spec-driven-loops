@@ -46,7 +46,7 @@ The router loads `references/foundations/style-guide.md` on every diagram and lo
 |---|---|---|
 | `SKILL.md` (Smart Routing + selection guide) | Handler | Request-shape classification, 27-type selection guide, resource loading levels, and the routing pseudocode |
 | `references/types/type-*.md` (27 files) | Shared | Per-type layout conventions, per-type ceilings, and anti-patterns loaded conditionally for generate requests |
-| `.opencode/commands/create/assets/create-diagram-auto.yaml`, `create-diagram-confirm.yaml` | Shared | Workflow YAML that carries the generate/import/export detection steps executed by the `/design:diagram` router |
+| `.skilled/commands/create/assets/create-diagram-auto.yaml`, `create-diagram-confirm.yaml` | Shared | Workflow YAML that carries the generate/import/export detection steps executed by the `/design:diagram` router |
 
 ### Validation And Tests
 

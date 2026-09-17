@@ -79,8 +79,8 @@ The full REPL transcript and the parsed JSON. Record the `snapshot` result shape
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/dom-inspection.md` | Capability leaf with the repl code patterns |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json` | Proves the Playwright `page` API is available |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/dom-inspection.md` | Capability leaf with the repl code patterns |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json` | Proves the Playwright `page` API is available |
 
 ---
 

@@ -37,17 +37,17 @@ The provider name is pinned in the same place, because Hermes resolves `--provid
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Shared | `HERMES_SUPPORTED_MODELS`, `HERMES_DEFAULT_MODEL` and `isHermesModelAllowed`. |
-| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | `HERMES_ALLOWED_MODELS`, `HERMES_DEFAULT_MODEL`, `HERMES_PROVIDER` and the off-roster rejection. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md` | Handler | The provider contract, the credential boundary and the roster rationale. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Shared | `HERMES_SUPPORTED_MODELS`, `HERMES_DEFAULT_MODEL` and `isHermesModelAllowed`. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | `HERMES_ALLOWED_MODELS`, `HERMES_DEFAULT_MODEL`, `HERMES_PROVIDER` and the off-roster rejection. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md` | Handler | The provider contract, the credential boundary and the roster rationale. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Vitest | Asserts the roster contents, the default and the allowlist predicate. |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Vitest | Covers the mirrored allowlist and the off-roster rejection path. |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts` | Vitest | Checks the executor and model combinations the fan-out treats as valid. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Vitest | Asserts the roster contents, the default and the allowlist predicate. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Vitest | Covers the mirrored allowlist and the off-roster rejection path. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts` | Vitest | Checks the executor and model combinations the fan-out treats as valid. |
 
 ---
 

@@ -8,7 +8,7 @@ version: 1.5.0.0
 
 ## 1. OVERVIEW
 
-Cursor's `sessionStart` payload supplies `session_id`, with `conversation_id` as a fallback. `.opencode/hooks/goal/cursor/goal-inject.mjs` uses that native value with runtime `cursor` and the payload workspace. It injects only the matching scoped goal and records a turn touch.
+Cursor's `sessionStart` payload supplies `session_id`, with `conversation_id` as a fallback. `.skilled/hooks/goal/cursor/goal-inject.mjs` uses that native value with runtime `cursor` and the payload workspace. It injects only the matching scoped goal and records a turn touch.
 
 Cursor management is intentionally unsupported. The prompt command does not receive the hook's current-session identity, so `.cursor/commands/goal-cursor.md` returns `UNSUPPORTED_SESSION_BINDING` for every management action. The one allowed command is `packet <packet-path>`, a session-free read of a packet's `goal.md` durable slice through `bin/goal.cjs packet`, which binds nothing and writes nothing. When the injected session is bound to a packet, `agent_message` is rendered from that packet's `goal.md` and carries a `[goal_resend_pending]` line while the operator copy is behind the file.
 
@@ -41,11 +41,11 @@ Cursor management is intentionally unsupported. The prompt command does not rece
 
 ### Exact Command Sequence
 
-Set A and B with `node .opencode/hooks/goal/bin/goal.cjs --runtime cursor --session <id> --workspace "$PWD" set <goal>`, pipe each matching JSON payload to `node .opencode/hooks/goal/cursor/goal-inject.mjs`, then run `node --test .opencode/hooks/goal/cursor/goal-cursor.test.mjs`.
+Set A and B with `node .skilled/hooks/goal/bin/goal.cjs --runtime cursor --session <id> --workspace "$PWD" set <goal>`, pipe each matching JSON payload to `node .skilled/hooks/goal/cursor/goal-inject.mjs`, then run `node --test .skilled/hooks/goal/cursor/goal-cursor.test.mjs`.
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 ||---|---|---|---|---|---|---|---|---|
-|| CU-027 | Session-bound Cursor goal injection | A/B payload isolation and unsupported management | `Invoke the Cursor goal adapter with two native session payloads, prove each response contains only its own objective, then verify missing identity, legacy-only state, registration, and unsupported management behavior.` | Set A/B with `node .opencode/hooks/goal/bin/goal.cjs --runtime cursor --session <id> --workspace "$PWD" set <goal>`; pipe matching JSON payloads to `node .opencode/hooks/goal/cursor/goal-inject.mjs`; run `node --test .opencode/hooks/goal/cursor/goal-cursor.test.mjs` | Distinct A/B blocks, turn touch isolation, missing-id no-op, valid registration, command without CLI invocation | Adapter JSON, byte comparison, parsed config, test summary | PASS when injection is session-bound and management stays explicitly unsupported | Check payload identity first; then workspace and runtime; never repair management by inventing a default id |
+|| CU-027 | Session-bound Cursor goal injection | A/B payload isolation and unsupported management | `Invoke the Cursor goal adapter with two native session payloads, prove each response contains only its own objective, then verify missing identity, legacy-only state, registration, and unsupported management behavior.` | Set A/B with `node .skilled/hooks/goal/bin/goal.cjs --runtime cursor --session <id> --workspace "$PWD" set <goal>`; pipe matching JSON payloads to `node .skilled/hooks/goal/cursor/goal-inject.mjs`; run `node --test .skilled/hooks/goal/cursor/goal-cursor.test.mjs` | Distinct A/B blocks, turn touch isolation, missing-id no-op, valid registration, command without CLI invocation | Adapter JSON, byte comparison, parsed config, test summary | PASS when injection is session-bound and management stays explicitly unsupported | Check payload identity first; then workspace and runtime; never repair management by inventing a default id |
 
 ### Rollback
 

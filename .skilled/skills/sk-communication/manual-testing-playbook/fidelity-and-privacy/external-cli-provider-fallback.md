@@ -37,14 +37,14 @@ The external-cli provider dispatches a rewrite to a remote CLI agent. If a faile
 
 ### Exact Command Sequence
 
-1. Change directory to `.opencode/skills/sk-communication/cli-communication-projection/`.
+1. Change directory to `.skilled/skills/sk-communication/cli-communication-projection/`.
 2. Run `npm run test -- test/providers/external-cli.test.ts -t "falls back to the exact original when the CLI runner fails"`.
 3. Run `npm run test -- test/providers/external-cli.test.ts -t "is denied when hosted egress is not consented"`.
 4. Capture both exit statuses and the named Vitest summaries.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| COMM-009 | External CLI provider fallback | Prove exact-original fallback on CLI dispatch failure and egress-consent gating. | `Verify that the external CLI provider returns the exact original bytes when the CLI dispatch fails and only routes with hosted egress consent, then give me a PASS or FAIL verdict with the focused test evidence.` | 1. `bash: cd .opencode/skills/sk-communication/cli-communication-projection` -> 2. `package: npm run test -- test/providers/external-cli.test.ts -t "falls back to the exact original when the CLI runner fails"` -> 3. `package: npm run test -- test/providers/external-cli.test.ts -t "is denied when hosted egress is not consented"` | Both commands exit zero; each reports one passing focused test; no failing test file or test appears. | Full transcripts, exit statuses, and the two passing test names. | PASS if both focused tests pass; FAIL if either fails or is not selected; SKIP only if Node or installed dependencies are unavailable. | 1. Confirm the test file exists; 2. rerun the file without `-t`; 3. inspect `transports/cli.ts` dispatch mapping and `providers/presets.ts` privacy class; 4. run `npm run typecheck`. |
+| COMM-009 | External CLI provider fallback | Prove exact-original fallback on CLI dispatch failure and egress-consent gating. | `Verify that the external CLI provider returns the exact original bytes when the CLI dispatch fails and only routes with hosted egress consent, then give me a PASS or FAIL verdict with the focused test evidence.` | 1. `bash: cd .skilled/skills/sk-communication/cli-communication-projection` -> 2. `package: npm run test -- test/providers/external-cli.test.ts -t "falls back to the exact original when the CLI runner fails"` -> 3. `package: npm run test -- test/providers/external-cli.test.ts -t "is denied when hosted egress is not consented"` | Both commands exit zero; each reports one passing focused test; no failing test file or test appears. | Full transcripts, exit statuses, and the two passing test names. | PASS if both focused tests pass; FAIL if either fails or is not selected; SKIP only if Node or installed dependencies are unavailable. | 1. Confirm the test file exists; 2. rerun the file without `-t`; 3. inspect `transports/cli.ts` dispatch mapping and `providers/presets.ts` privacy class; 4. run `npm run typecheck`. |
 
 ### Evidence Review
 
@@ -65,10 +65,10 @@ The two commands are jointly required: the fallback test alone does not prove th
 
 | File | Role |
 |---|---|
-| [External CLI transport](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts) | Dispatch mapping and fail-closed responses. |
-| [External CLI preset](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts) | Hosted-retained record and privacy class. |
-| [External CLI provider tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts) | Fallback and egress-consent evidence. |
-| [External CLI transport tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts) | Engine resolution, argv, timeout, fail-closed evidence, and process-group teardown on timeout and abort. |
+| [External CLI transport](../../../../../.skilled/skills/sk-communication/cli-communication-projection/src/transports/cli.ts) | Dispatch mapping and fail-closed responses. |
+| [External CLI preset](../../../../../.skilled/skills/sk-communication/cli-communication-projection/src/providers/presets.ts) | Hosted-retained record and privacy class. |
+| [External CLI provider tests](../../../../../.skilled/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts) | Fallback and egress-consent evidence. |
+| [External CLI transport tests](../../../../../.skilled/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts) | Engine resolution, argv, timeout, fail-closed evidence, and process-group teardown on timeout and abort. |
 
 ---
 

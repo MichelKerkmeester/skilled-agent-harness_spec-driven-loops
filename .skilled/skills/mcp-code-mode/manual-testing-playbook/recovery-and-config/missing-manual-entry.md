@@ -89,7 +89,7 @@ Capture the verbatim error message.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Error-handling guidance |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Error-handling guidance |
 
 ---
 

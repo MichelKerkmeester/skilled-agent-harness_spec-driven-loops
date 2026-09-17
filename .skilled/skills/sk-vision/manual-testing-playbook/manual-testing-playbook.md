@@ -75,7 +75,7 @@ printf '%s\n' \
 | "$HOME/.cache/sk-vision/venv/bin/python" -
 ```
 
-6. Host adapters present: `.opencode/plugins/sk-vision.js` (OpenCode) and `.pi/extensions/sk-vision.ts` (Pi) exist and load. OpenCode advertises no vision tools by default. Pi registers the 13 tools hidden. `SK_VISION_AUTOINSPECT=1` restores visible legacy tools. Devin's hook is registered in `.devin/hooks.v1.json`. Cursor's CLI is built at `vision-runtime/dist/vision-cli.js`.
+6. Host adapters present: `.skilled/plugins/sk-vision.js` (OpenCode) and `.pi/extensions/sk-vision.ts` (Pi) exist and load. OpenCode advertises no vision tools by default. Pi registers the 13 tools hidden. `SK_VISION_AUTOINSPECT=1` restores visible legacy tools. Devin's hook is registered in `.devin/hooks.v1.json`. Cursor's CLI is built at `vision-runtime/dist/vision-cli.js`.
 7. Teardown: `SK_VISION_TEARDOWN=close` is the default. Each `/vision` scenario checks that the runtime process is gone after the call. `unload` frees the model while keeping the process. `keep` leaves it running.
 8. Destructive scenarios: none in this playbook. No scenario deletes cache or model state permanently.
 
@@ -111,7 +111,7 @@ Canonical request shape:
 printf '%s\n' \
 '{"id":1,"method":"load","params":{}}' \
 '{"id":2,"method":"<method>","params":{...}}' \
-| "$HOME/.cache/sk-vision/venv/bin/python" .opencode/skills/sk-vision/vision-runtime/python/runtime.py
+| "$HOME/.cache/sk-vision/venv/bin/python" .skilled/skills/sk-vision/vision-runtime/python/runtime.py
 ```
 
 ---

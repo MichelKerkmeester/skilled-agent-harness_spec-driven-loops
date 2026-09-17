@@ -228,7 +228,7 @@ Expected signals: Step 2: ClickUp tool returns auth error; Step 3: error message
 ### CM-010 | validate_config.py reports missing required env vars
 
 #### Description
-Verify `python3 .opencode/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json --check-env .env` lists missing required env vars.
+Verify `python3 .skilled/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json --check-env .env` lists missing required env vars.
 
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, run the validation script with a `.env` missing one required prefixed key against the current `.utcp_config.json`. Verify the script exits non-zero and names the missing key. Return a concise user-facing pass/fail verdict with the main reason.
@@ -495,9 +495,9 @@ Expected signals: Step 1: unit-test suite reports 16/16 assertions passed with e
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `.opencode/skills/mcp-code-mode/scripts/validate_config.py` | `.utcp_config.json` schema + env-var presence | CM-010 |
-| `.opencode/skills/mcp-code-mode/scripts/test/manual_namespace.test.js` (if present) | Manual-namespace contract | CM-005, CM-006, CM-007 |
-| `.opencode/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs` | Shared route-guard core + Claude-hook unit assertions | mcp-route-guard |
+| `.skilled/skills/mcp-code-mode/scripts/validate_config.py` | `.utcp_config.json` schema + env-var presence | CM-010 |
+| `.skilled/skills/mcp-code-mode/scripts/test/manual_namespace.test.js` (if present) | Manual-namespace contract | CM-005, CM-006, CM-007 |
+| `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs` | Shared route-guard core + Claude-hook unit assertions | mcp-route-guard |
 
 > Note: most Code Mode behavior is exercised through the live MCP servers it wraps, not through dedicated unit tests in the skill itself. The playbook scenarios serve as the primary regression surface.
 

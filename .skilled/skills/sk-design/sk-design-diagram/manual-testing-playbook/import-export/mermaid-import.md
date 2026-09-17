@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `IMP-002` and confirm th
 
 ### Commands
 
-1. `bash: python3 .opencode/skills/sk-design/sk-design-diagram/scripts/mermaid_extract.py docs/onboarding.md --diagram 0`
+1. `bash: python3 .skilled/skills/sk-design/sk-design-diagram/scripts/mermaid_extract.py docs/onboarding.md --diagram 0`
 2. `agent: Read references/import-export/import-mermaid.md, references/foundations/output-spec.md, and references/types/type-flowchart.md`
 3. `agent: Set the four dials; discard init themes, classDef/class/linkStyle, and click targets; preserve sequence order, guards, ER cardinality, and container membership`
 4. `agent: Redraw from a blank viewBox with orthogonal connectors; do not reproduce Mermaid spacing`

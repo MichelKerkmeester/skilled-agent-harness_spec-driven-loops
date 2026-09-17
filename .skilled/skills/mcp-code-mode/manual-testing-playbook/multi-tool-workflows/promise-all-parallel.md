@@ -92,7 +92,7 @@ Capture the verbatim chain response with timing.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/SKILL.md` | call_tool_chain spec; parallel-execution patterns |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | call_tool_chain spec; parallel-execution patterns |
 
 ---
 

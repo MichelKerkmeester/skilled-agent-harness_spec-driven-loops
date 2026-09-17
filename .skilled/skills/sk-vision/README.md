@@ -109,7 +109,7 @@ The default posture is opt-in and idle. OpenCode runs `/vision` through a `comma
 | `feature-catalog/` | Per-tool deep documentation (routed corpus) |
 | `manual-testing-playbook/` / `benchmark/` | Test-scenario corpus and measured results |
 
-Host load paths live outside the skill and resolve back in: `.pi/extensions/sk-vision.ts` into `hooks/pi/` and `.opencode/plugins/sk-vision.js` into the built `vision-runtime/dist/plugin.js`.
+Host load paths live outside the skill and resolve back in: `.pi/extensions/sk-vision.ts` into `hooks/pi/` and `.skilled/plugins/sk-vision.js` into the built `vision-runtime/dist/plugin.js`.
 
 ---
 
@@ -123,12 +123,12 @@ The runtime exposes **13** `sk_vision_*` tools: `inspect`, `detect`, `point`, `o
 
 Every host reaches the same runtime through the strongest mechanism it supports:
 
-- **OpenCode**: the built plugin `vision-runtime/dist/plugin.js` loads through `.opencode/plugins/sk-vision.js`. It does not register the 13 tools by default. Its `/vision` command hook injects evidence and tears down the runtime. `SK_VISION_AUTOINSPECT=1` restores visible tools and legacy auto-inspect.
+- **OpenCode**: the built plugin `vision-runtime/dist/plugin.js` loads through `.skilled/plugins/sk-vision.js`. It does not register the 13 tools by default. Its `/vision` command hook injects evidence and tears down the runtime. `SK_VISION_AUTOINSPECT=1` restores visible tools and legacy auto-inspect.
 - **Pi**: source `hooks/pi/sk-vision.ts` loads through `.pi/extensions/sk-vision.ts`. It registers the 13 tools hidden by default. Its `/vision` prompt drives the hidden inspect tool and tears down a fresh runtime after each call.
 - **Devin**: a `UserPromptSubmit` hook that injects evidence without being asked. See `hooks/README.md`.
 - **Cursor**: the built CLI, invoked by its `/vision` command and always-apply rule. Cursor delivers no prompt-time hook event, so nothing can force the call there.
 
-Adapter sources are mirrored to the shared hook fleet at `.opencode/hooks/sk-vision/{pi,opencode,devin}`. The skill owns the source. Every other path is a symlink or re-export.
+Adapter sources are mirrored to the shared hook fleet at `.skilled/hooks/sk-vision/{pi,opencode,devin}`. The skill owns the source. Every other path is a symlink or re-export.
 
 ---
 
@@ -178,13 +178,13 @@ Full environment-variable and hardware reference: [SKILL.md](SKILL.md) §3.
 
 ```bash
 # Regenerate manifests after touching routed corpora
-node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix
+node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix
 
 # Validate the skill package
-python3 .opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .opencode/skills/sk-vision
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/sk-vision
 
 # Runtime regression
-cd .opencode/skills/sk-vision/vision-runtime && bun run build && bun test
+cd .skilled/skills/sk-vision/vision-runtime && bun run build && bun test
 ```
 
 `ci-skill-root-metadata.cjs` should report `OK [S] sk-vision`. The package check should PASS. The runtime build and tests should exit 0.
@@ -196,6 +196,6 @@ cd .opencode/skills/sk-vision/vision-runtime && bun run build && bun test
 - [SKILL.md](SKILL.md): the executable contract for routing, tools, JSON-RPC protocol, env vars and troubleshooting.
 - `feature-catalog/`: per-tool deep behavior.
 - `manual-testing-playbook/` and `benchmark/`: test scenarios and measured results.
-- Class S root-metadata contract: `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
+- Class S root-metadata contract: `.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
 
 This skill is **`sk-vision`**. Do not publish or refer to it as `opencode-senses`; the fork's `publishConfig` is neutralized.

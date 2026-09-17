@@ -54,8 +54,8 @@ Optimize this SQL query so the report loads faster.
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/intra-routing-recall/negative.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md`
+1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/intra-routing-recall/negative.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md`
 3. `echo "Optimize this SQL query so the report loads faster." | grep -qiE 'app design research|app research|competitor|app comparison|banking apps|category|how do apps|real apps|screen|screen examples|ui pattern|empty state|first open|onboarding screen|component example|screenshot|paywall|settings|dashboard|flow|ux flow|user flow|journey|start to finish|multi-step|progression|forgot password|checkout|signup process|element|bottom sheet|inline validation|component behavior|button state|tab bar|modal|confirmation dialog|wiring|utcp|oauth|mcp-remote|authenticate|pkce|manual|register|token|plan|install|setup|error|failed|401|not working|not resolving|429|rate limit|timeout|unauthorized|denied' && echo MATCH || echo NOMATCH`
 
 ### Expected

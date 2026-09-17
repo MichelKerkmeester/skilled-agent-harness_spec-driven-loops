@@ -156,7 +156,7 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs` (executor kind `cl
 
 ## 6. ENFORCEMENT & PROFILES (authoritative elsewhere — do not duplicate here)
 
-- **Fan-out dispatcher + model enforcement** → `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (executor kind `cli-devin`)
+- **Fan-out dispatcher + model enforcement** → `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (executor kind `cli-devin`)
 - **Live model ids** → `devin models` on the target install
 
 ---

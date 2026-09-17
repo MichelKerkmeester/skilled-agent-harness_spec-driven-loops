@@ -51,7 +51,7 @@ Prompt: `Run the manifest-indexed hermetic stress test for cli-opencode:EC-012 a
 Run from the repository root:
 
 ```bash
-cd .opencode/skills/system-deep-loop/runtime && \
+cd .skilled/skills/system-deep-loop/runtime && \
   npx --no-install vitest run tests/stress/cli-adapter/cli-opencode.vitest.ts \
   --configLoader runner --reporter=verbose \
   -t "runs cli-opencode from each isolated worktree cwd" </dev/null

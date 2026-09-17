@@ -90,7 +90,7 @@ One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous`
 
 #### Current Reality
 
-A quoted command-position executor is normalized as a real dispatch: `"devin" -p x` classifies as `direct cli-devin` (identical to the unquoted form) and is audit-visible, while multi-word quoted prose and quoted arguments correctly stay `none`. Under Pi, a `direct` dispatch is denied unless the user's own request names the matching executor, an `ambiguous` command is denied, and `none` is a no-op. Run the shared inspector suite (`npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs`) and the Pi preflight suite (`npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`). All cases are expected to pass.
+A quoted command-position executor is normalized as a real dispatch: `"devin" -p x` classifies as `direct cli-devin` (identical to the unquoted form) and is audit-visible, while multi-word quoted prose and quoted arguments correctly stay `none`. Under Pi, a `direct` dispatch is denied unless the user's own request names the matching executor, an `ambiguous` command is denied, and `none` is a no-op. Run the shared inspector suite (`npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`) and the Pi preflight suite (`npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`). All cases are expected to pass.
 
 #### Source Files
 
@@ -108,8 +108,8 @@ The runtime-neutral goal core stores one record per workspace, runtime, and nati
 
 #### Current Reality
 
-Pi has a native registered `/goal-pi` management command (bind, resent, log, packet, set and the lifecycle actions) plus session-bound injection with the resend reminder and turn-end verification. Cursor has session-bound injection with the reminder and a session-free `/goal-cursor packet <path>` read; every management action still fails with `UNSUPPORTED_SESSION_BINDING`. Devin is injection-only through `.opencode/hooks/goal/devin/goal-inject.mjs`. Claude Code and Codex keep their native host goal command and reach the packet goal through the speckit workflows. Legacy `active-goal.json` is never injected automatically and can only be inspected, migrated to an explicit validated scope, or archived. Aggregate diagnostics expose counts and classification without raw session ids.
+Pi has a native registered `/goal-pi` management command (bind, resent, log, packet, set and the lifecycle actions) plus session-bound injection with the resend reminder and turn-end verification. Cursor has session-bound injection with the reminder and a session-free `/goal-cursor packet <path>` read; every management action still fails with `UNSUPPORTED_SESSION_BINDING`. Devin is injection-only through `.skilled/hooks/goal/devin/goal-inject.mjs`. Claude Code and Codex keep their native host goal command and reach the packet goal through the speckit workflows. Legacy `active-goal.json` is never injected automatically and can only be inspected, migrated to an explicit validated scope, or archived. Aggregate diagnostics expose counts and classification without raw session ids.
 
 #### Source Files
 
-See [`.opencode/hooks/goal/README.md`](../../../hooks/goal/README.md) for the support matrix, state layout, command examples, rollback, and automated verification. The operator scenario is [`goal-manage-cli.md`](../manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md).
+See [`.skilled/hooks/goal/README.md`](../../../hooks/goal/README.md) for the support matrix, state layout, command examples, rollback, and automated verification. The operator scenario is [`goal-manage-cli.md`](../manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md).

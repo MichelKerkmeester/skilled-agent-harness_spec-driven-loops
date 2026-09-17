@@ -16,7 +16,7 @@ Copy and paste this prompt to your AI assistant to get installation help:
 
 ```
 Run the embedded install script:
-  bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
+  bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
 
 It will:
   1. Install notesmd-cli through Homebrew when available, or print the
@@ -46,8 +46,8 @@ the manual and never writes configuration files.
 ### Quick Success Check (30 seconds)
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/doctor.sh
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/install.sh --check-only
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh --check-only
 notesmd-cli --version && notesmd-cli list-vaults
 ```
 
@@ -59,7 +59,7 @@ The headless profile is ready when `notesmd-cli` resolves and a vault is registe
 
 | Component | Source | Package | Install | Required For |
 |---|---|---|---|---|
-| **Headless CLI** | Yakitrak | `notesmd-cli` | `bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/install.sh` or the listed Homebrew/Scoop/AUR/source path | Filesystem-native vault work with no running app |
+| **Headless CLI** | Yakitrak | `notesmd-cli` | `bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh` or the listed Homebrew/Scoop/AUR/source path | Filesystem-native vault work with no running app |
 | **App-backed CLI** | Obsidian desktop v1.12.4+ | `obsidian` | Enable Command line interface and Register CLI in the desktop app | Live UI, app context, and URI-driven operations |
 | **Cyanheads MCP** | cyanheads | `obsidian-mcp-server@3.5.0` | Later Code Mode manual: `npx -y obsidian-mcp-server@latest` over stdio | Structured live-vault note, search, and tag operations |
 
@@ -109,7 +109,7 @@ Agent
 
 ```bash
 # Recommended from this mode: installs through Homebrew when it is available
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
 
 # Direct Homebrew install for macOS / Linux
 brew tap yakitrak/yakitrak && brew install yakitrak/yakitrak/notesmd-cli
@@ -207,10 +207,10 @@ The `obsidian_` prefix matches the manual name. The `obsidian` manual and these 
 
 ```bash
 # Read-only mode diagnostics
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/doctor.sh
 
 # Confirm the installer sees the headless profile without installing
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/install.sh --check-only
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh --check-only
 
 # Headless vault health
 notesmd-cli --version

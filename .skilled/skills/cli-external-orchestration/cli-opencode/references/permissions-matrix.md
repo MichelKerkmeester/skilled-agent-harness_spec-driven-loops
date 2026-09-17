@@ -40,13 +40,13 @@ The structured gate is designed to check each tool call against deterministic `r
 
 Schema file:
 
-`.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json`
+`.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json`
 
 Examples:
 
-- `.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-readonly.json`
-- `.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-packet-local.json`
-- `.opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json`
+- `.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-readonly.json`
+- `.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-packet-local.json`
+- `.skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json`
 
 Top-level fields:
 
@@ -144,17 +144,17 @@ but mutation must stay narrow.
 
 ---
 
-## 6. EXAMPLE MATRIX: REPO-WIDE `.opencode`
+## 6. EXAMPLE MATRIX: REPO-WIDE `.skilled`
 
 Use `permissions-matrix.example-repo-wide.json` for trusted refactors across
-`.opencode`.
+`.skilled`.
 
 Core intent:
 
 | Rule shape | Effect | Why |
 | --- | --- | --- |
 | `read` on `**` | allow | Repo-wide work needs corpus evidence. |
-| `write`/`edit` on `.opencode/**` | allow | Authored `.opencode` source/docs are in scope. |
+| `write`/`edit` on `.skilled/**` | allow | Authored `.skilled` source/docs are in scope. |
 | `write`/`edit`/`delete` on `.git/**` | deny | Git internals are never authored by agents. |
 | `write`/`edit`/`delete` on `node_modules/**` | deny | Vendor trees are not source. |
 | `write`/`edit`/`delete` on `~/.config/**` | deny | User config is external to the repo. |
@@ -174,7 +174,7 @@ this document.
 
 The implementation lives at:
 
-`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts`
+`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts`
 
 Primary function:
 
@@ -200,7 +200,7 @@ Bash calls are normalized to `Exec(<command>)`. Examples:
 
 | Command | Target |
 | --- | --- |
-| `rg TODO .opencode` | `Exec(rg)` |
+| `rg TODO .skilled` | `Exec(rg)` |
 | `sed -i s/a/b/g file.md` | `Exec(sed -i)` |
 | `git rm file.md` | `Exec(rm)` |
 | `find . -delete` | `Exec(rm)` |
@@ -214,7 +214,7 @@ single denied command denies the whole Bash call.
 
 Incident source:
 
-`.opencode/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md`
+`.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md`
 
 Research source: the SmallCode deep-research record and its patch-ready deepening iteration (iter 009), which concluded the structured matrix would have blocked the recorded RM-8 deletions.
 
@@ -300,7 +300,7 @@ dispatch. Authoring a matrix does not add protection today — see the status
 note at the top of this document — so keep applying the four-layer prose
 mitigation regardless of whether a matrix exists.
 
-- Identify the dispatch mode: read-only, packet-local, or repo-wide `.opencode`.
+- Identify the dispatch mode: read-only, packet-local, or repo-wide `.skilled`.
 - Choose the closest example matrix.
 - Replace broad prose permissions with explicit `rules[]` entries.
 - Keep `read` broad only when the task genuinely needs corpus evidence.
@@ -346,20 +346,20 @@ team wants enforcement.
 Schema examples:
 
 ```bash
-npx ajv validate -s .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json -d .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-readonly.json
-npx ajv validate -s .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json -d .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-packet-local.json
-npx ajv validate -s .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json -d .opencode/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json
+npx ajv validate -s .skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json -d .skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-readonly.json
+npx ajv validate -s .skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json -d .skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-packet-local.json
+npx ajv validate -s .skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.schema.json -d .skilled/skills/cli-external-orchestration/cli-opencode/assets/permissions-matrix.example-repo-wide.json
 ```
 
 Runtime tests:
 
 ```bash
-cd .opencode/skills/system-spec-kit/runtime
+cd .skilled/skills/system-spec-kit/runtime
 npx vitest run tests/deep-loop/permissions-gate.vitest.ts
 ```
 
 Packet validation:
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
 ```

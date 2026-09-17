@@ -46,7 +46,7 @@ Improve my user-story prompt; verify any CLEAR dimension below its floor trigger
 
 1. `sk-prompt: If any CLEAR dimension scores below its floor, re-iterate. Apply this to my prompt for generating user stories.`
 2. `agent: @prompt-improver raw_task="Improve a user-story generation prompt and enforce CLEAR dimension floors." task_type=generation target_cli=opencode complexity_hint=7 constraints="Re-score if C<7, L<7, E<10, A<7, or R<3."`
-3. `bash: rg 'Floor|dimension falls below floor|C >= 7|E >= 10' .opencode/skills/sk-prompt/references/depth-framework.md .opencode/skills/sk-prompt/references/patterns-evaluation.md`
+3. `bash: rg 'Floor|dimension falls below floor|C >= 7|E >= 10' .skilled/skills/sk-prompt/references/depth-framework.md .skilled/skills/sk-prompt/references/patterns-evaluation.md`
 
 ### Expected
 

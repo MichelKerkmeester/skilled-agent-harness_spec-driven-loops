@@ -81,8 +81,8 @@ Command outputs, file sizes, and the magic-byte lines. Record the step-3 respons
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/screenshots-and-pdf.md` | Capability leaf with the repl code patterns |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/examples/repl-evidence-capture.sh` | Scripted screenshot equivalent with the same verification gate |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/screenshots-and-pdf.md` | Capability leaf with the repl code patterns |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/examples/repl-evidence-capture.sh` | Scripted screenshot equivalent with the same verification gate |
 
 ---
 

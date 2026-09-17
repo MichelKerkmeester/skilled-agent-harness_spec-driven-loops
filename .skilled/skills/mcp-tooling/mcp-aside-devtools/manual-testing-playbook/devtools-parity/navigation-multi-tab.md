@@ -79,8 +79,8 @@ The REPL transcript and parsed JSON, plus the written "no parallel isolated inst
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/navigation-and-tabs.md` | Capability leaf with the repl code + isolation gap |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/repl-evidence/repl-open-tab.md` | ASD-006 baseline deterministic tab open |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/navigation-and-tabs.md` | Capability leaf with the repl code + isolation gap |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/repl-evidence/repl-open-tab.md` | ASD-006 baseline deterministic tab open |
 
 ---
 

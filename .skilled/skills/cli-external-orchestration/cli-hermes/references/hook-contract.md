@@ -32,7 +32,7 @@ The repo cannot declare these. None is configured on this machine (observed 2026
 
 ## 3. PROJECT PLUGIN (REPO-CARRIABLE)
 
-Native plugins load from `./.hermes/plugins/<name>/` when `HERMES_ENABLE_PROJECT_PLUGINS` is set, and their hook list covers every guard core this repo runs (source-read: `hermes_cli/plugins.py`). The hook-and-plugin phase builds `.hermes/plugins/repo-guards/`, which re-implements nothing: each hook shells out to the existing `.mjs` or `.sh` core under `.opencode/hooks/` and maps its result to Hermes's block-or-continue contract, failing open on a core error as the `.pi/extensions/` adapters do.
+Native plugins load from `./.hermes/plugins/<name>/` when `HERMES_ENABLE_PROJECT_PLUGINS` is set, and their hook list covers every guard core this repo runs (source-read: `hermes_cli/plugins.py`). The hook-and-plugin phase builds `.hermes/plugins/repo-guards/`, which re-implements nothing: each hook shells out to the existing `.mjs` or `.sh` core under `.skilled/hooks/` and maps its result to Hermes's block-or-continue contract, failing open on a core error as the `.pi/extensions/` adapters do.
 
 | Hermes hook | Repo guard core | Effect |
 |---|---|---|

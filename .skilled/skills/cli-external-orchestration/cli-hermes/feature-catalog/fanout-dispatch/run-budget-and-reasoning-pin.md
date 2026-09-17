@@ -45,16 +45,16 @@ The lineage's reasoning effort is resolved through the shared per-model pin, the
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | `HERMES_RUN_BUDGET_MARGIN_SECONDS`, `HERMES_MAX_TURNS`, `HERMES_REASONING_LEVELS` and the budget arithmetic. |
-| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Shared | The reasoning-effort scale and the per-model pin the builder resolves through. |
-| `.opencode/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md` | Handler | The Hermes flags these bounds map onto, and the exit codes a caller reads. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Script | `HERMES_RUN_BUDGET_MARGIN_SECONDS`, `HERMES_MAX_TURNS`, `HERMES_REASONING_LEVELS` and the budget arithmetic. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Shared | The reasoning-effort scale and the per-model pin the builder resolves through. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md` | Handler | The Hermes flags these bounds map onto, and the exit codes a caller reads. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Vitest | Covers budget derivation, the turn cap and the reasoning-level rejection. |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Vitest | Asserts the reasoning-effort scale and per-model pinning. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Vitest | Covers budget derivation, the turn cap and the reasoning-level rejection. |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Vitest | Asserts the reasoning-effort scale and per-model pinning. |
 
 ---
 

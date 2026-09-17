@@ -37,17 +37,17 @@ The spawn boundary runs the CLI as its own process-group leader and, on a timeou
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts` | Handler | The external-cli transport, the child-process runner, and the injected spawn boundary. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts` | Shared | `createExternalCliModelRecord` builds the hosted-retained external-cli record. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/adapters.ts` | Handler | Serves the external-cli adapter through the shared OpenAI-chat wire shape. |
-| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/registry.ts` | Shared | Accepts the external-cli family and protocol combination during validation. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/transports/cli.ts` | Handler | The external-cli transport, the child-process runner, and the injected spawn boundary. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/providers/presets.ts` | Shared | `createExternalCliModelRecord` builds the hosted-retained external-cli record. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/providers/adapters.ts` | Handler | Serves the external-cli adapter through the shared OpenAI-chat wire shape. |
+| `.skilled/skills/sk-communication/cli-communication-projection/src/providers/registry.ts` | Shared | Accepts the external-cli family and protocol combination during validation. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts` | Unit | Covers engine resolution, argv, stdin delivery, timeout, fail-closed transport responses, and process-group teardown on timeout and abort. |
-| `.opencode/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts` | Unit | Verifies record validity, privacy routing, adapter body, and end-to-end candidate and exact-original fallback. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts` | Unit | Covers engine resolution, argv, stdin delivery, timeout, fail-closed transport responses, and process-group teardown on timeout and abort. |
+| `.skilled/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts` | Unit | Verifies record validity, privacy routing, adapter body, and end-to-end candidate and exact-original fallback. |
 
 ---
 

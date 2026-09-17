@@ -54,8 +54,8 @@ Refactor this Python function to run more efficiently.
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/mcp-tooling/mcp-refero/manual-testing-playbook/intra-routing-recall/negative.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-refero/SKILL.md`
+1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/intra-routing-recall/negative.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-refero/SKILL.md`
 3. `echo "Refactor this Python function to run more efficiently." | grep -qiE 'style|visual direction|design reference|aesthetic|look and feel|design language|landing page|typography reference|palette reference|screen|ui pattern|similar screens|real app|empty state|component example|screenshot|modal|dashboard|onboarding|settings|ui element|flow|user flow|journey|multi-step|steps|checkout|cancel subscription|signup process|wiring|utcp|oauth|bearer|mcp-remote|authenticate|manual|token|register|plan|subscription|install|setup|error|failed|401|connection closed|not resolving|not working|sigsegv|429|quota|timeout|broken|unauthorized' && echo MATCH || echo NOMATCH`
 
 ### Expected

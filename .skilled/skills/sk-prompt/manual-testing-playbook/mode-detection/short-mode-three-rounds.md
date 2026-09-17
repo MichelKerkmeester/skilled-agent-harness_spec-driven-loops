@@ -45,7 +45,7 @@ $short tighten my prompt; verify only Discover, Prototype, and Harmonize run, En
 ### Commands
 
 1. `sk-prompt: $short Tighten this prompt for a quick iteration — no need for a full rewrite, I just want it sharper. <draft body>`
-2. `bash: rg '\$short' .opencode/skills/sk-prompt/SKILL.md` (confirm short-mode row)
+2. `bash: rg '\$short' .skilled/skills/sk-prompt/SKILL.md` (confirm short-mode row)
 
 ### Expected
 

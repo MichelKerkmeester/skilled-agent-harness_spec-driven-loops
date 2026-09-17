@@ -121,8 +121,8 @@ Use the hub when a request belongs to an external CLI runtime: full-runtime Open
 
 | Check | How to run it |
 |---|---|
-| Hub structure | `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/cli-external-orchestration` exits 0 with 0 invariant failures and 0 warnings |
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/README.md --type readme` exits 0 and reports zero issues |
+| Hub structure | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-external-orchestration` exits 0 with 0 invariant failures and 0 warnings |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/README.md --type readme` exits 0 and reports zero issues |
 
 ---
 

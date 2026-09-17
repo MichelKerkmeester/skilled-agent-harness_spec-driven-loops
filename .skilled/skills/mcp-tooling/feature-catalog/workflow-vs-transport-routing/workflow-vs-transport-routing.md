@@ -43,15 +43,15 @@ The router resolves to `single` (one dominant tool signal), an `orderedBundle` (
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/mcp-tooling/SKILL.md` | Shared | States the two-axis model, routing rule, and outcome set. |
-| `.opencode/skills/mcp-tooling/mode-registry.json` | Shared | Declarative registry for all nine packets, including `packetKind` and `mutatesWorkspace`. |
-| `.opencode/skills/mcp-tooling/hub-router.json` | Shared | Router signals, vocabulary classes, and tie-break policy. |
+| `.skilled/skills/mcp-tooling/SKILL.md` | Shared | States the two-axis model, routing rule, and outcome set. |
+| `.skilled/skills/mcp-tooling/mode-registry.json` | Shared | Declarative registry for all nine packets, including `packetKind` and `mutatesWorkspace`. |
+| `.skilled/skills/mcp-tooling/hub-router.json` | Shared | Router signals, vocabulary classes, and tie-break policy. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the transport-axis cross-hub measured-reference-pairing requirement. |
+| `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the transport-axis cross-hub measured-reference-pairing requirement. |
 
 ---
 

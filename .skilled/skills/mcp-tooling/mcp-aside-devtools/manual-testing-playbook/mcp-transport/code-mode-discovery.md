@@ -83,8 +83,8 @@ The registration object, the discovery output, and the confirmed callable names 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md` | Registered manual pointer and post-registration checklist |
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Discovery and naming-convention contract |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md` | Registered manual pointer and post-registration checklist |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Discovery and naming-convention contract |
 
 ---
 

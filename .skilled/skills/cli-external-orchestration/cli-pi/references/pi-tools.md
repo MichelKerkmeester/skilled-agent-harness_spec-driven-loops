@@ -91,7 +91,7 @@ None of the other 5 CLI executors in this hub expose an equivalent persistent, b
 
 ### What It Is
 
-**Confirmed** (phases 012/013): Pi discovers flat, non-recursive markdown files under `.pi/prompts/` and exposes each as a slash command named after the file. This repo mirrors all 36 canonical `.opencode/commands/**/*.md` files as thin pointer stubs. Argument substitution — including the `$ARGUMENTS` token as a documented alias for `$@` — was live-confirmed in a real generated prompt file during a live session (phase 013, scenario PI-008).
+**Confirmed** (phases 012/013): Pi discovers flat, non-recursive markdown files under `.pi/prompts/` and exposes each as a slash command named after the file. This repo mirrors all 36 canonical `.skilled/commands/**/*.md` files as thin pointer stubs. Argument substitution — including the `$ARGUMENTS` token as a documented alias for `$@` — was live-confirmed in a real generated prompt file during a live session (phase 013, scenario PI-008).
 
 ### Capabilities
 
@@ -100,11 +100,11 @@ None of the other 5 CLI executors in this hub expose an equivalent persistent, b
 
 ### Compared to Other CLI Executors
 
-`cli-codex`'s `.codex/prompts/*.md` stubs are the closest sibling analog (also generated pointer stubs, also first-party to Codex). `cli-cursor`'s `.cursor/commands/*.md` and `cli-devin`'s `.devin/skills/<flat>/SKILL.md` are both **symlink mirrors** onto `.opencode/commands/**`, not a native prompt-template surface those CLIs discover on their own — Pi and Codex are the only two siblings with a genuinely native, first-party slash-command mechanism.
+`cli-codex`'s `.codex/prompts/*.md` stubs are the closest sibling analog (also generated pointer stubs, also first-party to Codex). `cli-cursor`'s `.cursor/commands/*.md` and `cli-devin`'s `.devin/skills/<flat>/SKILL.md` are both **symlink mirrors** onto `.skilled/commands/**`, not a native prompt-template surface those CLIs discover on their own — Pi and Codex are the only two siblings with a genuinely native, first-party slash-command mechanism.
 
 ### Best For
 
-- Any of the 36 mirrored commands, dispatched exactly as documented in `.opencode/commands/**`
+- Any of the 36 mirrored commands, dispatched exactly as documented in `.skilled/commands/**`
 
 **Avoid for:** Assuming precedence or discovery-path behavior beyond what phase 012/013 tested — this covers argument substitution and command-name flattening only, not every documented Pi prompt-template flag (see `native-skills-and-extensions.md` §6 for the confirmed-vs-unconfirmed boundary on CLI resource flags).
 

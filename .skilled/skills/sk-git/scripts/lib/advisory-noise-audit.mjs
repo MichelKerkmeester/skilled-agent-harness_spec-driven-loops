@@ -102,7 +102,7 @@ function main() {
     process.exit(1);
   }
 
-  const rules = readHardRules(path.join(repo, '.opencode', 'skills', 'sk-git', 'SKILL.md'))
+  const rules = readHardRules(path.join(repo, '.skilled', 'skills', 'sk-git', 'SKILL.md'))
     .filter((r) => GIT_CHECKS[r.check]);
 
   // Refuse to report a budget verdict with nothing loaded. A zero fire rate from an empty rule

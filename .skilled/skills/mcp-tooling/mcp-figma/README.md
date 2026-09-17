@@ -182,8 +182,8 @@ A: This skill is the transport that reads and writes Figma content. `sk-design-m
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-tooling/mcp-figma/README.md --type readme` reports zero issues |
-| SKILL.md frontmatter | `head -8 .opencode/skills/mcp-tooling/mcp-figma/SKILL.md` shows `name: mcp-figma`, a `description` and `user-invocable: true` |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-figma/README.md --type readme` reports zero issues |
+| SKILL.md frontmatter | `head -8 .skilled/skills/mcp-tooling/mcp-figma/SKILL.md` shows `name: mcp-figma`, a `description` and `user-invocable: true` |
 | Binary identity | `figma-ds-cli --version` returns the silships version (NOT the unrelated unic/figma-cli) |
 | CLI reachability | `figma-ds-cli --help` returns usage text with Figma Desktop open (Node.js 18 or newer required) |
 | Daemon health | `figma-ds-cli daemon status` reports healthy against `127.0.0.1:3456` with the token present |

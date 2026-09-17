@@ -201,7 +201,7 @@ A: Orchestrated dispatches run through the shared deep-loop runtime (`fanout-run
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-devin/README.md --type readme` reports zero issues |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-devin/README.md --type readme` reports zero issues |
 | Voice and punctuation | the em dash, semicolon, Oxford comma and banned-word greps return zero prose matches |
 | Manual scenarios | `manual-testing-playbook/manual-testing-playbook.md` runs every dispatch scenario in the catalog |
 

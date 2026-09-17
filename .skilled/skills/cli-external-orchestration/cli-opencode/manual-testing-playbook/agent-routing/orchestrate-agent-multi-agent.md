@@ -70,7 +70,7 @@ For full multi-agent flow validation, dispatch the first specialist named by the
 |---|---|
 | `../../SKILL.md` (line 254) | Documents `--agent orchestrate` in §3 agent routing table |
 | `../../references/agent-delegation.md` | §6 multi-agent workflows and the no-nested-run rule |
-| `.opencode/agents/orchestrate.md` | Agent definition file |
+| `.skilled/agents/orchestrate.md` | Agent definition file |
 
 ---
 

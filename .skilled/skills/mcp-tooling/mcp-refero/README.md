@@ -64,7 +64,7 @@ The callable names must be confirmed live with `tool_info` before use. Live call
 **Step 1: Verify the wiring (read-only).**
 
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh
+bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh
 ```
 
 The script confirms node and npx, greps the `refero` manual in `.utcp_config.json` (never edits it) and prints the auth expectations. With `REFERO_DOCTOR_LIVE=1` it adds one unauthenticated endpoint probe. The healthy result is HTTP 401, because access requires auth.
@@ -193,11 +193,11 @@ Live-call checks require an authenticated Pro (or higher) account and are operat
 
 | Check | How to run it |
 |---|---|
-| Skill package | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-refero --check` reports zero errors |
-| SKILL.md frontmatter | `head -8 .opencode/skills/mcp-tooling/mcp-refero/SKILL.md` shows the `name`, `description`, `version` and `user-invocable` fields, with `version: 1.0.0.0` |
-| Install posture | `bash .opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh` exits 0, verify-only with nothing installed or modified |
-| Wiring presence | `bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports the `refero` manual registered (read-only grep) |
-| Endpoint reachability | `REFERO_DOCTOR_LIVE=1 bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports HTTP 401, auth required as documented |
+| Skill package | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-refero --check` reports zero errors |
+| SKILL.md frontmatter | `head -8 .skilled/skills/mcp-tooling/mcp-refero/SKILL.md` shows the `name`, `description`, `version` and `user-invocable` fields, with `version: 1.0.0.0` |
+| Install posture | `bash .skilled/skills/mcp-tooling/mcp-refero/scripts/install.sh` exits 0, verify-only with nothing installed or modified |
+| Wiring presence | `bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports the `refero` manual registered (read-only grep) |
+| Endpoint reachability | `REFERO_DOCTOR_LIVE=1 bash .skilled/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports HTTP 401, auth required as documented |
 | Callable confirmation | Inside Code Mode: `tool_info({ tool_name: "refero.refero_refero_search_styles" })` returns a schema, works pre-auth (confirmed 2026-07-16 in `references/discovery-fixture-2026-07-16.json`). Authenticated calls still need operator OAuth |
 
 ---

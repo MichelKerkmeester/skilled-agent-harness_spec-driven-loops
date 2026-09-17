@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `ASD-008` and confirm th
 
 ### Commands
 
-1. `bash: bash .opencode/skills/mcp-tooling/mcp-aside-devtools/examples/mcp-handshake-probe.sh /tmp/aside-mcp-fixtures`
+1. `bash: bash .skilled/skills/mcp-tooling/mcp-aside-devtools/examples/mcp-handshake-probe.sh /tmp/aside-mcp-fixtures`
 2. `bash: pgrep -fl "aside mcp" || echo "no leaked process"`
 
 ### Expected
@@ -78,8 +78,8 @@ The saved fixture file (`handshake-*.jsonl`), the probe's stdout, and the leak-c
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/examples/mcp-handshake-probe.sh` | Probe implementation |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md` | Handshake contract and fixture policy |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/examples/mcp-handshake-probe.sh` | Probe implementation |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md` | Handshake contract and fixture policy |
 
 ---
 

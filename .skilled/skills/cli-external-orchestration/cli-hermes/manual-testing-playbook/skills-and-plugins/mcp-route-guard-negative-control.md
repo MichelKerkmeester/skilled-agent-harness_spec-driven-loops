@@ -80,7 +80,7 @@ cat out.txt
 |---|---|
 | [SYNC.md](../../../../../../.hermes/SYNC.md) | What the plugin bridges and how |
 | [hook-contract.md](../../references/hook-contract.md) | The plugin hook map |
-| `.opencode/hooks/mcp-route-guard/devin/mcp-route-guard.cjs` | The core the bridge runs |
+| `.skilled/hooks/mcp-route-guard/devin/mcp-route-guard.cjs` | The core the bridge runs |
 
 ---
 

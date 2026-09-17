@@ -202,7 +202,7 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outsi
 
 ## 6. ENFORCEMENT & PROFILES (authoritative elsewhere — do not duplicate here)
 
-- **Fan-out dispatcher** → `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`
+- **Fan-out dispatcher** → `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`
 - **Live model ids** → re-read `~/.pi/agent/models-store.json` on the target install
 
 ---

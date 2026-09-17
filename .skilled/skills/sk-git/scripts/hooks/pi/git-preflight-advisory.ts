@@ -4,7 +4,7 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { join } from "node:path";
-import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
+import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
 
 const MAX_ADVISORIES = 3;
 
@@ -52,9 +52,9 @@ export default function gitPreflightAdvisory(pi: ExtensionAPI): void {
       if (event.toolName !== "bash" || typeof event.input.command !== "string") return;
 
       const [lint, gitChecks, gitContext] = await Promise.all([
-        import("../../.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs"),
-        import("../../.opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs"),
-        import("../../.opencode/skills/sk-git/scripts/lib/git-context.mjs"),
+        import("../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs"),
+        import("../../.skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs"),
+        import("../../.skilled/skills/sk-git/scripts/lib/git-context.mjs"),
       ]);
       const command = event.input.command;
       if (!gitChecks.GIT_SHAPE.test(command)) return;
@@ -62,7 +62,7 @@ export default function gitPreflightAdvisory(pi: ExtensionAPI): void {
       const suppression = resolveSuppression(process.env);
       if (suppression.isOff) return;
 
-      const skillMd = join(ctx.cwd, ".opencode", "skills", "sk-git", "SKILL.md");
+      const skillMd = join(ctx.cwd, ".skilled", "skills", "sk-git", "SKILL.md");
       const rules = lint.readHardRules(skillMd)
         .filter((rule) => gitChecks.GIT_CHECKS[rule.check] && !suppression.isSilenced(rule.id));
       if (rules.length === 0) return;

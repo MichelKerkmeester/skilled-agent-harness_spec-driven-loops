@@ -45,7 +45,7 @@ Run sk-prompt on plain prose with no intent keywords; verify it defaults to TEXT
 ### Commands
 
 1. `sk-prompt: Here is some text I wrote yesterday. <plain prose body, no INTENT_MODEL keywords>`
-2. `bash: rg -A 6 'UNKNOWN_FALLBACK_CHECKLIST' .opencode/skills/sk-prompt/SKILL.md` (capture canonical 4-item list)
+2. `bash: rg -A 6 'UNKNOWN_FALLBACK_CHECKLIST' .skilled/skills/sk-prompt/SKILL.md` (capture canonical 4-item list)
 
 ### Expected
 

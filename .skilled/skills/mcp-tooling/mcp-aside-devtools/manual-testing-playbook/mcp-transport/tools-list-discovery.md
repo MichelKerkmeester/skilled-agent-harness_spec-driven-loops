@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `ASD-009` and confirm th
 
 ### Commands
 
-1. `bash: bash .opencode/skills/mcp-tooling/mcp-aside-devtools/examples/mcp-handshake-probe.sh /tmp/aside-mcp-fixtures`
+1. `bash: bash .skilled/skills/mcp-tooling/mcp-aside-devtools/examples/mcp-handshake-probe.sh /tmp/aside-mcp-fixtures`
 2. `bash: ls /tmp/aside-mcp-fixtures/handshake-*.jsonl`
 3. Inspect the tools array (the probe prints names and required inputs when `jq` is present).
 
@@ -80,7 +80,7 @@ Fixture path and contents; the explicit drift statement ("matches pinned invento
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md` | Version-pinned inventory and rediscovery mandate |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md` | Version-pinned inventory and rediscovery mandate |
 
 ---
 

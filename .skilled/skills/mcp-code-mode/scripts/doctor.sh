@@ -6,7 +6,7 @@
 # Catches missing dependencies that would prevent the server
 # starting at first MCP request.
 #
-# Usage: bash .opencode/skills/mcp-code-mode/scripts/doctor.sh [--strict]
+# Usage: bash .skilled/skills/mcp-code-mode/scripts/doctor.sh [--strict]
 #
 # Exit Codes:
 #   0  - Health checks passed (or advisory mode complete)

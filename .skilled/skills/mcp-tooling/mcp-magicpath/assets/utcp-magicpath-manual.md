@@ -32,7 +32,7 @@ Use the snapshot to verify the live manual read-only. Treat the env-var wiring a
 **Key Points**:
 - This entry is **already present** in `manual_call_templates[]` of `.utcp_config.json` and is **validated as-is**. Verify its presence read-only (grep); never re-add it, never edit it, never add a second MagicPath manual.
 - Manual `name` is `magicpath`, so callables resolve as `magicpath.<tool>` (Code Mode's `{manual}.{tool}` rule applied once, because the tool names have no `magicpath_` prefix of their own), and env vars are prefixed `magicpath_<NAME>`.
-- Transport is `cli`: the manual command runs `node .opencode/bin/magicpath-utcp-manual.cjs`, which prints the UTCP manual listing the fourteen read-only tools. Each tool call is executed by `node .opencode/bin/magicpath-utcp-exec.cjs`, which shells out to the `magicpath-ai` binary.
+- Transport is `cli`: the manual command runs `node .skilled/bin/magicpath-utcp-manual.cjs`, which prints the UTCP manual listing the fourteen read-only tools. Each tool call is executed by `node .skilled/bin/magicpath-utcp-exec.cjs`, which shells out to the `magicpath-ai` binary.
 - The `env_vars` block maps the CLI's `MAGICPATH_TOKEN` to `${magicpath_MAGICPATH_TOKEN}`, so the token is set in `.env` as `magicpath_MAGICPATH_TOKEN` and exposed to the CLI as `MAGICPATH_TOKEN`.
 - The registered surface is **read-only on purpose**. The CLI can also write `.tsx` files, install npm packages, and create remote projects and component revisions (`add`, `code`, `image`, `create-project`, `clone`), but those are deliberately not registered. See [`../references/mutation-boundary.md`](../references/mutation-boundary.md).
 
@@ -44,7 +44,7 @@ Use the snapshot to verify the live manual read-only. Treat the env-var wiring a
     "call_template_type": "cli",
     "commands": [
         {
-            "command": "node .opencode/bin/magicpath-utcp-manual.cjs",
+            "command": "node .skilled/bin/magicpath-utcp-manual.cjs",
             "append_to_final_output": true
         }
     ],
@@ -82,7 +82,7 @@ Without a credential, a call returns structured JSON:
 
 ## 4. EXEC-WRAPPER BEHAVIOR
 
-Tool calls run through `node .opencode/bin/magicpath-utcp-exec.cjs`, which shells out to `magicpath-ai`. The wrapper does two things an agent should know:
+Tool calls run through `node .skilled/bin/magicpath-utcp-exec.cjs`, which shells out to `magicpath-ai`. The wrapper does two things an agent should know:
 
 - **Drops unfilled optional-argument placeholders.** The CLI transport substitutes a literal `MISSING_ARG_<name>` token for any declared argument the caller left unset; it does not drop the flag. Passing that through would be worse than an error, because a filter flag given a nonsense value returns an empty result that reads as a legitimate answer (a listing filtered by a team named `MISSING_ARG_team` looks exactly like a user with no projects). The wrapper removes those tokens before the CLI ever sees them.
 - **Emits structured JSON errors** so a caller parsing JSON meets one shape whether it succeeded or not:

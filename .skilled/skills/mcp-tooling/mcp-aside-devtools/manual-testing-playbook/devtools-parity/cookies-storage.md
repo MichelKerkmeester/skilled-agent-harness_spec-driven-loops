@@ -79,8 +79,8 @@ The REPL transcript and the parsed, redacted JSON. Never save cookie/storage VAL
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/cookies-and-storage.md` | Capability leaf with the repl code patterns |
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md` | §5: saved passwords hidden from the agent |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/cookies-and-storage.md` | Capability leaf with the repl code patterns |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md` | §5: saved passwords hidden from the agent |
 
 ---
 

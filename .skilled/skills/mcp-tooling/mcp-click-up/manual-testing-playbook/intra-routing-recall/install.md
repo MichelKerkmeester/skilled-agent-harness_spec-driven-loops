@@ -75,11 +75,11 @@ Walk me through the cupt setup - install cupt and authenticate with my API token
 
 ### Commands
 
-1. `sed -n '1,12p' .opencode/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/install.md`
-2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
-4. `test -e .opencode/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md && echo "OK INSTALL-GUIDE.md" || echo "MISS INSTALL-GUIDE.md"`
-5. `test -e .opencode/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md && echo "OK references/troubleshooting.md" || echo "MISS references/troubleshooting.md"`
+1. `sed -n '1,12p' .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/install.md`
+2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+3. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`
+4. `test -e .skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md && echo "OK INSTALL-GUIDE.md" || echo "MISS INSTALL-GUIDE.md"`
+5. `test -e .skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md && echo "OK references/troubleshooting.md" || echo "MISS references/troubleshooting.md"`
 
 ### Expected
 

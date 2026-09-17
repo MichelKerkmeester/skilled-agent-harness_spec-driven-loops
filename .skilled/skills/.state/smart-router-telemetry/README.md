@@ -18,7 +18,7 @@ version: 1.0.0.2
 
 The Smart Router telemetry implementation in [`smart-router-telemetry.ts`](../../system-spec-kit/runtime/cli/observability/smart-router-telemetry.ts) writes routing compliance records to this folder. The state exists so maintainers can compare a selected skill's predicted resource route with the skill resources actually read during execution. Measurement and analysis scripts use that comparison to report routing readiness, over-load, under-load and on-demand behavior. The records present today come from the static measurement path described in section 4, not from live per-prompt capture.
 
-No `.opencode/plugins/*.js` entrypoint directly owns this folder. A repository search for `.state/smart-router-telemetry` under `.opencode/plugins/*.js` returns no matches. The System Spec Kit observability scripts own its read and write behavior.
+No `.skilled/plugins/*.js` entrypoint directly owns this folder. A repository search for `.state/smart-router-telemetry` under `.skilled/plugins/*.js` returns no matches. The System Spec Kit observability scripts own its read and write behavior.
 
 The related [`system-skill-advisor.js`](../../../plugins/system-skill-advisor.js) plugin performs a different part of the routing lifecycle. It sends each OpenCode prompt to the standalone Skill Advisor bridge, receives an advisor brief and adds that brief to model system context through `experimental.chat.system.transform`. It does not import the telemetry writer or append `compliance.jsonl`.
 
@@ -72,7 +72,7 @@ Example record:
 | `SPECKIT_SMART_ROUTER_TELEMETRY_DIR` | Not set | Replaces the telemetry directory while retaining the `compliance.jsonl` file name. |
 | `SPECKIT_SMART_ROUTER_TELEMETRY_MAX_BYTES` | `1048576` | Sets the active stream size limit before rotation. |
 
-The full-path override takes precedence over the directory override. Without either override, the writer uses `.opencode/skills/.state/smart-router-telemetry/compliance.jsonl`.
+The full-path override takes precedence over the directory override. Without either override, the writer uses `.skilled/skills/.state/smart-router-telemetry/compliance.jsonl`.
 
 ---
 
@@ -85,7 +85,7 @@ The full-path override takes precedence over the directory override. Without eit
 3. The agent invokes the selected skill. That skill's own Smart Router logic determines which local documentation resources are always required, conditionally relevant or available on demand.
 5. Finalization writes one compliance record for the prompt. Analysis tools later aggregate those records by selected skill.
 
-**Current wiring status.** The records in `compliance.jsonl` today come from the static measurement path. The live-capture wrapper is defined but NOT wired into any plugin, hook or CLI entry point, so nothing invokes it during real sessions. Its read matcher also resolves the skill root as `.opencode/skill` rather than `.opencode/skills`, so it cannot match real skill reads even when called. As a result `observedSkill` and `actualReads` stay effectively unpopulated by live capture, and the measurement reports keep live routing readiness blocked until the wrapper is wired and its path matcher is corrected.
+**Current wiring status.** The records in `compliance.jsonl` today come from the static measurement path. The live-capture wrapper is defined but NOT wired into any plugin, hook or CLI entry point, so nothing invokes it during real sessions. Its read matcher also resolves the skill root as `.skilled/skill` rather than `.skilled/skills`, so it cannot match real skill reads even when called. As a result `observedSkill` and `actualReads` stay effectively unpopulated by live capture, and the measurement reports keep live routing readiness blocked until the wrapper is wired and its path matcher is corrected.
 
 The Skill Advisor recommends the skill. It does not decide the selected skill's internal resource route. For `system-skill-advisor` itself, the Smart Router in its `SKILL.md` always loads the runtime tool-id and standalone-MCP references, scores intent domains such as scoring, graph, runtime, config and hooks and then loads matching markdown resources. If no intent reaches its minimum score, it returns an `UNKNOWN_FALLBACK` result with a disambiguation checklist.
 

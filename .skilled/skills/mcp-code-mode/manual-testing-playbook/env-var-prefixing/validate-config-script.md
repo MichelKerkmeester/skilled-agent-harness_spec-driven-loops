@@ -31,7 +31,7 @@ This script is the operator's "is my install ready?" check before running any ot
 
 Operators run the exact prompt and command sequence for `CM-010` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify `python3 .opencode/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json --check-env .env` reports missing required env vars and exits non-zero.
+- Objective: Verify `python3 .skilled/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json --check-env .env` reports missing required env vars and exits non-zero.
 - Real user request: `"Run a preflight to confirm my Code Mode setup is correct."`
 - Prompt: `Run the Code Mode config preflight with a missing prefixed key and report whether the script names it.`
 - Expected execution process: temporarily remove a required env var line from `.env`; run validator; observe exit code and output; restore.
@@ -51,9 +51,9 @@ Operators run the exact prompt and command sequence for `CM-010` and confirm the
 
 1. `bash: cp .env .env.bak` — back up
 2. `bash: sed -i.tmp '/^clickup_CLICKUP_API_KEY=/d' .env` — remove the required prefixed key
-3. `bash: python3 .opencode/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json --check-env .env; echo "exit=$?"`
+3. `bash: python3 .skilled/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json --check-env .env; echo "exit=$?"`
 4. `bash: mv .env.bak .env` — restore
-5. `bash: python3 .opencode/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json --check-env .env; echo "exit=$?"`
+5. `bash: python3 .skilled/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json --check-env .env; echo "exit=$?"`
 
 ### Expected
 
@@ -93,8 +93,8 @@ Capture both runs' stdout + stderr + exit code.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-code-mode/scripts/validate_config.py` | Validator implementation |
-| `.opencode/skills/mcp-code-mode/SKILL.md` | Validator usage doc |
+| `.skilled/skills/mcp-code-mode/scripts/validate_config.py` | Validator implementation |
+| `.skilled/skills/mcp-code-mode/SKILL.md` | Validator usage doc |
 
 ---
 

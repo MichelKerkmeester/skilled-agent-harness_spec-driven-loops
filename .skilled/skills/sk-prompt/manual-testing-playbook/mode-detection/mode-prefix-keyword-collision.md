@@ -45,7 +45,7 @@ $short improve and refine my prompt; verify the prefix overrides keyword scoring
 ### Commands
 
 1. `sk-prompt: $short Please improve and refine and enhance this prompt — make it tight and reusable.`
-2. `bash: rg 'STEP 0' .opencode/skills/sk-prompt/SKILL.md` (confirm prefix detection happens at STEP 0)
+2. `bash: rg 'STEP 0' .skilled/skills/sk-prompt/SKILL.md` (confirm prefix detection happens at STEP 0)
 
 ### Expected
 

@@ -77,7 +77,7 @@ Every runtime evaluates the **same** `GIT_SHAPE` gate, `GIT_CHECKS` rule set, `r
 | **Codex** | `git-preflight-advisory.mjs` | `PreToolUse` in `.codex/hooks.json`, matcher `exec`; timeout 5s | Same `exec` payload shape as Devin; `cd "${CODEX_PROJECT_DIR:-$PWD}"` | Same `additionalContext` JSON; a fallback `printf` envelope covers a resolution failure |
 | **Devin** | `git-preflight-advisory.mjs` | `PreToolUse` in `.devin/hooks.v1.json`, matcher `^exec$`; timeout 5s | Same `exec` shape; `cd "${DEVIN_PROJECT_DIR:-$PWD}"` | Same `additionalContext` JSON; fallback `printf` envelope |
 | **Cursor** | `git-preflight-advisory.mjs` (registered directly; `.cursor/hooks/git-preflight-advisory.mjs` is a browsability-only mirror symlink) | `preToolUse` in `.cursor/hooks.json`, matcher `Shell` | Cursor carries the project root in `workspace_roots[0]` instead of `cwd`; the hook falls through to `CLAUDE_PROJECT_DIR`/`CODEX_PROJECT_DIR`/`process.cwd()` when absent | Same `additionalContext` JSON |
-| **OpenCode** | `.opencode/plugins/sk-git-preflight-advisory.js` (mirrored at `opencode/` via browsability symlink) | `tool.execute.before` for `bash`; advisory buffered and drained on the next `experimental.chat.system.transform` | Resolves repo root via `findRepoRoot` (falls back to host dir); OpenCode plugins cannot print without overlaying the TUI prompt line, so it buffers at most 20 events | Bounded findings injected once as a system block on the next transform; never stdout/stderr; the command is never delayed or blocked |
+| **OpenCode** | `.skilled/plugins/sk-git-preflight-advisory.js` (mirrored at `opencode/` via browsability symlink) | `tool.execute.before` for `bash`; advisory buffered and drained on the next `experimental.chat.system.transform` | Resolves repo root via `findRepoRoot` (falls back to host dir); OpenCode plugins cannot print without overlaying the TUI prompt line, so it buffers at most 20 events | Bounded findings injected once as a system block on the next transform; never stdout/stderr; the command is never delayed or blocked |
 | **Pi** | `pi/git-preflight-advisory.ts` (real file; `.pi/extensions/` symlinks here) | `tool_call` for `bash`; advisory keyed by call id and delivered on the matching `tool_result` | Pi's agent core reads a `tool_call` handler's return only for `.block`: a bare `reason` is discarded before the model sees it, so the advisory is buffered and appended to the `tool_result` content instead | Appended to `tool_result` content; warn-only, never `block: true` |
 
 OpenCode discovers plugins solely from `.opencode/plugins/`, so `sk-git-preflight-advisory.js` must live there; `scripts/hooks/opencode/sk-git-preflight-advisory.js` is a relative symlink back into that folder for browsability: nothing loads through it. Pi loads in the other direction: the real `pi/git-preflight-advisory.ts` lives here, and `.pi/extensions/git-preflight-advisory.ts` is the symlink Pi discovers.
@@ -100,7 +100,7 @@ hooks/  (sk-git/scripts/hooks/)
 `-- git-context.mjs                   # lazy repository-state collector (1.5s timeout per git call)
 ```
 
-The hooks-tree index at `.opencode/hooks/git-preflight/` mirrors these: `shared/git-preflight-advisory.mjs` (symlink to the shared hook), `opencode/sk-git-preflight-advisory.js` (symlink to the plugin), `pi/git-preflight-advisory.ts` (symlink to the Pi extension), and `README.md` (symlink to this file).
+The hooks-tree index at `.skilled/hooks/git-preflight/` mirrors these: `shared/git-preflight-advisory.mjs` (symlink to the shared hook), `opencode/sk-git-preflight-advisory.js` (symlink to the plugin), `pi/git-preflight-advisory.ts` (symlink to the Pi extension), and `README.md` (symlink to this file).
 
 ---
 
@@ -111,7 +111,7 @@ The hooks-tree index at `.opencode/hooks/git-preflight/` mirrors these: `shared/
 | `git-preflight-advisory.mjs` | Shared stdin hook for `Bash`, `exec`, and Cursor `Shell` payloads. Reads the repo from payload `cwd`, Cursor's `workspace_roots[0]`, or the runtime project-directory env. Kill-switch, suppression tiers, shape gate, rule read/filter, lazy context, evaluate, cap-at-3 surface, `additionalContext` JSON emit. `main().catch(approve)`: the fail-open path is also the exit-0 path. |
 | `../lib/git-rule-checks.mjs` | The `GIT_SHAPE` gate, `parseGitCommand` (subcommand/flags/pathspec split with value-flag and `--` handling), and the 17 `GIT_CHECKS`. Each check gates on state, returns `true` (fine) / `false` (advise), and fails open on uncertainty. |
 | `../lib/git-context.mjs` | Lazy repository-state collector. Each accessor runs only when a check asks, caches for one invocation, and fails soft (returns `null`/safe unknown) on any git failure or 1.5s timeout. Reads only pre-command state. |
-| `.opencode/plugins/sk-git-preflight-advisory.js` | OpenCode plugin. `tool.execute.before` for `bash` evaluates the same engine and buffers at most 20 advisory events; `experimental.chat.system.transform` drains them as one system block on the next turn. Never prints; never blocks. |
+| `.skilled/plugins/sk-git-preflight-advisory.js` | OpenCode plugin. `tool.execute.before` for `bash` evaluates the same engine and buffers at most 20 advisory events; `experimental.chat.system.transform` drains them as one system block on the next turn. Never prints; never blocks. |
 | `pi/git-preflight-advisory.ts` | Pi `tool_call`/`tool_result` extension. Evaluates on `tool_call`, buffers by call id, appends to `tool_result` content. Warn-only, never `block: true`. |
 | `../../hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` frontmatter parser and `evaluate` runner imported by all adapters. |
 | `../../hooks/shared/hook-flags.mjs` / `.cjs` | Kill-switch resolver (`isHookEnabled('git-preflight')`). |
@@ -132,7 +132,7 @@ The advisory is enabled by default. Truthy disable values are `1`, `true`, `yes`
 
 `SKGIT_ADVISORY_SKIP` accepts comma-separated tokens. A token matches either a complete rule id or an id prefix followed by `-`.
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -155,15 +155,15 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 Run from the repository root.
 
 ```bash
-node --test .opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
-node --test .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs
+node --test .skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
+node --test .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs
 ```
 
 Expected result: all tests pass (the 17 checks and the shared hook's parsing/suppression/surface logic).
 
 ```bash
-node --check .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs
-node --check .opencode/plugins/sk-git-preflight-advisory.js
+node --check .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs
+node --check .skilled/plugins/sk-git-preflight-advisory.js
 ```
 
 Expected result: no syntax errors.

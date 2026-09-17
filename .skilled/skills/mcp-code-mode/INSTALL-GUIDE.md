@@ -158,7 +158,7 @@ Before installing Code Mode MCP, ensure you have the following.
   ```
 
   You do not have to make Node 24 your default. The registered command is
-  `.opencode/bin/mcp-code-mode-launcher.cjs`, which reads the required range from the
+  `.skilled/bin/mcp-code-mode-launcher.cjs`, which reads the required range from the
   server manifest, finds a satisfying interpreter among the ones you have installed,
   and refuses to start with a message naming the range when none does.
 
@@ -218,7 +218,7 @@ cd ~/CloudStorage/MCP\ Servers
 
 ```bash
 # Create directory structure (optional, for local config files)
-mkdir -p .opencode/mcp-code-mode
+mkdir -p .skilled/mcp-code-mode
 ```
 
 ### Step 3: Create .utcp_config.json
@@ -358,7 +358,7 @@ Add to `opencode.json` in your project root.
 
 **Option B2: Embedded Source (For bundled projects)**
 
-Use this if the Code Mode source is embedded in your project at `.opencode/skills/mcp-code-mode/mcp-server/`:
+Use this if the Code Mode source is embedded in your project at `.skilled/skills/mcp-code-mode/mcp-server/`:
 
 ```json
 {
@@ -367,7 +367,7 @@ Use this if the Code Mode source is embedded in your project at `.opencode/skill
       "type": "local",
       "command": [
         "node",
-        ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js"
+        ".skilled/skills/mcp-code-mode/mcp-server/dist/index.js"
       ],
       "environment": {
         "UTCP_CONFIG_FILE": ".utcp_config.json"

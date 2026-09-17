@@ -234,8 +234,8 @@ QUICK REFERENCE (notesmd-cli):
   notesmd-cli add-vault <path> | remove-vault <name> | set-default-vault <name>
 
 SKILL REFERENCE:
-  .opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md
-  .opencode/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md
+  .skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md
+  .skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md
 
 EOF
 }

@@ -54,9 +54,9 @@ Find real app screens showing an empty state on a dashboard, and pull similar sc
 
 ### Commands
 
-1. `sed -n '1,14p' .opencode/skills/mcp-tooling/mcp-refero/manual-testing-playbook/intra-routing-recall/screens.md`
-2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .opencode/skills/mcp-tooling/mcp-refero/SKILL.md | sed -n '/"SCREENS":/p'`
-3. `for p in references/tool-surface.md; do test -e ".opencode/skills/mcp-tooling/mcp-refero/$p" && echo "OK $p" || echo "MISS $p"; done`
+1. `sed -n '1,14p' .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/intra-routing-recall/screens.md`
+2. `sed -n '/^INTENT_MODEL = {/,/^}/p' .skilled/skills/mcp-tooling/mcp-refero/SKILL.md | sed -n '/"SCREENS":/p'`
+3. `for p in references/tool-surface.md; do test -e ".skilled/skills/mcp-tooling/mcp-refero/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

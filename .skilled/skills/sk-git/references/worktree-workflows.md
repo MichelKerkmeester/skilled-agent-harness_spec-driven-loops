@@ -157,7 +157,7 @@ use one unified, numbered grammar:
   never skipped or reused — a `worktrees/003` and a `branches/003` may coexist,
   and deleting a middle number never back-fills the gap (next = max-in-use + 1).
   Git cannot enforce sequential uniqueness itself, so the counter is allocated by
-  `.opencode/skills/sk-git/scripts/worktree-naming.sh`, which holds a lock in the
+  `.skilled/skills/sk-git/scripts/worktree-naming.sh`, which holds a lock in the
   shared common git dir and seeds each namespace's max from its stored high-water
   mark, every matching local + remote ref, and (for `worktrees/`) every registered
   worktree basename, so a partial scan can never reissue a live number. Never
@@ -165,7 +165,7 @@ use one unified, numbered grammar:
 
 > **Two distinct lanes.** This `worktrees/{NNN}-{slug}` grammar is for *named feature
 > worktrees a human creates*. It is separate from the per-session **ephemeral**
-> worktrees allocated by the launch wrapper `.opencode/bin/worktree-session.sh`, which
+> worktrees allocated by the launch wrapper `.skilled/bin/worktree-session.sh`, which
 > keep their own auto-managed namespace — branch `work/{runtime}/{slug}`, directory
 > `.worktrees/{runtime}-{slug}` — and are auto-reaped by `worktree-reaper.sh` (which keys
 > on the branch prefix `work/`, and only when the wrapper worktree is clean, merged into
@@ -179,7 +179,7 @@ use one unified, numbered grammar:
    and long-running — the creation command is identical; only downstream lifecycle
    handling differs):
 ```bash
-.opencode/skills/sk-git/scripts/worktree-naming.sh create add-oauth main
+.skilled/skills/sk-git/scripts/worktree-naming.sh create add-oauth main
 # -> worktrees/001-add-oauth .worktrees/001-add-oauth   (branch, then dir)
 ```
    This locks the per-namespace counter, creates the branch + worktree with
@@ -190,14 +190,14 @@ use one unified, numbered grammar:
 2. **Dedicated branch (no worktree)**: allocate a `branches/` number and create
    only the branch:
 ```bash
-.opencode/skills/sk-git/scripts/worktree-naming.sh create-branch external-dep main
+.skilled/skills/sk-git/scripts/worktree-naming.sh create-branch external-dep main
 # -> branches/002-external-dep
 ```
 
 3. **Detached experiment** (no branch, so no `{NNN}`-branch pairing — but the
    directory is still numbered):
 ```bash
-.opencode/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
+.skilled/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
 # -> .worktrees/003-detached-experiment
 ```
 
@@ -331,7 +331,7 @@ it is named.
 
 **Example** (`{NNN}` allocated in Step 4, e.g. `001`):
 ```bash
-.opencode/skills/sk-git/scripts/worktree-naming.sh create fix-modal main
+.skilled/skills/sk-git/scripts/worktree-naming.sh create fix-modal main
 # -> worktrees/001-fix-modal .worktrees/001-fix-modal
 # ... make changes ...
 cd ../.. && git checkout main && git merge worktrees/001-fix-modal
@@ -356,7 +356,7 @@ git worktree remove .worktrees/001-fix-modal && git branch -d worktrees/001-fix-
 
 **Example**:
 ```bash
-.opencode/skills/sk-git/scripts/worktree-naming.sh create user-auth main
+.skilled/skills/sk-git/scripts/worktree-naming.sh create user-auth main
 # -> worktrees/002-user-auth .worktrees/002-user-auth
 # ... develop feature ...
 # Create PR, review, merge
@@ -373,7 +373,7 @@ git worktree remove .worktrees/001-fix-modal && git branch -d worktrees/001-fix-
 
 **Example** (no branch, but the directory is still numbered by the allocator):
 ```bash
-.opencode/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
+.skilled/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
 # -> .worktrees/003-detached-experiment
 # ... experiment ...
 # If keeping: promote to a worktrees/{NNN}-{slug} branch and commit
@@ -435,7 +435,7 @@ Agent: "I'm using the git-worktrees skill with the fast-merge strategy (default)
 [Step 2: Directory selection - .worktrees/ home confirmed]
 [Step 3: Safety verification - .gitignore contains .worktrees/]
 [Step 4: Allocate + create worktree via the naming allocator]
-> .opencode/skills/sk-git/scripts/worktree-naming.sh create modal-fix main
+> .skilled/skills/sk-git/scripts/worktree-naming.sh create modal-fix main
   -> worktrees/001-modal-fix .worktrees/001-modal-fix
 [Step 5: Project setup]
 > npm install
@@ -466,7 +466,7 @@ Agent: "I'm using the git-worktrees skill with the long-running lifecycle."
 [Step 2: Directory selection - .worktrees/ home confirmed]
 [Step 3: Safety verification - .gitignore contains .worktrees/]
 [Step 4: Allocate + create worktree via the naming allocator]
-> .opencode/skills/sk-git/scripts/worktree-naming.sh create user-auth main
+> .skilled/skills/sk-git/scripts/worktree-naming.sh create user-auth main
   -> worktrees/002-user-auth .worktrees/002-user-auth
 [Step 5: Project setup - detected Node.js]
 > npm install
@@ -491,7 +491,7 @@ Agent: "I'm using a detached HEAD worktree for experimentation (no branch)."
 [Step 2: Directory selection - .worktrees/ home confirmed]
 [Step 3: Safety verification - .gitignore contains .worktrees/]
 [Step 4: Create worktree detached via the naming allocator]
-> .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached new-approach main
+> .skilled/skills/sk-git/scripts/worktree-naming.sh create-detached new-approach main
   -> .worktrees/003-detached-new-approach
 [Step 5: Project setup]
 > npm install
@@ -507,7 +507,7 @@ Agent: "I'm using a detached HEAD worktree for experimentation (no branch)."
 User: "This worked great, let's keep it"
 Agent: "Promoting to a numbered branch from this detached HEAD state..."
 > sha=$(git -C .worktrees/003-detached-new-approach rev-parse HEAD)
-> .opencode/skills/sk-git/scripts/worktree-naming.sh create new-approach-promoted "$sha"
+> .skilled/skills/sk-git/scripts/worktree-naming.sh create new-approach-promoted "$sha"
   -> worktrees/004-new-approach-promoted .worktrees/004-new-approach-promoted
 > cd .worktrees/004-new-approach-promoted
 > git add . && git commit -m "feat: experimental approach"

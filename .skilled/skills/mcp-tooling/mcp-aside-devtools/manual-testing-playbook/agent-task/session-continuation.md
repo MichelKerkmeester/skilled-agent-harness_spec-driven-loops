@@ -80,7 +80,7 @@ Both transcripts, the session id source, and the context-reuse judgment.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md` | Three-layer session model this scenario exercises |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md` | Three-layer session model this scenario exercises |
 
 ---
 

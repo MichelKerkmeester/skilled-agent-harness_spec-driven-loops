@@ -47,17 +47,17 @@ After creation, the AI auto-detects the project's dependency manager (npm/yarn/p
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/references/worktree-workflows.md` | Shared | Seven-step workflow reference: inputs, directory, safety, creation, setup, baseline, report |
-| `.opencode/skills/sk-git/assets/worktree-checklist.md` | Shared | Pre-flight worktree creation checklist |
-| `.opencode/skills/sk-git/scripts/worktree-naming.sh` | Script | Underlying allocator invoked by the creation step |
+| `.skilled/skills/sk-git/references/worktree-workflows.md` | Shared | Seven-step workflow reference: inputs, directory, safety, creation, setup, baseline, report |
+| `.skilled/skills/sk-git/assets/worktree-checklist.md` | Shared | Pre-flight worktree creation checklist |
+| `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Script | Underlying allocator invoked by the creation step |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/manual-testing-playbook/worktree-setup/fresh-feature-isolated-worktree.md` | Manual playbook | Validates the fast-merge worktree-creation path end to end |
-| `.opencode/skills/sk-git/manual-testing-playbook/worktree-setup/current-branch-no-worktree.md` | Manual playbook | Validates the Option-B (current branch) path is honored |
-| `.opencode/skills/sk-git/manual-testing-playbook/worktree-setup/stay-on-main-no-feature-branches.md` | Manual playbook | Validates the AI never autonomously creates a branch |
+| `.skilled/skills/sk-git/manual-testing-playbook/worktree-setup/fresh-feature-isolated-worktree.md` | Manual playbook | Validates the fast-merge worktree-creation path end to end |
+| `.skilled/skills/sk-git/manual-testing-playbook/worktree-setup/current-branch-no-worktree.md` | Manual playbook | Validates the Option-B (current branch) path is honored |
+| `.skilled/skills/sk-git/manual-testing-playbook/worktree-setup/stay-on-main-no-feature-branches.md` | Manual playbook | Validates the AI never autonomously creates a branch |
 
 ---
 

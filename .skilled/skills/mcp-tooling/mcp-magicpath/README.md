@@ -129,7 +129,7 @@ Code Mode names calls `{manual}.{tool}`. The manual is named `magicpath` and the
 
 ### Wiring And Authentication
 
-The `magicpath` manual is already registered in `.utcp_config.json` (`call_template_type: "cli"`; the manual command runs `node .opencode/bin/magicpath-utcp-manual.cjs`; tool execution runs through `node .opencode/bin/magicpath-utcp-exec.cjs`). The packet verifies it read-only and never edits it.
+The `magicpath` manual is already registered in `.utcp_config.json` (`call_template_type: "cli"`; the manual command runs `node .skilled/bin/magicpath-utcp-manual.cjs`; tool execution runs through `node .skilled/bin/magicpath-utcp-exec.cjs`). The packet verifies it read-only and never edits it.
 
 Authentication is operator-only. The credential is `magicpath-ai login` (browser) or the `MAGICPATH_TOKEN` environment variable, wired as `magicpath_MAGICPATH_TOKEN` in `.env` (Code Mode prefixes env vars with the manual name). Without a credential, a call returns structured JSON: `{"error":"Not authenticated. Set MAGICPATH_TOKEN or run \`magicpath-ai login\`.","code":"NOT_AUTHENTICATED","suggestion":"..."}`. `info` is the exception and answers without credentials. The packet never accepts, prints, caches, or repairs credentials.
 
@@ -219,8 +219,8 @@ A: By design. A failing command returns the error text or a JSON error object as
 
 | Check | How to run it |
 |---|---|
-| Skill package | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-magicpath --check` reports zero errors |
-| SKILL.md frontmatter | `head -8 .opencode/skills/mcp-tooling/mcp-magicpath/SKILL.md` shows `name`, `description`, `version`, and `user-invocable`, with `version: 1.1.0.0` |
+| Skill package | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-magicpath --check` reports zero errors |
+| SKILL.md frontmatter | `head -8 .skilled/skills/mcp-tooling/mcp-magicpath/SKILL.md` shows `name`, `description`, `version`, and `user-invocable`, with `version: 1.1.0.0` |
 | Wiring presence | Read-only grep of `.utcp_config.json` reports the `magicpath` manual registered |
 | CLI reachability | Inside Code Mode: `magicpath.info({})` returns a result without a credential |
 | Callable confirmation | Inside Code Mode: `tool_info({ tool_name: "magicpath.search_components" })` returns a schema |

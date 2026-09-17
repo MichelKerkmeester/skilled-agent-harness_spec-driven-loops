@@ -43,7 +43,7 @@ Cross-provider PR review triage (`gitlens_launchpad`), AI-organized commit compo
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-git/references/gitkraken-mcp-integration.md` | Shared | Tool selection guide, safety rules, full tool inventory, usage/error-handling examples |
+| `.skilled/skills/sk-git/references/gitkraken-mcp-integration.md` | Shared | Tool selection guide, safety rules, full tool inventory, usage/error-handling examples |
 
 ### Validation And Tests
 

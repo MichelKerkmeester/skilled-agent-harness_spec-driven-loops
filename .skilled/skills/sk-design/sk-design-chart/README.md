@@ -106,13 +106,13 @@ That is a constraint rather than a preference. This repository is MIT and public
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
-| Corpus | `node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs` | `RESULT: PASSED` |
-| Design reference | `node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs <DESIGN.md> --forms <a,b> --out <dir>` | `RESULT: PASSED` and deterministic themed copies |
-| Outside delivery | `node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra <dir>` | `RESULT: PASSED` with `design-md` provenance and gates checked |
+| Corpus | `node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs` | `RESULT: PASSED` |
+| Design reference | `node .skilled/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs <DESIGN.md> --forms <a,b> --out <dir>` | `RESULT: PASSED` and deterministic themed copies |
+| Outside delivery | `node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra <dir>` | `RESULT: PASSED` with `design-md` provenance and gates checked |
 | Mutation suite | `node --test scripts/tests/` | Every check family is exercised by a case or named with the reason it needs a browser |
-| Package shape | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/sk-design/sk-design-chart --check --strict` | `Result: PASS` |
-| Hub shape | `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-design` | Zero invariant failures |
-| Voice | `python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py README.md` | Zero hard blockers |
+| Package shape | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/sk-design/sk-design-chart --check --strict` | `Result: PASS` |
+| Hub shape | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-design` | Zero invariant failures |
+| Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py README.md` | Zero hard blockers |
 
 ---
 

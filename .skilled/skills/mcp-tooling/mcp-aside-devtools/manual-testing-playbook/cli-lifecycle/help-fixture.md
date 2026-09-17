@@ -80,7 +80,7 @@ Fixture file paths and their contents; an explicit note of which model-selection
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md` | Version-pinned command surface this fixture validates |
+| `.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md` | Version-pinned command surface this fixture validates |
 
 ---
 

@@ -45,7 +45,7 @@ Improve this framework-comparison prompt; verify near-tied TEXT_ENHANCE and FRAM
 ### Commands
 
 1. `sk-prompt: Improve this prompt and tell me which framework fits — RCAF or COSTAR.`
-2. `bash: rg 'AMBIGUITY_DELTA' .opencode/skills/sk-prompt/SKILL.md` (confirm delta=1)
+2. `bash: rg 'AMBIGUITY_DELTA' .skilled/skills/sk-prompt/SKILL.md` (confirm delta=1)
 
 ### Expected
 

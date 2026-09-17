@@ -48,7 +48,7 @@ This directory contains production-ready bash scripts demonstrating practical Cl
 
 ```bash
 # Install cupt CLI
-bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh
 
 # Verify installation and authentication
 cupt --version   # → cupt 0.7.1
@@ -265,7 +265,7 @@ done
 
 ```bash
 # Install cupt
-bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh
 
 # Verify
 cupt --version   # → cupt 0.7.1
@@ -323,9 +323,9 @@ sudo apt install jq
 ### Skill Documentation
 
 **mcp-click-up:**
-- `.opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`: Routing rules and agent invariants
-- `.opencode/skills/mcp-tooling/mcp-click-up/references/INSTALL-GUIDE.md`: Install and authentication
-- `.opencode/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md`: Full cupt command reference
+- `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md`: Routing rules and agent invariants
+- `.skilled/skills/mcp-tooling/mcp-click-up/references/INSTALL-GUIDE.md`: Install and authentication
+- `.skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md`: Full cupt command reference
 
 ### Related References
 

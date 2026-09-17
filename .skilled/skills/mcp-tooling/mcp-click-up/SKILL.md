@@ -272,7 +272,7 @@ cupt status      # Shows workspace + auth status
 
 **Step 2: Install if missing**
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh
 ```
 
 **Step 3: Authenticate**

@@ -96,7 +96,7 @@ A blocked push prints the exact retry command:
 BLOCKED: push to '<branch>' on origin needs explicit permission for this push.
 This repo asks before every push to a branch outside the remote allowlist
 (built in: main, skilled/v*; extend via
-  .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt).
+  .skilled/skills/sk-git/scripts/remote-branch-allowlist.txt).
 If the operator has approved THIS push, retry with:
   SPECKIT_ALLOW_REMOTE_PUSH=1 git push ...
 ```
