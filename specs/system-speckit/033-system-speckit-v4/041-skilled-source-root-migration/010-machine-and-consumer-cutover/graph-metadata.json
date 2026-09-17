@@ -47,12 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/scripts/install-git-hooks.sh",
       ".codex/hooks.json",
+      "scratch/consumer-links-classified.tsv",
       ".opencode/bin/mcp-code-mode-launcher.cjs",
       ".opencode/skills/system-spec-kit/runtime/cli/pi/README.md",
       ".opencode/bin/system-skill-advisor-launcher.cjs",
       ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite",
-      "runtime/cli/pi/README.md"
+      ".skilled/bin/mcp-code-mode-launcher.cjs",
+      "runtime/cli/pi/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/pi/README.md",
+      "scratch/home-census-raw.tsv",
+      "scratch/home-census-classified.tsv",
+      "scratch/consumer-links-raw.tsv",
+      "scratch/residue-census-raw.tsv"
     ],
     "entities": [
       {
@@ -92,9 +100,21 @@
         "source": "derived"
       },
       {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
         "name": "hooks.json",
         "kind": "config",
         "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "consumer-links-classified.tsv",
+        "kind": "file",
+        "path": "scratch/consumer-links-classified.tsv",
         "source": "derived"
       },
       {
@@ -119,6 +139,30 @@
         "name": "council-graph.sqlite",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "home-census-raw.tsv",
+        "kind": "file",
+        "path": "scratch/home-census-raw.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "home-census-classified.tsv",
+        "kind": "file",
+        "path": "scratch/home-census-classified.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "consumer-links-raw.tsv",
+        "kind": "file",
+        "path": "scratch/consumer-links-raw.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "residue-census-raw.tsv",
+        "kind": "file",
+        "path": "scratch/residue-census-raw.tsv",
         "source": "derived"
       },
       {
@@ -162,47 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Shell Variables Every",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Evidence Ledger Every",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Obsidian Plugin",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Git cannot move what lives outside it",
     "created_at": "2026-09-16T17:54:10Z",
-    "last_save_at": "2026-09-16T18:43:45.713Z",
+    "last_save_at": "2026-09-17T20:28:13.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:642faf8dc41a540e1fbcaba77e62a766109f6fc66f418a45ee9c2d14e317059e",
+    "source_fingerprint": "sha256:bd7cf4ed400b78a988389112f6ce510cfa39af14af68c8411432592e798ac66a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6cd19f1119061102ef149b98fefa4b8c5796b8dcc3018d1f3824b09c0e849cfc",
       "plan.md": "fb7d7c705d8de7f6ad5e3d79a0d75b4b389da5f059158c84642cd50de562c3aa",
-      "tasks.md": "a691177304aa139157dcd3aa9baa34f8d8b833eb164b6b51f51b57d238e1f9cc",
-      "implementation-summary.md": "7c51eb97ab345118175299960eee5117ea39a53bf321f351b7f8f7f55927bfdb"
+      "tasks.md": "d0233a2683e07f525d893b7968c4046a2da3ac8ab04f4e24d124f91b24be2094",
+      "implementation-summary.md": "f2b30de7899f1543bc7373a452ee9d3e58f4233e5d81e894d1fd70fe78414a35"
     },
     "last_active_at": null
   }

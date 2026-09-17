@@ -1,0 +1,45 @@
+# Cutover baselines, captured 2026-09-17T19:29:36Z
+## install-git-hooks --status
+core.hooksPath: /Users/michelkerkmeester/.config/git/hooks (global)
+resolved hooks dir: /Users/michelkerkmeester/.config/git/hooks
+hook sources in: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks
+
+  commit-msg
+    installed: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/commit-msg
+    source:    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/commit-msg
+  post-commit
+    installed: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-commit
+    source:    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-commit
+  post-merge
+    installed: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-merge
+    source:    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-merge
+  post-rewrite
+    installed: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-rewrite
+    source:    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-rewrite
+  pre-commit
+    installed: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/pre-commit
+    source:    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/pre-commit
+  pre-push
+    installed: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/pre-push
+    source:    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/pre-push
+  prepare-commit-msg
+    installed: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/prepare-commit-msg
+    source:    /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/prepare-commit-msg
+## install-codex-hooks --check
+install-codex-hooks: OK /Users/michelkerkmeester/.codex/hooks.json
+## checksums of in-scope home files
+9238d9089e4a1ff6d827f47c80da45ec671368892a0d8226196ee8b73aa8c02b  /Users/michelkerkmeester/.gitconfig
+64d226851b6addd66174f50a2ab4b32bc8ba68dd1f4d63bfc2721072dc7c487b  /Users/michelkerkmeester/.codex/hooks.json
+2d372f6418154153a2c83ed8606da0813da904bfe8c33e4faf5d5ca6615b6610  /Users/michelkerkmeester/.codex/config.toml
+c3c2329b46ceb48843a5aa9f8690fcb2cbba789ec15dd9cb430b5ee865b03995  /Users/michelkerkmeester/.hermes/config.yaml
+c97605b7b986f43961e2d44643ae15a83ddc40d0261eae18cd66d09cff0d8ae1  /Users/michelkerkmeester/.pi/agent/SYNC.md
+5eb8aedc6462bcc58af231e3f1acbcadbbd1e146ac7292b25ae1ec72a0d9e9fa  /Users/michelkerkmeester/.pi/agent/trust.json
+b49775b68cbf7a8665abc0a60e4e905fbde920717de7707394c8aa2229d678a6  /Users/michelkerkmeester/.zshrc
+## global hook links
+commit-msg -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/commit-msg
+post-commit -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-commit
+post-merge -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-merge
+post-rewrite -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/post-rewrite
+pre-commit -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/pre-commit
+pre-push -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/pre-push
+prepare-commit-msg -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/git-hooks/prepare-commit-msg
