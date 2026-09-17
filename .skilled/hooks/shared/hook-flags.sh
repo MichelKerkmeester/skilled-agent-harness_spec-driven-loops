@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Shared hook kill-switch guard - POSIX sh mirror of hook-flags.cjs / .mjs.
-# Usage:  . "<repo>/.opencode/hooks/shared/hook-flags.sh"; hook_enabled <concern> || exit 0
+# Usage:  . "<repo>/.skilled/hooks/shared/hook-flags.sh"; hook_enabled <concern> || exit 0
 # ENABLED (return 0) unless master SYSTEM_HOOKS_DISABLED or per-concern SYSTEM_<CONCERN>_DISABLED
 # is truthy (1/true/yes/on, case-insensitive). Default-on, dependency-free.
 # Flags resolve from the live environment first, then an optional operator config
@@ -12,7 +12,7 @@
 __hook_flags_config="${HOOK_FLAGS_CONFIG:-}"
 if [ -z "$__hook_flags_config" ]; then
   __hf_cfg_root="${__hf_root:-$(git rev-parse --show-toplevel 2>/dev/null)}"
-  [ -n "$__hf_cfg_root" ] && __hook_flags_config="$__hf_cfg_root/.opencode/hooks/hook-flags.env"
+  [ -n "$__hf_cfg_root" ] && __hook_flags_config="$__hf_cfg_root/.skilled/hooks/hook-flags.env"
 fi
 
 __hook_flags_truthy() {

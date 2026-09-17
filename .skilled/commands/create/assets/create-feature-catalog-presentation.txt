@@ -43,8 +43,8 @@ PRE-BOUND SETUP ANSWERS:
   skill_name: system-spec-kit
   operation: update
   source_strategy: hybrid
-  skill_path: .opencode/skills/
-  catalog_root: .opencode/skills/system-spec-kit/feature-catalog
+  skill_path: .skilled/skills/
+  catalog_root: .skilled/skills/system-spec-kit/feature-catalog
   execution_mode: AUTONOMOUS
   spec_choice: skip
   spec_path: ""
@@ -58,7 +58,7 @@ Default resolution table:
 | `skill_name` | Yes | First positional token or marker | none | No |
 | `operation` | Yes | Second positional token or marker | none | No |
 | `source_strategy` | Yes | marker or targeted source strategy choice | none | Yes |
-| `skill_path` | Yes | `--path`, marker, or default | `.opencode/skills/` | No |
+| `skill_path` | Yes | `--path`, marker, or default | `.skilled/skills/` | No |
 | `catalog_root` | Yes | marker or derived from skill path/name | derived | No |
 | `execution_mode` | Yes | `:auto`, `:confirm`, or marker | `AUTONOMOUS` under `:auto` | No |
 | `spec_choice` | Yes | marker or targeted documentation choice | none | Yes |

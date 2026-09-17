@@ -3,7 +3,7 @@
     "code_mode": {
       "command": "node",
       "args": [
-        ".opencode/bin/mcp-code-mode-launcher.cjs"
+        ".skilled/bin/mcp-code-mode-launcher.cjs"
       ],
       "env": {
         "UTCP_CONFIG_FILE": ".utcp_config.json"

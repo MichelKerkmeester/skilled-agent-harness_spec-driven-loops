@@ -20,9 +20,9 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/speckit/assets/speckit-resume-presentation.txt` |
-| Auto workflow | `.opencode/commands/speckit/assets/speckit-resume-auto.yaml` |
-| Confirm workflow | `.opencode/commands/speckit/assets/speckit-resume-confirm.yaml` |
+| Presentation source of truth | `.skilled/commands/speckit/assets/speckit-resume-presentation.txt` |
+| Auto workflow | `.skilled/commands/speckit/assets/speckit-resume-auto.yaml` |
+| Confirm workflow | `.skilled/commands/speckit/assets/speckit-resume-confirm.yaml` |
 
 ---
 
@@ -40,14 +40,14 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/speckit/assets/speckit-resume-auto.yaml` |
-| `:confirm` or default interactive choice | `.opencode/commands/speckit/assets/speckit-resume-confirm.yaml` |
+| `:auto` | `.skilled/commands/speckit/assets/speckit-resume-auto.yaml` |
+| `:confirm` or default interactive choice | `.skilled/commands/speckit/assets/speckit-resume-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/speckit/assets/speckit-resume-presentation.txt`:
+The following content lives only in `.skilled/commands/speckit/assets/speckit-resume-presentation.txt`:
 
 - Startup-question wording and reply format.
 - `:auto` pre-bound setup answer schema, default table, targeted-ask rules, and fail-fast display.

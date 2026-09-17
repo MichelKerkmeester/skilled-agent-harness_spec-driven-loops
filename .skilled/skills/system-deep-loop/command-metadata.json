@@ -16,19 +16,19 @@
       {
         "order": 1,
         "skill": "system-deep-loop",
-        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "resource": ".skilled/skills/system-deep-loop/SKILL.md",
         "action": "load the system-deep-loop parent hub routing table"
       },
       {
         "order": 2,
         "skill": "deep-research",
-        "resource": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
+        "resource": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
         "action": "load the autonomous deep-research mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "deep-research",
-        "resource": ".opencode/commands/deep/assets/deep-research-presentation.txt",
+        "resource": ".skilled/commands/deep/assets/deep-research-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],
@@ -63,19 +63,19 @@
       {
         "order": 1,
         "skill": "system-deep-loop",
-        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "resource": ".skilled/skills/system-deep-loop/SKILL.md",
         "action": "load the system-deep-loop parent hub routing table"
       },
       {
         "order": 2,
         "skill": "deep-review",
-        "resource": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "resource": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
         "action": "load the autonomous deep-review mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "deep-review",
-        "resource": ".opencode/commands/deep/assets/deep-review-presentation.txt",
+        "resource": ".skilled/commands/deep/assets/deep-review-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],
@@ -106,19 +106,19 @@
       {
         "order": 1,
         "skill": "system-deep-loop",
-        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "resource": ".skilled/skills/system-deep-loop/SKILL.md",
         "action": "load the system-deep-loop parent hub routing table"
       },
       {
         "order": 2,
         "skill": "deep-ai-council",
-        "resource": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
+        "resource": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
         "action": "load the AI Council mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "deep-ai-council",
-        "resource": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
+        "resource": ".skilled/commands/deep/assets/deep-ai-council-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],
@@ -153,19 +153,19 @@
       {
         "order": 1,
         "skill": "system-deep-loop",
-        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "resource": ".skilled/skills/system-deep-loop/SKILL.md",
         "action": "load the system-deep-loop parent hub routing table"
       },
       {
         "order": 2,
         "skill": "deep-improvement",
-        "resource": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
+        "resource": ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
         "action": "load the evaluator-first agent-improvement mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "deep-improvement",
-        "resource": ".opencode/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        "resource": ".skilled/commands/deep/assets/deep-agent-improvement-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],
@@ -196,19 +196,19 @@
       {
         "order": 1,
         "skill": "system-deep-loop",
-        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "resource": ".skilled/skills/system-deep-loop/SKILL.md",
         "action": "load the system-deep-loop parent hub routing table"
       },
       {
         "order": 2,
         "skill": "deep-improvement",
-        "resource": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
+        "resource": ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
         "action": "load the evaluator-first model-benchmark mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "deep-improvement",
-        "resource": ".opencode/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        "resource": ".skilled/commands/deep/assets/deep-model-benchmark-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],

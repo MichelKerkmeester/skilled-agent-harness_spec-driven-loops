@@ -12,7 +12,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 Route /create:with-human-voice to its presentation contract and workflow YAML for applying the Human Voice Rules to a target, or for scoring the target against them without editing.
 
-Do not apply the standard from this document. The scope gate, the pass order, the precedence arithmetic and the report shape are owned by `sk-create-with-human-voice`. The workflow YAML owns setup, execution mode and artifact writes. The standard itself is owned by neither and lives at `.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`.
+Do not apply the standard from this document. The scope gate, the pass order, the precedence arithmetic and the report shape are owned by `sk-create-with-human-voice`. The workflow YAML owns setup, execution mode and artifact writes. The standard itself is owned by neither and lives at `.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`.
 
 > **`score` never edits, `apply` always re-scans.** The default operation is `score`, because reporting is safe and rewriting is not. An `apply` run that reports only its final number has not proved anything and is treated as incomplete.
 
@@ -22,11 +22,11 @@ Do not apply the standard from this document. The scope gate, the pass order, th
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/create/assets/create-with-human-voice-presentation.txt` |
-| Auto workflow | `.opencode/commands/create/assets/create-with-human-voice-auto.yaml` |
-| Confirm workflow | `.opencode/commands/create/assets/create-with-human-voice-confirm.yaml` |
-| Mode contract | `.opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md` |
-| Standard | `.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md` |
+| Presentation source of truth | `.skilled/commands/create/assets/create-with-human-voice-presentation.txt` |
+| Auto workflow | `.skilled/commands/create/assets/create-with-human-voice-auto.yaml` |
+| Confirm workflow | `.skilled/commands/create/assets/create-with-human-voice-confirm.yaml` |
+| Mode contract | `.skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md` |
+| Standard | `.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md` |
 
 ---
 
@@ -45,8 +45,8 @@ Do not apply the standard from this document. The scope gate, the pass order, th
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/create/assets/create-with-human-voice-auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/create/assets/create-with-human-voice-confirm.yaml` |
+| `:auto` | `.skilled/commands/create/assets/create-with-human-voice-auto.yaml` |
+| `:confirm` or interactive choice | `.skilled/commands/create/assets/create-with-human-voice-confirm.yaml` |
 
 ---
 

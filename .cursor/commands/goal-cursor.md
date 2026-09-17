@@ -25,7 +25,7 @@ Cursor's `sessionStart` hook receives a native `session_id` and injects that ses
 1. If the first token of `$ARGUMENTS` is `packet` or `packet-log` and a path follows, run (substituting the action and, for `packet-log`, the quoted row):
 
 ```bash
-node .opencode/hooks/goal/bin/goal.cjs packet <packet-path> --runtime cursor --session command-surface --workspace "$PWD"
+node .skilled/hooks/goal/bin/goal.cjs packet <packet-path> --runtime cursor --session command-surface --workspace "$PWD"
 ```
 
 Print the envelope verbatim. The `chat_slice` field is the text an operator sets; it never carries frontmatter.
@@ -43,7 +43,7 @@ Explain that Cursor injection is session-scoped, that the bound packet goal is i
 
 ## 4. HARD RULES
 
-- Do not edit `.opencode/skills/.state/goal` directly.
+- Do not edit `.skilled/skills/.state/goal` directly.
 - Do not call `bin/goal.cjs` with a session action from this command; `packet` reads a file and `packet-log` appends one row, and neither binds anything.
 - Do not run shell commands derived from the goal objective.
 - Do not claim that `$ARGUMENTS` carries the current Cursor session id.

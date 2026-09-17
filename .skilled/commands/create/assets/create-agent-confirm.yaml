@@ -43,7 +43,7 @@ development_philosophy:
   mandate: "Concrete use cases first, then tools/permissions, then content"
 
 runtime_agent_path_resolution:
-  default: .opencode/agents
+  default: .skilled/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────
@@ -164,16 +164,16 @@ documentation_level:
 # AGENT CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 agent_templates:
-  primary: .opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md
+  primary: .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
 
 agent_scripts:
-  validate_document: .opencode/skills/sk-doc/scripts/validate_document.py
-  extract_structure: .opencode/skills/sk-doc/scripts/extract_structure.py
+  validate_document: .skilled/skills/sk-doc/scripts/validate_document.py
+  extract_structure: .skilled/skills/sk-doc/scripts/extract_structure.py
 
 agent_references:
-  agent_creation: .opencode/skills/sk-doc/sk-create-agent/references/README.md
-  core_standards: .opencode/skills/sk-doc/shared/references/core-standards.md
-  validation: .opencode/skills/sk-doc/shared/references/validation.md
+  agent_creation: .skilled/skills/sk-doc/sk-create-agent/references/README.md
+  core_standards: .skilled/skills/sk-doc/shared/references/core-standards.md
+  validation: .skilled/skills/sk-doc/shared/references/validation.md
 
 # ─────────────────────────────────────────────────────────────────
 # CHECKPOINT OPTIONS
@@ -201,7 +201,7 @@ context_loading:
       - "Read {spec_path}/handover.md when present and recent"
       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
-      - "Only for a still-missing named gap, run the packet-scoped context recipe from .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+      - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
   behavior:
     memory_choice_A: "Load handover.md (if <24h old) plus _memory.continuity from implementation-summary.md in {spec_path}; sets memory_loaded: handover+continuity"
@@ -353,8 +353,8 @@ workflow:
     - "Route spec.md and plan.md creation through distributed governance (AGENTS.md Rule 5)"
     templates:
     # Use Level 1 templates as default for agent creation
-    - .opencode/skills/system-spec-kit/templates/examples/level-1/spec.md
-    - .opencode/skills/system-spec-kit/templates/examples/level-1/plan.md
+    - .skilled/skills/system-spec-kit/templates/examples/level-1/spec.md
+    - .skilled/skills/system-spec-kit/templates/examples/level-1/plan.md
     outputs:
     - spec.md: created_or_updated
     - plan.md: created_or_updated
@@ -618,14 +618,14 @@ workflow:
     - "Run @markdown quality validation to score the created agent definition file"
     - "Validation checks: frontmatter validity, permission config, behavioral rules"
     - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
-    - "Description budget check: run `python3 .opencode/skills/sk-doc/scripts/quick_validate.py <agent-dir> --json` against the agent's frontmatter. Soft-warn when description > 130 chars; hard-fail > 1536. Hard-fail blocks completion; soft-warn surfaces the trim suggestion but does not block."
+    - "Description budget check: run `python3 .skilled/skills/sk-doc/scripts/quick_validate.py <agent-dir> --json` against the agent's frontmatter. Soft-warn when description > 130 chars; hard-fail > 1536. Hard-fail blocks completion; soft-warn surfaces the trim suggestion but does not block."
     on_low_score:
       threshold: 70
       action: "Log warnings and suggest improvements; do not block workflow"
     description_budget:
       soft_target: 130
       hard_cap: 1536
-      reference: ".opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md § Description Budget & Trim Style"
+      reference: ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md § Description Budget & Trim Style"
     outputs:
     - quality_score: number
     - validation_findings: list
@@ -651,7 +651,7 @@ workflow:
     - Save validation results
     - Write the packet's implementation-summary.md
     tool_invocation:
-      command: 'Read(".opencode/skills/system-spec-kit/SKILL.md")'
+      command: 'Read(".skilled/skills/system-spec-kit/SKILL.md")'
       note: "Activate context saving via the system-spec-kit skill"
     memory_content:
       include:
@@ -675,9 +675,9 @@ workflow:
     # ── CONTINUITY WRITE ─────────────────────────────────
     write_continuity:
       purpose: "Refresh the packet continuity frontmatter and generated metadata"
-      writer: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
+      writer: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
       invocation: |
-        node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
+        node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
           /tmp/save-context-data-<session-id>.json specs/[NNN]-[agent-name]
       critical_note: "The writer is the whole write: it keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it. The target is the canonical spec packet; standalone memory/*.md files are retired and the runtime rejects them."
       when: "Immediately after implementation-summary.md is written to disk"
@@ -790,7 +790,7 @@ quality_standards:
     stage_3: "Mode validation (primary/subagent/all)"
     stage_4: "Permission format validation (unified v1.1.1+)"
   template_adherence: required
-  core_standards_reference: ".opencode/skills/sk-doc/shared/references/core-standards.md"
+  core_standards_reference: ".skilled/skills/sk-doc/shared/references/core-standards.md"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT TEMPLATE

@@ -16,7 +16,7 @@ importance_tier: "normal"
 
 ## 1. OVERVIEW
 
-`.opencode/commands/scripts/fixtures/` contains negative test data for `validate-command-references.cjs`.
+`.skilled/commands/scripts/fixtures/` contains negative test data for `validate-command-references.cjs`.
 
 The fixture values are intentionally broken. They must remain unresolved so the self-test can verify the checker's failing path.
 
@@ -83,7 +83,7 @@ Both conditions must pass for the self-test to succeed.
 Run from the repository root:
 
 ```bash
-node .opencode/commands/scripts/validate-command-references.cjs --self-test
+node .skilled/commands/scripts/validate-command-references.cjs --self-test
 ```
 
 Expected result:

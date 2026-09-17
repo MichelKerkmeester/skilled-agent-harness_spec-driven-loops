@@ -9,7 +9,7 @@ description: "Generators that keep .codex/agents, .codex/prompts and command rou
 
 ## 1. OVERVIEW
 
-`runtime/cli/codex/` keeps the Codex CLI runtime mirrors in sync with their `.opencode/` canonical sources. Each script is a `--check`/default read-only drift report paired with a write mode that regenerates the mirror. None of them touch the canonical source files.
+`runtime/cli/codex/` keeps the Codex CLI runtime mirrors in sync with their `.skilled/` canonical sources. Each script is a `--check`/default read-only drift report paired with a write mode that regenerates the mirror. None of them touch the canonical source files.
 
 ---
 
@@ -17,15 +17,15 @@ description: "Generators that keep .codex/agents, .codex/prompts and command rou
 
 | File | Purpose |
 |------|---------|
-| `sync-agents.cjs` | Generates `.codex/agents/*` from `.opencode/agents/*`, mapping tool access to a `sandboxMode` and applying per-agent model/reasoning-effort settings. `--check` reports drift without writing. |
-| `sync-prompts.cjs` | Generates `.codex/prompts/*` from `.opencode/commands/*`, walking every command markdown file except `assets/`, `runtime/cli/` and `fixtures/` subfolders. `--check` reports drift without writing. |
+| `sync-agents.cjs` | Generates `.codex/agents/*` from `.skilled/agents/*`, mapping tool access to a `sandboxMode` and applying per-agent model/reasoning-effort settings. `--check` reports drift without writing. |
+| `sync-prompts.cjs` | Generates `.codex/prompts/*` from `.skilled/commands/*`, walking every command markdown file except `assets/`, `runtime/cli/` and `fixtures/` subfolders. `--check` reports drift without writing. |
 | `generate-command-routers.cjs` | Compares each router's OWNED ASSETS and EXECUTION TARGETS asset paths against the command contract (`sk-doc/sk-create-command/assets/command-contract.json`). `--check` (default) reports path drift and non-canonical table shape. `--write` normalizes the table shape and asset-path cells in place, leaving hand-authored label and mode prose untouched. |
 
 ---
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/sk-doc/sk-create-command/SKILL.md` documents `generate-command-routers.cjs` as the router drift check for new commands.
+- `.skilled/skills/sk-doc/sk-create-command/SKILL.md` documents `generate-command-routers.cjs` as the router drift check for new commands.
 
 ---
 

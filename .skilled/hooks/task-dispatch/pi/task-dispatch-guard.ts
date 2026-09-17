@@ -5,7 +5,7 @@
 // rejection is intentionally advisory-only here.
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
+import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
 
 type DispatchCore = typeof import("../lib/dispatch-guard.cjs");
 
@@ -13,7 +13,7 @@ async function loadDispatchCore(): Promise<DispatchCore> {
   try {
     return await import("../lib/dispatch-guard.cjs");
   } catch {
-    return await import("../../.opencode/hooks/task-dispatch/lib/dispatch-guard.cjs");
+    return await import("../../.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs");
   }
 }
 

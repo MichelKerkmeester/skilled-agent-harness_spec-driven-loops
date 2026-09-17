@@ -20,9 +20,9 @@ Load the presentation contract before showing startup questions, checkpoints, da
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/speckit/assets/speckit-plan-presentation.txt` |
-| Workflow (all execution modes) | `.opencode/commands/speckit/assets/speckit-plan.yaml` |
-| Shared save-context tail | `.opencode/commands/speckit/assets/speckit-save-context-tail.yaml` |
+| Presentation source of truth | `.skilled/commands/speckit/assets/speckit-plan-presentation.txt` |
+| Workflow (all execution modes) | `.skilled/commands/speckit/assets/speckit-plan.yaml` |
+| Shared save-context tail | `.skilled/commands/speckit/assets/speckit-save-context-tail.yaml` |
 
 ---
 
@@ -64,9 +64,9 @@ values without an interactive prompt.
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` auto: confirm-only checkpoint blocks skipped |
-| `:autopilot`, `:unattended`, or `--unattended` | `.opencode/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` autopilot and unattended task metadata required |
-| `:confirm` or interactive choice | `.opencode/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` confirm: every `applies_to: confirm` checkpoint runs and `mode_overrides.confirm` wording applies |
+| `:auto` | `.skilled/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` auto: confirm-only checkpoint blocks skipped |
+| `:autopilot`, `:unattended`, or `--unattended` | `.skilled/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` autopilot and unattended task metadata required |
+| `:confirm` or interactive choice | `.skilled/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` confirm: every `applies_to: confirm` checkpoint runs and `mode_overrides.confirm` wording applies |
 
 ### UNATTENDED TASK METADATA
 
@@ -81,7 +81,7 @@ Required fields:
 Recommended inline form:
 
 ```markdown
-<!-- agent: direct | deps: [] | touched-files: [".opencode/commands/speckit/complete.md"] -->
+<!-- agent: direct | deps: [] | touched-files: [".skilled/commands/speckit/complete.md"] -->
 ```
 
 If the planner cannot assign one of these fields with at least medium confidence, the unattended terminal result must use `uncertainty_blocked` instead of emitting a prose-only stop.
@@ -90,7 +90,7 @@ If the planner cannot assign one of these fields with at least medium confidence
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/speckit/assets/speckit-plan-presentation.txt`:
+The following content lives only in `.skilled/commands/speckit/assets/speckit-plan-presentation.txt`:
 
 - Startup-question wording and reply format.
 - `:auto` pre-bound setup answer schema, default table, targeted-ask rules, and fail-fast display.

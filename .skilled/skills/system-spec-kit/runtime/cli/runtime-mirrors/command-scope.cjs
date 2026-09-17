@@ -16,7 +16,7 @@
 // Anything not named here keeps the default "one canonical, mirrored everywhere"
 // behavior untouched.
 
-// Canonical .opencode/commands/ paths (relative to that root) that must NOT be
+// Canonical .skilled/commands/ paths (relative to that root) that must NOT be
 // mirrored into any generated runtime tree.
 const CANONICAL_MIRROR_EXCLUDES = new Set(['goal-opencode.md', 'vision.md']);
 

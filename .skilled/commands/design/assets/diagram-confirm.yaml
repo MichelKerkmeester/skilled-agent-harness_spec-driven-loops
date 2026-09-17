@@ -147,7 +147,7 @@ field_handling:
     required_when: "output_format=ascii-markdown"
   defaults:
     output_format: "html-svg: single self-contained HTML file; ascii-markdown: markdown file with a fenced text flowchart"
-    skill_contract: .opencode/skills/sk-design/sk-design-diagram/SKILL.md
+    skill_contract: .skilled/skills/sk-design/sk-design-diagram/SKILL.md
 
 input_contract:
   required:
@@ -175,30 +175,30 @@ documentation_level:
 # CREATE-DIAGRAM RESOURCES
 # -----------------------------------------------------------------
 diagram_resources:
-  skill_contract: .opencode/skills/sk-design/sk-design-diagram/SKILL.md
+  skill_contract: .skilled/skills/sk-design/sk-design-diagram/SKILL.md
 diagram_scripts:
-  drawio_extract: .opencode/skills/sk-design/sk-design-diagram/scripts/drawio_extract.py
-  mermaid_extract: .opencode/skills/sk-design/sk-design-diagram/scripts/mermaid_extract.py
-  validate_flowchart: .opencode/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh
+  drawio_extract: .skilled/skills/sk-design/sk-design-diagram/scripts/drawio_extract.py
+  mermaid_extract: .skilled/skills/sk-design/sk-design-diagram/scripts/mermaid_extract.py
+  validate_flowchart: .skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh
 diagram_references:
-  style_guide: .opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md
-  onboarding: .opencode/skills/sk-design/sk-design-diagram/references/foundations/onboarding.md
-  output_spec: .opencode/skills/sk-design/sk-design-diagram/references/foundations/output-spec.md
-  import_drawio: .opencode/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md
-  import_mermaid: .opencode/skills/sk-design/sk-design-diagram/references/import-export/import-mermaid.md
-  export: .opencode/skills/sk-design/sk-design-diagram/references/import-export/export.md
-  type_reference_pattern: .opencode/skills/sk-design/sk-design-diagram/references/types/type-<name>.md
-  ascii_route_map: .opencode/skills/sk-design/sk-design-diagram/references/ascii-format/README.md
-  ascii_pattern_selection: .opencode/skills/sk-design/sk-design-diagram/references/ascii-format/pattern-selection.md
-  ascii_notation: .opencode/skills/sk-design/sk-design-diagram/references/ascii-format/notation-and-validator.md
+  style_guide: .skilled/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md
+  onboarding: .skilled/skills/sk-design/sk-design-diagram/references/foundations/onboarding.md
+  output_spec: .skilled/skills/sk-design/sk-design-diagram/references/foundations/output-spec.md
+  import_drawio: .skilled/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md
+  import_mermaid: .skilled/skills/sk-design/sk-design-diagram/references/import-export/import-mermaid.md
+  export: .skilled/skills/sk-design/sk-design-diagram/references/import-export/export.md
+  type_reference_pattern: .skilled/skills/sk-design/sk-design-diagram/references/types/type-<name>.md
+  ascii_route_map: .skilled/skills/sk-design/sk-design-diagram/references/ascii-format/README.md
+  ascii_pattern_selection: .skilled/skills/sk-design/sk-design-diagram/references/ascii-format/pattern-selection.md
+  ascii_notation: .skilled/skills/sk-design/sk-design-diagram/references/ascii-format/notation-and-validator.md
 
 ascii_patterns:
-  linear: .opencode/skills/sk-design/sk-design-diagram/assets/ascii-patterns/simple-workflow.md
-  decision: .opencode/skills/sk-design/sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md
-  parallel: .opencode/skills/sk-design/sk-design-diagram/assets/ascii-patterns/parallel-execution.md
-  approval: .opencode/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md
-  swimlane: .opencode/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md
-  journey: .opencode/skills/sk-design/sk-design-diagram/assets/ascii-patterns/user-onboarding.md
+  linear: .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/simple-workflow.md
+  decision: .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md
+  parallel: .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/parallel-execution.md
+  approval: .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md
+  swimlane: .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md
+  journey: .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/user-onboarding.md
 
 # -----------------------------------------------------------------
 # WORKFLOW ENFORCEMENT (CRITICAL)
@@ -419,7 +419,7 @@ quality_standards:
     stage_3: "Technical (accessible SVG, connector rules, 4px grid)"
     stage_4: "Typography"
   template_adherence: required
-  core_standards_reference: ".opencode/skills/sk-design/sk-design-diagram/SKILL.md"
+  core_standards_reference: ".skilled/skills/sk-design/sk-design-diagram/SKILL.md"
 
 # -----------------------------------------------------------------
 # COMPLETION REPORT TEMPLATE

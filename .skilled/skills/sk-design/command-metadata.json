@@ -21,19 +21,19 @@
       {
         "order": 1,
         "skill": "sk-design",
-        "resource": ".opencode/skills/sk-design/SKILL.md",
+        "resource": ".skilled/skills/sk-design/SKILL.md",
         "action": "load the sk-design parent hub routing table"
       },
       {
         "order": 2,
         "skill": "sk-design-md-generator",
-        "resource": ".opencode/skills/sk-design/sk-design-md-generator/SKILL.md",
+        "resource": ".skilled/skills/sk-design/sk-design-md-generator/SKILL.md",
         "action": "load the extraction mode contract, then apply its workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "sk-design-md-generator",
-        "resource": ".opencode/commands/design/assets/extract-presentation.txt",
+        "resource": ".skilled/commands/design/assets/extract-presentation.txt",
         "action": "load the presentation contract before showing any setup question or result"
       }
     ],
@@ -57,19 +57,19 @@
       {
         "order": 1,
         "skill": "sk-design",
-        "resource": ".opencode/skills/sk-design/SKILL.md",
+        "resource": ".skilled/skills/sk-design/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-diagram",
-        "resource": ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
+        "resource": ".skilled/skills/sk-design/sk-design-diagram/SKILL.md",
         "action": "load the diagram authoring mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-diagram",
-        "resource": ".opencode/commands/design/assets/diagram-presentation.txt",
+        "resource": ".skilled/commands/design/assets/diagram-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ]
@@ -92,19 +92,19 @@
       {
         "order": 1,
         "skill": "sk-design",
-        "resource": ".opencode/skills/sk-design/SKILL.md",
+        "resource": ".skilled/skills/sk-design/SKILL.md",
         "action": "load the sk-doc parent hub routing table"
       },
       {
         "order": 2,
         "skill": "create-chart",
-        "resource": ".opencode/skills/sk-design/sk-design-chart/SKILL.md",
+        "resource": ".skilled/skills/sk-design/sk-design-chart/SKILL.md",
         "action": "load the chart authoring mode contract, then apply the workflow to $ARGUMENTS"
       },
       {
         "order": 3,
         "skill": "create-chart",
-        "resource": ".opencode/commands/design/assets/chart-presentation.txt",
+        "resource": ".skilled/commands/design/assets/chart-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],

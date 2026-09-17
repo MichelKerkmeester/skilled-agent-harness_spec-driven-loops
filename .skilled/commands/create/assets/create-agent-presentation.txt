@@ -57,7 +57,7 @@ Pre-bound setup schema:
 ```yaml
 PRE-BOUND SETUP ANSWERS:
   agent_name: quality-gate
-  agent_path: .opencode/agents/
+  agent_path: .skilled/agents/
   spec_choice: new
   spec_path: <spec-folder>
   execution_mode: AUTONOMOUS

@@ -29,7 +29,7 @@ The CLI prints a `<SK-VISION EVIDENCE>` block containing scene analysis, a capti
 **Command:**
 
 ```bash
-node .opencode/skills/sk-vision/vision-runtime/dist/vision-cli.js <image-path> [question...]
+node .skilled/skills/sk-vision/vision-runtime/dist/vision-cli.js <image-path> [question...]
 ```
 
 Exit codes: `0` evidence on stdout, `1` a runtime or usage error on stderr, `2` no image found.

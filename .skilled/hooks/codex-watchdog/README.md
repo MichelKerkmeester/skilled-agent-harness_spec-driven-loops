@@ -26,11 +26,11 @@ On `session.created`, the plugin:
 
 1. Checks the `codex-watchdog` kill switch. If disabled, returns immediately.
 2. Extracts the session ID and dedupes per session (bounded set, max 1000 entries with LRU eviction). A session that already warned is not re-checked.
-3. Runs `node .opencode/bin/install-codex-hooks.mjs --check` via `execFileSync` with a 5-second timeout and `stdio: 'ignore'`. This is the installer's non-mutating verification mode: it exits 0 when the user-global Codex hooks match the repo, non-zero on drift.
-4. If the check exits non-zero (drift detected, or the installer could not run), appends one line to the bounded workspace log `.opencode/logs/codex-hooks-watchdog.log`:
+3. Runs `node .skilled/bin/install-codex-hooks.mjs --check` via `execFileSync` with a 5-second timeout and `stdio: 'ignore'`. This is the installer's non-mutating verification mode: it exits 0 when the user-global Codex hooks match the repo, non-zero on drift.
+4. If the check exits non-zero (drift detected, or the installer could not run), appends one line to the bounded workspace log `.skilled/logs/codex-hooks-watchdog.log`:
 
 ```text
-<ISO timestamp> codex hook drift detected; run: node .opencode/bin/install-codex-hooks.mjs --check
+<ISO timestamp> codex hook drift detected; run: node .skilled/bin/install-codex-hooks.mjs --check
 ```
 
 The log is capped at 256 KB (truncated on overflow). The plugin never throws, never writes stdout/stderr (OpenCode's TUI paints console output onto the prompt input line), and never blocks a turn. Any error, missing installer, spawn failure, timeout, log write failure, resolves to a no-op.
@@ -41,7 +41,7 @@ The log is capped at 256 KB (truncated on overflow). The plugin never throws, ne
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **OpenCode** | `.opencode/plugins/codex-hooks-watchdog.js` (mirrored at `opencode/`) | Plugin `event` on `session.created` | Bounded workspace log only. Never stdout/stderr, never model context, never a thrown error. |
+| **OpenCode** | `.skilled/plugins/codex-hooks-watchdog.js` (mirrored at `opencode/`) | Plugin `event` on `session.created` | Bounded workspace log only. Never stdout/stderr, never model context, never a thrown error. |
 | **Claude** | — | — | Not applicable. Claude hooks are repo-local and cannot drift. |
 | **Codex** | — | — | Not applicable. Codex is the *observed* runtime, not the observing one. |
 | **Devin** | — | — | Not applicable. |
@@ -65,8 +65,8 @@ codex-watchdog/
 
 | File | Responsibility |
 |---|---|
-| `.opencode/plugins/codex-hooks-watchdog.js` | The plugin. Exports `MkCodexHooksWatchdogPlugin(ctx)`. On `session.created`, dedupes by session ID, runs `install-codex-hooks.mjs --check` (5s timeout, `stdio: 'ignore'`), and logs drift to `.opencode/logs/codex-hooks-watchdog.log` (256 KB cap). Fail-open on every error path. |
-| `.opencode/bin/install-codex-hooks.mjs` | The Codex hook installer. `--check` is the non-mutating verification mode the watchdog calls; the operator runs it without `--check` to repair drift. Not in this folder. |
+| `.skilled/plugins/codex-hooks-watchdog.js` | The plugin. Exports `MkCodexHooksWatchdogPlugin(ctx)`. On `session.created`, dedupes by session ID, runs `install-codex-hooks.mjs --check` (5s timeout, `stdio: 'ignore'`), and logs drift to `.skilled/logs/codex-hooks-watchdog.log` (256 KB cap). Fail-open on every error path. |
+| `.skilled/bin/install-codex-hooks.mjs` | The Codex hook installer. `--check` is the non-mutating verification mode the watchdog calls; the operator runs it without `--check` to repair drift. Not in this folder. |
 
 ---
 
@@ -80,7 +80,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `CODEX_WATCHDOG_DISABLED=1` | Legacy alias. Also disables the concern. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file.
 
 ---
 
@@ -99,7 +99,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 
 ```bash
 # Verify the plugin loads without error
-node -e "import('./.opencode/plugins/codex-hooks-watchdog.js').then(m => console.log('ok', typeof m.default))"
+node -e "import('./.skilled/plugins/codex-hooks-watchdog.js').then(m => console.log('ok', typeof m.default))"
 ```
 
 Expected result: `ok function`.
@@ -107,7 +107,7 @@ Expected result: `ok function`.
 ```bash
 # Verify the kill switch short-circuits
 CODEX_HOOKS_WATCHDOG_DISABLED=1 node -e "
-  import('./.opencode/plugins/codex-hooks-watchdog.js').then(async m => {
+  import('./.skilled/plugins/codex-hooks-watchdog.js').then(async m => {
     const plugin = await m.default({ directory: process.cwd() });
     // session.created with disabled flag -> no log written, no throw
     await plugin.event({ event: { type: 'session.created', sessionID: 'test' } });
@@ -120,7 +120,7 @@ Expected result: `ok`, no log line appended.
 
 ```bash
 # Verify drift detection logs (requires a drifted ~/.codex/hooks.json)
-node .opencode/bin/install-codex-hooks.mjs --check; echo "exit: $?"
+node .skilled/bin/install-codex-hooks.mjs --check; echo "exit: $?"
 ```
 
 Expected result: exit 0 when hooks are in sync; non-zero on drift. The watchdog logs the remediation line only on non-zero.

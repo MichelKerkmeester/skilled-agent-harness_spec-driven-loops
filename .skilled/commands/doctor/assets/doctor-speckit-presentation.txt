@@ -101,7 +101,7 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 | `skill-graph-freshness` | `doctor-skill-graph-freshness.yaml` | read-only | Diagnose skill-graph representation drift across compiled, sqlite, and disk sources |
 | `fable-mode` | `doctor-fable-mode.yaml` | read-only | Audit behavioral metrics for fable-mode review quality |
 | `router-reach` | `doctor-router-reach.yaml` | read-only | Ask the live advisor whether every phrase a hub's router advertises actually reaches it |
-| `runtime-mirrors` | `doctor-runtime-mirrors.yaml` | read-only | Detect drift in the agent, command, prompt and hook mirrors the runtime dirs derive from .opencode |
+| `runtime-mirrors` | `doctor-runtime-mirrors.yaml` | read-only | Detect drift in the agent, command, prompt and hook mirrors the runtime dirs derive from .skilled |
 
 ## 3. Setup Prompts
 
@@ -139,11 +139,11 @@ Render this compact panel after setup and before YAML execution when target reso
 ```text
 DOCTOR ROUTE SETUP
 Target: [target]
-Workflow: .opencode/commands/doctor/assets/[yaml]
+Workflow: .skilled/commands/doctor/assets/[yaml]
 Mutation class: [read-only|add-only|mutates]
 Execution mode: INTERACTIVE
 Setup values: [key=value list]
-Presentation: .opencode/commands/doctor/assets/doctor-speckit-presentation.txt
+Presentation: .skilled/commands/doctor/assets/doctor-speckit-presentation.txt
 Next: load workflow YAML
 ```
 
@@ -197,6 +197,6 @@ STATUS=FAIL ERROR="[message]"
 | MCP servers are broken | Use `/doctor:mcp debug --fix` |
 | Fresh-install MCP servers | Use `/doctor:mcp install` |
 | Cross-target flag rejected | Use the suggested target from the error |
-| Route manifest parse error | Run `bash .opencode/commands/doctor/scripts/route-validate.sh` |
+| Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 End interactive presentations with: `What would you like to do next?`

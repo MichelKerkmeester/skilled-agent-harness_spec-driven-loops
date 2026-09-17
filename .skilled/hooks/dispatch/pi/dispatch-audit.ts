@@ -4,7 +4,7 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { join } from "node:path";
-import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
+import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
 
 function textFromContent(content: unknown): string | undefined {
   if (!Array.isArray(content)) return undefined;
@@ -24,7 +24,7 @@ export default function dispatchAudit(pi: ExtensionAPI): void {
     try {
       if (event.toolName !== "bash" || typeof event.input.command !== "string") return;
 
-      const audit = await import("../../.opencode/hooks/dispatch/lib/dispatch-audit.mjs");
+      const audit = await import("../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs");
       audit.recordDispatch({
         command: event.input.command,
         logPath: join(ctx.cwd, audit.DEFAULT_LOG_RELATIVE_PATH),

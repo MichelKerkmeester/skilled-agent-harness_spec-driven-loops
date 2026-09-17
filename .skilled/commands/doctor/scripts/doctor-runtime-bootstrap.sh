@@ -21,9 +21,9 @@ while [[ $# -gt 0 ]]; do
       ;;
     --help|-h)
       cat <<'HELP'
-Usage: bash .opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh [--root <workspace>] [--json]
+Usage: bash .skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh [--root <workspace>] [--json]
 
-Migrates a legacy .opencode/skill directory into .opencode/skills when present,
+Migrates a legacy .opencode/skill directory into .skilled/skills when present,
 installs system-spec-kit workspace dependencies, and builds the MCP server and
 script runtimes needed by /doctor:update.
 HELP
@@ -133,7 +133,7 @@ if ! flock -n 9; then
   exit 0
 fi
 
-# Migrate a real legacy .opencode/skill directory into the canonical .opencode/skills
+# Migrate a real legacy .opencode/skill directory into the canonical .skilled/skills
 # layout. Every launcher and config resolves the plural path directly, so the singular
 # .opencode/skill compatibility symlink is unnecessary. The bootstrap no longer creates it,
 # and a layout move alone never forces a restart -- the old code recreated the shim whenever
@@ -141,7 +141,7 @@ fi
 # still restarts via the dist build step below.
 if [[ ! -d "$SKILLS_DIR" && -d "$LEGACY_SKILL_DIR" && ! -L "$LEGACY_SKILL_DIR" ]]; then
   mv "$LEGACY_SKILL_DIR" "$SKILLS_DIR"
-  record_action "promoted legacy .opencode/skill directory to .opencode/skills"
+  record_action "promoted legacy .opencode/skill directory to .skilled/skills"
 elif [[ -d "$SKILLS_DIR" && -d "$LEGACY_SKILL_DIR" && ! -L "$LEGACY_SKILL_DIR" ]]; then
   backup="$OPENCODE_DIR/skill_legacy_backup_$(date -u +%Y%m%dT%H%M%SZ)"
   mv "$LEGACY_SKILL_DIR" "$backup"

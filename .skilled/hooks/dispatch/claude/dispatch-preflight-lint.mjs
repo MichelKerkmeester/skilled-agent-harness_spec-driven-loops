@@ -23,7 +23,7 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 // Dispatch-shape registry: command pattern → the skill whose SKILL.md declares its hard_rules.
 // `skill` is the short display name (used in advisory/block messages); `packetPath` is the
-// hub-relative path segment under .opencode/skills/ used to resolve SKILL.md — both
+// hub-relative path segment under .skilled/skills/ used to resolve SKILL.md — both
 // cli-opencode and cli-claude-code now live nested under the cli-external-orchestration parent hub,
 // so packetPath carries the hub prefix while skill stays
 // the short, human-readable name. Shared with the post-execution dispatch-audit core so the
@@ -67,7 +67,7 @@ async function main() {
   if (!match) return approve();
 
   const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
-  const skillMd = path.join(projectDir, '.opencode', 'skills', match.packetPath, 'SKILL.md');
+  const skillMd = path.join(projectDir, '.skilled', 'skills', match.packetPath, 'SKILL.md');
   const rules = readHardRules(skillMd);
   if (rules.length === 0) return approve(); // nothing declared → nothing to enforce
 

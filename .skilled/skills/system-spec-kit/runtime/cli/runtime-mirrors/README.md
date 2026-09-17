@@ -57,7 +57,7 @@ Edit `command-scope.cjs` when a command is runtime-exclusive or a runtime-native
 Run the non-mutating check from the repository root:
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
 ```
 
 ---

@@ -28,14 +28,14 @@ const test = require('node:test');
 const { parse: parseYaml } = require('yaml');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const COMMANDS_DIR = path.join(REPO_ROOT, '.opencode', 'commands', 'doctor');
+const COMMANDS_DIR = path.join(REPO_ROOT, '.skilled', 'commands', 'doctor');
 const ROUTES_PATH = path.join(COMMANDS_DIR, '_routes.yaml');
 const ROUTER_MD_PATH = path.join(COMMANDS_DIR, 'speckit.md');
-const SKILL_GRAPH_TOOLS_PATH = path.join(REPO_ROOT, '.opencode', 'skills', 'system-skill-advisor', 'runtime', 'tools', 'skill-graph-tools.ts');
-const ADVISOR_SCHEMAS_PATH = path.join(REPO_ROOT, '.opencode', 'skills', 'system-skill-advisor', 'runtime', 'schemas', 'advisor-tool-schemas.ts');
+const SKILL_GRAPH_TOOLS_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'tools', 'skill-graph-tools.ts');
+const ADVISOR_SCHEMAS_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'schemas', 'advisor-tool-schemas.ts');
 
 // The invocation every cli_commands entry is expected to name.
-const ADVISOR_CLI_RELATIVE_PATH = '.opencode/bin/skill-advisor.cjs';
+const ADVISOR_CLI_RELATIVE_PATH = '.skilled/bin/skill-advisor.cjs';
 // The router grants the shell surface the advisor CLI commands run through.
 const REQUIRED_ROUTER_TOOL = 'Bash';
 

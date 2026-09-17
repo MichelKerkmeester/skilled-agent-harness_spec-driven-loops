@@ -49,10 +49,10 @@ router_reach_invariant: |
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
   contract: "local command design contract"
-  diagnostic_script: ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
-  allowlist: ".opencode/skills/sk-doc/sk-create-skill/scripts/router-reach-allowlist.json"
-  stage_one_vocabulary: ".opencode/skills/*/graph-metadata.json"
-  stage_two_vocabulary: ".opencode/skills/*/ROUTER.md"
+  diagnostic_script: ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+  allowlist: ".skilled/skills/sk-doc/sk-create-skill/scripts/router-reach-allowlist.json"
+  stage_one_vocabulary: ".skilled/skills/*/graph-metadata.json"
+  stage_two_vocabulary: ".skilled/skills/*/ROUTER.md"
 
 # ─────────────────────────────────────────────────────────────────
 # USER INPUTS
@@ -67,7 +67,7 @@ user_inputs:
 field_handling:
   validation:
     execution_mode_must_be: INTERACTIVE
-    hub_must_be: "a directory under .opencode/skills/ carrying both ROUTER.md and mode-registry.json, or unset"
+    hub_must_be: "a directory under .skilled/skills/ carrying both ROUTER.md and mode-registry.json, or unset"
 
 # ─────────────────────────────────────────────────────────────────
 # MUTATION BOUNDARIES

@@ -24,9 +24,9 @@ In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag is ope
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/deep/assets/deep-review-presentation.txt` |
-| Auto workflow | `.opencode/commands/deep/assets/deep-review-auto.yaml` |
-| Confirm workflow | `.opencode/commands/deep/assets/deep-review-confirm.yaml` |
+| Presentation source of truth | `.skilled/commands/deep/assets/deep-review-presentation.txt` |
+| Auto workflow | `.skilled/commands/deep/assets/deep-review-auto.yaml` |
+| Confirm workflow | `.skilled/commands/deep/assets/deep-review-confirm.yaml` |
 
 No workflow-asset gap exists for this command.
 
@@ -55,14 +55,14 @@ No workflow-asset gap exists for this command.
 
 | Mode | Workflow |
 |------|----------|
-| `:auto` | `.opencode/commands/deep/assets/deep-review-auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep-review-confirm.yaml` |
+| `:auto` | `.skilled/commands/deep/assets/deep-review-auto.yaml` |
+| `:confirm` or interactive choice | `.skilled/commands/deep/assets/deep-review-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/deep/assets/deep-review-presentation.txt`:
+The following content lives only in `.skilled/commands/deep/assets/deep-review-presentation.txt`:
 
 - Startup-question wording, consolidated setup prompt text, question text, and reply-format examples.
 - `:auto` pre-bound setup answer schema, default resolution table, targeted-ask rules, and fail-fast display behavior.

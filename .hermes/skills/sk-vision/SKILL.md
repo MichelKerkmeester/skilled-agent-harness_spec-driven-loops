@@ -210,7 +210,7 @@ The runtime lazy-loads the model on the first inference request (default `moondr
 
 OpenCode and Pi expose in-process plugin APIs, so the skill owns their adapter source under `hooks/` and each host loads it through a symlink or re-export. Cursor and Devin have neither, and they differ from each other: Devin delivers a prompt-time lifecycle hook, Cursor delivers no prompt-time event at all. Each therefore gets the strongest mechanism its runtime actually supports.
 
-- **OpenCode**: the built plugin `vision-runtime/dist/plugin.js` registers only the `command.execute.before` hook by default. The hook runs for `/vision`, fetches the latest session image, injects a `<SK-VISION COMMAND>` evidence block and tears the runtime down afterward. `SK_VISION_AUTOINSPECT=1` restores the legacy visible tools and always-on inspection. The plugin loads through `.opencode/plugins/sk-vision.js`, which points to the built entry inside the runtime package so it resolves `python/runtime.py`.
+- **OpenCode**: the built plugin `vision-runtime/dist/plugin.js` registers only the `command.execute.before` hook by default. The hook runs for `/vision`, fetches the latest session image, injects a `<SK-VISION COMMAND>` evidence block and tears the runtime down afterward. `SK_VISION_AUTOINSPECT=1` restores the legacy visible tools and always-on inspection. The plugin loads through `.skilled/plugins/sk-vision.js`, which points to the built entry inside the runtime package so it resolves `python/runtime.py`.
 - **Pi**: `hooks/pi/sk-vision.ts` registers the 13 tools hidden by default. The native `/vision` command calls the hidden `sk_vision_inspect` tool and opens a fresh runtime for each call. It tears the runtime down after each call. `SK_VISION_AUTOINSPECT=1` restores the legacy visible tools and always-on inspection. The extension loads through `.pi/extensions/sk-vision.ts`.
 - **Devin**: `hooks/devin/sk-vision.mjs` runs on `UserPromptSubmit`, registered in `.devin/hooks.v1.json`. When a prompt names an image path that resolves on disk, it analyzes the image and injects a `<SK-VISION EVIDENCE>` block into the same turn, then tears the runtime down. The model never has to ask. Every path fails open.
 - **Cursor**: runs the CLI at `vision-runtime/dist/vision-cli.js`, driven by its `/vision` command and its always-apply rule. Cursor delivers no prompt-time hook event, so injection is impossible there and the call has to be made rather than forced. Claude has no sk-vision integration.
@@ -289,10 +289,10 @@ Requires an NVIDIA Ampere-or-newer GPU or Apple Silicon (M-series). About 6 GB V
 | Check | How to verify |
 |-------|---------------|
 | Skill root metadata is valid | `ci-skill-root-metadata.cjs` reports `OK [S] sk-vision` |
-| Skill package validates | `validate_skill_package.py .opencode/skills/sk-vision` PASS |
+| Skill package validates | `validate_skill_package.py .skilled/skills/sk-vision` PASS |
 | Runtime builds and tests | `bun run build && bun test` in `vision-runtime/` exit 0 |
 | 13 tools are available on both in-process hosts | `rg -c 'name: "sk_vision_' hooks/pi/sk-vision.ts` = 13 (Pi registers them through one wrapper). `SK_VISION_AUTOINSPECT=1` makes the OpenCode plugin and Pi tools visible |
-| OpenCode command adapter loads | `.opencode/plugins/sk-vision.js` resolves to `vision-runtime/dist/plugin.js` and `/vision` runs its command hook |
+| OpenCode command adapter loads | `.skilled/plugins/sk-vision.js` resolves to `vision-runtime/dist/plugin.js` and `/vision` runs its command hook |
 | Pi command adapter loads | `.pi/extensions/sk-vision.ts` resolves to `hooks/pi/sk-vision.ts`. Pi tools are hidden by default and `/vision` starts a fresh call |
 | No accidental publishing | no `publishConfig` / `publish:npm` in `vision-runtime/package.json` |
 | Docs describe shipped behavior | no scaffold-stub language in `SKILL.md` / `README.md` |
@@ -311,12 +311,12 @@ The authoritative behavior lives in the code. When this doc and the code disagre
 | Pi tool registrations and parameter shapes | `hooks/pi/sk-vision.ts` |
 | Evidence rendering | `vision-runtime/src/core/context-builder.ts` |
 | Per-tool deep behavior and measured results | `feature-catalog/`, `manual-testing-playbook/`, `benchmark/` |
-| Class S root-metadata contract | `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` |
+| Class S root-metadata contract | `.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` |
 
 ---
 
 ## 7. INTEGRATION
 
-- **Host load paths**: host-adapter sources live under `hooks/` and are mirrored into the shared hook hub at `.opencode/hooks/sk-vision/{pi,opencode,devin}`. Pi loads `hooks/pi/` through `.pi/extensions/sk-vision.ts`. OpenCode loads the built package plugin through `.opencode/plugins/sk-vision.js`. The entry sits inside the runtime package so it resolves `python/runtime.py`. Devin loads `hooks/devin/sk-vision.mjs` through `.devin/hooks.v1.json`. Cursor holds no adapter source: it runs the built CLI.
+- **Host load paths**: host-adapter sources live under `hooks/` and are mirrored into the shared hook hub at `.skilled/hooks/sk-vision/{pi,opencode,devin}`. Pi loads `hooks/pi/` through `.pi/extensions/sk-vision.ts`. OpenCode loads the built package plugin through `.skilled/plugins/sk-vision.js`. The entry sits inside the runtime package so it resolves `python/runtime.py`. Devin loads `hooks/devin/sk-vision.mjs` through `.devin/hooks.v1.json`. Cursor holds no adapter source: it runs the built CLI.
 - **Related skills**: `sk-code` builds and verifies the runtime package. `sk-doc` and `sk-create-skill` own this SKILL.md, README shape and validation gate.
 - **Tool usage**: the 13 `sk_vision_*` tools are the public surface. The JSON-RPC methods above are internal and reached only through the adapters, never called directly by the host model.

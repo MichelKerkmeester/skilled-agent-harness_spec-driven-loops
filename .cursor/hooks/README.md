@@ -1,6 +1,6 @@
 ---
 title: "Cursor Hook Discovery Mirror"
-description: "Discovery-only symlinks for the repository's Cursor hook scripts; runtime wiring remains in .cursor/hooks.json and points to real .opencode paths."
+description: "Discovery-only symlinks for the repository's Cursor hook scripts; runtime wiring remains in .cursor/hooks.json and points to real .skilled paths."
 ---
 # Cursor Hook Discovery Mirror
 
@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Cursor hook scripts; 
 
 ## 1. OVERVIEW
 
-`.cursor/hooks/` contains 17 symlinks after including the session-start spec-gate prebind. `mcp-route-guard.mjs` and `task-dispatch-guard.mjs` target `.opencode/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.opencode/hooks/README.md)); the rest target their owning skill under `.opencode/skills/`. Cursor executes the real paths declared in `.cursor/hooks.json`, not this discovery mirror.
+`.cursor/hooks/` contains 17 symlinks after including the session-start spec-gate prebind. `mcp-route-guard.mjs` and `task-dispatch-guard.mjs` target `.skilled/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.skilled/hooks/README.md)); the rest target their owning skill under `.skilled/skills/`. Cursor executes the real paths declared in `.cursor/hooks.json`, not this discovery mirror.
 
 Four compiled ESM lifecycle adapters do not execute through their symlink because `runCursorHook()` compares the invocation path with the resolved module URL. Plain `.mjs` proxies do not use that guard, but all runtime wiring stays on one consistent set of real paths.
 
@@ -39,14 +39,14 @@ Four compiled ESM lifecycle adapters do not execute through their symlink becaus
 
 `spec-gate-prebind.mjs` is wired on `sessionStart` through its real path. Its mirror is discovery-only, like every other entry here.
 
-`goal-inject.mjs` is a Cursor-only `sessionStart` goal-injection hook; it is not one of the two fully-portable guard cores below even though its target also lives under `.opencode/hooks/`.
+`goal-inject.mjs` is a Cursor-only `sessionStart` goal-injection hook; it is not one of the two fully-portable guard cores below even though its target also lives under `.skilled/hooks/`.
 
 ---
 
 ## 4. VALIDATION
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .cursor/hooks/README.md
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .cursor/hooks/README.md
 ```
 
 Expected result: exit 0 with zero document issues.
@@ -65,5 +65,5 @@ Expected result: exit 0, proving the discovery link exists and resolves.
 - [Claude mirror](../../.claude/hooks/README.md)
 - [Codex mirror](../../.codex/hooks/README.md)
 - [Devin mirror](../../.devin/hooks/README.md)
-- [Injection contract](../../.opencode/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
-- [Runtime hooks tree](../../.opencode/hooks/README.md): the two fully-portable guard cores this mirror points at outside `.opencode/skills/`
+- [Injection contract](../../.skilled/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
+- [Runtime hooks tree](../../.skilled/hooks/README.md): the two fully-portable guard cores this mirror points at outside `.skilled/skills/`

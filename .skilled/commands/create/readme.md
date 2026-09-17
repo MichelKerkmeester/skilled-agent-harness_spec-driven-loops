@@ -21,9 +21,9 @@ Route /create:readme to its presentation contract and workflow YAML for creating
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation contract | `.opencode/commands/create/assets/create-readme-presentation.txt` |
-| Auto workflow | `.opencode/commands/create/assets/create-readme-auto.yaml` |
-| Confirm workflow | `.opencode/commands/create/assets/create-readme-confirm.yaml` |
+| Presentation contract | `.skilled/commands/create/assets/create-readme-presentation.txt` |
+| Auto workflow | `.skilled/commands/create/assets/create-readme-auto.yaml` |
+| Confirm workflow | `.skilled/commands/create/assets/create-readme-confirm.yaml` |
 
 ---
 
@@ -32,7 +32,7 @@ Route /create:readme to its presentation contract and workflow YAML for creating
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-1. Read `.opencode/commands/create/assets/create-readme-presentation.txt`.
+1. Read `.skilled/commands/create/assets/create-readme-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve operation from `$ARGUMENTS` or setup: `readme` or `install`.
 4. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
@@ -46,14 +46,14 @@ Route /create:readme to its presentation contract and workflow YAML for creating
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.opencode/commands/create/assets/create-readme-auto.yaml` |
-| `:confirm` or omitted mode | `.opencode/commands/create/assets/create-readme-confirm.yaml` |
+| `:auto` | `.skilled/commands/create/assets/create-readme-auto.yaml` |
+| `:confirm` or omitted mode | `.skilled/commands/create/assets/create-readme-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/create/assets/create-readme-presentation.txt`:
+The following content lives only in `.skilled/commands/create/assets/create-readme-presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, README/install display contracts, status display, completion templates, and next-step text.
 

@@ -12,11 +12,11 @@ For `:auto`, do not emit the consolidated prompt by default. Resolve setup with 
 
 ### `:auto` Setup Resolution
 
-Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
+Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep-review-auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-review-auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
@@ -40,7 +40,7 @@ PRE-BOUND SETUP ANSWERS:
   convergenceThreshold: 0.10
   convergence_mode: default  # default | off | sliding-window | divergent
   stop_policy: convergence  # one of: convergence | max-iterations
-  executor: native  # one of: native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-hermes (`EXECUTOR_KINDS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
+  executor: native  # one of: native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-hermes (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
   executor_model: ""  # optional, executor-specific (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
   executor_reasoning: ""  # optional
@@ -116,7 +116,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
-   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-hermes`; `EXECUTOR_KINDS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-hermes`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -150,14 +150,14 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - `--convergence-mode` -> `antiConvergence.convergenceMode`
 
    Validation hook:
-   - `parseExecutorConfig` from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
+   - `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
    - Invalid combinations fail fast with clear errors: an unknown executor kind (schema enum), a field the kind does not support (`EXECUTOR_KIND_FLAG_SUPPORT`, e.g. `--service-tier` on `cli-cursor`), an off-allowlist model on `cli-cursor`/`cli-devin`/`cli-pi`, and a missing executor binary
 
 4. Search for related spec folders across alias roots:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
 
 5. Search for prior work (background):
-   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$REVIEW_TARGET" specs .opencode
+   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$REVIEW_TARGET" specs .skilled
    - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
    - Store: prior_work_found = [yes/no]
 
@@ -200,7 +200,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
      G) cli-pi — requires `pi`. Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`, no sandbox flag.
      H) cli-hermes — requires `hermes` and the operator's `llmgateway` provider. Model must be `deepseek-v4.1-flash` or `glm-5.3-flash` (pinned to `--reasoning max`). Prompt travels on stdin; no `--service-tier`, no sandbox flag; `liveTools.mcpServers` names MCP servers the leaf may reach.
-     D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
+     D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
 
    Reply format examples:
    - `"skill:deep-research, B, all, A, A"`
@@ -317,7 +317,7 @@ Run an iterative loop for code review: Initialize the review packet under `{arti
 
 #### Before Starting
 - Read the continuity ladder for the bound packet: `handover.md`, then the `_memory.continuity` block in `implementation-summary.md`, then `spec.md` and `decision-record.md`
-- Widen with the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` when the packet docs leave the target open
+- Widen with the ripgrep recipes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` when the packet docs leave the target open
 - Inject results into strategy.md "Known Context" section
 
 #### Code Context Bootstrap
@@ -325,7 +325,7 @@ Run an iterative loop for code review: Initialize the review packet under `{arti
 - Inject discovered code patterns into strategy.md "Known Context" section alongside the continuity-ladder findings
 
 #### After Completing
-- `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]`
+- `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]`
 - Verify that the canonical save routed continuity into the expected packet doc (decision-record.md / implementation-summary.md / handover.md)
 
 #### Anchor Tags (Automatic)
@@ -333,7 +333,7 @@ Run an iterative loop for code review: Initialize the review packet under `{arti
 
 ### Skill Reference
 
-Full protocol documentation: `.opencode/skills/system-deep-loop/deep-review/SKILL.md`
+Full protocol documentation: `.skilled/skills/system-deep-loop/deep-review/SKILL.md`
 
 Key references:
 - Review contract: `system-deep-loop/deep-review/assets/review-mode-contract.yaml`
@@ -347,8 +347,8 @@ Key references:
 
 After setup phase passes, load and execute the appropriate YAML prompt based on execution_mode:
 
-- **AUTONOMOUS**: `.opencode/commands/deep/assets/deep-review-auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/deep/assets/deep-review-confirm.yaml`
+- **AUTONOMOUS**: `.skilled/commands/deep/assets/deep-review-auto.yaml`
+- **INTERACTIVE**: `.skilled/commands/deep/assets/deep-review-confirm.yaml`
 
 The YAML contains the full loop workflow: initialization, iteration dispatch, convergence detection, synthesis, and memory save.
 
@@ -441,9 +441,9 @@ Convergence thresholds and recovery settings used by this command are a governed
 - Prompt optimization is deferred future work (Phase 4b) and will use generated prompt packs, never direct agent markdown mutation
 
 **References:**
-- Optimizer configuration: `.opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json`
+- Optimizer configuration: `.skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json`
 - Tunable thresholds: `convergenceThreshold`, `stuckThreshold`, `maxIterations`, `compositeStopScore`
-- Convergence reference: `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+- Convergence reference: `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
 
 ## 4. Next-Step Suggestions
 

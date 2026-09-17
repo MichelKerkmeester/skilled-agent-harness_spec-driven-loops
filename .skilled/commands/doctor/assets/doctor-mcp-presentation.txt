@@ -47,11 +47,11 @@ Render after sub-action and flags resolve.
 ```text
 DOCTOR MCP SETUP
 Sub-action: [install|debug]
-Workflow: .opencode/commands/doctor/assets/[doctor-mcp-install.yaml|doctor-mcp-debug.yaml]
+Workflow: .skilled/commands/doctor/assets/[doctor-mcp-install.yaml|doctor-mcp-debug.yaml]
 Server filter: [name|all]
 Runtime filter: [name|detected|n/a]
 Fix mode: [true|false|n/a]
-Presentation: .opencode/commands/doctor/assets/doctor-mcp-presentation.txt
+Presentation: .skilled/commands/doctor/assets/doctor-mcp-presentation.txt
 Next: load workflow YAML
 ```
 

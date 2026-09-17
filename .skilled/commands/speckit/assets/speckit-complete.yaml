@@ -4,7 +4,7 @@
 # YAML PREDICATE GRAMMAR CONTRACT (S7 / M11):
 # - `when:` fields that gate branch logic use the typed BooleanExpr form
 #   `{ field, op, value }` defined by
-#   `.opencode/skills/system-spec-kit/shared/predicates/boolean-expr.ts`.
+#   `.skilled/skills/system-spec-kit/shared/predicates/boolean-expr.ts`.
 # - Legacy string literals (e.g. `folder_state == populated-folder`) are
 #   preserved under `when_legacy_literal` as diagnostic aides during
 #   migration; they must stay mechanically equivalent to the typed form.
@@ -45,7 +45,7 @@ purpose: Spec-driven development with mandatory compliance and autonomous execut
 action: Run full SpecKit from spec to implementation with continuous validation
 
 runtime_agent_path_resolution:
-  default: .opencode/agents
+  default: .skilled/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────
@@ -134,7 +134,7 @@ optional_workflows:
     pre_workflow_steps:
       - id: P1
         name: Analyze Scope
-        command: "bash .opencode/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --json --recommend-phases --phase-threshold {phase_threshold} --loc {estimated_loc} --files {estimated_files}"
+        command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --json --recommend-phases --phase-threshold {phase_threshold} --loc {estimated_loc} --files {estimated_files}"
         output: phase_recommendation
       - id: P2
         name: Define Decomposition
@@ -142,7 +142,7 @@ optional_workflows:
         output: phase_plan
       - id: P3
         name: Create Folders
-        command: 'bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {parent_level}'
+        command: 'bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {parent_level}'
         output: parent_and_child_folders
       - id: P4
         name: Populate Templates
@@ -153,7 +153,7 @@ optional_workflows:
       phase_child_header: Level template contract
     post_decomposition:
       action: "Update spec_path to first child phase folder, continue with normal workflow"
-      validation: "bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive {parent_folder}"
+      validation: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive {parent_folder}"
     checkpoint:
       enabled: true
       prompt: |
@@ -194,7 +194,7 @@ field_handling:
   intake_contract:
     trigger_states: [no-spec, partial-folder, repair-mode, placeholder-upgrade]
     returned_fields: [feature_description, spec_path, selected_level, start_state, repair_mode, manual_relationships]
-    no_regression_rule: "When folder_state == populated-folder, skip shared intake-contract execution (`.opencode/skills/system-spec-kit/references/workflows/intake-contract.md` §2-§5) and preserve the current Step 1 behavior."
+    no_regression_rule: "When folder_state == populated-folder, skip shared intake-contract execution (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §2-§5) and preserve the current Step 1 behavior."
 
 goal_prompting:
   default_choice: offer
@@ -245,7 +245,7 @@ goal_prompting:
       budget: "The parent durable slice is bounded so it fits one chat message; children are unbounded. Never trim a child into the parent."
     bind_by_runtime:
       opencode: 'opencode_goal({ action: "bind", packetPath: spec_path })'
-      pi: 'node .opencode/hooks/goal/bin/goal.cjs bind <spec_path> --runtime Pi --session <native session id> --workspace <repo root>'
+      pi: 'node .skilled/hooks/goal/bin/goal.cjs bind <spec_path> --runtime Pi --session <native session id> --workspace <repo root>'
       cursor: "injection-only; report the objective for the operator to set, do not fabricate a call"
       devin: "injection-only; report the objective for the operator to set, do not fabricate a call"
       claude-code: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it. There is no session record here, so hold the slice hash for the session instead."
@@ -255,13 +255,13 @@ goal_prompting:
       payload: "The durable slice of the parent goal.md with frontmatter excluded, rendered from the file, never from memory."
       after: "Ask the operator to set it. On a runtime with a bound session, record the send with the goal command's resent action."
       child_rule: "A child goal change that alters a parent decision or criterion is applied to the parent first, then the parent is resent."
-      without_a_session: "On claude-code and codex, read the hash at every command entry with `node .opencode/hooks/goal/bin/goal.cjs packet <spec_path> --workspace <repo root>` and compare `packet_slice_hash` against the hash last rendered this session. Different means resend; equal means stay silent. A first entry with no held hash renders once."
+      without_a_session: "On claude-code and codex, read the hash at every command entry with `node .skilled/hooks/goal/bin/goal.cjs packet <spec_path> --workspace <repo root>` and compare `packet_slice_hash` against the hash last rendered this session. Different means resend; equal means stay silent. A first entry with no held hash renders once."
     reminder:
       while_unset: "Repeat a one-line reminder at every command entry and turn where the runtime injects; never repeat the full slice unless asked."
       never_halts: "Work never stops because a goal is unset or a reminder went unanswered. Only an explicit operator stop halts."
       after_set: "Acknowledge in one line and continue the current work at once; do not restate the goal, do not ask whether to proceed."
     log:
-      rule: "Progress, evidence and deviations go to the goal log, below the durable slice, never into the directive, and always through the locked append: the goal command's log action on a bound session, or `node .opencode/hooks/goal/bin/goal.cjs packet-log <spec_path> \"<item> | <state> | <evidence>\" --workspace <repo root>` on a runtime without a management surface or for an unbound packet. Never hand-edit the table."
+      rule: "Progress, evidence and deviations go to the goal log, below the durable slice, never into the directive, and always through the locked append: the goal command's log action on a bound session, or `node .skilled/hooks/goal/bin/goal.cjs packet-log <spec_path> \"<item> | <state> | <evidence>\" --workspace <repo root>` on a runtime without a management surface or for an unbound packet. Never hand-edit the table."
   status_tool_by_runtime:
     opencode: opencode_goal_status
     default: "none; report state from the packet documents instead"
@@ -303,36 +303,36 @@ documentation_levels:
 available_templates:
   default_level: level_2
   level_1:
-    spec: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
-    plan: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
-    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
-    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+    spec: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+    plan: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+    tasks: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    implementation_summary: .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   level_2:
-    spec: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
-    plan: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
-    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
-    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+    spec: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+    plan: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+    tasks: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    implementation_summary: .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   level_3:
-    spec: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
-    plan: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
-    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
-    decision_record: .opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
-    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+    spec: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+    plan: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+    tasks: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    decision_record: .skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+    implementation_summary: .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   level_3_plus:
-    spec: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
-    plan: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
-    tasks: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
-    decision_record: .opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
-    implementation_summary: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+    spec: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
+    plan: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
+    tasks: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    decision_record: .skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+    implementation_summary: .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
   shared:
-    research: .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
-    handover: .opencode/skills/system-spec-kit/templates/addons/handover.md.tmpl
-    debug_delegation: .opencode/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl
-    resource_map: .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
+    research: .skilled/skills/system-spec-kit/templates/addons/research.md.tmpl
+    handover: .skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl
+    debug_delegation: .skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl
+    resource_map: .skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl
 
 template_compliance:
   # cadence: declared once; each step's own gate below states why it re-runs this command
-  strict_validation_command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+  strict_validation_command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
   prompt_contract:
     rule: "When a workflow step writes spec docs, embed the matching inline scaffold below in the authoring prompt and preserve required ANCHOR/H2 order from the canonical template."
   inline_scaffolds:
@@ -453,7 +453,7 @@ agent_availability:
   cross_skill_authoring_load:
     purpose: "Load sk-code authoring resources at WRITE-TIME (Step 10), distinct from review-time review.standards_contract overlay."
     available_at_step: 10
-    condition: "Activate when any task in tasks.md targets a path under .opencode/skills/, .opencode/agents/, .opencode/commands/, or <spec-folder> sk-code ships authoring checklists (skill-authoring.md, agent-authoring.md, command-authoring.md, mcp-server-authoring.md); spec-folder authoring now lives in system-spec-kit (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md)."
+    condition: "Activate when any task in tasks.md targets a path under .skilled/skills/, .skilled/agents/, .skilled/commands/, or <spec-folder> sk-code ships authoring checklists (skill-authoring.md, agent-authoring.md, command-authoring.md, mcp-server-authoring.md); spec-folder authoring now lives in system-spec-kit (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md)."
     resources:
       - "sk-code/sk-code-opencode/assets/checklists/{matching_target}_authoring.md"
       - "system-spec-kit/references/workflows/spec-folder-write-recipe.md (when target is under .opencode/specs/)"
@@ -578,7 +578,7 @@ workflow_enforcement:
 context_loading:
   trigger: "At workflow START, before Step 1"
   retrieval_recipe:
-    reference: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+    reference: ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
     command: "rg --no-config --json --fixed-strings --ignore-case -C 2 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'context for {spec_folder_name}' {spec_folder_path}"
     anchors: ['summary', 'decisions', 'state']
     anchor_command: "rg --no-config --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- '<!-- ANCHOR:<id> -->' {spec_folder_path}"
@@ -623,7 +623,7 @@ workflow:
     validation: autopilot_envelope_bound
 
   step_0.5_intake_branch:
-    purpose: Detect non-healthy target folders before Step 1 so `/complete` can inline absorb the shared intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake-contract.md` §5) without a visible chained handoff
+    purpose: Detect non-healthy target folders before Step 1 so `/complete` can inline absorb the shared intake contract (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §5) without a visible chained handoff
     action: "Run folder-state discovery using ls plus canonical file checks on the target spec path after any phase-predecessor validation"
     inspect:
       command: "ls -la {spec_folder} 2>/dev/null || true"
@@ -659,7 +659,7 @@ workflow:
         execution_mode: "{execution_mode}"
         prompt_mode: "single_consolidated_prompt"
         questions:
-          - "Questions from `.opencode/skills/system-spec-kit/references/workflows/intake-contract.md` §5 (Q0-Q4+) are absorbed inline into the parent setup prompt"
+          - "Questions from `.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §5 (Q0-Q4+) are absorbed inline into the parent setup prompt"
         bind_fields:
           - feature_description
           - spec_path
@@ -678,7 +678,7 @@ workflow:
         op: "=="
         value: populated-folder
       when_legacy_literal: "folder_state == populated-folder"
-      note: "Healthy folder detected. Skip shared intake-contract execution (`.opencode/skills/system-spec-kit/references/workflows/intake-contract.md` §2-§5) and keep the existing `/complete` setup behavior unchanged."
+      note: "Healthy folder detected. Skip shared intake-contract execution (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §2-§5) and keep the existing `/complete` setup behavior unchanged."
 
   step_1_request_analysis:
     purpose: Analyze inputs and define development scope
@@ -718,7 +718,7 @@ workflow:
     purpose: Review skills folder and project standards
     activities:
     - Read and review AGENTS.md (project principles)
-    - Check skills folder (.opencode/skills/) for relevant coding standards
+    - Check skills folder (.skilled/skills/) for relevant coding standards
     - Extract coding standards summary
     - Identify architectural patterns
     - Document project conventions
@@ -786,14 +786,14 @@ workflow:
     outputs:
     - spec.md: acceptance_criteria
     - location: "[SPEC_FOLDER]/spec.md"
-    template: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
+    template: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
     template_prompt_contract:
-      canonical_template: .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
+      canonical_template: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
       inline_scaffold_key: spec_md
       writing_rule: "Embed template_compliance.inline_scaffolds.spec_md in the prompt before writing spec.md and preserve the required anchors/headers in order."
     post_write_validation:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
-      command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+      command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair spec.md template drift before proceeding"
     validation: spec_complete
     checkpoint:
@@ -842,14 +842,14 @@ workflow:
     - location: "[SPEC_FOLDER]/acceptance-criteria.md"
     - closure_status: closeable_or_not
     - p0_status: "all_complete or blocked"
-    template: .opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
+    template: .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
     template_prompt_contract:
-      canonical_template: .opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
+      canonical_template: .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
       inline_scaffold_key: acceptance_criteria_md
       writing_rule: "Embed template_compliance.inline_scaffolds.acceptance_criteria_md in the prompt before writing acceptance-criteria.md and preserve the AC-NNN row format."
     post_write_validation:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
-      command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+      command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair acceptance-criteria.md template drift before proceeding"
     validation: acceptance_verified_and_marked
     checkpoint:
@@ -939,11 +939,11 @@ workflow:
       # Narrative trigger label, moved from `when:` because this is a
       # content-generation trigger tag, not a mechanical BooleanExpr predicate.
       trigger_reason: significant_technical_decision_needs_documentation
-      template: .opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+      template: .skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
       inline_scaffold_key: decision_record_md
-    template: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
+    template: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
     template_prompt_contract:
-      canonical_template: .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
+      canonical_template: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
       inline_scaffold_key: plan_md
       writing_rule: "Embed template_compliance.inline_scaffolds.plan_md in the prompt before writing plan.md and keep custom sections after the required template structure."
     confidence_checkpoint:
@@ -956,7 +956,7 @@ workflow:
       escalation: { trigger: "2 failed attempts OR 10 minutes", action: "Present options to user" }
     post_write_validation:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
-      command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+      command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair plan.md or decision-record.md template drift before proceeding"
     validation: approach_defined
     checkpoint:
@@ -974,7 +974,7 @@ workflow:
     - Record progress up to planning milestone for session recovery
     - Preserve planning decisions, exploration findings, and technical approach
     tool_invocation:
-      command: Read(".opencode/skills/system-spec-kit/SKILL.md")
+      command: Read(".skilled/skills/system-spec-kit/SKILL.md")
       note: "Intermediate checkpoint - planning phase complete"
     outputs:
     - checkpoint_file: "[SPEC_FOLDER]/scratch/checkpoint__planning_complete.md"
@@ -999,14 +999,14 @@ workflow:
     - Validate task format and coverage
     outputs:
     - tasks.md: implementation_breakdown
-    template: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    template: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
     template_prompt_contract:
-      canonical_template: .opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+      canonical_template: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
       inline_scaffold_key: tasks_md
       writing_rule: "Embed template_compliance.inline_scaffolds.tasks_md in the prompt before writing tasks.md and preserve the required anchors/headers in order."
     post_write_validation:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
-      command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+      command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair tasks.md template drift before proceeding"
     validation: tasks_documented
 
@@ -1097,7 +1097,7 @@ workflow:
         warning: "Development tasks may have dependencies - verify task order"
       fallback: "Proceed with activities below"
     activities:
-    - Load sk-code authoring-time resources for OpenCode targets — when any task in tasks.md targets a path under .opencode/skills/, .opencode/agents/, .opencode/commands/, or .opencode/specs/, load the matching sk-code authoring checklist (assets/opencode/checklists/{skill,agent,command,mcp_server}_authoring.md), and for .opencode/specs/ targets the system-spec-kit spec-folder docs (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md), BEFORE the first write. Authoring-time load is distinct from review-time load (see agent_dispatch.review.standards_contract). Skip when no .opencode/ targets are present.
+    - Load sk-code authoring-time resources for OpenCode targets — when any task in tasks.md targets a path under .skilled/skills/, .skilled/agents/, .skilled/commands/, or .opencode/specs/, load the matching sk-code authoring checklist (assets/opencode/checklists/{skill,agent,command,mcp_server}_authoring.md), and for .opencode/specs/ targets the system-spec-kit spec-folder docs (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md), BEFORE the first write. Authoring-time load is distinct from review-time load (see agent_dispatch.review.standards_contract). Skip when no .skilled/ targets are present.
     - Load tasks.md and parse task structure
     - Execute implementation phase by phase
     - Setup first (project structure, dependencies, configuration)
@@ -1133,7 +1133,7 @@ workflow:
           ⚠️  3+ fix attempts failed for task {current_task_id}. The @debug agent runs a 5-phase fresh-perspective root-cause pass with no prior context — it costs one Task-tool dispatch and writes findings to a structured report.
           Dispatch @debug? (y / continue manually / skip)
         on_y: |
-          1. Run scaffold-debug-delegation.sh to generate {spec_folder}/debug-delegation.md (versioned to debug-delegation-NNN.md if a prior file exists), populated from the failure trail using the Debug Context Handoff schema in .opencode/agents/debug.md.
+          1. Run scaffold-debug-delegation.sh to generate {spec_folder}/debug-delegation.md (versioned to debug-delegation-NNN.md if a prior file exists), populated from the failure trail using the Debug Context Handoff schema in .skilled/agents/debug.md.
           2. Surface a one-line confirmation with the scaffold path and a Task-tool invocation example for the user to copy-paste.
           3. The workflow STOPS and waits — it NEVER invokes Task tool → @debug itself. The user dispatches.
         on_continue_manually: 'Log "user declined debug at threshold N", proceed with existing manual flow, do NOT reset the failure counter.'
@@ -1164,7 +1164,7 @@ workflow:
     - Record progress up to development milestone for session recovery
     - Preserve implementation decisions, code changes, and debugging insights
     tool_invocation:
-      command: Read(".opencode/skills/system-spec-kit/SKILL.md")
+      command: Read(".skilled/skills/system-spec-kit/SKILL.md")
       note: "Intermediate checkpoint - development phase complete"
     outputs:
     - checkpoint_file: "[SPEC_FOLDER]/scratch/checkpoint__development_complete.md"
@@ -1222,7 +1222,7 @@ workflow:
     summary_document:
       location: "[SPEC_FOLDER]/implementation-summary.md"
       required_sections: [files_modified_created, verification_steps_taken, deviations_from_plan, skill_updates, recommended_next_steps, browser_testing_results]
-      canonical_template: .opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+      canonical_template: .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
       inline_scaffold_key: implementation_summary_md
       writing_rule: "Embed template_compliance.inline_scaffolds.implementation_summary_md in the prompt before writing implementation-summary.md."
     nested_changelog:
@@ -1232,10 +1232,10 @@ workflow:
       - "Spec folder is a spec root under specs/ or .opencode/specs/"
       - "Spec folder is a phase child under a parent spec folder"
       generator:
-        command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js [SPEC_FOLDER] --write"
+        command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js [SPEC_FOLDER] --write"
         templates:
-        - .opencode/skills/system-spec-kit/templates/changelog/root.md
-        - .opencode/skills/system-spec-kit/templates/changelog/phase.md
+        - .skilled/skills/system-spec-kit/templates/changelog/root.md
+        - .skilled/skills/system-spec-kit/templates/changelog/phase.md
       evidence_sources: [implementation-summary.md, tasks.md, acceptance-criteria.md, decision-record.md, spec.md]
       output_rules:
         root: "[SPEC_FOLDER]/changelog/changelog-<packet>-root.md"
@@ -1246,7 +1246,7 @@ workflow:
         must_include: [criteria_total, met_count, waived_or_superseded_with_adr, tasks_checklist_p0_p1_status, acceptance_criteria_link]
     post_write_validation:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
-      command: ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+      command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
       on_fail: "STOP and repair implementation-summary.md template drift before marking completion"
     validation: implementation_complete
 
@@ -1305,8 +1305,8 @@ workflow:
     validation: context_saved_successfully
 
     write_continuity:
-      writer: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
-      invocation: 'node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]'
+      writer: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
+      invocation: 'node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]'
       critical_note: "The writer is the whole write. It keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it."
       # Narrative timing moved from `when:` to `after:` (separates predicate-`when:` from prose-`after:`).
       after: "Immediately after the canonical spec document is refreshed on disk"

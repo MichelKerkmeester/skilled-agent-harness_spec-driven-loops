@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "a501728b01c2017c5b67e20e27a108b747d8b6d94dc56a7b3767d71711c73b4c",
+      "sha256": "e7955ceb472b462bf6ec13eaf287b0d74f21df0196a725a137fd48239ecdb8d8",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "14c462b86bbe8d529e63e7b6823ea69743a460299313802bc8c52cd709e23d97",
+      "sha256": "6380d6d9dc4f7b2be5abdd9b441c3974f8931fa3b2629b50004e7af99b2f73e1",
       "section": "full"
     },
     {
@@ -22,67 +22,67 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "f0908fabc4587782708363d1838a7217df63187d545731f76c2e4cb6feb29ef4",
+      "sha256": "50a1c212add1366ae1ece07f3336034f2f2eb21e5a47032438f5d3c917ab8a32",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "2139e178a03cca2faf2c5330f150c45d166ffd56c9e7a471298e4e8ab5e6a739",
+      "sha256": "78a6153ec39f42318b7e0376c2b06cfe0a422a1ebd6945814cd565c02e0bd0b4",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "be93642be72b6ca2f214216fc8977225f1a75b4a40bf4d893cd14c34b61f74b0",
+      "sha256": "04825049b20d5f021609c58f336514eba2fb5d2dd33ca11bd34005c2a64dbd92",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "50ec2328086ca97d4002f0f0e5ecfac3600488aa0fc178a05334b579a3d86b46",
+      "sha256": "86fbea0cffb982535a26692e4311ec31e0a5e1168a6b80cadbafc4662ec1ed72",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "2fc344cf5a9f73e4c30719fd3ff4eb537ac565aaabe74b7f7e34c5f36856f676",
+      "sha256": "8db50f18570f030d7e5af6a366476270c5e161acdf6ac89d70a78edd5dbd8066",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "806d45dc3c53f9dea8e025f7e1ebf8ca663db9051582d63ada5cb17a3059ce1c",
+      "sha256": "3dc8b10cb791832cbc4fc7e4de839d28663bfb2cd4a8dcef0fe10e8454e55e5c",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md",
-      "sha256": "e18f790991b647bc7003a4877ca6ecdf3fad48a2edc7b6b962f85deb89224dce",
+      "sha256": "d35b22738d9e9539cd29aec6aa9188d4002b62dee54b732db394ddb4926c24c1",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
-      "sha256": "64bf38e9adeb4b217f18a83d4e544f6f887e5aeeb5d89f55dd4c1e7aa38f45bd",
+      "sha256": "65039d1b5133043feeca3658134aada16c3e039367ac9a5eedd1bd07595bffb6",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "84f5caf5450d6c1102da8d618b61896485b32f464e968b2713bb3f038edef7bb",
+      "sha256": "04f3bbd1219f66d1d9bc34e72f559fd7a8fcfa98d374eaa089f6f4d2ef595c49",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
-      "sha256": "5b22fdc84bc64ca6bd3ddab185f9d62bfd5e402057adb064d40eba3c4a455b6c",
+      "sha256": "e204d572319f0a9dd067d22ad8d41f2a65aef57b32c8585b2baa694937c01930",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
-      "sha256": "07c877f1fbde3c6e95f0d8ff9c12aa0c11fd14da28eac1f20e9b066e3ac9e50b",
+      "sha256": "7eb7c1f01c702e5336da590fe3bb6af174c180f71ce407305eb6cb3df1fb7475",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "1ef99b8f32db30d789fa0be213930ee267b1ab00ec0ffd5b886b33b1727fa51a",
+      "sha256": "e4309332aa716ca1ba2ecdfe9f66e91557ad940fda6377f8fe7a7c63380df680",
       "section": "full"
     },
     {
       "path": ".skilled/agents/deep-research.md",
-      "sha256": "c3bf110fda4c5ddde30dfd796c13a1ca81005b6ec5f635ecad730bbc74a43b1f",
+      "sha256": "5bd2eb990be904f8fb934bb49ae95b5dda27a7383ec6c1eaf6dc95f0a902520c",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "de95338fe6fa2e2f78f82859c6eb897325ce6e97c33241265cb372062c7e42b6"
+  "compiledBodyDigest": "4cc4a94d485ae48d04827448128dae40feff16bb47c67fe8fd7c10b59a69355e"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -161,11 +161,11 @@ Rule: render the marked block verbatim; do not paraphrase, summarize, reorder, o
 ~~~markdown
 ### `:auto` Setup Resolution
 
-Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
+Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep-research-auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research-auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
 
@@ -185,7 +185,7 @@ PRE-BOUND SETUP ANSWERS:
   maxIterations: 10  # positive integer
   convergenceThreshold: 0.05  # decimal 0..1
   convergence_mode: default  # default | off | sliding-window | divergent
-  executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-hermes (`EXECUTOR_KINDS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
+  executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-hermes (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
   executor_reasoning: ""  # optional reasoning effort
@@ -249,7 +249,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
-   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-hermes`; `EXECUTOR_KINDS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-hermes`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -281,14 +281,14 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - `--convergence-mode` -> `antiConvergence.convergenceMode`
 
    Validation hook:
-   - `parseExecutorConfig` from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
+   - `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
    - Invalid combinations fail fast with clear errors: an unknown executor kind (schema enum), a field the kind does not support (`EXECUTOR_KIND_FLAG_SUPPORT`, e.g. `--service-tier` on `cli-cursor`), an off-allowlist model on `cli-cursor`/`cli-devin`/`cli-pi`, and a missing executor binary
 
 4. Search for related spec folders across alias roots:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
 
 5. Search for prior work (background):
-   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$RESEARCH_TOPIC" specs .opencode
+   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$RESEARCH_TOPIC" specs .skilled
    - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
    - Store: prior_work_found = [yes/no]
 
@@ -319,7 +319,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
      G) cli-pi — requires `pi`. Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`, no sandbox flag.
      H) cli-hermes — requires `hermes` and the operator's `llmgateway` provider. Model must be `deepseek-v4.1-flash` or `glm-5.3-flash` (pinned to `--reasoning max`). Prompt travels on stdin; no `--service-tier`, no sandbox flag; `liveTools.mcpServers` names MCP servers the leaf may reach.
-     D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
+     D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
 
    Reply format examples:
    - `"A, A"`

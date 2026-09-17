@@ -23,7 +23,7 @@ version: 1.2.0.0
 ### Activation Triggers
 
 Use this packet when the request involves:
-- Creating or rebuilding an OpenCode skill under `.opencode/skills/`.
+- Creating or rebuilding an OpenCode skill under `.skilled/skills/`.
 - Running `/create:skill` for a standalone skill with its own advisor identity.
 - Running `/create:skill-parent` for a parent hub with nested workflow or surface packets.
 - Authoring or repairing `SKILL.md`, `README.md`, `references/`, `assets/`, `scripts/`, or `changelog/` for a skill package.
@@ -79,7 +79,7 @@ Ask one focused clarification before authoring if it is unclear whether the user
 | --- | --- | --- |
 | Scaffolding | `scripts/init_skill.py`, `assets/skill/skill-md-template.md`, `assets/skill/skill-readme-template.md` | Create or normalize standalone skill files. |
 | Resource templates | `assets/skill/skill-reference-template.md`, `assets/skill/skill-asset-template.md`, `assets/skill/skill-smart-router.md` | Create routed references, assets, and resilient smart-router pseudocode. |
-| Runtime sync manifests | `assets/skill/skill-sync-manifest-template.md` | Document how a runtime config dir derives from the canonical `.opencode` tree (SYNC manifest). |
+| Runtime sync manifests | `assets/skill/skill-sync-manifest-template.md` | Document how a runtime config dir derives from the canonical `.skilled` tree (SYNC manifest). |
 | Procedure cards | `assets/skill/skill-procedure-template.md` | Add a private, triggerable internal procedure to a skill or mode without a new public identity. |
 | Parent hubs | `assets/parent-skill/parent-skill-*` | Create hub SKILL, registry, router, description, and graph metadata files. |
 | Validation | `scripts/package_skill.py`, `../shared/scripts/extract_structure.py` | Check completion, package distribution zips, and inspect structure. |
@@ -245,9 +245,9 @@ Follow these steps in order, skipping only when the target skill already exists 
 23. Put required actions, forbidden actions, and escalation conditions in `RULES`.
 24. Put completion checks in `SUCCESS CRITERIA`.
 25. Put references only as overflow pointers for deep detail, examples, or schemas.
-26. Run `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` after authoring so the manifest and derived aliases are generated and the root passes its class gate.
+26. Run `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` after authoring so the manifest and derived aliases are generated and the root passes its class gate.
 27. Replace every slug-only routing default before calling the skill done: `graph-metadata.json` `domains` and `intent_signals` plus the `SKILL.md` keyword comment are the fields the advisor's scorers actually read, so fill them with phrases a user would genuinely type, not the skill name repeated.
-28. Confirm advisor discovery. A warm advisor daemon ingests a new root automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next daemon start ingests it. Manual refresh: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test routing with `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json` and confirm your skill appears in the recommendations.
+28. Confirm advisor discovery. A warm advisor daemon ingests a new root automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next daemon start ingests it. Manual refresh: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test routing with `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json` and confirm your skill appears in the recommendations.
 29. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
 30. Fix every hard failure and rerun the check until it exits clean.
 31. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
@@ -331,7 +331,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 26. Accept `compiled-ready (fresh manifest verified)` only from a valid, fresh canonical result. A missing minter, failed mint, malformed manifest, or stale manifest is a failed generation and retains legacy fallback; never synthesize a digest or author an activation manifest.
 27. Confirm the finished hub conforms to class **H** of the root-metadata contract with `node scripts/ci-skill-root-metadata.cjs --fix`, then rerun `node scripts/ci-skill-root-metadata.cjs` to prove cleanliness. Declaring `mode-registry.json` and `hub-router.json` is what makes a root a hub; declaring only one of them is a half-written declaration the gate rejects. Required, forbidden, and generated-versus-authored rules are in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
 28. Replace every slug-only routing default: `graph-metadata.json` `domains` and `intent_signals`, `description.json` keywords, and per-mode registry aliases are the fields the advisor's scorers read — fill them with phrases a user would genuinely type.
-29. Confirm advisor discovery. A warm advisor daemon ingests a new hub automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next start ingests it. Manual refresh: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test with `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json`.
+29. Confirm advisor discovery. A warm advisor daemon ingests a new hub automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next start ingests it. Manual refresh: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test with `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json`.
 
 ### Parent Hub Shape
 

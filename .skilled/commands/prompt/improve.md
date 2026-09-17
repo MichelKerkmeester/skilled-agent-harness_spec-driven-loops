@@ -40,9 +40,9 @@ If any blocking phase was skipped, stop, report the skipped phase through the pr
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/prompt/assets/prompt_improve_presentation.txt` |
-| Auto workflow | `.opencode/commands/prompt/assets/prompt_improve_auto.yaml` |
-| Confirm workflow | `.opencode/commands/prompt/assets/prompt_improve_confirm.yaml` |
+| Presentation source of truth | `.skilled/commands/prompt/assets/prompt_improve_presentation.txt` |
+| Auto workflow | `.skilled/commands/prompt/assets/prompt_improve_auto.yaml` |
+| Confirm workflow | `.skilled/commands/prompt/assets/prompt_improve_confirm.yaml` |
 
 ---
 
@@ -60,14 +60,14 @@ If any blocking phase was skipped, stop, report the skipped phase through the pr
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.opencode/commands/prompt/assets/prompt_improve_auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/prompt/assets/prompt_improve_confirm.yaml` |
+| `:auto` | `.skilled/commands/prompt/assets/prompt_improve_auto.yaml` |
+| `:confirm` or interactive choice | `.skilled/commands/prompt/assets/prompt_improve_confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/prompt/assets/prompt_improve_presentation.txt`:
+The following content lives only in `.skilled/commands/prompt/assets/prompt_improve_presentation.txt`:
 
 - Startup-question wording and reply format (the consolidated setup prompt).
 - `:auto` pre-bound setup answer schema, default table, targeted-ask rules, and fail-fast display.

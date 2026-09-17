@@ -10,7 +10,7 @@
 //
 // WHY: the create / deep / design slash-command assets (_auto.yaml, _confirm.yaml)
 // hard-code three kinds of live references — runtime-agent filenames
-// ([runtime_agent_path]/<name>.md), literal skill-asset paths (.opencode/skills/**),
+// ([runtime_agent_path]/<name>.md), literal skill-asset paths (.skilled/skills/**),
 // and runtime-agent directory names — that command tooling validates for STRUCTURE
 // but never for EXISTENCE. Retired agents, reorganized template paths, and phantom
 // runtime directories therefore survive silently in the assets until a user hits a
@@ -39,17 +39,17 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..', '..');
 // Real runtime-agent directories. An agent reference resolves if the file exists
 // in ANY of these. AGENT_DIRS stays narrow because the wider runtimes mirror the
 // same roster, so widening it would resolve nothing new.
-const AGENT_DIRS = ['.opencode/agents', '.claude/agents', '.codex/agents'];
+const AGENT_DIRS = ['.skilled/agents', '.claude/agents', '.codex/agents'];
 // A runtime-directory reference is valid only if it names a runtime that actually
 // ships an agents tree. The point is to catch a phantom dir, not a runtime the repo
 // grew later, so this lists every runtime with agents/ on disk.
-const RUNTIME_DIR_ALLOWLIST = new Set(['.opencode', '.claude', '.codex', '.cursor', '.devin', '.pi']);
+const RUNTIME_DIR_ALLOWLIST = new Set(['.skilled', '.opencode', '.claude', '.codex', '.cursor', '.devin', '.pi']);
 const COMMAND_INVENTORY_EXCLUDES = new Set(['assets', 'scripts', 'fixtures']);
 
 // Command families are derived from the real command tree so a new family directory
 // is covered the moment it ships assets, instead of drifting behind a hardcoded list.
 function discoverFamilies(rootDir = REPO_ROOT) {
-  const commandsRoot = path.join(rootDir, '.opencode', 'commands');
+  const commandsRoot = path.join(rootDir, '.skilled', 'commands');
   if (!fs.existsSync(commandsRoot)) return [];
   return fs.readdirSync(commandsRoot, { withFileTypes: true })
     .filter((e) => e.isDirectory() && !COMMAND_INVENTORY_EXCLUDES.has(e.name))
@@ -62,11 +62,11 @@ const FAMILIES = discoverFamilies();
 // Path token stops at YAML/prose delimiters and at any template metacharacter, so an
 // interpolated reference (e.g. skills/{skill_name}/SKILL.md) truncates to a bare dir
 // and is then dropped by the file-shaped filter below.
-const SKILL_TOKEN = /\.opencode\/skills\/[^\s"'`,()\[\]{}<>$*|]+/g;
+const SKILL_TOKEN = /\.(?:skilled|opencode)\/skills\/[^\s"'`,()\[\]{}<>$*|]+/g;
 const AGENT_REF = /\[runtime_agent_path\]\/([A-Za-z0-9][A-Za-z0-9._-]*\.md)/g;
 const BARE_PHANTOM_AGENTS_DIR = /\.agents\//g;
 const SCOPED_AGENTS_DIR = /(\.[a-z][a-z0-9_-]*)\/agents\//g;
-const COMMAND_TARGET = /\.opencode\/commands\/[A-Za-z0-9._/-]+\.(?:md|ya?ml|txt)/g;
+const COMMAND_TARGET = /\.(?:skilled|opencode)\/commands\/[A-Za-z0-9._/-]+\.(?:md|ya?ml|txt)/g;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -166,7 +166,7 @@ function expandTargets(inputs) {
 function defaultTargets() {
   const files = [];
   for (const fam of FAMILIES) {
-    const dir = path.join(REPO_ROOT, '.opencode', 'commands', fam, 'assets');
+    const dir = path.join(REPO_ROOT, '.skilled', 'commands', fam, 'assets');
     if (!fs.existsSync(dir)) continue;
     for (const f of fs.readdirSync(dir)) {
       if (f.endsWith('.yaml')) files.push(path.join(dir, f));
@@ -407,18 +407,18 @@ function selfTest(asJson) {
   let topologyCounts = {};
   let topologyViolations = [];
   try {
-    const commandsDir = path.join(topologyRoot, '.opencode', 'commands');
+    const commandsDir = path.join(topologyRoot, '.skilled', 'commands');
     fs.mkdirSync(path.join(commandsDir, 'assets'), { recursive: true });
     fs.writeFileSync(
       path.join(commandsDir, 'workflow.md'),
-      'This workflow router loads `.opencode/commands/assets/workflow.yaml`.\n',
+      'This workflow router loads `.skilled/commands/assets/workflow.yaml`.\n',
     );
     fs.writeFileSync(
       path.join(commandsDir, 'subaction.md'),
       [
         'This subaction router maps:',
-        '- `start` -> `.opencode/commands/assets/start.yaml`',
-        '- `stop` -> `.opencode/commands/assets/stop.yaml`',
+        '- `start` -> `.skilled/commands/assets/start.yaml`',
+        '- `stop` -> `.skilled/commands/assets/stop.yaml`',
         '',
       ].join('\n'),
     );

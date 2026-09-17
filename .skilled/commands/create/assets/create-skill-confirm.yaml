@@ -45,7 +45,7 @@ development_philosophy:
   mandate: "Never continue past a checkpoint without an explicit outcome"
 
 runtime_agent_path_resolution:
-  default: .opencode/agents
+  default: .skilled/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────
@@ -114,7 +114,7 @@ context_loading:
       - "Read {spec_path}/handover.md when present and recent"
       - "Read the _memory.continuity frontmatter block in {spec_path}/implementation-summary.md"
       - "Read the packet-first canonical spec docs: spec.md, plan.md, tasks.md, checklist.md, decision-record.md"
-      - "Only for a still-missing named gap, run the packet-scoped context recipe from .opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
+      - "Only for a still-missing named gap, run the packet-scoped context recipe from .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md section 2.4 with {spec_path} as the search root"
     unsupported: "Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are not available. The ladder is lexical and file-local; a miss is a clean no-hit reported as such, never a guess."
   behavior:
     memory_choice_A: "Load handover.md (if <24h old) plus _memory.continuity from implementation-summary.md in {spec_path}; sets memory_loaded: handover+continuity"
@@ -155,7 +155,7 @@ input_contract:
     - parent_write_verified
 
 defaults:
-  skill_path: .opencode/skills/
+  skill_path: .skilled/skills/
   execution_mode: :confirm
   dqi_hard_minimum: 75
   dqi_targets:
@@ -202,11 +202,11 @@ operation_profiles:
     objective: "Create or update one asset document"
 
 template_sources:
-  skill_md: .opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md
-  skill_reference: .opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md
-  skill_asset: .opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md
-  skill_smart_router: .opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md
-  skill_readme: .opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
+  skill_md: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md
+  skill_reference: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md
+  skill_asset: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md
+  skill_smart_router: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md
+  skill_readme: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
 
 frontmatter_contract:
   rule: "Every authored .md ships frontmatter from its template before completion."
@@ -226,11 +226,11 @@ frontmatter_contract:
   enforcement: "package_skill.py --check hard-fails missing version / non-4-part version / name!=folder; generated references/ and assets/ filenames must use kebab-case"
 
 validation_scripts:
-  quick_validate: .opencode/skills/sk-doc/scripts/quick_validate.py
-  validate_document: .opencode/skills/sk-doc/scripts/validate_document.py
-  extract_structure: .opencode/skills/sk-doc/scripts/extract_structure.py
-  package_skill: .opencode/skills/sk-doc/scripts/package_skill.py
-  validate_skill_package: .opencode/skills/sk-doc/scripts/validate_skill_package.py
+  quick_validate: .skilled/skills/sk-doc/scripts/quick_validate.py
+  validate_document: .skilled/skills/sk-doc/scripts/validate_document.py
+  extract_structure: .skilled/skills/sk-doc/scripts/extract_structure.py
+  package_skill: .skilled/skills/sk-doc/scripts/package_skill.py
+  validate_skill_package: .skilled/skills/sk-doc/scripts/validate_skill_package.py
 
 quality_standards:
   template_first: required
@@ -240,12 +240,12 @@ quality_standards:
     smart_routing: "resource and file loading guidance only"
   validation_pipeline:
     full_flows:
-      - "python3 .opencode/skills/sk-doc/scripts/quick_validate.py [skill_path]/[skill_name] --json"
-      - "python3 .opencode/skills/sk-doc/scripts/validate_skill_package.py [skill_path]/[skill_name]"
-      - "python3 .opencode/skills/sk-doc/scripts/extract_structure.py [skill_path]/[skill_name]/SKILL.md"
+      - "python3 .skilled/skills/sk-doc/scripts/quick_validate.py [skill_path]/[skill_name] --json"
+      - "python3 .skilled/skills/sk-doc/scripts/validate_skill_package.py [skill_path]/[skill_name]"
+      - "python3 .skilled/skills/sk-doc/scripts/extract_structure.py [skill_path]/[skill_name]/SKILL.md"
     doc_only_flows:
-      - "python3 .opencode/skills/sk-doc/scripts/validate_document.py [target_file]"
-      - "python3 .opencode/skills/sk-doc/scripts/extract_structure.py [target_file]"
+      - "python3 .skilled/skills/sk-doc/scripts/validate_document.py [target_file]"
+      - "python3 .skilled/skills/sk-doc/scripts/extract_structure.py [target_file]"
   dqi_policy:
     hard_minimum: 75
     target_by_operation:
@@ -352,7 +352,7 @@ workflow:
     branches:
       full-create:
         activities:
-          - Run init script: "python3 .opencode/skills/sk-doc/scripts/init_skill.py [skill_name] --path [skill_path]"
+          - Run init script: "python3 .skilled/skills/sk-doc/scripts/init_skill.py [skill_name] --path [skill_path]"
           - Load SKILL.md template and populate required sections
           - Apply section boundary rules
           - "Seed SKILL.md SMART ROUTING (Section 2) Smart Router Pseudocode from skill-smart-router.md: copy the four resilience patterns (runtime discovery, existence-check-before-load, extensible routing key, multi-tier fallback) and adapt the routing key + resource map to this skill. A SMART ROUTING section with an empty/missing pseudocode block fails this branch."
@@ -371,7 +371,7 @@ workflow:
           - Update requested sections only
           - Preserve existing folder and naming conventions
           - Remove stale references in updated sections
-          - "Run node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check [skill_root] to report leaf-manifest.json freshness (fresh|stale|missing) for the completion handoff. This is a read-only drift check, not regeneration — full-update never ran the class-metadata gate, so unlike full-create it cannot assume freshness and must measure it"
+          - "Run node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check [skill_root] to report leaf-manifest.json freshness (fresh|stale|missing) for the completion handoff. This is a read-only drift check, not regeneration — full-update never ran the class-metadata gate, so unlike full-create it cannot assume freshness and must measure it"
         outputs:
           - skill_updates_applied
           - resource_updates_applied
@@ -383,7 +383,7 @@ workflow:
           - "Determine reference filename from type and topic; filename MUST be kebab-case"
           - "Create or update reference doc seeded from skill_reference template; the file MUST ship the full 5-field + version frontmatter (title, description, trigger_phrases 3-8, importance_tier, contextType, version 4-part X.Y.Z.W) per frontmatter_contract.references_and_assets"
           - Ensure content depth matches type profile
-          - "references/ is always a leaf root (leaf-resource-contract.cjs LEAF_ROOTS), so this branch always ends with a narrow freshness signal, never the full handoff: run node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check [skill_root] (read-only) and report leaf_manifest_freshness_signal = fresh|stale|missing. Do not render description.json/graph-metadata.json ownership lines or a refresh-choice block here"
+          - "references/ is always a leaf root (leaf-resource-contract.cjs LEAF_ROOTS), so this branch always ends with a narrow freshness signal, never the full handoff: run node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check [skill_root] (read-only) and report leaf_manifest_freshness_signal = fresh|stale|missing. Do not render description.json/graph-metadata.json ownership lines or a refresh-choice block here"
         type_templates:
           workflow: { filename_pattern: "[topic]-workflow.md" }
           patterns: { filename_pattern: "[topic]-patterns.md" }
@@ -400,7 +400,7 @@ workflow:
           - "Determine asset filename from type and topic; filename MUST be kebab-case"
           - "Create or update asset doc seeded from skill_asset template; the file MUST ship the full 5-field + version frontmatter (title, description, trigger_phrases 3-8, importance_tier, contextType, version 4-part X.Y.Z.W) per frontmatter_contract.references_and_assets"
           - Ensure examples are practical and immediately reusable
-          - "assets/ is always a leaf root (leaf-resource-contract.cjs LEAF_ROOTS), so this branch always ends with a narrow freshness signal, never the full handoff: run node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check [skill_root] (read-only) and report leaf_manifest_freshness_signal = fresh|stale|missing. Do not render description.json/graph-metadata.json ownership lines or a refresh-choice block here"
+          - "assets/ is always a leaf root (leaf-resource-contract.cjs LEAF_ROOTS), so this branch always ends with a narrow freshness signal, never the full handoff: run node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check [skill_root] (read-only) and report leaf_manifest_freshness_signal = fresh|stale|missing. Do not render description.json/graph-metadata.json ownership lines or a refresh-choice block here"
         type_templates:
           template: { filename_pattern: "[topic]-templates.md" }
           lookup: { filename_pattern: "[topic]-lookup.md" }
@@ -422,14 +422,14 @@ workflow:
     purpose: Enforce operation-specific validation and DQI targets
     activities:
       - Run operation-appropriate validation scripts
-      - "Run the completion gate: python3 .opencode/skills/sk-doc/scripts/validate_skill_package.py [skill_path]/[skill_name] . This is the authoritative structural gate (hard-fails missing/non-4-part version, name!=folder, or missing required sections). It MUST pass before completion, and the generated tree must contain no non-exempt underscore path segment."
+      - "Run the completion gate: python3 .skilled/skills/sk-doc/scripts/validate_skill_package.py [skill_path]/[skill_name] . This is the authoritative structural gate (hard-fails missing/non-4-part version, name!=folder, or missing required sections). It MUST pass before completion, and the generated tree must contain no non-exempt underscore path segment."
       - Capture DQI score and quality band
       - Enforce hard minimum threshold (75)
       - Compare against operation target score
       - Run fix-and-revalidate loop if needed
       - "Description budget check: quick_validate.py warns when description > 130 chars (skill) and hard-fails > 1536 chars. Soft-warning is non-blocking; hard-fail blocks the fix_loop."
     gate:
-      command: "python3 .opencode/skills/sk-doc/scripts/validate_skill_package.py [skill_path]/[skill_name]"
+      command: "python3 .skilled/skills/sk-doc/scripts/validate_skill_package.py [skill_path]/[skill_name]"
       blocking: true
     thresholds:
       hard_minimum: 75
@@ -443,7 +443,7 @@ workflow:
       description_hard_cap: 1536
     fix_loop:
       max_retries: 3
-      action: "Apply fixes, rerun validation, stop on pass or hard failure. If quick_validate emits a description-length warning, surface the trim suggestion per .opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md § Description Budget & Trim Style."
+      action: "Apply fixes, rerun validation, stop on pass or hard failure. If quick_validate emits a description-length warning, surface the trim suggestion per .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md § Description Budget & Trim Style."
     outputs:
       - validation_passed
       - dqi_score
@@ -483,10 +483,10 @@ workflow:
       - Regenerate the trigger index when trigger_phrases changed
       - Log the writer path and whether the trigger index was regenerated
     write_continuity:
-      command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js [spec_path]"
+      command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js [spec_path]"
       hard_rule: "Do not create memory files manually"
     indexing:
-      preferred: "node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+      preferred: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
       note: "generate-context.js writes the continuity frontmatter; the trigger index is regenerated from that frontmatter. There is no daemon to hand off to and no background indexing step to wait for."
     outputs:
       - context_saved
@@ -520,9 +520,9 @@ workflow:
       - graph-metadata.json: sole skill advisor identity; source for graph indexing
       - leaf-manifest.json: [fresh|stale|missing]
       - Refresh choice - run one when the advisor should include this change:
-        - Full advisor refresh: node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --workspace-root "$PWD" --format json
-        - Graph-only refresh: node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --skills-root "$PWD/.opencode/skills" --format json
-      - Refresh status: NOT RUN (operator-owned; see .opencode/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md)
+        - Full advisor refresh: node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --workspace-root "$PWD" --format json
+        - Graph-only refresh: node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --skills-root "$PWD/.skilled/skills" --format json
+      - Refresh status: NOT RUN (operator-owned; see .skilled/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md)
       [operation == reference-only or asset-only:]
       Leaf-manifest freshness: [fresh|stale|missing] (narrow signal only — see advisor-index-handoff.md § Branch Scope for why this branch does not render the full handoff)
 

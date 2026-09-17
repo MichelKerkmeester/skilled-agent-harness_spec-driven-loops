@@ -60,7 +60,7 @@ async function main() {
   if (!match) return approve();
 
   const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();
-  const skillMd = path.join(projectDir, '.opencode', 'skills', match.packetPath, 'SKILL.md');
+  const skillMd = path.join(projectDir, '.skilled', 'skills', match.packetPath, 'SKILL.md');
   const rules = readHardRules(skillMd);
   if (rules.length === 0) return approve(); // nothing declared -> nothing to enforce
 

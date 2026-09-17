@@ -49,7 +49,7 @@ For `:confirm` or no suffix, the consolidated setup prompt in the presentation c
 > **Canonical mode syntax:** use attached command suffixes (`/deep:research:auto`, `/deep:research:confirm`).
 
 > **Note:** Late-INIT `spec.md` detection and bounded `spec.md` mutations follow
-> `.opencode/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md`.
+> `.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md`.
 > Acquire `{spec_folder}/research/.deep-research.lock` before `folder_state` classification and keep `research/research.md` as the source of truth for any generated findings sync.
 > Targeted strict validation after deep-research spec mutations uses the Node validation orchestrator.
 
@@ -73,9 +73,9 @@ Your job is to DISPATCH `deep-research` to run ONE iteration of the research loo
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/deep/assets/deep-research-presentation.txt` |
-| Auto workflow | `.opencode/commands/deep/assets/deep-research-auto.yaml` |
-| Confirm workflow | `.opencode/commands/deep/assets/deep-research-confirm.yaml` |
+| Presentation source of truth | `.skilled/commands/deep/assets/deep-research-presentation.txt` |
+| Auto workflow | `.skilled/commands/deep/assets/deep-research-auto.yaml` |
+| Confirm workflow | `.skilled/commands/deep/assets/deep-research-confirm.yaml` |
 
 ---
 
@@ -83,9 +83,9 @@ Your job is to DISPATCH `deep-research` to run ONE iteration of the research loo
 
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
 2. Treat `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--dry-run`, `--spec-folder`, `--executor`, `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`, `--executors`, `--concurrency`, and `--no-resource-map` as workflow inputs, not execution modes.
-3. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, scope-extracted spec-folder paths, and the presentation contract's default resolution table. When all required fields are resolved, persist `{artifact_dir}/deep-research-config.json`, bind runtime YAML placeholders, and load `.opencode/commands/deep/assets/deep-research-auto.yaml`.
+3. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, scope-extracted spec-folder paths, and the presentation contract's default resolution table. When all required fields are resolved, persist `{artifact_dir}/deep-research-config.json`, bind runtime YAML placeholders, and load `.skilled/commands/deep/assets/deep-research-auto.yaml`.
 4. In `:auto`, ask a targeted Tier-2 question only for `spec_folder` when the topic is present, names no resolvable spec folder, and the folder choice is ambiguous. Missing `research_topic` is absence, not ambiguity; use the named-missing-inputs fail-fast format from the auto-mode contract and do not load YAML.
-5. For `:confirm`, use the presentation contract's consolidated setup prompt to bind missing setup values, then load `.opencode/commands/deep/assets/deep-research-confirm.yaml`.
+5. For `:confirm`, use the presentation contract's consolidated setup prompt to bind missing setup values, then load `.skilled/commands/deep/assets/deep-research-confirm.yaml`.
 6. For no suffix, use the presentation contract's consolidated setup prompt to choose execution mode and bind missing setup values, then route the resolved interactive choice to the matching YAML.
 7. Lightweight read-only discovery for related spec folders or prior memory may support setup, but it must feed the single consolidated prompt and never split setup questions.
 8. After the selected workflow asset is loaded, execute it step by step using the resolved setup values.
@@ -135,14 +135,14 @@ When `dry_run=true`, the confirm YAML emits `dry_run_halt` JSONL preview lines t
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/deep/assets/deep-research-auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep-research-confirm.yaml` |
+| `:auto` | `.skilled/commands/deep/assets/deep-research-auto.yaml` |
+| `:confirm` or interactive choice | `.skilled/commands/deep/assets/deep-research-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/deep/assets/deep-research-presentation.txt`:
+The following content lives only in `.skilled/commands/deep/assets/deep-research-presentation.txt`:
 
 - Startup-question wording, consolidated setup prompt text, and reply format examples.
 - `:auto` pre-bound setup answer schema, default resolution table, targeted-ask rules, and fail-fast display references.

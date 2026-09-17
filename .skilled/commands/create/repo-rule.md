@@ -22,10 +22,10 @@ Do not author the rule from this document. Rule anatomy, the decision tests that
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/create/assets/create-repo-rule-presentation.txt` |
-| Auto workflow | `.opencode/commands/create/assets/create-repo-rule-auto.yaml` |
-| Confirm workflow | `.opencode/commands/create/assets/create-repo-rule-confirm.yaml` |
-| Mode contract | `.opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md` |
+| Presentation source of truth | `.skilled/commands/create/assets/create-repo-rule-presentation.txt` |
+| Auto workflow | `.skilled/commands/create/assets/create-repo-rule-auto.yaml` |
+| Confirm workflow | `.skilled/commands/create/assets/create-repo-rule-confirm.yaml` |
+| Mode contract | `.skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md` |
 
 ---
 
@@ -44,8 +44,8 @@ Do not author the rule from this document. Rule anatomy, the decision tests that
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/create/assets/create-repo-rule-auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/create/assets/create-repo-rule-confirm.yaml` |
+| `:auto` | `.skilled/commands/create/assets/create-repo-rule-auto.yaml` |
+| `:confirm` or interactive choice | `.skilled/commands/create/assets/create-repo-rule-confirm.yaml` |
 
 ---
 

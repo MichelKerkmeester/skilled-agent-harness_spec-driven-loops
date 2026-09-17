@@ -50,12 +50,12 @@ Most commands load a YAML workflow from `assets/` and execute it step by step, s
 
 Retrieval runs on two local mechanisms and no background service:
 
-- **The generated trigger index**, read by `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`. It matches a prompt against author-declared `trigger_phrases`.
-- **The ripgrep recipes** in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`, which find a phrase anywhere in the corpus with no index at all.
+- **The generated trigger index**, read by `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`. It matches a prompt against author-declared `trigger_phrases`.
+- **The ripgrep recipes** in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`, which find a phrase anywhere in the corpus with no index at all.
 
 Both are lexical. A phrase that is not written in the corpus is not found, and `search` says so rather than returning a nearest guess. Section 7 lists what that costs.
 
-Writing goes through one script: `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`. It keeps atomic same-directory update and lock semantics, needs no daemon, and has no indexing handoff after it. Ripgrep cannot write, so no retrieval recipe substitutes for it.
+Writing goes through one script: `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`. It keeps atomic same-directory update and lock semantics, needs no daemon, and has no indexing handoff after it. Ripgrep cannot write, so no retrieval recipe substitutes for it.
 
 <!-- /ANCHOR:overview -->
 
@@ -139,7 +139,7 @@ deep/                 # Deep workflows (research, review, AI council)
     ├── deep-review-confirm.yaml
     └── deep-ai-council-auto.yaml
 
-> Note: `/doctor skill-advisor` previously lived under `speckit/`; it is now organized under `.opencode/commands/doctor/` alongside `mcp_install` and `mcp_debug` since it tunes runtime configuration rather than driving the spec workflow.
+> Note: `/doctor skill-advisor` previously lived under `speckit/`; it is now organized under `.skilled/commands/doctor/` alongside `mcp_install` and `mcp_debug` since it tunes runtime configuration rather than driving the spec workflow.
 ```
 
 `save` and `search` keep the direct-dispatch asset-naming convention they carried before joining this folder: `save-presentation.txt` and `search-presentation.txt` drop the family prefix because the bare command name already reads unambiguously, unlike `plan`, `implement`, `complete` and `resume`, which need the `speckit-` prefix to stay distinctive.
@@ -265,7 +265,7 @@ Both retrieval mechanisms behind `search` are runnable by hand, which is the poi
 
 ```bash
 # The trigger-index lane
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "resume work session context"
 
 # The free-text lane, path-only recipe, scoped to one packet
@@ -275,7 +275,7 @@ rg --no-config --fixed-strings --ignore-case \
   -- 'trigger index generator' specs/012-rate-limiting
 
 # Regenerate the trigger index after editing a document's trigger_phrases
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ```
 
 Copy the recipe flags literally. `--no-config` stops `RIPGREP_CONFIG_PATH` from injecting arguments you never wrote, the two exclusion globs keep archived packets and vendored trees out of the result set, and `--` makes a phrase beginning with a hyphen a pattern rather than a parse error.
@@ -357,7 +357,7 @@ Retrieval is lexical. It matches the text you typed, not the meaning. Rephrase u
 
 **Q: How do I refresh retrieval after editing a document?**
 
-For the free-text lane, you do not: `rg` reads the files directly, so an edit is visible immediately. For the trigger lane, rerun `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` after changing a document's `trigger_phrases`.
+For the free-text lane, you do not: `rg` reads the files directly, so an edit is visible immediately. For the trigger lane, rerun `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` after changing a document's `trigger_phrases`.
 
 <!-- /ANCHOR:faq -->
 

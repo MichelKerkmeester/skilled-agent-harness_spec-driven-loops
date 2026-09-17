@@ -12,7 +12,7 @@ developer_instructions = '''
 
 Executes exactly ONE research iteration in the `/deep:research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, records one iteration record through the append gateway, and returns a concise completion report.
 
-**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
@@ -96,7 +96,7 @@ Extract:
 - Remaining key questions
 - Exhausted approaches (DO NOT retry these)
 - Recommended next focus
-- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`; `fork` and `completed-continue` are deferred -- see `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md §Lifecycle Branches`)
+- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`; `fork` and `completed-continue` are deferred -- see `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md §Lifecycle Branches`)
 
 **HARD BLOCK -- Missing or unreadable state**:
 - If `deep-research-config.json`, `deep-research-state.jsonl`, or `deep-research-strategy.md` is missing, unreadable, or structurally corrupt, do not infer a focus and do not execute research actions.
@@ -266,7 +266,7 @@ Optional fields:
 **Record through the gateway**:
 
 ```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
   --mode research \
   --run-directory <resolved research packet root> \
   --event-json <record file>
@@ -339,7 +339,7 @@ The orchestrator generates the dashboard and findings registry after each iterat
 | Ripgrep recipes in `retrieval-conventions.md` | Find prior research across spec docs and skill docs |
 | Trigger index lookup plus the packet continuity ladder | Load context for the research topic |
 
-**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Keyed lookup runs `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Keyed lookup runs `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ---
 
@@ -563,10 +563,10 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 ## 9. RELATED RESOURCES
 
-- `.opencode/commands/deep/research.md` — the `/deep:research` loop owner that dispatches one iteration at a time.
-- `.opencode/skills/system-deep-loop/deep-research/SKILL.md` — the research-mode packet skill.
-- `.opencode/skills/system-deep-loop/SKILL.md` — the deep-loop hub this mode is packaged under.
-- `.opencode/skills/system-spec-kit/SKILL.md` — the packet-scope discipline behind the local-owner research packet rule.
+- `.skilled/commands/deep/research.md` — the `/deep:research` loop owner that dispatches one iteration at a time.
+- `.skilled/skills/system-deep-loop/deep-research/SKILL.md` — the research-mode packet skill.
+- `.skilled/skills/system-deep-loop/SKILL.md` — the deep-loop hub this mode is packaged under.
+- `.skilled/skills/system-spec-kit/SKILL.md` — the packet-scope discipline behind the local-owner research packet rule.
 
 ---
 

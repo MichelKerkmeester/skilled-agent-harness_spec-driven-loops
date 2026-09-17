@@ -133,7 +133,7 @@ The documentation-package commands preserve the live `sk-doc` contracts:
 /create:agent my-analyzer "Code analysis specialist" :auto
 
 # Create a README for a specific folder
-/create:readme readme .opencode/skills/my-skill --type skill :confirm
+/create:readme readme .skilled/skills/my-skill --type skill :confirm
 
 # Create a full skill
 /create:skill my-new-skill full-create :auto
@@ -197,9 +197,9 @@ A: The command reads the most recent changelog entry in the target component fol
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
-| Phase 0 fails | @markdown agent not available | Verify agent files exist in the runtime path (`.opencode/agents/` or `.claude/agents/`) |
+| Phase 0 fails | @markdown agent not available | Verify agent files exist in the runtime path (`.skilled/agents/` or `.claude/agents/`) |
 | YAML workflow not found | Missing asset file | Check `assets/` contains the matching YAML for operation and mode |
-| Skill not found for skill operation | Wrong skill name | Use the exact folder name from `.opencode/skills/` |
+| Skill not found for skill operation | Wrong skill name | Use the exact folder name from `.skilled/skills/` |
 | Catalog or playbook update target missing | `update` used before the package exists | Re-run with `create` or point to the correct skill root |
 | Playbook scaffolds forbidden sidecar files | Using an outdated package shape | Use `/create:manual-testing-playbook`, which keeps review/orchestration guidance in `manual-testing-playbook.md` |
 | `--chained` has no effect | Only meaningful for chained skill doc-only operations | Remove flag when running standalone |

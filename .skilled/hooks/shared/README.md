@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder injects nothing into any AI session, it is pure plumbing for the adapters that do. Two concerns live here: the kill-switch resolver that every adapter calls before doing anything, and the fail-open stdin/JSON helpers that the CommonJS adapters share. Keeping local copies is deliberate, it is what makes every adapter under `.opencode/hooks/` importable with zero dependency outside this tree, which is the point of the tree existing.
+This folder injects nothing into any AI session, it is pure plumbing for the adapters that do. Two concerns live here: the kill-switch resolver that every adapter calls before doing anything, and the fail-open stdin/JSON helpers that the CommonJS adapters share. Keeping local copies is deliberate, it is what makes every adapter under `.skilled/hooks/` importable with zero dependency outside this tree, which is the point of the tree existing.
 
 A second, independent ESM sibling (`hook-adapter-shared.mjs`) lives in `system-spec-kit/runtime/hooks/lib/` for that skill's own spec-gate adapters, which are not part of the fully-portable set. The two are allowed to drift in principle; in practice the file is small and stable enough that they shouldn't.
 
@@ -86,7 +86,7 @@ The resolver is itself the configuration mechanism for every other concern. Oper
 | `MK_HOOKS_DISABLED=1` | Legacy alias of the master switch. |
 | `SYSTEM_<CONCERN>_DISABLED=1` | Default-shape per-concern switch (e.g. `SYSTEM_TASK_DISPATCH_DISABLED=1`). Derivable via `concernFlag(concern)`. |
 | `OPENCODE_GOAL_DISABLED=1` | Canonical name for `goal` (non-default shape). Six concerns have hand-set canonical names in `CONCERN_CANONICAL`; see the table below. |
-| `HOOK_FLAGS_CONFIG` | Override path for the operator config file (default: `.opencode/hooks/hook-flags.env`). |
+| `HOOK_FLAGS_CONFIG` | Override path for the operator config file (default: `.skilled/hooks/hook-flags.env`). |
 
 Concerns whose canonical name does not follow the default `SYSTEM_<CONCERN>_DISABLED` shape:
 
@@ -117,7 +117,7 @@ Each concern also honors a set of legacy aliases (`MK_`/`SPECKIT_`/plugin-owned 
 ## 8. VALIDATION
 
 ```bash
-node --test .opencode/hooks/shared/hook-flags.test.cjs
+node --test .skilled/hooks/shared/hook-flags.test.cjs
 ```
 
 Expected result: all tests pass (default-on, master switch, per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity).
@@ -125,7 +125,7 @@ Expected result: all tests pass (default-on, master switch, per-concern switch, 
 `hook-adapter-shared.cjs` is covered by its consumers' own suites:
 
 ```bash
-node --test .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs
+node --test .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs .skilled/plugins/tests/claude-task-dispatch-guard.test.cjs
 ```
 
 Expected result: all tests pass.

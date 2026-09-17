@@ -15,7 +15,7 @@ Read-only prompt-engineering specialist for high-stakes external CLI prompt cons
 
 **BOUNDARY PRINCIPLE**: Prompt polish must not hide missing inputs, ambiguity, contradictions, integration assumptions, or partial-success states. Surface those limits in `ESCALATION_NOTES` or use the blocked package.
 
-**IMPORTANT**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
+**IMPORTANT**: Use only `.skilled/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
@@ -86,8 +86,8 @@ Use these IDs when a recommendation depends on an integration point.
 | ID | Surface | Contract |
 | --- | --- | --- |
 | `INT-CALLER-GENERAL` | `@general-purpose` | Primary caller/orchestrator may dispatch this specialist and then dispatch the returned prompt elsewhere; this agent does not call back or delegate |
-| `INT-CMD-PROMPT-IMPROVER` | `/prompt-improve` via `.opencode/commands/prompt-improve.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
-| `INT-SKILL-PROMPT-IMPROVER` | `.opencode/skills/sk-prompt/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
+| `INT-CMD-PROMPT-IMPROVER` | `/prompt-improve` via `.skilled/commands/prompt-improve.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
+| `INT-SKILL-PROMPT-IMPROVER` | `.skilled/skills/sk-prompt/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
 | `INT-SKILL-SK-DOC` | `sk-doc` | Documentation-shape guidance may inform prompt constraints when the caller asks for documentation packaging or template alignment |
 | `INT-TARGET-CLI` | `target_cli` values such as `claude-code`, `codex`, or `copilot` | Downstream executor context for prompt wording only; do not claim the executor was invoked |
 | `INT-MCP-CALLER-SUPPLIED` | `mcp_tools` field | Caller-supplied downstream MCP tool constraints only; include or warn about them without inventing or invoking tools |
@@ -107,7 +107,7 @@ Use these IDs when a recommendation depends on an integration point.
 
 | Command | Integration ID | Purpose | Path |
 | ------- | -------------- | ------- | ---- |
-| `/prompt-improve` | `INT-CMD-PROMPT-IMPROVER` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/prompt-improve.md` |
+| `/prompt-improve` | `INT-CMD-PROMPT-IMPROVER` | Shared prompt-improvement command surface with inline vs agent routing | `.skilled/commands/prompt-improve.md` |
 
 ### Skills
 
@@ -165,7 +165,7 @@ Incoming prompt-escalation request
 ### ✅ ALWAYS
 
 - Confirm `raw_task` is present and within prompt-construction scope before selecting a framework.
-- Read `.opencode/skills/sk-prompt/SKILL.md` plus the key references before composing the final prompt package.
+- Read `.skilled/skills/sk-prompt/SKILL.md` plus the key references before composing the final prompt package.
 - Name the primary framework explicitly and make the rationale traceable to the task shape.
 - Classify unresolved edge cases before final delivery: ambiguity, contradiction, missing dependency, integration gap, blocked state, or partial success.
 - Keep scope, constraints, non-goals, integration requirements, and verification requirements explicit in the enhanced prompt.
@@ -370,10 +370,10 @@ Fix verification gaps first
 
 ## 10. RELATED RESOURCES
 
-- `.opencode/commands/prompt/improve.md` — the `/prompt-improve` command surface routing to inline or agent flow.
-- `.opencode/skills/sk-prompt/SKILL.md` — the canonical source for the seven frameworks, DEPTH, and CLEAR.
-- `.opencode/skills/sk-prompt/references/` — the key references this agent reads before composing a package.
-- `.opencode/skills/sk-doc/SKILL.md` — agent-template alignment when a caller asks for documentation packaging.
+- `.skilled/commands/prompt/improve.md` — the `/prompt-improve` command surface routing to inline or agent flow.
+- `.skilled/skills/sk-prompt/SKILL.md` — the canonical source for the seven frameworks, DEPTH, and CLEAR.
+- `.skilled/skills/sk-prompt/references/` — the key references this agent reads before composing a package.
+- `.skilled/skills/sk-doc/SKILL.md` — agent-template alignment when a caller asks for documentation packaging.
 
 ---
 

@@ -401,7 +401,7 @@ notesmd-cli list-vaults        # Shows registered vaults + default
 
 **Step 2: Install if missing**
 ```bash
-bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
+bash .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh
 # or directly:
 brew tap yakitrak/yakitrak && brew install yakitrak/yakitrak/notesmd-cli
 ```

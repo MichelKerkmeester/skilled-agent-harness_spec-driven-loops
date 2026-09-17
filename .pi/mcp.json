@@ -2,7 +2,7 @@
   "mcpServers": {
     "code_mode": {
       "command": "node",
-      "args": [".opencode/bin/mcp-code-mode-launcher.cjs"],
+      "args": [".skilled/bin/mcp-code-mode-launcher.cjs"],
       "transport": "stdio",
       "lifecycle": "lazy",
       "env": {

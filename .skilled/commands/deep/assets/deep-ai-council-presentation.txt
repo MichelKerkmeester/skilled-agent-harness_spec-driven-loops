@@ -12,11 +12,11 @@ For `:auto`, do not emit the consolidated prompt by default. Resolve setup with 
 
 ### `:auto` Setup Resolution
 
-Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
+Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
 
 Under `execution_mode = AUTONOMOUS` from the `:auto` suffix, follow the three-tier flow:
 
-1. **Tier 1 - Resolve confidently**: parse `$ARGUMENTS` flags, the `PRE-BOUND SETUP ANSWERS:` block, and the Default Resolution Table below. When every required field is resolved, persist to `{spec_folder}/ai-council/council-session.json` or the YAML-designated setup artifact, bind runtime YAML placeholders, set `STATUS: PASSED`, and load `.opencode/commands/deep/assets/deep-ai-council-auto.yaml`. End Section 0.
+1. **Tier 1 - Resolve confidently**: parse `$ARGUMENTS` flags, the `PRE-BOUND SETUP ANSWERS:` block, and the Default Resolution Table below. When every required field is resolved, persist to `{spec_folder}/ai-council/council-session.json` or the YAML-designated setup artifact, bind runtime YAML placeholders, set `STATUS: PASSED`, and load `.skilled/commands/deep/assets/deep-ai-council-auto.yaml`. End Section 0.
 2. **Tier 2 - Targeted ask**: when one or two required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2 fields: `spec_folder` and `topics` when the prompt contains multiple plausible topic lists. Missing `deliberation_topic` is absence, not ambiguity - go to Tier 3.
 3. **Tier 3 - Fail fast**: emit the named-missing-inputs error format with `/deep:ai-council:auto` as the command name. Exit non-zero. Do not load YAML.
 
@@ -38,7 +38,7 @@ PRE-BOUND SETUP ANSWERS:
   convergenceThreshold: 0.20
   executor:
     mode: in-cli  # in-cli | external-cli
-    cli: native  # native | cli-opencode | cli-cursor | cli-devin | cli-pi (alias `opencode` -> `cli-opencode`). cli-codex and cli-claude-code are REJECTED as council seats; `resolveExecutorKind` in `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs` is authoritative
+    cli: native  # native | cli-opencode | cli-cursor | cli-devin | cli-pi (alias `opencode` -> `cli-opencode`). cli-codex and cli-claude-code are REJECTED as council seats; `resolveExecutorKind` in `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs` is authoritative
     model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
     reasoning: ""  # optional reasoning effort or variant
     service_tier: ""  # optional, executor-specific
@@ -118,7 +118,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 4 -type d 2>/dev/null | sort | tail -10
 
 5. Search for prior work (background):
-   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$DELIBERATION_TOPIC" specs .opencode
+   $ rg --no-config --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- "$DELIBERATION_TOPIC" specs .skilled
    - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
    - Store: prior_work_found = [yes/no]
 
@@ -146,7 +146,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      C) cli-cursor - one external Cursor round.
      D) cli-devin - one external Devin round.
      E) cli-pi - one external Pi round.
-     cli-codex and cli-claude-code are NOT council seat executors and are rejected at resolve time; use /deep:review or /deep:research for codex- or Claude-Code-backed loops. cli-cursor, cli-devin and cli-pi enforce a model allowlist (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`).
+     cli-codex and cli-claude-code are NOT council seat executors and are rejected at resolve time; use /deep:review or /deep:research for codex- or Claude-Code-backed loops. cli-cursor, cli-devin and cli-pi enforce a model allowlist (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`).
 
    Reply format examples:
    - `"runtime boundary strategy, A, A"`
@@ -266,7 +266,7 @@ Use this when a planning problem needs more than one council topic, more than on
 #### Before Starting
 
 - Read the continuity ladder for the bound packet - `handover.md`, then the `_memory.continuity` block in `implementation-summary.md`, then `spec.md` and `decision-record.md` - unless the user says `skip context`, `fresh start`, or `skip memory`.
-- Widen with the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` when the packet docs leave the topic open.
+- Widen with the ripgrep recipes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` when the packet docs leave the topic open.
 - Inject useful context into the session setup so topic prompts can distinguish new evidence from prior packet decisions.
 
 #### After Completing
@@ -281,8 +281,8 @@ Use this when a planning problem needs more than one council topic, more than on
 
 After setup phase passes, load and execute the appropriate YAML prompt based on `execution_mode`:
 
-- **AUTONOMOUS**: `.opencode/commands/deep/assets/deep-ai-council-auto.yaml`
-- **INTERACTIVE**: `.opencode/commands/deep/assets/deep-ai-council-confirm.yaml`
+- **AUTONOMOUS**: `.skilled/commands/deep/assets/deep-ai-council-auto.yaml`
+- **INTERACTIVE**: `.skilled/commands/deep/assets/deep-ai-council-confirm.yaml`
 
 The YAML contains the full loop workflow: initialization, session orchestration, topic iteration, findings-registry use, synthesis, and memory save.
 
@@ -345,10 +345,10 @@ STATUS=CANCELLED PATH=[spec-folder-path]
 
 ### Skill Reference
 
-Full protocol documentation: `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` Section "Deep Mode (Iterative Multi-Topic)".
+Full protocol documentation: `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md` Section "Deep Mode (Iterative Multi-Topic)".
 
 Key references:
 
-- Command workflow assets: `.opencode/commands/deep/assets/deep-ai-council-auto.yaml` and `.opencode/commands/deep/assets/deep-ai-council-confirm.yaml`
-- Skill package: `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md`
+- Command workflow assets: `.skilled/commands/deep/assets/deep-ai-council-auto.yaml` and `.skilled/commands/deep/assets/deep-ai-council-confirm.yaml`
+- Skill package: `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md`
 - State hierarchy ADR: `.opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/008-iterative-research-and-architecture/decision-record.md`

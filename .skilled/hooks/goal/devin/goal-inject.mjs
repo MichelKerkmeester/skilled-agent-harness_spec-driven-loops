@@ -70,7 +70,7 @@ async function main() {
     // Devin has no management command either; the reminder names the CLI line
     // that records the resend for this session.
     const reminder = renderResendReminder(goal, cwd, {
-      recordCommand: `node .opencode/hooks/goal/bin/goal.cjs resent --runtime devin --session ${JSON.stringify(sessionId)} --workspace ${JSON.stringify(cwd)}`,
+      recordCommand: `node .skilled/hooks/goal/bin/goal.cjs resent --runtime devin --session ${JSON.stringify(sessionId)} --workspace ${JSON.stringify(cwd)}`,
     });
     return emit({
       hookSpecificOutput: {

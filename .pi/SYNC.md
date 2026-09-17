@@ -1,6 +1,6 @@
 ---
 title: "Pi CLI — Runtime Sync Manifest"
-description: "How .pi derives from .opencode: two generators for agents and prompts, hand-authored extensions bridging the shared guard cores, and how to detect drift."
+description: "How .pi derives from .skilled: two generators for agents and prompts, hand-authored extensions bridging the shared guard cores, and how to detect drift."
 ---
 
 # Pi CLI Sync Manifest
@@ -11,9 +11,9 @@ description: "How .pi derives from .opencode: two generators for agents and prom
 
 ## 1. OVERVIEW
 
-Pi consumes flat real files, so two generators in `.opencode/skills/system-spec-kit/runtime/cli/pi/` transform the canonical trees into Pi's dialect. Both own their output directory: write mode regenerates changed files and prunes anything the canonical tree no longer justifies (a retired command's stale prompt was the live drift mode here).
+Pi consumes flat real files, so two generators in `.skilled/skills/system-spec-kit/runtime/cli/pi/` transform the canonical trees into Pi's dialect. Both own their output directory: write mode regenerates changed files and prunes anything the canonical tree no longer justifies (a retired command's stale prompt was the live drift mode here).
 
-Canonical for agents is `.opencode/agents/` — the same upstream Codex uses, *not* the `.claude/agents/` fork that Cursor and Devin symlink. The generator maps OpenCode's `permission:` block onto Pi's built-in tool names, so a `.pi/agents/*.md` never byte-matches either parent tree.
+Canonical for agents is `.skilled/agents/` — the same upstream Codex uses, *not* the `.claude/agents/` fork that Cursor and Devin symlink. The generator maps OpenCode's `permission:` block onto Pi's built-in tool names, so a `.pi/agents/*.md` never byte-matches either parent tree.
 
 Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `extensions/*.ts` are hand-authored factories that bridge the repo's shared guard cores into Pi's lifecycle-event API. There is no `hooks.json` dialect here at all.
 
@@ -23,16 +23,16 @@ Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `
 
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
-| `agents/*.md` (13) | **generated** | `.opencode/agents/*.md` | Yes — `sync-agents-pi.cjs --check` |
-| `prompts/*.md` (36) | **generated** pointer stubs, except the two native commands below | `.opencode/commands/**/*.md` | Yes — `sync-prompts-pi.cjs --check` |
+| `agents/*.md` (13) | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents-pi.cjs --check` |
+| `prompts/*.md` (36) | **generated** pointer stubs, except the two native commands below | `.skilled/commands/**/*.md` | Yes — `sync-prompts-pi.cjs --check` |
 | `prompts/goal-pi.md`, `prompts/vision.md` | hand-authored native commands | none | No — exempt by `command-scope.cjs` |
-| `extensions/*.ts` + `lib/` | **hand-authored** guard bridges | shared guard cores under `.opencode/**` | Behavioral drift only; no checker |
+| `extensions/*.ts` + `lib/` | **hand-authored** guard bridges | shared guard cores under `.skilled/**` | Behavioral drift only; no checker |
 | `mcp.json` | **hand-authored** | — | Registers the code_mode MCP server. The advisor is not an MCP server and is not registered here: `extensions/prompt-advisor.ts` reaches it in-process. |
 | `settings.json` | **hand-authored** | — | Pi package configuration |
 | `settings.json`, `modes.json`, `statusline.sh`, `pi-blackhole-config.json`, `models.json` (global) | **symlinked canonicals** | repo `.pi/*` is the source of truth; `~/.pi/agent/*` and `~/.pi/agent/pi-blackhole/pi-blackhole-config.json` are relative symlinks back into the repo | Users pull the latest configs from this repo; the local Mac consumes them via symlink |
 | `npm/` | operator-local package output | — | not synced |
-| `skills/` | whole-dir symlink | `.opencode/skills` (same mirror as `.claude/skills`) | No |
-| `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook` | No |
+| `skills/` | whole-dir symlink | `.skilled/skills` (same mirror as `.claude/skills`) | No |
+| `manual-testing-playbook/` | whole-dir symlink | `.skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook` | No |
 
 Prompt names are the flattened command path (`create/agent.md` → `create-agent.md`), the same rule as Codex and Cursor, with the same `assets|scripts|fixtures` exclusion.
 
@@ -40,9 +40,9 @@ Prompt names are the flattened command path (`create/agent.md` → `create-agent
 
 ## 3. WHEN TO SYNC
 
-- Any `.opencode/agents/*.md` changes → re-run `sync-agents-pi.cjs`.
-- Any `.opencode/commands/**` file is added, renamed or deleted → re-run `sync-prompts-pi.cjs`. Renames matter: a deleted canonical file leaves a stale prompt until write mode prunes it.
-- Guard-core behavior changes under `.opencode/**` → review `extensions/*.ts` by hand; nothing regenerates them.
+- Any `.skilled/agents/*.md` changes → re-run `sync-agents-pi.cjs`.
+- Any `.skilled/commands/**` file is added, renamed or deleted → re-run `sync-prompts-pi.cjs`. Renames matter: a deleted canonical file leaves a stale prompt until write mode prunes it.
+- Guard-core behavior changes under `.skilled/**` → review `extensions/*.ts` by hand; nothing regenerates them.
 
 ---
 
@@ -50,11 +50,11 @@ Prompt names are the flattened command path (`create/agent.md` → `create-agent
 
 ```bash
 # Regenerate both owned trees (write mode also prunes stale output)
-node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
-node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs
 
 # Verify roster coverage across all six runtime surfaces
-node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
+node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
 ```
 
 ---
@@ -80,7 +80,7 @@ The tool list is **derived and lossy**: OpenCode's `permission:` map collapses o
 Each prompt is a small stub that points at the canonical file rather than duplicating it:
 
 ```markdown
-<!-- Generated by sync-prompts-pi.cjs from .opencode/commands/create/agent.md — do not edit by hand. -->
+<!-- Generated by sync-prompts-pi.cjs from .skilled/commands/create/agent.md — do not edit by hand. -->
 # Pi entry: /create-agent
 ```
 
@@ -100,9 +100,9 @@ No installed surface reads `.pi/agents/**/*.md` today. Pi core exposes `--skill`
 
 | Check | Command | Exit |
 |---|---|---|
-| Generated agents | `node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check` | 0 ok / 1 drift |
-| Generated prompts | `node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check` | 0 ok / 1 drift |
-| Roster coverage | `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift |
+| Generated agents | `node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check` | 0 ok / 1 drift |
+| Generated prompts | `node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check` | 0 ok / 1 drift |
+| Roster coverage | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
 
 ---
@@ -119,7 +119,7 @@ No installed surface reads `.pi/agents/**/*.md` today. Pi core exposes `--skill`
 
 | Document | Purpose |
 |---|---|
-| `.opencode/skills/system-spec-kit/runtime/cli/pi/README.md` | The generator contract |
+| `.skilled/skills/system-spec-kit/runtime/cli/pi/README.md` | The generator contract |
 | [`extensions/README.md`](extensions/README.md) | Why the guard layer is native code |
-| `.opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/` | Executable scenarios for these surfaces |
+| `.skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/` | Executable scenarios for these surfaces |
 | [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) | Sibling runtime manifests |

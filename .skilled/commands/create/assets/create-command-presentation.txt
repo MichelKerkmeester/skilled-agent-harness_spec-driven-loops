@@ -10,11 +10,11 @@ Run this automatic self-check before setup. This is not a user question.
 SELF-CHECK: Are the create-command packet resources available?
 
 Required resources:
-- .opencode/skills/sk-doc/sk-create-command/SKILL.md
-- .opencode/skills/sk-doc/sk-create-command/assets/command-template.md
-- .opencode/skills/sk-doc/sk-create-command/assets/command-presentation-template.md
-- .opencode/skills/sk-doc/sk-create-command/references/router-presentation-split.md
-- .opencode/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md
+- .skilled/skills/sk-doc/sk-create-command/SKILL.md
+- .skilled/skills/sk-doc/sk-create-command/assets/command-template.md
+- .skilled/skills/sk-doc/sk-create-command/assets/command-presentation-template.md
+- .skilled/skills/sk-doc/sk-create-command/references/router-presentation-split.md
+- .skilled/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md
 
 If all resources exist:
 - create_command_verified = true
@@ -59,7 +59,7 @@ Pre-bound setup schema:
 PRE-BOUND SETUP ANSWERS:
   command_invocation: /create:example
   command_request: Create a split workflow command that ...
-  command_path: .opencode/commands/create/example.md
+  command_path: .skilled/commands/create/example.md
   package_shape: split_4_file_set
   spec_choice: existing
   spec_path: <spec-folder>
@@ -73,7 +73,7 @@ Default resolution table:
 | --- | --- | --- | --- | --- |
 | `command_invocation` | Yes | Positional invocation or marker `command_invocation` | none | No |
 | `command_request` | Yes | Remaining positional text or marker `command_request` | none | Yes, when purpose is ambiguous |
-| `command_path` | Yes | Derived from invocation, `--path`, or marker `command_path` | derived path under `.opencode/commands/` | No |
+| `command_path` | Yes | Derived from invocation, `--path`, or marker `command_path` | derived path under `.skilled/commands/` | No |
 | `package_shape` | Yes | marker `package_shape` or workflow default | `split_4_file_set` | No |
 | `spec_choice` | Yes | marker `spec_choice` or targeted choice | none | Yes, when folder choice is ambiguous |
 | `spec_path` | Conditional | marker `spec_path`, derived from `spec_choice`, or null when skipped | none | No |

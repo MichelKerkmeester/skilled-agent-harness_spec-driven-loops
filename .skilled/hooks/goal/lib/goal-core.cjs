@@ -40,7 +40,7 @@ const STATE_DIR_ENV = 'OPENCODE_GOAL_STATE_DIR';
 // The name an error prints is the name an operator will go and set, so it is
 // the concern's canonical variable rather than one of its accepted aliases.
 const DISABLED_ENV = 'OPENCODE_GOAL_DISABLED';
-const STATE_SUBDIR = '.opencode/skills/.state/goal';
+const STATE_SUBDIR = '.skilled/skills/.state/goal';
 const LEGACY_STATE_FILENAME = 'active-goal.json';
 const ARCHIVE_SUBDIR = '.archive';
 const LEGACY_ARCHIVE_SUBDIR = '.legacy';

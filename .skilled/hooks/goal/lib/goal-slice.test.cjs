@@ -198,7 +198,7 @@ test('a criteria budget drops whole items and counts what it left', () => {
 });
 
 test('a phase child goal carries no budget, matching the validator', () => {
-  const manifestDir = join(workspace, '.opencode', 'skills', 'system-spec-kit', 'templates');
+  const manifestDir = join(workspace, '.skilled', 'skills', 'system-spec-kit', 'templates');
   mkdirSync(manifestDir, { recursive: true });
   writeFileSync(
     join(manifestDir, 'spec-kit-docs.json'),

@@ -20,15 +20,15 @@ development_philosophy:
 skill_reference:
   skill: sk-doc
   mode: sk-create-repo-rule
-  skill_md: .opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md
+  skill_md: .skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md
   references:
-    decision_tests: .opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
-    anatomy: .opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md
-    standards: .opencode/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md
-    integration: .opencode/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md
+    decision_tests: .skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
+    anatomy: .skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md
+    standards: .skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md
+    integration: .skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md
   templates:
-    rule: .opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md
-    router: .opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md
+    rule: .skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md
+    router: .skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md
 
 confidence_framework:
   thresholds:

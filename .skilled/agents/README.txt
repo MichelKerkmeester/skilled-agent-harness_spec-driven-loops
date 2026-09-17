@@ -8,7 +8,7 @@ and is the canonical source the .codex and .pi trees are generated from.
 Sibling runtime: .claude/agents/ (.md)
 Inventory rule: if an agent file is not present in this directory, it is not a live runtime surface here.
 
-Translation contract: .opencode/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md
+Translation contract: .skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md
   How every frontmatter declaration lands in each runtime tree, which differences are sanctioned,
   and what stands in for a declaration a runtime cannot carry.
 Model and effort: no agent file here pins a model. Dispatched routes pass model and effort

@@ -571,7 +571,7 @@ export function buildAuditLine(record = {}) {
 
 // ── Size-rotated append ──────────────────────────────────────────────────────────────────────
 
-export const DEFAULT_LOG_RELATIVE_PATH = '.opencode/logs/cli-dispatch-audit.log';
+export const DEFAULT_LOG_RELATIVE_PATH = '.skilled/logs/cli-dispatch-audit.log';
 const DEFAULT_MAX_LOG_BYTES = 512 * 1024;
 const LOG_BACKUP_SUFFIX = '.1';
 

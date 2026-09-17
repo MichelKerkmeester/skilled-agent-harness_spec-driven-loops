@@ -2,7 +2,7 @@
 // MODULE: Shared CommonJS Hook Adapter Helpers
 // ───────────────────────────────────────────────────────────────────
 // Keeps stdin collection and fail-open JSON parsing byte-identical across
-// every CommonJS runtime hook adapter under .opencode/hooks/. A
+// every CommonJS runtime hook adapter under .skilled/hooks/. A
 // second, independent ESM sibling lives at
 // system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs for that
 // skill's own spec-gate-enforce.mjs adapters, which are not part of the

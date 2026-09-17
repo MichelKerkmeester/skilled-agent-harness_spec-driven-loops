@@ -14,11 +14,11 @@ For `:auto`, do not emit the consolidated prompt by default. Resolve setup with 
 
 ### `:auto` Setup Resolution
 
-Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
+Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep-agent-improvement-auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-agent-improvement-auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 
@@ -33,7 +33,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 ```yaml
 PRE-BOUND SETUP ANSWERS:
   lane: agent-improvement  # optional; one of: agent-improvement | model-benchmark; defaults to agent-improvement when an agent path is present
-  target_path: .opencode/agents/debug.md  # required path matching .opencode/agents/*.md
+  target_path: .skilled/agents/debug.md  # required path matching .skilled/agents/*.md
   target_profile: dynamic  # optional; one of: handover | context-prime | dynamic; derived from target_path when omitted
   spec_folder: specs/041/008  # required spec folder path or explicit runtime folder
   execution_mode: AUTONOMOUS  # from :auto suffix
@@ -73,14 +73,14 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Evaluate EXPLICIT lane signals (--lane flag or marker lane) FIRST, before any
    agent-path inference, so an explicit lane is never shadowed (F-P1-8):
    ├─ IF explicit --lane=model-benchmark OR marker lane=model-benchmark
-   │     ├─ AND an agent path (.opencode/agents/*.md) is ALSO present → CONFLICT:
+   │     ├─ AND an agent path (.skilled/agents/*.md) is ALSO present → CONFLICT:
    │     │     do NOT silently pick a lane. Fail fast with a one-line conflict error,
    │     │     or ask ONE disambiguation question ("Explicit --lane=model-benchmark
    │     │     conflicts with the supplied agent path. Which lane?"). Resolve before proceeding.
    │     └─ ELSE → lane = "model-benchmark" → AUTO-ROUTE (see Lane B routing below).
    ├─ IF explicit --lane=agent-improvement OR marker lane=agent-improvement
    │     → lane = "agent-improvement", omit Q(lane), proceed exactly as today (Lane A).
-   ├─ IF NO explicit lane AND $ARGUMENTS contains an agent path (.opencode/agents/*.md)
+   ├─ IF NO explicit lane AND $ARGUMENTS contains an agent path (.skilled/agents/*.md)
    │     → lane = "agent-improvement" (CMD-1: agent path with no explicit lane still
    │       auto-resolves to Lane A unchanged), omit Q(lane), proceed as today.
    ├─ IF NO explicit lane AND a --profile arg / benchmark-profile is present (no agent path)
@@ -89,13 +89,13 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
          → include Q(lane) as the FIRST question in the consolidated prompt and resolve it before Q0.
 
    Lane B routing: AUTO-ROUTE to the dedicated model-benchmark workflow:
-   load .opencode/commands/deep/assets/deep_model-benchmark_{auto,confirm}.yaml
+   load .skilled/commands/deep/assets/deep_model-benchmark_{auto,confirm}.yaml
    (see /deep:model-benchmark). Subsequent questions become the Lane B set
    (profile, outputs/spec_folder, exec, scoring_method, grader, executor+model).
    DO NOT ask Q0/Q1/Q3 (the agent-improvement questions).
 
 2. CHECK if $ARGUMENTS contains an agent path (Lane A only; skipped when lane=model-benchmark):
-   ├─ IF present (.opencode/agents/*.md) → target_path = detected value, omit Q0
+   ├─ IF present (.skilled/agents/*.md) → target_path = detected value, omit Q0
    └─ IF missing → include Q0 in prompt
 
 3. CHECK for --spec-folder flag:
@@ -107,7 +107,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    └─ IF missing → max_iterations = 5 (default)
 
 5. List available agents for Q0:
-   $ ls .opencode/agents/*.md
+   $ ls .skilled/agents/*.md
 
 6. List recent spec folders for Q1:
    $ ls -d specs/*/ 2>/dev/null | tail -10
@@ -142,7 +142,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    A) Dynamic — 5-dimension integration-aware (current release)│
    │                                                                │
    │ Reply format: "handover, A, A, A" or                           │
-   │ ".opencode/agents/debug.md, B, B, A"                           │
+   │ ".skilled/agents/debug.md, B, B, A"                           │
    └────────────────────────────────────────────────────────────────┘
 
 8. WAIT for user response (DO NOT PROCEED)
@@ -151,7 +151,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - lane = [agent-improvement (Lane A) or model-benchmark (Lane B), resolved in step 1B / Q(lane)]
    - IF lane = model-benchmark → STOP this Lane A parse and HAND OFF to
      /deep:model-benchmark using
-     .opencode/commands/deep/assets/deep_model-benchmark_{auto,confirm}.yaml;
+     .skilled/commands/deep/assets/deep_model-benchmark_{auto,confirm}.yaml;
      the Lane B set (profile, outputs/spec_folder, exec, scoring_method, grader, executor+model)
      replaces the fields below.
    - target_path = [from Q0 or $ARGUMENTS]
@@ -242,13 +242,13 @@ $ARGUMENTS
 #### Step 1: Load deep-improvement Skill
 
 ```
-Read(".opencode/skills/system-deep-loop/deep-improvement/SKILL.md")
+Read(".skilled/skills/system-deep-loop/deep-improvement/SKILL.md")
 ```
 
 #### Step 2: Run Integration Scan
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json
 ```
 
 Review the integration report: mirror sync status, command coverage, skill references.
@@ -256,7 +256,7 @@ Review the integration report: mirror sync status, command coverage, skill refer
 #### Step 3: Generate Profile
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json
 ```
 
 #### Step 4: Initialize Runtime
@@ -295,7 +295,7 @@ At each journal boundary, the orchestrator MUST emit events via `improvement-jou
 
 ```bash
 # At session start:
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
+node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
 
 # At iteration boundaries:
 # candidate_generated after the candidate is written
@@ -304,7 +304,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improveme
 # The CLI form carries boundary metadata inside details because the helper's CLI does not expose top-level iteration/candidate fields.
 
 # At session end:
-# node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
+# node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
 ```
 
 #### Step 6C: Stop-Reason Reporting
@@ -329,7 +329,7 @@ After loop exits, classify the termination:
 
 `/deep:agent-improvement` is one-session-only in the current release. Every invocation starts a fresh `new`-mode session with generation 1, writes a new journal, and evaluates candidates from iteration 1 for that session.
 
-Do **not** document or attempt journal replay, iteration carry-forward, or `resume`/`restart`/`fork`/`completed-continue` behavior here. Those lineage modes were described in earlier drafts but have no shipped runtime wiring; see `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md §Resume/Continuation Semantics (current release)` for the canonical retraction.
+Do **not** document or attempt journal replay, iteration carry-forward, or `resume`/`restart`/`fork`/`completed-continue` behavior here. Those lineage modes were described in earlier drafts but have no shipped runtime wiring; see `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md §Resume/Continuation Semantics (current release)` for the canonical retraction.
 
 ## 3. Results Display
 
@@ -368,7 +368,7 @@ already owned by the repo's communication rules and are not respecified here.
 Agent Improvement Loop Complete
 ────────────────────────────────
 
-Target: .opencode/agents/debug.md
+Target: .skilled/agents/debug.md
 Profile: generated dynamic profile
 Scoring: 5-dimension dynamic
 Iterations: 3
@@ -435,19 +435,19 @@ FOR WORKFLOW VIOLATIONS:
 #### Evaluate Handover Agent (Interactive)
 
 ```
-/deep:agent-improvement ".opencode/agents/debug.md" :confirm --spec-folder=specs/041/008
+/deep:agent-improvement ".skilled/agents/debug.md" :confirm --spec-folder=specs/041/008
 ```
 
 #### Evaluate Any Agent (Dynamic Profile, Autonomous)
 
 ```
-/deep:agent-improvement ".opencode/agents/debug.md" :auto --iterations=3
+/deep:agent-improvement ".skilled/agents/debug.md" :auto --iterations=3
 ```
 
 #### Quick Integration Health Check
 
 ```
-/deep:agent-improvement ".opencode/agents/review.md" :auto --iterations=1
+/deep:agent-improvement ".skilled/agents/review.md" :auto --iterations=1
 ```
 
 #### Prompt for Target Selection
@@ -459,13 +459,13 @@ Setup phase lists available agents and asks for selection.
 
 ### Notes
 
-- **Skill dependency**: Requires `deep-improvement` at `.opencode/skills/system-deep-loop/deep-improvement/`
+- **Skill dependency**: Requires `deep-improvement` at `.skilled/skills/system-deep-loop/deep-improvement/`
 - **Promotion**: Promotion remains guarded by evidence, repeatability, and operator approval.
 - **Scoring**: All 5 dimensions are deterministic (regex, string matching, file existence). No LLM-as-judge.
 - **Stop rules**: Loop stops on `converged` (legal-stop bundle pass + stable trajectory), max iterations, or infra failure threshold.
 - **Dispatch caps**: `dispatchCaps` in `agent-improvement-config.json` bounds cumulative (whole-session, not per-iteration) dispatch cost by operation type: `maxCandidateDispatches` (default 5), `maxScoreExecutions` (default 15 — primary plus 2 replays per iteration), `maxBenchmarkRuns` (default 5). Enforced by `scripts/shared/check-dispatch-cap.cjs` before every candidate dispatch, score execution, and benchmark run; a cap reached before `max_iterations` halts the loop with a clear error instead of dispatching further.
 - **Runtime parity**: Agent exists across repo-managed runtimes (.opencode, .claude, .). Scanner checks all configured mirror paths.
-- **Benchmark assets** (post-060/005): static at `.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json` + `assets/model-benchmark/benchmark-fixtures/*.json`. Materializer at `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
+- **Benchmark assets** (post-060/005): static at `.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json` + `assets/model-benchmark/benchmark-fixtures/*.json`. Materializer at `.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
 - **Legal-stop emission** (post-060/005): YAML emits nested `legal_stop_evaluated.details.gateResults.{contractGate,behaviorGate,integrationGate,evidenceGate,improvementGate}` matching the reducer consumer shape. Flat `gateResult/gateName` is retired.
 - **Stop-reason enum** (post-060/005): canonical values are `converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery`. Old `plateau`/`benchmarkPlateau` retired.
 - **CRITIC PASS verbatim emission** (post-060/006): `@deep-improvement` body now mandates the 6 challenge labels appear verbatim in candidate JSON `critic_pass` field. Reviewers and stress tests grep for the exact strings.
@@ -474,7 +474,7 @@ Setup phase lists available agents and asks for selection.
 
 This command is the **Lane A** (agent-improvement) entry point. The underlying `deep-improvement` skill ALSO supports a separate **model-benchmark** mode (Lane B) that benchmarks a model or prompt framework instead of mutating an agent file. It shares the candidate, dispatcher, and scorer seams with the agent-improvement path.
 
-**Lane B now has its own command: `/deep:model-benchmark`.** When this command resolves `lane=model-benchmark` (via `--lane=model-benchmark`, a `--profile` / benchmark-profile arg, or the Q(lane) answer), it auto-routes to that dedicated command and loads `.opencode/commands/deep/assets/deep_model-benchmark_{auto,confirm}.yaml` instead of the agent-improvement YAMLs. When an agent path is supplied (the normal Lane A invocation) the lane resolves to `agent-improvement` automatically and this command runs exactly as before.
+**Lane B now has its own command: `/deep:model-benchmark`.** When this command resolves `lane=model-benchmark` (via `--lane=model-benchmark`, a `--profile` / benchmark-profile arg, or the Q(lane) answer), it auto-routes to that dedicated command and loads `.skilled/commands/deep/assets/deep_model-benchmark_{auto,confirm}.yaml` instead of the agent-improvement YAMLs. When an agent path is supplied (the normal Lane A invocation) the lane resolves to `agent-improvement` automatically and this command runs exactly as before.
 
 - **Entry point**: `scripts/shared/loop-host.cjs` resolves `--mode`. Default or `--mode=agent-improvement` routes to `scripts/agent-improvement/score-candidate.cjs` (this command's path, unchanged). `--mode=model-benchmark` runs `scripts/shared/materialize-benchmark-fixtures.cjs` then `scripts/model-benchmark/run-benchmark.cjs`. An unknown mode warns to stderr and falls back to agent-improvement.
 - **Dispatcher**: `scripts/model-benchmark/dispatch-model.cjs` is the model-agnostic dispatcher (executor routing across cli-opencode, cli-claude-code, cli-cursor, cli-devin and cli-pi — `KNOWN_EXECUTORS` in that file is authoritative). It loads only on the model-benchmark path, never in agent-improvement mode.
@@ -482,7 +482,7 @@ This command is the **Lane A** (agent-improvement) entry point. The underlying `
 - **Records**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`. Benchmark reports and `benchmark_run` records carry `scoringMethod: pattern|5dim` for downstream attribution.
 - **Hardening env gates**: `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` redacts raw grader output from the on-disk cache. Both default permissive for backward compatibility.
 
-Canonical source of truth: `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK. Provenance: built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005.
+Canonical source of truth: `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK. Provenance: built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005.
 
 ### Related Commands
 

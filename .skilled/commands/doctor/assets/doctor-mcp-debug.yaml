@@ -39,10 +39,10 @@ upstream_assets:
     spec: "spec.md"
     decision_record: "decision-record.md"  # ADRs covering MCP server install + repair
   install_guides:
-    code_mode: ".opencode/install-guides/MCP - Code Mode.md"
+    code_mode: ".skilled/install-guides/MCP - Code Mode.md"
   scripts:
-    diagnostic: ".opencode/commands/doctor/scripts/mcp-doctor.sh"
-    library: ".opencode/commands/doctor/scripts/mcp-doctor-lib.sh"
+    diagnostic: ".skilled/commands/doctor/scripts/mcp-doctor.sh"
+    library: ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh"
   pass_policy:
     require_user_approval_per_fix: true
     reverify_after_each_fix: true
@@ -86,7 +86,7 @@ arguments:
 # REFERENCE: INSTALL GUIDES
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  code_mode: .opencode/install-guides/MCP - Code Mode.md
+  code_mode: .skilled/install-guides/MCP - Code Mode.md
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: CONFIG FILES
@@ -103,10 +103,10 @@ config_files:
 repair_actions:
   code_mode:
     dist_missing:
-      command: "cd .opencode/skills/mcp-code-mode/mcp-server && npm install && npm run build"
+      command: "cd .skilled/skills/mcp-code-mode/mcp-server && npm install && npm run build"
       description: "Install dependencies and rebuild dist"
     node_modules_missing:
-      command: "cd .opencode/skills/mcp-code-mode/mcp-server && npm install"
+      command: "cd .skilled/skills/mcp-code-mode/mcp-server && npm install"
       description: "Install node_modules"
 
 # ─────────────────────────────────────────────────────────────────
@@ -119,11 +119,11 @@ workflow:
     purpose: "Execute mcp-doctor.sh and capture structured results"
     activities:
       - "Parse user arguments (--fix, --server) from command invocation"
-      - "Build the shell command: bash .opencode/commands/doctor/scripts/mcp-doctor.sh --json [--server <name>]"
+      - "Build the shell command: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json [--server <name>]"
       - "Execute the command and capture JSON output"
       - "Parse JSON into structured results: status, summary (pass/warn/fail counts), checks array"
       - "Store results for subsequent steps"
-    command: "bash .opencode/commands/doctor/scripts/mcp-doctor.sh --json {server_flag}"
+    command: "bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json {server_flag}"
     outputs:
       - diagnostic_json: "Parsed JSON results"
       - exit_code: "0=healthy, 1=warnings, 2=failures"
@@ -203,12 +203,12 @@ workflow:
     purpose: "Run diagnostics again after repairs to confirm fixes worked"
     condition: "repairs_attempted > 0"
     activities:
-      - "Re-run: bash .opencode/commands/doctor/scripts/mcp-doctor.sh --json {server_flag}"
+      - "Re-run: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json {server_flag}"
       - "Compare new results with original results"
       - "Identify which failures are now resolved"
       - "Identify any remaining or new issues"
       - "Present verification results"
-    command: "bash .opencode/commands/doctor/scripts/mcp-doctor.sh --json {server_flag}"
+    command: "bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json {server_flag}"
     outputs:
       - verification_json: "Post-repair diagnostic results"
       - resolved_count: "Number of issues fixed"
@@ -254,13 +254,13 @@ workflow:
 # ─────────────────────────────────────────────────────────────────
 error_handling:
   script_not_found:
-    check: "ls .opencode/commands/doctor/scripts/mcp-doctor.sh"
-    on_fail: "STOP — diagnostic script missing. Run: bash .opencode/commands/doctor/scripts/mcp-doctor.sh --help to verify installation."
+    check: "ls .skilled/commands/doctor/scripts/mcp-doctor.sh"
+    on_fail: "STOP — diagnostic script missing. Run: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --help to verify installation."
   node_not_found:
     check: "command -v node"
     on_fail: "WARN — Node.js not found. All 5 MCP servers cannot be checked. Install Node.js >=20.11.0."
   json_parse_error:
-    on_fail: "Fall back to human-readable mode: bash .opencode/commands/doctor/scripts/mcp-doctor.sh (without --json)"
+    on_fail: "Fall back to human-readable mode: bash .skilled/commands/doctor/scripts/mcp-doctor.sh (without --json)"
   repair_fails:
     max_retries: 1
     on_exhaust: "Present manual resolution steps from install guide"

@@ -22,10 +22,10 @@ Do not author the chart from this document. The catalog that turns a question in
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/design/assets/chart-presentation.txt` |
-| Auto workflow | `.opencode/commands/design/assets/chart-auto.yaml` |
-| Confirm workflow | `.opencode/commands/design/assets/chart-confirm.yaml` |
-| Mode contract | `.opencode/skills/sk-design/sk-design-chart/SKILL.md` |
+| Presentation source of truth | `.skilled/commands/design/assets/chart-presentation.txt` |
+| Auto workflow | `.skilled/commands/design/assets/chart-auto.yaml` |
+| Confirm workflow | `.skilled/commands/design/assets/chart-confirm.yaml` |
+| Mode contract | `.skilled/skills/sk-design/sk-design-chart/SKILL.md` |
 
 ---
 
@@ -36,7 +36,7 @@ Do not author the chart from this document. The catalog that turns a question in
 
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`, `:confirm` sets `INTERACTIVE`, no suffix sets `ASK`.
 2. Treat the positional `.html` path, the remaining positional text, `--form` and `--system` as workflow inputs rather than execution modes. `colour_system` defaults to `neutral`.
-3. Read `.opencode/commands/design/assets/chart-presentation.txt` and run its Phase 0 verification and setup resolution.
+3. Read `.skilled/commands/design/assets/chart-presentation.txt` and run its Phase 0 verification and setup resolution.
 4. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
 5. Execute the selected YAML step by step.
 6. Use the presentation contract, not this router, for user prompts, setup and status dashboards, and result display.
@@ -49,14 +49,14 @@ Do not author the chart from this document. The catalog that turns a question in
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.opencode/commands/design/assets/chart-auto.yaml` |
-| `:confirm` or omitted mode | `.opencode/commands/design/assets/chart-confirm.yaml` |
+| `:auto` | `.skilled/commands/design/assets/chart-auto.yaml` |
+| `:confirm` or omitted mode | `.skilled/commands/design/assets/chart-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-Startup questions, Phase 0 verification, the setup dashboard, the catalog resolution report, checkpoint display, gap wording, success and failure output, and next-step text live only in `.opencode/commands/design/assets/chart-presentation.txt`.
+Startup questions, Phase 0 verification, the setup dashboard, the catalog resolution report, checkpoint display, gap wording, success and failure output, and next-step text live only in `.skilled/commands/design/assets/chart-presentation.txt`.
 
 The router must not invent visible wording for those surfaces. It selects the workflow YAML and the execution mode.
 

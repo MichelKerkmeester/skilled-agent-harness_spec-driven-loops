@@ -53,7 +53,7 @@ Route by artifact type first, then by folder purpose.
 | --- | --- | --- |
 | Project, skill, feature or component README | `README.md` in the target folder | `assets/readme-template.md` |
 | Source-code folder README | `README.md` in the source folder | `assets/readme-code-template.md` |
-| Install guide | `.opencode/install-guides/<guide-slug>.md` | `assets/install-guide-template.md` |
+| Install guide | `.skilled/install-guides/<guide-slug>.md` | `assets/install-guide-template.md` |
 
 This packet uses simple artifact routing. It selects README, code-folder README, or install-guide behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/`, `references/install-guide/` and `assets/`.
 
@@ -385,8 +385,8 @@ Install guides should contain 5+ STOP blocks across all validation checkpoints a
 Run shared validation on authored markdown when feasible:
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <path>
+python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <path>
 ```
 
 Run the authored-name check after resolving the output path and before document validation. `README.md` is a tool-mandated exemption; install-guide slugs and other authored names must pass the kebab-case rule.
@@ -394,14 +394,14 @@ Run the authored-name check after resolving the output path and before document 
 Use quick validation or structure extraction when appropriate:
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py <path>
-python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <path>
+python3 .skilled/skills/sk-doc/shared/scripts/quick_validate.py <path>
+python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <path>
 ```
 
 As an internal authoring check after creating or refreshing READMEs, the packet-local inventory script can verify repository coverage from the repo root:
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .opencode/skills/sk-doc/shared/scripts/validate_document.py
+python3 .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .skilled/skills/sk-doc/shared/scripts/validate_document.py
 ```
 
 Use `--json-out`, `--markdown-out` or `--inventory-out` when the user needs artifacts. Treat broken references, missing key artifact coverage and validator blocking errors as findings to fix or report.

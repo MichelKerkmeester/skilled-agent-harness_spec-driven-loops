@@ -4,7 +4,7 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { join } from "node:path";
-import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
+import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
 
 const PI_RUNTIME = "pi";
 const CAPSULE_MARKER = "\n\nAdvisor:";
@@ -195,13 +195,13 @@ export function shouldDenyPiDispatch(input: PiDispatchGuardInput = {}): boolean 
 }
 
 async function loadDispatchModules(): Promise<{
-  lint: typeof import("../../.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs");
-  audit: typeof import("../../.opencode/hooks/dispatch/lib/dispatch-audit.mjs");
+  lint: typeof import("../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs");
+  audit: typeof import("../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs");
 }> {
   try {
     const [lint, audit] = await Promise.all([
-      import("../../.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs"),
-      import("../../.opencode/hooks/dispatch/lib/dispatch-audit.mjs"),
+      import("../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs"),
+      import("../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs"),
     ]);
     return { lint, audit };
   } catch {
@@ -261,7 +261,7 @@ export default function dispatchPreflightLint(pi: ExtensionAPI): void {
       const shape = audit.DISPATCH_SHAPES.find((candidate) => candidate.skill === dispatchSkill);
       if (!shape) return;
 
-      const skillMd = join(ctx.cwd, ".opencode", "skills", shape.packetPath, "SKILL.md");
+      const skillMd = join(ctx.cwd, ".skilled", "skills", shape.packetPath, "SKILL.md");
       const rules = lint.readHardRules(skillMd);
       if (rules.length === 0) return;
 

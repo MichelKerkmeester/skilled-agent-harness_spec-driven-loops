@@ -41,7 +41,7 @@ development_philosophy:
   mandate: "Dynamic detection with human-quality output matching 400+ existing changelogs"
 
 runtime_agent_path_resolution:
-  default: .opencode/agents
+  default: .skilled/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────
@@ -144,7 +144,7 @@ field_handling:
     note: "Only true via explicit --release flag, PRE-BOUND SETUP marker, or Q3 answer A. Never silently defaulted to true."
 
   defaults:
-    changelog_root: ".opencode/changelog/"
+    changelog_root: ".skilled/changelog/"
     date_format: "YYYY-MM-DD"
     version_format: "v{MAJOR}.{MINOR}.{PATCH}.{BUILD}"
     initial_version: "v1.0.0.0"
@@ -176,11 +176,11 @@ documentation_level:
 # ─────────────────────────────────────────────────────────────────
 component_mapping:
   # ─────────────────────────────────────────────────────────────────
-  # DYNAMIC DISCOVERY — scan .opencode/changelog/ at runtime
+  # DYNAMIC DISCOVERY — scan .skilled/changelog/ at runtime
   # ─────────────────────────────────────────────────────────────────
   # Component folders are NOT hardcoded. The workflow discovers them:
   #
-  #   $ ls -d .opencode/changelog/*/
+  #   $ ls -d .skilled/changelog/*/
   #
   # Folder naming convention: NN--component-name (zero-padded index)
   # Example: 04--commands, 11--sk-doc, 00--opencode-environment
@@ -188,9 +188,9 @@ component_mapping:
   # RESOLUTION STRATEGY (most specific first):
   #   1. Extract component name from folder (strip NN-- prefix)
   #   2. Match changed file paths against component names:
-  #      - .opencode/skills/{name}/**  → folder containing {name}
-  #      - .opencode/commands/**       → folder containing "commands"
-  #      - .opencode/agents/**         → folder containing "agents"
+  #      - .skilled/skills/{name}/**  → folder containing {name}
+  #      - .skilled/commands/**       → folder containing "commands"
+  #      - .skilled/agents/**         → folder containing "agents"
   #   3. Match component_hint keyword against folder names
   #   4. Fallback: first folder starting with "00--" (umbrella/cross-component)
   #
@@ -199,7 +199,7 @@ component_mapping:
   # ─────────────────────────────────────────────────────────────────
 
   discovery:
-    scan_command: "ls -d .opencode/changelog/*/ 2>/dev/null | sort"
+    scan_command: "ls -d .skilled/changelog/*/ 2>/dev/null | sort"
     folder_pattern: "^(\\d+)--(.*)"
     fallback_prefix: "00--"
     note: "Always use the first 00-- folder as default for unmatched paths"
@@ -259,10 +259,10 @@ version_bump_rules:
 # ─────────────────────────────────────────────────────────────────
 changelog_template:
   # ─────────────────────────────────────────────────────────────────
-  # TEMPLATE FILE: .opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
+  # TEMPLATE FILE: .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
   # ─────────────────────────────────────────────────────────────────
   # The canonical changelog and release notes template lives in:
-  #   .opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
+  #   .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
   #
   # It defines TWO formats:
   #   1. COMPACT — for releases with fewer than 10 changes
@@ -273,7 +273,7 @@ changelog_template:
   # See PUBLIC-RELEASE.md Section 7 for writing style rules.
   # Expanded-format sub-headings should stay short (2-5 words, not full sentences).
   # ─────────────────────────────────────────────────────────────────
-  template_file: ".opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
+  template_file: ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
   style_reference: "PUBLIC-RELEASE.md Section 7"
 
 # ─────────────────────────────────────────────────────────────────
@@ -294,7 +294,7 @@ highlight_categories:
   note: |
     Use plain category names from PUBLIC-RELEASE.md vocabulary.
     For expanded format: use short ### headings with Problem/Fix paragraphs.
-    Read .opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md for full format reference.
+    Read .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md for full format reference.
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW ENFORCEMENT
@@ -306,7 +306,7 @@ workflow_enforcement:
   critical_steps:
     step_2_component_resolution:
       enforcement: "MUST resolve to a valid changelog subfolder"
-      verification: "Folder exists at .opencode/changelog/{resolved_folder}/"
+      verification: "Folder exists at .skilled/changelog/{resolved_folder}/"
     step_3_version_determination:
       enforcement: "MUST calculate a sequential version number"
       verification: "No file with same version exists in target folder"
@@ -405,16 +405,16 @@ workflow:
     activities:
       - |
         IF changelog_mode = nested:
-          Run: node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --json
+          Run: node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --json
           Read canonical templates:
-            - .opencode/skills/system-spec-kit/templates/changelog/root.md
-            - .opencode/skills/system-spec-kit/templates/changelog/phase.md
+            - .skilled/skills/system-spec-kit/templates/changelog/root.md
+            - .skilled/skills/system-spec-kit/templates/changelog/phase.md
           Extract output_path and nested summary payload
           Skip component-folder mapping and versioned release rules
       - |
         IF changelog_mode = global:
         DISCOVER available changelog folders:
-          $ ls -d .opencode/changelog/*/ 2>/dev/null | sort
+          $ ls -d .skilled/changelog/*/ 2>/dev/null | sort
           Parse folder names using NN--component-name pattern
           Build runtime component list from actual directory contents
       - |
@@ -435,7 +435,7 @@ workflow:
         IF source_type = component:
           Match component_hint against discovered folder names (substring match)
           Direct resolution without file analysis
-      - "Verify target folder exists: ls .opencode/changelog/{resolved_folder}/"
+      - "Verify target folder exists: ls .skilled/changelog/{resolved_folder}/"
     outputs:
       - primary_component: "Resolved changelog subfolder name"
       - secondary_components: "Other affected components (if cross-component)"
@@ -483,8 +483,8 @@ workflow:
   step_4_content_generation:
     purpose: Generate changelog content following established format
     activities:
-      - "Read the template: .opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
-      - "If changelog_mode = nested, read .opencode/skills/system-spec-kit/templates/changelog/root.md or phase.md instead"
+      - "Read the template: .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
+      - "If changelog_mode = nested, read .skilled/skills/system-spec-kit/templates/changelog/root.md or phase.md instead"
       - "Set DATE to today's date in YYYY-MM-DD format"
       - |
         SELECT FORMAT based on change count and release type:
@@ -539,9 +539,9 @@ workflow:
     activities:
       - |
         IF changelog_mode = nested:
-          Run: node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --write
+          Run: node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --write
           Verify the written packet-local file matches nested_output_path
-      - "Construct output path: .opencode/changelog/{primary_component}/v{next_version}.md"
+      - "Construct output path: .skilled/changelog/{primary_component}/v{next_version}.md"
       - "Write changelog_content to output path using Write tool"
       - "Verify file was created by reading first 5 lines"
     outputs:

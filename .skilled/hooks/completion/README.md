@@ -19,7 +19,7 @@ When the assistant claims a task is "done"/"complete"/"shipped"/"implemented", t
 
 Advisory only: every adapter adds a warning to a bounded log (and, where the runtime allows, to model-visible context), never blocks or fails a turn. The core never executes a test, build, or `validate.sh`: it only does a bounded read of `check-completion.sh --json` output or a `stat` of `implementation-summary.md`.
 
-Every file in this folder is a symlink. The real per-runtime adapters live in `system-spec-kit/runtime/hooks/{runtime}/`; the OpenCode plugins live in `.opencode/plugins/`. Edit the source there, not here.
+Every file in this folder is a symlink. The real per-runtime adapters live in `system-spec-kit/runtime/hooks/{runtime}/`; the OpenCode plugins live in `.skilled/plugins/`. Edit the source there, not here.
 
 ---
 
@@ -40,7 +40,7 @@ Every file in this folder is a symlink. The real per-runtime adapters live in `s
 
    If the folder has no `checklist.md` (Level 1), it stats `implementation-summary.md` instead and advises when the file is absent: `claimed done but no implementation-summary.md recorded in <folder>`.
 
-4. Applies per-spec-folder dedup. A fingerprint of `specFolder + claimText` is stored in `.opencode/skills/.state/completion-sentinel/advisory-dedup.json`; if the same packet+message pair was already advised, the advisory is suppressed. A persistence failure fails open to "not deduped": the worst case is one extra advisory, never a blocked turn.
+4. Applies per-spec-folder dedup. A fingerprint of `specFolder + claimText` is stored in `.skilled/skills/.state/completion-sentinel/advisory-dedup.json`; if the same packet+message pair was already advised, the advisory is suppressed. A persistence failure fails open to "not deduped": the worst case is one extra advisory, never a blocked turn.
 5. Returns `{decision:'advise', detail, deduped}` or `{decision:'ok', detail:null, deduped}`.
 
 The adapter invokes `appendAdvisoryLog(projectDir, detail)` to write the bounded log line (256 KB, rotated to `.1`):
@@ -66,8 +66,8 @@ Every adapter evaluates the **same** core. What differs is the event, how the cl
 | **Devin** | `devin/completion-evidence-stop.cjs` → `system-spec-kit/.../hooks/devin/` | `Stop` (`.devin/hooks.v1.json`) | `payload.last_assistant_message` | Same lifecycle state file | `stderr` warning + advisory log. |
 | **Cursor** | `cursor/completion-evidence-response.mjs` → `system-spec-kit/.../hooks/cursor/` | `afterAgentResponse` | `payload.text` | `resolveSpecFolderFromText(claimText)` (regex on the claim text), then `readLastSpecFolder` fallback | Advisory log only (no stderr). |
 | **Pi** | `pi/completion-evidence.ts` → `system-spec-kit/.../hooks/pi/` | `turn_end` | Flattens `event.message.content` (string or `TextContent[]`) | `resolveSpecFolderFromText(claimText)`, then `readLastSpecFolder` using `ctx.sessionManager.getSessionId()` | Advisory log + `pi.sendMessage({customType:"completion-evidence-advisory", content, display:false})`, model-visible. |
-| **OpenCode** | `opencode/system-completion-sentinel.js` → `.opencode/plugins/` | `session.idle` (+ `session.created` for sweep) | `resolveLastAssistantText` via `ctx.client.session.messages()` (fetches last 20 messages, finds last assistant entry) | `resolveSpecFolderFromText(claimText)` only: no lifecycle state file | Advisory log only. **Never** stdout/stderr (TUI constraint). `session.created` triggers throttled state sweep. |
-| **OpenCode** | `opencode/system-speckit-completion.js` → `.opencode/plugins/` | None (read-only tool) | N/A | Tool arg `specFolder` | Tool return value (pretty-printed JSON). Not a sentinel. |
+| **OpenCode** | `opencode/system-completion-sentinel.js` → `.skilled/plugins/` | `session.idle` (+ `session.created` for sweep) | `resolveLastAssistantText` via `ctx.client.session.messages()` (fetches last 20 messages, finds last assistant entry) | `resolveSpecFolderFromText(claimText)` only: no lifecycle state file | Advisory log only. **Never** stdout/stderr (TUI constraint). `session.created` triggers throttled state sweep. |
+| **OpenCode** | `opencode/system-speckit-completion.js` → `.skilled/plugins/` | None (read-only tool) | N/A | Tool arg `specFolder` | Tool return value (pretty-printed JSON). Not a sentinel. |
 
 The three Stop-event adapters (Claude, Codex, Devin) share the same structure: read stdin, check kill switch, skip re-entrant stops, extract claim text, resolve spec folder from the shared lifecycle state file, run the core, log to stderr + advisory log. Cursor and Pi resolve the spec folder from the claim text first (regex), falling back to the lifecycle state file. OpenCode resolves from text only: `session.idle` hands over neither the message nor the active packet, so the adapter must recover both itself (the message via `ctx.client`, the folder via regex).
 
@@ -101,8 +101,8 @@ completion/
 | `system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs` | Devin `Stop` adapter. Same structure as Claude. |
 | `system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs` | Cursor `afterAgentResponse` adapter. Reads `payload.text`, resolves spec folder from text then lifecycle state, runs the core, logs to advisory log. |
 | `system-spec-kit/runtime/hooks/pi/completion-evidence.ts` | Pi `turn_end` extension. Flattens assistant message content, resolves spec folder from text then lifecycle state, runs the core, logs + sends `pi.sendMessage` (model-visible). |
-| `.opencode/plugins/system-completion-sentinel.js` | OpenCode `session.idle` plugin. Resolves last assistant text via `ctx.client.session.messages()`, resolves spec folder from text, runs the core, logs to advisory log. `session.created` triggers sweep. Never stdout/stderr. |
-| `.opencode/plugins/system-speckit-completion.js` | OpenCode read-only tool `system_speckit_completion`. Returns a spec folder's completion state (level, checklist P0/P1/P2, placeholder completeness). Not a sentinel: no event hooks. |
+| `.skilled/plugins/system-completion-sentinel.js` | OpenCode `session.idle` plugin. Resolves last assistant text via `ctx.client.session.messages()`, resolves spec folder from text, runs the core, logs to advisory log. `session.created` triggers sweep. Never stdout/stderr. |
+| `.skilled/plugins/system-speckit-completion.js` | OpenCode read-only tool `system_speckit_completion`. Returns a spec folder's completion state (level, checklist P0/P1/P2, placeholder completeness). Not a sentinel: no event hooks. |
 
 ---
 
@@ -121,7 +121,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `SYSTEM_COMPLETION_SENTINEL_RETENTION_DAYS` | Override the dedup-entry retention window (default 30 days). |
 | `SYSTEM_COMPLETION_SENTINEL_SWEEP_INTERVAL_MS` | Override the sweep throttle (default 1 hour). |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file.
 
 ---
 
@@ -133,7 +133,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 | Decisions | `ok` or `advise`. Never `block`: the sentinel is advisory-only for the entire v1 rollout. A bug or false-positive can never force continuation. |
 | Evidence | The core checks recorded artifacts only: `check-completion.sh --json` output (checklist folders) or a `stat` of `implementation-summary.md` (Level 1 folders). It never runs a test, build, or `validate.sh`. |
 | Failure | Fail-open on every path: missing payload, missing spec folder, missing checklist, spawn failure, timeout, non-zero exit with no recoverable stdout, dedup persistence error, log write error, sweep error: all resolve to `{decision:'ok'}` or a no-op. |
-| State | Dedup store at `.opencode/skills/.state/completion-sentinel/advisory-dedup.json` (atomic writes, per-spec-folder fingerprint). Advisory log at `.opencode/logs/completion-sentinel-advisories.log` (256 KB, rotated to `.1`). Sweep prunes entries older than the retention window. |
+| State | Dedup store at `.skilled/skills/.state/completion-sentinel/advisory-dedup.json` (atomic writes, per-spec-folder fingerprint). Advisory log at `.skilled/logs/completion-sentinel-advisories.log` (256 KB, rotated to `.1`). Sweep prunes entries older than the retention window. |
 | Output | The core never writes stdout/stderr. Adapters log to the bounded advisory log; the Stop-event adapters also warn to stderr; Pi sends a model-visible `pi.sendMessage`; OpenCode logs to file only (TUI constraint). |
 
 ---
@@ -141,19 +141,19 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 ## 8. VALIDATION
 
 ```bash
-node --test .opencode/plugins/tests/system-completion-sentinel.test.cjs
+node --test .skilled/plugins/tests/system-completion-sentinel.test.cjs
 ```
 
 Expected result: all tests pass (covers the core, the Claude/Codex/Devin Stop adapters, and the OpenCode `session.idle` adapter, including dedup and fail-open paths).
 
 ```bash
-node -e "import('./.opencode/plugins/system-completion-sentinel.js').then(m => console.log('ok', typeof m.default))"
+node -e "import('./.skilled/plugins/system-completion-sentinel.js').then(m => console.log('ok', typeof m.default))"
 ```
 
 Expected result: `ok function` (confirms the OpenCode adapter still resolves the core).
 
 ```bash
-node -e "import('./.opencode/plugins/system-speckit-completion.js').then(m => console.log('ok', typeof m.default))"
+node -e "import('./.skilled/plugins/system-speckit-completion.js').then(m => console.log('ok', typeof m.default))"
 ```
 
 Expected result: `ok function` (confirms the tool plugin loads).

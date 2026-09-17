@@ -35,7 +35,7 @@ evaluation_philosophy:
 # USER INPUTS
 # ─────────────────────────────────────────────────────────────────
 user_inputs:
-  target_path: "[TARGET_PATH] - Path to the agent .md file to evaluate. REQUIRED. Any file in .opencode/agents/*.md."
+  target_path: "[TARGET_PATH] - Path to the agent .md file to evaluate. REQUIRED. Any file in .skilled/agents/*.md (or .opencode/agents/*.md)."
   target_profile: "[TARGET_PROFILE] - Profile ID: handover, context-prime, or dynamic. Auto-derived from target_path if not explicit."
   scoring_mode: "[SCORING_MODE] - 'dynamic' for 5-dimension any-agent scoring, 'static' for legacy keyword profiles. Default: dynamic."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for improvement runtime. REQUIRED."
@@ -57,7 +57,7 @@ field_handling:
     target_path_required: true
     spec_folder_required: true
     target_path_must_exist: true
-    target_path_must_be_agent: "Must match .opencode/agents/*.md pattern"
+    target_path_must_be_agent: "Must match .skilled/agents/*.md or .opencode/agents/*.md pattern"
 
 # ─────────────────────────────────────────────────────────────────
 # CONTEXT LOADING
@@ -72,7 +72,7 @@ context_loading:
       - "the _memory.continuity frontmatter block in {spec_folder}/implementation-summary.md"
       - "the packet's canonical spec docs, spec.md and decision-record.md, for what the first two steps leave open"
     free_text_recipe: "rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'agent improvement {agent_name}' {spec_folder}"
-    recipe_contract: ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+    recipe_contract: ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
     exit_status: "0 is a hit set, 1 is a clean no-hit, 2 or higher is a failure that must be surfaced instead of reported as no-hit"
     ranking: "Ripgrep does not rank. Order the hits caller-side with the tuple in retrieval-conventions.md section 5."
   command_reference: "/speckit:search"
@@ -91,20 +91,20 @@ context_loading:
 # ─────────────────────────────────────────────────────────────────
 skill_reference:
   skill: system-deep-loop
-  skill_md: .opencode/skills/system-deep-loop/deep-improvement/SKILL.md
+  skill_md: .skilled/skills/system-deep-loop/deep-improvement/SKILL.md
   templates:
-    config: .opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-config.json
-    strategy: .opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-strategy.md
-    charter: .opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-charter.md
-    manifest: .opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/target-manifest.jsonc
+    config: .skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-config.json
+    strategy: .skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-strategy.md
+    charter: .skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-charter.md
+    manifest: .skilled/skills/system-deep-loop/deep-improvement/assets/agent-improvement/target-manifest.jsonc
   scripts:
-    scanner: .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs
-    profiler: .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs
-    scorer: .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
-    benchmark_materializer: .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs
-    benchmark: .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs
-    journal: .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs
-    reducer: .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs
+    scanner: .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs
+    profiler: .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs
+    scorer: .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    benchmark_materializer: .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs
+    benchmark: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs
+    journal: .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs
+    reducer: .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs
 
 # ─────────────────────────────────────────────────────────────────
 # STATE PATHS
@@ -114,7 +114,7 @@ skill_reference:
 # ─────────────────────────────────────────────────────────────────
 state_write_protocol:
   mechanism: "append-gateway"
-  command: "node .opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode agent-improvement --run-directory {artifact_dir} --event-json <record file>"
+  command: "node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode agent-improvement --run-directory {artifact_dir} --event-json <record file>"
   applies_to: "every append_to_jsonl directive in this workflow"
   refusal_handling: "halt on exit 2; never fall back to a direct file write"
   contract: |
@@ -184,11 +184,11 @@ workflow:
         command: "mkdir -p {spec_folder}/improvement/candidates {spec_folder}/improvement/benchmark-runs/{target_profile}"
       step_scan_integration:
         description: "Map all surfaces the target agent touches across the repo"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json"
       step_generate_profile:
         description: "Generate dynamic scoring profile from the agent's own rules (skip if static profile)"
         condition: "scoring_mode == 'dynamic'"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json"
       step_copy_templates:
         description: "Copy config, strategy, charter, and manifest templates into runtime root"
         action: "Copy config, strategy, charter, and manifest templates into the runtime root"
@@ -207,7 +207,7 @@ workflow:
         action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
       step_emit_journal_event:
         description: "Emit session_start journal event before the first loop iteration begins"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
 
   phase_loop:
     description: "Iterative propose -> score -> benchmark -> reduce cycle with operator gates"
@@ -216,10 +216,10 @@ workflow:
     steps:
       step_scan_integration:
         description: "Refresh integration surface map before each iteration"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json"
       step_check_candidate_dispatch_cap:
         description: "Enforce the cumulative candidate-dispatch cost cap (dispatchCaps.maxCandidateDispatches) before offering the candidate-generation gate"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/check-dispatch-cap.cjs --journal {spec_folder}/improvement/improvement-journal.jsonl --config {state_paths.config} --operation candidateDispatch"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/check-dispatch-cap.cjs --journal {spec_folder}/improvement/improvement-journal.jsonl --config {state_paths.config} --operation candidateDispatch"
         on_fail: "Do not present gate_before_candidate. Halt the entire agent-improvement loop (not just this iteration) with STATUS=FAIL: dispatchCaps.maxCandidateDispatches has been reached cumulatively for this session. Emit session_end with stopReason=error, sessionOutcome=advisoryOnly, release the lock, and report the printed cap message verbatim."
       gate_before_candidate:
         type: approval_gate
@@ -254,58 +254,58 @@ workflow:
           on_fail: "Do not emit candidate_generated, lineage, score, benchmark, or promotion records; halt the iteration as a dispatch-contract failure."
       step_emit_journal_event_candidate_generated:
         description: "Emit candidate_generated journal event after the candidate is written"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
       step_record_candidate_lineage:
         description: "Record the generated candidate in the packet-local lineage graph"
-        command: "node -e \"const lineage=require('./.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/candidate-lineage.cjs'); lineage.recordCandidate('{spec_folder}/improvement/candidate-lineage.json',{candidateId:'{candidate_id}',sessionId:'{session_id}',waveIndex:0,mutationType:'candidate-proposal',parentCandidateId:null,iteration:Number('{iteration}')});\""
+        command: "node -e \"const lineage=require('./.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/candidate-lineage.cjs'); lineage.recordCandidate('{spec_folder}/improvement/candidate-lineage.json',{candidateId:'{candidate_id}',sessionId:'{session_id}',waveIndex:0,mutationType:'candidate-proposal',parentCandidateId:null,iteration:Number('{iteration}')});\""
       step_check_score_execution_cap_primary:
         description: "Enforce the cumulative score-execution cost cap (dispatchCaps.maxScoreExecutions) before the primary score run"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/check-dispatch-cap.cjs --journal {spec_folder}/improvement/improvement-journal.jsonl --config {state_paths.config} --operation scoreExecution"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/check-dispatch-cap.cjs --journal {spec_folder}/improvement/improvement-journal.jsonl --config {state_paths.config} --operation scoreExecution"
         on_fail: "Halt the entire agent-improvement loop (not just this iteration) with STATUS=FAIL: dispatchCaps.maxScoreExecutions has been reached cumulatively for this session. Emit session_end with stopReason=error, sessionOutcome=advisoryOnly, release the lock, and report the printed cap message verbatim."
       step_score_candidate:
         description: "Score candidate across 5 dimensions (dynamic) or keyword checks (static)"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target-manifest.jsonc --profile={target_profile} --target={target_path} --output={score_output_path}"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target-manifest.jsonc --profile={target_profile} --target={target_path} --output={score_output_path}"
       step_emit_dispatch_cost_score_primary:
         description: "Record the primary score run against the cumulative score-execution cost cap"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit score_execution_recorded --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"role\":\"primary\"}'"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit score_execution_recorded --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"role\":\"primary\"}'"
       step_emit_journal_event_candidate_scored:
         description: "Emit candidate_scored journal event after scoring completes"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
       step_record_mutation_coverage:
         description: "Record mutation coverage and per-dimension trajectory from the scored candidate"
-        command: "node -e \"const fs=require('node:fs'); const coverage=require('./.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/mutation-coverage.cjs'); const score=JSON.parse(fs.readFileSync('{score_output_path}','utf8')); const dimensions=Array.isArray(score.dimensions)?score.dimensions:[]; const scores=Object.fromEntries(dimensions.map((entry)=>[entry.name,entry.score])); coverage.recordMutation('{spec_folder}/improvement/mutation-coverage.json',{dimension:'composite',mutationType:'candidate-proposal',candidateId:'{candidate_id}',iteration:Number('{iteration}'),outcome:score.recommendation||'scored'}); coverage.recordTrajectory('{spec_folder}/improvement/mutation-coverage.json',{iteration:Number('{iteration}'),scores,weightedScore:Number('{weighted_score}')});\""
+        command: "node -e \"const fs=require('node:fs'); const coverage=require('./.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/mutation-coverage.cjs'); const score=JSON.parse(fs.readFileSync('{score_output_path}','utf8')); const dimensions=Array.isArray(score.dimensions)?score.dimensions:[]; const scores=Object.fromEntries(dimensions.map((entry)=>[entry.name,entry.score])); coverage.recordMutation('{spec_folder}/improvement/mutation-coverage.json',{dimension:'composite',mutationType:'candidate-proposal',candidateId:'{candidate_id}',iteration:Number('{iteration}'),outcome:score.recommendation||'scored'}); coverage.recordTrajectory('{spec_folder}/improvement/mutation-coverage.json',{iteration:Number('{iteration}'),scores,weightedScore:Number('{weighted_score}')});\""
       step_materialize_benchmark-fixtures:
         description: "Materialize static benchmark fixtures into packet-local markdown outputs"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs --profile .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs"
       step_check_benchmark_run_cap:
         description: "Enforce the cumulative benchmark-run cost cap (dispatchCaps.maxBenchmarkRuns) before running fixture benchmarks"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/check-dispatch-cap.cjs --journal {spec_folder}/improvement/improvement-journal.jsonl --config {state_paths.config} --operation benchmarkRun"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/check-dispatch-cap.cjs --journal {spec_folder}/improvement/improvement-journal.jsonl --config {state_paths.config} --operation benchmarkRun"
         on_fail: "Halt the entire agent-improvement loop (not just this iteration) with STATUS=FAIL: dispatchCaps.maxBenchmarkRuns has been reached cumulatively for this session. Emit session_end with stopReason=error, sessionOutcome=advisoryOnly, release the lock, and report the printed cap message verbatim."
       step_run_benchmark:
         description: "Run fixture tests against packet-local outputs"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs --profile .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs"
       step_emit_journal_event_benchmark_completed:
         description: "Emit benchmark_completed journal event after report.json exists"
-        command: "test -f {spec_folder}/improvement/benchmark-outputs/report.json && node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"benchmarkOutputPath\":\"{spec_folder}/improvement/benchmark-outputs/report.json\",\"targetProfile\":\"{target_profile}\"}'"
+        command: "test -f {spec_folder}/improvement/benchmark-outputs/report.json && node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"benchmarkOutputPath\":\"{spec_folder}/improvement/benchmark-outputs/report.json\",\"targetProfile\":\"{target_profile}\"}'"
       step_check_score_execution_cap_replays:
         description: "Enforce the cumulative score-execution cost cap (dispatchCaps.maxScoreExecutions) before both stability replay runs (2 executions requested as one batch, since they always run together)"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/check-dispatch-cap.cjs --journal {spec_folder}/improvement/improvement-journal.jsonl --config {state_paths.config} --operation scoreExecution --requested 2"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/check-dispatch-cap.cjs --journal {spec_folder}/improvement/improvement-journal.jsonl --config {state_paths.config} --operation scoreExecution --requested 2"
         on_fail: "Halt the entire agent-improvement loop (not just this iteration) with STATUS=FAIL: dispatchCaps.maxScoreExecutions has been reached cumulatively for this session. Emit session_end with stopReason=error, sessionOutcome=advisoryOnly, release the lock, and report the printed cap message verbatim."
       step_score_candidate_replays:
         description: "Run two uncached same-candidate scoring replays in addition to the primary score"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target-manifest.jsonc --profile={target_profile} --target={target_path} --output={spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-2.json --no-cache && node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit score_execution_recorded --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"role\":\"replay-2\"}' && node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target-manifest.jsonc --profile={target_profile} --target={target_path} --output={spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-3.json --no-cache && node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit score_execution_recorded --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"role\":\"replay-3\"}'"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target-manifest.jsonc --profile={target_profile} --target={target_path} --output={spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-2.json --no-cache && node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit score_execution_recorded --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"role\":\"replay-2\"}' && node .skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target-manifest.jsonc --profile={target_profile} --target={target_path} --output={spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-3.json --no-cache && node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit score_execution_recorded --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"role\":\"replay-3\"}'"
       step_measure_benchmark_stability:
         description: "Measure replay stability from three independently executed scores of the same candidate"
-        command: "node -e \"const fs=require('node:fs'); const stability=require('./.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/benchmark-stability.cjs'); const paths=['{score_output_path}','{spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-2.json','{spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-3.json']; const scores=paths.map((file)=>JSON.parse(fs.readFileSync(file,'utf8'))); const result=stability.measureStability(scores,{minReplayCount:3,warningThreshold:0.95}); fs.writeFileSync('{spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-repeatability.json',JSON.stringify(result,null,2)+'\\n');\""
+        command: "node -e \"const fs=require('node:fs'); const stability=require('./.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/benchmark-stability.cjs'); const paths=['{score_output_path}','{spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-2.json','{spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-3.json']; const scores=paths.map((file)=>JSON.parse(fs.readFileSync(file,'utf8'))); const result=stability.measureStability(scores,{minReplayCount:3,warningThreshold:0.95}); fs.writeFileSync('{spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-repeatability.json',JSON.stringify(result,null,2)+'\\n');\""
       step_detect_trade_offs:
         description: "Analyze the scored trajectory for Pareto trade-offs before reduction"
-        command: "node -e \"const fs=require('node:fs'); const detector=require('./.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/trade-off-detector.cjs'); const trajectory=detector.getTrajectory('{spec_folder}/improvement/improvement-journal.jsonl'); const tradeOffs=detector.detectTradeOffs(trajectory); fs.writeFileSync('{spec_folder}/improvement/trade-off-report.json',JSON.stringify({iteration:Number('{iteration}'),tradeOffs},null,2)+'\\n');\""
+        command: "node -e \"const fs=require('node:fs'); const detector=require('./.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/trade-off-detector.cjs'); const trajectory=detector.getTrajectory('{spec_folder}/improvement/improvement-journal.jsonl'); const tradeOffs=detector.detectTradeOffs(trajectory); fs.writeFileSync('{spec_folder}/improvement/trade-off-report.json',JSON.stringify({iteration:Number('{iteration}'),tradeOffs},null,2)+'\\n');\""
       step_append_ledger:
         description: "Record scored results in append-only JSONL ledger"
         action: "Append prompt-score and benchmark records into agent-improvement-state.jsonl"
       step_reduce:
         description: "Refresh dashboard, registry, and dimensional progress"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs {spec_folder}/improvement"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs {spec_folder}/improvement"
       gate_after_score:
         type: approval_gate
         description: "Operator reviews scores and decides next action"
@@ -317,15 +317,15 @@ workflow:
           C) Stop loop
       step_emit_journal_event_legal_stop_evaluated:
         description: "Emit legal_stop_evaluated journal event with all five gate bundles after the operator gate is evaluated"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit legal_stop_evaluated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateResults\":{\"contractGate\":\"{contract_gate}\",\"behaviorGate\":\"{behavior_gate}\",\"integrationGate\":\"{integration_gate}\",\"evidenceGate\":\"{evidence_gate}\",\"improvementGate\":\"{improvement_gate}\"},\"stopReason\":\"{stop_reason}\"}'"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit legal_stop_evaluated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateResults\":{\"contractGate\":\"{contract_gate}\",\"behaviorGate\":\"{behavior_gate}\",\"integrationGate\":\"{integration_gate}\",\"evidenceGate\":\"{evidence_gate}\",\"improvementGate\":\"{improvement_gate}\"},\"stopReason\":\"{stop_reason}\"}'"
       step_emit_journal_event_blocked_stop:
         description: "Emit blocked_stop when any legal-stop gate fails"
         condition: "contractGate.passed == false OR behaviorGate.passed == false OR integrationGate.passed == false OR evidenceGate.passed == false OR improvementGate.passed == false"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit blocked_stop --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"failedGates\":\"{failed_gates}\",\"stopReason\":\"blockedStop\"}'"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit blocked_stop --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"failedGates\":\"{failed_gates}\",\"stopReason\":\"blockedStop\"}'"
       step_promote_candidate:
         description: "Promote the accepted candidate to canonical target (guarded, requires score evidence)"
         condition: "gate_after_score == 'B' AND score_recommendation == 'candidate-better'"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --score={score_output_path} --benchmark-report={spec_folder}/improvement/benchmark-outputs/report.json --repeatability-report={repeatability_output_path} --config={spec_folder}/improvement/agent-improvement-config.json --manifest={spec_folder}/improvement/target-manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --score={score_output_path} --benchmark-report={spec_folder}/improvement/benchmark-outputs/report.json --repeatability-report={repeatability_output_path} --config={spec_folder}/improvement/agent-improvement-config.json --manifest={spec_folder}/improvement/target-manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
 
   phase_synthesis:
     description: "After loop exits, summarize findings and recommend next action"
@@ -338,7 +338,7 @@ workflow:
         action: "Check experiment-registry.json for bestPromptRecord and stopStatus"
       step_emit_journal_event:
         description: "Emit session_end journal event after synthesis completes"
-        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+        command: "node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
       step_release_lock:
         description: "Release the advisory lock as the final step of synthesis"
         command: "Close or unlock {state_paths.lock_file} using advisory semantics only."

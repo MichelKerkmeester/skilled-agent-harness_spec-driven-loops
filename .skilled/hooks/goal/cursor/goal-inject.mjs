@@ -84,7 +84,7 @@ async function main() {
     // Cursor has no management command, so the reminder carries the one CLI
     // line that records the resend with this session's own scope.
     const reminder = renderResendReminder(goal, cwd, {
-      recordCommand: `node .opencode/hooks/goal/bin/goal.cjs resent --runtime cursor --session ${JSON.stringify(sessionId)} --workspace ${JSON.stringify(cwd)}`,
+      recordCommand: `node .skilled/hooks/goal/bin/goal.cjs resent --runtime cursor --session ${JSON.stringify(sessionId)} --workspace ${JSON.stringify(cwd)}`,
     });
     return allow({ agent_message: reminder ? `${brief}\n${reminder}` : brief });
   } catch {

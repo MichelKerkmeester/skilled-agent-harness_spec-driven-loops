@@ -21,7 +21,7 @@ trigger_phrases:
 > called `goal-file-manifest.txt` and a third-party integration's own goals feature share the
 > word and share nothing else. Check which one a document means before acting on it.
 
-`.opencode/hooks/goal/` provides passive goal steering for runtimes that can supply a verified native session identity. Each supported read or mutation resolves one composite scope:
+`.skilled/hooks/goal/` provides passive goal steering for runtimes that can supply a verified native session identity. Each supported read or mutation resolves one composite scope:
 
 ```text
 workspace + runtime + native session id -> one opaque state file and one archive namespace
@@ -31,7 +31,7 @@ There is no default session and no process-global current-goal pointer. Missing 
 
 The directive itself lives in the packet. A session binds to a spec packet, and that packet's `goal.md` is the single source of the goal: the record under the state root keeps only the pointer, an operator copy derived from the file, liveness, telemetry and the hash of the slice last resent in chat. Rendering reads the file every time, so editing `goal.md` changes what the model sees on the next turn, and a bound record whose document is gone injects nothing rather than a stale copy. The frontmatter never leaves the file: `lib/goal-slice.cjs` draws the boundary once for every surface, the CommonJS core and the ESM plugin alike.
 
-The core (`lib/goal-core.cjs`) was ported from the OpenCode `opencode-goal` plugin's session state machine, template, and prompt-injection hardening. OpenCode's `.opencode/plugins/opencode-goal.js` remains a separate, larger native implementation with its own per-OpenCode-session files, fixed opaque SHA-256 state keys, token accounting, lifecycle events, and guarded continuation. The two share the kill switch, the state-directory contract, the packet slice module and the locked packet-log append; the OpenCode plugin requires `lib/goal-slice.cjs` and `appendPacketLog` from `lib/goal-core.cjs`, and nothing else from this tree.
+The core (`lib/goal-core.cjs`) was ported from the OpenCode `opencode-goal` plugin's session state machine, template, and prompt-injection hardening. OpenCode's `.skilled/plugins/opencode-goal.js` remains a separate, larger native implementation with its own per-OpenCode-session files, fixed opaque SHA-256 state keys, token accounting, lifecycle events, and guarded continuation. The two share the kill switch, the state-directory contract, the packet slice module and the locked packet-log append; the OpenCode plugin requires `lib/goal-slice.cjs` and `appendPacketLog` from `lib/goal-core.cjs`, and nothing else from this tree.
 
 ---
 
@@ -45,7 +45,7 @@ The core owns scope validation, opaque path resolution, atomic state I/O, the go
 
 **Verification.** `verifyGoalHeuristic()` is ported from `opencode-goal`'s default heuristic supervisor. Blocking language (`blocked`, `error`, `failed`, `cannot`, `incomplete`, `pending`, ...) → `not-met`; an explicit completion signal (`done`, `completed`, `shipped`, `tests passed`, ...) tied to the objective's keywords → `met` (confidence 0.72); ambiguous or mixed evidence stays `unclear` rather than `met`. It never forces continuation: non-OpenCode runtimes have no native continuation surface.
 
-**State layout.** The default state root is `.opencode/skills/.state/goal/` (override with `OPENCODE_GOAL_STATE_DIR` for tests/probes):
+**State layout.** The default state root is `.skilled/skills/.state/goal/` (override with `OPENCODE_GOAL_STATE_DIR` for tests/probes):
 
 ```text
 .state/goal/
@@ -77,7 +77,7 @@ The core is runtime-neutral; each adapter binds it to a native lifecycle event a
 | **Pi** | `pi/goal-context.ts` | `input` + `session_start` + `turn_end`; registers `/goal-pi` command, discovered via `.pi/extensions/` | `ctx.sessionManager.getSessionId()` for native identity; `ctx.cwd` for workspace | `input` → `{action: "transform", text: ...}` (per-turn injection, chains additively). `session_start` → restore via `pi.sendMessage`. `turn_end` → heuristic verify, observe-only nudge via `pi.sendMessage` when not met, records turn. `/goal-pi` shells to `bin/goal.cjs` with scope flags. |
 | **Cursor** | `cursor/goal-inject.mjs` | `sessionStart` only | `session_id` then `conversation_id` fallback; `workspace_roots[0]` for workspace | `{permission: 'allow', agent_message: brief + reminder}`. Injection-only: management needs identity the prompt command does not carry, so `/goal-cursor` answers only `packet <path>`, a session-free read. No mid-session refresh, no verify/continue. Model-visibility is recorded-evidence, not a proven end-to-end guarantee. |
 | **Devin** | `devin/goal-inject.mjs` | `SessionStart` + `UserPromptSubmit` in `.devin/hooks.v1.json` | `session_id`; `cwd` or `DEVIN_PROJECT_DIR` for workspace | `{hookSpecificOutput: {hookEventName, additionalContext: brief + reminder}}`. Injection-only: the repository exposes no Devin prompt-command surface. |
-| **OpenCode** | `.opencode/plugins/opencode-goal.js` (mirrored at `opencode/`) | Native OpenCode plugin, outside this core | Owns per-OpenCode-session files, token accounting, lifecycle events | Native `/goal-opencode` tools with `bind`, `resent` and `packet`, native verifier, guarded continuation. A separate implementation that shares the kill switch, the state-directory contract and `lib/goal-slice.cjs`. |
+| **OpenCode** | `.skilled/plugins/opencode-goal.js` (mirrored at `opencode/`) | Native OpenCode plugin, outside this core | Owns per-OpenCode-session files, token accounting, lifecycle events | Native `/goal-opencode` tools with `bind`, `resent` and `packet`, native verifier, guarded continuation. A separate implementation that shares the kill switch, the state-directory contract and `lib/goal-slice.cjs`. |
 | **Claude** | — | native goal command | — | Keeps its host goal command, operator-confirmed 2026-09-12 and re-checkable only against a live host. The speckit workflows render the parent goal's durable slice, frontmatter excluded, and hand it over to be set; the `AGENTS.md` goal posture row binds the agent on every turn. |
 | **Codex** | — | native goal command | — | Same as Claude, on the same confirmation. |
 
@@ -119,7 +119,7 @@ goal/
 | `devin/goal-inject.mjs` | Devin `SessionStart` and `UserPromptSubmit` injection. Same brief and reminder, returned as `additionalContext` in Devin's `hookSpecificOutput` envelope. Fails open to `{}`. |
 | `lib/goal-core.test.cjs`, `bin/goal.test.cjs` | Core, lifecycle, concurrency, legacy, hardening, CLI binding, privacy, and legacy action coverage. |
 
-`.opencode/plugins/opencode-goal.js` is the OpenCode-native plugin; it is a separate implementation that shares the kill switch, the state directory, `lib/goal-slice.cjs` and the core's `appendPacketLog`, and imports nothing else from this tree.
+`.skilled/plugins/opencode-goal.js` is the OpenCode-native plugin; it is a separate implementation that shares the kill switch, the state directory, `lib/goal-slice.cjs` and the core's `appendPacketLog`, and imports nothing else from this tree.
 
 ---
 
@@ -134,7 +134,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 | `OPENCODE_GOAL_STATE_DIR` | Override the state root (tests and isolated probes use this to avoid touching the real `.state/goal/` tree). |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session. Pi discovery can additionally be disabled with `-extensions/goal-context.ts` in `.pi/settings.json`.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session. Pi discovery can additionally be disabled with `-extensions/goal-context.ts` in `.pi/settings.json`.
 
 ---
 
@@ -155,31 +155,31 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 
 ```bash
 node --test \
-  .opencode/hooks/goal/lib/goal-slice.test.cjs \
-  .opencode/hooks/goal/lib/goal-core.test.cjs \
-  .opencode/hooks/goal/bin/goal.test.cjs \
-  .opencode/hooks/goal/pi/goal-pi.test.mjs \
-  .opencode/hooks/goal/cursor/goal-cursor.test.mjs \
-  .opencode/hooks/goal/devin/goal-devin.test.mjs
+  .skilled/hooks/goal/lib/goal-slice.test.cjs \
+  .skilled/hooks/goal/lib/goal-core.test.cjs \
+  .skilled/hooks/goal/bin/goal.test.cjs \
+  .skilled/hooks/goal/pi/goal-pi.test.mjs \
+  .skilled/hooks/goal/cursor/goal-cursor.test.mjs \
+  .skilled/hooks/goal/devin/goal-devin.test.mjs
 ```
 
 Expected result: all tests pass.
 
 ```bash
-node --test .opencode/plugins/tests/opencode-goal-*.test.cjs
+node --test .skilled/plugins/tests/opencode-goal-*.test.cjs
 ```
 
 Expected result: all OpenCode plugin tests pass.
 
 ```bash
-node --test .opencode/plugins/tests/opencode-goal-render-parity.test.cjs
+node --test .skilled/plugins/tests/opencode-goal-render-parity.test.cjs
 ```
 
 Expected result: the two renderers agree on every label and the brief cache key tracks every write.
 
 ```bash
-python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py \
-  --root .opencode/hooks/goal
+python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py \
+  --root .skilled/hooks/goal
 ```
 
 Expected result: no alignment drift. Use temporary `OPENCODE_GOAL_STATE_DIR` paths for manual probes; never point migration fixtures at the operator's live state root.

@@ -1,6 +1,6 @@
 ---
 title: "Claude Hook Discovery Mirror"
-description: "Discovery-only symlinks for the repository's Claude hook scripts; runtime wiring remains in .claude/settings.json and points to real .opencode paths."
+description: "Discovery-only symlinks for the repository's Claude hook scripts; runtime wiring remains in .claude/settings.json and points to real .skilled paths."
 ---
 # Claude Hook Discovery Mirror
 
@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Claude hook scripts; 
 
 ## 1. OVERVIEW
 
-`.claude/hooks/` contains 21 symlinks to hook scripts owned under `.opencode/`. Most target their owning skill under `.opencode/skills/`; the six fully-portable guard cores (`dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `mcp-route-guard.cjs`, `task-dispatch-guard.cjs`, `fable-subagent-guard.mjs`, `claude-posttooluse.cjs`) target `.opencode/hooks/` instead, see [`hooks/README.md`](../../.opencode/hooks/README.md) for why. The mirror gives maintainers one place to inspect the Claude inventory. Claude executes the real paths declared in `.claude/settings.json`, not these links.
+`.claude/hooks/` contains 21 symlinks to hook scripts owned under `.skilled/`. Most target their owning skill under `.skilled/skills/`; the six fully-portable guard cores (`dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `mcp-route-guard.cjs`, `task-dispatch-guard.cjs`, `fable-subagent-guard.mjs`, `claude-posttooluse.cjs`) target `.skilled/hooks/` instead, see [`hooks/README.md`](../../.skilled/hooks/README.md) for why. The mirror gives maintainers one place to inspect the Claude inventory. Claude executes the real paths declared in `.claude/settings.json`, not these links.
 
 Two compiled ESM entrypoints do not execute correctly through their symlink because their direct-entry guards compare the invocation path with the resolved module URL. Keep all runtime commands pointed at the real files.
 
@@ -43,7 +43,7 @@ Empty output can be a normal allow decision. Compare a mirror invocation with it
 Validate this README from the repository root:
 
 ```bash
-python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .claude/hooks/README.md
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .claude/hooks/README.md
 ```
 
 Expected result: exit 0 with zero document issues.
@@ -64,5 +64,5 @@ Expected result: hook scripts use mode `120000`; `README.md` uses mode `100644`.
 - [Codex mirror](../../.codex/hooks/README.md)
 - [Cursor mirror](../../.cursor/hooks/README.md)
 - [Devin mirror](../../.devin/hooks/README.md)
-- [Injection contract](../../.opencode/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
-- [Runtime hooks tree](../../.opencode/hooks/README.md): the four fully-portable guard cores this mirror now points at outside `.opencode/skills/`
+- [Injection contract](../../.skilled/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
+- [Runtime hooks tree](../../.skilled/hooks/README.md): the four fully-portable guard cores this mirror now points at outside `.skilled/skills/`

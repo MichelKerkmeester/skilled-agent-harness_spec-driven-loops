@@ -1,6 +1,6 @@
 ---
 title: "Devin CLI — Runtime Sync Manifest"
-description: "How .devin derives from .opencode and .claude: the nested agent symlink shape, the strict-YAML constraint, inherited rules, and how to detect drift. Devin carries no mirrored command surface."
+description: "How .devin derives from .skilled and .claude: the nested agent symlink shape, the strict-YAML constraint, inherited rules, and how to detect drift. Devin carries no mirrored command surface."
 ---
 
 # Devin CLI Sync Manifest
@@ -27,12 +27,12 @@ Two naming quirks to internalise:
 | Surface | Mechanism | Source | Target shape |
 |---|---|---|---|
 | `agents/<name>/AGENT.md` (13) | symlink | `.claude/agents/<name>.md` | `../../../.claude/agents/<name>.md` |
-| `hooks/*` | symlink | scattered `.opencode/**` | discovery mirror only |
+| `hooks/*` | symlink | scattered `.skilled/**` | discovery mirror only |
 | `hooks.v1.json` | **hand-authored** | — | — |
 | `mcp_config.json` | **Devin-owned** | — | real file, not a symlink |
 | `config.local.json` | operator-local | — | gitignored, never synced |
 | `rules/` | **absent by design** | — | see §5 |
-| `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` | `../.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` |
+| `manual-testing-playbook/` | whole-dir symlink | `.skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` | `../.skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` |
 
 The agent mirror tree is **nested one directory per item** — the directory name is the identifier, and the file inside carries the fixed name Devin looks for (`AGENT.md`).
 
@@ -52,10 +52,10 @@ Devin also discovers the 12 `.opencode/skills/` packets on its own, with no mirr
 
 ```bash
 # Refresh every symlink tree (devin agents + hooks, and the cursor trees)
-node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
 
 # Verify roster coverage across all five runtime surfaces
-node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
+node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
 ```
 
 ---
@@ -97,7 +97,7 @@ Valid `--permission-mode` values are `normal` (alias `auto`, default), `accept-e
 
 - 13 agents, names matching the canonical tree. Devin carries no mirrored command surface; the drift checks below are authoritative.
 - Every `AGENT.md` is a symlink resolving into the canonical tree; a real file there is a silent fork.
-- Every `.opencode/**` script `hooks.v1.json` invokes has a matching symlink in `hooks/`.
+- Every `.skilled/**` script `hooks.v1.json` invokes has a matching symlink in `hooks/`.
 - Every mirrored file parses as strict YAML.
 
 ---
@@ -106,8 +106,8 @@ Valid `--permission-mode` values are `normal` (alias `auto`, default), `accept-e
 
 | Check | Command | Exit |
 |---|---|---|
-| Symlink trees incl. `hooks/` | `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
-| Roster coverage | `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift |
+| Symlink trees incl. `hooks/` | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
+| Roster coverage | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
 
 Live confirmation, which file checks cannot give you:
@@ -136,7 +136,7 @@ A command missing from `devin skills list` while present on disk is almost alway
 | Document | Purpose |
 |---|---|
 | [`hooks/README.md`](hooks/README.md) | Why the mirror is discovery-only |
-| `.opencode/skills/cli-external-orchestration/cli-devin/SKILL.md` | Dispatch contract, roster parity, and the auto-import correction |
-| `.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/` | 20 executable scenarios covering these surfaces |
+| `.skilled/skills/cli-external-orchestration/cli-devin/SKILL.md` | Dispatch contract, roster parity, and the auto-import correction |
+| `.skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/` | 20 executable scenarios covering these surfaces |
 | [`../.cursor/rules/skill-routing.md`](../.cursor/rules/skill-routing.md) | The routing rule Devin inherits |
 | [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.pi/SYNC.md`](../.pi/SYNC.md) | Sibling runtime manifests |

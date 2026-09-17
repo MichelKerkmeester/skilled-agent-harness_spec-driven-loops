@@ -12,7 +12,7 @@ the stop-before-write, delete-legacy-after-validation, and machine-block
 byte-preservation invariants. A separate grep keeps every authoring surface
 from instructing creation of a legacy smart-routing.md path.
 
-Usage: python3 .opencode/commands/create/assets/tests/test_skill_parent_router_parity.py
+Usage: python3 .skilled/commands/create/assets/tests/test_skill_parent_router_parity.py
 """
 
 import re
@@ -45,10 +45,10 @@ ACTION_LINE = "ROUTER.md: create|migrate|unchanged"
 # router path. The contract library and its fixtures deliberately name the
 # legacy paths (to reject them) and are excluded here.
 AUTHORING_SURFACES = [
-    REPO_ROOT / ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill",
-    REPO_ROOT / ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill",
-    REPO_ROOT / ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
-    REPO_ROOT / ".opencode/commands/create",
+    REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill",
+    REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill",
+    REPO_ROOT / ".skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+    REPO_ROOT / ".skilled/commands/create",
 ]
 
 # A creation instruction is an imperative verb scoped to the legacy router

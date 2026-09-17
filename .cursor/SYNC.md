@@ -1,6 +1,6 @@
 ---
 title: "Cursor CLI — Runtime Sync Manifest"
-description: "How .cursor derives from .opencode and .claude: symlinked agents and commands, the hand-authored rules file Devin also reads, and how to detect drift."
+description: "How .cursor derives from .skilled and .claude: symlinked agents and commands, the hand-authored rules file Devin also reads, and how to detect drift."
 ---
 
 # Cursor CLI Sync Manifest
@@ -20,7 +20,7 @@ Cursor loads custom subagents from two places, both confirmed live:
 | `.cursor/agents/*.md` | This repo's explicit mirrors |
 | `.claude/agents/*.md` | Claude-format auto-import — worked before any mirror existed |
 
-Agents source from **`.claude/agents/`**, not `.opencode/agents/`, because Cursor parses the Claude dialect (`tools:`). Commands source from `.opencode/commands/` directly. Note `~/.cursor/agents/` (user-level) is documented by Cursor but a live probe found the CLI did **not** load a profile placed there.
+Agents source from **`.claude/agents/`**, not `.skilled/agents/`, because Cursor parses the Claude dialect (`tools:`). Commands source from `.skilled/commands/` directly. Note `~/.cursor/agents/` (user-level) is documented by Cursor but a live probe found the CLI did **not** load a profile placed there.
 
 ---
 
@@ -29,12 +29,12 @@ Agents source from **`.claude/agents/`**, not `.opencode/agents/`, because Curso
 | Surface | Mechanism | Source | Target shape |
 |---|---|---|---|
 | `agents/*.md` (13) | symlink | `.claude/agents/<name>.md` | `../../.claude/agents/<name>.md` |
-| `commands/*.md` (36) | symlink, except the two native commands | `.opencode/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
-| `hooks/*` (15) | symlink | scattered `.opencode/**` | discovery mirror only |
+| `commands/*.md` (36) | symlink, except the two native commands | `.skilled/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
+| `hooks/*` (15) | symlink | scattered `.skilled/**` | discovery mirror only |
 | `hooks.json` | **hand-authored** | — | — |
 | `rules/skill-routing.md` | **hand-authored**, plus one generated Gate 1 pointer block | root `AGENTS.md` Gate 1 line via `sync-gate1-pointers.cjs` | also read by Devin; `--check` catches a stale block |
 | `mcp.json` | symlink | `../.mcp.json` → `.claude/mcp.json` | double hop |
-| `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` | `../.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` |
+| `manual-testing-playbook/` | whole-dir symlink | `.skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` | `../.skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` |
 
 No `.cursor/skills/` — Cursor's own skills live in `~/.cursor/skills-cursor/` and are managed by Cursor itself.
 
@@ -43,7 +43,7 @@ No `.cursor/skills/` — Cursor's own skills live in `~/.cursor/skills-cursor/` 
 ## 3. WHEN TO SYNC
 
 - An agent is added or removed in `.claude/agents/` → re-run the mirror generator.
-- A command is added, renamed or removed in `.opencode/commands/` → re-run the mirror generator.
+- A command is added, renamed or removed in `.skilled/commands/` → re-run the mirror generator.
 - A hook is registered in `hooks.json` → re-run the generator for the matching `hooks/` symlink.
 - Skill routing changes → hand-edit `rules/skill-routing.md`, and remember **Devin reads this file too**.
 
@@ -53,10 +53,10 @@ No `.cursor/skills/` — Cursor's own skills live in `~/.cursor/skills-cursor/` 
 
 ```bash
 # Refresh every symlink tree (cursor agents + commands + hooks, and the devin trees)
-node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
 
 # Verify roster coverage across all five runtime surfaces
-node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
+node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
 ```
 
 Both refuse to accept a real file where a symlink belongs — that is a silent fork, not a valid mirror.
@@ -94,8 +94,8 @@ Both refuse to accept a real file where a symlink belongs — that is a silent f
 
 | Check | Command | Exit |
 |---|---|---|
-| Symlink trees incl. `hooks/` | `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
-| Roster coverage | `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift |
+| Symlink trees incl. `hooks/` | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
+| Roster coverage | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
 
 Live confirmation, which file checks cannot give you:
@@ -111,7 +111,7 @@ Expect the 13 repo agents alongside Cursor's own built-ins. Note that dispatchin
 ## 8. KNOWN GAPS
 
 - **`hooks.json` is hand-authored and unmirrorable.** Its dialect has no counterpart in the other three runtimes.
-- **`rules/skill-routing.md`'s packet list has no generator** and is not derived from the skill registry, so a new skill packet will not appear in it automatically. Only its Gate 1 pointer block is generated, from the root `AGENTS.md` line, by `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs` (`--check` reports drift).
+- **`rules/skill-routing.md`'s packet list has no generator** and is not derived from the skill registry, so a new skill packet will not appear in it automatically. Only its Gate 1 pointer block is generated, from the root `AGENTS.md` line, by `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs` (`--check` reports drift).
 - **`beforeSubmitPrompt` dormancy is unresolved upstream.** The static rules file mitigates but does not replace it.
 
 ---
@@ -122,5 +122,5 @@ Expect the 13 repo agents alongside Cursor's own built-ins. Note that dispatchin
 |---|---|
 | [`hooks/README.md`](hooks/README.md) | Why the mirror is discovery-only, incl. the compiled-ESM caveat |
 | [`rules/skill-routing.md`](rules/skill-routing.md) | The static routing rule, also consumed by Devin |
-| `.opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md` | Dispatch contract and the corrected custom-agent record |
+| `.skilled/skills/cli-external-orchestration/cli-cursor/SKILL.md` | Dispatch contract and the corrected custom-agent record |
 | [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) · [`../.pi/SYNC.md`](../.pi/SYNC.md) | Sibling runtime manifests |

@@ -1,6 +1,6 @@
 ---
 title: "Hermes Agent — Runtime Sync Manifest"
-description: "How .hermes derives from .opencode: curated per-skill symlinks, generated prompt templates, one project plugin bridging the shared guard cores, and the operator steps Hermes keeps user-level."
+description: "How .hermes derives from .skilled: curated per-skill symlinks, generated prompt templates, one project plugin bridging the shared guard cores, and the operator steps Hermes keeps user-level."
 ---
 
 # Hermes Agent Sync Manifest
@@ -21,11 +21,11 @@ Two behaviors shape the layout. Hermes **scans every project skill directory** w
 
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
-| `skills/<name>/SKILL.md` | **generated** markdown-only copy, one folder per canonical `SKILL.md` (all 56, flat by frontmatter name) plus one `agent-<name>/` per shared agent (12) | `.opencode/skills/**/SKILL.md` | Yes — `sync-skills-hermes.cjs --check`. Not a symlink: Hermes scans every project skill directory at session start, so a linked directory drags its `scripts/`, `node_modules/` and references through the scanner (ten minutes for the whole tree, every hub quarantined; even the single `cli-hermes` link was quarantined on 37 findings). The copies scan in seconds; each names its canonical directory for `references/`, `assets/` and `scripts/`. `-s <name>` preloads any of them (verified live for `sk-git`, `cli-hermes`, `system-spec-kit`). `hermes skills list` shows the loadable ones as `local` rows: 61 of the 68 on 2026-09-15. The other seven are quarantined because Hermes's prose scanner rates their own text dangerous, which excludes them from the listing AND from `-s` (`Unknown skill(s)`, exit 1) |
-| `prompts/*.md` | **generated** pointer stubs | `.opencode/commands/**/*.md` | Yes — `sync-prompts-hermes.cjs --check` |
-| `plugins/repo-guards/` | **hand-authored** project plugin | shared guard cores under `.opencode/**` | Behavioral drift only; `hermes plugins validate` checks the manifest |
-| `agents/` | whole-dir symlink | `.opencode/agents` (the authored source; `.claude/agents` is a mirror the pre-commit gate keeps in sync) | No. Hermes has no agent flag, so each agent is also mirrored as the preloadable skill `skills/agent-<name>/` by `sync-skills-hermes.cjs`; `-s agent-<name>` carries the full persona and `HERMES_AGENT_PERSONA=<name>` makes the repo plugin bind it as the session persona |
-| `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook` | No |
+| `skills/<name>/SKILL.md` | **generated** markdown-only copy, one folder per canonical `SKILL.md` (all 56, flat by frontmatter name) plus one `agent-<name>/` per shared agent (12) | `.skilled/skills/**/SKILL.md` | Yes — `sync-skills-hermes.cjs --check`. Not a symlink: Hermes scans every project skill directory at session start, so a linked directory drags its `scripts/`, `node_modules/` and references through the scanner (ten minutes for the whole tree, every hub quarantined; even the single `cli-hermes` link was quarantined on 37 findings). The copies scan in seconds; each names its canonical directory for `references/`, `assets/` and `scripts/`. `-s <name>` preloads any of them (verified live for `sk-git`, `cli-hermes`, `system-spec-kit`). `hermes skills list` shows the loadable ones as `local` rows: 61 of the 68 on 2026-09-15. The other seven are quarantined because Hermes's prose scanner rates their own text dangerous, which excludes them from the listing AND from `-s` (`Unknown skill(s)`, exit 1) |
+| `prompts/*.md` | **generated** pointer stubs | `.skilled/commands/**/*.md` | Yes — `sync-prompts-hermes.cjs --check` |
+| `plugins/repo-guards/` | **hand-authored** project plugin | shared guard cores under `.skilled/**` | Behavioral drift only; `hermes plugins validate` checks the manifest |
+| `agents/` | whole-dir symlink | `.skilled/agents` (the authored source; `.claude/agents` is a mirror the pre-commit gate keeps in sync) | No. Hermes has no agent flag, so each agent is also mirrored as the preloadable skill `skills/agent-<name>/` by `sync-skills-hermes.cjs`; `-s agent-<name>` carries the full persona and `HERMES_AGENT_PERSONA=<name>` makes the repo plugin bind it as the session persona |
+| `manual-testing-playbook/` | whole-dir symlink | `.skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook` | No |
 | `SYNC.md` | hand-authored | — | No |
 
 Hermes has no flag that loads an agent file, its profiles are whole-home islands, its sub-agents receive a goal and context only, and a plugin prompt section is capped at 4000 characters. So an agent reaches a session two ways at once: the generator mirrors every `.hermes/agents/<name>.md` as the skill `agent-<name>` (preload with `-s agent-<name>`, the whole persona), and with `HERMES_AGENT_PERSONA=<name>` the repo plugin's persona section binds that name and tells the session to adopt the preloaded skill (or `skill_view` it). Without the plugin, personas are inlined into the dispatch prompt, per the `cli-hermes` packet.
@@ -47,9 +47,9 @@ None of these is a repo file, and no dispatch performs them.
 
 ## 4. WHEN TO SYNC
 
-- Any `.opencode/commands/**` file is added, renamed or deleted → re-run `sync-prompts-hermes.cjs`. Write mode prunes stale output.
-- Any `.opencode/skills/**/SKILL.md` changes → re-run `sync-skills-hermes.cjs`. Write mode prunes stale folders and replaces a leftover directory symlink.
-- Guard-core behavior changes under `.opencode/**` → review `plugins/repo-guards/__init__.py` by hand; it shells out to the cores, so a renamed core path is the drift to watch.
+- Any `.skilled/commands/**` file is added, renamed or deleted → re-run `sync-prompts-hermes.cjs`. Write mode prunes stale output.
+- Any `.skilled/skills/**/SKILL.md` changes → re-run `sync-skills-hermes.cjs`. Write mode prunes stale folders and replaces a leftover directory symlink.
+- Guard-core behavior changes under `.skilled/**` → review `plugins/repo-guards/__init__.py` by hand; it shells out to the cores, so a renamed core path is the drift to watch.
 
 ---
 
@@ -57,14 +57,14 @@ None of these is a repo file, and no dispatch performs them.
 
 ```bash
 # Regenerate the prompt templates (write mode also prunes stale output)
-node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs
 
 # Check without writing
-node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check
+node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check
 
 # Regenerate the skill copies (write mode also prunes stale folders)
-node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs
-node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs
+node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
 
 # Validate the project plugin manifest
 hermes plugins validate .hermes/plugins/repo-guards

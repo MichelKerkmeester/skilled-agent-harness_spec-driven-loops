@@ -80,9 +80,9 @@ VERIFICATION CHECK:
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/deep/assets/deep-model-benchmark-presentation.txt` |
-| Auto workflow | `.opencode/commands/deep/assets/deep-model-benchmark-auto.yaml` |
-| Confirm workflow | `.opencode/commands/deep/assets/deep-model-benchmark-confirm.yaml` |
+| Presentation source of truth | `.skilled/commands/deep/assets/deep-model-benchmark-presentation.txt` |
+| Auto workflow | `.skilled/commands/deep/assets/deep-model-benchmark-auto.yaml` |
+| Confirm workflow | `.skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml` |
 
 ---
 
@@ -91,9 +91,9 @@ VERIFICATION CHECK:
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
 2. Treat profile paths, `--spec-folder`, `--run-label`, `--scorer`, `--grader`, `--iterations`, `--executor`, and `--model` as workflow inputs, not execution modes.
 3. Set `lane = model-benchmark` directly. This command never asks a lane question and never routes to the agent-improvement lane.
-4. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, and the presentation contract's default resolution table. When all required fields are resolved, persist `{spec_folder}/improvement/model-benchmark-config.json`, bind runtime YAML placeholders, and load `.opencode/commands/deep/assets/deep-model-benchmark-auto.yaml`.
+4. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, and the presentation contract's default resolution table. When all required fields are resolved, persist `{spec_folder}/improvement/model-benchmark-config.json`, bind runtime YAML placeholders, and load `.skilled/commands/deep/assets/deep-model-benchmark-auto.yaml`.
 5. In `:auto`, ask targeted Tier-2 questions only for `spec_folder` or `run_label` when they are genuinely ambiguous and no default exists. `profile_path` uses the default profile when absent. `executor` and `model` are required only when `grader = llm`; missing conditional values re-prompt only that narrow field.
-6. For `:confirm`, use the presentation contract's consolidated setup prompt to bind missing setup values, then load `.opencode/commands/deep/assets/deep-model-benchmark-confirm.yaml`.
+6. For `:confirm`, use the presentation contract's consolidated setup prompt to bind missing setup values, then load `.skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml`.
 7. For no suffix, use the presentation contract's consolidated setup prompt to choose execution mode and bind missing setup values, then route the resolved interactive choice to the matching YAML.
 8. Lightweight read-only discovery for available benchmark profiles or recent spec folders may support setup, but it must feed the single consolidated prompt and never split setup questions.
 9. After the selected workflow asset is loaded, execute it step by step using the resolved setup values.
@@ -121,14 +121,14 @@ an interactive prompt.
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.opencode/commands/deep/assets/deep-model-benchmark-auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep-model-benchmark-confirm.yaml` |
+| `:auto` | `.skilled/commands/deep/assets/deep-model-benchmark-auto.yaml` |
+| `:confirm` or interactive choice | `.skilled/commands/deep/assets/deep-model-benchmark-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/deep/assets/deep-model-benchmark-presentation.txt`:
+The following content lives only in `.skilled/commands/deep/assets/deep-model-benchmark-presentation.txt`:
 
 - Startup-question wording, consolidated setup prompt text, and reply format examples.
 - `:auto` pre-bound setup answer schema, default resolution table, targeted-ask rules, and fail-fast display references.
@@ -140,6 +140,6 @@ The following content lives only in `.opencode/commands/deep/assets/deep-model-b
 
 ## 6. WORKFLOW SUMMARY
 
-The selected YAML workflow invokes the deep-improvement model-benchmark lane, materializes benchmark fixtures before scoring, records mode-aware benchmark state, and writes benchmark outputs to `.opencode/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/`. This command never mutates canonical agent files and never loads the agent-improvement workflow.
+The selected YAML workflow invokes the deep-improvement model-benchmark lane, materializes benchmark fixtures before scoring, records mode-aware benchmark state, and writes benchmark outputs to `.skilled/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/`. This command never mutates canonical agent files and never loads the agent-improvement workflow.
 
 Use `/deep:agent-improvement` to improve an agent definition. Related follow-on routes are `/speckit:complete` for full spec-driven development, `/prompt` for prompt improvement, and `/deep:review` for iterative code review.

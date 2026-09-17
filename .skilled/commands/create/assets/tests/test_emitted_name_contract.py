@@ -5,7 +5,7 @@
 
 """Verify create-command assets emit kebab-case filesystem names.
 
-Usage: python3 -m unittest discover .opencode/commands/create/assets/tests
+Usage: python3 -m unittest discover .skilled/commands/create/assets/tests
 """
 
 import json

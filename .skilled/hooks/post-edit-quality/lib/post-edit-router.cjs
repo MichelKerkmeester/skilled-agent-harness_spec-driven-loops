@@ -33,12 +33,12 @@ const { spawnSync } = require('node:child_process');
 // not CLI-invocable); links = rules/; frontmatter + flowchart canonical live
 // under sk-doc.
 const CHECKER_RELATIVE_PATHS = {
-  commentHygiene: '.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh',
-  flowchart: '.opencode/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh',
-  frontmatterVersions: '.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh',
-  placeholders: '.opencode/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh',
-  wikilinks: '.opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh',
-  distStaleness: '.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh',
+  commentHygiene: '.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh',
+  flowchart: '.skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh',
+  frontmatterVersions: '.skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh',
+  placeholders: '.skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh',
+  wikilinks: '.skilled/skills/system-spec-kit/runtime/cli/rules/check-links.sh',
+  distStaleness: '.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh',
 };
 
 const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.mjs', '.cjs', '.py', '.sh', '.bash', '.jsonc']);

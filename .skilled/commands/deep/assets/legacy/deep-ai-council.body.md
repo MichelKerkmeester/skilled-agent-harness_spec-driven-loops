@@ -34,9 +34,9 @@ This command is **general-agent based**. The Unified Setup Phase (the BLOCKED in
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation source of truth | `.opencode/commands/deep/assets/deep-ai-council-presentation.txt` |
-| Auto workflow | `.opencode/commands/deep/assets/deep-ai-council-auto.yaml` |
-| Confirm workflow | `.opencode/commands/deep/assets/deep-ai-council-confirm.yaml` |
+| Presentation source of truth | `.skilled/commands/deep/assets/deep-ai-council-presentation.txt` |
+| Auto workflow | `.skilled/commands/deep/assets/deep-ai-council-auto.yaml` |
+| Confirm workflow | `.skilled/commands/deep/assets/deep-ai-council-confirm.yaml` |
 
 No workflow-asset gap exists for this command.
 
@@ -57,14 +57,14 @@ No workflow-asset gap exists for this command.
 
 | Mode | Workflow |
 |------|----------|
-| `:auto` | `.opencode/commands/deep/assets/deep-ai-council-auto.yaml` |
-| `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep-ai-council-confirm.yaml` |
+| `:auto` | `.skilled/commands/deep/assets/deep-ai-council-auto.yaml` |
+| `:confirm` or interactive choice | `.skilled/commands/deep/assets/deep-ai-council-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/deep/assets/deep-ai-council-presentation.txt`:
+The following content lives only in `.skilled/commands/deep/assets/deep-ai-council-presentation.txt`:
 
 - Startup-question wording, consolidated setup prompt text, question text, and reply-format examples.
 - `:auto` pre-bound setup answer schema, default resolution table, targeted-ask rules, and fail-fast display behavior.

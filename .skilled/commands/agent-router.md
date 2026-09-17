@@ -90,7 +90,7 @@ Derive `ai_systems_root` from the current workspace path. Do not hardcode user-s
 
 1. Start from the current working directory.
 2. Find the nearest ancestor that represents the active multi-system workspace:
-   - Prefer the ancestor directory containing this `agent_router.md` (walk up from its own path, e.g. the parent of the `.opencode/commands/` or `.claude/commands/` tree it lives under).
+   - Prefer the ancestor directory containing this `agent_router.md` (walk up from its own path, e.g. the parent of the `.skilled/commands/` or `.claude/commands/` tree it lives under).
    - Otherwise, use the nearest ancestor directory that contains 2+ subdirectories each holding their own `AGENTS.md` file.
    - Do not hardcode a specific workspace directory name; the detection is structural (presence of this file, or multiple sibling `AGENTS.md`-bearing directories), not name-based.
 3. Set `ai_systems_root` to that resolved workspace root.

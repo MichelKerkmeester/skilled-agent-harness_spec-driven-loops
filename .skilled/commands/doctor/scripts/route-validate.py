@@ -5,7 +5,7 @@
 """
 route-validate.py — Canonical-manifest CI assertion for /doctor router.
 
-Validates `.opencode/commands/doctor/_routes.yaml` against:
+Validates `.skilled/commands/doctor/_routes.yaml` against:
   A. YAML parse + schema_version
   B. Routes list integrity + required keys per route
   C. No duplicate target names
@@ -57,12 +57,12 @@ TOOL_DECLARATION_KEYS = ("mcp_tools", "cli_commands")
 VALID_MUTATING = {"read-only", "add-only", "mutates"}
 
 # Matches repo-relative local script paths inside script_invocations prose,
-# e.g. ".opencode/bin/skill-advisor.cjs" or ".opencode/commands/doctor/scripts/x.py"
-SCRIPT_PATH_RE = re.compile(r"\.opencode/[^\s\"']+\.(?:cjs|mjs|js|py|sh)")
+# e.g. ".skilled/bin/skill-advisor.cjs" or ".skilled/commands/doctor/scripts/x.py"
+SCRIPT_PATH_RE = re.compile(r"\.(?:skilled|opencode)/[^\s\"']+\.(?:cjs|mjs|js|py|sh)")
 
 # Advisor CLI invocation shape for cli_commands entries: the repo-relative shim
 # path plus the set of commands the CLI itself exposes.
-ADVISOR_CLI_RELATIVE_PATH = ".opencode/bin/skill-advisor.cjs"
+ADVISOR_CLI_RELATIVE_PATH = ".skilled/bin/skill-advisor.cjs"
 ADVISOR_CLI_COMMANDS = {
     "advisor_recommend",
     "advisor_rebuild",
@@ -145,13 +145,13 @@ def parse_router_allowed_tools(router_path: Path) -> set[str]:
 
 def parse_speckit_targets(router_path: Path) -> set[str]:
     """Extract target names from speckit.md's Workflow Assets table rows,
-    e.g. "| `memory` | `.opencode/commands/doctor/assets/doctor-memory.yaml` |"."""
+    e.g. "| `memory` | `.skilled/commands/doctor/assets/doctor-memory.yaml` |"."""
     if not router_path.exists():
         return set()
     text = router_path.read_text(encoding="utf-8")
     return set(
         re.findall(
-            r"^\|\s*`([a-z0-9-]+)`\s*\|\s*`\.opencode/commands/doctor/assets/",
+            r"^\|\s*`([a-z0-9-]+)`\s*\|\s*`\.(?:skilled|opencode)/commands/doctor/assets/",
             text,
             re.MULTILINE,
         )

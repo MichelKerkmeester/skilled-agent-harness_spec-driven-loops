@@ -61,8 +61,8 @@ comments — forbidden regardless of instruction. Write the durable WHY instead.
 gate blocks violations.
 ```
 
-- **Trigger:** every user prompt submission. The **constant directive** is delivered in full on the first proven message and after lifecycle boundaries. Route-only delivery requires confirmed primitive identity, valid transcript evidence, a matching versioned record, stable generation/epoch state, and an atomically advanced transcript high-water mark. Registered session/compaction owners advance the durable epoch through the boundary bridge; unidentified or failed boundaries poison older receipts until a successful reset clears the fail-safe marker. The file-backed store uses a directory-descriptor-anchored helper and defers full-delivery receipts until stdout handoff. `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery. Missing evidence, contention, insecure state, helper/platform failure, fallback policy, or any error also stays full. Canonical rule: `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`; durable state: `directive-lifecycle-file-store.ts` plus `directive-lifecycle-store.py`; OpenCode mirrors the in-process semantics.
-- **Canonical owner:** `.opencode/skills/system-skill-advisor/runtime/lib/render.ts` (`renderAdvisorBrief`, `HYGIENE_DIRECTIVE`) owns the shared directive text used by runtime adapters. The OpenCode plugin (`.opencode/plugins/system-skill-advisor.js`) is the fallback emitter: it mirrors the same directive locally and delegates to the canonical renderer when the compiled module is available.
+- **Trigger:** every user prompt submission. The **constant directive** is delivered in full on the first proven message and after lifecycle boundaries. Route-only delivery requires confirmed primitive identity, valid transcript evidence, a matching versioned record, stable generation/epoch state, and an atomically advanced transcript high-water mark. Registered session/compaction owners advance the durable epoch through the boundary bridge; unidentified or failed boundaries poison older receipts until a successful reset clears the fail-safe marker. The file-backed store uses a directory-descriptor-anchored helper and defers full-delivery receipts until stdout handoff. `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery. Missing evidence, contention, insecure state, helper/platform failure, fallback policy, or any error also stays full. Canonical rule: `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`; durable state: `directive-lifecycle-file-store.ts` plus `directive-lifecycle-store.py`; OpenCode mirrors the in-process semantics.
+- **Canonical owner:** `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` (`renderAdvisorBrief`, `HYGIENE_DIRECTIVE`) owns the shared directive text used by runtime adapters. The OpenCode plugin (`.skilled/plugins/system-skill-advisor.js`) is the fallback emitter: it mirrors the same directive locally and delegates to the canonical renderer when the compiled module is available.
 - **Channel per runtime:** Claude Code `[SYS]` (`user-prompt-submit.js` -> `hookSpecificOutput.additionalContext`). Cursor/Devin `[SYS]` (same shim, re-wrapped into each CLI's own envelope). Codex `[SYS]` (mirror of the Claude shim). OpenCode `[SYS]` (`system-skill-advisor.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`prompt-advisor.ts` forwards the shared context onto the visible prompt via the `input` event's `{action:"transform"}`).
 - **Pi-only directive ownership:** the Pi adapter forwards the shared advisor context onto the visible prompt but injects no Pi-only directive of its own; the current-turn `cli-*` override policy is enforced at the tool-call boundary by `dispatch-preflight-lint.ts`, which never writes into the prompt. The Pi adapter is a forwarder, not an owner, of the shared directive; it is not emitted by `render.ts` or the OpenCode bridge.
 - **See also:** [`skill-advisor-hook.md`](../skills/system-skill-advisor/hooks/skill-advisor-hook.md) for setup and validation. This file only documents the injected content.
@@ -98,7 +98,7 @@ DEPLOY FAILED: exit code 137
 ```
 
 - **Trigger:** a user prompt naming an image path that resolves to a file on disk. A path that does not resolve produces nothing, deliberately, so a filename mentioned in passing never spins a local GPU.
-- **Owning module:** `.opencode/skills/sk-vision/hooks/devin/sk-vision.mjs`, over the shared core at `vision-runtime/src/evidence/prompt-evidence.ts`.
+- **Owning module:** `.skilled/skills/sk-vision/hooks/devin/sk-vision.mjs`, over the shared core at `vision-runtime/src/evidence/prompt-evidence.ts`.
 - **Channel per runtime:** Devin `[SYS]` (`UserPromptSubmit` -> `hookSpecificOutput.additionalContext`). No other runtime carries it. OpenCode and Pi reach the same runtime in-process through their own plugin and extension, and Cursor runs the CLI instead.
 - **Why Cursor is absent:** a live probe against build `2026.09.02-c22c1a3` confirmed Cursor does not deliver `beforeSubmitPrompt`, with a `sessionStart` positive control firing on the same runs. Injection is impossible there, so Cursor's `/vision` command and always-apply rule invoke `vision-runtime/dist/vision-cli.js` instead. The same probe is why the two spec-kit hooks registered on that event are dormant.
 - **Kill-switch:** `SYSTEM_SK_VISION_DISABLED`, plus the master `SYSTEM_HOOKS_DISABLED`. Fail-open on every path, including an unbuilt runtime.
@@ -113,7 +113,7 @@ DEPLOY FAILED: exit code 137
 
 ### Cross-Runtime Active-Goal Brief (Cursor / Pi / Devin)
 
-**Injects:** the passive session-goal steering block, marker- and field-compatible with opencode-goal's OpenCode injection but rendered by the runtime-neutral core (`.opencode/hooks/goal/lib/goal-core.cjs` `renderGoalBrief`) with the `goalPrompt` Role line relabeled to the reading runtime. When the session is bound to a packet, the `objective:` and `goal_prompt:` content is projected from that packet's `goal.md` durable slice on every turn (frontmatter never included), and one `[goal_resend_pending] ...` line follows the block while the operator copy is behind the file. Verbatim shape:
+**Injects:** the passive session-goal steering block, marker- and field-compatible with opencode-goal's OpenCode injection but rendered by the runtime-neutral core (`.skilled/hooks/goal/lib/goal-core.cjs` `renderGoalBrief`) with the `goalPrompt` Role line relabeled to the reading runtime. When the session is bound to a packet, the `objective:` and `goal_prompt:` content is projected from that packet's `goal.md` durable slice on every turn (frontmatter never included), and one `[goal_resend_pending] ...` line follows the block while the operator copy is behind the file. Verbatim shape:
 
 ```text
 [active_goal:<goalId>]
@@ -136,7 +136,7 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 ```
 
 - **Trigger per runtime:** Cursor `sessionStart` only (its `beforeSubmitPrompt` never delivers, `stop` never fires); Pi `input` (every turn, operator-visible transform) + `session_start` (restore) + `turn_end` (verify + `recordTurn`).
-- **Owning modules:** the shared core `.opencode/hooks/goal/lib/goal-core.cjs`, the slice module `lib/goal-slice.cjs`, plus the per-runtime adapters under `.opencode/hooks/goal/{cursor,devin,pi}/`. Each read resolves workspace, runtime, and native session id to an opaque per-session state file. The legacy `active-goal.json` is never an injection fallback.
+- **Owning modules:** the shared core `.skilled/hooks/goal/lib/goal-core.cjs`, the slice module `lib/goal-slice.cjs`, plus the per-runtime adapters under `.skilled/hooks/goal/{cursor,devin,pi}/`. Each read resolves workspace, runtime, and native session id to an opaque per-session state file. The legacy `active-goal.json` is never an injection fallback.
 - **Channel per runtime:** Cursor `[SYS]` (`sessionStart` `agent_message`). Devin `[SYS]` (`SessionStart` and `UserPromptSubmit` `hookSpecificOutput.additionalContext`). Pi `[MSG]` — its `input`-event transform appends the block onto the visible prompt, the one runtime where the operator sees the active-goal text themselves (same mechanism as the advisor brief and Gate-3 question, and they chain additively). The `usage:` token count is honestly `n/a` outside OpenCode (turn count is the accounting primitive; `usageSource` is always `turn-count-estimate`).
 
 ---
@@ -163,7 +163,7 @@ Dispatch blocked by cli-opencode hard-rule(s):
 ```
 
 - **Trigger:** a bash tool call matching a known CLI-dispatch shape (`opencode run`, `claude -p`, etc.).
-- **Owning module:** `.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs`, relocated from `cli-external-orchestration/cli-opencode/scripts/lib/` since it has no real dependency on `cli-opencode`'s other content.
+- **Owning module:** `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`, relocated from `cli-external-orchestration/cli-opencode/scripts/lib/` since it has no real dependency on `cli-opencode`'s other content.
 - **Channel:** the block path is `[BLOCK]`. The warn-only path is `[SYS]` (`additionalContext`) on Claude/Cursor/Devin/Codex/Pi, or a bounded system-transform append on OpenCode.
 
 ### MCP Route Guard
@@ -171,12 +171,12 @@ Dispatch blocked by cli-opencode hard-rule(s):
 **Injects:** a warning that a native `mcp_*` tool call should have routed through an available Code Mode manual instead.
 
 - **Trigger:** a native (non-Code-Mode) MCP tool call matching a manual Code Mode already covers.
-- **Owning module:** `.opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs`, relocated from `mcp-code-mode/runtime/lib/`.
+- **Owning module:** `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs`, relocated from `mcp-code-mode/runtime/lib/`.
 - **Channel:** `[SYS]` on Claude/Cursor/Devin/Codex/Pi (`additionalContext`/`reason`). `[LOG]`-only on OpenCode: `mcp-route-guard.js`'s own README entry says explicitly it "writes advisory logs only and never rejects a call," so this is the one guard genuinely invisible to the OpenCode model, not just invisible to the human.
 
 ### Dispatch Audit
 
-**Injects:** nothing. Records a completed CLI dispatch (command, runtime, session id, output) to `.opencode/logs/cli-dispatch-audit.log`.
+**Injects:** nothing. Records a completed CLI dispatch (command, runtime, session id, output) to `.skilled/logs/cli-dispatch-audit.log`.
 
 - **Channel:** `[LOG]` on every runtime. This is a pure telemetry hook. It has no `additionalContext` path at all.
 
@@ -185,7 +185,7 @@ Dispatch blocked by cli-opencode hard-rule(s):
 **Injects:** an allow/deny decision (with reason on deny) for a subagent/sub-task dispatch.
 
 - **Trigger:** a `run_subagent`/Task-tool dispatch.
-- **Owning module:** `.opencode/hooks/task-dispatch/lib/dispatch-guard.cjs`, relocated from `system-deep-loop/runtime/lib/deep-loop/`.
+- **Owning module:** `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs`, relocated from `system-deep-loop/runtime/lib/deep-loop/`.
 - **Channel:** `[BLOCK]` on deny (same envelope shape as spec-gate enforcement). Not wired for Pi (no distinguishable pi-subagent tool name to match on, per phase 008's documented deferral).
 
 ### Post-Edit Quality
@@ -200,7 +200,7 @@ Violations in src/foo.ts:
 ```
 
 - **Trigger:** a completed `edit`/`write` tool call.
-- **Owning module:** `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs`, relocated from `sk-code/sk-code-quality/scripts/lib/`.
+- **Owning module:** `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`, relocated from `sk-code/sk-code-quality/scripts/lib/`.
 - **Channel, read this one carefully:** Claude Code's and Devin's own adapters (`claude-posttooluse.cjs`, `devin/post-edit-quality.cjs`) write this text to **plain stdout and always exit 0**, with no `hookSpecificOutput`/`systemMessage` field at all. Per Claude Code's documented `PostToolUse` contract, exit-0 stdout is "shown in transcript," the debug/verbose transcript view, not the normal conversation the assistant reasons over. **These two adapters' findings likely never reach the assistant's context at all in normal use**, unlike every other `[SYS]`-tagged hook in this document. This is confirmed for Claude Code from its own hook documentation. Devin's exact handling of plain (non-JSON) `PostToolUse` stdout is not independently verified in this repo. Pi's `post-edit-quality.ts` and OpenCode's `sk-code-post-edit-quality.js` both use their runtime's real context-injection channel instead (`ToolResultEventResult.content` for Pi, `experimental.chat.system.transform` for OpenCode), so only those two are confirmed to reach the model.
 
 ---
@@ -262,7 +262,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 | Runtime | How to inspect injected content |
 |---|---|
 | **Claude Code** | The raw session transcript is a JSONL file at `~/.claude/projects/<project-slug>/<session-id>.jsonl` and contains every injected `[SYS]` block verbatim, per turn. Grep it directly. `claude --debug` shows hook registration, execution, and input/output JSON live as it happens. |
-| **Cursor / Devin** | No known `--debug`/`--verbose` flag for either CLI. Fall back to the shared audit log (`.opencode/logs/cli-dispatch-audit.log`) and each hook's own state files, or re-run the adapter script standalone with a captured stdin payload (the method used throughout this repo's own hook verification work). |
+| **Cursor / Devin** | No known `--debug`/`--verbose` flag for either CLI. Fall back to the shared audit log (`.skilled/logs/cli-dispatch-audit.log`) and each hook's own state files, or re-run the adapter script standalone with a captured stdin payload (the method used throughout this repo's own hook verification work). |
 | **Codex** | Same mirror scripts as Claude. Inspect via the same JSONL-transcript method if Codex persists one, otherwise the standalone-replay method above. |
 | **OpenCode** | `opencode --log-level DEBUG --print-logs` writes to `~/.local/share/opencode/log/`. `opencode export <sessionID>` exists as an export-to-JSON path, but its exact content shape (whether it includes the assembled `system` array) is not verified in this repo. Treat it as unconfirmed until checked live. |
 | **Pi** | The one runtime where `[MSG]`-tagged content (skill-advisor brief, Gate-3 question) is visible directly in the normal chat, because the `input`-event transform rewrites the visible prompt itself. `[SYS]`-tagged content (session-start/compact context via `pi.sendMessage`) is not visible even here. |
@@ -276,4 +276,4 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 - [`../plugins/README.md`](../plugins/README.md): full OpenCode plugin inventory and hook-event model this doc's OpenCode column cites.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): Pi's own extension inventory, including the `session_compact`-untraced caveat this doc's §4 repeats.
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors this doc cross-links from.
-- [`README.md`](./README.md): why `dispatch`, `mcp-route-guard`, `post-edit-quality`, and `task-dispatch` live outside `.opencode/skills/` while every other hook in this doc stays inside its owning skill.
+- [`README.md`](./README.md): why `dispatch`, `mcp-route-guard`, `post-edit-quality`, and `task-dispatch` live outside `.skilled/skills/` while every other hook in this doc stays inside its owning skill.

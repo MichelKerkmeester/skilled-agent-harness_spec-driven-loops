@@ -28,9 +28,9 @@ Route /create:skill-parent to its presentation contract and workflow YAML for sc
 
 | Purpose | Asset |
 |---------|-------|
-| Presentation contract | `.opencode/commands/create/assets/create-skill-parent-presentation.txt` |
-| Auto workflow | `.opencode/commands/create/assets/create-skill-parent-auto.yaml` |
-| Confirm workflow | `.opencode/commands/create/assets/create-skill-parent-confirm.yaml` |
+| Presentation contract | `.skilled/commands/create/assets/create-skill-parent-presentation.txt` |
+| Auto workflow | `.skilled/commands/create/assets/create-skill-parent-auto.yaml` |
+| Confirm workflow | `.skilled/commands/create/assets/create-skill-parent-confirm.yaml` |
 
 ---
 
@@ -39,7 +39,7 @@ Route /create:skill-parent to its presentation contract and workflow YAML for sc
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-1. Read `.opencode/commands/create/assets/create-skill-parent-presentation.txt`.
+1. Read `.skilled/commands/create/assets/create-skill-parent-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
 4. Resolve operation from setup: `create` or `update`.
@@ -53,14 +53,14 @@ Route /create:skill-parent to its presentation contract and workflow YAML for sc
 
 | Mode | Target |
 |------|--------|
-| `:auto` | `.opencode/commands/create/assets/create-skill-parent-auto.yaml` |
-| `:confirm` or omitted mode | `.opencode/commands/create/assets/create-skill-parent-confirm.yaml` |
+| `:auto` | `.skilled/commands/create/assets/create-skill-parent-auto.yaml` |
+| `:confirm` or omitted mode | `.skilled/commands/create/assets/create-skill-parent-confirm.yaml` |
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.opencode/commands/create/assets/create-skill-parent-presentation.txt`:
+The following content lives only in `.skilled/commands/create/assets/create-skill-parent-presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, operation display, status display, completion template, and next-step text.
 
@@ -96,7 +96,7 @@ Both workflows classify the target's root `ROUTER.md` on `update` and emit exact
 
 ## 8. WHAT THIS SCAFFOLDS
 
-This command generates the "parent skill with nested mode packets" pattern following the two-axis hub canon. The canonical example is `sk-code` (workflow modes plus read-only surface packets); `system-deep-loop` is the runtime-loop variant that expresses its extra machinery as named `extensions`. The pattern is standardized in `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, and the hub-router contract in `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md`. The templates are `parent-skill-hub-template.md`, `parent-skill-registry-template.json`, `parent-skill-hub-router-template.json`, `parent-skill-description-template.json`, and `parent-skill-graph-metadata-template.json` under `.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/`.
+This command generates the "parent skill with nested mode packets" pattern following the two-axis hub canon. The canonical example is `sk-code` (workflow modes plus read-only surface packets); `system-deep-loop` is the runtime-loop variant that expresses its extra machinery as named `extensions`. The pattern is standardized in `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, and the hub-router contract in `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md`. The templates are `parent-skill-hub-template.md`, `parent-skill-registry-template.json`, `parent-skill-hub-router-template.json`, `parent-skill-description-template.json`, and `parent-skill-graph-metadata-template.json` under `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/`.
 
 The generated package is:
 
