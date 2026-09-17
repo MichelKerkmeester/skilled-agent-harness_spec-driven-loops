@@ -346,6 +346,10 @@ function fileExists(candidatePath: string): boolean {
   }
 }
 
+// The source tree sits under .skilled or .opencode, and a checkout may link one name
+// to the other, so either name marks the directory that holds the tree.
+const SOURCE_ROOT_NAMES: readonly string[] = ['.skilled', '.opencode'];
+
 function findWorkspaceRoot(startPath: string): string {
   let current = path.resolve(startPath);
   let discoveredRoot: string | null = null;
@@ -353,13 +357,12 @@ function findWorkspaceRoot(startPath: string): string {
   while (true) {
     const hasSpecRoot = directoryExists(path.join(current, '.opencode', 'specs'))
       || directoryExists(path.join(current, 'specs'));
-    if (
-      hasSpecRoot
-      && (
-        directoryExists(path.join(current, '.opencode', 'skills'))
-        || (fileExists(path.join(current, 'AGENTS.md')) && directoryExists(path.join(current, '.opencode')))
-      )
-    ) {
+    const holdsSourceTree = SOURCE_ROOT_NAMES.some((name) => directoryExists(path.join(current, name, 'skills')))
+      || (
+        fileExists(path.join(current, 'AGENTS.md'))
+        && SOURCE_ROOT_NAMES.some((name) => directoryExists(path.join(current, name)))
+      );
+    if (hasSpecRoot && holdsSourceTree) {
       discoveredRoot = current;
     }
 
