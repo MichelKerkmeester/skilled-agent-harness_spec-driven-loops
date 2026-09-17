@@ -10,7 +10,7 @@ trigger_phrases:
   - "pi passthrough model selection"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.39
+version: 1.5.0.40
 ---
 
 The single catalog of the providers, authenticated model ids, the `--thinking` effort lever, and dispatch shapes the cli-pi mode can reach. cli-pi is a multi-provider passthrough with no enforced model allowlist and no fixed default model — every dispatch names its provider and model explicitly.
@@ -41,7 +41,7 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 > **CLOSED ROSTER — non-roster models are FORBIDDEN.** Dispatch ONLY the models listed in this section. Any model not in this roster MUST NOT be called through cli-pi. Enforcement lives in the deep-loop external-CLI fan-out, which hard-rejects any off-roster id (`isPiModelAllowed` over `PI_SUPPORTED_MODELS` in `executor-config.ts`, byte-mirrored in `fanout-run.cjs`); the `pi` binary itself is a passthrough with no allowlist, so for any direct (non-fan-out) invocation this is a **hard discipline rule**, not a runtime gate. To add a model, amend the roster (spec packet + `PI_SUPPORTED_MODELS`) first — never dispatch an unlisted id ad hoc. **A provider's live catalog is not a roster.** Every gateway below fronts far more ids than this file lists, and the extra ids are forbidden exactly as an unknown provider would be: the roster is per provider, and a model allowed on one route is not thereby allowed on another.
 
-Pi is a multi-provider passthrough at the binary layer. Select a model with `--provider <name>` plus `--model <pattern>`, or a single `--model provider/id` form; `--model` also accepts an inline thinking suffix (`--model sonnet:high`). Reasoning effort stays independent of the model id (see §4).
+Pi is a multi-provider passthrough at the binary layer. Pi's own CLI accepts either `--provider <name>` plus `--model <pattern>` or a single `--model provider/id`, but **only the single provider-qualified form is usable here** — the enforcement guard refuses the split form before launch, so every example below uses `--model provider/id`. `--model` also accepts an inline thinking suffix (`--model sonnet:high`). Reasoning effort stays independent of the model id (see §4).
 
 The table below is the closed roster for cli-pi dispatch, sourced from the machine-local authenticated set (`~/.pi/agent/auth.json` + `models-store.json`; opencode-go added 2026-08-07). Re-read `models-store.json` to confirm an id is still authenticated on this machine, but do not dispatch anything outside this roster.
 
@@ -139,10 +139,10 @@ take.
 | Default mode | `--mode text` (print mode) |
 
 ```bash
-# No default model — always name provider + model + effort explicitly:
+# No default model — always name the provider-qualified model and the effort explicitly:
 pi -p "<prompt>" \
-  --provider opencode-go --model deepseek-v4.1-flash \
-  --thinking max --mode text
+  --model opencode-go/deepseek-v4.1-flash \
+  --thinking max --mode text --offline </dev/null
 ```
 
 Do not fabricate a default model when composing a cli-pi dispatch. If the task has no model-specific requirement, pick a provider/model from the authenticated roster (§2) deliberately and state the choice.
@@ -181,12 +181,14 @@ When dispatching as a non-interactive child (spec-gate-neutralized worker), pref
 
 ```bash
 SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 pi -p "<prompt>" \
-  --provider opencode-go --model deepseek-v4.1-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --thinking max --mode text --offline \
-  > stdout.log 2> stderr.log
+  </dev/null > stdout.log 2> stderr.log
 ```
 
 - `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
+- **`--model` carries its provider, and the enforcement guard rejects any dispatch where it does not.** Write `--model opencode-go/deepseek-v4.1-flash`; the split `--provider opencode-go --model deepseek-v4.1-flash` form is refused before the command is launched, whatever Pi itself would have done with it. The rule exists because an unqualified `--model` resolves against Pi's own default provider, which is `google` and unauthenticated here, so the mistake surfaces as a different model answering rather than as an error. Ids that already carry a vendor prefix simply grow a third segment, as `openrouter/stealth/union-alpha` and `cline-pass/z-ai/glm-5.3-flash` do.
+- **`</dev/null` before the redirects, on every non-interactive run.** Pi reads stdin at startup; without an EOF it waits forever, printing nothing. That is indistinguishable from a slow model, so the cost of omitting it is a hang nobody diagnoses rather than an error anyone sees.
 - `--offline` — pass explicitly for any automated/CI dispatch; `pi --verbose` without `--offline` hung 2+ minutes with no reachable network path in the pinned contract. See [cli-reference.md](./cli-reference.md) §7 and [integration-patterns.md](./integration-patterns.md) §15.
 - **Exit code is never an availability/auth signal** — an identical unauthenticated `pi -p` returned exit `0` then exit `1` across runs. Classify the captured output text (`No API key found...`), never the exit code. See [cli-reference.md](./cli-reference.md) §9.
 
