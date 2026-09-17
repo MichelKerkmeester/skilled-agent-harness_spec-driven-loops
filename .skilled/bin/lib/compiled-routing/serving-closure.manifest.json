@@ -1,7 +1,7 @@
 {
   "schemaVersion": "V1",
   "generatedFrom": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program",
-  "runtimeRoot": ".opencode/bin/lib/compiled-routing",
+  "runtimeRoot": ".skilled/bin/lib/compiled-routing",
   "hubs": [
     "sk-code",
     "system-deep-loop",

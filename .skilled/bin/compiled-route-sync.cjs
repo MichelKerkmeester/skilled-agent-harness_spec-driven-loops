@@ -35,7 +35,7 @@ const {
 const layout = require('./lib/compiled-route-layout.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const SPECS_ROOT = fs.realpathSync(path.join(REPO_ROOT, '.opencode', 'specs'));
+const SPECS_ROOT = fs.realpathSync(path.join(REPO_ROOT, 'specs'));
 const IMPL_ROOT = path.join(
   SPECS_ROOT,
   'sk-doc/019-skill-routing-refactor/015-router-unification-program',
@@ -45,7 +45,7 @@ const CURRENT_LAYOUT = Object.freeze({
   resolver: path.join('014-runtime-engine', 'lib', 'resolve.cjs'),
 });
 const AUTHORED_RESOLVER = path.join(IMPL_ROOT, CURRENT_LAYOUT.resolver);
-const RUNTIME_ROOT = path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-routing');
+const RUNTIME_ROOT = path.join(REPO_ROOT, '.skilled', 'bin', 'lib', 'compiled-routing');
 const ACTIVATION_ROOT = activationRootFor(RUNTIME_ROOT);
 const PROMOTED_RESOLVER = promotedResolverFor(RUNTIME_ROOT);
 const PUBLICATION_STATE_FILE = '.compiled-route-publication.json';
