@@ -64,7 +64,7 @@ runtime/hooks/
 ├── cursor/                  # Cursor CLI adapters and the sessionStart prebind
 ├── devin/                   # Devin CLI adapters, permission policy and post-compaction
 ├── pi/                      # Pi extension factories (symlinked from .pi/extensions/)
-├── opencode/                # Browsability symlink -> .opencode/plugins/system-spec-gate.js
+├── opencode/                # Browsability symlink -> .skilled/plugins/system-spec-gate.js
 ├── lib/                     # Runtime-neutral spec-gate core, adapter and workspace helpers
 ├── shared-provenance.ts     # Provenance-wrapped transport helpers
 └── README.md
@@ -79,7 +79,7 @@ runtime/hooks/
 | `claude/` | Claude Code lifecycle hooks (session prime, compact inject, session stop, transcript parsing) plus the Gate-3 pair. The other runtimes delegate their lifecycle semantics here. |
 | `codex/`, `cursor/`, `devin/` | Per-runtime adapters that normalize each CLI's payload onto the Claude implementations, plus that runtime's spec-gate pair. Envelope shapes differ: Codex and Devin use `hookSpecificOutput`; Cursor uses `{permission, user_message, agent_message}`. |
 | `pi/` | Pi extension factories, discovered through relative symlinks at `.pi/extensions/`. Pi resolves their imports against the symlink path, so every import in those files is written for the `.pi/extensions/` base. |
-| `opencode/` | Browsability-only symlink to `.opencode/plugins/system-spec-gate.js`. OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
+| `opencode/` | Browsability-only symlink to `.skilled/plugins/system-spec-gate.js`. OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
 | `lib/spec-gate/spec-gate-core.mjs` | The Gate-3 policy core. Owns `classifyIntent()` and `evaluateMutation()`, and the two orchestration calls every adapter makes, `runClassifyGate()` and `runEnforceGate()`, which build the delivery observation and the warning-log event once. An adapter keeps only its payload parsing and its envelope. |
 | `lib/hook-adapter-shared.mjs` | Shared helper for the four `spec-gate-enforce` adapters. |
 | `lib/workspace/repo-root.mjs` | Repository-root resolution used by the spec-gate core. |
@@ -150,8 +150,8 @@ Main flow:
 Which event calls which script, on which runtime, is declared once in `../cli/runtime-mirrors/hook-registry.json`: every hook appears one time with its concern, its script and a binding per runtime (event, matcher, group and slot in that runtime's file, timeout, wrapper fallback). `../cli/runtime-mirrors/sync-hook-registrations.cjs` renders the four JSON registration files from it, each in its own shape: the `hooks` key of `.claude/settings.json` (every other key in that file is left as found), the whole of `.codex/hooks.json`, `.cursor/hooks.json` with its flat per-event arrays, and `.devin/hooks.v1.json` with its top-level event map and anchored matchers. Pi has no JSON registration; the registry names the `.pi/extensions/*.ts` symlink each hook binds through, and the synchronizer verifies each one resolves.
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check   # drift report, writes nothing
-node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs           # regenerate the four files
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check   # drift report, writes nothing
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs           # regenerate the four files
 ```
 
 To add, move or retime a hook, edit the registry and regenerate; a hand edit to one of the four files is drift the `--check` reports and CI's mirrors job runs. `hook-registration-sync.vitest.ts` proves the registry reproduces the committed files byte for byte.
@@ -160,7 +160,7 @@ To add, move or retime a hook, edit the registry and regenerate; a hand edit to 
 
 ## 8. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime` unless noted. `npx vitest run hooks` only matches filenames containing the literal substring `hooks` (2 files); the glob set below is what actually exercises this tree's adapters and shared helpers.
+Run from `.skilled/skills/system-spec-kit/runtime` unless noted. `npx vitest run hooks` only matches filenames containing the literal substring `hooks` (2 files); the glob set below is what actually exercises this tree's adapters and shared helpers.
 
 ```bash
 npx vitest run tests/hook-*.vitest.ts tests/hooks-*.vitest.ts tests/user-prompt-submit-shim.vitest.ts tests/directive-lifecycle-*.vitest.ts

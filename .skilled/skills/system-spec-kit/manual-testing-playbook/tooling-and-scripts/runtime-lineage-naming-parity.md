@@ -36,9 +36,9 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-01
 ### Commands
 
 ```bash
-  diff -u <(find .opencode/agent -maxdepth 1 -type f -name '*.md' -exec basename {} \; | sort) <(find .claude/agents -maxdepth 1 -type f -name '*.md' -exec basename {} \; | sort)
-  diff -u <(find .opencode/agent -maxdepth 1 -type f -name '*.md' -exec basename {} \; | sort) <(find .opencode/agents -maxdepth 1 -type f -name '*.toml' -exec basename {} \; | sed 's/\.toml$/.md/' | sort)
-  rg -n 'research\.md' .opencode/agent .claude/agents .opencode/agents
+  diff -u <(find .skilled/agent -maxdepth 1 -type f -name '*.md' -exec basename {} \; | sort) <(find .claude/agents -maxdepth 1 -type f -name '*.md' -exec basename {} \; | sort)
+  diff -u <(find .skilled/agent -maxdepth 1 -type f -name '*.md' -exec basename {} \; | sort) <(find .skilled/agents -maxdepth 1 -type f -name '*.toml' -exec basename {} \; | sed 's/\.toml$/.md/' | sort)
+  rg -n 'research\.md' .skilled/agent .claude/agents .skilled/agents
   ```
 ### Expected
 

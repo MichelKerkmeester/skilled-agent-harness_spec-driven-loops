@@ -12,7 +12,7 @@ const require = createRequire(import.meta.url);
 
 const replayCorpus = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/runtime/cli/optimizer/replay-corpus.cjs',
+  '.skilled/skills/system-spec-kit/runtime/cli/optimizer/replay-corpus.cjs',
 )) as {
   PACKET_FAMILIES: Record<string, { role: string; required: boolean; compatibilityGrade: string }>;
   REQUIRED_ENTRY_FIELDS: readonly string[];

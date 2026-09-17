@@ -47,10 +47,10 @@ graph/
 Run the built scripts from the repository root:
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js --dry-run
-node .opencode/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js --active-only
-node .opencode/skills/system-spec-kit/runtime/cli/dist/graph/migrate-generated-json.js --dry-run --verify
-node .opencode/skills/system-spec-kit/runtime/cli/dist/graph/migrate-generated-json.js --only <spec-folder>
+node .skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js --dry-run
+node .skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js --active-only
+node .skilled/skills/system-spec-kit/runtime/cli/dist/graph/migrate-generated-json.js --dry-run --verify
+node .skilled/skills/system-spec-kit/runtime/cli/dist/graph/migrate-generated-json.js --only <spec-folder>
 ```
 
 Use `--root <specs-dir>` to target a specific specs directory.

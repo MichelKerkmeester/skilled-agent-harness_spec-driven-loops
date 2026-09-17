@@ -9,7 +9,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 void createRequire;
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', '..', '..');
-const script = join(repoRoot, '.opencode/scripts/session-cleanup.sh');
+const script = join(repoRoot, '.skilled/scripts/session-cleanup.sh');
 
 let dir: string;
 let stub: string;

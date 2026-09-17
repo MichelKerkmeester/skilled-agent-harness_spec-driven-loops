@@ -44,10 +44,10 @@ For post-rebuild verification, the authoritative check is that `validate.sh` run
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh` | Workflow guard | Resolves feature-folder paths, validates required spec documents, and optionally invokes spec validation |
-| `.opencode/skills/system-spec-kit/runtime/cli/setup/check-native-modules.sh` | Diagnostic probe | Compares recorded versus active Node ABI details and probes native package loadability |
-| `.opencode/skills/system-spec-kit/runtime/cli/setup/rebuild-native-modules.sh` | Repair script | Rebuilds ABI-sensitive modules, optionally clears cache, and refreshes the Node-version marker |
-| `.opencode/skills/system-spec-kit/runtime/cli/setup/record-node-version.js` | Marker writer | Persists the current Node/runtime compatibility snapshot into `.node-version-marker` |
+| `.skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh` | Workflow guard | Resolves feature-folder paths, validates required spec documents, and optionally invokes spec validation |
+| `.skilled/skills/system-spec-kit/runtime/cli/setup/check-native-modules.sh` | Diagnostic probe | Compares recorded versus active Node ABI details and probes native package loadability |
+| `.skilled/skills/system-spec-kit/runtime/cli/setup/rebuild-native-modules.sh` | Repair script | Rebuilds ABI-sensitive modules, optionally clears cache, and refreshes the Node-version marker |
+| `.skilled/skills/system-spec-kit/runtime/cli/setup/record-node-version.js` | Marker writer | Persists the current Node/runtime compatibility snapshot into `.node-version-marker` |
 
 ---
 

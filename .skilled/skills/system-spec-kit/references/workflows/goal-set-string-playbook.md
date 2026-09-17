@@ -104,9 +104,9 @@ Nothing writes `goal.md` unasked. Two paths exist:
 2. For an existing packet, render it by hand:
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
+bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh \
   --level <1|2|3|3+|phase> --out-dir <packet> \
-  .opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl
+  .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl
 ```
 
 The `goal.md` in a packet and the session objective an operator sets with the

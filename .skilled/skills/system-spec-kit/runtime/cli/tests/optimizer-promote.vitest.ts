@@ -12,7 +12,7 @@ const require = createRequire(import.meta.url);
 
 const promote = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/runtime/cli/optimizer/promote.cjs',
+  '.skilled/skills/system-spec-kit/runtime/cli/optimizer/promote.cjs',
 )) as {
   PROMOTION_PREREQUISITES: readonly string[];
   PROMOTION_DECISIONS: Record<string, string>;
@@ -51,7 +51,7 @@ const manifest = JSON.parse(
   fs.readFileSync(
     path.join(
       WORKSPACE_ROOT,
-      '.opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json',
+      '.skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json',
     ),
     'utf8',
   ),

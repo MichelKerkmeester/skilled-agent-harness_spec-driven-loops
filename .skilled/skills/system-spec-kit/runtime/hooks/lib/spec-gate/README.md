@@ -46,7 +46,7 @@ Every runtime adapter imports the **same** `spec-gate-core.mjs` and calls `class
 | **Cursor** | `cursor/spec-gate-prebind.mjs`, `cursor/spec-gate-classify.mjs`, `cursor/spec-gate-enforce.mjs` | `sessionStart` (prebind) + `beforeSubmitPrompt` (classify) + `preToolUse` (enforce) in `.cursor/hooks.json`; timeout 10s | Cursor does not deliver its prompt-classification event reliably under the CLI, so `sessionStart` is the confirmed place to establish state: `prebind` satisfies the gate immediately when `SYSTEM_SPEC_FOLDER` names a valid spec folder (source `flags`, never `prior_answer`), or opens it when `SYSTEM_SPEC_GATE_ENFORCE=1`. `classify` runs the shared classifier when the prompt event does fire. `enforce` evaluates mutations | Prebind: `permission: allow` JSON. Classify: `additionalContext`. Enforce: deny/advise/allow |
 | **Devin** | `devin/spec-gate-classify.mjs`, `devin/spec-gate-enforce.mjs` | `UserPromptSubmit` (classify, matcher `""`) + `PreToolUse` (enforce, matchers `^exec$` and `^edit$`) in `.devin/hooks.v1.json`; timeout 5-10s | Same shape as Claude over Devin's `exec`/`edit` tools; `cd "${DEVIN_PROJECT_DIR:-$PWD}"` | Same `additionalContext` / deny JSON |
 | **Pi** | `pi/spec-gate-classify.ts`, `pi/spec-gate-enforce.ts` (real files; `.pi/extensions/` symlinks here) | `input` (classify) + `tool_call` (enforce, tools `bash`/`write`/`edit`) via `.pi/extensions/` | Imports the core in-process. Classify sanitizes the prompt (`sanitizePromptForClassify`) and keys state via `resolveSessionKey({ sessionId, sessionFile })`. Enforce keys state identically so classify's answer reaches enforce's lookup | Classify: appends the question to the user turn. Enforce: returns `block: true` + `reason` on deny; warn-only otherwise |
-| **OpenCode** | `.opencode/plugins/system-spec-gate.js` (mirrored at `opencode/` via browsability symlink) | Plugin. `experimental.chat.system.transform` (classify), `tool.execute.before` for mutating tools + `bash` (enforce), `event` for session lifecycle | `experimental.chat.system.transform`'s typed input carries no `prompt` field, so the adapter best-effort fetches the session's last user message via `ctx.client` (guarded, fail-open) when `extractPrompt(input)` comes up empty. Enforce throws `system-spec-gate: <detail>` on deny (OpenCode's deny signal); the plugin's catch re-throws only that message and swallows everything else | Classify: question appended to `output.system`. Enforce: throw on deny (blocks the tool call); advise logged to state dir, never stdout/stderr. `event`: sweeps stale state on `session.created`, advances the lifecycle epoch on `session.resumed`/`compacted`/`compact`, evicts on `session.deleted` |
+| **OpenCode** | `.skilled/plugins/system-spec-gate.js` (mirrored at `opencode/` via browsability symlink) | Plugin. `experimental.chat.system.transform` (classify), `tool.execute.before` for mutating tools + `bash` (enforce), `event` for session lifecycle | `experimental.chat.system.transform`'s typed input carries no `prompt` field, so the adapter best-effort fetches the session's last user message via `ctx.client` (guarded, fail-open) when `extractPrompt(input)` comes up empty. Enforce throws `system-spec-gate: <detail>` on deny (OpenCode's deny signal); the plugin's catch re-throws only that message and swallows everything else | Classify: question appended to `output.system`. Enforce: throw on deny (blocks the tool call); advise logged to state dir, never stdout/stderr. `event`: sweeps stale state on `session.created`, advances the lifecycle epoch on `session.resumed`/`compacted`/`compact`, evicts on `session.deleted` |
 
 OpenCode discovers plugins solely from `.opencode/plugins/`, so `system-spec-gate.js` must live there; `opencode/system-spec-gate.js` is a relative symlink back into that folder for browsability: nothing loads through it. Pi loads in the other direction: the real `pi/spec-gate-*.ts` files live here, and `.pi/extensions/spec-gate-*.ts` are the symlinks Pi discovers.
 
@@ -56,7 +56,7 @@ OpenCode discovers plugins solely from `.opencode/plugins/`, so `system-spec-gat
 
 ```text
 lib/spec-gate/
-+-- README.md              # this reference (symlinked from .opencode/hooks/spec-gate/README.md)
++-- README.md              # this reference (symlinked from .skilled/hooks/spec-gate/README.md)
 +-- spec-gate-core.mjs     # the policy core
 `-- spec-gate-core.test.mjs
 
@@ -65,10 +65,10 @@ lib/spec-gate/
 cursor/spec-gate-prebind.mjs       # Cursor-only sessionStart state prebind
 pi/spec-gate-classify.ts           # real Pi extension (.pi/extensions/ symlinks here)
 pi/spec-gate-enforce.ts            # real Pi extension
-.opencode/plugins/system-spec-gate.js  # OpenCode plugin
+.skilled/plugins/system-spec-gate.js  # OpenCode plugin
 ```
 
-The hooks-tree index at `.opencode/hooks/spec-gate/` mirrors these per runtime via relative symlinks; this README is the symlink target.
+The hooks-tree index at `.skilled/hooks/spec-gate/` mirrors these per runtime via relative symlinks; this README is the symlink target.
 
 ---
 
@@ -82,7 +82,7 @@ The hooks-tree index at `.opencode/hooks/spec-gate/` mirrors these per runtime v
 | `<runtime>/spec-gate-enforce.mjs` | Thin stdin adapters that read the tool-call payload, call `evaluateMutation`, emit deny/advise/allow, and append a warning-log line for any non-allow decision. Fail open to exit 0. |
 | `cursor/spec-gate-prebind.mjs` | Cursor-only `sessionStart` adapter. Satisfies the gate immediately when `SYSTEM_SPEC_FOLDER` names a valid spec folder (source `flags`), or opens it when `SYSTEM_SPEC_GATE_ENFORCE=1`. Disabled/child/malformed cases write no state. |
 | `pi/spec-gate-classify.ts`, `pi/spec-gate-enforce.ts` | Native Pi extensions importing the core in-process. Classify sanitizes the prompt and keys state via `resolveSessionKey`; enforce returns `block: true` on deny. |
-| `.opencode/plugins/system-spec-gate.js` | OpenCode plugin. `experimental.chat.system.transform` classifies (best-effort fetches the last user message via `ctx.client`); `tool.execute.before` enforces (throws `system-spec-gate:` on deny); `event` sweeps/advances/evicts state. All policy and persistence live in the core; this file only maps OpenCode's transport onto it. |
+| `.skilled/plugins/system-spec-gate.js` | OpenCode plugin. `experimental.chat.system.transform` classifies (best-effort fetches the last user message via `ctx.client`); `tool.execute.before` enforces (throws `system-spec-gate:` on deny); `event` sweeps/advances/evicts state. All policy and persistence live in the core; this file only maps OpenCode's transport onto it. |
 | `shared/dist/gate-3-classifier.js` | The compiled classifier the core imports from `shared/`. |
 
 ---
@@ -100,7 +100,7 @@ The gate is enabled by default. Truthy disable values are `1`, `true`, `yes`, an
 | `SYSTEM_SPEC_FOLDER` | Cursor prebind: names a valid spec folder to satisfy the gate immediately at session start (source `flags`, never `prior_answer`). |
 | `SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION=1` | Opt-in shadow-delivery suppression of repeated Gate-3 questions. Default off; unknown/unobserved state always emits. |
 
-Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
+Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
 ---
 
@@ -123,24 +123,24 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 ## 8. VALIDATION
 
 ```bash
-node --test .opencode/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs
+node --test .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs
 ```
 
 Expected result: all core tests pass (golden classify/enforce loop, fail-open paths, `answerParse()`). Run with `--experimental-test-module-mocks` for the ESM-mock cases.
 
 ```bash
-node --test .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-claude.test.mjs
-node --test .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-codex.test.mjs
-node --test .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-devin.test.mjs
-node --test .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs
+node --test .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-claude.test.mjs
+node --test .skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-codex.test.mjs
+node --test .skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-devin.test.mjs
+node --test .skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs
 ```
 
 Expected result: all per-runtime adapter tests pass.
 
 ```bash
-node --check .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs
-node --check .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs
-node --check .opencode/plugins/system-spec-gate.js
+node --check .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs
+node --check .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs
+node --check .skilled/plugins/system-spec-gate.js
 ```
 
 Expected result: no syntax errors (repeat for the codex/cursor/devin siblings).
@@ -153,5 +153,5 @@ Expected result: no syntax errors (repeat for the codex/cursor/devin siblings).
 - [`../../claude/README.md`](../../claude/README.md), [`../../codex/README.md`](../../codex/README.md), [`../../cursor/README.md`](../../cursor/README.md), [`../../devin/README.md`](../../devin/README.md): per-runtime hook folders that wire these adapters.
 - [`../../../../shared/gate-3-classifier.ts`](../../../../shared/gate-3-classifier.ts): the compiled classifier this core imports from `shared/dist/`.
 - [`../../../README.md`](../../../README.md): the owning skill's hook contract.
-- [`.opencode/hooks/README.md`](../../../../../../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix.
-- [`.opencode/plugins/README.md`](../../../../../../plugins/README.md): the OpenCode plugins folder that loads `system-spec-gate.js`.
+- [`.skilled/hooks/README.md`](../../../../../../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix.
+- [`.skilled/plugins/README.md`](../../../../../../plugins/README.md): the OpenCode plugins folder that loads `system-spec-gate.js`.

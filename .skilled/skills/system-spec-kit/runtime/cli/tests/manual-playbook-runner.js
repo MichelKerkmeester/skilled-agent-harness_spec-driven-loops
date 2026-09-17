@@ -5,9 +5,9 @@ import path from 'node:path';
 import { createManualPlaybookFixture } from './fixtures/manual-playbook-fixture.js';
 import { isMainModule } from '../lib/esm-entry.js';
 const cwd = process.cwd();
-const SKILL_ROOT = cwd.endsWith(path.join('.opencode', 'skill', 'system-spec-kit'))
+const SKILL_ROOT = cwd.endsWith(path.join('.skilled', 'skill', 'system-spec-kit'))
     ? cwd
-    : path.resolve(cwd, '.opencode/skills/system-spec-kit');
+    : path.resolve(cwd, '.skilled/skills/system-spec-kit');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..');
 const PLAYBOOK_ROOT = path.join(SKILL_ROOT, 'manual-testing-playbook');
 const DEFAULT_REPORT_ROOT = path.resolve(REPO_ROOT, '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/015-full-playbook-execution/scratch/manual-playbook-results');

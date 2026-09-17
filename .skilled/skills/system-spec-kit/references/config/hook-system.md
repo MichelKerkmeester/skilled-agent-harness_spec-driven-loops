@@ -33,17 +33,17 @@ Claude Code registers the maintained compiled adapter in `.claude/settings.json`
 ```json
 {
   "hooks": {
-    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js", "timeout": 3 }] }],
-    "PreCompact": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js", "timeout": 3 }] }],
-    "SessionStart": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js", "timeout": 3 }] }],
-    "Stop": [{ "hooks": [{ "type": "command", "command": "node .opencode/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js", "async": true, "timeout": 10 }] }]
+    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js", "timeout": 3 }] }],
+    "PreCompact": [{ "hooks": [{ "type": "command", "command": "node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js", "timeout": 3 }] }],
+    "SessionStart": [{ "hooks": [{ "type": "command", "command": "node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js", "timeout": 3 }] }],
+    "Stop": [{ "hooks": [{ "type": "command", "command": "node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-stop.js", "async": true, "timeout": 10 }] }]
   }
 }
 ```
 
-The other native registrations are `.codex/hooks.json`, `.cursor/hooks.json`, and `.devin/hooks.v1.json`. Each points at the maintained runtime directory under `system-spec-kit/runtime/`; the Codex prompt adapter is registered and present at `.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js`.
+The other native registrations are `.codex/hooks.json`, `.cursor/hooks.json`, and `.devin/hooks.v1.json`. Each points at the maintained runtime directory under `system-spec-kit/runtime/`; the Codex prompt adapter is registered and present at `.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js`.
 
-OpenCode prompt-time advisor delivery is registered through `.opencode/plugins/system-skill-advisor.js`, which spawns the advisor CLI at `.opencode/bin/skill-advisor.cjs` directly. There is no checked-in `.opencode/settings.json` hook template; the one native OpenCode source adapter in this tree is the spec gate at `runtime/hooks/opencode/system-spec-gate.js`, and the Pi adapters live under `runtime/hooks/pi/`.
+OpenCode prompt-time advisor delivery is registered through `.skilled/plugins/system-skill-advisor.js`, which spawns the advisor CLI at `.skilled/bin/skill-advisor.cjs` directly. There is no checked-in `.opencode/settings.json` hook template; the one native OpenCode source adapter in this tree is the spec gate at `runtime/hooks/opencode/system-spec-gate.js`, and the Pi adapters live under `runtime/hooks/pi/`.
 
 ---
 
@@ -78,7 +78,7 @@ When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, 
 | Codex | `runtime/hooks/codex/*.ts` | `runtime/dist/hooks/codex/*.js` |
 | Cursor | `runtime/hooks/cursor/*.ts` | `runtime/dist/hooks/cursor/*.js` |
 | Devin | `runtime/hooks/devin/*.ts` | `runtime/dist/hooks/devin/*.js` |
-| OpenCode | `.opencode/plugins/system-skill-advisor.js` | Plugin entrypoint; spawns `.opencode/bin/skill-advisor.cjs` |
+| OpenCode | `.skilled/plugins/system-skill-advisor.js` | Plugin entrypoint; spawns `.skilled/bin/skill-advisor.cjs` |
 
 ---
 
@@ -90,13 +90,13 @@ When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, 
 | Codex | yes (`UserPromptSubmit`) | yes (`SessionStart`, `PreCompact`, `Stop`) | `.codex/hooks.json` | `/speckit:resume`, `lookup-trigger-index.mjs` |
 | Cursor | yes (`beforeSubmitPrompt`) | yes (`sessionStart`, `preCompact`, `sessionEnd`) | `.cursor/hooks.json` | `/speckit:resume`, `lookup-trigger-index.mjs` |
 | Devin | yes (`UserPromptSubmit`) | yes (`SessionStart`, `Stop`) | `.devin/hooks.v1.json` | `/speckit:resume`, `lookup-trigger-index.mjs` |
-| OpenCode | yes (`experimental.chat.system.transform`) | plugin events | `.opencode/plugins/system-skill-advisor.js` | `/speckit:resume`, `lookup-trigger-index.mjs` |
+| OpenCode | yes (`experimental.chat.system.transform`) | plugin events | `.skilled/plugins/system-skill-advisor.js` | `/speckit:resume`, `lookup-trigger-index.mjs` |
 
 ---
 
 ### Goal transport
 
-The session goal rides the same hook surfaces. The bound packet's `goal.md` is the directive; each runtime injects its durable slice with the frontmatter stripped and appends a one-line resend reminder while the operator copy is behind the file. OpenCode injects through `.opencode/plugins/opencode-goal.js` (`experimental.chat.system.transform`, tools `opencode_goal` with `bind`, `resent`, `packet` and `opencode_goal_status`). Pi injects on `input` and `session_start` through `.opencode/hooks/goal/pi/goal-context.ts` and manages through `/goal-pi`. Cursor injects on `sessionStart` through `.opencode/hooks/goal/cursor/goal-inject.mjs` and answers only a session-free packet read. Devin injects on `SessionStart` and `UserPromptSubmit` through `.opencode/hooks/goal/devin/goal-inject.mjs`. Claude Code and Codex keep their native host goal command; the speckit workflows hand them the stripped slice to set. The model, the actions and the state layout are in `.opencode/hooks/goal/README.md`.
+The session goal rides the same hook surfaces. The bound packet's `goal.md` is the directive; each runtime injects its durable slice with the frontmatter stripped and appends a one-line resend reminder while the operator copy is behind the file. OpenCode injects through `.skilled/plugins/opencode-goal.js` (`experimental.chat.system.transform`, tools `opencode_goal` with `bind`, `resent`, `packet` and `opencode_goal_status`). Pi injects on `input` and `session_start` through `.skilled/hooks/goal/pi/goal-context.ts` and manages through `/goal-pi`. Cursor injects on `sessionStart` through `.skilled/hooks/goal/cursor/goal-inject.mjs` and answers only a session-free packet read. Devin injects on `SessionStart` and `UserPromptSubmit` through `.skilled/hooks/goal/devin/goal-inject.mjs`. Claude Code and Codex keep their native host goal command; the speckit workflows hand them the stripped slice to set. The model, the actions and the state layout are in `.skilled/hooks/goal/README.md`.
 
 ---
 
@@ -105,7 +105,7 @@ The session goal rides the same hook surfaces. The bound packet's `goal.md` is t
 From a linked worktree, run the project-scoped check with its required flag:
 
 ```bash
-node .opencode/bin/install-codex-hooks.mjs --check --allow-worktree
+node .skilled/bin/install-codex-hooks.mjs --check --allow-worktree
 ```
 
 The command checks project registration and project adapter paths. A report about the user-global installation is workstation state, not a repository defect. This reference documents the distinction and does not repair user-global files; any global repair is a separate operator action.
@@ -121,8 +121,8 @@ The timeout flag's ownership is the `system-skill-advisor` hub because its live 
 ## 9. VALIDATION
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime run build
-npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+npm --prefix .skilled/skills/system-spec-kit/runtime run build
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 ```
 
 The complete adapter matrix and smoke commands live in [`skill-advisor-hook.md`](../../../system-skill-advisor/hooks/skill-advisor-hook.md).

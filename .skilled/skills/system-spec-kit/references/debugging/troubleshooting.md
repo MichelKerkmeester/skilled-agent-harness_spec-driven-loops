@@ -61,7 +61,7 @@ Issue Detected
 | Lookup returns nothing | Exit `1` from the lookup script | A clean miss. The phrase is not in any document's `trigger_phrases`; fall back to the ripgrep lane |
 | Lookup refuses to run | Exit `2` from the lookup script | Bad invocation or unreadable index. Check the flags, then `ls -l runtime/data/trigger-index.json` |
 | Index stale after edits | New `trigger_phrases` not matched | Rerun `runtime/cli/retrieval/generate-trigger-index.mjs` |
-| Wrong script path | `File not found` | Use `.opencode/skills/system-spec-kit/` |
+| Wrong script path | `File not found` | Use `.skilled/skills/system-spec-kit/` |
 | Arg format error | Invalid scope | Use the full packet path: `specs/<track>/122-skill-standardization` |
 | Ripgrep result set surprises you | Files appear or vanish between runs | Missing `--no-config` or reordered globs; copy the recipe verbatim |
 
@@ -91,7 +91,7 @@ rg --json --count -- 'phrase' specs
 ```bash
 # One output mode per invocation
 rg --no-config --json --fixed-strings --ignore-case \
-  --glob '*.md' -- 'phrase' specs .opencode
+  --glob '*.md' -- 'phrase' specs .skilled
 ```
 
 ---
@@ -161,15 +161,15 @@ grep -o 'ANCHOR:[a-z0-9-]*' .opencode/specs/<track>/<NNN-name>/*.md | sed 's/ANC
 find .opencode/specs -name "*.md" -exec grep -l "<!-- ANCHOR:" {} \;
 
 # Resolve a prompt against the trigger index (exit 0 hit, 1 miss, 2 broken)
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
 
 # Rebuild the index after frontmatter changes
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 
 # Free-text scan, path-only, per references/retrieval/retrieval-conventions.md
 rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
-  -- 'phrase' specs .opencode
+  -- 'phrase' specs .skilled
 ```
 
 ### File Format Detection
@@ -189,14 +189,14 @@ echo "Current: $current_count | Legacy: $((total_count - current_count))"
 **Step 1: Gather Information**
 ```bash
 # Does the index exist, and how old is it?
-ls -l .opencode/skills/system-spec-kit/runtime/data/trigger-index.json
+ls -l .skilled/skills/system-spec-kit/runtime/data/trigger-index.json
 
 # Does the phrase resolve at all? Read the exit status, not just the output
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "recent work"; echo "exit=$?"
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "recent work"; echo "exit=$?"
 
 # Does the text exist anywhere, declared or not?
 rg --no-config --fixed-strings --ignore-case --count \
-  --glob '*.md' -- 'recent work' specs .opencode
+  --glob '*.md' -- 'recent work' specs .skilled
 ```
 
 **Step 2: Isolate the Problem**
@@ -215,7 +215,7 @@ rg --no-config --fixed-strings --ignore-case --count \
 **Step 3: Verify Fix**
 ```bash
 # The phrase now resolves
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "test"; echo "exit=$?"
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "test"; echo "exit=$?"
 
 # And the raw scan agrees the content is where you think it is
 rg --no-config --fixed-strings --ignore-case --files-with-matches \
@@ -273,7 +273,7 @@ Before escalating, gather:
 ```bash
 rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
-  -- 'auth decision' specs .opencode
+  -- 'auth decision' specs .skilled
 ```
 
 **"The lookup returns nothing but I know the content exists"**
@@ -299,7 +299,7 @@ rg --no-config --fixed-strings --ignore-case --files-with-matches \
 For direct memory saves, prefer an explicit CLI target:
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
+node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
   /tmp/save-context-data-<session-id>.json \
   <spec-folder>
 ```
@@ -316,8 +316,8 @@ Phase-folder targets are valid explicit save destinations. If a save lands in th
 
 If the trigger index is missing or corrupted:
 
-1. **Confirm the damage**: `ls -l .opencode/skills/system-spec-kit/runtime/data/trigger-index.json`
-2. **Regenerate**: `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`
+1. **Confirm the damage**: `ls -l .skilled/skills/system-spec-kit/runtime/data/trigger-index.json`
+2. **Regenerate**: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`
 3. **Verify recovery**: a known phrase resolves with exit `0`
 
 The index is a derived artifact built from committed frontmatter. Losing it costs a regeneration, never data.
@@ -399,8 +399,8 @@ If the continuity documents are older than the last real work, refresh them with
 **Solution:**
 ```bash
 # 1. Rule out staleness: rebuild and retry
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
-node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
 
 # 2. Still empty? Confirm what the document actually declares
 rg --no-config -n -A6 -- 'trigger_phrases:' specs/<track>/<NNN-name>/spec.md

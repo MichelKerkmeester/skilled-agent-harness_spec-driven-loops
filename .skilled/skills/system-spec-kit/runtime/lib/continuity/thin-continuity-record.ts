@@ -509,7 +509,7 @@ function normalizePacketPointer(
   }
 
   const normalized = candidate
-    .replace(/^\.opencode\//, '')
+    .replace(/^\.(?:skilled|opencode)\//, '')
     .replace(/^\.\/+/, '')
     .replace(/\/{2,}/g, '/')
     .replace(/\/$/, '');

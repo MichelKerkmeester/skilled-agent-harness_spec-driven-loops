@@ -19,7 +19,7 @@ if git rev-parse --show-toplevel >/dev/null 2>&1; then
     PROJECT_ROOT="$(git rev-parse --show-toplevel)"
 else
     # Fallback for non-git repos: relative path from runtime/cli/spec/ to project root
-    # Path: runtime/cli/spec/ -> runtime/cli/ -> runtime/ -> system-spec-kit/ -> skill/ -> .opencode/ -> project
+    # Path: runtime/cli/spec/ -> runtime/cli/ -> runtime/ -> system-spec-kit/ -> skill/ -> .skilled/ -> project
     PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../../../../.." && pwd)"
     echo "Warning: Not in a git repo, using relative path for PROJECT_ROOT" >&2
 fi

@@ -27,11 +27,11 @@ The memory MCP server was removed: its 41 tools, daemon, launcher, plugin, hooks
 
 | Retired surface | Where the capability lives now |
 |---|---|
-| `memory_match_triggers` prompt-to-phrase matching | The generated trigger index, read by `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` |
+| `memory_match_triggers` prompt-to-phrase matching | The generated trigger index, read by `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` |
 | `memory_search`, `memory_quick_search`, `memory_context` | The ripgrep recipes in `references/retrieval/retrieval-conventions.md` §2, ranked caller-side per §5 |
 | `memory_save` continuity writes | The packet-local continuity writer and `runtime/cli/continuity/generate-context.ts` |
 | Session resume and context assembly | `/speckit:resume` over the `handover.md` -> `_memory.continuity` -> spec-doc ladder |
-| Daemon health checks | `node .opencode/bin/skill-advisor.cjs advisor_status --format json` for the one daemon that remains |
+| Daemon health checks | `node .skilled/bin/skill-advisor.cjs advisor_status --format json` for the one daemon that remains |
 
 Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are a declared loss, not a relocated capability. `references/retrieval/retrieval-conventions.md` §1 carries the full boundary table.
 

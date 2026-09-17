@@ -17,7 +17,7 @@ trigger_phrases:
 
 Current state:
 
-- The resolver walks up from a starting directory looking for an authored sentinel file, `.opencode/skills/system-spec-kit/SKILL.md`.
+- The resolver walks up from a starting directory looking for an authored sentinel file, `.skilled/skills/system-spec-kit/SKILL.md`.
 - If the walk exhausts without finding the sentinel, it falls back to hoisting above the outermost `.opencode` segment in the starting path, so a candidate that is already inside an `.opencode` tree can never resolve to a subtree of itself.
 - The sentinel is a real authored file, not a bare directory, because a directory sentinel is self-perpetuating: once a buggy caller creates `<wrong-dir>/.opencode/...`, every later walk-up from that subtree finds it and returns the wrong root forever.
 
@@ -37,7 +37,7 @@ Current state:
 |---|---|---|
 | `findRepoRoot(start = process.cwd(), opts)` | Function | Resolve the repository root for a runtime writer. `opts.maxDepth` (default 14) bounds the upward walk; `opts.sentinel` overrides the sentinel path. Always returns a directory, never throws. |
 | `hoistAboveOpencodeTree(dir)` | Function | Return the directory containing the outermost `.opencode` segment in `dir`, or `null` when `dir` is not inside an `.opencode` tree. Used as `findRepoRoot`'s fallback. |
-| `REPO_ROOT_SENTINEL` | Constant | The authored file (`.opencode/skills/system-spec-kit/SKILL.md`) whose presence marks the real repository root. |
+| `REPO_ROOT_SENTINEL` | Constant | The authored file (`.skilled/skills/system-spec-kit/SKILL.md`) whose presence marks the real repository root. |
 
 ---
 
@@ -77,7 +77,7 @@ Main flow:
 
 ## 5. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 node --check hooks/lib/workspace/repo-root.mjs

@@ -74,8 +74,8 @@ const CLAIM_ANCHOR_TAIL_CHARS = 400;
 // packet, so the adapter must recover both itself).
 const SPEC_FOLDER_TEXT_PATTERN = /(?:\.opencode\/)?specs\/[^\s"'`)\]]+/;
 
-const STATE_DIR_RELATIVE_PATH = '.opencode/skills/.state/completion-sentinel';
-const LOG_RELATIVE_PATH = '.opencode/logs/completion-sentinel-advisories.log';
+const STATE_DIR_RELATIVE_PATH = '.skilled/skills/.state/completion-sentinel';
+const LOG_RELATIVE_PATH = '.skilled/logs/completion-sentinel-advisories.log';
 const DEDUP_FILE_NAME = 'advisory-dedup.json';
 const ADVISORY_LOG_BACKUP_SUFFIX = '.1';
 const SWEEP_LOCK_DIR_NAME = '.sweep.lock';
@@ -308,7 +308,7 @@ function applyDedup(stateDir, specFolder, claimText) {
 
 // Advisories must never reach stdout/stderr: on the OpenCode side that
 // corrupts the TUI, and on the Claude side stdout is reserved for hook output
-// injection. A size-bounded, single-backup-rotated file under .opencode/logs/
+// injection. A size-bounded, single-backup-rotated file under .skilled/logs/
 // (already covered by the repo's blanket "*.log" gitignore rule) keeps the
 // signal auditable without either risk. Fail-open -- a logging error must
 // never affect the turn or session it observes.

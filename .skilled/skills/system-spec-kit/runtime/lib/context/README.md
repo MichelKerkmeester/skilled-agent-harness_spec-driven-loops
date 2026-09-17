@@ -150,8 +150,8 @@ Main flow:
 Run from the repository root.
 
 ```bash
-node .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-spec-kit/runtime/lib/context/README.md
-node .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/lib/context/README.md
+node .skilled/skills/sk-doc/scripts/extract_structure.py .skilled/skills/system-spec-kit/runtime/lib/context/README.md
+node .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/lib/context/README.md
 ```
 
 Expected result: the structure extractor reports README type with no critical issues, and document validation exits `0`.

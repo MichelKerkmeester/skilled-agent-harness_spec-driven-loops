@@ -55,15 +55,15 @@ the canonical contract exists in the shared reference and embedded spec-authorin
 Command 1, contract + five CLI agent-definition inspection:
 
 ```text
-FOUND .opencode/skills/system-spec-kit/references/validation/template-compliance-contract.md
+FOUND .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md
 22:### Core Principle
 29:- **Applies to:** `distributed-governance spec authoring` agent definitions across all CLIs
 107:Do NOT reorder, rename, or omit required sections. Custom sections go AFTER required ones.
 215:## 7. CONTENT MINIMUMS
 275:3. Update any distributed-governance spec-authoring flow definitions that embed compact contracts
 MISSING .claude/agents/speckit.md
-MISSING .opencode/agents/speckit.md
-MISSING .opencode/agents/speckit.toml
+MISSING .skilled/agents/speckit.md
+MISSING .skilled/agents/speckit.toml
 MISSING .codex/agents/speckit.md
 MISSING .agents/agents/speckit.md
 ```
@@ -73,7 +73,7 @@ Command 2, strict validation on compliant fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2
+  Folder: .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2
   Level:  2
 
 + FILE_EXISTS: All required files present for Level 2
@@ -92,7 +92,7 @@ Command 3, strict validation on extra-header warning fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/054-template-extra-header
+  Folder: .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/054-template-extra-header
   Level:  2
 
 + TEMPLATE_HEADERS: Template headers match in 5 file(s)
@@ -113,7 +113,7 @@ Command 4, strict validation on missing-header fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/055-template-missing-header
+  Folder: .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/055-template-missing-header
   Level:  2
 
 x TEMPLATE_HEADERS: 1 template headers issue(s) found
@@ -131,7 +131,7 @@ Command 4, strict validation on reordered-anchor fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/058-template-reordered-anchor
+  Folder: .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/058-template-reordered-anchor
   Level:  2
 
 + TEMPLATE_HEADERS: Template headers match in 5 file(s)
@@ -181,7 +181,7 @@ EXIT_CODE=0
 
 ### Failure Triage
 
-Inspect `references/validation/template-compliance-contract.md`, `.opencode/agents/speckit.toml`, `runtime/cli/spec/validate.sh`, and `runtime/cli/tests/test-validation-extended.sh` if strict validation passes broken fixtures or misses contract drift
+Inspect `references/validation/template-compliance-contract.md`, `.skilled/agents/speckit.toml`, `runtime/cli/spec/validate.sh`, and `runtime/cli/tests/test-validation-extended.sh` if strict validation passes broken fixtures or misses contract drift
 
 ---
 

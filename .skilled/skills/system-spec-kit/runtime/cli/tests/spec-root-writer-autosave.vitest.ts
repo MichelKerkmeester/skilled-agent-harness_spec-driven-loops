@@ -84,7 +84,7 @@ describe('spec-root autosave writer', () => {
     const workspacePath = path.join(tempRoot, 'create-workspace');
     const fixtureScripts = path.join(
       workspacePath,
-      '.opencode',
+      '.skilled',
       'skills',
       'system-spec-kit',
       'runtime',
@@ -110,7 +110,7 @@ describe('spec-root autosave writer', () => {
     );
     fs.cpSync(
       path.join(SKILL_ROOT, 'templates'),
-      path.join(workspacePath, '.opencode', 'skills', 'system-spec-kit', 'templates'),
+      path.join(workspacePath, '.skilled', 'skills', 'system-spec-kit', 'templates'),
       { recursive: true },
     );
 

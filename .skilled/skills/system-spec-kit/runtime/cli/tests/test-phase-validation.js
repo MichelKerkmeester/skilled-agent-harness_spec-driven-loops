@@ -12,7 +12,7 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
-const SKILL_ROOT = path.join(REPO_ROOT, '.opencode', 'skills', 'system-spec-kit');
+const SKILL_ROOT = path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit');
 const CREATE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'create.sh');
 const RECOMMEND_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'recommend-level.sh');
 const VALIDATE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'validate.sh');

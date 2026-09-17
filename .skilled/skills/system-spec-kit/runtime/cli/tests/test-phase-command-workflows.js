@@ -16,7 +16,7 @@ const path = require('path');
 const __dirname = path.dirname(__filename);
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
-const COMMAND_ROOT = path.join(REPO_ROOT, '.opencode', 'commands', 'speckit');
+const COMMAND_ROOT = path.join(REPO_ROOT, '.skilled', 'commands', 'speckit');
 const ASSETS_ROOT = path.join(COMMAND_ROOT, 'assets');
 
 let passed = 0;
@@ -162,7 +162,7 @@ function testTemplateCompliancePromptContracts() {
 
   const agentDocs = [
     path.join(REPO_ROOT, '.agents', 'agents', 'speckit.md'),
-    path.join(REPO_ROOT, '.opencode', 'agent', 'speckit.md'),
+    path.join(REPO_ROOT, '.skilled', 'agent', 'speckit.md'),
     path.join(REPO_ROOT, '.claude', 'agents', 'speckit.md'),
   ];
 

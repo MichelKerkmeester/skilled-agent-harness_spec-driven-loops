@@ -25,16 +25,16 @@ function gitRootFrom(start: string): string {
 }
 
 describe('DEFAULT_REPO_ROOT', () => {
-  it('resolves to the repository root, not the .opencode directory', () => {
-    expect(path.basename(DEFAULT_REPO_ROOT)).not.toBe('.opencode');
+  it('resolves to the repository root, not the .skilled directory', () => {
+    expect(path.basename(DEFAULT_REPO_ROOT)).not.toBe('.skilled');
     expect(DEFAULT_REPO_ROOT).toBe(gitRootFrom(TEST_DIR));
     expect(fs.existsSync(path.join(DEFAULT_REPO_ROOT, 'specs'))).toBe(true);
-    expect(fs.existsSync(path.join(DEFAULT_REPO_ROOT, '.opencode', 'skills'))).toBe(true);
+    expect(fs.existsSync(path.join(DEFAULT_REPO_ROOT, '.skilled', 'skills'))).toBe(true);
   });
 
   it('walks up from any directory inside the skill tree to the same root', () => {
     expect(findRepoRoot(TEST_DIR)).toBe(DEFAULT_REPO_ROOT);
-    expect(findRepoRoot(path.join(DEFAULT_REPO_ROOT, '.opencode', 'skills', 'system-spec-kit', 'runtime'))).toBe(DEFAULT_REPO_ROOT);
+    expect(findRepoRoot(path.join(DEFAULT_REPO_ROOT, '.skilled', 'skills', 'system-spec-kit', 'runtime'))).toBe(DEFAULT_REPO_ROOT);
   });
 });
 

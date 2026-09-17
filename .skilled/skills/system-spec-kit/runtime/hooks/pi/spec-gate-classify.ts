@@ -8,7 +8,7 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 export default function specGateClassify(pi: ExtensionAPI): void {
   pi.on("input", async (event, ctx) => {
     try {
-      const guard = await import("../../.opencode/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs");
+      const guard = await import("../../.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs");
       // Input transforms chain across handlers, so this hook sees sibling
       // injections (the advisor's directives capsule) and the harness's
       // embedded conversation history appended to the user's own turn. The

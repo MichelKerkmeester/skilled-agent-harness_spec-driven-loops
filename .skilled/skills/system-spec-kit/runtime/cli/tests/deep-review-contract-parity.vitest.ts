@@ -13,7 +13,7 @@ const require = createRequire(import.meta.url);
 // Import deep-review runtime-capabilities resolver for executable coverage
 const reviewCapabilityModulePath = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs',
+  '.skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs',
 );
 const reviewCapabilityModule = fs.existsSync(reviewCapabilityModulePath) ? require(reviewCapabilityModulePath) as {
   listRuntimeCapabilityIds: () => string[];
@@ -27,22 +27,22 @@ function readWorkspaceFile(relativePath: string): string {
 
 (reviewCapabilityModule ? describe : describe.skip)('deep-review contract parity', () => {
   const primaryDocs = [
-    '.opencode/skills/system-deep-loop/deep-review/SKILL.md',
-    '.opencode/skills/system-deep-loop/deep-review/README.md',
-    '.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md',
-    '.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md',
-    '.opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md',
-    '.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml',
+    '.skilled/skills/system-deep-loop/deep-review/SKILL.md',
+    '.skilled/skills/system-deep-loop/deep-review/README.md',
+    '.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md',
+    '.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md',
+    '.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md',
+    '.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml',
   ];
 
   const runtimeMirrors = [
-    '.opencode/agents/deep-review.md',
+    '.skilled/agents/deep-review.md',
     '.claude/agents/deep-review.md',
   ];
 
   const commandAssets = [
-    '.opencode/commands/deep/assets/deep-review-auto.yaml',
-    '.opencode/commands/deep/assets/deep-review-confirm.yaml',
+    '.skilled/commands/deep/assets/deep-review-auto.yaml',
+    '.skilled/commands/deep/assets/deep-review-confirm.yaml',
   ];
 
   it('keeps primary deep-review docs aligned on canonical artifacts and lifecycle terms', () => {
@@ -144,7 +144,7 @@ function readWorkspaceFile(relativePath: string): string {
   });
 
   it('keeps the generated review contract aligned on artifact_dir semantics', () => {
-    const content = readWorkspaceFile('.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml');
+    const content = readWorkspaceFile('.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml');
 
     expect(content).toContain('{artifact_dir}/deep-review-config.json');
     expect(content).toContain('{artifact_dir}/deep-review-state.jsonl');
@@ -156,7 +156,7 @@ function readWorkspaceFile(relativePath: string): string {
   });
 
   it('uses the same canonical agent_file path in both auto and confirm YAMLs', () => {
-    const canonicalAgentPath = '.opencode/agents/deep-review.md';
+    const canonicalAgentPath = '.skilled/agents/deep-review.md';
 
     for (const docPath of commandAssets) {
       const content = readWorkspaceFile(docPath);
@@ -263,7 +263,7 @@ function readWorkspaceFile(relativePath: string): string {
   // it here.
   it('keeps authoredArtifacts docs mentioning the manifest enum ids declared in their enumParityChecked', () => {
     const contract = yaml.load(
-      readWorkspaceFile('.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml'),
+      readWorkspaceFile('.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml'),
     ) as {
       contract: {
         dimensions: Array<{ id: string }>;

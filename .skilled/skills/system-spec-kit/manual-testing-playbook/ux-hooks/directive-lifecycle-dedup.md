@@ -59,14 +59,14 @@ Validate directive-lifecycle delivery across the canonical core, every registere
 1. Build both runtime owners:
 
 ```bash
-cd .opencode/skills/system-skill-advisor/runtime && npm run build
+cd .skilled/skills/system-skill-advisor/runtime && npm run build
 cd ../../system-spec-kit/runtime && npm run build
 ```
 
 2. Run the canonical decision, store, boundary, Claude handler, and OpenCode plugin tests:
 
 ```bash
-cd .opencode/skills/system-skill-advisor/runtime
+cd .skilled/skills/system-skill-advisor/runtime
 npx vitest run \
   tests/hooks/directive-lifecycle.vitest.ts \
   tests/hooks/directive-lifecycle-boundary.vitest.ts \
@@ -78,7 +78,7 @@ npx vitest run \
 3. Run registered Claude/Codex/Cursor/Devin native-payload and lifecycle-bridge tests:
 
 ```bash
-cd .opencode/skills/system-spec-kit/runtime
+cd .skilled/skills/system-spec-kit/runtime
 npx vitest run \
   tests/directive-lifecycle-boundary-bridge.vitest.ts \
   tests/directive-lifecycle-adapter-parity.vitest.ts \
@@ -89,7 +89,7 @@ npx vitest run \
 4. Run Pi:
 
 ```bash
-cd .opencode/hooks/dispatch/pi && npx vitest run
+cd .skilled/hooks/dispatch/pi && npx vitest run
 ```
 
 5. From the repository root, create a new durable registered-adapter evidence directory. The harness refuses to overwrite an existing directory:
@@ -103,7 +103,7 @@ node specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-finding
 
 ```bash
 node the retired scenario-persistence wrapper \
-  --skill .opencode/skills/system-spec-kit \
+  --skill .skilled/skills/system-spec-kit \
   --scenario ux-hooks-directive-lifecycle-dedup \
   --variant <runtime-and-evidence-class> \
   --outcome-json <repo-relative-outcome-json>
@@ -125,7 +125,7 @@ A complete run stores:
 - Focused command logs under the active packet's `evidence/tests/` directory.
 - Registered-adapter JSON under the active packet's `evidence/runtime/<run>/` directory.
 - Race/latency output under the active packet's `evidence/performance/` directory.
-- Append-only benchmark reports under `.opencode/skills/system-spec-kit/benchmark/reports/`.
+- Append-only benchmark reports under `.skilled/skills/system-spec-kit/benchmark/reports/`.
 - `supersedes` links from corrected reports to prior false or ambiguous records.
 
 ### Pass / Fail
@@ -149,11 +149,11 @@ A complete run stores:
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/directive-lifecycle-dedup.md](../../feature-catalog/ux-hooks/directive-lifecycle-dedup.md)
 - Operator contract: [hooks/injection-contract.md](../../../../hooks/injection-contract.md)
-- Canonical core: `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`
-- Durable store: `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts`
-- Host boundary: `.opencode/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts`
-- Registered bridge: `.opencode/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts`
-- OpenCode adapter: `.opencode/plugins/system-skill-advisor.js`
+- Canonical core: `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`
+- Durable store: `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts`
+- Host boundary: `.skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts`
+- Registered bridge: `.skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts`
+- OpenCode adapter: `.skilled/plugins/system-skill-advisor.js`
 - Persistence wrapper: the retired scenario-persistence wrapper
 
 Provenance: manual only - follow the TEST EXECUTION sequence by hand

@@ -49,7 +49,7 @@ runtime/cli/resource-map/
 
 ```bash
 node - <<'NODE'
-const { emitResourceMap } = require('./.opencode/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs')
+const { emitResourceMap } = require('./.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs')
 console.log(emitResourceMap({ shape: 'research', deltas: [{ sources: ['README.md'] }], scope: 'smoke' }).includes('README.md'))
 NODE
 ```

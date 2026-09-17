@@ -256,12 +256,12 @@ test('a whitespace-only cwd falls back to process.cwd() and still enforces', () 
   // subdirectory. The fix treats whitespace-only cwd as absent, so state is
   // written under the spawn cwd (the test root) and the enforce consumer finds
   // it. This row fails on the pre-fix adapter: classify writes state under
-  // `resolve("   /.opencode/...")` which is a different directory than where
+  // `resolve("   /.skilled/...")` which is a different directory than where
   // enforce (also using "   ") reads it -- wait, both sides used the same
   // bogus path, so they agreed. The real discrimination is that the bogus
   // path is NOT the test root, so the statePath assertion below fails on the
-  // pre-fix adapter because state is written under `<root>/   /.opencode/...`
-  // instead of `<root>/.opencode/...`.
+  // pre-fix adapter because state is written under `<root>/   /.skilled/...`
+  // instead of `<root>/.skilled/...`.
   const { root } = makeWorkspace();
   try {
     const sessionID = 'whitespace-cwd';

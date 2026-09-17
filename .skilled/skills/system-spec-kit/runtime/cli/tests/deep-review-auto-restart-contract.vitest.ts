@@ -13,10 +13,10 @@ function readWorkspaceFile(relativePath: string): string {
 
 describe('deep-review auto restart command contract', () => {
   it('exposes restart as a first-class auto setup input', () => {
-    const command = readWorkspaceFile('.opencode/commands/deep/review.md');
-    const presentation = readWorkspaceFile('.opencode/commands/deep/assets/deep-review-presentation.txt');
-    const autoWorkflow = readWorkspaceFile('.opencode/commands/deep/assets/deep-review-auto.yaml');
-    const fanoutRun = readWorkspaceFile('.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+    const command = readWorkspaceFile('.skilled/commands/deep/review.md');
+    const presentation = readWorkspaceFile('.skilled/commands/deep/assets/deep-review-presentation.txt');
+    const autoWorkflow = readWorkspaceFile('.skilled/commands/deep/assets/deep-review-auto.yaml');
+    const fanoutRun = readWorkspaceFile('.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
     expect(command).toContain('--restart|--lineage-mode=restart');
     expect(command).toContain('--stop-policy=convergence|max-iterations');
@@ -67,7 +67,7 @@ describe('deep-review auto restart command contract', () => {
   });
 
   it('applies restart before fan-out can spawn lineages', () => {
-    const autoWorkflow = readWorkspaceFile('.opencode/commands/deep/assets/deep-review-auto.yaml');
+    const autoWorkflow = readWorkspaceFile('.skilled/commands/deep/assets/deep-review-auto.yaml');
     const restartStepIndex = autoWorkflow.indexOf('step_apply_lifecycle_request:');
     const fanoutStepIndex = autoWorkflow.indexOf('step_fanout_spawn:');
 

@@ -17,7 +17,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
-const supervisionModulePath = resolve(repoRoot, '.opencode/bin/lib/model-server-supervision.cjs');
+const supervisionModulePath = resolve(repoRoot, '.skilled/bin/lib/model-server-supervision.cjs');
 const { createModelServerControl } = require(supervisionModulePath) as {
   createModelServerControl: (deps: Record<string, unknown>) => {
     start: (options?: Record<string, unknown>) => Promise<{ started: boolean; reason?: string }>;

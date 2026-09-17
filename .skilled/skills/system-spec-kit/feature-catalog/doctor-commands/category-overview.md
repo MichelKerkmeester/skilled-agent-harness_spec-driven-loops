@@ -38,10 +38,10 @@ The playbook peer at `manual-testing-playbook/doctor-commands/` covers twenty-fi
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/commands/doctor/speckit.md` | Router | `/doctor <target>` argv-positional dispatch source |
-| `.opencode/commands/doctor/_routes.yaml` | Manifest | Route manifest exposing each target's location and mutation class |
-| `.opencode/commands/doctor/update.md` | Command | `/doctor:update` cross-subsystem aligner with snapshot, validate, rollback, run-log |
-| `.opencode/commands/doctor/mcp.md` | Command | `/doctor:mcp install\|debug` MCP infra surface |
+| `.skilled/commands/doctor/speckit.md` | Router | `/doctor <target>` argv-positional dispatch source |
+| `.skilled/commands/doctor/_routes.yaml` | Manifest | Route manifest exposing each target's location and mutation class |
+| `.skilled/commands/doctor/update.md` | Command | `/doctor:update` cross-subsystem aligner with snapshot, validate, rollback, run-log |
+| `.skilled/commands/doctor/mcp.md` | Command | `/doctor:mcp install\|debug` MCP infra surface |
 | `manual-testing-playbook/doctor-commands/README.md` | Playbook | Scope and harness guide for twenty-five manual scenarios |
 | `manual-testing-playbook/doctor-commands/*.md` | Playbook | Per-scenario Markdown specs (DOC-323 through DOC-347, with gaps at 337 and 343) |
 | `manual-testing-playbook/_sandbox/doctor-commands/scenarios/` | Harness | Per-scenario shell wrappers, one per DOC-NNN entry |
@@ -51,9 +51,9 @@ The playbook peer at `manual-testing-playbook/doctor-commands/` covers twenty-fi
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/commands/doctor/scripts/route-validate.sh` | Validator | CI assertion that verifies the route manifest against the router source |
+| `.skilled/commands/doctor/scripts/route-validate.sh` | Validator | CI assertion that verifies the route manifest against the router source |
 | `manual-testing-playbook/_sandbox/doctor-commands/harness/run_all.sh` | Harness | Aggregate runner that executes every scenario in sequence |
-| `.opencode/skills/sk-doc/scripts/validate_document.py` | Validator | Markdown structure and HVR validator for the playbook README and category overview |
+| `.skilled/skills/sk-doc/scripts/validate_document.py` | Validator | Markdown structure and HVR validator for the playbook README and category overview |
 
 ---
 

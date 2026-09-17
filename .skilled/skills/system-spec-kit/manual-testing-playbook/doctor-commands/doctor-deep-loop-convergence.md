@@ -47,7 +47,7 @@ Verify deep-loop convergence signal works on a work packet with 3 iterations.
    - `find <spec-folder> -path '*/research/iterations/*.md' | sort`
 3. Confirm at least three iteration files are present.
 4. Run `/doctor deep-loop --scope=research` through the real runtime.
-5. Capture the Phase 4 gold-battery summary from `.opencode/commands/doctor/assets/doctor-deep-loop.yaml`.
+5. Capture the Phase 4 gold-battery summary from `.skilled/commands/doctor/assets/doctor-deep-loop.yaml`.
 6. Call `deep_loop_graph_convergence({specFolder: "<spec-folder>", loopType: "research", iteration: <latest_iteration>, persistSnapshot: false})`.
 7. Capture the full convergence response and final state-log path.
 
@@ -108,7 +108,7 @@ $ find .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-gr
 }
 ```
 
-- `/doctor deep-loop --scope=research` route/runtime mapping observed in `.opencode/commands/doctor/_routes.yaml`:
+- `/doctor deep-loop --scope=research` route/runtime mapping observed in `.skilled/commands/doctor/_routes.yaml`:
 
 ```text
 target: deep-loop
@@ -119,15 +119,15 @@ mutating: read-only
 gate3_location: "n/a (read-only diagnostic; reads coverage + council graphs and iteration folders + ai-council artifacts, never upserts)"
 mcp_tools: []
 script_invocations:
-  - 'node .opencode/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
-  - 'node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --query-type "{query_type}"'
-  - 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
+  - 'node .skilled/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
+  - 'node .skilled/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --query-type "{query_type}"'
+  - 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
 ```
 
 - Phase 4 / gold-battery asset check:
 
 ```text
-$ grep -n "phase_4\|gold_battery\|minimum_iterations\|convergence_signal_required" .opencode/commands/doctor/assets/doctor-deep-loop.yaml
+$ grep -n "phase_4\|gold_battery\|minimum_iterations\|convergence_signal_required" .skilled/commands/doctor/assets/doctor-deep-loop.yaml
 44:    convergence_signal_required: true  # CHK-304 gold-battery signal
 45:    minimum_iterations: 3  # existing gold_battery.minimum_iterations
 ```
@@ -135,27 +135,27 @@ $ grep -n "phase_4\|gold_battery\|minimum_iterations\|convergence_signal_require
 - Status script output:
 
 ```text
-$ node .opencode/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph
+$ node .skilled/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph
 {"status":"ok","data":{"namespace":{"specFolder":".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph","loopType":"research","sessionId":"2026-06-16-028-002-code-graph"},"scopeMode":"session","notes":["Status metrics were computed from the session-scoped subgraph only."],"totalNodes":0,"totalEdges":0,"nodesByKind":{},"edgesByRelation":{},"lastIteration":null,"schemaVersion":4,"dbFileSize":1880064,"signals":null,"momentum":null},"schemaVersion":4,"rowCount":0}
 ```
 
 - Query script outputs:
 
 ```text
-$ node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type coverage_gaps --limit 50
+$ node .skilled/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type coverage_gaps --limit 50
 {"status":"ok","data":{"queryType":"coverage_gaps","namespace":{"specFolder":".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph","loopType":"research","sessionId":"2026-06-16-028-002-code-graph"},"scopeMode":"session","gaps":[],"totalGaps":0}}
 
-$ node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type uncovered_questions --limit 50
+$ node .skilled/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type uncovered_questions --limit 50
 {"status":"ok","data":{"queryType":"uncovered_questions","namespace":{"specFolder":".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph","loopType":"research","sessionId":"2026-06-16-028-002-code-graph"},"scopeMode":"session","gaps":[],"totalGaps":0}}
 
-$ node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type unverified_claims --limit 50
+$ node .skilled/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type unverified_claims --limit 50
 {"status":"ok","data":{"queryType":"unverified_claims","namespace":{"specFolder":".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph","loopType":"research","sessionId":"2026-06-16-028-002-code-graph"},"scopeMode":"session","claims":[],"totalUnverified":0}}
 ```
 
 - `deep_loop_graph_convergence(...)` script-equivalent response:
 
 ```text
-$ node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --iteration 24 --persist-snapshot false
+$ node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --iteration 24 --persist-snapshot false
 {"status":"ok","data":{"decision":"CONTINUE","reason":"Graph is empty; insufficient data for convergence assessment","scoreDelta":null,"scoreDeltaNote":"no prior snapshot","signals":null,"blockers":[],"trace":[],"namespace":{"specFolder":".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph","loopType":"research","sessionId":"2026-06-16-028-002-code-graph"},"scopeMode":"session","nodeCount":0,"edgeCount":0},"graph_decision":"CONTINUE","graph_decision_json":"\"CONTINUE\"","graph_signals_json":{},"graph_blockers_json":[],"graph_blockers_csv":"","graph_stop_blocked":false,"graph_trace_json":[],"graph_convergence_score":0,"graph_score_delta":null,"graph_score_delta_json":"null"}
 ```
 
@@ -167,15 +167,15 @@ $ node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-
 
 ### Failure Triage
 
-If the convergence call is empty, inspect the state log's inferred `sessionId` and latest iteration mapping. If the packet was not included in the gold battery, inspect `.opencode/commands/doctor/assets/doctor-deep-loop.yaml` Phase 1 candidate selection and Phase 4 `minimum_iterations` handling. If graph rows exist but claims are unsupported, query the packet with `deep_loop_graph_query` and compare nodes against the source iteration markdown.
+If the convergence call is empty, inspect the state log's inferred `sessionId` and latest iteration mapping. If the packet was not included in the gold battery, inspect `.skilled/commands/doctor/assets/doctor-deep-loop.yaml` Phase 1 candidate selection and Phase 4 `minimum_iterations` handling. If graph rows exist but claims are unsupported, query the packet with `deep_loop_graph_query` and compare nodes against the source iteration markdown.
 
 ---
 
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Command entrypoint: [.opencode/commands/doctor/speckit.md](../../../../commands/doctor/speckit.md)
-- Matching YAML asset: [.opencode/commands/doctor/assets/doctor-deep-loop.yaml](../../../../commands/doctor/assets/doctor-deep-loop.yaml)
+- Command entrypoint: [.skilled/commands/doctor/speckit.md](../../../../commands/doctor/speckit.md)
+- Matching YAML asset: [.skilled/commands/doctor/assets/doctor-deep-loop.yaml](../../../../commands/doctor/assets/doctor-deep-loop.yaml)
 - Design context: local doctor command contract
 - Decision context: local doctor command ADRs
 

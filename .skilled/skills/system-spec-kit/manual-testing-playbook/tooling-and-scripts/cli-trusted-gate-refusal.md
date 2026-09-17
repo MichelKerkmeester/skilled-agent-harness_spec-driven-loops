@@ -45,16 +45,16 @@ export SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock"
 export SPECKIT_DAEMON_REELECTION=0
 
 # Untrusted mutations -> refused client-side, exit 64
-node .opencode/bin/skill-advisor.cjs advisor_rebuild --force true --warm-only; echo "rebuild exit=$?"
-node .opencode/bin/skill-advisor.cjs skill_graph_scan --warm-only; echo "scan exit=$?"
-node .opencode/bin/skill-advisor.cjs skill_graph_propagate_enhances --mode apply --dryRun false --warm-only; echo "apply exit=$?"
+node .skilled/bin/skill-advisor.cjs advisor_rebuild --force true --warm-only; echo "rebuild exit=$?"
+node .skilled/bin/skill-advisor.cjs skill_graph_scan --warm-only; echo "scan exit=$?"
+node .skilled/bin/skill-advisor.cjs skill_graph_propagate_enhances --mode apply --dryRun false --warm-only; echo "apply exit=$?"
 
 # Gate passes -> call reaches IPC and fails retryable (75) in the empty sandbox
-node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --warm-only; echo "trusted exit=$?"
-SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1 node .opencode/bin/skill-advisor.cjs skill_graph_scan --warm-only; echo "env-trusted exit=$?"
+node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --warm-only; echo "trusted exit=$?"
+SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1 node .skilled/bin/skill-advisor.cjs skill_graph_scan --warm-only; echo "env-trusted exit=$?"
 
 # Read-safe default: propagate dry-run (schema default dryRun=true) is untrusted-allowed
-node .opencode/bin/skill-advisor.cjs skill_graph_propagate_enhances --mode apply --warm-only; echo "dry-run exit=$?"
+node .skilled/bin/skill-advisor.cjs skill_graph_propagate_enhances --mode apply --warm-only; echo "dry-run exit=$?"
 rm -rf "$SANDBOX"
 ```
 
@@ -130,12 +130,12 @@ An untrusted mutation reaching IPC means `assertTrustedForMutation` lost a tool 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | `assertTrustedForMutation`, `isPropagateApply`, `callerMeta` authority tagging |
-| `.opencode/skills/system-skill-advisor/runtime/advisor-server.ts` | Daemon-side trust default (`SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`) |
-| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate regression coverage |
-| `.opencode/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts` | `skill_graph_propagate_enhances` schema with `dryRun` default true |
+| `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | `assertTrustedForMutation`, `isPropagateApply`, `callerMeta` authority tagging |
+| `.skilled/skills/system-skill-advisor/runtime/advisor-server.ts` | Daemon-side trust default (`SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`) |
+| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate regression coverage |
+| `.skilled/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts` | `skill_graph_propagate_enhances` schema with `dryRun` default true |
 
-Provenance: .opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-trust-gate.vitest.ts
+Provenance: .skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-trust-gate.vitest.ts
 
 ---
 

@@ -25,14 +25,14 @@ description: "Shared bind, reclaim and multi-client serve logic for every MCP da
 
 Each daemon's local `lib/ipc/socket-server.ts` is a thin re-export of this module via the `@spec-kit/shared/ipc/socket-server.js` package export, not a separate copy:
 
-- `.opencode/skills/system-skill-advisor/runtime/lib/ipc/socket-server.ts` and `mcp-server/advisor-server.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/ipc/socket-server.ts` and `mcp-server/advisor-server.ts`
 
 ---
 
 ## 4. VALIDATION
 
 ```bash
-cd .opencode/skills/system-spec-kit/runtime && npx vitest run tests/launcher-ipc-bridge-probe.vitest.ts tests/orphan-sweeper-ipc-preserve.vitest.ts
+cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/launcher-ipc-bridge-probe.vitest.ts tests/orphan-sweeper-ipc-preserve.vitest.ts
 ```
 
 ---

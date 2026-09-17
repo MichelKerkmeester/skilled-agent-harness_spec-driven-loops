@@ -88,7 +88,7 @@ function resolveProjectRoot(): string {
   ];
 
   for (const candidate of candidates) {
-    const templates = path.join(candidate, '.opencode', 'skills', 'system-spec-kit', 'templates');
+    const templates = path.join(candidate, '.skilled', 'skills', 'system-spec-kit', 'templates');
     if (fs.existsSync(templates)) {
       return candidate;
     }
@@ -98,7 +98,7 @@ function resolveProjectRoot(): string {
 }
 
 const PROJECT_ROOT = resolveProjectRoot();
-const TEMPLATES_ROOT = path.join(PROJECT_ROOT, '.opencode', 'skills', 'system-spec-kit', 'templates');
+const TEMPLATES_ROOT = path.join(PROJECT_ROOT, '.skilled', 'skills', 'system-spec-kit', 'templates');
 
 function osTmpDir(): string {
   return fs.realpathSync(os.tmpdir());

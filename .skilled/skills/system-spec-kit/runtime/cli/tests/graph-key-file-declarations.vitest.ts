@@ -13,7 +13,7 @@ const createdRoots = new Set<string>();
 function makeRepo(): { repoRoot: string; specFolder: string } {
   const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-key-files-'));
   createdRoots.add(repoRoot);
-  fs.mkdirSync(path.join(repoRoot, '.opencode'), { recursive: true });
+  fs.mkdirSync(path.join(repoRoot, '.skilled'), { recursive: true });
   const specFolder = path.join(repoRoot, 'specs', 'system-spec-kit', '901-key-files');
   fs.mkdirSync(specFolder, { recursive: true });
   return { repoRoot, specFolder };
@@ -65,12 +65,12 @@ describe('derived key files', () => {
 
   it('keeps a declared file that has no extension', () => {
     const { repoRoot, specFolder } = makeRepo();
-    const hookDir = path.join(repoRoot, '.opencode', 'scripts');
+    const hookDir = path.join(repoRoot, '.skilled', 'scripts');
     fs.mkdirSync(hookDir, { recursive: true });
     fs.writeFileSync(path.join(hookDir, 'pre-push'), '#!/bin/sh\n', 'utf-8');
-    writeSpec(specFolder, ['.opencode/scripts/pre-push']);
+    writeSpec(specFolder, ['.skilled/scripts/pre-push']);
 
-    expect(keyFiles(specFolder)).toContain('.opencode/scripts/pre-push');
+    expect(keyFiles(specFolder)).toContain('.skilled/scripts/pre-push');
   });
 
   // Existence on disk is what stands between a declaration and junk, so a
@@ -96,12 +96,12 @@ describe('derived key files', () => {
 
   it('resolves a repository-relative declaration from a packet at the specs root', () => {
     const { repoRoot, specFolder } = makeRepo();
-    const libDir = path.join(repoRoot, '.opencode', 'skills', 'demo');
+    const libDir = path.join(repoRoot, '.skilled', 'skills', 'demo');
     fs.mkdirSync(libDir, { recursive: true });
     fs.writeFileSync(path.join(libDir, 'SKILL.md'), '# Demo\n', 'utf-8');
-    writeSpec(specFolder, ['.opencode/skills/demo/SKILL.md']);
+    writeSpec(specFolder, ['.skilled/skills/demo/SKILL.md']);
 
-    expect(keyFiles(specFolder)).toContain('.opencode/skills/demo/SKILL.md');
+    expect(keyFiles(specFolder)).toContain('.skilled/skills/demo/SKILL.md');
   });
 
   it("puts the packet's own documents first, since the list is capped", () => {

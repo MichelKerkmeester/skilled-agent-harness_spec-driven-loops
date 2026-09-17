@@ -760,7 +760,7 @@ async function testCrossReferenceValidation() {
     }
 
     // Test: References to templates directory
-    if (fiveChecksDoc.includes('.opencode/skills/system-spec-kit/templates/')) {
+    if (fiveChecksDoc.includes('.skilled/skills/system-spec-kit/templates/')) {
       pass('T-CR-001: References templates directory', 'Template path found');
     } else {
       fail('T-CR-001: References templates directory', 'Template path not found');

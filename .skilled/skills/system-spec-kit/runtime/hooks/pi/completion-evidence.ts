@@ -9,7 +9,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
+import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
 
 type SentinelCore = typeof import("../../lib/hooks/completion-evidence-sentinel.cjs");
 
@@ -17,7 +17,7 @@ async function loadSentinelCore(): Promise<SentinelCore> {
   try {
     return await import("../../lib/hooks/completion-evidence-sentinel.cjs");
   } catch {
-    return await import("../../.opencode/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs");
+    return await import("../../.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs");
   }
 }
 

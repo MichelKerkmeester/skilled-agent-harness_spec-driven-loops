@@ -17,7 +17,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { checkTriggerIndexFreshness } from '../core/workflow';
 
 const THIS_DIR = path.dirname(fileURLToPath(import.meta.url));
-// scripts/tests -> scripts -> system-spec-kit -> skills -> .opencode -> repo root.
+// scripts/tests -> scripts -> system-spec-kit -> skills -> .skilled -> repo root.
 // Mirrors checkTriggerIndexFreshness's own repoRoot derivation so a fixture
 // spec.md written under scripts/tests/fixtures resolves to the same
 // repo-relative path the function computes internally.

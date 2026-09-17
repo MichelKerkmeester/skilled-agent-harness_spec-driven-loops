@@ -85,10 +85,10 @@ This folder has no standalone CLI. Consumers import specific helpers after the
 scripts package is built:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
-node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/utils/path-utils.js')\
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
+node -e "import('./.skilled/skills/system-spec-kit/runtime/cli/dist/utils/path-utils.js')\
 .then(m => console.log(typeof m.sanitizePath))"
-node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/utils/index.js')\
+node -e "import('./.skilled/skills/system-spec-kit/runtime/cli/dist/utils/index.js')\
 .then(m => console.log(Object.keys(m).length))"
 ```
 
@@ -99,10 +99,10 @@ node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/utils/index
 Use repository-root commands:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
-node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/utils/path-utils.js')\
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
+node -e "import('./.skilled/skills/system-spec-kit/runtime/cli/dist/utils/path-utils.js')\
 .then(m => console.log(typeof m.sanitizePath))"
-node -e "import('./.opencode/skills/system-spec-kit/runtime/cli/dist/utils/index.js')\
+node -e "import('./.skilled/skills/system-spec-kit/runtime/cli/dist/utils/index.js')\
 .then(m => console.log(Boolean(m)))"
 ```
 

@@ -96,8 +96,8 @@ The validator discovers `valid-phase/001-design`, reads the child markdown files
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Integration | Parent plus child phase validation | `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase --recursive` |
-| Regression | Phase workflow command tests | `node .opencode/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` |
+| Integration | Parent plus child phase validation | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase --recursive` |
+| Regression | Phase workflow command tests | `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` |
 
 <!-- /ANCHOR:testing -->
 ---

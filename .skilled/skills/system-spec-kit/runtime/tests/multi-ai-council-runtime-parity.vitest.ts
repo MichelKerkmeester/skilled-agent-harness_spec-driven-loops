@@ -8,7 +8,7 @@ const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 
 const markdownMirrors = [
-  '.opencode/agents/ai-council.md',
+  '.skilled/agents/ai-council.md',
   '.claude/agents/ai-council.md',
   '.pi/agents/ai-council.md',
 ];
@@ -33,8 +33,8 @@ function normalizeProse(text: string): string {
 function sharedBody(text: string): string {
   return text
     .replace(/\n## Convergence Threshold Semantics\n[\s\S]*?\n---\n/, '\n---\n')
-    .replace(/\.(?:opencode|claude|pi)\/agents\/\*\.md/g, '<runtime-agent-path>')
-    .replace(/\.(?:opencode|claude|pi)\/agents\/[A-Za-z0-9_<>-]+\.md/g, '<runtime-agent-file>')
+    .replace(/\.(?:skilled|opencode|claude|pi)\/agents\/\*\.md/g, '<runtime-agent-path>')
+    .replace(/\.(?:skilled|opencode|claude|pi)\/agents\/[A-Za-z0-9_<>-]+\.md/g, '<runtime-agent-file>').replace(/\.(?:skilled|opencode|claude|pi)\/agents\/(?![A-Za-z0-9_<>*-])/g, '<runtime-agent-dir>')
     .replace(/\s+/g, ' ')
     .trim();
 }

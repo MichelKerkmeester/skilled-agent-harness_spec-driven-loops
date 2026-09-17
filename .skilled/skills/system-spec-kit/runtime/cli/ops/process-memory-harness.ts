@@ -108,7 +108,7 @@ export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
 ];
 
 const KNOWN_PROJECT_OWNER_MARKERS = [
-  '.opencode/skills/system-spec-kit',
+  '.skilled/skills/system-spec-kit',
   'SPECKIT_OWNER_TOKEN=',
   'SPECKIT_PROCESS_OWNER=',
   'SPECKIT_PROJECT_ROOT=',
@@ -490,8 +490,8 @@ export function syntheticFixtureSnapshot(): HarnessSnapshot {
  1000     1 S     5000 opencode
  1001  1000 S     4000 node synthetic-child.js
  1002  1001 S     3000 node synthetic-grandchild.js
- 2002     1 S    18000 /opt/homebrew/bin/node .opencode/skills/system-spec-kit/runtime/cli/dist/ops/synthetic-daemon.js
- 2003     1 S    12000 /opt/homebrew/bin/node .opencode/skills/system-spec-kit/runtime/cli/dist/ops/synthetic-daemon.js
+ 2002     1 S    18000 /opt/homebrew/bin/node .skilled/skills/system-spec-kit/runtime/cli/dist/ops/synthetic-daemon.js
+ 2003     1 S    12000 /opt/homebrew/bin/node .skilled/skills/system-spec-kit/runtime/cli/dist/ops/synthetic-daemon.js
  4000     1 S    24000 /opt/homebrew/opt/ollama/bin/ollama serve
  5000   918 Z        0 <defunct>
 `;
@@ -509,10 +509,10 @@ Pages occupied by compressor: 50.
     sysctlOutput: 'hw.memsize: 68719476736',
     currentPid: 1000,
     lockContents: {
-      '.opencode/skills/system-spec-kit/run/live.pid': '2002',
-      '.opencode/skills/system-spec-kit/run/stale.pid': '9999',
-      '.opencode/skills/system-spec-kit/run/invalid.pid': 'not-a-pid',
-      '.opencode/skills/system-spec-kit/run/zombie.pid': '5000',
+      '.skilled/skills/system-spec-kit/run/live.pid': '2002',
+      '.skilled/skills/system-spec-kit/run/stale.pid': '9999',
+      '.skilled/skills/system-spec-kit/run/invalid.pid': 'not-a-pid',
+      '.skilled/skills/system-spec-kit/run/zombie.pid': '5000',
     },
     timestamp: '2026-05-22T00:00:00.000Z',
   });

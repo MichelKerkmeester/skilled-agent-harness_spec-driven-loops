@@ -39,9 +39,9 @@ Every rename touches some subset of these categories. Map each before starting.
 
 | Category | Examples | How to handle |
 |---|---|---|
-| **The thing being renamed** | `.opencode/skills/<old>/` dir or `.opencode/agents/<old>.md` | `git mv` (preserves history) |
+| **The thing being renamed** | `.skilled/skills/<old>/` dir or `.skilled/agents/<old>.md` | `git mv` (preserves history) |
 | **Live cross-references** | Sibling skill `graph-metadata.json` `enhances`/`related_to`, command files, manual playbooks | Literal substitution |
-| **Live runtime mirrors** | `.claude/agents/`, `.opencode/agents/` + corresponding READMEs | `git mv` + literal substitution |
+| **Live runtime mirrors** | `.claude/agents/`, `.skilled/agents/` + corresponding READMEs | `git mv` + literal substitution |
 | **Live root behavioral docs** | `AGENTS.md`, `CLAUDE.md` (often symlinked), `README.md` | Literal substitution |
 | **Live auto-memory** | `~/.claude/projects/.../memory/MEMORY.md` index + current-state memory files | Literal substitution; preserve filename slugs to avoid breaking inbound `[[wikilinks]]` |
 | **Live compiled indexes** | `skill-graph.json`, SQLite caches | REGENERATE (never hand-edit) |
@@ -72,7 +72,7 @@ Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-opencode or cli-opencode) to 
 4. Memory files: filename slugs are sticky (preserve `[[wikilinks]]`); only edit body content.
 
 ### Phase D — Reindex
-1. Regenerate compiled `.opencode/skills/system-skill-advisor/runtime/scripts/skill-graph.json` via `python3 skill_graph_compiler.py --export-json --pretty` (per the `feedback_skill_graph_compiler_rebuild` memory note).
+1. Regenerate compiled `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` via `python3 skill_graph_compiler.py --export-json --pretty` (per the `feedback_skill_graph_compiler_rebuild` memory note).
 2. If the compiler hits a pre-existing blocker (wrong category, asymmetric sibling, etc.), fix it incidentally — document as out-of-scope-but-on-critical-path.
 3. Run `advisor_recommend` MCP smoke on a canonical prompt for the renamed thing; expect new name in top-3 confidence ≥ 0.7.
 

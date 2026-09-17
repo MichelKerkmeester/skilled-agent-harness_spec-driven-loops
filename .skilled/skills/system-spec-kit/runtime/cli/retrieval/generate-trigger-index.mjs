@@ -68,7 +68,7 @@ export const DEFAULT_VARIANTS_PATH = path.join(SCRIPT_DIR, 'fixtures', 'phrase-v
 
 /**
  * Resolves the repository root by walking up from `start` until a directory
- * holding the documentation corpus appears — one that contains both `.opencode`
+ * holding the documentation corpus appears — one that contains both `.skilled`
  * and `specs` — or the git root is reached, whichever comes first. A fixed hop
  * count from this file's location breaks the moment a directory level is added
  * or removed, and the break is silent: a root resolved one level off still

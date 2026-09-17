@@ -13,7 +13,7 @@ import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 const REPO = path.resolve(__dirname, '../../../../../..');
-const TOOL = '.opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs';
+const TOOL = '.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs';
 const SPECS = path.join(REPO, 'specs');
 
 const created: string[] = [];
@@ -72,7 +72,7 @@ function summaryDoc(pointer: string, specFolder: string): string {
 
 describe('repair-derived', () => {
   it('refuses a target outside the packet tree', () => {
-    const outside = run(['--folder', '.opencode/skills']);
+    const outside = run(['--folder', '.skilled/skills']);
     expect(outside.status).toBe(2);
     const traversal = run(['--folder', '../elsewhere']);
     expect(traversal.status).toBe(2);

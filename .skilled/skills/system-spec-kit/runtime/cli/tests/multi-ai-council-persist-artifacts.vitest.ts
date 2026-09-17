@@ -12,7 +12,7 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../../');
 const FIXTURE_DIR = join(TEST_DIR, 'fixtures/multi-ai-council');
 const HELPER_PATH = join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs',
+  '.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs',
 );
 
 // This mirrors the CLI's own tmpdir fixtures against the helper's real spec-root

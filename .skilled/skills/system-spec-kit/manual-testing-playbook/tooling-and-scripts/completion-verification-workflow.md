@@ -40,13 +40,13 @@ Validate Completion Verification Workflow against the documented validation surf
 
 ### Commands
 
-1. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/062-template-compliant-level1`
-2. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 --json`
+1. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/062-template-compliant-level1`
+2. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 --json`
 3. `TMP_DIR="$(mktemp -d /tmp/speckit-completion-XXXXXX)"`
-4. `cp -R .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 "$TMP_DIR/level3-missing-evidence"`
+4. `cp -R .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 "$TMP_DIR/level3-missing-evidence"`
 5. `perl -0pi -e 's/ \\[EVIDENCE:[^\\n]+\\]//' "$TMP_DIR/level3-missing-evidence/checklist.md"`
-6. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh "$TMP_DIR/level3-missing-evidence" --json || true`
-7. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh "$TMP_DIR/level3-missing-evidence" --strict || true`
+6. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh "$TMP_DIR/level3-missing-evidence" --json || true`
+7. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh "$TMP_DIR/level3-missing-evidence" --strict || true`
 
 ### Expected
 
@@ -67,7 +67,7 @@ Capture, for every step in the Commands sequence above:
 
 ### Failure Triage
 
-Inspect `.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh`, especially checklist parsing, inherited priority logic, and evidence marker detection
+Inspect `.skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh`, especially checklist parsing, inherited priority logic, and evidence marker detection
 
 ---
 
@@ -75,7 +75,7 @@ Inspect `.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh`,
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/completion-verification-workflow.md](../../feature-catalog/tooling-and-scripts/completion-verification-workflow.md)
 
-Provenance: manual only - bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/062-template-compliant-level1
+Provenance: manual only - bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/062-template-compliant-level1
 
 ---
 

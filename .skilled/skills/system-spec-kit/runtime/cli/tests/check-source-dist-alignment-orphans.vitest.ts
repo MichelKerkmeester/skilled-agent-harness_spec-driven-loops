@@ -142,7 +142,7 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
   it('confirms the orphan harness.js has been deleted from dist/tests/search-quality (F-020-D5-03)', () => {
     const harnessPath = path.resolve(
       REPO_ROOT,
-      '.opencode/skills/system-spec-kit/runtime/dist/tests/search-quality/harness.js',
+      '.skilled/skills/system-spec-kit/runtime/dist/tests/search-quality/harness.js',
     );
     expect(fs.existsSync(harnessPath)).toBe(false);
   });

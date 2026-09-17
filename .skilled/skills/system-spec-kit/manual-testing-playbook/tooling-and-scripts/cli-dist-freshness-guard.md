@@ -41,15 +41,15 @@ Trip the skill-advisor dist-freshness guard reversibly, confirm exit 69 plus the
 ### Commands
 
 ```bash
-SRC=.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts
+SRC=.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts
 BAK=$(mktemp); cp "$SRC" "$BAK"                                  # exact content backup
 printf '\n// freshness probe: content change to trip the hash gate (reverted below)\n' >> "$SRC"
 
-node .opencode/bin/skill-advisor.cjs list-tools --format json >/dev/null; echo "tripped exit=$?"
-SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/skill-advisor.cjs list-tools --format json >/dev/null; echo "override exit=$?"
+node .skilled/bin/skill-advisor.cjs list-tools --format json >/dev/null; echo "tripped exit=$?"
+SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1 node .skilled/bin/skill-advisor.cjs list-tools --format json >/dev/null; echo "override exit=$?"
 
 cp "$BAK" "$SRC"; rm -f "$BAK"                                   # restore exact content (hash matches again)
-node .opencode/bin/skill-advisor.cjs list-tools --format json >/dev/null; echo "restored exit=$?"
+node .skilled/bin/skill-advisor.cjs list-tools --format json >/dev/null; echo "restored exit=$?"
 ```
 
 
@@ -93,9 +93,9 @@ A restored run that still exits 69 means the restore was not byte-exact — conf
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs` | Shared `checkPackageFreshness()` module: mtime comparison, lazy same-session hash cache, `DIST_PACKAGES` registry (7 watched packages) |
-| `.opencode/bin/skill-advisor.cjs` | `ensureFreshDist` guard, exit 69, `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
-| `.opencode/bin/skill-advisor.cjs` | Same guard for skill-advisor, `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
+| `.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs` | Shared `checkPackageFreshness()` module: mtime comparison, lazy same-session hash cache, `DIST_PACKAGES` registry (7 watched packages) |
+| `.skilled/bin/skill-advisor.cjs` | `ensureFreshDist` guard, exit 69, `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
+| `.skilled/bin/skill-advisor.cjs` | Same guard for skill-advisor, `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
 
 Provenance: manual only - git diff
 

@@ -67,7 +67,7 @@ This folder extracts entity candidates from generated packet metadata content an
 
 ## 6. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 npx vitest run tests/entity-extractor.vitest.ts

@@ -276,12 +276,12 @@ describe('smart-router telemetry recording', () => {
     delete process.env[TELEMETRY_DIR_ENV];
 
     // The repo-root marker and the default write path both target the real,
-    // plural `.opencode/skills/` directory -- the actual live telemetry file
-    // has always lived at `.opencode/skills/.state/smart-router-telemetry/`, while
+    // plural `.skilled/skills/` directory -- the actual live telemetry file
+    // has always lived at `.skilled/skills/.state/smart-router-telemetry/`, while
     // this module's own default once pointed at a singular `.opencode/skill/`
     // typo left over from an incomplete plural-rename sweep.
     const repoRoot = createTempRoot();
-    fs.mkdirSync(path.join(repoRoot, '.opencode', 'skills'), { recursive: true });
+    fs.mkdirSync(path.join(repoRoot, '.skilled', 'skills'), { recursive: true });
     const nestedWorkspace = path.join(repoRoot, 'nested', 'workspace');
     fs.mkdirSync(nestedWorkspace, { recursive: true });
     const resolvedRepoRoot = fs.realpathSync(repoRoot);
@@ -290,7 +290,7 @@ describe('smart-router telemetry recording', () => {
     try {
       process.chdir(nestedWorkspace);
       expect(telemetryFilePath()).toBe(
-        path.join(resolvedRepoRoot, '.opencode', 'skills', '.state', 'smart-router-telemetry', 'compliance.jsonl')
+        path.join(resolvedRepoRoot, '.skilled', 'skills', '.state', 'smart-router-telemetry', 'compliance.jsonl')
       );
     } finally {
       process.chdir(originalCwd);

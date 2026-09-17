@@ -17,7 +17,7 @@ const TMP_ROOT = realpathSync(process.platform === 'win32' ? tmpdir() : '/tmp');
 
 const require = createRequire(import.meta.url);
 const repoRoot = resolve(fileURLToPath(new URL('../../../../../..', import.meta.url)));
-const serverModule = require(join(repoRoot, '.opencode/bin/hf-model-server.cjs')) as {
+const serverModule = require(join(repoRoot, '.skilled/bin/hf-model-server.cjs')) as {
   createHfModelServer: (options?: Record<string, unknown>) => HfModelServer;
   INFERENCE_DRAIN_TIMEOUT_MS: number;
   resolveListenTarget: (options?: Record<string, unknown>) => string;

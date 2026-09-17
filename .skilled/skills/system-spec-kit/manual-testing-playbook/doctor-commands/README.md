@@ -31,9 +31,9 @@ Each scenario has a Markdown file named for its topic (`doctor-<short-name>.md`,
 
 ## See Also
 
-- Router source: `.opencode/commands/doctor/speckit.md`
-- Route manifest: `.opencode/commands/doctor/_routes.yaml`
-- CI assertion: `.opencode/commands/doctor/scripts/route-validate.sh`
+- Router source: `.skilled/commands/doctor/speckit.md`
+- Route manifest: `.skilled/commands/doctor/_routes.yaml`
+- CI assertion: `.skilled/commands/doctor/scripts/route-validate.sh`
 - Root playbook index: [`../manual-testing-playbook.md`](../manual-testing-playbook.md)
 
 Provenance: manual only - index; each scenario listed here carries its own line

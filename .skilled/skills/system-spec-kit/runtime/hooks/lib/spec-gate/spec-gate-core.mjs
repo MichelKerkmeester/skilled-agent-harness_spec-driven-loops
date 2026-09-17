@@ -57,7 +57,7 @@ import { classifyPrompt, validateSpecFolderBinding } from '../../../../shared/di
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const GATE_STATE_DIR_RELATIVE_PATH = '.opencode/skills/.state/spec-gate';
+const GATE_STATE_DIR_RELATIVE_PATH = '.skilled/skills/.state/spec-gate';
 const GATE_ARCHIVE_DIR_NAME = '.archive';
 const WARN_LOG_FILENAME = 'spec-gate-warnings.log';
 const WARN_LOG_BACKUP_SUFFIX = '.1';
@@ -93,7 +93,7 @@ const specGateGuardRequire = createRequire(import.meta.url);
 function specGateConcernDisabled(environment) {
   try {
     const { isHookEnabled } = specGateGuardRequire(
-      fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)),
+      fileURLToPath(new URL('../../../../../../../.skilled/hooks/shared/hook-flags.cjs', import.meta.url)),
     );
     return typeof isHookEnabled === 'function' && isHookEnabled('spec-gate') === false;
   } catch {
@@ -572,7 +572,7 @@ export function sanitizePromptForClassify(text) {
 export function resolveGuardPaths(projectDir) {
   // Anchor here rather than at each call site: gate state must land at the
   // repository root even when the plugin host hands us a nested working
-  // directory, which is what planted stray .opencode trees across the tree.
+  // directory, which is what planted stray .skilled trees across the tree.
   const dir = findRepoRoot(projectDir || process.cwd());
   return { stateDir: join(dir, GATE_STATE_DIR_RELATIVE_PATH) };
 }

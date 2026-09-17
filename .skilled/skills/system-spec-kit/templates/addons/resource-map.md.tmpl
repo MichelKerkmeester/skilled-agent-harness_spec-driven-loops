@@ -75,7 +75,7 @@ contextType: "general"
 <!-- ANCHOR:commands -->
 ## 3. Commands
 
-> `.opencode/commands/**` and any runtime-specific command surfaces.
+> `.skilled/commands/**` and any runtime-specific command surfaces.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
@@ -87,7 +87,7 @@ contextType: "general"
 <!-- ANCHOR:agents -->
 ## 4. Agents
 
-> `.opencode/agents/**`, `.claude/agents/**`, `.opencode/agents/**`.
+> `.skilled/agents/**`, `.claude/agents/**`, `.skilled/agents/**`.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
@@ -99,7 +99,7 @@ contextType: "general"
 <!-- ANCHOR:skills -->
 ## 5. Skills
 
-> `.opencode/skills/**` including `SKILL.md`, `references/`, `assets/`, `feature-catalog/`, `manual-testing-playbook/`, `runtime/cli/`, `shared/`, `runtime/`.
+> `.skilled/skills/**` including `SKILL.md`, `references/`, `assets/`, `feature-catalog/`, `manual-testing-playbook/`, `runtime/cli/`, `shared/`, `runtime/`.
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
@@ -172,7 +172,7 @@ contextType: "general"
 ## Author Instructions
 
 **Path conventions:**
-- Paths are **relative to the repo root** (e.g., `.opencode/skills/system-spec-kit/SKILL.md`), not absolute.
+- Paths are **relative to the repo root** (e.g., `.skilled/skills/system-spec-kit/SKILL.md`), not absolute.
 - One path per row. Use glob suffixes (`/**`, `/*`) ONLY when every file under the glob received the same Action.
 
 **Action column:** what this packet did to the file. If the file was only read for context, use `Analyzed` or `Cited`.
@@ -182,7 +182,7 @@ contextType: "general"
 **Category precedence** (for paths that fit multiple categories):
 1. `Specs` > `Config` — spec-folder JSON (`description.json`, `graph-metadata.json`) lives under §Specs
 2. `Meta` > `READMEs` — root-level `README.md` lives under §Meta; all other READMEs under §READMEs
-3. `Skills` > `Documents` — markdown inside `.opencode/skills/**` belongs to §Skills even when it looks like a general doc
+3. `Skills` > `Documents` — markdown inside `.skilled/skills/**` belongs to §Skills even when it looks like a general doc
 4. `Tests` > `Scripts` — any `*.vitest.ts` / `*.test.*` / `*.spec.*` belongs to §Tests even when under a `runtime/cli/` folder
 
 **Category deletion:**
@@ -197,8 +197,8 @@ contextType: "general"
 - Keep this file ≤ ~250 lines of content. If it grows larger, split by sub-scope or promote detail into `implementation-summary.md` / `decision-record.md`.
 
 **Reference reading:**
-- `.opencode/skills/system-spec-kit/templates/README.md` (template architecture)
-- `.opencode/skills/system-spec-kit/references/templates/level-specifications.md` (level-by-level usage)
-- `.opencode/skills/system-spec-kit/SKILL.md` §3 Canonical Spec Docs
+- `.skilled/skills/system-spec-kit/templates/README.md` (template architecture)
+- `.skilled/skills/system-spec-kit/references/templates/level-specifications.md` (level-by-level usage)
+- `.skilled/skills/system-spec-kit/SKILL.md` §3 Canonical Spec Docs
 <!-- /ANCHOR:author-instructions -->
 <!-- /IF -->

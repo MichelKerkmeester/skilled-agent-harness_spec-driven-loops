@@ -40,13 +40,13 @@ Validate Spec Validation Rule Engine against the documented validation surface a
 
 ### Commands
 
-1. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 --json`
-2. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/054-template-extra-header || true`
-3. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/test-fixtures/054-template-extra-header --strict || true`
-4. `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase --recursive --json`
-5. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/continuity-freshness.vitest.ts --config runtime/vitest.config.ts`
-6. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/evidence-marker-audit.vitest.ts --config runtime/vitest.config.ts`
-7. `cd .opencode/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/normalizer-lint.vitest.ts --config runtime/vitest.config.ts`
+1. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3 --json`
+2. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/054-template-extra-header || true`
+3. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/054-template-extra-header --strict || true`
+4. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase --recursive --json`
+5. `cd .skilled/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/continuity-freshness.vitest.ts --config runtime/vitest.config.ts`
+6. `cd .skilled/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/evidence-marker-audit.vitest.ts --config runtime/vitest.config.ts`
+7. `cd .skilled/skills/system-spec-kit && node runtime/node_modules/vitest/vitest.mjs run runtime/cli/tests/normalizer-lint.vitest.ts --config runtime/vitest.config.ts`
 
 ### Expected
 

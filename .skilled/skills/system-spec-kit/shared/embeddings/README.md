@@ -156,7 +156,7 @@ caller
 Run from the repository root:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/shared/embeddings/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/shared/embeddings/README.md
 ```
 
 Expected result: the validator exits with code `0`.

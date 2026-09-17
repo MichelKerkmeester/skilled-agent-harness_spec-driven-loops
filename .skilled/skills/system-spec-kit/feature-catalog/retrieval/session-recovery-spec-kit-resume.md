@@ -27,8 +27,8 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 - **`handover.md`** -- The preferred continuation context when a fresh structured handoff exists in the packet.
 - **`_memory.continuity`** (in `implementation-summary.md`) -- Supporting continuity state when `handover.md` is absent or needs enrichment from the canonical packet.
 - **Packet-first spec docs and bounded anchors** -- `spec.md`, `plan.md`, `tasks.md` and the `<!-- ANCHOR:... -->` blocks inside them, read directly rather than retrieved.
-- **The ripgrep recipes** in `references/retrieval/retrieval-conventions.md` §2 -- Free-text evidence when the packet is thin and the operator needs to locate a phrase across `specs/` and `.opencode/`. Ripgrep produces matches; the caller ranks them per §5.
-- **The trigger index** -- `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` matches a prompt against author-declared `trigger_phrases` when the operator does not yet know which packet to open.
+- **The ripgrep recipes** in `references/retrieval/retrieval-conventions.md` §2 -- Free-text evidence when the packet is thin and the operator needs to locate a phrase across `specs/` and `.skilled/`. Ripgrep produces matches; the caller ranks them per §5.
+- **The trigger index** -- `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` matches a prompt against author-declared `trigger_phrases` when the operator does not yet know which packet to open.
 
 There is no session inference, no semantic paraphrase and no candidate ranking behind this workflow. When the ladder produces nothing, the command asks rather than guessing; `references/retrieval/retrieval-conventions.md` §1 records that boundary as a deliberate loss.
 
@@ -62,18 +62,18 @@ There is no session inference, no semantic paraphrase and no candidate ranking b
 
 | File | Role |
 |------|------|
-| `.opencode/commands/speckit/resume.md` | `/speckit:resume` command: standard continuation plus interrupted-session recovery |
-| `.opencode/commands/speckit/assets/speckit-resume-auto.yaml` | Autonomous resume and recovery workflow |
-| `.opencode/commands/speckit/assets/speckit-resume-confirm.yaml` | Interactive resume and recovery workflow |
+| `.skilled/commands/speckit/resume.md` | `/speckit:resume` command: standard continuation plus interrupted-session recovery |
+| `.skilled/commands/speckit/assets/speckit-resume-auto.yaml` | Autonomous resume and recovery workflow |
+| `.skilled/commands/speckit/assets/speckit-resume-confirm.yaml` | Interactive resume and recovery workflow |
 
 ### Related Implementation
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Reference | The ripgrep invocation contract and the caller-side ranking tuple |
-| `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` | Script | Trigger-index lookup, the keyed prompt-to-packet lane |
-| `.opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` | Script | Generates the index the lookup reads |
-| `.opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts` | Script | Continuity writer: produces the `_memory.continuity` block the ladder reads |
+| `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Reference | The ripgrep invocation contract and the caller-side ranking tuple |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` | Script | Trigger-index lookup, the keyed prompt-to-packet lane |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` | Script | Generates the index the lookup reads |
+| `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts` | Script | Continuity writer: produces the `_memory.continuity` block the ladder reads |
 
 ### Validation And Tests
 

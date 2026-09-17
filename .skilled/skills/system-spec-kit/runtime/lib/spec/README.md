@@ -53,7 +53,7 @@ Current state:
 
 ## 5. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 npx vitest run tests/phase-parent-health.vitest.ts tests/generator-hardening.vitest.ts

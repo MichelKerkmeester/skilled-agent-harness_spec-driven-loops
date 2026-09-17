@@ -299,7 +299,7 @@ For Level 3/3+ spec folders, include Five Checks in the decision record:
 
 ### Cross-Reference
 
-- **Templates:** `.opencode/skills/system-spec-kit/templates/`
+- **Templates:** `.skilled/skills/system-spec-kit/templates/`
 - **Level 3 and Level 3+ Templates:** Share the same Five Checks section (`decision-record.md.tmpl` renders an identical table for both); approval tracking, if needed, is added as a separate section.
 
 ---

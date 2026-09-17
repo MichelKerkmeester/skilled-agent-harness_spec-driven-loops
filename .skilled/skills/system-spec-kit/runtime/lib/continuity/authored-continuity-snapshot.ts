@@ -54,7 +54,7 @@ function normalizeSpecFolder(specFolder: string | null | undefined): string | nu
     .replace(/\\/gu, '/')
     .replace(/^\.opencode\/specs\//u, '')
     .replace(/^specs\//u, '')
-    .replace(/^\.opencode\//u, '')
+    .replace(/^\.(?:skilled|opencode)\//u, '')
     .replace(/\/+$/u, '');
   return normalized.length > 0 ? normalized : null;
 }

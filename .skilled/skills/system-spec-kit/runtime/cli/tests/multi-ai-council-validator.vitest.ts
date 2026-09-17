@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../../');
-const VALIDATE_SH = join(WORKSPACE_ROOT, '.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh');
+const VALIDATE_SH = join(WORKSPACE_ROOT, '.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh');
 const SOURCE_SPEC = join(
   WORKSPACE_ROOT,
   'specs/system-deep-loop/z_archive/021-multi-ai-council-write-protocol/002-multi-ai-council-persistence',

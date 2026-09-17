@@ -28,7 +28,7 @@ const require = createRequire(import.meta.url);
 function sessionLifecycleHookEnabled(): boolean {
   try {
     const { isHookEnabled } = require(
-      fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)),
+      fileURLToPath(new URL('../../../../../../../.skilled/hooks/shared/hook-flags.cjs', import.meta.url)),
     );
     return typeof isHookEnabled !== 'function' || isHookEnabled('session-lifecycle') !== false;
   } catch {
@@ -73,7 +73,7 @@ function resolveGenerateContextScriptPath(): string | null {
     explicitPath?.trim(),
     resolve(HOOK_DIR, '../../cli/dist/continuity/generate-context.js'),
     resolve(HOOK_DIR, '../../../cli/dist/continuity/generate-context.js'),
-    resolve(process.cwd(), '.opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js'),
+    resolve(process.cwd(), '.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js'),
     resolve(process.cwd(), 'runtime/cli/dist/continuity/generate-context.js'),
   ].filter((candidate): candidate is string => typeof candidate === 'string' && candidate.length > 0);
 

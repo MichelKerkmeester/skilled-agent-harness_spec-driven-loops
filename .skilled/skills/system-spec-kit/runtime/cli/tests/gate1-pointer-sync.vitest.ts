@@ -12,7 +12,7 @@ import { spawnSync } from 'node:child_process';
 import { afterAll, describe, expect, it } from 'vitest';
 
 const SCRIPT = path.resolve(__dirname, '..', 'runtime-mirrors', 'sync-gate1-pointers.cjs');
-const GATE_LINE = '1. Run the trigger index lookup: `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` → Surface relevant context.';
+const GATE_LINE = '1. Run the trigger index lookup: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` → Surface relevant context.';
 const NODETERM = '<!-- nodeterm:demo:start -->\n# Demo\nowned by nodeterm\n<!-- nodeterm:demo:end -->\n';
 
 function run(root: string, ...args: string[]): { status: number | null; stdout: string; stderr: string } {

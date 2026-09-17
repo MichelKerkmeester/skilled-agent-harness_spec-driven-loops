@@ -43,7 +43,7 @@ The shipped posture enforces the following behavior:
 | `runtime/cli/loaders/data-loader.ts` | Structured-input routing enforcement |
 | `runtime/cli/types/session-types.ts` | Structured JSON enrichment types |
 | `SKILL.md` | Operator guidance: JSON-primary deprecation posture |
-| `.opencode/commands/memory/save.md` | Save command alignment with the JSON-primary contract |
+| `.skilled/commands/memory/save.md` | Save command alignment with the JSON-primary contract |
 
 ### FEATURE BREAKDOWN
 
@@ -88,8 +88,8 @@ The shipped posture enforces the following behavior:
 
 ### VERIFICATION SOURCES
 
-- `cd .opencode/skills/system-spec-kit/runtime/cli && npm run check`
-- `cd .opencode/skills/system-spec-kit/runtime/cli && npm test -- --run tests/generate-context-cli-authority.vitest.ts`
+- `cd .skilled/skills/system-spec-kit/runtime/cli && npm run check`
+- `cd .skilled/skills/system-spec-kit/runtime/cli && npm test -- --run tests/generate-context-cli-authority.vitest.ts`
 
 Related references:
 - [json-mode-hybrid-enrichment.md](../../feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md) — JSON mode structured summary hardening

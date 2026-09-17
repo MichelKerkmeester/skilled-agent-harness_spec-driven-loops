@@ -62,27 +62,27 @@ function write(root: string, relativePath: string, lines: string[]): void {
 
 describe('recipe builders', () => {
   it('spells the structured recipe exactly as the convention writes it', () => {
-    expect(structuredRecipe('phrase', ['specs', '.opencode'])).toEqual([
+    expect(structuredRecipe('phrase', ['specs', '.skilled'])).toEqual([
       '--no-config', '--hidden', '--json', '--fixed-strings', '--ignore-case',
       '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**', '--glob', '!**/scratch/**',
-      '--', 'phrase', 'specs', '.opencode',
+      '--', 'phrase', 'specs', '.skilled',
     ]);
   });
 
   it('spells the path recipe exactly as the convention writes it', () => {
-    expect(pathRecipe('phrase', ['specs', '.opencode'])).toEqual([
+    expect(pathRecipe('phrase', ['specs', '.skilled'])).toEqual([
       '--no-config', '--hidden', '--fixed-strings', '--ignore-case',
       '--files-with-matches', '--max-count', '1',
       '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**', '--glob', '!**/scratch/**',
-      '--', 'phrase', 'specs', '.opencode',
+      '--', 'phrase', 'specs', '.skilled',
     ]);
   });
 
   it('spells the count recipe exactly as the convention writes it', () => {
-    expect(countRecipe('phrase', ['specs', '.opencode'])).toEqual([
+    expect(countRecipe('phrase', ['specs', '.skilled'])).toEqual([
       '--no-config', '--hidden', '--fixed-strings', '--ignore-case', '--count',
       '--glob', '*.md', '--glob', '!**/z_archive/**', '--glob', '!**/node_modules/**', '--glob', '!**/.git/**', '--glob', '!**/scratch/**',
-      '--', 'phrase', 'specs', '.opencode',
+      '--', 'phrase', 'specs', '.skilled',
     ]);
   });
 

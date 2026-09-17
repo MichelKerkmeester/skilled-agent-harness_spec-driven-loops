@@ -39,7 +39,7 @@ Section 8 carries three commands verbatim, because the convention is required to
 
 ### Every Rule Has Two Enforcers
 
-Nothing here is advice. Each rule is applied once across the corpus by the retrofit at `.opencode/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs`, then re-checked on every run by the validator rule at `.opencode/skills/system-spec-kit/runtime/cli/rules/check-grep-convention.sh`, which `validate.sh` invokes. Templates under `.opencode/skills/system-spec-kit/templates/` produce conforming documents with no manual step, so a new document cannot drift back.
+Nothing here is advice. Each rule is applied once across the corpus by the retrofit at `.skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs`, then re-checked on every run by the validator rule at `.skilled/skills/system-spec-kit/runtime/cli/rules/check-grep-convention.sh`, which `validate.sh` invokes. Templates under `.skilled/skills/system-spec-kit/templates/` produce conforming documents with no manual step, so a new document cannot drift back.
 
 ### Scope
 
@@ -132,7 +132,7 @@ Two consequences follow from the table and both are binding:
 
 ### What "Normalized" Means for `duplicate`
 
-Two phrases are the same phrase when `normalizeTriggerText` from `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs` maps them to the same string. That function lowercases, collapses every run of non-alphanumeric characters to one space, collapses whitespace and trims. The retrofit borrows the index's own comparison rather than inventing a second one, so a pair the index would collapse is the pair the retrofit removes.
+Two phrases are the same phrase when `normalizeTriggerText` from `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs` maps them to the same string. That function lowercases, collapses every run of non-alphanumeric characters to one space, collapses whitespace and trims. The retrofit borrows the index's own comparison rather than inventing a second one, so a pair the index would collapse is the pair the retrofit removes.
 
 The first occurrence in document order is kept. Every removal is reported as a `duplicate` row carrying the removed member.
 
@@ -263,7 +263,7 @@ Structured search, for line-addressable evidence:
 ```text
 rg --no-config --json --fixed-strings --ignore-case \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
-  -- 'phrase' specs .opencode
+  -- 'phrase' specs .skilled
 ```
 
 Path search, for a bounded candidate list:
@@ -272,7 +272,7 @@ Path search, for a bounded candidate list:
 rg --no-config --fixed-strings --ignore-case \
   --files-with-matches --max-count 1 \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
-  -- 'phrase' specs .opencode
+  -- 'phrase' specs .skilled
 ```
 
 Count, as its own recipe rather than a flag added to either of the above:
@@ -280,7 +280,7 @@ Count, as its own recipe rather than a flag added to either of the above:
 ```text
 rg --no-config --fixed-strings --ignore-case --count \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
-  -- 'phrase' specs .opencode
+  -- 'phrase' specs .skilled
 ```
 
 ### Exit Mapping
@@ -408,9 +408,9 @@ The second row is worth a decision rather than a shrug. A field with 35 values i
 
 ### Scripts
 
-- `.opencode/skills/system-spec-kit/runtime/cli/rules/check-grep-convention.sh` - The validator rule that re-checks every rule in this document
-- `.opencode/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs` - The retrofit that applies the convention and emits the Section 10 diagnostics
-- `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs` - `normalizeTriggerText` and `MAX_PHRASE_LENGTH`, the shared source of the Section 3 duplicate comparison and phrase budget
-- `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` - The gate that invokes the rule
+- `.skilled/skills/system-spec-kit/runtime/cli/rules/check-grep-convention.sh` - The validator rule that re-checks every rule in this document
+- `.skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs` - The retrofit that applies the convention and emits the Section 10 diagnostics
+- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs` - `normalizeTriggerText` and `MAX_PHRASE_LENGTH`, the shared source of the Section 3 duplicate comparison and phrase budget
+- `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` - The gate that invokes the rule
 
 ---

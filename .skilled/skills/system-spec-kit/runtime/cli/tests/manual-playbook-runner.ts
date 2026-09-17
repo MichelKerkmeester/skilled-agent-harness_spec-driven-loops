@@ -103,9 +103,9 @@ type ParsedArgumentValue =
   | { [key: string]: ParsedArgumentValue };
 
 const cwd = process.cwd();
-const SKILL_ROOT = cwd.endsWith(path.join('.opencode', 'skill', 'system-spec-kit'))
+const SKILL_ROOT = cwd.endsWith(path.join('.skilled', 'skill', 'system-spec-kit'))
   ? cwd
-  : path.resolve(cwd, '.opencode/skills/system-spec-kit');
+  : path.resolve(cwd, '.skilled/skills/system-spec-kit');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..');
 const PLAYBOOK_ROOT = path.join(SKILL_ROOT, 'manual-testing-playbook');
 const DEFAULT_REPORT_ROOT = path.resolve(

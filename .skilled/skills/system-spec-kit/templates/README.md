@@ -205,7 +205,7 @@ Render flow:
 Run from the repository root.
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/example --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/example --strict
 ```
 
 Expected result for a real spec folder: the validator reads the manifest contract and reports no missing required docs or gated sections.

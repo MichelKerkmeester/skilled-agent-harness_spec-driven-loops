@@ -121,7 +121,7 @@ Main flow:
 
 ## 7. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime` unless noted.
+Run from `.skilled/skills/system-spec-kit/runtime` unless noted.
 
 ```bash
 npx vitest run tests/architecture-seam.vitest.ts tests/index-scope.vitest.ts tests/spec-folder-mutex-liveness.vitest.ts

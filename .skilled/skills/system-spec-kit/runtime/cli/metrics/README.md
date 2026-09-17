@@ -24,8 +24,8 @@ description: "Runtime-agnostic reader for deep-loop behavioral signals (opener r
 
 ## 3. CONSUMERS
 
-- `.opencode/commands/doctor/scripts/fable-mode-check.cjs` requires `fable-metrics.cjs` directly for `/doctor` fable-mode reporting.
-- `.opencode/commands/doctor/assets/doctor-fable-mode.yaml` documents the fable-mode doctor route.
+- `.skilled/commands/doctor/scripts/fable-mode-check.cjs` requires `fable-metrics.cjs` directly for `/doctor` fable-mode reporting.
+- `.skilled/commands/doctor/assets/doctor-fable-mode.yaml` documents the fable-mode doctor route.
 
 ---
 

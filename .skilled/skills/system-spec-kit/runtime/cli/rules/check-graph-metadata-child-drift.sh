@@ -71,7 +71,7 @@ run_check() {
                 RULE_STATUS="warn"
                 RULE_MESSAGE="child-drift scanner dist is stale; children_ids currency is unverified"
                 RULE_DETAILS=("$freshness_output")
-                RULE_REMEDIATION="cd .opencode/skills/system-spec-kit/runtime/cli && npm run build, then rerun validation."
+                RULE_REMEDIATION="cd .skilled/skills/system-spec-kit/runtime/cli && npm run build, then rerun validation."
                 return 0
             fi
         fi

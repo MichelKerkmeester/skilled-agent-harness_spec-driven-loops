@@ -282,7 +282,7 @@ resolve_orchestrator() {
             if [[ "$freshness_rc" -eq 69 ]]; then
                 echo "ERROR: validate.sh compiled validation orchestrator is stale." >&2
                 [[ -n "$freshness_output" ]] && echo "$freshness_output" >&2
-                echo "Run: cd .opencode/skills/system-spec-kit/runtime && npm run build" >&2
+                echo "Run: cd .skilled/skills/system-spec-kit/runtime && npm run build" >&2
                 exit 3
             elif [[ "$freshness_rc" -ne 0 ]]; then
                 # A freshness check that cannot run proves nothing about the build it
@@ -290,7 +290,7 @@ resolve_orchestrator() {
                 # that may be stale.
                 echo "ERROR: validate.sh dist freshness check could not run (exit $freshness_rc)." >&2
                 [[ -n "$freshness_output" ]] && echo "$freshness_output" >&2
-                echo "Run: cd .opencode/skills/system-spec-kit/runtime && npm run build" >&2
+                echo "Run: cd .skilled/skills/system-spec-kit/runtime && npm run build" >&2
                 exit 3
             fi
         fi
@@ -305,7 +305,7 @@ resolve_orchestrator() {
 
     echo "ERROR: no validation orchestrator is available." >&2
     echo "Expected a build at $ORCHESTRATOR_JS" >&2
-    echo "Run: cd .opencode/skills/system-spec-kit/runtime && npm run build" >&2
+    echo "Run: cd .skilled/skills/system-spec-kit/runtime && npm run build" >&2
     exit 3
 }
 

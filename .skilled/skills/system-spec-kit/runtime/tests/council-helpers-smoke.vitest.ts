@@ -11,11 +11,11 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 
 const REPLAY_HELPER = join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs',
+  '.skilled/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs',
 );
 const TEST_COUNCIL_MATRIX = join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/runtime/cli/test-council-matrix.sh',
+  '.skilled/skills/system-spec-kit/runtime/cli/test-council-matrix.sh',
 );
 
 const tempDirs: string[] = [];

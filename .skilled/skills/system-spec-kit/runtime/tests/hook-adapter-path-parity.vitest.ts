@@ -20,7 +20,7 @@ import { describe, expect, it } from 'vitest';
 const repoRoot = resolve(import.meta.dirname, '..', '..', '..', '..', '..');
 
 // Matches the primary node/bash/python invocation inside a hook command
-// string, e.g. `node .opencode/.../foo.js` or `bash .opencode/bin/bar.sh`.
+// string, e.g. `node .skilled/.../foo.js` or `bash .skilled/bin/bar.sh`.
 // A trailing `|| printf ...` fallback branch never matches this pattern
 // (`printf` is not one of the three interpreters), so only the real adapter
 // path is captured even out of a fallback-wrapped command.
@@ -129,7 +129,7 @@ function piRegistrations(): Registration[] {
 
 // OpenCode has no source-hook adapter tree either (hook-system.md ss2): the
 // prompt-time advisor and the Gate-3 enforcement hook are both plain plugin
-// files discovered from `.opencode/plugins/`.
+// files discovered from `.skilled/plugins/`.
 function openCodeRegistrations(): Registration[] {
   return [
     { runtime: 'opencode', event: 'plugin', path: resolve(repoRoot, '.opencode/plugins/system-skill-advisor.js') },
@@ -210,7 +210,7 @@ describe('hook adapter path parity', () => {
     const broken: Registration = {
       runtime: 'codex',
       event: 'SessionStart',
-      path: '.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js.deliberately-missing',
+      path: '.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js.deliberately-missing',
     };
     expect(existsSync(resolveAgainstRepo(broken))).toBe(false);
   });

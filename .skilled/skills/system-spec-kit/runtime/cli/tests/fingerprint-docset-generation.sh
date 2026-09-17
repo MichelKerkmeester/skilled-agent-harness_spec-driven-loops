@@ -20,7 +20,7 @@
 
 set -uo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../../.." && pwd)"
-VALIDATE="$REPO/.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh"
+VALIDATE="$REPO/.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
 PACKET="$REPO/specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement"
 PASS=0; FAIL=0
 
@@ -51,8 +51,8 @@ cp "$PACKET/spec.md" "$WORK/spec.md"
 # Start from a freshly derived digest. Any edit to a hashed document since the
 # last derive would otherwise read as a failure of the generation logic rather
 # than as the stale digest it actually is.
-node --import "$REPO/.opencode/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs" \
-     "$REPO/.opencode/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts" \
+node --import "$REPO/.skilled/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs" \
+     "$REPO/.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts" \
      --spec-folder "$PACKET" >/dev/null 2>&1
 cp "$PACKET/graph-metadata.json" "$WORK/gm.json"
 

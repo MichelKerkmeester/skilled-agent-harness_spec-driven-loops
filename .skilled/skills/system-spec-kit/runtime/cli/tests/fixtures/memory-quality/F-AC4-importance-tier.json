@@ -4,7 +4,7 @@
   "importance_tier": "important",
   "filesModified": [
     {
-      "path": ".opencode/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts",
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts",
       "action": "Modified",
       "description": "Managed-frontmatter rewrite now synchronizes frontmatter and MEMORY METADATA importance_tier from a single resolved value"
     }

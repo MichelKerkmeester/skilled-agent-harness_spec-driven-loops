@@ -17,8 +17,8 @@ export const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 // Fallback socket directory for a caller that supplies neither an explicit directory nor
 // SPECKIT_IPC_SOCKET_DIR. It names the skill-advisor daemon because that is the one daemon
 // whose launcher already pins this path, and it MUST stay byte-identical to
-// DEFAULT_SOCKET_DIR in .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts
-// and .opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts, or the daemon and
+// DEFAULT_SOCKET_DIR in .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts
+// and .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts, or the daemon and
 // its CLI probe bind different addresses. Any other daemon MUST pass its own directory:
 // daemon-ipc.sock is a per-service name, so two services sharing this fallback would collide.
 const DEFAULT_DAEMON_SOCKET_DIR = '/tmp/system-skill-advisor';

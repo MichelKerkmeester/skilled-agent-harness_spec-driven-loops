@@ -8,7 +8,7 @@
   ],
   "filesModified": [
     {
-      "path": ".opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
       "action": "Modified",
       "description": "Routes merged and folder-derived trigger phrases through the D3 sanitizer"
     }

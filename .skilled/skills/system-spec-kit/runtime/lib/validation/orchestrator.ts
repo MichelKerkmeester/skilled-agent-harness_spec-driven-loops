@@ -1071,7 +1071,7 @@ function writeRepairHint(report: ValidationReport): void {
   const target = path.relative(process.cwd(), report.folder) || report.folder;
   process.stdout.write('\nSome of these are recomputable from the repository:\n');
   process.stdout.write(
-    `  preview  node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder ${target}\n`,
+    `  preview  node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder ${target}\n`,
   );
   process.stdout.write('  apply    add --apply\n');
 }

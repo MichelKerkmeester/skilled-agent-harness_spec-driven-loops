@@ -24,7 +24,7 @@ It exists because feature removal, migration, and deprecation edits have deleted
 
 ## 2. HOW IT WORKS
 
-The guard walks a fixed set of documentation roots (`.opencode/skills`, `.opencode/commands`, `.opencode/agents`, plus the `.claude` and `.opencode` agent and command trees). For each markdown file it strips fenced and inline code spans first (code is not link surface), then extracts markdown links and reference definitions. Each target is resolved against two bases — the source file's own directory and the repository root — and counts as valid if either resolves.
+The guard walks a fixed set of documentation roots (`.skilled/skills`, `.skilled/commands`, `.skilled/agents`, plus the `.claude` and `.skilled` agent and command trees). For each markdown file it strips fenced and inline code spans first (code is not link surface), then extracts markdown links and reference definitions. Each target is resolved against two bases — the source file's own directory and the repository root — and counts as valid if either resolves.
 
 Archived, generated, changelog, and test-fixture paths are excluded by path segment, and a small explicit `(file, ref)` allowlist covers intentional template fill-in placeholders plus one illustrative example. Adding a genuinely new broken link still fails; the allowlist is the only set of waivers. A `--self-test` mode asserts the inline-code handling against synthetic inputs without walking the filesystem, including the cases that must never be hidden: a real link on the same line as inline code, and a link behind escaped backticks.
 
@@ -39,16 +39,16 @@ The guard is wired into CI through `.github/workflows/markdown-link-integrity.ym
 ### 1) Whole-tree link resolution
 
 - **Implementation**
-  - `.opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` walks the documentation roots, extracts links and reference definitions, and resolves each against the file directory or repository root.
+  - `.skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` walks the documentation roots, extracts links and reference definitions, and resolves each against the file directory or repository root.
 - **HEAD evidence**
-  - `node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` prints a single `... 0 broken` summary line and exits `0` on the current tree.
+  - `node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` prints a single `... 0 broken` summary line and exits `0` on the current tree.
 
 ### 2) Code spans are not link surface
 
 - **Implementation**
   - The resolver strips fenced code blocks and inline code spans before extraction. The inline strip matches equal-length backtick runs, treats a backslash-escaped backtick as literal, and blanks (rather than deletes) spans so reference definitions are not promoted from stripped lines.
 - **HEAD evidence**
-  - `node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs --self-test` reports all cases passing, including the same-line and escaped-backtick cases that must stay caught.
+  - `node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs --self-test` reports all cases passing, including the same-line and escaped-backtick cases that must stay caught.
 
 ### 3) CI enforcement
 
@@ -62,9 +62,9 @@ The guard is wired into CI through `.github/workflows/markdown-link-integrity.ym
 ### Check commands
 
 - Whole-tree scan:
-  - `node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs`
+  - `node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs`
 - Inline-code self-test:
-  - `node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs --self-test`
+  - `node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs --self-test`
 
 ### Expected clean output
 
@@ -73,7 +73,7 @@ The guard is wired into CI through `.github/workflows/markdown-link-integrity.ym
 
 ### Configuration links (enforcement points)
 
-- Guard script: `.opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs`
+- Guard script: `.skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs`
 - CI workflow: `.github/workflows/markdown-link-integrity.yml`
 
 ---
@@ -89,7 +89,7 @@ The guard is wired into CI through `.github/workflows/markdown-link-integrity.ym
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` | Script/guard | Repo-wide markdown-link resolver with fenced + inline code stripping, exclusion segments, allowlist, and `--self-test` |
+| `.skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` | Script/guard | Repo-wide markdown-link resolver with fenced + inline code stripping, exclusion segments, allowlist, and `--self-test` |
 | `.github/workflows/markdown-link-integrity.yml` | CI workflow | Runs the guard on pull requests touching the documentation trees |
 
 Related references:

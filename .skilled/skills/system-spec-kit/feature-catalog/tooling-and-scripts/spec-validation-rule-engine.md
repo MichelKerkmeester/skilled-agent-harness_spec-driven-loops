@@ -58,10 +58,10 @@ The implementation extended the strict path beyond the original shell-rule inven
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Orchestrator | Parses flags and config, detects level, resolves rule order, sources rule scripts, aggregates results, and handles recursive phase validation |
-| `.opencode/skills/system-spec-kit/runtime/cli/validation/continuity-freshness.ts` | Validation helper | Warns when `_memory.continuity.last_updated_at` lags `graph-metadata.json.derived.last_save_at` |
-| `.opencode/skills/system-spec-kit/runtime/cli/validation/evidence-marker-audit.ts` | Validation helper | Bracket-depth evidence-marker parser used for audit and repair sweeps |
-| `.opencode/skills/system-spec-kit/runtime/cli/validation/evidence-marker-audit.ts` | Validation helper | Strict audit that fails malformed evidence-marker cases |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Orchestrator | Parses flags and config, detects level, resolves rule order, sources rule scripts, aggregates results, and handles recursive phase validation |
+| `.skilled/skills/system-spec-kit/runtime/cli/validation/continuity-freshness.ts` | Validation helper | Warns when `_memory.continuity.last_updated_at` lags `graph-metadata.json.derived.last_save_at` |
+| `.skilled/skills/system-spec-kit/runtime/cli/validation/evidence-marker-audit.ts` | Validation helper | Bracket-depth evidence-marker parser used for audit and repair sweeps |
+| `.skilled/skills/system-spec-kit/runtime/cli/validation/evidence-marker-audit.ts` | Validation helper | Strict audit that fails malformed evidence-marker cases |
 
 ### Rule Inventory
 
@@ -69,19 +69,19 @@ The implementation extended the strict path beyond the original shell-rule inven
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-ai-protocols.sh` | Validation rule | Rule script discovered and executed by the orchestrator for the AI protocols domain |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-complexity.sh` | Validation rule | Rule script discovered and executed by the orchestrator for complexity matching |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-files.sh` | Validation rule | Rule script discovered and executed by the orchestrator for required file checks |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-folder-naming.sh` | Validation rule | Rule script discovered and executed by the orchestrator for folder naming checks |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-frontmatter.sh` | Validation rule | Rule script discovered and executed by the orchestrator for frontmatter validation |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-level-match.sh` | Validation rule | Rule script discovered and executed by the orchestrator for level matching checks |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-level.sh` | Validation rule | Rule script discovered and executed by the orchestrator for level declaration checks |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-links.sh` | Validation rule | Wikilink integrity scan over the skill's own markdown, registered as `LINKS_VALID`; also runs by hand over any skill tree |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-normalizer-lint.sh` | Validation rule | Rule script discovered and executed by the orchestrator for duplicate scope-normalizer detection |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh` | Validation rule | Rule script discovered and executed by the orchestrator for placeholder detection |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-spec-doc-integrity.sh` | Validation rule | Rule script discovered and executed by the orchestrator for spec document integrity checks |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh` | Validation rule | Rule script discovered and executed by the orchestrator for template-source validation |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-toc-policy.sh` | Validation rule | Rule script discovered and executed by the orchestrator for table-of-contents policy checks |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-ai-protocols.sh` | Validation rule | Rule script discovered and executed by the orchestrator for the AI protocols domain |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-complexity.sh` | Validation rule | Rule script discovered and executed by the orchestrator for complexity matching |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-files.sh` | Validation rule | Rule script discovered and executed by the orchestrator for required file checks |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-folder-naming.sh` | Validation rule | Rule script discovered and executed by the orchestrator for folder naming checks |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter.sh` | Validation rule | Rule script discovered and executed by the orchestrator for frontmatter validation |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-level-match.sh` | Validation rule | Rule script discovered and executed by the orchestrator for level matching checks |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-level.sh` | Validation rule | Rule script discovered and executed by the orchestrator for level declaration checks |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-links.sh` | Validation rule | Wikilink integrity scan over the skill's own markdown, registered as `LINKS_VALID`; also runs by hand over any skill tree |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-normalizer-lint.sh` | Validation rule | Rule script discovered and executed by the orchestrator for duplicate scope-normalizer detection |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-placeholders.sh` | Validation rule | Rule script discovered and executed by the orchestrator for placeholder detection |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-spec-doc-integrity.sh` | Validation rule | Rule script discovered and executed by the orchestrator for spec document integrity checks |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh` | Validation rule | Rule script discovered and executed by the orchestrator for template-source validation |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-toc-policy.sh` | Validation rule | Rule script discovered and executed by the orchestrator for table-of-contents policy checks |
 
 ---
 

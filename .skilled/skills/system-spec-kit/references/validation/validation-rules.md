@@ -216,10 +216,10 @@ Create the missing file(s) using the appropriate template:
 
 ```bash
 # Core files
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/007-feature --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/007-feature --name feature-name
 
 # Implementation summary is scaffolded by create.sh for all levels
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/007-feature --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/007-feature --name feature-name
 ```
 
 **Workflow:**
@@ -506,10 +506,10 @@ title: My Feature Spec
 ### How to Fix
 
 1. Ensure frontmatter has both opening and closing `---` markers
-2. Use templates from `.opencode/skills/system-spec-kit/templates/` which include the source marker
+2. Use templates from `.skilled/skills/system-spec-kit/templates/` which include the source marker
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/007-feature --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path specs/007-feature --name feature-name
 ```
 
 ---
@@ -620,7 +620,7 @@ Add the AI Execution Protocol section to plan.md or tasks.md. Reference the Leve
 
 ```bash
 # See protocol examples in templates
-cat .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
+cat .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
 ```
 
 ---
@@ -675,7 +675,7 @@ Present: decision-record.md (suggests Level 3)
 
 ```bash
 # Add checklist for Level 2
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path specs/007-feature --name feature-name
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path specs/007-feature --name feature-name
 ```
 
 ---
@@ -741,17 +741,17 @@ Cut in the order the [set-string playbook](../workflows/goal-set-string-playbook
 
 **Run validation on a spec folder:**
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
 ```
 
 **Run in strict mode (strict-only rules enabled; warnings stay advice):**
 ```bash
-SPECKIT_STRICT=true bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
+SPECKIT_STRICT=true bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
 ```
 
 **Get JSON output for automation:**
 ```bash
-SPECKIT_JSON=true bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
+SPECKIT_JSON=true bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/
 ```
 
 ---
@@ -766,10 +766,10 @@ validation run means; a copy kept anywhere else goes stale the first time the ha
    refuse to run: it prints `compiled validation orchestrator is stale`, exits 3, and emits
    no rule output at all. A sweep looking only for `RESULT: FAILED` reads that silence as a
    clean pass. Rebuild with
-   `cd "$(realpath .opencode)/skills/system-spec-kit/runtime" && npm run build`.
+   `cd "$(realpath .skilled)/skills/system-spec-kit/runtime" && npm run build`.
 2. **Invoke through `realpath`, and verify by content.** Where `.opencode` is a symlink the
    spec scripts and generators can silently no-op, exiting 0 with zero output. Use
-   `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/runtime/cli/spec/validate.sh" <folder> --strict`
+   `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .skilled)/skills/system-spec-kit/runtime/cli/spec/validate.sh" <folder> --strict`
    and confirm the rule lines appeared rather than trusting the exit code.
 3. **A phase parent recurses into its children.** Printed output continues past the folder you
    asked about, so the tail describes the last child rather than your packet. Take the FIRST

@@ -21,7 +21,7 @@ set -euo pipefail
 _links_rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _links_skill_root="$(cd "${_links_rule_dir}/../../.." && pwd)"
 
-DEFAULT_SKILL_DIR=".opencode/skills"
+DEFAULT_SKILL_DIR=".skilled/skills"
 
 # Prints one "file<TAB>link" line per wikilink found under the tree, in a single
 # pass over every markdown file. Fenced blocks and code spans are stripped

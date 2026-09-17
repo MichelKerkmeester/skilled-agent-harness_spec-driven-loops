@@ -33,7 +33,7 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 ## 2. PRE-CHECKS
 
 - [ ] Read the Level 1 contract files in an existing packet such as `<spec-folder>`.
-- [ ] Read templates from `.opencode/skills/system-spec-kit/templates/` and the manifest entries under `.opencode/skills/system-spec-kit/templates/`.
+- [ ] Read templates from `.skilled/skills/system-spec-kit/templates/` and the manifest entries under `.skilled/skills/system-spec-kit/templates/`.
 - [ ] Verify the required Level 1 docs: `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md`.
 - [ ] Confirm required anchor counts for the selected level before writing.
 - [ ] Confirm `_memory.continuity.packet_pointer` is slash-separated and relative to the specs track.
@@ -59,7 +59,7 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 
 ## 4. POST-CHECKS
 
-- [ ] Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <path> --strict`.
+- [ ] Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <path> --strict`.
 - [ ] grep verification: `rg -n "ANCHOR:metadata|ANCHOR:summary|ANCHOR:notation|_memory:|packet_pointer" <path>`.
 - [ ] grep verification: `rg -n "\"title\"|\"contextType\"|\"derived\"" <path>/description.json <path>/graph-metadata.json`.
 - [ ] Cross-runtime mirror parity check if the spec folder changes command or agent mirrors.

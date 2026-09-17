@@ -148,7 +148,7 @@ describe('stateless enrichment guardrails', () => {
           status: 'completed',
           timestamp: '2026-03-15T12:00:10Z',
           input: {
-            command: "sed -n '680,760p' .opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+            command: "sed -n '680,760p' .skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
           },
           output: 'Confirmed scripts/core/workflow.ts still blocks mis-scoped 009-perfect-session-capturing saves.',
         },
@@ -187,7 +187,7 @@ describe('stateless enrichment guardrails', () => {
           status: 'completed',
           timestamp: '2026-03-15T12:10:10Z',
           input: {
-            command: "node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js .opencode/specs/00--anobel.com/036-hero-contact-success",
+            command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js .opencode/specs/00--anobel.com/036-hero-contact-success",
           },
           output: 'Prepared unrelated image conversion follow-up.',
         },
@@ -317,7 +317,7 @@ describe('stateless enrichment guardrails', () => {
     const specRoot = makeTempRoot('speckit-spec-folder-absolute-paths-');
     const projectAbsolutePath = path.join(
       CONFIG.PROJECT_ROOT,
-      '.opencode',
+      '.skilled',
       'skill',
       'system-spec-kit',
       'scripts',
@@ -355,7 +355,7 @@ describe('stateless enrichment guardrails', () => {
 
     expect(extracted.FILES).toEqual(expect.arrayContaining([
       expect.objectContaining({
-        FILE_PATH: '.opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts',
+        FILE_PATH: '.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts',
       }),
     ]));
     expect(extracted.FILES).toEqual(expect.not.arrayContaining([
@@ -372,7 +372,7 @@ describe('stateless enrichment guardrails', () => {
   it.fails.skip('uses spec-declared file targets to scope git context beyond the spec folder path itself', async () => {
     const repoRoot = makeTempRoot('speckit-git-context-');
     const specFolderPath = path.join(repoRoot, '.opencode', 'specs', 'system-spec-kit', '022-hybrid-rag-fusion', '009-perfect-session-capturing');
-    const workflowPath = path.join(repoRoot, '.opencode', 'skill', 'system-spec-kit', 'scripts', 'core', 'workflow.ts');
+    const workflowPath = path.join(repoRoot, '.skilled', 'skill', 'system-spec-kit', 'scripts', 'core', 'workflow.ts');
 
     fs.mkdirSync(specFolderPath, { recursive: true });
     fs.mkdirSync(path.dirname(workflowPath), { recursive: true });
@@ -414,14 +414,14 @@ describe('stateless enrichment guardrails', () => {
     });
     expect(gitContext.FILES).toEqual(expect.arrayContaining([
       expect.objectContaining({
-        FILE_PATH: '.opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts',
+        FILE_PATH: '.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts',
         MODIFICATION_MAGNITUDE: expect.any(String),
       }),
     ]));
     expect(gitContext.observations).toEqual(expect.arrayContaining([
       expect.objectContaining({
         title: 'feat: add workflow alignment fix',
-        files: expect.arrayContaining(['.opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts']),
+        files: expect.arrayContaining(['.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts']),
       }),
     ]));
   });
@@ -606,7 +606,7 @@ describe('stateless enrichment guardrails', () => {
           type: 'feature',
           title: 'feat: add workflow alignment fix',
           narrative: '',
-          files: ['.opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts'],
+          files: ['.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts'],
           _provenance: 'git',
           _synthetic: true,
         },

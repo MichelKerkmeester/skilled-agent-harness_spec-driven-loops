@@ -43,7 +43,7 @@ Validate Feature flag governance against the documented validation surface and r
 2. Diff that token set against the `ENV-REFERENCE.md` feature-flags table and against `.env.example`.
 3. Verify each table row carries default state, env var, gated automation, and added-in version.
 4. Record any flag present in code but missing from either document, and any row documenting a flag no code reads.
-5. Run `node .opencode/bin/compiled-route-status.cjs --all` and confirm one record per eligible hub, each with a `causeCode` from the set in `compiled-route-status.cjs` (`compiled-serving`, `flag-off`, `legacy-authority`, `missing-manifest`, `engine-throw`, `stale-manifest`, `identity-mismatch`, `compile-error`).
+5. Run `node .skilled/bin/compiled-route-status.cjs --all` and confirm one record per eligible hub, each with a `causeCode` from the set in `compiled-route-status.cjs` (`compiled-serving`, `flag-off`, `legacy-authority`, `missing-manifest`, `engine-throw`, `stale-manifest`, `identity-mismatch`, `compile-error`).
 6. Re-run step 5 with `SPECKIT_COMPILED_ROUTING=0` and confirm every eligible hub reports `flag-off`.
 
 ### Expected
@@ -72,7 +72,7 @@ Verify the enumeration covers every surviving flag read site rather than one mod
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Feature catalog: [governance/feature-flag-governance.md](../../feature-catalog/governance/feature-flag-governance.md)
 
-Provenance: manual only - node .opencode/bin/compiled-route-status.cjs --all
+Provenance: manual only - node .skilled/bin/compiled-route-status.cjs --all
 
 ---
 

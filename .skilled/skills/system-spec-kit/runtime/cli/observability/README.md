@@ -52,7 +52,7 @@ These helpers are observe-only. Runtime wrappers and measurement scripts may cal
 
 ## 5. VALIDATION
 
-Run the smart-router vitest suites from `runtime/cli/`'s skill root (`.opencode/skills/system-spec-kit`):
+Run the smart-router vitest suites from `runtime/cli/`'s skill root (`.skilled/skills/system-spec-kit`):
 
 ```bash
 npx --prefix scripts vitest run --config runtime/vitest.config.ts \

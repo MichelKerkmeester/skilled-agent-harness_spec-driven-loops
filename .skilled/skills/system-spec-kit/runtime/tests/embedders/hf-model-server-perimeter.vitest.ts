@@ -17,11 +17,11 @@ import { EventEmitter } from 'node:events';
 import { describe, expect, it } from 'vitest';
 
 // Resolve the CJS module under test by walking from this test file to the repo's
-// .opencode/bin/ directory. Computed at runtime so the relative depth cannot be
+// .skilled/bin/ directory. Computed at runtime so the relative depth cannot be
 // guessed wrong, and so the test stays valid if the test tree is reorganized.
 const here = dirname(fileURLToPath(import.meta.url));
-// here = .opencode/skills/system-spec-kit/runtime/tests/embedders
-//   ..(embedders→tests) ..(→runtime) ..(→system-spec-kit) ..(→skills) ..(→.opencode) /bin
+// here = .skilled/skills/system-spec-kit/runtime/tests/embedders
+//   ..(embedders→tests) ..(→runtime) ..(→system-spec-kit) ..(→skills) ..(→.skilled) /bin
 const moduleUnderTest = resolve(here, '..', '..', '..', '..', '..', 'bin', 'hf-model-server.cjs');
 const requireCjs = createRequire(import.meta.url);
 

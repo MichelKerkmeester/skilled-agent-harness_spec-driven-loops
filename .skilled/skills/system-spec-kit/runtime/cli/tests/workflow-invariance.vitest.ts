@@ -49,8 +49,8 @@ function collectDefaultSurfaces(): string[] {
   const roots = [
     path.join(SKILL_ROOT, 'runtime/cli/tests/fixtures'),
     path.join(SKILL_ROOT, 'templates'),
-    path.join(WORKSPACE_ROOT, '.opencode/command'),
-    path.join(WORKSPACE_ROOT, '.opencode/agent'),
+    path.join(WORKSPACE_ROOT, '.skilled/command'),
+    path.join(WORKSPACE_ROOT, '.skilled/agent'),
     path.join(SKILL_ROOT, 'feature-catalog'),
     path.join(SKILL_ROOT, 'manual-testing-playbook'),
   ];
@@ -77,21 +77,21 @@ function isLegacyPhaseCleanupDebt(filePath: string): boolean {
     'AGENTS.md',
     'AGENTS_Barter.md',
     'CLAUDE.md',
-    '.opencode/agents/',
-    '.opencode/commands/',
-    '.opencode/skills/system-spec-kit/SKILL.md',
-    '.opencode/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-creation/',
+    '.skilled/agents/',
+    '.skilled/commands/',
+    '.skilled/skills/system-spec-kit/SKILL.md',
+    '.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-creation/',
   ].some((prefix) => rel === prefix || rel.startsWith(prefix));
 }
 
 function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): boolean {
   const rel = relative(filePath);
   if (rel.includes('.opencode/specs/')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/CONTRACT.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/MIGRATION.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/spec-kit-docs.json')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/README.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/templates/CONTRACT.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/templates/EXTENSION-GUIDE.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/templates/MIGRATION.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/templates/spec-kit-docs.json')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/templates/README.md')) return true;
   if (/runtime\/lib\/config\/capability-flags\.ts|lib\/config\/capability-flags\.ts|\bcapability-flags\.ts\b|from ['"][^'"]*capability-flags['"]|require\(['"][^'"]*capability-flags(?:\.js)?['"]\)/iu.test(hit.text)) return true;
   if (!isExtra && isLegacyPhaseCleanupDebt(filePath)) return true;
   // --- Concrete technical identifiers that are never private taxonomy (schema fields, real
@@ -113,35 +113,35 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   if (/SPECKIT_CHILD_MANIFEST_FILE/u.test(hit.text)) return true;
   // /doctor router consolidation feature docs legitimately use "manifest" vocabulary (route
   // manifest + manifest-driven dispatch) — a real command surface, not private taxonomy.
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md')) return true;
-  if (rel.startsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md')) return true;
+  if (rel.startsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/')) return true;
   // Causal-graph edge records document a "kind" schema field (edge kind, e.g. "semantic") in their
   // JSON shape — a data-schema field name, not workflow taxonomy.
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/causal-graph-link-quality.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/causal-graph-link-quality.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md')) return true;
   // Feature-catalog / playbook docs that legitimately describe real "manifest" artifacts in prose:
   // the CLI-manifest modules (code-index / skill-advisor / spec-memory), the checkpoint manifest,
   // the embedder registry manifest, the `templates/` source-template dirs (core/addons/packet-types), per-document
   // "manifest anchors" (validator output), and cross-reference links to the doctor-router doc.
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/lifecycle/checkpoint-restore-checkpointrestore.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/maintenance/memory-retention-sweep.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/maintenance/startup-runtime-compatibility-guards.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/code-index-cli-daemon-backed-surface.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/embedder-list-registry-inventory.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/lifecycle/checkpoint-v2-file-snapshot-roundtrip.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-doc-structure-validator-and-continuity-frontmatter.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-list-tools-parity.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/embedder-set-dry-run-and-validation.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/review-packet-type-marker-gated-validation.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/templates/examples/README.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/lifecycle/checkpoint-restore-checkpointrestore.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/maintenance/memory-retention-sweep.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/maintenance/startup-runtime-compatibility-guards.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/code-index-cli-daemon-backed-surface.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/embedder-list-registry-inventory.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/lifecycle/checkpoint-v2-file-snapshot-roundtrip.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-doc-structure-validator-and-continuity-frontmatter.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-list-tools-parity.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/embedder-set-dry-run-and-validation.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/review-packet-type-marker-gated-validation.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/templates/examples/README.md')) return true;
   // Docs that use "kind" as a JSON/YAML schema-enum field (verified values: document / code /
   // structured_data / startup / unresolved), a CLI grouping label, or incidental plain English.
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/context-preservation/session-resume.md')) return true;
-  if (rel.endsWith('.opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/context-preservation/session-resume.md')) return true;
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md')) return true;
   return false;
 }
 

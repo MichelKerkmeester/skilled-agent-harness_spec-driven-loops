@@ -1,6 +1,6 @@
 ---
 title: "system spec kit runtime tests deep loop: Code README"
-description: "Code-facing README for .opencode/skills/system-spec-kit/runtime/tests/deep-loop."
+description: "Code-facing README for .skilled/skills/system-spec-kit/runtime/tests/deep-loop."
 trigger_phrases:
   - "system-spec-kit runtime/tests/deep-loop"
   - "code README"
@@ -16,7 +16,7 @@ Test code and validation helpers for this skill area.
 
 ### Purpose
 
-This README documents the code-bearing folder `.opencode/skills/system-spec-kit/runtime/tests/deep-loop` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.skilled/skills/system-spec-kit/runtime/tests/deep-loop` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -36,12 +36,12 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 **Step 1: Confirm the owner.**
 
-Start with `.opencode/skills/system-spec-kit/SKILL.md` for runtime routing and workflow boundaries.
+Start with `.skilled/skills/system-spec-kit/SKILL.md` for runtime routing and workflow boundaries.
 
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .opencode/skills/system-spec-kit/runtime/tests/deep-loop
+rg --files .skilled/skills/system-spec-kit/runtime/tests/deep-loop
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -84,7 +84,7 @@ Run the owning package test command from the nearest package boundary.
 **Audit this folder**
 
 ```text
-User request: Check .opencode/skills/system-spec-kit/runtime/tests/deep-loop for sk-code and README coverage.
+User request: Check .skilled/skills/system-spec-kit/runtime/tests/deep-loop for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded in the 026 audit report.
 ```

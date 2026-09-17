@@ -148,7 +148,7 @@ function locateRepoRoot(startDir: string): string {
   let current = path.resolve(startDir);
 
   while (true) {
-    if (fs.existsSync(path.join(current, '.opencode', 'skills'))) {
+    if (fs.existsSync(path.join(current, '.skilled', 'skills'))) {
       return current;
     }
 
@@ -176,7 +176,7 @@ export function telemetryFilePath(outputPath?: string): string {
   }
 
   const repoRoot = locateRepoRoot(process.cwd());
-  return path.join(repoRoot, '.opencode', 'skills', '.state', 'smart-router-telemetry', 'compliance.jsonl');
+  return path.join(repoRoot, '.skilled', 'skills', '.state', 'smart-router-telemetry', 'compliance.jsonl');
 }
 
 function positiveIntFromEnv(envName: string, fallback: number): number {

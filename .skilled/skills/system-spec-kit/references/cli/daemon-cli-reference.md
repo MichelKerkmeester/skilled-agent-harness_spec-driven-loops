@@ -18,7 +18,7 @@ The daemon CLI shim is the skill-advisor's front door: an IPC client over the ad
 
 Use it for shell diagnostics, CI checks, scripted maintenance, or any programmatic advisor call outside a prompt-time hook.
 
-Run the repo-relative examples from the repository root. If the caller is in another working directory, use an absolute path to the selected `.opencode/bin/*.cjs` shim instead.
+Run the repo-relative examples from the repository root. If the caller is in another working directory, use an absolute path to the selected `.skilled/bin/*.cjs` shim instead.
 
 ## 1. OVERVIEW
 
@@ -30,7 +30,7 @@ The skill-advisor daemon exposes its tool surface through one CLI front door. Th
 
 | CLI shim | Daemon service | Tool count | Primary use |
 | --- | --- | ---: | --- |
-| `node .opencode/bin/skill-advisor.cjs` | `system-skill-advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
+| `node .skilled/bin/skill-advisor.cjs` | `system-skill-advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
 
 The shim first sets a default socket directory when needed, checks its built CLI entrypoint for freshness, then runs the compiled CLI with inherited stdio. `list-tools` and `--help` are served from local definitions and do not contact or spawn a daemon.
 
@@ -52,11 +52,11 @@ When the daemon cannot be reached, a prompt-time hook still answers from the deg
 Common form:
 
 ```bash
-node .opencode/bin/<cli>.cjs list-tools [--format json|text|jsonl] [--compact|--names-only]
-node .opencode/bin/<cli>.cjs completion bash|zsh
-node .opencode/bin/<cli>.cjs <tool_name> [--json '{...}'] [--format json|text|jsonl] [--timeout-ms N] [--warm-only]
-node .opencode/bin/<cli>.cjs <tool_name> --param value [--another-param value]
-node .opencode/bin/<cli>.cjs <tool_name> --help
+node .skilled/bin/<cli>.cjs list-tools [--format json|text|jsonl] [--compact|--names-only]
+node .skilled/bin/<cli>.cjs completion bash|zsh
+node .skilled/bin/<cli>.cjs <tool_name> [--json '{...}'] [--format json|text|jsonl] [--timeout-ms N] [--warm-only]
+node .skilled/bin/<cli>.cjs <tool_name> --param value [--another-param value]
+node .skilled/bin/<cli>.cjs <tool_name> --help
 ```
 
 `list-tools --compact` returns names, aliases, descriptions, and counts only; it omits all `inputSchema` fields.
@@ -70,7 +70,7 @@ Tool names accept the aliases exposed by the CLI: snake_case, kebab-case, and ca
 Use `--json` for one complete JSON object argument when a tool has structured input:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement cli core"}' --format json --timeout-ms 3000 --warm-only
+node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement cli core"}' --format json --timeout-ms 3000 --warm-only
 ```
 
 ---
@@ -110,12 +110,12 @@ Prompt-time hooks and prompt-time runtime fallbacks must use warm-only behavior.
 Use either the explicit flag or the prompt-time env flags:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --warm-only --format json --timeout-ms 3000
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --warm-only --format json --timeout-ms 3000
 ```
 
 Warm-only defaults can also come from env flags documented in `../config/environment-variables.md` and `../../runtime/ENV-REFERENCE.md`: per-CLI `*_CLI_WARM_ONLY`, per-CLI `*_CLI_PROMPT_TIME`, cross-CLI `SPECKIT_CLI_PROMPT_TIME`, and runtime prompt-time markers such as `OPENCODE_PROMPT_TIME` and `CLAUDE_CODE_PROMPT_TIME`.
 
-Non-prompt contexts such as explicit operator maintenance, CI, cron, or session startup may omit `--warm-only`; then a cold daemon can auto-spawn through `.opencode/bin/system-skill-advisor-launcher.cjs`.
+Non-prompt contexts such as explicit operator maintenance, CI, cron, or session startup may omit `--warm-only`; then a cold daemon can auto-spawn through `.skilled/bin/system-skill-advisor-launcher.cjs`.
 
 ---
 
@@ -125,7 +125,7 @@ The shim refuses a stale or missing dist entrypoint with exit `69`. Rebuild befo
 
 | CLI | Shim stale/missing message | Build recovery |
 | --- | --- | --- |
-| `skill-advisor.cjs` | `Run the skill-advisor TypeScript build.` | `npm --prefix .opencode/skills/system-skill-advisor/runtime run build` |
+| `skill-advisor.cjs` | `Run the skill-advisor TypeScript build.` | `npm --prefix .skilled/skills/system-skill-advisor/runtime run build` |
 
 A development-only stale override exists for local loops, but should not be used in normal recovery: `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
 
@@ -136,9 +136,9 @@ A development-only stale override exists for local loops, but should not be used
 Use `list-tools` for offline surface discovery:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs list-tools --format json
-node .opencode/bin/skill-advisor.cjs list-tools --compact
-node .opencode/bin/skill-advisor.cjs completion zsh
+node .skilled/bin/skill-advisor.cjs list-tools --format json
+node .skilled/bin/skill-advisor.cjs list-tools --compact
+node .skilled/bin/skill-advisor.cjs completion zsh
 ```
 
 The expected count is `9` for skill-advisor. Compact and names-only output preserve it while returning zero `inputSchema` fields. The count comes from the live `TOOL_DEFINITIONS` manifest and the parity test; this reference does not maintain a second tool inventory.
@@ -146,13 +146,13 @@ The expected count is `9` for skill-advisor. Compact and names-only output prese
 Per-command help is available and prints the command description, aliases, and input schema:
 
 ```bash
-node .opencode/bin/skill-advisor.cjs advisor_status --help
+node .skilled/bin/skill-advisor.cjs advisor_status --help
 ```
 
 Run the host-safe offline smoke check to verify the shim without daemon contact:
 
 ```bash
-node .opencode/bin/cli-offline-smoke.cjs --format json
+node .skilled/bin/cli-offline-smoke.cjs --format json
 ```
 
 The check is the executable parity check for the live manifests, not a separate tool inventory.
@@ -174,4 +174,4 @@ The check is the executable parity check for the live manifests, not a separate 
 ## 10. SOURCE ANCHORS
 
 - Env flags: `runtime/ENV-REFERENCE.md` section `CLI FRONT DOOR`.
-- Offline smoke: `.opencode/bin/cli-offline-smoke.cjs`.
+- Offline smoke: `.skilled/bin/cli-offline-smoke.cjs`.

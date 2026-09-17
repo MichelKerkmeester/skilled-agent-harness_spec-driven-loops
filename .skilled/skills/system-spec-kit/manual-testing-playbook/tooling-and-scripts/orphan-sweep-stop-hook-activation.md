@@ -39,9 +39,9 @@ Validate the Stop-hook orphan-sweep fallback and confirm it is default-off and o
 
 ### Commands
 
-1. `bash -n .opencode/scripts/session-cleanup.sh`
-2. `cd .opencode/skills/system-spec-kit/runtime && npx vitest run tests/launcher-stop-hook-orphan-sweep.vitest.ts`
-3. `rg -n "run_orphan_sweep_fallback|SPECKIT_STOP_HOOK_ORPHAN_SWEEP" .opencode/scripts/session-cleanup.sh`
+1. `bash -n .skilled/scripts/session-cleanup.sh`
+2. `cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/launcher-stop-hook-orphan-sweep.vitest.ts`
+3. `rg -n "run_orphan_sweep_fallback|SPECKIT_STOP_HOOK_ORPHAN_SWEEP" .skilled/scripts/session-cleanup.sh`
 
 ### Expected
 
@@ -54,7 +54,7 @@ Validate the Stop-hook orphan-sweep fallback and confirm it is default-off and o
 Command 1:
 
 ```text
-$ bash -n .opencode/scripts/session-cleanup.sh
+$ bash -n .skilled/scripts/session-cleanup.sh
 (no output)
 Exit status: 0
 ```
@@ -62,9 +62,9 @@ Exit status: 0
 Command 2:
 
 ```text
-$ cd .opencode/skills/system-spec-kit/runtime && npx vitest run tests/launcher-stop-hook-orphan-sweep.vitest.ts
+$ cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/launcher-stop-hook-orphan-sweep.vitest.ts
 
- RUN  v4.1.9 .opencode/skills/system-spec-kit
+ RUN  v4.1.9 .skilled/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -76,7 +76,7 @@ $ cd .opencode/skills/system-spec-kit/runtime && npx vitest run tests/launcher-s
 Command 3:
 
 ```text
-$ rg -n "run_orphan_sweep_fallback|SPECKIT_STOP_HOOK_ORPHAN_SWEEP" .opencode/scripts/session-cleanup.sh
+$ rg -n "run_orphan_sweep_fallback|SPECKIT_STOP_HOOK_ORPHAN_SWEEP" .skilled/scripts/session-cleanup.sh
 24:ORPHAN_SWEEP_MODE="${SPECKIT_STOP_HOOK_ORPHAN_SWEEP:-off}"
 105:run_orphan_sweep_fallback() {
 122:  run_orphan_sweep_fallback
@@ -105,8 +105,8 @@ If the syntax check fails, inspect the function placement and the shell quoting 
 
 | File | Role |
 |---|---|
-| `.opencode/scripts/session-cleanup.sh` | Primary implementation anchor |
-| `.opencode/scripts/orphan-mcp-sweeper.sh` | Orphan-only sweeper anchor |
+| `.skilled/scripts/session-cleanup.sh` | Primary implementation anchor |
+| `.skilled/scripts/orphan-mcp-sweeper.sh` | Orphan-only sweeper anchor |
 | `runtime/tests/launcher-stop-hook-orphan-sweep.vitest.ts` | Regression or validation anchor |
 
 Provenance: runtime/tests/launcher-stop-hook-orphan-sweep.vitest.ts

@@ -86,7 +86,7 @@ Run targeted provider tests or TypeScript checks after changing provider logic:
 ```bash
 npm test -- --runInBand embeddings
 npx tsc --noEmit
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/shared/embeddings/providers/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/shared/embeddings/providers/README.md
 ```
 
 For README-only edits, `validate_document.py` is the required file-level check.

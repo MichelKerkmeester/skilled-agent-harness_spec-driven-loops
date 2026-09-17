@@ -42,7 +42,7 @@ trigger_phrases:
 Run extractor validation from the repository root:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
 ```
 
 The sibling Vitest suite lives in `../tests/`. Targeted runs from `runtime/cli/`:

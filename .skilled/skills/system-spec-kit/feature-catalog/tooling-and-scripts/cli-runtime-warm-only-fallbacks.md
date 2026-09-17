@@ -45,16 +45,16 @@ The Claude and OpenCode `user-prompt-submit.ts` advisor hooks use the skill-advi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared warm-only skill-advisor CLI fallback |
-| `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Hook adapter | Claude advisor hook with CLI fallback |
-| `.opencode/plugins/system-skill-advisor.js` | OpenCode plugin | Advisor plugin with CLI fallback routing |
+| `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared warm-only skill-advisor CLI fallback |
+| `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Hook adapter | Claude advisor hook with CLI fallback |
+| `.skilled/plugins/system-skill-advisor.js` | OpenCode plugin | Advisor plugin with CLI fallback routing |
 | `.opencode/settings.json` | Runtime config | OpenCode allowlist for CLI use |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-dual-client.vitest.ts` | Automated test | Dual-client MCP + CLI coverage for the advisor daemon |
+| `.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-dual-client.vitest.ts` | Automated test | Dual-client MCP + CLI coverage for the advisor daemon |
 
 ---
 

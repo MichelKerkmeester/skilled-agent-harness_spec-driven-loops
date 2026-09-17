@@ -33,7 +33,7 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `afterAgentThought` | **Confirmed fires** | Not wired (no repo guard needs a reasoning-trace hook today) | — |
 | `beforeSubmitPrompt` | **Confirmed non-delivery in tested build** | Classifier and prompt-submit adapters are registered for parity | Startup prebinding covers the enforcement-state gap. |
 | `stop` | **Confirmed non-delivery** | Replaced by `sessionEnd` (`session-end.ts`) | Never fired across all 3 dispatches; `sessionEnd` is the actual completion signal under `-p` |
-| `beforeMCPExecution` | **Confirmed fires** | Shared repository guard, not an adapter in this folder | The Cursor MCP route guard is owned by the repository hooks tree, at `.opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs`. |
+| `beforeMCPExecution` | **Confirmed fires** | Shared repository guard, not an adapter in this folder | The Cursor MCP route guard is owned by the repository hooks tree, at `.skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs`. |
 | `preCompact` | **Registered, delivery unconfirmed** | `precompact.ts` | No CLI-reachable compaction trigger is available. |
 | `postToolUseFailure`, `afterMCPExecution`, `subagentStart`, `subagentStop`, `afterAgentResponse` | **Not wired** | None | No current repository guard consumes these events. |
 
@@ -53,7 +53,7 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `user-prompt-submit.ts` | Prompt-submit adapter, registered for parity against the undelivered `beforeSubmitPrompt` event. |
 | `completion-evidence-response.mjs` | Advisory completion-evidence check. Delegates policy to `../../lib/hooks/completion-evidence-sentinel.cjs` and never blocks. |
 
-The Cursor task-dispatch and MCP-route guards are not part of this package. They live in the repository hooks tree at `.opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` and `.opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs`, and `.cursor/hooks.json` registers them from there.
+The Cursor task-dispatch and MCP-route guards are not part of this package. They live in the repository hooks tree at `.skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` and `.skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs`, and `.cursor/hooks.json` registers them from there.
 
 ---
 

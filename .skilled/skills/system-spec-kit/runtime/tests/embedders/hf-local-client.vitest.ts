@@ -21,7 +21,7 @@ const ORIGINAL_MEMORY_DB_PATH = process.env.MEMORY_DB_PATH;
 const ADVISOR_LAUNCHER_PATH = path.resolve(
   import.meta.dirname,
   '..', '..', '..', '..', '..', '..',
-  '.opencode/bin/system-skill-advisor-launcher.cjs',
+  '.skilled/bin/system-skill-advisor-launcher.cjs',
 );
 
 /**

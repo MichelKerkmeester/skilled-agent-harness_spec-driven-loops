@@ -93,8 +93,8 @@ Render flow:
 Run template and spec validation from the repository root after contract edits:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime run typecheck
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
+npm --prefix .skilled/skills/system-spec-kit/runtime run typecheck
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
 ```
 
 Rendered output should match the intended public Level contract and must not leak private manifest terms.

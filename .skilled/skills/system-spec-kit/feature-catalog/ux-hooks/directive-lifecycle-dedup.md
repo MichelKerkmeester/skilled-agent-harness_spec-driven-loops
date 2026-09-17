@@ -56,27 +56,27 @@ Kill switches:
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts` | Versioned state and decision contract. |
-| `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts` | Canonical decision, high-water logic, clocks, and in-memory state. |
-| `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts` | Hardened cross-process durable store. |
-| `.opencode/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts` | Canonical trusted-boundary target. |
-| `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Prompt adapter applying the canonical decision. |
-| `.opencode/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts` | Registered runtime-to-advisor boundary bridge. |
-| `.opencode/plugins/system-skill-advisor.js` | OpenCode identity, generation, epoch, and directive-delivery mirror. |
-| `.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` | Pi lifecycle delivery. |
+| `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts` | Versioned state and decision contract. |
+| `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts` | Canonical decision, high-water logic, clocks, and in-memory state. |
+| `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts` | Hardened cross-process durable store. |
+| `.skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts` | Canonical trusted-boundary target. |
+| `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Prompt adapter applying the canonical decision. |
+| `.skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts` | Registered runtime-to-advisor boundary bridge. |
+| `.skilled/plugins/system-skill-advisor.js` | OpenCode identity, generation, epoch, and directive-delivery mirror. |
+| `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` | Pi lifecycle delivery. |
 
 ### Validation And Evidence
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-skill-advisor/runtime/tests/hooks/directive-lifecycle.vitest.ts` | High-water, uncertainty, generation, secure-store, contention, cleanup, and isolation tests. |
-| `.opencode/skills/system-skill-advisor/runtime/tests/hooks/directive-lifecycle-boundary.vitest.ts` | Identified and global boundary invalidation tests. |
-| `.opencode/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Claude handler cadence, fallback, flag, and transcript integration. |
-| `.opencode/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts` | OpenCode cadence, identity rejection, global invalidation, and status tests. |
-| `.opencode/skills/system-spec-kit/runtime/tests/directive-lifecycle-adapter-parity.vitest.ts` | Registered Claude/Codex/Cursor/Devin payload and envelope parity. |
-| `.opencode/skills/system-spec-kit/runtime/tests/directive-lifecycle-boundary-bridge.vitest.ts` | Registered host-boundary coupling. |
-| `.opencode/hooks/dispatch/pi` | Pi dispatch and lifecycle suite. |
-| `.opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md` | Evidence-class-aware operator scenario. |
+| `.skilled/skills/system-skill-advisor/runtime/tests/hooks/directive-lifecycle.vitest.ts` | High-water, uncertainty, generation, secure-store, contention, cleanup, and isolation tests. |
+| `.skilled/skills/system-skill-advisor/runtime/tests/hooks/directive-lifecycle-boundary.vitest.ts` | Identified and global boundary invalidation tests. |
+| `.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Claude handler cadence, fallback, flag, and transcript integration. |
+| `.skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts` | OpenCode cadence, identity rejection, global invalidation, and status tests. |
+| `.skilled/skills/system-spec-kit/runtime/tests/directive-lifecycle-adapter-parity.vitest.ts` | Registered Claude/Codex/Cursor/Devin payload and envelope parity. |
+| `.skilled/skills/system-spec-kit/runtime/tests/directive-lifecycle-boundary-bridge.vitest.ts` | Registered host-boundary coupling. |
+| `.skilled/hooks/dispatch/pi` | Pi dispatch and lifecycle suite. |
+| `.skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md` | Evidence-class-aware operator scenario. |
 | the retired scenario-persistence wrapper | Append-only reports with durable hashes and observed provenance. |
 
 Evidence must state one controlled class: `unit`, `adapter-driven`, `registered-path`, or `native-host-delivered`. Adapter success never implies host delivery. Cursor remains registered-path `PASS` and native-host-delivered `SKIP` while `beforeSubmitPrompt` stays dormant.
@@ -88,5 +88,5 @@ Evidence must state one controlled class: `unit`, `adapter-driven`, `registered-
 - Group: UX Hooks
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `ux-hooks/directive-lifecycle-dedup.md`
-- Related reference: `.opencode/hooks/injection-contract.md`
+- Related reference: `.skilled/hooks/injection-contract.md`
 - Manual scenario: 457

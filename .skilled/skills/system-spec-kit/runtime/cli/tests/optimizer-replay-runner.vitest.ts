@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 
 const replayRunner = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/runtime/cli/optimizer/replay-runner.cjs',
+  '.skilled/skills/system-spec-kit/runtime/cli/optimizer/replay-runner.cjs',
 )) as {
   DEFAULT_CONFIG: Record<string, number | boolean>;
   evaluateConvergence: (
@@ -48,7 +48,7 @@ const replayRunner = require(path.join(
 
 const replayCorpus = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-spec-kit/runtime/cli/optimizer/replay-corpus.cjs',
+  '.skilled/skills/system-spec-kit/runtime/cli/optimizer/replay-corpus.cjs',
 )) as {
   buildCorpus: (family: string, options: { jsonlContent?: string }) => { corpus: any[] };
 };

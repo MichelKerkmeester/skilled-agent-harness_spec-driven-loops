@@ -12,7 +12,7 @@
   ],
   "filesModified": [
     {
-      "path": ".opencode/skills/system-spec-kit/runtime/cli/lib/trigger-phrase-sanitizer.ts",
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/trigger-phrase-sanitizer.ts",
       "action": "Created",
       "description": "Centralizes standalone stopword and allowlist decisions"
     }

@@ -22,19 +22,19 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-`.opencode/plugins/session-cleanup.js` is an OpenCode plugin that runs bounded startup guards
+`.skilled/plugins/session-cleanup.js` is an OpenCode plugin that runs bounded startup guards
 on `session.created` and a session-scoped teardown sweep on `dispose()`, without ever writing
 directly into the OpenCode TUI. On `session.created` it shells out (via `spawnSync`, bounded to
-an 8 second timeout) to `.opencode/bin/worktree-guard.sh` and `.opencode/bin/check-git-hooks.sh`,
+an 8 second timeout) to `.skilled/bin/worktree-guard.sh` and `.skilled/bin/check-git-hooks.sh`,
 captures their combined stdout/stderr (bounded to 4096 bytes), and stores it keyed by session id.
 It surfaces that captured warning exactly once, into the model's own context, through the
 `experimental.chat.system.transform` hook rather than any direct TUI write. On `dispose()` it
-shells out once to `.opencode/scripts/session-cleanup.sh`, always forcing
+shells out once to `.skilled/scripts/session-cleanup.sh`, always forcing
 `SESSION_CLEANUP_PID=''`, `CLAUDE_SESSION_PID=''`, and `SPECKIT_STOP_HOOK_ORPHAN_SWEEP=off` --
 deliberately refusing to treat the OpenCode server's own PID as session ownership, since a
 workspace-scoped server PID is not proof a given session owns a given descendant process tree.
 It is the OpenCode-side analog of Claude Code's SessionStart/SessionEnd hook pair, and it calls
-the exact same `.opencode/scripts/session-cleanup.sh` script that Claude Code's `SessionEnd` hook
+the exact same `.skilled/scripts/session-cleanup.sh` script that Claude Code's `SessionEnd` hook
 invokes directly (see `.claude/settings.json`).
 
 This scenario validates: (a) the plugin's own Node unit test suite passes for real against the
@@ -48,15 +48,15 @@ targets the same underlying cleanup script the plugin's `dispose()` calls.
 ## 2. SCENARIO CONTRACT
 
 - Preconditions:
-  - Plugin file exists at `.opencode/plugins/session-cleanup.js` (270 lines).
-  - Test file exists at `.opencode/plugins/tests/session-cleanup.test.cjs` (391 lines, `node:test`).
-  - Shared shell scripts exist: `.opencode/scripts/session-cleanup.sh` (191 lines),
-    `.opencode/bin/worktree-guard.sh` (50 lines), `.opencode/bin/check-git-hooks.sh` (142 lines).
+  - Plugin file exists at `.skilled/plugins/session-cleanup.js` (270 lines).
+  - Test file exists at `.skilled/plugins/tests/session-cleanup.test.cjs` (391 lines, `node:test`).
+  - Shared shell scripts exist: `.skilled/scripts/session-cleanup.sh` (191 lines),
+    `.skilled/bin/worktree-guard.sh` (50 lines), `.skilled/bin/check-git-hooks.sh` (142 lines).
   - Node supports the built-in `node:test` runner (verified on Node v22.23.1 in this run).
 - Real user-facing trigger: OpenCode fires the `session.created` event when a new session starts
   and calls the plugin's returned `dispose()` hook when the session/server instance tears down;
   Claude Code fires its `SessionEnd` hook, wired in `.claude/settings.json` to run
-  `bash .opencode/scripts/session-cleanup.sh || true` directly (no plugin layer on that side).
+  `bash .skilled/scripts/session-cleanup.sh || true` directly (no plugin layer on that side).
 - Expected signals:
   - Unit suite: `# tests 13`, `# suites 3`, `# pass 13`, `# fail 0` from `node --test`.
   - Live event (deterministic): `worktree-guard.sh` is git-state-driven, not stateful/debounced --
@@ -77,7 +77,7 @@ targets the same underlying cleanup script the plugin's `dispose()` calls.
     captured guard output: the worktree warning when the guard emits (as forced here), or nothing
     when the guard is silenced/debounced/off (an empty first-call `system` array is then a valid
     PASS for that path, not a failure).
-  - Live dispose: `.opencode/scripts/session-cleanup.sh` emits `action=skip reason=no-session-pid`
+  - Live dispose: `.skilled/scripts/session-cleanup.sh` emits `action=skip reason=no-session-pid`
     when invoked with the plugin's forced-empty session-PID env, and exits `0`.
   - Idempotency: a second `dispose()` call on the same plugin instance makes no further
     `spawnSync` call (unit-tested via call-count assertion; observed live as no additional
@@ -108,7 +108,7 @@ OpenCode fires the `session.created` event when a new session starts
 1. Run the plugin's Node unit test suite:
 
 ```bash
-node --test .opencode/plugins/tests/session-cleanup.test.cjs
+node --test .skilled/plugins/tests/session-cleanup.test.cjs
 ```
 
 Expected: `# tests 13`, `# suites 3`, `# pass 13`, `# fail 0`.
@@ -135,7 +135,7 @@ import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 
 const REPO_ROOT = process.cwd();
-const PLUGIN_PATH = resolve(REPO_ROOT, '.opencode/plugins/session-cleanup.js');
+const PLUGIN_PATH = resolve(REPO_ROOT, '.skilled/plugins/session-cleanup.js');
 const plugin = (await import(pathToFileURL(PLUGIN_PATH).href)).default;
 
 // Point the plugin's guard/cleanup working directory (its `directory` context) at a
@@ -189,8 +189,8 @@ invariant still holds either way.
 grep -n "session-cleanup.sh" .claude/settings.json
 ```
 
-Expected: the `SessionEnd` hook command is a `bash -c` wrapper that changes to the project directory and runs `bash .opencode/scripts/session-cleanup.sh`, falling back to a hook-drift notice,
-matching `CLEANUP_SCRIPT` in the plugin source (`join(REPO_ROOT, '.opencode/scripts/session-cleanup.sh')`).
+Expected: the `SessionEnd` hook command is a `bash -c` wrapper that changes to the project directory and runs `bash .skilled/scripts/session-cleanup.sh`, falling back to a hook-drift notice,
+matching `CLEANUP_SCRIPT` in the plugin source (`join(REPO_ROOT, '.skilled/scripts/session-cleanup.sh')`).
 
 ### Env-Flip Checks (kill switches and overrides)
 
@@ -204,7 +204,7 @@ matching `CLEANUP_SCRIPT` in the plugin source (`join(REPO_ROOT, '.opencode/scri
   falls back silently to the default.
 - `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` -> irrelevant on the OpenCode plugin path since `dispose()`
   always forces it to `off`; it only affects a direct/manual invocation of
-  `.opencode/scripts/session-cleanup.sh` with no session PID available, i.e. the Claude Code
+  `.skilled/scripts/session-cleanup.sh` with no session PID available, i.e. the Claude Code
   `SessionEnd` hook path or an ad hoc shell run.
 
 ### Evidence
@@ -234,14 +234,14 @@ Capture, for every step in the Commands sequence above:
 
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Plugin source: `.opencode/plugins/session-cleanup.js`
-- Plugin unit test: `.opencode/plugins/tests/session-cleanup.test.cjs`
-- Cleanup script (session-scoped descendant sweep): `.opencode/scripts/session-cleanup.sh`
-- Startup guard (worktree isolation warning): `.opencode/bin/worktree-guard.sh`
-- Startup guard (git hooks symlink integrity): `.opencode/bin/check-git-hooks.sh`
+- Plugin source: `.skilled/plugins/session-cleanup.js`
+- Plugin unit test: `.skilled/plugins/tests/session-cleanup.test.cjs`
+- Cleanup script (session-scoped descendant sweep): `.skilled/scripts/session-cleanup.sh`
+- Startup guard (worktree isolation warning): `.skilled/bin/worktree-guard.sh`
+- Startup guard (git hooks symlink integrity): `.skilled/bin/check-git-hooks.sh`
 - Claude Code hook wiring: `.claude/settings.json` (`SessionEnd` hook)
 
-Provenance: .opencode/plugins/tests/session-cleanup.test.cjs
+Provenance: .skilled/plugins/tests/session-cleanup.test.cjs
 
 ---
 

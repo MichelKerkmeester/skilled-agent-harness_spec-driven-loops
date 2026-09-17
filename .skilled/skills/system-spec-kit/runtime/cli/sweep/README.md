@@ -27,15 +27,15 @@ description: "Runs validate.sh --strict across every spec folder and flags regre
   It does not gate. Merge-blocking lives in `changed-packet-validation.yml`, which is
   scoped to the packets a pull request changed; this sweep exists for the case that gate
   cannot see: a toolchain change breaking packets no pull request touched.
-- `.opencode/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh` shares the same pass/fail classification vocabulary.
+- `.skilled/skills/system-spec-kit/runtime/cli/lib/status-classifier.sh` shares the same pass/fail classification vocabulary.
 
 ---
 
 ## 4. VALIDATION
 
 ```bash
-npx vitest run .opencode/skills/system-spec-kit/runtime/cli/tests/strict-pass-freshness.vitest.ts
-npx vitest run .opencode/skills/system-spec-kit/runtime/cli/tests/validation-gate-hardening.vitest.ts
+npx vitest run .skilled/skills/system-spec-kit/runtime/cli/tests/strict-pass-freshness.vitest.ts
+npx vitest run .skilled/skills/system-spec-kit/runtime/cli/tests/validation-gate-hardening.vitest.ts
 ```
 
 ---

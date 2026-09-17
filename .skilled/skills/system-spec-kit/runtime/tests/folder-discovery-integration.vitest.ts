@@ -150,9 +150,9 @@ describe('PI-B3: getSpecsBasePaths', () => {
     expect(result).toContain(openCodeSpecsDir);
   });
 
-  it('T046-05c: resolves repo specs when called from inside .opencode tooling', () => {
+  it('T046-05c: resolves repo specs when called from inside .skilled tooling', () => {
     const openCodeSpecsDir = path.join(tmpDir, '.opencode', 'specs');
-    const toolDir = path.join(tmpDir, '.opencode', 'skills', 'system-spec-kit', 'runtime');
+    const toolDir = path.join(tmpDir, '.skilled', 'skills', 'system-spec-kit', 'runtime');
     fs.mkdirSync(openCodeSpecsDir, { recursive: true });
     fs.mkdirSync(toolDir, { recursive: true });
 

@@ -24,7 +24,7 @@ trigger_phrases:
 
 ## 3. RUN RECIPE
 
-Run the substrate gate from `.opencode/skills/system-spec-kit/runtime`:
+Run the substrate gate from `.skilled/skills/system-spec-kit/runtime`:
 
 ```bash
 npx vitest run --config vitest.stress.config.ts stress-test/substrate

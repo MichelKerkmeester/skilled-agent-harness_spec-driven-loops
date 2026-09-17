@@ -68,7 +68,7 @@ function isCanonicalSpecFolderValue(value: string): boolean {
   if (normalized.split('/').includes('..')) {
     return false;
   }
-  if (/^(\.opencode\/)?specs\//.test(normalized)) {
+  if (/^(\.(?:skilled|opencode)\/)?specs\//.test(normalized)) {
     return false;
   }
   return true;

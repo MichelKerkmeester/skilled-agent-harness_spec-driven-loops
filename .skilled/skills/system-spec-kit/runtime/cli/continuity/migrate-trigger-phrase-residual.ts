@@ -127,7 +127,7 @@ function resolveProjectRoot(): string {
   ];
 
   for (const candidate of candidates) {
-    const skillRoot = path.join(candidate, '.opencode', 'skills', 'system-spec-kit');
+    const skillRoot = path.join(candidate, '.skilled', 'skills', 'system-spec-kit');
     if (fs.existsSync(skillRoot)) {
       return candidate;
     }

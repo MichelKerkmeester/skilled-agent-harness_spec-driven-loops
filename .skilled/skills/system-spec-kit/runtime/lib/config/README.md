@@ -145,7 +145,7 @@ There is no `index.ts` in this folder. Import from the file that owns the needed
 Run from the repository root after editing this README:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/lib/config/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/lib/config/README.md
 ```
 
 Use the package TypeScript checks (`npm run typecheck` from `runtime/`) when changing either module in this folder.

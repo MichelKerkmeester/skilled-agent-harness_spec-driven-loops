@@ -30,7 +30,7 @@ afterEach(() => {
 function makeRepo(): string {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'retrofit-'));
   tempRoots.add(dir);
-  fs.mkdirSync(path.join(dir, '.opencode'), { recursive: true });
+  fs.mkdirSync(path.join(dir, '.skilled'), { recursive: true });
   return dir;
 }
 

@@ -144,12 +144,12 @@ This folder owns shell orchestration only. Template content belongs under `templ
 ## 6. ENTRYPOINTS
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/create.sh specs/<name>
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/<name> --to 3
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/<name>
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh specs/<name>
-node .opencode/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs [--specs <dir>]
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh specs/<name>
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/<name> --to 3
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/<name>
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh specs/<name>
+node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs [--specs <dir>]
 ```
 
 ---
@@ -159,8 +159,8 @@ node .opencode/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs [--
 Use repository-root commands:
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh specs/<name>
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh specs/<name>
 ```
 
 Use `--recursive` with `validate.sh` when the target is a phase parent with child phase folders.

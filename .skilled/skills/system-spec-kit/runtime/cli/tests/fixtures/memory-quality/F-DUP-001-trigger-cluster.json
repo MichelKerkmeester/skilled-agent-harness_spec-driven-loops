@@ -12,7 +12,7 @@
   ],
   "filesModified": [
     {
-      "path": ".opencode/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
       "action": "modified",
       "description": "Guarded the fallback cluster anchor append for trigger phrase generation."
     }

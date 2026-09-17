@@ -86,7 +86,7 @@ raw markdown
 
 ## 6. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/runtime`.
+Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 npx vitest run tests/content-normalizer.vitest.ts
@@ -97,7 +97,7 @@ Expected result: the content-normalizer suite passes.
 For README-only edits, run the document validator:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/lib/parsing/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/lib/parsing/README.md
 ```
 
 Expected result: the validator exits with code `0`.

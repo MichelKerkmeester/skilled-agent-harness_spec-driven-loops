@@ -13,13 +13,13 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`templates/changelog/` contains packet-local changelog templates generated inside spec folders. These templates summarize canonical packet docs and are separate from global release-note templates under `.opencode/changelog/`.
+`templates/changelog/` contains packet-local changelog templates generated inside spec folders. These templates summarize canonical packet docs and are separate from global release-note templates under `.skilled/changelog/`.
 
 Current state:
 
 - `root.md` renders changelogs for root spec folders.
 - `phase.md` renders changelogs for phase child folders.
-- Recovery flows through `/speckit:resume`, implemented by `.opencode/commands/speckit/resume.md`, and canonical continuity docs.
+- Recovery flows through `/speckit:resume`, implemented by `.skilled/commands/speckit/resume.md`, and canonical continuity docs.
 
 ---
 
@@ -88,7 +88,7 @@ Generation flow:
 Run from the repository root after template edits:
 
 ```bash
-bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict
 ```
 
 Generated changelogs should reference available packet docs and avoid claiming task completion beyond those docs.

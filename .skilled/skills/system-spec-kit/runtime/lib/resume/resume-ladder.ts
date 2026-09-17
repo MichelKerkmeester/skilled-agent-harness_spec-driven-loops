@@ -252,7 +252,7 @@ function normalizeSpecFolder(specFolder: string | null | undefined): string | nu
   return trimmed
     .replace(/^\.opencode\/specs\//u, '')
     .replace(/^specs\//u, '')
-    .replace(/^\.opencode\//u, '');
+    .replace(/^\.(?:skilled|opencode)\//u, '');
 }
 
 function parseIsoMs(value: string | null | undefined): number | null {

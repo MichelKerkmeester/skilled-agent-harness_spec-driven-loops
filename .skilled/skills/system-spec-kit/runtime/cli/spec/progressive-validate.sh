@@ -542,7 +542,7 @@ get_suggestion_for_rule() {
     local rule="$1"
     case "$rule" in
         FILE_EXISTS|FILES)
-            echo "Create the missing file using the spec-kit template: .opencode/skills/system-spec-kit/templates/"
+            echo "Create the missing file using the spec-kit template: .skilled/skills/system-spec-kit/templates/"
             ;;
         PLACEHOLDER_FILLED|PLACEHOLDERS)
             echo "Search the file for [PLACEHOLDER] patterns and replace them with real content."

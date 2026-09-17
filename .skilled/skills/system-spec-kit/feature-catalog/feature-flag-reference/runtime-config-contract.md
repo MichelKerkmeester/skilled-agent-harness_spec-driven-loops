@@ -69,9 +69,9 @@ Outside Section 1, `config/config.jsonc` currently declares the following boolea
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/config/config.jsonc` | Config Contract | Editable JSONC source containing the active legacy keys plus documentation-only sections 2-11 |
-| `.opencode/skills/system-spec-kit/runtime/cli/core/config.ts` | Loader | Parses JSONC, merges defaults, validates `WorkflowConfig`, and exports frozen runtime constants |
-| `.opencode/skills/system-spec-kit/config/README.md` | Documentation | States that only Section 1 keys are used at runtime and distinguishes `filters.jsonc` from the core config loader |
+| `.skilled/skills/system-spec-kit/config/config.jsonc` | Config Contract | Editable JSONC source containing the active legacy keys plus documentation-only sections 2-11 |
+| `.skilled/skills/system-spec-kit/runtime/cli/core/config.ts` | Loader | Parses JSONC, merges defaults, validates `WorkflowConfig`, and exports frozen runtime constants |
+| `.skilled/skills/system-spec-kit/config/README.md` | Documentation | States that only Section 1 keys are used at runtime and distinguishes `filters.jsonc` from the core config loader |
 
 ### Validation And Tests
 

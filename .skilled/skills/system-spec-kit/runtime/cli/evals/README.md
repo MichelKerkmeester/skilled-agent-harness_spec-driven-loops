@@ -74,7 +74,7 @@ Restricted import surfaces:
 
 ## 4. COMMANDS
 
-Run from `.opencode/skills/system-spec-kit/runtime/cli` unless a command uses a repository-root path.
+Run from `.skilled/skills/system-spec-kit/runtime/cli` unless a command uses a repository-root path.
 
 ```bash
 npx tsx evals/check-no-mcp-lib-imports-ast.ts
@@ -112,13 +112,13 @@ Expected result: exits zero when every runtime-critical dist artifact still has 
 Run the README validator after editing this file:
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/runtime/cli/evals/README.md
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/evals/README.md
 ```
 
 Run policy checks after changing eval scripts:
 
 ```bash
-cd .opencode/skills/system-spec-kit/runtime/cli
+cd .skilled/skills/system-spec-kit/runtime/cli
 npx tsx evals/check-no-mcp-lib-imports-ast.ts
 npx tsx evals/check-allowlist-expiry.ts
 ```

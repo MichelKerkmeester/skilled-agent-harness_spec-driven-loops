@@ -42,13 +42,13 @@ The shipped behavior currently works as follows:
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/runtime/lib/templates/level-contract-resolver.ts` | Resolver | Returns the document contract for each public Level |
-| `.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.ts` | Renderer | Applies inline Level gates before a document is written |
-| `.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh` | Shell wrapper | Lets shell scripts call the renderer without duplicating logic |
-| `.opencode/skills/system-spec-kit/runtime/cli/lib/template-utils.sh` | Shell helper | Exposes `resolve_level_contract` and shared template helpers |
-| `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Scaffolder | Creates Level and phase-parent packets from the resolver output |
-| `.opencode/skills/system-spec-kit/runtime/cli/rules/check-files.sh` | Validator | Verifies required files from the Level contract |
-| `.opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` | Validator | Native `ANCHORS_VALID` and `SPEC_DOC_SUFFICIENCY` rules verify rendered anchors and sections |
+| `.skilled/skills/system-spec-kit/runtime/lib/templates/level-contract-resolver.ts` | Resolver | Returns the document contract for each public Level |
+| `.skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.ts` | Renderer | Applies inline Level gates before a document is written |
+| `.skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh` | Shell wrapper | Lets shell scripts call the renderer without duplicating logic |
+| `.skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh` | Shell helper | Exposes `resolve_level_contract` and shared template helpers |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` | Scaffolder | Creates Level and phase-parent packets from the resolver output |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-files.sh` | Validator | Verifies required files from the Level contract |
+| `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` | Validator | Native `ANCHORS_VALID` and `SPEC_DOC_SUFFICIENCY` rules verify rendered anchors and sections |
 
 ### Validation And Tests
 

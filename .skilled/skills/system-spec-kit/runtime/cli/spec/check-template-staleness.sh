@@ -118,7 +118,7 @@ main() {
         ROOT_PATH="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
     fi
 
-    TEMPLATE_DIR="$ROOT_PATH/.opencode/skills/system-spec-kit/templates"
+    TEMPLATE_DIR="$ROOT_PATH/.skilled/skills/system-spec-kit/templates"
     if [[ ! -d "$TEMPLATE_DIR" ]]; then
         echo "ERROR: Templates directory not found at $TEMPLATE_DIR" >&2
         exit 2

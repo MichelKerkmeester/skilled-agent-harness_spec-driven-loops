@@ -18,8 +18,8 @@ This scenario validates the no-symlinks-in-lib policy for `152`. It focuses on c
 ## 2. SCENARIO CONTRACT
 
 - Objective: Verify zero symlinks exist under runtime/lib/.
-- Real user request: `Please validate No symlinks in lib/ tree against cd .opencode/skills/system-spec-kit and tell me whether the expected signals are present: Zero symlinks found.`
-- Prompt: `Validate No symlinks in lib/ tree against cd .opencode/skills/system-spec-kit and report cited pass/fail evidence.`
+- Real user request: `Please validate No symlinks in lib/ tree against cd .skilled/skills/system-spec-kit and tell me whether the expected signals are present: Zero symlinks found.`
+- Prompt: `Validate No symlinks in lib/ tree against cd .skilled/skills/system-spec-kit and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Zero symlinks found
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -32,12 +32,12 @@ This scenario validates the no-symlinks-in-lib policy for `152`. It focuses on c
 ### Prompt
 
 ```
-Validate No symlinks in lib/ tree against cd .opencode/skills/system-spec-kit and report cited pass/fail evidence.
+Validate No symlinks in lib/ tree against cd .skilled/skills/system-spec-kit and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. `cd .opencode/skills/system-spec-kit`
+1. `cd .skilled/skills/system-spec-kit`
 2. `find runtime/lib -type l`
 3. Verify output is empty
 4. `echo $?` to confirm exit 0
@@ -48,7 +48,7 @@ Zero symlinks found
 
 ### Evidence
 
-Command context: `.opencode/skills/system-spec-kit`
+Command context: `.skilled/skills/system-spec-kit`
 
 Command: `find runtime/lib -type l`
 

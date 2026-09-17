@@ -13,7 +13,7 @@ version: 3.6.0.7
 
 # Nested Changelog Workflow
 
-Packet-local changelogs capture completion state inside a spec folder instead of the global `.opencode/changelog/` release stream.
+Packet-local changelogs capture completion state inside a spec folder instead of the global `.skilled/changelog/` release stream.
 
 ---
 
@@ -34,7 +34,7 @@ Generate packet-local changelog files for spec roots and phase child folders.
 ## 3. GENERATOR
 
 ```bash
-node .opencode/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
+node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
 ```
 
 ### Modes
@@ -65,7 +65,7 @@ It derives summary, change bullets, verification notes, files changed, and follo
 - `templates/changelog/root.md`
 - `templates/changelog/phase.md`
 
-Use these templates for packet-local changelog generation. Do not reuse the global `.opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md` for nested packet output.
+Use these templates for packet-local changelog generation. Do not reuse the global `.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md` for nested packet output.
 
 ---
 

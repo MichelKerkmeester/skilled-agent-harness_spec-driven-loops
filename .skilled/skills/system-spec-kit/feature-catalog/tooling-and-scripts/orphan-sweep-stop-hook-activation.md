@@ -48,8 +48,8 @@ The branch delegates to `orphan-mcp-sweeper.sh`, which reaps only ownerless MCP 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/scripts/session-cleanup.sh` | Script | Reads `CLAUDE_SESSION_PID`, refuses PPID guessing and in the no-session-pid branch delegates to the orphan sweeper based on `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` (off / dry-run / live) with the path override `SPECKIT_ORPHAN_SWEEPER_BIN` |
-| `.opencode/scripts/orphan-mcp-sweeper.sh` | Script | Reaps only ownerless reparented MCP daemons, supporting a dry-run mode that logs candidates without mutating |
+| `.skilled/scripts/session-cleanup.sh` | Script | Reads `CLAUDE_SESSION_PID`, refuses PPID guessing and in the no-session-pid branch delegates to the orphan sweeper based on `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` (off / dry-run / live) with the path override `SPECKIT_ORPHAN_SWEEPER_BIN` |
+| `.skilled/scripts/orphan-mcp-sweeper.sh` | Script | Reaps only ownerless reparented MCP daemons, supporting a dry-run mode that logs candidates without mutating |
 
 ### Validation And Tests
 
