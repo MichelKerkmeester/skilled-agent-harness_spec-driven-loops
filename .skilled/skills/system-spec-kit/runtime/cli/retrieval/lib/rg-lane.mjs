@@ -27,7 +27,7 @@ import { compareCodeUnits, normalizeTriggerText, scorePhrase } from './normalize
 
 /**
  * Flags shared by every recipe. `--hidden` is part of the contract because the
- * default roots include `.opencode`, whose own subtrees hold dotted directories
+ * default roots include `.skilled`, whose own subtrees hold dotted directories
  * with live documentation; without the flag ripgrep skips them silently, so a
  * miss reads as a clean no-match instead of an unsearched corpus.
  */
@@ -58,7 +58,7 @@ export const GLOBS = Object.freeze([
 ]);
 
 /** Default search roots. */
-export const DEFAULT_ROOTS = Object.freeze(['specs', '.opencode']);
+export const DEFAULT_ROOTS = Object.freeze(['specs', '.skilled']);
 
 /** Exit-status classes. Anything at or above the error floor is an execution fault. */
 export const EXIT_MATCH = 0;

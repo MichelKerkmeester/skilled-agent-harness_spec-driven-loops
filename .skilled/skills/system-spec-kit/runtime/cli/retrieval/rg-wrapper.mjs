@@ -64,7 +64,7 @@ export const SCHEMA_VERSION = 1;
 export const RECIPES = Object.freeze(['structured', 'path', 'count']);
 
 /** Search roots the convention names. */
-export const DEFAULT_SEARCH_ROOTS = Object.freeze(['specs', '.opencode']);
+export const DEFAULT_SEARCH_ROOTS = Object.freeze(['specs', '.skilled']);
 
 /**
  * Glob set in the documented order: the positive glob first, then the
@@ -81,7 +81,7 @@ const GLOBS = Object.freeze([
 /**
  * The flags every recipe opens with, in the convention document's order.
  * `--hidden` belongs here for the same reason it is in the shared lane: the
- * `.opencode` root holds dotted directories with live documentation, and
+ * `.skilled` root holds dotted directories with live documentation, and
  * without it a miss there reads as a clean no-match.
  */
 const HEAD_FLAGS = Object.freeze(['--no-config', '--hidden']);
