@@ -3,150 +3,150 @@
   "id": "deep/ai-council",
   "command": "/deep:ai-council",
   "version": 1,
-  "generatedBy": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+  "generatedBy": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
   "sourceDigests": [
     {
-      "path": ".opencode/commands/deep/ai-council.md",
+      "path": ".skilled/commands/deep/ai-council.md",
       "sha256": "1f80feded36159fdee6b9314fbe6848e01d0cdac687a47ea388772dd73c06bc4",
       "section": "full"
     },
     {
-      "path": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
+      "path": ".skilled/commands/deep/assets/deep-ai-council-presentation.txt",
       "sha256": "7abb4d64cddf66db70d23dd611a53441b10e2878ffa6177dad59b3c825b6fed8",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
+      "path": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
       "sha256": "d5ca47fd46e04117e305e95b33ba3cf47ff6afb92131bfb1980f4fee2990c260",
       "section": "full"
     },
     {
-      "path": ".opencode/commands/deep/assets/deep-ai-council-auto.yaml",
+      "path": ".skilled/commands/deep/assets/deep-ai-council-auto.yaml",
       "sha256": "614ec1afcea27214179473ab69db01c8da2da3b420251672eac530aa69ba6e63",
       "section": "full"
     },
     {
-      "path": ".opencode/commands/deep/assets/deep-ai-council-confirm.yaml",
+      "path": ".skilled/commands/deep/assets/deep-ai-council-confirm.yaml",
       "sha256": "0d153a90f63732d741f097a250406af992b083b107f2607ec8ea4e44059ee7b9",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+      "path": ".skilled/skills/system-deep-loop/mode-registry.json",
       "sha256": "be93642be72b6ca2f214216fc8977225f1a75b4a40bf4d893cd14c34b61f74b0",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/SKILL.md",
+      "path": ".skilled/skills/system-deep-loop/SKILL.md",
       "sha256": "50ec2328086ca97d4002f0f0e5ecfac3600488aa0fc178a05334b579a3d86b46",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
       "sha256": "65b3b86da06d73c209d94e6fae27927bf0263357bf596ef1c7281c1a92255197",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md",
       "sha256": "6ff4996ab0654404880724cc38f2dd52c561d71c16091dd8f4770053b5d2d3a8",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md",
       "sha256": "95a8383f4b7acb132c4052ec8dc5514db2d9981de9d35ede8a4fc0b38d53370a",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md",
       "sha256": "a60fb8372b2a21b93afa94ad223b3baa7707ec4970025f492876fc2c1619cb4f",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md",
       "sha256": "bda20e5c028760c3d86630e038240a943984927581ea67bddb5206f381cc9120",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md",
       "sha256": "f9ee9f29b4819eb174ab3118bf426818024c2af76ebcf0a2e60abd6632f140a9",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md",
       "sha256": "96eefc0561163ea9a6566eed725c5318a9a0eb21f3d4ad55b48523ce35f121b2",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
       "sha256": "b60e696ab7b39a1a641367409e5611c6a942efd3f4481e606ae172e746815af6",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md",
       "sha256": "ba7ba4080f65eb69eef42647a019297f930c043c0bff375e3f6f16a01611a03b",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md",
       "sha256": "2c2ed8cfbccb824f086a625862e711c19145575d3f280207dfb4b9cb6875cef7",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md",
       "sha256": "cb0a4686bc4dc86d9c6bf9bf0d158214161e262820b308bf25736502f7f74c06",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md",
       "sha256": "853c29ee97a5b88a29ba683fea09bb96d1dcf52091b22dd7e40ee18d082b9dda",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md",
       "sha256": "21fb38f24553af0d3f2b8948a9af8a5ce6e4544dcd007e6635aea376f52871a6",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md",
       "sha256": "7fa13ead2b38466a301d904104cc045727def19e91fa2ff71c836c193c8c11f0",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
       "sha256": "88800794f9b9b053ae067bfcb42201b095d693c3f218765064f57c92735c669b",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
       "sha256": "4478c099a704ff47778f721339d36664103bfad2c61a4b94efd567058b906650",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-config.json",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-config.json",
       "sha256": "6b2aad41db0f3f45e462e8ba357ffd5d451d5663e98033f55606ca20ad81d4c2",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md",
       "sha256": "2aca209f21b6b10ddbac26251fdcef94b66db8f88e52fde0391fd0e29894e5ec",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/assets/runtime-capabilities.json",
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/assets/runtime-capabilities.json",
       "sha256": "4575814ff4d1379753d19829576e46963ece546e3cdf949acfd4c13383a34de2",
       "section": "full"
     },
     {
-      "path": ".opencode/agents/ai-council.md",
+      "path": ".skilled/agents/ai-council.md",
       "sha256": "70789a46a1026a3d33d34e9ac20723daf185e80da2580319fe87cecb19b37a20",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
+      "path": ".skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
       "sha256": "8bb0a8d7cd4c37218ea9ad246eb9675e59fba897d13df8230ea2c4383a4faa9e",
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "a62350d7c7cf02a63e706ebc5180d2e041f1c0d4cba6f30bea799acf027730da"
+  "compiledBodyDigest": "c76400d59ce122b76e5fa5220fdd57890e7e28a4483a4fc8503c6ffd6f5d04e3"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:ai-council
@@ -169,40 +169,40 @@ Your job is to CONVENE 3+ distinct ai-council seats in-CLI over the bound topic 
 
 ## sourceAuthority
 
-1. `.opencode/commands/deep/ai-council.md`
-2. `.opencode/commands/deep/assets/deep-ai-council-presentation.txt`
-3. `.opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md`
-4. `.opencode/commands/deep/assets/deep-ai-council-auto.yaml`
-5. `.opencode/commands/deep/assets/deep-ai-council-confirm.yaml`
-6. `.opencode/skills/system-deep-loop/mode-registry.json`
-7. `.opencode/skills/system-deep-loop/SKILL.md`
-8. `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md`
-9. `.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md`
-10. `.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md`
-11. `.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md`
-12. `.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md`
-13. `.opencode/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md`
-14. `.opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md`
-15. `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md`
-16. `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md`
-17. `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
-18. `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md`
-19. `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md`
-20. `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md`
-21. `.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md`
-22. `.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md`
-23. `.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md`
-24. `.opencode/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-config.json`
-25. `.opencode/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md`
-26. `.opencode/skills/system-deep-loop/deep-ai-council/assets/runtime-capabilities.json`
-27. `.opencode/agents/ai-council.md`
-28. `.opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
+1. `.skilled/commands/deep/ai-council.md`
+2. `.skilled/commands/deep/assets/deep-ai-council-presentation.txt`
+3. `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`
+4. `.skilled/commands/deep/assets/deep-ai-council-auto.yaml`
+5. `.skilled/commands/deep/assets/deep-ai-council-confirm.yaml`
+6. `.skilled/skills/system-deep-loop/mode-registry.json`
+7. `.skilled/skills/system-deep-loop/SKILL.md`
+8. `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md`
+9. `.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md`
+10. `.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md`
+11. `.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md`
+12. `.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md`
+13. `.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md`
+14. `.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md`
+15. `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md`
+16. `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md`
+17. `.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md`
+18. `.skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md`
+19. `.skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md`
+20. `.skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md`
+21. `.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md`
+22. `.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md`
+23. `.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md`
+24. `.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-config.json`
+25. `.skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md`
+26. `.skilled/skills/system-deep-loop/deep-ai-council/assets/runtime-capabilities.json`
+27. `.skilled/agents/ai-council.md`
+28. `.skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
 
 ## gate3Precedence
 
 ```yaml
 block: gate3Precedence
-classifierPath: .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts
+classifierPath: .skilled/skills/system-spec-kit/shared/gate-3-classifier.ts
 classifierLines:
   commandContractShape: "67-72"
   autonomousSatisfaction: "653-680"
@@ -432,15 +432,15 @@ optionalFields:
   - "executor.reasoning"
   - "executor.service_tier"
   - "executor.timeout"
-autoWorkflow: .opencode/commands/deep/assets/deep-ai-council-auto.yaml
-confirmWorkflow: .opencode/commands/deep/assets/deep-ai-council-confirm.yaml
+autoWorkflow: .skilled/commands/deep/assets/deep-ai-council-auto.yaml
+confirmWorkflow: .skilled/commands/deep/assets/deep-ai-council-confirm.yaml
 ```
 
 ## outputTemplate
 
 ```yaml
 block: outputTemplate
-promptPackPath: .opencode/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md
+promptPackPath: .skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md
 requiredArtifacts:
   - "{state_paths.session_config} council session configuration JSON"
   - "{state_paths.session_state_log} append-only canonical JSONL session record"
@@ -504,11 +504,11 @@ rules:
 ```yaml
 block: refs
 dispatchReceipt:
-  writer: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts
-  validator: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts
+  writer: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts
+  validator: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts
   rule: "Reference the existing intent/completion receipt pair and validator; do not copy receipt logic into the command contract."
 progressRecord:
-  writer: .opencode/skills/system-deep-loop/shared/progress/progress-record.cjs
+  writer: .skilled/skills/system-deep-loop/shared/progress/progress-record.cjs
   rule: "Reference additive started/completed progress records as liveness evidence; progress records are not iteration, convergence, or completion records."
 ```
 

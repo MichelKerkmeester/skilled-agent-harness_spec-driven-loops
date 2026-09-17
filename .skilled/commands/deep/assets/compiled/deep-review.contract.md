@@ -3,90 +3,90 @@
   "id": "deep/review",
   "command": "/deep:review",
   "version": 1,
-  "generatedBy": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+  "generatedBy": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
   "sourceDigests": [
     {
-      "path": ".opencode/commands/deep/review.md",
+      "path": ".skilled/commands/deep/review.md",
       "sha256": "c29f6895322d19bce734e4312173d0d342733bb7fcc9334f9419d7a0d888d9a8",
       "section": "full"
     },
     {
-      "path": ".opencode/commands/deep/assets/deep-review-presentation.txt",
+      "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
       "sha256": "805ffb4720a6d5a4c2029efb011c99b87e2d91d297d53888aa2b2405806de308",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
+      "path": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
       "sha256": "d5ca47fd46e04117e305e95b33ba3cf47ff6afb92131bfb1980f4fee2990c260",
       "section": "full"
     },
     {
-      "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
       "sha256": "32b349e663f0846f85c866f83974461ad038927ce169018c342f1a8a4b92078f",
       "section": "full"
     },
     {
-      "path": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
       "sha256": "48a9e114000b9ded677b52f38947bf92a6b1f14fe1e92f863721a75bea2a6693",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+      "path": ".skilled/skills/system-deep-loop/mode-registry.json",
       "sha256": "be93642be72b6ca2f214216fc8977225f1a75b4a40bf4d893cd14c34b61f74b0",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/SKILL.md",
+      "path": ".skilled/skills/system-deep-loop/SKILL.md",
       "sha256": "50ec2328086ca97d4002f0f0e5ecfac3600488aa0fc178a05334b579a3d86b46",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
       "sha256": "bf4eef7ec4dd0e28965c7ddce203222a8e5b0256b9f368d05eee834ffb7894be",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
       "sha256": "a2a490bd86de4bc6a092d5cfebcf66854340f54e8e286c66569548cd2dbe4782",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-review/references/state/state-format.md",
+      "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
       "sha256": "40e53a4d1846c4d514c2979ba59c4bdfdc25cd6b9778224f94f16394125f3324",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+      "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
       "sha256": "fcd606f29b42fd1c93cce278815cfe52716c29faeecd44f8be3bd64e9deafcd1",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+      "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
       "sha256": "64415ae4d0c22ce694cb0813d3fea0b3ed10fdcd7acad4cf471f0cb152f416a4",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
+      "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
       "sha256": "575665915bd01d5084d4a30f03c139111d3256769eefaa265f53bae42fc6573c",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+      "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
       "sha256": "65fb7e3dfaff17ddbbf7c8ec4811e6957caaa2160d7ca260a6f70c709666562f",
       "section": "full"
     },
     {
-      "path": ".opencode/agents/deep-review.md",
+      "path": ".skilled/agents/deep-review.md",
       "sha256": "5ab00a7b5f78a72f66ac9c5d3d13881f3be8c0c886ba6f977a06df0cbb3b4c93",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
+      "path": ".skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
       "sha256": "8bb0a8d7cd4c37218ea9ad246eb9675e59fba897d13df8230ea2c4383a4faa9e",
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "4c286d641e39cd725adc86bde80b35a21c57cee45d7fd504a3cc00f0933699a3"
+  "compiledBodyDigest": "743149e80704cbbd8747665bb6e6430da665bb1c020a3fee5ef3b8d7f2040747"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -109,28 +109,28 @@ Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop ov
 
 ## sourceAuthority
 
-1. `.opencode/commands/deep/review.md`
-2. `.opencode/commands/deep/assets/deep-review-presentation.txt`
-3. `.opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md`
-4. `.opencode/commands/deep/assets/deep-review-auto.yaml`
-5. `.opencode/commands/deep/assets/deep-review-confirm.yaml`
-6. `.opencode/skills/system-deep-loop/mode-registry.json`
-7. `.opencode/skills/system-deep-loop/SKILL.md`
-8. `.opencode/skills/system-deep-loop/deep-review/SKILL.md`
-9. `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`
-10. `.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md`
-11. `.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml`
-12. `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-13. `.opencode/skills/system-deep-loop/deep-review/assets/deep-review-config.json`
-14. `.opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl`
-15. `.opencode/agents/deep-review.md`
-16. `.opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
+1. `.skilled/commands/deep/review.md`
+2. `.skilled/commands/deep/assets/deep-review-presentation.txt`
+3. `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`
+4. `.skilled/commands/deep/assets/deep-review-auto.yaml`
+5. `.skilled/commands/deep/assets/deep-review-confirm.yaml`
+6. `.skilled/skills/system-deep-loop/mode-registry.json`
+7. `.skilled/skills/system-deep-loop/SKILL.md`
+8. `.skilled/skills/system-deep-loop/deep-review/SKILL.md`
+9. `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`
+10. `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md`
+11. `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml`
+12. `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+13. `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json`
+14. `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl`
+15. `.skilled/agents/deep-review.md`
+16. `.skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
 
 ## gate3Precedence
 
 ```yaml
 block: gate3Precedence
-classifierPath: .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts
+classifierPath: .skilled/skills/system-spec-kit/shared/gate-3-classifier.ts
 classifierLines:
   commandContractShape: "67-72"
   autonomousSatisfaction: "653-680"
@@ -419,15 +419,15 @@ optionalFields:
   - "config.fanout_lineage_artifact_dir"
   - "fanout_executors"
   - "fanout_concurrency"
-autoWorkflow: .opencode/commands/deep/assets/deep-review-auto.yaml
-confirmWorkflow: .opencode/commands/deep/assets/deep-review-confirm.yaml
+autoWorkflow: .skilled/commands/deep/assets/deep-review-auto.yaml
+confirmWorkflow: .skilled/commands/deep/assets/deep-review-confirm.yaml
 ```
 
 ## outputTemplate
 
 ```yaml
 block: outputTemplate
-promptPackPath: .opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl
+promptPackPath: .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl
 requiredArtifacts:
   - "{state_paths_iteration_pattern} iteration narrative markdown"
   - "{state_paths_state_log} append-only canonical JSONL iteration record"
@@ -478,11 +478,11 @@ rules:
 ```yaml
 block: refs
 dispatchReceipt:
-  writer: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts
-  validator: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts
+  writer: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts
+  validator: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts
   rule: "Reference the existing intent/completion receipt pair and validator; do not copy receipt logic into the command contract."
 progressRecord:
-  writer: .opencode/skills/system-deep-loop/shared/progress/progress-record.cjs
+  writer: .skilled/skills/system-deep-loop/shared/progress/progress-record.cjs
   rule: "Reference additive started/completed progress records as liveness evidence; progress records are not iteration, convergence, or completion records."
 ```
 

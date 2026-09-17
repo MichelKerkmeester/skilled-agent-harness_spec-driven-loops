@@ -44,7 +44,7 @@ describe('compile-command-contracts', () => {
     ['deep/research', 'deep-research.contract.md'],
   ])('writes %s to its tracked renderer path', (command, fileName) => {
     expect(compiler.outputPathFor(command)).toBe(
-      join(compiler.WORKSPACE_ROOT, '.opencode/commands/deep/assets/compiled', fileName),
+      join(compiler.WORKSPACE_ROOT, '.skilled/commands/deep/assets/compiled', fileName),
     );
   });
 
@@ -84,18 +84,18 @@ describe('compile-command-contracts', () => {
     }
   });
 
-  // A checkout that holds its tree only under .skilled has no .opencode path, so an output
+  // A checkout that holds its tree only under .opencode has no .skilled path, so an output
   // directory missing under both names must resolve under the compiler's own tree.
   it('resolves a missing compiled directory under the tree the compiler runs from', () => {
-    const root = realpathSync(mkdtempSync(join(tmpdir(), 'compile-contracts-skilled-only-')));
+    const root = realpathSync(mkdtempSync(join(tmpdir(), 'compile-contracts-opencode-only-')));
     try {
-      const scripts = join(root, '.skilled', 'skills', 'system-deep-loop', 'runtime', 'scripts');
+      const scripts = join(root, '.opencode', 'skills', 'system-deep-loop', 'runtime', 'scripts');
       mkdirSync(scripts, { recursive: true });
       copyFileSync(require.resolve('../../scripts/compile-command-contracts.cjs'), join(scripts, 'compile-command-contracts.cjs'));
       const copied = require(join(scripts, 'compile-command-contracts.cjs')) as typeof compiler;
 
       expect(copied.outputPathFor('deep/review')).toBe(
-        join(root, '.skilled', 'commands', 'deep', 'assets', 'compiled', 'deep-review.contract.md'),
+        join(root, '.opencode', 'commands', 'deep', 'assets', 'compiled', 'deep-review.contract.md'),
       );
     } finally {
       rmSync(root, { recursive: true, force: true });

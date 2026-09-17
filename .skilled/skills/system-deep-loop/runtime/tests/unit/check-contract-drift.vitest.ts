@@ -51,9 +51,9 @@ const checker = require('../../scripts/check-contract-drift.cjs') as {
 };
 
 const COMMAND = 'deep/review';
-const REVIEW_CONFIG_SOURCE = '.opencode/skills/system-deep-loop/deep-review/assets/deep-review-config.json';
+const REVIEW_CONFIG_SOURCE = '.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json';
 const COUNCIL_COMMAND = 'deep/ai-council';
-const COUNCIL_PATTERN_SOURCE = '.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md';
+const COUNCIL_PATTERN_SOURCE = '.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md';
 
 function realContract(command = COMMAND): string {
   return readFileSync(compiler.outputPathFor(command), 'utf8');
@@ -138,15 +138,16 @@ describe('check-contract-drift', () => {
       const failure = result.failures.find((item) => item.class === checker.DRIFT_CLASSES.ENUMERATED_SOURCE_GAP);
 
       expect(failure).toBeDefined();
-      expect(failure?.reason).toContain(sourcePath);
+      // The reason names the source as the command documents spell it, under either root name.
+      expect(failure?.reason).toContain(sourcePath.replace(/^\.skilled\//, ''));
     });
   }
 
   // The source tree may sit under .skilled or .opencode, with one name linked to the other,
   // so recorded and referenced sources must compare the same whichever name they spell.
-  it('accepts recorded source digests spelled under .skilled on a tree that holds them under .opencode', () => {
+  it('accepts recorded source digests spelled under .opencode on a tree that holds them under .skilled', () => {
     const contract = withHeader(realContract(), (header) => {
-      for (const digest of header.sourceDigests) digest.path = digest.path.replace(/^\.opencode\//, '.skilled/');
+      for (const digest of header.sourceDigests) digest.path = digest.path.replace(/^\.skilled\//, '.opencode/');
     });
 
     const result = checkMutated(contract);
