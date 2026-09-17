@@ -193,7 +193,9 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
       }];
     }
 
-    const underSkillsRoot = segments[0] === '.opencode' && segments[1] === 'skills' && segments.length >= 4;
+    // The source tree sits under .skilled or .opencode, and a runtime reports an edit
+    // by its real path, which names .skilled even where .opencode links to it.
+    const underSkillsRoot = ['.skilled', '.opencode'].includes(segments[0]) && segments[1] === 'skills' && segments.length >= 4;
 
     // Row 3: frontmatter-versions -- versioned skill doc, scoped by --skill.
     if (underSkillsRoot) {
@@ -232,7 +234,7 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
       return [{
         label: 'wikilinks',
         checkerPath: path.join(projectDir, CHECKER_RELATIVE_PATHS.wikilinks),
-        args: [path.join(projectDir, '.opencode', 'skills', skillName)],
+        args: [path.join(projectDir, segments[0], 'skills', skillName)],
         surfaceRule: 'exit1',
       }];
     }
