@@ -80,15 +80,22 @@ The objective the operator set is a copy of the durable slice, and copies drift.
 The goal document is the source, so the agent working the packet owns the resync:
 
 1. Whenever anything above the log changes (the objective, a decision, the
-   binding table, a criterion), resend the durable slice of the parent
-   `goal.md` in chat, unprompted and with the frontmatter stripped, so the
-   operator can paste it over the session objective. Keep reminding while it
-   stays unset. Never stop work because it is unset; only the operator stops
-   work. After the operator sets it, acknowledge in one line and continue.
-2. A child `goal.md` change that alters a parent decision or criterion is an
+   binding table, a criterion), resend the chat slice of the parent `goal.md`,
+   unprompted, so the operator can paste it over the session objective. The
+   chat slice is the durable slice without its frontmatter, HTML comments,
+   anchor markers, `---` dividers or heading section numbers. The title,
+   tables and bullets stay. `node .skilled/hooks/goal/bin/goal.cjs packet
+   <packet> --workspace <repo root>` prints it as `chat_slice`, JSON-quoted.
+   It is a different payload from the Section 2 shape, which is what a runtime
+   stores when it binds the packet. Keep reminding while it stays unset. Never
+   stop work because it is unset: only the operator stops work. After the
+   operator sets it, acknowledge in one line and continue.
+2. Never send a parent goal whose chat slice is over 4,000 characters. Cut the
+   file in the Section 4 order first, then resend.
+3. A child `goal.md` change that alters a parent decision or criterion is an
    amendment to the parent: apply it there first, then resend the parent. A
    child change that stays inside its own phase needs no resend.
-3. Log entries never trigger a resend; the log is not part of the objective.
+4. Log entries never trigger a resend, because the log is not part of the objective.
 
 The template carries this rule in its directive section, so a scaffolded goal
 document tells the next agent the same thing.

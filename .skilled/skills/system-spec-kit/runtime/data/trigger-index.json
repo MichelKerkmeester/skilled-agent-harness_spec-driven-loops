@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d14037d08acb589b4ed6c31299c8686178f540914e27ae6846808913e67adeaa",
+  "manifestHash": "b0d6626afeab3f2b594a8098e38cfccd99ae000907ce090ef074bef47debf4e9",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -15264,6 +15264,12 @@
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/research/research.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/spec.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/before-after.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/spec.md",
@@ -24823,12 +24829,13 @@
       15169,
       15174,
       15179,
-      15262,
-      15273,
-      15286,
+      15254,
+      15268,
+      15279,
       15292,
-      15310,
-      15322
+      15298,
+      15316,
+      15328
     ],
     "ac traceability table": [
       12897,
@@ -25182,13 +25189,14 @@
       15169,
       15174,
       15179,
-      15262,
-      15273,
-      15286,
+      15254,
+      15268,
+      15279,
       15292,
-      15310,
+      15298,
       15316,
-      15322
+      15322,
+      15328
     ],
     "acceptance criteria closure gate": [
       14628,
@@ -29516,7 +29524,8 @@
       15239,
       15245,
       15250,
-      15264
+      15257,
+      15270
     ],
     "architecture diagram": [
       801,
@@ -32884,13 +32893,13 @@
       5545
     ],
     "broken link retire or restore": [
-      15307
+      15313
     ],
     "broken markdown links": [
       1661
     ],
     "broken move dry run": [
-      15290
+      15296
     ],
     "broken readme link gate": [
       6836
@@ -38503,7 +38512,7 @@
       2266
     ],
     "cli pi deepseek flash delegation": [
-      15307
+      15313
     ],
     "cli pi deepseek flash openrouter research run": [
       2369
@@ -39709,13 +39718,14 @@
       15169,
       15174,
       15179,
-      15262,
-      15273,
-      15286,
+      15254,
+      15268,
+      15279,
       15292,
-      15310,
+      15298,
       15316,
-      15322
+      15322,
+      15328
     ],
     "closure gate blocks evidence": [
       14568
@@ -42123,7 +42133,7 @@
       2165
     ],
     "codex hooks reinstall duplicates": [
-      15319
+      15325
     ],
     "codex hooks rewiring": [
       11950
@@ -44505,7 +44515,8 @@
       15232,
       15237,
       15243,
-      15248
+      15248,
+      15255
     ],
     "completion criteria copied": [
       14695,
@@ -45272,13 +45283,13 @@
       3687
     ],
     "consumer link cutover tasks": [
-      15321
+      15327
     ],
     "consumer measurement plan": [
       7358
     ],
     "consumer project skilled links": [
-      15320
+      15326
     ],
     "consumer repointing": [
       4016
@@ -45290,7 +45301,7 @@
       9708
     ],
     "consumer skilled link plan": [
-      15319
+      15325
     ],
     "consumption log pii redaction query hash": [
       10288,
@@ -45964,13 +45975,14 @@
       15238,
       15244,
       15249,
-      15263,
-      15275,
-      15282,
+      15256,
+      15269,
+      15281,
       15288,
-      15312,
+      15294,
       15318,
-      15324
+      15324,
+      15330
     ],
     "continue post review closeout": [
       2699
@@ -50274,7 +50286,7 @@
       108
     ],
     "dangling git hook probe": [
-      15277
+      15283
     ],
     "dangling install symlink": [
       6886
@@ -54950,7 +54962,7 @@
       2825
     ],
     "deepseek census units": [
-      15303
+      15309
     ],
     "deepseek cli pi stall": [
       8926
@@ -54984,7 +54996,7 @@
       3026
     ],
     "deepseek draft gpt review tasks": [
-      15297
+      15303
     ],
     "deepseek exclusion patch": [
       2821
@@ -56936,10 +56948,10 @@
       788
     ],
     "design review adjudication criterion": [
-      15279
+      15285
     ],
     "design review adjudication tasks": [
-      15285
+      15291
     ],
     "design review findings": [
       873,
@@ -60094,7 +60106,7 @@
       7324
     ],
     "dot skilled migration": [
-      15329
+      15335
     ],
     "dot state directories": [
       14604
@@ -60539,25 +60551,25 @@
       5767
     ],
     "dual root code and contracts": [
-      15296
+      15302
     ],
     "dual root code and contracts results": [
-      15294
+      15300
     ],
     "dual root contracts": [
-      15296
+      15302
     ],
     "dual root implementation plan": [
-      15295
+      15301
     ],
     "dual root implementation summary": [
-      15294
+      15300
     ],
     "dual root phase goal": [
-      15293
+      15299
     ],
     "dual root task breakdown": [
-      15297
+      15303
     ],
     "dual schema wal truncate": [
       12732
@@ -60899,7 +60911,8 @@
       15232,
       15237,
       15243,
-      15248
+      15248,
+      15255
     ],
     "durable fan in failure plan": [
       8368
@@ -61312,10 +61325,10 @@
       7295
     ],
     "either root completion criteria": [
-      15293
+      15299
     ],
     "either root verification evidence": [
-      15294
+      15300
     ],
     "element traceability": [
       7311
@@ -62523,22 +62536,22 @@
       14716
     ],
     "entry point acceptance criteria": [
-      15257
+      15263
     ],
     "entry point guard worktree": [
-      15260
+      15266
     ],
     "entry point plan": [
-      15259
+      15265
     ],
     "entry point summary": [
-      15258
+      15264
     ],
     "entry point symlink resolution": [
       9433
     ],
     "entry point tasks": [
-      15261
+      15267
     ],
     "enum constrain schemas": [
       13938,
@@ -65755,7 +65768,8 @@
       15241,
       15246,
       15252,
-      15265
+      15258,
+      15271
     ],
     "feature specification 028 drift remediation": [
       13625
@@ -65885,7 +65899,7 @@
       217
     ],
     "fewer skills safer paths": [
-      15330
+      15336
     ],
     "fidelity checklist": [
       889
@@ -67933,7 +67947,7 @@
       1132
     ],
     "freeze exclusion globs": [
-      15314
+      15320
     ],
     "fresh": [
       13340
@@ -68329,7 +68343,7 @@
       12845
     ],
     "frontmatter never sent in chat": [
-      15255
+      15261
     ],
     "frontmatter normalization": [
       14775,
@@ -68917,13 +68931,13 @@
       1713
     ],
     "gate filter trace plan": [
-      15276
+      15282
     ],
     "gate function completion claims": [
       770
     ],
     "gate input check design": [
-      15289
+      15295
     ],
     "gate matrix negative controls": [
       2647
@@ -68962,16 +68976,16 @@
       2755
     ],
     "gate readiness phase goal": [
-      15287
+      15293
     ],
     "gate readiness plan": [
-      15289
+      15295
     ],
     "gate readiness tasks": [
-      15291
+      15297
     ],
     "gate readiness verification checklist": [
-      15291
+      15297
     ],
     "gate release with a dated support matrix and fail closed compatibility doctor": [
       3797
@@ -69324,13 +69338,13 @@
       9549
     ],
     "generated state closure gate": [
-      15304
+      15310
     ],
     "generated state phase directive": [
-      15305
+      15311
     ],
     "generated state verification evidence": [
-      15306
+      15312
     ],
     "generatedocumentembedding catch swallow": [
       10716
@@ -69392,13 +69406,13 @@
       6293
     ],
     "generator exits 0 without writing": [
-      15260
+      15266
     ],
     "generator freshness acceptance": [
-      15304
+      15310
     ],
     "generator freshness sweep": [
-      15308
+      15314
     ],
     "generator graph metadata guess": [
       14652
@@ -69413,10 +69427,10 @@
       14653
     ],
     "generator rerun tasks": [
-      15309
+      15315
     ],
     "generator source constants order": [
-      15307
+      15313
     ],
     "generator status field menu": [
       14652
@@ -70042,13 +70056,13 @@
       1541
     ],
     "global git hooks reinstall": [
-      15320
+      15326
     ],
     "global hooks cutover directive": [
-      15317
+      15323
     ],
     "global hooks relink criteria": [
-      15316
+      15322
     ],
     "global security audit complete": [
       9768
@@ -70112,7 +70126,7 @@
       302
     ],
     "goal before after": [
-      15254
+      15260
     ],
     "goal binding": [
       2523,
@@ -70317,6 +70331,10 @@
     "goal capability probes": [
       2717
     ],
+    "goal chat slice": [
+      15255,
+      15258
+    ],
     "goal closure plan": [
       15234
     ],
@@ -70330,7 +70348,7 @@
       3998,
       15211,
       15212,
-      15256
+      15262
     ],
     "goal contradiction register": [
       15240
@@ -70494,7 +70512,7 @@
     ],
     "goal hook refactor": [
       3998,
-      15256
+      15262
     ],
     "goal hook validation": [
       2746
@@ -70597,11 +70615,11 @@
       15251
     ],
     "goal md across runtimes": [
-      15255
+      15261
     ],
     "goal md frontmatter strip": [
       3998,
-      15256
+      15262
     ],
     "goal md template": [
       14703
@@ -70755,7 +70773,7 @@
       3998,
       15221,
       15223,
-      15256
+      15262
     ],
     "goal store fate": [
       15187,
@@ -70770,7 +70788,7 @@
       15240
     ],
     "goal system comparison": [
-      15254
+      15260
     ],
     "goal template": [
       14677,
@@ -70790,8 +70808,8 @@
     ],
     "goal unification": [
       3998,
-      15255,
-      15256
+      15261,
+      15262
     ],
     "goal unification changelog": [
       15221,
@@ -70815,7 +70833,7 @@
       15228
     ],
     "goal unification record": [
-      15254
+      15260
     ],
     "goal unification research": [
       15187,
@@ -73011,10 +73029,10 @@
       8063
     ],
     "home config cutover": [
-      15320
+      15326
     ],
     "home config cutover checklist": [
-      15321
+      15327
     ],
     "honest measurement contract": [
       10387
@@ -73070,22 +73088,22 @@
       7922
     ],
     "hook and ci delegation plan": [
-      15289
+      15295
     ],
     "hook and workflow unit tasks": [
-      15291
+      15297
     ],
     "hook box header all runtimes": [
       2157
     ],
     "hook bridge landing bracket": [
-      15319
+      15325
     ],
     "hook bridge task order": [
-      15321
+      15327
     ],
     "hook bridge window": [
-      15320
+      15326
     ],
     "hook compatibility consumer cutover": [
       12222
@@ -75401,7 +75419,8 @@
       15239,
       15245,
       15250,
-      15264
+      15257,
+      15270
     ],
     "implementation status": [
       3763,
@@ -75819,13 +75838,14 @@
       15238,
       15244,
       15249,
-      15263,
-      15275,
-      15282,
+      15256,
+      15269,
+      15281,
       15288,
-      15312,
+      15294,
       15318,
-      15324
+      15324,
+      15330
     ],
     "implementation summary 025": [
       7042
@@ -76193,7 +76213,8 @@
       15242,
       15247,
       15253,
-      15266
+      15259,
+      15272
     ],
     "implementation testing verification phases": [
       521
@@ -76518,7 +76539,7 @@
       3114
     ],
     "independent gate input check": [
-      15290
+      15296
     ],
     "independent percentages legend": [
       4805
@@ -77685,13 +77706,13 @@
       12412
     ],
     "ismainmodule plan": [
-      15259
+      15265
     ],
     "ismainmodule symlink": [
-      15260
+      15266
     ],
     "ismainmodule tasks": [
-      15261
+      15267
     ],
     "isolate ai sessions git worktree": [
       11763,
@@ -79223,16 +79244,16 @@
       4339
     ],
     "layout probe completion criteria": [
-      15274
+      15280
     ],
     "layout probe verification checklist": [
-      15278
+      15284
     ],
     "layout recalc thresholds": [
       180
     ],
     "layout rehearsal checklist": [
-      15297
+      15303
     ],
     "lazy add on docs": [
       14542
@@ -80291,22 +80312,22 @@
       14558
     ],
     "link census acceptance row": [
-      15304
+      15310
     ],
     "link census after the move": [
-      15306
+      15312
     ],
     "link census command": [
-      15307
+      15313
     ],
     "link census completion criteria": [
-      15305
+      15311
     ],
     "link census verification checklist": [
-      15309
+      15315
     ],
     "link census zero dangling": [
-      15308
+      15314
     ],
     "link checker broken list retained": [
       14840
@@ -80342,7 +80363,7 @@
       6887
     ],
     "links and generated state implementation summary": [
-      15306
+      15312
     ],
     "links scan registry rule": [
       15088
@@ -81484,10 +81505,10 @@
       5980
     ],
     "machine cutover acceptance": [
-      15316
+      15322
     ],
     "machine cutover completion criteria": [
-      15317
+      15323
     ],
     "machine friendly cli json": [
       13249
@@ -85250,7 +85271,7 @@
       14804
     ],
     "memory decommission history": [
-      15331
+      15337
     ],
     "memory decommission inventory": [
       14787
@@ -85275,7 +85296,7 @@
     ],
     "memory decommission timeline": [
       3999,
-      15332
+      15338
     ],
     "memory delete causal cleanup": [
       12926
@@ -86722,10 +86743,10 @@
       6710
     ],
     "migration design acceptance criteria": [
-      15279
+      15285
     ],
     "migration design checklist": [
-      15285
+      15291
     ],
     "migration execution decision record": [
       14482
@@ -86783,7 +86804,7 @@
       3348
     ],
     "migration point of no return": [
-      15280
+      15286
     ],
     "migration program completion claims": [
       8731,
@@ -88838,7 +88859,7 @@
       14507
     ],
     "move opencode to skilled": [
-      15329
+      15335
     ],
     "move or rename a note": [
       447
@@ -88847,7 +88868,7 @@
       12483
     ],
     "move rehearsal plan": [
-      15295
+      15301
     ],
     "move skill graph handlers": [
       12226
@@ -92734,16 +92755,16 @@
       990
     ],
     "opencode compat link shape": [
-      15277
+      15283
     ],
     "opencode compatibility commit": [
-      15301
+      15307
     ],
     "opencode compatibility link decision": [
-      15280
+      15286
     ],
     "opencode compatibility shape commit": [
-      15302
+      15308
     ],
     "opencode config checklist": [
       599
@@ -92889,22 +92910,22 @@
       12201
     ],
     "opencode keep list": [
-      15280
+      15286
     ],
     "opencode layered self dispatch check": [
       113
     ],
     "opencode layout decision": [
-      15284
+      15290
     ],
     "opencode layout phase goal": [
-      15281
+      15287
     ],
     "opencode leaf agent constraints": [
       105
     ],
     "opencode link decision tree": [
-      15283
+      15289
     ],
     "opencode mcp config example": [
       1045
@@ -92959,7 +92980,7 @@
       109
     ],
     "opencode path inventory": [
-      15269
+      15275
     ],
     "opencode path key boundary": [
       6492
@@ -92968,7 +92989,7 @@
       6495
     ],
     "opencode path reference rewrite": [
-      15314
+      15320
     ],
     "opencode permissions matrix": [
       111
@@ -93193,10 +93214,10 @@
       12055
     ],
     "opencode skilled layout matrix": [
-      15296
+      15302
     ],
     "opencode source root blockers": [
-      15268
+      15274
     ],
     "opencode stdin dev null rule": [
       109
@@ -93586,7 +93607,7 @@
       15058
     ],
     "orchestrator pi flash codex sol tasks": [
-      15309
+      15315
     ],
     "orchestrator placeholder parity": [
       10464,
@@ -93893,7 +93914,7 @@
       855
     ],
     "other machine cutover checklist": [
-      15319
+      15325
     ],
     "out of box embedder narrative": [
       11104
@@ -94839,7 +94860,8 @@
       15232,
       15237,
       15243,
-      15248
+      15248,
+      15255
     ],
     "packet goal binding": [
       11
@@ -94847,8 +94869,8 @@
     "packet goal single source": [
       3998,
       15189,
-      15255,
-      15256
+      15261,
+      15262
     ],
     "packet goal single source backlog": [
       15190
@@ -95117,13 +95139,17 @@
     "parent goal budget plan": [
       9549
     ],
+    "parent goal chat send cap": [
+      15255,
+      15258
+    ],
     "parent goal child phases": [
       14703
     ],
     "parent goal resend": [
       15216,
       15217,
-      15255
+      15261
     ],
     "parent goal resend in chat": [
       14904
@@ -96003,10 +96029,10 @@
       3942
     ],
     "per entry git mv tasks": [
-      15303
+      15309
     ],
     "per entry git mv verification": [
-      15301
+      15307
     ],
     "per environment custom code": [
       717
@@ -96193,7 +96219,7 @@
       12027
     ],
     "per runtime map goal": [
-      15270
+      15276
     ],
     "per runtime playbook model standardization": [
       2668
@@ -96205,8 +96231,8 @@
       3885
     ],
     "per runtime symlink map": [
-      15271,
-      15272
+      15277,
+      15278
     ],
     "per seat outcome aggregation": [
       1387
@@ -98939,7 +98965,7 @@
       11756,
       12901,
       15043,
-      15331
+      15337
     ],
     "phase parent 049": [
       10240
@@ -102654,10 +102680,10 @@
       11839
     ],
     "probe delegation deepseek pi": [
-      15276
+      15282
     ],
     "probe executor assignment": [
-      15278
+      15284
     ],
     "probe manual design": [
       3437
@@ -102823,7 +102849,8 @@
       15241,
       15246,
       15252,
-      15265
+      15258,
+      15271
     ],
     "procedural benchmark gate task": [
       13748
@@ -105877,7 +105904,7 @@
       5156
     ],
     "reconciled migration map": [
-      15271
+      15277
     ],
     "reconcilemoves spec folder omission": [
       11620,
@@ -106327,13 +106354,13 @@
       7929
     ],
     "reference rewrite batch plan": [
-      15314
+      15320
     ],
     "reference rewrite batches": [
-      15313
+      15319
     ],
     "reference rewrite delegation": [
-      15313
+      15319
     ],
     "reference rewrite executor implementation": [
       6320
@@ -106345,22 +106372,22 @@
       6323
     ],
     "reference rewrite phase goal": [
-      15311
+      15317
     ],
     "reference rewrite rescan": [
-      15314
+      15320
     ],
     "reference rewrite rule": [
-      15313
+      15319
     ],
     "reference rewrite tasks": [
-      15315
+      15321
     ],
     "reference rewrite tooling dry run": [
       5525
     ],
     "reference rewrite verification checklist": [
-      15315
+      15321
     ],
     "reference sweep decision": [
       2011
@@ -106955,7 +106982,7 @@
       14865
     ],
     "regenerate runtime mirrors after move": [
-      15308
+      15314
     ],
     "regeneration identical criterion": [
       14982
@@ -108064,16 +108091,16 @@
       6306
     ],
     "rename commit closure gate": [
-      15298
+      15304
     ],
     "rename commit deletion ceiling": [
-      15301
+      15307
     ],
     "rename commit handoff notes": [
-      15300
+      15306
     ],
     "rename commit verification checklist": [
-      15303
+      15309
     ],
     "rename contract freeze": [
       6115,
@@ -108141,16 +108168,16 @@
       5335
     ],
     "rename only move completion criteria": [
-      15299
+      15305
     ],
     "rename only tree move": [
-      15302
+      15308
     ],
     "rename pattern checklist": [
       1726
     ],
     "rename push deletion ceiling": [
-      15302
+      15308
     ],
     "rename set changelog entry": [
       6577
@@ -108953,7 +108980,8 @@
       15241,
       15246,
       15252,
-      15265
+      15258,
+      15271
     ],
     "requirements rules and checklist": [
       771
@@ -110374,7 +110402,7 @@
       14588
     ],
     "retarget runtime symlinks to skilled": [
-      15308
+      15314
     ],
     "retention durability plan": [
       11839
@@ -111622,10 +111650,10 @@
       14810
     ],
     "rewrite batch task order": [
-      15315
+      15321
     ],
     "rewrite batch verification": [
-      15313
+      15319
     ],
     "rewrite command namespace": [
       3946
@@ -113383,7 +113411,7 @@
       1469
     ],
     "runtime canary smoke test": [
-      15326
+      15332
     ],
     "runtime capabilities json": [
       8141
@@ -113550,7 +113578,7 @@
       1408
     ],
     "runtime file path inventory": [
-      15272
+      15278
     ],
     "runtime fork drift guard gap": [
       10341
@@ -113866,13 +113894,13 @@
       2596
     ],
     "runtime symlink inversion": [
-      15329
+      15335
     ],
     "runtime symlink resolution probe": [
-      15277
+      15283
     ],
     "runtime symlink retarget research": [
-      15269
+      15275
     ],
     "runtime sync manifest template": [
       1067
@@ -115673,7 +115701,7 @@
       1170
     ],
     "second family design review": [
-      15283
+      15289
     ],
     "second lens review": [
       7298
@@ -117874,10 +117902,10 @@
       8790
     ],
     "silent gate disengagement": [
-      15268
+      15274
     ],
     "silent gate skip fix": [
-      15290
+      15296
     ],
     "silent hook catch stderr": [
       14900,
@@ -124393,196 +124421,196 @@
       7548
     ],
     "skilled canary smoke plan": [
-      15325
+      15331
     ],
     "skilled contract components goal": [
-      15293
-    ],
-    "skilled contract components plan": [
-      15295
-    ],
-    "skilled contract components shipped": [
-      15294
-    ],
-    "skilled contract tasks": [
-      15297
-    ],
-    "skilled cutover constraints": [
-      15268
-    ],
-    "skilled cutover order decision": [
-      15280
-    ],
-    "skilled cutover sequence": [
-      15284
-    ],
-    "skilled cutover steps": [
-      15283
-    ],
-    "skilled design closure gate": [
-      15279
-    ],
-    "skilled design tasks": [
-      15285
-    ],
-    "skilled gate matrix": [
-      15325
-    ],
-    "skilled gate readiness": [
-      15290
-    ],
-    "skilled gate teaching goal": [
-      15287
-    ],
-    "skilled generator rebuild results": [
-      15306
-    ],
-    "skilled layout options": [
-      15283
-    ],
-    "skilled layout probe acceptance": [
-      15273
-    ],
-    "skilled layout probe plan": [
-      15276
-    ],
-    "skilled layout probe tasks": [
-      15278
-    ],
-    "skilled layout probes": [
-      15277
-    ],
-    "skilled layout probes goal": [
-      15274
-    ],
-    "skilled links acceptance criteria": [
-      15304
-    ],
-    "skilled links and generated state": [
-      15308
-    ],
-    "skilled links phase goal": [
-      15305
-    ],
-    "skilled links task list": [
-      15309
-    ],
-    "skilled machine cutover": [
-      15320
-    ],
-    "skilled machine cutover goal": [
-      15317
-    ],
-    "skilled machine cutover plan": [
-      15319
-    ],
-    "skilled machine cutover tasks": [
-      15321
-    ],
-    "skilled migration binding": [
-      15328
-    ],
-    "skilled migration closeout": [
-      15326
-    ],
-    "skilled migration completion criteria": [
-      15328
-    ],
-    "skilled migration design": [
-      15284
-    ],
-    "skilled migration design goal": [
-      15281
-    ],
-    "skilled migration findings": [
-      15268
-    ],
-    "skilled migration goal": [
-      15328
-    ],
-    "skilled migration research": [
-      15269
-    ],
-    "skilled migration verification": [
-      15326
-    ],
-    "skilled move verification rows": [
-      15298
-    ],
-    "skilled placeholder removal": [
-      15302
-    ],
-    "skilled probe task order": [
-      15278
-    ],
-    "skilled push and ci census": [
-      15325
-    ],
-    "skilled push tasks": [
-      15327
-    ],
-    "skilled reference map": [
-      15272
-    ],
-    "skilled reference map findings": [
-      15271
-    ],
-    "skilled reference map phase goal": [
-      15270
-    ],
-    "skilled reference rewrite": [
-      15314
-    ],
-    "skilled regeneration runbook": [
-      15307
-    ],
-    "skilled rename rehearsal": [
-      15277
-    ],
-    "skilled rename rehearsal plan": [
-      15276
-    ],
-    "skilled research phase goal": [
-      15267
-    ],
-    "skilled residue scan": [
-      15326
-    ],
-    "skilled rewrite completion criteria": [
-      15311
-    ],
-    "skilled rollout checklist": [
-      15327
-    ],
-    "skilled rollout phase goal": [
-      15323
-    ],
-    "skilled rollout push plan": [
-      15326
-    ],
-    "skilled root discovery": [
-      15296
-    ],
-    "skilled source root": [
-      15329
-    ],
-    "skilled source root move": [
-      15302
-    ],
-    "skilled source root move goal": [
       15299
     ],
-    "skilled tree move results": [
+    "skilled contract components plan": [
+      15301
+    ],
+    "skilled contract components shipped": [
       15300
     ],
-    "skilled verification phase goal": [
+    "skilled contract tasks": [
+      15303
+    ],
+    "skilled cutover constraints": [
+      15274
+    ],
+    "skilled cutover order decision": [
+      15286
+    ],
+    "skilled cutover sequence": [
+      15290
+    ],
+    "skilled cutover steps": [
+      15289
+    ],
+    "skilled design closure gate": [
+      15285
+    ],
+    "skilled design tasks": [
+      15291
+    ],
+    "skilled gate matrix": [
+      15331
+    ],
+    "skilled gate readiness": [
+      15296
+    ],
+    "skilled gate teaching goal": [
+      15293
+    ],
+    "skilled generator rebuild results": [
+      15312
+    ],
+    "skilled layout options": [
+      15289
+    ],
+    "skilled layout probe acceptance": [
+      15279
+    ],
+    "skilled layout probe plan": [
+      15282
+    ],
+    "skilled layout probe tasks": [
+      15284
+    ],
+    "skilled layout probes": [
+      15283
+    ],
+    "skilled layout probes goal": [
+      15280
+    ],
+    "skilled links acceptance criteria": [
+      15310
+    ],
+    "skilled links and generated state": [
+      15314
+    ],
+    "skilled links phase goal": [
+      15311
+    ],
+    "skilled links task list": [
+      15315
+    ],
+    "skilled machine cutover": [
+      15326
+    ],
+    "skilled machine cutover goal": [
       15323
     ],
-    "skilled verification plan": [
+    "skilled machine cutover plan": [
       15325
     ],
-    "skilled verification tasks": [
+    "skilled machine cutover tasks": [
       15327
+    ],
+    "skilled migration binding": [
+      15334
+    ],
+    "skilled migration closeout": [
+      15332
+    ],
+    "skilled migration completion criteria": [
+      15334
+    ],
+    "skilled migration design": [
+      15290
+    ],
+    "skilled migration design goal": [
+      15287
+    ],
+    "skilled migration findings": [
+      15274
+    ],
+    "skilled migration goal": [
+      15334
+    ],
+    "skilled migration research": [
+      15275
+    ],
+    "skilled migration verification": [
+      15332
+    ],
+    "skilled move verification rows": [
+      15304
+    ],
+    "skilled placeholder removal": [
+      15308
+    ],
+    "skilled probe task order": [
+      15284
+    ],
+    "skilled push and ci census": [
+      15331
+    ],
+    "skilled push tasks": [
+      15333
+    ],
+    "skilled reference map": [
+      15278
+    ],
+    "skilled reference map findings": [
+      15277
+    ],
+    "skilled reference map phase goal": [
+      15276
+    ],
+    "skilled reference rewrite": [
+      15320
+    ],
+    "skilled regeneration runbook": [
+      15313
+    ],
+    "skilled rename rehearsal": [
+      15283
+    ],
+    "skilled rename rehearsal plan": [
+      15282
+    ],
+    "skilled research phase goal": [
+      15273
+    ],
+    "skilled residue scan": [
+      15332
+    ],
+    "skilled rewrite completion criteria": [
+      15317
+    ],
+    "skilled rollout checklist": [
+      15333
+    ],
+    "skilled rollout phase goal": [
+      15329
+    ],
+    "skilled rollout push plan": [
+      15332
+    ],
+    "skilled root discovery": [
+      15302
+    ],
+    "skilled source root": [
+      15335
+    ],
+    "skilled source root move": [
+      15308
+    ],
+    "skilled source root move goal": [
+      15305
+    ],
+    "skilled tree move results": [
+      15306
+    ],
+    "skilled verification phase goal": [
+      15329
+    ],
+    "skilled verification plan": [
+      15331
+    ],
+    "skilled verification tasks": [
+      15333
     ],
     "skillmd references assets cleanup phase": [
       13562
@@ -125132,49 +125160,49 @@
       891
     ],
     "source parent migration": [
-      15329
+      15335
     ],
     "source phase metadata cleanup": [
       6852
     ],
     "source root block plan": [
-      15289
-    ],
-    "source root layout matrix": [
       15295
     ],
+    "source root layout matrix": [
+      15301
+    ],
     "source root migration directive": [
-      15328
+      15334
     ],
     "source root move acceptance criteria": [
-      15298
+      15304
     ],
     "source root move blockers goal": [
-      15267
+      15273
     ],
     "source root move implementation summary": [
-      15300
+      15306
     ],
     "source root move implications": [
-      15269
+      15275
     ],
     "source root move plan": [
-      15301
+      15307
     ],
     "source root move rollback": [
-      15301
+      15307
     ],
     "source root move tasks": [
-      15303
+      15309
     ],
     "source root move verification evidence": [
-      15300
+      15306
     ],
     "source root rollback plan": [
-      15284
+      15290
     ],
     "source root sentinel either root": [
-      15296
+      15302
     ],
     "source to target map": [
       15172
@@ -125966,10 +125994,10 @@
     ],
     "spec kit v4 chronology": [
       3999,
-      15332
+      15338
     ],
     "spec kit v4 timeline": [
-      15331
+      15337
     ],
     "spec kit version migration": [
       11720,
@@ -127318,10 +127346,10 @@
       13716
     ],
     "stale opencode path references": [
-      15272
+      15278
     ],
     "stale opencode references map": [
-      15271
+      15277
     ],
     "stale phase documentation map": [
       6231
@@ -129276,7 +129304,8 @@
       15241,
       15246,
       15252,
-      15265
+      15258,
+      15271
     ],
     "success rows missing active vector": [
       12368
@@ -130997,11 +131026,11 @@
       14312
     ],
     "system speckit v4": [
-      15331
+      15337
     ],
     "system speckit v4 timeline": [
       3999,
-      15332
+      15338
     ],
     "system to embedder mapping": [
       11197,
@@ -131492,7 +131521,8 @@
       15242,
       15247,
       15253,
-      15266
+      15259,
+      15272
     ],
     "task cache removal": [
       221
@@ -131818,7 +131848,8 @@
       15242,
       15247,
       15253,
-      15266
+      15259,
+      15272
     ],
     "task detail without network": [
       241
@@ -132578,7 +132609,8 @@
       15239,
       15245,
       15250,
-      15264
+      15257,
+      15270
     ],
     "telemetry and process verification harness": [
       11297,
@@ -133286,7 +133318,7 @@
       14539
     ],
     "template reduction history": [
-      15331
+      15337
     ],
     "template reduction requirements": [
       14519
@@ -133996,7 +134028,8 @@
       15239,
       15245,
       15250,
-      15264
+      15257,
+      15270
     ],
     "tests that cannot fail": [
       672
@@ -135664,7 +135697,7 @@
       5711
     ],
     "two root gate resolution": [
-      15290
+      15296
     ],
     "two stage replay evidence": [
       7405
@@ -136741,10 +136774,10 @@
       15158
     ],
     "v4 0 0 0 release notes": [
-      15330
+      15336
     ],
     "v4 changelog": [
-      15330
+      15336
     ],
     "v4 changelog draft update": [
       15162
@@ -136754,7 +136787,7 @@
     ],
     "v4 packet order": [
       3999,
-      15332
+      15338
     ],
     "v4 pro retirement status": [
       2472
@@ -136930,7 +136963,7 @@
       3495
     ],
     "validate passes but touched 0 files": [
-      15260
+      15266
     ],
     "validate recursive orchestrator": [
       10460,
@@ -137348,13 +137381,14 @@
       15238,
       15244,
       15249,
-      15263,
-      15275,
-      15282,
+      15256,
+      15269,
+      15281,
       15288,
-      15312,
+      15294,
       15318,
-      15324
+      15324,
+      15330
     ],
     "validation first workflow": [
       1037
@@ -138188,7 +138222,8 @@
       15242,
       15247,
       15253,
-      15266
+      15259,
+      15272
     ],
     "verification class blind to failure class": [
       9691
@@ -139126,11 +139161,12 @@
       15169,
       15174,
       15179,
-      15262,
-      15286,
+      15254,
+      15268,
       15292,
-      15310,
-      15322
+      15298,
+      15316,
+      15328
     ],
     "wal autocheckpoint 256": [
       11836,
@@ -139813,13 +139849,13 @@
       201
     ],
     "what changed about goals": [
-      15254
+      15260
     ],
     "what changed between these two screenshots": [
       1144
     ],
     "what changed in v4": [
-      15330
+      15336
     ],
     "what colors are in this design": [
       1142
@@ -140151,13 +140187,14 @@
       15238,
       15244,
       15249,
-      15263,
-      15275,
-      15282,
+      15256,
+      15269,
+      15281,
       15288,
-      15312,
+      15294,
       15318,
-      15324
+      15324,
+      15330
     ],
     "what shipped acceptance closure": [
       15008
@@ -140415,7 +140452,7 @@
     ],
     "which spec was worked on first": [
       3999,
-      15332
+      15338
     ],
     "which system uses cocoindex or mk spec memory": [
       12426

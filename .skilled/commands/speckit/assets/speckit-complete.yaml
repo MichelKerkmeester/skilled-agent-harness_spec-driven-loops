@@ -233,7 +233,7 @@ goal_prompting:
         handoff: "Report the objective for the operator to set; do not fabricate a call."
   objective_shape:
     rule: "Pointer first, then the binding sentence when the packet is phased, then the completion criteria copied out; never the file body and never its frontmatter."
-    why: "Nothing dereferences a path in an objective, every surface caps what it holds, and a truncation must keep the address. The chat resend is a different payload: the whole durable slice, so the operator can paste it; the objective stored by the runtime is the projection above."
+    why: "Nothing dereferences a path in an objective, every surface caps what it holds, and a truncation must keep the address. The chat resend is a different payload: the chat slice under packet_goal.resend.payload, so the operator can paste it. The objective stored by the runtime is the projection above."
   # The packet goal.md is the source of the directive, and the session binds to
   # it rather than to a remembered string. Everything below is the agent's
   # posture around that file; the mechanics live in the goal hook core.
@@ -248,11 +248,11 @@ goal_prompting:
       pi: 'node .skilled/hooks/goal/bin/goal.cjs bind <spec_path> --runtime Pi --session <native session id> --workspace <repo root>'
       cursor: "injection-only; report the objective for the operator to set, do not fabricate a call"
       devin: "injection-only; report the objective for the operator to set, do not fabricate a call"
-      claude-code: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it. There is no session record here, so hold the slice hash for the session instead."
-      codex: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it. There is no session record here, so hold the slice hash for the session instead."
+      claude-code: "native goal command. Render the chat slice per resend.payload and ask the operator to set it. There is no session record here, so hold the slice hash for the session instead."
+      codex: "native goal command. Render the chat slice per resend.payload and ask the operator to set it. There is no session record here, so hold the slice hash for the session instead."
     resend:
       trigger: "The durable slice hash of the parent goal.md changed: a decision, a binding row or a criterion. Log rows and frontmatter never trigger."
-      payload: "The durable slice of the parent goal.md with frontmatter excluded, rendered from the file, never from memory."
+      payload: "The chat slice of the parent goal.md, rendered from the file, never from memory: the durable slice without frontmatter, HTML comments, anchor markers, `---` dividers or heading section numbers, which `node .skilled/hooks/goal/bin/goal.cjs packet <spec_path> --workspace <repo root>` prints as `chat_slice`. Never send a parent goal over 4,000 characters. Cut the file in the goal set-string playbook's order first, then send."
       after: "Ask the operator to set it. On a runtime with a bound session, record the send with the goal command's resent action."
       child_rule: "A child goal change that alters a parent decision or criterion is applied to the parent first, then the parent is resent."
       without_a_session: "On claude-code and codex, read the hash at every command entry with `node .skilled/hooks/goal/bin/goal.cjs packet <spec_path> --workspace <repo root>` and compare `packet_slice_hash` against the hash last rendered this session. Different means resend; equal means stay silent. A first entry with no held hash renders once."
