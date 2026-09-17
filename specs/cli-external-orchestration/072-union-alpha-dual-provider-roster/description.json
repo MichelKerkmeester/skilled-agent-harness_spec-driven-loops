@@ -1,0 +1,22 @@
+{
+  "specFolder": "cli-external-orchestration/072-union-alpha-dual-provider-roster",
+  "description": "Add Union Alpha to the cli-opencode and cli-pi rosters through opencode-go and OpenRouter",
+  "keywords": [
+    "union",
+    "alpha",
+    "cli-opencode",
+    "cli-pi",
+    "rosters",
+    "opencode-go",
+    "openrouter"
+  ],
+  "lastUpdated": "2026-09-17T12:15:33.979Z",
+  "specId": "072",
+  "folderSlug": "union-alpha-dual-provider-roster",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
