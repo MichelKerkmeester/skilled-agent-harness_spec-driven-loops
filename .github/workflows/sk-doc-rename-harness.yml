@@ -1,0 +1,48 @@
+name: sk-doc Rename Harness
+
+# The rename tooling fixture harness takes about ten minutes, so it runs only
+# when the scripts it exercises change. The rest of the sk-doc script tests run
+# on every push in sk-doc Script Tests.
+on:
+  pull_request:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/sk-doc/scripts/**'
+      - '.skilled/skills/sk-doc/scripts/**'
+      - '.opencode/skills/sk-doc/shared/scripts/**'
+      - '.skilled/skills/sk-doc/shared/scripts/**'
+      - '.github/workflows/sk-doc-rename-harness.yml'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/sk-doc/scripts/**'
+      - '.skilled/skills/sk-doc/scripts/**'
+      - '.opencode/skills/sk-doc/shared/scripts/**'
+      - '.skilled/skills/sk-doc/shared/scripts/**'
+      - '.github/workflows/sk-doc-rename-harness.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  rename-harness:
+    name: Rename tooling fixture harness
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run the rename tooling fixture harness
+        env:
+          ONLY_TESTS: test_rename_tooling_fixture_harness.py
+        run: bash .opencode/skills/sk-doc/scripts/tests/run-script-tests.sh

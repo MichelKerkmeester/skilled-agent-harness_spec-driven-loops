@@ -29,6 +29,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `chart-corpus.yml` | Checks the chart corpus contract and runs its mutation suite. |
 | `command-tree-parity.yml` | Keeps the OpenCode and Claude command trees identical, and the Hermes skill and prompt copies equal to their sources. |
 | `comment-hygiene.yml` | Rejects forbidden ephemeral-artifact pointers in code comments. |
+| `deep-loop-runtime.yml` | Runs the deep-loop runtime suites, including the command-contract drift check. |
 | `diagram-corpus.yml` | Checks the diagram corpus contract, its mutation suite and both applicator gates. |
 | `dispatch-enforcement-guard.yml` | Checks that every declared dispatch rule is reachable and discriminates. |
 | `gate-inputs.yml` | Checks that every hook and workflow input resolves and that every path filter names both `.opencode/` and `.skilled/`. |
@@ -40,6 +41,8 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `routing-registry-drift.yml` | Detects drift between routing registries and skill surfaces. |
 | `rule-canary-sync.yml` | Checks rule canaries against their source rules. |
 | `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |
+| `sk-doc-rename-harness.yml` | Runs the ten-minute rename tooling fixture harness when sk-doc's scripts change. |
+| `sk-doc-script-tests.yml` | Runs the other sk-doc script tests, among them the durable-directory manifest and README verdict baseline, which walk the whole repository. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
 | `spec-kit-check.yml` | Typechecks and tests the spec-kit packages and checks that runtime mirrors agree with their sources. |
 | `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report. Does not gate. |
@@ -50,10 +53,10 @@ The repository's documented flow pushes release lines directly, so a gate that r
 
 | Workflow | Push | Pull request | Why |
 |---|---|---|---|
-| `advisory-checks.yml`, `command-tree-parity.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml` | yes | yes | Guards over the whole tree |
+| `advisory-checks.yml`, `command-tree-parity.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | yes | yes | Guards over the whole tree |
 | `naming-standard-guard.yml` | release lines only | yes | Runs on `skilled/v*` pushes and every pull request |
 | `gate-inputs.yml` | yes, no path filter | yes, no path filter | Guards a move of the source tree, the one change a path filter could miss |
-| `chart-corpus.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
+| `chart-corpus.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-doc-rename-harness.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
 | `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed; on push it diffs against the previous tip |
 | `agent-mirror-sync.yml`, `comment-hygiene.yml`, `prompt-card-sync.yml` | no | yes | Review-time checks. The pre-commit hook runs the same checkers on every commit |
 | `strict-pass-freshness-report.yml` | schedule | no | A weekly report, not a gate |
