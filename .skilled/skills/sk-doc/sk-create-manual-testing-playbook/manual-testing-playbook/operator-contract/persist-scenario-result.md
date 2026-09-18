@@ -12,7 +12,8 @@ version: 1.1.0.0
 > obligation stands without its automation: record a scenario's `PASS`, `FAIL` or `SKIP`
 > verdict, its reason and its evidence path into the owning skill's dated report folder by
 > hand. What the scenario below describes is the contract a replacement must satisfy, not a
-> sequence an operator can run today.
+> sequence an operator can run today. Run now, it resolves to SKIP, and the blocker is the
+> missing persistence wrapper that was retired with its lane.
 >
 > The failure this note prevents: an operator following a command sequence whose binary is
 > gone, and reading the resulting error as their own mistake.
