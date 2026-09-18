@@ -86,7 +86,7 @@ The documentation review that did not finish the first time was re-run on GPT-5.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Four commits on `worktrees/055-skilled-source-root-migration`, each through the git hooks with no bypass variable: `e7c7136391` (hooks and gate parser), `63ad140f9b` (resolver and runtime callers), `d755553a6e` (workflows), `67fa4f7b8e` (documents and their tests). Every new test was run a second time against the pre-fix code or document and failed there, so each one proves its fix rather than passing by construction.
+Eight commits on `worktrees/055-skilled-source-root-migration`, each through the git hooks with no bypass variable: `e7c7136391` (hooks and gate parser), `63ad140f9b` (resolver and runtime callers), `d755553a6e` (workflows), `67fa4f7b8e` (documents and their tests), `4dcc8c8f49` (the angle-10 fixes), `1b44fa6374` (these records), `156753e9d1` (the link and frontmatter debt the push guards reject) and `f906350655` (the binding count). The last two were approved by the operator on top of the review's findings. The main checkout was then fast-forwarded so the global hooks run the new selection block. Every new test was run a second time against the pre-fix code or document and failed there, so each one proves its fix rather than passing by construction.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -99,7 +99,7 @@ Four commits on `worktrees/055-skilled-source-root-migration`, each through the 
 | An identical block in each hook rather than a sourced resolver file | The hooks run from `~/.config/git/hooks` for every repository on the machine. Sourcing a file means choosing a root to find it under, and a lookup that failed would block every commit everywhere. A drift test gives one rule with no new failure path. |
 | Select by the sentinel file, never by a directory existing | A placeholder `.skilled/` fooled the earlier directory test. The sentinel is the one thing only a real tree carries. |
 | The advisor refuses to sign a workspace without a source root | A refused signature is already never cached, so the existing path gives the "uncacheable" behavior the finding asked for. |
-| Put the six guards on push even though two fail today | The failures predate this work (the pre-remediation snapshot fails both), and hiding them by leaving the guards off push is the gap the finding named. |
+| Put the six guards on push and clear what two of them caught | Both failures predate this work (the pre-remediation snapshot fails both). Leaving the guards off push would have kept the gap the finding named, so the operator chose to fix the debt instead. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -121,8 +121,8 @@ Four commits on `worktrees/055-skilled-source-root-migration`, each through the 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Spec-Kit Check is red for a reason outside this work.** `hook-registration-sync.vitest.ts` asserts 77 hook bindings and the registry has held 81 since `e0ac556ce7`. Whether the four extra bindings are intended is for the registry's owner to say.
-2. **Two guards now on push fail on the current tree.** `markdown-link-integrity` finds 47 broken links and `skill-doc-frontmatter` finds 3 violations, all present before this work, in files other packets own.
+1. **The retired skill-benchmark lane is unlinked, not rewritten.** About 43 documents still describe it. Their links now say it was retired, and rewriting them is the decision its retirement commit recorded.
+2. **No CI job checks the Hermes skill mirror.** `sync-skills-hermes.cjs --check` found four copies drifted by this work before they were regenerated. Nothing would have caught it.
 3. **The trigger index was not regenerated.** No gate checks its freshness, and the main checkout holds another session's uncommitted edits to it.
 <!-- /ANCHOR:limitations -->
 

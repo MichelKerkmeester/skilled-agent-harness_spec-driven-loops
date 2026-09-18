@@ -79,6 +79,7 @@ Every caller that needs the source tree asks one resolver, which recognises the 
 - **Pre-existing** (report §6): `RETIRE-004` with its duplicate `COV-005`, and `CI-002`.
 - **Coverage gaps** (report §8): `COV-001`, `COV-002`, `COV-004`.
 - **Angle 10**, documentation truthfulness, re-run on the same executor, with each confirmed finding fixed or recorded.
+- **Operator-approved additions** (2026-09-18): the 47 broken links and 3 frontmatter violations that fail the two guards `CI-002` moved onto push, and the stale 77-binding pin that kept Spec-Kit Check red. Neither was a review finding.
 
 ### Out of Scope
 - `HOOK-002` - disproved: the path it names resolves and every migration commit passed that hook.

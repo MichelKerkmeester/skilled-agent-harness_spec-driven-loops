@@ -155,7 +155,7 @@ Phase `012-fix-deep-review-p1-p2-findings-for-source-root-migration` closed the 
 | `COV-001`, `COV-002`, `COV-004`, `COV-005` | The tests named in the rows above, plus a per-entry layout in the resolver parity suite | Each fails against the pre-fix state |
 | `DOC-001` to `DOC-010` | Section 12 | Each claim re-checked against the tree after the edit |
 
-Two guards that now run on push, `markdown-link-integrity` and `skill-doc-frontmatter`, fail on the tree for reasons that predate the migration: 47 broken links and 3 frontmatter violations in files other packets own.
+Moving `markdown-link-integrity` and `skill-doc-frontmatter` onto push exposed 47 broken links and 3 frontmatter violations that predate the migration. The operator approved fixing them in the same phase, and `156753e9d1` clears both guards.
 
 ---
 
