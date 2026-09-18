@@ -36,7 +36,7 @@ The sweeper preserves Ollama, live Claude Code descendants, the freshest young i
 
 ### Edge Cases & Caveats
 
-`.skilled/scripts/session-cleanup.sh` is the session-scoped counterpart (`claude-session-cleanup.sh` is a back-compat shim that execs it). It requires `CLAUDE_SESSION_PID` (no PPID fallback — under a shared terminal that ancestor is common to many sessions, and guessing it turned scoped cleanup into a cross-session kill), re-proves each candidate's ancestry against the session pid immediately before the kill, logs to `~/.local/share/claude-stop-hook.log` with `matched_by=`/`ancestor_ok=` fields, and only sends SIGTERM to matching MCP helpers. Without session identity it deliberately does nothing.
+`.skilled/scripts/session-cleanup.sh` is the session-scoped counterpart. It requires `CLAUDE_SESSION_PID` (no PPID fallback — under a shared terminal that ancestor is common to many sessions, and guessing it turned scoped cleanup into a cross-session kill), re-proves each candidate's ancestry against the session pid immediately before the kill, logs to `~/.local/share/claude-stop-hook.log` with `matched_by=`/`ancestor_ok=` fields, and only sends SIGTERM to matching MCP helpers. Without session identity it deliberately does nothing.
 
 `.skilled/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` is a versioned LaunchAgent template. It is not copied to `~/Library/LaunchAgents` and is not loaded by default. LaunchAgent activation remains a separate operator-approved rollout step.
 
@@ -49,7 +49,7 @@ The sweeper preserves Ollama, live Claude Code descendants, the freshest young i
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/scripts/orphan-mcp-sweeper.sh` | Operator script | Dry-run-first stale MCP process and `/tmp` artifact sweeper. |
-| `.skilled/scripts/session-cleanup.sh` | Hook script | Session-scoped MCP descendant cleanup; `claude-session-cleanup.sh` is a shim that execs it. |
+| `.skilled/scripts/session-cleanup.sh` | Hook script | Session-scoped MCP descendant cleanup. |
 | `.skilled/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` | LaunchAgent template | Optional 600-second scheduled sweeper template. |
 | `.skilled/scripts/README.md` | Runbook | Human and AI wayfinding for the cleanup scripts. |
 

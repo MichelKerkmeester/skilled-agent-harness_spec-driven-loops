@@ -566,7 +566,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Upgrade level | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/007-feature/ --to 2` |
 | Completeness | `.skilled/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh specs/007-feature/` |
 | Worktree isolation | `.skilled/bin/worktree-session.sh` creates a per-session git worktree with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`. Pair with `worktree-reaper.sh` for teardown and `worktree-guard.sh` for lock enforcement |
-| Session cleanup | `.skilled/scripts/session-cleanup.sh` (renamed from `claude-session-cleanup.sh` with a back-compat shim retained) resolves PIDs across claude/opencode/opencode runtimes |
+| Session cleanup | `.skilled/scripts/session-cleanup.sh` resolves PIDs across claude/opencode/opencode runtimes |
 
 Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:research` follows `../system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` when research needs bounded `spec.md` anchoring, and `/speckit:plan` or `/speckit:complete` continue from the same folder while reusing the shared intake contract (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
 

@@ -21,8 +21,6 @@ trigger_phrases:
 
 | Entry | Responsibility |
 |---|---|
-| `claude-session-cleanup.sh` | Compatibility entrypoint for Claude session cleanup. |
-| `copy-skill-advisor-dist-data.sh` | Copies required advisor data into compiled output. |
 | `install-git-hooks.sh` | Installs repository-managed Git hooks. |
 | `orphan-mcp-sweeper.sh` | Reviews or cleans stale MCP helpers with dry-run support. |
 | `run-node-tests.mjs` | Discovers and runs the repository's Node test files. |
@@ -37,7 +35,6 @@ trigger_phrases:
 - Prefer session-scoped cleanup over global process selection.
 - Review dry-run output before enabling live orphan cleanup.
 - Change Git-hook behavior in `git-hooks/` and install it through `install-git-hooks.sh`.
-- Use `copy-skill-advisor-dist-data.sh` for generated advisor data.
 
 ---
 
@@ -46,8 +43,6 @@ trigger_phrases:
 Run shell syntax and plist checks from the repository root:
 
 ```bash
-bash -n .skilled/scripts/claude-session-cleanup.sh
-bash -n .skilled/scripts/copy-skill-advisor-dist-data.sh
 bash -n .skilled/scripts/install-git-hooks.sh
 bash -n .skilled/scripts/orphan-mcp-sweeper.sh
 bash -n .skilled/scripts/session-cleanup.sh

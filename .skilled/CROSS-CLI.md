@@ -33,7 +33,7 @@ A real file is therefore not automatically authored content — most of them are
 
 | Runtime | Reads from here | Symlinked | Generated | Authored only here |
 |---|---|---|---|---|
-| `.opencode/` | skills, commands, agents, plugins, bin | everything (11 directory links) | — | `README.md`, `SYNC.md` |
+| `.opencode/` | skills, commands, agents, plugins, bin | everything except the plugins | — | **`plugins/` (15)**, `package.json`, `README.md`, `SYNC.md` |
 | `.claude/` | skills, commands, agents, hooks | `skills`, 33 commands, 21 hooks, playbook, `.utcp_config.json` | — | **`agents/` (12 forked)**, `agents/README.txt`, `mcp.json`, `settings.json`, `settings.local.json`, `statusline-command.sh` |
 | `.codex/` | agents, prompts, hooks | 18 hooks, playbook | `agents/` (12 TOML), `prompts/` (33) | `AGENTS.md`, `config.toml`, `hooks.json` |
 | `.cursor/` | agents, commands, rules, hooks | `agents/` (12), 33 commands, 18 hooks, 1 rule, playbook | — | `hooks.json`, `mcp.json`, `rules/skill-routing.md`, 2 commands |
@@ -47,7 +47,7 @@ Every runtime also authors its own `SYNC.md`, and every `hooks/` directory autho
 
 ## 3. WHY EACH ONE DIFFERS
 
-**`.opencode/` links everything** because its dialect *is* the authored dialect. Nothing needs translating, so nothing is copied. It is a real directory of per-entry links rather than one link standing for the whole tree, because a git host stores a link as a file naming its target and will not resolve it — as one link, the directory could not be opened where people read the repository.
+**`.opencode/` links almost everything** because its dialect *is* the authored dialect. Nothing needs translating, so nothing is copied. The exception is `plugins/`, which is authored here: every plugin imports the OpenCode plugin SDK, so no other runtime can load one, and keeping them here binds them to the SDK this directory installs rather than to the different version the source tree pins. The source tree links back to them, so the older path still resolves. It is a real directory of per-entry links rather than one link standing for the whole tree, because a git host stores a link as a file naming its target and will not resolve it — as one link, the directory could not be opened where people read the repository.
 
 **`.claude/agents/` is the one deliberate content fork.** Claude's agent frontmatter uses `tools:` where the authored dialect uses `mode`, `temperature` and `permission:`. The bodies are otherwise the same document, so the pair is held in step by a blocking pre-commit gate rather than by a link. This is the only surface in the repository where the same prose is authored twice on purpose.
 
