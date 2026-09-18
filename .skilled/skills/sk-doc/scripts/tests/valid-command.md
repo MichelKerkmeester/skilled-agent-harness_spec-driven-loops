@@ -4,6 +4,8 @@
 
 This command creates a deterministic artifact for testing.
 
+---
+
 ## 2. INSTRUCTIONS
 
 1. Read input.
