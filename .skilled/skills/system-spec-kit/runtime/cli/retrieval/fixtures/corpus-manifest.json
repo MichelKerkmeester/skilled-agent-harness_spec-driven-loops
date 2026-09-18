@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3f11fc6c63099febf5eacb31769342c3eb578bf275feba99912476fa6743a064",
+  "corpusHash": "16a8760de8fc22e8dec3a09c437c5ae7f3849248e44b8d49d4e44bc7bd189cfd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27276,
+  "includedPathCount": 27278,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -8217,6 +8217,11 @@
     "specs/agents/011-retire-code-index-tool-references/plan.md",
     "specs/agents/011-retire-code-index-tool-references/spec.md",
     "specs/agents/011-retire-code-index-tool-references/tasks.md",
+    "specs/agents/012-agent-avoidance-anti-patterns/acceptance-criteria.md",
+    "specs/agents/012-agent-avoidance-anti-patterns/implementation-summary.md",
+    "specs/agents/012-agent-avoidance-anti-patterns/plan.md",
+    "specs/agents/012-agent-avoidance-anti-patterns/spec.md",
+    "specs/agents/012-agent-avoidance-anti-patterns/tasks.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/plan.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/spec.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/tasks.md",
@@ -27289,16 +27294,13 @@
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/spec.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/goal.md",
-    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-001.md",
-    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-002.md",
-    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-003.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/spec.md",
     "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cfb9b1cc67e4d3300ac1e44caf073bfacc8b7d0ccee03c22992b5380fdbc4ce4",
+  "manifestHash": "55c957baefb1af37c5124552e59c3302b5d419a1db70cdd24a48984a77e2f215",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27307,6 +27309,18 @@
     ".skilled/hooks"
   ],
   "skippedPaths": [
+    {
+      "path": ".skilled/hooks/dispatch/lib/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/hooks/dispatch/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/hooks/dispatch/pi/node_modules",
+      "reason": "excluded directory"
+    },
     {
       "path": ".skilled/hooks/git-preflight/README.md",
       "reason": "duplicate of an already-indexed document"
@@ -27322,6 +27336,14 @@
     {
       "path": ".skilled/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/skills/mcp-code-mode/mcp-server/dist",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/mcp-code-mode/mcp-server/node_modules",
+      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/sk-code/benchmark/fixtures",
@@ -27380,6 +27402,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/skills/sk-communication/cli-communication-projection/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/skills/sk-communication/cli-communication-projection/test/fixtures",
       "reason": "excluded directory"
     },
@@ -27389,6 +27415,14 @@
     },
     {
       "path": ".skilled/skills/sk-design/sk-design-diagram/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/dist",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -27436,7 +27470,15 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/system-deep-loop/deep-improvement/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -27652,8 +27694,24 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents/012-agent-avoidance-anti-patterns/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/agents/z_archive",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/ai-systems",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/anobel.com",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/app-mobile-cli",
+      "reason": "symlinked directory"
     },
     {
       "path": "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/scratch",
@@ -28168,6 +28226,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-fast-mode/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-openai-fast-mode/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/013-pi-cache-affinity-compat/scratch",
       "reason": "excluded directory"
     },
@@ -28518,6 +28584,10 @@
     {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/obsidian",
+      "reason": "symlinked directory"
     },
     {
       "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages",
@@ -30161,6 +30231,10 @@
     },
     {
       "path": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/node_modules",
       "reason": "excluded directory"
     },
     {
