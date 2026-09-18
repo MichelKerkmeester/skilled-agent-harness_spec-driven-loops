@@ -94,7 +94,7 @@ The authoring packet lost the lane's README template, storage guide and serving-
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Four commits on `worktrees/055-skilled-source-root-migration`, each through the git hooks with no bypass variable: `80adfa12c6` (routing and the two hub records), `62949ff5fe` (playbooks), `09a0d79ec7` (the Hermes job) and `97b15822a2` (the lane's removal), then `39793e5d62` for the three pointers found while verifying and `9ddec925d8` for the three command contracts. A seventh commit carries these docs. The first regression check ran only the spec-kit CLI project, 143 test files, and missed the contracts. `runtime/vitest.config.ts` also collects the deep-loop suites, 260 files in all, and it found them. No CI workflow runs that config. Each red workflow was diagnosed from its CI failure log, and the routing regression from a dump of every prompt's top skill at the commit before the cleanup and at the tip. The main checkout moved to `6cbaf58d3b` after phase 012, so the commits are rebased onto it before the fast-forward and the push.
+Four commits on `worktrees/055-skilled-source-root-migration`, each through the git hooks with no bypass variable: `71aaaa8b95` (routing and the two hub records), `30b2981762` (playbooks), `c4b83f6648` (the Hermes job) and `cafeff809e` (the lane's removal), then `b1105386ab` for the three pointers found while verifying and `7e74623188` for the three command contracts. A seventh commit carries these docs. The first regression check ran only the spec-kit CLI project, 143 test files, and missed the contracts. `runtime/vitest.config.ts` also collects the deep-loop suites, 260 files in all, and it found them. No CI workflow runs that config. Each red workflow was diagnosed from its CI failure log, and the routing regression from a dump of every prompt's top skill at the commit before the cleanup and at the tip. The main checkout moved to `6cbaf58d3b` after phase 012, so the commits were rebased onto it, which gave them the IDs cited here.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -120,10 +120,10 @@ Four commits on `worktrees/055-skilled-source-root-migration`, each through the 
 |-------|--------|
 | Node runner | 88 files, 1001 pass, 1 fail. The failure is the baseline's `create-journey-proof.test.cjs` |
 | Spec-kit `root` and `cli` projects, as Spec-Kit Check runs them, 254 files | 2,723 pass, 32 skipped, 0 fail |
-| `runtime/vitest.config.ts`, which adds the deep-loop suites, 260 files | 3,928 pass, 21 skipped, 0 fail. The same config at `97b15822a2` failed 6 tests in 3 files: the 5 stale-contract failures fixed by `9ddec925d8`, and a stale local build of the gitignored `dist` |
+| `runtime/vitest.config.ts`, which adds the deep-loop suites, 260 files | 3,928 pass, 21 skipped, 0 fail. The same config at `cafeff809e` failed 6 tests in 3 files: the 5 stale-contract failures fixed by `7e74623188`, and a stale local build of the gitignored `dist` |
 | Contract drift | `check-contract-drift.cjs` exits 0. Contract tests 42/42, compiler tests 13/13. Hermes, Codex and Pi prompt mirrors in sync, 168 runtime mirrors in sync |
 | Scorer ratchet | 7/7, failing since the cleanup before this phase |
-| Per-row routing dump | All 289 prompts route as before the cleanup, checked at `97b15822a2`. The later edits touch no file the advisor reads |
+| Per-row routing dump | All 289 prompts route as before the cleanup, checked at `cafeff809e`. The later edits touch no file the advisor reads |
 | Playbook validator `--strict`, root-discovery step | Exit 0, 0 failing packages. All 44 fail-closed roots discovered |
 | Hermes sync `--check` | 68 skill copies and 33 prompts in sync, both exit 0 |
 | Hub checks | `parent-skill-check` passes on all six hubs. Leaf-manifest and derived-metadata freshness 13/13 |
@@ -136,7 +136,7 @@ Four commits on `worktrees/055-skilled-source-root-migration`, each through the 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **About forty live files still describe the retired lane in the present tense.** They give no route, command or run instruction, so nothing sends a reader to it. They do say it exists: fifteen benchmark READMEs, twelve holdout scenarios that call themselves "scored by the routing-gold and skill-benchmark gates", and about ten skill documents whose routing-block comments say the skill-benchmark router-replay consumes them. A search finds about sixty files naming the lane. That count includes run reports, generated fixtures, the persisted-data contract, and the advisor's scorer, which uses "lane" for something else. The `97b15822a2` commit message says it removed "every live pointer", which is true of routes and instructions but not of description.
+1. **About forty live files still describe the retired lane in the present tense.** They give no route, command or run instruction, so nothing sends a reader to it. They do say it exists: fifteen benchmark READMEs, twelve holdout scenarios that call themselves "scored by the routing-gold and skill-benchmark gates", and about ten skill documents whose routing-block comments say the skill-benchmark router-replay consumes them. A search finds about sixty files naming the lane. That count includes run reports, generated fixtures, the persisted-data contract, and the advisor's scorer, which uses "lane" for something else. The `cafeff809e` commit message says it removed "every live pointer", which is true of routes and instructions but not of description.
 2. **The write-set conflict census still declares the retired workstream** (`.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts:14`, `shipped-census.ts:107`). Its scripts are gone, so the census names paths that do not exist.
 3. **The frozen durable-directory manifest has eleven stale entries in each direction.** They predate this work, and its test was failing before this phase.
 4. **`create-journey-proof.test.cjs` still fails** on a version mismatch in the sk-create-skill scaffold, the same failure as the baseline.
