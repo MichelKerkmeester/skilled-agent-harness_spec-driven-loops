@@ -126,6 +126,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 11 | `011-verification-and-rollout/` | Prove every runtime and gate on the new root, push, and clean up | complete |
 | 12 | `012-fix-deep-review-p1-p2-findings-for-source-root-migration/` | Fix every finding the migration's deep review confirmed, starting with one source-root resolver | complete |
 | 13 | `013-clear-pre-existing-ci-and-doc-debt/` | Turn the two CI workflows that were red before the migration green, guard the Hermes mirrors, and remove the retired skill-benchmark lane's live documents | complete |
+| 14 | `014-fix-pre-existing-defects-found-by-migration/` | Fix the pre-existing defects phases 12 and 13 recorded: the red scaffold proof, unrun tests, the stale trigger index, test runs writing a tracked database, Codex hook drift, root-name hardcodes, and the deep-loop and sk-doc tests CI never ran | in progress |
 
 ### Phase Transition Rules
 
@@ -151,6 +152,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 010-machine-and-consumer-cutover | 011-verification-and-rollout | This machine's hooks and home configs point at the new root, with rollback recorded | Hook and config probes |
 | 011-verification-and-rollout | 012-fix-deep-review-p1-p2-findings-for-source-root-migration | The migration is shipped and its deep review is recorded | `review/review-report.md` with every finding classed |
 | 012-fix-deep-review-p1-p2-findings-for-source-root-migration | 013-clear-pre-existing-ci-and-doc-debt | Every review finding is closed, and the only red CI left is the failure set that predates the migration | Phase 012's acceptance criteria and CI at `5844a02227` |
+| 013-clear-pre-existing-ci-and-doc-debt | 014-fix-pre-existing-defects-found-by-migration | Every phase 13 criterion is met and CI is green on both branches | Phase 013's acceptance criteria and its recorded CI runs |
 <!-- /ANCHOR:phase-map -->
 
 ---

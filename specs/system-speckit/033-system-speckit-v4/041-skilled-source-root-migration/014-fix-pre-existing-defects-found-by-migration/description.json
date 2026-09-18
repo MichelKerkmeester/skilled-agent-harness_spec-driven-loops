@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration",
+  "description": "Several checks failed or ran nowhere, and several callers still assumed the source tree is named `.skilled`",
+  "keywords": [
+    "several",
+    "checks",
+    "failed",
+    "ran",
+    "nowhere",
+    "callers",
+    "still",
+    "assumed",
+    "source",
+    "tree",
+    "named",
+    "skilled"
+  ],
+  "lastUpdated": "2026-09-18T18:03:44.042Z",
+  "specId": "014",
+  "folderSlug": "fix-pre-existing-defects-found-by-migration",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
