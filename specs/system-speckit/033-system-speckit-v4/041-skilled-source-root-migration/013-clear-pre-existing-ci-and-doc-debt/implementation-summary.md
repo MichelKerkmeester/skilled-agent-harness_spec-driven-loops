@@ -74,6 +74,8 @@ The authoring packet lost the lane's README template, storage guide and serving-
 
 The operator then asked for the rest of the description residue. Twelve holdout scenarios said the skill-benchmark gates scored them; the routing-gold gates check them. Eight skill docs said the retired router-replay consumed their routing blocks, and one named a guard test that was deleted with the lane. Seven benchmark READMEs described the harness in the present tense, and one told the reader to add rows when the next run lands. The compiled-routing reference still told a hub author to pass Lane C parity to reach `compiled-serving`; it now says that no tool runs that step today, which means a new hub cannot reach `compiled-serving` until one does. One live defect turned up on the way: `validate-compiled-routing-scenarios.cjs` required an argument parser the lane's retirement deleted, so its command line crashed on start. It now parses its own arguments, and a new test runs it from the command line.
 
+The root README slipped through that rewrite. The search looked for `skill-benchmark` and `Lane C`, and the README wrote "model/skill benchmarking" and "three co-equal lanes", so nothing matched. It still said the improvement family had three lanes and six `/deep:*` commands, and the deep-loop `SKILL.md` and deep-review README said the same. All three now describe two lanes and five commands, which recompiled the three deep command contracts once more. The same pass fixed two README claims that predate this phase: the prompt command is `/prompt:improve`, not `/prompt-improve`, and the commands sit in seven groups since the memory group folded into speckit.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -90,6 +92,7 @@ The operator then asked for the rest of the description residue. Twelve holdout 
 | `.skilled/commands/deep/assets/compiled/deep-{research,review,ai-council}.contract.md` | Regenerated | Record the hub's new `SKILL.md` digest |
 | Twelve holdout scenarios, nine skill docs, seven benchmark READMEs, three playbook roots, two feature catalogs, one playbook scenario, the compiled-routing reference, `init_skill.py` help, comments in four code files | Modified | No live file describes the retired lane as present |
 | `validate-compiled-routing-scenarios.cjs` and its test | Modified | The CLI no longer requires a deleted module |
+| `README.md`, `.skilled/skills/system-deep-loop/SKILL.md`, `.skilled/skills/system-deep-loop/deep-review/README.md` | Modified | Two improvement lanes and five `/deep:*` commands, the real prompt command name and group count |
 <!-- /ANCHOR:what-built -->
 
 ---
