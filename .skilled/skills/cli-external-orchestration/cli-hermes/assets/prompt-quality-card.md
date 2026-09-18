@@ -62,5 +62,5 @@ A dispatched leaf must not run `hermes skills trust`, `hermes mcp add`, `hermes 
 - [ ] Preamble from `../../shared/references/child-dispatch-preamble.md` on top, spec folder named.
 - [ ] Persona inlined; task, files, acceptance criteria and verification command stated.
 - [ ] `--yolo` present exactly when the task writes; `--ignore-rules` present; explicit `-t` list without `delegation` and `memory`.
-- [ ] Model is `deepseek-v4.1-flash` or `glm-5.3-flash`; provider is `llmgateway`.
+- [ ] Model is one of the seven roster ids in `HERMES_SUPPORTED_MODELS`. Provider is `llmgateway`.
 - [ ] `--run-budget` under the caller's timeout; stdin fed by `--query-file -` or closed.

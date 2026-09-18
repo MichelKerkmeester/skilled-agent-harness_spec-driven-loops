@@ -23,7 +23,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 
 | Workflow | Responsibility |
 |---|---|
-| `advisory-checks.yml` | Runs advisory test suites and doc-model references; reports without gating. |
+| `advisory-checks.yml` | Runs advisory test suites and doc-model references. Reports without gating. |
 | `agent-mirror-sync.yml` | Keeps the `.skilled` and `.claude` agent mirrors aligned. |
 | `changed-packet-validation.yml` | Validates the spec packets a commit or pull request changed. |
 | `chart-corpus.yml` | Checks the chart corpus contract and runs its mutation suite. |
@@ -42,7 +42,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
 | `spec-kit-check.yml` | Typechecks and tests the spec-kit packages and checks that runtime mirrors agree with their sources. |
-| `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report; does not gate. |
+| `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report. Does not gate. |
 
 ### Push versus pull-request coverage
 
@@ -55,7 +55,7 @@ The repository's documented flow pushes release lines directly, so a gate that r
 | `gate-inputs.yml` | yes, no path filter | yes, no path filter | Guards a move of the source tree, the one change a path filter could miss |
 | `chart-corpus.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
 | `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed; on push it diffs against the previous tip |
-| `agent-mirror-sync.yml`, `comment-hygiene.yml`, `prompt-card-sync.yml` | no | yes | Review-time checks; the pre-commit hook runs the same checkers on every commit |
+| `agent-mirror-sync.yml`, `comment-hygiene.yml`, `prompt-card-sync.yml` | no | yes | Review-time checks. The pre-commit hook runs the same checkers on every commit |
 | `strict-pass-freshness-report.yml` | schedule | no | A weekly report, not a gate |
 
 ---
@@ -64,7 +64,7 @@ The repository's documented flow pushes release lines directly, so a gate that r
 
 The naming guard runs the naming checker and its focused tests. The runtime-import guard runs the real-tree check plus clean and failing fixtures.
 
-The gate-input workflow runs `.github/scripts/tests/check-gate-inputs.test.sh` against its fixtures, then `.github/scripts/check-gate-inputs.sh` over the real tree, then every hook test suite under the source root the hooks select. The broken-move drill, `.github/scripts/tests/broken-move-drill.sh`, runs locally rather than in CI because it clones the whole repository. A workflow whose guard script is missing fails that step instead of skipping it.
+The gate-input workflow runs `.github/scripts/tests/check-gate-inputs.test.sh` against its fixtures, then `.github/scripts/check-gate-inputs.sh` over the real tree, then every `*.test.sh` hook suite and the hook checker's own test under the source root the hooks select. The worktree harness `install-git-hooks-worktree-harness.sh` runs locally only. The broken-move drill, `.github/scripts/tests/broken-move-drill.sh`, runs locally rather than in CI because it clones the whole repository. A workflow whose guard script is missing fails that step instead of skipping it.
 
 ---
 

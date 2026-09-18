@@ -28,9 +28,9 @@ Agents source from **`.claude/agents/`**, not `.skilled/agents/`, because Cursor
 
 | Surface | Mechanism | Source | Target shape |
 |---|---|---|---|
-| `agents/*.md` (13) | symlink | `.claude/agents/<name>.md` | `../../.claude/agents/<name>.md` |
+| `agents/*.md` | symlink | `.claude/agents/<name>.md` | `../../.claude/agents/<name>.md` |
 | `commands/*.md` (36) | symlink, except the two native commands | `.skilled/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
-| `hooks/*` (15) | symlink | scattered `.skilled/**` | discovery mirror only |
+| `hooks/*` | symlink | scattered `.skilled/**` | discovery mirror only |
 | `hooks.json` | **hand-authored** | — | — |
 | `rules/skill-routing.md` | **hand-authored**, plus one generated Gate 1 pointer block | root `AGENTS.md` Gate 1 line via `sync-gate1-pointers.cjs` | also read by Devin; `--check` catches a stale block |
 | `mcp.json` | symlink | `../.mcp.json` → `.claude/mcp.json` | double hop |
@@ -84,7 +84,7 @@ Both refuse to accept a real file where a symlink belongs — that is a silent f
 
 ## 6. REQUIRED PARITY
 
-- 13 agents and 35 commands, names matching the canonical trees. The command count moves as commands are added or retired; the drift checks below are authoritative, not this number.
+- Agents and commands whose names match the canonical trees. The drift checks below are authoritative.
 - Every entry under `agents/` and `commands/` is a symlink resolving into the canonical tree.
 - No duplicate agent names between `.cursor/agents/` and the `.claude/agents/` auto-import — verified live: the roster lists each name once.
 

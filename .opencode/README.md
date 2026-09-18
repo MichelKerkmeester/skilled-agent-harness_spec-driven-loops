@@ -17,12 +17,14 @@ The authored tree lives in [`.skilled/`](../.skilled). This directory exposes th
 same tree under the older `.opencode/` name, one symlink per top-level entry, so
 anything that addresses `.opencode/<path>` still reaches the real file.
 
-The plugins are authored here, because only this runtime loads them. `package.json` and `package-lock.json` are tracked, since the plugins are ES modules that take their module type from the first and the SDK version from the second; `npm ci` here installs `node_modules`, which is not tracked. Editing a file through any other path in this directory edits
+The plugins are authored here, because only this runtime loads them. `package.json` and `package-lock.json` are tracked, since the plugins are ES modules that take their module type from the first and the SDK version from the second. `npm ci` here installs `node_modules`, which is not tracked. Editing a file through any other path in this directory edits
 the file in `.skilled/`, because that is the same file.
+
+---
 
 ## 2. WHAT IS HERE
 
-Each entry except `plugins/` and the package files is a symlink to its twin under `.skilled/`:
+Every entry in this table except `plugins/` is a symlink to its twin under `.skilled/`. The other real files are the two package files, this README, `SYNC.md` and the runtime-written `.gitignore`:
 
 | Entry | Resolves to |
 |---|---|
@@ -31,6 +33,8 @@ Each entry except `plugins/` and the package files is a symlink to its twin unde
 | `bin/`, `scripts/` | executable programs and shell entrypoints |
 | `changelog/`, `manual-testing-playbook/` | documentation trees |
 | `logs/`, `specs/` | runtime output and the spec alias |
+
+---
 
 ## 3. WHY IT EXISTS
 
@@ -43,6 +47,8 @@ these links:
   such as an MCP launcher argument resolved from whichever project runs it.
 - **Continuous integration** that checks out an older commit, where the tree
   still lived under this name.
+
+---
 
 ## 4. USING IT
 
@@ -59,6 +65,8 @@ target path, and paths below it stop resolving. Enable symlinks before cloning:
 ```bash
 git config --global core.symlinks true
 ```
+
+---
 
 ## 5. RELATED
 

@@ -1,6 +1,6 @@
 ---
 title: cli-hermes Providers, Models & Invocation
-description: The per-mode catalog of the one fan-out provider (llmgateway), its operator-side configuration contract, the two-id closed roster, and the reasoning-level lever reachable through cli-hermes.
+description: The per-mode catalog of the one fan-out provider (llmgateway), its operator-side configuration contract, the seven-id closed roster, and the reasoning-level lever reachable through cli-hermes.
 trigger_phrases:
   - "hermes providers and models"
   - "which model for hermes dispatch"
@@ -20,7 +20,7 @@ The single catalog of the provider, the model ids, the reasoning lever and the d
 
 ### Core Principle
 
-One place to answer "which provider, which model, which effort, how to dispatch" for cli-hermes. The roster is closed at two ids so generic provider routing cannot broaden dispatch, and the provider is the one whose credential the operator already holds for the other runtimes.
+One place to answer "which provider, which model, which effort, how to dispatch" for cli-hermes. The roster is closed at seven ids so generic provider routing cannot broaden dispatch, and the provider is the one whose credential the operator already holds for the other runtimes.
 
 ### When to Use
 
@@ -53,8 +53,13 @@ Other credential kinds on this machine do not transfer: Hermes keeps its own OAu
 |---|---|---|---|---|
 | `deepseek-v4.1-flash` | `llmgateway` | pinned `max` | **observed 2026-09-14**: smoke exit 0, fan-out lineage dispatched | The rotation default; the same literal cli-pi dispatches through DevPass |
 | `glm-5.3-flash` | `llmgateway` | pinned `max` | **observed 2026-09-14**: smoke exit 0 at `max` and `none` | The second lens; flat-price on DevPass |
+| `gpt-5.6-luna` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
+| `gpt-5.6-sol` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
+| `minimax-m3` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
+| `mimo-v2.5-pro` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
+| `qwen3.8-max` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 
-Both ids are bare gateway literals. A provider-prefixed form (`llmgateway/deepseek-v4.1-flash`) is Pi's selector shape, not Hermes's, and the fan-out rejects it. Enforcement: `HERMES_SUPPORTED_MODELS` and `isHermesModelAllowed` in `executor-config.ts`, byte-mirrored as `HERMES_ALLOWED_MODELS` in `fanout-run.cjs`; no `auto` default exists.
+Every id is a bare gateway literal. A provider-prefixed form (`llmgateway/deepseek-v4.1-flash`) is Pi's selector shape, not Hermes's, and the fan-out rejects it. Enforcement: `HERMES_SUPPORTED_MODELS` and `isHermesModelAllowed` in `executor-config.ts`, byte-mirrored as `HERMES_ALLOWED_MODELS` in `fanout-run.cjs`; no `auto` default exists.
 
 To add a model: amend the packet's spec (`071-cli-hermes-creation`), then `HERMES_SUPPORTED_MODELS`, its mirror, this table and the changelog, in that order.
 

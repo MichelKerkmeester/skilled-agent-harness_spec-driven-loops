@@ -60,11 +60,11 @@ See [`fanout-dispatch/hermes-executor-kind.md`](fanout-dispatch/hermes-executor-
 
 ---
 
-### Closed Two-Model Gateway Roster
+### Closed Seven-Model Gateway Roster
 
 #### Description
 
-Dispatch is fenced to the two model ids reachable through the operator's `llmgateway` provider block, and the lineage builder rejects any other id before a process is spawned.
+Dispatch is fenced to the seven model ids reachable through the operator's `llmgateway` provider block, and the lineage builder rejects any other id before a process is spawned.
 
 #### Current Reality
 

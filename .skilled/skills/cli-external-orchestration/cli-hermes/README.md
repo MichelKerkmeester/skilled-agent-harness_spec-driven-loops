@@ -34,7 +34,7 @@ Two traits separate Hermes from the six sibling runtimes, and both shape how you
 |---|---|
 | Hub position | Seventh `cli-external-orchestration` mode |
 | Deep-loop position | Eighth `ExecutorKind`, dispatched by `buildHermesLineageCommand` |
-| Model roster | Closed at two ids: `deepseek-v4.1-flash` and `glm-5.3-flash` |
+| Model roster | Closed at seven ids: `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-5.6-luna`, `gpt-5.6-sol`, `minimax-m3`, `mimo-v2.5-pro` and `qwen3.8-max` |
 | Provider | `llmgateway`, an operator-declared custom provider block |
 | Agents directory | None. Personas are inlined into the prompt |
 | Repo surface | `.hermes/skills/`, `.hermes/plugins/repo-guards/`, `.hermes/prompts/`, `.hermes/SYNC.md` |
@@ -67,7 +67,7 @@ Read the exit code first, then stdout, then stderr. Validate any workspace chang
 | Quiet oneshot dispatch | `chat -Q --oneshot` returns the final response only, with the session id on stderr and hard exit codes. It is the auditable headless form, and `hermes -z` is never used because it drops the session id |
 | Prompt on stdin | `--query-file -` reads the prompt verbatim from stdin, which is how the fan-out builder passes it. Argv `-q` stays for short prompts |
 | Read-only review | Omit `--yolo`, narrow the toolset to `-t file,todo` and set `SPECKIT_HERMES_READ_ONLY=1` so the repo plugin refuses the write tools; Hermes has no read-only file toolset and no OS sandbox |
-| Closed model roster | `deepseek-v4.1-flash` and `glm-5.3-flash` only. `isHermesModelAllowed` rejects any other id in the fan-out, and a manual dispatch must not use one either |
+| Closed model roster | The seven ids in `HERMES_SUPPORTED_MODELS` only. `isHermesModelAllowed` rejects any other id in the fan-out, and a manual dispatch must not use one either |
 | Session isolation | `--ignore-rules` keeps `SOUL.md`, Hermes memories, session search and the CWD instruction files out of the leaf prompt |
 | Bounded toolsets | An explicit `-t` list excludes `delegation` and `memory`, which the stock roster enables and which would let a leaf spawn sub-agents outside the runner's boundary |
 | Agent personas | `.hermes/agents/` links the shared agent files and each is mirrored as the skill `agent-<name>`; dispatch with `-s agent-<name>` plus `HERMES_AGENT_PERSONA=<name>` (repo plugin), inline otherwise |

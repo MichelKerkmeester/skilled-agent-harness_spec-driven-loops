@@ -23,7 +23,7 @@ Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `
 
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
-| `agents/*.md` (13) | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents-pi.cjs --check` |
+| `agents/*.md` | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents-pi.cjs --check` |
 | `prompts/*.md` (36) | **generated** pointer stubs, except the two native commands below | `.skilled/commands/**/*.md` | Yes — `sync-prompts-pi.cjs --check` |
 | `prompts/goal-pi.md`, `prompts/vision.md` | hand-authored native commands | none | No — exempt by `command-scope.cjs` |
 | `extensions/*.ts` + `lib/` | **hand-authored** guard bridges | shared guard cores under `.skilled/**` | Behavioral drift only; no checker |
@@ -91,7 +91,7 @@ No installed surface reads `.pi/agents/**/*.md` today. Pi core exposes `--skill`
 ## 6. REQUIRED PARITY
 
 - **Gate 1 lookup instruction: inherited, not mirrored.** Pi loads `AGENTS.md` (or `CLAUDE.md`) from the working directory and its ancestors at startup, so the root `AGENTS.md` Gate 1 line reaches every Pi session in this repository without a `.pi` copy. Source: `@earendil-works/pi-coding-agent` 0.85.1, `README.md` §"Pi loads `AGENTS.md`" and `dist/core/resource-loader.js` `loadContextFileFromDir`, whose candidate list is `AGENTS.override.md`, `AGENTS.md`, `AGENTS.MD`, `CLAUDE.md`, `CLAUDE.MD`; `--no-context-files` is the only way to disable it. Recorded 2026-09-07; `/doctor speckit-retrieval` phase 0 reports it as `gate1_reach.pi`.
-- 13 agents and 36 prompts: 34 generated from the canonical tree plus two hand-authored native commands. The command count moves as commands are added or retired; the generators' `--check` is authoritative, not this number.
+- Agents and prompts: the prompts generated from the canonical tree plus two hand-authored native commands. The generators' `--check` is authoritative.
 - Every prompt stub's cited canonical path must exist. A stub pointing at a deleted file is the drift mode that actually occurred here (`interface-motion` outlived its command).
 
 ---

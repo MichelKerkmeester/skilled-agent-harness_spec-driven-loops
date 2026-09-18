@@ -17,7 +17,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.skilled/scripts/git-hooks/` holds the hook scripts this repo installs into `.git/hooks/`. Hooks here are advisory-first: each one's primary check has its own bypass env var: with two exceptions whose headline check blocks by default: `pre-commit` layers a few genuinely blocking sub-gates on top of its advisory headline check, and `pre-push` blocks outright (for new remote branches only; see below).
+`.skilled/scripts/git-hooks/` holds the hook scripts this repo installs into `.git/hooks/`. Hooks here are advisory-first: each one's primary check has its own bypass env var: with two exceptions whose headline check blocks by default: `pre-commit` layers a few genuinely blocking sub-gates on top of its advisory headline check, and `pre-push` blocks outright (see below).
 
 Current state:
 
@@ -26,8 +26,8 @@ Current state:
 - `post-commit` publishes the just-completed commit to the shared live branch, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`.
 - `post-commit`, `post-merge` and `post-rewrite` anchor and surface any `--autostash` entry, including the stash object a `rebase --autostash` records in its sequencer directory before git re-applies it, so a conflicted (un-applied) autostash cannot be lost silently.
 - `lib/autostash-orphan-guard.sh` is the one shared helper `post-commit`, `post-merge` and `post-rewrite` all source; `lib/mass-deletion-guard.sh` backs the `pre-push` mass-deletion gate.
-- `pre-push` blocks creation of a *new* remote branch (remote sha all-zero) whose name breaks the owner-first naming grammar (`<owner>/NNNN-slug`, `skilled/vA.B.C.D` release, or `main`); wrapper refs (`work/<runtime>/<slug>`) are always rejected as new branches. Updates to a branch that already exists on the remote are always allowed: migration tolerance, with only an advisory notice for a non-conformant name. The naming check is **tri-state**: a genuine invalid name blocks, but an internal validator error (for example a failed owner-discovery scan) fails **open** so a tooling fault never blocks a legal push, and the authorized-owner set is read only from version-controlled `SKILL.md` files (an untracked skill cannot authorize a remote owner).
-- Each gate finds its scripts under `.opencode/`, a path that keeps resolving once the tree moves to `.skilled/` and `.opencode` becomes a link to it, and every staged-path filter and pathspec names both roots. A checkout that ships the toolchain is marked by `skills/system-spec-kit/SKILL.md` under either root. There, a missing gate script never passes in silence: a gate that can block exits 1 naming the path and its bypass, and a gate that cannot block warns. Any other repository the globally installed hooks run in sees no new output and no new block.
+- `pre-push` runs four gates on every push. A mass-deletion ceiling blocks a destructive range. A permission gate blocks any push to a branch outside the remote allowlist unless that push is approved, and creating a branch needs the allowlist or approval naming the branch. The skill-metadata and compiled-routing gates block stale generated state. `main`, `skilled/v*` and branches in the allowlist file pass the permission gate with nothing set.
+- Each gate finds its scripts under the source root the hook selects: whichever of `.skilled` and `.opencode` holds `skills/system-spec-kit/SKILL.md`, with `.skilled` preferred. Every hook carries the same selection block, and `tests/source-root-selection.test.sh` holds the copies identical. Every staged-path filter and pathspec names both roots. Where the toolchain ships, a missing gate script never passes in silence: a gate that can block exits 1 naming the path and its bypass, and a gate that cannot block warns. Any other repository the globally installed hooks run in sees no new output and no new block.
 
 ---
 
@@ -71,7 +71,7 @@ git-hooks/
 +-- post-commit                     # Autosync publish + autostash orphan guard
 +-- post-merge                      # Autostash orphan guard after merge
 +-- post-rewrite                    # Autostash orphan guard after amend/rebase
-+-- pre-push                        # Owner-first branch-naming gate (new branches only)
++-- pre-push                        # Mass-deletion, remote-permission, skill-metadata and routing gates
 +-- lib/
 |   +-- autostash-orphan-guard.sh   # Shared autostash anchor: stash list + rebase sequencer
 |   `-- mass-deletion-guard.sh      # Mass-deletion detection sourced by pre-push
@@ -82,9 +82,9 @@ Allowed dependency direction:
 
 ```text
 post-merge / post-rewrite → lib/autostash-orphan-guard.sh
-post-commit → .opencode/hooks/shared/hook-flags.sh, .opencode/bin/git-sync.sh
-pre-commit → .skilled/hooks/git/pre-commit, sk-doc validator, skill-advisor card-sync guard, doctor mutation-class guard, .opencode/bin/compiled-route-manifest.cjs
-pre-push → .opencode/skills/sk-git/scripts/worktree-naming.sh (sourced; validators only), lib/mass-deletion-guard.sh
+post-commit → $SOURCE_ROOT/hooks/shared/hook-flags.sh, $SOURCE_ROOT/bin/git-sync.sh
+pre-commit → .skilled/hooks/git/pre-commit, sk-doc validator, skill-advisor card-sync guard, doctor mutation-class guard, $SOURCE_ROOT/bin/compiled-route-manifest.cjs
+pre-push → $SOURCE_ROOT/skills/sk-git/scripts/worktree-naming.sh (sourced for the allowlist), lib/mass-deletion-guard.sh
 ```
 
 Disallowed dependency direction:
@@ -101,11 +101,11 @@ hooks here → hard-fail without a bypass env var on their primary check
 | File | Responsibility | Bypass |
 |---|---|---|
 | `pre-commit` | Runs `validate-doc-model-refs.js` and warns (does not block) on drift. Then runs seven blocking sub-gates when their staged-path trigger matches: comment hygiene, agent-mirror sync, mirror parity, prompt-quality-card sync, the MCP mutation-class contract, compiled-routing re-mint, and spec derived-metadata re-mint. The last two repair their artifact and stage the repair rather than instructing you to, which is the exception in this folder and is confined to artifacts derived from the staged input. Every block from these two gates prints its bypass flag, and a packet dirty only in its derived metadata re-derives instead of blocking. | `SPECKIT_SKIP_DOC_MODEL_VALIDATE=1` (advisory check); `SPECKIT_SKIP_COMMENT_HYGIENE=1`, `SPECKIT_SKIP_MIRROR_PARITY=1`, `SPECKIT_SKIP_CARD_SYNC=1`, `SPECKIT_SKIP_MCP_MUTATION_CLASS=1`, `SPECKIT_SKIP_ROUTE_REMINT=1`, `SPECKIT_SKIP_SPEC_REMINT=1` (six of the seven blocking sub-gates; agent-mirror sync has no bypass) |
-| `post-commit` | Publishes the just-completed commit to the shared live branch through `.opencode/bin/git-sync.sh --auto --quiet`, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`. Also runs the autostash orphan guard. | `SPECKIT_AUTOSYNC=0` (this launch); `SYSTEM_LIVE_SYNC_DISABLED` or `SYSTEM_HOOKS_DISABLED` (whole live-sync loop) |
+| `post-commit` | Publishes the just-completed commit to the shared live branch through `$SOURCE_ROOT/bin/git-sync.sh --auto --quiet`, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`. Also runs the autostash orphan guard. | `SPECKIT_AUTOSYNC=0` (this launch); `SYSTEM_LIVE_SYNC_DISABLED` or `SYSTEM_HOOKS_DISABLED` (whole live-sync loop) |
 | `post-merge` | Sources `lib/autostash-orphan-guard.sh` and anchors any `--autostash` entry the merge left un-applied. | None; the guard is best-effort and never blocks |
 | `post-rewrite` | Sources `lib/autostash-orphan-guard.sh` after an amend or rebase. The rewritten `old_commit new_commit` pairs git sends on stdin are unused. | None; the guard is best-effort and never blocks |
 | `lib/autostash-orphan-guard.sh` | Defines `autostash_orphan_guard()`, the one function `post-commit`, `post-merge` and `post-rewrite` source. Reads the sequencer's recorded autostash object, so a rebase autostash is anchored before git re-applies it. Anchors every autostash entry under `refs/autostash-rescue/<sha>` so it survives garbage collection, prints recovery instructions and records an alert in `.skilled/logs/autostash-orphan-alerts.log`. | None; it always returns success |
-| `pre-push` | Reads `<local ref> <local sha> <remote ref> <remote sha>` lines from stdin and runs two gates. The mass-deletion ceiling blocks a destructive range. The remote gate blocks any push to a branch outside the allowlist unless this one is approved: creating a branch needs `SPECKIT_ALLOW_REMOTE_PUSH=<branch>`, an update accepts a bare `=1`, and `main`, `skilled/v*` and the allowlist file pass with nothing set. A naming-grammar gate ran here until it was removed for never refusing a push the remote gate would have allowed. Fails safe (exits 0) if `worktree-naming.sh` fails to source. Where the toolchain ships, a missing `worktree-naming.sh` blocks each push the remote gate would check until `SPECKIT_ALLOW_REMOTE_PUSH` approves it, a missing mass-deletion library blocks update pushes until `SPECKIT_ALLOW_MASS_DELETION=1` and a missing route guard blocks until `SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1`. | `SPECKIT_ALLOW_MASS_DELETION=1`, `SPECKIT_ALLOW_REMOTE_PUSH=1` or `=<branch>` |
+| `pre-push` | Reads `<local ref> <local sha> <remote ref> <remote sha>` lines from stdin and runs four gates. The mass-deletion ceiling blocks a destructive range. The remote gate blocks any push to a branch outside the allowlist unless this one is approved: creating a branch needs `SPECKIT_ALLOW_REMOTE_PUSH=<branch>`, an update accepts a bare `=1`, and `main`, `skilled/v*` and the allowlist file pass with nothing set. A naming-grammar gate ran here until it was removed for never refusing a push the remote gate would have allowed. Fails safe (exits 0) if `worktree-naming.sh` fails to source. Where the toolchain ships, a missing `worktree-naming.sh` blocks each push the remote gate would check until `SPECKIT_ALLOW_REMOTE_PUSH` approves it, a missing mass-deletion library blocks update pushes until `SPECKIT_ALLOW_MASS_DELETION=1` and a missing route guard blocks until `SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1`. | `SPECKIT_ALLOW_MASS_DELETION=1`, `SPECKIT_ALLOW_REMOTE_PUSH=1` or `=<branch>` |
 
 ---
 
@@ -113,7 +113,7 @@ hooks here → hard-fail without a bypass env var on their primary check
 
 | Boundary | Rule |
 |---|---|
-| Blocking vs advisory | `pre-commit`'s seven named sub-gates and `pre-push`'s new-branch naming gate may fail their git operation. Every other check in this folder is advisory or best-effort (`\|\| true` on the guard call). |
+| Blocking vs advisory | `pre-commit`'s seven named sub-gates and `pre-push`'s four gates may fail their git operation. Every other check in this folder is advisory or best-effort (`\|\| true` on the guard call). |
 | Missing gate scripts | Where the toolchain ships, a blocking gate whose script is missing exits 1 naming the path. `prepare-commit-msg`, `post-commit`, `post-merge` and `post-rewrite` warn instead, because git ignores their exit status or they never block by contract. Elsewhere a missing script adds no new output and no new block. |
 | Autostash ownership | Only `lib/autostash-orphan-guard.sh` writes `refs/autostash-rescue/*` and the alert log. Hooks source it rather than duplicating the anchor-and-alert logic. |
 | Autosync scope | `post-commit` publishes only from a linked worktree in a launch-wrapper session. The primary checkout never auto-publishes, and a blocked publish stays local. |

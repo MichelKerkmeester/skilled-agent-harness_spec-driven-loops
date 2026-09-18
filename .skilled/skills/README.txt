@@ -42,7 +42,7 @@ Each skill name links to its own README. One-line descriptions reflect current b
 
 | Skill | What it does |
 |---|---|
-| [`cli-external-orchestration`](cli-external-orchestration/README.md) | Parent hub for external CLI dispatch, holding no per-mode logic: routes by `workflowMode` to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, and `cli-pi` |
+| [`cli-external-orchestration`](cli-external-orchestration/README.md) | Parent hub for external CLI dispatch, holding no per-mode logic: routes by `workflowMode` to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-hermes` |
 
 ### mcp-*: External Tool Surfaces
 

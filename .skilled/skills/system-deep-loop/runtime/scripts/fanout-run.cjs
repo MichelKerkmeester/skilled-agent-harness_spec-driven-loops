@@ -2611,7 +2611,7 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
 
 // Mirrors HERMES_SUPPORTED_MODELS in executor-config.ts. Hermes is a provider
 // pass-through with a wide catalog, so this synchronous duplicate keeps command
-// construction fail-closed without importing the TypeScript module. Both ids are the
+// construction fail-closed without importing the TypeScript module. Every id is one of the
 // bare literals the operator's LLM Gateway (DevPass) provider expects.
 // Hermes and Pi reach the same gateway account, so their rosters are deliberately equal.
 // Two lists meant to hold the same ids drift, and the drift surfaces as a model one

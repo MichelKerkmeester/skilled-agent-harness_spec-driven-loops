@@ -29,7 +29,7 @@ The exception matters. `.claude/agents/` holds **real files**, not symlinks, bec
 | `changelog` | whole-dir symlink | `../.skilled/changelog` | No |
 | `manual-testing-playbook` | whole-dir symlink | `../.skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook` | No |
 | `.utcp_config.json` | symlink | `../.utcp_config.json` | No |
-| `agents/*.md` (13) | **real forked copy** | `.skilled/agents/*.md` | **Yes** — guarded by pre-commit gate |
+| `agents/*.md` | **real forked copy** | `.skilled/agents/*.md` | **Yes** — guarded by pre-commit gate |
 | `agents/README.txt` | real file | hand-maintained | Yes — no gate |
 | `hooks/*` (18 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — guarded by the mirror generator |
 | `settings.json` | **hand-authored** | — | n/a — no counterpart to sync with |
@@ -88,8 +88,8 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 
 ## 6. REQUIRED PARITY
 
-- 13 agents, same names, in all five surfaces.
-- 34 shared commands reachable from Claude's repository command tree. OpenCode-only commands are excluded. The count moves as commands are added or retired; the drift check below is authoritative.
+- The same agents, by name, in all five surfaces.
+- Every shared command reachable from Claude's repository command tree. OpenCode-only commands are excluded. The drift check below is authoritative.
 - An agent added here must reach `.skilled/agents`, `.codex/agents`, `.cursor/agents` and `.devin/agents`.
 - `agents/README.txt` lists every agent present in the directory.
 
