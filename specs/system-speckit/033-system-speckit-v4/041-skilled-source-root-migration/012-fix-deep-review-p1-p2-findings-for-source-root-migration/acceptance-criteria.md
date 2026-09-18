@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "6d11af6f-653e-4807-aca8-1c09c81640c1"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** 041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-18
 <!-- /ANCHOR:metadata -->
 
@@ -52,7 +52,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the changed hooks, When a commit and a push run in this worktree and in the main checkout, Then both pass and the hook suites pass | Commit and push output. Suite output at the fix SHA | Unmet | - |
+| AC-001 | REQ-001 | Given the changed hooks, When a commit and a push run in this worktree and in the main checkout, Then both pass and the hook suites pass | `.skilled/scripts/git-hooks/tests/source-root-selection.test.sh:40` passes in every hook suite; commit `fb09084e70` passed the new global hooks and got `Commit-Id: 0009575`; the pushes of `fb09084e70` and `5844a02227` passed the new pre-push gates; Spec-Kit Check green at `5844a02227` (runs 35338866889 on main and 35338866896 on skilled/v4.0.0.0) | Met | - |
 | AC-002 | REQ-002 | Given four layouts, When `findSourceRoot` runs, Then it returns `.skilled`, `.skilled`, `.opencode` and `.opencode` for both, skilled-only, legacy-only and placeholder `.skilled` | `.skilled/skills/system-spec-kit/runtime/cli/tests/package-root-parity.vitest.ts:212` 42/42, per-entry and placeholder rows included | Met | - |
 | AC-003 | REQ-003 | Given every hook and checker, When the selection test runs, Then every block is identical, no tree path names a root directly, and each layout selects the right root | `.skilled/scripts/git-hooks/tests/source-root-selection.test.sh:40`, `:53`, `:67` 38/38. A drifted block and a reintroduced `$REPO_ROOT/.opencode` path each fail it | Met | - |
 | AC-004 | REQ-004 | Given a hook naming a missing `$REPO_ROOT/.skilled/...` input, When the gate-input check runs, Then it fails naming that path | `.github/scripts/tests/check-gate-inputs.test.sh:436` to `:454`, 48/48. Reverting the variable-path fix fails case 43 | Met | - |
@@ -95,7 +95,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Written when the packet closes.
+Every criterion is met. The source-root resolver, the hook selection block and the angle-10 corrections carried the packet. Two red CI workflows remain, Playbook Operator Contract and Routing Registry Drift Guard, with failure sets identical before and after this work, so they were left to their owners.
 <!-- /ANCHOR:closure -->

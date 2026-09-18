@@ -124,7 +124,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 9 | `009-reference-rewrite/` | Rewrite the mechanical path references, leaving frozen records alone | complete |
 | 10 | `010-machine-and-consumer-cutover/` | Reinstall the global hooks, update home configs, and keep consumer projects working | complete |
 | 11 | `011-verification-and-rollout/` | Prove every runtime and gate on the new root, push, and clean up | complete |
-| 12 | `012-fix-deep-review-p1-p2-findings-for-source-root-migration/` | Fix every finding the migration's deep review confirmed, starting with one source-root resolver | in progress |
+| 12 | `012-fix-deep-review-p1-p2-findings-for-source-root-migration/` | Fix every finding the migration's deep review confirmed, starting with one source-root resolver | complete |
 
 ### Phase Transition Rules
 

@@ -39,7 +39,7 @@
       "skilled"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -178,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep review of the move from `.opencode` to `.skilled` returned verdict CONDITIONAL with 26 distinct findings",
     "created_at": "2026-09-18T09:25:35Z",
-    "last_save_at": "2026-09-18T11:00:56.696Z",
+    "last_save_at": "2026-09-18T11:27:50.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:128ef39967d52de4ccf85aca76d89454bccdf6809d6ed7ec4aab0c8263a5826f",
+    "source_fingerprint": "sha256:1b1bb4afadcb3567861169ceb88af32ca95889871345656de11d814a734b14c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f18ad7b9614d8cdd551d2b59fe995e33f4a7608d1e7a3197f80b4770b4738b57",
-      "plan.md": "eee7ea849fff654066da511ad0556a93492e21f8f7d47e04ca840ebef81d9023",
-      "tasks.md": "cef99102477161ccc33b3bdd7b2551d630131701d8e00d14f95e5790fe36d5ec",
-      "implementation-summary.md": "c14b0788f474de27b8da417687ebc5324b51cdddd1c3015f015f17a15664fb71"
+      "spec.md": "2898f0068acdbb195a80ef6f1beb416b4beb09457256d724019d350c06bcceed",
+      "plan.md": "de007950c99d9e383a50aedbba41d46a16a73975c4bab5e4163bf302dd609679",
+      "tasks.md": "60a9cea8dbf2d3876e068a712219f02f0db7d5551e873b3329cd5ecf5aaff18a",
+      "implementation-summary.md": "67fbd8ad4ffbda504c6fcee9ea834f52e51e5a894469ee9c53ead2810c16434c"
     },
     "last_active_at": null
   }

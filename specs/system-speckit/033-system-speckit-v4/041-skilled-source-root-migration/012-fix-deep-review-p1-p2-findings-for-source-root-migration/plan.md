@@ -42,9 +42,9 @@ The review's headline recommendation is one resolver instead of hand-written gue
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing, with the baseline delta reported
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing, with the baseline delta reported
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -169,9 +169,9 @@ Resolver ──► Callers ──► Live + pre-existing fixes ──► Tests �
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline numbers captured at `073e9241e7`
-- [ ] Each changed hook run on a real commit in this worktree
-- [ ] No data migration
+- [x] Baseline numbers captured at `073e9241e7`
+- [x] Each changed hook run on a real commit in this worktree
+- [x] No data migration
 
 ### Rollback Procedure
 1. `git revert <fix-sha>` on `worktrees/055-skilled-source-root-migration`.
