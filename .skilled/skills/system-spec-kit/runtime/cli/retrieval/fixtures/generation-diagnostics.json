@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7154,
+    "missing-frontmatter": 7156,
     "non-yaml-frontmatter": 1,
-    "ok": 15298,
+    "ok": 15304,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27296,
+  "documentsScanned": 27304,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "cc963ad4b29aaef74902f87b732c049b59a815a7c53ebfa58b5aacd1492f85a2",
+  "manifestHash": "a5b0836258aab5ea52315dbaee2949ccb77cd8b2165fd0b37169d1cd23492f5a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 36380,
+      "ok": 36392,
       "prose-sentence": 27,
       "single-token": 303,
       "stop-word-only": 3
@@ -76813,6 +76813,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -81966,6 +81978,14 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/scratch",
       "reason": "excluded directory"
     },
     {

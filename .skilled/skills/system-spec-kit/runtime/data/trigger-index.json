@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cc963ad4b29aaef74902f87b732c049b59a815a7c53ebfa58b5aacd1492f85a2",
+  "manifestHash": "a5b0836258aab5ea52315dbaee2949ccb77cd8b2165fd0b37169d1cd23492f5a",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -15356,6 +15356,12 @@
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/plan.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/spec.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/research.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/goal.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/review-report.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/spec.md",
@@ -25780,6 +25786,9 @@
     ],
     "adjudicator verdict scoring cjs": [
       1377
+    ],
+    "admission research fan out": [
+      15348
     ],
     "adopt deep pi": [
       2822
@@ -43971,6 +43980,10 @@
     "compiled routing 6 hub migration plan": [
       5999
     ],
+    "compiled routing admission path": [
+      15349,
+      15350
+    ],
     "compiled routing and legacy fallback": [
       126,
       148,
@@ -44067,6 +44080,9 @@
     ],
     "compiled routing gate blocks push": [
       3030
+    ],
+    "compiled routing gold checker": [
+      15349
     ],
     "compiled routing kill switch": [
       1634
@@ -44216,6 +44232,22 @@
     ],
     "compiled routing withdrawal tasks": [
       7789
+    ],
+    "compiled serving admission acceptance": [
+      15346
+    ],
+    "compiled serving admission plan": [
+      15348
+    ],
+    "compiled serving admission research": [
+      15349,
+      15350
+    ],
+    "compiled serving admission summary": [
+      15347
+    ],
+    "compiled serving admission tasks": [
+      15351
     ],
     "compiled serving false green": [
       6068
@@ -60128,7 +60160,7 @@
       7321
     ],
     "dot skilled migration": [
-      15348
+      15354
     ],
     "dot state directories": [
       14601
@@ -60591,7 +60623,7 @@
       15296
     ],
     "dual root resolver findings": [
-      15347
+      15353
     ],
     "dual root task breakdown": [
       15300
@@ -65924,7 +65956,7 @@
       215
     ],
     "fewer skills safer paths": [
-      15349
+      15355
     ],
     "fidelity checklist": [
       887
@@ -78692,6 +78724,10 @@
     "lane c hub benchmark tasks": [
       3103
     ],
+    "lane c parity replacement": [
+      15349,
+      15350
+    ],
     "lane c removal": [
       9443
     ],
@@ -85246,7 +85282,7 @@
       14801
     ],
     "memory decommission history": [
-      15350
+      15356
     ],
     "memory decommission inventory": [
       14784
@@ -85271,7 +85307,7 @@
     ],
     "memory decommission timeline": [
       3996,
-      15351
+      15357
     ],
     "memory delete causal cleanup": [
       12923
@@ -88834,7 +88870,7 @@
       14504
     ],
     "move opencode to skilled": [
-      15348
+      15354
     ],
     "move or rename a note": [
       445
@@ -97731,17 +97767,23 @@
       6998,
       15345
     ],
+    "phase 15 closure gate": [
+      15346
+    ],
     "phase 15 implementation summary": [
       6999
     ],
     "phase 15 plan": [
-      3280
+      3280,
+      15348
     ],
     "phase 15 results": [
-      3279
+      3279,
+      15347
     ],
     "phase 15 tasks": [
-      3282
+      3282,
+      15351
     ],
     "phase 16 implementation summary": [
       7003
@@ -98945,7 +98987,7 @@
       11753,
       12898,
       15040,
-      15350
+      15356
     ],
     "phase parent 049": [
       10237
@@ -112846,6 +112888,12 @@
     "routing findings status": [
       7514
     ],
+    "routing gold agreement checker": [
+      15350
+    ],
+    "routing gold checker recommendation": [
+      15347
+    ],
     "routing gold corpus per hub": [
       5813
     ],
@@ -113916,7 +113964,7 @@
       2593
     ],
     "runtime symlink inversion": [
-      15348
+      15354
     ],
     "runtime symlink resolution probe": [
       15280
@@ -124533,16 +124581,16 @@
       15324
     ],
     "skilled migration binding": [
-      15346
+      15352
     ],
     "skilled migration closeout": [
       15329
     ],
     "skilled migration completion criteria": [
-      15346
+      15352
     ],
     "skilled migration deep review": [
-      15347
+      15353
     ],
     "skilled migration design": [
       15287
@@ -124554,7 +124602,7 @@
       15271
     ],
     "skilled migration goal": [
-      15346
+      15352
     ],
     "skilled migration research": [
       15272
@@ -124623,7 +124671,7 @@
       15299
     ],
     "skilled source root": [
-      15348
+      15354
     ],
     "skilled source root move": [
       15305
@@ -125191,7 +125239,7 @@
       889
     ],
     "source parent migration": [
-      15348
+      15354
     ],
     "source phase metadata cleanup": [
       6849
@@ -125203,10 +125251,10 @@
       15298
     ],
     "source root migration directive": [
-      15346
+      15352
     ],
     "source root migration review": [
-      15347
+      15353
     ],
     "source root move acceptance criteria": [
       15301
@@ -126043,10 +126091,10 @@
     ],
     "spec kit v4 chronology": [
       3996,
-      15351
+      15357
     ],
     "spec kit v4 timeline": [
-      15350
+      15356
     ],
     "spec kit version migration": [
       11717,
@@ -131075,11 +131123,11 @@
       14309
     ],
     "system speckit v4": [
-      15350
+      15356
     ],
     "system speckit v4 timeline": [
       3996,
-      15351
+      15357
     ],
     "system to embedder mapping": [
       11194,
@@ -133370,7 +133418,7 @@
       14536
     ],
     "template reduction history": [
-      15350
+      15356
     ],
     "template reduction requirements": [
       14516
@@ -136830,10 +136878,10 @@
       15155
     ],
     "v4 0 0 0 release notes": [
-      15349
+      15355
     ],
     "v4 changelog": [
-      15349
+      15355
     ],
     "v4 changelog draft update": [
       15159
@@ -136843,7 +136891,7 @@
     ],
     "v4 packet order": [
       3996,
-      15351
+      15357
     ],
     "v4 pro retirement status": [
       2469
@@ -139913,7 +139961,7 @@
       1136
     ],
     "what changed in v4": [
-      15349
+      15355
     ],
     "what colors are in this design": [
       1134
@@ -140507,7 +140555,7 @@
     ],
     "which spec was worked on first": [
       3996,
-      15351
+      15357
     ],
     "which system uses cocoindex or mk spec memory": [
       12423
