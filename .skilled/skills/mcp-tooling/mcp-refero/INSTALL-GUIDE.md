@@ -121,7 +121,7 @@ The gated live probe sends one unauthenticated HTTPS request. **HTTP 401 is the 
 
 ---
 
-## 4. AUTHENTICATE (OPERATOR-ONLY)
+## 4. INSTALLATION: AUTHENTICATE (OPERATOR-ONLY)
 
 > **This entire section is performed by the operator, never by the agent.** The agent surfaces this step and waits. It never opens the OAuth URL on your behalf, never reads or repairs `~/.mcp-auth`, and never handles tokens.
 
@@ -144,7 +144,7 @@ Documented upstream and quoted verbatim in [`assets/utcp-refero-manual.md`](asse
 
 ---
 
-## 5. CONFIRM THE CALLABLES (INSIDE CODE MODE)
+## 5. VERIFICATION: CONFIRM THE CALLABLES (INSIDE CODE MODE)
 
 The mandatory confirmation step runs inside Code Mode, not in a shell:
 
