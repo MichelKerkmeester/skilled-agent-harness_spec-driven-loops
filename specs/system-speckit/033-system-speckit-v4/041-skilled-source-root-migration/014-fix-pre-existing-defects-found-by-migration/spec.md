@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-18 |
 | **Branch** | `worktrees/055-skilled-source-root-migration` |
 | **Parent Spec** | ../spec.md |
@@ -211,7 +211,7 @@ Every check runs where it should and passes for a real reason, and the source-tr
 
 ## 10. OPEN QUESTIONS
 
-- Which compiled-serving admission path should the next phase build: the restored legacy-parity lane, a new checker against routing gold, or none?
+- Which compiled-serving admission path should the next phase build: the restored legacy-parity lane, a new checker against routing gold, or none? Phase 15 researched it, and its `research/research.md` recommends the checker; the choice stays the operator's.
 <!-- /ANCHOR:questions -->
 
 ---

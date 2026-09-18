@@ -39,7 +39,7 @@
       "runtime"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -128,12 +128,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -153,6 +147,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Several",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Several checks failed or ran nowhere, and several callers still assumed the source tree is named `.skilled`",
     "created_at": "2026-09-18T16:30:31Z",
-    "last_save_at": "2026-09-18T18:03:45.713Z",
+    "last_save_at": "2026-09-18T22:30:16.311Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f280634214b259f6fef1b96ffb5c448e4c183488746da0938f43e734fea7018",
+    "source_fingerprint": "sha256:5912940c1e9939ee19425833ced473ab8290d1d978ebb427091a8dc0492edf4a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "893cb60761e1cdc6dbe0ef9aae40d51a93c0693b8a847e0c1161ac1c28abfd05",
+      "spec.md": "fa263a7f0a1ca697a61b280824884a8306885c997917e4c76361b569b17a93c3",
       "plan.md": "d1b1fc928c4e7235a9d2cd1c9885c23fcf4b04d272b45489b896c9f38d1f3842",
-      "tasks.md": "3a8d1808507743353f7cccb0dfbecb70f569fe37c4a220ddd1419179376ba5db",
-      "implementation-summary.md": "3114a4ea605167a979406fd7fd0c38fe2dc0cfe4e12dd13ab5e2cab962da869c"
+      "tasks.md": "2e7399d859dcdb3f6e900607f04940fbcf7bde50ef7ce3b9648b9c86375a8a79",
+      "implementation-summary.md": "0c65d4abafa825c3f328889671dc20fccf33dccca3f8fbaca615c2f7f19402b6"
     },
     "last_active_at": null
   }
