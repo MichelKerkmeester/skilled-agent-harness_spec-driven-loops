@@ -63,6 +63,19 @@ def validate_skill_name(skill_name: str) -> tuple[bool, str]:
     return True, ""
 
 
+INITIAL_SKILL_VERSION = '1.0.0.0'
+
+
+def with_initial_version(markdown: str) -> str:
+    """Set a rendered SKILL.md's frontmatter version to a new skill's first release.
+
+    A scaffold template's own version records revisions of the template, so copying
+    it would start every new skill at that number while the router files written
+    beside it start at the initial version, and the version check would fail.
+    """
+    return re.sub(r'(?m)^version: .*$', f'version: {INITIAL_SKILL_VERSION}', markdown, count=1)
+
+
 def title_case_skill_name(skill_name: str) -> str:
     """Convert hyphenated skill name to Title Case for display.
 
@@ -87,8 +100,8 @@ def scaffold_benchmark_tree(skill_dir: Path, skill_name: str) -> None:
     the operator happened to point them. Creating the reports directory and its
     index up front means the first run has a home and a row waiting for it.
 
-    The reports index is written in the same shape the benchmark harness appends
-    to, so a scaffolded index and a harness-written one are the same document.
+    The reports index is written in the same shape as the indexes already on
+    disk, so a scaffolded index reads like every other one.
     """
     benchmark_dir = skill_dir / 'benchmark'
     reports_dir = benchmark_dir / 'reports'
@@ -155,12 +168,16 @@ def empty_reports_index(skill_name: str) -> str:
         '',
         '## 1. OVERVIEW',
         '',
-        'Each row below is one run folder. Rows are written by the benchmark harness at the moment it writes the report, so this table cannot fall behind the folders beside it.',
+        'Each row below is one run folder. Add a row by hand when a run folder lands, newest first.',
+        '',
+        '---',
         '',
         '## 2. RUN INDEX',
         '',
         header,
         divider,
+        '',
+        '---',
         '',
         '## 3. STORAGE RULE',
         '',
@@ -294,7 +311,7 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
         return None
 
     skill_title = title_case_skill_name(skill_name)
-    skill_content = (
+    skill_content = with_initial_version(
         skill_template
         .replace('{{SKILL_NAME}}', skill_name)
         .replace('{{SKILL_TITLE}}', skill_title)
@@ -550,7 +567,7 @@ def init_parent_skill(
     allowed_tools = "[" + ", ".join(allowed_union) + "]"
     timestamp = datetime.now(timezone.utc).isoformat()
 
-    hub_content = (
+    hub_content = with_initial_version(
         hub_template
         .replace('{{HUB_NAME}}', skill_name)
         .replace('{{ALLOWED_TOOLS}}', allowed_tools)
@@ -558,7 +575,7 @@ def init_parent_skill(
         .replace('{{MODE}}', mode)
         .replace('{{PACKET}}', packet_name)
     )
-    packet_content = (
+    packet_content = with_initial_version(
         packet_template
         .replace('{{PACKET_NAME}}', packet_name)
         .replace('{{PACKET_TITLE}}', packet_title)
