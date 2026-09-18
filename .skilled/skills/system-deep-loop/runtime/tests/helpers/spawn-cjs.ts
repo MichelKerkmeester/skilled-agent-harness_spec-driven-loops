@@ -10,6 +10,11 @@ import { fileURLToPath } from 'node:url';
 
 const helperDir = dirname(fileURLToPath(import.meta.url));
 export const runtimeRoot = resolve(helperDir, '..', '..');
+
+// Every script these helpers spawn inherits process.env, so setting this once
+// sends each council graph write to a scratch directory rather than the
+// database checked into the repository.
+process.env.DEEP_LOOP_COUNCIL_DB_DIR ||= mkdtempSync(join(tmpdir(), 'dlr-council-db-'));
 const CASSETTE_SCHEMA_VERSION = 1;
 const DEFAULT_CASSETTE_DIR = join(runtimeRoot, 'tests', 'fixtures', 'cassettes');
 const FORCE_KILL_DELAY_MS = 100;

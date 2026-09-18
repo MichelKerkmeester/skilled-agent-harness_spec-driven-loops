@@ -1,14 +1,35 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 
 import {
   cleanupNamespace,
   namespaceArgs,
   runScript,
+  runtimeRoot,
   uniqueNamespace,
   type ScriptNamespace,
 } from '../helpers/spawn-cjs';
 
 const namespaces: ScriptNamespace[] = [];
+const trackedDatabase = join(runtimeRoot, 'database', 'council-graph.sqlite');
+let trackedDatabaseDigest = '';
+
+function digest(path: string): string {
+  return createHash('sha256').update(readFileSync(path)).digest('hex');
+}
+
+// The scripts below write council graphs, and a run that wrote them into the
+// database checked into the repository left that file modified after every run.
+beforeAll(() => {
+  trackedDatabaseDigest = digest(trackedDatabase);
+});
+
+afterAll(() => {
+  expect(digest(trackedDatabase)).toBe(trackedDatabaseDigest);
+});
 
 afterEach(async () => {
   while (namespaces.length > 0) {
