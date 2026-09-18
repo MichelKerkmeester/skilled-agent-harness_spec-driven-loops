@@ -27,14 +27,25 @@ if [ -z "$REPO_ROOT" ]; then
   exit 1
 fi
 
-HOOK_SOURCE_DIR="$REPO_ROOT/.skilled/scripts/git-hooks"
-# A checkout that holds its tree only under the legacy root has no .skilled path, and
-# scanning the absent directory would install nothing while reporting success. The real
-# directory is tried first: where the legacy name survives as a link to it, installing
-# through the link would record a target that depends on the link outliving the hooks.
-[ -d "$HOOK_SOURCE_DIR" ] || HOOK_SOURCE_DIR="$REPO_ROOT/.opencode/scripts/git-hooks"
+# >>> source-root selection (identical in every hook script)
+# The source tree sits under .skilled or .opencode, and a checkout may carry both, one,
+# or an empty placeholder of either. The authored sentinel inside the tree decides,
+# never a directory existing, and .skilled wins when both carry it. These scripts run
+# for every repository on the machine, so a missing file means either this repository
+# ships no toolchain or its install is broken, and the same sentinel tells them apart.
+SOURCE_ROOT="$REPO_ROOT/.skilled"
+[[ -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]] || SOURCE_ROOT="$REPO_ROOT/.opencode"
+_in_toolchain_repo() {
+  [[ -n "$REPO_ROOT" && -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]]
+}
+# <<< source-root selection
+
+# Where the legacy name survives as a link to the real root, installing through the
+# link would record a target that depends on the link outliving the hooks, which is
+# one more reason the selection prefers .skilled.
+HOOK_SOURCE_DIR="$SOURCE_ROOT/scripts/git-hooks"
 if [ ! -d "$HOOK_SOURCE_DIR" ]; then
-  echo "ERROR: no hook sources under $REPO_ROOT/.opencode/scripts/git-hooks or $REPO_ROOT/.skilled/scripts/git-hooks" >&2
+  echo "ERROR: no hook sources under $HOOK_SOURCE_DIR" >&2
   exit 1
 fi
 HOOK_TARGET_DIR="$(git -C "$REPO_ROOT" rev-parse --git-path hooks)"

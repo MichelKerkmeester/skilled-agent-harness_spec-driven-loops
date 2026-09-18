@@ -32,30 +32,35 @@ set -euo pipefail
 
 [ "${SPECKIT_GIT_HOOKS_GUARD:-on}" = "off" ] && exit 0
 
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+
+# >>> source-root selection (identical in every hook script)
+# The source tree sits under .skilled or .opencode, and a checkout may carry both, one,
+# or an empty placeholder of either. The authored sentinel inside the tree decides,
+# never a directory existing, and .skilled wins when both carry it. These scripts run
+# for every repository on the machine, so a missing file means either this repository
+# ships no toolchain or its install is broken, and the same sentinel tells them apart.
+SOURCE_ROOT="$REPO_ROOT/.skilled"
+[[ -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]] || SOURCE_ROOT="$REPO_ROOT/.opencode"
+_in_toolchain_repo() {
+  [[ -n "$REPO_ROOT" && -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]]
+}
+# <<< source-root selection
+
 # shared hook kill-switch (master + per-concern); fail-open if guard absent
-__hf_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+__hf_root="$REPO_ROOT"
 __hook_flags_loaded=0
-if [ -n "$__hf_root" ] && [ -r "$__hf_root/.opencode/hooks/shared/hook-flags.sh" ]; then
+if [ -n "$__hf_root" ] && [ -r "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
   # shellcheck source=/dev/null
-  . "$__hf_root/.opencode/hooks/shared/hook-flags.sh"
+  . "$SOURCE_ROOT/hooks/shared/hook-flags.sh"
   __hook_flags_loaded=1
   hook_enabled git-hooks-check || exit 0
 fi
 
-REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-
 # Not a git repo: nothing to guard.
 [ -z "$REPO_ROOT" ] && exit 0
 
-# A missing hook source or installer means nothing to guard in a repository that does
-# not ship the toolchain, and a broken install in one that does. The spec-kit
-# sentinel, under either source root, tells the two apart.
-_in_toolchain_repo() {
-  [[ -f "$REPO_ROOT/.opencode/skills/system-spec-kit/SKILL.md" \
-     || -f "$REPO_ROOT/.skilled/skills/system-spec-kit/SKILL.md" ]]
-}
-
-HOOK_SOURCE_DIR="$REPO_ROOT/.opencode/scripts/git-hooks"
+HOOK_SOURCE_DIR="$SOURCE_ROOT/scripts/git-hooks"
 HOOK_TARGET_DIR="$(git -C "$REPO_ROOT" rev-parse --git-path hooks 2>/dev/null || true)"
 [ -n "$HOOK_TARGET_DIR" ] || exit 0
 case "$HOOK_TARGET_DIR" in
@@ -142,14 +147,14 @@ if [ "${#INVALID[@]}" -gt 0 ]; then
       *) _self_common="$REPO_ROOT/$_self_common" ;;
     esac
     if [ -n "$_self_dir" ] && [ -n "$_self_common" ] && [ "$_self_dir" = "$_self_common" ]; then
-      if [ -f "$REPO_ROOT/.opencode/scripts/install-git-hooks.sh" ]; then
-        if bash "$REPO_ROOT/.opencode/scripts/install-git-hooks.sh" >&2; then
+      if [ -f "$SOURCE_ROOT/scripts/install-git-hooks.sh" ]; then
+        if bash "$SOURCE_ROOT/scripts/install-git-hooks.sh" >&2; then
           printf '%s\n' "[check-git-hooks] auto-installed git hook symlinks (self-heal)" >&2
         else
           printf '%s\n' "[check-git-hooks] self-heal install failed; run it manually" >&2
         fi
       elif _in_toolchain_repo; then
-        printf '%s\n' "[check-git-hooks] WARNING: self-heal skipped, installer is missing: $REPO_ROOT/.opencode/scripts/install-git-hooks.sh" >&2
+        printf '%s\n' "[check-git-hooks] WARNING: self-heal skipped, installer is missing: $SOURCE_ROOT/scripts/install-git-hooks.sh" >&2
       fi
     fi
   fi

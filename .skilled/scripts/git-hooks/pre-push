@@ -31,21 +31,25 @@ if [[ -z "$REPO_ROOT" ]]; then
   exit 0
 fi
 
-# The hook is installed globally, so a gate script can be missing for two reasons: this
-# repository does not ship the toolchain, which leaves the gate nothing to check, or it
-# does and the install is broken. The spec-kit sentinel tells the two apart, under
-# either source root.
+# >>> source-root selection (identical in every hook script)
+# The source tree sits under .skilled or .opencode, and a checkout may carry both, one,
+# or an empty placeholder of either. The authored sentinel inside the tree decides,
+# never a directory existing, and .skilled wins when both carry it. These scripts run
+# for every repository on the machine, so a missing file means either this repository
+# ships no toolchain or its install is broken, and the same sentinel tells them apart.
+SOURCE_ROOT="$REPO_ROOT/.skilled"
+[[ -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]] || SOURCE_ROOT="$REPO_ROOT/.opencode"
 _in_toolchain_repo() {
-  [[ -f "$REPO_ROOT/.opencode/skills/system-spec-kit/SKILL.md" \
-     || -f "$REPO_ROOT/.skilled/skills/system-spec-kit/SKILL.md" ]]
+  [[ -n "$REPO_ROOT" && -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]]
 }
+# <<< source-root selection
 
 # Mass-deletion guard: source if present. The gate inside the loop checks that
 # its function actually loaded before using it, so a lib that fails to load means
 # the deletion ceiling is not enforced (fail-open). A lib missing from a checkout
 # that ships the toolchain is a broken install instead, and the gate then blocks
 # each update push until SPECKIT_ALLOW_MASS_DELETION=1 approves it.
-_MASS_DEL_GUARD="$REPO_ROOT/.opencode/scripts/git-hooks/lib/mass-deletion-guard.sh"
+_MASS_DEL_GUARD="$SOURCE_ROOT/scripts/git-hooks/lib/mass-deletion-guard.sh"
 _MASS_DEL_MISSING=0
 if [[ -f "$_MASS_DEL_GUARD" ]]; then
   set +e
@@ -62,7 +66,7 @@ fi
 
 # --- Validator load: a broken validator never blocks a push, and a missing one ---
 # --- blocks only in a checkout that ships the toolchain ---
-NAMING="$REPO_ROOT/.opencode/skills/sk-git/scripts/worktree-naming.sh"
+NAMING="$SOURCE_ROOT/skills/sk-git/scripts/worktree-naming.sh"
 NAMING_AVAILABLE=1
 NAMING_MISSING=0
 if [[ ! -f "$NAMING" ]]; then
@@ -249,7 +253,7 @@ fi
 # is exactly what is being pushed. A deliberately partial push from a dirty
 # tree can skip with SPECKIT_SKIP_PREPUSH_SKILL_GATE=1.
 if [[ "${SPECKIT_SKIP_PREPUSH_SKILL_GATE:-0}" != "1" ]]; then
-  SKILL_GATE="$REPO_ROOT/.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
+  SKILL_GATE="$SOURCE_ROOT/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
   # Per-ref ranges avoid coupling a live-branch publish to the wrapper branch's
   # upstream configuration. New remote branches still defer to CI because they
   # have no prior remote tree to compare without scanning an unrelated history.
@@ -294,7 +298,7 @@ fi
 # packet file for months, so relying on it alone is what let this stand twice.
 # Skip with SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1.
 if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
-  ROUTE_GUARD="$REPO_ROOT/.opencode/bin/compiled-route-guard.cjs"
+  ROUTE_GUARD="$SOURCE_ROOT/bin/compiled-route-guard.cjs"
   if [[ ! -f "$ROUTE_GUARD" ]] && _in_toolchain_repo; then
     echo "" >&2
     echo "BLOCKED [gate:compiled-routing]: route guard is missing: $ROUTE_GUARD" >&2

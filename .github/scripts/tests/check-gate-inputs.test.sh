@@ -433,6 +433,47 @@ echo '      - run: bash .opencode/bin/tool.s?' >> "$TMP/repo/.github/workflows/d
 run_check; RC=$?
 expect "a ? glob in a workflow input resolves through its match" 0 "$RC" "RESULT: PASSED"
 
+# ── 43. a variable path under .skilled that resolves nowhere fails hook-inputs ──
+setup_fixture
+echo 'CHECKER="$REPO_ROOT/.skilled/bin/missing.sh"' >> "$TMP/repo/.opencode/hooks/git/pre-commit"
+run_check; RC=$?
+expect "a variable path under .skilled that resolves nowhere fails hook-inputs" 1 "$RC" 'FAIL hook-inputs: .opencode/hooks/git/pre-commit:2 $REPO_ROOT/.skilled/bin/missing.sh resolves nowhere'
+
+# ── 44. a literal .skilled assignment that resolves nowhere fails hook-inputs ──
+setup_fixture
+echo 'CHECKER=".skilled/bin/gone.sh"' >> "$TMP/repo/.opencode/hooks/git/pre-commit"
+run_check; RC=$?
+expect "a literal .skilled assignment that resolves nowhere fails hook-inputs" 1 "$RC" 'FAIL hook-inputs: .opencode/hooks/git/pre-commit:2 $REPO_ROOT/.skilled/bin/gone.sh resolves nowhere'
+
+# ── 45. a quoted .skilled command path that resolves nowhere fails hook-inputs ──
+setup_fixture
+echo 'bash ".skilled/bin/gone.sh"' >> "$TMP/repo/.opencode/hooks/git/pre-commit"
+run_check; RC=$?
+expect "a quoted .skilled command path that resolves nowhere fails hook-inputs" 1 "$RC" 'FAIL hook-inputs: .opencode/hooks/git/pre-commit:2 $REPO_ROOT/.skilled/bin/gone.sh resolves nowhere'
+
+# ── 46. a SOURCE_ROOT path resolves under the selected root, and a missing one fails ──
+setup_fixture
+printf '%s\n' 'TOOL="$SOURCE_ROOT/bin/tool.sh"' 'GONE="$SOURCE_ROOT/bin/gone.sh"' >> "$TMP/repo/.opencode/hooks/git/pre-commit"
+run_check; RC=$?
+expect "a missing SOURCE_ROOT path fails hook-inputs" 1 "$RC" 'FAIL hook-inputs: .opencode/hooks/git/pre-commit:3 $SOURCE_ROOT/bin/gone.sh resolves nowhere'
+
+# ── 47. the selection prefers .skilled by its sentinel and ignores a placeholder ──
+setup_fixture
+mv "$TMP/repo/.opencode" "$TMP/repo/.skilled"
+mkdir -p "$TMP/repo/.skilled/skills/system-spec-kit"
+echo "sentinel" > "$TMP/repo/.skilled/skills/system-spec-kit/SKILL.md"
+sed -i.bak 's#\.opencode/bin/tool#.skilled/bin/tool#' "$TMP/repo/.skilled/scripts/git-hooks/pre-commit" "$TMP/repo/.github/workflows/demo.yml"
+rm -f "$TMP/repo/.skilled/scripts/git-hooks/pre-commit.bak" "$TMP/repo/.github/workflows/demo.yml.bak"
+echo 'TOOL="$SOURCE_ROOT/bin/tool.sh"' >> "$TMP/repo/.skilled/hooks/git/pre-commit"
+run_check; RC=$?
+expect "a .skilled-only tree resolves SOURCE_ROOT paths under .skilled" 0 "$RC" "RESULT: PASSED"
+setup_fixture
+mkdir -p "$TMP/repo/.skilled/bin" "$TMP/repo/.opencode/skills/system-spec-kit"
+echo "sentinel" > "$TMP/repo/.opencode/skills/system-spec-kit/SKILL.md"
+echo 'TOOL="$SOURCE_ROOT/bin/tool.sh"' >> "$TMP/repo/.opencode/hooks/git/pre-commit"
+run_check; RC=$?
+expect "a placeholder .skilled directory does not win the selection" 0 "$RC" "RESULT: PASSED"
+
 echo ""
 echo "check-gate-inputs: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

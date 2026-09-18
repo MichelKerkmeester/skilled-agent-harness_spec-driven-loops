@@ -11,9 +11,10 @@
 # Rules:
 #   gate-files       every hook, hook library, the legacy helper and the SessionStart
 #                    check exists under .opencode/ or .skilled/
-#   hook-inputs      every literal $REPO_ROOT/.opencode/<path> a hook command uses, every
-#                    variable assigned a literal .opencode/<path> and every quoted literal
-#                    .opencode/<path> handed to a command other than git resolves
+#   hook-inputs      every literal $REPO_ROOT/<root>/<path> and $SOURCE_ROOT/<path> a hook
+#                    command uses, every variable assigned a literal <root>/<path> and every
+#                    quoted literal <root>/<path> handed to a command other than git
+#                    resolves, where <root> is .opencode or .skilled
 #   workflow-inputs  every literal .opencode/<path> a workflow runs resolves, a glob
 #                    with *, ? or brackets matches something, and the directory that
 #                    installs or builds a node_modules or dist path exists. A path that
@@ -43,6 +44,11 @@ if [[ -z "$ROOT" || ! -d "$ROOT" ]]; then
   exit 2
 fi
 ROOT="$(cd "$ROOT" && pwd -P)"
+
+# The hooks build their script paths from SOURCE_ROOT, which they select by the spec-kit
+# sentinel with .skilled preferred. Paths spelled that way resolve under the same choice.
+SRC="$ROOT/.skilled"
+[[ -f "$SRC/skills/system-spec-kit/SKILL.md" ]] || SRC="$ROOT/.opencode"
 
 GATE_FILES="scripts/git-hooks/pre-commit scripts/git-hooks/pre-push scripts/git-hooks/prepare-commit-msg
 scripts/git-hooks/commit-msg scripts/git-hooks/post-commit scripts/git-hooks/post-merge
@@ -171,9 +177,10 @@ check_regex() { # check_regex <relpath>
 # expands that array into a git command, which makes its entries pathspecs. A variable
 # or glob after a literal root prefix makes the input dynamic rather than resolved. A
 # command that follows an array's closing paren is read as a command, and a git command
-# runs on over backslash continuation lines. Messages, a variable path to the root
-# itself or to .skilled outside git, quoted arguments that hold a variable or a glob,
-# and regexes are read as notes, and any other segment that names a root is a miss.
+# runs on over backslash continuation lines. A path built from $SOURCE_ROOT resolves
+# under the source root the hooks select. Messages, a variable path to the root itself,
+# quoted arguments that hold a variable or a glob, and regexes are read as notes, and any
+# other segment that names a root is a miss.
 HOOK_AWK='
 function emit(kind, tok) { hits++; print FNR "\t" kind "\t" tok }
 function roots(text, grp,    tok, c) {
@@ -191,9 +198,18 @@ function varpaths(text, grp, pathspec, array,    tok, var, path) {
     var = tok; sub(/\/\.(opencode|skilled).*/, "", var); path = tok; sub(/^[^\/]*\//, "", path)
     if (pathspec) record(path, grp)
     else if (array != "") { ncand++; cline[ncand] = FNR; cpath[ncand] = path; carr[ncand] = array; cgrp[ncand] = grp }
-    if (path !~ /^\.opencode\/./) emit("note", "read")
+    if (path !~ /^\.(opencode|skilled)\/./) emit("note", "read")
     else if (text ~ /^(\$|\*|\?|\[|\{)/) emit("var", path)
     else emit((var ~ /REPO_ROOT/ ? "repo" : "var"), path)
+  }
+}
+function srcpaths(text,    tok, path) {
+  while (match(text, /\$[{]?SOURCE_ROOT[}]?\/[A-Za-z0-9._\/-]+/)) {
+    tok = substr(text, RSTART, RLENGTH); text = substr(text, RSTART + RLENGTH)
+    if (text ~ /^[A-Za-z0-9_]/) continue
+    path = tok; sub(/^[^\/]*\//, "", path)
+    if (text ~ /^(\$|\*|\?|\[|\{)/) emit("var", path)
+    else emit("src", path)
   }
 }
 function optvalues(text,    val) {
@@ -250,7 +266,7 @@ function unread(text) { if (text ~ /\.(opencode|skilled)/ && !hits) emit("miss",
   if (inarr) {
     endp = closing(code)
     elements = endp ? substr(code, 1, endp - 1) : code
-    hits = 0; varpaths(elements, "array" arr, 0, arrname); roots(elements, "array" arr); unread(elements)
+    hits = 0; varpaths(elements, "array" arr, 0, arrname); srcpaths(elements); roots(elements, "array" arr); unread(elements)
     if (!endp) next
     inarr = 0; code = substr(code, endp + 1); cmd = FNR; seg = 0; spec = 0; after = 0
     if (code !~ /[^[:space:]]/) next
@@ -264,7 +280,7 @@ function unread(text) { if (text ~ /\.(opencode|skilled)/ && !hits) emit("miss",
       if (part ~ /\.(opencode|skilled)/) emit("note", "message")
       continue
     }
-    if (part ~ /^[[:space:]]*((local|export|readonly|declare|typeset)([[:space:]]+-[A-Za-z]+)*[[:space:]]+)?[A-Za-z_][A-Za-z0-9_]*="?\.opencode\/[A-Za-z0-9._\/-]+"?[[:space:]]*$/) {
+    if (part ~ /^[[:space:]]*((local|export|readonly|declare|typeset)([[:space:]]+-[A-Za-z]+)*[[:space:]]+)?[A-Za-z_][A-Za-z0-9_]*="?\.(opencode|skilled)\/[A-Za-z0-9._\/-]+"?[[:space:]]*$/) {
       path = part; sub(/^[^=]*="?/, "", path); sub(/"?[[:space:]]*$/, "", path); emit("repo", path)
       continue
     }
@@ -280,6 +296,7 @@ function unread(text) { if (text ~ /\.(opencode|skilled)/ && !hits) emit("miss",
       }
     } else {
       varpaths(part, grp, 0, "")
+      srcpaths(part)
       rest = part
       while (match(rest, /\047\.(opencode|skilled)(\/[^\047]*)?\047/)) {
         record(substr(rest, RSTART + 1, RLENGTH - 2), grp); rest = substr(rest, RSTART + RLENGTH)
@@ -287,7 +304,7 @@ function unread(text) { if (text ~ /\.(opencode|skilled)/ && !hits) emit("miss",
       rest = part
       while (match(rest, /"\.(opencode|skilled)\/[^"]*"/)) {
         lit = substr(rest, RSTART + 1, RLENGTH - 2); rest = substr(rest, RSTART + RLENGTH)
-        if (lit ~ /^\.opencode\/[A-Za-z0-9._\/-]+$/) emit("repo", lit)
+        if (lit ~ /^\.(opencode|skilled)\/[A-Za-z0-9._\/-]+$/) emit("repo", lit)
         else emit("note", "argument")
       }
     }
@@ -304,6 +321,9 @@ scan_hook() { # scan_hook <relpath>
       repo)
         if [[ -e "$ROOT/$tok" ]]; then RESOLVED=$((RESOLVED + 1))
         else fail hook-inputs "$rel:$ln" "\$REPO_ROOT/$tok resolves nowhere"; fi ;;
+      src)
+        if [[ -e "$SRC/$tok" ]]; then RESOLVED=$((RESOLVED + 1))
+        else fail hook-inputs "$rel:$ln" "\$SOURCE_ROOT/$tok resolves nowhere"; fi ;;
       var) DYNAMIC=$((DYNAMIC + 1)) ;;
       twin-ok) TWINS=$((TWINS + 1)) ;;
       twin-one) fail filter-twins "$rel:$ln" "pathspec $tok has no twin $twin" ;;
@@ -445,10 +465,8 @@ scan_dependabot() { # scan_dependabot <relpath>
 }
 
 for gate in $GATE_FILES; do
-  if [[ -f "$ROOT/.opencode/$gate" ]]; then rel=".opencode/$gate"
-  elif [[ -f "$ROOT/.skilled/$gate" ]]; then rel=".skilled/$gate"
-  else fail gate-files ".opencode/$gate" "is missing under .opencode/ and .skilled/"; continue
-  fi
+  rel="${SRC#"$ROOT"/}/$gate"
+  if [[ ! -f "$ROOT/$rel" ]]; then fail gate-files "$rel" "is missing under the source root"; continue; fi
   FILES=$((FILES + 1))
   scan_hook "$rel"
 done
