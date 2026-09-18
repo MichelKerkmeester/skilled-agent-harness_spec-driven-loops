@@ -142,7 +142,6 @@ pre_publish_checklist:
 | Implementation Summary | `.skilled/skills/system-spec-kit/templates/*/implementation-summary.md` | Narrative prose, explain "why", direct address |
 | Decision Record | `.skilled/skills/system-spec-kit/templates/level-3*/decision-record.md` | Clear rationale, no hedging, active voice |
 | README | `.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md` | Welcoming tone, practical focus |
-| Install Guide | `.skilled/skills/sk-doc/sk-create-readme/assets/install-guide-template.md` | Direct instructions, imperative mood |
 
 ### Standards
 - [core-standards.md](../../shared/references/core-standards.md) - Document formatting standards
@@ -150,4 +149,4 @@ pre_publish_checklist:
 
 ### Creation Guides
 - [references/README.md](../../sk-create-readme/references/README.md) - README creation workflow and standards
-- [references/README.md](../../sk-create-readme/references/README.md) - Install guide creation workflow
+- [references/README.md](../../sk-create-readme/references/README.md) - README creation workflow

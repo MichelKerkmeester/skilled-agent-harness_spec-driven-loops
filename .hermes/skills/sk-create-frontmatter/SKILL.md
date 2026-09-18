@@ -200,7 +200,7 @@ answer often while the gap itself stays small.
 
 1. Synthesize a frontmatter block for a file that has none during a versioning pass. Skip and report.
 2. Overwrite a human-set `version` that differs from the computed one without an explicit update flag. The one exception is a `SKILL.md`, which is the anchor of record.
-3. Add `version` to a class the standard puts out of scope. Commands, agents and standalone install guides are governed elsewhere.
+3. Add `version` to a class the standard puts out of scope. Commands, agents and a skill's own `INSTALL-GUIDE.md` are governed elsewhere.
 4. Left-pad or shift segments when normalizing a 3-part version. Append one zero, once.
 5. Change what a validator checks by editing the validator. The contract changes here first.
 6. Enumerate stacks or products in a `description` to fill it out. The budget is shared and every character costs another document its discovery.

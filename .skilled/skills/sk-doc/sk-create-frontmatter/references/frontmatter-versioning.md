@@ -35,7 +35,7 @@ Under `.skilled/skills/*/`:
 
 ### Out of scope (do NOT add `version` in this standard)
 
-`.skilled/commands/*.md`, `.skilled/agents/*.md`, and standalone `.skilled/install-guides/`. These also carry frontmatter but are governed separately; a follow-up packet may bring them in.
+`.skilled/commands/*.md`, `.skilled/agents/*.md`, and a skill's own `INSTALL-GUIDE.md`. The first two carry frontmatter and are governed separately; the install guide is the skill's own document and carries none by default. A follow-up packet may bring them in.
 
 ---
 

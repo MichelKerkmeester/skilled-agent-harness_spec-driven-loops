@@ -53,7 +53,7 @@ Use another `sk-doc` packet when:
 - The system has only a few manually testable behaviors.
 - Automated tests already cover the only meaningful acceptance criteria.
 - The user asks for a feature catalog rather than executable validation scenarios. Use `create-feature-catalog`.
-- The user asks for a README, install guide, skill, agent, command, benchmark package, flowchart, or changelog. Use `create-readme`, `create-skill`, `create-agent`, `create-command`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
+- The user asks for a README, skill, agent, command, benchmark package, flowchart, or changelog. Use `create-readme`, `create-skill`, `create-agent`, `create-command`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
 - The task audits, validates, scores, or optimizes an existing playbook without creating or extending the package. Use `create-quality-control`.
 
 ---

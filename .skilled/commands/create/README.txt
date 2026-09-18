@@ -53,7 +53,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 | **diff** | `/create:diff <target-document \| --before old --after new> [--report out.html] [--view unified\|side-by-side] [:auto\|:confirm]` | Create a self-contained before/after document diff report via the create-diff engine |
 | **feature-catalog** | `/create:feature-catalog <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `feature-catalog/` package using the shipped `sk-doc` contract |
 | **manual-testing-playbook** | `/create:manual-testing-playbook <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `manual-testing-playbook/` package using the shipped `sk-doc` contract |
-| **readme** | `/create:readme [readme\|install] <target> [--type <project\|component\|feature\|skill>] [--platforms <list>] [--output <path>] [:auto\|:confirm]` | Unified README and install guide creation with `sk-doc` quality standards |
+| **readme** | `/create:readme <target> [--type <project\|component\|feature\|skill>] [--output <path>] [:auto\|:confirm]` | Folder README creation with `sk-doc` quality standards |
 | **repo-rule** | `/create:repo-rule <what the rule should bind> [create\|revise\|retire] [--rule <name>] [:auto\|:confirm]` | Create, revise or retire a repo rule under `repo-rules/`, wired into `REPO RULES.md` |
 | **skill** | `/create:skill <skill-name> [operation] [type] [--path <dir>] [--chained] [:auto\|:confirm]` | Unified skill workflow (full-create, full-update, reference-only, asset-only) |
 | **skill-parent** | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto\|:confirm]` | Scaffold a parent skill with nested mode packets (one hub identity, `mode-registry.json` source of truth, and a root `ROUTER.md` stage-two control document) |
@@ -85,7 +85,7 @@ create/
 ├── diff.md                       # /create:diff command
 ├── feature-catalog.md            # /create:feature-catalog command
 ├── manual-testing-playbook.md    # /create:manual-testing-playbook command
-├── readme.md                     # /create:readme — unified README + install guide command
+├── readme.md                     # /create:readme — folder README command
 ├── repo-rule.md                  # /create:repo-rule command
 ├── skill.md                      # /create:skill command
 ├── skill-parent.md               # /create:skill-parent command
@@ -149,9 +149,6 @@ The documentation-package commands preserve the live `sk-doc` contracts:
 
 # Add a reference doc to an existing skill
 /create:skill my-skill reference-only debugging :confirm
-
-# Create an install guide for multiple platforms
-/create:readme install my-tool --platforms opencode,claude-code :confirm
 
 # Create a changelog from a completed spec folder
 /create:changelog specs/01--system-spec-kit/042-memory-upgrade :auto

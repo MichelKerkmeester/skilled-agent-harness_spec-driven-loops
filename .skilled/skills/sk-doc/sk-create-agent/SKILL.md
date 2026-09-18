@@ -37,7 +37,7 @@ Use another `sk-doc` packet when:
 
 1. The request needs reusable knowledge, standards, templates, or long-form workflow guidance. Use `create-skill`.
 2. The request needs a slash-command entry point without a new runtime persona. Use `create-command`.
-3. The request needs a README, install guide, feature catalog, manual testing playbook, benchmark package, flowchart, or changelog. Use `create-readme`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
+3. The request needs a README, feature catalog, manual testing playbook, benchmark package, flowchart, or changelog. Use `create-readme`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
 4. The request audits, validates, scores, or optimizes an existing agent document. Use `create-quality-control`.
 
 ---

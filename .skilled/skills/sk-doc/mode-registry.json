@@ -111,9 +111,6 @@
         "folder readme",
         "write readme",
         "README.md",
-        "install guide",
-        "installation guide",
-        "setup guide",
         "code folder readme"
       ],
       "advisorRouting": {

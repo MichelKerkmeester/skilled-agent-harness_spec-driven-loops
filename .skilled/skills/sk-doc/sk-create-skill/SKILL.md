@@ -30,7 +30,7 @@ Keyword triggers: `create skill`, `/create:skill`, `/create:skill-parent`, `new 
 ### When NOT to Use
 
 Use another `sk-doc` packet when:
-- The user asks for agent scaffolding, command scaffolding, README or install-guide creation, benchmark packages, feature catalogs, manual testing playbooks, flowcharts, or changelogs. Use `create-agent`, `create-command`, `create-readme`, `create-benchmark`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-flowchart`, or `create-changelog`.
+- The user asks for agent scaffolding, command scaffolding, README creation, benchmark packages, feature catalogs, manual testing playbooks, flowcharts, or changelogs. Use `create-agent`, `create-command`, `create-readme`, `create-benchmark`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-flowchart`, or `create-changelog`.
 - The task audits, validates, scores, or optimizes an existing skill document without authoring or rebuilding the skill. Use `create-quality-control`.
 - The task is application code implementation. Route to `sk-code`.
 - The user only needs conceptual advice and no artifact authoring or validation.

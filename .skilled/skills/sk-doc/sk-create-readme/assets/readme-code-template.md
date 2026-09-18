@@ -13,7 +13,7 @@ version: 1.1.0.8
 
 # Code Folder README Template
 
-Use this template for source directories such as `mcp-server/tools/`, `src/components/`, `packages/api/` or subsystem folders. It explains how a code folder works now. It is not a project marketing page, skill README or full install guide.
+Use this template for source directories such as `mcp-server/tools/`, `src/components/`, `packages/api/` or subsystem folders. It explains how a code folder works now. It is not a project marketing page or a skill README.
 
 ---
 

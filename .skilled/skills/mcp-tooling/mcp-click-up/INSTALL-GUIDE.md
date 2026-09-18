@@ -2,7 +2,6 @@
 
 Complete installation and configuration for ClickUp task management, providing AI assistants with two complementary surfaces. The cupt CLI is the primary tool: daily task operations (list, complete, note, time, tag) with per-list status resolution, dry-run safety, and `--json` output. The official ClickUp MCP is the secondary surface, launched through Code Mode for documents, goals, and bulk operations.
 
-> **Part of OpenCode Installation.** See the [Master Installation Guide](../../../install-guides/README.md) for complete setup.
 > **Package:** `cupt` (PyPI) | **Dependencies:** Python 3.8+, pipx (or pip); Node.js 18+ for the MCP path
 > **Phase-by-phase validation:** the install and verification checkpoints live in [§2 Prerequisites & Installation](#2-prerequisites--installation) through [§5 Verification](#5-verification) below.
 

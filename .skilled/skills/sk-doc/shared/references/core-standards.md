@@ -324,7 +324,7 @@ Format: Plain text navigation file for LLMs
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [quick-reference.md](./quick-reference.md) - Quick command reference
 - [skill-creation.md](../../sk-create-skill/references/README.md) - Skill creation workflow
-- [install-guide standards](../../sk-create-readme/references/README.md) - Install guide standards and workflow
+- [README standards](../../sk-create-readme/references/README.md) - README creation standards and workflow
 
 ### Templates
 - [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
@@ -332,6 +332,5 @@ Format: Plain text navigation file for LLMs
 - [skill-reference-template.md](../../sk-create-skill/assets/skill/skill-reference-template.md) - Reference doc structure
 - [readme-template.md](../../sk-create-readme/assets/readme-template.md) - Comprehensive README guide
 - [command-template.md](../../sk-create-command/assets/command-template.md) - Command creation guide
-- [install-guide-template.md](../../sk-create-readme/assets/install-guide-template.md) - Install guide template
 - [llmstxt-templates.md](../assets/llmstxt-templates.md) - llms.txt with decision framework
 - [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type

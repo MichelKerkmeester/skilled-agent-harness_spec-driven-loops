@@ -32,7 +32,7 @@ Keyword triggers: `doc quality`, `/doc:quality`, `audit documentation quality`, 
 ### When NOT to Use
 
 Use another `sk-doc` packet when:
-- The user wants a brand-new skill, parent hub, README, install guide, agent, command, feature catalog, manual testing playbook, benchmark package, flowchart, or changelog. Use `create-skill`, `create-readme`, `create-agent`, `create-command`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
+- The user wants a brand-new skill, parent hub, README, agent, command, feature catalog, manual testing playbook, benchmark package, flowchart, or changelog. Use `create-skill`, `create-readme`, `create-agent`, `create-command`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
 - The task is code implementation, debugging or code review. Use `sk-code`.
 - The target is not markdown.
 - The user only needs a tiny typo fix and did not ask for validation or scoring.
@@ -135,7 +135,7 @@ Follow this workflow from the `SKILL.md` alone. Use references only for overflow
 1. Identify the target markdown file or folder.
 2. Read the target before judging or editing it.
 3. Determine document type using path, frontmatter and structure:
-   - README or install guide.
+   - README.
    - SKILL.md or nested skill packet.
    - Command doc.
    - Reference or knowledge file.

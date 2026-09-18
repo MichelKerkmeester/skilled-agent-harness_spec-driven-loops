@@ -129,7 +129,7 @@ writing.
 | Skill | Relationship |
 |---|---|
 | `sk-create-quality-control` | Owns the file-level audit: structure, DQI and validators. Calls this mode for its voice step |
-| `sk-create-readme` | Owns README and install-guide structure. This mode passes over the prose those templates produce |
+| `sk-create-readme` | Owns README structure. This mode passes over the prose those templates produce |
 | `sk-communication` | Consumes this mode for voice guidance rather than carrying its own copy |
 | `sk-create-repo-rule` | Owns repo-local rules. A rule about writing style would route here instead |
 

@@ -1,6 +1,6 @@
 ---
-description: Unified folder README and install guide creation with sk-doc quality standards. Modes :auto, :confirm.
-argument-hint: "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm]"
+description: Folder README creation, general or code-folder, with sk-doc quality standards. Modes :auto, :confirm.
+argument-hint: "<target> [--type <project|component|feature|skill>] [--output <path>] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
@@ -10,7 +10,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## 1. ROUTER CONTRACT
 
-Route /create:readme to its presentation contract and workflow YAML for creating folder READMEs or install guides with sk-doc quality standards.
+Route /create:readme to its presentation contract and workflow YAML for creating folder READMEs with sk-doc quality standards.
 
 - Do not dispatch agents from this router.
 - Do not edit workflow YAML while executing this command.
@@ -34,11 +34,10 @@ Route /create:readme to its presentation contract and workflow YAML for creating
 
 1. Read `.skilled/commands/create/assets/create-readme-presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
-3. Resolve operation from `$ARGUMENTS` or setup: `readme` or `install`.
-4. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
-5. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
-6. Execute the selected YAML step by step and skip to the resolved operation section.
-7. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
+3. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
+4. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
+5. Execute the selected YAML step by step.
+6. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
 
 ---
 
@@ -55,13 +54,13 @@ Route /create:readme to its presentation contract and workflow YAML for creating
 
 The following content lives only in `.skilled/commands/create/assets/create-readme-presentation.txt`:
 
-- Startup questions, Phase 0 verification, setup dashboard, README/install display contracts, status display, completion templates, and next-step text.
+- Startup questions, Phase 0 verification, setup dashboard, the README display contract, status display, completion templates, and next-step text.
 
-The router must not invent visible wording for those surfaces; it only resolves operation, execution mode, and workflow selection.
+The router must not invent visible wording for those surfaces; it only resolves execution mode and workflow selection.
 
 ---
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-readme-auto.yaml` for `:auto`, `create-readme-confirm.yaml` for `:confirm` or an omitted mode) runs the README/install workflow step by step after Phase 0 verification and setup resolution, skipping to the resolved `readme` or `install` operation section to create folder READMEs or install guides with sk-doc quality standards. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
+The bound workflow YAML (`create-readme-auto.yaml` for `:auto`, `create-readme-confirm.yaml` for `:confirm` or an omitted mode) runs the README workflow step by step after Phase 0 verification and setup resolution, creating folder READMEs with sk-doc quality standards. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 

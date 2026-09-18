@@ -335,19 +335,6 @@ describe('walkCorpus', () => {
     });
   });
 
-  it('also walks .skilled/install-guides, the widened corpus root', () => {
-    const root = makeTempDir('speckit-trigger-install-guides-');
-    writeDoc(root, '.skilled/install-guides/README.md', frontmatter(['install guides']));
-    writeDoc(root, '.skilled/skills/demo/SKILL.md', frontmatter(['skill']));
-
-    const { files } = walkCorpus(root);
-
-    expect(files).toEqual([
-      '.skilled/install-guides/README.md',
-      '.skilled/skills/demo/SKILL.md',
-    ]);
-  });
-
   it('folds the .opencode/specs alias onto its canonical path', () => {
     expect(canonicalRelativePath('.opencode/specs/track/a.md')).toBe('specs/track/a.md');
     expect(canonicalRelativePath('.skilled/skills/demo/SKILL.md')).toBe('.skilled/skills/demo/SKILL.md');

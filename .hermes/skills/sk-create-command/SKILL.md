@@ -44,7 +44,7 @@ Use another `sk-doc` packet when:
 
 - The request is to create a skill or parent hub. Use `create-skill`.
 - The request is to create an agent. Use `create-agent`.
-- The task is a README, install guide, feature catalog, manual testing playbook, benchmark package, flowchart, or changelog. Use `create-readme`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
+- The task is a README, feature catalog, manual testing playbook, benchmark package, flowchart, or changelog. Use `create-readme`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-benchmark`, `create-flowchart`, or `create-changelog`.
 - The task audits, validates, scores, or optimizes an existing command document. Use `create-quality-control`.
 - The task is one-time work that does not need a reusable slash command.
 - The command already exists and the user only wants runtime debugging.

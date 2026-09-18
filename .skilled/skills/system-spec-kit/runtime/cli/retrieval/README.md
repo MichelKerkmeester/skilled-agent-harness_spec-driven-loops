@@ -17,7 +17,7 @@ trigger_phrases:
 
 Current state:
 
-- `generate-trigger-index.mjs` publishes the committed index at `../runtime/data/trigger-index.json` from the `trigger_phrases` frontmatter across `specs/`, `.skilled/skills/` and `.skilled/install-guides/`.
+- `generate-trigger-index.mjs` publishes the committed index at `../runtime/data/trigger-index.json` from the `trigger_phrases` frontmatter across `specs/`, `.skilled/skills/` and `.skilled/hooks/`.
 - `lookup-trigger-index.mjs` is the read side: it scores a prompt against the committed index using the same normalization, tokenization and match-class ranking the retired substring trigger lane used, so its recorded results still diff against this lookup. It drops query tokens shorter than three characters and keeps the first eight distinct tokens, reporting both discards.
 - `rg-wrapper.mjs` runs three of the four documented ripgrep recipes (structured, path-only, count) behind one front door; the context-and-anchor recipe of Section 2.4 is composed by hand. Its glob set now excludes `scratch/` alongside `z_archive/`, `node_modules/` and `.git/` - see `references/retrieval/retrieval-conventions.md` Section 9 for the full root and exclusion coverage table shared with `lib/corpus.mjs`.
 - `sweep-memory-residue.mjs` answers one question with an exit code: does any live consumer of the retired memory MCP surface still exist outside its own subsystem tree.

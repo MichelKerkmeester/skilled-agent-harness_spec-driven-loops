@@ -378,7 +378,7 @@ model: opus
 # GOOD - distinctive, multi-word, content-derived
 trigger_phrases:
   - "dqi scoring bands"
-  - "install guide scaffold"
+  - "four part version derivation"
 
 # BAD - generic single words or boilerplate
 trigger_phrases:

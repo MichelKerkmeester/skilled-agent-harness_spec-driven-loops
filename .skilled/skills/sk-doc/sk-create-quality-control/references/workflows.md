@@ -32,7 +32,7 @@ Workflows define the execution patterns and operational modes for the markdown d
 > **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../sk-create-skill/references/shared/overview.md#3-skill-structure-system).
 
 **Scope Note**: This reference covers create-quality-control runs only. For other documentation work, see:
-Other documentation workflows are separate `sk-doc` packets rather than numbered modes in this reference: [skill creation](../../sk-create-skill/references/README.md), [diagrams and flowcharts](../../sk-design-diagram/README.md), [README and install guides](../../sk-create-readme/references/README.md), [manual testing playbooks](../../sk-create-manual-testing-playbook/references/README.md), and [feature catalogs](../../sk-create-feature-catalog/references/README.md). Benchmarks, changelogs, diffs, and the quality-control packet are likewise selected through `mode-registry.json`.
+Other documentation workflows are separate `sk-doc` packets rather than numbered modes in this reference: [skill creation](../../sk-create-skill/references/README.md), [diagrams and flowcharts](../../sk-design-diagram/README.md), [READMEs](../../sk-create-readme/references/README.md), [manual testing playbooks](../../sk-create-manual-testing-playbook/references/README.md), and [feature catalogs](../../sk-create-feature-catalog/references/README.md). Benchmarks, changelogs, diffs, and the quality-control packet are likewise selected through `mode-registry.json`.
 
 The playbook workflow assumes a root directory playbook plus required per-feature files in category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
 
@@ -82,7 +82,7 @@ The validation sequence, enforcement prompts, phase chaining, worked examples, a
 - [validation.md](../../shared/references/validation.md) - Quality scoring and validation workflows
 - [quick-reference.md](../../shared/references/quick-reference.md) - Quick command reference
 - [skill-creation.md](../../sk-create-skill/references/README.md) - Skill creation workflow
-- [create-readme references](../../sk-create-readme/references/README.md) - Install guide standards and workflow
+- [create-readme references](../../sk-create-readme/references/README.md) - README creation standards and workflow
 
 ### Templates
 - [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates

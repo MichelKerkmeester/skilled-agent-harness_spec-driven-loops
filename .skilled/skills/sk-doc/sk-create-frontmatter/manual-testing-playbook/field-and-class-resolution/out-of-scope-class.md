@@ -16,7 +16,7 @@ This scenario validates the out-of-scope decline for `FMC-003`. It focuses on a 
 
 ### Why This Matters
 
-The version standard opens with scope and only then gives the format. Its out-of-scope table names `.skilled/commands/*.md`, `.skilled/agents/*.md` and standalone install guides, and the packet README states that the standard says so explicitly rather than leaving the absence of a rule to be inferred. A run that reads the format rules without the scope section above them will produce a well-formed four-part version for a file that is governed somewhere else, and nothing rejects it: these files carry frontmatter, the added key parses, and the validators keep `version` optional for commands. The wrong field sits there looking right. This is the cheapest scenario in the package to run and the one whose failure is hardest to see afterwards.
+The version standard opens with scope and only then gives the format. Its out-of-scope table names `.skilled/commands/*.md`, `.skilled/agents/*.md` and a skill's own `INSTALL-GUIDE.md`, and the packet README states that the standard says so explicitly rather than leaving the absence of a rule to be inferred. A run that reads the format rules without the scope section above them will produce a well-formed four-part version for a file that is governed somewhere else, and nothing rejects it: these files carry frontmatter, the added key parses, and the validators keep `version` optional for commands. The wrong field sits there looking right. This is the cheapest scenario in the package to run and the one whose failure is hardest to see afterwards.
 
 ---
 
@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `FMC-003` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMC-003 | Out-of-scope class | Decline to add `version` to an out-of-scope class with the excluding clause quoted | `Add the 4-part version field to my command file under .skilled/commands so it matches the skills.` | 1. `agent: Read references/frontmatter-versioning.md section 1 before reading section 2` -> 2. `agent: Quote the out-of-scope clause verbatim and name the affected paths` -> 3. `agent: State that these files are governed separately and make no edit` -> 4. `bash: git status --porcelain .skilled/commands` | Step 1: scope is read before format. Step 2: the clause is quoted, not summarized. Step 3: no edit is proposed. Step 4: empty output | The prompt as typed, the decline text, the quoted clause, and the step 4 output | PASS if steps 2 and 3 decline with the clause quoted and step 4 is empty. FAIL if a `version` key is added anywhere, or the clause is paraphrased | 1. Confirm section 1 was read before section 2, since a run that starts at the format rules has no scope information. 2. Check the clause is quoted rather than restated, because a paraphrase cannot be checked against the source. 3. Grep the standard for the install-guides row, which is the third out-of-scope path and is often dropped from the answer |
+| FMC-003 | Out-of-scope class | Decline to add `version` to an out-of-scope class with the excluding clause quoted | `Add the 4-part version field to my command file under .skilled/commands so it matches the skills.` | 1. `agent: Read references/frontmatter-versioning.md section 1 before reading section 2` -> 2. `agent: Quote the out-of-scope clause verbatim and name the affected paths` -> 3. `agent: State that these files are governed separately and make no edit` -> 4. `bash: git status --porcelain .skilled/commands` | Step 1: scope is read before format. Step 2: the clause is quoted, not summarized. Step 3: no edit is proposed. Step 4: empty output | The prompt as typed, the decline text, the quoted clause, and the step 4 output | PASS if steps 2 and 3 decline with the clause quoted and step 4 is empty. FAIL if a `version` key is added anywhere, or the clause is paraphrased | 1. Confirm section 1 was read before section 2, since a run that starts at the format rules has no scope information. 2. Check the clause is quoted rather than restated, because a paraphrase cannot be checked against the source. 3. Grep the standard for the `INSTALL-GUIDE.md` row, which is the third out-of-scope path and is often dropped from the answer |
 
 ### Commands
 
@@ -53,7 +53,7 @@ Operators run the exact prompt and command sequence for `FMC-003` and confirm th
 
 ### Expected
 
-Step 1 reads scope before format, which is the ordering the standard itself uses. Step 2 quotes the out-of-scope table naming `.skilled/commands/*.md`, `.skilled/agents/*.md` and standalone install guides. Step 3 declines, and names the reason: these files carry frontmatter and are governed separately, so the absence of `version` there is intended rather than an omission. Step 4 prints nothing, proving no file was written.
+Step 1 reads scope before format, which is the ordering the standard itself uses. Step 2 quotes the out-of-scope table naming `.skilled/commands/*.md`, `.skilled/agents/*.md` and a skill's own `INSTALL-GUIDE.md`. Step 3 declines, and names the reason: these files carry frontmatter and are governed separately, so the absence of `version` there is intended rather than an omission. Step 4 prints nothing, proving no file was written.
 
 ### Evidence
 
@@ -68,7 +68,7 @@ Capture the prompt exactly as typed, the full decline text, the clause as quoted
 
 1. Confirm `references/frontmatter-versioning.md` was loaded at all. It is the conditional resource for every question about `version`, and without it the run has only the format pattern.
 2. Check the read order. A run that starts from the format section has the shape of a version and no idea which files may carry one.
-3. Confirm all three out-of-scope paths were named. Dropping the install-guides row is the common partial answer and shows the table was skimmed rather than read.
+3. Confirm all three out-of-scope paths were named. Dropping the `INSTALL-GUIDE.md` row is the common partial answer and shows the table was skimmed rather than read.
 4. If the field was added, check whether the run relied on the validators to catch it. They will not. The contract keeps `version` optional for commands, so the wrong key parses and passes.
 
 ### Optional Supplemental Checks

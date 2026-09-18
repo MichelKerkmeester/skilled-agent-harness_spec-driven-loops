@@ -47,7 +47,7 @@ It does not write application code or manage spec folders. `sk-code` owns code s
 | **One-shot full-runtime dispatch** | `opencode run` loads every plugin in `opencode.json`, every skill under `.opencode/skills/` and every MCP server registered there |
 | **Parallel detached sessions** | separate session ids and state in the shared `~/.local/share/opencode/` database for ablation suites and worker farms |
 | **Cross-AI handback** | bridges the dispatch result back into the caller's spec folder through the Memory Handback |
-| **Provider and model surface** | reaches the `opencode-go`, `minimax`, `xiaomi` and `openai` provider catalogs through `references/providers-and-models.md` |
+| **Provider and model surface** | reaches every configured provider catalog through `references/providers-and-models.md`, which is the roster |
 | **Agent delegation** | routes to project-local agents under `.skilled/agents/` with the primary-versus-subagent caveats in `references/agent-delegation.md` |
 
 ---
@@ -128,7 +128,7 @@ The one exception is an explicit parallel detached request. When the prompt cont
 
 ### Provider Auth Pre-Flight
 
-Before the first dispatch in a session the skill runs `opencode providers list`. Four providers are documented: `opencode-go` (Go gateway, the default), `minimax` (MiniMax-M3), `xiaomi` (mimo-v2.5-pro and -ultraspeed) and `openai` (paid premium, the GPT-5.6 family). If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
+Before the first dispatch in a session the skill runs `opencode providers list`. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster; restating them here is how the two copies come to disagree. If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
 
 ### Agent Delegation
 

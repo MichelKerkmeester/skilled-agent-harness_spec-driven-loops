@@ -1,14 +1,14 @@
 ---
 title: "create-readme: Manual Testing Playbook"
-description: "Operator-facing reference for routing, authoring and validating READMEs and install guides in the create-readme workflow."
+description: "Operator-facing reference for routing, authoring and validating READMEs in the create-readme workflow."
 version: 1.1.0.3
 ---
 
 # create-readme: Manual Testing Playbook
 
-> Validate the artifact type, local evidence and reader path before a README or install guide is published.
+> Validate the artifact type, local evidence and reader path before a README is published.
 
-This playbook covers the operator-visible contract of the `sk-create-readme` workflow. It tests README routing, current-state evidence, code-folder navigation and the folded five-phase install-guide flow. Each scenario has its own execution contract in a category folder.
+This playbook covers the operator-visible contract of the `sk-create-readme` workflow. It tests README routing, current-state evidence and code-folder navigation. Each scenario has its own execution contract in a category folder.
 
 The package has no feature catalog. The scenario files name their source anchors directly.
 
@@ -17,7 +17,6 @@ Canonical package artifacts:
 - `manual-testing-playbook.md`
 - `artifact-routing/`
 - `evidence-and-shape/`
-- `install-guide/`
 
 ### Result persistence
 
@@ -28,7 +27,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-This playbook tests six scenarios across three categories. The scenarios cover general READMEs, code-folder READMEs, evidence-first writing, the decision to skip an unnecessary README and install guides with phase checkpoints.
+This playbook tests four scenarios across two categories. The scenarios cover general READMEs, code-folder READMEs, evidence-first writing and the decision to skip an unnecessary README.
 
 ### Realistic Test Model
 
@@ -47,7 +46,7 @@ Positive scenarios check artifact types the mode must author. Negative scenarios
 
 1. Run commands from the repository root.
 2. Identify the target folder, audience and artifact type before drafting.
-3. Use a disposable fixture for any scenario that writes a README or install guide. Recovery removes the fixture after validation.
+3. Use a disposable fixture for any scenario that writes a README. Recovery removes the fixture after validation.
 4. Confirm `python3` is available before running shared checks.
 5. Keep existing READMEs, source files and config files unchanged during every scenario.
 
@@ -116,15 +115,14 @@ The root owns shared evidence, review and recovery policy. Scenario files own pr
 
 ### Purpose
 
-The scenarios can run in three waves. Each wave keeps its target fixtures separate.
+The scenarios can run in two waves. Each wave keeps its target fixtures separate.
 
 ### Operational Rules
 
 1. Run `ARTIFACT ROUTING` first because artifact type controls the template.
 2. Run `EVIDENCE AND SHAPE` second because current-state evidence controls the content.
-3. Run `INSTALL GUIDE` last because its five checkpoints need a complete tool setup model.
-4. Keep each negative scenario beside its positive pair so the boundary is reviewed together.
-5. Record the worker, scenario ID and evidence path for each run.
+3. Keep each negative scenario beside its positive pair so the boundary is reviewed together.
+4. Record the worker, scenario ID and evidence path for each run.
 
 ### What Belongs In Scenario Files
 
@@ -208,55 +206,19 @@ Desired user-visible outcome: a developer can navigate the folder without a gues
 
 ---
 
-## 9. INSTALL GUIDE (`RMI-001..RMI-002`)
-
-### RMI-001 | Five-phase install guide
-
-#### Description
-Verify that a multi-step tool setup receives the five-phase install-guide flow with a checkpoint and STOP condition after each phase.
-
-#### Scenario Contract
-Prompt: `Create an install guide for this tool. It needs prerequisites, installation, initialization, configuration and end-to-end verification.`
-
-The answer uses the install-guide template. It adds the AI-first prompt, Core Principle blockquote, phase checkpoints named `phase_N_complete`, STOP blocks and actionable troubleshooting rows.
-
-Desired user-visible outcome: an operator can install the tool and stop at the first failed checkpoint.
-
-#### Test Execution
-> **Feature File:** [RMI-001](install-guide/five-phase-install-flow.md)
-> **Catalog:** no feature-catalog entry exists for this package.
-
-### RMI-002 | One-line install stays inline
-
-#### Description
-Verify that a tool needing one documented install command and no project-specific setup is not given a full install guide.
-
-#### Scenario Contract
-Prompt: `This tool has clear official documentation and needs one install command with no project settings. Should I write a five-phase guide?`
-
-The answer links to official documentation or gives the one-line command inline. It does not create a five-phase guide without project-specific setup.
-
-Desired user-visible outcome: the documentation stays proportional to the setup work.
-
-#### Test Execution
-> **Feature File:** [RMI-002](install-guide/one-line-install-stays-inline.md)
-> **Catalog:** no feature-catalog entry exists for this package.
-
----
-
-## 10. AUTOMATED TEST CROSS-REFERENCE
+## 9. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `shared/scripts/validate_document.py` | README and install-guide structure | RMR-001, RME-001, RME-002, RMI-001 |
-| `shared/scripts/quick_validate.py` | Fast authored-markdown checks | RME-001, RMI-001 |
+| `shared/scripts/validate_document.py` | README structure | RMR-001, RME-001, RME-002 |
+| `shared/scripts/quick_validate.py` | Fast authored-markdown checks | RME-001 |
 | `sk-create-readme/scripts/audit_readmes.py` | Repository README inventory and coverage | RMR-001, RME-001, RMR-002 |
 
-These checks validate an authored artifact. They do not decide whether a folder needs a README or whether a one-line install should stay outside a guide. Those boundaries remain manual checks.
+These checks validate an authored artifact. They do not decide whether a folder needs a README at all. That boundary remains a manual check.
 
 ---
 
-## 11. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 10. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 This package has no feature catalog. The index below is the playbook catalog.
 
@@ -266,5 +228,3 @@ This package has no feature catalog. The index below is the playbook catalog.
 | RMR-002 | Self-explanatory folder stays unchanged | ARTIFACT ROUTING | [RMR-002](artifact-routing/self-explanatory-folder-stays-unchanged.md) |
 | RME-001 | Evidence-first current-state README | EVIDENCE AND SHAPE | [RME-001](evidence-and-shape/evidence-first-current-state.md) |
 | RME-002 | Code-folder navigation shape | EVIDENCE AND SHAPE | [RME-002](evidence-and-shape/code-folder-navigation-shape.md) |
-| RMI-001 | Five-phase install guide | INSTALL GUIDE | [RMI-001](install-guide/five-phase-install-flow.md) |
-| RMI-002 | One-line install stays inline | INSTALL GUIDE | [RMI-002](install-guide/one-line-install-stays-inline.md) |

@@ -39,7 +39,7 @@ upstream_assets:
     spec: "spec.md"
     decision_record: "decision-record.md"  # ADRs covering MCP server install + repair
   install_guides:
-    code_mode: ".skilled/install-guides/MCP - Code Mode.md"
+    code_mode: ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md"
   scripts:
     diagnostic: ".skilled/commands/doctor/scripts/mcp-doctor.sh"
     library: ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh"
@@ -86,7 +86,7 @@ arguments:
 # REFERENCE: INSTALL GUIDES
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  code_mode: .skilled/install-guides/MCP - Code Mode.md
+  code_mode: .skilled/skills/mcp-code-mode/INSTALL-GUIDE.md
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: CONFIG FILES

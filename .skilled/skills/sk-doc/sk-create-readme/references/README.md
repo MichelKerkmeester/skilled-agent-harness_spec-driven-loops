@@ -1,11 +1,9 @@
 ---
 title: create-readme Reference Map
-description: Overflow-only route map for README and install-guide authoring, grouped into readme/ and install-guide/ single-concern references.
+description: Overflow-only route map for README authoring, grouped into readme/ single-concern references.
 trigger_phrases:
   - "readme reference map"
-  - "install guide reference map"
   - "readme creation standards"
-  - "install guide standards"
   - "create-readme references"
 importance_tier: normal
 contextType: implementation
@@ -20,12 +18,9 @@ Overflow route map for the `create-readme` packet. The complete authoring workfl
 
 ## 1. OVERVIEW
 
-`SKILL.md` is primary and self-sufficient: it carries the full README authoring workflow (Section 4), the general and code-folder output shapes (Sections 5 and 6), and the five-phase install-guide workflow (Section 7). Open a file below only when a task needs the extra depth, and load the single file that matches the concern rather than a large monolith.
+`SKILL.md` is primary and self-sufficient: it carries the full README authoring workflow (Section 4) and the general and code-folder output shapes (Sections 5 and 6). Open a file below only when a task needs the extra depth, and load the single file that matches the concern rather than a large monolith.
 
-The overflow is grouped by sub-workflow:
-
-- `readme/` holds README type, voice, writing-pattern and quality detail.
-- `install-guide/` holds install-guide section examples, platform config and quality standards.
+The overflow sits in one group: `readme/` holds README type, voice, writing-pattern and quality detail.
 
 ---
 
@@ -38,24 +33,19 @@ Load the file that matches the current task.
 | **README types and voice**: the five README types, progressive-disclosure stages and two-tier voice with worked examples | [readme/types-and-voice.md](readme/types-and-voice.md) | Deciding which README type to write, or how narrative and reference voice should split inside one file |
 | **README writing patterns**: per-section writing tips, heading hierarchy, analogy patterns, recommended table patterns, code-block and placeholder conventions | [readme/writing-patterns.md](readme/writing-patterns.md) | Drafting individual README sections, or reaching for a proven table or formatting pattern |
 | **README quality and checklist**, DQI weighting, per-section quality checks and the full pre-publish checklist | [readme/quality-and-checklist.md](readme/quality-and-checklist.md) | Reviewing a drafted README before delivery |
-| **Install-guide section examples**, Section 0/1/2 worked examples plus multi-platform and tool-specific configuration patterns | [install-guide/section-examples.md](install-guide/section-examples.md) | Writing the AI-First prompt, Overview, Prerequisites or platform configuration of an install guide |
-| **Install-guide quality and standards**: troubleshooting standards, DQI weighting, minimum requirements, common issues and the pre-publish checklist | [install-guide/quality-and-standards.md](install-guide/quality-and-standards.md) | Writing the troubleshooting section, or reviewing an install guide before delivery |
 
 ---
 
 ## 3. RELATED RESOURCES
 
-### Overflow Subfolders
+### Overflow Subfolder
 - [readme/types-and-voice.md](readme/types-and-voice.md) - README types, progressive disclosure and two-tier voice
 - [readme/writing-patterns.md](readme/writing-patterns.md) - Section writing tips and formatting patterns
 - [readme/quality-and-checklist.md](readme/quality-and-checklist.md) - README quality criteria and pre-publish checklist
-- [install-guide/section-examples.md](install-guide/section-examples.md) - Install-guide section and configuration examples
-- [install-guide/quality-and-standards.md](install-guide/quality-and-standards.md) - Install-guide troubleshooting, quality and checklist
 
 ### Templates
 - [readme-template.md](../assets/readme-template.md) - Fillable scaffold for project, skill, feature and component READMEs
 - [readme-code-template.md](../assets/readme-code-template.md) - Code-folder README scaffold with diagram examples
-- [install-guide-template.md](../assets/install-guide-template.md) - Full install-guide scaffold and platform config patterns
 
 ### Shared Standards
 - [core-standards.md](../../shared/references/core-standards.md) - Document formatting rules
@@ -64,4 +54,4 @@ Load the file that matches the current task.
 
 ---
 
-*End of create-readme reference map: depth lives in the `readme/` and `install-guide/` groups.*
+*End of create-readme reference map: depth lives in the `readme/` group.*

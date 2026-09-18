@@ -101,7 +101,7 @@ const SCOPED_DIVERGENCES: ReadonlyArray<{
 
 describe('root coverage parity', () => {
   it('walks the roots the coverage decision names, in both lanes', () => {
-    expect(Array.from(CORPUS_ROOTS)).toEqual(['specs', '.skilled/skills', '.skilled/install-guides', '.skilled/hooks']);
+    expect(Array.from(CORPUS_ROOTS)).toEqual(['specs', '.skilled/skills', '.skilled/hooks']);
     expect(Array.from(DEFAULT_ROOTS)).toEqual(['specs', '.skilled']);
   });
 

@@ -2,7 +2,6 @@
 
 Complete installation and configuration for Obsidian vault work through three routed surfaces. `notesmd-cli` is the primary headless CLI for filesystem operations. The official `obsidian` CLI is the optional app-backed profile. Cyanheads' `obsidian-mcp-server@3.5.0` is the structured live-app MCP path through Code Mode and Local REST API.
 
-> **Part of OpenCode Installation.** See the [Master Installation Guide](../../../install-guides/README.md) for complete setup.
 > **Package:** `notesmd-cli` (Yakitrak) | **Dependencies:** a vault filesystem; Homebrew or a supported manual installer for the headless profile; Obsidian desktop v1.12.4+ for the official CLI; Node.js 18+ and npx for the MCP path
 > **Validation:** run the mode-root scripts and the checks in this guide; detailed runtime recovery lives in [`references/troubleshooting.md`](references/troubleshooting.md).
 

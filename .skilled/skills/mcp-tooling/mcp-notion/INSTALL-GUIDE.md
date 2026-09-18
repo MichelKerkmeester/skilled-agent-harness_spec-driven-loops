@@ -2,7 +2,6 @@
 
 Complete installation and configuration for Notion workspace operations, giving AI assistants one MCP path and one direct-API path. The official Notion MCP is the primary surface: all page, block, data-source, comment, user and search CRUD, launched through Code Mode over the local stdio server. Direct Notion REST API calls are the secondary surface for the five capabilities the MCP does not expose. Notion is MCP-only — there is no headless CLI equivalent to ClickUp's `cupt`.
 
-> **Part of OpenCode Installation.** See the [Master Installation Guide](../../../install-guides/README.md) for complete setup.
 > **Package:** `@notionhq/notion-mcp-server` (npm) | **Dependencies:** Node.js 18+ and npx; a Notion internal-integration token
 > **Phase-by-phase validation:** the checkpoint reference lives in [`references/troubleshooting.md`](references/troubleshooting.md) — this front door summarizes it.
 

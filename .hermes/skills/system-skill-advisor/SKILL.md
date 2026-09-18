@@ -438,7 +438,7 @@ Expected consumers:
 Related skills:
 
 - `system-spec-kit` owns spec folders, memory, validation and packet governance.
-- `sk-doc` owns skill documentation, feature catalogs, install guides and playbooks. Its `create-skill` packet also owns the [skill-root metadata contract](../sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md) and the [graph-metadata template](../sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json) plus [leaf-manifest config template](../sk-doc/sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json) used by this root.
+- `sk-doc` owns skill documentation, feature catalogs and playbooks. Its `create-skill` packet also owns the [skill-root metadata contract](../sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md) and the [graph-metadata template](../sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json) plus [leaf-manifest config template](../sk-doc/sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json) used by this root.
 - `sk-code` owns implementation once routing selects a code surface.
 - `mcp-code-mode` owns external MCP orchestration workflows.
 

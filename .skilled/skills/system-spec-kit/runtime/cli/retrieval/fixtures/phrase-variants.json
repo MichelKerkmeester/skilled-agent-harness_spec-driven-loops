@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9eb4c83fe50a884c1b5cbe0ceee99484065497df16c62fe390e11a9799607f2e",
+  "manifestHash": "01971af50563bd6be01d404e364460a37e222fbcc03cff5a550393336999ed64",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11493,9 +11493,6 @@
     ],
     "ai edit snapshot tasks": [
       "AI edit snapshot tasks"
-    ],
-    "ai first install prompt": [
-      "ai-first install prompt"
     ],
     "ai friendly documentation": [
       "ai friendly documentation"
@@ -26523,9 +26520,6 @@
     "component header codemod": [
       "component header codemod"
     ],
-    "component install scripts": [
-      "component install scripts"
-    ],
     "component migration fan out": [
       "component migration fan-out"
     ],
@@ -26831,9 +26825,6 @@
     ],
     "config testing integration": [
       "config testing integration"
-    ],
-    "configuration": [
-      "configuration"
     ],
     "configuration style prompt template": [
       "configuration-style prompt template"
@@ -49567,9 +49558,6 @@
     "getspecsbasepaths reuse": [
       "getSpecsBasePaths reuse"
     ],
-    "getting started": [
-      "getting started"
-    ],
     "getunresolveddisagreements": [
       "getUnresolvedDisagreements"
     ],
@@ -54932,9 +54920,6 @@
     "inspectdispatch classification": [
       "inspectDispatch classification"
     ],
-    "install all sh": [
-      "install-all.sh"
-    ],
     "install and doctor shipped": [
       "install and doctor shipped"
     ],
@@ -54968,9 +54953,6 @@
     "install guide deletion cocoindex": [
       "install guide deletion cocoindex"
     ],
-    "install guide dqi": [
-      "install guide dqi"
-    ],
     "install guide drift": [
       "install guide drift"
     ],
@@ -54979,9 +54961,6 @@
     ],
     "install guide drift fix": [
       "install guide drift fix"
-    ],
-    "install guide error table": [
-      "install guide error table"
     ],
     "install guide filename normalization": [
       "install-guide filename normalization"
@@ -55001,23 +54980,8 @@
     "install guide normalization tasks": [
       "install-guide normalization tasks"
     ],
-    "install guide platform configuration": [
-      "install guide platform configuration"
-    ],
-    "install guide pre publish checklist": [
-      "install guide pre-publish checklist"
-    ],
-    "install guide prerequisites example": [
-      "install guide prerequisites example"
-    ],
     "install guide promotion plan": [
       "install guide promotion plan"
-    ],
-    "install guide quality criteria": [
-      "install guide quality criteria"
-    ],
-    "install guide reference map": [
-      "install guide reference map"
     ],
     "install guide rename plan": [
       "install-guide rename plan"
@@ -55031,17 +54995,8 @@
     "install guide section 12 choosing an embedder": [
       "INSTALL_GUIDE section 12 choosing an embedder"
     ],
-    "install guide section examples": [
-      "install guide section examples"
-    ],
-    "install guide standards": [
-      "install guide standards"
-    ],
     "install guide sweep": [
       "install guide sweep"
-    ],
-    "install guide template": [
-      "install guide template"
     ],
     "install guide template rename plan": [
       "install guide template rename plan"
@@ -55049,14 +55004,8 @@
     "install guide template rename tasks": [
       "install guide template rename tasks"
     ],
-    "install guide troubleshooting standards": [
-      "install guide troubleshooting standards"
-    ],
     "install guide uppercase hyphen": [
       "install guide uppercase hyphen"
-    ],
-    "install guides": [
-      "install guides"
     ],
     "install guides coverage question": [
       "install guides coverage question"
@@ -55108,12 +55057,6 @@
     ],
     "install transition tasks": [
       "install-transition tasks"
-    ],
-    "installation": [
-      "installation"
-    ],
-    "installation guide structure": [
-      "installation guide structure"
     ],
     "installation verification": [
       "installation verification"
@@ -61273,12 +61216,6 @@
     "mcp install guide node version": [
       "mcp install guide node version"
     ],
-    "mcp install guide template": [
-      "mcp install guide template"
-    ],
-    "mcp installer scripts": [
-      "MCP installer scripts"
-    ],
     "mcp json absolute node path": [
       "mcp.json absolute node path"
     ],
@@ -62076,9 +62013,6 @@
     ],
     "mcp server inner directory decisions": [
       "mcp-server inner-directory decisions"
-    ],
-    "mcp server install": [
-      "mcp server install"
     ],
     "mcp server kebab case": [
       "mcp_server kebab-case"
@@ -69590,9 +69524,6 @@
     "opencode link decision tree": [
       "opencode link decision tree"
     ],
-    "opencode mcp config example": [
-      "opencode mcp config example"
-    ],
     "opencode memory epilogue": [
       "opencode memory epilogue"
     ],
@@ -69826,9 +69757,6 @@
     ],
     "opencode senses fork": [
       "opencode senses fork"
-    ],
-    "opencode setup": [
-      "opencode setup"
     ],
     "opencode shell checklist": [
       "opencode shell checklist"
@@ -74339,9 +74267,6 @@
     ],
     "phase yield refresh invariant tasks": [
       "phase yield refresh invariant tasks"
-    ],
-    "phased install scaffold": [
-      "phased install scaffold"
     ],
     "phased spec documentation": [
       "phased spec documentation"
@@ -90144,9 +90069,6 @@
     ],
     "settings parity regex": [
       "settings parity regex"
-    ],
-    "setup": [
-      "setup"
     ],
     "setup a handover": [
       "Setup A handover"

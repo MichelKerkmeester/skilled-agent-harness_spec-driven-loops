@@ -40,7 +40,7 @@ Keyword triggers: `create changelog`, `/create:changelog`, `changelog`, `changel
 Use another `sk-doc` packet when:
 
 1. The user only wants a generic release plan with no file output.
-2. The target is a README or install guide. Use `create-readme`.
+2. The target is a README. Use `create-readme`.
 3. The target is an agent, command, benchmark package, flowchart, feature catalog, manual testing playbook, or skill. Use `create-agent`, `create-command`, `create-benchmark`, `create-flowchart`, `create-feature-catalog`, `create-manual-testing-playbook`, or `create-skill`.
 4. The user wants to audit, validate, score, or optimize an existing changelog. Use `create-quality-control`.
 5. The work source is too ambiguous to resolve to a spec folder, component hint, or recent git history.
