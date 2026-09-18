@@ -6,7 +6,7 @@ import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { publishJson, stableStringify } from '../retrieval/lib/artifact.mjs';
-import { canonicalRelativePath, IGNORED_PATHS, walkCorpus } from '../retrieval/lib/corpus.mjs';
+import { canonicalRelativePath, CORPUS_ROOTS, IGNORED_PATHS, walkCorpus } from '../retrieval/lib/corpus.mjs';
 import { CATEGORY, readTriggerPhrases } from '../retrieval/lib/frontmatter.mjs';
 import {
   normalizeTriggerText,
@@ -54,6 +54,10 @@ function generationPaths(root: string) {
     // The shipped exemption list names a real repository document, so a temp
     // corpus starts with none: a test that cares supplies its own.
     ignoredPaths: [] as Array<{ path: string; reason: string }>,
+    // A temp corpus carries no spec-kit sentinel, so the generator would refuse to
+    // select a source root for it. These tests exercise indexing over a fixed layout,
+    // so they name the roots; source-root selection has its own tests.
+    roots: CORPUS_ROOTS,
     indexPath: path.join(root, 'out', 'trigger-index.json'),
     manifestPath: path.join(root, 'out', 'corpus-manifest.json'),
     repoRoot: root,
@@ -296,7 +300,7 @@ describe('walkCorpus', () => {
     writeDoc(root, '.skilled/skills/demo/SKILL.md', frontmatter(['skill']));
     writeDoc(root, '.skilled/skills/demo/node_modules/pkg/readme.md', frontmatter(['vendored']));
 
-    const { files } = walkCorpus(root);
+    const { files } = walkCorpus(root, { roots: CORPUS_ROOTS });
 
     expect(files).toEqual([
       '.skilled/skills/demo/SKILL.md',
@@ -313,7 +317,7 @@ describe('walkCorpus', () => {
     fs.writeFileSync(path.join(outside, 'secret.md'), '---\ntitle: s\ntrigger_phrases:\n  - "external phrase"\n---\n# s\n');
     fs.symlinkSync(path.join(outside, 'secret.md'), path.join(root, 'specs/track/leak.md'), 'file');
 
-    const { files, skipped } = walkCorpus(root);
+    const { files, skipped } = walkCorpus(root, { roots: CORPUS_ROOTS });
 
     expect(files).toEqual(['specs/track/a.md']);
     expect(skipped).toContainEqual({ path: 'specs/track/leak.md', reason: 'symlink target outside the repository' });
@@ -325,7 +329,7 @@ describe('walkCorpus', () => {
     fs.symlinkSync(path.join(root, 'specs/track'), path.join(root, 'specs/mirror'), 'dir');
     fs.symlinkSync(path.join(root, 'specs/track/a.md'), path.join(root, 'specs/copy.md'), 'file');
 
-    const { files, skipped } = walkCorpus(root);
+    const { files, skipped } = walkCorpus(root, { roots: CORPUS_ROOTS });
 
     expect(files).toEqual(['specs/track/a.md']);
     expect(skipped).toContainEqual({ path: 'specs/mirror', reason: 'symlinked directory' });
@@ -354,7 +358,7 @@ describe('walkCorpus', () => {
     writeDoc(root, 'specs/track/002-contracts-and-fixtures/spec.md', frontmatter(['contracts']));
     writeDoc(root, 'specs/track/003-scaffold/fixtures/routing-parity.md', frontmatter(['routing parity']));
 
-    const { files } = walkCorpus(root);
+    const { files } = walkCorpus(root, { roots: CORPUS_ROOTS });
 
     expect(files).toEqual([
       '.skilled/skills/demo/SKILL.md',
@@ -514,7 +518,7 @@ describe('generate', () => {
     writeDoc(root, 'specs/track/good.md', frontmatter(['spec folder question', 'retrieval']));
     writeDoc(root, 'specs/track/dated.md', frontmatter(['2026-05-14', 'retrieval', 'memory']));
 
-    const built = buildIndex({ repoRoot: root });
+    const built = buildIndex({ repoRoot: root, roots: CORPUS_ROOTS });
     const quality = built.diagnostics.phraseQuality as { phrases: Record<string, number>; documents: Record<string, number> };
 
     expect(quality.phrases).toEqual({ 'generic-workflow-word': 1, 'numeric-only': 1, ok: 1, 'single-token': 1 });
@@ -535,7 +539,7 @@ describe('generate', () => {
     writeDoc(root, 'specs/track/scalar.md', '---\ntitle: "D"\ntrigger_phrases: scalar\n---\n');
     writeDoc(root, 'specs/track/member.md', '---\ntitle: "D"\ntrigger_phrases:\n  - 42\n---\n');
 
-    const built = buildIndex({ repoRoot: root });
+    const built = buildIndex({ repoRoot: root, roots: CORPUS_ROOTS });
     const counts = built.diagnostics.counts as Record<string, number>;
 
     expect(counts).toEqual({
