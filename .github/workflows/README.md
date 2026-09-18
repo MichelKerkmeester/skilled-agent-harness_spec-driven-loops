@@ -27,7 +27,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `agent-mirror-sync.yml` | Keeps the `.skilled` and `.claude` agent mirrors aligned. |
 | `changed-packet-validation.yml` | Validates the spec packets a commit or pull request changed. |
 | `chart-corpus.yml` | Checks the chart corpus contract and runs its mutation suite. |
-| `command-tree-parity.yml` | Keeps the OpenCode and Claude command trees identical. |
+| `command-tree-parity.yml` | Keeps the OpenCode and Claude command trees identical, and the Hermes skill and prompt copies equal to their sources. |
 | `comment-hygiene.yml` | Rejects forbidden ephemeral-artifact pointers in code comments. |
 | `diagram-corpus.yml` | Checks the diagram corpus contract, its mutation suite and both applicator gates. |
 | `dispatch-enforcement-guard.yml` | Checks that every declared dispatch rule is reachable and discriminates. |
