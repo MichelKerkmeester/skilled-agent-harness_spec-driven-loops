@@ -63,7 +63,7 @@ contextType: "implementation"
 - [x] T015 Run the node gate, the standalone deep-loop suite and every sk-doc script test
 - [x] T016 Run the sk-doc job in a clean clone under Node 22
 - [x] T017 Run the deep-loop job in a clean clone under Node 22
-- [ ] T018 Push both branches after the operator's go-ahead and watch CI
+- [x] T018 Push both branches after the operator's go-ahead and watch CI
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -71,7 +71,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->
@@ -125,7 +125,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. AC-009 waits on CI after the push
+- [x] CHK-020 [P0] All acceptance criteria met. AC-009 is met by 23 green runs on `c2c3fd42c0`
 - [x] CHK-021 [P0] Manual testing complete
 - [x] CHK-022 [P1] Edge cases tested. The `.opencode`-only layout for every changed caller
 - [x] CHK-023 [P1] Error scenarios validated. Each new test fails against the code before its fix
@@ -181,11 +181,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-09-18
+**Verification Date**: 2026-09-19
 <!-- /ANCHOR:summary -->
 
 ---

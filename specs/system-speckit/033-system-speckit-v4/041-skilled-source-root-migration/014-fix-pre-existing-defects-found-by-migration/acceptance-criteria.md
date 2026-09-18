@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration"
-    last_updated_at: "2026-09-18T18:30:00Z"
+    last_updated_at: "2026-09-18T22:36:18Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Met the criteria the local tree proves"
-    next_safe_action: "Push on approval, watch CI"
+    recent_action: "Met AC-009 on the green CI runs"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "6d11af6f-653e-4807-aca8-1c09c81640c1"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** 041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-18
 <!-- /ANCHOR:metadata -->
 
@@ -60,7 +60,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-006 | REQ-006 | Given the reinstalled Codex hooks, When the installer checks them, Then it reports no drift | `.skilled/bin/install-codex-hooks.mjs --check` from the main checkout reports OK. The prior file is kept at `~/.codex/hooks.json.bak-before-phase14-20260918T191907`, and all 26 of the operator's other hooks are kept | Met | - |
 | AC-007 | REQ-007 | Given a checkout whose only source root is `.opencode`, When hook flags, search roots and plugin logs resolve, Then each lands under `.opencode` | `.skilled/hooks/shared/hook-flags.test.cjs:129`, `.skilled/skills/system-spec-kit/runtime/cli/tests/rg-wrapper-recipes.vitest.ts:207` and `.opencode/plugins/tests/mcp-route-guard.test.cjs:47` each fail before the fix. All 22 rewritten hook imports resolve to `hooks/shared/` from their run location, for example `.skilled/skills/system-spec-kit/runtime/hooks/codex/session-start.ts:23` | Met | - |
 | AC-008 | REQ-008 | Given the new workflows, When their steps run in a clean clone under Node 22, Then both pass | `.github/workflows/sk-doc-script-tests.yml:51` passed in a shallow clone. `.github/workflows/deep-loop-runtime.yml:60` in the same clone: 150 of 154 files passed at depth one; the other four bind events to the commit's parent, which a depth-one checkout lacks, and pass 86/86 with full history, which the job now fetches | Met | - |
-| AC-009 | REQ-009 | Given the pushed tip, When CI runs, Then every workflow passes | Not yet pushed | Unmet | - |
+| AC-009 | REQ-009 | Given the pushed tip, When CI runs, Then every workflow passes | All 23 runs on `c2c3fd42c0` pass: eleven on `main` and twelve on `skilled/v4.0.0.0`, among them Deep-Loop Runtime Tests `35393788761` and `35393789715`, sk-doc Script Tests `35393788715` and `35393789531`, and sk-doc Rename Harness `35393788734` and `35393789655`. The first push, `bb1d36a431`, failed both new jobs on both branches (`35389716268`, `35389716326`, `35389716413`, `35389716581`); `2bdf25f86d` and `c2c3fd42c0` fixed the causes | Met | - |
 
 ### Status values
 
@@ -85,7 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every criterion the local tree can prove is met. CI on the pushed tip is outstanding.
+Every criterion is met, and CI is green on both branches at `c2c3fd42c0`.
 <!-- /ANCHOR:closure -->

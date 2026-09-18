@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration"
-    last_updated_at: "2026-09-18T18:30:00Z"
+    last_updated_at: "2026-09-18T22:36:18Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Fixed the defects, added the CI jobs, simulated the sk-doc job"
-    next_safe_action: "Push on approval, watch CI"
+    recent_action: "Closed the phase on 23 green CI runs"
+    next_safe_action: "None; phase 15 carries the open question"
     blockers: []
     key_files:
       - ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py"
@@ -23,10 +23,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "6d11af6f-653e-4807-aca8-1c09c81640c1"
       parent_session_id: null
-    completion_pct: 80
-    open_questions:
-      - "Which compiled-serving admission path should the next phase build?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Which compiled-serving admission path should the next phase build? Phase 15 researched it and recommends a checker against routing gold"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -42,9 +42,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 014-fix-pre-existing-defects-found-by-migration |
-| **Completed** | Not yet: CI on the pushed tip is outstanding |
+| **Completed** | 2026-09-19 |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -98,7 +98,9 @@ Twenty-two hooks imported hook-flags by climbing to the repository root and back
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Eight commits on `worktrees/055-skilled-source-root-migration`, each through the git hooks with no bypass variable: `bc81f0152d` (scaffold version), `b02eb86cdd` (sk-doc tests), `743b896393` (cli-cursor frontmatter), `f33b6cbb8e` (council database), `a099d0c93c` (source-root name), `975f672052`, `e8d117bbcf` and `672b1fdd2c` (CI). The Codex hooks were reinstalled outside the repository. Every new test was run once against the code before its fix, where it failed.
+Twelve commits on `worktrees/055-skilled-source-root-migration`, each through the git hooks with no bypass variable: `bc81f0152d` (scaffold version), `b02eb86cdd` (sk-doc tests), `743b896393` (cli-cursor frontmatter), `f33b6cbb8e` (council database), `a099d0c93c` (source-root name), `975f672052`, `e8d117bbcf` and `672b1fdd2c` (CI), `18dfa1ee0f` (these records), `bb1d36a431` (trigger index), then `2bdf25f86d` and `c2c3fd42c0` (fixes CI found). The Codex hooks were reinstalled outside the repository. Every new test was run once against the code before its fix, where it failed.
+
+The first push failed both new jobs, for three reasons the clean-clone run had not shown because that run used a developer's Python and PATH. Without PyYAML, `package_skill.py` falls back to a lenient frontmatter parser, so a test that expects a YAML error saw none; the sk-doc job now installs PyYAML. Five contract tests used BSD `sed -i ''`, which GNU sed reads as a file name; they now use a suffix both accept. Five fan-out tests launched the real `codex`, `claude` and `opencode` binaries, which the runner lacks; they now use stubs. The deep-loop suite then passed 153 of 153 files with those CLIs removed from PATH, and CI passed on the next push.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -130,7 +132,7 @@ Eight commits on `worktrees/055-skilled-source-root-migration`, each through the
 | Deep-loop job in a clean clone | 150 of 154 files passed at depth one. The other four need the commit's parent and pass 86/86 with full history, which the job now fetches |
 | Codex hooks | `install-codex-hooks.mjs --check` reports OK |
 | Gate inputs | 159 inputs resolve, including the new workflows'. Every path filter names both roots |
-| CI | Not yet pushed |
+| CI | All 23 runs on `c2c3fd42c0` pass on `main` and `skilled/v4.0.0.0`. The first push failed four runs, fixed as above |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -138,7 +140,7 @@ Eight commits on `worktrees/055-skilled-source-root-migration`, each through the
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The compiled-serving admission tool is not built.** It needs an operator decision on its design first, recorded as this phase's open question.
+1. **The compiled-serving admission tool is not built.** Phase 15 researched it; building it waits on the operator's decision about the admission bar.
 2. **About 180 code files still spell `.skilled`.** Many name both roots on purpose, such as the sentinel selection and the workflow path filters. `dist-freshness.cjs`, which lists the packages the freshness guard watches, is one that does not, and none was audited one by one.
 3. **The main checkout's compiled hooks predate the import change** until its spec-kit and advisor runtimes are rebuilt. They still work, because the old paths name the tree that exists.
 4. **Two phase 13 commit messages overclaim.** `30b2981762` says six scenario files where there were five, and `cafeff809e` says it removed every live pointer to the retired lane. Both are on the remote and are corrected in the phase 13 records.
