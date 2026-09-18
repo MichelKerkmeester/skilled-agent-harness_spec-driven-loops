@@ -18,6 +18,7 @@
 import { createRequire } from 'node:module';
 import { appendFileSync, copyFileSync, mkdirSync, statSync, truncateSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 const require = createRequire(import.meta.url);
 // A .cjs core is imported here as the ESM default export so this file can stay
@@ -30,7 +31,14 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const WARN_LOG_RELATIVE = join('.skilled', 'logs', 'mcp-route-guard.log');
+const WARN_LOG_NAME = 'mcp-route-guard.log';
+
+// Logs live under the project's source root, whichever name it carries. A
+// project with no toolchain tree logs under its .opencode directory rather than
+// creating a source root that does not exist.
+function logPathFor(projectDir, name) {
+  return join(findSourceRoot(projectDir) ?? join(projectDir, '.opencode'), 'logs', name);
+}
 const MAX_LOG_BYTES = 256 * 1024;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -44,7 +52,7 @@ const MAX_LOG_BYTES = 256 * 1024;
 // Fail-open -- a logging error must never affect the call being observed.
 function appendGuardLog(projectDir, detail) {
   try {
-    const logPath = join(projectDir, WARN_LOG_RELATIVE);
+    const logPath = logPathFor(projectDir, WARN_LOG_NAME);
     mkdirSync(dirname(logPath), { recursive: true });
     try {
       if (statSync(logPath).size >= MAX_LOG_BYTES) {

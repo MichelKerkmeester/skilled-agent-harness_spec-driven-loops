@@ -19,6 +19,7 @@ import { createRequire } from 'node:module';
 import { appendFileSync, copyFileSync, existsSync, mkdirSync, statSync, truncateSync } from 'node:fs';
 import { dirname, isAbsolute, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 const require = createRequire(import.meta.url);
 const router = require('../hooks/post-edit-quality/lib/post-edit-router.cjs');
@@ -30,7 +31,14 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
 const DISABLED_ENV = 'SK_CODE_POST_EDIT_QUALITY_DISABLED';
-const LOG_RELATIVE = join('.skilled', 'logs', 'post-edit-quality.log');
+const LOG_NAME = 'post-edit-quality.log';
+
+// Logs live under the project's source root, whichever name it carries. A
+// project with no toolchain tree logs under its .opencode directory rather than
+// creating a source root that does not exist.
+function logPathFor(projectDir, name) {
+  return join(findSourceRoot(projectDir) ?? join(projectDir, '.opencode'), 'logs', name);
+}
 const MAX_LOG_BYTES = 256 * 1024;
 const MAX_CALL_IDS = 1_000;
 const MAX_PENDING_FINDINGS = 20;
@@ -89,7 +97,7 @@ function formatFinding(filePath, finding) {
 // Fail-open -- a logging error must never affect the edit it observed.
 function appendQualityLog(projectDir, line) {
   try {
-    const logPath = join(projectDir, LOG_RELATIVE);
+    const logPath = logPathFor(projectDir, LOG_NAME);
     mkdirSync(dirname(logPath), { recursive: true });
     try {
       if (statSync(logPath).size >= MAX_LOG_BYTES) {

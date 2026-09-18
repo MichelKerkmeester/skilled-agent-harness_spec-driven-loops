@@ -35,9 +35,14 @@ const router = require(ROUTER_PATH);
 // HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function temporaryDirectory(t, prefix) {
+// A project is a toolchain checkout when its source root carries this file, and
+// the plugin writes its log under that root.
+function temporaryDirectory(t, prefix, sourceRoot = '.skilled') {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const sentinel = path.join(dir, sourceRoot, 'skills', 'system-spec-kit', 'SKILL.md');
+  fs.mkdirSync(path.dirname(sentinel), { recursive: true });
+  fs.writeFileSync(sentinel, '---\nname: system-spec-kit\n---\n');
   return dir;
 }
 
@@ -434,6 +439,25 @@ test('OpenCode plugin: before/after correlation runs the dispatch table and surf
   const logPath = path.join(tmpDir, ...LOG_RELATIVE);
   assert.ok(fs.existsSync(logPath), 'a finding must be recorded to the bounded append-only log');
   assert.match(fs.readFileSync(logPath, 'utf8'), /comment-hygiene/);
+});
+
+test('OpenCode plugin: logs under .opencode when that is the only source root', async (t) => {
+  const tmpDir = temporaryDirectory(t, 'sk-code-post-edit-quality-legacy-root-', '.opencode');
+  const editedFile = writeFile(path.join(tmpDir, 'edited.ts'), 'export const ok = 1;\n');
+  writeExecutable(
+    checkerFixturePath(tmpDir, 'commentHygiene'),
+    `#!/usr/bin/env bash\necho "${editedFile}:1: fake violation"\nexit 1\n`,
+  );
+
+  const pluginModule = await loadPlugin();
+  const hooks = await pluginModule.default({ directory: tmpDir });
+  await runTrapped(async () => {
+    await hooks['tool.execute.before']({ tool: 'write', callID: 'call-1' }, { args: { filePath: editedFile } });
+    await hooks['tool.execute.after']({ tool: 'write', callID: 'call-1' }, { title: 'x', output: '', metadata: {} });
+  });
+
+  assert.match(fs.readFileSync(path.join(tmpDir, '.opencode', 'logs', 'post-edit-quality.log'), 'utf8'), /comment-hygiene/);
+  assert.equal(fs.existsSync(path.join(tmpDir, '.skilled', 'logs')), false);
 });
 
 test('OpenCode plugin: tool.execute.after resolves a relative stashed filePath against projectDir before existsSync/resolveDispatch', async (t) => {

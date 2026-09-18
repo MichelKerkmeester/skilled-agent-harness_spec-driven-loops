@@ -17,6 +17,7 @@ import {
   pathRecipe,
   search,
   structuredRecipe,
+  searchRootsFor,
 } from '../retrieval/rg-wrapper.mjs';
 
 const tempRoots = new Set<string>();
@@ -199,8 +200,22 @@ describe('argument parsing', () => {
       phrase: 'grep convention',
       recipe: 'structured',
       root: undefined,
-      roots: [...DEFAULT_SEARCH_ROOTS],
+      roots: undefined,
     });
+  });
+
+  it('searches the source root under the name the checkout gives it', () => {
+    for (const name of ['.skilled', '.opencode']) {
+      const cwd = fs.mkdtempSync(path.join(os.tmpdir(), 'rg-wrapper-source-root-'));
+      try {
+        const sentinel = path.join(cwd, name, 'skills', 'system-spec-kit', 'SKILL.md');
+        fs.mkdirSync(path.dirname(sentinel), { recursive: true });
+        fs.writeFileSync(sentinel, '---\nname: system-spec-kit\n---\n');
+        expect(searchRootsFor(cwd)).toEqual(['specs', name]);
+      } finally {
+        fs.rmSync(cwd, { recursive: true, force: true });
+      }
+    }
   });
 
   it('refuses an unknown recipe, a missing phrase and an unknown flag', () => {

@@ -29,7 +29,7 @@ def _hook_flags_config():
     try:
         override = os.environ.get("HOOK_FLAGS_CONFIG")
         path = override if override else os.path.join(
-            repo_root_from_script(), ".skilled", "hooks", "hook-flags.env"
+            source_root_from_script(), "hooks", "hook-flags.env"
         )
         cfg = {}
         with open(path, "r", encoding="utf-8") as fh:
@@ -67,6 +67,14 @@ def _hook_enabled(concern):
 
 
 CHECKER_REL = ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs"
+
+
+def source_root_from_script() -> str:
+    # The real path, so a copy reached through a runtime link still finds the
+    # tree it belongs to, under whichever name that tree carries.
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    # scripts -> code-quality -> sk-code -> skills -> source root
+    return os.path.abspath(os.path.join(script_dir, "../../../.."))
 
 
 def repo_root_from_script() -> str:

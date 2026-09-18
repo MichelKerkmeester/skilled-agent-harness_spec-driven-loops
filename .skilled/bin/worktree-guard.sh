@@ -23,8 +23,9 @@ set -euo pipefail
 
 # shared hook kill-switch (master + per-concern); fail-open if guard absent
 __hf_root="$(git rev-parse --show-toplevel 2>/dev/null)"
-if [ -n "$__hf_root" ] && [ -r "$__hf_root/.skilled/hooks/shared/hook-flags.sh" ]; then
-  . "$__hf_root/.skilled/hooks/shared/hook-flags.sh"
+__hf_file="$(dirname "${BASH_SOURCE[0]}")/../hooks/shared/hook-flags.sh"
+if [ -n "$__hf_root" ] && [ -r "$__hf_file" ]; then
+  . "$__hf_file"
   # Honor the pre-rename flag name as a backward-compatible alias for this concern.
   __hook_flags_truthy "$(__hook_flags_resolve SYSTEM_WORKTREE_GUARD_DISABLED)" && exit 0
   hook_enabled git-worktree-guard || exit 0
