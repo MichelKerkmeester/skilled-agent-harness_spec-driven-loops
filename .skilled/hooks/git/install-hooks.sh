@@ -11,8 +11,9 @@
 #
 # Usage: .opencode/hooks/git/install-hooks.sh
 set -euo pipefail
-REPO_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
-HOOKS_SRC="$REPO_ROOT/.opencode/hooks/git"
+# The hooks this installs sit beside it, under whichever name the source root carries.
+HOOKS_SRC="$(cd "$(dirname "$0")" && pwd)"
+REPO_ROOT="$(cd "$HOOKS_SRC/../../.." && pwd)"
 HOOKS_DEST="$REPO_ROOT/.git/hooks"
 ln -sf "$HOOKS_SRC/pre-commit" "$HOOKS_DEST/pre-commit"
 echo "Installed: pre-commit → .git/hooks/pre-commit"

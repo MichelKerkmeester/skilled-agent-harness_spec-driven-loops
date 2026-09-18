@@ -5,31 +5,35 @@
 # See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
 set -euo pipefail
 
-CHECKER=".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 
-# A missing checker means nothing to check in a repository that does not ship the
-# toolchain, and a broken install in one that does. The spec-kit sentinel, under
-# either source root, tells the two apart.
+# >>> source-root selection (identical in every hook script)
+# The source tree sits under .skilled or .opencode, and a checkout may carry both, one,
+# or an empty placeholder of either. The authored sentinel inside the tree decides,
+# never a directory existing, and .skilled wins when both carry it. These scripts run
+# for every repository on the machine, so a missing file means either this repository
+# ships no toolchain or its install is broken, and the same sentinel tells them apart.
+SOURCE_ROOT="$REPO_ROOT/.skilled"
+[[ -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]] || SOURCE_ROOT="$REPO_ROOT/.opencode"
 _in_toolchain_repo() {
-  [[ -f "$REPO_ROOT/.opencode/skills/system-spec-kit/SKILL.md" \
-     || -f "$REPO_ROOT/.skilled/skills/system-spec-kit/SKILL.md" ]]
+  [[ -n "$REPO_ROOT" && -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]]
 }
+# <<< source-root selection
 
 # shared hook kill-switch (master + per-concern); fail-open if guard absent
-if [ -n "$REPO_ROOT" ] && [ -r "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" ]; then
-  . "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh"
+if [ -n "$REPO_ROOT" ] && [ -r "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
+  . "$SOURCE_ROOT/hooks/shared/hook-flags.sh"
   hook_enabled git-commit-hooks || exit 0
 fi
 
-CHECKER_PATH="$REPO_ROOT/$CHECKER"
+CHECKER_PATH="$SOURCE_ROOT/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
 
 if [[ ! -x "$CHECKER_PATH" ]]; then
   if _in_toolchain_repo; then
     echo "BLOCKED: comment hygiene checker is missing or not executable: $CHECKER_PATH" >&2
     exit 1
   fi
-  echo "WARNING: comment hygiene checker not found at $CHECKER — skipping check" >&2
+  echo "WARNING: comment hygiene checker not found at $CHECKER_PATH — skipping check" >&2
   exit 0
 fi
 
@@ -57,7 +61,7 @@ fi
 # Agents are authored in .opencode/agents/ and mirrored to .claude.
 # Block a commit that desyncs the mirrors. Only STAGED agent files are checked,
 # so commits that touch no agents are never affected by this gate.
-MIRROR_CHECKER="$REPO_ROOT/.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs"
+MIRROR_CHECKER="$SOURCE_ROOT/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs"
 
 STAGED_AGENTS=()
 while IFS= read -r file; do

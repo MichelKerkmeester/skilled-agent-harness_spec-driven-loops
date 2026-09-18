@@ -13,21 +13,24 @@ set -euo pipefail
 
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 
-# The hook is installed globally, so a gate script can be missing for two reasons: this
-# repository does not ship the toolchain, which leaves the gate nothing to check, or it
-# does and the install is broken. The spec-kit sentinel tells the two apart, under
-# either source root.
+# >>> source-root selection (identical in every hook script)
+# The source tree sits under .skilled or .opencode, and a checkout may carry both, one,
+# or an empty placeholder of either. The authored sentinel inside the tree decides,
+# never a directory existing, and .skilled wins when both carry it. These scripts run
+# for every repository on the machine, so a missing file means either this repository
+# ships no toolchain or its install is broken, and the same sentinel tells them apart.
+SOURCE_ROOT="$REPO_ROOT/.skilled"
+[[ -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]] || SOURCE_ROOT="$REPO_ROOT/.opencode"
 _in_toolchain_repo() {
-  [[ -n "$REPO_ROOT" ]] || return 1
-  [[ -f "$REPO_ROOT/.opencode/skills/system-spec-kit/SKILL.md" \
-     || -f "$REPO_ROOT/.skilled/skills/system-spec-kit/SKILL.md" ]]
+  [[ -n "$REPO_ROOT" && -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]]
 }
+# <<< source-root selection
 
 # shared hook kill-switch (master + per-concern); fail-open if guard absent
-if [ -n "$REPO_ROOT" ] && [ -r "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" ]; then
+if [ -n "$REPO_ROOT" ] && [ -r "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
   set +e
   # shellcheck source=/dev/null
-  . "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" 2>/dev/null
+  . "$SOURCE_ROOT/hooks/shared/hook-flags.sh" 2>/dev/null
   _hook_flags_rc=$?
   set -e
   if [[ "$_hook_flags_rc" -ne 0 ]] || ! command -v hook_enabled >/dev/null 2>&1; then
@@ -36,7 +39,7 @@ if [ -n "$REPO_ROOT" ] && [ -r "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh"
     hook_enabled git-commit-hooks || exit 0
   fi
 elif _in_toolchain_repo; then
-  echo "WARNING [gate:hook-flags]: $REPO_ROOT/.opencode/hooks/shared/hook-flags.sh is missing or unreadable; commit gates remain enabled." >&2
+  echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is missing or unreadable; commit gates remain enabled." >&2
 fi
 
 if [[ -z "$REPO_ROOT" ]]; then
@@ -54,7 +57,7 @@ fi
 # Blocks commits that add ephemeral-artifact pointers in code comment lines.
 # Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...
 # See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
-COMMENT_CHECKER="${REPO_ROOT}/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+COMMENT_CHECKER="${SOURCE_ROOT}/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
 # This hook is installed globally and runs in repositories that never carried this
 # toolchain, where blocking would make an unrelated repo uncommittable for a gate with
 # nothing to check. A missing checker is out of scope there; inside a checkout that
@@ -101,7 +104,7 @@ fi
 # --- Agent mirror-sync gate (blocking) ---
 # Agents are authored in .opencode/agents/ and mirrored to .claude.
 # Block a commit that desyncs the mirrors. Only staged agent files are checked.
-MIRROR_CHECKER="$REPO_ROOT/.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs"
+MIRROR_CHECKER="$SOURCE_ROOT/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs"
 
 STAGED_AGENTS=()
 while IFS= read -r file; do
@@ -186,12 +189,12 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && command -v node >/dev/null
   # a shell difference. Nothing here depends on which shell is reading it.
   MIRROR_FAIL=0
   MIRROR_CHECKS=(
-    "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs|--check"
-    "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs|--check"
-    "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs|--check"
-    "$REPO_ROOT/.opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs|"
-    "$REPO_ROOT/.opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs|"
-    "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs|--check"
+    "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs|--check"
+    "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs|--check"
+    "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs|--check"
+    "$SOURCE_ROOT/commands/doctor/scripts/agent-roster-mirror-check.cjs|"
+    "$SOURCE_ROOT/commands/doctor/scripts/command-catalog-mirror-check.cjs|"
+    "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs|--check"
   )
   for MIRROR_ENTRY in "${MIRROR_CHECKS[@]}"; do
     MIRROR_SCRIPT="${MIRROR_ENTRY%%|*}"
@@ -225,7 +228,7 @@ fi
 # sk-prompt and the cli-* executors.
 # Bypass: SPECKIT_SKIP_CARD_SYNC=1 git commit ...
 if [[ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]]; then
-  CARD_GUARD="${REPO_ROOT}/.opencode/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh"
+  CARD_GUARD="${SOURCE_ROOT}/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh"
   if git diff --cached --name-only --diff-filter=ACM \
        | grep -Eq '^\.(opencode|skilled)/skills/(cli-external-orchestration/cli-[a-z-]+/(SKILL\.md|assets/prompt-quality-card\.md)|sk-prompt/(assets/cli-prompt-quality-card\.md|references/patterns-evaluation\.md))'; then
     if [[ ! -f "$CARD_GUARD" ]]; then
@@ -254,7 +257,7 @@ fi
 # the installer-that-wiped-a-global-cache regressions.
 # Bypass: SPECKIT_SKIP_MCP_MUTATION_CLASS=1 git commit ...
 if [[ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]]; then
-  MUTCLASS_GUARD="${REPO_ROOT}/.opencode/commands/doctor/scripts/check-mcp-mutation-class.sh"
+  MUTCLASS_GUARD="${SOURCE_ROOT}/commands/doctor/scripts/check-mcp-mutation-class.sh"
   if git diff --cached --name-only --diff-filter=ACM \
        | grep -Eq '^\.(opencode|skilled)/(skills/(mcp-tooling/)?mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/doctor-mcp-install\.yaml)$'; then
     if [[ ! -f "$MUTCLASS_GUARD" ]]; then
@@ -293,9 +296,9 @@ fi
 # or a block, never in silence.
 # Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ...
 if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2>&1; then
-  ROUTE_MINT="$REPO_ROOT/.opencode/bin/compiled-route-manifest.cjs"
-  ROUTE_GUARD="$REPO_ROOT/.opencode/bin/compiled-route-guard.cjs"
-  ROUTE_LAYOUT="$REPO_ROOT/.opencode/bin/lib/compiled-route-layout.cjs"
+  ROUTE_MINT="$SOURCE_ROOT/bin/compiled-route-manifest.cjs"
+  ROUTE_GUARD="$SOURCE_ROOT/bin/compiled-route-guard.cjs"
+  ROUTE_LAYOUT="$SOURCE_ROOT/bin/lib/compiled-route-layout.cjs"
   # Cheap git-only pre-filter. Resolving the hub list costs a node start, and the
   # overwhelming majority of commits stage no routing input at all, so decide with a
   # pathspec first and only pay for the modules when something under skills is staged.
@@ -324,17 +327,8 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
   fi
   # git refuses to stage a path that runs through a symbolic link, and either the source
   # root or the entries beneath it may be links, so the manifests are addressed through
-  # the real directory. Resolving the legacy name only reaches the real tree while that
-  # name is itself a link; once it becomes a directory of links, its entries are the
-  # links instead, so the real root is named first and the legacy name is the fallback
-  # for a checkout that carries only it.
-  # Select by the sentinel this file already uses to recognise the tree, not by the
-  # directory existing: a checkout part-way through the move carries an empty real
-  # directory under the new name while the tree is still under the old one, and a
-  # directory test picks the empty one and then fails looking for manifests inside it.
-  ROUTE_SOURCE="$REPO_ROOT/.skilled"
-  [ -f "$ROUTE_SOURCE/skills/system-spec-kit/SKILL.md" ] || ROUTE_SOURCE="$REPO_ROOT/.opencode"
-  ROUTE_SOURCE="$(cd -P "$ROUTE_SOURCE" && pwd)"
+  # the real directory of the selected source root.
+  ROUTE_SOURCE="$(cd -P "$SOURCE_ROOT" && pwd)"
   if ! ROUTE_RUNTIME="$(node -e '
       const layout = require(process.argv[1]);
       const path = require("path");
@@ -425,7 +419,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     # Captured rather than re-run on failure: refresh writes before it reports, so a
     # second invocation to show the operator its output would write a second time.
     if ! ROUTE_OUT="$(node "$ROUTE_MINT" refresh --hub "$ROUTE_HUB" \
-         --skill-root ".opencode/skills/$ROUTE_HUB" 2>&1)"; then
+         --skill-root "$ROUTE_SOURCE/skills/$ROUTE_HUB" 2>&1)"; then
       echo "" >&2
       echo "BLOCKED [gate:route-remint]: re-minting $ROUTE_HUB failed." >&2
       printf '%s\n' "$ROUTE_OUT" | sed 's/^/  /' >&2
@@ -515,7 +509,7 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
 
     # A repository that does not ship the toolchain has no re-derive tool and nothing
     # to re-derive with, so it passes. Inside one that ships it, a missing tool blocks.
-    SPEC_TOOL="$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs"
+    SPEC_TOOL="$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs"
     if [[ -n "$SPEC_PACKETS" ]] && { [[ -f "$SPEC_TOOL" ]] || _in_toolchain_repo; }; then
       # git runs this hook against a throwaway index when a pathspec narrows the
       # commit. Anything staged there is discarded, so the metadata would reach the

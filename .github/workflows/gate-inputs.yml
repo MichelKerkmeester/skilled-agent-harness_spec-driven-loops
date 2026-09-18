@@ -20,11 +20,22 @@ jobs:
         run: bash .github/scripts/check-gate-inputs.sh
       # The check reads the gates as text, so a shape it cannot parse could still hide a
       # one-root filter. The hook test scripts run the real hooks against staged changes
-      # under both roots, which covers the gates' behavior whatever their spelling.
+      # under both roots, which covers the gates' behavior whatever their spelling. The
+      # suites are found under the source root the hooks themselves would select, so a
+      # checkout carrying only one of the two names still runs them, and finding none
+      # fails instead of passing on an empty loop.
       - name: Run the hook test scripts against the real hooks
         run: |
+          root=.skilled
+          [ -f "$root/skills/system-spec-kit/SKILL.md" ] || root=.opencode
+          shopt -s nullglob
+          suites=("$root"/scripts/git-hooks/tests/*.test.sh "$root"/bin/tests/check-git-hooks.test.sh)
+          if [ "${#suites[@]}" -lt 2 ]; then
+            echo "no hook test suites found under $root" >&2
+            exit 1
+          fi
           status=0
-          for suite in .opencode/scripts/git-hooks/tests/*.test.sh .opencode/bin/tests/check-git-hooks.test.sh; do
+          for suite in "${suites[@]}"; do
             echo "::group::$suite"
             bash "$suite" || status=1
             echo "::endgroup::"

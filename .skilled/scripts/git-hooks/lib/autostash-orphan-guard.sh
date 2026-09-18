@@ -16,7 +16,7 @@
 # alert. <source> names where the entry was found, <recover> is the recovery
 # line. Idempotent and best-effort; never fails.
 _autostash_anchor() {
-  local root="$1" source="$2" sha="$3" recover="$4" rescue
+  local source="$1" sha="$2" recover="$3" rescue log_dir
   [[ -n "$sha" ]] || return 0
 
   # Durable, GC-proof anchor keyed on the stash commit SHA (idempotent).
@@ -31,11 +31,16 @@ _autostash_anchor() {
     printf '   Safety:   anchored at %s (survives a dropped stash)\n\n' "$rescue"
   } >&2
 
-  mkdir -p "$root/.opencode/logs" 2>/dev/null || true
-  printf '%s\tHEAD=%s\t%s\t%s\n' \
-    "$(date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo unknown-time)" \
-    "$(git rev-parse --short HEAD 2>/dev/null || echo unknown)" \
-    "$source" "$sha" >> "$root/.opencode/logs/autostash-orphan-alerts.log" 2>/dev/null || true
+  # The alert is logged under the source root the calling hook selected, which is the
+  # tree this library was loaded from.
+  if [[ -n "${SOURCE_ROOT:-}" ]]; then
+    log_dir="$SOURCE_ROOT/logs"
+    mkdir -p "$log_dir" 2>/dev/null || true
+    printf '%s\tHEAD=%s\t%s\t%s\n' \
+      "$(date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo unknown-time)" \
+      "$(git rev-parse --short HEAD 2>/dev/null || echo unknown)" \
+      "$source" "$sha" >> "$log_dir/autostash-orphan-alerts.log" 2>/dev/null || true
+  fi
 }
 
 # Anchor + surface any autostash-marked stash entry. Best-effort; never fails.
@@ -53,7 +58,7 @@ autostash_orphan_guard() {
       continue
     fi
     seq_sha="$(tr -d '[:space:]' < "$seq_file" 2>/dev/null || true)"
-    _autostash_anchor "$root" "sequencer:$seq" "$seq_sha" \
+    _autostash_anchor "sequencer:$seq" "$seq_sha" \
       'Recover:  git stash pop   (on conflict: resolve, then commit immediately)'
   done
 
@@ -64,7 +69,7 @@ autostash_orphan_guard() {
       *) continue ;;
     esac
 
-    _autostash_anchor "$root" "$ref" "$sha" \
+    _autostash_anchor "$ref" "$sha" \
       "Recover:  git stash pop $ref     (on conflict: resolve, then commit immediately)"
   done < <(git stash list --format='%gd%x09%H%x09%gs' 2>/dev/null)
 
