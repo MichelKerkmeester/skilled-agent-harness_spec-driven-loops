@@ -316,8 +316,8 @@ describe('deep-research-deltas projection surface — negative control', () => {
       `FLIP_FALSE="s/^const PARTITION_BY_ITERATION = true;\\$/const PARTITION_BY_ITERATION = false;/"`,
       `FLIP_TRUE="s/^const PARTITION_BY_ITERATION = false;\\$/const PARTITION_BY_ITERATION = true;/"`,
       `echo "GREEN: $(run)"`,
-      `trap 'sed -i "" "$FLIP_TRUE" "$CONTRACT"; echo "RESTORE: $(run)"' EXIT INT TERM`,
-      `sed -i '' "$FLIP_FALSE" "$CONTRACT"`,
+      `trap 'sed -i.negctl "$FLIP_TRUE" "$CONTRACT"; rm -f "$CONTRACT.negctl"; echo "RESTORE: $(run)"' EXIT INT TERM`,
+      `sed -i.negctl "$FLIP_FALSE" "$CONTRACT" && rm -f "$CONTRACT.negctl"`,
       `echo "RED: $(run)"`,
     ].join('\n');
 

@@ -1041,11 +1041,14 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
   };
 
   it('builds the restored codex exec command with stdin prompt input', () => {
+    const binDir = makeTempDir('fanout-run-restored-codex-');
+    writeStubBinary(binDir, 'codex');
     const command = buildLineageCommand(
       { kind: 'cli-codex', model: 'gpt-5.6-codex', reasoningEffort: 'xhigh', serviceTier: 'fast' },
       'bounded prompt',
       'workspace-write',
       'default',
+      { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } },
     );
     expect({ command: command.command, args: command.args, input: command.input }).toEqual({
       command: 'codex',
@@ -1094,12 +1097,15 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
   });
 
   it('keeps omitted liveTools byte-equivalent to explicit inherit for legacy dispatch', () => {
+    const binDir = makeTempDir('fanout-run-legacy-codex-');
+    writeStubBinary(binDir, 'codex');
+    const env = { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` };
     const omitted = buildLineageCommand(
       { kind: 'cli-codex', model: 'gpt-5.6-codex', reasoningEffort: 'xhigh', serviceTier: 'fast' },
       'legacy prompt',
       'workspace-write',
       'acceptEdits',
-      { executableVersion: 'codex legacy' },
+      { env, executableVersion: 'codex legacy' },
     );
     const inherited = buildLineageCommand(
       {
@@ -1112,7 +1118,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
       'legacy prompt',
       'workspace-write',
       'acceptEdits',
-      { executableVersion: 'codex legacy' },
+      { env, executableVersion: 'codex legacy' },
     );
     expect({ command: omitted.command, args: omitted.args, input: omitted.input }).toEqual({
       command: inherited.command,
@@ -1125,6 +1131,8 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
   it('returns the complete adapter contract for every executor kind', () => {
     const binDir = makeTempDir('fanout-run-adapter-contract-');
     writeStubBinary(binDir, 'codex');
+    writeStubBinary(binDir, 'claude');
+    writeStubBinary(binDir, 'opencode');
     writeStubBinary(binDir, 'cursor-agent');
     const cases = [
       { kind: 'native', label: 'native', sandbox: 'workspace-write' },
@@ -1167,6 +1175,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
   it('fingerprints only the effective allowlist and prompt digest', () => {
     const binDir = makeTempDir('fanout-run-fingerprint-codex-');
     writeStubBinary(binDir, 'codex');
+    writeStubBinary(binDir, 'opencode');
     const pathValue = `${binDir}:${process.env.PATH ?? ''}`;
     const baseLineage = {
       kind: 'cli-codex',
@@ -1216,7 +1225,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
       // cli-opencode can only enforce danger-full-access; read-only/workspace-write fail closed.
       'danger-full-access',
       'plan',
-      { executableVersion: 'codex 1.2.3' },
+      { env: { ...process.env, PATH: pathValue }, executableVersion: 'codex 1.2.3' },
     );
     expect(otherKind.invocationFingerprint).not.toBe(baseline.invocationFingerprint);
 
@@ -1941,9 +1950,12 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
   });
 
   it('pins cli-opencode deepseek-v4-flash to --variant max even when a lower effort is requested', () => {
+    const binDir = makeTempDir('fanout-run-opencode-variant-');
+    writeStubBinary(binDir, 'opencode');
+    const env = { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` };
     const flashHigh = buildLineageCommand(
       { kind: 'cli-opencode', model: 'deepseek/deepseek-v4-flash', reasoningEffort: 'high' },
-      'p', 'danger-full-access', 'default', { env: process.env },
+      'p', 'danger-full-access', 'default', { env },
     ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null } };
     const vIdx = flashHigh.args.indexOf('--variant');
     expect(vIdx).toBeGreaterThan(-1);
@@ -1952,7 +1964,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     // A non-flash opencode model keeps the requested effort.
     const other = buildLineageCommand(
       { kind: 'cli-opencode', model: 'anthropic/claude-opus-4-8', reasoningEffort: 'high' },
-      'p', 'danger-full-access', 'default', { env: process.env },
+      'p', 'danger-full-access', 'default', { env },
     ) as { args: string[] };
     const oIdx = other.args.indexOf('--variant');
     expect(oIdx).toBeGreaterThan(-1);
