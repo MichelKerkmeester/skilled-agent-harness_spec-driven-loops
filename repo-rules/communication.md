@@ -91,7 +91,9 @@ The failure this prevents: the answer is in there, and they did not find it.
 **No tables in a reply.** A table makes the reader parse a grid to reach one fact, and it
 reads as a form rather than an answer. One or two facts go in a sentence; parallel items go
 in a bulleted list. A table earns its place in a file someone returns to, never in a reply
-they read once.
+they read once. The one exception is the in-flight block in
+[`communication-handoff.md`](communication-handoff.md) §6, and it is the same test rather
+than a break from it: work still running is a reply the operator returns to while it runs.
 
 The failure this prevents: the reader parses a grid to learn what one sentence would
 have said.

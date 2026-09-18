@@ -25,9 +25,15 @@ trigger_phrases:
   - "catch me up"
   - "closing contract"
   - "one concrete next action"
+  - "what is in flight"
+  - "still running in the background"
+  - "did it stall or is it working"
+  - "will you continue on your own"
+  - "waiting on me or on a machine"
+  - "resume condition"
 importance_tier: important
 contextType: reference
-version: 1.5.0.0
+version: 1.6.0.0
 ---
 
 # Rule: Communication handoff
@@ -39,6 +45,7 @@ version: 1.5.0.0
 
 - About to end a turn, of any kind, substantive or not.
 - About to report that work is done, blocked, partially done, or waiting on something.
+- About to end a turn while something you started is still running.
 - About to ask the operator anything.
 - About to state a fork, a trade-off, or two acceptable paths.
 - About to continue past a decision that was never actually made, which is when this rule earns its load.
@@ -163,7 +170,38 @@ check first or use the fallback.
 
 ---
 
-## 6. WHAT THIS RULE IS NOT
+## 6. WHAT IS STILL RUNNING, AND WHAT RESUMES YOU
+
+A turn can end with nothing for the operator to do and still not be finished, because work
+you started is running where they cannot see it. Two things close that gap, and each is
+written only when it is true.
+
+**Name what is in flight.** Anything you started that is still running and not yet
+reportable: a background agent, a dispatched lane, a watcher, a long suite, a build. One
+item is a line. More than one is a small table, the item and the state it is actually in.
+That table is this rule's one carve-out from [`communication.md`](communication.md) §2,
+earned because the operator is tracking parallel work rather than reading a claim.
+
+A row that only says a thing exists has told the operator what they already assumed. The
+state is the payload: what it is doing now, how far in it is, what it is waiting on.
+
+**Say what resumes you.** One line, of the shape "I will continue autonomously when …",
+naming the event that unblocks you: a lane returning, a suite going green, a watcher firing.
+From the outside, a turn waiting on the operator and a turn waiting on a machine look
+identical, and this line is the only thing that separates them.
+
+**Neither is ceremony.** A turn with nothing running writes no table and claims no resume
+condition, because an empty in-flight block is a status manufactured out of nothing. A turn
+that genuinely needs a decision says so and stops: claiming you will continue by yourself
+when you cannot is worse than claiming nothing, because the operator stops watching a lane
+that has already stalled.
+
+The failure this prevents: a turn that goes quiet while work is still running, leaving the
+operator unable to tell whether anything is happening or whether it is their move.
+
+---
+
+## 7. WHAT THIS RULE IS NOT
 
 - **Not licence to ask more.** The bar in §4 is narrow on purpose. More questions is the
   failure this rule is most likely to be misread into, and `AGENTS.md` §2 consolidates whatever
@@ -176,7 +214,7 @@ check first or use the fallback.
 
 ---
 
-## 7. SELF-CHECK
+## 8. SELF-CHECK
 
 - [ ] The turn ends by naming what is the operator's to do, or by saying nothing is.
 - [ ] Every item on that list is theirs, not mine reframed.
@@ -186,3 +224,5 @@ check first or use the fallback.
 - [ ] Nothing was handed back that I could have decided or done myself.
 - [ ] No question-tool name appears that I did not confirm for the runtime I am in.
 - [ ] Where the direction changed, two fixes failed or the work resumed after a gap, I restated what is done, what is open and what changed.
+- [ ] Anything I started that is still running is named with the state it is in, and nothing appears there that has already finished.
+- [ ] A claim that I will continue on my own names the event that resumes me, and no such claim stands on a turn that needs an operator decision.

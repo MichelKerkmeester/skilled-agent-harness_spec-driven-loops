@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7149,
+    "missing-frontmatter": 7150,
     "non-yaml-frontmatter": 1,
     "ok": 15280,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27273,
+  "documentsScanned": 27274,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "e1cbcf7bfceb55bb33c10d07b2c3643576044ebc4e174c8b74b2a14e601b9fab",
+  "manifestHash": "3dcd60110d96877d903cfda0a70816c5fccbec93735f1a5f3d1ae5c87084991a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -76838,6 +76838,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/review/scope-under-l1-brief.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     }
   ],
