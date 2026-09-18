@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cc963ad4b29aaef74902f87b732c049b59a815a7c53ebfa58b5aacd1492f85a2",
+  "manifestHash": "a5b0836258aab5ea52315dbaee2949ccb77cd8b2165fd0b37169d1cd23492f5a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9308,6 +9308,9 @@
     ],
     "adjudicator verdict scoring cjs": [
       "adjudicator-verdict-scoring.cjs"
+    ],
+    "admission research fan out": [
+      "admission research fan-out"
     ],
     "adopt deep pi": [
       "adopt deep-pi"
@@ -26064,6 +26067,9 @@
     "compiled routing 6 hub migration plan": [
       "compiled routing 6 hub migration plan"
     ],
+    "compiled routing admission path": [
+      "compiled routing admission path"
+    ],
     "compiled routing and legacy fallback": [
       "compiled routing and legacy fallback"
     ],
@@ -26156,6 +26162,9 @@
     ],
     "compiled routing gate blocks push": [
       "compiled routing gate blocks push"
+    ],
+    "compiled routing gold checker": [
+      "compiled routing gold checker"
     ],
     "compiled routing kill switch": [
       "compiled routing kill switch"
@@ -26303,6 +26312,21 @@
     ],
     "compiled routing withdrawal tasks": [
       "compiled-routing-withdrawal tasks"
+    ],
+    "compiled serving admission acceptance": [
+      "compiled-serving admission acceptance"
+    ],
+    "compiled serving admission plan": [
+      "compiled-serving admission plan"
+    ],
+    "compiled serving admission research": [
+      "compiled-serving admission research"
+    ],
+    "compiled serving admission summary": [
+      "compiled-serving admission summary"
+    ],
+    "compiled serving admission tasks": [
+      "compiled-serving admission tasks"
     ],
     "compiled serving false green": [
       "compiled serving false green"
@@ -56651,6 +56675,9 @@
     "lane c hub benchmark tasks": [
       "lane-c hub benchmark tasks"
     ],
+    "lane c parity replacement": [
+      "lane c parity replacement"
+    ],
     "lane c removal": [
       "lane c removal"
     ],
@@ -73719,6 +73746,9 @@
     "phase 14 tasks": [
       "phase 14 tasks"
     ],
+    "phase 15 closure gate": [
+      "phase 15 closure gate"
+    ],
     "phase 15 implementation summary": [
       "phase 15 implementation summary"
     ],
@@ -86549,6 +86579,12 @@
     ],
     "routing findings status": [
       "routing findings status"
+    ],
+    "routing gold agreement checker": [
+      "routing gold agreement checker"
+    ],
+    "routing gold checker recommendation": [
+      "routing gold checker recommendation"
     ],
     "routing gold corpus per hub": [
       "routing gold corpus per hub"
