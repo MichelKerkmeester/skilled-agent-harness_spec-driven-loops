@@ -19,7 +19,7 @@ import {
 } from '../hooks/dispatch/lib/dispatch-rule-checks.mjs';
 import { createGitContext } from '../skills/sk-git/scripts/lib/git-context.mjs';
 import { GIT_CHECKS, GIT_SHAPE } from '../skills/sk-git/scripts/lib/git-rule-checks.mjs';
-import { findRepoRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
+import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -85,7 +85,10 @@ export default async function MkGitPreflightAdvisoryPlugin(ctx) {
   } catch (_) {
     // Fail open with the host directory when root discovery cannot classify it.
   }
-  const skillMdPath = join(projectDir, '.skilled', 'skills', 'sk-git', 'SKILL.md');
+  // The rules live under whichever source root the checkout carries. A checkout with
+  // neither declares no rules, and the advisory stays silent there.
+  const sourceRoot = findSourceRoot(projectDir);
+  const skillMdPath = sourceRoot ? join(sourceRoot, 'skills', 'sk-git', 'SKILL.md') : null;
   const pendingEvents = [];
 
   return {
@@ -101,7 +104,7 @@ export default async function MkGitPreflightAdvisoryPlugin(ctx) {
         if (!command || !GIT_SHAPE.test(command)) return;
 
         const suppression = resolveSuppression(process.env);
-        if (suppression.isOff) return;
+        if (suppression.isOff || !skillMdPath) return;
 
         const rules = readHardRules(skillMdPath)
           .filter((rule) => GIT_CHECKS[rule.check] && !suppression.isSilenced(rule.id));

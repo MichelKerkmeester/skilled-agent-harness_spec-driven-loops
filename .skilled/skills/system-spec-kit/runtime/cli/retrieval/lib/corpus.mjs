@@ -10,6 +10,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { SOURCE_ROOT_SENTINEL, findSourceRoot } from '../../../hooks/lib/workspace/repo-root.mjs';
 import { compareCodeUnits } from './normalize.mjs';
 
 // ───────────────────────────────────────────────────────────────────
@@ -26,6 +27,27 @@ import { compareCodeUnits } from './normalize.mjs';
  * and the reason for every root decision.
  */
 export const CORPUS_ROOTS = Object.freeze(['specs', '.skilled/skills', '.skilled/hooks']);
+
+/**
+ * The corpus roots for one repository, spelled under the source root it carries.
+ *
+ * `CORPUS_ROOTS` spells the source tree as `.skilled`. A checkout that carries it only
+ * as `.opencode` would otherwise skip both source roots as missing and publish an index
+ * of the spec tree alone, which reads as a successful build. With neither spelling
+ * holding the spec-kit sentinel there is no source tree to index, and that refuses.
+ *
+ * @param {string} repoRoot Absolute repository root.
+ * @returns {readonly string[]} The walk roots, in `CORPUS_ROOTS` order.
+ * @throws {Error} When neither source-root name holds the spec-kit sentinel.
+ */
+export function corpusRootsFor(repoRoot) {
+  const sourceRoot = findSourceRoot(repoRoot);
+  if (!sourceRoot) {
+    throw new Error(`no source tree under ${repoRoot}: neither .skilled nor .opencode holds ${SOURCE_ROOT_SENTINEL}`);
+  }
+  const name = path.basename(sourceRoot);
+  return Object.freeze(CORPUS_ROOTS.map((root) => root.replace(/^\.skilled\//, `${name}/`)));
+}
 
 /**
  * Human-readable exclusion list recorded in the manifest. It is part of the
@@ -149,7 +171,7 @@ export function isExcludedDirectory(name, parentName, relativePath = '') {
  *   Sorted canonical relative paths plus everything deliberately not walked.
  */
 export function walkCorpus(repoRoot, options = {}) {
-  const roots = options.roots ?? CORPUS_ROOTS;
+  const roots = options.roots ?? corpusRootsFor(repoRoot);
   /** @type {Map<string, { canonical: string, isLink: boolean }>} */
   const byRealPath = new Map();
   /** @type {Array<{ path: string, reason: string }>} */

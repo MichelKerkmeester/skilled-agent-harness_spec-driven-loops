@@ -1,11 +1,12 @@
 import fs from 'node:fs';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
-import { CORPUS_ROOTS, walkCorpus } from '../retrieval/lib/corpus.mjs';
-import { DEFAULT_REPO_ROOT, findRepoRoot } from '../retrieval/generate-trigger-index.mjs';
+import { CORPUS_ROOTS, corpusRootsFor, walkCorpus } from '../retrieval/lib/corpus.mjs';
+import { DEFAULT_REPO_ROOT, buildIndex, findRepoRoot } from '../retrieval/generate-trigger-index.mjs';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 
@@ -44,6 +45,48 @@ describe('walkCorpus over the real repository', () => {
     for (const root of CORPUS_ROOTS) {
       const count = files.filter((file) => file === root || file.startsWith(`${root}/`)).length;
       expect(count, `corpus root "${root}" contributed no documents`).toBeGreaterThan(0);
+    }
+  });
+});
+
+describe('corpus roots follow the source root a checkout carries', () => {
+  function checkout(sourceName: string | null): string {
+    const repo = fs.mkdtempSync(path.join(fs.realpathSync(tmpdir()), 'retrieval-corpus-roots-'));
+    fs.mkdirSync(path.join(repo, 'specs', 'demo'), { recursive: true });
+    fs.writeFileSync(path.join(repo, 'specs', 'demo', 'spec.md'), '---\ntrigger_phrases:\n  - "demo spec"\n---\n# Demo\n');
+    if (sourceName) {
+      const skill = path.join(repo, sourceName, 'skills', 'system-spec-kit');
+      fs.mkdirSync(skill, { recursive: true });
+      fs.writeFileSync(path.join(skill, 'SKILL.md'), '---\ntrigger_phrases:\n  - "demo skill"\n---\n# Skill\n');
+    }
+    return repo;
+  }
+
+  it('spells the roots under .opencode when that is the only source root', () => {
+    const repo = checkout('.opencode');
+    try {
+      expect(corpusRootsFor(repo)).toEqual(['specs', '.opencode/skills', '.opencode/hooks']);
+      expect(walkCorpus(repo).files).toContain('.opencode/skills/system-spec-kit/SKILL.md');
+    } finally {
+      fs.rmSync(repo, { recursive: true, force: true });
+    }
+  });
+
+  it('keeps the canonical spelling where .skilled carries the tree', () => {
+    const repo = checkout('.skilled');
+    try {
+      expect(corpusRootsFor(repo)).toEqual([...CORPUS_ROOTS]);
+    } finally {
+      fs.rmSync(repo, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses to build an index when no source root carries the sentinel', () => {
+    const repo = checkout(null);
+    try {
+      expect(() => buildIndex({ repoRoot: repo })).toThrow(/no source tree/u);
+    } finally {
+      fs.rmSync(repo, { recursive: true, force: true });
     }
   });
 });
