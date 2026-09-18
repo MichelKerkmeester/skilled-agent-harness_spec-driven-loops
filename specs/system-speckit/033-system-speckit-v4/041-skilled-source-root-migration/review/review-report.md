@@ -17,7 +17,7 @@ trigger_phrases:
 
 **Scope.** Base `3717ac8854` to tip `0b65a92dad`, reviewed by GPT-5.6 Luna at maximum reasoning on the fast tier, one lane, ten angles, no early stop.
 
-**Coverage.** Nine of ten angles completed. The tenth, documentation truthfulness, was interrupted by a session boundary and returned no answer. Its ground is partly covered by findings from other angles.
+**Coverage.** All ten angles completed. The tenth, documentation truthfulness, was interrupted by a session boundary on the first run and re-run on 2026-09-18 against commit `67fa4f7b8e`, after the remediation of the other nine had landed. Section 12 carries its results.
 
 ---
 
@@ -135,6 +135,45 @@ Six of the first seven are the section 2 defect class. A shared resolver would l
 ## 10. EVIDENCE
 
 - Findings as extracted: `findings-extracted.json`
-- Per-iteration output: `iterations/iteration-001.md` to `iteration-009.md`
-- Raw transcripts: `iterations/raw-001.txt` to `raw-010.txt`
+- Per-iteration output: `iterations/iteration-001.md` to `iteration-010.md`
+- Raw transcripts were not kept. At 6 to 15 MB each they were read for extraction and then discarded, so the iteration files are the record.
 - Configuration: `deep-review-config.json`
+
+---
+
+## 11. REMEDIATION
+
+Phase `012-fix-deep-review-p1-p2-findings-for-source-root-migration` closed the findings above. Each fix carries a test that fails against the code or document it replaced.
+
+| Finding | Fix | Proof |
+|---|---|---|
+| `HOOK-001`, `HOOK-003`, `HOOK-004`, `HOOK-005` | One sentinel selection block in every hook, the checker and both hook installers (`e7c7136391`) | `.skilled/scripts/git-hooks/tests/source-root-selection.test.sh` |
+| `GATE-001`, `GATE-002` | Both roots read alike in every parser branch, `$SOURCE_ROOT` inputs resolved, suites found under the selected root (`e7c7136391`) | `.github/scripts/tests/check-gate-inputs.test.sh` cases 43 to 47 |
+| `INSTALL-001`, `GEN-001`, `CONSUMER-001`, `CONSUMER-002` | `findSourceRoot` beside `findRepoRoot`, used by the installer, the generator and four plugins (`63ad140f9b`) | Legacy-only cases in the installer, retrieval, consumer and advisor tests |
+| `CI-001`, `CI-002`, `CI-003` | Manifest triggers, push coverage for six guards, a true workflow table (`d755553a6e`) | Trigger table derived from the workflow files |
+| `RETIRE-001`, `RETIRE-003`, `RETIRE-004`, `REF-001`, `REF-002`, `COMPAT-002` | Help text, helper drift check, three guides, two stale names, the sync manifest (`67fa4f7b8e`) | `mcp-installers.test.cjs`, `install-guide-contract.test.cjs`, `opencode-compat-layout.test.cjs` |
+| `COV-001`, `COV-002`, `COV-004`, `COV-005` | The tests named in the rows above, plus a per-entry layout in the resolver parity suite | Each fails against the pre-fix state |
+| `DOC-001` to `DOC-010` | Section 12 | Each claim re-checked against the tree after the edit |
+
+Two guards that now run on push, `markdown-link-integrity` and `skill-doc-frontmatter`, fail on the tree for reasons that predate the migration: 47 broken links and 3 frontmatter violations in files other packets own.
+
+---
+
+## 12. ANGLE 10: DOCUMENTATION TRUTHFULNESS
+
+The re-run returned ten findings, three P1 and seven P2, and every one held up when checked against the tree. The executor printed FAIL. With no P0 the verdict contract makes it CONDITIONAL, the same as the review as a whole.
+
+| ID | Sev | What was false | Fix |
+|---|---|---|---|
+| `DOC-001` | P1 | The root README offered Gate 3 option E, which does not exist | Option D |
+| `DOC-002` | P1 | The hooks README described a pre-push naming gate that was removed, and said the gates find their scripts under `.opencode/` | The four real pre-push gates, and the selected source root |
+| `DOC-003` | P1 | The Hermes README, prompt card, provider reference, feature catalog and playbook said the roster is two models; the code enforces seven | Seven ids throughout |
+| `DOC-004` | P2 | The `.opencode` README called every entry but the plugins a link | Names every real file |
+| `DOC-005` | P2 | Five runtime manifests carried agent and command counts that had drifted | Counts removed in favour of the drift checks they already name |
+| `DOC-006` | P2 | The workflows README said CI runs every hook suite; the glob takes only `*.test.sh` | Narrowed, with the harness named as local-only |
+| `DOC-007` | P2 | The root README called `.opencode/agents/` canonical | It links to `.skilled/agents/` |
+| `DOC-008` | P2 | The root README gave sk-doc ten packets and still listed install-guide authoring | Fourteen modes across thirteen packets, retired mode removed |
+| `DOC-009` | P2 | The skills catalog listed six CLI modes | `cli-hermes` added |
+| `DOC-010` | P2 | The root README told readers to register a new skill by hand | Discovery is automatic; the catalog row is optional |
+
+One residue stays open: the `cli-external-orchestration` hub's `graph-metadata.json` still summarises a two-model Hermes roster. That file feeds the compiled skill graph, so it changes through its generator, not by hand.

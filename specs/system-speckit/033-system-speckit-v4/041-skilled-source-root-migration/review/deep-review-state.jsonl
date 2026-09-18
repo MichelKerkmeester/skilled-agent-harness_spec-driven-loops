@@ -8,3 +8,4 @@
 {"iteration": 8, "angle": 8, "findings": 2, "p0": 0, "p1": 1, "p2": 1, "verdict": "CONDITIONAL", "at": "2026-09-18T08:10:20Z", "target_agent": "deep-review", "mode": "review", "executor": "cli-codex:gpt-5.6-luna:max:fast"}
 {"iteration": 9, "angle": 9, "findings": 5, "p0": 0, "p1": 3, "p2": 2, "verdict": "CONDITIONAL", "at": "2026-09-18T08:22:49Z", "target_agent": "deep-review", "mode": "review", "executor": "cli-codex:gpt-5.6-luna:max:fast"}
 {"iteration": 10, "angle": 10, "findings": 0, "p0": 0, "p1": 0, "p2": 0, "verdict": "INCOMPLETE", "at": null, "target_agent": "deep-review", "mode": "review", "executor": "cli-codex:gpt-5.6-luna:max:fast"}
+{"iteration": 10, "angle": 10, "findings": 10, "p0": 0, "p1": 3, "p2": 7, "verdict": "CONDITIONAL", "at": "2026-09-18T10:43:51Z", "target_agent": "deep-review", "mode": "review", "executor": "cli-codex:gpt-5.6-luna:max:fast", "rerun_of": 10, "reviewed_commit": "67fa4f7b8e"}

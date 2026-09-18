@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration",
+  "description": "The deep review of the move from `.opencode` to `.skilled` returned verdict CONDITIONAL with 26 distinct findings",
+  "keywords": [
+    "deep",
+    "review",
+    "move",
+    "opencode",
+    "skilled",
+    "returned",
+    "verdict",
+    "conditional",
+    "distinct",
+    "findings"
+  ],
+  "lastUpdated": "2026-09-18T10:29:10.758Z",
+  "specId": "012",
+  "folderSlug": "fix-deep-review-p1-p2-findings-for-source-root-migration",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
