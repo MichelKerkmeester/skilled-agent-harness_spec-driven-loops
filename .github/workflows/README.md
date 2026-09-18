@@ -15,11 +15,7 @@ trigger_phrases:
 
 `.github/workflows/` contains the repository's GitHub Actions definitions. The workflows cover documentation integrity, naming, routing drift, mirror synchronization, runtime boundaries and scheduled freshness checks.
 
-The live guard workflows that matter for the current README coverage are `naming-standard-guard.yml`, `runtime-no-spec-import.yml` and `spec-root-resolution-matrix.yml`. A historical isolation workflow is absent and is not part of the inventory.
-
-```text example
-isolation-check.yml
-```
+Section 2 lists what each workflow checks and which events it answers to. Section 3 names the workflows that run a guard script of their own.
 
 ---
 
@@ -27,18 +23,26 @@ isolation-check.yml
 
 | Workflow | Responsibility |
 |---|---|
+| `advisory-checks.yml` | Runs advisory test suites and doc-model references; reports without gating. |
 | `agent-mirror-sync.yml` | Keeps the `.skilled` and `.claude` agent mirrors aligned. |
-| `changed-packet-validation.yml` | Validates the spec packets a pull request changed. |
+| `changed-packet-validation.yml` | Validates the spec packets a commit or pull request changed. |
+| `chart-corpus.yml` | Checks the chart corpus contract and runs its mutation suite. |
+| `command-tree-parity.yml` | Keeps the OpenCode and Claude command trees identical. |
 | `comment-hygiene.yml` | Rejects forbidden ephemeral-artifact pointers in code comments. |
+| `diagram-corpus.yml` | Checks the diagram corpus contract, its mutation suite and both applicator gates. |
+| `dispatch-enforcement-guard.yml` | Checks that every declared dispatch rule is reachable and discriminates. |
 | `gate-inputs.yml` | Checks that every hook and workflow input resolves and that every path filter names both `.opencode/` and `.skilled/`. |
 | `markdown-link-integrity.yml` | Checks repository Markdown link integrity. |
 | `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
+| `playbook-operator-contract.yml` | Checks the manual-testing-playbook operator-scenario contract. |
 | `prompt-card-sync.yml` | Checks prompt and knowledge-card synchronization. |
+| `repo-rules-corpus.yml` | Keeps the repo-rules corpus loadable. |
 | `routing-registry-drift.yml` | Detects drift between routing registries and skill surfaces. |
 | `rule-canary-sync.yml` | Checks rule canaries against their source rules. |
 | `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |
-| `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report; does not gate. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
+| `spec-kit-check.yml` | Typechecks and tests the spec-kit packages and checks that runtime mirrors agree with their sources. |
+| `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report; does not gate. |
 
 ### Push versus pull-request coverage
 
@@ -46,22 +50,21 @@ The repository's documented flow pushes release lines directly, so a gate that r
 
 | Workflow | Push | Pull request | Why |
 |---|---|---|---|
-| `advisory-checks.yml`, `command-tree-parity.yml`, `naming-standard-guard.yml`, `playbook-operator-contract.yml` | yes | yes | Cheap guards over the whole tree |
+| `advisory-checks.yml`, `command-tree-parity.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml` | yes | yes | Guards over the whole tree |
+| `naming-standard-guard.yml` | release lines only | yes | Runs on `skilled/v*` pushes and every pull request |
 | `gate-inputs.yml` | yes, no path filter | yes, no path filter | Guards a move of the source tree, the one change a path filter could miss |
-| `routing-registry-drift.yml`, `runtime-no-spec-import.yml` | yes, path-filtered | yes, path-filtered | Expensive; run only when their inputs change |
-| `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Six suites; path-filtered to the skill so unrelated pushes stay cheap |
+| `chart-corpus.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
 | `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed; on push it diffs against the previous tip |
-| `agent-mirror-sync.yml`, `comment-hygiene.yml`, `markdown-link-integrity.yml`, `prompt-card-sync.yml`, `rule-canary-sync.yml`, `skill-doc-frontmatter.yml` | no | yes | Review-time checks on a diff; the pre-commit hooks cover the same ground on direct pushes |
+| `agent-mirror-sync.yml`, `comment-hygiene.yml`, `prompt-card-sync.yml` | no | yes | Review-time checks; the pre-commit hook runs the same checkers on every commit |
 | `strict-pass-freshness-report.yml` | schedule | no | A weekly report, not a gate |
-| `spec-root-resolution-matrix.yml` | Exercises spec-root resolution across its configured matrix. |
 
 ---
 
 ## 3. GUARD ENTRYPOINTS
 
-The naming guard runs the naming checker and its focused tests. The runtime-import guard runs the real-tree check plus clean and failing fixtures. The spec-root matrix installs its script dependencies, verifies collection and runs the configured resolution rows.
+The naming guard runs the naming checker and its focused tests. The runtime-import guard runs the real-tree check plus clean and failing fixtures.
 
-The gate-input workflow runs `.github/scripts/tests/check-gate-inputs.test.sh` against its fixtures, then `.github/scripts/check-gate-inputs.sh` over the real tree. The broken-move drill, `.github/scripts/tests/broken-move-drill.sh`, runs locally rather than in CI because it clones the whole repository. A workflow whose guard script is missing fails that step instead of skipping it.
+The gate-input workflow runs `.github/scripts/tests/check-gate-inputs.test.sh` against its fixtures, then `.github/scripts/check-gate-inputs.sh` over the real tree, then every hook test suite under the source root the hooks select. The broken-move drill, `.github/scripts/tests/broken-move-drill.sh`, runs locally rather than in CI because it clones the whole repository. A workflow whose guard script is missing fails that step instead of skipping it.
 
 ---
 

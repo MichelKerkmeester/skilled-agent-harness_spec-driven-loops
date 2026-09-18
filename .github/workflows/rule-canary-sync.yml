@@ -2,6 +2,8 @@ name: Rule Canary Sync
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [main, 'skilled/**']
 
 jobs:
   rule-canary:

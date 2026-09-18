@@ -7,7 +7,7 @@ name: Runtime No-Spec-Import Guard
 # `.opencode/specs`, so the coupling cannot silently return.
 on:
   push:
-    branches: [main]
+    branches: [main, 'skilled/**']
     paths:
       - '.github/workflows/runtime-no-spec-import.yml'
       - '.opencode/bin/**'

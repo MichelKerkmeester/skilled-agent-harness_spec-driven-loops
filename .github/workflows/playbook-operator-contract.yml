@@ -5,7 +5,7 @@ on:
   # trigger would let that land green because no watched path changed.
   pull_request:
   push:
-    branches: [main]
+    branches: [main, 'skilled/**']
   schedule:
     - cron: '17 6 * * *'
   workflow_dispatch:

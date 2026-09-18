@@ -7,6 +7,13 @@ on:
       - 'repo-rules/**'
       - '.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
       - '.skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - 'REPO RULES.md'
+      - 'repo-rules/**'
+      - '.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
+      - '.skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
 
 jobs:
   repo-rules-corpus:

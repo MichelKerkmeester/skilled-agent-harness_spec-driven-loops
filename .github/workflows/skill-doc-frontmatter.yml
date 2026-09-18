@@ -9,6 +9,15 @@ on:
       - '.skilled/skills/**/references/**'
       - '.opencode/skills/**/assets/**'
       - '.skilled/skills/**/assets/**'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      # A single * does not cross a slash, so this once matched only top-level
+      # skills and ignored every packet-owned doc — the bulk of the corpus.
+      - '.opencode/skills/**/references/**'
+      - '.skilled/skills/**/references/**'
+      - '.opencode/skills/**/assets/**'
+      - '.skilled/skills/**/assets/**'
 
 jobs:
   frontmatter-coverage:
