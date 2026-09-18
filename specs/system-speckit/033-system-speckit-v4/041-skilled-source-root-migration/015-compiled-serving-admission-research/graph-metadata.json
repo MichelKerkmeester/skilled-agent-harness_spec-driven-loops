@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled-serving admission research",
+      "lane c parity replacement",
+      "compiled routing admission path",
+      "routing gold agreement checker",
+      "compiled-serving admission plan",
+      "admission research fan-out",
+      "phase 15 plan",
+      "compiled-serving admission tasks",
+      "phase 15 tasks",
+      "compiled-serving admission acceptance",
+      "phase 15 closure gate",
+      "compiled-serving admission summary"
+    ],
+    "key_topics": [
+      "compiled-serving",
+      "admission",
+      "research",
+      "lane",
+      "parity",
+      "replacement",
+      "compiled",
+      "routing",
+      "path",
+      "gold",
+      "agreement",
+      "checker"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/findings-registry.json",
+      "research/orchestration-summary.json",
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      "research/deep-research-config.json",
+      "research/resource-map.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs",
+      ".skilled/bin/compiled-routing-foundation.vitest.ts",
+      ".skilled/bin/tests/compiled-route-manifest.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-architecture.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-foundation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/compiled-routing-foundation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A parent hub serves compiled routing only after it earns the `compiled-serving` verdict: its compiled decision must match its legacy decision on every scenario, with zero drift",
+    "created_at": "2026-09-18T20:07:57Z",
+    "last_save_at": "2026-09-18T22:38:14.896Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ac754b15245568364993c61bcd152b18e79fcf0d1bc32f39593e2387a5db3468",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b117741dd76099011ce456621d3eaee0403a66c6e61b24af8e8e9abc9f398b37",
+      "plan.md": "04ca09d7a434018d9518e065d4b22c17d33cde392a6b76079a341b6605e94e0e",
+      "tasks.md": "640dd213d4741ca699f3cc55507d4adc4ec045f3c62003d5deb4bb0d8b1aa346",
+      "implementation-summary.md": "6f3900d1e2cef13154d1865b4966cfd290ba3108d0f87f3cebcc2651dadaf829",
+      "research/research.md": "ba030f4fe631d96cfe6fa08e7c28b558d42190f723362c05b85fa40449c51654"
+    },
+    "last_active_at": null
+  }
+}

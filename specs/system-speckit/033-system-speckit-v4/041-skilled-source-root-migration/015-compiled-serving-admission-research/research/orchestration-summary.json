@@ -1,0 +1,72 @@
+{
+  "run_id": "1789762218897-56yqt6",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 1,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/lineages/deepseek/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-18T20:10:20.087Z",
+        "end_at_iso": "2026-09-18T20:35:16.477Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 5,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-09-18T20:45:00Z",
+          "deltaMs": 463523
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-09-18T21:10:00Z",
+          "deltaMs": 1963523
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-09-18T21:40:00Z",
+          "deltaMs": 3763523
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-18T21:55:00Z",
+          "deltaMs": 4663523
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-09-18T22:05:00Z",
+          "deltaMs": 5263523
+        }
+      ]
+    }
+  ]
+}

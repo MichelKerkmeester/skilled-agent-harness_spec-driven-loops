@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
+  "description": "A parent hub serves compiled routing only after it earns the `compiled-serving` verdict: its compiled decision must match its legacy decision on every",
+  "keywords": [
+    "parent",
+    "hub",
+    "serves",
+    "compiled",
+    "routing",
+    "only",
+    "earns",
+    "compiled-serving",
+    "verdict",
+    "decision",
+    "must",
+    "match",
+    "legacy",
+    "every"
+  ],
+  "lastUpdated": "2026-09-18T22:35:59.694Z",
+  "specId": "015",
+  "folderSlug": "compiled-serving-admission-research",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-09-26_23-35__deep-research-on-compiled-serving-admission-is.md"
+  ]
+}

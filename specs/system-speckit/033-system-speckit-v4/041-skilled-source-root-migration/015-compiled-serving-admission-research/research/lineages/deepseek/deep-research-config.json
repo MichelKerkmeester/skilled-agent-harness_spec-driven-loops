@@ -1,0 +1,43 @@
+{
+  "topic": "How should a new parent hub be admitted to compiled-serving now that the Lane C parity harness is retired? Compare restoring the retired legacy-parity path, building a new checker of compiled decisions against routing gold, and keeping admission closed.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 5,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 30,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
+  "fanout_lineage_artifact_dir": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/lineages/deepseek",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-09-18T20:10:20Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "sandboxMode": "workspace-write"
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1789762218897-56yqt6",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  }
+}
