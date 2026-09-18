@@ -424,7 +424,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 ### 🔄 Deep Loop
 
-The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Four loop families (research, review, AI council, and improvement) live as nested mode packets inside one parent skill, `system-deep-loop`, and all run on one shared runtime, `runtime/`, so they share a state format, a stop contract and a coverage model. The improvement family alone carries three co-equal lanes (agent improvement, model benchmark, skill benchmark), giving six `/deep:*` loop commands in total.
+The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Four loop families (research, review, AI council, and improvement) live as nested mode packets inside one parent skill, `system-deep-loop`, and all run on one shared runtime, `runtime/`, so they share a state format, a stop contract and a coverage model. The improvement family alone carries two co-equal lanes (agent improvement and model benchmark), giving five `/deep:*` loop commands in total.
 
 #### How It Works
 
@@ -693,7 +693,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 
 ### ⌨️ Commands
 
-32 command entry points across 8 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md` backed by a behavioral execution spec; command families keep their workflow routing (YAML execution specs) separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
+32 command entry points across 7 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md` backed by a behavioral execution spec; command families keep their workflow routing (YAML execution specs) separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
 
 &nbsp;
 #### SPEC KIT
@@ -793,7 +793,7 @@ The package also ships a dedicated [stress-test/](.skilled/skills/system-spec-ki
 &nbsp;
 #### DEEP
 
-The active autonomous loop families (the improvement family carries three lanes). See the [Deep Loop](#deep-loop) section for how they run. Use `@context` for one-shot retrieval before planning.
+The active autonomous loop families (the improvement family carries two lanes). See the [Deep Loop](#deep-loop) section for how they run. Use `@context` for one-shot retrieval before planning.
 
 **AI Council** (`/deep:ai-council`)
 - Multi-seat planning for complex decisions, planning-only. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
@@ -847,7 +847,7 @@ The 12 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-
 - Use for cross-AI delegation where the target AI needs to behave as itself
 
 **Prompt**
-- Refines prompts and prompt packages through `/prompt-improve` using 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
+- Refines prompts and prompt packages through `/prompt:improve` using 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
 - Applies DEPTH thinking methodology with CLEAR quality scoring
 - Can return inline improvements or route to `@prompt-improver` for higher-stakes prompt packages
 
@@ -939,7 +939,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `sk-design`                  | ✅ Codebase-agnostic                        | Parent hub for design work over four modes: values and review (`sk-design-fundamentals`), design-reference extraction from a live URL into a v3 Style Reference `DESIGN.md` (`sk-design-md-generator`), standalone HTML charts across 29 forms (`sk-design-chart`), and HTML/SVG diagrams across 27 types (`sk-design-diagram`). Pairs with `sk-code` for the build. Works for any project. |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + continuity. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
-| `system-deep-loop` | ✅ Codebase-agnostic                        | Parent hub for the unified deep-loop skill (research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking) over nested `runtime/` infrastructure. Work for any topic / target.     |
+| `system-deep-loop` | ✅ Codebase-agnostic                        | Parent hub for the unified deep-loop skill (research, review, ai-council and improvement modes, including agent improvement and model benchmarking) over nested `runtime/` infrastructure. Work for any topic / target.     |
 | `sk-prompt`                                         | ✅ Codebase-agnostic                        | Prompt-engineering framework. Works for any project.                                                                                                                                                     |
 | `cli-external-orchestration` | ✅ Codebase-agnostic                        | Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes`. Stack-independent.                                                                                                                                                           |
 | `mcp-tooling`                                       | ✅ Codebase-agnostic                        | Parent hub for MCP tool bridges: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`), `mcp-obsidian` (Obsidian notes via notesmd-cli, the official obsidian CLI, and cyanheads obsidian-mcp-server), and `mcp-figma` (Figma Desktop transport via the silships `figma-ds-cli`, requires Figma Desktop open). Stack-independent.   |

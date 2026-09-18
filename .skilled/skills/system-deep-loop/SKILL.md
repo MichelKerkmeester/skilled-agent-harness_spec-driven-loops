@@ -160,7 +160,7 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 - `research` — outward web + code iterative investigation (`research/research.md`).
 - `review` — iterative review loop, P0/P1/P2 findings + verdict.
 - `ai-council` — multi-seat planning deliberation (`ai-council/**` artifacts).
-- `improvement` (3 lanes) — evaluator-first agent/model/skill improvement.
+- `improvement` (2 lanes) — evaluator-first agent improvement and model benchmarking.
 
 ### Surfaces and Consumers
 - `Skill(system-deep-loop)` is the invokable hub; active `/deep:*` commands and the agent types (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`) are complementary surfaces over the same packets.
