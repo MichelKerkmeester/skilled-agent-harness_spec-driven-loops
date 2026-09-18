@@ -767,8 +767,9 @@ validation run means; a copy kept anywhere else goes stale the first time the ha
    no rule output at all. A sweep looking only for `RESULT: FAILED` reads that silence as a
    clean pass. Rebuild with
    `cd "$(realpath .skilled)/skills/system-spec-kit/runtime" && npm run build`.
-2. **Invoke through `realpath`, and verify by content.** Where `.opencode` is a symlink the
-   spec scripts and generators can silently no-op, exiting 0 with zero output. Use
+2. **Invoke through `realpath`, and verify by content.** Reached through the `.opencode`
+   compatibility root, whose entries are symlinks, the spec scripts and generators can
+   silently no-op, exiting 0 with zero output. Use
    `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .skilled)/skills/system-spec-kit/runtime/cli/spec/validate.sh" <folder> --strict`
    and confirm the rule lines appeared rather than trusting the exit code.
 3. **A phase parent recurses into its children.** Printed output continues past the folder you

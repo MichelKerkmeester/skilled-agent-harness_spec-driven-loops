@@ -1,0 +1,1 @@
+../.skilled/vitest.config.bin.ts
