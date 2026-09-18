@@ -3,17 +3,15 @@ title: "Goal Set-String Playbook"
 description: "What an operator actually types when setting a packet's session goal: a pointer to the packet's goal document plus the completion criteria copied out."
 trigger_phrases:
   - "set string playbook"
-  - "session goal objective"
-  - "goal pointer"
-  - "copied completion criteria"
   - "set the goal"
-  - "bind the goal"
   - "bind a packet goal"
   - "update the goal"
   - "resend the goal"
   - "goal log"
   - "packet goal"
   - "durable slice"
+importance_tier: normal
+contextType: implementation
 version: 3.11.0.0
 ---
 

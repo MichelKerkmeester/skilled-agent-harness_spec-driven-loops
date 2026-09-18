@@ -66,5 +66,4 @@ Expected result: path-boundary, production-isolation, and database-path-consumin
 ## 6. RELATED
 
 - [`../handlers/README.md`](../handlers/README.md)
-- [`../lib/storage/README.md`](../lib/storage/README.md)
 - [`../tests/README.md`](../tests/README.md)

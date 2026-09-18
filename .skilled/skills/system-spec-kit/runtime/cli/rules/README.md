@@ -157,5 +157,5 @@ Expected result: spec validation passes or reports only accepted packet warnings
 
 - [Validator command](../spec/validate.sh)
 - [Validator registry](../lib/validator-registry.json)
-- [System Spec Kit skill](../../SKILL.md)
-- [Spec templates](../../templates/README.md)
+- [System Spec Kit skill](../../../SKILL.md)
+- [Spec templates](../../../templates/README.md)

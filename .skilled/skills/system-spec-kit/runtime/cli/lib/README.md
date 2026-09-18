@@ -202,4 +202,4 @@ Shell helper behavior is covered through the spec and rule validation scripts th
 - [`../README.md`](../README.md)
 - [`../spec/README.md`](../spec/README.md)
 - [`../rules/README.md`](../rules/README.md)
-- [`../../ARCHITECTURE.md`](../../ARCHITECTURE.md)
+- [`../../ARCHITECTURE.md`](../../../ARCHITECTURE.md)

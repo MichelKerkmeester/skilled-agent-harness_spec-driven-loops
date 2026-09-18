@@ -107,7 +107,6 @@ graph/
 |----------|---------|
 | [../description/README.md](../description/README.md) | The synopsis extractor the drift gate re-derives through |
 | [../validation/README.md](../validation/README.md) | The `GENERATED_METADATA_INTEGRITY` and drift rules that consume these reports |
-| [../storage/README.md](../storage/README.md) | Atomic write helpers used when a generated file is rewritten |
 
 ### Parent Module
 

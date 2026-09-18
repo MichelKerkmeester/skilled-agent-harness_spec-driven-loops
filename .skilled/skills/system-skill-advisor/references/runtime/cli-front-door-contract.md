@@ -8,7 +8,7 @@ trigger_phrases:
   - "advisor cli output shape"
 version: 0.11.0.0
 importance_tier: "important"
-contextType: "reference"
+contextType: "implementation"
 ---
 # Contract: the skill advisor CLI front door
 

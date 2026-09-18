@@ -31,4 +31,4 @@ description: "Runtime-agnostic reader for deep-loop behavioral signals (opener r
 
 ## 4. RELATED
 
-- [`fable-mode-check.cjs`](../../../../commands/doctor/scripts/fable-mode-check.cjs): the `/doctor` entrypoint that calls this module.
+- [`fable-mode-check.cjs`](../../../../../commands/doctor/scripts/fable-mode-check.cjs): the `/doctor` entrypoint that calls this module.

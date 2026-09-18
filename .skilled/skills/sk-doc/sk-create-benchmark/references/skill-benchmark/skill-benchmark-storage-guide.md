@@ -49,8 +49,8 @@ documents remain the authority for everything the reports contain:
 
 | Concern | Authority (owned by deep-improvement) |
 | --- | --- |
-| D1-D5 computation, point weights, Mode A/B scoring, advisory signals, funnel/bottleneck ranking | [`scoring-contract.md`](../../../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) |
-| How to run Lane C, invocation flags, dimension coverage, verdict bands, target eligibility | [`operator-guide.md`](../../../../system-deep-loop/deep-improvement/references/skill-benchmark/operator-guide.md) |
+| D1-D5 computation, point weights, Mode A/B scoring, advisory signals, funnel/bottleneck ranking | `scoring-contract.md` (retired with the skill-benchmark lane) |
+| How to run Lane C, invocation flags, dimension coverage, verdict bands, target eligibility | `operator-guide.md` (retired with the skill-benchmark lane) |
 
 Do not copy either contract into this packet. Cross-link them.
 
@@ -135,7 +135,7 @@ Model versions flatten their dots, so `live-glm-5.2-high/` becomes
 `<date>--skill-benchmark--glm-5-2-high/`. A dot fails the validator.
 
 Trace-mode semantics (router vs live) and the flags that produce each run are
-owned by [`operator-guide.md`](../../../../system-deep-loop/deep-improvement/references/skill-benchmark/operator-guide.md);
+owned by `operator-guide.md` (retired with the skill-benchmark lane);
 this guide only fixes how the resulting folder is named and where it sits.
 
 ---
@@ -169,7 +169,7 @@ any diff against `baseline/skill-benchmark-report.json`.
 
 **`skill-benchmark-report.md` is a machine render. Never hand-author or hand-edit
 it.** It is produced solely by the deep-improvement renderer
-[`build-report.cjs`](../../../../system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs),
+`build-report.cjs` (retired with the skill-benchmark lane),
 which renders the Markdown FROM `skill-benchmark-report.json` specifically so the
 two artifacts cannot drift. That renderer is the ONLY writer of the report `.md`;
 it takes the report object, not score arguments.
@@ -224,11 +224,11 @@ hand-authored.
 
 ### Normative contract (owned by deep-improvement — link, do not restate)
 
-- [`scoring-contract.md`](../../../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) — the authoritative D1-D5 computation: point weights, Mode A deterministic scoring, the opt-in advisor probe, live-mode dimensions, advisory signals, and funnel/bottleneck ranking.
-- [`operator-guide.md`](../../../../system-deep-loop/deep-improvement/references/skill-benchmark/operator-guide.md) — how to run Lane C: invocation, flags, dimension coverage, verdict bands, and target eligibility.
-- [`scenario-authoring.md`](../../../../system-deep-loop/deep-improvement/references/skill-benchmark/scenario-authoring.md) — how to author the Lane C scenarios and fixture corpus a run scores; the doctrine for the optional `benchmark/fixtures/` input pairs.
-- [`build-report.cjs`](../../../../system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs) — the renderer that owns `skill-benchmark-report.md` (see section 5).
-- [`/deep:skill-benchmark`](../../../../../commands/deep/skill-benchmark.md) — the command that drives a Lane C run.
+- `scoring-contract.md` (retired with the skill-benchmark lane) — the authoritative D1-D5 computation: point weights, Mode A deterministic scoring, the opt-in advisor probe, live-mode dimensions, advisory signals, and funnel/bottleneck ranking.
+- `operator-guide.md` (retired with the skill-benchmark lane) — how to run Lane C: invocation, flags, dimension coverage, verdict bands, and target eligibility.
+- `scenario-authoring.md` (retired with the skill-benchmark lane) — how to author the Lane C scenarios and fixture corpus a run scores; the doctrine for the optional `benchmark/fixtures/` input pairs.
+- `build-report.cjs` (retired with the skill-benchmark lane) — the renderer that owns `skill-benchmark-report.md` (see section 5).
+- `/deep:skill-benchmark` (retired with the skill-benchmark lane) — the command that drives a Lane C run.
 
 ### Shipped hub trees to model against
 
@@ -245,4 +245,4 @@ hand-authored.
 
 ---
 
-*End of skill-benchmark storage guide — the normative D1-D5 measurement contract lives in [`scoring-contract.md`](../../../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md), owned by deep-improvement.*
+*End of skill-benchmark storage guide — the normative D1-D5 measurement contract lives in `scoring-contract.md` (retired with the skill-benchmark lane), owned by deep-improvement.*

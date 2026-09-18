@@ -31,4 +31,4 @@ description: "Generators that keep .codex/agents, .codex/prompts and command rou
 
 ## 4. RELATED
 
-- [`.codex/agents/`](../../../../../.codex/agents) and [`.codex/prompts/`](../../../../../.codex/prompts): the generated mirrors these scripts own.
+- [`.codex/agents/`](../../../../../../.codex/agents) and [`.codex/prompts/`](../../../../../../.codex/prompts): the generated mirrors these scripts own.

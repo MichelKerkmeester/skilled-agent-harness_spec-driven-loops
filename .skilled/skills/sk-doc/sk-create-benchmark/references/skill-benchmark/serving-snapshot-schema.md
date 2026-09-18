@@ -208,9 +208,9 @@ the rollback-audit `flip-history-schema.md` for that format.
 
 ### Normative contract (owned by deep-improvement — link, do not restate)
 
-- [`scoring-contract.md`](../../../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) — the authoritative D1-D5 computation and verdict bands.
-- [`operator-guide.md`](../../../../system-deep-loop/deep-improvement/references/skill-benchmark/operator-guide.md) — how to run Lane C, including the compiled-parity flag.
-- [`build-report.cjs`](../../../../system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs) — the renderer that owns `skill-benchmark-report.md` and the `report.compiledRouting` + Provenance blocks.
+- `scoring-contract.md` (retired with the skill-benchmark lane) — the authoritative D1-D5 computation and verdict bands.
+- `operator-guide.md` (retired with the skill-benchmark lane) — how to run Lane C, including the compiled-parity flag.
+- `build-report.cjs` (retired with the skill-benchmark lane) — the renderer that owns `skill-benchmark-report.md` and the `report.compiledRouting` + Provenance blocks.
 
 ### Within this packet
 
@@ -220,4 +220,4 @@ the rollback-audit `flip-history-schema.md` for that format.
 
 ---
 
-*End of serving-snapshot schema and compiled-routing archive convention — the normative D1-D5 measurement contract lives in [`scoring-contract.md`](../../../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md), owned by deep-improvement.*
+*End of serving-snapshot schema and compiled-routing archive convention — the normative D1-D5 measurement contract lives in `scoring-contract.md` (retired with the skill-benchmark lane), owned by deep-improvement.*

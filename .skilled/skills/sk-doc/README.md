@@ -216,7 +216,7 @@ The skill ships the checks that prove a document is ready.
 | [`sk-create-benchmark/README.md`](sk-create-benchmark/README.md) | Benchmark family registry, including conformance authoring triggers and package boundaries |
 | [`sk-create-diff/README.md`](sk-create-diff/README.md) | Git-free before/after document diff: snapshot lifecycle, comparison engine and the self-contained HTML report |
 | [`sk-create-diff/references/workflow.md`](sk-create-diff/references/workflow.md) | The sk-create-diff capture/compare workflow and CLI reference |
-| [`sk-design-chart/README.md`](sk-design-chart/README.md) | Standalone HTML data charts: twenty-one forms across six families, the colour system and the corpus validator |
+| [`sk-design-chart/README.md`](../sk-design/sk-design-chart/README.md) | Standalone HTML data charts: twenty-one forms across six families, the colour system and the corpus validator |
 | [`sk-create-frontmatter/README.md`](sk-create-frontmatter/README.md) | Frontmatter field contracts by document class, the description budget and the 4-part version standard |
 | [`sk-create-repo-rule/README.md`](sk-create-repo-rule/README.md) | Creating, revising and retiring a repository rule, and the router that indexes them |
 | [`sk-create-changelog/README.md`](sk-create-changelog/README.md) | Changelog entries and the version story a skill tells about itself |
@@ -226,5 +226,5 @@ The skill ships the checks that prove a document is ready.
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validate and package a skill to a zip file |
 | [`sk-create-skill/assets/skill/`](./sk-create-skill/assets/skill/) | SKILL.md, README, reference and asset templates for skill creation |
-| [`sk-design-diagram/assets/ascii-patterns/`](./sk-design-diagram/assets/ascii-patterns/) | Reusable ASCII flowchart patterns for workflows and decision trees |
+| [`sk-design-diagram/assets/ascii-patterns/`](../sk-design/sk-design-diagram/assets/ascii-patterns/) | Reusable ASCII flowchart patterns for workflows and decision trees |
 | [`changelog/`](./changelog/) | Per-release entries, one file per version |

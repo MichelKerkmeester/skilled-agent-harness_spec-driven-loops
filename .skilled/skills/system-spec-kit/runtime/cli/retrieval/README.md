@@ -149,5 +149,5 @@ Expected result: no diff output; the two runs produce the identical `indexSha256
 ## 8. RELATED
 
 - [`lib/README.md`](./lib/README.md)
-- [Retrieval conventions](../../references/retrieval/retrieval-conventions.md)
+- [Retrieval conventions](../../../references/retrieval/retrieval-conventions.md)
 - [`../rules/README.md`](../rules/README.md)

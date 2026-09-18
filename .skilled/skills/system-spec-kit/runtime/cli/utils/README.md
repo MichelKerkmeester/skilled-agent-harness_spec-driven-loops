@@ -116,4 +116,4 @@ and the aggregate utility module imports without throwing.
 - [`../README.md`](../README.md)
 - [`../lib/README.md`](../lib/README.md)
 - [`../core/README.md`](../core/README.md)
-- [`../../references/validation/path-scoped-rules.md`](../../references/validation/path-scoped-rules.md)
+- [`../../references/validation/path-scoped-rules.md`](../../../references/validation/path-scoped-rules.md)

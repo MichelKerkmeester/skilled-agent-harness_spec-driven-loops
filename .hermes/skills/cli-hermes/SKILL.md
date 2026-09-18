@@ -284,7 +284,7 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 ### Core References
 
 - [cli-reference.md](./references/cli-reference.md) - Flags, headless forms, exit codes, isolation flags, environment
-- [providers-and-models.md](./references/providers-and-models.md) - The llmgateway provider contract, the two-id roster, reasoning levels
+- [providers-and-models.md](./references/providers-and-models.md) - The llmgateway provider contract, the seven-id roster, reasoning levels
 - [hermes-tools.md](./references/hermes-tools.md) - Toolsets, project skills and plugins, the write guard, subsystems that stay off
 - [integration-patterns.md](./references/integration-patterns.md) - Conductor and executor patterns, cross-validation, anti-patterns
 - [agent-delegation.md](./references/agent-delegation.md) - Persona inlining, persona skills, `delegate_task`, prompt templates for commands

@@ -31,4 +31,4 @@ description: "Generators that keep .pi/agents and .pi/prompts in sync with their
 
 ## 4. RELATED
 
-- [`.pi/agents/`](../../../../../.pi/agents) and [`.pi/prompts/`](../../../../../.pi/prompts): the generated mirrors these scripts own.
+- [`.pi/agents/`](../../../../../../.pi/agents) and [`.pi/prompts/`](../../../../../../.pi/prompts): the generated mirrors these scripts own.
