@@ -17,6 +17,12 @@ import audit_readmes
 
 def main() -> int:
     root = REPO.resolve()
+    manifest_path = TESTS / "code-folder/durable-directory-manifest.json"
+    if "--write" in sys.argv[1:]:
+        manifest = audit_readmes.build_durable_manifest(root)
+        manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(f"WROTE {manifest_path.relative_to(root)} directories={len(manifest['directories'])}")
+        return 0
     readmes = {path.relative_to(root).as_posix() for path in audit_readmes.find_readmes(root)}
     failures = []
 
@@ -37,14 +43,20 @@ def main() -> int:
         if actual not in audit_readmes.DISPOSITION_PATH_CLASSES:
             failures.append(f"fixture {class_name} was not classified: {actual}")
 
-    manifest_path = TESTS / "code-folder/durable-directory-manifest.json"
     if not manifest_path.exists():
         failures.append(f"missing frozen manifest: {manifest_path}")
     else:
         current = audit_readmes.build_durable_manifest(root)
         frozen = audit_readmes.load_manifest(manifest_path)
         if set(current["directories"]) != set(frozen["directories"]):
-            failures.append("frozen durable-directory manifest is not reproducible")
+            added = sorted(set(current["directories"]) - set(frozen["directories"]))
+            removed = sorted(set(frozen["directories"]) - set(current["directories"]))
+            failures.append(
+                "frozen durable-directory manifest is not reproducible "
+                f"(added: {', '.join(added) or 'none'}; removed: {', '.join(removed) or 'none'}). "
+                "If those directories changed on purpose, refresh it with "
+                "`python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write`."
+            )
         reproduction = audit_readmes.manifest_reproduction(root, manifest_path)
         if not reproduction["raw_candidate_set_reproduced"]:
             failures.append("manifest reproduction assertion failed")

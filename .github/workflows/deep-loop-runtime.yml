@@ -1,0 +1,56 @@
+name: Deep-Loop Runtime Tests
+
+# The deep-loop runtime suites, including the command-contract drift check and
+# the council and coverage graph tests, ran only on a developer's machine. A
+# stale compiled command contract passed every commit hook and reached a commit
+# before a full local run caught it.
+on:
+  pull_request:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/system-deep-loop/**'
+      - '.skilled/skills/system-deep-loop/**'
+      - '.opencode/commands/deep/**'
+      - '.skilled/commands/deep/**'
+      - '.opencode/skills/system-spec-kit/shared/**'
+      - '.skilled/skills/system-spec-kit/shared/**'
+      - '.github/workflows/deep-loop-runtime.yml'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/system-deep-loop/**'
+      - '.skilled/skills/system-deep-loop/**'
+      - '.opencode/commands/deep/**'
+      - '.skilled/commands/deep/**'
+      - '.opencode/skills/system-spec-kit/shared/**'
+      - '.skilled/skills/system-spec-kit/shared/**'
+      - '.github/workflows/deep-loop-runtime.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  deep-loop-runtime:
+    name: Deep-loop runtime vitest suites
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # The runtime links @spec-kit/shared by path, so the spec-kit workspace is
+      # installed and the shared package built before the runtime's own install.
+      - name: Install the deep-loop runtime and the shared package it links
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-deep-loop ci
+          npm --prefix .opencode/skills/system-deep-loop/runtime ci
+
+      - name: Run the deep-loop runtime suites
+        run: npm --prefix .opencode/skills/system-deep-loop/runtime test

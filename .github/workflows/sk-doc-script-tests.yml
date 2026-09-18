@@ -1,0 +1,40 @@
+name: sk-doc Script Tests
+
+# These tests ran nowhere, and four of them failed for weeks without anyone
+# seeing. Two of them walk the whole repository, the durable-directory manifest
+# and the README verdict baseline, so this runs on every push rather than only
+# when sk-doc changes. The rename harness takes ten minutes and runs in its own
+# workflow, scoped to the scripts it exercises.
+on:
+  pull_request:
+    branches: [main, 'skilled/**']
+  push:
+    branches: [main, 'skilled/**']
+
+permissions:
+  contents: read
+
+jobs:
+  sk-doc-scripts:
+    name: sk-doc script tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install test dependency
+        run: python3 -m pip install pytest==8.4.2
+
+      - name: Run the sk-doc script tests
+        env:
+          SKIP_TESTS: test_rename_tooling_fixture_harness.py
+        run: bash .opencode/skills/sk-doc/scripts/tests/run-script-tests.sh
