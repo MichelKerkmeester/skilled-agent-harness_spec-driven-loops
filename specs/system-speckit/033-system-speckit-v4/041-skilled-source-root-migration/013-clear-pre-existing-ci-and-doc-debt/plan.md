@@ -42,7 +42,7 @@ Each red workflow is read from its failure log, not from memory, and each failur
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
+- [x] All acceptance criteria met
 - [x] Tests passing, with the baseline delta reported
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->

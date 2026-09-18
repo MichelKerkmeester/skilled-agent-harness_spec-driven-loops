@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-18 |
 | **Branch** | `worktrees/055-skilled-source-root-migration` |
 | **Parent Spec** | ../spec.md |
@@ -84,7 +84,7 @@ Every push shows green on these workflows unless something new broke, the Hermes
 
 ### Out of Scope
 - The `'skill-benchmark'` mode id in ledger schemas, reducers and sealed-artifact types - persisted records carry it, so the id is a data contract, not documentation.
-- The write-set conflict census, `.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts:14` and `shipped-census.ts:107`. The operator approved removing its retired workstream on the premise that it lists shipped modes. It does not: its seven workstreams mirror the child folders of one spec program, `036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/`, which still holds `007-skill-benchmark`, and it already omits the shipped `008-deep-alignment`. No code outside its own tests calls it. The corrected facts go back to the operator before anything changes.
+- The write-set conflict census, `.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts:14` and `shipped-census.ts:107`. The operator approved removing its retired workstream on the premise that it lists shipped modes. It does not: its seven workstreams mirror the child folders of one spec program, `036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/`, which still holds `007-skill-benchmark`, and it already omits the shipped `008-deep-alignment`. No code outside its own tests calls it. Given these facts the operator chose on 2026-09-18 to keep it as a record of that program.
 - `legacy-projection-manifest.ts` - it records how the historical writer laid out files.
 - Changelogs, generated retrieval fixtures, `trigger-index.json` and the grader cache - frozen or generated records.
 - The eleven stale entries in each direction of the frozen durable-directory manifest, which predate this work, and `create-journey-proof.test.cjs`, whose version-mismatch failure predates it too.
@@ -218,7 +218,7 @@ Every push shows green on these workflows unless something new broke, the Hermes
 
 ## 10. OPEN QUESTIONS
 
-- Should the write-set conflict census drop the retired workstream, given that it models a spec program's folders rather than the shipped modes? Put back to the operator with the corrected facts.
+- None open. The census question was answered on 2026-09-18: it stays as a record of its spec program.
 <!-- /ANCHOR:questions -->
 
 ---
