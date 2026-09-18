@@ -85,8 +85,8 @@ The live design-system evidence lives in the app repository, not in this packet:
 
 ## 2b. SMART ROUTING (machine-readable)
 
-This block is the deterministic projection of code-mobile-cli's own intent → reference/asset routing,
-consumed by the skill-benchmark router-replay. Keep it in sync with the parent hub union.
+This block is the deterministic projection of code-mobile-cli's own intent → reference/asset routing.
+Keep it in sync with the parent hub union.
 
 ```python
 # code-mobile-cli owns its intent -> reference/asset routing. Paths are relative to

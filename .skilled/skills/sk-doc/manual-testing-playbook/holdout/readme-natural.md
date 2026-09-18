@@ -52,7 +52,7 @@ none of the trigger phrases ("create a readme", "readme for", "a readme").
 
 ### Note
 
-This is a prompt-only holdout scenario. It carries no command sequence or captured evidence. It is scored by the routing-gold and skill-benchmark gates from the prompt above and the frontmatter contract, not from a manual command run.
+This is a prompt-only holdout scenario. It carries no command sequence or captured evidence. It is checked by the routing-gold gates from the prompt above and the frontmatter contract, not from a manual command run.
 
 ---
 

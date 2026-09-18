@@ -142,13 +142,13 @@ Run `scripts/check-comment-hygiene.sh <file>` on each modified file that can con
 
 ### 2b. Machine-Readable Router (thin, Type-1 benchmark)
 
-code-quality routes primarily by TARGET PATH (the surface + checklist map above), verified by a unit test — not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection exists only so the deterministic skill-benchmark router-replay can score code-quality's one routable checklist in Mode-A; it deliberately does not model the path-keyed dispatch.
+code-quality routes primarily by TARGET PATH (the surface + checklist map above), verified by a unit test — not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection was written so the deterministic skill-benchmark router-replay, since retired, could score code-quality's one routable checklist in Mode-A; it deliberately does not model the path-keyed dispatch.
 
 ```python
 # Thin prompt-intent router: code-quality owns a single routable checklist. Its
 # real routing is target-path-keyed (the checklist map above, covered by a unit
 # test) and its parent discoverability is the hub quality signal — this block only
-# makes the one asset scoreable by the deterministic router-replay.
+# made the one asset scoreable by the retired deterministic router-replay.
 DEFAULT_RESOURCE = [
     "assets/code-quality-checklist/overview-header-and-comments.md",
     "assets/code-quality-checklist/naming-init-formatting-and-css.md",

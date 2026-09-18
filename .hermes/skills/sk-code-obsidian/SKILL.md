@@ -74,7 +74,7 @@ by the active workflow phase — not part of the initial evidence slice. See §4
 ## 2b. SMART ROUTING (machine-readable)
 
 This block is the deterministic projection of `sk-code-obsidian`'s own intent → reference/asset
-routing, consumed by the skill-benchmark router-replay. Keep it in sync with the parent hub union.
+routing. Keep it in sync with the parent hub union.
 
 ```python
 # code-obsidian owns its intent -> reference/asset routing. Paths are relative to

@@ -1,6 +1,6 @@
 ---
 title: "sk-vision Benchmark"
-description: "Run layout and execution guidance for sk-vision benchmark scenarios: the Lane C corpus runner and the manual playbook scenario wrapper."
+description: "Layout of the frozen sk-vision benchmark runs, produced by the retired Lane C corpus runner and scenario wrapper."
 trigger_phrases:
   - "sk-vision benchmark"
   - "sk-vision Lane C"
@@ -21,7 +21,7 @@ This directory is the output home for executed sk-vision scenarios. The `manual-
 
 | Path | Owner | Contents |
 |---|---|---|
-| `benchmark/README.md` | This file | Layout + how to run |
+| `benchmark/README.md` | This file | Layout of the frozen runs |
 | `benchmark/reports/README.md` | Run index | One row per dated run folder, append-only |
 | `benchmark/reports/<YYYY-MM-DD>--<subject>--<variant>/` | Harness (renderer-owned) | Per-run artifacts: never hand-authored |
 

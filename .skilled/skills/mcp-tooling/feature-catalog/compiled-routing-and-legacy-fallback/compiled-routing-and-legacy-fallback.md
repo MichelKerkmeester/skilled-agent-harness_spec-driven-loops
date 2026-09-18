@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 `mcp-tooling`'s `SKILL.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`workflow-vs-transport-routing.md`](../workflow-vs-transport-routing/workflow-vs-transport-routing.md).
 
-The directive is on by default for `mcp-tooling` (a member of the per-hub default-on cohort): the compiled front door resolves and `mcp-tooling` follows the returned decision directly. Because compiled routing is verified byte-identical to legacy on every scenario (Lane C parity, `compiledRouting.subVerdict: 'compiled-serving'`), this is a transparent implementation swap, not a behavior change. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch: it forces `mcp-tooling` (and every eligible hub) back to legacy registry-driven routing.
+The directive is on by default for `mcp-tooling` (a member of the per-hub default-on cohort): the compiled front door resolves and `mcp-tooling` follows the returned decision directly. Because compiled routing was verified byte-identical to legacy on every scenario (Lane C parity, `compiledRouting.subVerdict: 'compiled-serving'`, measured before that harness was retired), this is a transparent implementation swap, not a behavior change. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch: it forces `mcp-tooling` (and every eligible hub) back to legacy registry-driven routing.
 
 ---
 

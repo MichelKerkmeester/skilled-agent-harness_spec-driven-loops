@@ -203,8 +203,8 @@ Contract boundary:
   by the operator validator. A listed routing-gold tree is excluded from operator
   checks; for every other file, a non-empty `expected_workflow_mode` plus at least one
   `expected_leaf_resources` pair in frontmatter classifies that file as routing gold.
-  Files without that signature are operator-scenario files. The topology gate and the
-  Lane-C loader do not read this manifest and keep their existing boundary.
+  Files without that signature are operator-scenario files. The topology gate does not
+  read this manifest and keeps its existing boundary.
 
 Do not create:
 
@@ -487,8 +487,7 @@ means a usage or boundary error. Strict mode is on by default; `--no-strict` is 
 used by CI.
 
 The existing `validate-playbook-topology.cjs` remains the routing-gold consumer and is intentionally unchanged.
-The Lane-C loader also remains unchanged. Both consumers continue reading their current playbook paths without
-consulting the additive corpus manifest.
+It continues reading its current playbook paths without consulting the additive corpus manifest.
 
 ---
 

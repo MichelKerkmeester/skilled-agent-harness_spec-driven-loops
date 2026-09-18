@@ -1,6 +1,6 @@
 ---
 title: "sk-design Skill-Benchmark Artifacts"
-description: "Benchmark tree for the sk-design parent hub, scored by the deep-improvement Lane C harness. No hub-level Lane C run is archived here yet; the per-mode baselines that do exist are indexed below."
+description: "Historical benchmark tree for the sk-design parent hub. No hub-level run was archived before the Lane C harness was retired; the per-mode baselines that exist are indexed below."
 trigger_phrases:
   - "sk-design benchmark"
   - "sk-design skill-benchmark artifacts"
@@ -19,13 +19,12 @@ contextType: "general"
 
 ## 1. OVERVIEW
 
-The deep-improvement Lane C skill-benchmark harness scores a hub against its own playbook scenarios
-across five dimensions: D1 routing, D2 discovery, D3 efficiency, D4 usefulness and D5 connectivity.
-This tree holds the dual reports each run writes, one run-label folder per run.
+The retired deep-improvement Lane C skill-benchmark harness scored a hub against its own playbook
+scenarios across five dimensions: D1 routing, D2 discovery, D3 efficiency, D4 usefulness and D5
+connectivity. This tree holds the dual reports each run wrote, one run-label folder per run.
 
-**No hub-level Lane C run is archived here yet.** This file records the convention and the place a
-run lands, so that the absence is legible rather than silent. Do not read an empty tree as a passing
-score.
+**No hub-level Lane C run was archived here before the harness was retired.** Do not read the empty
+tree as a passing score.
 
 ---
 

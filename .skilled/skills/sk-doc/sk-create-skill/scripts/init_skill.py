@@ -857,8 +857,9 @@ def main() -> None:
             "a fresh activation manifest (generation 1, servingAuthority='legacy', "
             "shadowOnly=true) as onboarding evidence -- it does NOT make the hub "
             "compiled-serving. The hub still needs its own shadow-child router built "
-            "to route == legacy and pass Lane C parity before it can join the "
-            "runtime's compiled-serving cohort; see "
+            "to route == legacy and prove parity with legacy before it can join the "
+            "runtime's compiled-serving cohort. The Lane C harness that measured "
+            "parity was retired, so no tool runs that step today; see "
             "references/parent-skill/compiled-routing-architecture.md."
         ),
     )

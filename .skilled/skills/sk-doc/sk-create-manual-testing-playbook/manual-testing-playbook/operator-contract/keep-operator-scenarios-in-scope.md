@@ -53,7 +53,7 @@ Operators run the exact prompt and command sequence for `MTP-004` and read the c
 
 ### Expected
 
-Step 1 identifies the five-section scenario contract and the frontmatter fields required by the operator validator. Step 2 authors the scenario without Lane C fields. Step 3 confirms that the routing-gold signature is absent. Step 4 reports a passing package with operator scenarios included and no routing-gold exclusions.
+Step 1 identifies the five-section scenario contract and the frontmatter fields required by the operator validator. Step 2 authors the scenario without routing-gold fields. Step 3 confirms that the routing-gold signature is absent. Step 4 reports a passing package with operator scenarios included and no routing-gold exclusions.
 
 ### Evidence
 

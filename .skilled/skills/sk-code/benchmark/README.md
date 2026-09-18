@@ -20,10 +20,10 @@ trigger_phrases:
 
 The retired deep-improvement Lane C harness benchmarked `sk-code` against its own `manual_testing_playbook` scenarios across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This folder holds the run inputs and the dual reports each archived run wrote.
 
-Two trace modes score the same playbook corpus:
+Two trace modes scored the same playbook corpus:
 
-- **router** is deterministic and offline. For a hub skill it replays `hub-router.json` + `mode-registry.json`; for a flat skill it replays the machine-readable router in `sk-code/ROUTER.md`. It was the CI gate.
-- **live** dispatches each scenario through `cli-opencode` to a real model and grades the model's stated routing plus observed activation. This is the operator default for a true routing verdict.
+- **router** was deterministic and offline. For a hub skill it replayed `hub-router.json` + `mode-registry.json`; for a flat skill it replayed the machine-readable router in `sk-code/ROUTER.md`. It was the CI gate.
+- **live** dispatched each scenario through `cli-opencode` to a real model and graded the model's stated routing plus observed activation. It was the operator default for a true routing verdict.
 
 ### Key Statistics
 
