@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7150,
+    "missing-frontmatter": 7152,
     "non-yaml-frontmatter": 1,
     "ok": 15280,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27274,
+  "documentsScanned": 27276,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "3dcd60110d96877d903cfda0a70816c5fccbec93735f1a5f3d1ae5c87084991a",
+  "manifestHash": "cfb9b1cc67e4d3300ac1e44caf073bfacc8b7d0ccee03c22992b5380fdbc4ce4",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -76844,6 +76844,18 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     }
   ],

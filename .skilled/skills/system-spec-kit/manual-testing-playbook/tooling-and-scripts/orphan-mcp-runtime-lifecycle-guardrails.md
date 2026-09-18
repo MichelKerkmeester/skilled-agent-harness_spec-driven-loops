@@ -40,7 +40,6 @@ Validate orphan MCP runtime lifecycle guardrails in dry-run mode and report cite
 ### Commands
 
 1. `bash -n .skilled/scripts/orphan-mcp-sweeper.sh`
-2. `bash -n .skilled/scripts/claude-session-cleanup.sh`
 3. `plutil -lint .skilled/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist`
 4. `bash .skilled/scripts/orphan-mcp-sweeper.sh --dry-run --verbose --log-path /tmp/orphan-sweeper-review.log`
 6. `test ! -f ~/Library/LaunchAgents/com.michelkerkmeester.orphan-sweep.plist || echo "operator-installed copy exists outside repo"`
@@ -61,7 +60,6 @@ $ bash -n .skilled/scripts/orphan-mcp-sweeper.sh
 Command 2:
 
 ```text
-$ bash -n .skilled/scripts/claude-session-cleanup.sh
 (no output)
 ```
 
