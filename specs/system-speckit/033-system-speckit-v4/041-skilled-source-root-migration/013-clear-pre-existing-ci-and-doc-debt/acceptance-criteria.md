@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt"
     last_updated_at: "2026-09-18T13:30:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Met every criterion the local tree can prove"
-    next_safe_action: "Push after the operator's go-ahead, then meet AC-007 from CI"
+    recent_action: "Met every criterion, AC-007 from CI on the pushed tip"
+    next_safe_action: "Push the residue on approval, watch CI"
     blockers: []
     key_files: []
     session_dedup:
@@ -57,9 +57,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given sk-design, When its router and release authority are compared, Then the versions agree | `.skilled/skills/sk-design/ROUTER.md:10` and `.skilled/skills/sk-design/SKILL.md:5` both say `2.0.0.0`. `parent-skill-check` passes on all six hubs | Met | - |
 | AC-004 | REQ-004 | Given the playbook fleet, When the validator runs as CI runs it, Then it exits 0 and every fail-closed root is discovered | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` `--strict` exits 0 with no failing package. All 44 allowlisted roots discovered. The containment scenario's signals are at `.skilled/skills/system-deep-loop/manual-testing-playbook/write-containment/shared-checkout-run.md:57` | Met | - |
 | AC-005 | REQ-005 | Given a push or pull request, When Command Tree Parity runs, Then a job fails on any stale Hermes skill or prompt copy | `.github/workflows/command-tree-parity.yml:46` defines `hermes-mirror`. `:65` and `:66` run both sync scripts with `--check`, which exit 1 on a stale copy. Triggers at `:5` to `:8`. Both exit 0 locally: 68 skills, 33 prompts | Met | - |
-| AC-006 | REQ-006 | Given the live tree, When it is searched for the retired lane, Then no route, command, script or run instruction offers it, and no script imports a removed module | `.skilled/skills/sk-doc/sk-create-benchmark/SKILL.md:108` routes four families, none of them `skill_benchmark`. `rg 'skill-benchmark'` finds nothing in the sk-doc `mode-registry.json`, `hub-router.json` or `command-contract.json`. `.skilled/commands/create/assets/create-benchmark-presentation.txt:83` offers four families. `rg` for each deleted path finds only run reports, generated fixtures and the census. Description residue is recorded in `implementation-summary.md` | Met | - |
-| AC-007 | REQ-007 | Given the pushed tip, When CI runs, Then Routing Registry Drift Guard, Playbook Operator Contract and the Hermes mirror job pass | Not yet pushed. Record the run ids here | Unmet | - |
+| AC-006 | REQ-006 | Given the live tree, When it is searched for the retired lane, Then no route, command, script or run instruction offers it, and no script imports a removed module | `.skilled/skills/sk-doc/sk-create-benchmark/SKILL.md:108` routes four families, none of them `skill_benchmark`. `rg 'skill-benchmark'` finds nothing in the sk-doc `mode-registry.json`, `hub-router.json` or `command-contract.json`. `.skilled/commands/create/assets/create-benchmark-presentation.txt:83` offers four families. `rg 'scripts/skill-benchmark'` over code finds only the census. The one script that still required a module the retirement deleted, `.skilled/skills/sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs:386`, now parses its own arguments; `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-compiled-routing-scenarios.test.cjs:137` runs its CLI and fails against the old script with exit 1 | Met | - |
+| AC-007 | REQ-007 | Given the pushed tip, When CI runs, Then Routing Registry Drift Guard, Playbook Operator Contract and the Hermes mirror job pass | At `a22897b1af`, defined in `.github/workflows/command-tree-parity.yml:46`: Routing Registry Drift Guard runs 35358038757 (main) and 35358038847 (skilled/v4.0.0.0), Playbook Operator Contract 35358038681 and 35358038874, and the Hermes mirror job inside Command Tree Parity 35358038672 and 35358038808, all success | Met | - |
 | AC-008 | REQ-008 | Given the hub summary, When it is compared with the Hermes roster check, Then both say seven | `.skilled/skills/cli-external-orchestration/graph-metadata.json:440` says seven CLI dispatch orchestrators. `skill_graph_compiler.py --validate-only` passes | Met | - |
+| AC-009 | REQ-009 | Given the rewritten files, When the live tree is searched and every prompt re-scored, Then no live file describes the lane as present and no prompt moves | `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md:79` now says no tool runs the parity step. The per-row dump of all 289 prompts matches the known-good dump row for row after sorting | Met | - |
 
 ### Status values
 
@@ -86,5 +87,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-AC-007 waits on CI after the push. Every other criterion is met from the local tree.
+Every criterion is met. Two things hold the phase open: the residue commits still need their push and CI, and the census question is back with the operator.
 <!-- /ANCHOR:closure -->
