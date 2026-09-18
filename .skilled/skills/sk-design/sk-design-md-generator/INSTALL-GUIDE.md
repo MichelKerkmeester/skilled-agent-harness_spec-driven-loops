@@ -4,7 +4,13 @@ Setup for the embedded extraction tool: Node.js, Playwright, Chromium, and a fir
 
 ---
 
-## 1. PREREQUISITES
+## 1. OVERVIEW
+
+The tool in `backend/` crawls a live site with Playwright and Chromium, writes the design tokens it measures to `tokens.json`, and validates a `DESIGN.md` against those tokens. This guide installs its dependencies, confirms the install with its own test suite, and then runs one extraction end to end.
+
+---
+
+## 2. PREREQUISITES
 
 | Requirement | Version | Check |
 |---|---|---|
@@ -16,12 +22,12 @@ macOS, Linux, and Windows (WSL) are supported. The Playwright installer handles 
 
 ---
 
-## 2. INSTALL
+## 3. INSTALLATION
 
 **Step 1: Install Node dependencies.**
 
 ```bash
-cd .skilled/skills/sk-design-md-generator/backend
+cd .skilled/skills/sk-design/sk-design-md-generator/backend
 npm install
 ```
 
@@ -45,7 +51,7 @@ Expected: all tests pass with exit code 0. If any test fails, check the troubles
 
 ---
 
-## 3. FIRST EXTRACTION
+## 4. VERIFICATION: FIRST EXTRACTION
 
 Run a fast extraction against a public site to confirm everything works end-to-end. Run it
 from the **repo root** (not from `backend/`) with the full script path: `extract.ts` refuses
@@ -53,7 +59,7 @@ any `--output` that resolves inside the skill, so a relative spec-folder path on
 correctly from the repo root.
 
 ```bash
-npx ts-node .skilled/skills/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
+npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
 ```
 
 Expected output:
@@ -65,14 +71,14 @@ Expected output:
 Validate a `DESIGN.md` against the extracted tokens (also from the repo root):
 
 ```bash
-npx ts-node .skilled/skills/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md .opencode/specs/<track>/<packet>/output/tokens.json
+npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md .opencode/specs/<track>/<packet>/output/tokens.json
 ```
 
 Expected: zero hex mismatches, zero missing sections.
 
 ---
 
-## 4. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 ### Chromium not installed
 
@@ -93,7 +99,7 @@ If the install fails, check your network connection and proxy settings. Playwrig
 **Fix:** Try adjusting the wait strategy (run from the repo root):
 
 ```bash
-npx ts-node .skilled/skills/sk-design-md-generator/backend/scripts/extract.ts https://example.com --fast --wait-for networkidle --output .opencode/specs/<track>/<packet>/output
+npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://example.com --fast --wait-for networkidle --output .opencode/specs/<track>/<packet>/output
 ```
 
 If the site requires authentication, it is out of scope. The tool only works on publicly accessible URLs that render JavaScript.
@@ -124,12 +130,12 @@ npx playwright install chromium
 
 ---
 
-## 5. UNINSTALL
+## 6. UNINSTALL
 
 To remove the tool's dependencies and cached Chromium binary:
 
 ```bash
-cd .skilled/skills/sk-design-md-generator/backend
+cd .skilled/skills/sk-design/sk-design-md-generator/backend
 rm -rf node_modules
 npx playwright uninstall chromium
 ```

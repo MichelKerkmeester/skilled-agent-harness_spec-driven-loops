@@ -1,6 +1,6 @@
 ---
 title: "OpenCode Compatibility Root"
-description: "Per-entry symlinks that expose the .skilled/ source tree under the .opencode/ name, so tools, consumer projects and machine configuration that address the old root keep resolving. Every entry here is a link; nothing is authored in this directory."
+description: "Per-entry symlinks that expose the .skilled/ source tree under the .opencode/ name, so tools, consumer projects and machine configuration that address the old root keep resolving. The plugins and their package files are the only content authored here."
 trigger_phrases:
   - "opencode compatibility root"
   - "old source root"
@@ -17,12 +17,12 @@ The authored tree lives in [`.skilled/`](../.skilled). This directory exposes th
 same tree under the older `.opencode/` name, one symlink per top-level entry, so
 anything that addresses `.opencode/<path>` still reaches the real file.
 
-The plugins are authored here, because only this runtime loads them. OpenCode writes `package-lock.json` and `node_modules` here when it installs their SDK and ignores both; `package.json` is tracked, since the plugins are ES modules and take their module type from it. Editing a file through a path in this directory edits
+The plugins are authored here, because only this runtime loads them. `package.json` and `package-lock.json` are tracked, since the plugins are ES modules that take their module type from the first and the SDK version from the second; `npm ci` here installs `node_modules`, which is not tracked. Editing a file through any other path in this directory edits
 the file in `.skilled/`, because that is the same file.
 
 ## 2. WHAT IS HERE
 
-Each entry is a symlink to its twin under `.skilled/`:
+Each entry except `plugins/` and the package files is a symlink to its twin under `.skilled/`:
 
 | Entry | Resolves to |
 |---|---|

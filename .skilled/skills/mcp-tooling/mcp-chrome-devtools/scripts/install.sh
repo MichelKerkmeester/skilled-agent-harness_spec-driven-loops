@@ -6,7 +6,7 @@
 # MCP integration with browser debugging capabilities.
 #
 # Usage:
-#   ./install-chrome-devtools.sh [OPTIONS]
+#   ./install.sh [OPTIONS]
 #
 # Options:
 #   -h, --help       Show this help message
@@ -69,13 +69,13 @@ PLATFORM SUPPORT:
 
 EXAMPLES:
     # Basic installation
-    ./install-chrome-devtools.sh
+    $(basename "$0")
 
     # Force reinstall with verbose output
-    ./install-chrome-devtools.sh --force --verbose
+    $(basename "$0") --force --verbose
 
     # Install and add Chrome path to profile
-    ./install-chrome-devtools.sh --add-profile
+    $(basename "$0") --add-profile
 
 EOF
 }

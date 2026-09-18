@@ -54,7 +54,6 @@ When `.opencode/` is a symlink, Node.js `__dirname` in CommonJS resolves to the 
 | -------------- | --------------------------- |
 | Skills         | `.opencode/skills/`          |
 | Commands       | `.opencode/commands/`        |
-| Install Guides | `.opencode/install-guides/` |
 | Scripts        | `.opencode/scripts/`        |
 | Agents         | `.opencode/agents/`          |
 

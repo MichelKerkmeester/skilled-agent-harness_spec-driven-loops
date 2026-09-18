@@ -121,7 +121,7 @@ The four bands tell you where you stand:
 
 ### Scripts Versus AI
 
-The scripts own the deterministic work. `extract_structure.py` parses, measures, checks and reports. `validate_document.py` gates format at the exit-code level. `init_skill.py` scaffolds a directory. `package_skill.py` validates and bundles. `quick_validate.py` runs fast naming and frontmatter checks. `validate-flowchart.sh` checks box alignment and label consistency on ASCII diagrams. The AI owns the quality judgment: it reads the JSON, evaluates content depth and clarity, scores style against the Human Voice Rules and writes the recommendations. The split keeps the metrics repeatable and the judgment human-sounding.
+The scripts own the deterministic work. `extract_structure.py` parses, measures, checks and reports. `validate_document.py` gates format at the exit-code level. `init_skill.py` scaffolds a directory. `package_skill.py` validates and bundles. `quick_validate.py` runs fast naming and frontmatter checks. The AI owns the quality judgment: it reads the JSON, evaluates content depth and clarity, scores style against the Human Voice Rules and writes the recommendations. The split keeps the metrics repeatable and the judgment human-sounding.
 
 ---
 
@@ -188,7 +188,7 @@ The skill ships the checks that prove a document is ready.
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme` reports zero issues and exits 0 |
 | Full quality | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py document.md` returns the DQI, the checklist and the violations in JSON |
-| Flowchart shape | `bash .skilled/skills/sk-doc/scripts/validate-flowchart.sh` checks box alignment and label consistency |
+| Flowchart shape | `bash .skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh` checks box alignment and label consistency |
 | Package gate | `python3 .skilled/skills/sk-doc/scripts/package_skill.py` validates a skill and bundles it to a zip |
 
 ---

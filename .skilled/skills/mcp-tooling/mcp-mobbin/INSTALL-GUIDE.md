@@ -126,7 +126,7 @@ The gated live probe sends one unauthenticated HTTPS request. **HTTP 401 is the 
 
 ---
 
-## 4. RECONNECT AND AUTHENTICATE (OPERATOR-ONLY)
+## 4. INSTALLATION: RECONNECT AND AUTHENTICATE (OPERATOR-ONLY)
 
 > **This entire section is performed by the operator — never by the agent.** The agent surfaces these steps and waits. It never edits `.utcp_config.json`, never opens the OAuth URL on your behalf, never reads or repairs `~/.mcp-auth`, and never handles tokens.
 
@@ -150,7 +150,7 @@ The `mobbin` manual is already registered in `manual_call_templates[]` of `.utcp
 
 ---
 
-## 5. CONFIRM THE CALLABLE (INSIDE CODE MODE)
+## 5. VERIFICATION: CONFIRM THE CALLABLE (INSIDE CODE MODE)
 
 The mandatory confirmation step runs inside Code Mode, not in a shell:
 
