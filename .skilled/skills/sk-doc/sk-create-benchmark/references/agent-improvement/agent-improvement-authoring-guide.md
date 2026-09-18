@@ -231,7 +231,6 @@ Complete these steps in order. This workflow produces inputs; it never runs the 
 - [`deep-improvement SKILL.md`](../../../../system-deep-loop/deep-improvement/SKILL.md) — the mode that owns and runs Lane A (§3).
 - [`model-benchmark-fixture-guide.md`](../model-benchmark/model-benchmark-fixture-guide.md) — the sibling authoring guide for the model-benchmark (Lane B) inputs.
 - [`behavior-benchmark-guide.md`](../behavior-benchmark/behavior-benchmark-guide.md) — the sibling authoring guide for the behavior-benchmark family.
-- [`skill-benchmark-storage-guide.md`](../skill-benchmark/skill-benchmark-storage-guide.md) — the sibling storage guide for the skill-benchmark (Lane C) family.
 - [`../../SKILL.md`](../../SKILL.md) — the `create-benchmark` packet contract for the benchmark families this packet authors.
 
 ---

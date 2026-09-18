@@ -63,7 +63,7 @@ A compiled-serving hub's routing decision passes through four layers on disk, in
 
 ## 4. THE COMPILED-SERVING PARITY BAR
 
-A hub earns the **`compiled-serving`** verdict when its compiled decision matches the legacy (prose-router replay) decision on **every** scenario in its benchmark set — zero drift, zero unsafe over-detection, zero silent defers on a scenario legacy actually routes. This is measured by the Lane C harness, `system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs`, which re-hashes the three frozen scorer files as a precondition and never re-implements their judgment — it only translates the compiled decision into the frozen evaluator's own vocabulary and asks it to score.
+A hub earns the **`compiled-serving`** verdict when its compiled decision matches the legacy (prose-router replay) decision on **every** scenario in its benchmark set — zero drift, zero unsafe over-detection, zero silent defers on a scenario legacy actually routes. The Lane C harness measured it, and that harness was retired with its lane, so the verdicts recorded here stand as measured and no current tool re-measures them.
 
 Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub cohort the resolver consults when the flag is unset. As of this reference, all seven hubs in Section 2 carry that verdict and are in the cohort (verify directly in `011-runtime-engine/lib/resolve.cjs`); `sk-design`'s shadow-child (562-line compiler) is the deepest reference build, at 38/0 (see the recipe docs in Section 7).
 

@@ -13,6 +13,8 @@ contextType: "general"
 
 > Reports and inputs for benchmarking how well the `sk-doc` parent hub is routed, discovered, and used in practice, kept beside the skill they measure. Each run-label folder holds one run's rendered report pair; this file indexes them.
 
+> Archive status: the Lane C harness that produced these reports was retired with the skill-benchmark lane, so none of them can be re-run from the current tree. They stay as frozen historical evidence.
+
 ---
 
 ## 1. OVERVIEW
@@ -21,10 +23,10 @@ The deep-improvement Lane C skill-benchmark harness benchmarks `sk-doc` against 
 
 Two trace modes score the same corpus:
 
-- **router** is deterministic and offline: it replays `hub-router.json` + `mode-registry.json`. This is the CI gate.
+- **router** is deterministic and offline: it replays `hub-router.json` + `mode-registry.json`. It was the CI gate.
 - **live** dispatches each scenario through `cli-opencode` to a real model and grades the model's stated routing plus observed activation.
 
-The rubric, terminal buckets, and pass thresholds are the deep-improvement Lane C **scoring contract's**, not this index's: see section 4. Where a number here and the scoring contract disagree, the scoring contract prevails.
+The rubric, terminal buckets and pass thresholds came from the Lane C scoring contract, which was retired with the lane, not from this index.
 
 ---
 
@@ -38,34 +40,15 @@ No Lane C skill-benchmark run has been archived for `sk-doc` yet. When the first
 
 ---
 
-## 3. RE-RUNNING
-
-Run from the repository root. The runner and its scoring live in the deep-improvement Lane C lane; only the `--skill` and `--outputs-dir` arguments are hub-specific.
-
-```bash
-node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
-  --mode=skill-benchmark --skill=sk-doc \
-  --outputs-dir=.skilled/skills/sk-doc/benchmark/reports/<run-label> \
-  --trace-mode=router
-```
-
-Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` and `skill-benchmark-report.md` in the outputs dir. The D5 connectivity gate runs first and hard-fails the run on structural breaks. Add each new run as a fresh sibling run-label folder and a new row in section 2.
-
----
-
-## 4. RELATED RESOURCES
+## 3. RELATED RESOURCES
 
 | Document | Purpose |
 |---|---|
-| [`deep-improvement`](../../system-deep-loop/deep-improvement/SKILL.md) | Owns the Lane C skill-benchmark harness, runner, and scoring |
 | [`sk-doc`](../SKILL.md) | The hub under measurement |
-| `scoring-contract.md` (retired with the skill-benchmark lane) | The normative Lane C measurement contract every verdict is scored against |
-| `/deep:skill-benchmark` (retired with the skill-benchmark lane) | The command that drives a benchmark run |
 
 ---
 
-## 5. COMPILED-ROUTING ARCHIVE
+## 4. COMPILED-ROUTING ARCHIVE
 
 Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
-Convention and schema: [`serving-snapshot-schema.md`](../sk-create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

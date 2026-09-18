@@ -13,6 +13,7 @@ trigger_phrases:
 
 > **Retired lane:** the Lane C skill-benchmark harness, its runner, its scoring contract and the `/deep:skill-benchmark` command were removed. This tree is a frozen index of the reports that lane produced; no new run can be started from it.
 
+
 ---
 
 ## 1. OVERVIEW
@@ -21,7 +22,7 @@ The retired deep-improvement Lane C harness benchmarked `sk-code` against its ow
 
 Two trace modes score the same playbook corpus:
 
-- **router** is deterministic and offline. For a hub skill it replays `hub-router.json` + `mode-registry.json`; for a flat skill it replays the machine-readable router in `sk-code/ROUTER.md`. This is the CI gate.
+- **router** is deterministic and offline. For a hub skill it replays `hub-router.json` + `mode-registry.json`; for a flat skill it replays the machine-readable router in `sk-code/ROUTER.md`. It was the CI gate.
 - **live** dispatches each scenario through `cli-opencode` to a real model and grades the model's stated routing plus observed activation. This is the operator default for a true routing verdict.
 
 ### Key Statistics
@@ -44,13 +45,7 @@ Two trace modes score the same playbook corpus:
 
 ---
 
-## 2. RE-RUNNING
-
-There is no re-run path. The Lane C harness that produced these reports was removed, and `loop-host.cjs` now accepts only the surviving `agent-improvement` and `model-benchmark` modes. The run-label folders below are frozen records.
-
----
-
-## 3. STRUCTURE
+## 2. STRUCTURE
 
 ```text
 benchmark/
@@ -83,7 +78,7 @@ Every run-label folder on disk, one row each. `Status` separates current runs fr
 
 ---
 
-## 4. READING THE REPORTS
+## 3. READING THE REPORTS
 
 Each run writes a matched pair:
 
@@ -97,7 +92,7 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 
 ---
 
-## 5. TROUBLESHOOTING
+## 4. TROUBLESHOOTING
 
 Retained from the retired lane; these symptoms describe historical runs only.
 
@@ -110,7 +105,7 @@ Retained from the retired lane; these symptoms describe historical runs only.
 
 ---
 
-## 6. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Related Skills
 
@@ -124,12 +119,10 @@ Retained from the retired lane; these symptoms describe historical runs only.
 | Document | Purpose |
 |---|---|
 | [`ROUTER.md`](../ROUTER.md) | The machine-readable router the benchmark replays for a flat skill (a hub replays `hub-router.json`) |
-| [`sk-doc/sk-create-benchmark`](../../sk-doc/sk-create-benchmark/SKILL.md) | Authoring templates for this `benchmark/README.md` index + the run-label storage standard (§10: [`skill-benchmark-readme-template.md`](../../sk-doc/sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md), [`skill-benchmark-storage-guide.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md)); the per-run `skill-benchmark-report.md` stays renderer-owned |
 
 ---
 
-## 7. COMPILED-ROUTING ARCHIVE
+## 6. COMPILED-ROUTING ARCHIVE
 
 Compiled-routing parity runs archive under `benchmark/reports/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
-Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

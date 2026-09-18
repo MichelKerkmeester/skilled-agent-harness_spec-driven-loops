@@ -1,11 +1,11 @@
 ---
 name: sk-create-benchmark
-description: Author MCP-promotion, behavior, skill-benchmark, and model-benchmark artifacts; route the Lane A authoring guide.
+description: Author MCP-promotion, behavior, and model-benchmark artifacts; route the Lane A authoring guide.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.5.0.0
 ---
 
-<!-- Keywords: create-benchmark, benchmark-report.md, source.md, mcp_server benchmarks, benchmark promotion, skill-local benchmark, MCP bake-off, benchmark folder, behavior benchmark, behavior-benchmark.md, behavior_benchmark, scenario contract, behavior-benchmark framework, claude-baseline, skill-benchmark, benchmark/README.md, run-label folder, skill-benchmark-report, Lane C benchmark, model-benchmark, benchmark fixture, benchmark profile, code-task oracle fixture, reviewer-prompt fixture, Lane B fixture, command surface benchmark
+<!-- Keywords: create-benchmark, benchmark-report.md, source.md, mcp_server benchmarks, benchmark promotion, skill-local benchmark, MCP bake-off, benchmark folder, behavior benchmark, behavior-benchmark.md, behavior_benchmark, scenario contract, behavior-benchmark framework, claude-baseline, benchmark/README.md, run-label folder, model-benchmark, benchmark fixture, benchmark profile, code-task oracle fixture, reviewer-prompt fixture, Lane B fixture, command surface benchmark -->
 
 # create-benchmark
 
@@ -13,10 +13,9 @@ version: 1.5.0.0
 
 - **MCP promotion** — promote curated evidence from a shipped spec packet into a consuming skill's `mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/`, including winner, fixture, caveats, replay commands, and source pointer (§3-8).
 - **Behavior** — author a `<mode>/behavior-benchmark/` index, scenario contracts, and Claude baseline under the shared measurement framework (§9).
-- **Skill-benchmark (Lane C)** — author `benchmark/` storage and its `benchmark/README.md` run-label index; never author renderer-owned `skill-benchmark-report.md` (§10).
-- **Model-benchmark (Lane B)** — author code-task, pattern/capability, and reviewer-prompt fixtures plus run profiles; evaluators, scorers, and verdict contracts stay lane-local (§11).
+- **Model-benchmark (Lane B)** — author code-task, pattern/capability, and reviewer-prompt fixtures plus run profiles; evaluators, scorers, and verdict contracts stay lane-local (§10).
 
-Lane A agent-improvement gets an authoring guide here (§14); its artifacts remain code-owned in-lane.
+Lane A agent-improvement gets an authoring guide here (§12); its artifacts remain code-owned in-lane.
 
 The skill-local surface is the look-here-first entry point, not the archive.
 
@@ -30,9 +29,8 @@ Use this packet to author completed benchmark evidence or benchmark inputs into 
 
 - **MCP promotion** (on-disk `shared`; §3-8) — promote a completed MCP benchmark from a spec packet: author the ten-section `benchmark-report.md` and `source.md`, copy `results.csv`, applicable `per-probe.jsonl` and runtime sidecars into a dated folder, then update `benchmarks/README.md`.
 - **Behavior benchmark** (§9) — author or extend a deep-loop mode's index, `<PREFIX>-NNN-<slug>.md` scenario contracts, baseline, and entry-surface/clarity matrix. Fixed prefixes are `research` (RSB), `review` (RVB), `ai-council` (ACB), and `improvement` (IMB); declare a new mode's prefix in the index OVERVIEW.
-- **Skill-benchmark** (§10) — establish Lane C sibling run-label folders with frozen `baseline/`, or author/update `benchmark/README.md`.
-- **Model-benchmark** (§11) — author a code-task, pattern/capability, or reviewer-prompt fixture, or a profile selecting fixtures, models, frameworks, scoring, and gate.
-- **Lane A guide** (§14) — author the `agent_improvement` guide; rubrics, configs, and templates stay in-lane.
+- **Model-benchmark** (§10) — author a code-task, pattern/capability, or reviewer-prompt fixture, or a profile selecting fixtures, models, frameworks, scoring, and gate.
+- **Lane A guide** (§12) — author the `agent_improvement` guide; rubrics, configs, and templates stay in-lane.
 
 Keyword triggers: `benchmark-report.md`, `source.md`, `mcp-server/benchmarks`, `MCP bake-off`; `behavior benchmark`, `behavior-benchmark.md`, `behavior_benchmark`, `scenario contract`, `benchmark/README.md`, `run-label folder`, `benchmark package`; `model-benchmark`, `benchmark fixture`, `benchmark profile`, `command surface benchmark`
 
@@ -75,8 +73,8 @@ Use another `sk-doc` packet when:
 - The task is a general benchmark design exercise rather than promotion of an already-curated run.
 - A re-run confirms the same headline; update the existing `benchmark-report.md` with a re-run note instead.
 - The result mixes data from different MCP stacks and asks for a single comparative verdict.
-- The task hand-edits renderer-owned `skill-benchmark-report.md` or defines scoring (rubric, evaluator, reviewer verdict, D1-D5 weight). Scoring stays lane-local; this packet authors inputs, indexes, and reports (§10-11).
-- A one-off experiment fits none of the six families, such as a one-off vision-audit benchmark kept beside the skill that ran it. Keep it lane-local; there is no "misc" family.
+- The task defines scoring (rubric, evaluator or reviewer verdict). Scoring stays lane-local; this packet authors inputs, indexes, and reports (§10).
+- A one-off experiment fits none of the families, such as a one-off vision-audit benchmark kept beside the skill that ran it. Keep it lane-local; there is no "misc" family.
 
 If unsure, default to "not yet." Promote after rigor.
 
@@ -92,13 +90,12 @@ Route to the right family before authoring. The **OWNS** column is what this pac
 | --- | --- | --- | --- | --- | --- |
 | MCP promotion (`shared`) | Retrieval / quality / runtime / throughput from a shipped MCP stack | `<skill>/mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/` | `benchmark-report.md` + `source.md` templates and the report contract | Owned here | §3-8 |
 | Behavior (`behavior_benchmark`) | Executor-model behavior at a deep-loop mode's invocation surface | `<mode>/behavior-benchmark/` | Index, scenario, and baseline templates + the authoring guide | Measurement contract → `system-deep-loop/shared/behavior-benchmark/framework.md` | §9 |
-| Skill-benchmark (`skill_benchmark`, Lane C) | Whether a skill is well-routed, discoverable, efficient, and useful | `<skill>/benchmark/<run-label>/` | The storage guide + the hub `benchmark/README.md` index template | `skill-benchmark-report.md` render → `build-report.cjs`; D1-D5 scoring → deep-improvement `scoring-contract.md` | §10 |
-| Model-benchmark (`model_benchmark`, Lane B) | What a model or prompt framework produces against a held-out oracle | `system-deep-loop/deep-improvement/assets/model-benchmark/` | Code-task, pattern/capability, and reviewer fixture templates + the profile template + the fixture guide | Evaluator / scorer / reviewer-verdict contract → deep-improvement lane | §11 |
-| Agent-improvement (`agent_improvement`, Lane A) | An agent's quality across five dimensions | deep-improvement lane (in-lane) | Authoring guide ([guide](references/agent-improvement/agent-improvement-authoring-guide.md)) | Code-owned rubric/config; run by `/deep:agent-improvement` | §14 |
+| Model-benchmark (`model_benchmark`, Lane B) | What a model or prompt framework produces against a held-out oracle | `system-deep-loop/deep-improvement/assets/model-benchmark/` | Code-task, pattern/capability, and reviewer fixture templates + the profile template + the fixture guide | Evaluator / scorer / reviewer-verdict contract → deep-improvement lane | §10 |
+| Agent-improvement (`agent_improvement`, Lane A) | An agent's quality across five dimensions | deep-improvement lane (in-lane) | Authoring guide ([guide](references/agent-improvement/agent-improvement-authoring-guide.md)) | Code-owned rubric/config; run by `/deep:agent-improvement` | §12 |
 
 ### Routing Decision
 
-Route by the table. Never hand-write renderer-owned `skill-benchmark-report.md` or change lane-local scoring.
+Route by the table. Never change lane-local scoring.
 
 ### Smart Router Pseudocode
 
@@ -108,7 +105,7 @@ only family keys and tiered fallback vary:
 
 ```python
 DEFAULT_RESOURCE = "references/shared/README.md"
-FAMILIES = ["behavior_benchmark", "skill_benchmark", "model_benchmark",
+FAMILIES = ["behavior_benchmark", "model_benchmark",
             "agent_improvement", "mcp_promotion"]
 # Resource dirs are kebab-case; family keys remain snake_case machine identifiers.
 # mcp_promotion templates live under shared/.
@@ -117,7 +114,6 @@ FAMILY_DISK_KEY = {"mcp_promotion": "shared"}
 INTENT_MODEL = {
     "MCP_PROMOTION": {"weight": 4, "keywords": ["benchmark-report.md", "source.md", "mcp-server/benchmarks", "mcp bake-off", "mcp promotion"]},
     "BEHAVIOR_BENCHMARK": {"weight": 4, "keywords": ["behavior benchmark", "behavior-benchmark.md", "behavior_benchmark", "scenario contract"]},
-    "SKILL_BENCHMARK": {"weight": 4, "keywords": ["skill benchmark", "skill-benchmark", "benchmark/readme.md", "run-label folder", "benchmark package"]},
     "MODEL_BENCHMARK": {"weight": 4, "keywords": ["model-benchmark", "model benchmark", "benchmark fixture", "benchmark profile", "command surface benchmark"]},
     "AGENT_IMPROVEMENT": {"weight": 4, "keywords": ["agent improvement", "agent_improvement", "improvement guide"]},
 }
@@ -140,13 +136,6 @@ RESOURCE_MAP = {
         "assets/behavior-benchmark/behavior-benchmark-scenario-template.md",
         "assets/behavior-benchmark/behavior-benchmark-baseline-template.md",
     ],
-    "SKILL_BENCHMARK": [
-        "references/shared/README.md", "references/shared/case-studies.md",
-        "references/shared/pitfalls.md", "references/shared/worked-example.md",
-        "references/skill-benchmark/skill-benchmark-storage-guide.md",
-        "references/skill-benchmark/serving-snapshot-schema.md",
-        "assets/skill-benchmark/skill-benchmark-readme-template.md",
-    ],
     "MODEL_BENCHMARK": [
         "references/shared/README.md", "references/shared/case-studies.md",
         "references/shared/pitfalls.md", "references/shared/worked-example.md",
@@ -163,7 +152,7 @@ RESOURCE_MAP = {
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the benchmark family (MCP promotion, behavior, skill, model, agent)",
+    "Confirm the benchmark family (MCP promotion, behavior, model, agent)",
     "Confirm what is authored here vs lane-owned, then the storage location and run label",
 ]
 
@@ -326,8 +315,8 @@ One grammar governs every benchmark family. A run folder is named:
 - Lowercase ASCII only. No underscores, no dots, no capitals.
 - The date is the **execution** date, not the authoring or publication date. Publication date belongs in
   the report body, where a reader can see both.
-- `<subject>` names the corpus the run measured: `manual-testing-playbook`, `skill-benchmark`,
-  `mcp-retrieval`, `model-eval`, `behavior`.
+- `<subject>` names the corpus the run measured: `manual-testing-playbook`, `mcp-retrieval`,
+  `model-eval`, `behavior`.
 - `<variant>` names what most distinguishes the run. For a **feature-scoped** run — one validating a
   single feature or scenario group rather than comparing executors — name the feature (e.g. `goal-hook`),
   not the model; the model/executor is recorded inside the report (`model`/`providerModel` fields, the
@@ -346,7 +335,6 @@ Examples:
 2026-07-26--manual-testing-playbook--cursor-grok-4-5-high-fast/ # executor-scoped: names the model+effort that ran it
 2026-07-26--manual-testing-playbook--model-comparison/
 2026-05-18--mcp-retrieval--bge-confirmation/
-2026-07-21--skill-benchmark--luna-high/
 ```
 
 **One exception: `baseline/`.** The frozen comparison anchor keeps its name. It is not a run, it is the
@@ -481,107 +469,7 @@ and naming; execution and evidence stay in the executing packet.
 
 ---
 
-## 10. SKILL-BENCHMARK STORAGE AND INDEX
-
-Lane C `/deep:skill-benchmark` measures routing, discoverability, efficiency, and usefulness, emitting JSON+Markdown per run. This packet owns only the hub `benchmark/` storage convention and `benchmark/README.md` template—not reports, runner, or scoring. See the [storage guide](references/skill-benchmark/skill-benchmark-storage-guide.md) for naming and renderer boundaries, and [serving snapshot schema](references/skill-benchmark/serving-snapshot-schema.md) for compiled-routing archives, `serving-snapshot.json`, and repo-relative provenance. Cross-link, never restate, lane-local D1-D5 scoring.
-
-### Storage Shape
-
-Each run writes its report pair to a sibling `<run-label>/`:
-
-```text
-<skill-or-hub>/benchmark/
-├── README.md              # layout, how to run, and a curated run table
-├── reports/               # every result lives here
-│   ├── README.md          # the run index, appended by the harness itself
-│   ├── <YYYY-MM-DD>--<subject>--<variant>/   # one run; see the file table below
-│   ├── baseline/          # FROZEN comparison anchor — never regenerated
-│   └── compiled-routing/  # archive lane, written by the compiled-routing archiver
-└── fixtures/              # optional INPUT corpus — not a run
-```
-
-One location, not two. An earlier revision of this document described raw runs as
-siblings of `reports/`, carrying only the report pair, with curated copies inside it.
-No writer ever produced that raw form — the harness emits the full file set in a single
-pass — so the split described something that never existed and sent real output to the
-wrong place. A distinction nothing produces is not a distinction.
-
-`reports/README.md` is appended by the harness at the moment it writes a report, so it
-cannot fall behind the folders beside it. The table in `benchmark/README.md` is curated
-by hand and is the one that drifts; keep it short and treat the machine-written index as
-the authority when they disagree.
-
-Runs never overwrite siblings. `baseline/` is frozen; every re-run gets a new sibling.
-
-Run-label values follow the grammar in §6. They must match
-`^[a-z0-9]+(?:-{1,2}[a-z0-9]+)*$`: lowercase alphanumerics, single hyphens inside a field and a double
-hyphen between fields. Reject underscores, dots, capitals and ambiguity before selecting a path.
-
-### The reports layer
-
-`benchmark/` holds run output. `benchmark/reports/` holds the curated, published view of a run: the
-version a reader opens to learn what happened, rather than the raw evidence a tool wrote.
-
-The report filename differs by family, and the two must not be conflated. An MCP-promotion folder is
-hand-authored and carries `benchmark-report.md` (§3-8). A Lane C folder is written by the harness and
-carries the renderer-owned `skill-benchmark-report.{json,md}` pair, which is never hand-edited.
-
-A Lane C report folder carries seven files:
-
-| File | Holds |
-|---|---|
-| `README.md` | Entry point: headline verdict and a run-snapshot table |
-| `skill-benchmark-report.json` | The machine record every other file here derives from |
-| `skill-benchmark-report.md` | The rendered report, regenerated from the JSON |
-| `failed-runs.md` | One section per failing case, with expected against observed |
-| `findings-and-recommendations.md` | Cross-run synthesis and the remediation order |
-| `results.csv` | The machine-readable table, one row per case |
-| `source.md` | Pointer back to the packet holding the authoritative evidence |
-
-An MCP-promotion folder carries the same set with `benchmark-report.md` in place of the renderer-owned
-pair, because that family has no renderer and its report is authored.
-
-Raw transcripts, ledgers and stdout stay in the originating spec packet. A report folder is added for a
-materially new run or executor configuration and is never overwritten when a later result differs, so
-the history of what was measured stays legible.
-
-A run whose record captured no per-case failure detail still gets `failed-runs.md`, stating that the run
-captured none. Never infer a failure the record does not contain.
-
-### Templates
-
-| Output file | Template |
-| --- | --- |
-| `<skill-or-hub>/benchmark/README.md` | [`assets/skill-benchmark/skill-benchmark-readme-template.md`](assets/skill-benchmark/skill-benchmark-readme-template.md) |
-| `skill-benchmark-report.md` | None — renderer-owned; see NEVER below |
-
-### Authoring Workflow
-
-1. **Read the storage guide** — confirm run-label naming and frozen baseline.
-2. **Confirm the target** has (or is establishing) a Lane C `benchmark/` tree beside the skill it measures.
-3. **Author the index** from the template: newest-first folder rows, structure map, re-run commands, and links to scoring and `/deep:skill-benchmark`.
-4. **Cross-link the lane authorities** (`scoring-contract.md`, `operator-guide.md`); never restate the rubric or thresholds.
-5. **Validate** the README with the shared sk-doc validator.
-
-### ✅ ALWAYS / ⛔ NEVER (skill-benchmark)
-
-- **ALWAYS** keep the README run-label index in exact sync with the folders on disk — one row per folder.
-- **ALWAYS** add a new run as a fresh sibling run-label folder and index row; keep `baseline/` frozen.
-- **ALWAYS** cross-link the deep-improvement D1-D5 scoring contract; rubric, buckets, and thresholds are lane-owned.
-- **NEVER** hand-author or hand-edit `skill-benchmark-report.md` — it is an anti-drift render produced by `build-report.cjs` from the run JSON, silently overwritten on the next run.
-- **NEVER** author a fill-in template for that report; templates here are for the `benchmark/README.md` index and INPUT fixtures/profiles only.
-- **NEVER** copy the D1-D5 scoring, reviewer schema, or any scorer/runner into this packet — they are lane-local.
-
-### Success Criteria (skill-benchmark)
-
-- The skill or hub has a `benchmark/` tree following the convention, with a `baseline/` anchor and one sibling folder per run.
-- `benchmark/README.md` indexes every run-label folder, links the scoring contract and command, and carries no hand-authored report `.md`.
-- Each run folder's `skill-benchmark-report.md` was produced by the renderer, not by hand.
-- Shared sk-doc validation passes for the README, or the remaining issue is escalated with exact command output.
-
----
-
-## 11. MODEL-BENCHMARK FIXTURES AND PROFILES
+## 10. MODEL-BENCHMARK FIXTURES AND PROFILES
 
 Lane B `/deep:model-benchmark` scores model or prompt-framework output against a held-out oracle. This packet owns data-only fixtures and run profiles, never evaluator, scorers, or reviewer-verdict contract. The taxonomy, profile shape, and boundary live in [`references/model-benchmark/model-benchmark-fixture-guide.md`](references/model-benchmark/model-benchmark-fixture-guide.md).
 
@@ -641,31 +529,28 @@ Copy only each template's fenced JSON into shipped `.json`; include no frontmatt
 
 ---
 
-## 12. INTEGRATION POINTS
+## 11. INTEGRATION POINTS
 
-This packet authors inputs and indexes; `/deep:skill-benchmark`, `/deep:model-benchmark`, and `/deep:agent-improvement` run their lanes (§10, §11, §14).
+This packet authors inputs and indexes; `/deep:model-benchmark` and `/deep:agent-improvement` run their lanes (§10, §12).
 
 Filesystem outputs, template directories, and filenames use lowercase kebab-case. Router and JSON family keys remain snake_case machine identifiers; the router converts them to resource paths.
 
-`/create:benchmark` drives `mcp_promotion` (§3-8) end-to-end. Author behavior, skill-benchmark, model-benchmark, and agent-improvement directly from their sections; no command scaffolds them.
+`/create:benchmark` drives `mcp_promotion` (§3-8) end-to-end. Author behavior, model-benchmark, and agent-improvement directly from their sections; no command scaffolds them.
 
 ---
 
-## 14. REFERENCES AND RELATED RESOURCES
+## 12. REFERENCES AND RELATED RESOURCES
 
 **Within this packet** — family guides and the overflow route-map; the fillable templates are mapped in each family section above:
 
 - [`references/shared/README.md`](references/shared/README.md) — overflow route-map (case studies, worked example, pitfalls).
 - [`references/behavior-benchmark/behavior-benchmark-guide.md`](references/behavior-benchmark/behavior-benchmark-guide.md) — behavior package authoring path (§9).
-- [`references/skill-benchmark/skill-benchmark-storage-guide.md`](references/skill-benchmark/skill-benchmark-storage-guide.md) — skill-benchmark storage convention and renderer boundary (§10).
-- [`references/skill-benchmark/serving-snapshot-schema.md`](references/skill-benchmark/serving-snapshot-schema.md) — `serving-snapshot.json` schema, the fail-closed `compiled-routing/<run-label>/` archive convention, and repo-relative provenance (§10); implemented by [`scripts/render-serving-snapshot.cjs`](scripts/render-serving-snapshot.cjs) + [`scripts/archive-compiled-routing.cjs`](scripts/archive-compiled-routing.cjs).
-- [`references/model-benchmark/model-benchmark-fixture-guide.md`](references/model-benchmark/model-benchmark-fixture-guide.md) — model-benchmark fixture taxonomy, profile shape, lane boundary (§11).
-- [`agent-improvement-authoring-guide.md`](references/agent-improvement/agent-improvement-authoring-guide.md) — Lane A input authoring (§14).
+- [`references/model-benchmark/model-benchmark-fixture-guide.md`](references/model-benchmark/model-benchmark-fixture-guide.md) — model-benchmark fixture taxonomy, profile shape, lane boundary (§10).
+- [`agent-improvement-authoring-guide.md`](references/agent-improvement/agent-improvement-authoring-guide.md) — Lane A input authoring (§12).
 
 **Lane-owned contracts** — cross-link, never restate:
 
 - [`behavior-benchmark/framework.md`](../../system-deep-loop/shared/behavior-benchmark/framework.md) — behavior rubric, buckets, budget formula, runner.
-- `scoring-contract.md` (retired with the skill-benchmark lane) + `build-report.cjs` (retired with the skill-benchmark lane) — Lane C D1-D5 scoring and the renderer that owns `skill-benchmark-report.md`.
 - [`evaluator-contract.md`](../../system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md) + [`reviewer-schema.md`](../../system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-schema.md) — Lane B evaluator rubric and reviewer-prompt schema.
 
 **Shared sk-doc backbone**: [`../shared/scripts/validate_document.py`](../shared/scripts/validate_document.py) — every authored `.md` must pass with 0 issues; [`../shared/references/`](../shared/references/) — cross-document standards.

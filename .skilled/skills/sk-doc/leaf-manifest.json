@@ -21,16 +21,13 @@
         "assets/model-benchmark/model-benchmark-profile-template.md",
         "assets/shared/benchmark-report-template.md",
         "assets/shared/source-template.md",
-        "assets/skill-benchmark/skill-benchmark-readme-template.md",
         "references/agent-improvement/agent-improvement-authoring-guide.md",
         "references/behavior-benchmark/behavior-benchmark-guide.md",
         "references/model-benchmark/model-benchmark-fixture-guide.md",
         "references/shared/README.md",
         "references/shared/case-studies.md",
         "references/shared/pitfalls.md",
-        "references/shared/worked-example.md",
-        "references/skill-benchmark/serving-snapshot-schema.md",
-        "references/skill-benchmark/skill-benchmark-storage-guide.md"
+        "references/shared/worked-example.md"
       ],
       "packet": "sk-create-benchmark",
       "workflowMode": "sk-create-benchmark"

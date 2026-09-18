@@ -13,6 +13,8 @@ contextType: "general"
 
 > Curated, derived-after-the-fact reports for cli-opencode's manual-testing-playbook validation runs, kept beside the CLI they measure. Each run-label folder holds one already-captured run's report package; this file indexes the tree and states how to read it.
 
+> Archive status: the Lane C harness that produced these reports was retired with the skill-benchmark lane, so none of them can be re-run from the current tree. They stay as frozen historical evidence.
+
 ---
 
 ## 1. OVERVIEW
@@ -65,4 +67,3 @@ Each run-label folder holds the seven-file package the storage guide defines:
 | [`cli-opencode`](../SKILL.md) | The CLI under measurement |
 | [`goal-hook.md`](../manual-testing-playbook/goal-hook/goal-hook.md) | The `CO-039` scenario this run's headless slice is drawn from |
 | [`004-goal-hook-playbooks-and-validation`](../../../../specs/hooks/004-goal-hook-playbooks-and-validation/spec.md) | The spec packet that captured the underlying evidence |
-| [`skill-benchmark-storage-guide.md`](../../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md) | The storage standard this tree follows |

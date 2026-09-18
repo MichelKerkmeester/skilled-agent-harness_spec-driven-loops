@@ -113,34 +113,25 @@ def scaffold_benchmark_tree(skill_dir: Path, skill_name: str) -> None:
         '\n'
         '## 1. OVERVIEW\n'
         '\n'
-        'TODO describe what this skill is benchmarked on and by which harness.\n'
+        'TODO describe what this skill is benchmarked on and how its runs are recorded.\n'
+        '\n'
+        '---\n'
         '\n'
         '## 2. LAYOUT\n'
         '\n'
         '| Path | Contents |\n'
         '|---|---|\n'
         '| [`reports/`](./reports/) | One folder per run, indexed by `reports/README.md` |\n'
-        '\n'
-        '## 3. RUNNING A BENCHMARK\n'
-        '\n'
-        'The Lane C harness reads this skill\'s manual-testing playbook as its default corpus and\n'
-        'writes a dated run folder under `reports/`:\n'
-        '\n'
-        '```bash\n'
-        'node .skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \\\n'
-        f'  --skill {skill_name}\n'
-        '```\n'
     )
     _write_if_absent(benchmark_dir / 'README.md', tree_index)
     _write_if_absent(reports_dir / 'README.md', empty_reports_index(skill_name))
 
 
 def empty_reports_index(skill_name: str) -> str:
-    """Return the empty run index, matching the harness writer byte for byte.
+    """Return the empty run index in the shape the existing report folders use.
 
-    Two writers produce this document: this scaffolder and the benchmark harness
-    that appends rows to it. They must agree, or a scaffolded index would gain a
-    second table the first time a run recorded itself.
+    Runs are now recorded by hand, one row per run folder, so the table columns
+    match the indexes already on disk rather than a writer that appends to them.
     """
     columns = ['Executed', 'Folder', 'Runtime', 'Result', 'Verdict', 'Source']
     header = f"| {' | '.join(columns)} |"
