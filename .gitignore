@@ -44,6 +44,11 @@
 node_modules/
 **/node_modules
 **/seed/package-lock.json
+# The compatibility root carries a link, not packages: a plugin loaded through
+# that root resolves its imports from wherever the path lands, so the name has to
+# exist there too. It points at the one installed copy, and dangles until install
+# exactly as the copy it points at is absent until then.
+!.opencode/node_modules
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Build output & compiled artifacts

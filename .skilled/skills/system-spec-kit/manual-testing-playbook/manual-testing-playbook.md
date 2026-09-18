@@ -78,7 +78,7 @@ These manual tests should mimic real user behavior, not just isolated command ex
 
 1. Working directory is project root.
 2. The `system-spec-kit` package builds: a stale compiled validation orchestrator makes `validate.sh` exit 3 with no rule output at all.
-3. Spec-folder scripts are executable and reachable through `realpath` when `.opencode` is a symlink.
+3. Spec-folder scripts are executable and reachable through `realpath` when they are reached through the `.opencode` compatibility root, whose entries are symlinks.
 4. Manual execution logging is enabled (terminal transcript capture).
 5. Scenarios that write into a spec folder run against a scratch packet, never a live one.
 
