@@ -281,14 +281,14 @@ The global component versioning rules in this file do not apply to nested packet
 ### Templates
 
 - [readme-template.md](../../sk-create-readme/assets/readme-template.md) - README structure and quality rules
-- [llmstxt-templates.md](./llmstxt-templates.md) - llms.txt site-map files
+- [llmstxt-templates.md](../../shared/assets/llmstxt-templates.md) - llms.txt site-map files
 - [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - YAML frontmatter by document type
 
 ### Standards
 
 - `PUBLIC-RELEASE.md` Section 7 - Authoritative writing style for releases
 - [hvr-rules.md](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules (banned words, punctuation, structure)
-- [core-standards.md](../references/core-standards.md) - Markdown structure and naming conventions
+- [core-standards.md](../../shared/references/core-standards.md) - Markdown structure and naming conventions
 
 ### Workflows
 

@@ -43,4 +43,4 @@ npx vitest run .skilled/skills/system-spec-kit/runtime/cli/tests/validation-gate
 ## 5. RELATED
 
 - [`../spec/validate.sh`](../spec/validate.sh): the per-folder validator this sweep drives.
-- [`ENV-REFERENCE.md`](../../runtime/ENV-REFERENCE.md): documents the sweep's environment-driven configuration.
+- [`ENV-REFERENCE.md`](../../ENV-REFERENCE.md): documents the sweep's environment-driven configuration.

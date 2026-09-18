@@ -172,4 +172,3 @@ Expected result: the lock-liveness suite passes, and the document is detected as
 
 - [`../README.md`](../README.md)
 - [`../../api/README.md`](../../api/README.md)
-- [`../../lib/storage/README.md`](../../lib/storage/README.md)

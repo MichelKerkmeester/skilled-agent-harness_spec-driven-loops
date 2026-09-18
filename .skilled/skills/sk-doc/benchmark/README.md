@@ -59,8 +59,8 @@ Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` 
 |---|---|
 | [`deep-improvement`](../../system-deep-loop/deep-improvement/SKILL.md) | Owns the Lane C skill-benchmark harness, runner, and scoring |
 | [`sk-doc`](../SKILL.md) | The hub under measurement |
-| [`scoring-contract.md`](../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) | The normative Lane C measurement contract every verdict is scored against |
-| [`/deep:skill-benchmark`](../../../commands/deep/skill-benchmark.md) | The command that drives a benchmark run |
+| `scoring-contract.md` (retired with the skill-benchmark lane) | The normative Lane C measurement contract every verdict is scored against |
+| `/deep:skill-benchmark` (retired with the skill-benchmark lane) | The command that drives a benchmark run |
 
 ---
 

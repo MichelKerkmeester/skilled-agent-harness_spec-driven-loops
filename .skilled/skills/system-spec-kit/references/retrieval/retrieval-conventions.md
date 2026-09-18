@@ -10,7 +10,6 @@ trigger_phrases:
   - "keyed versus free-text retrieval"
   - "lane merge rule"
   - "coverage and exclusion policy"
-  - "root coverage table"
 importance_tier: important
 contextType: implementation
 version: 1.0.0.0

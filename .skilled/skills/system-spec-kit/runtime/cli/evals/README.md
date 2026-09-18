@@ -131,5 +131,5 @@ Expected result: both policy checks exit zero or report a documented exception t
 
 - [`../README.md`](../README.md)
 - [`../core/README.md`](../core/README.md)
-- [`../../ARCHITECTURE.md`](../../ARCHITECTURE.md)
+- [`../../ARCHITECTURE.md`](../../../ARCHITECTURE.md)
 - [`import-policy-allowlist.json`](./import-policy-allowlist.json)

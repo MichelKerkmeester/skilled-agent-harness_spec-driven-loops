@@ -30,7 +30,7 @@ Make supported CLI and agent output read like careful plain English without ever
 
 Coding CLIs often emit terse, robotic status text. The communication-projection package rewrites it into readable prose behind privacy-first provider routing, while leaving the canonical event stream, transcript, tool data, and model context byte-for-byte unchanged. Anything unsafe or failed returns the exact original.
 
-This skill is the entry point. It does not duplicate the code: it routes a request to the right subsystem and enforces the load-bearing invariants. The runtime contract lives in [SKILL.md](SKILL.md); the subsystem map is inline in [SKILL.md](SKILL.md); the visual rubrics live in [references/visual-explanation.md](references/visual-explanation.md).
+This skill is the entry point. It does not duplicate the code: it routes a request to the right subsystem and enforces the load-bearing invariants. The runtime contract lives in [SKILL.md](SKILL.md); the subsystem map is inline in [SKILL.md](SKILL.md). The explanation lane that carried the visual rubrics was retired.
 
 ---
 

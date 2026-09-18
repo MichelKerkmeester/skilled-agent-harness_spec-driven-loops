@@ -115,4 +115,4 @@ validation.
 - [`../README.md`](../README.md)
 - [`../spec/README.md`](../spec/README.md)
 - [`../tests/README.md`](../tests/README.md)
-- [`../../references/validation/validation-rules.md`](../../references/validation/validation-rules.md)
+- [`../../references/validation/validation-rules.md`](../../../references/validation/validation-rules.md)

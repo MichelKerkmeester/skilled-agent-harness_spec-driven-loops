@@ -201,6 +201,6 @@ node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/backfill-frontm
 ## 9. RELATED
 
 - [`../README.md`](../README.md)
-- [`../../runtime/scripts/README.md`](../../runtime/scripts/README.md)
-- [`../../references/memory/save-workflow.md`](../../references/memory/save-workflow.md)
+- [`../../scripts/README.md`](../../scripts/README.md)
+- [`../../references/memory/save-workflow.md`](../../../references/memory/save-workflow.md)
 - [`../core/README.md`](../core/README.md)
