@@ -14,7 +14,8 @@
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/008-links-and-generated-state",
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite",
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover",
-    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout"
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration"
   ],
   "manual": {
     "depends_on": [],
@@ -55,6 +56,7 @@
       "001-deep-research/spec.md",
       "002-per-runtime-reference-map/spec.md",
       ".opencode/bin/mcp-code-mode-launcher.cjs",
+      "review/review-report.md",
       "001-deep-research/research/research.md",
       "001-deep-research/goal.md",
       "002-per-runtime-reference-map/goal.md",
@@ -87,6 +89,12 @@
         "name": "mcp-code-mode-launcher.cjs",
         "kind": "file",
         "path": ".opencode/bin/mcp-code-mode-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -170,17 +178,17 @@
     ],
     "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
     "created_at": "2026-09-16T08:35:04Z",
-    "last_save_at": "2026-09-18T03:51:52.698Z",
+    "last_save_at": "2026-09-18T10:52:44.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:2dfec90c5e5efd1cc5a62a38587150e708f7c4de9ca16457709e6f0adad8aa17",
+    "source_fingerprint": "sha256:a7b356842b102feeba6400e87494a27afbb3e39023bd1b4943af1ab80048652f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "57ecca562350624e150cd2a9cefdd0792bafd9bbdc51b7c961f56dd50e21c693"
+      "spec.md": "2ff3812a71038dc440b8fb5322d22d10846f115d11db02312717b2d5e2f2e781"
     },
     "last_active_at": null
   }
