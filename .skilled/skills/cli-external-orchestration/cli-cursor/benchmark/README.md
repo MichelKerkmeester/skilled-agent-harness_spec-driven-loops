@@ -1,5 +1,4 @@
 ---
-Every file in a run folder that is not the machine record or its render is explicitly marked `Derived after the fact from this run's stored record, not written at run time.`: the `README.md`, `failed-runs.md`, `findings-and-recommendations.md`, and `source.md`. `skill-benchmark-report.md` carries its own disclaimer instead: it is a hand-authored render styled after the Lane C shape, not produced by `build-report.cjs`, since this tree has no Lane C scoring pass to render from.
 title: "cli-cursor Goal-Hook Benchmark Artifacts"
 description: "Curated, hand-derived validation reports for cli-cursor's goal-hook manual-testing-playbook scenario (CU-027), captured live against the real cursor-agent CLI. Not a deep-improvement Lane C skill-benchmark tree."
 trigger_phrases:
@@ -22,6 +21,7 @@ contextType: "general"
 
 This `benchmark/` tree holds **derived-after-the-fact** validation reports, not deep-improvement Lane C skill-benchmark runs. Each run folder captures a `manual-testing-playbook` scenario dispatched live against the real `cursor-agent` CLI and a real model, proven with a canary token plus a raw-transcript grep rather than the Lane C D1-D5 rubric.
 
+Every file in a run folder that is not the machine record or its render is explicitly marked `Derived after the fact from this run's stored record, not written at run time.`: the `README.md`, `failed-runs.md`, `findings-and-recommendations.md`, and `source.md`. `skill-benchmark-report.md` carries its own disclaimer instead: it is a hand-authored render styled after the Lane C shape, not produced by `build-report.cjs`, since this tree has no Lane C scoring pass to render from.
 
 ---
 
