@@ -1,0 +1,96 @@
+{
+  "lineage": "swe2",
+  "sessionId": "fanout-swe2-1789762218897-56yqt6",
+  "stopReason": "maxIterationsReached",
+  "iterations": 5,
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What exactly did Lane C parity measure, and which retired modules would a restored path need?",
+      "status": "resolved",
+      "answer": "Per-scenario compiled-vs-legacy-replay equivalence delegated to frozen evaluateRouteGold; statuses match/drift/vacuous/n-a/resolver-missing; only match passed. Restore needs the four named modules plus _args, advisor-probe, cutover-playbook-executor, vitest suite, loop-host registration, and run-skill-benchmark or a thin driver; full lane was 268 files in b45ea54cea3.",
+      "evidence": [
+        "file:compiled-routing-parity.cjs@b45ea54cea3^:7-45,103-113,562-578,636-643,712-740",
+        "file:router-replay.cjs@b45ea54cea3^:7-21",
+        "file:load-playbook-scenarios.cjs@b45ea54cea3^:7-24,461-481,555-575",
+        "file:score-skill-benchmark.cjs@b45ea54cea3^:874-945,963-1000",
+        "file:run-skill-benchmark.cjs@b45ea54cea3^:27-45,272-287",
+        "commit:b45ea54cea3"
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Can compiledRoute(hubId, taskText) decisions be checked against each routing scenario's gold, and what is the scenario count?",
+      "status": "resolved",
+      "answer": "Yes. compiledRoute returns action+selectionKind+qualified targets (verified live); qualifiedIdToLeaf bridges to leaf ids; leaf-manifest.json declares mode leaves for must-include granularity. Corpus: 262 gold-bearing playbook files across 44 dirs for the 5 hubs; plus 67 normalized canary-cases (50 route/7 defer/7 reject/3 clarify) as smoke-only. Semantic change vs parity is required and must be recorded.",
+      "evidence": [
+        "file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:53-106",
+        "file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:101-121",
+        "file:.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs:430-463",
+        "live:compiledRoute('sk-doc','author a changelog entry')->workflowMode sk-create-changelog; off-topic->{action:defer,targets:[]}",
+        "live census: gold files per hub 88/41/66/31/36; canary-cases.v1.json 10/9/14/13/21"
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "What else does admission need beyond the check (HUB_CHILD/DEFAULT_ON_HUBS freeze, manifest re-mint, guard freshness)?",
+      "status": "resolved",
+      "answer": "Cohort hardcoded in six places test-enforced to move together: HUB_CHILD (engine), DEFAULT_ON_HUBS (resolver), guard HUBS, advisor COMPILED_ROUTING_HUBS+DEFAULT_ON_HUBS, serving-closure.manifest.json, authored spec-tree twins. mint produces inert legacy/shadowOnly manifest; refresh recompiles gen+1 preserving serving; flip is authored-only flip-serving.cjs whose scorer gate is now stale (dead SCORER_DIR). Guard enforces freshness+authored-drift; pre-commit auto-remint hook reads hub list from guard HUBS; resolver binds route identity to manifest at serve time.",
+      "evidence": [
+        "file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:30-36",
+        "file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:34-40,111-115",
+        "file:.skilled/bin/compiled-route-guard.cjs:41-47",
+        "file:.skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts:14,30",
+        "file:.skilled/bin/lib/compiled-route-manifest.cjs:606-645,693-780",
+        "file:specs/sk-doc/.../014-runtime-engine/lib/flip-serving.cjs; file:specs/.../shared/frozen-scorer-contract.cjs:27-47",
+        "file:.skilled/bin/compiled-routing-foundation.vitest.ts:54-70,126-128,246-272",
+        "file:.skilled/bin/tests/compiled-route-manifest.test.cjs:1127",
+        "file:.opencode/scripts/git-hooks/pre-commit:281-330",
+        "commit:a1faf0914a"
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "What does each candidate path cost and risk, including keeping admission closed?",
+      "status": "resolved",
+      "answer": "Restore: ~3700-line surgical landing (or 268-file lane), freeze re-owning, path-churn verification; highest bar fidelity but to a replay proxy. New checker: ~500-800 lines on live deps; semantic-bar change + self-grading + coverage-blindness risks, each mitigable. Keep closed: ~0 cost but permanent admission block, unmeasured admitted-hub drift, stranded ready-mints, compounding doc debt. Archived measured verdicts: all-7 parity, 0 drift, 258/258, 47/47.",
+      "evidence": [
+        "commit:b45ea54cea3 (268-file census)",
+        "file:.skilled/skills/sk-code/benchmark/reports/compiled-routing/benchmark-sweep--r3/report.json",
+        "file:router-replay.cjs@b45ea54cea3^:7-21 (proxy, not the router)",
+        "file:.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md:87-105"
+      ]
+    },
+    {
+      "id": "q5",
+      "question": "Which path is recommended, and what would a later phase build and test?",
+      "status": "resolved",
+      "answer": "Path B — new gold checker (check-compiled-routing.cjs: two-shape gold loader + comparator port + rollup + corpus-completeness gate + report), vitest suite, admission runbook (HUB_CHILD -> checker -> mint/refresh -> flip -> cohort tables -> sync promote -> guard green), doc fixes (seven->five, bar redefinition, flip scorer-gate repair). Restore only if bar must stay '== legacy replay'; closed only with explicit cohort-frozen decision.",
+      "evidence": [
+        "file:specs/sk-doc/.../019-routing-coverage-activation-verification/goal-coverage-buildout.md:55",
+        "file:.skilled/bin/compiled-routing-foundation.vitest.ts:54-70",
+        "file:.opencode/scripts/git-hooks/pre-commit:281-330",
+        "file:.skilled/bin/compiled-route-sync.cjs:1-50",
+        "synthesis of iterations 1-4"
+      ]
+    }
+  ],
+  "crossCutting": [
+    {
+      "id": "topology-correction",
+      "finding": "Admitted cohort is 5 hubs, not 7: sk-design dissolved (f931ba2e14), sk-prompt retired (a9286399bc3); architecture doc + resolve.cjs comment stale.",
+      "status": "resolved"
+    },
+    {
+      "id": "flip-path-broken",
+      "finding": "Authored flip-serving.cjs scorer gate references dead .opencode/mcp-server scorer dir; repair or gated two-field manifest edit required in build phase.",
+      "status": "open-for-build-phase"
+    }
+  ],
+  "openFollowups": [
+    "clarify-vs-defer policy line in checker semantics",
+    "flip-serving.cjs repair vs leaner gated flip",
+    "corpus-completeness gate thresholds (block vs minimum per mode)",
+    "confirm authored-spec-tree-then-sync edit flow (no direct .skilled path)"
+  ]
+}

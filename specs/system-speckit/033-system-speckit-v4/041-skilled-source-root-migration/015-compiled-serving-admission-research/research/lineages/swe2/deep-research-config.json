@@ -1,0 +1,59 @@
+{
+  "topic": "How should a new parent hub be admitted to compiled-serving now that the Lane C parity harness is retired? Compare three paths: restore the retired legacy-parity path (compiled-routing-parity.cjs, score-skill-benchmark.cjs, router-replay.cjs, load-playbook-scenarios.cjs, deleted in commit b45ea54cea3), build a new checker of compiled decisions from compiledRoute() in .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs against each routing scenario's gold, or keep admission closed. Answer the five questions in the spec folder's spec.md section 3 and recommend one path with its costs, risks and build steps.",
+  "research_topic": "Compiled-serving admission after Lane C retirement: (Q1) what compiled-routing-parity.cjs and the retired skill-benchmark modules measured, (Q2) whether compiledRoute(hubId, taskText) checked against routing-scenario golds (expected_workflow_mode, expected_leaf_resources) can serve as the admission bar and how defer/holdout/negative scenarios count, (Q3) what else admission needs — frozen HUB_CHILD/DEFAULT_ON_HUBS tables in resolve.cjs, activation manifest re-mint, compiled-route-guard.cjs freshness, (Q4) cost and risk per path including keeping admission closed, (Q5) recommended path and the steps a later build phase would take.",
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
+  "artifact_dir": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/lineages/swe2",
+  "fanout_lineage_artifact_dir": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/lineages/swe2",
+  "loop_type": "research",
+  "stopPolicy": "max-iterations",
+  "stop_policy": "max-iterations",
+  "maxIterations": 5,
+  "minIterations": 5,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "default",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-devin",
+    "model": "swe-2-max",
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 14400
+  },
+  "lineage": {
+    "sessionId": "fanout-swe2-1789762218897-56yqt6",
+    "generation": 1,
+    "lineageId": "swe2",
+    "lineageMode": "detached"
+  },
+  "scopeBoundary": {
+    "writeRoot": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/lineages/swe2",
+    "forbiddenWrites": [
+      "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/spec.md",
+      "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/plan.md",
+      "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/tasks.md",
+      "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/deep-research-config.json",
+      "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/deep-research-state.jsonl",
+      "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/deep-research-strategy.md",
+      "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/findings-registry.json",
+      "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/deep-research-dashboard.md",
+      "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/observability-events.jsonl",
+      ".skilled",
+      "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/lineages/deepseek"
+    ],
+    "forbiddenCommands": [
+      "generate-context.js",
+      "validate.sh",
+      "append-mode-event.cjs",
+      "git write/checkout/commit"
+    ],
+    "writeback": "skipped by detached lineage boundary"
+  },
+  "createdAt": "2026-09-18T00:00:00Z",
+  "status": "synthesized",
+  "stopReason": "maxIterationsReached",
+  "completedIterations": 5
+}

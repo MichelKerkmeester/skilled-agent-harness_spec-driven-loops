@@ -1,0 +1,798 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "swe2"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "swe2": {
+      "kind": "cli-devin",
+      "model": "swe-2-max",
+      "reasoningEffort": null
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "KQ-1",
+      "text": "What exactly did Lane C parity measure, and which retired modules would a restored path need?",
+      "status": "confirmed",
+      "evidence": "iteration-001.md F1.1-F1.8 — per-scenario compiled (front door, flag forced) vs Mode A legacy replay; three guards; five statuses; blocking owner lane-c-compiled-parity; restore inventory 4,241 lines + test + driver + corpus + shared deps; frozen trio digest-pinned",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-2",
+      "text": "Can compiledRoute(hubId, taskText) checked against each routing scenario's gold serve as the admission bar? How should defer, holdout and negative scenarios count?",
+      "status": "confirmed",
+      "evidence": "iteration-002.md F2.1-F2.7 — feasible with the live qualifiedIdToLeaf bridge and 74-scenario typed-gold corpus; defer = no-route assertion; holdout counts in verdict with fitted-vs-holdout gap reported; negative = suppression; UNKNOWN = empty expected set; semantic gap vs legacy parity stated",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-3",
+      "text": "What else does admission need beyond the check: frozen HUB_CHILD and DEFAULT_ON_HUBS, activation manifest re-mint, compiled-route-guard.cjs freshness?",
+      "status": "confirmed",
+      "evidence": "iteration-003.md F3.1-F3.7 + iteration-004.md F4.0 — eight cohort surfaces; mint inert / refresh preserves / no CLI flips authority; freshness enforced pre-commit, at the guard, and at the request-time probe; closure promotion traces the serving path; docs stale (7->6->5 topology)",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-4",
+      "text": "What does each path cost and risk, including keeping admission closed?",
+      "status": "confirmed",
+      "evidence": "iteration-004.md F4.1-F4.6 — A: 4,241 lines + pins + retired-lane drag; B: low hundreds of lines, no frozen parts, restated bar, oracle ownership; C: zero build but manual admission forever and no standing compiled-vs-legacy measurement",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "KQ-5",
+      "text": "Which path is recommended, and what would a later phase build and test?",
+      "status": "confirmed",
+      "evidence": "iteration-005.md F5.1-F5.4 — Path B recommended as a standing gate with a restated bar; six build steps; one operator decision isolated",
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "iteration-2-finding-1",
+      "title": "**`compiledRoute(hubId, taskText)` is the pure engine evaluation — exactly the right surface to measure.** It loads the hub's shadow-child engine via the frozen `HUB_CHILD` table (`009-parent-hub-rollout/00N-<hub>`), runs `evaluateCanary`/`evaluateRoute` over the compiled snapshot, and returns `{hubId, action, selectionKind, targets, effectivePolicyHash, generation}` with `action ∈ {route, clarify, defer, reject}`. It never consults the flag or manifest — that gating is `resolveRoute`'s job — so it measures the engine, not the serving gate. [SOURCE: file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:30-36,53-106; file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:101-121]",
+      "text": "**`compiledRoute(hubId, taskText)` is the pure engine evaluation — exactly the right surface to measure.** It loads the hub's shadow-child engine via the frozen `HUB_CHILD` table (`009-parent-hub-rollout/00N-<hub>`), runs `evaluateCanary`/`evaluateRoute` over the compiled snapshot, and returns `{hubId, action, selectionKind, targets, effectivePolicyHash, generation}` with `action ∈ {route, clarify, defer, reject}`. It never consults the flag or manifest — that gating is `resolveRoute`'s job — so it measures the engine, not the serving gate. [SOURCE: file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:30-36,53-106; file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:101-121]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-10",
+      "title": "**`compiledRoute` throws `unknown hub` for any hub absent from `HUB_CHILD`** — so a new hub must be registered in the frozen table before it can even be measured; admission ordering is build-engine→register→measure→flip, matching the architecture doc's step order. [SOURCE: file:compiled-route.cjs:58-59; file:compiled-routing-architecture.md:78-83]",
+      "text": "**`compiledRoute` throws `unknown hub` for any hub absent from `HUB_CHILD`** — so a new hub must be registered in the frozen table before it can even be measured; admission ordering is build-engine→register→measure→flip, matching the architecture doc's step order. [SOURCE: file:compiled-route.cjs:58-59; file:compiled-routing-architecture.md:78-83]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-8",
+      "title": "**A gold checker rebuilds less than a parity restore — but the loader is still the heavy piece.** Needed: a corpus loader for the playbook gold format (frontmatter `expected_*` fields; the sk-code index-table shape and the sk-doc per-scenario shape), a comparator (mode-set equality + leaf must-include + defer semantics + gold-parse-failure-as-violation), and the rollup. NOT needed: `router-replay.cjs` (no legacy replay when checking gold), `score-skill-benchmark.cjs`'s unrelated signals, the frozen-trio hash pins (there is no trio), and the `n/a`-by-eligibility machinery stays trivial. `evaluateRouteGold`'s semantics (~55 lines) port cleanly. [SOURCE: file:load-playbook-scenarios.cjs@b45ea54cea3^:15-24; file:score-skill-benchmark.cjs@b45ea54cea3^:891-945]",
+      "text": "**A gold checker rebuilds less than a parity restore — but the loader is still the heavy piece.** Needed: a corpus loader for the playbook gold format (frontmatter `expected_*` fields; the sk-code index-table shape and the sk-doc per-scenario shape), a comparator (mode-set equality + leaf must-include + defer semantics + gold-parse-failure-as-violation), and the rollup. NOT needed: `router-replay.cjs` (no legacy replay when checking gold), `score-skill-benchmark.cjs`'s unrelated signals, the frozen-trio hash pins (there is no trio), and the `n/a`-by-eligibility machinery stays trivial. `evaluateRouteGold`'s semantics (~55 lines) port cleanly. [SOURCE: file:load-playbook-scenarios.cjs@b45ea54cea3^:15-24; file:score-skill-benchmark.cjs@b45ea54cea3^:891-945]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6",
+      "title": "**A pre-commit hook auto-re-mints when routing inputs are staged** — commit `a1faf0914a` installed it; it fires on staged `SKILL.md`/`hub-router.json`/`mode-registry.json` under `.opencode/skills` or `.skilled/skills`, reads the hub list from the guard's `HUBS` (so a new hub gets coverage by joining the guard, no hook edit), re-mints via `compiled-route-manifest.cjs refresh`, stages BOTH the runtime and authored manifests, verifies both reached the index, and blocks otherwise (`SPECKIT_SKIP_ROUTE_REMINT=1` bypass). `.opencode` and `.skilled` copies are identical. [SOURCE: file:.opencode/scripts/git-hooks/pre-commit:281-330,440-470; commit:a1faf0914a]",
+      "text": "**A pre-commit hook auto-re-mints when routing inputs are staged** — commit `a1faf0914a` installed it; it fires on staged `SKILL.md`/`hub-router.json`/`mode-registry.json` under `.opencode/skills` or `.skilled/skills`, reads the hub list from the guard's `HUBS` (so a new hub gets coverage by joining the guard, no hook edit), re-mints via `compiled-route-manifest.cjs refresh`, stages BOTH the runtime and authored manifests, verifies both reached the index, and blocks otherwise (`SPECKIT_SKIP_ROUTE_REMINT=1` bypass). `.opencode` and `.skilled` copies are identical. [SOURCE: file:.opencode/scripts/git-hooks/pre-commit:281-330,440-470; commit:a1faf0914a]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-9",
+      "title": "**A restore needs more than the four named modules.** The live dependency graph also pulls in `run-skill-benchmark.cjs` (orchestrator + report writer), `cutover-playbook-executor.cjs` (the other parity consumer), `compiled-routing-parity.vitest.ts` (764-line test surface), `loop-host.cjs` (registered `compiled-routing-parity` as a loop host), the benchmark command/YAML/doc surface (~250 files deleted in the same commit), and the runtime inputs that still exist: `serving-closure.manifest.json`, the `compiled-route.cjs` front door, `compiled-route-status.cjs` probe, and `leaf-resource-contract.cjs` (`qualifiedIdToLeaf`, still live at `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/`). Commit `b45ea54cea3` deleted 268 files. [SOURCE: commit:b45ea54cea3 --stat; file:run-skill-benchmark.cjs@b45ea54cea3^:43-45; file:.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs@b45ea54cea3^:81; file:.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs]",
+      "text": "**A restore needs more than the four named modules.** The live dependency graph also pulls in `run-skill-benchmark.cjs` (orchestrator + report writer), `cutover-playbook-executor.cjs` (the other parity consumer), `compiled-routing-parity.vitest.ts` (764-line test surface), `loop-host.cjs` (registered `compiled-routing-parity` as a loop host), the benchmark command/YAML/doc surface (~250 files deleted in the same commit), and the runtime inputs that still exist: `serving-closure.manifest.json`, the `compiled-route.cjs` front door, `compiled-route-status.cjs` probe, and `leaf-resource-contract.cjs` (`qualifiedIdToLeaf`, still live at `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/`). Commit `b45ea54cea3` deleted 268 files. [SOURCE: commit:b45ea54cea3 --stat; file:run-skill-benchmark.cjs@b45ea54cea3^:43-45; file:.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs@b45ea54cea3^:81; file:.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "**Cohort consistency is test-enforced, so partial edits fail loudly.** `compiled-routing-foundation.vitest.ts` asserts `sort(COMPILED_ROUTING_HUBS) === sort(keys(HUB_CHILD))`, advisor `DEFAULT_ON_HUBS` == bin resolver == authored resolver, and promoted resolver == authored resolver; `compiled-route-manifest.test.cjs:1127` pins `DEFAULT_ON_HUBS.size === 5`. An admission that edits only some sites is caught — the failure mode is a red battery, not silent divergence. [SOURCE: file:.skilled/bin/compiled-routing-foundation.vitest.ts:54-70,126-128,246-272; file:.skilled/bin/tests/compiled-route-manifest.test.cjs:1127]",
+      "text": "**Cohort consistency is test-enforced, so partial edits fail loudly.** `compiled-routing-foundation.vitest.ts` asserts `sort(COMPILED_ROUTING_HUBS) === sort(keys(HUB_CHILD))`, advisor `DEFAULT_ON_HUBS` == bin resolver == authored resolver, and promoted resolver == authored resolver; `compiled-route-manifest.test.cjs:1127` pins `DEFAULT_ON_HUBS.size === 5`. An admission that edits only some sites is caught — the failure mode is a red battery, not silent divergence. [SOURCE: file:.skilled/bin/compiled-routing-foundation.vitest.ts:54-70,126-128,246-272; file:.skilled/bin/tests/compiled-route-manifest.test.cjs:1127]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-10",
+      "title": "**Comparative ledger.** Restore: ~3,700-line surgical landing (5-7 files) or ~268-file full lane; medium-high build cost; highest fidelity to the original bar (still compiled-vs-replay); risks: freeze-discipline re-owning, path-churn verification, proxy gap. New checker: ~500-800 lines; lowest build cost; runs on live deps only; risks: semantic bar change, self-grading if fixture-only, policy decisions needed on defer/holdout/negative and on shared-gold-gap handling. Keep closed: ~0 build cost; risks: permanent admission block, silent per-policy drift on admitted hubs, compounding doc debt, stranded `ready` mints. [SOURCE: synthesis of findings 2-9]",
+      "text": "**Comparative ledger.** Restore: ~3,700-line surgical landing (5-7 files) or ~268-file full lane; medium-high build cost; highest fidelity to the original bar (still compiled-vs-replay); risks: freeze-discipline re-owning, path-churn verification, proxy gap. New checker: ~500-800 lines; lowest build cost; runs on live deps only; risks: semantic bar change, self-grading if fixture-only, policy decisions needed on defer/holdout/negative and on shared-gold-gap handling. Keep closed: ~0 build cost; risks: permanent admission block, silent per-policy drift on admitted hubs, compounding doc debt, stranded `ready` mints. [SOURCE: synthesis of findings 2-9]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe2/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-7",
+      "title": "**Cost/risk summary the operator can act on.** Build: ~500-800 lines of new code + ~300-400 of tests vs ~3,700 restored lines + freeze discipline (restore) vs 0 (closed). Risk: semantic-bar change + self-grading + coverage blindness, each with a named mitigation above. Reversibility: a new hub is removable byte-identically (manifest flip back, cohort-table removal, flag kill-switch) exactly as the five today. [SOURCE: synthesis of iterations 1-4]",
+      "text": "**Cost/risk summary the operator can act on.** Build: ~500-800 lines of new code + ~300-400 of tests vs ~3,700 restored lines + freeze discipline (restore) vs 0 (closed). Risk: semantic-bar change + self-grading + coverage blindness, each with a named mitigation above. Reversibility: a new hub is removable byte-identically (manifest flip back, cohort-table removal, flag kill-switch) exactly as the five today. [SOURCE: synthesis of iterations 1-4]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/swe2/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-8",
+      "title": "**Decision rule for the operator.** Choose Path B if new hubs will ever be admitted (the spec's premise). Choose restore only if the bar must stay literally \"== legacy replay\" — and budget the replay+scorer resurrection, not just the parity harness. Choose closed only alongside an explicit \"cohort permanently frozen\" decision + doc debt fix. [SOURCE: synthesis]",
+      "text": "**Decision rule for the operator.** Choose Path B if new hubs will ever be admitted (the spec's premise). Choose restore only if the bar must stay literally \"== legacy replay\" — and budget the replay+scorer resurrection, not just the parity harness. Choose closed only alongside an explicit \"cohort permanently frozen\" decision + doc debt fix. [SOURCE: synthesis]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/swe2/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-6",
+      "title": "**Defer/negative/holdout counting — the retired semantics give a defensible rule.** (a) `stage: negative` / `expected_workflow_mode: UNKNOWN` / rejection labels `none|defer|unknown` → expected set is empty: compiled MUST NOT route; a route is unsafe over-detection and blocks. (b) `routeOutcome: defer` gold → compiled `action` must be non-route; routing is drift. (c) Routing-stage scenarios where gold routes → compiled `defer` is a silent defer and blocks. (d) `stage: holdout` counts identically to routing — holdout is keyword-blind anti-overfit evidence, not a discount tier. (e) `classKind: browser` and gold-absent rows stay `n/a`, out of the denominator. These are exactly the Section-4 bar's own terms: \"zero drift, zero unsafe over-detection, zero silent defers on a scenario legacy actually routes.\" [SOURCE: file:load-playbook-scenarios.cjs@b45ea54cea3^:461-481,555-575; file:score-skill-benchmark.cjs@b45ea54cea3^:874-945,963-1000; file:compiled-routing-architecture.md:66]",
+      "text": "**Defer/negative/holdout counting — the retired semantics give a defensible rule.** (a) `stage: negative` / `expected_workflow_mode: UNKNOWN` / rejection labels `none|defer|unknown` → expected set is empty: compiled MUST NOT route; a route is unsafe over-detection and blocks. (b) `routeOutcome: defer` gold → compiled `action` must be non-route; routing is drift. (c) Routing-stage scenarios where gold routes → compiled `defer` is a silent defer and blocks. (d) `stage: holdout` counts identically to routing — holdout is keyword-blind anti-overfit evidence, not a discount tier. (e) `classKind: browser` and gold-absent rows stay `n/a`, out of the denominator. These are exactly the Section-4 bar's own terms: \"zero drift, zero unsafe over-detection, zero silent defers on a scenario legacy actually routes.\" [SOURCE: file:load-playbook-scenarios.cjs@b45ea54cea3^:461-481,555-575; file:score-skill-benchmark.cjs@b45ea54cea3^:874-945,963-1000; file:compiled-routing-architecture.md:66]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-10",
+      "title": "**Doc debt discovered:** the architecture doc and `resolve.cjs`'s own comment still say \"seven hubs\" — `sk-design` was dissolved (commit `f931ba2e14`, topology 7→6) and `sk-prompt` was retired (commit `a9286399bc3`), leaving five. The spec's \"seven hubs already admitted\" repeats the stale count. Admission docs would need correcting as part of any path. [SOURCE: file:.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md:34-42,66-68; file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:29-40; commit:f931ba2e14; commit:a9286399bc3]",
+      "text": "**Doc debt discovered:** the architecture doc and `resolve.cjs`'s own comment still say \"seven hubs\" — `sk-design` was dissolved (commit `f931ba2e14`, topology 7→6) and `sk-prompt` was retired (commit `a9286399bc3`), leaving five. The spec's \"seven hubs already admitted\" repeats the stale count. Admission docs would need correcting as part of any path. [SOURCE: file:.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md:34-42,66-68; file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:29-40; commit:f931ba2e14; commit:a9286399bc3]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-9",
+      "title": "**Every manifest exists twice and must stay byte-identical:** `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/<hub>/manifest.json` (authored) and `.skilled/bin/lib/compiled-routing/013-live-activation/activation/<hub>/manifest.json` (promoted runtime). The guard's authored-drift check plus the hook's stage-both rule keep them equal; a new hub needs both. [SOURCE: file:.skilled/bin/compiled-route-guard.cjs:60-71; live diff]",
+      "text": "**Every manifest exists twice and must stay byte-identical:** `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/<hub>/manifest.json` (authored) and `.skilled/bin/lib/compiled-routing/013-live-activation/activation/<hub>/manifest.json` (promoted runtime). The guard's authored-drift check plus the hook's stage-both rule keep them equal; a new hub needs both. [SOURCE: file:.skilled/bin/compiled-route-guard.cjs:60-71; live diff]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5",
+      "title": "**Freshness enforcement is already automated — but only for guard-listed hubs.** `compiled-route-guard.cjs` checks per hub: manifest valid + `checkCanonicalManifestFreshness` fresh (stale-manifest vs inputs-do-not-compile vs compile-error distinctions) + authored-drift (runtime manifest vs its authored counterpart under `specs/.../015-router-unification-program/013-live-activation/activation/<hub>/`); exemptions excuse only `inputs-do-not-compile` with an expiry. Live run: all 5 hubs `fresh`, authored == runtime byte-identical. [SOURCE: file:.skilled/bin/compiled-route-guard.cjs:60-171; live `node .skilled/bin/compiled-route-guard.cjs --json`; `diff` of the two sk-doc manifests → IDENTICAL]",
+      "text": "**Freshness enforcement is already automated — but only for guard-listed hubs.** `compiled-route-guard.cjs` checks per hub: manifest valid + `checkCanonicalManifestFreshness` fresh (stale-manifest vs inputs-do-not-compile vs compile-error distinctions) + authored-drift (runtime manifest vs its authored counterpart under `specs/.../015-router-unification-program/013-live-activation/activation/<hub>/`); exemptions excuse only `inputs-do-not-compile` with an expiry. Live run: all 5 hubs `fresh`, authored == runtime byte-identical. [SOURCE: file:.skilled/bin/compiled-route-guard.cjs:60-171; live `node .skilled/bin/compiled-route-guard.cjs --json`; `diff` of the two sk-doc manifests → IDENTICAL]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "**Gold-checking measures something deliberately different from parity — stricter in one axis, looser in another.** Parity required `compiled == legacy` regardless of gold achievability (a shared pre-existing gold gap was parity, not drift). A gold checker requires `compiled == gold`: (a) it FAILS a hub where compiled==legacy but both miss authored gold — e.g. the documented CS-002/CS-005 \"non-Webflow\" negation quirk where both engines shared the same gold gap and parity held at 0 drift; (b) it PASSES a hub where compiled is correct-but-different-from-legacy — meaning serving could change behavior on scenarios gold doesn't cover, where parity guaranteed zero behavior change. Which semantic the bar should mean is an admission-policy decision, not a technical one. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:712-740; file:.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md:33-44]",
+      "text": "**Gold-checking measures something deliberately different from parity — stricter in one axis, looser in another.** Parity required `compiled == legacy` regardless of gold achievability (a shared pre-existing gold gap was parity, not drift). A gold checker requires `compiled == gold`: (a) it FAILS a hub where compiled==legacy but both miss authored gold — e.g. the documented CS-002/CS-005 \"non-Webflow\" negation quirk where both engines shared the same gold gap and parity held at 0 drift; (b) it PASSES a hub where compiled is correct-but-different-from-legacy — meaning serving could change behavior on scenarios gold doesn't cover, where parity guaranteed zero behavior change. Which semantic the bar should mean is an admission-policy decision, not a technical one. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:712-740; file:.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md:33-44]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-9",
+      "title": "**Keep-closed also accrues doc debt and semantic drift.** Docs and comments still say \"seven hubs\" (reality: five after `f931ba2e14` and `a9286399bc3`); the spec itself repeats \"the seven hubs already admitted\". The longer admission stays closed the more the docs' admission story diverges from the fleet. Closing permanently also strands `create-skill --compiled-routing ready` — it keeps minting inert manifests for a verdict that can never be earned. [SOURCE: file:compiled-routing-architecture.md:34-42,87-105; commit:f931ba2e14; commit:a9286399bc3; file:resolve.cjs:29-40]",
+      "text": "**Keep-closed also accrues doc debt and semantic drift.** Docs and comments still say \"seven hubs\" (reality: five after `f931ba2e14` and `a9286399bc3`); the spec itself repeats \"the seven hubs already admitted\". The longer admission stays closed the more the docs' admission story diverges from the fleet. Closing permanently also strands `create-skill --compiled-routing ready` — it keeps minting inert manifests for a verdict that can never be earned. [SOURCE: file:compiled-routing-architecture.md:34-42,87-105; commit:f931ba2e14; commit:a9286399bc3; file:resolve.cjs:29-40]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe2/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1",
+      "title": "**Lane C measured per-scenario behavioral equivalence between the compiled decision and a deterministic replay of the legacy prose router.** `compiled-routing-parity.cjs`'s own contract: \"prove the compiled routing decision matches the legacy decision on a scenario, WITHOUT re-implementing any scoring judgment\" — it translated the compiled decision into the legacy evaluator's vocabulary and delegated the verdict to the frozen `evaluateRouteGold`. [SOURCE: file:.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs@b45ea54cea3^:7-45]",
+      "text": "**Lane C measured per-scenario behavioral equivalence between the compiled decision and a deterministic replay of the legacy prose router.** `compiled-routing-parity.cjs`'s own contract: \"prove the compiled routing decision matches the legacy decision on a scenario, WITHOUT re-implementing any scoring judgment\" — it translated the compiled decision into the legacy evaluator's vocabulary and delegated the verdict to the frozen `evaluateRouteGold`. [SOURCE: file:.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs@b45ea54cea3^:7-45]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-2",
+      "title": "**Path A (restore) costs more than the four named files — but a surgical restore is possible.** The parity closure needs `compiled-routing-parity.cjs` + `score-skill-benchmark.cjs` + `router-replay.cjs` + `load-playbook-scenarios.cjs` + `_args.cjs` (CLI args dep) — and `score-skill-benchmark.cjs` transitively requires `./advisor-probe.cjs`. `run-skill-benchmark.cjs` (the historical driver) pulls ~12 sibling modules including contamination-lint, d5-connectivity, executor-dispatch and its executor chain — but `compiledParity`/`rollupCompiledParity` have injectable deps, so a thin ~150-line driver can replace the orchestrator and keep the restore to ~5-7 files (~3,700 lines) plus the parity vitest for confidence. The empty `deep-improvement/scripts/` slot remains in `.skilled/skills/system-deep-loop/` for a clean landing. [SOURCE: file:run-skill-benchmark.cjs@b45ea54cea3^:27-45; file:score-skill-benchmark.cjs@b45ea54cea3^:27-30; file:compiled-routing-parity.cjs@b45ea54cea3^:545-560 (deps injection); live `.skilled/skills/system-deep-loop/deep-improvement/scripts/`]",
+      "text": "**Path A (restore) costs more than the four named files — but a surgical restore is possible.** The parity closure needs `compiled-routing-parity.cjs` + `score-skill-benchmark.cjs` + `router-replay.cjs` + `load-playbook-scenarios.cjs` + `_args.cjs` (CLI args dep) — and `score-skill-benchmark.cjs` transitively requires `./advisor-probe.cjs`. `run-skill-benchmark.cjs` (the historical driver) pulls ~12 sibling modules including contamination-lint, d5-connectivity, executor-dispatch and its executor chain — but `compiledParity`/`rollupCompiledParity` have injectable deps, so a thin ~150-line driver can replace the orchestrator and keep the restore to ~5-7 files (~3,700 lines) plus the parity vitest for confidence. The empty `deep-improvement/scripts/` slot remains in `.skilled/skills/system-deep-loop/` for a clean landing. [SOURCE: file:run-skill-benchmark.cjs@b45ea54cea3^:27-45; file:score-skill-benchmark.cjs@b45ea54cea3^:27-30; file:compiled-routing-parity.cjs@b45ea54cea3^:545-560 (deps injection); live `.skilled/skills/system-deep-loop/deep-improvement/scripts/`]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe2/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-5",
+      "title": "**Path B (new checker) has the smallest build surface — ~500-800 lines on live deps.** Components: (a) corpus — either a slim playbook-gold loader for the two authored shapes (~300 lines, still needs `@spec-kit/shared`, live) OR the per-hub `fixtures/canary-cases.v1.json` already normalized as JSON with `expectedAction`/`expectedSelectionKind`/`expectedModes`/`gold.{expectedIntents,expectedResources}` — 67 cases across the 5 hubs (route 50, defer 7, reject 7, clarify 3), all inside the serving closure (zero loader cost); (b) comparator — `workflowMode` set equality + leaf must-include + `selectionKind`/ordered-target projection + gold-parse-failure-as-violation (~200 lines, a port of `evaluateRouteGold` + the parity projection); (c) rollup/report (~150 lines). No retired-module maintenance, no frozen-trio pins needed. [SOURCE: file:.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/*/fixtures/canary-cases.v1.json (per-hub census: 10/9/14/13/21 cases); file:score-skill-benchmark.cjs@b45ea54cea3^:891-945]",
+      "text": "**Path B (new checker) has the smallest build surface — ~500-800 lines on live deps.** Components: (a) corpus — either a slim playbook-gold loader for the two authored shapes (~300 lines, still needs `@spec-kit/shared`, live) OR the per-hub `fixtures/canary-cases.v1.json` already normalized as JSON with `expectedAction`/`expectedSelectionKind`/`expectedModes`/`gold.{expectedIntents,expectedResources}` — 67 cases across the 5 hubs (route 50, defer 7, reject 7, clarify 3), all inside the serving closure (zero loader cost); (b) comparator — `workflowMode` set equality + leaf must-include + `selectionKind`/ordered-target projection + gold-parse-failure-as-violation (~200 lines, a port of `evaluateRouteGold` + the parity projection); (c) rollup/report (~150 lines). No retired-module maintenance, no frozen-trio pins needed. [SOURCE: file:.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/*/fixtures/canary-cases.v1.json (per-hub census: 10/9/14/13/21 cases); file:score-skill-benchmark.cjs@b45ea54cea3^:891-945]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe2/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-7",
+      "title": "**Path B's deepest risk is semantic, not technical.** Gold-checking changes what the bar *means*: it admits a hub whose compiled decisions match gold even where they differ from legacy — serving could then change user-visible routing on ungolded inputs, which parity's equivalence guarantee excluded. Conversely it blocks a hub where compiled==legacy but both share a pre-existing gold gap (the CS-002/CS-005 pattern). Whether the tighter-but-different bar is acceptable is an admission-policy call the spec's operators must make — it cannot be inherited from Lane C. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:712-740; file:.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md:33-44]",
+      "text": "**Path B's deepest risk is semantic, not technical.** Gold-checking changes what the bar *means*: it admits a hub whose compiled decisions match gold even where they differ from legacy — serving could then change user-visible routing on ungolded inputs, which parity's equivalence guarantee excluded. Conversely it blocks a hub where compiled==legacy but both share a pre-existing gold gap (the CS-002/CS-005 pattern). Whether the tighter-but-different bar is acceptable is an admission-policy call the spec's operators must make — it cannot be inherited from Lane C. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:712-740; file:.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md:33-44]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe2/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-8",
+      "title": "**Path C (keep closed) is near-zero cost now, and its blast radius is smaller than it first looks.** The five admitted hubs keep serving (guard: all fresh; authored==runtime manifests identical). Policy *evolution* of admitted hubs still works — `refresh` re-mints to the new generation preserving `servingAuthority`, and the auto-remint hook stages both manifests — because the parity bar was per-hub admission, not per-policy. What closes forever: NEW hub admission (the `compiled-serving` verdict is unreachable per the architecture doc's step 2), and any *re-verification* of an admitted hub's drift (nothing re-measures parity; a rebuilt engine serving stale-by-design would drift silently past the mechanical refresh). [SOURCE: file:.skilled/bin/lib/compiled-route-manifest.cjs:693-780 (refresh preserves servingAuthority); file:.opencode/scripts/git-hooks/pre-commit:281-330; file:compiled-routing-architecture.md:76-83]",
+      "text": "**Path C (keep closed) is near-zero cost now, and its blast radius is smaller than it first looks.** The five admitted hubs keep serving (guard: all fresh; authored==runtime manifests identical). Policy *evolution* of admitted hubs still works — `refresh` re-mints to the new generation preserving `servingAuthority`, and the auto-remint hook stages both manifests — because the parity bar was per-hub admission, not per-policy. What closes forever: NEW hub admission (the `compiled-serving` verdict is unreachable per the architecture doc's step 2), and any *re-verification* of an admitted hub's drift (nothing re-measures parity; a rebuilt engine serving stale-by-design would drift silently past the mechanical refresh). [SOURCE: file:.skilled/bin/lib/compiled-route-manifest.cjs:693-780 (refresh preserves servingAuthority); file:.opencode/scripts/git-hooks/pre-commit:281-330; file:compiled-routing-architecture.md:76-83]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe2/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "**Per-scenario statuses were `match` / `drift` / `vacuous` / `n/a` / `resolver-missing`; only `match` counted as a pass.** `n/a` was informational (non-routing scenario, route-gold absent, or hub outside the compiled serving closure), never scored as drift. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:103-113,562-578]",
+      "text": "**Per-scenario statuses were `match` / `drift` / `vacuous` / `n/a` / `resolver-missing`; only `match` counted as a pass.** `n/a` was informational (non-routing scenario, route-gold absent, or hub outside the compiled serving closure), never scored as drift. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:103-113,562-578]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-9",
+      "title": "**Prior art already validates the approach end-to-end.** The archived `playbook-verify` report manually ran compiled (`resolve.cjs --hub --prompt`) vs legacy (`router-replay.cjs`) over the full sk-code playbook and diffed decisions — 0/31 drift — demonstrating the compiled-decision-vs-corpus comparison is executable with the live front door and a retired-module loader. [SOURCE: file:.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md:11-44]",
+      "text": "**Prior art already validates the approach end-to-end.** The archived `playbook-verify` report manually ran compiled (`resolve.cjs --hub --prompt`) vs legacy (`router-replay.cjs`) over the full sk-code playbook and diffed decisions — 0/31 drift — demonstrating the compiled-decision-vs-corpus comparison is executable with the live front door and a retired-module loader. [SOURCE: file:.skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md:11-44]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-1",
+      "title": "**Recommended path: B — build the new checker of compiled decisions against routing-scenario gold.** The admission question for a NEW hub is \"does its compiled engine route correctly per the hub's authored routing contract on every scored scenario.\" Gold-agreement measures that directly on live dependencies; legacy-equivalence measures it indirectly through a replay proxy whose own fidelity was never separately certified. The corpus the checker needs is alive and maintained: 262 gold-bearing playbook files across 44 `manual-testing-playbook` dirs for the five current hubs (sk-code 88, mcp-tooling 66, system-deep-loop 41, sk-doc 36, cli-external-orchestration 31), and a new hub authors its own playbook corpus as part of the coverage build-out recipe anyway. [SOURCE: live `grep -rln expected_workflow_mode|expected_intent` census per hub; file:specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/goal-coverage-buildout.md:55]",
+      "text": "**Recommended path: B — build the new checker of compiled decisions against routing-scenario gold.** The admission question for a NEW hub is \"does its compiled engine route correctly per the hub's authored routing contract on every scored scenario.\" Gold-agreement measures that directly on live dependencies; legacy-equivalence measures it indirectly through a replay proxy whose own fidelity was never separately certified. The corpus the checker needs is alive and maintained: 262 gold-bearing playbook files across 44 `manual-testing-playbook` dirs for the five current hubs (sk-code 88, mcp-tooling 66, system-deep-loop 41, sk-doc 36, cli-external-orchestration 31), and a new hub authors its own playbook corpus as part of the coverage build-out recipe anyway. [SOURCE: live `grep -rln expected_workflow_mode|expected_intent` census per hub; file:specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/goal-coverage-buildout.md:55]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/swe2/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-4",
+      "title": "**Restore's biggest risk is re-buying what retirement sold.** The full lane was 268 files (49 scripts + ~119 playbook/asset docs + 10 command surfaces + 10 feature-catalog + tests). A surgical restore avoids most of that, but it re-owns the frozen-scorer freeze discipline (the pins exist so the comparator can't drift mid-run — a restored trio needs the same digests or a decided re-freeze), and `router-replay` remains a *model* of the prose router (substring-scoring over the SKILL.md dicts), not the router itself — parity was always compiled-vs-replay-proxy, and the spec's own bar (\"matches its legacy decision\") inherits that proxy gap. [SOURCE: commit:b45ea54cea3 census; file:router-replay.cjs@b45ea54cea3^:7-21]",
+      "text": "**Restore's biggest risk is re-buying what retirement sold.** The full lane was 268 files (49 scripts + ~119 playbook/asset docs + 10 command surfaces + 10 feature-catalog + tests). A surgical restore avoids most of that, but it re-owns the frozen-scorer freeze discipline (the pins exist so the comparator can't drift mid-run — a restored trio needs the same digests or a decided re-freeze), and `router-replay` remains a *model* of the prose router (substring-scoring over the SKILL.md dicts), not the router itself — parity was always compiled-vs-replay-proxy, and the spec's own bar (\"matches its legacy decision\") inherits that proxy gap. [SOURCE: commit:b45ea54cea3 census; file:router-replay.cjs@b45ea54cea3^:7-21]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe2/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-3",
+      "title": "**Restore's external deps mostly still resolve, with two caveats.** `leaf-resource-contract.cjs` (`qualifiedIdToLeaf`) is live; `@spec-kit/shared` still resolves via per-skill `node_modules/@spec-kit/shared` symlinks with a `\"./*.js\" -> \"./dist/*.js\"` exports map (the `frontmatter/parse-frontmatter.js` import lands on the built `dist/` artifact); the front door, status probe, serving-closure, and activation manifests are live. Caveats: (a) the parity module's `PINNED_FROZEN_SCORER_DIGESTS` hard-pin the deleted files' SHA-256 — a restore must land byte-identical bytes from `b45ea54cea3^` or re-pin, or the harness aborts itself; (b) path constants (`SKILLS_ROOT`, `RUNTIME_ROOT`) resolve `..` relative to the script's own location, so a restore must land at the mirrored `.skilled` depth and the `.opencode`→`.skilled` renumbering (010→013, 011→014) verified. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:78-100; file:.skilled/skills/system-spec-kit/shared/package.json (exports map); live `.skilled/skills/system-deep-loop/node_modules/@spec-kit/shared` symlink]",
+      "text": "**Restore's external deps mostly still resolve, with two caveats.** `leaf-resource-contract.cjs` (`qualifiedIdToLeaf`) is live; `@spec-kit/shared` still resolves via per-skill `node_modules/@spec-kit/shared` symlinks with a `\"./*.js\" -> \"./dist/*.js\"` exports map (the `frontmatter/parse-frontmatter.js` import lands on the built `dist/` artifact); the front door, status probe, serving-closure, and activation manifests are live. Caveats: (a) the parity module's `PINNED_FROZEN_SCORER_DIGESTS` hard-pin the deleted files' SHA-256 — a restore must land byte-identical bytes from `b45ea54cea3^` or re-pin, or the harness aborts itself; (b) path constants (`SKILLS_ROOT`, `RUNTIME_ROOT`) resolve `..` relative to the script's own location, so a restore must land at the mirrored `.skilled` depth and the `.opencode`→`.skilled` renumbering (010→013, 011→014) verified. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:78-100; file:.skilled/skills/system-spec-kit/shared/package.json (exports map); live `.skilled/skills/system-deep-loop/node_modules/@spec-kit/shared` symlink]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe2/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-8",
+      "title": "**Serving-closure regeneration is mechanical.** `compiled-route-sync.cjs` instruments `require` resolution, drives the authored resolver across every hub with the flag forced on, and promotes exactly the files the serving path touches byte-identically — `--verify` asserts the promoted graph never reads the spec tree. Admission regenerates `serving-closure.manifest.json` (currently `hubs:5`, `fileCount:48`) after the new hub's shadow-child and manifest land in the authored tree. [SOURCE: file:.skilled/bin/compiled-route-sync.cjs:1-50; file:.skilled/bin/lib/compiled-routing/serving-closure.manifest.json:1-48]",
+      "text": "**Serving-closure regeneration is mechanical.** `compiled-route-sync.cjs` instruments `require` resolution, drives the authored resolver across every hub with the flag forced on, and promotes exactly the files the serving path touches byte-identically — `--verify` asserts the promoted graph never reads the spec tree. Admission regenerates `serving-closure.manifest.json` (currently `hubs:5`, `fileCount:48`) after the new hub's shadow-child and manifest land in the authored tree. [SOURCE: file:.skilled/bin/compiled-route-sync.cjs:1-50; file:.skilled/bin/lib/compiled-routing/serving-closure.manifest.json:1-48]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4",
+      "title": "**The authored flip path is currently broken at its scorer gate.** `flip-serving.cjs` requires `shared/frozen-scorer-contract.cjs`'s `assertScorerFrozen`, whose `SCORER_DIR` is `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer` — that directory no longer exists (the advisor scorer moved to `.skilled/skills/system-skill-advisor/runtime/lib/scorer`), so the gate throws instead of verifying. The pins file itself (frozen 2026-08-15) also names the dead `mcp-server` paths. Any path that reuses `flip-serving.cjs` must first repoint `SCORER_DIR` and re-freeze the pins — or drop the scorer gate deliberately. [SOURCE: file:specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs:27-47,66-69; file:specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json:1-20; live tree: `.opencode/skills/system-skill-advisor/` has `runtime/` but no `mcp-server/`]",
+      "text": "**The authored flip path is currently broken at its scorer gate.** `flip-serving.cjs` requires `shared/frozen-scorer-contract.cjs`'s `assertScorerFrozen`, whose `SCORER_DIR` is `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer` — that directory no longer exists (the advisor scorer moved to `.skilled/skills/system-skill-advisor/runtime/lib/scorer`), so the gate throws instead of verifying. The pins file itself (frozen 2026-08-15) also names the dead `mcp-server` paths. Any path that reuses `flip-serving.cjs` must first repoint `SCORER_DIR` and re-freeze the pins — or drop the scorer gate deliberately. [SOURCE: file:specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs:27-47,66-69; file:specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json:1-20; live tree: `.opencode/skills/system-skill-advisor/` has `runtime/` but no `mcp-server/`]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-6",
+      "title": "**The canary-cases shortcut has a self-grading hazard.** The fixture is authored by the same shadow-child build it validates — a hub can tune engine and cases together. The playbook corpus is the independent authored live-execution contract (Lane C deliberately used it, not the fixtures). A credible checker can use canary-cases as the engine smoke gate but should keep playbook gold (or an equivalently independent corpus) as the admission bar. [SOURCE: file:compiled-routing-architecture.md:55 (fixtures are the hub's own scenario set); file:load-playbook-scenarios.cjs@b45ea54cea3^:7-24 (\"far better benchmark corpus than synthetic decontaminated fixtures\")]",
+      "text": "**The canary-cases shortcut has a self-grading hazard.** The fixture is authored by the same shadow-child build it validates — a hub can tune engine and cases together. The playbook corpus is the independent authored live-execution contract (Lane C deliberately used it, not the fixtures). A credible checker can use canary-cases as the engine smoke gate but should keep playbook gold (or an equivalently independent corpus) as the admission bar. [SOURCE: file:compiled-routing-architecture.md:55 (fixtures are the hub's own scenario set); file:load-playbook-scenarios.cjs@b45ea54cea3^:7-24 (\"far better benchmark corpus than synthetic decontaminated fixtures\")]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe2/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-5",
+      "title": "**The checker's risk register and mitigations.** (a) Self-grading — require the playbook gold corpus as the admission bar; `canary-cases.v1.json` (67 cases across 5 hubs, normalized JSON already in the serving closure) runs only as a pre-admission smoke gate. (b) Coverage blindness — a corpus-completeness gate: every `workflowMode` the hub's `leaf-manifest.json` declares must be exercised by ≥1 scored routing scenario, and every negative/`UNKNOWN` gold must score; modes with no scored scenario are violations, not silence. (c) Defer/holdout/negative — the counting rule from iteration 2, ported from the retired semantics. (d) Gold parse failure — a violation, never dropped from the denominator (frozen-scorer rule, ported). [SOURCE: file:load-playbook-scenarios.cjs@b45ea54cea3^:461-481,555-575; file:score-skill-benchmark.cjs@b45ea54cea3^:891-945; file:.skilled/skills/sk-doc/leaf-manifest.json; canary census]",
+      "text": "**The checker's risk register and mitigations.** (a) Self-grading — require the playbook gold corpus as the admission bar; `canary-cases.v1.json` (67 cases across 5 hubs, normalized JSON already in the serving closure) runs only as a pre-admission smoke gate. (b) Coverage blindness — a corpus-completeness gate: every `workflowMode` the hub's `leaf-manifest.json` declares must be exercised by ≥1 scored routing scenario, and every negative/`UNKNOWN` gold must score; modes with no scored scenario are violations, not silence. (c) Defer/holdout/negative — the counting rule from iteration 2, ported from the retired semantics. (d) Gold parse failure — a violation, never dropped from the denominator (frozen-scorer rule, ported). [SOURCE: file:load-playbook-scenarios.cjs@b45ea54cea3^:461-481,555-575; file:score-skill-benchmark.cjs@b45ea54cea3^:891-945; file:.skilled/skills/sk-doc/leaf-manifest.json; canary census]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/swe2/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "**The cohort is hardcoded in SIX places, and tests enforce they move together.** (a) `HUB_CHILD` in `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:30-36` — the engine registry; a hub absent here throws `unknown hub` from `compiledRoute`, so registration precedes measurement. (b) `DEFAULT_ON_HUBS` in `resolve.cjs:34-40` — the default-on cohort, the actual admission. (c) `HUBS` in `.skilled/bin/compiled-route-guard.cjs:41-47` — the freshness-monitored set; also the auto-remint hook's hub list source. (d) Advisor-side copies `COMPILED_ROUTING_HUBS` + `DEFAULT_ON_HUBS` in `.skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts:14,30`, consumed by `advisor-recommend.ts:334`. (e) `serving-closure.manifest.json` `hubs[]` + `files[]` — the promoted file inventory. (f) The authored counterparts under `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/` — edits land there and are promoted by `compiled-route-sync.cjs`. [SOURCE: each cited file:line]",
+      "text": "**The cohort is hardcoded in SIX places, and tests enforce they move together.** (a) `HUB_CHILD` in `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:30-36` — the engine registry; a hub absent here throws `unknown hub` from `compiledRoute`, so registration precedes measurement. (b) `DEFAULT_ON_HUBS` in `resolve.cjs:34-40` — the default-on cohort, the actual admission. (c) `HUBS` in `.skilled/bin/compiled-route-guard.cjs:41-47` — the freshness-monitored set; also the auto-remint hook's hub list source. (d) Advisor-side copies `COMPILED_ROUTING_HUBS` + `DEFAULT_ON_HUBS` in `.skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts:14,30`, consumed by `advisor-recommend.ts:334`. (e) `serving-closure.manifest.json` `hubs[]` + `files[]` — the promoted file inventory. (f) The authored counterparts under `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/` — edits land there and are promoted by `compiled-route-sync.cjs`. [SOURCE: each cited file:line]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "**The decision↔gold bridge exists and runs today.** A compiled target decomposes to `{skillId, workflowMode, packetId, packetKind, backendKind}` — observed live: `compiledRoute('sk-doc','author a changelog entry')` → `{action:\"route\", targets:[{skillId:\"sk-doc\", workflowMode:\"sk-create-changelog\", packetId:\"sk-create-changelog\",...}]}`, and `compiledRoute('sk-doc','what is the weather today')` → `{action:\"defer\", targets:[]}`. `qualifiedIdToLeaf` in `leaf-resource-contract.cjs` already owns the qualified-id → `{hub, workflowMode, packet, kind, slug, mode}` decomposition with fail-closed orphan codes (`ORPHAN_WORKFLOW_MODE`, `PACKET_MISMATCH`) — the same boundary the retired harness used. [SOURCE: live run `node .skilled/bin/compiled-route.cjs --hub sk-doc`; file:.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs:430-463; file:compiled-routing-parity.cjs@b45ea54cea3^:272-351]",
+      "text": "**The decision↔gold bridge exists and runs today.** A compiled target decomposes to `{skillId, workflowMode, packetId, packetKind, backendKind}` — observed live: `compiledRoute('sk-doc','author a changelog entry')` → `{action:\"route\", targets:[{skillId:\"sk-doc\", workflowMode:\"sk-create-changelog\", packetId:\"sk-create-changelog\",...}]}`, and `compiledRoute('sk-doc','what is the weather today')` → `{action:\"defer\", targets:[]}`. `qualifiedIdToLeaf` in `leaf-resource-contract.cjs` already owns the qualified-id → `{hub, workflowMode, packet, kind, slug, mode}` decomposition with fail-closed orphan codes (`ORPHAN_WORKFLOW_MODE`, `PACKET_MISMATCH`) — the same boundary the retired harness used. [SOURCE: live run `node .skilled/bin/compiled-route.cjs --hub sk-doc`; file:.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs:430-463; file:compiled-routing-parity.cjs@b45ea54cea3^:272-351]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-7",
+      "title": "**The frozen scorer `score-skill-benchmark.cjs` owned the gold verdicts.** `evaluateRouteGold` asserted intent gold as an exact set (rejection labels `none`/`defer`/`unknown` map to the empty expected set) and resource gold as exact-assembly for sk-doc-shape corpora vs must-include + no-forbidden-prefix for sk-code-shape corpora; a gold parse failure was itself a violation and never dropped from the denominator. `scoreHubRoute` scored `routeOutcome: defer` as pass only when actual intents were empty and no forbidden workflow mode fired. [SOURCE: file:score-skill-benchmark.cjs@b45ea54cea3^:874-945,963-1000]",
+      "text": "**The frozen scorer `score-skill-benchmark.cjs` owned the gold verdicts.** `evaluateRouteGold` asserted intent gold as an exact set (rejection labels `none`/`defer`/`unknown` map to the empty expected set) and resource gold as exact-assembly for sk-doc-shape corpora vs must-include + no-forbidden-prefix for sk-code-shape corpora; a gold parse failure was itself a violation and never dropped from the denominator. `scoreHubRoute` scored `routeOutcome: defer` as pass only when actual intents were empty and no forbidden workflow mode fired. [SOURCE: file:score-skill-benchmark.cjs@b45ea54cea3^:874-945,963-1000]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-5",
+      "title": "**The leaf-resource gold needs a granularity rule, not a naive set-equality.** Compiled routing selects a whole mode (its leaf-manifest declaration is mode-wide); legacy replay selected a task-scoped subset. The retired harness solved this with `projectCompiledResourcesToLegacyGranularity` — projecting to the task-scoped intersection. A gold checker should score `expected_leaf_resources ⊆ declaredLeaves(routedMode)` (must-include) and flag expected leaves the mode does not declare as genuine compiled gaps; scoring declared-set-equality would fail every correct route on breadth. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:29-35,392-440; file:.skilled/skills/sk-doc/leaf-manifest.json (mode leaves)]",
+      "text": "**The leaf-resource gold needs a granularity rule, not a naive set-equality.** Compiled routing selects a whole mode (its leaf-manifest declaration is mode-wide); legacy replay selected a task-scoped subset. The retired harness solved this with `projectCompiledResourcesToLegacyGranularity` — projecting to the task-scoped intersection. A gold checker should score `expected_leaf_resources ⊆ declaredLeaves(routedMode)` (must-include) and flag expected leaves the mode does not declare as genuine compiled gaps; scoring declared-set-equality would fail every correct route on breadth. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:29-35,392-440; file:.skilled/skills/sk-doc/leaf-manifest.json (mode leaves)]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5",
+      "title": "**The legacy side came from `router-replay.cjs` (Mode A).** It extracted the `INTENT_SIGNALS`/`INTENT_MODEL` + `RESOURCE_MAP` dictionaries from the fenced block in the hub's `SKILL.md` and reproduced the exact substring-scoring semantics: lowercase the task, score each intent by keyword substring, keep intents within `AMBIGUITY_DELTA = 1` of the top score, assemble `RESOURCE_MAP[intent]`. Declared `defaultResourceSemantics: fallback-only` routers treated the default as a defer-time suggestion; undeclared routers kept union-default behavior so they replayed byte-identically. [SOURCE: file:router-replay.cjs@b45ea54cea3^:7-21,33]",
+      "text": "**The legacy side came from `router-replay.cjs` (Mode A).** It extracted the `INTENT_SIGNALS`/`INTENT_MODEL` + `RESOURCE_MAP` dictionaries from the fenced block in the hub's `SKILL.md` and reproduced the exact substring-scoring semantics: lowercase the task, score each intent by keyword substring, keep intents within `AMBIGUITY_DELTA = 1` of the top score, assemble `RESOURCE_MAP[intent]`. Declared `defaultResourceSemantics: fallback-only` routers treated the default as a defer-time suggestion; undeclared routers kept union-default behavior so they replayed byte-identically. [SOURCE: file:router-replay.cjs@b45ea54cea3^:7-21,33]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "**The manifest lifecycle is mint → refresh → flip, with the flip owned by authored-only tooling.** `compiled-route-manifest.cjs mint` writes an inert `{schemaVersion:V1, selectedPolicy:{hash,generation:1}, servingAuthority:'legacy', shadowOnly:true}` manifest. `refresh` recompiles at generation+1, prefers the shadow-child snapshot (`shadowChildPolicyFor`), and preserves `servingAuthority`/`shadowOnly` re-read late — atomic temp+rename publish. The `legacy`→`compiled` flip lives in `specs/.../014-runtime-engine/lib/flip-serving.cjs` (P4b): a fenced compare-and-swap gated on P4a binding (`013-live-activation/lib/activate-hub.cjs`), shadow canary green, `assertScorerFrozen`, snapshot identity == selectedPolicy — under the shared per-hub lock with a write-ahead journal and `--rollback`. It was never promoted to `.skilled/bin`. [SOURCE: file:.skilled/bin/lib/compiled-route-manifest.cjs:606-645,693-780; file:specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/flip-serving.cjs:1-26; file:specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/lib/activate-hub.cjs:6-13]",
+      "text": "**The manifest lifecycle is mint → refresh → flip, with the flip owned by authored-only tooling.** `compiled-route-manifest.cjs mint` writes an inert `{schemaVersion:V1, selectedPolicy:{hash,generation:1}, servingAuthority:'legacy', shadowOnly:true}` manifest. `refresh` recompiles at generation+1, prefers the shadow-child snapshot (`shadowChildPolicyFor`), and preserves `servingAuthority`/`shadowOnly` re-read late — atomic temp+rename publish. The `legacy`→`compiled` flip lives in `specs/.../014-runtime-engine/lib/flip-serving.cjs` (P4b): a fenced compare-and-swap gated on P4a binding (`013-live-activation/lib/activate-hub.cjs`), shadow canary green, `assertScorerFrozen`, snapshot identity == selectedPolicy — under the shared per-hub lock with a write-ahead journal and `--rollback`. It was never promoted to `.skilled/bin`. [SOURCE: file:.skilled/bin/lib/compiled-route-manifest.cjs:606-645,693-780; file:specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/flip-serving.cjs:1-26; file:specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/lib/activate-hub.cjs:6-13]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "**The match formula was two-sided and decoupled from gold achievability.** `match` required `firstDifference === null` between the legacy and compiled routing projections AND, only when the decision was a `route`, equal gold outcomes (`compiledGoldPass === legacyGoldPass`). Both sides failing the same pre-existing gold gap under identical routing was parity, not drift; only an outcome difference drifted. Non-route decisions (`defer`/`clarify`/`reject`) carry no resources by schema, so resource gold was not compared on them. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:712-740]",
+      "text": "**The match formula was two-sided and decoupled from gold achievability.** `match` required `firstDifference === null` between the legacy and compiled routing projections AND, only when the decision was a `route`, equal gold outcomes (`compiledGoldPass === legacyGoldPass`). Both sides failing the same pre-existing gold gap under identical routing was parity, not drift; only an outcome difference drifted. Non-route decisions (`defer`/`clarify`/`reject`) carry no resources by schema, so resource gold was not compared on them. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:712-740]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-1",
+      "title": "**The measured verdicts are archived and real.** The `2026-07-21--benchmark-sweep--r3` report records `compiledServingAllSevenHubs: true`, `compiledLaneCParityAllSeven: true`, `driftAnySeven: 0`, `skillBenchmarkSuite258: \"258/258 PASS\"`, `compiledRoutingParityVitest47: \"47/47 PASS\"`, `frozenScorerShaUnchanged: true`, `defaultOnHubsBothResolverCopies: 7`. Per-hub `serving-snapshot.json` files (e.g. sk-prompt: `servingAuthority: \"compiled\"`, `freshness.state: \"fresh\"`) preserve the serving state. These verdicts stand — the admitted cohort is genuinely measured. [SOURCE: file:.skilled/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--benchmark-sweep--r3/report.json (topLineVerdict); file:.skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/serving-snapshot.json]",
+      "text": "**The measured verdicts are archived and real.** The `2026-07-21--benchmark-sweep--r3` report records `compiledServingAllSevenHubs: true`, `compiledLaneCParityAllSeven: true`, `driftAnySeven: 0`, `skillBenchmarkSuite258: \"258/258 PASS\"`, `compiledRoutingParityVitest47: \"47/47 PASS\"`, `frozenScorerShaUnchanged: true`, `defaultOnHubsBothResolverCopies: 7`. Per-hub `serving-snapshot.json` files (e.g. sk-prompt: `servingAuthority: \"compiled\"`, `freshness.state: \"fresh\"`) preserve the serving state. These verdicts stand — the admitted cohort is genuinely measured. [SOURCE: file:.skilled/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--benchmark-sweep--r3/report.json (topLineVerdict); file:.skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/serving-snapshot.json]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe2/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-8",
+      "title": "**The orchestrator `run-skill-benchmark.cjs` wired the lane end-to-end.** A `--compiled-routing-parity on|off|auto` flag enabled the lane; each scenario row got `row.compiledParity = compiledParity({scenario, legacyObserved, skillRoot, skillId})` where `legacyObserved` was the router-replay observation; `rollupCompiledParity` folded rows into sub-verdicts `compiled-serving` / `legacy-fallback-drifted` / `broken-compiled-path` / `n/a` (resolver-missing outranks drift, both block); `applyCompiledDriftVerdict` raised the outer report verdict without collapsing it into generic route-gold blocks. [SOURCE: file:run-skill-benchmark.cjs@b45ea54cea3^:43-45,272-287,460-462,565-615,795]",
+      "text": "**The orchestrator `run-skill-benchmark.cjs` wired the lane end-to-end.** A `--compiled-routing-parity on|off|auto` flag enabled the lane; each scenario row got `row.compiledParity = compiledParity({scenario, legacyObserved, skillRoot, skillId})` where `legacyObserved` was the router-replay observation; `rollupCompiledParity` folded rows into sub-verdicts `compiled-serving` / `legacy-fallback-drifted` / `broken-compiled-path` / `n/a` (resolver-missing outranks drift, both block); `applyCompiledDriftVerdict` raised the outer report verdict without collapsing it into generic route-gold blocks. [SOURCE: file:run-skill-benchmark.cjs@b45ea54cea3^:43-45,272-287,460-462,565-615,795]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-10",
+      "title": "**The runtime inputs the harness probed are still live and load-bearing.** `compiledParity` ran the front door `.skilled/bin/compiled-route.cjs --hub <id> --prompt <text>` under `SPECKIT_COMPILED_ROUTING=1` and the probe `.skilled/bin/compiled-route-status.cjs --hub <id> --no-probe`; eligibility came from `serving-closure.manifest.json`; per-hub mode indexes came from each hub's `leaf-manifest.json` + `mode-registry.json`. All of those paths exist today. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:78-90,211-270]",
+      "text": "**The runtime inputs the harness probed are still live and load-bearing.** `compiledParity` ran the front door `.skilled/bin/compiled-route.cjs --hub <id> --prompt <text>` under `SPECKIT_COMPILED_ROUTING=1` and the probe `.skilled/bin/compiled-route-status.cjs --hub <id> --no-probe`; eligibility came from `serving-closure.manifest.json`; per-hub mode indexes came from each hub's `leaf-manifest.json` + `mode-registry.json`. All of those paths exist today. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:78-90,211-270]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-6",
+      "title": "**The scenario corpus came from `load-playbook-scenarios.cjs`.** It parsed each skill's `manual-testing-playbook` into normalized scenarios with gold captured AS AUTHORED (`expected_intent`, `expected_resources`, `expected_workflow_mode`, `expected_leaf_resources`, `expected_rank_below_skill_ids`), a `classKind` of `browser`/`advisor`/`routing`, and a `stage` of `routing`/`holdout`/`negative` (suppression/`negativeActivation` scenarios are `stage:negative`). Two source shapes were supported: the sk-code index-table shape and the sk-doc per-scenario-frontmatter shape. Gold was never checked for on-disk existence — a stale expectation was a real drift finding, not a silent drop. [SOURCE: file:load-playbook-scenarios.cjs@b45ea54cea3^:7-24,461-481,555-575]",
+      "text": "**The scenario corpus came from `load-playbook-scenarios.cjs`.** It parsed each skill's `manual-testing-playbook` into normalized scenarios with gold captured AS AUTHORED (`expected_intent`, `expected_resources`, `expected_workflow_mode`, `expected_leaf_resources`, `expected_rank_below_skill_ids`), a `classKind` of `browser`/`advisor`/`routing`, and a `stage` of `routing`/`holdout`/`negative` (suppression/`negativeActivation` scenarios are `stage:negative`). Two source shapes were supported: the sk-code index-table shape and the sk-doc per-scenario-frontmatter shape. Gold was never checked for on-disk existence — a stale expectation was a real drift finding, not a silent drop. [SOURCE: file:load-playbook-scenarios.cjs@b45ea54cea3^:7-24,461-481,555-575]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "**The scenario golds needed are all still authored in the live tree.** Per-hub `manual-testing-playbook/` corpora carry `expected_workflow_mode`, `expected_leaf_resources` (`{workflow_mode, leaf_resource_id}` pairs), `expected_intent`, `expected_resources`, and `expected_rank_below_skill_ids`; 111 files carry `leaf_resource_id` gold and 78 carry `expected_workflow_mode: UNKNOWN` negative gold today. Leaf ids match `leaf-manifest.json` mode `leaves` byte-for-byte (e.g. `references/validation.md` under mode `sk-create-quality-control`). [SOURCE: file:.skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-doc-quality.md:1-19; file:.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/recursive-phase-validation.md:6-11; live leaf-manifest.json modes]",
+      "text": "**The scenario golds needed are all still authored in the live tree.** Per-hub `manual-testing-playbook/` corpora carry `expected_workflow_mode`, `expected_leaf_resources` (`{workflow_mode, leaf_resource_id}` pairs), `expected_intent`, `expected_resources`, and `expected_rank_below_skill_ids`; 111 files carry `leaf_resource_id` gold and 78 carry `expected_workflow_mode: UNKNOWN` negative gold today. Leaf ids match `leaf-manifest.json` mode `leaves` byte-for-byte (e.g. `references/validation.md` under mode `sk-create-quality-control`). [SOURCE: file:.skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-doc-quality.md:1-19; file:.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/recursive-phase-validation.md:6-11; live leaf-manifest.json modes]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-4",
+      "title": "**The semantic redefinition must be recorded, not smuggled.** Under Path B the bar becomes \"compiled decisions agree with the authored routing gold on every scored scenario — zero violations\" replacing \"compiled == legacy replay.\" Two consequences, both documented in iteration 2: (a) a shared pre-existing gold gap now blocks (stricter — CS-002/CS-005 pattern), handled by classifying it as a corpus finding that is loud, not silently waived; (b) a correct-but-different-from-legacy decision now passes (looser — but only where gold is authored and maintained, and the corpus-completeness gate below bounds the ungolded surface). [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:712-740; file:playbook-verify report.md:33-44]",
+      "text": "**The semantic redefinition must be recorded, not smuggled.** Under Path B the bar becomes \"compiled decisions agree with the authored routing gold on every scored scenario — zero violations\" replacing \"compiled == legacy replay.\" Two consequences, both documented in iteration 2: (a) a shared pre-existing gold gap now blocks (stricter — CS-002/CS-005 pattern), handled by classifying it as a corpus finding that is loud, not silently waived; (b) a correct-but-different-from-legacy decision now passes (looser — but only where gold is authored and maintained, and the corpus-completeness gate below bounds the ungolded surface). [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:712-740; file:playbook-verify report.md:33-44]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/swe2/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-7",
+      "title": "**The serve-time identity binding is the deep freshness gate.** `resolveRoute` serves compiled only when `route.effectivePolicyHash === manifest.selectedPolicy.effectivePolicyHash && route.generation === manifest.selectedPolicy.generation`; any post-flip drift drops the hub to legacy silently — the exact failure the guard and hook exist to surface. `compiled-route-status.cjs` mirrors that binding in its probe (`identity-mismatch`, `stale-manifest`, `compiled-serving` causeCodes), making it usable as cheap admission-time evidence. [SOURCE: file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:101-121; file:.skilled/bin/compiled-route-status.cjs:255-270]",
+      "text": "**The serve-time identity binding is the deep freshness gate.** `resolveRoute` serves compiled only when `route.effectivePolicyHash === manifest.selectedPolicy.effectivePolicyHash && route.generation === manifest.selectedPolicy.generation`; any post-flip drift drops the hub to legacy silently — the exact failure the guard and hook exist to surface. `compiled-route-status.cjs` mirrors that binding in its probe (`identity-mismatch`, `stale-manifest`, `compiled-serving` causeCodes), making it usable as cheap admission-time evidence. [SOURCE: file:.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:101-121; file:.skilled/bin/compiled-route-status.cjs:255-270]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3",
+      "title": "**Three guards kept the comparison honest.** (a) Vacuous-parity guard: the hub's activation manifest had to read `servingAuthority: \"compiled\"` or the row hard-failed `vacuous` — trusting the runtime flag alone would read a legacy fallback as a false pass. (b) Shape bridge: compiled qualified target ids were translated through the shared `qualifiedIdToLeaf` boundary into legacy `observedIntents`/`observedResources`, with unresolved ids failing closed and a granularity projection so mode-wide compiled declarations were never mistaken for task-scoped legacy selections. (c) Frozen-scorer pin: the three scorer files were re-hashed against pinned SHA-256 digests before and after the run; drift aborted with no report. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:14-45,92-100,636-643; file:run-skill-benchmark.cjs@b45ea54cea3^:565-576]",
+      "text": "**Three guards kept the comparison honest.** (a) Vacuous-parity guard: the hub's activation manifest had to read `servingAuthority: \"compiled\"` or the row hard-failed `vacuous` — trusting the runtime flag alone would read a legacy fallback as a false pass. (b) Shape bridge: compiled qualified target ids were translated through the shared `qualifiedIdToLeaf` boundary into legacy `observedIntents`/`observedResources`, with unresolved ids failing closed and a granularity projection so mode-wide compiled declarations were never mistaken for task-scoped legacy selections. (c) Frozen-scorer pin: the three scorer files were re-hashed against pinned SHA-256 digests before and after the run; drift aborted with no report. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:14-45,92-100,636-643; file:run-skill-benchmark.cjs@b45ea54cea3^:565-576]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-7",
+      "title": "**What a gold checker cannot see that parity could:** the projection comparison covered `action + selectionKind + ordered targets` — a richer equivalence than workflowMode-set agreement. Two engines that agree on the mode but differ on `selectionKind` (single vs bundle vs disambiguate) or cross-hub targets were drift under parity but invisible to a `expected_workflow_mode`-only check. Mitigation: keep `selectionKind` and the ordered target list in the checked projection, not just the mode set. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:402-453; file:compiled-route.cjs:97-105]",
+      "text": "**What a gold checker cannot see that parity could:** the projection comparison covered `action + selectionKind + ordered targets` — a richer equivalence than workflowMode-set agreement. Two engines that agree on the mode but differ on `selectionKind` (single vs bundle vs disambiguate) or cross-hub targets were drift under parity but invisible to a `expected_workflow_mode`-only check. Mitigation: keep `selectionKind` and the ordered target list in the checked projection, not just the mode set. [SOURCE: file:compiled-routing-parity.cjs@b45ea54cea3^:402-453; file:compiled-route.cjs:97-105]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-6",
+      "title": "**What a later phase builds (Path B work breakdown).** (i) `check-compiled-routing.cjs` (~500-800 lines): a two-shape playbook-gold loader (sk-code index-table + sk-doc per-scenario frontmatter; `@spec-kit/shared` is live with `\"./*.js\"->\"./dist/*.js\"` exports), the comparator port (`evaluateRouteGold` semantics + parity's ordered projection + leaf must-include), the rollup (serving/violations/broken sub-verdicts mirroring Lane C's), the completeness gate, and a JSON+markdown report matching the archived report shape. (ii) Vitest suite covering the status space via injected fixtures (parity's own vitest did exactly this). (iii) Admission runbook: shadow-child build-out per the proven recipe → register `HUB_CHILD` → run checker to a clean verdict → `compiled-route-manifest.cjs mint/refresh` → flip `servingAuthority`→`compiled`+`shadowOnly`→`false` (repair `flip-serving.cjs`'s stale scorer gate — its `SCORER_DIR` points at the dead `mcp-server` path — or perform the gated two-field manifest edit under the same lock/journal discipline) → add to `DEFAULT_ON_HUBS`, guard `HUBS`, advisor `COMPILED_ROUTING_HUBS`+`DEFAULT_ON_HUBS` → `compiled-route-sync.cjs` promote + regenerate `serving-closure.manifest.json` → `compiled-route-guard.cjs` green → foundation vitest green (it asserts all cohort copies agree). (iv) Doc fixes: \"seven\"→\"five\" across architecture doc + `resolve.cjs` comment + spec text; record the bar redefinition in `compiled-routing-architecture.md` §4. [SOURCE: file:.skilled/bin/compiled-routing-foundation.vitest.ts:54-70,126-128; file:.opencode/scripts/git-hooks/pre-commit:281-330; file:.skilled/bin/compiled-route-sync.cjs:1-50; file:specs/.../shared/frozen-scorer-contract.cjs:27-47]",
+      "text": "**What a later phase builds (Path B work breakdown).** (i) `check-compiled-routing.cjs` (~500-800 lines): a two-shape playbook-gold loader (sk-code index-table + sk-doc per-scenario frontmatter; `@spec-kit/shared` is live with `\"./*.js\"->\"./dist/*.js\"` exports), the comparator port (`evaluateRouteGold` semantics + parity's ordered projection + leaf must-include), the rollup (serving/violations/broken sub-verdicts mirroring Lane C's), the completeness gate, and a JSON+markdown report matching the archived report shape. (ii) Vitest suite covering the status space via injected fixtures (parity's own vitest did exactly this). (iii) Admission runbook: shadow-child build-out per the proven recipe → register `HUB_CHILD` → run checker to a clean verdict → `compiled-route-manifest.cjs mint/refresh` → flip `servingAuthority`→`compiled`+`shadowOnly`→`false` (repair `flip-serving.cjs`'s stale scorer gate — its `SCORER_DIR` points at the dead `mcp-server` path — or perform the gated two-field manifest edit under the same lock/journal discipline) → add to `DEFAULT_ON_HUBS`, guard `HUBS`, advisor `COMPILED_ROUTING_HUBS`+`DEFAULT_ON_HUBS` → `compiled-route-sync.cjs` promote + regenerate `serving-closure.manifest.json` → `compiled-route-guard.cjs` green → foundation vitest green (it asserts all cohort copies agree). (iv) Doc fixes: \"seven\"→\"five\" across architecture doc + `resolve.cjs` comment + spec text; record the bar redefinition in `compiled-routing-architecture.md` §4. [SOURCE: file:.skilled/bin/compiled-routing-foundation.vitest.ts:54-70,126-128; file:.opencode/scripts/git-hooks/pre-commit:281-330; file:.skilled/bin/compiled-route-sync.cjs:1-50; file:specs/.../shared/frozen-scorer-contract.cjs:27-47]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/swe2/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-3",
+      "title": "**Why not keep-closed (Path C): it converts a tooling gap into a permanent program freeze.** Cost is ~0 and the five admitted hubs keep serving, but new-hub admission becomes unreachable, `create-skill --compiled-routing ready` keeps minting manifests for a verdict that can never be earned, admitted-hub drift goes unmeasured (refresh re-mints mechanically with no correctness re-check), and the \"seven hubs\" doc debt keeps compounding. It is only honest if the operator declares the compiled-routing cohort permanently closed — a different decision than the one this spec asks. [SOURCE: file:compiled-routing-architecture.md:87-105; file:.skilled/bin/lib/compiled-route-manifest.cjs:693-780; commit:f931ba2e14; commit:a9286399bc3]",
+      "text": "**Why not keep-closed (Path C): it converts a tooling gap into a permanent program freeze.** Cost is ~0 and the five admitted hubs keep serving, but new-hub admission becomes unreachable, `create-skill --compiled-routing ready` keeps minting manifests for a verdict that can never be earned, admitted-hub drift goes unmeasured (refresh re-mints mechanically with no correctness re-check), and the \"seven hubs\" doc debt keeps compounding. It is only honest if the operator declares the compiled-routing cohort permanently closed — a different decision than the one this spec asks. [SOURCE: file:compiled-routing-architecture.md:87-105; file:.skilled/bin/lib/compiled-route-manifest.cjs:693-780; commit:f931ba2e14; commit:a9286399bc3]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/swe2/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-2",
+      "title": "**Why not restore (Path A): 5x the code for a proxy the bar never needed.** A surgical restore is ~3,700 lines (5-7 modules) plus re-owning the frozen-trio pin discipline and the `.opencode`→`.skilled` path-churn verification — to recover a comparison that was itself compiled-vs-replay-proxy, not compiled-vs-legacy (router-replay reproduces substring-scoring over SKILL.md dicts; it is a model of the router, not the router). Restore is the right choice only if operators decide the bar must remain literally \"== legacy\" — in which case the replay must come back too, because parity delegates the verdict to the same retired scorer. [SOURCE: file:router-replay.cjs@b45ea54cea3^:7-21; file:compiled-routing-parity.cjs@b45ea54cea3^:64-71; commit:b45ea54cea3 census]",
+      "text": "**Why not restore (Path A): 5x the code for a proxy the bar never needed.** A surgical restore is ~3,700 lines (5-7 modules) plus re-owning the frozen-trio pin discipline and the `.opencode`→`.skilled` path-churn verification — to recover a comparison that was itself compiled-vs-replay-proxy, not compiled-vs-legacy (router-replay reproduces substring-scoring over SKILL.md dicts; it is a model of the router, not the router). Restore is the right choice only if operators decide the bar must remain literally \"== legacy\" — in which case the replay must come back too, because parity delegates the verdict to the same retired scorer. [SOURCE: file:router-replay.cjs@b45ea54cea3^:7-21; file:compiled-routing-parity.cjs@b45ea54cea3^:64-71; commit:b45ea54cea3 census]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/swe2/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "F-001",
+      "text": "Lane C parity compared the live compiled decision (public front door, SPECKIT_COMPILED_ROUTING=1) against the Mode A legacy replay per playbook scenario, with three honesty guards and five statuses.",
+      "source": "iteration-001.md F1.1-F1.4",
+      "iterations": [
+        "001"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-002",
+      "text": "A restore needs four deleted modules (845+1889+741+766 lines), their test, a driver, the corpus and shared deps; the three frozen scorer files are SHA-256-pinned, so any edit forces re-pinning.",
+      "source": "iteration-001.md F1.6; iteration-004.md F4.1",
+      "iterations": [
+        "001",
+        "004"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-003",
+      "text": "The retirement was deliberate and broad (BREAKING CHANGE; five entry points, script tree, fixtures, typed ledgers removed), and the spec fences off reopening the lane as a whole.",
+      "source": "iteration-001.md F1.7; iteration-004.md F4.2",
+      "iterations": [
+        "001",
+        "004"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-004",
+      "text": "The live typed-gold corpus is 74 scenarios across the five admitted hubs (64 concrete, 2 defer, 8 UNKNOWN) plus 19 holdout and 2 negative; sk-code contributes only 1 scenario.",
+      "source": "iteration-002.md F2.1, F2.5",
+      "iterations": [
+        "002"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-005",
+      "text": "compiledRoute returns qualified-id targets only; checking leaf gold requires the live qualifiedIdToLeaf bridge over each hub's leaf-manifest + mode-registry, and the result is mode-granular must-include, not legacy's task-scoped assembly.",
+      "source": "iteration-002.md F2.2",
+      "iterations": [
+        "002"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-006",
+      "text": "Compiled action vocabulary (route/clarify/defer/reject; canary histogram 50/3/7/7) exceeds the gold vocabulary, so a new checker must define the non-route mapping itself.",
+      "source": "iteration-002.md F2.3",
+      "iterations": [
+        "002"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-007",
+      "text": "Defer must count as a no-route assertion (over-detection and silent-default both fail); holdout counts in the verdict with the fitted-vs-holdout gap reported; negative scenarios are suppression assertions; UNKNOWN maps to the empty expected-intent set.",
+      "source": "iteration-002.md F2.4, F2.5",
+      "iterations": [
+        "002"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-008",
+      "text": "A gold-only checker has one observation: it is stricter against gold but blind to legacy drift, so the admission sentence changes from 'compiled equals legacy' to 'compiled satisfies the authored routing contract'.",
+      "source": "iteration-002.md F2.7; iteration-004.md F4.4",
+      "iterations": [
+        "002",
+        "004"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-009",
+      "text": "Eight cohort surfaces must change for an eighth hub; four lockstep copies are test-guarded, guard/sync/closure are not, and the cohort length is asserted by expect(cohort.length).toBe(5).",
+      "source": "iteration-003.md F3.1; iteration-004.md F4.0",
+      "iterations": [
+        "003",
+        "004"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-010",
+      "text": "mint writes an inert legacy/shadowOnly manifest and refuses to overwrite; refresh increments generation and preserves servingAuthority/shadowOnly; freshness must compare against the hub's own shadow-child snapshot; no CLI flips authority to compiled.",
+      "source": "iteration-003.md F3.2",
+      "iterations": [
+        "003"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-011",
+      "text": "Freshness is enforced at three moments: pre-commit auto re-mint (SKILL.md trigger, staged+unstaged refusal, authored-copy sync), compiled-route-guard.cjs (stale-manifest + authored-drift + narrow exemptions), and the request-time status probe (causeCode matrix).",
+      "source": "iteration-003.md F3.3",
+      "iterations": [
+        "003"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-012",
+      "text": "compiled-route-sync traces require/file reads across every hub to promote the closure (48 files); a new hub's shadow child must join the traced path and the sync HUBS list or it is never promoted.",
+      "source": "iteration-003.md F3.4",
+      "iterations": [
+        "003"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-013",
+      "text": "The cohort history is 7 (all hubs) -> 6 (sk-design dissolution, phase 023) -> 5 (sk-prompt retirement 8da89c0594e); the architecture reference still says seven hubs and names the legacy layout paths (006/011/010), while the live layout is 009/014/013.",
+      "source": "iteration-003.md F3.5",
+      "iterations": [
+        "003"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-014",
+      "text": "A post-retirement manual playbook-verify (resolve.cjs vs router-replay.cjs, diffed per scenario) was already used for sk-prompt and recorded 5/5, 0 drift, but left no reusable tool.",
+      "source": "iteration-003.md F3.6",
+      "iterations": [
+        "003"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-015",
+      "text": "Costs: Path A = 4,241 lines + test + driver + frozen pins + retired-lane drag; Path B = low hundreds of lines, no frozen parts, standing-gate capable; Path C = zero build, permanent manual admission, no compiled-vs-legacy measurement.",
+      "source": "iteration-004.md F4.1-F4.6",
+      "iterations": [
+        "004"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-016",
+      "text": "No standing gate compares compiled to legacy since retirement: CI covers structure, freshness and 2 golden prompts with expectedMode; canary fixtures are evaluated only when the generator runs, and loadSnapshot does not evaluate them.",
+      "source": "iteration-004.md F4.5",
+      "iterations": [
+        "004"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-017",
+      "text": "Recommendation: Path B as a standing gate with the bar restated; six build steps; the operator's single decision is accepting the restated sentence or demanding literal legacy equality (decided with the baseline report).",
+      "source": "iteration-005.md F5.1-F5.4",
+      "iterations": [
+        "005"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 65,
+    "sourceFindings": 65,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.275,
+    "coverageBySources": {}
+  }
+}
