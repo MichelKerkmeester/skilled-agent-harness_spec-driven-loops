@@ -52,16 +52,16 @@ Copy this into `manual-testing-playbook/{CATEGORY_DIR}/{FEATURE_SLUG}.md`. Both 
 title: "{FEATURE_ID} -- {FEATURE_NAME}"
 description: "This scenario validates {FEATURE_NAME} for `{FEATURE_ID}`. It focuses on {OBJECTIVE}."
 stage: routing   # routing | holdout | negative — benchmark-tier grouping; carries what a numbered filename prefix used to encode
-# Lane C skill-benchmark fields — REQUIRED when this playbook also serves as a hub's
-# skill-benchmark corpus. The scenario loader SKIPS any feature file whose frontmatter
-# carries none of id / expected_intent / expected_resources, so a routing scenario
-# without them is silently absent from the D1 benchmark. Omit them for a pure
-# manual-testing playbook that is never scored.
+# Routing-gold fields — REQUIRED when the scenario claims a route. Any one of them
+# enrols the scenario in the topology gate (validate-playbook-topology.cjs), and
+# validate-compiled-routing-scenarios.cjs rejects a compiled-routing scenario that
+# lacks id, expected_intent or expected_resources. Omit them for a behavioural
+# scenario that exercises a script or hook and makes no routing claim.
 id: "{FEATURE_ID}"                       # stable scenario id; falls back to the filename if omitted
 expected_intent: "{EXPECTED_INTENT}"     # routing intent/mode the skill should select for this prompt
 expected_resources:                      # resource paths the correct route must load (one per line)
   - "{EXPECTED_RESOURCE_PATH}"
-# Routing-gold topology fields — REQUIRED for a skill-benchmark corpus file. The
+# Routing-gold topology fields — REQUIRED for a scenario that claims a route. The
 # topology gate (validate-playbook-topology.cjs) resolves these against the hub's
 # leaf-manifest.json, so omitting them fails the routing-gold contract even though
 # the operator-scenario validator never checks them.
@@ -166,8 +166,8 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 
 - Keep the feature file aligned with the matching root summary block and feature-catalog entry.
 - Preserve stable feature IDs and file paths once published.
-- The per-feature filename is a descriptive kebab-case slug with no numeric prefix (e.g. `full-runtime-dispatch.md`, not `001-full-runtime-dispatch.md`). Ordering and benchmark tier are owned by the root index and the `stage:` frontmatter field, not the filename. The scenario loader discovers files by their frontmatter, so a numbered filename buys nothing and forces a renumber-on-insert cascade.
-- Set `stage:` to mark the scenario's benchmark tier: `routing` (the default, a positive in-domain recall scenario), `holdout` (a generalization scenario held out of the primary set), or `negative` (an out-of-domain scenario the skill must NOT route to). This is what a numbered/holdout/negative filename token used to signal implicitly. The skill-benchmark loader treats `stage: negative` as a suppression test (negative activation), not a positive routing hit.
-- For a scenario that also feeds the Lane C skill-benchmark, fill `id`, `expected_intent`, and `expected_resources` in the frontmatter, and keep the exact executor prompt in the `### Prompt` block, because the loader parses the prompt from that block and records a `missing-exact-prompt` warning when it is absent. `expected_resources` is the list of resource paths the correct route should load, and the D1 score is measured against it.
+- The per-feature filename is a descriptive kebab-case slug with no numeric prefix (e.g. `full-runtime-dispatch.md`, not `001-full-runtime-dispatch.md`). Ordering and benchmark tier are owned by the root index and the `stage:` frontmatter field, not the filename. The routing gates enrol a scenario by its frontmatter, so a numbered filename buys nothing and forces a renumber-on-insert cascade.
+- Set `stage:` to mark the scenario's benchmark tier: `routing` (the default, a positive in-domain recall scenario), `holdout` (a generalization scenario held out of the primary set), or `negative` (an out-of-domain scenario the skill must NOT route to). This is what a numbered/holdout/negative filename token used to signal implicitly.
+- For a compiled-routing scenario, fill `id`, `expected_intent`, and `expected_resources` in the frontmatter, and give the exact prompt as a fenced `**Exact prompt**` block or an inline `Prompt:` line, the two forms `validate-compiled-routing-scenarios.cjs` parses. It rejects a scenario whose prompt it cannot parse. `expected_resources` is the list of resource paths the correct route should load.
 - When a feature needs extra checks, add them beneath the main row instead of creating a second primary scenario row by default.
 - Put feature-specific review caveats, routing notes, and isolation constraints here instead of inventing separate sidecar docs.

@@ -574,7 +574,7 @@ Two of those keys change behavior rather than describing it:
 
 | Key | What it does |
 |-----|--------------|
-| `id`, `expected_intent`, `expected_resources` | The Lane C scenario loader skips any feature file whose block carries none of the three, so a routing scenario without them is silently absent from the benchmark. |
+| `id`, `expected_intent`, `expected_resources` | Any one of them enrols the scenario in the routing-gold topology gate, and the compiled-routing scenario validator rejects a compiled-routing scenario that lacks one. |
 | `stage` | Benchmark tier, one of `routing`, `holdout` or `negative`. It carries what a numbered filename prefix used to encode. |
 
 Both are documented in `sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md` Section 2.
