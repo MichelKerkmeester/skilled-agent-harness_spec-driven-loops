@@ -1,6 +1,9 @@
 {
+  "name": "opencode-plugins",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
   "dependencies": {
     "@opencode-ai/plugin": "1.18.31"
-  },
-  "type": "module"
+  }
 }
