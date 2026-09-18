@@ -1,0 +1,25 @@
+{
+  "reviewTarget": "the changed surface from 3717ac8854bcc755e8d56591ab3b2d0d21484105 to 2420a0ec9300d36ff08678d9167b7f4a496e3752: the source-root migration to .skilled, dual-root resolvers, hooks and installers, the reference rewrite, the real compatibility directory, and the install-guide retirement",
+  "reviewTargetType": "files",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "antiConvergence": { "convergenceMode": "off", "divergent": {} },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "lineageMode": "auto",
+  "resource_map": { "emit": true },
+  "config": {
+    "executor": {
+      "kind": "cli-codex",
+      "model": "gpt-5.6-luna",
+      "reasoningEffort": "max",
+      "serviceTier": "fast",
+      "timeout": 1800,
+      "lanes": 1
+    }
+  },
+  "base": "3717ac8854bcc755e8d56591ab3b2d0d21484105",
+  "tip": "2420a0ec9300d36ff08678d9167b7f4a496e3752"
+}
