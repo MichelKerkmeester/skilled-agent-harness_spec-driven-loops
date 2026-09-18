@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt"
     last_updated_at: "2026-09-18T13:30:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Recompiled the stale deep command contracts and reran every suite from the tip"
-    next_safe_action: "Rebase, push on approval, watch CI"
+    recent_action: "Pushed the phase, rewrote the retired-lane residue and fixed the validator CLI"
+    next_safe_action: "Push the residue on approval, watch CI"
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/SKILL.md"
@@ -23,10 +23,9 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "6d11af6f-653e-4807-aca8-1c09c81640c1"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 95
     open_questions:
       - "Should the write-set conflict census drop the retired workstream?"
-      - "Should the roughly forty files that still describe the retired lane in the present tense be rewritten in this phase?"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -73,6 +72,8 @@ Nothing compared the Hermes copies of skills and prompts with their sources, and
 
 The authoring packet lost the lane's README template, storage guide and serving-snapshot schema, two scripts that could no longer start because they imported the lane, and two scenarios built on them. The lane's section, routing and alias are gone from the packet and the sk-doc hub. Eleven benchmark READMEs lost their re-run sections and keep their run indexes. The skill scaffolder stopped writing the retired run command into new skills. While verifying this phase, three more live pointers turned up and were fixed: `/create:benchmark` still offered `skill_benchmark` as a choice, and two authoring references said a deleted scenario loader required three frontmatter fields. Those fields are still required, by the two routing-gold gates, so the references now name those gates.
 
+The operator then asked for the rest of the description residue. Twelve holdout scenarios said the skill-benchmark gates scored them; the routing-gold gates check them. Eight skill docs said the retired router-replay consumed their routing blocks, and one named a guard test that was deleted with the lane. Seven benchmark READMEs described the harness in the present tense, and one told the reader to add rows when the next run lands. The compiled-routing reference still told a hub author to pass Lane C parity to reach `compiled-serving`; it now says that no tool runs that step today, which means a new hub cannot reach `compiled-serving` until one does. One live defect turned up on the way: `validate-compiled-routing-scenarios.cjs` required an argument parser the lane's retirement deleted, so its command line crashed on start. It now parses its own arguments, and a new test runs it from the command line.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -87,6 +88,8 @@ The authoring packet lost the lane's README template, storage guide and serving-
 | Eleven benchmark READMEs, the chart scenario, two parity scenarios, six reference docs, `init_skill.py` | Modified/Deleted | No live instruction for the lane |
 | `create-benchmark-presentation.txt`, the playbook snippet template, the frontmatter reference | Modified | The three pointers found while verifying |
 | `.skilled/commands/deep/assets/compiled/deep-{research,review,ai-council}.contract.md` | Regenerated | Record the hub's new `SKILL.md` digest |
+| Twelve holdout scenarios, nine skill docs, seven benchmark READMEs, three playbook roots, two feature catalogs, one playbook scenario, the compiled-routing reference, `init_skill.py` help, comments in four code files | Modified | No live file describes the retired lane as present |
+| `validate-compiled-routing-scenarios.cjs` and its test | Modified | The CLI no longer requires a deleted module |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -94,7 +97,7 @@ The authoring packet lost the lane's README template, storage guide and serving-
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Four commits on `worktrees/055-skilled-source-root-migration`, each through the git hooks with no bypass variable: `71aaaa8b95` (routing and the two hub records), `30b2981762` (playbooks), `c4b83f6648` (the Hermes job) and `cafeff809e` (the lane's removal), then `b1105386ab` for the three pointers found while verifying and `7e74623188` for the three command contracts. A seventh commit carries these docs. The first regression check ran only the spec-kit CLI project, 143 test files, and missed the contracts. `runtime/vitest.config.ts` also collects the deep-loop suites, 260 files in all, and it found them. No CI workflow runs that config. Each red workflow was diagnosed from its CI failure log, and the routing regression from a dump of every prompt's top skill at the commit before the cleanup and at the tip. The main checkout moved to `6cbaf58d3b` after phase 012, so the commits were rebased onto it, which gave them the IDs cited here.
+Four commits on `worktrees/055-skilled-source-root-migration`, each through the git hooks with no bypass variable: `71aaaa8b95` (routing and the two hub records), `30b2981762` (playbooks), `c4b83f6648` (the Hermes job) and `cafeff809e` (the lane's removal), then `b1105386ab` for the three pointers found while verifying and `7e74623188` for the three command contracts. A seventh commit carries these docs. The first regression check ran only the spec-kit CLI project, 143 test files, and missed the contracts. `runtime/vitest.config.ts` also collects the deep-loop suites, 260 files in all, and it found them. No CI workflow runs that config. Each red workflow was diagnosed from its CI failure log, and the routing regression from a dump of every prompt's top skill at the commit before the cleanup and at the tip. The main checkout moved to `6cbaf58d3b` after phase 012, so the commits were rebased onto it, which gave them the IDs cited here, and `a22897b1af` was pushed to both branches. The residue work followed in `8a9ce45ee2` (the validator CLI) and `02589c0bfd` (the rewrite, the Hermes copies and two re-minted hub manifests).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -128,7 +131,8 @@ Four commits on `worktrees/055-skilled-source-root-migration`, each through the 
 | Hermes sync `--check` | 68 skill copies and 33 prompts in sync, both exit 0 |
 | Hub checks | `parent-skill-check` passes on all six hubs. Leaf-manifest and derived-metadata freshness 13/13 |
 | Markdown links, frontmatter | 0 broken links. Frontmatter clean |
-| CI | Not yet run on the pushed tip |
+| CI at `a22897b1af` | All 27 runs on both branches green, Spec-Kit Check included (35358039078 and 35358038833). Routing Registry Drift Guard 35358038757 and 35358038847, Playbook Operator Contract 35358038681 and 35358038874, Hermes mirror job in 35358038672 and 35358038808 |
+| Per-row routing dump after the residue rewrite | All 289 prompts route as in the known-good dump |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -136,8 +140,8 @@ Four commits on `worktrees/055-skilled-source-root-migration`, each through the 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **About forty live files still describe the retired lane in the present tense.** They give no route, command or run instruction, so nothing sends a reader to it. They do say it exists: fifteen benchmark READMEs, twelve holdout scenarios that call themselves "scored by the routing-gold and skill-benchmark gates", and about ten skill documents whose routing-block comments say the skill-benchmark router-replay consumes them. A search finds about sixty files naming the lane. That count includes run reports, generated fixtures, the persisted-data contract, and the advisor's scorer, which uses "lane" for something else. The `cafeff809e` commit message says it removed "every live pointer", which is true of routes and instructions but not of description.
-2. **The write-set conflict census still declares the retired workstream** (`.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts:14`, `shipped-census.ts:107`). Its scripts are gone, so the census names paths that do not exist.
+1. **No tool can admit a new hub to `compiled-serving`.** Lane C parity was the admission test, and it was retired with the lane. The seven hubs already admitted keep their measured verdict.
+2. **The write-set conflict census still declares the retired workstream** (`.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts:14`, `shipped-census.ts:107`). It models the child folders of one spec program, which still hold that workstream, and it already omits the shipped deep-alignment mode, so it is a record of that program rather than a list of shipped modes. The operator's call is pending, with these facts.
 3. **The frozen durable-directory manifest has eleven stale entries in each direction.** They predate this work, and its test was failing before this phase.
 4. **`create-journey-proof.test.cjs` still fails** on a version mismatch in the sk-create-skill scaffold, the same failure as the baseline.
 5. **No CI workflow runs the deep-loop runtime suites.** Spec-Kit Check runs the spec-kit package's `root` and `cli` projects. The contract-drift and renderer tests that caught this phase's stale contracts run only under `runtime/vitest.config.ts`, locally.

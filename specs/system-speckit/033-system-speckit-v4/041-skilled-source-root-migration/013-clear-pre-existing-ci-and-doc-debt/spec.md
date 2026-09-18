@@ -80,10 +80,11 @@ Every push shows green on these workflows unless something new broke, the Hermes
 - **Playbook contract**: the eleven violations the fail-closed gate reports.
 - **Hermes mirrors**: a CI job that runs both sync scripts in check mode on every push and pull request.
 - **Retired skill-benchmark lane**: its authoring assets, storage guide, serving-snapshot schema, two scripts that import the retired lane, the scenarios that exercised them, its hub alias, and every live paragraph that tells a reader how to run it.
+- **Description residue** (operator-approved 2026-09-18): live skill docs, holdout scenarios, benchmark READMEs, playbook roots, feature catalogs and code comments that still describe the retired lane as present, and one validator CLI that still required a module the lane's retirement deleted.
 
 ### Out of Scope
 - The `'skill-benchmark'` mode id in ledger schemas, reducers and sealed-artifact types - persisted records carry it, so the id is a data contract, not documentation.
-- The write-set conflict census, `.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts:14` and `shipped-census.ts:107` - a deviation from the approved removal. It is a closed typed contract: removing the workstream changes the `Phase013Workstream` union, the census declaration, the artifact schema and two test expectations (`write-set-conflict-graph.vitest.ts:182` and `:729`). It is reported to the operator as its own change.
+- The write-set conflict census, `.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts:14` and `shipped-census.ts:107`. The operator approved removing its retired workstream on the premise that it lists shipped modes. It does not: its seven workstreams mirror the child folders of one spec program, `036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/`, which still holds `007-skill-benchmark`, and it already omits the shipped `008-deep-alignment`. No code outside its own tests calls it. The corrected facts go back to the operator before anything changes.
 - `legacy-projection-manifest.ts` - it records how the historical writer laid out files.
 - Changelogs, generated retrieval fixtures, `trigger-index.json` and the grader cache - frozen or generated records.
 - The eleven stale entries in each direction of the frozen durable-directory manifest, which predate this work, and `create-journey-proof.test.cjs`, whose version-mismatch failure predates it too.
@@ -133,6 +134,7 @@ Every push shows green on these workflows unless something new broke, the Hermes
 | ID | Requirement |
 |----|-------------|
 | REQ-008 | The cli-external-orchestration hub summary states the roster size the Hermes code enforces. |
+| REQ-009 | No live skill doc, scenario, README, catalog or code comment describes the retired lane as present, and every prompt still routes as before. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -216,7 +218,7 @@ Every push shows green on these workflows unless something new broke, the Hermes
 
 ## 10. OPEN QUESTIONS
 
-- Should the write-set conflict census drop the retired workstream? That change is out of scope here and is put to the operator.
+- Should the write-set conflict census drop the retired workstream, given that it models a spec program's folders rather than the shipped modes? Put back to the operator with the corrected facts.
 <!-- /ANCHOR:questions -->
 
 ---

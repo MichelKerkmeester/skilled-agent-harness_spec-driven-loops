@@ -65,8 +65,11 @@ contextType: "implementation"
 - [x] T017 Rerun the whole local gate at `cafeff809e` and compare with the baseline
 - [x] T018 Confirm all 289 prompts route as before
 - [x] T021 Recompile the three deep command contracts whose recorded hub digest the keyword change made stale (`.skilled/commands/deep/assets/compiled/`)
-- [ ] T019 Rebase the phase commits onto the main checkout's tip, fast-forward it, and push both branches after the operator's go-ahead
-- [ ] T020 Watch CI until the three target workflows pass
+- [x] T019 Rebase the phase commits onto the main checkout's tip, fast-forward it, and push both branches after the operator's go-ahead
+- [x] T020 Watch CI until the three target workflows pass
+- [x] T022 Rewrite the live files that still describe the retired lane as present (holdouts, skill docs, READMEs, playbook roots, catalogs, code comments)
+- [x] T023 Give `validate-compiled-routing-scenarios.cjs` its own argument parser, with a CLI test that fails against the old script
+- [ ] T024 Push the residue commits after the operator's go-ahead and watch CI
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -128,7 +131,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. AC-007 waits on CI after the push
+- [x] CHK-020 [P0] All acceptance criteria met
 - [x] CHK-021 [P0] Manual testing complete
 - [x] CHK-022 [P1] Edge cases tested. Live-lane READMEs kept their run sections
 - [x] CHK-023 [P1] Error scenarios validated. `--check` exits 1 on a stale copy
@@ -184,7 +187,7 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
