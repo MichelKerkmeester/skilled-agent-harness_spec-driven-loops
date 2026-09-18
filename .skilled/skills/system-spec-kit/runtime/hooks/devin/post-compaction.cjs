@@ -36,7 +36,7 @@ const BOUNDARY_TIMEOUT_MS = 750;
 
 function sessionLifecycleHookEnabled() {
   try {
-    const { isHookEnabled } = require('../../../../../../.skilled/hooks/shared/hook-flags.cjs');
+    const { isHookEnabled } = require('../../../../../hooks/shared/hook-flags.cjs');
     return typeof isHookEnabled !== 'function' || isHookEnabled('session-lifecycle') !== false;
   } catch (_) {
     return true;

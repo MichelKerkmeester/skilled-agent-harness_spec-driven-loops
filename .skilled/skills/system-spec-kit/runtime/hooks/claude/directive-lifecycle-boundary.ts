@@ -17,7 +17,7 @@ const __dlRequire = createRequire(import.meta.url);
 function directiveLifecycleEnabled(): boolean {
   try {
     const { isHookEnabled } = __dlRequire(
-      fileURLToPath(new URL('../../../../../../../.skilled/hooks/shared/hook-flags.cjs', import.meta.url)),
+      fileURLToPath(new URL('../../../../../../hooks/shared/hook-flags.cjs', import.meta.url)),
     ) as { isHookEnabled?: (c: string) => boolean };
     return typeof isHookEnabled !== 'function' || isHookEnabled('directive-lifecycle') !== false;
   } catch {

@@ -31,7 +31,7 @@ import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 // Repo-root-relative (this file's real home is under system-spec-kit; Node
 // resolves relative imports against the realpath, not the hub symlink).
-import { isHookEnabled } from '../../../../../../.skilled/hooks/shared/hook-flags.mjs';
+import { isHookEnabled } from '../../../../../hooks/shared/hook-flags.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

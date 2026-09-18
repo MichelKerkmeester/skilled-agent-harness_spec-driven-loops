@@ -10,7 +10,7 @@ import { readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import sentinelCore from '../../lib/hooks/completion-evidence-sentinel.cjs';
-import { isHookEnabled } from '../../../../../../.skilled/hooks/shared/hook-flags.mjs';
+import { isHookEnabled } from '../../../../../hooks/shared/hook-flags.mjs';
 
 function readLastSpecFolder(projectDir, sessionId) {
   if (!sessionId) return null;

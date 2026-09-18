@@ -125,3 +125,27 @@ test("live file path resolves via HOOK_FLAGS_CONFIG and env still wins", () => {
     fs.rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("the shell mirror reads the config file of whichever source root the checkout carries", () => {
+  const { spawnSync } = require("node:child_process");
+  const probe = (sourceRoot) => {
+    const repo = fs.mkdtempSync(path.join(os.tmpdir(), "hook-flags-sh-"));
+    try {
+      const sentinel = path.join(repo, sourceRoot, "skills", "system-spec-kit", "SKILL.md");
+      fs.mkdirSync(path.dirname(sentinel), { recursive: true });
+      fs.writeFileSync(sentinel, "---\nname: system-spec-kit\n---\n");
+      fs.mkdirSync(path.join(repo, sourceRoot, "hooks"), { recursive: true });
+      fs.writeFileSync(path.join(repo, sourceRoot, "hooks", "hook-flags.env"), "SYSTEM_SESSION_CLEANUP_DISABLED=1\n");
+      const script = `__hf_root="$1"; . "$2"; hook_enabled session-cleanup && echo on || echo off`;
+      const env = { ...process.env };
+      delete env.HOOK_FLAGS_CONFIG;
+      delete env.SYSTEM_SESSION_CLEANUP_DISABLED;
+      delete env.SYSTEM_HOOKS_DISABLED;
+      return spawnSync("bash", ["-c", script, "probe", repo, path.join(__dirname, "hook-flags.sh")], { env, encoding: "utf8" }).stdout.trim();
+    } finally {
+      fs.rmSync(repo, { recursive: true, force: true });
+    }
+  };
+  assert.equal(probe(".skilled"), "off");
+  assert.equal(probe(".opencode"), "off");
+});

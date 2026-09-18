@@ -30,8 +30,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # shared hook kill-switch (master + per-concern); fail-open if guard absent
 __hf_root="$(git rev-parse --show-toplevel 2>/dev/null)"
-if [ -n "$__hf_root" ] && [ -r "$__hf_root/.skilled/hooks/shared/hook-flags.sh" ]; then
-  . "$__hf_root/.skilled/hooks/shared/hook-flags.sh"
+__hf_file="$(dirname "${BASH_SOURCE[0]}")/../hooks/shared/hook-flags.sh"
+if [ -n "$__hf_root" ] && [ -r "$__hf_file" ]; then
+  . "$__hf_file"
   hook_enabled session-cleanup || exit 0
 fi
 

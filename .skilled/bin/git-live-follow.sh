@@ -155,9 +155,10 @@ if [ "$START" = "1" ]; then
   fi
   # Kill switches: absent means ON; a disabled loop must not announce or start.
   __hf_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-  if [ -n "$__hf_root" ] && [ -r "$__hf_root/.skilled/hooks/shared/hook-flags.sh" ]; then
+  __hf_file="$(dirname "${BASH_SOURCE[0]}")/../hooks/shared/hook-flags.sh"
+  if [ -n "$__hf_root" ] && [ -r "$__hf_file" ]; then
     # shellcheck source=/dev/null
-    . "$__hf_root/.skilled/hooks/shared/hook-flags.sh"
+    . "$__hf_file"
     hook_enabled live-sync || exit 0
     hook_enabled live-follow || exit 0
   fi

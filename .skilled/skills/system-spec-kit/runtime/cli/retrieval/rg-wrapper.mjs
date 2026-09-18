@@ -52,6 +52,7 @@ import {
   runRecipe,
 } from './lib/rg-lane.mjs';
 import { isMainModule } from '../lib/esm-entry.mjs';
+import { findSourceRoot } from '../../hooks/lib/workspace/repo-root.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -65,6 +66,19 @@ export const RECIPES = Object.freeze(['structured', 'path', 'count']);
 
 /** Search roots the convention names. */
 export const DEFAULT_SEARCH_ROOTS = Object.freeze(['specs', '.skilled']);
+
+/**
+ * The convention's roots, with the source root named the way this checkout
+ * names it: a checkout that carries only `.opencode` is searched there, not in a
+ * `.skilled` that does not exist.
+ *
+ * @param {string} cwd Repository root the search runs from.
+ * @returns {string[]} Search roots.
+ */
+export function searchRootsFor(cwd) {
+  const sourceRoot = findSourceRoot(cwd);
+  return sourceRoot ? ['specs', path.basename(sourceRoot)] : [...DEFAULT_SEARCH_ROOTS];
+}
 
 /**
  * Glob set in the documented order: the positive glob first, then the
@@ -193,7 +207,7 @@ export function search(recipe, phrase, options = {}) {
   if (!builder) throw new Error(`unknown recipe: ${recipe}`);
 
   const cwd = options.cwd ?? process.cwd();
-  const roots = options.roots ?? DEFAULT_SEARCH_ROOTS;
+  const roots = options.roots ?? searchRootsFor(cwd);
   const argv = builder(phrase, roots);
   const run = runRecipe(argv, { cwd });
 
@@ -275,7 +289,7 @@ export function parseArgs(argv) {
     throw new Error(`unexpected extra argument(s): ${extra.join(' ')}; quote a multi-word phrase`);
   }
 
-  return { json, phrase, recipe, root, roots: roots.length > 0 ? roots : [...DEFAULT_SEARCH_ROOTS] };
+  return { json, phrase, recipe, root, roots: roots.length > 0 ? roots : undefined };
 }
 
 /**

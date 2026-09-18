@@ -12,7 +12,14 @@
 __hook_flags_config="${HOOK_FLAGS_CONFIG:-}"
 if [ -z "$__hook_flags_config" ]; then
   __hf_cfg_root="${__hf_root:-$(git rev-parse --show-toplevel 2>/dev/null)}"
-  [ -n "$__hf_cfg_root" ] && __hook_flags_config="$__hf_cfg_root/.skilled/hooks/hook-flags.env"
+  # The source root is whichever of the two names holds the spec-kit skill, the
+  # same test the git hooks use, so a checkout carrying only one name still works.
+  for __hf_src in .skilled .opencode; do
+    if [ -n "$__hf_cfg_root" ] && [ -f "$__hf_cfg_root/$__hf_src/skills/system-spec-kit/SKILL.md" ]; then
+      __hook_flags_config="$__hf_cfg_root/$__hf_src/hooks/hook-flags.env"
+      break
+    fi
+  done
 fi
 
 __hook_flags_truthy() {

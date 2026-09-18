@@ -146,9 +146,14 @@ async function runTrapped(callback) {
   return consoleCalls;
 }
 
-function temporaryDirectory(t, prefix) {
+// A project is a toolchain checkout when its source root carries this file, and
+// the plugin writes its log under that root.
+function temporaryDirectory(t, prefix, sourceRoot = '.skilled') {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const sentinel = path.join(dir, sourceRoot, 'skills', 'system-spec-kit', 'SKILL.md');
+  fs.mkdirSync(path.dirname(sentinel), { recursive: true });
+  fs.writeFileSync(sentinel, '---\nname: system-spec-kit\n---\n');
   return dir;
 }
 
@@ -229,6 +234,17 @@ test('bounds session state and rotates the audit log', async (t) => {
   await hooks.event({ event: { type: 'global.disposed' } });
   await hooks.event({ event: { type: 'session.created', sessionID: 'session-a' } });
   assert.equal(guardLogLineCount(tmpDir), afterFirst + 2);
+});
+
+test('logs under .opencode when that is the only source root', async (t) => {
+  const tmpDir = temporaryDirectory(t, 'system-dist-freshness-guard-legacy-root-', '.opencode');
+  writeCodeModeFixture(tmpDir, true);
+  const pluginModule = await loadPlugin();
+  const hooks = await pluginModule.default({ directory: tmpDir });
+  await hooks.event({ event: { type: 'session.created', sessionID: 'legacy-root' } });
+
+  assert.ok(fs.existsSync(path.join(tmpDir, '.opencode', 'logs', 'dist-freshness-guard.log')));
+  assert.equal(fs.existsSync(path.join(tmpDir, '.skilled', 'logs')), false);
 });
 
 test('evicts the oldest session ID when the deduplication cap is reached', async (t) => {

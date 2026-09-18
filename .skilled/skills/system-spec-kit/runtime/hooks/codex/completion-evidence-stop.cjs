@@ -32,7 +32,7 @@ const sentinelCore = require('../../lib/hooks/completion-evidence-sentinel.cjs')
 // missing). The legacy sentinelCore.KILL_SWITCH_ENV check below remains as an
 // alias for the pre-convention operator flag.
 let __isHookEnabled = () => true;
-try { __isHookEnabled = require('../../../../../../.skilled/hooks/shared/hook-flags.cjs').isHookEnabled; } catch {}
+try { __isHookEnabled = require('../../../../../hooks/shared/hook-flags.cjs').isHookEnabled; } catch {}
 
 // ───────────────────────────────────────────────────────────────────
 // 2. HELPERS

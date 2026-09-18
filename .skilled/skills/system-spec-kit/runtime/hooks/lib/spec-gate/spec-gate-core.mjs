@@ -93,7 +93,7 @@ const specGateGuardRequire = createRequire(import.meta.url);
 function specGateConcernDisabled(environment) {
   try {
     const { isHookEnabled } = specGateGuardRequire(
-      fileURLToPath(new URL('../../../../../../../.skilled/hooks/shared/hook-flags.cjs', import.meta.url)),
+      fileURLToPath(new URL('../../../../../../hooks/shared/hook-flags.cjs', import.meta.url)),
     );
     return typeof isHookEnabled === 'function' && isHookEnabled('spec-gate') === false;
   } catch {

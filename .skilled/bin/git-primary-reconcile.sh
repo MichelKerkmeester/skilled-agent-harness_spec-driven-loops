@@ -157,7 +157,7 @@ LOCK_FILE="$COMMON_DIR/git-primary-reconcile.lock"
 # Resolver failures leave default-on behavior intact. Startup must not become
 # dependent on optional policy plumbing, but the missing guard must be visible.
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-FLAGS_FILE="$REPO_ROOT/.skilled/hooks/shared/hook-flags.sh"
+FLAGS_FILE="$(dirname "${BASH_SOURCE[0]}")/../hooks/shared/hook-flags.sh"
 FLAGS_LOADED=0
 if [ -n "$REPO_ROOT" ] && [ -r "$FLAGS_FILE" ]; then
   set +e
