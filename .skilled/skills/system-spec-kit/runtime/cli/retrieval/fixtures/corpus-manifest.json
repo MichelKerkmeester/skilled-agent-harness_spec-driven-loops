@@ -1,5 +1,5 @@
 {
-  "corpusHash": "95670b04627d76b77d12aeca51052710533ce3e0fd56072222e36b29e8bae46c",
+  "corpusHash": "3997787dee7321f65c03f6fb768ffa9bfbef3f0d38e63c05473a13b2906f6147",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27273,
+  "includedPathCount": 27274,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -27289,13 +27289,14 @@
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/spec.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-001.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/spec.md",
     "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e1cbcf7bfceb55bb33c10d07b2c3643576044ebc4e174c8b74b2a14e601b9fab",
+  "manifestHash": "3dcd60110d96877d903cfda0a70816c5fccbec93735f1a5f3d1ae5c87084991a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
