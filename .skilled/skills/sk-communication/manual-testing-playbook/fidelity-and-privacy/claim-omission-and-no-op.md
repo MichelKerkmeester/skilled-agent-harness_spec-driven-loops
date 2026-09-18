@@ -67,3 +67,14 @@ Both behaviors sit inside the same guard in the validator, so a regression in on
 | `../../cli-communication-projection/src/fidelity/validator.ts` | The guard that scopes the pass markers, the claim-coverage veto and the change kind |
 | `../../cli-communication-projection/src/fidelity/semantics.ts` | The claim extraction and survival check |
 | `../../cli-communication-projection/test/config/copy-editing-instruction.test.ts` | The named tests this scenario runs |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Fidelity And Privacy
+- Playbook ID: COMM-010
+- Canonical root source: `manual-testing-playbook.md`
+- Feature file path: `fidelity-and-privacy/claim-omission-and-no-op.md`
+- Catalog entry: `provider-and-privacy/provider-adapters-and-execution.md`
+- Prompt equality requirement: the SCENARIO CONTRACT prompt equals the 9-column table Exact Prompt cell and the root summary prompt.
