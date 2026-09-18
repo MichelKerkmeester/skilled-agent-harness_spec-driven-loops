@@ -31,8 +31,10 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install test dependency
-        run: python3 -m pip install pytest==8.4.2
+      # The packager validates frontmatter with PyYAML and falls back to a lenient
+      # parser without it, which accepts documents the tests expect it to reject.
+      - name: Install test dependencies
+        run: python3 -m pip install pytest==8.4.2 pyyaml==6.0.3
 
       # The scaffolder's class gate reads frontmatter through @spec-kit/shared,
       # and the root-name matrix loads a deep-loop script that resolves it through
