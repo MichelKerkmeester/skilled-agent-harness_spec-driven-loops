@@ -322,9 +322,15 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
     exit 1
   fi
-  # git refuses to stage a path that runs through a symbolic link, and the source root
-  # may be one, so the manifests are addressed through the directory it resolves to.
-  ROUTE_SOURCE="$(cd -P "$REPO_ROOT/.opencode" && pwd)"
+  # git refuses to stage a path that runs through a symbolic link, and either the source
+  # root or the entries beneath it may be links, so the manifests are addressed through
+  # the real directory. Resolving the legacy name only reaches the real tree while that
+  # name is itself a link; once it becomes a directory of links, its entries are the
+  # links instead, so the real root is named first and the legacy name is the fallback
+  # for a checkout that carries only it.
+  ROUTE_SOURCE="$REPO_ROOT/.skilled"
+  [ -d "$ROUTE_SOURCE" ] || ROUTE_SOURCE="$REPO_ROOT/.opencode"
+  ROUTE_SOURCE="$(cd -P "$ROUTE_SOURCE" && pwd)"
   if ! ROUTE_RUNTIME="$(node -e '
       const layout = require(process.argv[1]);
       const path = require("path");
