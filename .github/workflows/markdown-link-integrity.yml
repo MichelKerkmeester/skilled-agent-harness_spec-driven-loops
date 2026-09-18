@@ -14,6 +14,19 @@ on:
       - '.claude/commands/**'
       - '.codex/agents/**'
       - '.codex/commands/**'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/**'
+      - '.skilled/skills/**'
+      - '.opencode/commands/**'
+      - '.skilled/commands/**'
+      - '.opencode/agents/**'
+      - '.skilled/agents/**'
+      - '.claude/agents/**'
+      - '.claude/commands/**'
+      - '.codex/agents/**'
+      - '.codex/commands/**'
 
 jobs:
   markdown-link-integrity:
