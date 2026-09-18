@@ -46,7 +46,7 @@ Use another `sk-doc` packet when:
 
 - The system has only a small feature list that fits accurately in a README.
 - The user needs manual validation scenarios. Use `create-manual-testing-playbook`.
-- The user needs a README or install guide. Use `create-readme`.
+- The user needs a README. Use `create-readme`.
 - The user needs a changelog, benchmark package, command, agent, skill, or flowchart. Use `create-changelog`, `create-benchmark`, `create-command`, `create-agent`, `create-skill`, or `create-flowchart`.
 - The requested catalog would describe planned behavior rather than current shipped behavior.
 - The task is only document quality review of an existing catalog. Use `create-quality-control`.

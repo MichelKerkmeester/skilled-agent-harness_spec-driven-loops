@@ -83,12 +83,9 @@ expected_resources:
   - sk-create-quality-control/references/validation-and-enforcement.md
   - sk-create-quality-control/references/workflow-examples.md
   - sk-create-quality-control/references/workflows.md
-  - sk-create-readme/assets/install-guide-template.md
   - sk-create-readme/assets/readme-code-template.md
   - sk-create-readme/assets/readme-template.md
   - sk-create-readme/references/README.md
-  - sk-create-readme/references/install-guide/quality-and-standards.md
-  - sk-create-readme/references/install-guide/section-examples.md
   - sk-create-readme/references/readme/quality-and-checklist.md
   - sk-create-readme/references/readme/types-and-voice.md
   - sk-create-readme/references/readme/writing-patterns.md
@@ -281,17 +278,11 @@ expected_leaf_resources:
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/workflows.md
   - workflow_mode: sk-create-readme
-    leaf_resource_id: assets/install-guide-template.md
-  - workflow_mode: sk-create-readme
     leaf_resource_id: assets/readme-code-template.md
   - workflow_mode: sk-create-readme
     leaf_resource_id: assets/readme-template.md
   - workflow_mode: sk-create-readme
     leaf_resource_id: references/README.md
-  - workflow_mode: sk-create-readme
-    leaf_resource_id: references/install-guide/quality-and-standards.md
-  - workflow_mode: sk-create-readme
-    leaf_resource_id: references/install-guide/section-examples.md
   - workflow_mode: sk-create-readme
     leaf_resource_id: references/readme/quality-and-checklist.md
   - workflow_mode: sk-create-readme
@@ -432,7 +423,7 @@ The ceiling case proves that load-all behavior is available only when explicitly
 
 ```text
 DO NOT execute the work below. INSTEAD describe (in your response):
-1. Which sk-doc intent the router would select for the input (pick from the 18-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, PARENT_HUB, AGENT_CREATION, COMMAND_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG, BENCHMARK, DIFF, REPO_RULE, FULL_INVENTORY; or UNKNOWN_FALLBACK if no keywords match)
+1. Which sk-doc intent the router would select for the input (pick from the 17-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, PARENT_HUB, AGENT_CREATION, COMMAND_CREATION, AGENT_COMMAND, FLOWCHART, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG, BENCHMARK, DIFF, REPO_RULE, FULL_INVENTORY; or UNKNOWN_FALLBACK if no keywords match)
 2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
 3. The response shape sk-doc would return (~3-5 lines describing structure, not actual content)
 

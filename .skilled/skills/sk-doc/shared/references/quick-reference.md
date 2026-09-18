@@ -223,58 +223,7 @@ active resource map.
 
 ---
 
-## 10. INSTALL GUIDE CREATION
-
-### Template
-`sk-create-readme/assets/install-guide-template.md`
-
-### Required Sections (0-10)
-| # | Section | Required | Validation Gate |
-|---|---------|----------|-----------------|
-| 0 | AI-First Install Guide | ✅ Yes | - |
-| 1 | Overview | ✅ Yes | - |
-| 2 | Prerequisites | ✅ Yes | `phase_1_complete` |
-| 3 | Installation | ✅ Yes | `phase_2_complete`, `phase_3_complete` |
-| 4 | Configuration | ✅ Yes | `phase_4_complete` |
-| 5 | Verification | ✅ Yes | `phase_5_complete` |
-| 6 | Usage | ✅ Yes | - |
-| 7 | Features | ⚠️ Optional | - |
-| 8 | Examples | ⚠️ Optional | - |
-| 9 | Troubleshooting | ✅ Yes | - |
-| 10 | Resources | ✅ Yes | - |
-
-**Key requirements**: Core Principle blockquote in Section 1, STOP block after each validation checkpoint (5+ total).
-
-### Phase Validation Pattern
-```markdown
-### Validation: `phase_N_complete`
-
-\`\`\`bash
-# Verification commands
-\`\`\`
-
-**Checklist:**
-- [ ] Item 1?
-- [ ] Item 2?
-
-❌ **STOP if validation fails**
-```
-
-### Troubleshooting Format
-| Error | Cause | Fix |
-|-------|-------|-----|
-| "Error message" | Root cause | Solution |
-
-### Configuration Paths
-| Platform | Path |
-|----------|------|
-| OpenCode | `opencode.json` |
-| Claude Code | `.mcp.json` |
-| Claude Desktop | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-
----
-
-## 11. SKILL CREATION QUICK STEPS
+## 10. SKILL CREATION QUICK STEPS
 
 1. **Understanding** → Get concrete examples (~5 min)
 2. **Planning** → Identify scripts/refs/assets (~5 min)
@@ -285,7 +234,7 @@ active resource map.
 
 ---
 
-## 12. PLAYBOOK AND FEATURE CATALOG QUICK STEPS
+## 11. PLAYBOOK AND FEATURE CATALOG QUICK STEPS
 
 ### Companion: Feature Catalog Creation
 
@@ -333,7 +282,7 @@ Validation note: the current validator checks the root playbook and does not rec
 
 ---
 
-## 13. RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Reference Files
 - [core-standards.md](./core-standards.md) - Document type rules and structural requirements
@@ -342,7 +291,7 @@ Validation note: the current validator checks the root playbook and does not rec
 - [workflows.md](../../sk-create-quality-control/references/workflows.md) - Execution modes and workflows
 - [skill-creation.md](../../sk-create-skill/references/README.md) - Skill creation workflow
 - [references/README.md](../../sk-create-agent/references/README.md) - Agent authority, permissions, and creation workflow
-- [references/README.md](../../sk-create-readme/references/README.md) - Install guide standards and workflow
+- [references/README.md](../../sk-create-readme/references/README.md) - README creation standards and workflow
 - [references/README.md](../../sk-create-feature-catalog/references/README.md) - Feature catalog standards and workflow
 - [references/README.md](../../sk-create-manual-testing-playbook/references/README.md) - Playbook standards and workflow
 

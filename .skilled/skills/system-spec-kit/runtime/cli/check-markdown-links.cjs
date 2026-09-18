@@ -63,9 +63,6 @@ const ALLOWLIST = new Set([
   '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::./scripts/workflow_router.py',
   '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../scripts/',
   '.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../assets/',
-  // install guide template — optional sibling examples
-  '.skilled/skills/sk-doc/sk-create-readme/assets/install-guide-template.md::../../../../../install-guides/MCP%20-%20Spec%20Kit%20Memory.md',
-  '.skilled/skills/sk-doc/sk-create-readme/assets/install-guide-template.md::../../../../../install-guides/MCP%20-%20Code%20Mode.md',
   // illustrative client-domain example path
   '.skilled/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md::/specs/005-example.com/024-performance-optimization/decision-record.md',
   // runtime-generated, gitignored advisory log — written only when the sentinel emits one,

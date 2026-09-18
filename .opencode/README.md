@@ -28,7 +28,7 @@ Each entry is a symlink to its twin under `.skilled/`:
 |---|---|
 | `agents/`, `commands/`, `skills/`, `plugins/`, `hooks/` | the runtime surfaces each CLI loads |
 | `bin/`, `scripts/` | executable programs and shell entrypoints |
-| `changelog/`, `install-guides/`, `manual-testing-playbook/` | documentation trees |
+| `changelog/`, `manual-testing-playbook/` | documentation trees |
 | `logs/`, `specs/` | runtime output and the spec alias |
 | `package.json`, `package-lock.json`, `bun.lock`, `vitest.config.bin.ts` | package and test configuration |
 
@@ -62,6 +62,7 @@ git config --global core.symlinks true
 
 ## 5. RELATED
 
+- [`SYNC.md`](./SYNC.md) — the surface inventory and drift checks for this directory
 - [`.skilled/`](../.skilled) — the authored source tree
 - [`AGENTS.md`](../AGENTS.md) — the runtime instruction file
 - [`README.md`](../README.md) — repository overview

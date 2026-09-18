@@ -22,9 +22,7 @@ IFS=$'\n\t'
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-_UTILS="${SCRIPT_DIR}/_utils.sh"
-[[ -f "$_UTILS" ]] || _UTILS="$(cd "${SCRIPT_DIR}/../../../.." && pwd)/install-guides/install-scripts/_utils.sh"
-source "$_UTILS"
+source "${SCRIPT_DIR}/_utils.sh"
 
 readonly MCP_NAME="Chrome DevTools"
 readonly MCP_PACKAGE="browser-debugger-cli@alpha"
@@ -391,7 +389,7 @@ main() {
     echo "  bdg --search screenshot    # Search methods"
     echo ""
     echo "Documentation:"
-    echo "  .skilled/install-guides/MCP - Chrome Dev Tools.md"
+    echo "  .skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md"
     echo ""
 }
 

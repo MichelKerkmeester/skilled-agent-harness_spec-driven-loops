@@ -1,6 +1,6 @@
 ---
 name: sk-create-readme
-description: Author sk-doc folder, code-folder and skill/project READMEs plus folded five-phase install guides.
+description: Author sk-doc folder, code-folder and skill/project READMEs from local evidence.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.1.0.0
 ---
@@ -10,11 +10,11 @@ version: 1.1.0.0
 > skill without scanning the canonical directory; read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: create-readme, folder readme, code folder readme, project readme, skill readme, install guide, /create:readme, audit_readmes -->
+<!-- Keywords: create-readme, folder readme, code folder readme, project readme, skill readme, /create:readme, audit_readmes -->
 
 # Create README (workflow)
 
-`create-readme` is the README authoring packet in the `sk-doc` family. It writes current-state folder READMEs and install guides from local evidence, using packet-local templates under `assets/` and shared create-quality-control validators under `../shared`.
+`create-readme` is the README authoring packet in the `sk-doc` family. It writes current-state folder READMEs from local evidence, using packet-local templates under `assets/` and shared create-quality-control validators under `../shared`.
 
 ---
 
@@ -27,10 +27,9 @@ Use this packet when the request involves:
 - Creating or refreshing a folder `README.md`.
 - Documenting a project, skill, feature, component or source-code directory.
 - Writing developer orientation for a code folder, including topology, boundaries, entrypoints and validation.
-- Creating an install guide for MCP servers, plugins, CLI tools or development dependencies.
 - Running `/create:readme`.
 
-Keyword triggers: `create readme`, `/create:readme`, `readme`, `folder readme`, `write readme`, `README.md`, `front-page overview`, `install guide`, `installation guide`, `setup guide`, `getting our project running`, `running from scratch`, `code folder readme`.
+Keyword triggers: `create readme`, `/create:readme`, `readme`, `folder readme`, `write readme`, `README.md`, `front-page overview`, `code folder readme`.
 
 ### When NOT to Use
 
@@ -41,7 +40,7 @@ Use another `sk-doc` packet when:
 - The target is not markdown.
 - The folder is self-explanatory and a parent README or inline comments already give enough orientation.
 
-This is a nested workflow packet under the `sk-doc` parent hub. It owns README and install-guide authoring only. It does not carry `graph-metadata.json`; advisor identity, skill graph metadata and cross-packet routing live at the `sk-doc` hub root.
+This is a nested workflow packet under the `sk-doc` parent hub. It owns README authoring only. It does not carry `graph-metadata.json`; advisor identity, skill graph metadata and cross-packet routing live at the `sk-doc` hub root.
 
 ---
 
@@ -53,9 +52,8 @@ Route by artifact type first, then by folder purpose.
 | --- | --- | --- |
 | Project, skill, feature or component README | `README.md` in the target folder | `assets/readme-template.md` |
 | Source-code folder README | `README.md` in the source folder | `assets/readme-code-template.md` |
-| Install guide | `.skilled/install-guides/<guide-slug>.md` | `assets/install-guide-template.md` |
 
-This packet uses simple artifact routing. It selects README, code-folder README, or install-guide behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/`, `references/install-guide/` and `assets/`.
+This packet uses simple artifact routing. It selects general README or code-folder README behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/` and `assets/`.
 
 Router resilience rules:
 
@@ -67,7 +65,7 @@ Router resilience rules:
 ### Smart Router Pseudocode
 
 For this flat-reference packet, the canonical resilient router discovers resources at call
-time, guards and loads only what exists, scores the three artifact intents, and returns a
+time, guards and loads only what exists, scores the two artifact intents, and returns a
 disambiguation checklist rather than silently loading nothing:
 
 ```python
@@ -77,14 +75,13 @@ SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/README.md"
 
-# Three output artifacts; keywords come from this packet's activation triggers.
+# Two output artifacts; keywords come from this packet's activation triggers.
 INTENT_MODEL = {
     "readme": {"weight": 4, "keywords": ["readme", "folder readme", "create readme", "write readme", "project readme", "skill readme"]},
     "code_readme": {"weight": 4, "keywords": ["code folder readme", "source-code folder readme", "source code readme"]},
-    "install_guide": {"weight": 4, "keywords": ["install guide", "installation guide", "setup guide"]},
 }
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the artifact type (README vs code README vs install guide)",
+    "Confirm the artifact type (general README vs code README)",
     "Confirm the target folder",
     "Confirm the validation expectation",
 ]
@@ -134,9 +131,9 @@ def route_readme_request(request):
         }
 
     artifact_type = max(scores, key=scores.get)               # Tier 2: happy path
-    # references/readme/ and references/install-guide/ are artifact groups, not a runtime
-    # key-space: this packet does not use runtime keyed resource discovery. The artifact
-    # type selects the template already documented above; load the flat refs that exist.
+    # references/readme/ is an artifact group, not a runtime key-space: this packet does
+    # not use runtime keyed resource discovery. The artifact type selects the template
+    # already documented above; load the flat refs that exist.
     for path in sorted(inventory):
         load_if_available(path, inventory, loaded, seen)
     return {"artifact_type": artifact_type, "resources": loaded}
@@ -154,16 +151,6 @@ Is this a project root?
         `-- NO: skip README and use inline comments or parent documentation
 ```
 
-Use the install-guide decision tree:
-
-```text
-Is the tool already well documented?
-+-- YES: link to official docs unless project-specific setup exists
-`-- NO: does it require AI platform configuration, project-specific settings or multi-step setup?
-    +-- YES: create an install guide
-    `-- NO: document the one-line install command inline
-```
-
 ---
 
 ## 3. HOW IT WORKS
@@ -172,11 +159,11 @@ Every run follows one operating model, whatever the artifact:
 
 1. Read local evidence first: the target folder, nearby docs, package files, config files and existing commands. Never document unconfirmed files, commands, APIs or metrics.
 2. Route by artifact type and folder purpose (Section 2) to pick the output and template.
-3. Draft current-state content only, in the smallest useful shape: a general README (Section 5), a code-folder README (Section 6) or an install guide (Section 7).
+3. Draft current-state content only, in the smallest useful shape: a general README (Section 5) or a code-folder README (Section 6).
 4. Copy the matching template as a scaffold, remove unused sections and put orientation first.
-5. Validate the authored markdown and resolve local links before delivery (Section 8).
+5. Validate the authored markdown and resolve local links before delivery (Section 7).
 
-READMEs and install guides share this lifecycle. The sections below give the detailed steps for each.
+Both README shapes share this lifecycle. The sections below give the detailed steps for each.
 
 ---
 
@@ -301,86 +288,7 @@ Code-folder README rules:
 
 ---
 
-## 7. INSTALL GUIDE WORKFLOW
-
-1. Confirm the install needs a guide rather than a one-line command or link to official docs.
-2. Identify the install-guide type: MCP server, CLI tool, plugin or development dependency.
-3. Resolve `<guide-slug>` as lowercase kebab-case (`^[a-z0-9]+(?:-[a-z0-9]+)*$`). Reject ambiguous or empty names instead of rewriting a target path blindly.
-4. Read the tool docs, repo files, package metadata and existing config examples.
-5. Build the folded five-phase flow: prerequisites, installation, initialization when needed, configuration and verification.
-6. Use the 11-section install-guide structure: sections 0 through 10, with sections 7 and 8 optional.
-7. Put an AI-first copy-paste prompt at the top that states what the AI will do and the expected time.
-8. Include a 2-4 sentence H1 description that states what the guide covers, key capabilities, workflow or approach and value.
-9. Add a Core Principle blockquote in Overview: install once, verify at each step.
-10. End every phase with a validation checkpoint named `phase_N_complete`.
-11. Add a STOP block after every validation checkpoint that can fail.
-12. Use one command per purpose and make commands copy-pasteable.
-13. Include expected output for every validation command.
-14. Include platform-specific configuration only when it is real for the tool.
-15. Put troubleshooting in its own reference section, not inside the phase flow.
-16. Test commands when feasible, or mark unverified commands clearly.
-
-Install guide phases:
-
-```text
-Phase 1: Prerequisites  -> Validate: tools exist
-Phase 2: Installation   -> Validate: binaries installed
-Phase 3: Initialization -> Validate: index or database initialized, if applicable
-Phase 4: Configuration  -> Validate: config files created and valid
-Phase 5: Verification   -> Validate: system works end-to-end
-```
-
-Required install-guide structure:
-
-| # | Section | Required | Validation Gate |
-| --- | --- | --- | --- |
-| 0 | AI-First Install Guide | Yes | none |
-| 1 | Overview | Yes | none |
-| 2 | Prerequisites | Yes | `phase_1_complete` |
-| 3 | Installation | Yes | `phase_2_complete`, `phase_3_complete` |
-| 4 | Configuration | Yes | `phase_4_complete` |
-| 5 | Verification | Yes | `phase_5_complete` |
-| 6 | Usage | Yes | none |
-| 7 | Features | Optional | none |
-| 8 | Examples | Optional | none |
-| 9 | Troubleshooting | Yes | none |
-| 10 | Resources | Yes | none |
-
-Validation checkpoint format:
-
-````markdown
-### Validation: `phase_N_complete`
-
-```bash
-<validation-command>
-```
-
-**Expected output**:
-
-```text
-<expected-output-pattern>
-```
-
-**Checklist**:
-
-- [ ] Output matches expected pattern
-- [ ] No error messages displayed
-
-❌ **STOP if validation fails** - See [Troubleshooting](#troubleshooting).
-````
-
-Troubleshooting format:
-
-| Error | Cause | Fix |
-| --- | --- | --- |
-| `command not found: tool` | Not in PATH | Run the install command again and verify PATH |
-| `Invalid configuration` | Malformed JSON | Validate JSON syntax and check quoted paths |
-
-Install guides should contain 5+ STOP blocks across all validation checkpoints and 5+ troubleshooting errors with actionable fixes.
-
----
-
-## 8. VALIDATION
+## 7. VALIDATION
 
 Run shared validation on authored markdown when feasible:
 
@@ -389,7 +297,7 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <arti
 python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <path>
 ```
 
-Run the authored-name check after resolving the output path and before document validation. `README.md` is a tool-mandated exemption; install-guide slugs and other authored names must pass the kebab-case rule.
+Run the authored-name check after resolving the output path and before document validation. `README.md` is a tool-mandated exemption; every other authored name must pass the kebab-case rule.
 
 Use quick validation or structure extraction when appropriate:
 
@@ -418,20 +326,9 @@ Pre-publish checks for READMEs:
 - Code blocks specify language tags.
 - HVR passes.
 
-Pre-publish checks for install guides:
-
-- All required sections are present.
-- Core Principle blockquote appears in Overview.
-- All phases have validation checkpoints.
-- STOP conditions appear after every validation checkpoint that can fail.
-- Prerequisites include version requirements.
-- Configuration examples are complete for the supported platforms.
-- Troubleshooting table has 5+ actionable entries.
-- Time estimate appears in the AI-First section.
-
 ---
 
-## 9. WRITING RULES
+## 8. WRITING RULES
 
 Always:
 
@@ -452,7 +349,6 @@ Never:
 - Document commands, files or features not confirmed from workspace or user evidence.
 - Cite mutable packet numbers, phase IDs or migration bookkeeping in durable README content.
 - Force Quick Start, Features, FAQ or Troubleshooting into a code-folder README when the folder only needs orientation.
-- Proceed past a failed install-guide checkpoint without a STOP instruction.
 - Create `graph-metadata.json` in this packet.
 
 Human Voice Rules apply:
@@ -469,21 +365,19 @@ Escalate if:
 
 - The target folder purpose or audience is unclear.
 - The README would require product, brand or public-facing claims that are not in the repo.
-- Install steps need secrets, paid services, destructive operations or external accounts.
+- Documenting a step needs secrets, paid services, destructive operations or external accounts.
 - Validation fails in a way that requires changing code or configuration outside the requested document.
 
 ---
 
-## 10. OVERFLOW REFERENCES
+## 9. OVERFLOW REFERENCES
 
 The core workflow lives in this `SKILL.md`. Use these files only for deep overflow detail, exhaustive scaffolds, edge cases and long examples:
 
 - `assets/readme-template.md` for the full fillable general README scaffold.
 - `assets/readme-code-template.md` for the full fillable code-folder scaffold and diagram examples.
-- `assets/install-guide-template.md` for full install-guide examples and platform config patterns.
-- `references/README.md` for the overflow route map that indexes the `readme/` and `install-guide/` reference groups.
+- `references/README.md` for the overflow route map that indexes the `readme/` reference group.
 - `references/readme/` for extended README type, voice, writing-pattern and quality detail across three single-concern files.
-- `references/install-guide/` for extended install-guide section examples, platform config and quality standards across two single-concern files.
 - `../shared/references/core-standards.md` for shared document formatting rules.
 - `../sk-create-with-human-voice/references/hvr-rules.md` for the full Human Voice Rules.
 - `../shared/references/evergreen-packet-id-rule.md` for current-state documentation rules.

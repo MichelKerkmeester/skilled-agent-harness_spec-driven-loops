@@ -88,13 +88,12 @@
   {
     "command": "/create:readme",
     "ownerMode": "sk-create-readme",
-    "description": "Unified folder README and install guide creation with sk-doc quality standards. Modes :auto, :confirm.",
-    "argumentHint": "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm]",
+    "description": "Folder README creation, general or code-folder, with sk-doc quality standards. Modes :auto, :confirm.",
+    "argumentHint": "<target> [--type <project|component|feature|skill>] [--output <path>] [:auto|:confirm]",
     "userIntent": {
-      "job": "I want to write a current-state README or install guide for a folder.",
+      "job": "I want to write a current-state README for a folder.",
       "ownedSignals": [
         "write a folder README",
-        "create an install guide",
         "document a project folder"
       ]
     },

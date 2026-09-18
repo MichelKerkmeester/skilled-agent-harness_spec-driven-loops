@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d88b08aa95a2e265430c8cfb85d3f3ca3c53fc6b87ebe1afb1e06bb044392956",
+  "corpusHash": "3d2a778a1ecada6a37d9a0447fd076b47c478403e4957c337f5a0711d5a7f794",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27281,
+  "includedPathCount": 27273,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -42,8 +42,6 @@
     ".skilled/hooks/session-lifecycle/README.md",
     ".skilled/hooks/shared/README.md",
     ".skilled/hooks/task-dispatch/README.md",
-    ".skilled/install-guides/README.md",
-    ".skilled/install-guides/install-scripts/README.md",
     ".skilled/skills/.state/advisor/README.md",
     ".skilled/skills/.state/authority/README.md",
     ".skilled/skills/.state/completion-sentinel/README.md",
@@ -5892,7 +5890,6 @@
     ".skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-changelog.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-doc-quality.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-feature-catalog.md",
-    ".skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-install-guide.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-optimization.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-readme.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-skill-creation.md",
@@ -6170,7 +6167,6 @@
     ".skilled/skills/sk-doc/sk-create-quality-control/references/workflows.md",
     ".skilled/skills/sk-doc/sk-create-readme/README.md",
     ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
-    ".skilled/skills/sk-doc/sk-create-readme/assets/install-guide-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.0.0.0.md",
@@ -6179,12 +6175,8 @@
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/skill-readme.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/evidence-and-shape/code-folder-navigation-shape.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/evidence-and-shape/evidence-first-current-state.md",
-    ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/install-guide/five-phase-install-flow.md",
-    ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/install-guide/one-line-install-stays-inline.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-readme/references/README.md",
-    ".skilled/skills/sk-doc/sk-create-readme/references/install-guide/quality-and-standards.md",
-    ".skilled/skills/sk-doc/sk-create-readme/references/install-guide/section-examples.md",
     ".skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
     ".skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md",
     ".skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md",
@@ -27303,13 +27295,12 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9eb4c83fe50a884c1b5cbe0ceee99484065497df16c62fe390e11a9799607f2e",
+  "manifestHash": "01971af50563bd6be01d404e364460a37e222fbcc03cff5a550393336999ed64",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
     "specs",
     ".skilled/skills",
-    ".skilled/install-guides",
     ".skilled/hooks"
   ],
   "skippedPaths": [
@@ -27323,18 +27314,6 @@
     },
     {
       "path": ".skilled/hooks/spec-gate/README.md",
-      "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/install-guides/MCP - Chrome Dev Tools.md",
-      "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/install-guides/MCP - Code Mode.md",
-      "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/install-guides/MCP - Skill Advisor.md",
       "reason": "duplicate of an already-indexed document"
     },
     {

@@ -79,7 +79,7 @@ Load the file that matches the current task:
 - [core-standards.md](../../shared/references/core-standards.md) - Document type rules and structural requirements
 - [validation.md](../../shared/references/validation.md) - Quality scoring and validation workflows
 - [quick-reference.md](../../shared/references/quick-reference.md) - Quick command reference
-- [references/README.md](../../sk-create-readme/references/README.md) - Install guide standards and workflow
+- [references/README.md](../../sk-create-readme/references/README.md) - README creation standards and workflow
 
 ---
 

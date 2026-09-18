@@ -93,7 +93,6 @@ Target skill metadata read from `.skilled/skills/sk-doc/graph-metadata.json`:
   "intent_signals": [
     "create readme",
     "write documentation",
-    "install guide",
     "feature catalog",
     "skill.md headline",
     "rewrite section",
@@ -117,7 +116,6 @@ Target skill metadata read from `.skilled/skills/sk-doc/graph-metadata.json`:
     "trigger_phrases": [
       "create readme",
       "write documentation",
-      "install guide",
       "feature catalog",
       "documentation quality workflow",
       "validate markdown structure",
@@ -144,8 +142,7 @@ Target skill metadata read from `.skilled/skills/sk-doc/graph-metadata.json`:
       "write documentation",
       "validate markdown",
       "create readme",
-      "scaffold component",
-      "build install guide"
+      "scaffold component"
     ],
     "key_files": [
       ".skilled/skills/sk-doc/SKILL.md",
@@ -157,7 +154,7 @@ Target skill metadata read from `.skilled/skills/sk-doc/graph-metadata.json`:
       ".skilled/skills/sk-doc/scripts/extract_structure.py",
       ".skilled/skills/sk-doc/shared/assets/template-rules.json"
     ],
-    "causal_summary": "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts, install guides, feature catalogs, and manual testing playbooks. It matters because it gives the workspace a single specialist for creating and validating high-quality markdown components and documentation artifacts.",
+    "causal_summary": "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts, feature catalogs, and manual testing playbooks. It matters because it gives the workspace a single specialist for creating and validating high-quality markdown components and documentation artifacts.",
     "source_docs": [
       "SKILL.md",
       "README.md",
@@ -185,8 +182,7 @@ jq '.derived | {provenance_fingerprint, trust_lane, intent_signals, source_docs}
     "write documentation",
     "validate markdown",
     "create readme",
-    "scaffold component",
-    "build install guide"
+    "scaffold component"
   ],
   "source_docs": [
     "SKILL.md",

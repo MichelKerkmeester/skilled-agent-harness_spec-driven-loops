@@ -85,9 +85,6 @@ emits leaf paths, and this router never re-decides the mode.
   chart`, `gantt chart` and `org chart`, stay with it, and only the
   data-qualified `bar chart of`, `line chart of` and `scatter plot of` cross
   the boundary.
-- **install-guide leaves** — the install-guide template and the readme README a
-  request to author install / setup instructions loads. Fired by "install guide /
-  setup instructions / how to install / running from scratch" requests.
 - **human-voice leaves** — the scope gate, the scoring method and the Human
   Voice Rules standard a request to apply or score that standard loads. Fired
   by "hvr / human voice rules / apply human voice / rewrite in human voice /
@@ -154,7 +151,6 @@ INTENT_SIGNALS = {
     "AGENT_CREATION": {"weight": 4, "keywords": ["create an agent", "create agent", "new agent", "author an agent", "scaffold an agent", "agent file", "agent persona", "agent frontmatter", "agent template", "permission object", "authority boundary", "@analyze agent"]},
     "COMMAND_CREATION": {"weight": 4, "keywords": ["create a command", "create command", "slash command", "new slash command", "author a command", "scaffold a command", "argument-hint", "allowed-tools", "command template", "router presentation split", "thin router", "presentation contract"]},
     "AGENT_COMMAND": {"weight": 4, "keywords": ["agent and paired", "paired /create"]},
-    "INSTALL_GUIDE": {"weight": 4, "keywords": ["install guide", "installation instructions", "setup instructions", "how to install", "setup steps", "getting it running", "getting our project running", "running from scratch"]},
     "HVR": {"weight": 4, "keywords": ["hvr", "human voice rules", "apply human voice", "rewrite in human voice", "make this sound human", "sounds ai-generated", "reads like ai wrote it", "reads like a machine wrote it", "remove ai tells", "ai writing tells", "voice pass", "de-ai the writing", "banned word check"]},
     "PLAYBOOK": {"weight": 4, "keywords": ["playbook system", "manual testing playbook", "testing playbook"]},
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog of features", "features overview", "capabilities"]},
@@ -205,10 +201,6 @@ RESOURCE_MAP = {
         "sk-create-agent/assets/agent-template.md",
         "sk-create-command/references/README.md",
         "sk-create-command/assets/command-template.md"
-    ],
-    "INSTALL_GUIDE": [
-        "sk-create-readme/assets/install-guide-template.md",
-        "sk-create-readme/references/README.md"
     ],
     "HVR": [
         "sk-create-with-human-voice/references/scope-and-exemptions.md",
@@ -328,12 +320,9 @@ RESOURCE_MAP = {
         "sk-create-quality-control/references/validation-and-enforcement.md",
         "sk-create-quality-control/references/workflow-examples.md",
         "sk-create-quality-control/references/workflows.md",
-        "sk-create-readme/assets/install-guide-template.md",
         "sk-create-readme/assets/readme-code-template.md",
         "sk-create-readme/assets/readme-template.md",
         "sk-create-readme/references/README.md",
-        "sk-create-readme/references/install-guide/quality-and-standards.md",
-        "sk-create-readme/references/install-guide/section-examples.md",
         "sk-create-readme/references/readme/quality-and-checklist.md",
         "sk-create-readme/references/readme/types-and-voice.md",
         "sk-create-readme/references/readme/writing-patterns.md",

@@ -231,8 +231,8 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
             return 'feature_catalog'
     if '/command/' in path_lower or '\\command\\' in path_lower or '/commands/' in path_lower or '\\commands\\' in path_lower:
         return 'command'
-    if '/install-guides/' in path_lower or '\\install_guides\\' in path_lower:
-        return 'install_guide'
+    # An install guide is a document a skill owns next to its own SKILL.md, named
+    # INSTALL-GUIDE.md. Classify it by that filename, the only thing that marks it.
     if 'install_guide' in Path(path_lower).stem or 'install-guide' in Path(path_lower).stem:
         return 'install_guide'
     # Changelog files: under .skilled/changelog/, .skilled/skills/*/changelog/,

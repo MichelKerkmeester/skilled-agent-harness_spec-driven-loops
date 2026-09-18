@@ -188,13 +188,12 @@ Before finalizing, verify each snippet:
 - [validation.md](../../shared/references/validation.md) - Quality scoring and validation workflows
 - [quick-reference.md](../../shared/references/quick-reference.md) - Quick command reference
 - [skill-creation.md](../../sk-create-skill/references/README.md) - Skill creation workflow
-- [create-readme references](../../sk-create-readme/references/README.md) - Install guide standards and workflow
+- [create-readme references](../../sk-create-readme/references/README.md) - README creation standards and workflow
 
 ### Templates
 - [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
 - [skill-asset-template.md](../../sk-create-skill/assets/skill/skill-asset-template.md) - Bundled asset structure
 - [readme-template.md](../../sk-create-readme/assets/readme-template.md) - Comprehensive README guide (13 sections)
 - [command-template.md](../../sk-create-command/assets/command-template.md) - Command creation guide (19 sections)
-- [install-guide-template.md](../../sk-create-readme/assets/install-guide-template.md) - Install guide template (14 sections)
 - [llmstxt-templates.md](../../shared/assets/llmstxt-templates.md) - llms.txt with decision framework
 - [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter validation & templates (11 sections)

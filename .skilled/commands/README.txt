@@ -88,7 +88,7 @@ command/
 │   ├── diff.md               # Create a before/after document diff report
 │   ├── feature-catalog.md    # Create or update feature catalog package
 │   ├── manual-testing-playbook.md   # Create or update manual testing playbook package
-│   ├── readme.md             # Create folder README or install guide
+│   ├── readme.md             # Create a folder README
 │   ├── repo-rule.md          # Create, revise or retire a repo rule
 │   ├── skill.md              # Create or update skill package/files
 │   ├── skill-parent.md       # Scaffold a parent skill with nested mode packets
@@ -144,7 +144,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 | Command | `/create:command <command_invocation> [command_request]` | Create or update an OpenCode slash command set |
 | Diff | `/create:diff <document> [:auto\|:confirm]` | Create a self-contained before/after document diff report |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature-catalog/` package |
-| Folder README | `/create:readme [readme\|install] <target>` | Unified README and install guide workflow |
+| Folder README | `/create:readme <target>` | Folder README workflow |
 | Parent Skill | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>]` | Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth) |
 | Repo Rule | `/create:repo-rule <what the rule should bind> [create\|revise\|retire]` | Create, revise or retire a repo rule under `repo-rules/`, wired into `REPO RULES.md` |
 | Skill | `/create:skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |

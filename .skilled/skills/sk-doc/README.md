@@ -1,6 +1,6 @@
 ---
 title: sk-doc
-description: Markdown and OpenCode component specialist: structure-first document quality (DQI, HVR voice), scaffolding and packaging, diagrams, charts, install guides, feature catalogs, testing playbooks, before/after diffs, repo rules and frontmatter contracts.
+description: Markdown and OpenCode component specialist: structure-first document quality (DQI, HVR voice), scaffolding and packaging, diagrams, charts, feature catalogs, testing playbooks, before/after diffs, repo rules and frontmatter contracts.
 trigger_phrases:
   - "documentation"
   - "readme"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "validate doc"
   - "changelog"
   - "flowchart"
-  - "install guide"
   - "playbook"
   - "feature catalog"
   - "conformance benchmark"
@@ -33,7 +32,7 @@ version: 2.1.0.65
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Markdown quality enforcement, human-voice passes, component scaffolding and packaging, benchmark authoring, diagrams, charts, flowcharts, install guides, feature catalogs, testing playbooks, changelogs, repo rules, frontmatter contracts and local before/after document diffs |
+| **Use it for** | Markdown quality enforcement, human-voice passes, component scaffolding and packaging, benchmark authoring, diagrams, charts, flowcharts, feature catalogs, testing playbooks, changelogs, repo rules, frontmatter contracts and local before/after document diffs |
 | **Invoke with** | "create a skill", "validate doc", "conformance benchmark", "readme", "documentation", "flowchart", "create a chart", "create a diagram", "repo rule", "frontmatter contract", "apply human voice", "changelog" or Gate 2 auto-routing on documentation keywords |
 | **Works on** | Markdown files, OpenCode components (skills, agents, commands), standalone HTML diagrams/charts and ASCII flowcharts |
 | **Produces** | DQI scores, validated documents, packaged skill zips, templated component directories, standalone HTML diagrams/charts and self-contained HTML diff reports |
@@ -46,11 +45,11 @@ version: 2.1.0.65
 
 Documentation drifts without a standard. Section order wanders. Frontmatter goes missing. Voice slides into filler and one author's README reads nothing like the next. A reader re-learns the layout every time. An AI assistant cannot parse the structure reliably. Hand-checking every document against a style guide does not scale and misses things.
 
-sk-doc makes structure the first gate so these problems never reach production. The script catches what is wrong before the AI touches a line. A reader opens any install guide, any changelog, any skill README or any flowchart and knows exactly where to look and what to expect. An AI assistant loads a document and finds the same landmarks every time.
+sk-doc makes structure the first gate so these problems never reach production. The script catches what is wrong before the AI touches a line. A reader opens any changelog, any skill README or any flowchart and knows exactly where to look and what to expect. An AI assistant loads a document and finds the same landmarks every time.
 
 ### What It Does
 
-sk-doc is the single specialist for documentation and OpenCode components. Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist, a list of violations and the evaluation questions the AI answers, all computed before the AI judges the content. Beyond quality enforcement it scaffolds and packages skills, agents, commands and other OpenCode components, with validation as the gate before any package ships. It authors benchmark packages with deterministic conformance inputs for peer adapters, then builds ASCII flowcharts, five-phase install guides, feature catalogs that inventory current behavior and manual testing playbooks that prove it. Its sk-create-diff packet compares two versions of a document (text, Markdown, HTML, DOCX or text-PDF) without Git and renders the changes as a self-contained, zero-JavaScript HTML report with section-aware navigation. Its sk-create-with-human-voice packet applies the Human Voice Rules to prose: a scope gate that names what a voice edit may not touch, a scanner that parses the standard at run time rather than carrying a copy, a judgment pass no scanner can perform, and a re-scan that proves the rewrite landed.
+sk-doc is the single specialist for documentation and OpenCode components. Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist, a list of violations and the evaluation questions the AI answers, all computed before the AI judges the content. Beyond quality enforcement it scaffolds and packages skills, agents, commands and other OpenCode components, with validation as the gate before any package ships. It authors benchmark packages with deterministic conformance inputs for peer adapters, then builds ASCII flowcharts, feature catalogs that inventory current behavior and manual testing playbooks that prove it. Its sk-create-diff packet compares two versions of a document (text, Markdown, HTML, DOCX or text-PDF) without Git and renders the changes as a self-contained, zero-JavaScript HTML report with section-aware navigation. Its sk-create-with-human-voice packet applies the Human Voice Rules to prose: a scope gate that names what a voice edit may not touch, a scanner that parses the standard at run time rather than carrying a copy, a judgment pass no scanner can perform, and a re-scan that proves the rewrite landed.
 
 It does not own code or spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns the spec-folder lifecycle together with memory and continuity. The two skills touch markdown but do not overlap: sk-doc judges document quality and system-spec-kit enforces the spec-packet contract.
 
@@ -130,7 +129,7 @@ The scripts own the deterministic work. `extract_structure.py` parses, measures,
 
 ### When To Use This Skill
 
-Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, an agent, a command or another OpenCode component and when you need a quality gate before publishing. Use it when you build an install guide, a feature catalog, a testing playbook, a flowchart, a changelog or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
+Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, an agent, a command or another OpenCode component and when you need a quality gate before publishing. Use it when you build a feature catalog, a testing playbook, a flowchart, a changelog or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
 
 You reach it through eleven `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/design:diagram`, `/create:readme`, `/create:changelog` and `/create:diff`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
 
@@ -212,7 +211,6 @@ The skill ships the checks that prove a document is ready.
 | [`sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`](sk-create-skill/references/parent-skill/parent-skills-nested-packets.md) | The parent-hub method behind `sk-create-skill-parent`: one advisor identity, a single modes registry and the surfaces a new mode must land on |
 | [`sk-create-agent/references/README.md`](sk-create-agent/references/README.md) | Agent authority, permissions and the template-first workflow |
 | [`sk-create-readme/references/README.md`](sk-create-readme/references/README.md) | README creation workflow and standards |
-| [`sk-create-readme/references/install-guide/quality-and-standards.md`](sk-create-readme/references/install-guide/quality-and-standards.md) | Five-phase install guide standards and validation checkpoints |
 | [`sk-create-manual-testing-playbook/references/README.md`](sk-create-manual-testing-playbook/references/README.md) | Playbook package structure, scenario tables and cross-reference index |
 | [`sk-create-feature-catalog/references/README.md`](sk-create-feature-catalog/references/README.md) | Feature catalog inventory standards and per-feature file structure |
 | [`sk-create-benchmark/README.md`](sk-create-benchmark/README.md) | Benchmark family registry, including conformance authoring triggers and package boundaries |

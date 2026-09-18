@@ -24,13 +24,13 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 
 | # | Category | Folder | Scenario IDs | One-line summary |
 |---|----------|--------|--------------|------------------|
-| 1 | Intent Detection | `intent-detection/` | SD-001 .. SD-003, SD-016 | Router picks the correct intent for unambiguous DOC_QUALITY / SKILL_CREATION / AGENT_COMMAND / OPTIMIZATION prompts. SD-017 (INSTALL_GUIDE) was never authored on disk — see the §01 note. |
+| 1 | Intent Detection | `intent-detection/` | SD-001 .. SD-003, SD-016 | Router picks the correct intent for unambiguous DOC_QUALITY / SKILL_CREATION / AGENT_COMMAND / OPTIMIZATION prompts. |
 | 2 | Resource Loading | `resource-loading/` | SD-004, SD-006 | Router loads only the expected resource set: references-only (HVR) and mixed (README_CREATION). SD-005 moved to the design hub with the FLOWCHART mode. |
 | 3 | Unknown Fallback | `unknown-fallback/` | SD-008, SD-009 | Router escalates ambiguous prompts via AMBIGUITY_DELTA top-2 return or UNKNOWN_FALLBACK_CHECKLIST. SD-007 moved to the design hub, which owns both of the canvases it now pairs. |
 | 4 | Cross-CLI Dispatch | `cross-cli-dispatch/` | SD-010 .. SD-012 | CLI-specific behavior: short-prompt baseline, large-prompt stress (opencode stdin mitigation), multi-step dispatch stability. |
 | 5 | Token Cost Baseline | `token-cost-baseline/` | SD-013 .. SD-015 | Cost normalization: floor (1 resource), median (4 resources), ceiling (ON_DEMAND load-all). |
 | 6 | Agent Dispatch | `agent-dispatch/` | SD-018, SD-020 | `@markdown` agent dispatch across cli-claude-code and cli-opencode (DeepSeek v4 Pro direct API). EXECUTES real work — distinct from the routing-trace-probe sections. SD-019 was never authored as a separate on-disk scenario — see the §06 note. |
-| 7 | Holdout | `holdout/` | SD-H01 .. SD-H13, less H05 and H10 | Generalization probes excluded from the fitted routing aggregate: natural-phrasing rewrites and independent keyword-blind prompts across SKILL_CREATION / DOC_QUALITY / README_CREATION / CHANGELOG / OPTIMIZATION / INSTALL_GUIDE / FEATURE_CATALOG. The two FLOWCHART probes moved to the design hub with their mode. |
+| 7 | Holdout | `holdout/` | SD-H01 .. SD-H13, less H05, H10 and H12 | Generalization probes excluded from the fitted routing aggregate: natural-phrasing rewrites and independent keyword-blind prompts across SKILL_CREATION / DOC_QUALITY / README_CREATION / CHANGELOG / OPTIMIZATION / FEATURE_CATALOG. The two FLOWCHART probes moved to the design hub with their mode, and SD-H12 retired with the intent it probed. |
 | 8 | Compiled Routing | `compiled-routing/` | SD-CR-001 | Compiled-serving-authority parity: proves the compiled routing engine reproduces the legacy bundle-rules routing decision for a `create-skill` request. |
 
 ---
@@ -42,8 +42,6 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 - **SD-002** — `intent-detection/skill-creation.md` — SKILL_CREATION: author a new sk-skill.
 - **SD-003** — `intent-detection/agent-command.md` — AGENT_COMMAND: author paired @agent and /create command.
 - **SD-016** — `intent-detection/optimization.md` — OPTIMIZATION: rewrite for token efficiency + llms.txt generation. (added in 076)
-
-> **SD-017 gap**: reserved for an INSTALL_GUIDE intent-detection scenario (`intent-detection/INSTALL-GUIDE.md`, added in 076) that was never authored on disk. INSTALL_GUIDE intent-routing coverage currently exists only via the holdout probe **SD-H12** (`holdout/ind-install-guide.md`, §07).
 
 ### 02 — Resource Loading
 - **SD-004** — `resource-loading/references-global-only.md` — HVR loads only `references/hvr-rules.md`.
@@ -83,10 +81,9 @@ Independent holdouts — authored by an agent blind to the router keyword list:
 - **SD-H08** — `holdout/ind-readme.md` — README_CREATION, keyword-blind.
 - **SD-H09** — `holdout/ind-changelog.md` — CHANGELOG, keyword-blind.
 - **SD-H11** — `holdout/ind-optimization.md` — OPTIMIZATION, keyword-blind.
-- **SD-H12** — `holdout/ind-install-guide.md` — INSTALL_GUIDE, keyword-blind.
 - **SD-H13** — `holdout/ind-feature-catalog.md` — FEATURE_CATALOG, keyword-blind.
 
-All 13 carry `stage: holdout`: excluded from the fitted routing aggregate, scored only for the fitted-vs-held-out generalization gap.
+All 10 carry `stage: holdout`: excluded from the fitted routing aggregate, scored only for the fitted-vs-held-out generalization gap.
 
 ### 08 — Compiled Routing
 - **SD-CR-001** — `compiled-routing/bundle-rules-compiled-routing.md` — sk-doc `create-skill` bundle-rules route: compiled engine (`servingAuthority: compiled`) reproduces the legacy routing decision. Run via `run-skill-benchmark.cjs --compiled-routing-parity on`.

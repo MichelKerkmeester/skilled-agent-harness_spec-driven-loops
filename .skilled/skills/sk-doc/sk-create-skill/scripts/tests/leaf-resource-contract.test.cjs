@@ -147,7 +147,7 @@ function testCanonicalBytesAreDeterministic() {
   const manifestA = contract.buildManifest({
     resourceContractVersion: 1,
     modeEntries: [
-      { workflowMode: 'create-readme', packet: 'create-readme', leaves: ['references/README.md', 'assets/readme/install-guide-template.md'] },
+      { workflowMode: 'create-readme', packet: 'create-readme', leaves: ['references/README.md', 'assets/readme/readme-code-template.md'] },
       { workflowMode: 'create-agent', packet: 'create-agent', leaves: ['assets/agent-template.md', 'references/README.md'] },
     ],
   });
@@ -156,7 +156,7 @@ function testCanonicalBytesAreDeterministic() {
     resourceContractVersion: 1,
     modeEntries: [
       { workflowMode: 'create-agent', packet: 'create-agent', leaves: ['references/README.md', 'assets/agent-template.md'] },
-      { workflowMode: 'create-readme', packet: 'create-readme', leaves: ['assets/readme/install-guide-template.md', 'references/README.md'] },
+      { workflowMode: 'create-readme', packet: 'create-readme', leaves: ['assets/readme/readme-code-template.md', 'references/README.md'] },
     ],
   });
 

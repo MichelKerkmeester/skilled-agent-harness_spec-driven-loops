@@ -3,7 +3,6 @@
 Complete installation and configuration guide for the Code Mode MCP server. This enables TypeScript-based orchestration of external MCP tools, giving you unified access to MyService, Figma, ClickUp, GitHub, Chrome DevTools and other MCP servers through a single `call_tool_chain()` interface. It delivers 98.7% context reduction and 60% faster execution compared to individual tool calls, with type-safe invocation and automatic tool discovery.
 
 > **Version:** 2.0.0
-> **Part of OpenCode Installation.** See the [Master Installation Guide](../../install-guides/README.md) for complete setup.
 > **Package**: `@utcp/code-mode-mcp` | **Dependencies**: Node.js 24 (see Prerequisites), .utcp_config.json
 
 ---

@@ -30,7 +30,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 | Mode | Use it for | Packet | Command |
 |------|------------|--------|---------|
 | **sk-create-skill** | Scaffold an OpenCode skill (and, via `sk-create-skill-parent`, a parent hub with nested mode packets) | `sk-create-skill/` | `/create:skill`, `/create:skill-parent` |
-| **sk-create-readme** | Author a folder README or an install guide (install-guide is a folded variant) | `sk-create-readme/` | `/create:readme` |
+| **sk-create-readme** | Author a folder README, general or code-folder | `sk-create-readme/` | `/create:readme` |
 | **sk-create-agent** | Scaffold an OpenCode agent (permission/authority frontmatter) | `sk-create-agent/` | `/create:agent` |
 | **sk-create-command** | Scaffold an OpenCode slash command (argument-hint + allowed-tools + router/presentation split) | `sk-create-command/` | `/create:command` |
 | **sk-create-feature-catalog** | Author a feature-catalog inventory package | `sk-create-feature-catalog/` | `/create:feature-catalog` |
@@ -64,7 +64,7 @@ Routing is **registry-driven at runtime and packet-authored at source** in two s
 
 ### Surface Router — per-intent leaf sets
 
-Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-intent leaf model (document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, flowcharts, install guides, the human-voice pass, playbooks, feature catalogs, READMEs, changelogs, benchmarks, diffs, repo rules, and the explicit full-toolkit intent), the machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub UNKNOWN fallback, never a silent default). Every `RESOURCE_MAP` path is packet-qualified or an authored shared-alias disk path, and each converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-intent leaf model (document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, flowcharts, the human-voice pass, playbooks, feature catalogs, READMEs, changelogs, benchmarks, diffs, repo rules, and the explicit full-toolkit intent), the machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub UNKNOWN fallback, never a silent default). Every `RESOURCE_MAP` path is packet-qualified or an authored shared-alias disk path, and each converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
 
 `ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule). The `shared/` backbone stays the universal sk-create-quality-control source; the surface router only selects leaves.
 

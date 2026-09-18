@@ -225,13 +225,8 @@
         "folder readme",
         "write readme",
         "README.md",
-        "install guide",
-        "installation guide",
-        "setup guide",
         "code folder readme",
-        "front-page overview",
-        "getting our project running",
-        "running from scratch"
+        "front-page overview"
       ]
     },
     "create-agent-aliases": {

@@ -40,7 +40,7 @@ upstream_assets:
     spec: "spec.md"
     decision_record: "decision-record.md"
   install_guides:
-    code_mode: ".skilled/install-guides/MCP - Code Mode.md"
+    code_mode: ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md"
   scripts:
     health_check: ".skilled/commands/doctor/scripts/mcp-doctor.sh"
   pass_policy:
@@ -89,7 +89,7 @@ arguments:
 # REFERENCE: INSTALL GUIDES (read these during workflow)
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  code_mode: .skilled/install-guides/MCP - Code Mode.md
+  code_mode: .skilled/skills/mcp-code-mode/INSTALL-GUIDE.md
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: SERVER DEFINITIONS

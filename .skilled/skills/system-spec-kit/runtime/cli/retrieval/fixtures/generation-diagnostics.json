@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7152,
+    "missing-frontmatter": 7149,
     "non-yaml-frontmatter": 1,
-    "ok": 15285,
+    "ok": 15280,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27281,
+  "documentsScanned": 27273,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "9eb4c83fe50a884c1b5cbe0ceee99484065497df16c62fe390e11a9799607f2e",
+  "manifestHash": "01971af50563bd6be01d404e364460a37e222fbcc03cff5a550393336999ed64",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -24,16 +24,16 @@
       "generic-workflow-word": 170,
       "numeric-only": 112,
       "prose-sentence": 18,
-      "single-token": 817,
+      "single-token": 816,
       "stop-word-only": 12
     },
     "phrases": {
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 36368,
+      "ok": 36345,
       "prose-sentence": 27,
-      "single-token": 306,
+      "single-token": 303,
       "stop-word-only": 3
     }
   },
@@ -29637,12 +29637,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-install-guide.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-optimization.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -30767,18 +30761,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/evidence-and-shape/evidence-first-current-state.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/install-guide/five-phase-install-flow.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/install-guide/one-line-install-stays-inline.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -76870,18 +76852,6 @@
     },
     {
       "path": ".skilled/hooks/spec-gate/README.md",
-      "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/install-guides/MCP - Chrome Dev Tools.md",
-      "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/install-guides/MCP - Code Mode.md",
-      "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/install-guides/MCP - Skill Advisor.md",
       "reason": "duplicate of an already-indexed document"
     },
     {

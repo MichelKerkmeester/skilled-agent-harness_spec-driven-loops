@@ -131,12 +131,9 @@
     },
     {
       "leaves": [
-        "assets/install-guide-template.md",
         "assets/readme-code-template.md",
         "assets/readme-template.md",
         "references/README.md",
-        "references/install-guide/quality-and-standards.md",
-        "references/install-guide/section-examples.md",
         "references/readme/quality-and-checklist.md",
         "references/readme/types-and-voice.md",
         "references/readme/writing-patterns.md"

@@ -91,7 +91,7 @@ Reach for create-changelog when a shipped change needs a global component releas
 | Skill | Relationship |
 |---|---|
 | `sk-git` | Owns branch, commit and PR mechanics. create-changelog prepares the note content, `sk-git` ships it. |
-| `create-readme` | Owns README and install-guide prose. A changelog records what changed, a README explains how to use the result. |
+| `create-readme` | Owns README prose. A changelog records what changed, a README explains how to use the result. |
 | `system-spec-kit` | Owns the nested changelog generator and packet-local templates that nested mode writes through. |
 
 ---

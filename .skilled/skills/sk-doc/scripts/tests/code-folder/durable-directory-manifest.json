@@ -45,8 +45,6 @@
     ".skilled/hooks/skill-advisor",
     ".skilled/hooks/spec-gate",
     ".skilled/hooks/task-dispatch",
-    ".skilled/install-guides",
-    ".skilled/install-guides/install-scripts",
     ".skilled/logs",
     ".skilled/plugins",
     ".skilled/plugins/tests",
