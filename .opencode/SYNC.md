@@ -11,7 +11,7 @@ description: "How .opencode derives from .skilled: a real directory of relative 
 
 ## 1. OVERVIEW
 
-OpenCode reads this directory for its skills, commands, agents and plugins, and `opencode.json` names `.opencode/bin/mcp-code-mode-launcher.cjs` as its MCP launcher. It carries no build or package files: those belong to the source tree, and anything installing or testing names that tree directly, as the other runtime directories do. None of that content is authored here. Every entry is a relative symlink onto `.skilled/`, so editing a file through a path in this directory edits the file in `.skilled/`, because it is the same file.
+OpenCode reads this directory for its skills, commands, agents and plugins, and `opencode.json` names `.opencode/bin/mcp-code-mode-launcher.cjs` as its MCP launcher. It carries no build or package files of ours. OpenCode writes its own `package.json`, `package-lock.json` and `node_modules` here to install the plugin SDK at whatever version the installed CLI expects, and writes a `.gitignore` alongside them saying so, so all four are runtime state rather than source. Anything installing or testing names the source tree directly, as the other runtime directories do. None of that content is authored here. Every entry is a relative symlink onto `.skilled/`, so editing a file through a path in this directory edits the file in `.skilled/`, because it is the same file.
 
 **This directory is real, and that is deliberate.** The whole tree was once reachable through a single `.opencode -> .skilled` link. Git stores a symlink as a file whose content is the target path, and no git host resolves one server-side, so under that arrangement the directory could not be opened on the web and every URL beneath it returned the target string instead of the file. One link per entry keeps the directory itself a directory.
 
@@ -35,6 +35,7 @@ Drift is not possible for the linked entries: a symlink has no content of its ow
 | `changelog` | relative symlink | `../.skilled/changelog` | Addressed by this name from documentation |
 | `logs` | relative symlink | `../.skilled/logs` | Runtime output directory |
 | `manual-testing-playbook` | relative symlink | `../.skilled/manual-testing-playbook` | Playbook tree addressed by this name |
+| `package.json`, `package-lock.json`, `node_modules`, `.gitignore` | runtime-written, untracked | OpenCode | The CLI installs its own plugin SDK here and ignores what it writes |
 | `README.md` | real file | hand-maintained | Orientation for anyone who opens the directory expecting the tree |
 | `SYNC.md` | real file | hand-maintained | This manifest |
 

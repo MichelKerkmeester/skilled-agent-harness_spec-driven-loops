@@ -17,7 +17,7 @@ The authored tree lives in [`.skilled/`](../.skilled). This directory exposes th
 same tree under the older `.opencode/` name, one symlink per top-level entry, so
 anything that addresses `.opencode/<path>` still reaches the real file.
 
-Nothing is authored here. Editing a file through a path in this directory edits
+OpenCode writes its own `package.json`, `package-lock.json` and `node_modules` here to install its plugin SDK, and ignores them; nothing else is authored here. Editing a file through a path in this directory edits
 the file in `.skilled/`, because that is the same file.
 
 ## 2. WHAT IS HERE
