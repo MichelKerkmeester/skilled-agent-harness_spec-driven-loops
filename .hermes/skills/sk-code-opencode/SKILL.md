@@ -51,15 +51,15 @@ Workflow: the implement -> debug -> verify phases use the split shared, language
 
 ## 2b. SMART ROUTING (machine-readable)
 
-This block is the deterministic projection of code-opencode's own reference/asset routing, consumed by the skill-benchmark router-replay; keep it in sync with the parent hub union.
+This block is the deterministic projection of code-opencode's own reference/asset routing; keep it in sync with the parent hub union.
 
 ```python
 # code-opencode owns its intent -> reference/asset routing. Paths are relative to
 # this skill root. The parent sk-code hub RESOURCE_MAP is the union of this map
 # (re-prefixed with sk-code-opencode/) and the sibling code-webflow map plus the
-# parent-owned universal/shared tier; the sk-code-router-sync.vitest.ts suite
-# (under system-deep-loop's skill-benchmark tests) is the guard that enforces
-# that equality. verify_alignment_drift.py is markdown-blind by default and does
+# parent-owned universal/shared tier. The sk-code-router-sync.vitest.ts suite
+# that enforced that equality was deleted with the skill-benchmark lane, so
+# nothing checks it now. verify_alignment_drift.py is markdown-blind by default and does
 # not check this map unless invoked with --check-router (dead-route existence
 # only), so it is not the equality authority.
 DEFAULT_RESOURCE = [

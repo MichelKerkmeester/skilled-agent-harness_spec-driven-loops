@@ -29,7 +29,7 @@ The marker comment above is the contract surface the package validator reads. Th
 
 ### Package shape
 
-Every per-feature file carries the plain operator-scenario frontmatter: `title`, `description`, `stage` and the four-part `version`. None of them carries a routing-gold benchmark field, which means `id`, `expected_intent`, `expected_resources`, `expected_workflow_mode` and `expected_leaf_resources`. This package is not a skill-benchmark corpus. Any one of those fields would reclassify the file as routing gold, which excludes it from the operator-scenario contract, drops the package's operator count to zero and reports a status of `SKIP` at exit zero. A check that only greps for a failure reads that silence as clean, so the evidence for this package is a nonzero operator scenario count rather than an exit status.
+Every per-feature file carries the plain operator-scenario frontmatter: `title`, `description`, `stage` and the four-part `version`. None of them carries a routing-gold benchmark field, which means `id`, `expected_intent`, `expected_resources`, `expected_workflow_mode` and `expected_leaf_resources`. This package is not a routing-gold corpus. Any one of those fields would reclassify the file as routing gold, which excludes it from the operator-scenario contract, drops the package's operator count to zero and reports a status of `SKIP` at exit zero. A check that only greps for a failure reads that silence as clean, so the evidence for this package is a nonzero operator scenario count rather than an exit status.
 
 ---
 

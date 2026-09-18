@@ -1,6 +1,6 @@
 ---
 title: "mcp-tooling. Skill Benchmark Runs"
-description: "Lane C (skill-benchmark) run index for the mcp-tooling hub: frozen baseline plus one folder per subsequent run; reports are renderer-owned."
+description: "Frozen Lane C (skill-benchmark) run index for the mcp-tooling hub: the baseline and each later run, produced by the retired harness."
 trigger_phrases:
   - "mcp-tooling benchmark"
   - "hub routing benchmark"
@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-The deep-improvement Lane C skill-benchmark harness benchmarks `mcp-tooling`, a seven-mode hub (four workflow modes, including mcp-obsidian, plus three transports), across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This `benchmark/` tree holds one run-label folder per run; the sections below index them.
+The retired deep-improvement Lane C skill-benchmark harness benchmarked `mcp-tooling`, a seven-mode hub (four workflow modes, including mcp-obsidian, plus three transports), across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This `benchmark/` tree holds one run-label folder per run; the sections below index them.
 
 ---
 

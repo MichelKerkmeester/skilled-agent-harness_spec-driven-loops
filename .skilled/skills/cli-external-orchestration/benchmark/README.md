@@ -22,10 +22,10 @@ contextType: "general"
 
 The retired deep-improvement Lane C skill-benchmark harness benchmarked `cli-external-orchestration` against its own playbook scenarios across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This `benchmark/` tree holds the dual reports each archived run wrote, one run-label folder per run.
 
-Two trace modes score the same corpus:
+Two trace modes scored the same corpus:
 
-- **router** is deterministic and offline: it replays `hub-router.json` + `mode-registry.json`. It was the CI gate.
-- **live** dispatches each scenario through `cli-opencode` to a real model and grades the model's stated routing plus observed activation.
+- **router** was deterministic and offline: it replayed `hub-router.json` + `mode-registry.json`. It was the CI gate.
+- **live** dispatched each scenario through `cli-opencode` to a real model and graded the model's stated routing plus observed activation.
 
 ---
 

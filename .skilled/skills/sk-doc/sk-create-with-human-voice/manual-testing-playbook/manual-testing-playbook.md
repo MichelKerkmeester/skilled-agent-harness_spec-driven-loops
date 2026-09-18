@@ -29,7 +29,7 @@ The sentence above is the package contract wording, carried verbatim from `sk-cr
 
 ### Package shape
 
-Every per-feature file carries the plain operator-scenario frontmatter: `title`, `description`, `stage` and the four-part `version`. None of them carry a Lane C benchmark field (`id`, `expected_intent`, `expected_resources`, `expected_workflow_mode` or `expected_leaf_resources`). This package is not a skill-benchmark corpus, and any one of those fields would risk the routing-gold classification the package validator uses to exclude a file from the operator-scenario contract it owns.
+Every per-feature file carries the plain operator-scenario frontmatter: `title`, `description`, `stage` and the four-part `version`. None of them carry a routing-gold field (`id`, `expected_intent`, `expected_resources`, `expected_workflow_mode` or `expected_leaf_resources`). This package is not a routing-gold corpus, and any one of those fields would risk the routing-gold classification the package validator uses to exclude a file from the operator-scenario contract it owns.
 
 ---
 

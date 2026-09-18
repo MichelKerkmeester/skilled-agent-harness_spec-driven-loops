@@ -477,7 +477,7 @@ function compileCanonicalParent({ hubId, skillRoot, generation }) {
 // basePolicyHash (different vocabulary/composition-rule construction), so
 // the freshness check can never agree with compiled-route-status.cjs's
 // loadHubEngine-sourced verdict for those hubs. This reuses the identical
-// cached snapshot the runtime engine and Lane C parity already compute, so
+// cached snapshot the runtime engine already computes, so
 // the two views read the same policy and cannot diverge.
 
 /**

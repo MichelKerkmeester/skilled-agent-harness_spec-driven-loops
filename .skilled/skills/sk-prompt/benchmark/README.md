@@ -1,6 +1,6 @@
 ---
 title: "sk-prompt Skill-Benchmark Artifacts"
-description: "Benchmark reports for the sk-prompt parent hub, scored by the deep-improvement Lane C harness in router and live modes, plus the compiled-routing archive convention."
+description: "Historical benchmark reports for the sk-prompt parent hub, scored by the retired deep-improvement Lane C harness in router and live modes, plus the compiled-routing archive convention."
 trigger_phrases:
   - "sk-prompt benchmark"
   - "sk-prompt skill-benchmark artifacts"
@@ -19,12 +19,12 @@ contextType: "general"
 
 ## 1. OVERVIEW
 
-The deep-improvement Lane C skill-benchmark harness benchmarks `sk-prompt` against its own playbook scenarios across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This `benchmark/` tree holds the dual reports each run writes, one run-label folder per run.
+The retired deep-improvement Lane C skill-benchmark harness benchmarked `sk-prompt` against its own playbook scenarios across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This `benchmark/` tree holds the dual reports each run wrote, one run-label folder per run.
 
-Two trace modes score the same corpus:
+Two trace modes scored the same corpus:
 
-- **router** is deterministic and offline: it replays `hub-router.json` + `mode-registry.json`. It was the CI gate.
-- **live** dispatches each scenario through `cli-opencode` to a real model and grades the model's stated routing plus observed activation.
+- **router** was deterministic and offline: it replayed `hub-router.json` + `mode-registry.json`. It was the CI gate.
+- **live** dispatched each scenario through `cli-opencode` to a real model and graded the model's stated routing plus observed activation.
 
 The rubric, terminal buckets and pass thresholds came from the Lane C scoring contract, which was retired with the lane, not from this index.
 

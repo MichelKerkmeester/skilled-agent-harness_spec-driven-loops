@@ -83,8 +83,8 @@ function statusToVerdict(status) {
 // `'` or `"` around the value and strips it from the captured group, so
 // `workflow_mode: quality` and `workflow_mode: "quality"` parse to the
 // identical string. The canonical serialization new fixtures should use is
-// the unquoted form (matching `load-playbook-scenarios.cjs`'s Lane C loader,
-// the proven parser for this same corpus shape); quoted values remain valid
+// the unquoted form (the form `load-playbook-scenarios.cjs`, the retired
+// skill-benchmark loader, parsed for this same corpus shape); quoted values remain valid
 // input, they are simply not what tooling emits by default.
 
 function readFileSafe(filePath) {

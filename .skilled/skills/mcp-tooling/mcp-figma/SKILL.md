@@ -136,9 +136,9 @@ INTENT_MODEL = {
     "TROUBLESHOOT":         {"keywords": [("error", 4), ("failed", 4), ("not connected", 4), ("binary not found", 4), ("unauthorized", 3), ("broken", 3), ("not working", 4), ("doesn't work", 4), ("won't connect", 4), ("not responding", 3), ("unresponsive", 3), ("crash", 3), ("timeout", 3), ("conflict", 3), ("stuck", 3), ("permission denied", 3)]},
 }
 
-# Benchmark-facing mirror of INTENT_MODEL in the standard {weight, keywords} shape
-# the skill-benchmark router-replay reads (the tuple form above parses to zero
-# intents there). Runtime scoring uses INTENT_MODEL; this block changes no routing.
+# Mirror of INTENT_MODEL in the standard {weight, keywords} shape that
+# INTENT_SIGNALS parsers read (the tuple form above parses to zero intents
+# there). Runtime scoring uses INTENT_MODEL; this block changes no routing.
 # Per-intent weight = the MAX per-keyword weight in INTENT_MODEL for that intent
 # (all six resolve to 4). Keys and keywords stay identical to INTENT_MODEL — a
 # key-sync test fails closed if the two blocks ever drift apart.

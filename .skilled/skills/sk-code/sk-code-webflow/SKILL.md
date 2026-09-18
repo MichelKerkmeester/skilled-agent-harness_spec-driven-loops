@@ -56,7 +56,7 @@ Workflow: the implement -> debug -> verify phases are covered by the split imple
 
 ## 2b. SMART ROUTING (machine-readable)
 
-This block is the deterministic projection of code-webflow's own reference/asset routing, consumed by the skill-benchmark router-replay; keep it in sync with the parent hub union.
+This block is the deterministic projection of code-webflow's own reference/asset routing; keep it in sync with the parent hub union.
 
 ```python
 # code-webflow owns its intent -> reference/asset routing. Paths are relative to

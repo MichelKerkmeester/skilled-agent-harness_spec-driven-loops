@@ -67,7 +67,7 @@ A hub earns the **`compiled-serving`** verdict when its compiled decision matche
 
 Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub cohort the resolver consults when the flag is unset. As of this reference, all seven hubs in Section 2 carry that verdict and are in the cohort (verify directly in `011-runtime-engine/lib/resolve.cjs`); `sk-design`'s shadow-child (562-line compiler) is the deepest reference build, at 38/0 (see the recipe docs in Section 7).
 
-**A naming collision worth knowing:** `compiled-route-status.cjs` (a live per-hub probe, distinct from the Lane C harness) emits its own `causeCode: 'compiled-serving'` meaning "this hub is being served compiled right now, under the current flag and manifest." That is a request-time gate check, not a coverage judgment — a hub can hold the Lane C parity verdict `compiled-serving` while the live probe reports something else entirely, for example if the flag is forced off. Section 6 depends on keeping these two apart.
+**A naming collision worth knowing:** `compiled-route-status.cjs` (a live per-hub probe, distinct from the retired Lane C harness) emits its own `causeCode: 'compiled-serving'` meaning "this hub is being served compiled right now, under the current flag and manifest." That is a request-time gate check, not a coverage judgment — a hub can hold the Lane C parity verdict `compiled-serving` while the live probe reports something else entirely, for example if the flag is forced off. Section 6 depends on keeping these two apart.
 
 ---
 
@@ -76,7 +76,7 @@ Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub 
 For a hub to go from "just scaffolded" to genuinely compiled-serving, in order:
 
 1. **Build the shadow-child compiler to route == legacy.** Grow `registry-compiler.cjs`'s detectors and `router.cjs`/`canary-router.cjs`'s selection logic against the hub's real `hub-router.json` vocabulary and its full playbook/route-gold scenario set, until compiled output matches legacy on all of them. Model this on `006-parent-hub-rollout/006-sk-design` — the proven, fullest-coverage reference implementation.
-2. **Pass Lane C parity** with the `compiled-serving` sub-verdict (Section 4) — zero drift.
+2. **Prove parity with legacy** at the `compiled-serving` bar (Section 4) — zero drift. The Lane C harness that measured it was retired, so no tool runs this step today, and a new hub cannot reach `compiled-serving` until one does.
 3. **Re-mint the activation manifest** to the shadow-child's fresh hash, flipping `servingAuthority` to `"compiled"` (still reversible: flipping it back, or the fleet kill-switch, restores legacy byte-for-byte).
 4. **Join `DEFAULT_ON_HUBS`** in `011-runtime-engine/lib/resolve.cjs` so the hub serves compiled by default once the flag is unset, not only when forced on.
 
@@ -98,7 +98,7 @@ What this proves: the hub's own router files are internally self-consistent and 
 | --- | --- | --- |
 | Engine | No shadow-child directory exists yet | Hand-built under `006-parent-hub-rollout/00N-<hub>/`, registered in `HUB_CHILD` |
 | Manifest | `servingAuthority: "legacy"`, `shadowOnly: true` | `servingAuthority: "compiled"`, re-minted to the shadow-child hash |
-| Coverage proof | None — no scenarios were evaluated | Lane C parity, zero drift (Section 4) |
+| Coverage proof | None — no scenarios were evaluated | Parity with legacy, zero drift (Section 4). Its harness was retired |
 | Runtime effect | None; the front door always returns the legacy sentinel for this hub | Live, once the hub also joins `DEFAULT_ON_HUBS` (or the flag is forced on) |
 | Owned by | `create-skill` | The hub's own coverage build-out, then the runtime-engine cohort change (Section 5) |
 

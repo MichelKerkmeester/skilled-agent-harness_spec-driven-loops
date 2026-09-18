@@ -24,7 +24,7 @@ The scored corpus holds **15 scenario files** under `hub-routing/`: 8 primary ro
 
 ## 2. SCENARIOS
 
-Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (the sk-doc shape the Lane-C skill-benchmark loader reads).
+Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (the sk-doc shape the routing-gold gates read).
 
 ### Primary routing (8)
 
@@ -74,4 +74,4 @@ Both modes carry management-shaped vocabulary: note/vault/knowledge-base/markdow
 ## 4. RELATED
 
 - Packet-level playbooks: `mcp-chrome-devtools/manual-testing-playbook/manual-testing-playbook.md`, `mcp-click-up/manual-testing-playbook/manual-testing-playbook.md`, `mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md`, `mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md`, `mcp-figma/manual-testing-playbook/manual-testing-playbook.md`, `mcp-refero/manual-testing-playbook/manual-testing-playbook.md`, `mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md` (each covers its packet's internal behavior and intra-packet routing recall).
-- Lane-C automated benchmark: `benchmark/` — frozen pre-remediation run under `benchmark/baseline/` (PASS 95), enforced route-gold re-run under `benchmark/2026-07-16--after-routing-remediation--router/` (PASS 98, routeGold 13/13); see `benchmark/README.md` for the run table.
+- Retired Lane-C benchmark, frozen: `benchmark/` — pre-remediation run under `benchmark/baseline/` (PASS 95), enforced route-gold re-run under `benchmark/2026-07-16--after-routing-remediation--router/` (PASS 98, routeGold 13/13); see `benchmark/README.md` for the run table.
