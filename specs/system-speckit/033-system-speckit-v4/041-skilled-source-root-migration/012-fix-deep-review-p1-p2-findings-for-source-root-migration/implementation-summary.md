@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration"
     last_updated_at: "2026-09-18T10:45:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Landed the remediation and fixed all ten angle-10 findings"
-    next_safe_action: "Push after operator approval"
+    recent_action: "Pushed the remediation and confirmed Spec-Kit Check green"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/shared/workspace/repo-root.mjs"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "6d11af6f-653e-4807-aca8-1c09c81640c1"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +43,7 @@ _memory:
 | **Spec Folder** | 012-fix-deep-review-p1-p2-findings-for-source-root-migration |
 | **Completed** | 2026-09-18 |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -114,6 +114,7 @@ Eight commits on `worktrees/055-skilled-source-root-migration`, each through the
 | Gate-input suite and real-tree check | 48/48. Real tree PASSED with 141 inputs resolved against 132 at baseline |
 | Resolver, retrieval and plugin suites | parity 42/42, retrieval 22/22, installer 21/21, consumers 7/7, advisor 29/29 |
 | Negative controls | Each new test fails against the pre-fix code or document |
+| CI at `5844a02227` | Spec-Kit Check green (runs 35338866889 on main and 35338866896 on skilled/v4.0.0.0). Every other workflow green except Playbook Operator Contract and Routing Registry Drift Guard, whose failure sets match the pre-push runs exactly |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -123,7 +124,8 @@ Eight commits on `worktrees/055-skilled-source-root-migration`, each through the
 
 1. **The retired skill-benchmark lane is unlinked, not rewritten.** About 43 documents still describe it. Their links now say it was retired, and rewriting them is the decision its retirement commit recorded.
 2. **No CI job checks the Hermes skill mirror.** `sync-skills-hermes.cjs --check` found four copies drifted by this work before they were regenerated. Nothing would have caught it.
-3. **The trigger index was not regenerated.** No gate checks its freshness, and the main checkout holds another session's uncommitted edits to it.
+3. **Two CI workflows were red before this work and still are.** Playbook Operator Contract fails five packages and Routing Registry Drift Guard fails two scorer ratchet tests plus sk-design's `ROUTER.md` version. Neither failure set changed.
+4. **The trigger index was not regenerated.** No gate checks its freshness, and the main checkout holds another session's uncommitted edits to it.
 <!-- /ANCHOR:limitations -->
 
 ---

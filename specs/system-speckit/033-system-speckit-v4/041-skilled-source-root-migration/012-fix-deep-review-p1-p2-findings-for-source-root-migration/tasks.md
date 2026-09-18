@@ -64,7 +64,7 @@ contextType: "implementation"
 - [x] T016 Tests for `COV-001`, `COV-002`, `COV-004`, `COV-005`
 - [x] T017 Re-run angle 10 on Luna. Verify and triage each finding
 - [x] T018 Rerun the whole baseline gate at the fix SHA and report the delta
-- [ ] T019 Commit, fast-forward the main checkout, commit once through the new hooks, push with CI watched. Fast-forward done at `f906350655`
+- [x] T019 Commit, fast-forward the main checkout, commit once through the new hooks, push with CI watched. Pushed `fb09084e70` and `5844a02227`; Spec-Kit Check green
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -72,9 +72,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -127,8 +127,8 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] A real commit and push pass through the changed hooks
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] A real commit and push pass through the changed hooks
 - [x] CHK-022 [P1] Four layouts tested: both, `.skilled` only, `.opencode` only, placeholder `.skilled`
 - [x] CHK-023 [P1] Each new test fails when its fix is reverted
 <!-- /ANCHOR:testing -->
@@ -162,7 +162,7 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
 - [x] CHK-041 [P1] Code comments carry the durable reason and no ephemeral ids
 - [x] CHK-042 [P2] READMEs that describe a changed script updated
 <!-- /ANCHOR:docs -->
@@ -172,8 +172,8 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -183,8 +183,8 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 9/11 |
-| P1 Items | 14 | 11/14 |
+| P0 Items | 11 | 11/11 |
+| P1 Items | 14 | 14/14 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-09-18
