@@ -42,3 +42,25 @@ jobs:
             exit 1
           fi
           echo "Command trees are byte-identical."
+
+  hermes-mirror:
+    # The Hermes runtime reads generated copies of every skill's SKILL.md and of the
+    # command prompts. An edit to any skill can leave its copy stale, and no path filter
+    # narrow enough to keep a heavier workflow cheap sees every such edit, so the copies
+    # are compared here, on every push and pull request.
+    name: Hermes skill and prompt copies match their sources
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install the spec-kit workspace
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+      - name: Compare the Hermes copies with their sources
+        run: |
+          set -euo pipefail
+          node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check
