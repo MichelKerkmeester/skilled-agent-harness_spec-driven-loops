@@ -328,8 +328,12 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
   # name is itself a link; once it becomes a directory of links, its entries are the
   # links instead, so the real root is named first and the legacy name is the fallback
   # for a checkout that carries only it.
+  # Select by the sentinel this file already uses to recognise the tree, not by the
+  # directory existing: a checkout part-way through the move carries an empty real
+  # directory under the new name while the tree is still under the old one, and a
+  # directory test picks the empty one and then fails looking for manifests inside it.
   ROUTE_SOURCE="$REPO_ROOT/.skilled"
-  [ -d "$ROUTE_SOURCE" ] || ROUTE_SOURCE="$REPO_ROOT/.opencode"
+  [ -f "$ROUTE_SOURCE/skills/system-spec-kit/SKILL.md" ] || ROUTE_SOURCE="$REPO_ROOT/.opencode"
   ROUTE_SOURCE="$(cd -P "$ROUTE_SOURCE" && pwd)"
   if ! ROUTE_RUNTIME="$(node -e '
       const layout = require(process.argv[1]);
