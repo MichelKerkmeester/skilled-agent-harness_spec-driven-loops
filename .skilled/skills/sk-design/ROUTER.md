@@ -7,7 +7,7 @@ trigger_phrases:
   - "design intent routing"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 2.0.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---
