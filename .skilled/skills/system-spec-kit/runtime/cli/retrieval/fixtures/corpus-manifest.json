@@ -1,5 +1,5 @@
 {
-  "corpusHash": "16a8760de8fc22e8dec3a09c437c5ae7f3849248e44b8d49d4e44bc7bd189cfd",
+  "corpusHash": "ba32a10b5195f56be7277f8d4814d58ddf1ca1325eaca31986796b314f12172e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27278,
+  "includedPathCount": 27296,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -1655,7 +1655,6 @@
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
-    ".skilled/skills/mcp-tooling/manual-testing-playbook/compiled-routing/ordered-bundle-figma-refero-compiled-routing.md",
     ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
     ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/aside-browser-automation.md",
     ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/chrome-devtools-browser-debug.md",
@@ -5881,7 +5880,6 @@
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-claude-code.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-opencode.md",
-    ".skilled/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/short-prompt-baseline.md",
@@ -5990,7 +5988,6 @@
     ".skilled/skills/sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/assets/shared/source-template.md",
-    ".skilled/skills/sk-doc/sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.2.0.0.md",
@@ -5998,9 +5995,7 @@
     ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.4.0.0.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.5.0.0.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/benchmark-families/author-behavior-package.md",
-    ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/benchmark-families/author-lane-c-index.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/benchmark-families/match-lane-b-fixture.md",
-    ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/evidence-and-boundaries/archive-compiled-routing-safely.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/evidence-and-boundaries/prepare-lane-a-inputs.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/family-routing/leave-in-flight-benchmark.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/family-routing/promote-mcp-result.md",
@@ -6012,9 +6007,6 @@
     ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/pitfalls.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/worked-example.md",
-    ".skilled/skills/sk-doc/sk-create-benchmark/references/skill-benchmark/serving-snapshot-schema.md",
-    ".skilled/skills/sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md",
-    ".skilled/skills/sk-doc/sk-create-benchmark/scripts/README.md",
     ".skilled/skills/sk-doc/sk-create-changelog/README.md",
     ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
     ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
@@ -27293,14 +27285,40 @@
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/plan.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/spec.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-001.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-002.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-003.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-004.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-005.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-006.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-007.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-008.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-009.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-010.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/review-report.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/spec.md",
     "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "55c957baefb1af37c5124552e59c3302b5d419a1db70cdd24a48984a77e2f215",
+  "manifestHash": "cc963ad4b29aaef74902f87b732c049b59a815a7c53ebfa58b5aacd1492f85a2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27309,18 +27327,6 @@
     ".skilled/hooks"
   ],
   "skippedPaths": [
-    {
-      "path": ".skilled/hooks/dispatch/lib/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/pi/node_modules",
-      "reason": "excluded directory"
-    },
     {
       "path": ".skilled/hooks/git-preflight/README.md",
       "reason": "duplicate of an already-indexed document"
@@ -27336,14 +27342,6 @@
     {
       "path": ".skilled/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/skills/mcp-code-mode/mcp-server/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/mcp-code-mode/mcp-server/node_modules",
-      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/sk-code/benchmark/fixtures",
@@ -27402,10 +27400,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/sk-communication/cli-communication-projection/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/sk-communication/cli-communication-projection/test/fixtures",
       "reason": "excluded directory"
     },
@@ -27415,14 +27409,6 @@
     },
     {
       "path": ".skilled/skills/sk-design/sk-design-diagram/scripts/tests/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -27470,15 +27456,7 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -27700,18 +27678,6 @@
     {
       "path": "specs/agents/z_archive",
       "reason": "excluded directory"
-    },
-    {
-      "path": "specs/ai-systems",
-      "reason": "symlinked directory"
-    },
-    {
-      "path": "specs/anobel.com",
-      "reason": "symlinked directory"
-    },
-    {
-      "path": "specs/app-mobile-cli",
-      "reason": "symlinked directory"
     },
     {
       "path": "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/scratch",
@@ -28226,14 +28192,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-fast-mode/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-openai-fast-mode/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/hooks/013-pi-cache-affinity-compat/scratch",
       "reason": "excluded directory"
     },
@@ -28584,10 +28542,6 @@
     {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
-    },
-    {
-      "path": "specs/obsidian",
-      "reason": "symlinked directory"
     },
     {
       "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages",
@@ -30231,10 +30185,6 @@
     },
     {
       "path": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -32459,6 +32409,18 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "55c957baefb1af37c5124552e59c3302b5d419a1db70cdd24a48984a77e2f215",
+  "manifestHash": "cc963ad4b29aaef74902f87b732c049b59a815a7c53ebfa58b5aacd1492f85a2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14938,9 +14938,6 @@
     "benchmark re run mistake": [
       "benchmark re-run mistake"
     ],
-    "benchmark readme md index scaffold": [
-      "benchmark/README.md index scaffold"
-    ],
     "benchmark readme rewrite": [
       "benchmark readme rewrite"
     ],
@@ -15012,9 +15009,6 @@
     ],
     "benchmark routing coverage tasks": [
       "benchmark routing coverage tasks"
-    ],
-    "benchmark run label naming": [
-      "benchmark run-label naming"
     ],
     "benchmark runner command": [
       "benchmark runner command"
@@ -15207,9 +15201,6 @@
     ],
     "bind packet goal": [
       "bind packet goal"
-    ],
-    "bind the goal": [
-      "bind the goal"
     ],
     "binding block check": [
       "binding block check"
@@ -19542,6 +19533,9 @@
     "claudish to english across clis": [
       "claudish to english across CLIs"
     ],
+    "clean clone ci simulation": [
+      "clean clone ci simulation"
+    ],
     "clean close reap barrier test": [
       "clean-close reap barrier test"
     ],
@@ -22034,11 +22028,11 @@
     "closed route algebra implementation": [
       "closed route algebra implementation"
     ],
+    "closed seven model gateway roster": [
+      "closed seven-model gateway roster"
+    ],
     "closed status discovery": [
       "closed status discovery"
-    ],
-    "closed two model gateway roster": [
-      "closed two-model gateway roster"
     ],
     "closedb lifecycle enforcement": [
       "closeDb lifecycle enforcement"
@@ -26076,9 +26070,6 @@
     "compiled routing architecture": [
       "compiled routing architecture"
     ],
-    "compiled routing archive convention": [
-      "compiled routing archive convention"
-    ],
     "compiled routing authority": [
       "compiled routing authority"
     ],
@@ -27947,9 +27938,6 @@
     "coordinated launcher wal durability remediation": [
       "coordinated launcher WAL durability remediation"
     ],
-    "copied completion criteria": [
-      "copied completion criteria"
-    ],
     "copilot advisor brief": [
       "copilot advisor brief"
     ],
@@ -28375,6 +28363,9 @@
     ],
     "council dashboard": [
       "council dashboard"
+    ],
+    "council database test isolation": [
+      "council database test isolation"
     ],
     "council deliberation": [
       "council deliberation"
@@ -34325,6 +34316,9 @@
     "deep loop runtime catalog typed spine": [
       "deep-loop runtime catalog typed spine"
     ],
+    "deep loop runtime ci job": [
+      "deep-loop runtime ci job"
+    ],
     "deep loop runtime code readmes": [
       "deep-loop runtime code readmes"
     ],
@@ -35569,6 +35563,15 @@
     "deep review findings remediation": [
       "deep-review findings remediation"
     ],
+    "deep review fix closure gate": [
+      "deep review fix closure gate"
+    ],
+    "deep review fix tasks": [
+      "deep review fix tasks"
+    ],
+    "deep review fixes shipped": [
+      "deep review fixes shipped"
+    ],
     "deep review fold in diff": [
       "deep-review fold-in diff"
     ],
@@ -35786,6 +35789,9 @@
     ],
     "deep review remediation router": [
       "deep-review remediation router"
+    ],
+    "deep review remediation source root": [
+      "deep review remediation source root"
     ],
     "deep review remediation status": [
       "deep review remediation status"
@@ -41448,6 +41454,9 @@
     "dual root phase goal": [
       "dual root phase goal"
     ],
+    "dual root resolver findings": [
+      "dual root resolver findings"
+    ],
     "dual root task breakdown": [
       "dual root task breakdown"
     ],
@@ -46599,6 +46608,9 @@
     ],
     "find similar images locally": [
       "find similar images locally"
+    ],
+    "find source root function": [
+      "find source root function"
     ],
     "find tasks by keyword": [
       "find tasks by keyword"
@@ -52210,6 +52222,9 @@
     "hermes mcp deny by default": [
       "hermes mcp deny by default"
     ],
+    "hermes mirror ci guard": [
+      "hermes mirror ci guard"
+    ],
     "hermes oneshot": [
       "hermes oneshot"
     ],
@@ -52754,6 +52769,9 @@
     "hook feature flags tasks": [
       "hook feature flags tasks"
     ],
+    "hook flags either root name": [
+      "hook flags either root name"
+    ],
     "hook flags guard implementation": [
       "hook-flags guard implementation"
     ],
@@ -53080,12 +53098,6 @@
     ],
     "hub and spoke topology": [
       "hub and spoke topology"
-    ],
-    "hub benchmark folder convention": [
-      "hub benchmark folder convention"
-    ],
-    "hub benchmark tree index": [
-      "hub benchmark tree index"
     ],
     "hub canon implementation summary": [
       "hub canon implementation summary"
@@ -67301,6 +67313,9 @@
     "node engine resolver tasks": [
       "node engine resolver tasks"
     ],
+    "node gate fully green": [
+      "node gate fully green"
+    ],
     "node interpreter probe fallback": [
       "node interpreter probe fallback"
     ],
@@ -72387,6 +72402,9 @@
     "per root playbook measurement plan": [
       "per-root playbook measurement plan"
     ],
+    "per row routing dump": [
+      "per-row routing dump"
+    ],
     "per runtime activation gate": [
       "per-runtime activation gate"
     ],
@@ -73685,6 +73703,9 @@
     ],
     "phase 13 tasks": [
       "phase 13 tasks"
+    ],
+    "phase 14 closure gate": [
+      "phase 14 closure gate"
     ],
     "phase 14 implementation summary": [
       "phase 14 implementation summary"
@@ -75863,6 +75884,9 @@
     "playbook operator contract gate": [
       "playbook operator contract gate"
     ],
+    "playbook operator contract violations": [
+      "playbook operator contract violations"
+    ],
     "playbook outcome persistence": [
       "playbook outcome persistence"
     ],
@@ -76887,6 +76911,36 @@
     ],
     "pre existing broken leaves": [
       "pre-existing broken leaves"
+    ],
+    "pre existing ci debt": [
+      "pre-existing ci debt"
+    ],
+    "pre existing ci debt acceptance": [
+      "pre-existing ci debt acceptance"
+    ],
+    "pre existing ci debt plan": [
+      "pre-existing ci debt plan"
+    ],
+    "pre existing ci debt summary": [
+      "pre-existing ci debt summary"
+    ],
+    "pre existing ci debt tasks": [
+      "pre-existing ci debt tasks"
+    ],
+    "pre existing defects acceptance": [
+      "pre-existing defects acceptance"
+    ],
+    "pre existing defects phase 14": [
+      "pre-existing defects phase 14"
+    ],
+    "pre existing defects plan": [
+      "pre-existing defects plan"
+    ],
+    "pre existing defects summary": [
+      "pre-existing defects summary"
+    ],
+    "pre existing defects tasks": [
+      "pre-existing defects tasks"
     ],
     "pre existing failure remediation": [
       "pre-existing failure remediation"
@@ -84444,6 +84498,9 @@
     "retired prefix criterion restated": [
       "retired prefix criterion restated"
     ],
+    "retired skill benchmark removal": [
+      "retired skill-benchmark removal"
+    ],
     "retired tool id sweep": [
       "retired tool id sweep"
     ],
@@ -85728,6 +85785,9 @@
     "root and opencode infrastructure strays": [
       "root and opencode infrastructure strays"
     ],
+    "root assumption defect class": [
+      "root assumption defect class"
+    ],
     "root benchmark kebab case audit": [
       "root benchmark kebab-case audit"
     ],
@@ -85779,9 +85839,6 @@
     "root count vitest add": [
       "root count vitest add"
     ],
-    "root coverage table": [
-      "root coverage table"
-    ],
     "root doc clause": [
       "root doc clause"
     ],
@@ -85820,6 +85877,9 @@
     ],
     "root name consumer migration tasks": [
       "root-name consumer migration tasks"
+    ],
+    "root name hardcode plan": [
+      "root name hardcode plan"
     ],
     "root not scanned cannot fail": [
       "root not scanned cannot fail"
@@ -86171,9 +86231,6 @@
     ],
     "router command skeleton": [
       "router command skeleton"
-    ],
-    "router compiled parity baseline label": [
-      "router-compiled-parity-baseline label"
     ],
     "router compliance records": [
       "router compliance records"
@@ -86550,6 +86607,12 @@
     "routing parity remediation": [
       "routing parity remediation"
     ],
+    "routing ratchet deep review wave": [
+      "routing ratchet deep-review wave"
+    ],
+    "routing ratchet fixed": [
+      "routing ratchet fixed"
+    ],
     "routing refresh tasks": [
       "routing refresh tasks"
     ],
@@ -86894,9 +86957,6 @@
     ],
     "run javascript in browser cli": [
       "run javascript in browser cli"
-    ],
-    "run label index table template": [
-      "run-label index table template"
     ],
     "run manual playbook scenario": [
       "run manual playbook scenario"
@@ -88079,6 +88139,9 @@
     ],
     "scaffold verification region": [
       "scaffold verification region"
+    ],
+    "scaffold version mismatch fix": [
+      "scaffold version mismatch fix"
     ],
     "scan classifies regular file": [
       "scan classifies regular file"
@@ -89659,6 +89722,12 @@
     "sentinel repair criteria": [
       "sentinel repair criteria"
     ],
+    "sentinel selection block": [
+      "sentinel selection block"
+    ],
+    "sentinel selection block results": [
+      "sentinel selection block results"
+    ],
     "sentinel shipped state": [
       "sentinel shipped state"
     ],
@@ -89725,14 +89794,8 @@
     "serving snapshot current status": [
       "serving snapshot current status"
     ],
-    "serving snapshot json fields": [
-      "serving-snapshot.json fields"
-    ],
     "serving snapshot renderer plan": [
       "serving snapshot renderer plan"
-    ],
-    "serving snapshot schema": [
-      "serving snapshot schema"
     ],
     "serving snapshot schema renderer": [
       "serving snapshot schema renderer"
@@ -89817,9 +89880,6 @@
     ],
     "session goal isolation": [
       "session goal isolation"
-    ],
-    "session goal objective": [
-      "session goal objective"
     ],
     "session goal state architecture": [
       "session goal state architecture"
@@ -96274,8 +96334,7 @@
       "skill authoring checklist"
     ],
     "skill benchmark": [
-      "skill benchmark",
-      "skill-benchmark"
+      "skill benchmark"
     ],
     "skill benchmark ai council executor parity": [
       "skill-benchmark ai-council executor parity"
@@ -96361,6 +96420,9 @@
     "skill benchmark hub re layer": [
       "skill-benchmark hub re-layer"
     ],
+    "skill benchmark lane removed": [
+      "skill-benchmark lane removed"
+    ],
     "skill benchmark ledger head linkage": [
       "skill benchmark ledger head linkage"
     ],
@@ -96427,9 +96489,6 @@
     "skill benchmark re layer tasks": [
       "skill-benchmark re-layer tasks"
     ],
-    "skill benchmark readme template": [
-      "skill-benchmark readme template"
-    ],
     "skill benchmark recall": [
       "skill benchmark recall"
     ],
@@ -96460,11 +96519,14 @@
     "skill benchmark reference sealing tasks": [
       "skill benchmark reference sealing tasks"
     ],
+    "skill benchmark removal closure gate": [
+      "skill-benchmark removal closure gate"
+    ],
     "skill benchmark removal plan": [
       "skill-benchmark removal plan"
     ],
-    "skill benchmark report storage": [
-      "skill-benchmark-report storage"
+    "skill benchmark removal tasks": [
+      "skill-benchmark removal tasks"
     ],
     "skill benchmark resume adapter": [
       "Skill Benchmark resume adapter"
@@ -96525,9 +96587,6 @@
     ],
     "skill benchmark shadow parity tasks": [
       "Skill Benchmark shadow parity tasks"
-    ],
-    "skill benchmark storage guide": [
-      "skill benchmark storage guide"
     ],
     "skill benchmark surface slicing": [
       "skill-benchmark surface slicing"
@@ -97528,6 +97587,9 @@
     "skilled migration completion criteria": [
       "skilled migration completion criteria"
     ],
+    "skilled migration deep review": [
+      "skilled migration deep review"
+    ],
     "skilled migration design": [
       "skilled migration design"
     ],
@@ -97542,6 +97604,9 @@
     ],
     "skilled migration research": [
       "skilled migration research"
+    ],
+    "skilled migration review fixes": [
+      "skilled migration review fixes"
     ],
     "skilled migration verification": [
       "skilled migration verification"
@@ -98159,6 +98224,9 @@
     "source root migration directive": [
       "source root migration directive"
     ],
+    "source root migration review": [
+      "source root migration review"
+    ],
     "source root move acceptance criteria": [
       "source root move acceptance criteria"
     ],
@@ -98182,6 +98250,21 @@
     ],
     "source root move verification evidence": [
       "source-root-move verification evidence"
+    ],
+    "source root remediation acceptance": [
+      "source root remediation acceptance"
+    ],
+    "source root remediation summary": [
+      "source root remediation summary"
+    ],
+    "source root remediation tasks": [
+      "source root remediation tasks"
+    ],
+    "source root resolver": [
+      "source root resolver"
+    ],
+    "source root resolver plan": [
+      "source root resolver plan"
     ],
     "source root rollback plan": [
       "source root rollback plan"
@@ -109212,9 +109295,6 @@
     ],
     "where do i start designing": [
       "where do i start designing"
-    ],
-    "where do skill benchmark reports live": [
-      "where do skill-benchmark reports live"
     ],
     "where do the colours come from": [
       "where do the colours come from"
