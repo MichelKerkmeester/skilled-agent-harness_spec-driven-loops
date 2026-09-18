@@ -366,15 +366,17 @@ function unread(part) { if (part ~ /\.(opencode|skilled)/ && !hits) emit("miss",
       continue
     }
     line = part
-    while (match(line, /(^|[^A-Za-z0-9_])\.opencode\/[][A-Za-z0-9._*?\/-]*/)) {
+    while (match(line, /(^|[^A-Za-z0-9_])\.(opencode|skilled)\/[][A-Za-z0-9._*?\/-]*/)) {
       tok = substr(line, RSTART, RLENGTH); if (substr(tok, 1, 1) != ".") tok = substr(tok, 2)
       line = substr(line, RSTART + RLENGTH)
       if (line ~ /^(\$|\{)/) emit("bare", tok)
       else emit("run", tok)
     }
     line = part
-    while (match(line, /(^|[^A-Za-z0-9_\/.])\.opencode([^\/A-Za-z0-9_]|$)/)) {
-      emit("bare", ".opencode"); line = substr(line, RSTART + RLENGTH)
+    while (match(line, /(^|[^A-Za-z0-9_\/.])\.(opencode|skilled)([^\/A-Za-z0-9_]|$)/)) {
+      tok = substr(line, RSTART, RLENGTH)
+      sub(/^[^.]*/, "", tok); sub(/[^A-Za-z0-9_].*$/, "", tok)
+      emit("bare", tok); line = substr(line, RSTART + RLENGTH)
     }
     if (part ~ /\\\.(opencode|skilled)\// || part ~ /(\(|\|)(opencode|skilled)(\||\))/) emit("note", "regex")
     unread(part)

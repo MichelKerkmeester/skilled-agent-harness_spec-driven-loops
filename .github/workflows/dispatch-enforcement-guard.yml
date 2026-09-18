@@ -41,5 +41,5 @@ jobs:
       - name: Run the dispatch audit core suite
         run: |
           set -euo pipefail
-          npm --prefix .opencode ci
-          npx --prefix .opencode vitest run .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs
+          npm --prefix .skilled ci
+          npx --prefix .skilled vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
