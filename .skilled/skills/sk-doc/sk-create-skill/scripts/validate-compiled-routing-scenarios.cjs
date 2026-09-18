@@ -9,12 +9,12 @@
  * validate-compiled-routing-scenarios.cjs — the content admission gate for a
  * hub's compiled-routing scenario matrix.
  *
- * The frozen playbook loader admits an id-only scenario: a file whose only
- * assertion is an `id`, with null pass-criteria and no typed gold, loads clean
- * and then scores as vacuous "pass" forever. That loader is SHA-256-pinned and
- * must never change, so the stricter admission contract lives here, in a
- * non-frozen sibling that only READS the same files. This validator hard-rejects
- * an id-only or null-criteria scenario BEFORE it reaches the loader, and it
+ * The skill-benchmark playbook loader, retired with its lane, admitted an
+ * id-only scenario: a file whose only assertion is an `id`, with null
+ * pass-criteria and no typed gold, loaded clean and then scored as vacuous
+ * "pass" forever. That loader was SHA-256-pinned, so the stricter admission
+ * contract was built here, in a sibling that only READS the same files. This
+ * validator hard-rejects an id-only or null-criteria scenario, and it
  * additionally requires the full compiled-routing evidence contract that proves a
  * scenario is really exercising compiled serving authority rather than silently
  * scoring legacy routing.
@@ -43,8 +43,7 @@
  *
  * The verdict vocabulary is the single PASS / FAIL / SKIP enum shared across the
  * content validator, the topology validator, the cutover executor, and the LUNA
- * acceptance stage. It never edits the frozen loader or either other frozen
- * scorer file.
+ * acceptance stage.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -101,8 +100,8 @@ function bodyAfterFrontmatter(text) {
   return parseFrontmatter(String(text || '')).body;
 }
 
-// Single-line scalar, quote-tolerant, matching the loader's own convention so a
-// value parses identically here and in the frozen loader.
+// Single-line scalar, quote-tolerant, the convention the retired skill-benchmark
+// loader used, so a value parses the way it always has.
 function scalar(block, key) {
   const m = new RegExp(`(?:^|\\n)[ \\t]*${key}:[ \\t]*["']?([^"'\\n]+?)["']?[ \\t]*(?:\\n|$)`).exec(block);
   return m ? m[1].trim() : null;
@@ -119,8 +118,8 @@ function list(block, key) {
   return dash[1].split('\n').map((l) => l.replace(/^[ \t]*-[ \t]*/, '').trim().replace(/^["'\`]+|["'\`]+$/g, '')).filter(Boolean);
 }
 
-// The typed-gold pair list, in the same fixed two-line shape the frozen loader
-// and the topology validator both parse, plus the explicit empty-list form.
+// The typed-gold pair list, in the same fixed two-line shape the topology
+// validator parses, plus the explicit empty-list form.
 function leafPairs(block) {
   if (/(?:^|\n)[ \t]*expected_leaf_resources:[ \t]*\[\][ \t]*(?:\n|$)/.test(block)) {
     return { present: true, pairs: [] };
@@ -137,7 +136,7 @@ function leafPairs(block) {
 }
 
 // Body prompt: the fenced `**Exact prompt**` block (the canonical shape) or an
-// inline `Prompt:` line, mirroring what the frozen loader accepts.
+// inline `Prompt:` line, the two forms the retired skill-benchmark loader accepted.
 function parsePrompt(body) {
   const fenced = /\*\*(?:Exact prompt|Realistic user prompt)\*\*:?\s*\n+```[a-z]*\n([\s\S]*?)\n```/i.exec(body);
   if (fenced) return fenced[1].trim();
@@ -384,10 +383,19 @@ module.exports = {
 // 8. CLI
 // ─────────────────────────────────────────────────────────────────────────────
 
+function parseArgs(argv) {
+  const args = { dir: null, strict: false, format: 'text' };
+  for (let i = 0; i < argv.length; i += 1) {
+    const a = argv[i];
+    if (a === '--dir') { args.dir = argv[i + 1]; i += 1; }
+    else if (a === '--strict') { args.strict = true; }
+    else if (a === '--format') { args.format = argv[i + 1]; i += 1; }
+  }
+  return args;
+}
+
 if (require.main === module) {
-  const args = require(path.join(
-    __dirname, '..', '..', '..', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', '_args.cjs',
-  )).parse(process.argv.slice(2));
+  const args = parseArgs(process.argv.slice(2));
   const dir = args.dir ? path.resolve(String(args.dir)) : null;
   if (!dir) {
     process.stderr.write('usage: validate-compiled-routing-scenarios.cjs --dir <compiled-routing scenario dir> [--strict] [--format json]\n');

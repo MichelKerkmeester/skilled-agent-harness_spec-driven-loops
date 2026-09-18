@@ -134,4 +134,20 @@ function verdictFor(text) {
   assert.ok(v.problems.some((p) => /leaks its own route/.test(p)), 'must name the leaked route token');
 }
 
+// 5. The CLI starts on its own: without --dir it prints usage and exits 2, and
+// over a directory it reports the scenarios it validated.
+{
+  const { spawnSync } = require('node:child_process');
+  const cli = path.join(__dirname, '..', 'validate-compiled-routing-scenarios.cjs');
+  const bare = spawnSync(process.execPath, [cli], { encoding: 'utf8' });
+  assert.equal(bare.status, 2, `CLI without --dir should exit 2, got ${bare.status}: ${bare.stderr}`);
+  assert.match(bare.stderr, /usage: validate-compiled-routing-scenarios\.cjs --dir/);
+  withTempDir((dir) => {
+    fs.writeFileSync(path.join(dir, 'scenario.md'), COMPLETE, 'utf8');
+    const run = spawnSync(process.execPath, [cli, '--dir', dir, '--strict', '--format', 'json'], { encoding: 'utf8' });
+    assert.equal(run.status, 0, `CLI over one complete scenario should exit 0, got ${run.status}: ${run.stderr}`);
+    assert.equal(JSON.parse(run.stdout).fail, 0, 'the complete scenario must not fail through the CLI');
+  });
+}
+
 console.log('[sk-doc] validate-compiled-routing-scenarios content-admission fixtures passed');
