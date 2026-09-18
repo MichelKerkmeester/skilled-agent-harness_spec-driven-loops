@@ -12,6 +12,7 @@ version: 1.0.0.0
 
 # sk-vision Benchmark
 
+> Archive status: the Lane C harness that produced these reports was retired with the skill-benchmark lane, so none of them can be re-run from the current tree. They stay as frozen historical evidence.
 This directory is the output home for executed sk-vision scenarios. The `manual-testing-playbook/` corpus is the **input**; this directory holds the **output**. Runs never rewrite the playbook corpus.
 
 ---
@@ -45,38 +46,7 @@ benchmark/
 
 ---
 
-## 3. HOW TO RUN
-
-### Lane C, full corpus
-
-```bash
-node .skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
-  --skill .skilled/skills/sk-vision
-```
-
-### Manual playbook scenario, single scenario
-
-```bash
-node the retired scenario-persistence wrapper \
-  --skill .skilled/skills/sk-vision \
-  --scenario VSN-012 \
-  --variant status-first-run \
-  --verdict PASS \
-  --reason "status returns model_loaded with device and vram fields" \
-  --stage routing \
-  --evidence <comma-separated absolute evidence paths>
-```
-
-Rules:
-
-1. Verdicts are `PASS`, `FAIL`, or `SKIP`: nothing else. A `SKIP` must name its blocker.
-2. Every `PASS` persists through `--outcome-json` with `executionContext.requireDurableEvidence: true` and one controlled evidence class (`unit`, `adapter-driven`, `registered-path`, or `native-host-delivered`); evidence paths must be non-symlink regular files beneath the evidence root.
-3. Report files (`skill-benchmark-report.{json,md}`, `results.csv`, `failed-runs.md`, `findings-and-recommendations.md`) are renderer-owned and never hand-authored.
-
----
-
-## 4. REFERENCE
+## 3. REFERENCE
 
 - Corpus: `manual-testing-playbook/manual-testing-playbook.md`
 - Wrapper: the retired scenario-persistence wrapper
-- Runner: `.skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs`

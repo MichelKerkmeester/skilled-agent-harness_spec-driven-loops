@@ -104,9 +104,9 @@ emits leaf paths, and this router never re-decides the mode.
   / version notes loads. Fired by "changelog / release notes / what shipped /
   since the last version" requests.
 - **benchmark leaves** — the benchmark shared README, worked example, and report
-  template a request to author a behavior / model / skill benchmark
-  loads. Fired by "create a benchmark / benchmark suite / behavior benchmark /
-  skill benchmark" requests.
+  template a request to author a behavior / model benchmark
+  loads. Fired by "create a benchmark / benchmark suite / behavior benchmark"
+  requests.
 - **diff leaves** — the diff README, workflow, and worked example a request to
   produce a before/after document diff loads. Fired by "document diff / before
   and after diff / visual document diff" requests.
@@ -265,7 +265,6 @@ RESOURCE_MAP = {
         "sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md",
         "sk-create-benchmark/assets/shared/benchmark-report-template.md",
         "sk-create-benchmark/assets/shared/source-template.md",
-        "sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md",
         "sk-create-benchmark/references/agent-improvement/agent-improvement-authoring-guide.md",
         "sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md",
         "sk-create-benchmark/references/model-benchmark/model-benchmark-fixture-guide.md",
@@ -273,8 +272,6 @@ RESOURCE_MAP = {
         "sk-create-benchmark/references/shared/case-studies.md",
         "sk-create-benchmark/references/shared/pitfalls.md",
         "sk-create-benchmark/references/shared/worked-example.md",
-        "sk-create-benchmark/references/skill-benchmark/serving-snapshot-schema.md",
-        "sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md",
         "sk-create-changelog/assets/changelog-template.md",
         "sk-create-changelog/references/README.md",
         "sk-create-changelog/references/topology-edge-cases.md",

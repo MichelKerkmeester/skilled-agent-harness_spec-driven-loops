@@ -216,14 +216,6 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/<hu
 
 Pass looks like `OK: parent-skill-check — all hard invariants passed`. Exit 0. This is the routing-parity gate: `routerSignals` vs `modes[]`, `tieBreak` coverage, `surfaceBundle` only with surfaces, on-disk packet paths, and the one-identity rule.
 
-Routing-drift check (aliases and typed vocabulary still agree across registry, router, and packets):
-
-```bash
-node .skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/parent-hub-vocab-sync.cjs --skill .skilled/skills/<hub-name>
-```
-
-Pass is exit 0 with `"driftDetected": false`. Exit 1 means `VOCAB-DRIFT` (orphan aliases, collisions, or ownership drift). Exit 2 means the hub-router or registry could not be parsed. Run this after you edit `aliases[]` or `vocabularyClasses`. Skip it when you only moved files and left vocabulary untouched.
-
 Completion gate (must exit clean):
 
 ```bash

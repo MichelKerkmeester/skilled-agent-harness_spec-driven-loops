@@ -40,14 +40,6 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (th
 | MT-010 | [`hub-routing/obsidian-note-management.md`](../manual-testing-playbook/hub-routing/obsidian-note-management.md) | `mcp-obsidian` (Obsidian/daily-note/vault signal) |
 | MT-011 | [`hub-routing/magicpath-component-lookup.md`](../manual-testing-playbook/hub-routing/magicpath-component-lookup.md) | `mcp-magicpath` (MagicPath/saved-component/component-source signal) |
 
-### Design-transport bundle (Figma + Refero) — primary evidence
-
-The two design-reference transports (`mcp-figma`, `mcp-refero`) are the hub's ordered design-transport bundle: a single design task legitimately spans a render/token source (`mcp-figma`) and a real shipped-app reference source (`mcp-refero`). This pairing is a primary evidence concern, not a prose aside — its serving-authority parity under compiled routing is exercised by the compiled-routing scenario `MT-CR-001` (`compiled-routing/ordered-bundle-figma-refero-compiled-routing.md`), which routes the real-app-reference leg to `mcp-refero` and gates on the compiled decision matching legacy.
-
-| ID | File | Expected `workflowMode` |
-|----|------|--------------------------|
-| MT-CR-001 | [`compiled-routing/ordered-bundle-figma-refero-compiled-routing.md`](../manual-testing-playbook/compiled-routing/ordered-bundle-figma-refero-compiled-routing.md) | `mcp-refero` (design-transport bundle; Figma leg covered by MT-003) |
-
 ### Blind holdouts (6 → 7 — one per mode, coverage 6/6 → 7/7)
 
 | ID | File | Expected `workflowMode` |

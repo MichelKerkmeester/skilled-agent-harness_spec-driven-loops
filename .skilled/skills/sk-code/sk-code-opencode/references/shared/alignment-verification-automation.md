@@ -109,8 +109,7 @@ Notes:
 - [code_organization.md](code-organization/overview-and-module-organization.md)
 - [universal_patterns.md](universal-patterns/naming-and-commenting.md)
 - [hooks.md](./hooks.md)
-- RESOURCE_MAP equality guard: `.skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts` — the Vitest suite that enforces parent↔child RESOURCE_MAP equality and the compiled-destination ↔ leaf-manifest ↔ RESOURCE_MAP bijection. This, not `verify_alignment_drift.py`, is the equality authority.
-- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py`, and the router-sync suite together as one gate.
+- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier and `verify_stack_folders.py` together as one gate.
 
 ---
 

@@ -15,6 +15,7 @@ contextType: "general"
 
 > **Retired lane:** the Lane C skill-benchmark harness, its runner, its scoring contract and the `/deep:skill-benchmark` command were removed. No skill-benchmark report was archived in this tree, and no new run can be started from it.
 
+
 ---
 
 ## 1. OVERVIEW
@@ -23,14 +24,14 @@ The retired deep-improvement Lane C skill-benchmark harness benchmarked `cli-ext
 
 Two trace modes score the same corpus:
 
-- **router** is deterministic and offline: it replays `hub-router.json` + `mode-registry.json`. This is the CI gate.
+- **router** is deterministic and offline: it replays `hub-router.json` + `mode-registry.json`. It was the CI gate.
 - **live** dispatches each scenario through `cli-opencode` to a real model and grades the model's stated routing plus observed activation.
 
 ---
 
 ## 2. RUN-LABEL INDEX
 
-No Lane C skill-benchmark run was archived for `cli-external-orchestration` before the lane was removed, so no run-label row exists. The compiled-routing archive in section 5 is the live content of this tree.
+No Lane C skill-benchmark run was archived for `cli-external-orchestration` before the lane was removed, so no run-label row exists. The compiled-routing archive in section 4 is the live content of this tree.
 
 | Run label | Trace mode | Verdict | Status | Notes |
 |---|---|---|---|---|
@@ -38,13 +39,7 @@ No Lane C skill-benchmark run was archived for `cli-external-orchestration` befo
 
 ---
 
-## 3. RE-RUNNING
-
-There is no re-run path. The Lane C harness that produced skill-benchmark reports was removed, and `loop-host.cjs` now accepts only the surviving `agent-improvement` and `model-benchmark` modes. New compiled-routing evidence is archived under the convention in section 5 instead.
-
----
-
-## 4. RELATED RESOURCES
+## 3. RELATED RESOURCES
 
 | Document | Purpose |
 |---|---|
@@ -53,8 +48,7 @@ There is no re-run path. The Lane C harness that produced skill-benchmark report
 
 ---
 
-## 5. COMPILED-ROUTING ARCHIVE
+## 4. COMPILED-ROUTING ARCHIVE
 
 Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
-Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

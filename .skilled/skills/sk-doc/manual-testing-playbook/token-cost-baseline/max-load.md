@@ -18,7 +18,6 @@ expected_resources:
   - sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md
   - sk-create-benchmark/assets/shared/benchmark-report-template.md
   - sk-create-benchmark/assets/shared/source-template.md
-  - sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md
   - sk-create-benchmark/references/agent-improvement/agent-improvement-authoring-guide.md
   - sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md
   - sk-create-benchmark/references/model-benchmark/model-benchmark-fixture-guide.md
@@ -26,7 +25,6 @@ expected_resources:
   - sk-create-benchmark/references/shared/case-studies.md
   - sk-create-benchmark/references/shared/pitfalls.md
   - sk-create-benchmark/references/shared/worked-example.md
-  - sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md
   - sk-create-changelog/assets/changelog-template.md
   - sk-create-changelog/references/README.md
   - sk-create-changelog/references/topology-edge-cases.md
@@ -146,8 +144,6 @@ expected_leaf_resources:
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: assets/shared/source-template.md
   - workflow_mode: sk-create-benchmark
-    leaf_resource_id: assets/skill-benchmark/skill-benchmark-readme-template.md
-  - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/agent-improvement/agent-improvement-authoring-guide.md
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/behavior-benchmark/behavior-benchmark-guide.md
@@ -163,8 +159,6 @@ expected_leaf_resources:
     leaf_resource_id: references/shared/pitfalls.md
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/shared/worked-example.md
-  - workflow_mode: sk-create-benchmark
-    leaf_resource_id: references/skill-benchmark/skill-benchmark-storage-guide.md
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
   - workflow_mode: sk-create-changelog

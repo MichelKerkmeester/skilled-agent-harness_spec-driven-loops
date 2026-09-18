@@ -291,49 +291,20 @@ nothing behind, and the next person has no way to know the playbook was ever exe
 Run folders are named `<YYYY-MM-DD>--<subject>--<variant>`, dated by execution. When a run is
 **feature-scoped** — a hand-derived validation of one feature or scenario group rather than a full-corpus
 harness sweep — name the `<variant>` for the feature (e.g. `goal-hook`) and record the model/executor
-inside the report, so the folder stays legible across models. A full-corpus harness run auto-names the
-`<variant>` from the executor identity instead (see below). `create-benchmark` owns the grammar in full;
-see its storage sections for the field vocabulary and the one carve-out.
-
-### What Writes It
-
-The Lane C harness reads a skill's playbook as its default corpus and writes the whole folder,
-including the index row:
-
-```bash
-node .skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
-  --skill <skill-id>
-```
-
-Given no `--outputs-dir`, it derives the path above from the skill root, the execution date and the
-executor identity in the environment. Pass `--outputs-dir` only to send a run somewhere else on
-purpose; a run outside a `reports/` directory is deliberately left out of the index.
+inside the report, so the folder stays legible across models. `create-benchmark` owns the grammar in full;
+see its naming convention section for the field vocabulary and the one carve-out.
 
 ### Manual scenario completion
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A manual scenario is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted by the canonical wrapper into the skill's `benchmark/reports/<dated-run-label>/` folder. The renderer owns `skill-benchmark-report.md` and any `results.md` or `report.md` output; never hand-author those files.
-
-```bash
-node the retired scenario-persistence wrapper \
-  --skill <root-or-id> \
-  --scenario <ID> \
-  --variant <feature-slug> \
-  --verdict PASS|FAIL|SKIP \
-  --reason "<text>" \
-  --stage <slug> \
-  [--evidence <comma-paths>]
-```
-
-Lane C scoring remains owned by `scoring-contract.md` (retired with the skill-benchmark lane); this completion rule does not restate it.
-
-Every `PASS` uses `--outcome-json`, sets `executionContext.requireDurableEvidence` to `true`, and selects one controlled evidence class: `unit`, `adapter-driven`, `registered-path`, or `native-host-delivered`. Evidence paths must resolve beneath `executionContext.evidenceRoot` through non-symlink regular files; reports record repo-relative paths, byte counts, and SHA-256 values. A `PASS` also records the exact command, runtime plus observed version, sanitized payload fixture or an explicit not-applicable reason, observed executor or reason, and observed model or reason. Corrected runs list prior immutable report folders in `executionContext.supersedes`; the wrapper updates the external supersession manifest. Requested `--executor` and `--model` labels remain requested labels unless the outcome marks them observed.
+A manual scenario is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome, its reason and its evidence paths are
+recorded in the skill's `benchmark/reports/<dated-run-label>/` folder. The wrapper that once persisted them
+was retired with the Lane C harness, so the record is written by hand until a replacement exists.
 
 ### Rules
 
 - The corpus is an input. A run never edits `manual-testing-playbook/`, and gold that needs to change
   gets a corpus revision rather than a rewritten scenario.
-- `skill-benchmark-report.md` is renderer-owned and regenerated from the JSON. Never hand-edit it.
 - Curated summaries and result tables live in the run folder. Raw transcripts and copied artifacts stay
   in the spec packet that produced them, named in `source.md`.
 - A run whose result changes gets a new folder. A prior run is never overwritten.
@@ -508,7 +479,7 @@ including a mismatch, so documentation repair remains separate from enforcement.
 listed in the validator's staged warning set for the first fleet run; clean packages and new playbooks fail closed.
 Promotion removes a package from that warning set only after a clean run.
 
-The validator also checks the root playbook for the wrapper completion marker and the complete `PASS` / `FAIL` / `SKIP`
+The validator also checks the root playbook for the result-persistence completion marker and the complete `PASS` / `FAIL` / `SKIP`
 vocabulary as advisory warnings. Missing either item never creates a new fail-closed violation for an existing package.
 
 Exit codes are direct: `0` means conforming or staged warning, `1` means a fail-closed contract violation, and `2`

@@ -31,7 +31,6 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 | 5 | Token Cost Baseline | `token-cost-baseline/` | SD-013 .. SD-015 | Cost normalization: floor (1 resource), median (4 resources), ceiling (ON_DEMAND load-all). |
 | 6 | Agent Dispatch | `agent-dispatch/` | SD-018, SD-020 | `@markdown` agent dispatch across cli-claude-code and cli-opencode (DeepSeek v4 Pro direct API). EXECUTES real work — distinct from the routing-trace-probe sections. SD-019 was never authored as a separate on-disk scenario — see the §06 note. |
 | 7 | Holdout | `holdout/` | SD-H01 .. SD-H13, less H05, H10 and H12 | Generalization probes excluded from the fitted routing aggregate: natural-phrasing rewrites and independent keyword-blind prompts across SKILL_CREATION / DOC_QUALITY / README_CREATION / CHANGELOG / OPTIMIZATION / FEATURE_CATALOG. The two FLOWCHART probes moved to the design hub with their mode, and SD-H12 retired with the intent it probed. |
-| 8 | Compiled Routing | `compiled-routing/` | SD-CR-001 | Compiled-serving-authority parity: proves the compiled routing engine reproduces the legacy bundle-rules routing decision for a `create-skill` request. |
 
 ---
 
@@ -84,9 +83,6 @@ Independent holdouts — authored by an agent blind to the router keyword list:
 - **SD-H13** — `holdout/ind-feature-catalog.md` — FEATURE_CATALOG, keyword-blind.
 
 All 10 carry `stage: holdout`: excluded from the fitted routing aggregate, scored only for the fitted-vs-held-out generalization gap.
-
-### 08 — Compiled Routing
-- **SD-CR-001** — `compiled-routing/bundle-rules-compiled-routing.md` — sk-doc `create-skill` bundle-rules route: compiled engine (`servingAuthority: compiled`) reproduces the legacy routing decision. Run via `run-skill-benchmark.cjs --compiled-routing-parity on`.
 
 ---
 

@@ -11,7 +11,7 @@ trigger_phrases:
 
 > Reports for benchmarking how well `system-deep-loop` is routed, discovered, and used in practice, kept beside the skill they measure.
 
-> Archive status: the deep-improvement harness that scored these reports was retired together with its improvement lane, so nothing here can be regenerated from the current tree. Every report below is frozen historical evidence. This `benchmark/README.md` index template and the run-label storage standard stay owned by [`sk-doc/sk-create-benchmark`](../../sk-doc/sk-create-benchmark/SKILL.md) §10; each per-run report was renderer-owned and never templated.
+> Archive status: the deep-improvement harness that scored these reports was retired together with its improvement lane, so nothing here can be regenerated from the current tree. Every report below is frozen historical evidence. The index template and storage standard that described these folders were retired with the lane.
 
 ---
 
@@ -65,4 +65,3 @@ Any future benchmark evidence for this hub belongs in a sibling run-label folder
 
 Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
-Convention, schema, and storage standard: [`sk-doc/sk-create-benchmark`](../../sk-doc/sk-create-benchmark/SKILL.md) §10.

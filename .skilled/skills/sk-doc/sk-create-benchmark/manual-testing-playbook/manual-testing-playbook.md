@@ -1,6 +1,6 @@
 ---
 title: "create-benchmark: Manual Testing Playbook"
-description: "Operator playbook for the create-benchmark workflow across MCP promotion, behavior, skill-benchmark, model-benchmark and agent-improvement inputs."
+description: "Operator playbook for the create-benchmark workflow across MCP promotion, behavior, model-benchmark and agent-improvement inputs."
 version: 1.5.0.3
 ---
 
@@ -25,8 +25,7 @@ The key negative checks are refusal and boundary checks. A correct run leaves an
 2. Read the family table in `SKILL.md` before selecting a package shape.
 3. Use a completed benchmark only when testing MCP promotion. The promotion gate requires an accepted decision, a stable fixture and replay commands.
 4. Do not write into the playbook package during scenario execution. If a scenario creates a draft elsewhere, record the recovery path before running it.
-5. Treat `skill-benchmark-report.md` as renderer-owned. Do not edit it by hand.
-6. A `SKIP` verdict is valid only when a named sandbox or runtime blocker prevents the command from running.
+5. A `SKIP` verdict is valid only when a named sandbox or runtime blocker prevents the command from running.
 
 ---
 
@@ -84,19 +83,13 @@ Verify that an unfinished or unreplayable result is not promoted into a live ski
 
 ---
 
-## 8. BENCHMARK FAMILY PACKAGES (`BMR-003..BMR-005`)
+## 8. BENCHMARK FAMILY PACKAGES (`BMR-003`, `BMR-005`)
 
 ### BMR-003 | Author a behavior benchmark package
 
 Verify the behavior package shape and the boundary between scenario contracts and run evidence.
 
 > **Scenario:** [BMR-003](benchmark-families/author-behavior-package.md)
-
-### BMR-004 | Author a Lane C index
-
-Verify that a skill-benchmark request creates or updates `benchmark/README.md` and leaves rendered reports to the Lane C harness.
-
-> **Scenario:** [BMR-004](benchmark-families/author-lane-c-index.md)
 
 ### BMR-005 | Match a Lane B fixture to its scorer
 
@@ -106,13 +99,7 @@ Verify that model-benchmark inputs are data-only and that a profile uses a score
 
 ---
 
-## 9. EVIDENCE AND LANE BOUNDARIES (`BMR-006..BMR-007`)
-
-### BMR-006 | Archive compiled-routing evidence safely
-
-Verify the serving snapshot schema and fail-closed compiled-routing archive rules.
-
-> **Scenario:** [BMR-006](evidence-and-boundaries/archive-compiled-routing-safely.md)
+## 9. EVIDENCE AND LANE BOUNDARIES (`BMR-007`)
 
 ### BMR-007 | Prepare Lane A inputs without scoring
 
@@ -127,8 +114,5 @@ Verify that agent-improvement authoring fills setup inputs and candidates while 
 | Check | Coverage | Playbook overlap |
 |---|---|---|
 | `validate_document.py` | Markdown structure for authored benchmark docs | Confirms document shape but not family selection |
-| `render-serving-snapshot.cjs` | Serving snapshot schema and live manifest capture | Direct on BMR-006 |
-| `archive-compiled-routing.cjs` | Fail-closed archive labels and provenance | Direct on BMR-006 |
-| Lane C renderer and runner | Run reports and scoring | Deliberately outside this authoring packet. BMR-004 checks the boundary |
 
-This playbook records operator-visible authoring behavior. It does not duplicate the Lane C scoring contract, the Lane B evaluator or the behavior-benchmark framework.
+This playbook records operator-visible authoring behavior. It does not duplicate the Lane B evaluator or the behavior-benchmark framework.

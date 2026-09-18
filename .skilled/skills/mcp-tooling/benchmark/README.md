@@ -10,7 +10,7 @@ version: 1.0.0.0
 
 # mcp-tooling. Skill Benchmark Runs
 
-> Lane C run storage for the seven-mode hub. Report pairs (`skill-benchmark-report.json` + `.md`) are written by the `/deep:skill-benchmark` harness renderer: never hand-edited. Scoring contract: `system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md`.
+> Archive status: the Lane C harness that produced these reports was retired with the skill-benchmark lane, so none of them can be re-run from the current tree. They stay as frozen historical evidence.
 
 ## 1. OVERVIEW
 
@@ -38,21 +38,7 @@ Baseline captured before mcp-obsidian was registered: six modes (three workflow 
 
 ---
 
-## 4. HOW TO RE-RUN
-
-```bash
-node .skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
-  --skill mcp-tooling \
-  --outputs-dir .skilled/skills/mcp-tooling/benchmark/reports/<run-label> \
-  --trace-mode router
-```
-
-Mode B (live) additionally needs `SKILL_BENCH_OPENCODE_MODEL` configured; the D5 connectivity gate runs first.
-
----
-
-## 5. COMPILED-ROUTING ARCHIVE
+## 4. COMPILED-ROUTING ARCHIVE
 
 Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/`: a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
-Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

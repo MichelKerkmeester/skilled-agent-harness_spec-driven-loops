@@ -15,6 +15,7 @@ contextType: "reference"
 
 > **Retired lane:** the Lane C skill-benchmark harness, its runner, its scoring contract and the `/deep:skill-benchmark` command were removed. This tree is a frozen index of the reports that lane produced; no new skill-benchmark run can be started from it.
 
+
 ---
 
 ## 1. OVERVIEW
@@ -33,15 +34,7 @@ The first entry in this tree is **not** a Lane C harness run. It is a hand-autho
 
 ---
 
-## 3. RE-RUNNING
-
-The entry in section 2 has no re-run command. It is a hand-authored documentation derivation of scenario `CC-029` from the goal-hook manual-testing-playbook corpus, not a Lane C harness invocation: there is nothing to dispatch, because Claude Code's native `/goal` is a first-party product surface with no cross-runtime hook state or headless entry point this repo can score.
-
-There is no re-run path for a skill-benchmark report. The Lane C harness that produced them was removed, and `loop-host.cjs` now accepts only the surviving `agent-improvement` and `model-benchmark` modes.
-
----
-
-## 4. RELATED RESOURCES
+## 3. RELATED RESOURCES
 
 | Document | Purpose |
 |---|---|
@@ -49,4 +42,3 @@ There is no re-run path for a skill-benchmark report. The Lane C harness that pr
 | [`goal-hook.md`](../manual-testing-playbook/goal-hook/goal-hook.md) | The `CC-029` scenario this run's entry derives from |
 | [`hooks/goal/README.md`](../../../../hooks/goal/README.md) | The per-runtime goal routing contract (§3): Claude Code native `/goal`, cross-runtime delivery for Devin/Cursor/Pi |
 | [`deep-improvement`](../../../system-deep-loop/deep-improvement/SKILL.md) | Owns the surviving improvement lanes (agent-improvement, model-benchmark) |
-| [`skill-benchmark-storage-guide.md`](../../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md) | The storage and naming standard this tree follows |

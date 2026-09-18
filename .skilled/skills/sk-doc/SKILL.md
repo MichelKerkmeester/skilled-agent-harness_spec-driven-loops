@@ -30,7 +30,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 | **sk-create-command** | Scaffold an OpenCode slash command (argument-hint + allowed-tools + router/presentation split) | `sk-create-command/` | `/create:command` |
 | **sk-create-feature-catalog** | Author a feature-catalog inventory package | `sk-create-feature-catalog/` | `/create:feature-catalog` |
 | **sk-create-manual-testing-playbook** | Author a manual-testing-playbook package | `sk-create-manual-testing-playbook/` | `/create:manual-testing-playbook` |
-| **sk-create-benchmark** | Author MCP-promotion, behavior, skill-benchmark, and model-benchmark packages or inputs | `sk-create-benchmark/` | `/create:benchmark` |
+| **sk-create-benchmark** | Author MCP-promotion, behavior, and model-benchmark packages or inputs | `sk-create-benchmark/` | `/create:benchmark` |
 | **sk-create-changelog** | Author a global or packet-local changelog entry (version bump + topology-aware placement) | `sk-create-changelog/` | `/create:changelog` |
 | **sk-create-diff** | Produce a local, Git-free before/after review of an edited document (text/Markdown/HTML/DOCX/text-PDF) as a self-contained HTML report | `sk-create-diff/` | `/create:diff` |
 | **sk-create-repo-rule** | Create, revise or retire a repo-local rule under `repo-rules/` and wire it into `REPO RULES.md` (four decision tests refuse most requests) | `sk-create-repo-rule/` | `/create:repo-rule` |
