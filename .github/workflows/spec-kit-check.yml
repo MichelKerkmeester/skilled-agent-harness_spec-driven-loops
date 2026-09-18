@@ -68,8 +68,8 @@ jobs:
           set -euo pipefail
           npm --prefix .opencode/skills/system-spec-kit ci
           # The runtime project imports the OpenCode plugin entrypoints, which depend
-          # on the plugin SDK declared in .opencode/package.json.
-          npm --prefix .opencode ci
+          # on the plugin SDK declared in .skilled/package.json.
+          npm --prefix .skilled ci
           # The plugins-purity suite imports every plugin entrypoint; the communication
           # projection plugin imports its package's compiled output, which that
           # package builds on install through its prepare script.

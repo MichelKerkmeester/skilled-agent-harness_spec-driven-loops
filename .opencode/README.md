@@ -30,7 +30,6 @@ Each entry is a symlink to its twin under `.skilled/`:
 | `bin/`, `scripts/` | executable programs and shell entrypoints |
 | `changelog/`, `manual-testing-playbook/` | documentation trees |
 | `logs/`, `specs/` | runtime output and the spec alias |
-| `package.json`, `package-lock.json`, `bun.lock`, `vitest.config.bin.ts` | package and test configuration |
 
 ## 3. WHY IT EXISTS
 
