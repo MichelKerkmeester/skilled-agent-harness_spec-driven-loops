@@ -4,13 +4,6 @@
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. USAGE](#2--usage)
-
----
-
 ## 1. OVERVIEW
 
 This H2 header has no emoji.

@@ -4,6 +4,8 @@
 
 This fixture validates command auto-detection from the `/command/` path segment.
 
+---
+
 ## 2. INSTRUCTIONS
 
 1. Parse arguments.

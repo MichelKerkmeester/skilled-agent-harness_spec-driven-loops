@@ -31,7 +31,7 @@ TEST_CASES: List[Dict[str, Any]] = [
         "doc_type": "readme",
         "expected_exit": 0,
         "expected_errors": [],
-        "description": "Valid README with TOC and double-dash anchors"
+        "description": "Valid README without a TOC"
     },
     {
         "file": "valid-skill.md",
@@ -50,9 +50,9 @@ TEST_CASES: List[Dict[str, Any]] = [
     {
         "file": "single-dash-anchors.md",
         "doc_type": "readme",
-        "expected_exit": 0,
-        "expected_errors": [],
-        "description": "TOC anchor format is no longer validated (TOCs are not used; format check is moot)"
+        "expected_exit": 1,
+        "expected_errors": ["general_no_toc"],
+        "description": "README with a TOC is rejected, so its anchor format never needs checking"
     },
     {
         "file": "missing-emojis.md",
