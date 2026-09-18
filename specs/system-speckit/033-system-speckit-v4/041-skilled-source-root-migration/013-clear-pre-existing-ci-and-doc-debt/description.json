@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt",
+  "description": "Two CI workflows have failed on every push for days, so a new failure in either one looks like the old one and nobody reads it",
+  "keywords": [
+    "two",
+    "workflows",
+    "failed",
+    "every",
+    "push",
+    "days",
+    "new",
+    "failure",
+    "one",
+    "looks",
+    "like",
+    "old",
+    "nobody",
+    "reads"
+  ],
+  "lastUpdated": "2026-09-18T14:02:36.724Z",
+  "specId": "013",
+  "folderSlug": "clear-pre-existing-ci-and-doc-debt",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

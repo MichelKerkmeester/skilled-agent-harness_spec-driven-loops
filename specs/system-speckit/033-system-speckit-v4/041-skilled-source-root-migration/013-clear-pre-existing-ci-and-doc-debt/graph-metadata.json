@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pre-existing ci debt",
+      "routing ratchet deep-review wave",
+      "playbook operator contract violations",
+      "hermes mirror ci guard",
+      "retired skill-benchmark removal",
+      "pre-existing ci debt plan",
+      "per-row routing dump",
+      "skill-benchmark removal plan",
+      "pre-existing ci debt tasks",
+      "skill-benchmark removal tasks",
+      "pre-existing ci debt acceptance",
+      "skill-benchmark removal closure gate"
+    ],
+    "key_topics": [
+      "pre-existing",
+      "debt",
+      "routing",
+      "ratchet",
+      "deep-review",
+      "wave",
+      "playbook",
+      "operator",
+      "contract",
+      "violations",
+      "hermes",
+      "mirror"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/vitest.config.ts",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/sk-design/ROUTER.md",
+      ".skilled/skills/cli-external-orchestration/graph-metadata.json",
+      ".github/workflows/command-tree-parity.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-tree-parity.yml",
+        "kind": "config",
+        "path": ".github/workflows/command-tree-parity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph.sqlite",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "init_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Registry Drift Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Operator Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two CI workflows have failed on every push for days, so a new failure in either one looks like the old one and nobody reads it",
+    "created_at": "2026-09-18T11:43:38Z",
+    "last_save_at": "2026-09-18T14:02:38.844Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2188a72ebe8b6a4630e3032dddce11d1896aaa672d8ae29b025a5187c315d80e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "83bf9e3e20ad684a7967960b84ceaf5e46705e5a8147fe4d4565e00d86aa435d",
+      "plan.md": "a4d9addfdda3d0009fb7f9701dadf0cc246f35499aa9bf6765671775a0ea56b8",
+      "tasks.md": "86d7135da05f3e1483c2a04a28715a09a4fcb2adb780fd11651a14db166563fc",
+      "implementation-summary.md": "3394ca59354b7835ec6f03c64f8daba66be0bdfc9bd7a86d5ff3a88223a46d69"
+    },
+    "last_active_at": null
+  }
+}
