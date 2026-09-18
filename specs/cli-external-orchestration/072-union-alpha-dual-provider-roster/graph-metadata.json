@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Union Alpha is a free stealth model that both CLIs already see, on two providers at once",
     "created_at": "2026-09-17T12:15:33Z",
-    "last_save_at": "2026-09-18T04:17:08.861Z",
+    "last_save_at": "2026-09-18T04:34:07.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8138fb97822ce44009535279f16d5ba34c3b9ccccca544b46170b69ede20a1ca",
+    "source_fingerprint": "sha256:cfe390aa0f90d58f7705d3957f5f967702c2b3b5194203edc2ed826727b3ad28",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "187fee4b3d838badc8e27f2edb6f675337aa07152c3a79a65b9f1dd3e7c58740",
+      "spec.md": "ce923c2e7636d1003349fb5ec40f966b6db6acb448c1441d5029aea59b56b5dd",
       "plan.md": "2dddea3827971b49edaee72b1b17f1943c25d15298a585e425b3b7cbd4142da0",
       "tasks.md": "fda2282b3dc1cf176f2888d6458e41c1ab8bdd8e6102d85790d47292c4ca13a6",
       "implementation-summary.md": "3f3eac56ad48829c9b01deabe4c4ff66e03939acea3e524028e1df961a17ca13"
