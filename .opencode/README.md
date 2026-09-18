@@ -17,7 +17,7 @@ The authored tree lives in [`.skilled/`](../.skilled). This directory exposes th
 same tree under the older `.opencode/` name, one symlink per top-level entry, so
 anything that addresses `.opencode/<path>` still reaches the real file.
 
-OpenCode writes its own `package.json`, `package-lock.json` and `node_modules` here to install its plugin SDK, and ignores them; nothing else is authored here. Editing a file through a path in this directory edits
+The plugins are authored here, because only this runtime loads them. OpenCode writes `package-lock.json` and `node_modules` here when it installs their SDK and ignores both; `package.json` is tracked, since the plugins are ES modules and take their module type from it. Editing a file through a path in this directory edits
 the file in `.skilled/`, because that is the same file.
 
 ## 2. WHAT IS HERE
@@ -26,7 +26,8 @@ Each entry is a symlink to its twin under `.skilled/`:
 
 | Entry | Resolves to |
 |---|---|
-| `agents/`, `commands/`, `skills/`, `plugins/`, `hooks/` | the runtime surfaces each CLI loads |
+| `agents/`, `commands/`, `skills/`, `hooks/` | the runtime surfaces each CLI loads |
+| `plugins/` | authored here, not a link: only this runtime loads them |
 | `bin/`, `scripts/` | executable programs and shell entrypoints |
 | `changelog/`, `manual-testing-playbook/` | documentation trees |
 | `logs/`, `specs/` | runtime output and the spec alias |

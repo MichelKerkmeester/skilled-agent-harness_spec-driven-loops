@@ -20,7 +20,11 @@ const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..
 // Live-code roots. The spec tree is excluded wholesale: everything under it that carries tests
 // is either vendored external code or an archived experiment, and both fail for environmental
 // reasons unrelated to the runtime being gated.
-const ROOTS = ['.skilled/skills', '.skilled/scripts', '.skilled/plugins', '.skilled/bin', '.skilled/hooks'];
+// Plugins are named at the runtime directory that owns them. Naming them through the
+// shared tree reaches the same files by following a link, which this walk does and the
+// independent glob the canary compares against does not, so the two disagree by exactly
+// the plugin tests.
+const ROOTS = ['.skilled/skills', '.skilled/scripts', '.opencode/plugins', '.skilled/bin', '.skilled/hooks'];
 const EXCLUDED_SEGMENTS = new Set(['node_modules', 'external', '.worktrees', 'z_archive', 'z_future']);
 const NODE_TEST_SUFFIXES = ['.test.mjs', '.test.cjs'];
 
@@ -107,11 +111,21 @@ if (all.length === 0) {
 
 let failed = false;
 
-if (nodeFiles.length > 0 && !fs.existsSync(path.join(REPO_ROOT, '.skilled', 'node_modules'))) {
+// Two trees carry dependencies these tests import. The shared one covers most of them;
+// the plugins resolve theirs from the runtime directory they live in, because that is
+// where their loader installs the SDK they are written against.
+const depRoots = [
+  path.join(REPO_ROOT, '.skilled', 'node_modules'),
+  path.join(REPO_ROOT, '.opencode', 'node_modules'),
+];
+const missingDeps = depRoots.filter((dir) => !fs.existsSync(dir));
+
+if (nodeFiles.length > 0 && missingDeps.length > 0) {
   // Without installed deps every plugin test fails at import with ERR_MODULE_NOT_FOUND;
   // that noise is environmental, not a regression. Report it skipped -- the same way the
   // vitest branch treats a missing runner -- instead of dumping false failures.
-  console.log(`node:test — ${nodeFiles.length} files SKIPPED (.skilled/node_modules absent; run "npm install" in .skilled)`);
+  const names = missingDeps.map((dir) => path.relative(REPO_ROOT, dir)).join(', ');
+  console.log(`node:test — ${nodeFiles.length} files SKIPPED (${names} absent; run "npm ci" in each)`);
   failed = true;
 } else if (nodeFiles.length > 0) {
   // Pin the TAP reporter explicitly. Node's default reporter switched to `spec`
