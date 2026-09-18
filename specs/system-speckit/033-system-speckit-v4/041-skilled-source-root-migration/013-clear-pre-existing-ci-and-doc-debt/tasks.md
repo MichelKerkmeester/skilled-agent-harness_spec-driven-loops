@@ -62,7 +62,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T017 Rerun the whole local gate at `97b15822a2` and compare with the baseline
+- [x] T017 Rerun the whole local gate at `cafeff809e` and compare with the baseline
 - [x] T018 Confirm all 289 prompts route as before
 - [x] T021 Recompile the three deep command contracts whose recorded hub digest the keyword change made stale (`.skilled/commands/deep/assets/compiled/`)
 - [ ] T019 Rebase the phase commits onto the main checkout's tip, fast-forward it, and push both branches after the operator's go-ahead
@@ -145,7 +145,7 @@ contextType: "implementation"
 - [x] CHK-FIX-004 [P0] No security, path, parser or redaction code changed. Not applicable.
 - [x] CHK-FIX-005 [P1] Matrix axes listed: six prompt buckets by two commits, 289 rows.
 - [x] CHK-FIX-006 [P1] No test reads new process-wide state. Not applicable.
-- [x] CHK-FIX-007 [P1] Evidence pinned to `d10ec9d549..97b15822a2`.
+- [x] CHK-FIX-007 [P1] Evidence pinned to `d10ec9d549..cafeff809e`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

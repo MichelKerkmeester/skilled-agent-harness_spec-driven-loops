@@ -176,7 +176,7 @@ Hermes job ───┘
 
 ### Data Reversal
 - **Has data migrations?** No
-- **Reversal procedure**: N/A. The deleted files stay in history at `09a0d79ec7`.
+- **Reversal procedure**: N/A. The deleted files stay in history at `c4b83f6648`.
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
