@@ -25,7 +25,7 @@ Canonical for agents is `.skilled/agents/` (note: *not* `.claude/agents/`, which
 
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
-| `agents/*.toml` (13) | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents.cjs --check` |
+| `agents/*.toml` | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents.cjs --check` |
 | `prompts/*.md` (35) | **generated** pointer stubs | `.skilled/commands/**/*.md` | Yes — `sync-prompts.cjs --check` |
 | `hooks/*` (16 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — mirror generator |
 | `hooks.json` | **hand-authored** | — | n/a locally; installed outbound to `~/.codex/hooks.json` |
@@ -97,7 +97,7 @@ developer_instructions = '''
 
 ## 6. REQUIRED PARITY
 
-- 13 agents and 35 prompts, matching the canonical trees exactly. The command count moves as commands are added or retired; `sync-prompts.cjs --check` is authoritative, not this number.
+- Agents and prompts matching the canonical trees exactly. `sync-agents.cjs --check` and `sync-prompts.cjs --check` are authoritative.
 - Prompt names are the flattened command path: `create/agent.md` → `create-agent.md`.
 - Every prompt stub's cited canonical path must exist. A stub pointing at a deleted file is the drift mode that actually occurred here.
 

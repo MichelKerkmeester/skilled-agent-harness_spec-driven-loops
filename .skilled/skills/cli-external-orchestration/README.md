@@ -57,7 +57,7 @@ The hub holds no packet-local logic. Every request routes to exactly one of seve
 | **`cli-cursor`** ([README](./cli-cursor/README.md), [SKILL.md](./cli-cursor/SKILL.md)) | Cursor CLI dispatch: Composer-model dispatch, read-only `--mode plan` and `--mode ask` exploration, native git worktree isolation, a cloud `worker` and a shared `.cursor/` hooks, MCP and rules config surface with the Cursor editor |
 | **`cli-devin`** ([README](./cli-devin/README.md), [SKILL.md](./cli-devin/SKILL.md)) | Devin CLI dispatch: Cognition-backed cloud coding via `devin -p`, subagent delegation via `run_subagent`, cloud handoff via `/handoff`, MCP host integration and multi-model dispatch. Availability-gated on `command -v devin` |
 | **`cli-pi`** ([README](./cli-pi/README.md), [SKILL.md](./cli-pi/SKILL.md)) | Pi CLI dispatch: guarded headless print, JSON-event and RPC dispatch, native skills and extensions plus community packages. Availability-gated on `command -v pi`, with failure exit codes that are unreliable so callers inspect output |
-| **`cli-hermes`** ([README](./cli-hermes/README.md), [SKILL.md](./cli-hermes/SKILL.md)) | Hermes Agent dispatch: quiet oneshot `hermes chat -Q --oneshot`, LLM Gateway routing over a closed two-id model roster, project skills and plugins under `.hermes/`, and read-only review. Availability-gated on `command -v hermes` plus a configured provider |
+| **`cli-hermes`** ([README](./cli-hermes/README.md), [SKILL.md](./cli-hermes/SKILL.md)) | Hermes Agent dispatch: quiet oneshot `hermes chat -Q --oneshot`, LLM Gateway routing over a closed seven-id model roster, project skills and plugins under `.hermes/`, and read-only review. Availability-gated on `command -v hermes` plus a configured provider |
 
 ---
 

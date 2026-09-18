@@ -26,7 +26,7 @@ Two naming quirks to internalise:
 
 | Surface | Mechanism | Source | Target shape |
 |---|---|---|---|
-| `agents/<name>/AGENT.md` (13) | symlink | `.claude/agents/<name>.md` | `../../../.claude/agents/<name>.md` |
+| `agents/<name>/AGENT.md` | symlink | `.claude/agents/<name>.md` | `../../../.claude/agents/<name>.md` |
 | `hooks/*` | symlink | scattered `.skilled/**` | discovery mirror only |
 | `hooks.v1.json` | **hand-authored** | — | — |
 | `mcp_config.json` | **Devin-owned** | — | real file, not a symlink |
@@ -95,7 +95,7 @@ Valid `--permission-mode` values are `normal` (alias `auto`, default), `accept-e
 
 ## 6. REQUIRED PARITY
 
-- 13 agents, names matching the canonical tree. Devin carries no mirrored command surface; the drift checks below are authoritative.
+- Agents whose names match the canonical tree. Devin carries no mirrored command surface. The drift checks below are authoritative.
 - Every `AGENT.md` is a symlink resolving into the canonical tree; a real file there is a silent fork.
 - Every `.skilled/**` script `hooks.v1.json` invokes has a matching symlink in `hooks/`.
 - Every mirrored file parses as strict YAML.

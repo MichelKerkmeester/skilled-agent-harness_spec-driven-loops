@@ -623,8 +623,8 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - **Pairs with `sk-code`:** the hub supplies the measured reference, sk-code builds and verifies against it
 
 **sk-doc**
-- **Parent hub for documentation authoring, routed via `mode-registry.json` to ten workflow packets.** Markdown specialist with DQI quality scoring (Structure 40%, Content 35%, Style 25%) plus HVR compliance checking
-- **Scaffolds components** (skills, agents, commands) and handles README templates, frontmatter validation, feature-catalog authoring and install guides
+- **Parent hub for documentation authoring, routed via `mode-registry.json` to fourteen workflow modes across thirteen packets.** Markdown specialist with DQI quality scoring (Structure 40%, Content 35%, Style 25%) plus HVR compliance checking
+- **Scaffolds components** (skills, agents, commands) and handles README templates, frontmatter validation and feature-catalog authoring
 
 **sk-prompt**
 - **Standalone prompt-engineering skill.** Turns a rough ask into a structured, scored prompt
@@ -635,7 +635,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 
 ### 🤖 Agent Network
 
-12 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code (`.claude/agents/`). OpenCode uses the canonical `.opencode/agents/` definitions directly.
+12 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code (`.claude/agents/`). OpenCode reads `.opencode/agents/`, which links to the same `.skilled/agents/` source.
 
 #### AGENT ORCHESTRATION
 
@@ -997,7 +997,7 @@ A: It works with OpenCode and Claude Code, and the same rules reach Codex, Curso
 &nbsp;
 **Q: What happens if I do not use a spec folder?**
 
-A: Gate 3 blocks file modifications until a spec folder answer is provided. You can skip it with option E, but skipped sessions are undocumented and will not be recoverable through `/speckit:resume` or `/speckit:search`. For a trivial fix of a few characters in one file, Gate 3 does not trigger.
+A: Gate 3 blocks file modifications until a spec folder answer is provided. You can skip it with option D, but skipped sessions are undocumented and will not be recoverable through `/speckit:resume` or `/speckit:search`. For a trivial fix of a few characters in one file, Gate 3 does not trigger.
 &nbsp;
 **Q: How does retrieval know what is relevant to my current task?**
 
@@ -1009,7 +1009,7 @@ A: Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) wo
 &nbsp;
 **Q: How do I add a new skill to the framework?**
 
-A: Use `/create:sk-skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Then register the skill in `.skilled/skills/README.txt`.
+A: Use `/create:sk-skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Discovery reads its `SKILL.md` frontmatter and `graph-metadata.json`, so no registration step follows. Adding a row to `.skilled/skills/README.txt` keeps the catalog complete for human readers.
 &nbsp;
 **Q: What does "local-first" mean for continuity?**
 
