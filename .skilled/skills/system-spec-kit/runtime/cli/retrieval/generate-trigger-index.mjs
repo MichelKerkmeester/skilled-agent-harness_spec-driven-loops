@@ -38,7 +38,7 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
 import { TRIGGER_INDEX_SCHEMA_VERSION, assertTriggerIndexShape, publishJson, sha256, stableStringify } from './lib/artifact.mjs';
-import { CORPUS_ROOTS, EXCLUSIONS, IGNORED_PATHS, walkCorpus } from './lib/corpus.mjs';
+import { EXCLUSIONS, IGNORED_PATHS, corpusRootsFor, walkCorpus } from './lib/corpus.mjs';
 import { CATEGORY, MALFORMED_CATEGORIES, readTriggerPhrases } from './lib/frontmatter.mjs';
 import { compareCodeUnits, NORMALIZATION } from './lib/normalize.mjs';
 import { judgeTriggerPhrase } from './lib/phrase-judge.mjs';
@@ -114,7 +114,7 @@ const LF = Buffer.from([0x0a]);
  */
 export function buildIndex(options) {
   const repoRoot = path.resolve(options.repoRoot);
-  const roots = options.roots ?? CORPUS_ROOTS;
+  const roots = options.roots ?? corpusRootsFor(repoRoot);
   const ignoredPaths = Array.from(options.ignoredPaths ?? IGNORED_PATHS)
     .map((entry) => ({ path: entry.path, reason: entry.reason }))
     .sort((a, b) => compareCodeUnits(a.path, b.path));

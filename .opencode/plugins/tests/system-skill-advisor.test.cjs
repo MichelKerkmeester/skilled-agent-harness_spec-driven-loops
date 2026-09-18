@@ -186,16 +186,17 @@ function writeFixtureFile(filePath, content) {
   fs.writeFileSync(filePath, content);
 }
 
-function makeAdvisorFixture() {
+function makeAdvisorFixture(sourceName = '.skilled') {
   // An ambient absolute DB-dir override points the advisor outside this fixture, so the
   // signature never sees the files the test writes. Editor and MCP environments set it,
   // which made these tests pass locally and fail under those runtimes.
   delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   delete process.env.MK_SKILL_ADVISOR_DB_DIR;
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'system-skill-advisor-signature-'));
-  writeFixtureFile(path.join(root, '.skilled', 'skills', 'demo', 'SKILL.md'), '# Demo\n');
-  writeFixtureFile(path.join(root, '.skilled', 'skills', 'demo', 'graph-metadata.json'), '{"name":"demo"}\n');
-  const advisorRoot = path.join(root, '.skilled', 'skills', 'system-skill-advisor', 'runtime');
+  writeFixtureFile(path.join(root, sourceName, 'skills', 'system-spec-kit', 'SKILL.md'), '# Sentinel\n');
+  writeFixtureFile(path.join(root, sourceName, 'skills', 'demo', 'SKILL.md'), '# Demo\n');
+  writeFixtureFile(path.join(root, sourceName, 'skills', 'demo', 'graph-metadata.json'), '{"name":"demo"}\n');
+  const advisorRoot = path.join(root, sourceName, 'skills', 'system-skill-advisor', 'runtime');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_advisor.py'), 'print("advisor")\n');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_advisor_runtime.py'), 'RUNTIME = 1\n');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_graph_compiler.py'), 'COMPILER = 1\n');
@@ -464,6 +465,50 @@ test('unavailable freshness bypasses completed cache entries', async () => {
 
   assert.equal(calls.length, 2);
   assert.match(await status(hooks), /cache_entries=0/);
+});
+
+test('the signature follows skills held only under the legacy source-root name', async () => {
+  const { root } = makeAdvisorFixture('.opencode');
+  try {
+    const children = Array.from({ length: 3 }, () => fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }));
+    const calls = [];
+    const pluginModule = await loadPlugin();
+    const hooks = await pluginModule.default({ directory: root }, {
+      cacheTTLMs: 60_000,
+      spawnOverride: spawnSequence(children, calls),
+    });
+    const prompt = { prompt: 'same prompt', sessionID: 'legacy-root-session' };
+
+    await runPrompt(hooks, prompt);
+    await runPrompt(hooks, prompt);
+    assert.equal(calls.length, 1, 'warm identical prompt should hit cache');
+
+    writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'SKILL.md'), '# Demo changed\n');
+    await runPrompt(hooks, prompt);
+    assert.equal(calls.length, 2, 'a skill change under .opencode should invalidate cache');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('a workspace without a source root is never served from cache', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'system-skill-advisor-no-source-'));
+  try {
+    const children = [fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }), fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) })];
+    const calls = [];
+    const pluginModule = await loadPlugin();
+    const hooks = await pluginModule.default({ directory: root }, {
+      cacheTTLMs: 60_000,
+      spawnOverride: spawnSequence(children, calls),
+    });
+    const prompt = { prompt: 'same prompt', sessionID: 'no-source-session' };
+
+    await runPrompt(hooks, prompt);
+    await runPrompt(hooks, prompt);
+    assert.equal(calls.length, 2, 'an unsignable workspace must not reuse cached advice');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });
 
 test('session deletion prevents an in-flight completion from repopulating cache', async () => {

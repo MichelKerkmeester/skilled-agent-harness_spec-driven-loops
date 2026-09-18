@@ -6,5 +6,7 @@
 
 export const REPO_ROOT_SENTINEL: string;
 export const SOURCE_ROOT_NAMES: readonly string[];
+export const SOURCE_ROOT_SENTINEL: string;
 export function hoistAboveOpencodeTree(dir: string): string | null;
 export function findRepoRoot(start?: string, opts?: { maxDepth?: number; sentinel?: string }): string;
+export function findSourceRoot(repoRoot: string): string | null;

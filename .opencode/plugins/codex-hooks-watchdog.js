@@ -16,6 +16,8 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
+import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
+
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
@@ -62,13 +64,17 @@ function appendWatchdogLog(projectDir, detail) {
 
 export default async function MkCodexHooksWatchdogPlugin(ctx) {
   const projectDir = ctx?.directory || join(PLUGIN_DIR, '..', '..');
+  // The installer lives under whichever source root the checkout carries. A checkout with
+  // neither has no Codex hooks of ours to check, which is not drift.
+  const sourceRoot = findSourceRoot(findRepoRoot(projectDir));
+  const installer = sourceRoot ? join(sourceRoot, 'bin', 'install-codex-hooks.mjs') : null;
   const warned = new Set();
 
   return {
     async event(input) {
       try {
         if (!isHookEnabled('codex-watchdog')) return;
-        if (eventTypeFrom(input) !== 'session.created') return;
+        if (!installer || eventTypeFrom(input) !== 'session.created') return;
         const sessionId = String(sessionIdFromEvent(input));
         if (warned.has(sessionId)) return;
         if (warned.size >= MAX_SESSION_IDS) warned.delete(warned.values().next().value);
@@ -76,7 +82,7 @@ export default async function MkCodexHooksWatchdogPlugin(ctx) {
         try {
           execFileSync(
             'node',
-            [join(projectDir, '.skilled', 'bin', 'install-codex-hooks.mjs'), '--check'],
+            [installer, '--check'],
             { cwd: projectDir, stdio: 'ignore', timeout: CHECK_TIMEOUT_MS },
           );
         } catch (_) {
@@ -84,7 +90,7 @@ export default async function MkCodexHooksWatchdogPlugin(ctx) {
           // (or the installer could not run). Record the remediation, never throw.
           appendWatchdogLog(
             projectDir,
-            'codex hook drift detected; run: node .skilled/bin/install-codex-hooks.mjs --check',
+            `codex hook drift detected; run: node ${installer} --check`,
           );
         }
       } catch (_) { /* fail-open: a watchdog must never degrade a session */ }

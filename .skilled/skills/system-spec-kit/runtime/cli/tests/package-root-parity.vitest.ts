@@ -7,8 +7,10 @@
 // package root must sit where the repository resolver says the skill lives.
 //
 // Every tree is built in each source-root layout a checkout can hold: a real
-// `.opencode/` tree, a real `.skilled/` tree, and a real `.skilled/` tree with
-// `.opencode` linked to it, which a caller reaches through either name.
+// `.opencode/` tree, a real `.skilled/` tree, a real `.skilled/` tree with
+// `.opencode` linked to it, and a real `.skilled/` tree beside a real `.opencode/`
+// directory that links each entry back to it. A caller reaches the last two through
+// either name.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -17,7 +19,7 @@ import { spawnSync } from 'node:child_process';
 import { afterAll, describe, expect, it } from 'vitest';
 import { findPackageRoot, resolvePackageRoot, PACKAGE_ROOT_MARKERS } from '@spec-kit/shared/workspace/package-root';
 // @ts-expect-error shipped as source with a sibling declaration file
-import { findRepoRoot, hoistAboveOpencodeTree, REPO_ROOT_SENTINEL } from '@spec-kit/shared/workspace/repo-root.mjs';
+import { findRepoRoot, findSourceRoot, hoistAboveOpencodeTree, REPO_ROOT_SENTINEL } from '@spec-kit/shared/workspace/repo-root.mjs';
 
 const SHELL_COMMON = path.resolve(__dirname, '..', 'lib', 'shell-common.sh');
 const SKILL_SUBPATH = path.join('skills', 'system-spec-kit');
@@ -32,6 +34,7 @@ interface Layout {
   readonly name: string;
   readonly realRoot: string;
   readonly linked: boolean;
+  readonly perEntry?: boolean;
   readonly entries: readonly string[];
 }
 
@@ -46,7 +49,8 @@ const TREES: readonly Tree[] = [
 const TODAY: Layout = { name: 'today', realRoot: '.opencode', linked: false, entries: ['.opencode'] };
 const SKILLED_ONLY: Layout = { name: 'skilled-only', realRoot: '.skilled', linked: false, entries: ['.skilled'] };
 const WHOLE_LINK: Layout = { name: 'whole-link', realRoot: '.skilled', linked: true, entries: ['.opencode', '.skilled'] };
-const LAYOUTS: readonly Layout[] = [TODAY, SKILLED_ONLY, WHOLE_LINK];
+const PER_ENTRY: Layout = { name: 'per-entry', realRoot: '.skilled', linked: false, perEntry: true, entries: ['.opencode', '.skilled'] };
+const LAYOUTS: readonly Layout[] = [TODAY, SKILLED_ONLY, WHOLE_LINK, PER_ENTRY];
 
 function buildTree(root: string, tree: Tree, layout: Layout, entry: string): { repoRoot: string; skillRoot: string; start: string } {
   const repoRoot = path.join(root, `${layout.name} via ${entry} ${tree.name}`.replace(/[^a-z]+/gu, '-'));
@@ -55,6 +59,12 @@ function buildTree(root: string, tree: Tree, layout: Layout, entry: string): { r
   fs.mkdirSync(path.join(repoRoot, '.git'), { recursive: true });
   fs.writeFileSync(path.join(realSkillRoot, 'SKILL.md'), '# sentinel\n');
   if (layout.linked) fs.symlinkSync('.skilled', path.join(repoRoot, '.opencode'));
+  if (layout.perEntry) {
+    fs.mkdirSync(path.join(repoRoot, '.opencode'), { recursive: true });
+    for (const name of fs.readdirSync(path.join(repoRoot, '.skilled'))) {
+      fs.symlinkSync(path.join('..', '.skilled', name), path.join(repoRoot, '.opencode', name));
+    }
+  }
   const skillRoot = path.join(repoRoot, entry, SKILL_SUBPATH);
   const start = path.join(skillRoot, 'shared', 'embeddings');
   fs.mkdirSync(start, { recursive: true });
@@ -196,5 +206,30 @@ describe('the repository resolver treats .skilled and .opencode as one source tr
     const start = path.join(root, 'plain', 'nested');
     fs.mkdirSync(start, { recursive: true });
     expect(findRepoRoot(start)).toBe(start);
+  });
+});
+
+describe('the source-root selection picks the tree by its sentinel', () => {
+  const root = fs.mkdtempSync(path.join(fs.realpathSync(tmpdir()), 'spec-kit-source-select-'));
+  afterAll(() => fs.rmSync(root, { recursive: true, force: true }));
+
+  for (const layout of LAYOUTS) {
+    it(`${layout.name}: selects ${layout.realRoot}`, () => {
+      const { repoRoot } = buildTree(root, FULL_TREE, layout, layout.realRoot);
+      expect(findSourceRoot(repoRoot)).toBe(path.join(repoRoot, layout.realRoot));
+    });
+  }
+
+  it('an empty .skilled placeholder beside a real .opencode tree does not win', () => {
+    const { repoRoot } = buildTree(root, { name: 'placeholder select', markers: PACKAGE_ROOT_MARKERS, expectsPackageRoot: true }, TODAY, '.opencode');
+    fs.mkdirSync(path.join(repoRoot, '.skilled', 'skills'), { recursive: true });
+    expect(findSourceRoot(repoRoot)).toBe(path.join(repoRoot, '.opencode'));
+  });
+
+  it('a repository without the sentinel under either name has no source root', () => {
+    const plain = path.join(root, 'no-source-root');
+    fs.mkdirSync(path.join(plain, '.skilled'), { recursive: true });
+    fs.mkdirSync(path.join(plain, '.opencode'), { recursive: true });
+    expect(findSourceRoot(plain)).toBeNull();
   });
 });

@@ -34,6 +34,9 @@ export const REPO_ROOT_SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
 /** Directory names the source tree may sit under, in the order a walk tests them. */
 export const SOURCE_ROOT_NAMES = Object.freeze(['.skilled', '.opencode']);
 
+/** Authored file, relative to a source root, that proves the tree is really there. */
+export const SOURCE_ROOT_SENTINEL = 'skills/system-spec-kit/SKILL.md';
+
 const DEFAULT_MAX_DEPTH = 14;
 
 /**
@@ -117,4 +120,24 @@ export function findRepoRoot(start = process.cwd(), opts = {}) {
     current = parent;
   }
   return nearestSentinelHolder(start, sentinels) ?? hoistAboveOpencodeTree(start) ?? resolve(start);
+}
+
+/**
+ * Select the source tree a repository actually carries.
+ *
+ * A checkout may hold both names, only one, or one of them as an empty placeholder.
+ * Guessing which name is real is how callers broke one layout while fixing another, and
+ * testing that a directory exists lets a placeholder win. The tree is recognised by the
+ * authored sentinel inside it, and `.skilled` is preferred when both carry it.
+ *
+ * @param {string} repoRoot - Repository root, as `findRepoRoot` returns it.
+ * @returns {string|null} Absolute path of the selected source root, or null when neither
+ *   name holds the sentinel.
+ */
+export function findSourceRoot(repoRoot) {
+  for (const name of SOURCE_ROOT_NAMES) {
+    const candidate = resolve(repoRoot, name);
+    if (existsSync(resolve(candidate, SOURCE_ROOT_SENTINEL))) return candidate;
+  }
+  return null;
 }

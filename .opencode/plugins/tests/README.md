@@ -37,6 +37,7 @@ Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared
 | `session-cleanup.test.cjs` | `session-cleanup.js` | Lifecycle cleanup and safety gating. |
 | `sk-code-post-edit-quality.test.cjs` | `sk-code-post-edit-quality.js` | Post-edit routing and adapter behavior; `tool.execute.before`/`after` callID correlation. |
 | `sk-communication-projection.test.cjs` | `sk-communication-projection.js` | Projection gate matrix, snapshot restore, and fail-open boundary. |
+| `source-root-consumers.test.cjs` | `cli-dispatch-audit.js`, `sk-git-preflight-advisory.js`, `codex-hooks-watchdog.js` | Each reads its rules or installer under whichever source root a consumer project carries, and stays silent with neither. |
 | `speckit-goal-offer-contract.test.cjs` | goal-offer command wiring | Goal-offer command wiring outside the plugin entrypoint set. |
 | `system-completion-sentinel.test.cjs` | `system-completion-sentinel.js` | Completion-sentinel lifecycle behavior; `session.idle` resolution via stubbed `ctx.client`. |
 | `system-deep-loop-guard.test.cjs` | `system-deep-loop-guard.js` | Deep-loop guard identity, repeat detection, and fail-open paths. |

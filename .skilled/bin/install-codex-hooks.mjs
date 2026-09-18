@@ -25,6 +25,8 @@ import { isDeepStrictEqual } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
+import { findSourceRoot } from '../skills/system-spec-kit/shared/workspace/repo-root.mjs';
+
 const __req = createRequire(import.meta.url);
 const { isHookEnabled } = __req('../hooks/shared/hook-flags.cjs');
 
@@ -131,7 +133,18 @@ function substituteRepo(command, repoAbs) {
   return String(command).replaceAll('${CODEX_PROJECT_DIR:-$PWD}', repoAbs);
 }
 
+// A source command names the tree under one spelling, but the checkout may carry only
+// the other, and an installed command naming the absent one never runs. Each command is
+// respelled under the root the checkout actually holds. Without a recognisable root the
+// source spelling stands.
+function respellSourceRoot(command, sourceRootName) {
+  if (!sourceRootName) return String(command);
+  return String(command).replace(/(^|[\s"'=])\.(?:skilled|opencode)\//g, `$1${sourceRootName}/`);
+}
+
 function canonicalSourceGroups(source, repoAbs) {
+  const selectedRoot = findSourceRoot(repoAbs);
+  const sourceRootName = selectedRoot ? path.basename(selectedRoot) : null;
   const result = {};
   for (const [event, groups] of Object.entries(source.hooks || {})) {
     result[event] = groups.map((group) => ({
@@ -139,7 +152,7 @@ function canonicalSourceGroups(source, repoAbs) {
       hooks: (group.hooks || []).map((hook) => ({
         ...hook,
         command: typeof hook.command === 'string'
-          ? substituteRepo(hook.command, repoAbs)
+          ? substituteRepo(respellSourceRoot(hook.command, sourceRootName), repoAbs)
           : hook.command,
       })),
     }));

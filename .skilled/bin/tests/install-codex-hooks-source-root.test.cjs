@@ -144,3 +144,40 @@ describe('install-codex-hooks removes an orphaned hook spelled under either sour
     }
   }
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. COMMANDS RESPELLED UNDER THE ROOT THE CHECKOUT HOLDS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Once the checkout carries the spec-kit sentinel, the installed command must name the
+// root that holds it, whatever spelling the source used. A command naming the absent
+// root would fall into the hook's drift fallback and never run.
+describe('install-codex-hooks writes commands under the source root the checkout holds', () => {
+  const ROWS = [
+    { layout: LAYOUTS[0], sourceName: '.skilled', expected: '.opencode' },
+    { layout: LAYOUTS[1], sourceName: '.opencode', expected: '.skilled' },
+    { layout: LAYOUTS[2], sourceName: '.opencode', expected: '.skilled' },
+  ];
+  for (const { layout, sourceName, expected } of ROWS) {
+    test(`${layout.name}: source spelled ${sourceName} installs under ${expected}`, () => {
+      const fixture = buildFixture(layout, layout.realRoot, sourceName);
+      try {
+        const sentinel = path.join(fixture.repo, layout.realRoot, 'skills', 'system-spec-kit', 'SKILL.md');
+        fs.mkdirSync(path.dirname(sentinel), { recursive: true });
+        fs.writeFileSync(sentinel, '# sentinel\n');
+
+        const install = runInstaller(fixture, []);
+        assert.equal(install.status, 0, install.stderr);
+
+        const owned = installedCommands(fixture.targetPath).filter((command) => /probe-hook\.js/.test(command));
+        assert.deepEqual(owned, [hookCommand(expected).replaceAll(PROJECT_ANCHOR, fixture.repo)]);
+        assert.equal(fs.existsSync(path.join(fixture.repo, expected, 'hooks', 'probe-hook.js')), true);
+
+        const check = runInstaller(fixture, ['--check']);
+        assert.equal(check.status, 0, check.stderr);
+      } finally {
+        fs.rmSync(fixture.root, { recursive: true, force: true });
+      }
+    });
+  }
+});

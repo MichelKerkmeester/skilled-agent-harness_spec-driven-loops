@@ -24,6 +24,7 @@ import { createRequire } from 'node:module';
 import { tool } from '@opencode-ai/plugin/tool';
 
 import * as messageIdentity from './lib/opencode-message-identity.js';
+import { findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -181,7 +182,8 @@ const ADVISOR_SOURCE_PATHS = [
   fileURLToPath(new URL('../skills/system-skill-advisor/runtime/advisor-server.ts', import.meta.url)),
   fileURLToPath(new URL('../skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js', import.meta.url)),
 ];
-const SKILL_ROOT_RELATIVE_PATH = join('.skilled', 'skills');
+// Relative to the source root the workspace carries, which the signature selects.
+const SKILL_ROOT_RELATIVE_PATH = 'skills';
 const ADVISOR_ROOT_RELATIVE_PATH = join(SKILL_ROOT_RELATIVE_PATH, 'system-skill-advisor', 'runtime');
 const ADVISOR_JSON_RELATIVE_PATH = join(ADVISOR_ROOT_RELATIVE_PATH, 'scripts', 'skill-graph.json');
 const ADVISOR_SCRIPT_RELATIVE_PATHS = [
@@ -329,12 +331,17 @@ function addFileSignature(hash, label, sourcePath) {
 }
 
 function advisorSourceSignature(workspaceRoot) {
+  // Hashing the skills under a source-root name the workspace lacks records the same
+  // absent marker on every call, so cached advice would outlive any change to them. With
+  // no source root the signature is refused, and a refused signature is never cached.
+  const sourceRoot = findSourceRoot(workspaceRoot);
+  if (!sourceRoot) throw new Error(`no source root under ${workspaceRoot}`);
   const hash = createHash('sha256');
   for (const sourcePath of ADVISOR_SOURCE_PATHS) {
     addFileSignature(hash, `implementation:${sourcePath}`, sourcePath);
   }
 
-  const skillRoot = join(workspaceRoot, SKILL_ROOT_RELATIVE_PATH);
+  const skillRoot = join(sourceRoot, SKILL_ROOT_RELATIVE_PATH);
   try {
     const skillSlugs = readdirSync(skillRoot, { withFileTypes: true })
       .filter((entry) => entry.isDirectory() && !entry.name.startsWith('.'))
@@ -350,13 +357,13 @@ function advisorSourceSignature(workspaceRoot) {
   }
 
   for (const relativePath of ADVISOR_SCRIPT_RELATIVE_PATHS) {
-    addFileSignature(hash, relativePath, join(workspaceRoot, relativePath));
+    addFileSignature(hash, relativePath, join(sourceRoot, relativePath));
   }
   const dbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR
     ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR
-    ?? join(workspaceRoot, ADVISOR_ROOT_RELATIVE_PATH, 'database');
+    ?? join(sourceRoot, ADVISOR_ROOT_RELATIVE_PATH, 'database');
   addFileSignature(hash, 'skill-graph.sqlite', join(dbDir, 'skill-graph.sqlite'));
-  addFileSignature(hash, ADVISOR_JSON_RELATIVE_PATH, join(workspaceRoot, ADVISOR_JSON_RELATIVE_PATH));
+  addFileSignature(hash, ADVISOR_JSON_RELATIVE_PATH, join(sourceRoot, ADVISOR_JSON_RELATIVE_PATH));
   return hash.digest('hex');
 }
 
