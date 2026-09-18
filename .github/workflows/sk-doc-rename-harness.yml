@@ -42,6 +42,14 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Install the packages the scripts load
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/sk-doc ci
+          npm --prefix .opencode/skills/system-deep-loop ci
+
       - name: Run the rename tooling fixture harness
         env:
           ONLY_TESTS: test_rename_tooling_fixture_harness.py

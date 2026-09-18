@@ -34,6 +34,17 @@ jobs:
       - name: Install test dependency
         run: python3 -m pip install pytest==8.4.2
 
+      # The scaffolder's class gate reads frontmatter through @spec-kit/shared,
+      # and the root-name matrix loads a deep-loop script that resolves it through
+      # the deep-loop package, so both are installed and the shared package built.
+      - name: Install the packages the scripts load
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/sk-doc ci
+          npm --prefix .opencode/skills/system-deep-loop ci
+
       - name: Run the sk-doc script tests
         env:
           SKIP_TESTS: test_rename_tooling_fixture_harness.py
