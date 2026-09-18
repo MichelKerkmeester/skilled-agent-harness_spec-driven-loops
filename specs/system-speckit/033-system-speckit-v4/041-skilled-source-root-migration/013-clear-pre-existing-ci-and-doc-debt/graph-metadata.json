@@ -39,7 +39,7 @@
       "mirror"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -148,12 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -173,6 +167,12 @@
       },
       {
         "name": "Playbook Operator Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Two CI workflows have failed on every push for days, so a new failure in either one looks like the old one and nobody reads it",
     "created_at": "2026-09-18T11:43:38Z",
-    "last_save_at": "2026-09-18T15:02:29.773Z",
+    "last_save_at": "2026-09-18T15:07:21.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b4a4c68a837b6f8fa8730b1c89b0a07a12666b6eb7af6787528568abe9886ad",
+    "source_fingerprint": "sha256:2df01eaf3587283dc7bc2de401d47d2388e563e805c6cb888e63b8ccd197f9cf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a173f3afe42a6f3e9843fd2df5d7360b045a575f1102f86517d830000da96c0d",
-      "plan.md": "67c6ccd422f3de0714085b9aff7edd7c8001e4a1aa763d72ec8d31de21fe9760",
-      "tasks.md": "98fd6fc9a0abec54fa8fd345f6efcae6f4f3e54031844b06047de07579dc4114",
-      "implementation-summary.md": "7ba5993af138068133e05f19912ac431c4455a727abda44b4d8b5c0d5cf1bb3d"
+      "spec.md": "b4ac0bde858d7e34ad0a3916a7f036e99c0732ebba8118b34458c5f551163e70",
+      "plan.md": "6076d9c165f88b3201af0124e8a6651ec8293cda1472603cd348739e8305b35b",
+      "tasks.md": "1994a11a3dca9662e9a51b1db7ca531af80611fc986346c8d237380224d4c6f7",
+      "implementation-summary.md": "5c7aaa7d0e719ea2157ae46a5b65df82d8dc73a49ff8abca8d7962163fd517a9"
     },
     "last_active_at": null
   }

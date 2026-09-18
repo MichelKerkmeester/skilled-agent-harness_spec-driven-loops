@@ -125,7 +125,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 10 | `010-machine-and-consumer-cutover/` | Reinstall the global hooks, update home configs, and keep consumer projects working | complete |
 | 11 | `011-verification-and-rollout/` | Prove every runtime and gate on the new root, push, and clean up | complete |
 | 12 | `012-fix-deep-review-p1-p2-findings-for-source-root-migration/` | Fix every finding the migration's deep review confirmed, starting with one source-root resolver | complete |
-| 13 | `013-clear-pre-existing-ci-and-doc-debt/` | Turn the two CI workflows that were red before the migration green, guard the Hermes mirrors, and remove the retired skill-benchmark lane's live documents | in progress |
+| 13 | `013-clear-pre-existing-ci-and-doc-debt/` | Turn the two CI workflows that were red before the migration green, guard the Hermes mirrors, and remove the retired skill-benchmark lane's live documents | complete |
 
 ### Phase Transition Rules
 

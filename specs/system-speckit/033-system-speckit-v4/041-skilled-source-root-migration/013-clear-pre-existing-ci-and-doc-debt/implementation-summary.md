@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-09-18T13:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Pushed the phase, rewrote the retired-lane residue and fixed the validator CLI"
-    next_safe_action: "Push the residue on approval, watch CI"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/SKILL.md"
@@ -23,10 +23,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "6d11af6f-653e-4807-aca8-1c09c81640c1"
       parent_session_id: null
-    completion_pct: 95
-    open_questions:
-      - "Should the write-set conflict census drop the retired workstream?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The write-set conflict census keeps its retired workstream as a record of its spec program"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -42,9 +42,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 013-clear-pre-existing-ci-and-doc-debt |
-| **Completed** | Not yet: CI on the pushed tip is outstanding |
+| **Completed** | 2026-09-18 |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -110,7 +110,7 @@ Four commits on `worktrees/055-skilled-source-root-migration`, each through the 
 | Name what the hub produces instead of restoring the dead keywords | The dead words fixed the score by describing families that no longer exist. The new words are true, and the dump shows they move no other prompt |
 | Host the mirror check in Command Tree Parity | It runs on every push and pull request and installs the scripts' dependencies. The mirror job in Spec-Kit Check has a path filter that misses edits to other skills |
 | Delete the two parity scenarios rather than mark them SKIP | Only the retired lane could run them, so SKIP would be permanent and would hide a real skip later |
-| Leave the write-set conflict census as it is | It is a closed typed contract. Dropping the workstream changes a type union, the census, the artifact schema and two test expectations, which is a change of its own. It departs from the approved removal and is put to the operator |
+| Leave the write-set conflict census as it is | The operator first approved removing its retired workstream, on my claim that it lists shipped modes. It models one spec program's folders instead, which still hold that workstream, and nothing outside its tests calls it. Given the corrected facts, the operator chose to keep it |
 | Keep the `'skill-benchmark'` mode id in ledger schemas and reducers | Persisted records carry it. Removing it would break replay of old ledgers |
 <!-- /ANCHOR:decisions -->
 
@@ -131,6 +131,7 @@ Four commits on `worktrees/055-skilled-source-root-migration`, each through the 
 | Hermes sync `--check` | 68 skill copies and 33 prompts in sync, both exit 0 |
 | Hub checks | `parent-skill-check` passes on all six hubs. Leaf-manifest and derived-metadata freshness 13/13 |
 | Markdown links, frontmatter | 0 broken links. Frontmatter clean |
+| CI at `10742789a1`, the residue push | all 25 runs green, among them Routing Registry Drift Guard 35360099934 and 35360102705, Playbook Operator Contract 35360099937 and 35360102901, and Command Tree Parity 35360100027 and 35360102852. Spec-Kit Check did not run because the push touched none of its paths |
 | CI at `a22897b1af` | All 27 runs on both branches green, Spec-Kit Check included (35358039078 and 35358038833). Routing Registry Drift Guard 35358038757 and 35358038847, Playbook Operator Contract 35358038681 and 35358038874, Hermes mirror job in 35358038672 and 35358038808 |
 | Per-row routing dump after the residue rewrite | All 289 prompts route as in the known-good dump |
 <!-- /ANCHOR:verification -->
@@ -141,7 +142,7 @@ Four commits on `worktrees/055-skilled-source-root-migration`, each through the 
 ## Known Limitations
 
 1. **No tool can admit a new hub to `compiled-serving`.** Lane C parity was the admission test, and it was retired with the lane. The seven hubs already admitted keep their measured verdict.
-2. **The write-set conflict census still declares the retired workstream** (`.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts:14`, `shipped-census.ts:107`). It models the child folders of one spec program, which still hold that workstream, and it already omits the shipped deep-alignment mode, so it is a record of that program rather than a list of shipped modes. The operator's call is pending, with these facts.
+2. **The write-set conflict census still declares the retired workstream** (`.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts:14`, `shipped-census.ts:107`). It models the child folders of one spec program, which still hold that workstream, and it already omits the shipped deep-alignment mode, so it is a record of that program rather than a list of shipped modes. The operator chose to keep it, given these facts.
 3. **The frozen durable-directory manifest has eleven stale entries in each direction.** They predate this work, and its test was failing before this phase.
 4. **`create-journey-proof.test.cjs` still fails** on a version mismatch in the sk-create-skill scaffold, the same failure as the baseline.
 5. **No CI workflow runs the deep-loop runtime suites.** Spec-Kit Check runs the spec-kit package's `root` and `cli` projects. The contract-drift and renderer tests that caught this phase's stale contracts run only under `runtime/vitest.config.ts`, locally.

@@ -12,14 +12,14 @@ _memory:
     last_updated_at: "2026-09-18T13:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Met every criterion, AC-007 from CI on the pushed tip"
-    next_safe_action: "Push the residue on approval, watch CI"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "6d11af6f-653e-4807-aca8-1c09c81640c1"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** 041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-18
 <!-- /ANCHOR:metadata -->
 
@@ -85,7 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every criterion is met. Two things hold the phase open: the residue commits still need their push and CI, and the census question is back with the operator.
+Every criterion is met. The residue commits were pushed at `10742789a1` and CI is green on both branches there too: all 25 runs green, among them Routing Registry Drift Guard 35360099934 and 35360102705, Playbook Operator Contract 35360099937 and 35360102901, and Command Tree Parity 35360100027 and 35360102852. Spec-Kit Check did not run because the push touched none of its paths. The write-set conflict census was consciously left as a record of its spec program.
 <!-- /ANCHOR:closure -->

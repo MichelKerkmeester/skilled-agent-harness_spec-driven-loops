@@ -69,7 +69,7 @@ contextType: "implementation"
 - [x] T020 Watch CI until the three target workflows pass
 - [x] T022 Rewrite the live files that still describe the retired lane as present (holdouts, skill docs, READMEs, playbook roots, catalogs, code comments)
 - [x] T023 Give `validate-compiled-routing-scenarios.cjs` its own argument parser, with a CLI test that fails against the old script
-- [ ] T024 Push the residue commits after the operator's go-ahead and watch CI
+- [x] T024 Push the residue commits after the operator's go-ahead and watch CI
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -77,7 +77,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->
