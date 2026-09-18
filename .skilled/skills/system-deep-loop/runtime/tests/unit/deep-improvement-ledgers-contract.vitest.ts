@@ -302,8 +302,8 @@ describe('deep-improvement-ledgers projection surface — negative control', () 
       // the helper prints is not mangled by nested-quote escaping. The
       // restore is performed BY the trap on EXIT/INT/TERM (absolute paths),
       // so the contract source is never left mutated even on interruption.
-      `trap 'sed -i "" "$FLIP_TRUE" "$CONTRACT"; echo "RESTORE: $(run)"' EXIT INT TERM`,
-      `sed -i '' "$FLIP_FALSE" "$CONTRACT"`,
+      `trap 'sed -i.negctl "$FLIP_TRUE" "$CONTRACT"; rm -f "$CONTRACT.negctl"; echo "RESTORE: $(run)"' EXIT INT TERM`,
+      `sed -i.negctl "$FLIP_FALSE" "$CONTRACT" && rm -f "$CONTRACT.negctl"`,
       `echo "RED: $(run)"`,
     ].join('\n');
 
