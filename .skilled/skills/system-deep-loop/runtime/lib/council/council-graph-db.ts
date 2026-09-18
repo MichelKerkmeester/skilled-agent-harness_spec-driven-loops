@@ -79,7 +79,9 @@ export interface CouncilNamespace {
 
 export const SCHEMA_VERSION = 1;
 export const DB_FILENAME = 'council-graph.sqlite';
-export const COUNCIL_GRAPH_STORAGE_DIR = join(
+// The override lets a test run write a scratch database instead of the one
+// checked into the repository beside this module.
+export const COUNCIL_GRAPH_STORAGE_DIR = process.env.DEEP_LOOP_COUNCIL_DB_DIR || join(
   dirname(fileURLToPath(import.meta.url)),
   '..',
   '..',
