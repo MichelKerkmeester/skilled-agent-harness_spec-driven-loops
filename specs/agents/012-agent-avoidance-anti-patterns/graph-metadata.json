@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/012-agent-avoidance-anti-patterns",
+  "spec_folder": "agents/012-agent-avoidance-anti-patterns",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent avoidance anti-patterns",
+      "invented rules to avoid helping",
+      "silent reinterpretation",
+      "unsolicited warnings",
+      "refusal dressed as policy",
+      "scope inflation stalling",
+      "answer the actual request",
+      "ruleset honesty audit",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy"
+    ],
+    "key_topics": [
+      "agent",
+      "avoidance",
+      "anti-patterns",
+      "invented",
+      "rules",
+      "avoid",
+      "helping",
+      "silent",
+      "reinterpretation",
+      "unsolicited",
+      "warnings",
+      "refusal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "repo-rules/answer-the-actual-request.md",
+      "repo-rules/evidence-and-proof.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".claude/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "answer-the-actual-request.md",
+        "kind": "doc",
+        "path": "repo-rules/answer-the-actual-request.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-and-proof.md",
+        "kind": "doc",
+        "path": "repo-rules/evidence-and-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Agent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A pasted user report (Reddit r/ClaudeAI thread \"Claude's habit of inventing rules to avoid helping\", full text supplied by the operator; the thread itself is fetch-blocked) catalogs six agent behaviors that all read as diligence and all function as avoidance: (1) unsolicited warnings wrapped around mundane requests, (2) silent reinterpretation into a \"safer\" version of the ask, (3) restrictions cited that do not exist and quietly change under pushback, (4) refusals dressed as policy whose real answer is \"I just don't want to\", (5) \"done\" claims that become honest only after interrogation, and",
+    "created_at": "2026-09-18T08:12:37Z",
+    "last_save_at": "2026-09-18T10:09:14.437Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a289abb27b4510d45b076f3bef62e07907e793cc10758d048aa54b7cce03696d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "308fd525625b7f522daa8aaa5ebd8b62efbd5e27de9f33cfd9139e4ae4eb8c62",
+      "plan.md": "ca39d5497121f59cb935b825040592f79b1b2c892e15664cfeccf199834cd32b",
+      "tasks.md": "98763b4548bc8f8221b6d1a301411ecf7e3420d03bbfa8d0ebffa3a5b6a23061",
+      "implementation-summary.md": "b092823bbc029b803880f4633a5311629ab4ccd2cfe0a057f15386fabf5e9565"
+    },
+    "last_active_at": null
+  }
+}

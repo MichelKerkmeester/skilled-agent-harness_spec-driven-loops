@@ -258,7 +258,7 @@ Confidence stays below 80% after two failed attempts → ask with two or three o
 
 ## 8. 🗣️ COMMUNICATION QUALITY
 
-Load [`communication.md`](repo-rules/communication.md) and [`communication-prose.md`](repo-rules/communication-prose.md) before any substantive reply, [`communication-decisions.md`](repo-rules/communication-decisions.md) before a recommendation or a long stretch of work, and [`communication-handoff.md`](repo-rules/communication-handoff.md) before ending a turn. These four fire on a reply rather than on a write, so Gate 5 never reaches them.
+Load [`communication.md`](repo-rules/communication.md) and [`communication-prose.md`](repo-rules/communication-prose.md) before any substantive reply, [`communication-decisions.md`](repo-rules/communication-decisions.md) before a recommendation or a long stretch of work, and [`communication-handoff.md`](repo-rules/communication-handoff.md) before ending a turn. Load [`answer-the-actual-request.md`](repo-rules/answer-the-actual-request.md) before answering a request you are tempted to warn about, narrow, decline, or price. These five fire on a reply rather than on a write, so Gate 5 never reaches them.
 
 Two things stay here because they bind regardless of what loads. **Delivery never softens rigor** — no rule about how a reply reads may weaken a claim, a caveat, or a verification standard from §4. And **voice is not a performance**: over-constraining it produces hedged, timid answers, so when honoring a delivery rule would weaken the answer, keep the answer.
 

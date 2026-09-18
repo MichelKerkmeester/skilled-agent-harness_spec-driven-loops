@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7152,
+    "missing-frontmatter": 7149,
     "non-yaml-frontmatter": 1,
-    "ok": 15280,
+    "ok": 15285,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27276,
+  "documentsScanned": 27278,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "cfb9b1cc67e4d3300ac1e44caf073bfacc8b7d0ccee03c22992b5380fdbc4ce4",
+  "manifestHash": "55c957baefb1af37c5124552e59c3302b5d419a1db70cdd24a48984a77e2f215",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 36345,
+      "ok": 36353,
       "prose-sentence": 27,
       "single-token": 303,
       "stop-word-only": 3
@@ -76839,27 +76839,21 @@
       "line": 1,
       "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/review/scope-under-l1-brief.md",
       "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
+    {
+      "path": ".skilled/hooks/dispatch/lib/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/hooks/dispatch/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/hooks/dispatch/pi/node_modules",
+      "reason": "excluded directory"
+    },
     {
       "path": ".skilled/hooks/git-preflight/README.md",
       "reason": "duplicate of an already-indexed document"
@@ -76875,6 +76869,14 @@
     {
       "path": ".skilled/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/skills/mcp-code-mode/mcp-server/dist",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/mcp-code-mode/mcp-server/node_modules",
+      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/sk-code/benchmark/fixtures",
@@ -76933,6 +76935,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/skills/sk-communication/cli-communication-projection/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/skills/sk-communication/cli-communication-projection/test/fixtures",
       "reason": "excluded directory"
     },
@@ -76942,6 +76948,14 @@
     },
     {
       "path": ".skilled/skills/sk-design/sk-design-diagram/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/dist",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -76989,7 +77003,15 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/system-deep-loop/deep-improvement/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -77205,8 +77227,24 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents/012-agent-avoidance-anti-patterns/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/agents/z_archive",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/ai-systems",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/anobel.com",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/app-mobile-cli",
+      "reason": "symlinked directory"
     },
     {
       "path": "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/scratch",
@@ -77721,6 +77759,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-fast-mode/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-openai-fast-mode/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/013-pi-cache-affinity-compat/scratch",
       "reason": "excluded directory"
     },
@@ -78071,6 +78117,10 @@
     {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/obsidian",
+      "reason": "symlinked directory"
     },
     {
       "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages",
@@ -79714,6 +79764,10 @@
     },
     {
       "path": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/node_modules",
       "reason": "excluded directory"
     },
     {

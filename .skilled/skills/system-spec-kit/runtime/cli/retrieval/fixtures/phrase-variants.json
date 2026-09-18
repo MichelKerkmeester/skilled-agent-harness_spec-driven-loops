@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cfb9b1cc67e4d3300ac1e44caf073bfacc8b7d0ccee03c22992b5380fdbc4ce4",
+  "manifestHash": "55c957baefb1af37c5124552e59c3302b5d419a1db70cdd24a48984a77e2f215",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10647,6 +10647,9 @@
     "agent authoring reference index": [
       "agent authoring reference index"
     ],
+    "agent avoidance anti patterns": [
+      "agent avoidance anti-patterns"
+    ],
     "agent common mistakes": [
       "agent common mistakes"
     ],
@@ -12034,6 +12037,9 @@
     ],
     "annotation sketchy terminal icons": [
       "annotation sketchy terminal icons"
+    ],
+    "answer the actual request": [
+      "answer the actual request"
     ],
     "answerable questions tags": [
       "answerable questions tags"
@@ -55511,6 +55517,9 @@
     "invariant verification tasks": [
       "invariant verification tasks"
     ],
+    "invented rules to avoid helping": [
+      "invented rules to avoid helping"
+    ],
     "inventory a notion workspace": [
       "inventory a notion workspace"
     ],
@@ -81221,6 +81230,9 @@
     "refusal census": [
       "refusal census"
     ],
+    "refusal dressed as policy": [
+      "refusal dressed as policy"
+    ],
     "refusal path works": [
       "refusal path works"
     ],
@@ -86802,6 +86814,9 @@
     "rules relocation tasks": [
       "rules relocation tasks"
     ],
+    "ruleset honesty audit": [
+      "ruleset honesty audit"
+    ],
     "run 2 divergent defaultmode findings": [
       "run 2 divergent defaultMode findings"
     ],
@@ -88382,6 +88397,9 @@
     ],
     "scope governance ts requiresgovernedingest fix": [
       "scope-governance.ts requiresGovernedIngest fix"
+    ],
+    "scope inflation stalling": [
+      "scope inflation stalling"
     ],
     "scope policy rerun": [
       "scope policy rerun"
@@ -91264,6 +91282,9 @@
     ],
     "silent hook catch stderr": [
       "silent hook catch stderr"
+    ],
+    "silent reinterpretation": [
+      "silent reinterpretation"
     ],
     "silent skip false green test": [
       "silent skip false green test"
@@ -106517,6 +106538,9 @@
     ],
     "unsatisfiable condition removed": [
       "unsatisfiable condition removed"
+    ],
+    "unsolicited warnings": [
+      "unsolicited warnings"
     ],
     "unsynced prompt fields fix": [
       "unsynced prompt fields fix"
