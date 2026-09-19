@@ -1,8 +1,8 @@
 ---
 name: sk-code
-description: "Unified two-axis code skill: routes to two WORKFLOW modes (sk-code-quality, sk-code-review) and bundles four read-only SURFACE evidence packets (sk-code-webflow, sk-code-opencode, sk-code-mobile-cli, sk-code-obsidian) — each surface carrying the implement/debug/verify workflow doctrine plus its stack knowledge — over shared surface-detection; holds no per-mode logic; dispatches by workflowMode through mode-registry.json."
+description: "Unified two-axis code skill: routes to two WORKFLOW modes (sk-code-quality, sk-code-review) and bundles three read-only SURFACE evidence packets (sk-code-webflow, sk-code-opencode, sk-code-obsidian) — each surface carrying the implement/debug/verify workflow doctrine plus its stack knowledge — over shared surface-detection; holds no per-mode logic; dispatches by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 4.2.2.0
+version: 4.2.3.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -13,13 +13,13 @@ metadata:
 > skill without scanning the canonical directory; read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: sk-code, code, surface-aware, two-axis, webflow, opencode, animation, motion.dev, frontend, browser, typescript, python, shell, json, jsonc, sk-code-quality, sk-code-review, quality, review, verification, debug, implement, workflow-doctrine, mode-registry, workflowmode, packetkind, backendkind, surface-router, evidence-base, surface-packet, sk-code-mobile-cli, sk-code-obsidian -->
+<!-- Keywords: sk-code, code, surface-aware, two-axis, webflow, opencode, animation, motion.dev, frontend, browser, typescript, python, shell, json, jsonc, sk-code-quality, sk-code-review, quality, review, verification, debug, implement, workflow-doctrine, mode-registry, workflowmode, packetkind, backendkind, surface-router, evidence-base, surface-packet, sk-code-obsidian -->
 
 # Code Family Hub (sk-code)
 
-One skill, two axes, one shared surface-detection router, and one advisor identity. The **workflow axis** is two code modes that act (sk-code-quality, sk-code-review); the **surface axis** is four read-only evidence packets the hub bundles alongside a workflow mode (sk-code-webflow, sk-code-opencode, sk-code-mobile-cli, sk-code-obsidian). Each surface carries the shared **implement → debug → verify** workflow doctrine (`shared/references/workflow_*.md`, symlinked in) plus its own stack knowledge; sk-code-webflow also carries the folded-in Motion.dev animation overlay. This hub holds NO per-mode logic: it routes by `workflowMode` through `mode-registry.json`, and each mode or surface keeps its own contract in its packet.
+One skill, two axes, one shared surface-detection router, and one advisor identity. The **workflow axis** is two code modes that act (sk-code-quality, sk-code-review); the **surface axis** is three read-only evidence packets the hub bundles alongside a workflow mode (sk-code-webflow, sk-code-opencode, sk-code-obsidian). Each surface carries the shared **implement → debug → verify** workflow doctrine (`shared/references/workflow_*.md`, symlinked in) plus its own stack knowledge; sk-code-webflow also carries the folded-in Motion.dev animation overlay. This hub holds NO per-mode logic: it routes by `workflowMode` through `mode-registry.json`, and each mode or surface keeps its own contract in its packet.
 
-**Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json`, `hub-router.json`, and `ROUTER.md` carry the same value, so every hub-root artifact states the same release. The authority stops at the hub root: each `modes[]` packet carries its own version and release cadence, so a packet version is independent of this one by design and a gap between them is not drift. `sk-code-mobile-cli` records its renumber to a pre-release `0.x` line in its own changelog; `sk-code-obsidian` opened directly on that line.
+**Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json`, `hub-router.json`, and `ROUTER.md` carry the same value, so every hub-root artifact states the same release. The authority stops at the hub root: each `modes[]` packet carries its own version and release cadence, so a packet version is independent of this one by design and a gap between them is not drift. `sk-code-obsidian` carries a pre-release `0.x` line in its own changelog.
 
 ---
 
@@ -40,7 +40,7 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 |---------|---------|--------|
 | **sk-code-webflow** | Frontend evidence: CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify — plus the Motion.dev animation overlay. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Webflow surface; the acting agent applies it. | `sk-code/sk-code-webflow/` |
 | **sk-code-opencode** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the OpenCode surface; the acting agent applies it. | `sk-code/sk-code-opencode/` |
-| **sk-code-mobile-cli** | Svelte design-system and source-convention evidence for the Pi Remote Mobile-CLI app. Read-only. | `sk-code/sk-code-mobile-cli/` |
+
 | **sk-code-obsidian** | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin. Read-only. | `sk-code/sk-code-obsidian/` |
 
 The **implement → debug → verify** phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/workflow-implement.md`, `workflow-debug.md`, and `workflow-verify.md`, and is symlinked into each surface so the active surface carries the full workflow. A request to implement, debug, or verify code detects its surface and loads that surface's bundled doctrine; the acting agent applies it.
