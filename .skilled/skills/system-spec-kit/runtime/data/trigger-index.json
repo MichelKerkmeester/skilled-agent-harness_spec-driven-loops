@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f589f06b3e3424bc0af0bcd2feb26d1463a3088a9ffd9535e97c6e309780cc9f",
+  "manifestHash": "6227cd6dd4beb8dae518e4bb8a0f6eb421c068e82fb53b151c12632e7e9bc1f6",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -15372,6 +15372,11 @@
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/plan.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/spec.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/goal.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/review-report.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/spec.md",
@@ -26577,6 +26582,9 @@
     "advisor plugin bridge cutover": [
       12219
     ],
+    "advisor plugin cache regression": [
+      15365
+    ],
     "advisor plugin cli": [
       9646
     ],
@@ -26949,6 +26957,21 @@
     "advisor suite green": [
       10326,
       11950
+    ],
+    "advisor suite restore": [
+      15365
+    ],
+    "advisor suite restore acceptance": [
+      15362
+    ],
+    "advisor suite restore plan": [
+      15364
+    ],
+    "advisor suite restore summary": [
+      15363
+    ],
+    "advisor suite restore tasks": [
+      15366
     ],
     "advisor suite teardown hang": [
       9569
@@ -60182,7 +60205,7 @@
       7321
     ],
     "dot skilled migration": [
-      15364
+      15369
     ],
     "dot state directories": [
       14601
@@ -60645,7 +60668,7 @@
       15296
     ],
     "dual root resolver findings": [
-      15363
+      15368
     ],
     "dual root task breakdown": [
       15300
@@ -65978,7 +66001,7 @@
       215
     ],
     "fewer skills safer paths": [
-      15365
+      15370
     ],
     "fidelity checklist": [
       887
@@ -85316,7 +85339,7 @@
       14801
     ],
     "memory decommission history": [
-      15366
+      15371
     ],
     "memory decommission inventory": [
       14784
@@ -85341,7 +85364,7 @@
     ],
     "memory decommission timeline": [
       3996,
-      15367
+      15372
     ],
     "memory delete causal cleanup": [
       12923
@@ -88904,7 +88927,7 @@
       14504
     ],
     "move opencode to skilled": [
-      15364
+      15369
     ],
     "move or rename a note": [
       445
@@ -97862,17 +97885,25 @@
       3290,
       15361
     ],
+    "phase 18 closure gate": [
+      15362
+    ],
     "phase 18 implementation summary": [
       3291,
       7011
     ],
     "phase 18 plan": [
       3292,
-      7012
+      7012,
+      15364
+    ],
+    "phase 18 results": [
+      15363
     ],
     "phase 18 tasks": [
       3294,
-      7014
+      7014,
+      15366
     ],
     "phase 19 benchmark plan": [
       3570
@@ -99041,7 +99072,7 @@
       11753,
       12898,
       15040,
-      15366
+      15371
     ],
     "phase parent 049": [
       10237
@@ -104319,6 +104350,9 @@
     ],
     "python shim stdin mode": [
       1534
+    ],
+    "python ts parity drop": [
+      15365
     ],
     "python ts parity tests": [
       1615
@@ -114027,7 +114061,7 @@
       2593
     ],
     "runtime symlink inversion": [
-      15364
+      15369
     ],
     "runtime symlink resolution probe": [
       15280
@@ -115142,6 +115176,12 @@
     ],
     "scorer eval baseline ratchet": [
       6220
+    ],
+    "scorer freeze renewal": [
+      15365
+    ],
+    "scorer freeze renewed": [
+      15363
     ],
     "scorer fusion stress": [
       1607
@@ -124644,16 +124684,16 @@
       15324
     ],
     "skilled migration binding": [
-      15362
+      15367
     ],
     "skilled migration closeout": [
       15329
     ],
     "skilled migration completion criteria": [
-      15362
+      15367
     ],
     "skilled migration deep review": [
-      15363
+      15368
     ],
     "skilled migration design": [
       15287
@@ -124665,7 +124705,7 @@
       15271
     ],
     "skilled migration goal": [
-      15362
+      15367
     ],
     "skilled migration research": [
       15272
@@ -124734,7 +124774,7 @@
       15299
     ],
     "skilled source root": [
-      15364
+      15369
     ],
     "skilled source root move": [
       15305
@@ -125302,7 +125342,7 @@
       889
     ],
     "source parent migration": [
-      15364
+      15369
     ],
     "source phase metadata cleanup": [
       6849
@@ -125314,10 +125354,10 @@
       15298
     ],
     "source root migration directive": [
-      15362
+      15367
     ],
     "source root migration review": [
-      15363
+      15368
     ],
     "source root move acceptance criteria": [
       15301
@@ -126154,10 +126194,10 @@
     ],
     "spec kit v4 chronology": [
       3996,
-      15367
+      15372
     ],
     "spec kit v4 timeline": [
-      15366
+      15371
     ],
     "spec kit version migration": [
       11717,
@@ -131201,11 +131241,11 @@
       14309
     ],
     "system speckit v4": [
-      15366
+      15371
     ],
     "system speckit v4 timeline": [
       3996,
-      15367
+      15372
     ],
     "system to embedder mapping": [
       11194,
@@ -133496,7 +133536,7 @@
       14536
     ],
     "template reduction history": [
-      15366
+      15371
     ],
     "template reduction requirements": [
       14516
@@ -136956,10 +136996,10 @@
       15155
     ],
     "v4 0 0 0 release notes": [
-      15365
+      15370
     ],
     "v4 changelog": [
-      15365
+      15370
     ],
     "v4 changelog draft update": [
       15159
@@ -136969,7 +137009,7 @@
     ],
     "v4 packet order": [
       3996,
-      15367
+      15372
     ],
     "v4 pro retirement status": [
       2469
@@ -140039,7 +140079,7 @@
       1136
     ],
     "what changed in v4": [
-      15365
+      15370
     ],
     "what colors are in this design": [
       1134
@@ -140633,7 +140673,7 @@
     ],
     "which spec was worked on first": [
       3996,
-      15367
+      15372
     ],
     "which system uses cocoindex or mk spec memory": [
       12423

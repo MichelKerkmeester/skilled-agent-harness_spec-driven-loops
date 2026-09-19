@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f589f06b3e3424bc0af0bcd2feb26d1463a3088a9ffd9535e97c6e309780cc9f",
+  "manifestHash": "6227cd6dd4beb8dae518e4bb8a0f6eb421c068e82fb53b151c12632e7e9bc1f6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10049,6 +10049,9 @@
     "advisor plugin bridge cutover": [
       "advisor plugin bridge cutover"
     ],
+    "advisor plugin cache regression": [
+      "advisor plugin cache regression"
+    ],
     "advisor plugin cli": [
       "advisor plugin cli"
     ],
@@ -10409,6 +10412,21 @@
     ],
     "advisor suite green": [
       "advisor suite green"
+    ],
+    "advisor suite restore": [
+      "advisor suite restore"
+    ],
+    "advisor suite restore acceptance": [
+      "advisor suite restore acceptance"
+    ],
+    "advisor suite restore plan": [
+      "advisor suite restore plan"
+    ],
+    "advisor suite restore summary": [
+      "advisor suite restore summary"
+    ],
+    "advisor suite restore tasks": [
+      "advisor suite restore tasks"
     ],
     "advisor suite teardown hang": [
       "advisor suite teardown hang"
@@ -73821,11 +73839,17 @@
     "phase 17 tasks": [
       "phase 17 tasks"
     ],
+    "phase 18 closure gate": [
+      "phase 18 closure gate"
+    ],
     "phase 18 implementation summary": [
       "phase 18 implementation summary"
     ],
     "phase 18 plan": [
       "phase 18 plan"
+    ],
+    "phase 18 results": [
+      "phase 18 results"
     ],
     "phase 18 tasks": [
       "phase 18 tasks"
@@ -78760,6 +78784,9 @@
     ],
     "python shim stdin mode": [
       "python shim --stdin mode"
+    ],
+    "python ts parity drop": [
+      "python ts parity drop"
     ],
     "python ts parity tests": [
       "python ts parity tests"
@@ -88679,6 +88706,12 @@
     ],
     "scorer eval baseline ratchet": [
       "scorer eval baseline ratchet"
+    ],
+    "scorer freeze renewal": [
+      "scorer freeze renewal"
+    ],
+    "scorer freeze renewed": [
+      "scorer freeze renewed"
     ],
     "scorer fusion stress": [
       "scorer fusion stress"

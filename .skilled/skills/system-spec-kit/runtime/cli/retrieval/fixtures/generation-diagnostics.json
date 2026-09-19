@@ -3,10 +3,10 @@
     "duplicate-phrase": 54,
     "missing-frontmatter": 7157,
     "non-yaml-frontmatter": 1,
-    "ok": 15314,
+    "ok": 15319,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27315,
+  "documentsScanned": 27320,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "f589f06b3e3424bc0af0bcd2feb26d1463a3088a9ffd9535e97c6e309780cc9f",
+  "manifestHash": "6227cd6dd4beb8dae518e4bb8a0f6eb421c068e82fb53b151c12632e7e9bc1f6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 36413,
+      "ok": 36424,
       "prose-sentence": 27,
       "single-token": 303,
       "stop-word-only": 3
@@ -82000,6 +82000,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/scratch",
       "reason": "excluded directory"
     },
     {
