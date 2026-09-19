@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stale seven hub text",
+      "compiled routing architecture correction",
+      "retired template headers rule",
+      "phase 16 stale docs",
+      "stale compiled routing text plan",
+      "phase 16 plan",
+      "stale compiled routing text tasks",
+      "phase 16 tasks",
+      "stale compiled routing text acceptance",
+      "phase 16 closure gate",
+      "stale compiled routing text summary",
+      "phase 16 results"
+    ],
+    "key_topics": [
+      "stale",
+      "seven",
+      "hub",
+      "text",
+      "compiled",
+      "routing",
+      "architecture",
+      "correction",
+      "retired",
+      "template",
+      "headers",
+      "rule"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+      ".skilled/bin/compiled-routing-foundation.vitest.ts",
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+      "references/workflows/spec-folder-write-recipe.md",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resolve.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-foundation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/compiled-routing-foundation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-architecture.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-write-recipe.md",
+        "kind": "doc",
+        "path": "references/workflows/spec-folder-write-recipe.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Compiled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Compiled routing serves five hubs, but four places still say seven: the resolver's cohort comment, the advisor's cohort comment, a test header, and the compiled-routing architecture reference",
+    "created_at": "2026-09-19T05:02:14Z",
+    "last_save_at": "2026-09-19T05:27:37.689Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:798c03007761ad7c28e1559027c1bb5a2457ae38be40794ef82fc847a0d36607",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7a52e8c0c06420cf5ce624341e762d1031761d4eeb902a8342de17eaeb719399",
+      "plan.md": "4a37666c3383a4d3204303dab3723de632991955cc3cee84c1de65d0913274ad",
+      "tasks.md": "7b3a440babe054fa2457da93f795388bbf704f1882db9c318ca1111fc6a05998",
+      "implementation-summary.md": "8fa0913b3e14a12dc65b14a15e6860260edf3fd03e13d2a0dd543a74720784af"
+    },
+    "last_active_at": null
+  }
+}

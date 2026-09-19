@@ -205,7 +205,7 @@
     ],
     "causal_summary": "A parent hub serves compiled routing only after it earns the `compiled-serving` verdict: its compiled decision must match its legacy decision on every scenario, with zero drift",
     "created_at": "2026-09-18T20:07:57Z",
-    "last_save_at": "2026-09-18T22:38:14.896Z",
+    "last_save_at": "2026-09-19T05:10:07.493Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ac754b15245568364993c61bcd152b18e79fcf0d1bc32f39593e2387a5db3468",
+    "source_fingerprint": "sha256:7f80dff2cb73475d2b4603401d224e8f8f81e7907d66ef81b2a68b0568651af9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b117741dd76099011ce456621d3eaee0403a66c6e61b24af8e8e9abc9f398b37",
+      "spec.md": "afd0c066a75d4de284b60d9a494f2d3934aff7441d8aee2f76df6abc16cdbc5e",
       "plan.md": "04ca09d7a434018d9518e065d4b22c17d33cde392a6b76079a341b6605e94e0e",
       "tasks.md": "640dd213d4741ca699f3cc55507d4adc4ec045f3c62003d5deb4bb0d8b1aa346",
-      "implementation-summary.md": "6f3900d1e2cef13154d1865b4966cfd290ba3108d0f87f3cebcc2651dadaf829",
+      "implementation-summary.md": "adc1e754d48bd5b9566285e77519e60db55d622113e75336943c8e8197622c54",
       "research/research.md": "ba030f4fe631d96cfe6fa08e7c28b558d42190f723362c05b85fa40449c51654"
     },
     "last_active_at": null

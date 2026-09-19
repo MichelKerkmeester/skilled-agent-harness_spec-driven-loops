@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow",
+  "description": "Compiled routing serves five hubs, but four places still say seven: the resolver's cohort comment, the advisor's cohort comment, a test header, and",
+  "keywords": [
+    "compiled",
+    "routing",
+    "serves",
+    "five",
+    "hubs",
+    "four",
+    "places",
+    "still",
+    "say",
+    "seven",
+    "resolver",
+    "cohort",
+    "comment",
+    "advisor",
+    "test",
+    "header"
+  ],
+  "lastUpdated": "2026-09-19T05:27:34.773Z",
+  "specId": "016",
+  "folderSlug": "fix-stale-compiled-routing-docs-and-research-workflow",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -144,7 +144,7 @@ Four commits on `worktrees/055-skilled-source-root-migration`, each through the 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No tool can admit a new hub to `compiled-serving`.** Lane C parity was the admission test, and it was retired with the lane. The seven hubs already admitted keep their measured verdict.
+1. **No tool can admit a new hub to `compiled-serving`.** Lane C parity was the admission test, and it was retired with the lane. The five hubs already admitted keep their measured verdict. This said seven until phase 16 corrected it: sk-design and sk-prompt had already left the cohort.
 2. **The write-set conflict census still declares the retired workstream** (`.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts:14`, `shipped-census.ts:107`). It models the child folders of one spec program, which still hold that workstream, and it already omits the shipped deep-alignment mode, so it is a record of that program rather than a list of shipped modes. The operator chose to keep it, given these facts.
 3. **The frozen durable-directory manifest has eleven stale entries in each direction.** They predate this work, and its test was failing before this phase.
 4. **`create-journey-proof.test.cjs` still fails** on a version mismatch in the sk-create-skill scaffold, the same failure as the baseline.

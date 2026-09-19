@@ -20,8 +20,8 @@ export const COMPILED_ROUTING_HUBS: ReadonlySet<string> = new Set([
 ]);
 
 // Per-hub default-on cohort. Mirrors the runtime resolver's own default-on
-// cohort (all 7 hubs verified compiled-serving, 0 drift — see
-// `011-runtime-engine/lib/resolve.cjs`): this enrichment shells out to the same
+// cohort (the five hubs verified compiled-serving, 0 drift — see
+// `014-runtime-engine/lib/resolve.cjs`): this enrichment shells out to the same
 // public front door (`.skilled/bin/compiled-route.cjs`), which delegates to
 // that identical resolver, so surfacing it here attaches only additive
 // metadata and never changes which skill is recommended. An unset flag now

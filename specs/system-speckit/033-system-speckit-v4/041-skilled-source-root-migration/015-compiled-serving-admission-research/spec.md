@@ -177,7 +177,7 @@ Decide, on evidence, how admission should work from now on: restore the retired 
 
 ## 10. OPEN QUESTIONS
 
-- Q1 to Q5 are answered in `research/research.md`. What stays open is the operator's to decide: whether to accept the restated admission bar, how a `clarify` decision counts, and what coverage floor each workflow mode needs.
+- Q1 to Q5 are answered in `research/research.md`. The operator accepted the restated admission bar on 2026-09-19. Still open for the build: how a `clarify` decision counts, and what coverage floor each workflow mode needs.
 
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
 **Research findings** (abridged from `research/research.md`, which stays canonical; 10 iterations, two lineages, 5 of 5 questions answered)

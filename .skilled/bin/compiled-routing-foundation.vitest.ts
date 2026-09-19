@@ -1,7 +1,7 @@
 // Foundation invariants for compiled skill-routing:
 //   - eligibility (advisor hub set) never diverges from the engine-dispatch map
 //   - the tri-state flag is parsed identically at both runtime read sites
-//   - the resolver's per-hub default-on cohort covers all 7 promoted hubs; a
+//   - the resolver's per-hub default-on cohort covers all five promoted hubs; a
 //     stale manifest fails closed while the advisor's enrichment cohort remains
 //     in membership lockstep
 //   - the status probe's causeCode separates drift from breakage

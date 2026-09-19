@@ -18,7 +18,8 @@
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration",
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/013-clear-pre-existing-ci-and-doc-debt",
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration",
-    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research"
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow"
   ],
   "manual": {
     "depends_on": [],
@@ -181,17 +182,17 @@
     ],
     "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
     "created_at": "2026-09-16T08:35:04Z",
-    "last_save_at": "2026-09-18T22:38:12.217Z",
+    "last_save_at": "2026-09-19T05:27:39.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:0a80ee7da2fd114dbb89f058991e77065b482619bde6e755afdb5c22abd08d56",
+    "source_fingerprint": "sha256:949f31de932b9fdf02a34efda3b7291024acf8115d1fdf044b834dc08a6ed835",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "124bee180bd12bb150839f7587bc5f971eaa74881515bb64b711f6e97b42180f"
+      "spec.md": "f317bdf51801e2a6e0585c631ddd50497baf3677e06cda43361705eaa8283262"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
     "last_active_at": "2026-09-18T22:35:59.779Z"
