@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade",
+  "spec_folder": "sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade",
+  "parent_id": "sk-communication/006-sk-communication-clarity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-communication upgrade",
+      "rewrite response contract",
+      "wording standard routing",
+      "cut and reorder pass",
+      "skill upgrade plan",
+      "one home for the standard",
+      "rewrite pass declaration",
+      "provider instruction reply base",
+      "skill upgrade tasks",
+      "engine item tasks",
+      "command mirror sync",
+      "acceptance criteria"
+    ],
+    "key_topics": [
+      "sk-communication",
+      "upgrade",
+      "rewrite",
+      "response",
+      "contract",
+      "wording",
+      "standard",
+      "routing",
+      "cut",
+      "reorder",
+      "pass",
+      "skill"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/sk-communication/SKILL.md",
+      ".opencode/commands/rewrite/response.md",
+      ".opencode/commands/rewrite/response-by-external-agent.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "response.md",
+        "kind": "doc",
+        "path": ".opencode/commands/rewrite/response.md",
+        "source": "derived"
+      },
+      {
+        "name": "response-by-external-agent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/rewrite/response-by-external-agent.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase's own research run replaced its premise",
+    "created_at": "2026-09-12T12:44:37Z",
+    "last_save_at": "2026-09-14T11:55:13.360Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:246746f33c3813e78a9a04113dddd80fc4f020621dca7d31915e4572883b913b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9c067c24f54af412baec42691cd0cf682b3a4529ed1e40b59fa6f606689ade12",
+      "plan.md": "c40bb9e89fc39620fcfaaadfb259cd417c70931eecb6d7949a545df0ce35f128",
+      "tasks.md": "bde65bc1735de07732288125604cfa40c8e9e765b078d6a72c4ff2169c17b48c",
+      "implementation-summary.md": "80ad2d89aa54a5a98d2ec2739f230b879fb309230f3e9beb11281e3934b2b034",
+      "research/research.md": "f6de0c65bd242a0acce50a7d77c475b80fad64b01afdd4cd81cf6b25c17fb4f3"
+    },
+    "last_active_at": null
+  }
+}

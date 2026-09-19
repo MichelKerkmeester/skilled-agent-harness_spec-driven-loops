@@ -1,0 +1,254 @@
+diff --git a/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/graph-metadata.json b/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/graph-metadata.json
+index 5dec9c7c1e..2499174eab 100644
+--- a/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/graph-metadata.json
++++ b/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/graph-metadata.json
+@@ -1,26 +1,236 @@
+ {
+   "schema_version": 1,
+-  "packet_id": "071-cli-hermes-creation/001-deep-research",
+-  "spec_folder": "071-cli-hermes-creation/001-deep-research",
+-  "parent_id": null,
++  "packet_id": "cli-external-orchestration/071-cli-hermes-creation/001-deep-research",
++  "spec_folder": "cli-external-orchestration/071-cli-hermes-creation/001-deep-research",
++  "parent_id": "cli-external-orchestration/071-cli-hermes-creation",
+   "children_ids": [],
+   "manual": {
+     "depends_on": [],
+     "supersedes": [],
+     "related_to": []
+   },
+-    "derived": {
+-    "trigger_phrases": [],
+-    "key_topics": [],
+-    "importance_tier": "important",
+-    "status": "planned",
+-    "key_files": ["spec.md","plan.md","tasks.md"],
+-    "entities": [],
+-    "causal_summary": "Phase 1: deep-research",
++  "derived": {
++    "trigger_phrases": [
++      "hermes runtime research",
++      "cli-hermes deep research",
++      "hermes headless dispatch",
++      "hermes skills hooks mcp",
++      ".hermes folder research",
++      "hermes research plan",
++      "deep research fan-out cli-devin",
++      "forced depth two lineages",
++      "task breakdown",
++      "implementation tasks",
++      "verification checklist",
++      "task dependencies"
++    ],
++    "key_topics": [
++      "hermes",
++      "runtime",
++      "research",
++      "cli-hermes",
++      "deep",
++      "headless",
++      "dispatch",
++      "skills",
++      "hooks",
++      "mcp",
++      "folder",
++      "plan"
++    ],
++    "importance_tier": "normal",
++    "status": "in_progress",
++    "key_files": [
++      "spec.md",
++      "plan.md",
++      "tasks.md",
++      "acceptance-criteria.md",
++      "goal.md",
++      "implementation-summary.md",
++      "resource-map.md",
++      "research-angles.md",
++      ".opencode/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md",
++      ".opencode/agents/context.md",
++      ".opencode/skills/cli-external-orchestration/SKILL.md",
++      ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
++      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
++      ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
++      ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
++      ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
++      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
++      ".opencode/skills/cli-external-orchestration/hub-router.json",
++      "specs/cli-external-orchestration/071-cli-hermes-creation/spec.md",
++      "specs/cli-external-orchestration/071-cli-hermes-creation/goal.md"
++    ],
++    "entities": [
++      {
++        "name": "spec.md",
++        "kind": "doc",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "plan.md",
++        "kind": "doc",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "tasks.md",
++        "kind": "doc",
++        "path": "tasks.md",
++        "source": "derived"
++      },
++      {
++        "name": "acceptance-criteria.md",
++        "kind": "doc",
++        "path": "acceptance-criteria.md",
++        "source": "derived"
++      },
++      {
++        "name": "goal.md",
++        "kind": "doc",
++        "path": "goal.md",
++        "source": "derived"
++      },
++      {
++        "name": "implementation-summary.md",
++        "kind": "doc",
++        "path": "implementation-summary.md",
++        "source": "derived"
++      },
++      {
++        "name": "resource-map.md",
++        "kind": "doc",
++        "path": "resource-map.md",
++        "source": "derived"
++      },
++      {
++        "name": "research-angles.md",
++        "kind": "doc",
++        "path": "research-angles.md",
++        "source": "derived"
++      },
++      {
++        "name": "child-dispatch-preamble.md",
++        "kind": "doc",
++        "path": ".opencode/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md",
++        "source": "derived"
++      },
++      {
++        "name": "context.md",
++        "kind": "doc",
++        "path": ".opencode/agents/context.md",
++        "source": "derived"
++      },
++      {
++        "name": "SKILL.md",
++        "kind": "doc",
++        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
++        "source": "derived"
++      },
++      {
++        "name": "hub-router.json",
++        "kind": "config",
++        "path": ".opencode/skills/cli-external-orchestration/hub-router.json",
++        "source": "derived"
++      },
++      {
++        "name": "Research Specification",
++        "kind": "proper_noun",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "Hermes Agent",
++        "kind": "proper_noun",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "Is Hermes",
++        "kind": "proper_noun",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "Key Decisions",
++        "kind": "proper_noun",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "Flash Max",
++        "kind": "proper_noun",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "Critical Dependencies",
++        "kind": "proper_noun",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "Implementation Plan",
++        "kind": "proper_noun",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "Technical Context",
++        "kind": "proper_noun",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "Overview The",
++        "kind": "proper_noun",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "Pattern Detached",
++        "kind": "proper_noun",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "Key Components",
++        "kind": "proper_noun",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "Data Flow Topic",
++        "kind": "proper_noun",
++        "path": "plan.md",
++        "source": "derived"
++      }
++    ],
++    "causal_summary": "Nothing in this repository says what Hermes Agent can do as a dispatch target, how its repo-local configuration, skills, hooks, plugins and MCP host compare with the six runtimes already integrated, or whether its headless mode is fit for deep-loop fan-out",
+     "created_at": "2026-09-14T16:04:03Z",
+-    "last_save_at": "2026-09-14T16:04:03Z",
++    "last_save_at": "2026-09-14T16:16:26.981Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+-    "source_docs": ["spec.md","plan.md","tasks.md"]
++    "source_docs": [
++      "spec.md",
++      "plan.md",
++      "tasks.md",
++      "acceptance-criteria.md",
++      "goal.md",
++      "implementation-summary.md",
++      "resource-map.md"
++    ],
++    "source_fingerprint": "sha256:0c7655fa984735a36229ae0995d3414d87f322613f3d31b5cac0cadffecc1e69",
++    "source_fingerprint_docset": 3,
++    "source_doc_hashes": {
++      "spec.md": "db4ffbd86f8543c026f278951e2e2b11b3dcf5d4b215a574baaedbd17a640969",
++      "plan.md": "002e3b9bfb73e008b3f37be297f4d60be1377c666d858bee9e3b8f19246a4645",
++      "tasks.md": "1db01c96ce7628941a61dc412396d1b2f18cfeab07e566aca45570ea5c34331f",
++      "implementation-summary.md": "04dd90e08c0bc78825cb0aee63184135d9737ffbfa042a0a2058ef25df9025a6",
++      "resource-map.md": "a4a1c9398694017d656697b97c18dd1d33333123878754ebd95e9e469f4612c2"
++    },
++    "last_active_at": null
+   }
+ }

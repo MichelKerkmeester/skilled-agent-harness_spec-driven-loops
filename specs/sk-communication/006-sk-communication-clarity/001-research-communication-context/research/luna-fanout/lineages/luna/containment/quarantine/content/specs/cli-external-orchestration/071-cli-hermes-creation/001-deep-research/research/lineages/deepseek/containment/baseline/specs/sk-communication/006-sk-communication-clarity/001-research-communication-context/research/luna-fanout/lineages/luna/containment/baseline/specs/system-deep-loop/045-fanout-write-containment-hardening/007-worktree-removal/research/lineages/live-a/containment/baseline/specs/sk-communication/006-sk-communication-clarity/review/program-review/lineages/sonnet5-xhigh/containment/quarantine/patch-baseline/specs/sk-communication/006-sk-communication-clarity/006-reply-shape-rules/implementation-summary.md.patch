@@ -1,0 +1,17 @@
+diff --git a/specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/implementation-summary.md b/specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/implementation-summary.md
+index cd157190cd..83127567d4 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/implementation-summary.md
++++ b/specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/implementation-summary.md
+@@ -12,9 +12,9 @@ _memory:
+   continuity:
+     packet_pointer: "sk-communication/006-sk-communication-clarity/006-reply-shape-rules"
+     last_updated_at: "2026-09-12T16:39:30Z"
+-    last_updated_by: "template-author"
+-    recent_action: "Initialized Level 2 template"
+-    next_safe_action: "Replace continuity placeholders"
++    last_updated_by: "claude-conductor"
++    recent_action: "Ten reply-shape rules landed"
++    next_safe_action: "None"
+     blockers: []
+     key_files: []
+     session_dedup:

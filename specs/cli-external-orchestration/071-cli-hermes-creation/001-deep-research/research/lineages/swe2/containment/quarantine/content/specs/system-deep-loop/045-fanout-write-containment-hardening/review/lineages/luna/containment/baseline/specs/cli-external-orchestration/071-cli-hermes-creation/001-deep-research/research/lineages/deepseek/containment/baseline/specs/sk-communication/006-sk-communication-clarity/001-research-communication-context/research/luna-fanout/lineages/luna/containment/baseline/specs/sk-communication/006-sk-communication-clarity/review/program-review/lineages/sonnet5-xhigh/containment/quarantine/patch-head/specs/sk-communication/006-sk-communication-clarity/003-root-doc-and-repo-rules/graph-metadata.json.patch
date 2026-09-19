@@ -1,0 +1,71 @@
+diff --git a/specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/graph-metadata.json b/specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/graph-metadata.json
+index 8d528ad5b1..e686539d7b 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/graph-metadata.json
++++ b/specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/graph-metadata.json
+@@ -39,7 +39,7 @@
+       "rules"
+     ],
+     "importance_tier": "normal",
+-    "status": "draft",
++    "status": "in_progress",
+     "key_files": [
+       "spec.md",
+       "plan.md",
+@@ -47,6 +47,7 @@
+       "acceptance-criteria.md",
+       "implementation-summary.md",
+       "repo-rules/communication.md",
++      "repo-rules/prose-mechanics.md",
+       "repo-rules/presenting-decisions.md",
+       "repo-rules/handoff-and-questions.md"
+     ],
+@@ -87,6 +88,12 @@
+         "path": "repo-rules/communication.md",
+         "source": "derived"
+       },
++      {
++        "name": "prose-mechanics.md",
++        "kind": "doc",
++        "path": "repo-rules/prose-mechanics.md",
++        "source": "derived"
++      },
+       {
+         "name": "presenting-decisions.md",
+         "kind": "doc",
+@@ -188,17 +195,11 @@
+         "kind": "proper_noun",
+         "path": "tasks.md",
+         "source": "derived"
+-      },
+-      {
+-        "name": "Verification Checklist",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+       }
+     ],
+     "causal_summary": "The reply-shape rule takes ten of the twenty-nine adopted candidates, the largest single allocation",
+     "created_at": "2026-09-12T12:44:36Z",
+-    "last_save_at": "2026-09-12T17:57:14.512Z",
++    "last_save_at": "2026-09-14T15:37:09.797Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -208,13 +209,13 @@
+       "acceptance-criteria.md",
+       "implementation-summary.md"
+     ],
+-    "source_fingerprint": "sha256:1b76dbe7f3efb1e55eabcc25d8b301cdfaa2fc5ec94eb98db25e1fb92391a266",
++    "source_fingerprint": "sha256:25441c679e5c15ecf29bb86e8ba3faa384aee1a2d973b95a926e6d0ba34cae50",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+-      "spec.md": "b24e633200cb3e373481d3f0fb48b4d28652fd455d970edad84bfb4cd8941499",
++      "spec.md": "2c7e936778cb98ee20ba44a849ab0dc47b53aec6da1311a4ae61fa1804ad097f",
+       "plan.md": "dfecbb2fe8e665ff2c27e178fd681ea305ca5348c9a7f4b95b3b3d374671e9a3",
+-      "tasks.md": "ac7d4bf720777d08a23f27c8b641f7ab3eb647df0c4aeee34b1f9d9da9a02a53",
+-      "implementation-summary.md": "542624afbc6aa88dcb5f68aaf03f90587f29bf39ddcfd46258a63f4554a399ae"
++      "tasks.md": "75f0dcd74c246119af1aee81e282aaf6e34b4fc4f57b2d9ab49fdb32911aa223",
++      "implementation-summary.md": "706a2db3823f57ba8242db83f8d474d59aaa0007b477165beb7d8953d7eb8434"
+     },
+     "last_active_at": null
+   }

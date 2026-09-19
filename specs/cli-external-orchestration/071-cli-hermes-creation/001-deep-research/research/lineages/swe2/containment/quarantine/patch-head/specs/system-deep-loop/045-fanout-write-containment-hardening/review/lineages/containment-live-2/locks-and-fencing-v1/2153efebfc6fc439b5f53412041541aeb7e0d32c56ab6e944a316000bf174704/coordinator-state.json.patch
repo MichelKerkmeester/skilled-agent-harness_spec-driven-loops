@@ -1,0 +1,7 @@
+diff --git a/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2/locks-and-fencing-v1/2153efebfc6fc439b5f53412041541aeb7e0d32c56ab6e944a316000bf174704/coordinator-state.json b/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2/locks-and-fencing-v1/2153efebfc6fc439b5f53412041541aeb7e0d32c56ab6e944a316000bf174704/coordinator-state.json
+deleted file mode 100644
+index 6e8acd73df..0000000000
+--- a/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2/locks-and-fencing-v1/2153efebfc6fc439b5f53412041541aeb7e0d32c56ab6e944a316000bf174704/coordinator-state.json
++++ /dev/null
+@@ -1 +0,0 @@
+-{"activeLease":null,"generation":4,"journalHeadHash":"5c0d5a0d67234952b6661f4c0a70deef6ac9d6c711a67cefed4f0d4c23da050e","lastFenceToken":2,"resource":{"atomicityDomain":"single-host-filesystem","components":{"ledgerId":"deep-review-effect-ledger"},"kind":"ledger","orderKey":"010|locks-v1|single-host-filesystem|ledger|ledgerId=deep-review-effect-ledger","resourceDigest":"2153efebfc6fc439b5f53412041541aeb7e0d32c56ab6e944a316000bf174704","resourceKey":"locks-v1|single-host-filesystem|ledger|ledgerId=deep-review-effect-ledger"},"schemaVersion":1,"stateHash":"1709142a209dfd8abb63d5e10eca47064afb7dfc0980feda896efddc08c7d08f"}

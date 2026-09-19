@@ -1,0 +1,107 @@
+{
+  "topic": "Which parts of AGENTS.md no longer describe reality, and which explain in detail what a delegate already owns? Keep the two failure classes strictly apart and cite file:line for every claim. Class one, not reality: the document names a file, folder, script, command, flag or threshold that does not exist or no longer behaves that way. One instance is confirmed already, checklist.md: the scaffolder produces spec.md, plan.md, tasks.md, implementation-summary.md and acceptance-criteria.md at every level and never a checklist.md, the verification checklist now lives inside tasks.md, and the closure gate is acceptance-criteria.md, so the completion rule instructs loading a file that is never created and never names the document that actually decides closure. It appears in at least five places. Find the rest of this class. Class two, redundant detail: the document explains at length what a repo rule, a skill document, a reference or an asset already owns, where it should carry the binding clause and a pointer only. The specimen is the memory save rule, which spends five bullets, an exact compiled path and an explanation of what the save writes, while also pointing at a save-workflow reference as the authority. Other candidates to confirm or clear: the git safety table whose rows each end by saying the git skill owns the mechanics, the validate.sh subsection which names four traps then says they belong to a spec-kit reference, Gate 3 which names an authoritative classifier and still spells out the vocabulary, the advisor metadata placement paragraph, and the MCP routing section. The target shape already exists in the same document: section 6 is a question-to-answer routing table with almost no restatement, keeping exactly one rule local and saying why. Apply a three-way test to every class-two finding and state which case it is, because only the first is reducible. Case one, a delegate exists and genuinely carries it, so the root doc keeps a pointer. Case two, it must bind when no delegate loads, on a read-only turn where the gate never fires, so keep it, which is section 8 whole design. Case three, it is prompt-time discipline no script or skill can enforce, so keep it, which is section 6 stated exception. A case-one finding must quote the delegate own line. Without that discrimination the audit will recommend deleting clauses that are load-bearing precisely because nothing else reaches them.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-doc/055-governance-doc-alignment",
+  "createdAt": "2026-09-14T03:59:54Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "artifactDir": "/Users/michelkerkmeester/worktrees/public/fanout-1789357391666-zngraa-attempt-1-staleness/specs/sk-doc/055-governance-doc-alignment/research/root-doc-staleness/lineages/staleness",
+  "fanout": {
+    "label": "staleness",
+    "lineageArtifactDir": "/Users/michelkerkmeester/worktrees/public/fanout-1789357391666-zngraa-attempt-1-staleness/specs/sk-doc/055-governance-doc-alignment/research/root-doc-staleness/lineages/staleness",
+    "loopType": "research",
+    "session_id": "fanout-staleness-1789357391666-zngraa"
+  },
+  "executor": {
+    "kind": "cli-pi",
+    "model": "glm-5.3-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-staleness-1789357391666-zngraa",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "mode": "in-process",
+    "modeReason": "The shipped reduce-state.cjs resolves its artifact root from a spec folder via resolveArtifactRoot(specFolder, 'research'); pointed at this lineage it would land a second, nested research/ packet that never sees the append gateway's state log at the lineage root. The fan-out invocation binds every write to this directory, so step_reduce_state is satisfied inline by the lineage process, the same way the YAML's executor-dispatch steps are. Paths below are lineage-root relative.",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "completedAt": "2026-09-14T04:42:34Z"
+}

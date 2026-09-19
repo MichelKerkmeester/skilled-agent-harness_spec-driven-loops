@@ -1,0 +1,217 @@
+{
+  "condition": "after",
+  "generatedAt": "2026-09-14T13:23:54.990Z",
+  "repliesDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/scratch/smoke-replies",
+  "casesFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
+  "weights": {
+    "answer-position": 0.2,
+    "next-action-honesty": 0.15,
+    "receipts": 0.2,
+    "tone": 0.1,
+    "tangent-suppression": 0.1,
+    "completeness-under-cap": 0.15,
+    "mechanical-tells": 0.1
+  },
+  "rows": [
+    {
+      "caseId": "C1",
+      "control": false,
+      "provider": "n/a",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "firstSentenceHasPathOrSymbol",
+        "pass": true,
+        "detail": {
+          "firstSentence": "The retry policy lives in `service/retry.ts`, in the `withRetry` helper."
+        }
+      },
+      "scannerCounts": {},
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 1,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 1
+      },
+      "weightedScore": 1,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/scratch/smoke-replies/C1.md"
+    },
+    {
+      "caseId": "C2",
+      "control": false,
+      "provider": "n/a",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "closingNextActionLine",
+        "pass": true,
+        "detail": {
+          "closingLine": "Reviewed `src/gate.mjs` with `node --check`, exit 0. Nothing is wrong, no check failed. There is nothing open, so no next step is queued.",
+          "closingNextActionLine": true,
+          "anythingLeftOpenDeclared": false
+        }
+      },
+      "scannerCounts": {},
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 1,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 1
+      },
+      "weightedScore": 1,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/scratch/smoke-replies/C2.md"
+    },
+    {
+      "caseId": "C3",
+      "control": false,
+      "provider": "n/a",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "commandAndStatusBeforeInterpretation",
+        "pass": true,
+        "detail": {
+          "commandIdx": 4,
+          "statusIdx": 53,
+          "interpretationIdx": -1
+        }
+      },
+      "scannerCounts": {},
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 1,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 1
+      },
+      "weightedScore": 1,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/scratch/smoke-replies/C3.md"
+    },
+    {
+      "caseId": "C4",
+      "control": false,
+      "provider": "n/a",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "noSoftenersAndConcreteNextStep",
+        "pass": true,
+        "detail": {
+          "softeners": 0,
+          "concreteNextStep": true
+        }
+      },
+      "scannerCounts": {},
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 1,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 1
+      },
+      "weightedScore": 1,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/scratch/smoke-replies/C4.md"
+    },
+    {
+      "caseId": "C5",
+      "control": false,
+      "provider": "n/a",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "noTangentSentencesAndLabeledDeferral",
+        "pass": true,
+        "detail": {
+          "tangentSentences": [],
+          "unlabeledDeferredLines": []
+        }
+      },
+      "scannerCounts": {},
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 0,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 1
+      },
+      "weightedScore": 0.8,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/scratch/smoke-replies/C5.md"
+    },
+    {
+      "caseId": "C6",
+      "control": false,
+      "provider": "n/a",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "noGroupOverFiveAndAllItemsRetained",
+        "pass": true,
+        "detail": {
+          "groupSizes": [
+            5,
+            2
+          ],
+          "overFive": [],
+          "expectedItems": [],
+          "missingItems": []
+        }
+      },
+      "scannerCounts": {},
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 0,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 1
+      },
+      "weightedScore": 0.8,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/scratch/smoke-replies/C6.md"
+    },
+    {
+      "caseId": "NC1",
+      "control": true,
+      "provider": "n/a",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "restatementPresent",
+        "pass": true,
+        "detail": {
+          "neededTokens": 2,
+          "promptTokens": 2,
+          "found": [
+            "didn",
+            "restate"
+          ]
+        }
+      },
+      "scannerCounts": {},
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 0,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 1
+      },
+      "weightedScore": 0.8,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/scratch/smoke-replies/NC1.md"
+    }
+  ],
+  "noOps": []
+}

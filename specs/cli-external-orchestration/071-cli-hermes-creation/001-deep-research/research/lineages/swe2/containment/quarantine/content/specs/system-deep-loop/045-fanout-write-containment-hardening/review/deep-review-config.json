@@ -1,0 +1,42 @@
+{
+  "topic": "Review of the fan-out write containment hardening change set (commits 5340e39233 through 63b633c62f)",
+  "mode": "review",
+  "reviewTarget": "specs/system-deep-loop/045-fanout-write-containment-hardening",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": "all",
+  "specFolder": "specs/system-deep-loop/045-fanout-write-containment-hardening",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "convergenceMode": "off",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "lineageMode": "restart",
+  "archivedPath": "specs/system-deep-loop/045-fanout-write-containment-hardening/review-archive/20260914T165140Z",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-codex",
+        "model": "gpt-5.6-luna",
+        "reasoningEffort": "max",
+        "serviceTier": "fast",
+        "label": "luna",
+        "iterations": 5
+      },
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "label": "deepseek",
+        "iterations": 5
+      }
+    ],
+    "concurrency": 2
+  },
+  "createdAt": "2026-09-14T16:51:40.494840+00:00"
+}

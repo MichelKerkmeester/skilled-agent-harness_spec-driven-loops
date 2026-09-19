@@ -1,0 +1,48 @@
+{
+  "run_id": "1789221489298-ipjoou",
+  "loop_type": "review",
+  "spec_folder": "specs/system-deep-loop/045-fanout-write-containment-hardening",
+  "base_artifact_dir": "specs/system-deep-loop/045-fanout-write-containment-hardening/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "worktree-live",
+      "state_log": "/Users/michelkerkmeester/worktrees/public/fanout-1789221489298-ipjoou-attempt-1-worktree-live/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/worktree-live/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-12T13:58:09.423Z",
+        "end_at_iso": "2026-09-12T14:05:39.603Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 6
+      },
+      "sample": [
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-12T14:10:00Z",
+          "deltaMs": 140397
+        }
+      ]
+    }
+  ]
+}

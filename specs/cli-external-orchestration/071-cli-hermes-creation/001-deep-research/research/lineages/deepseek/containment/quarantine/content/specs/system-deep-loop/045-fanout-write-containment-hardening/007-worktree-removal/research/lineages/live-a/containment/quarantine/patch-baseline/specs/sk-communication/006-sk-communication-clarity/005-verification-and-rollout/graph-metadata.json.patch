@@ -1,0 +1,22 @@
+diff --git a/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json b/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json
+index dd0fd45338..508a8b6c20 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json
++++ b/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json
+@@ -203,7 +203,7 @@
+     ],
+     "causal_summary": "Nothing in this repository measures whether a communication rule changes a reply",
+     "created_at": "2026-09-12T12:44:38Z",
+-    "last_save_at": "2026-09-14T16:10:35.125Z",
++    "last_save_at": "2026-09-14T16:11:46.534Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -213,7 +213,7 @@
+       "acceptance-criteria.md",
+       "implementation-summary.md"
+     ],
+-    "source_fingerprint": "sha256:8bb2faf4bd6b42335fd6af8f4029831f99eda1545c0de40282be970fe2e4fa25",
++    "source_fingerprint": "sha256:d1795740f3853ad7f2809b13536dc0472247ba3d43719ad0d4e68fcd1288b652",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+       "spec.md": "8347f243987d06d4f096fccf267e8e12dbb121033e7b1bd391fa63fa55e59fbc",

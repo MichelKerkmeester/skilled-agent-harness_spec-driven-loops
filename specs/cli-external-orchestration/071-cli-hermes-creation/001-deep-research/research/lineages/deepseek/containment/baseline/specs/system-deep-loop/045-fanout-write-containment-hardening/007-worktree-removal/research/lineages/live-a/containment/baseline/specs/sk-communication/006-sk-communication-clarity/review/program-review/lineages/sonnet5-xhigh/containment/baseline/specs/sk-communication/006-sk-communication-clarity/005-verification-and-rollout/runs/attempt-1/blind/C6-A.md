@@ -1,0 +1,9 @@
+Case: C6
+
+any simple question whose group of equally relevant items exceeds five
+
+Reply A:
+
+Ready. Nothing is loaded yet, continuity recovers on demand from the packet docs once you name the work.
+
+Name the task, or point me at a packet under `specs/` and I will recover its state first.

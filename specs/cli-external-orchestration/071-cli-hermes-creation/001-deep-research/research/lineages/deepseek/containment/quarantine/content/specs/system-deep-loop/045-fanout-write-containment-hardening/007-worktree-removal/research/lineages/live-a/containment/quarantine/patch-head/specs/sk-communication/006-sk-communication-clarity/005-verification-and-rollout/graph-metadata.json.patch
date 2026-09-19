@@ -1,0 +1,156 @@
+diff --git a/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json b/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json
+index 6c55c0bb9b..508a8b6c20 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json
++++ b/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json
+@@ -39,14 +39,21 @@
+       "validation"
+     ],
+     "importance_tier": "normal",
+-    "status": "draft",
++    "status": "in_progress",
+     "key_files": [
+       "spec.md",
+       "plan.md",
+       "tasks.md",
+       "acceptance-criteria.md",
+       "implementation-summary.md",
+-      ".codex/AGENTS.md"
++      ".opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
++      ".opencode/skills/sk-communication/benchmark/README.md",
++      "scratch/model-step.md",
++      ".opencode/skills/sk-communication/changelog/v1.3.0.0.md",
++      ".codex/AGENTS.md",
++      "runs/results/before.json",
++      "runs/results/after.json",
++      "runs/results/compare.txt"
+     ],
+     "entities": [
+       {
+@@ -79,12 +86,54 @@
+         "path": "implementation-summary.md",
+         "source": "derived"
+       },
++      {
++        "name": "cases.json",
++        "kind": "config",
++        "path": ".opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
++        "source": "derived"
++      },
++      {
++        "name": "README.md",
++        "kind": "doc",
++        "path": ".opencode/skills/sk-communication/benchmark/README.md",
++        "source": "derived"
++      },
++      {
++        "name": "model-step.md",
++        "kind": "doc",
++        "path": "scratch/model-step.md",
++        "source": "derived"
++      },
++      {
++        "name": "v1.3.0.0.md",
++        "kind": "doc",
++        "path": ".opencode/skills/sk-communication/changelog/v1.3.0.0.md",
++        "source": "derived"
++      },
+       {
+         "name": "AGENTS.md",
+         "kind": "doc",
+         "path": ".codex/AGENTS.md",
+         "source": "derived"
+       },
++      {
++        "name": "before.json",
++        "kind": "config",
++        "path": "runs/results/before.json",
++        "source": "derived"
++      },
++      {
++        "name": "after.json",
++        "kind": "config",
++        "path": "runs/results/after.json",
++        "source": "derived"
++      },
++      {
++        "name": "compare.txt",
++        "kind": "file",
++        "path": "runs/results/compare.txt",
++        "source": "derived"
++      },
+       {
+         "name": "Feature Specification",
+         "kind": "proper_noun",
+@@ -150,53 +199,11 @@
+         "kind": "proper_noun",
+         "path": "plan.md",
+         "source": "derived"
+-      },
+-      {
+-        "name": "Result Interpretation Both",
+-        "kind": "proper_noun",
+-        "path": "plan.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Task Format",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Task Notation",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Completion Criteria",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Verification Checklist",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Verification Protocol",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Completion Impact",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+       }
+     ],
+     "causal_summary": "Nothing in this repository measures whether a communication rule changes a reply",
+     "created_at": "2026-09-12T12:44:38Z",
+-    "last_save_at": "2026-09-12T17:57:16.972Z",
++    "last_save_at": "2026-09-14T16:11:46.534Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -206,13 +213,13 @@
+       "acceptance-criteria.md",
+       "implementation-summary.md"
+     ],
+-    "source_fingerprint": "sha256:d28d64bd4eb5692ebba0722da8939c5c5c93877c3512fcdb7cc67554bb5bddd9",
++    "source_fingerprint": "sha256:d1795740f3853ad7f2809b13536dc0472247ba3d43719ad0d4e68fcd1288b652",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+-      "spec.md": "4cbfc4aa226080ce34777275cf14554adb68d1633eb984c01edba5d86ced606a",
++      "spec.md": "8347f243987d06d4f096fccf267e8e12dbb121033e7b1bd391fa63fa55e59fbc",
+       "plan.md": "da38e5744a5781ba292fc7313ccd458082dabd22d798d98ccafa6ce051008ea3",
+-      "tasks.md": "293593787d791a8a70bbb33e37c41a7728428c213262a5212103e3c149a88cc4",
+-      "implementation-summary.md": "160bf4c687a0dbed63dc152c5d9095b350d0de614f5961a5b9512dc8f467fbfe"
++      "tasks.md": "636e0681f60ba73c7c23619c4af76435840b5b18c5b3c1435dbfe1edebda9b24",
++      "implementation-summary.md": "558d9a014bd0eace940992318bbc390c3d98d251b89ad453dc8cb5db711fddf8"
+     },
+     "last_active_at": null
+   }

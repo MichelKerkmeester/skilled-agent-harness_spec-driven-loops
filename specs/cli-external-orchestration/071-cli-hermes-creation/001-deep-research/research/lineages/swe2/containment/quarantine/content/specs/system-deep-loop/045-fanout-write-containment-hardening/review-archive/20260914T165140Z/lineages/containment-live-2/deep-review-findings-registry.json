@@ -1,0 +1,167 @@
+{
+  "sessionId": "fanout-containment-live-2-1789159071284-irnvcb",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "implementation-summary.md contradicts itself: a 2,539-passing verification table sits above a body that says nothing was built",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
+      "line": 54,
+      "contentHash": "sha256:1f0a4f6b9d2e7c3186a5d4f0b8e7c6a9d2f1e0b4c5a6d7e8f9a0b1c2d3e4f5a6",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "acceptance-criteria closure block contradicts its own criteria table and its Status field contradicts spec.md",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
+      "line": 100,
+      "contentHash": "sha256:2b1c3d4e5f60718293a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "plan.md not updated after the research that answered its open question; M3 gate still certifies the sweep hazard",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/plan.md",
+      "line": 306,
+      "contentHash": "sha256:3c2d4e5f60718293a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "review loop protocol carries none of the two containment rules; review-mode readers routed to the research packet",
+      "file": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      "line": 280,
+      "contentHash": "sha256:4d3e5f60718293a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f708",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "superseded containment wording survives in three command YAML surfaces, describing a revert-and-fail-closed remedy the code no longer applies",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": 1213,
+      "contentHash": "sha256:5e4f60718293a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7081920",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "two live-probe markers stranded in tasks.md with no owning task",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/tasks.md",
+      "line": 298,
+      "contentHash": "sha256:6f60718293a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f708192a3",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "stale _memory.continuity blocks in both packet documents route the next session to re-implement a landed phase",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
+      "line": 17,
+      "contentHash": "sha256:718293a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f708192a3b4c",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [
+    {
+      "run": 1,
+      "blockedBy": ["convergenceGate"],
+      "gateResults": {
+        "convergenceGate": false,
+        "dimensionCoverageGate": true,
+        "p0ResolutionGate": true,
+        "evidenceDensityGate": true,
+        "hotspotSaturationGate": true,
+        "claimAdjudicationGate": true,
+        "fixCompletenessReplayGate": false,
+        "candidateCoverageGate": true,
+        "graphlessFallbackGate": true
+      },
+      "recoveryStrategy": "Convergence cannot be claimed: ratio 0.70 against a 0.10 threshold, and the security-sensitive override requires minStabilizationPasses=2. The run stops on maxIterations=1 instead. Re-dispatch with --max-iterations>=3 to reach a legal convergence stop.",
+      "timestamp": "2026-09-11T22:44:45Z"
+    }
+  ],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "searchDebt": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 2
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.7,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": false,
+  "releaseReadinessState": "in-progress",
+  "stopReason": "maxIterationsReached",
+  "convergenceAchieved": false,
+  "iterationsCompleted": 1
+}

@@ -1,0 +1,35 @@
+## Fan-out lineage `containment-live-2` complete — verdict **CONDITIONAL**
+
+**Bindings (emitted before writes, persisted in `deep-review-config.json`)**
+```
+review_target: specs/system-deep-loop/045-fanout-write-containment-hardening
+review_target_type: spec-folder      review_dimensions: all
+execution_mode: AUTONOMOUS           lineage_mode: auto
+artifact_dir: .../review/lineages/containment-live-2   (bound from config.fanout_lineage_artifact_dir;
+                                                       resolveArtifactRoot NOT invoked)
+```
+
+**Result:** 1 iteration (ceiling hit, `stopReason: maxIterationsReached`, convergence **not** achieved — ratio 0.70 vs 0.10, and the security-sensitive override needs `minStabilizationPasses=2`). 20 files read, 0 modified. **0 P0 / 5 P1 / 2 P2.**
+
+**Why no P0 — a considered result, not an omission.** The destructive defect this packet exists to fix *is* fixed: `write-containment.ts:782` defaults to preserve, `fanout.vitest.ts:379` pins the out-of-scope file holding the lane's bytes. Every finding is a contradiction in the packet's account of itself, and the P1→P0 ladder ("demonstrated data loss, security breach, or hard-gate failure") isn't cleared by a doc contradiction whose correcting authority sits in `spec.md`.
+
+**Findings**
+| ID | Sev | Substance |
+|---|---|---|
+| F001 | P1 | `implementation-summary.md` contradicts itself: 2,539-passing verification table (`:96`–`:101`) above "Nothing yet / Not delivered / Not completed" (`:45`, `:54`, `:66`, `:74`) |
+| F002 | P1 | `acceptance-criteria.md` closure says "Nothing is built yet" (`:100`) 11 lines under seven `Met` rows; `Status: Planned` (`:50`) vs `spec.md:36` `In Progress` |
+| F003 | P1 | `plan.md` (mtime 2026-09-08) never absorbed the research (09-11); M3 at `:306` still certifies the sweep hazard `research/synthesis.md:34` disqualified |
+| F004 | P1 | Review loop protocol carries neither containment rule (research counterpart has them at `:287-290`); `SKILL.md:128` routes review readers to the *research* packet |
+| F005 | P1 | Superseded "revert … fail closed" wording on 3 YAML surfaces (`deep-review-confirm.yaml:1213`, `deep-research-confirm.yaml:1141`, `deep-review-auto.yaml:1516` — the last directly above contradicting code) |
+| F006 | P2 | Two stranded live-probe markers at `tasks.md:298-299` |
+| F007 | P2 | Stale `_memory.continuity` in both docs (`completion_pct: 0`, "Implement Phase 1") + all-zero `session_dedup.fingerprint` — `/speckit:resume` will re-plan landed work |
+
+**Verified, not assumed.** Ten acceptance-criteria citations were resolved by exact line and all ten landed where claimed. The quarantine half of REQ-001, REQ-004 and REQ-005 are genuinely unbuilt (`quarantine` → zero hits in `write-containment.ts`/`fanout-run.cjs`) — correctly tracked as `Unmet`, so *not* reported as findings.
+
+**Live event worth your attention.** `implementation-summary.md` was rewritten in the main checkout **while this review ran** (its mtime 22:39:04, the lineage's first write 22:42:11). That is the packet's own hazard observed live — two writers, one checkout. The guard behaved correctly: nothing was rolled back, the other writer's edits survived, and I re-derived every affected finding against the post-write bytes rather than shipping the first read. F001 strengthened as a result. Recorded as methodology in the report, not as a defect.
+
+**What only you can verify.** I ran no repo tooling — `generate-context.js`, `validate.sh` and all git writes were withheld by the lineage contract, so packet continuity is unsaved and the validator was not run (both are the orchestrator's). Continuity was not written to the canonical packet docs.
+
+**What is the operator's next step.** Two things. First, if you want a *legal* convergence stop rather than a ceiling stop, re-dispatch this target with `--max-iterations=3` or higher — one pass can never satisfy the security-sensitive stabilization requirement. Second, and independent of that, the packet has a second writer active in it right now; the review report's citations should be treated as observations at 22:42, not as permanent properties of the tree.
+
+FANOUT_LINEAGE_COMPLETE:containment-live-2

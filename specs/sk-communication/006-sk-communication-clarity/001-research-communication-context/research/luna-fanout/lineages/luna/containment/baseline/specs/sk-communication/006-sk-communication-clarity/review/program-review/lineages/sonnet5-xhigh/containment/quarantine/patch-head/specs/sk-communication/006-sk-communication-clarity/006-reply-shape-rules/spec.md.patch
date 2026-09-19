@@ -1,0 +1,13 @@
+diff --git a/specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/spec.md b/specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/spec.md
+index f9ad023463..c674695fd0 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/spec.md
++++ b/specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/spec.md
+@@ -23,7 +23,7 @@ contextType: "general"
+ |-------|-------|
+ | **Level** | 2 |
+ | **Priority** | P1 |
+-| **Status** | Draft |
++| **Status** | Complete |
+ | **Created** | 2026-09-12 |
+ | **Branch** | `skilled/v4.0.0.0` |
+ | **Parent Spec** | ../spec.md |
