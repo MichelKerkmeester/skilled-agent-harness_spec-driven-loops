@@ -3,6 +3,7 @@
   "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout",
   "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout",
   "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "scan"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +211,7 @@
     ],
     "causal_summary": "Nothing yet proves that the `.skilled` source root works on the seven runtimes, in the local gates and in CI",
     "created_at": "2026-09-16T17:54:10Z",
-    "last_save_at": "2026-09-17T21:51:33.525Z",
+    "last_save_at": "2026-09-19T15:59:16.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +222,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:503d4f212e4f6ab09b80ac5ee4ae1530be3c4fc457b26c610dbc57c00b87f883",
+    "source_fingerprint": "sha256:7ef32d1efe5b4ca6e18270fe5254eb1fdb36ba4f4dca70132dea198cb736bbf7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "877dd8e3ff0e0bf893f4aeaea53f2962a8c0dedebe6ae6a2d485667232955cf7",
+      "spec.md": "fbd7e563ee13d79c3d40cd272a3746966274a4e0b12134dcbe16430144ee3627",
       "plan.md": "c7dd6c178d4a4b6a5c662f472156cf0cffbb1b9f7eb76febe26159696b0d8a59",
       "tasks.md": "bb6b7378d961feca4338674f64a00e96d485c885a7a1c952a63ebe47e94b960b",
-      "implementation-summary.md": "672c170b4bd610f0f03fedb2197c8a814be8a7739425749b65e3dd08094ba48a"
+      "implementation-summary.md": "314242267f609f1f4f6e25ad94381723b75b251945a5c039b44a2a4b08c78109"
     },
     "last_active_at": null
   }

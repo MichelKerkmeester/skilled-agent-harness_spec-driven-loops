@@ -29,7 +29,7 @@ Agents source from **`.claude/agents/`**, not `.skilled/agents/`, because Cursor
 | Surface | Mechanism | Source | Target shape |
 |---|---|---|---|
 | `agents/*.md` | symlink | `.claude/agents/<name>.md` | `../../.claude/agents/<name>.md` |
-| `commands/*.md` (36) | symlink, except the two native commands | `.skilled/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
+| `commands/*.md` (35) | symlink, except the two native commands | `.skilled/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
 | `hooks/*` | symlink | scattered `.skilled/**` | discovery mirror only |
 | `hooks.json` | **hand-authored** | — | — |
 | `rules/skill-routing.md` | **hand-authored**, plus one generated Gate 1 pointer block | root `AGENTS.md` Gate 1 line via `sync-gate1-pointers.cjs` | also read by Devin; `--check` catches a stale block |

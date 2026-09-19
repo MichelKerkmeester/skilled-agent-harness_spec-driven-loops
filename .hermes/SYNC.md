@@ -39,7 +39,7 @@ Prompt names are the flattened command path (`create/agent.md` → `create-agent
 1. **Provider**: a `providers:` block named `llmgateway` in `~/.hermes/config.yaml` with `key_env: LLMGATEWAY_API_KEY`, the key in `~/.hermes/.env`. `hermes config get providers.llmgateway.base_url` must print the URL (`hermes status` does not show custom providers).
 2. **Trust**: `hermes skills trust` run once from the repo root, so `skills/` loads.
 3. **Plugins**: `HERMES_ENABLE_PROJECT_PLUGINS=1` in the environment of any session that should run the guard plugin, **and** `repo-guards` listed under `plugins.enabled` in `~/.hermes/config.yaml` (`hermes plugins enable` refuses project keys; add the line by hand).
-4. **MCP**: `printf 'Y\n' | hermes mcp add code_mode --command node --env UTCP_CONFIG_FILE=.utcp_config.json --args .opencode/bin/mcp-code-mode-launcher.cjs` (the enable prompt needs an answer on stdin), then `hermes tools enable code_mode:<tool>` per the packet's MCP policy. A session reaches the server only when `code_mode` is named in its `-t` list.
+4. **MCP**: `printf 'Y\n' | hermes mcp add code_mode --command node --env UTCP_CONFIG_FILE=.utcp_config.json --args .skilled/bin/mcp-code-mode-launcher.cjs` (the enable prompt needs an answer on stdin), then `hermes tools enable code_mode:<tool>` per the packet's MCP policy. A session reaches the server only when `code_mode` is named in its `-t` list.
 
 None of these is a repo file, and no dispatch performs them.
 

@@ -1,6 +1,6 @@
 # OpenCode Dev Environment - Public Release
 
-The **Public repo** is the source of truth for the OpenCode framework. Projects like your-project.com consume it via a `.opencode/` symlink — edits to `.opencode/` affect all linked projects instantly.
+The **Public repo** is the source of truth for the OpenCode framework. Projects like your-project.com consume it via a `.opencode/` symlink — `.skilled/` is the authored root and `.opencode/` links into it, so edits to `.skilled/` affect all linked projects instantly.
 
 ---
 
@@ -9,7 +9,7 @@ The **Public repo** is the source of truth for the OpenCode framework. Projects 
 ```text
 Public Repo (source of truth)
   specs/                         ← Project specs (subfolders gitignored per-project), top-level, real
-  .opencode/                    ← Framework: skills, agents, commands, scripts
+  .skilled/                     ← Framework: skills, agents, commands, scripts
      skill/
      agent/
      command/
@@ -78,7 +78,7 @@ Since `.opencode/` is a symlink, the old "sync" step is eliminated. Changes to t
 ### Workflow Overview
 
 ```text
-Changes Made in Public/.opencode/
+Changes Made in Public/.skilled/
          │
          ▼
 ┌─────────────────────┐
@@ -138,7 +138,7 @@ No Release   Full Release
 
 1. **Draft release notes** using template in Section 7
 2. **Create version changelog** — Write `changelog/vX.X.X.X.md` using release notes template (Section 7)
-3. **Update Skill CHANGELOGs** (`Public/.opencode/skills/*/CHANGELOG.md`) if applicable
+3. **Update Skill CHANGELOGs** (`Public/.skilled/skills/*/CHANGELOG.md`) if applicable
 4. **Determine version number** using Section 8
 
 ### Phase 3: REVIEW

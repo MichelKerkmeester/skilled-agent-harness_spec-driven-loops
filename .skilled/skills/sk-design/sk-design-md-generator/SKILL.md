@@ -274,20 +274,20 @@ The cardinal rule stays enforceable by inspection because every value has a legi
 
 ### Invocation
 
-> **Working directory.** One-time setup runs from `backend/`. Every pipeline script runs from the **repo root** with the full script path — `extract.ts` refuses any `--output` that resolves inside the skill, so a relative `.opencode/specs/...` path only resolves correctly from there. Full phase-by-phase actions: `references/extraction-workflow.md`. Complete flag reference: `backend/README.md`.
+> **Working directory.** One-time setup runs from `backend/`. Every pipeline script runs from the **repo root** with the full script path — `extract.ts` refuses any `--output` that resolves inside the skill, so a relative `specs/...` path only resolves correctly from there. Full phase-by-phase actions: `references/extraction-workflow.md`. Complete flag reference: `backend/README.md`.
 
 ```bash
 # One-time setup
-cd .skilled/skills/sk-design-md-generator/backend && npm install && npx playwright install chromium
+cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm install && npx playwright install chromium
 
 # Phase 1 — extract (writes tokens.json to --output)
-npx ts-node .skilled/skills/sk-design-md-generator/backend/scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output
+npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url> --fast --output specs/<track>/<packet>/output
 
 # Phase 2 — pre-render value tables + FACTS block, then write DESIGN.md prose
-npx ts-node .skilled/skills/sk-design-md-generator/backend/scripts/build-write-prompt.ts .opencode/specs/<track>/<packet>/output/tokens.json
+npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/build-write-prompt.ts specs/<track>/<packet>/output/tokens.json
 
 # Phase 3 — validate (DESIGN.md first, tokens.json second)
-npx ts-node .skilled/skills/sk-design-md-generator/backend/scripts/validate.ts <DESIGN.md> .opencode/specs/<track>/<packet>/output/tokens.json
+npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts <DESIGN.md> specs/<track>/<packet>/output/tokens.json
 ```
 
 Optional Phase 4 (from the repo root, tokens.json first): `proof.ts <url> <tokens.json>`, `report-gen.ts <tokens.json> <dir> <DESIGN.md>`, `preview-gen.ts <tokens.json> <dir>`. Interaction capture is **default-on**; opt out with `--no-interaction` or `--fast-no-interaction`.
