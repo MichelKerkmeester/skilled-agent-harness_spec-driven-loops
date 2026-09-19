@@ -262,15 +262,38 @@ def _walk_roots(repo_root: Path) -> Iterable[Tuple[Path, List[str], List[str]]]:
             yield directory_path, dirnames, filenames
 
 
+def _tracked_files(repo_root: Path) -> Optional[Set[str]]:
+    """Return tracked paths relative to repo_root, or None when git cannot list them."""
+    try:
+        proc = subprocess.run(
+            ['git', '-C', str(repo_root), 'ls-files', '-z'],
+            capture_output=True,
+            check=False,
+        )
+    except OSError:
+        return None
+    if proc.returncode != 0:
+        return None
+    return {item for item in proc.stdout.decode('utf-8', 'surrogateescape').split('\0') if item}
+
+
 def build_durable_manifest(repo_root: Path) -> Dict[str, Any]:
-    """Derive the durable-directory set from the current repository tree."""
+    """Derive the durable-directory set from the current repository tree.
+
+    Only tracked files count when git can list them, so local settings, plugin
+    clones and runtime state cannot add a directory that a clean checkout lacks.
+    """
     directories: Set[str] = set()
+    tracked = _tracked_files(repo_root)
     for directory, _dirnames, filenames in _walk_roots(repo_root):
         relative = _relative_path(repo_root, directory)
         if classify_path(repo_root, directory):
             continue
         if relative.parts and relative.parts[0] == '.opencode' and len(relative.parts) > 1 and relative.parts[1] == 'specs':
             continue
+        if tracked is not None:
+            prefix = '' if str(relative) == '.' else relative.as_posix() + '/'
+            filenames = [name for name in filenames if prefix + name in tracked]
         durable_files = [name for name in filenames if _is_durable_file(name)]
         has_readme = any(name.lower() == 'readme.md' for name in filenames)
         if len(durable_files) >= 5 or has_readme:
