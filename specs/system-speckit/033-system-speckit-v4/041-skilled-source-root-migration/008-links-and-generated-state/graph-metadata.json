@@ -58,9 +58,9 @@
       ".skilled/bin/mcp-code-mode-launcher.cjs",
       ".opencode/SYNC.md",
       ".opencode/README.md",
+      ".opencode/bin/compiled-route-guard.cjs",
       "shared/embeddings/factory.ts",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".codex/hooks.json"
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -166,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
         "name": "factory.ts",
         "kind": "code",
         "path": "shared/embeddings/factory.ts",
@@ -175,12 +181,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 007 moves the files, and nothing that points at them moves along",
     "created_at": "2026-09-16T17:54:08Z",
-    "last_save_at": "2026-09-19T13:01:29.768Z",
+    "last_save_at": "2026-09-19T15:37:57.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25ba3985c9baca157fa40787b546eb5a61879f97a767d533a3b0c5bc4fc805c5",
+    "source_fingerprint": "sha256:c8a477a85ef13263dae09c4c0b8575ebabab3297320cdbe08354417e59b09135",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "323324ed8fac8baac87e4432cacf94991d416e2d9025470fffd0c9ba1ac2b835",
       "plan.md": "b73f848526689073a228f3e259d07030aa45fd7a7401c65084825a1444d60fd5",
       "tasks.md": "fa01bc7259286d30c0639123d584c234eef8294ebac452417da80fee98395b25",
-      "implementation-summary.md": "c6be7d30164ace1613edc10961a1273db15c780c11f7988d4606ab9b1edca54f"
+      "implementation-summary.md": "f71d2484b3cdbe68e51686e782c53fb323f5de0fb5295a1eec9ce08c70e38b37"
     },
     "last_active_at": null
   }

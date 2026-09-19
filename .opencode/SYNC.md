@@ -28,6 +28,7 @@ Drift is not possible for the linked entries: a symlink has no content of its ow
 | `agents` | relative symlink | `../.skilled/agents` | Agent definitions, read in the authored dialect |
 | `plugins` | **authored here** | — | The plugin entrypoints themselves. They import the OpenCode plugin SDK, so no other runtime can load them, and living here binds them to the SDK this directory installs rather than the one the source tree pins. `.skilled/plugins` is a relative link back to this directory |
 | `node_modules` | real directory, untracked | `npm ci` in this directory, from `package-lock.json` | The plugin SDK the plugins import, resolved from beside them |
+| `bin` | relative symlink | `../.skilled/bin` | Git hooks, scripts, skill metadata and docs still name programs through this path; it stays until they name `.skilled/bin` |
 | `scripts` | relative symlink | `../.skilled/scripts` | Hook installers and shell entrypoints addressed by this name |
 | `hooks` | relative symlink | `../.skilled/hooks` | Hook implementations shared across runtimes |
 | `specs` | relative symlink | `../.skilled/specs` | The spec alias other runtimes also resolve through this name |

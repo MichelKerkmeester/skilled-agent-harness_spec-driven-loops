@@ -30,6 +30,7 @@ Every entry in this table except `plugins/` is a symlink to its twin under `.ski
 |---|---|
 | `agents/`, `commands/`, `skills/`, `hooks/` | the runtime surfaces each CLI loads |
 | `plugins/` | authored here, not a link: only this runtime loads them |
+| `bin/` | executable programs, still named through this path by older callers |
 | `scripts/` | shell entrypoints and hook installers |
 | `changelog/`, `manual-testing-playbook/` | documentation trees |
 | `specs/` | the spec alias other runtimes also resolve through this name |
