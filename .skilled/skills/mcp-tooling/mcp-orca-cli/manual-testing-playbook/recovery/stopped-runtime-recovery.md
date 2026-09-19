@@ -49,7 +49,7 @@ A resolved executable and an Orca runtime the operator agrees to observe in a st
 
 ### Expected
 
-The schema read succeeds, the runtime command fails specifically, and the recovery path is reported without being executed implicitly.
+The schema read succeeds, the runtime command fails specifically and the recovery path is reported without being executed implicitly.
 
 ### Evidence
 

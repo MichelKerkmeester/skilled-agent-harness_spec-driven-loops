@@ -25,7 +25,7 @@ The resolution order is terminal: an execution error must not fall through to an
 - Exact Prompt: `In a shell with no Orca executable, request an Orca worktree listing and observe the failure behavior. Do not install anything.`
 - Exact Command Sequence: `1. agent: resolve the Orca executable in an isolated PATH -> 2. bash: command -v orca (expected: not found) -> 3. agent: report the failure and ask the operator`
 - Expected Signals: `command -v` finds nothing; the packet reports the missing executable with its resolution attempt; no installation, source inspection or silent retry occurs.
-- Evidence: The isolated `PATH` state, the `command -v` result, and the reported failure text.
+- Evidence: The isolated `PATH` state, the `command -v` result and the reported failure text.
 - Pass/Fail Criteria: PASS when the packet fails closed and asks; FAIL on any silent install, source inspection or executable switch; SKIP without an authorized isolated shell environment.
 - Failure Triage: 1. Confirm the environment was genuinely isolated. 2. Re-run the resolution order. 3. Escalate any observed fall-through as a contract violation.
 
@@ -35,7 +35,7 @@ The resolution order is terminal: an execution error must not fall through to an
 
 ### Prerequisites
 
-A disposable shell whose `PATH` cannot resolve `orca`, `orca-dev` or `orca-ide`, or the operator's explicit go-ahead to simulate the condition.
+A disposable shell whose `PATH` cannot resolve `orca`, `orca-dev` or `orca-ide`. Alternatively, the operator's explicit go-ahead simulates the condition.
 
 ### Prompt
 

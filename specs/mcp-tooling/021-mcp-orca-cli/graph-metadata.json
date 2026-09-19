@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Before this integration, the repository had no Orca workflow member, while the official `orca-cli` skill describes a stateful CLI spanning worktrees, folder contexts, terminals, repositories, automations, artifacts, comments, skill sharing, and an embedded browser",
     "created_at": "2026-09-19T11:24:57Z",
-    "last_save_at": "2026-09-19T13:27:52.737Z",
+    "last_save_at": "2026-09-19T14:05:37.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a3c2e85be2104219a152ff118056c3f98359aad15e63bc12402ba1422cd4158f",
+    "source_fingerprint": "sha256:48d291204fbf7e80ea2be041f478fdb7c3108afc1ff7d3688d038bea53ee4e87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b87c18a778caea532fdc7be96bc806094762c6f317abae3ba01ce119641f538f",
       "plan.md": "717738491845cafa0c4dc018cacaee8e37617ff42ad1850edd3d4cb9997169a4",
       "tasks.md": "374af971581f5120179702a202c69fd7f39c15852558e3903d39207e7ae24554",
       "decision-record.md": "ad369f5a0c108592c8d265ad04b42324ef77d9389ba5e8abe5c029190d2c9fa6",
-      "implementation-summary.md": "c8a113f7751df4aee891f40eeeebf8733abffaa507940d4b33da6edcf8e69b54",
+      "implementation-summary.md": "60fcafce0f8329bd9dab6361b1032bb747a5603861198f8dd3042002c1aa95f9",
       "research/research.md": "f11cd9ee7d2191239dab11dce22d652b32383c3519e209876996450fddc2733c"
     },
     "last_active_at": null

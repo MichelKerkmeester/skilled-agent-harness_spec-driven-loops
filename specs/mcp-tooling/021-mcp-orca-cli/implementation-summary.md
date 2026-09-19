@@ -132,8 +132,13 @@ A later operator-directed pass brought the leaf packet into full sk-doc / sk-cre
 | Metadata fleet check | PASS — checked=13, passed=13, failed=0, fixed=0. |
 | Leaf document validators | PASS — reference 4/4, readme, playbook root, and 10 scenario files all VALID with 0 issues. |
 | HVR scripted checks | PASS — em dash, semicolon, Oxford comma, and banned-word greps return no matches in the leaf README and all four references. |
-| Read-only cli-devin review | Dispatched over the restructured README, references, and playbook; findings triaged below. |
+| Read-only cli-devin review | Dispatched via `devin -p --model deepseek-v4-flash-max --permission-mode auto`; 16/16 scoped files PASS, zero P0, zero P1, five P2 polish findings. Outcome recorded below. |
+| Post-review polish | Applied — the tool-name-first README pitch was reordered to outcome-first, the ORCA-005 wording was narrowed to the worktree probe it actually executes, and the flagged Oxford-comma spots in scenario contract bullets were removed. All touched files re-validated: root playbook and six scenario files VALID 0 issues, README VALID 0 issues with clean HVR greps. |
+
+### External Review (cli-devin, DeepSeek v4.1 Flash High)
+
+The read-only reviewer (no edits, no repository tooling) read all 16 scoped files and ran its own banned-form greps. Verdicts: 16/16 PASS. Factual-coherence checks passed for the CLI-only backend claim, the executable resolution order, the archive-hook gate, the terminal-receipt semantics, and the browser ownership boundaries. Findings were limited to P2 polish, of which the pitch order, the ORCA-005 scope wording, and the truncated-list Oxford-comma spots were fixed immediately; the remaining residuals are accepted: semicolons and occasional Oxford-comma clauses inside scenario contract bullets follow the sibling precedent (mcp-notion scenario files carry the same forms) and sit outside the packet's HVR verification scope, and `SKILL.md`/`INSTALL-GUIDE.md` retain their pre-existing forms noted below. The review prompt and full transcript are stored at `.skilled/skills/mcp-tooling/benchmark/reports/orca-integration/2026-09-19--conformance-remediation/`.
 
 ### Residual Out-of-Scope Observations
 
-`SKILL.md` and `INSTALL-GUIDE.md` carry pre-existing Oxford-comma prose that predates this pass and sits outside the frozen remediation scope. They passed `package_skill.py --check` as shipped. A later voice pass over those two files would close the remaining HVR gap in the leaf.
+Two leaf documents sit outside the frozen remediation scope and keep their pre-pass state. `SKILL.md` retains its pre-existing Oxford-comma prose. `INSTALL-GUIDE.md` carries no frontmatter at all and reports seven issues under `validate_document.py --type install_guide`, exactly as it shipped. Both passed `package_skill.py --check` as shipped. A later alignment pass over those two files would close the remaining template gap in the leaf.
