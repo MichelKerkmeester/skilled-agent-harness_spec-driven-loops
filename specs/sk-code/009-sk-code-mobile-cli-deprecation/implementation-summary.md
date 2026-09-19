@@ -221,3 +221,31 @@ advisor drift-guard and parity suites (21 tests); markdown link integrity 13,175
 
 <!-- /ANCHOR:follow-up -->
 
+<!-- ANCHOR:follow-up-drift-conformance -->
+
+## Follow-Up: The Four Compiled-Route Admission Drifts
+
+A second sweep closed the four `drift` rows the admission checker had been reporting across `sk-doc` and
+`system-deep-loop`, on the operator's instruction to fix all of them (SD-H02 as a fail-safe negative).
+Detail, evidence table and disclosures: `scratch/drift-conformance-fix.md`; the review that classified them:
+`scratch/devin-swe2-drift-advice.md`; the citation checks: `scratch/devin-swe2-drift-verification.md`.
+
+What changed, by case: `system-deep-loop/hub-router.json` narrowed the `model-benchmark-aliases` keywords to
+`["/deep:model-benchmark"]` (AI-003) so a bare phrase can no longer enter a command-gated lane; the
+system-deep-loop rollout child's `canary-router.cjs` now honours a leading `<mode>:` hint on an exact
+single-mode match (MO-004), matching the hub's own documented override; `token-cost-baseline/max-load.md`
+(SD-015) and `holdout/doc-quality-natural.md` (SD-H02) became `stage: negative` with their contract text and
+titles rewritten, because both prompts defer by design under compiled serving.
+
+One mechanism note worth keeping: the reviewer's proposed one-line `expected_workflow_mode: UNKNOWN` for
+SD-015 would have made the scenario a blocked oracle — the typed-gold gate requires every typed pair to belong
+to the declared mode set and its `full_inventory_intent` bypass relaxes only the simultaneous-mode cap. The
+`stage: negative` lever clears the drift while keeping the typed gold valid and the ceiling inventory intact.
+
+Final state: the deep-loop policy re-minted to `7d22a7b4…` generation 4, its manifest plus `mcp-tooling`'s
+re-selected, and the promoted closure finalized after the sync's check and verify gates. `compiled-route-admission
+--all` then reports every hub `pass` with zero drift and zero stale gold; the served closure answers the four
+scenario prompts as asserted, and the canary golds are unchanged at 9/9.
+
+<!-- /ANCHOR:follow-up-drift-conformance -->
+

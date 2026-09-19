@@ -58,7 +58,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 ### 05 — Token Cost Baseline
 - **SD-013** — `token-cost-baseline/minimal-load.md` — Floor: 1 reference (HVR).
 - **SD-014** — `token-cost-baseline/medium-load.md` — Median: 4 resources (SKILL_CREATION).
-- **SD-015** — `token-cost-baseline/max-load.md` — Ceiling: ON_DEMAND load-all RESOURCE_MAP.
+- **SD-015** — `token-cost-baseline/max-load.md` — Fail-safe: a bare full-toolkit request must defer, not fan out (typed gold retained).
 
 ### 06 — Agent Dispatch
 - **SD-018** — `agent-dispatch/markdown-agent-cli-claude-code.md` — `@markdown` agent dispatch via cli-claude-code; `/create:changelog` for stub `sk-test-dummy`.
@@ -70,7 +70,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 
 Natural-phrasing holdouts — same fitted scenario, decontaminated wording (no router keyword vocabulary):
 - **SD-H01** — `holdout/skill-creation-natural.md` — SKILL_CREATION via natural phrasing.
-- **SD-H02** — `holdout/doc-quality-natural.md` — DOC_QUALITY via natural phrasing.
+- **SD-H02** — `holdout/doc-quality-natural.md` — Fail-safe negative: keyword-blind DOC_QUALITY phrasing must not misroute (converted from a holdout; gap recorded).
 - **SD-H03** — `holdout/readme-natural.md` — README_CREATION via natural phrasing.
 - **SD-H04** — `holdout/changelog-natural.md` — CHANGELOG via natural phrasing.
 
