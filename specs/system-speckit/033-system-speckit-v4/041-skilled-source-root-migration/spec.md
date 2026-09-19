@@ -129,6 +129,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 14 | `014-fix-pre-existing-defects-found-by-migration/` | Fix the pre-existing defects phases 12 and 13 recorded: the red scaffold proof, unrun tests, the stale trigger index, test runs writing a tracked database, Codex hook drift, root-name hardcodes, and the deep-loop and sk-doc tests CI never ran | complete |
 | 15 | `015-compiled-serving-admission-research/` | Research how a new hub can be admitted to compiled-serving now that the Lane C parity harness is retired, and recommend one path | complete |
 | 16 | `016-fix-stale-compiled-routing-docs-and-research-workflow/` | Correct the seven-hub and pre-rename compiled-routing text phase 15 found, and stop the research workflows passing a retired validator rule | complete |
+| 17 | `017-build-compiled-serving-gold-admission-checker/` | Build the checker that admits a hub to compiled-serving against its playbook routing gold, with coverage floors, and repair the flip step | planned |
 
 ### Phase Transition Rules
 
@@ -157,6 +158,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 013-clear-pre-existing-ci-and-doc-debt | 014-fix-pre-existing-defects-found-by-migration | Every phase 13 criterion is met and CI is green on both branches | Phase 013's acceptance criteria and its recorded CI runs |
 | 014-fix-pre-existing-defects-found-by-migration | 015-compiled-serving-admission-research | Every phase 14 criterion is met and CI is green on both branches | Phase 014's acceptance criteria and its recorded CI runs |
 | 015-compiled-serving-admission-research | 016-fix-stale-compiled-routing-docs-and-research-workflow | The research names the stale text and the operator has chosen what to fix | Phase 015's `research/research.md` and the operator's 2026-09-19 answers |
+| 016-fix-stale-compiled-routing-docs-and-research-workflow | 017-build-compiled-serving-gold-admission-checker | The operator has chosen the gold bar and answered the questions in phase 017's section 10 | Phase 017's spec, with the answers recorded |
 <!-- /ANCHOR:phase-map -->
 
 ---
