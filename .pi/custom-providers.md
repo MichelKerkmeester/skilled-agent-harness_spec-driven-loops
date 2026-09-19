@@ -95,6 +95,8 @@ The LLM Gateway API takes the **bare** model id and rejects a provider-prefixed 
 
 The gateway rewrites the id upstream — a `deepseek-v4.1-flash` request comes back reporting `deepseek/deepseek-v4.1-flash`, GLM as `zai/glm-5.3-flash`. That upstream name is informational; never send it.
 
+**The DeepSeek entry needs `"compat": {"supportsDeveloperRole": false}`.** Since 2026-09-18 the gateway serves `deepseek-v4.1-flash` from a `runware` upstream that answers `400 "The request was rejected"` to any request whose system prompt uses the `developer` role, and pi uses that role for every reasoning model. A raw request isolated it: the same body returns 200 with role `system` and 400 with role `developer`. `pi auth check` still reports ready, so the failure only shows at request time. GLM-5.3-Flash's upstream accepts `developer`, which is why only DeepSeek broke.
+
 ---
 
 ## 4. SUPPLYING THE API KEY

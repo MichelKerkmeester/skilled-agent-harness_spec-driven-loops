@@ -487,6 +487,49 @@ function dataFor<TStem extends DeepResearchEventStem>(
       totalQuestions: 1,
       stopReason: 'converged',
     },
+    'deep_research.spec_check_result': {
+      folderState: 'spec-present',
+      normalizedTopic: 'pre-init research context',
+      specPath: 'specs/research-fixture/spec.md',
+      lockPath: '/tmp/research/.spec-check.lock',
+    },
+    'deep_research.spec_seed_created': {
+      folderState: 'spec-just-created-by-this-run',
+      anchorsTouched: ['Requirements', 'Scope'],
+      diffSummary: 'Seeded the spec from the research topic with DR seed markers.',
+      seedMarkers: ['DR-SEED:REQUIREMENTS', 'DR-SEED:SCOPE'],
+    },
+    'deep_research.spec_preinit_context_added': {
+      folderState: 'spec-present',
+      normalizedTopic: 'pre-init research context',
+      specPath: 'specs/research-fixture/spec.md',
+      anchorsTouched: ['Open Questions', 'Research Context'],
+      diffSummary: 'Appended bounded pre-init research context for the normalized topic.',
+    },
+    'deep_research.spec_preinit_context_deduped': {
+      folderState: 'spec-present',
+      normalizedTopic: 'pre-init research context',
+      specPath: 'specs/research-fixture/spec.md',
+      anchorsTouched: ['Open Questions'],
+      diffSummary: 'Skipped the duplicate pre-init topic append; the normalized topic already exists.',
+    },
+    'deep_research.spec_mutation': {
+      phase: 'post-synthesis',
+      anchorsTouched: ['Open Questions'],
+      diffSummary: 'Replaced the generated deep-research findings fence.',
+      generatedFence: 'deep-research/spec-findings',
+    },
+    'deep_research.spec_mutation_conflict': {
+      folderState: 'conflict-detected',
+      reason: 'Manual edits were detected inside the existing generated findings fence.',
+      specPath: 'specs/research-fixture/spec.md',
+      generatedFence: 'deep-research/spec-findings',
+      conflictKind: 'generated-fence-manual-edit',
+    },
+    'deep_research.spec_synthesis_deferred': {
+      reason: 'confirm_mode_deferred_writeback',
+      generatedFence: 'deep-research/spec-findings',
+    },
   };
   return data[stem] as DeepResearchPayloadMap[TStem];
 }
@@ -1105,18 +1148,162 @@ describe('deep-research typed ledger schema', () => {
     });
   });
 
-  it('pins spec-protocol side effects emitted by the runtime with no lossless target', () => {
-    const eventShapes = [
-      'migration',
-      'min_iterations_guard_pass',
-      'spec_check_result',
-      'spec_mutation',
-      'spec_mutation_conflict',
-      'spec_preinit_context_added',
-      'spec_preinit_context_deduped',
-      'spec_seed_created',
+  it('upcasts spec-protocol rows to their stems and pins the side effects with no lossless target', () => {
+    const context = {
+      scope: { runId: 'run-spec-1', lineageId: 'lineage-spec-1' },
+      prevEventHash: '0'.repeat(64),
+      replay: replayMetadata('legacy-spec-protocol'),
+    };
+    const rows = [
+      {
+        record: {
+          type: 'event',
+          event: 'spec_check_result',
+          schemaVersion: 1,
+          folder_state: 'spec-present',
+          normalized_topic: 'pre-init research context',
+          specPath: 'specs/research-fixture/spec.md',
+          lockPath: '/tmp/research/.spec-check.lock',
+          timestamp: TIMESTAMP,
+        },
+        stem: 'deep_research.spec_check_result',
+        data: {
+          folderState: 'spec-present',
+          normalizedTopic: 'pre-init research context',
+          specPath: 'specs/research-fixture/spec.md',
+          lockPath: '/tmp/research/.spec-check.lock',
+        },
+      },
+      {
+        record: {
+          type: 'spec_mutation',
+          event: 'spec_seed_created',
+          schemaVersion: 1,
+          folder_state: 'spec-just-created-by-this-run',
+          anchors_touched: ['Requirements', 'Scope'],
+          diff_summary: 'Seeded the spec from the research topic with DR seed markers.',
+          seed_markers: ['DR-SEED:REQUIREMENTS', 'DR-SEED:SCOPE'],
+          timestamp: TIMESTAMP,
+        },
+        stem: 'deep_research.spec_seed_created',
+        data: {
+          folderState: 'spec-just-created-by-this-run',
+          anchorsTouched: ['Requirements', 'Scope'],
+          diffSummary: 'Seeded the spec from the research topic with DR seed markers.',
+          seedMarkers: ['DR-SEED:REQUIREMENTS', 'DR-SEED:SCOPE'],
+        },
+      },
+      {
+        record: {
+          type: 'spec_mutation',
+          event: 'spec_preinit_context_added',
+          schemaVersion: 1,
+          folder_state: 'spec-present',
+          anchors_touched: ['Open Questions', 'Research Context'],
+          diff_summary: 'Appended bounded pre-init research context for the normalized topic.',
+          normalized_topic: 'pre-init research context',
+          specPath: 'specs/research-fixture/spec.md',
+          timestamp: TIMESTAMP,
+        },
+        stem: 'deep_research.spec_preinit_context_added',
+        data: {
+          folderState: 'spec-present',
+          normalizedTopic: 'pre-init research context',
+          specPath: 'specs/research-fixture/spec.md',
+          anchorsTouched: ['Open Questions', 'Research Context'],
+          diffSummary: 'Appended bounded pre-init research context for the normalized topic.',
+        },
+      },
+      {
+        record: {
+          type: 'spec_mutation',
+          event: 'spec_preinit_context_deduped',
+          schemaVersion: 1,
+          folder_state: 'spec-present',
+          anchors_touched: ['Open Questions'],
+          diff_summary: 'Skipped the duplicate pre-init topic append; the normalized topic already exists.',
+          normalized_topic: 'pre-init research context',
+          specPath: 'specs/research-fixture/spec.md',
+          timestamp: TIMESTAMP,
+        },
+        stem: 'deep_research.spec_preinit_context_deduped',
+        data: {
+          folderState: 'spec-present',
+          normalizedTopic: 'pre-init research context',
+          specPath: 'specs/research-fixture/spec.md',
+          anchorsTouched: ['Open Questions'],
+          diffSummary: 'Skipped the duplicate pre-init topic append; the normalized topic already exists.',
+        },
+      },
+      {
+        record: {
+          type: 'spec_mutation',
+          event: 'spec_mutation',
+          schemaVersion: 1,
+          phase: 'post-synthesis',
+          anchors_touched: ['Open Questions'],
+          diff_summary: 'Replaced the generated deep-research findings fence.',
+          generatedFence: 'deep-research/spec-findings',
+          timestamp: TIMESTAMP,
+        },
+        stem: 'deep_research.spec_mutation',
+        data: {
+          phase: 'post-synthesis',
+          anchorsTouched: ['Open Questions'],
+          diffSummary: 'Replaced the generated deep-research findings fence.',
+          generatedFence: 'deep-research/spec-findings',
+        },
+      },
+      {
+        record: {
+          type: 'spec_mutation',
+          event: 'spec_mutation_conflict',
+          schemaVersion: 1,
+          folder_state: 'conflict-detected',
+          reason: 'Pre-init spec mutation is ambiguous or unsafe.',
+          specPath: 'specs/research-fixture/spec.md',
+          timestamp: TIMESTAMP,
+        },
+        stem: 'deep_research.spec_mutation_conflict',
+        data: {
+          folderState: 'conflict-detected',
+          reason: 'Pre-init spec mutation is ambiguous or unsafe.',
+          specPath: 'specs/research-fixture/spec.md',
+          generatedFence: null,
+          conflictKind: null,
+        },
+      },
+      {
+        record: {
+          type: 'spec_mutation',
+          event: 'spec_synthesis_deferred',
+          schemaVersion: 1,
+          reason: 'confirm_mode_deferred_writeback',
+          generatedFence: 'deep-research/spec-findings',
+          timestamp: TIMESTAMP,
+        },
+        stem: 'deep_research.spec_synthesis_deferred',
+        data: {
+          reason: 'confirm_mode_deferred_writeback',
+          generatedFence: 'deep-research/spec-findings',
+        },
+      },
     ] as const;
-    for (const event of eventShapes) {
+
+    for (const { record, stem, data } of rows) {
+      expect(decideDeepResearchCompatibility(record)).toMatchObject({
+        status: 'migrate',
+        reasonCode: 'registered-pure-upcaster',
+        targetStem: stem,
+      });
+      const result = upcastLegacyDeepResearchRecord(record, context);
+      expect(result.status).toBe('migrated');
+      if (result.status !== 'migrated') throw new Error(result.decision.reasonCode);
+      expect(result.targetStem).toBe(stem);
+      expect(result.data).toEqual(data);
+    }
+
+    for (const event of ['migration', 'min_iterations_guard_pass'] as const) {
       expect(decideDeepResearchCompatibility({
         type: 'event',
         event,
@@ -1127,15 +1314,28 @@ describe('deep-research typed ledger schema', () => {
         targetStem: null,
       });
     }
-    // spec_mutation is also emitted as a record type; the type branch is tested
-    // before the event branch and produces a different reason code.
-    expect(decideDeepResearchCompatibility({
+
+    // A spec_mutation row without its generated fence cannot be upcast losslessly.
+    const mutationWithoutFence = {
       type: 'spec_mutation',
+      event: 'spec_mutation',
       schemaVersion: 1,
-    })).toMatchObject({
+      phase: 'post-synthesis',
+      anchors_touched: ['Open Questions'],
+      diff_summary: 'Replaced the generated deep-research findings fence.',
+      timestamp: TIMESTAMP,
+    };
+    expect(decideDeepResearchCompatibility(mutationWithoutFence)).toMatchObject({
+      status: 'migrate',
+      targetStem: 'deep_research.spec_mutation',
+    });
+    const refused = upcastLegacyDeepResearchRecord(mutationWithoutFence, context);
+    expect(refused.status).toBe('refused');
+    if (refused.status !== 'refused') throw new Error('expected the incomplete row to be refused');
+    expect(refused.decision).toMatchObject({
       status: 'pin-old-runtime',
-      reasonCode: 'legacy-record-has-no-lossless-mode-event',
-      targetStem: null,
+      reasonCode: 'spec-mutation-fields-missing',
+      targetStem: 'deep_research.spec_mutation',
     });
   });
 

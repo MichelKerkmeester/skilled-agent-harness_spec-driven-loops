@@ -55,7 +55,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given each of the seven legacy rows, When it goes through `append-mode-event.cjs --mode research`, Then it exits 0 | A CLI test per row | Unmet | - |
-| AC-002 | REQ-002 | Given an accepted row, When the state log is rebuilt, Then the row reads as written | A byte-equivalence test per row | Unmet | - |
+| AC-002 | REQ-002 | Given an accepted row, When the state log is rebuilt, Then the row reads as written, apart from the append-time timestamp | A round-trip test per row | Unmet | - |
 | AC-003 | REQ-003 | Given the committed research fixtures, When they replay, Then no fingerprint or reduced state moves | Fingerprints before and after | Unmet | - |
 | AC-004 | REQ-004 | Given the change, When the deep-loop suite runs, Then it passes, including the stem-producer and append-site checkers | The suite | Unmet | - |
 | AC-005 | REQ-005 | Given the spec-check protocol reference, When it is read, Then it names the seven stems | The reference | Unmet | - |

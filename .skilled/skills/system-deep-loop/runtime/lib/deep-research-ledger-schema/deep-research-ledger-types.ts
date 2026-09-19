@@ -376,6 +376,61 @@ export interface RunCompletedData extends JsonObject {
   readonly incompleteReason: string | null;
 }
 
+// The spec-protocol rows are written by the workflows as untyped state-log
+// records, so each payload keeps the row's own field values verbatim: the
+// upcaster lifts them unchanged and the projection writes the row back.
+export interface SpecCheckResultData extends JsonObject {
+  readonly folderState: string;
+  readonly normalizedTopic: string;
+  readonly specPath: string;
+  readonly lockPath: string;
+}
+
+export interface SpecSeedCreatedData extends JsonObject {
+  readonly folderState: string;
+  readonly anchorsTouched: string[];
+  readonly diffSummary: string;
+  readonly seedMarkers: string[];
+}
+
+export interface SpecPreinitContextAddedData extends JsonObject {
+  readonly folderState: string;
+  readonly normalizedTopic: string;
+  readonly specPath: string;
+  readonly anchorsTouched: string[];
+  readonly diffSummary: string;
+}
+
+export interface SpecPreinitContextDedupedData extends JsonObject {
+  readonly folderState: string;
+  readonly normalizedTopic: string;
+  readonly specPath: string;
+  readonly anchorsTouched: string[];
+  readonly diffSummary: string;
+}
+
+export interface SpecMutationData extends JsonObject {
+  readonly phase: string;
+  readonly anchorsTouched: string[];
+  readonly diffSummary: string;
+  readonly generatedFence: string;
+}
+
+// The pre-init conflict row carries no fence or conflict kind; the
+// post-synthesis row carries both, so they are null when the row omits them.
+export interface SpecMutationConflictData extends JsonObject {
+  readonly folderState: string;
+  readonly reason: string;
+  readonly specPath: string;
+  readonly generatedFence: string | null;
+  readonly conflictKind: string | null;
+}
+
+export interface SpecSynthesisDeferredData extends JsonObject {
+  readonly reason: string;
+  readonly generatedFence: string;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 4. EVENT UNION
 // ───────────────────────────────────────────────────────────────────
@@ -410,6 +465,13 @@ export const DeepResearchEventStems = Object.freeze([
   'deep_research.run_now_restored',
   'deep_research.synthesis_incomplete',
   'deep_research.synthesis_complete',
+  'deep_research.spec_check_result',
+  'deep_research.spec_seed_created',
+  'deep_research.spec_preinit_context_added',
+  'deep_research.spec_preinit_context_deduped',
+  'deep_research.spec_mutation',
+  'deep_research.spec_mutation_conflict',
+  'deep_research.spec_synthesis_deferred',
 ] as const);
 
 export type DeepResearchEventStem = typeof DeepResearchEventStems[number];
@@ -453,6 +515,13 @@ export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
   'deep_research.run_now_restored': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml'] },
   'deep_research.synthesis_incomplete': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml', '.skilled/commands/deep/assets/deep-research-confirm.yaml'] },
   'deep_research.synthesis_complete': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml', '.skilled/commands/deep/assets/deep-research-confirm.yaml'] },
+  'deep_research.spec_check_result': { status: 'reserved', reason: 'No workflow stages it: the research workflows write the legacy spec-protocol row, which the append gateway upcasts to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.spec_seed_created': { status: 'reserved', reason: 'No workflow stages it: the research workflows write the legacy spec-protocol row, which the append gateway upcasts to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.spec_preinit_context_added': { status: 'reserved', reason: 'No workflow stages it: the research workflows write the legacy spec-protocol row, which the append gateway upcasts to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.spec_preinit_context_deduped': { status: 'reserved', reason: 'No workflow stages it: the research workflows write the legacy spec-protocol row, which the append gateway upcasts to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.spec_mutation': { status: 'reserved', reason: 'No workflow stages it: the research workflows write the legacy spec-protocol row, which the append gateway upcasts to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.spec_mutation_conflict': { status: 'reserved', reason: 'No workflow stages it: the research workflows write the legacy spec-protocol row, which the append gateway upcasts to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.spec_synthesis_deferred': { status: 'reserved', reason: 'No workflow stages it: the research workflows write the legacy spec-protocol row, which the append gateway upcasts to this stem. A workflow step would speak it once it stages the stem itself.' },
 } as const satisfies Readonly<Record<DeepResearchEventStem, DeepResearchStemProducerStatus>>);
 
 export const DeepResearchWireEventTypes = Object.freeze({
@@ -485,6 +554,13 @@ export const DeepResearchWireEventTypes = Object.freeze({
   'deep_research.run_now_restored': 'deep-research.ledger.run-now-restored',
   'deep_research.synthesis_incomplete': 'deep-research.ledger.synthesis-incomplete',
   'deep_research.synthesis_complete': 'deep-research.ledger.synthesis-complete',
+  'deep_research.spec_check_result': 'deep-research.ledger.spec-check-result',
+  'deep_research.spec_seed_created': 'deep-research.ledger.spec-seed-created',
+  'deep_research.spec_preinit_context_added': 'deep-research.ledger.spec-preinit-context-added',
+  'deep_research.spec_preinit_context_deduped': 'deep-research.ledger.spec-preinit-context-deduped',
+  'deep_research.spec_mutation': 'deep-research.ledger.spec-mutation',
+  'deep_research.spec_mutation_conflict': 'deep-research.ledger.spec-mutation-conflict',
+  'deep_research.spec_synthesis_deferred': 'deep-research.ledger.spec-synthesis-deferred',
 } as const satisfies Readonly<Record<DeepResearchEventStem, string>>);
 
 export type DeepResearchWireEventType =
@@ -520,6 +596,13 @@ export interface DeepResearchPayloadMap {
   readonly 'deep_research.run_now_restored': RunNowRestoredData;
   readonly 'deep_research.synthesis_incomplete': SynthesisIncompleteData;
   readonly 'deep_research.synthesis_complete': SynthesisCompleteData;
+  readonly 'deep_research.spec_check_result': SpecCheckResultData;
+  readonly 'deep_research.spec_seed_created': SpecSeedCreatedData;
+  readonly 'deep_research.spec_preinit_context_added': SpecPreinitContextAddedData;
+  readonly 'deep_research.spec_preinit_context_deduped': SpecPreinitContextDedupedData;
+  readonly 'deep_research.spec_mutation': SpecMutationData;
+  readonly 'deep_research.spec_mutation_conflict': SpecMutationConflictData;
+  readonly 'deep_research.spec_synthesis_deferred': SpecSynthesisDeferredData;
 }
 
 export interface DeepResearchScopeMap {
@@ -552,6 +635,13 @@ export interface DeepResearchScopeMap {
   readonly 'deep_research.run_now_restored': DeepResearchBaseScope;
   readonly 'deep_research.synthesis_incomplete': DeepResearchBaseScope;
   readonly 'deep_research.synthesis_complete': DeepResearchBaseScope;
+  readonly 'deep_research.spec_check_result': DeepResearchBaseScope;
+  readonly 'deep_research.spec_seed_created': DeepResearchBaseScope;
+  readonly 'deep_research.spec_preinit_context_added': DeepResearchBaseScope;
+  readonly 'deep_research.spec_preinit_context_deduped': DeepResearchBaseScope;
+  readonly 'deep_research.spec_mutation': DeepResearchBaseScope;
+  readonly 'deep_research.spec_mutation_conflict': DeepResearchBaseScope;
+  readonly 'deep_research.spec_synthesis_deferred': DeepResearchBaseScope;
 }
 
 export interface DeepResearchLedgerPayload<

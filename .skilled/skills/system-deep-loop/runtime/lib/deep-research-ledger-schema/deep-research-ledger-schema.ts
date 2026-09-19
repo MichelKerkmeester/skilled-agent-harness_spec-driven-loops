@@ -87,6 +87,7 @@ type DataFieldKind =
   | 'nullable-uint32'
   | 'passage-locators'
   | 'prose'
+  | 'prose-array'
   | 'quality-gate-results'
   | 'ratio'
   | 'raw-signals'
@@ -415,6 +416,49 @@ const DATA_FIELD_RULES = Object.freeze({
     totalQuestions: 'uint32',
     stopReason: 'prose',
   },
+  'deep_research.spec_check_result': {
+    folderState: 'code',
+    normalizedTopic: 'prose',
+    specPath: 'prose',
+    lockPath: 'prose',
+  },
+  'deep_research.spec_seed_created': {
+    folderState: 'code',
+    anchorsTouched: 'prose-array',
+    diffSummary: 'prose',
+    seedMarkers: 'code-array',
+  },
+  'deep_research.spec_preinit_context_added': {
+    folderState: 'code',
+    normalizedTopic: 'prose',
+    specPath: 'prose',
+    anchorsTouched: 'prose-array',
+    diffSummary: 'prose',
+  },
+  'deep_research.spec_preinit_context_deduped': {
+    folderState: 'code',
+    normalizedTopic: 'prose',
+    specPath: 'prose',
+    anchorsTouched: 'prose-array',
+    diffSummary: 'prose',
+  },
+  'deep_research.spec_mutation': {
+    phase: 'code',
+    anchorsTouched: 'prose-array',
+    diffSummary: 'prose',
+    generatedFence: 'code',
+  },
+  'deep_research.spec_mutation_conflict': {
+    folderState: 'code',
+    reason: 'prose',
+    specPath: 'prose',
+    generatedFence: 'nullable-identifier',
+    conflictKind: 'nullable-identifier',
+  },
+  'deep_research.spec_synthesis_deferred': {
+    reason: 'prose',
+    generatedFence: 'code',
+  },
 } as const satisfies Readonly<
   Record<DeepResearchEventStem, Readonly<Record<string, DataFieldRule>>>
 >);
@@ -453,6 +497,13 @@ const SCOPE_FIELDS = Object.freeze({
   'deep_research.run_now_restored': ['runId', 'lineageId'],
   'deep_research.synthesis_incomplete': ['runId', 'lineageId'],
   'deep_research.synthesis_complete': ['runId', 'lineageId'],
+  'deep_research.spec_check_result': ['runId', 'lineageId'],
+  'deep_research.spec_seed_created': ['runId', 'lineageId'],
+  'deep_research.spec_preinit_context_added': ['runId', 'lineageId'],
+  'deep_research.spec_preinit_context_deduped': ['runId', 'lineageId'],
+  'deep_research.spec_mutation': ['runId', 'lineageId'],
+  'deep_research.spec_mutation_conflict': ['runId', 'lineageId'],
+  'deep_research.spec_synthesis_deferred': ['runId', 'lineageId'],
 } as const satisfies Readonly<Record<DeepResearchEventStem, readonly string[]>>);
 
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
@@ -673,6 +724,8 @@ function isFieldValue(rule: DataFieldRule, value: unknown): boolean {
         && value.every((entry) => isLocator(entry, true));
     case 'prose':
       return isProse(value);
+    case 'prose-array':
+      return isTokenArray(value, isProse);
     case 'quality-gate-results':
       return isConvergenceQualityGateResults(value);
     case 'ratio':

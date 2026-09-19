@@ -14,6 +14,7 @@ import { requireProjectableManifestEntry } from './legacy-projection-manifest.js
 import type {
   EventReadResult,
   JsonObject,
+  JsonValue,
 } from '../event-envelope/index.js';
 import type {
   LegacyProjectionContract,
@@ -34,6 +35,62 @@ export interface CreateDeepResearchProjectionContractOptions {
   readonly relativePath?: string;
   readonly baseSha?: string;
 }
+
+// The spec-protocol rows predate the stems that now carry them: the research
+// workflows write snake_case keys the state consumers still read, so the
+// projection rebuilds that legacy shape instead of spreading the stem payload's
+// camelCase fields. Each field list follows the workflow's own key order so a
+// folded row serializes byte-identically, and a null payload field (an absent
+// optional) stays out of the row instead of coming back as an explicit null.
+const SPEC_PROTOCOL_LEGACY_FIELDS: Readonly<
+  Record<string, Readonly<Record<string, string>>>
+> = Object.freeze({
+  'deep_research.spec_check_result': Object.freeze({
+    folder_state: 'folderState',
+    normalized_topic: 'normalizedTopic',
+    specPath: 'specPath',
+    lockPath: 'lockPath',
+  }),
+  'deep_research.spec_seed_created': Object.freeze({
+    folder_state: 'folderState',
+    anchors_touched: 'anchorsTouched',
+    diff_summary: 'diffSummary',
+    seed_markers: 'seedMarkers',
+  }),
+  'deep_research.spec_preinit_context_added': Object.freeze({
+    folder_state: 'folderState',
+    anchors_touched: 'anchorsTouched',
+    diff_summary: 'diffSummary',
+    normalized_topic: 'normalizedTopic',
+    specPath: 'specPath',
+  }),
+  'deep_research.spec_preinit_context_deduped': Object.freeze({
+    folder_state: 'folderState',
+    anchors_touched: 'anchorsTouched',
+    diff_summary: 'diffSummary',
+    normalized_topic: 'normalizedTopic',
+    specPath: 'specPath',
+  }),
+  'deep_research.spec_mutation': Object.freeze({
+    phase: 'phase',
+    anchors_touched: 'anchorsTouched',
+    diff_summary: 'diffSummary',
+    generatedFence: 'generatedFence',
+  }),
+  'deep_research.spec_mutation_conflict': Object.freeze({
+    folder_state: 'folderState',
+    reason: 'reason',
+    specPath: 'specPath',
+    generatedFence: 'generatedFence',
+    conflictKind: 'conflictKind',
+  }),
+  'deep_research.spec_synthesis_deferred': Object.freeze({
+    reason: 'reason',
+    generatedFence: 'generatedFence',
+  }),
+});
+
+const SPEC_PROTOCOL_EVENT_STEMS = Object.freeze(new Set(Object.keys(SPEC_PROTOCOL_LEGACY_FIELDS)));
 
 // ───────────────────────────────────────────────────────────────────
 // 2. FACTORY
@@ -204,6 +261,20 @@ export function createDeepResearchProjectionContract(
           type: 'event',
           event: 'run_completed',
           terminalStatus: typeof data.terminalStatus === 'string' ? data.terminalStatus : 'completed',
+          timestamp: occurredAt,
+        };
+      } else if (typeof stem === 'string' && SPEC_PROTOCOL_EVENT_STEMS.has(stem)) {
+        const legacyFields: JsonObject = {};
+        for (const [legacyKey, payloadField] of Object.entries(SPEC_PROTOCOL_LEGACY_FIELDS[stem])) {
+          const value = data[payloadField];
+          if (value !== null && value !== undefined) {
+            legacyFields[legacyKey] = value as JsonValue;
+          }
+        }
+        row = {
+          type: stem === 'deep_research.spec_check_result' ? 'event' : 'spec_mutation',
+          event: stem.replace(/^deep_research\./, ''),
+          ...legacyFields,
           timestamp: occurredAt,
         };
       } else if (stem) {

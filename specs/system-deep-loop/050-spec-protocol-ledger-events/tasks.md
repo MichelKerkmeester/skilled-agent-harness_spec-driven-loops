@@ -32,7 +32,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Get the operator's go-ahead for a durable format change
+- [x] T001 Get the operator's go-ahead for a durable format change (2026-09-19: build it with DeepSeek V4.1 Flash on cli-pi)
 - [ ] T002 Replay the committed research ledger fixtures and record their fingerprints
 <!-- /ANCHOR:phase-1 -->
 
@@ -41,10 +41,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Add the seven stems, wire types, payload and scope types, and producers (`deep-research-ledger-types.ts`)
-- [ ] T004 Add their field rules and scopes (`deep-research-ledger-schema.ts`)
-- [ ] T005 Upcast the seven legacy rows instead of pinning them (`legacy-compatibility.ts`)
-- [ ] T006 Add no-op reducer cases and the legacy projection (`deep-research-reducer.ts`, `legacy-projections/deep-research-contract.ts`)
+- [x] T003 Add the seven stems, wire types, payload and scope types, and producers (`deep-research-ledger-types.ts`); producers declared `reserved`, since only the upcast reaches them
+- [x] T004 Add their field rules and scopes, and the `prose-array` rule (`deep-research-ledger-schema.ts`)
+- [x] T005 Upcast the seven legacy rows instead of pinning them (`legacy-compatibility.ts`)
+- [x] T006 Add no-op reducer cases and the legacy projection (`deep-research-reducer.ts`, `legacy-projections/deep-research-contract.ts`)
 - [ ] T007 Name the stems in the spec-check protocol reference
 <!-- /ANCHOR:phase-2 -->
 
