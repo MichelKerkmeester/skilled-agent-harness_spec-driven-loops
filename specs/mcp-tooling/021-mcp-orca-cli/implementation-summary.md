@@ -108,3 +108,32 @@ The leaf was then package-validated, wired into the ten-mode hub, checked agains
 3. Repository mutation, terminal receipts, browser-driving, authentication, automation, artifact sharing, and skill publishing were not exercised; the manual report records each safety skip and its blocker.
 4. The compiled activation manifest is stale, so the runtime continues to use legacy routing. Refreshing or promoting compiled serving is a separate operator-controlled runtime publication step.
 5. The bounded DeepSeek/cli-pi review remains supplemental evidence; local files, command output, and repository gates remain authoritative.
+
+## Conformance Remediation Addendum (2026-09-19)
+
+A later operator-directed pass brought the leaf packet into full sk-doc / sk-create-skill template conformance. The integration facts above are unchanged by this pass; only document structure, voice, and version identity moved.
+
+### What Changed
+
+| Surface | Change | Evidence |
+|---------|--------|----------|
+| `references/*.md` (4 files) | Re-shelled to the skill-reference template: full frontmatter with trigger phrases, 1-2 sentence intro, required OVERVIEW, numbered ALL-CAPS H2s, `---` dividers, HVR-clean prose. All observed Orca 1.4.205 facts preserved. | `validate_document.py --type reference`: 4/4 VALID, 0 issues. |
+| `README.md` | Restructured to the skill README template: `---` dividers, four-row AT A GLANCE, problem-first OVERVIEW with narrative hook, INTEGRATION & NAVIGATION ownership table, HVR-clean prose. | `validate_document.py --type readme`: VALID, 0 issues (baseline was 6 blocking separator errors plus HVR hits). |
+| `manual-testing-playbook/` | Restructured into the split-package shape: root directory playbook plus six category folders with ten per-feature scenario files, each carrying the full execution contract and source metadata. The persistence-contract marker is present. | Root playbook `--type playbook` VALID, 0 issues; 10/10 scenario files `--type playbook_feature` VALID, 0 issues. |
+| `changelog/` | Renamed `v1.0.0.0.md` to `v0.1.0.0.md` and set every leaf frontmatter version to 0.1.0.0, matching the mcp-notion and mcp-obsidian first-version convention. The hub stays at 1.7.0.0. | Version sweep: 18/18 leaf files at 0.1.0.0; changelog validator VALID; no residual v1.0.0.0 self-references. |
+| This packet | Added the conformance tasks and acceptance criteria AC-009 through AC-012 with evidence. | Strict validation rerun below. |
+
+### Post-Remediation Gates
+
+| Check | Result |
+|-------|--------|
+| Leaf package validation | PASS — `package_skill.py .../mcp-orca-cli --check`. |
+| Parent hub invariant check | PASS — OK with 0 warnings at hub version 1.7.0.0; no manifest regeneration was needed because the playbook files are not manifest leaves. |
+| Metadata fleet check | PASS — checked=13, passed=13, failed=0, fixed=0. |
+| Leaf document validators | PASS — reference 4/4, readme, playbook root, and 10 scenario files all VALID with 0 issues. |
+| HVR scripted checks | PASS — em dash, semicolon, Oxford comma, and banned-word greps return no matches in the leaf README and all four references. |
+| Read-only cli-devin review | Dispatched over the restructured README, references, and playbook; findings triaged below. |
+
+### Residual Out-of-Scope Observations
+
+`SKILL.md` and `INSTALL-GUIDE.md` carry pre-existing Oxford-comma prose that predates this pass and sits outside the frozen remediation scope. They passed `package_skill.py --check` as shipped. A later voice pass over those two files would close the remaining HVR gap in the leaf.

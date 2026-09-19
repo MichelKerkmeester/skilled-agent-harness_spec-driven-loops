@@ -2,7 +2,7 @@
 name: mcp-orca-cli
 description: "Orca CLI workflow bridge for Orca-managed worktrees, terminals, automations, handoffs, and embedded browser state."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0.0
+version: 0.1.0.0
 user-invocable: true
 ---
 
