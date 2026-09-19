@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rollback snapshot refresh",
+      "serving prior snapshot",
+      "stale rollback manifest",
+      "rollback snapshot refresh plan",
+      "phase 19 plan",
+      "rollback snapshot refresh tasks",
+      "phase 19 tasks",
+      "rollback snapshot refresh acceptance",
+      "phase 19 closure gate",
+      "rollback snapshot refresh summary",
+      "phase 19 status"
+    ],
+    "key_topics": [
+      "rollback",
+      "snapshot",
+      "refresh",
+      "serving",
+      "prior",
+      "stale",
+      "manifest",
+      "plan",
+      "phase",
+      "tasks",
+      "acceptance",
+      "closure"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/lib/compiled-route-manifest.cjs",
+      ".skilled/bin/tests/compiled-route-manifest.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Keep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Snapshot",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every compiled-serving hub keeps a `manifest.serving-prior.json` in the authored activation tree, and `flip-serving.cjs --rollback` restores it byte for byte",
+    "created_at": "2026-09-19T06:42:24Z",
+    "last_save_at": "2026-09-19T06:44:49.030Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3620e0fa2a35fe8376a7e4d3c5bd2044e49006daef706b45b8739e82ab17c5de",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "da5c520f115774edac958ea55118129e43ba3658efea563f99e2a4dbaa27175b",
+      "plan.md": "538ec20eeb5b0e6d105d2fb0dfcab7cad6b9aaf0dea8c8b74359883c8a757ebb",
+      "tasks.md": "f911c8a42cceb4094011550485351c078e9292715c2cf3f91065e06530d843ba",
+      "implementation-summary.md": "8d02f44fbb1b5778f438d329523ba26f260bf6358c6050ea7e6cde652b6891f8"
+    },
+    "last_active_at": null
+  }
+}

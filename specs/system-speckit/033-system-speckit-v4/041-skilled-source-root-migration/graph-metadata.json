@@ -21,7 +21,9 @@
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow",
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker",
-    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze"
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci"
   ],
   "manual": {
     "depends_on": [],
@@ -184,17 +186,17 @@
     ],
     "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
     "created_at": "2026-09-16T08:35:04Z",
-    "last_save_at": "2026-09-19T06:29:25.520Z",
+    "last_save_at": "2026-09-19T06:44:57.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:ed218b8881fd27fe024cf07695c509ee5b8cc1e57dac5a33ef088979c6c69361",
+    "source_fingerprint": "sha256:229a2ef85642cccdce358c562541b00e56855ce9e3b10774a77a33a74855af89",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c6fe332b29f11faa63df201eeebf1b68aa9a32099c87cee409486892d87a44b"
+      "spec.md": "989ffc0849a65e06dfdb1a5ea7c328ce702935cef879cf5460d8f2bf591ecc97"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
     "last_active_at": "2026-09-18T22:35:59.779Z"

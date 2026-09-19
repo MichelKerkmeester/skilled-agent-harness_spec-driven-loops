@@ -57,7 +57,7 @@ contextType: "implementation"
 - [x] T009 Run `--all`, commit the baseline report, and class each failure as engine drift or stale gold (`baseline/`)
 - [x] T010 Flip a sandbox copy of a hub end to end: mcp-tooling flips and rolls back byte-identically; sk-doc is refused for drift
 - [x] T011 Write the admission runbook (`compiled-routing-architecture.md`)
-- [ ] T012 Make the CI step blocking once the baseline is clean or excused
+- [ ] T012 Make the CI step blocking once the four baseline failures are fixed (moved to phase 20)
 - [x] T013 Run the node gate and the bin vitest suite
 <!-- /ANCHOR:phase-3 -->
 

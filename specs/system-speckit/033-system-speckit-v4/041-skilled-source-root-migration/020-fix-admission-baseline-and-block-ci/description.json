@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci",
+  "description": "The admission baseline in phase 17 found four failures among the admitted hubs",
+  "keywords": [
+    "admission",
+    "baseline",
+    "phase",
+    "found",
+    "four",
+    "failures",
+    "among",
+    "admitted",
+    "hubs"
+  ],
+  "lastUpdated": "2026-09-19T06:44:20.450Z",
+  "specId": "020",
+  "folderSlug": "fix-admission-baseline-and-block-ci",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
