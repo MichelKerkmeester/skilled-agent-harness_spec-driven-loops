@@ -1,5 +1,5 @@
 {
-  "corpusHash": "567f22b94b24b7bb2415b021532f15a82ad302f875eb7523cdbb3174560ec01f",
+  "corpusHash": "ddd6b9a93319a1f29ccfc0d6760214255d3e750165422547227e971affa19d20",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27314,
+  "includedPathCount": 27315,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -27314,6 +27314,7 @@
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/spec.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/baseline/admission-report.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/implementation-summary.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/plan.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/spec.md",
@@ -27336,7 +27337,7 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ff0fa1806a5a158e58ebf32eac4f10b12a4273d3eeb19a2f58325d0a5f4f6461",
+  "manifestHash": "f589f06b3e3424bc0af0bcd2feb26d1463a3088a9ffd9535e97c6e309780cc9f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
