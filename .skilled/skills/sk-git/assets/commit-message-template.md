@@ -39,8 +39,9 @@ are preserved unchanged.
 
 Every authored commit ends with one contiguous trailer paragraph, separated from
 the prose above it by a blank line. It carries `Spec: <track>/<packet>[/<phase>...]`
-when the work belongs to a packet (the path is relative to `specs/` and includes
-nested phases), then `Commit-Id: NNNNNNN`, then `Refs:` for external links only.
+when the work belongs to a packet (the packet's path below `specs/`, including
+nested phases, and without the `specs/` segment), then `Commit-Id: NNNNNNN`,
+then `Refs:` for external links only.
 The `prepare-commit-msg` hook stamps both machine keys, so never type a
 `Commit-Id:` by hand.
 
