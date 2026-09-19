@@ -140,7 +140,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 - Parent spec tracks aggregate progress via this map
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-- Every phase works in the dedicated worktree `worktrees/055-skilled-source-root-migration`, never in the main checkout. This is an operator decision (2026-09-16) and holds for the whole packet.
+- Phases 1 to 18 worked in the dedicated worktree `worktrees/055-skilled-source-root-migration`, an operator decision of 2026-09-16. On 2026-09-19 the operator removed that worktree, which sat outside the canonical `.worktrees/` base because the repository's `speckit.worktreeBase` config pointed elsewhere; the config is now unset, and the operator chose to continue on the current branch in the main checkout.
 
 ### Phase Handoff Criteria
 

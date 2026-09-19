@@ -51,6 +51,7 @@
       ".skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts",
       ".opencode/plugins/tests/mcp-route-guard.test.cjs",
       ".skilled/skills/system-deep-loop/SKILL.md",
+      ".hermes/skills/system-deep-loop/SKILL.md",
       ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
       ".skilled/skills/system-skill-advisor/runtime/tests/scorer/fixtures/seed-skill-embeddings.ts",
       "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-pins.json"
@@ -203,7 +204,7 @@
     ],
     "causal_summary": "The advisor suite had 13 failures and nothing in CI runs it",
     "created_at": "2026-09-19T06:08:13Z",
-    "last_save_at": "2026-09-19T06:29:24.120Z",
+    "last_save_at": "2026-09-19T06:58:29.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cd9c3c8c4f7ab52251328a177b05ce154d7944fc9fff899a763012d683ccf99",
+    "source_fingerprint": "sha256:4a48a901bef41bfb3d97ad8c21b0e3f394256c85777453e088ec7e66f843c152",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6e13850d56b23083c075f47e73a26fbe92002760c984b9c416a0eaf4c74e7ed2",
       "plan.md": "b877831b00006200ae1c13376de9cddf95ce8c251cc7fbe0274c269239042e1e",
       "tasks.md": "eb07c7b0005d5678bd92d9a4264d4c18941bf294c5fded6ee7db0cc954ef550e",
-      "implementation-summary.md": "f0d31d32ae428418d4e0496682fb5645e3243c74acd60cc65f89320ee450257e"
+      "implementation-summary.md": "b69b74fbfb11e58e78a206dea05bcf3019b2cc82fa75f28f3b5126e2a40bd9ef"
     },
     "last_active_at": null
   }

@@ -67,7 +67,7 @@ Planned only.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The decision came from the operator on 2026-09-19, after phase 15 of packet 041 found that no research write-back ever reaches the ledger.
+Not delivered. The decision came from the operator on 2026-09-19, after phase 15 of packet 041 found that no research write-back ever reaches the ledger. The operator asked for DeepSeek V4.1 Flash through cli-pi to build it. A first dispatch read the plan and the runtime for ten minutes, wrote nothing, and was stopped when its worktree was removed; it is re-dispatched in the main checkout.
 <!-- /ANCHOR:how-delivered -->
 
 ---

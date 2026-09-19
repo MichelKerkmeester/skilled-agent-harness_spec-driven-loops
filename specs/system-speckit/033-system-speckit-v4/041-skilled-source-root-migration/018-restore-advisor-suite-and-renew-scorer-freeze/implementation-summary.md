@@ -79,6 +79,7 @@ The lane-weight sweep wrote newly computed embeddings back into a committed cach
 | `.../tests/parity/fixtures/local-native-approved-divergences.json` | Modified | One entry re-approved |
 | `.../tests/scorer/fixtures/seed-skill-embeddings.ts`, `README.md` | Modified | Cache written only on request |
 | system-deep-loop manifests, three deep contracts, `frozen-scorer-pins.json` | Regenerated | Follow the changes |
+| `.hermes/skills/system-deep-loop/SKILL.md` | Regenerated in `944ff03447` | The Hermes copy of the changed `SKILL.md`; its absence failed Command Tree Parity on `a72c552b71` |
 <!-- /ANCHOR:what-built -->
 
 ---
