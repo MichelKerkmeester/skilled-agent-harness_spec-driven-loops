@@ -143,7 +143,7 @@ while read -r _ local_sha remote_ref remote_sha; do
         echo "AUTOSYNC BLOCKED [gate:mass-deletion]: live branch '$branch_name'." >&2
         echo "   The mass-deletion ceiling (${SPECKIT_MASS_DELETION_THRESHOLD:-100} tracked files) blocked it." >&2
         echo "   A session likely committed against a stale tree. Inspect the range, then publish manually." >&2
-        echo "   Manual publish:  bash .opencode/bin/git-sync.sh --live $branch_name" >&2
+        echo "   Manual publish:  bash .skilled/bin/git-sync.sh --live $branch_name" >&2
       fi
       REJECTED=1
       continue
@@ -358,8 +358,8 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
         echo "A clone of that commit recomputes different policy hashes and serves legacy."
         echo "Fix: commit the routing sources and manifests together, then push again."
         echo "See what differs:"
-        echo "  git diff ${pushed_sha:0:10} -- '.opencode/skills/*/hub-router.json' \\"
-        echo "      '.opencode/bin/lib/compiled-routing/013-live-activation/activation/*/manifest.json'"
+        echo "  git diff ${pushed_sha:0:10} -- '.skilled/skills/*/hub-router.json' \\"
+        echo "      '.skilled/bin/lib/compiled-routing/013-live-activation/activation/*/manifest.json'"
         echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 git push ..."
         echo ""
       } >&2

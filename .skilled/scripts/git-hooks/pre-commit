@@ -380,8 +380,8 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       echo "" >&2
       echo "BLOCKED [gate:route-remint]: $ROUTE_HUB needs a re-mint, and this commit narrows its" >&2
       echo "pathspec, so anything staged now would be discarded with the temporary index." >&2
-      echo "Fix: node .opencode/bin/compiled-route-manifest.cjs refresh --hub $ROUTE_HUB \\" >&2
-      echo "       --skill-root .opencode/skills/$ROUTE_HUB" >&2
+      echo "Fix: node .skilled/bin/compiled-route-manifest.cjs refresh --hub $ROUTE_HUB \\" >&2
+      echo "       --skill-root .skilled/skills/$ROUTE_HUB" >&2
       echo "     then copy the runtime manifest over its authored copy, and commit both." >&2
       echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1

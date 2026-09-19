@@ -422,7 +422,7 @@ Verify iteration-NNN.md does not already exist before writing
 - Strategy, registry, dashboard: reducer-owned; do not edit directly.
 - Iteration file: create new; if the computed file exists, stop with status `error`.
 - Research.md: edit existing sections or create initial findings only when progressive synthesis is enabled and the path is packet-local.
-- Idea observations: append `idea_observed` only when dispatch explicitly allows it; otherwise record ideas in the iteration file.
+- Idea observations: record `idea_observed` through the gateway only when dispatch explicitly allows it; otherwise record ideas in the iteration file.
 
 ---
 

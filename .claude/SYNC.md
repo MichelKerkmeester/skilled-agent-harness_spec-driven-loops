@@ -25,13 +25,11 @@ The exception matters. `.claude/agents/` holds **real files**, not symlinks, bec
 |---|---|---|---|
 | `commands/**/*.md` (33) | filtered per-file symlinks | `.skilled/commands/**/*.md` | Yes — guarded by the mirror generator; OpenCode-only entries are excluded |
 | `skills` | whole-dir symlink | `../.skilled/skills` | No |
-| `specs` | whole-dir symlink | `../.opencode/specs` | No |
-| `changelog` | whole-dir symlink | `../.skilled/changelog` | No |
 | `manual-testing-playbook` | whole-dir symlink | `../.skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook` | No |
 | `.utcp_config.json` | symlink | `../.utcp_config.json` | No |
 | `agents/*.md` | **real forked copy** | `.skilled/agents/*.md` | **Yes** — guarded by pre-commit gate |
 | `agents/README.txt` | real file | hand-maintained | Yes — no gate |
-| `hooks/*` (18 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — guarded by the mirror generator |
+| `hooks/*` (21 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — guarded by the mirror generator |
 | `settings.json` | **hand-authored** | — | n/a — no counterpart to sync with |
 | `mcp.json` | **real file, and it is canonical** | — | Root `.mcp.json` symlinks *to it*; Cursor reaches it via that hop |
 | `statusline-command.sh` | real file | — | n/a |

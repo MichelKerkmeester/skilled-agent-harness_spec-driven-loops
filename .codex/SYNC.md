@@ -26,8 +26,8 @@ Canonical for agents is `.skilled/agents/` (note: *not* `.claude/agents/`, which
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
 | `agents/*.toml` | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents.cjs --check` |
-| `prompts/*.md` (35) | **generated** pointer stubs | `.skilled/commands/**/*.md` | Yes — `sync-prompts.cjs --check` |
-| `hooks/*` (16 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — mirror generator |
+| `prompts/*.md` (33) | **generated** pointer stubs | `.skilled/commands/**/*.md` | Yes — `sync-prompts.cjs --check` |
+| `hooks/*` (18 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — mirror generator |
 | `hooks.json` | **hand-authored** | — | n/a locally; installed outbound to `~/.codex/hooks.json` |
 | `config.toml` | **hand-authored** | — | MCP servers inlined here, unlike `.claude`/`.cursor` which use `mcp.json` |
 | `AGENTS.md` | **hand-authored** global voice/tone doc, plus one generated Gate 1 pointer block outside the nodeterm markers | root `AGENTS.md` Gate 1 line via `sync-gate1-pointers.cjs` (`--check` reports drift) | `~/.codex/AGENTS.md` symlinks *to it* |

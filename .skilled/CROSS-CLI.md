@@ -39,7 +39,7 @@ A real file is therefore not automatically authored content — most of them are
 | `.cursor/` | agents, commands, rules, hooks | `agents/` (12), 33 commands, 18 hooks, 1 rule, playbook | — | `hooks.json`, `mcp.json`, `rules/skill-routing.md`, 2 commands |
 | `.devin/` | agents, hooks | `agents/*/AGENT.md` (12), 21 hooks, playbook | — | `config.local.json`, `hooks.v1.json`, `mcp_config.json` |
 | `.hermes/` | skills, plugins | `agents`, playbook | `skills/` (68 copies), `prompts/` (33) | `plugins/` (1) |
-| `.pi/` | agents, prompts, skills, extensions | `skills`, 16 extensions, playbook | `agents/` (12), `prompts/` (35) | `models.json`, `settings.json`, `mcp.json`, `PLUGINS.md`, `custom-providers.md`, `statusline.sh`, `npm/`, `git/`, 4 extensions |
+| `.pi/` | agents, prompts, skills, extensions | `skills`, 16 extensions, playbook | `agents/` (12), `prompts/` (35) | `models.json`, `settings.json`, `mcp.json`, `PLUGINS.md`, `custom-providers.md`, `statusline.sh`, `npm/`, `git/`, 2 authored extension directories (pi-cache-optimizer, pi-fast-mode-w-subagent-support) |
 
 Every runtime also authors its own `SYNC.md`, and every `hooks/` directory authors its own `README.md`.
 

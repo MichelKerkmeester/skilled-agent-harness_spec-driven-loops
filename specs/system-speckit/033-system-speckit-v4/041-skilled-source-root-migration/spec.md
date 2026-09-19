@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "041-scaffold"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 90
     open_questions:
       - "Does .opencode stay as a symlink farm, or can it shrink to only what the opencode runtime itself reads?"
       - "Can each runtime be pointed at a root other than its own directory name?"

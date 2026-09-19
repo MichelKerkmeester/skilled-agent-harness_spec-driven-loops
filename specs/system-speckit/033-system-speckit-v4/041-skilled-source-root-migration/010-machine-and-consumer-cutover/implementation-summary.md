@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 010-machine-and-consumer-cutover |
 | **Completed** | 2026-09-17 |
 | **Level** | 2 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
