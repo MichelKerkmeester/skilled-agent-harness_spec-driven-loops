@@ -25,7 +25,7 @@ The public `orca-cli` skill is a discovery stub. Command flags live in the insta
 - Exact Prompt: `Load the Orca version-matched guide and confirm the browser, automation and publishing references are available. Read-only only.`
 - Exact Command Sequence: `1. bash: orca skills get orca-cli --full -> 2. bash: orca skills get orca-cli --reference references/browser.md -> 3. bash: orca skills get orca-cli --reference references/automations.md -> 4. bash: orca skills get orca-cli --reference references/publishing.md`
 - Expected Signals: The full guide returns local and deterministic content; each reference flag returns its reference document; unknown reference flags are handled by falling back to the full guide or command help, never by guessing.
-- Evidence: Guide length or head, each reference retrieval result and exit status, and the recorded fallback behavior if a flag is unsupported.
+- Evidence: Guide length or head, each reference retrieval result and exit status and the recorded fallback behavior if a flag is unsupported.
 - Pass/Fail Criteria: PASS when the guide or its documented fallback completes; FAIL when a flag is guessed or a retrieval error is disguised as success; SKIP when the executable predates the guide option and the operator declines the fallback path (blocker: missing version-matched guide).
 - Failure Triage: 1. Re-check `orca skills get orca-cli --full`. 2. Compare the installed version with the guide's documented version. 3. Use the command's own help for the unsupported flag.
 

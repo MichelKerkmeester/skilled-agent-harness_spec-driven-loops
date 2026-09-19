@@ -1,11 +1,11 @@
 ---
-title: "ORCA-005 -- Disposable worktree or terminal mutation probe"
-description: "This scenario validates an authorized worktree or terminal mutation against a disposable target with rollback and filesystem evidence."
+title: "ORCA-005 -- Disposable worktree mutation probe"
+description: "This scenario validates an authorized worktree mutation against a disposable target with rollback and filesystem evidence."
 stage: mutation
 version: 0.1.0.0
 ---
 
-# ORCA-005 -- Disposable worktree or terminal mutation probe
+# ORCA-005 -- Disposable worktree mutation probe
 
 ## 1. OVERVIEW
 
@@ -20,12 +20,12 @@ A mutation that returns success without independent verification is exactly the 
 ## 2. SCENARIO CONTRACT
 
 - Feature ID: `ORCA-005`
-- Feature Name: Probe worktree or terminal mutation on a disposable target
-- Scenario Objective: With explicit authorization, create and verify one disposable Orca worktree or terminal, then remove it through the documented safety-gated path.
+- Feature Name: Probe worktree mutation on a disposable target
+- Scenario Objective: With explicit authorization, create and verify one disposable Orca worktree, then remove it through the documented safety-gated path.
 - Exact Prompt: `Create a disposable Orca worktree for a probe, verify it in filesystem or Git state, then remove it through the archive-hook path. I authorize exactly these actions.`
 - Exact Command Sequence: `1. bash: orca worktree create --name probe --no-parent --json -> 2. bash: git worktree list or filesystem inspection -> 3. bash: orca worktree rm --worktree <selector> --run-hooks --json -> 4. bash: git worktree list (expected: gone)`
 - Expected Signals: Creation returns the full `<repoId>::<worktreePath>` address; the filesystem or Git state shows the worktree; removal exits 0 and the state shows it gone; any archive-hook failure is preserved as an explicit outcome.
-- Evidence: All four command outputs with exit statuses, the created and removed addresses, and the independent before and after state.
+- Evidence: All four command outputs with exit statuses, the created and removed addresses and the independent before and after state.
 - Pass/Fail Criteria: PASS only when authorization, rollback and independent filesystem or Git evidence are all captured; SKIP by default when no disposable target or mutation authorization exists (blocker: missing authorization); FAIL on an unverified success claim or a bypassed archive-hook gate.
 - Failure Triage: 1. Re-read the creation result for the exact address. 2. Re-run the independent state inspection. 3. On `worktree_archive_hook_failed`, preserve the result and ask before any override.
 

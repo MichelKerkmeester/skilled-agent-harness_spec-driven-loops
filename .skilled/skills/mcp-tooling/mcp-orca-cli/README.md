@@ -15,7 +15,7 @@ version: 0.1.0.0
 
 # mcp-orca-cli
 
-> Use the version-matched Orca CLI guide to operate Orca-managed state without guessing flags or weakening mutation boundaries.
+> Operate Orca-managed state without guessing flags or weakening mutation boundaries, using the version-matched Orca CLI guide.
 
 Orca keeps state that an ordinary shell session cannot see. A raw `git worktree add` looks like the same operation but silently leaves the Orca runtime, receipt trail and archive protection behind. This packet is the bridge that keeps those operations inside Orca's own bookkeeping.
 
