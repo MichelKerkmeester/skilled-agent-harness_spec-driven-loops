@@ -11,6 +11,9 @@
   },
   "derived": {
     "trigger_phrases": [
+      "skill doc alignment",
+      "documentation template conformance",
+      "obsolete reference cleanup",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -21,18 +24,18 @@
       "task dependencies"
     ],
     "key_topics": [
+      "skill",
+      "doc",
+      "alignment",
+      "documentation",
+      "template",
+      "conformance",
+      "obsolete",
+      "reference",
+      "cleanup",
       "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "task",
-      "breakdown",
-      "tasks",
-      "verification"
+      "technical"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -178,7 +181,7 @@
     ],
     "causal_summary": "Seven docs in the `sk-code-mobile-cli` skill lag the `sk-create-skill` v4 asset, reference, and readme",
     "created_at": "2026-08-27T10:13:06.612Z",
-    "last_save_at": "2026-09-11T04:35:18.782Z",
+    "last_save_at": "2026-09-19T11:10:21.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -186,12 +189,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:44fc5131feee57c327d2aadc8150c0f3abd193624a47ffae14e8bafc5302da6e",
+    "source_fingerprint": "sha256:e79b97c68b015345c1e38ebc8a3b3f3819c511df9d32636cea7c77413c8d46bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bffdf7bac321a0237d3e1d7fff1038dd6fd6067a1f2d5644e398fd7b28f5e4df",
-      "plan.md": "b840fe6345a88730d240cd052acaa772b34d410710247afa045cb68c33260fb8",
-      "tasks.md": "464da3e52ab79fbb037d848002de895ed4134acb35e0262adb3d051b681cf231"
+      "spec.md": "a04bb04f5e298c621d8afa8295fe397276317b8494e941912c9dca0918b6b9c7",
+      "plan.md": "7afde04542ade53c7b49d7ec271bd85a02d73040e41998a694e57c21819004f6",
+      "tasks.md": "56b6c4688c52edd1e283babd098f98d058db49ec3b94f5f91d6187fc17edc6e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

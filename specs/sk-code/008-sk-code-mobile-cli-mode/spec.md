@@ -4,6 +4,7 @@ description: "Phase 4 — Dedicated sk-code Mode for Mobile-CLI App Work"
 trigger_phrases:
   - "phase 4 — dedicated sk-code mode for mobile-cli app work"
 importance_tier: "important"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-code/008-sk-code-mobile-cli-mode"

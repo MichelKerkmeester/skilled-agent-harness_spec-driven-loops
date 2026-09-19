@@ -11,6 +11,9 @@
   },
   "derived": {
     "trigger_phrases": [
+      "scripts ownership decision",
+      "app-owned verification scripts",
+      "skill script ownership boundary",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -19,24 +22,21 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "implementation summary",
-      "what shipped",
-      "validation evidence",
-      "continuation notes"
+      "implementation summary"
     ],
     "key_topics": [
+      "scripts",
+      "ownership",
+      "decision",
+      "app-owned",
+      "verification",
+      "skill",
+      "script",
+      "boundary",
       "implementation",
       "plan",
       "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "task",
-      "breakdown",
-      "tasks",
-      "verification"
+      "approach"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Decision packet answering whether the Mobile CLI verification tooling in scripts/ (token-identity, the *-cdp render gates, naming/scan-*, release-verify, 26 scripts) should move into the sk-code-mobile-cli surface skill. It should not: the skill is a read-only surface leaf that cannot own or run executable tooling, the scripts are coupled to the app tree and CI and wired as npm scripts, and the skill already references them by name. Analysis only — no files move.",
     "created_at": "2026-08-25T19:45:00.000Z",
-    "last_save_at": "2026-09-11T04:35:18.864Z",
+    "last_save_at": "2026-09-19T11:10:19.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b6ddc435d4fab3f664a4ca7ae9bc29d07a8385e604efca7182ba2bb98fb3371",
+    "source_fingerprint": "sha256:ab476ba8d2b251ef35526d5b423b8bcc605ac3667424882cdfce17b26c1daf93",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0982699ea7ae791a5cdff948613f9e074e15e8e6162f1a36671602fcc2ac0305",
-      "plan.md": "d84924ce858f240b41317532d364fc6ae007275da3cb906c1122d9a1a55ad8db",
-      "tasks.md": "51be6c4b5e1ff40d232bb00dd6ae7710ba77142913f6c69973a5feada91196dd",
-      "implementation-summary.md": "34542c63799a50951e30431f0d802acccd9cf9a9520be5939766b5da805bcf8b"
+      "spec.md": "63262b729a444c8bdb896a4e3a8cd981dc1cd1d15e9030457bec431879c6ef2e",
+      "plan.md": "e6df5cccaf1786fdea0847875a2213aed9005a292036599708685857af21bbd8",
+      "tasks.md": "133295136bc5389920f290da914d1f4095f1389b84f276189877818cab5aa0a3",
+      "implementation-summary.md": "dd46f02b344f8947b2cb46ea21a141bd4bbb789304f3c4afac2bfbddb91de119"
     },
     "last_active_child_id": null,
     "last_active_at": null

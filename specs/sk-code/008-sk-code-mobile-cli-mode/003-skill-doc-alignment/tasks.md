@@ -2,6 +2,7 @@
 title: "Phase 3 tasks - skill doc alignment work groups A-D"
 description: "REQ-mapped task ledger for the skill doc alignment: four ordered work groups (A assets, B references, C deletion plus dangler, D README plus playbook) inside the implementation phase, with setup preconditions and a verification phase. Each task cites its file and done-condition. All tasks pending; plan only."
 contextType: "planning"
+importance_tier: "normal"
 _memory:
   continuity:
     packet_pointer: "sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment"

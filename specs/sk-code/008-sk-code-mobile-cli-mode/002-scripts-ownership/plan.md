@@ -2,6 +2,7 @@
 title: "Phase 2 plan — how the scripts-ownership decision was reached"
 description: "The analysis behind keeping scripts/ in the app repo: inventory the 26 scripts and what they read/run, check how they are invoked (npm scripts + CI), check the skill's packet kind and its existing references to them, and conclude on ownership. No code change."
 contextType: "planning"
+importance_tier: "important"
 _memory:
   continuity:
     packet_pointer: "sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership"
