@@ -209,6 +209,15 @@ Two aliases under `.opencode` were retired after this phase closed, because no c
 
 Rollback for this follow-up: `git checkout -- .opencode/bin .opencode/logs opencode.json .opencode/SYNC.md .opencode/README.md .skilled/bin/tests/opencode-compat-layout.test.cjs`.
 
+### Correction: the `bin` alias is back
+
+The consumer check above searched too narrowly. `.opencode/bin` still had callers: two CI workflows, which broke Gate Inputs and the Routing Registry Drift Guard until they were repointed to `.skilled/bin`, and about 75 more files, among them three git hooks, three scripts in `.skilled/bin`, 33 JSON files and 32 documents. The alias is restored with its `SYNC.md` and README rows, and it stays until every caller names `.skilled/bin`. `logs` stays retired: its only remaining mentions are a `.gitignore` pattern and two captured benchmark reports.
+
+| Check | Result |
+|-------|--------|
+| `opencode-compat-layout.test.cjs` | PASS. 20 pass, 2 skipped as install-time, 0 fail, exit 0 |
+| `.opencode/bin/compiled-route-guard.cjs` | Resolves through the restored link |
+
 ### The embedder question, resolved without a change
 
 The same request asked whether anything still embeds, and whether `hf-model-server.cjs` could go. It stays, because it is the local-only tier of the skill-advisor embedding cascade rather than dead code.
