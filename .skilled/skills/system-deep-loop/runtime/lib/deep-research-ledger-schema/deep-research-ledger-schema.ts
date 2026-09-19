@@ -104,6 +104,7 @@ type DataFieldKind =
 interface EnumFieldRule {
   readonly kind: 'enum';
   readonly values: readonly string[];
+  readonly nullable?: boolean;
 }
 
 type DataFieldRule = DataFieldKind | EnumFieldRule;
@@ -147,6 +148,18 @@ const CLAIM_STATUS_RULE = Object.freeze({
 const RELATION_RULE = Object.freeze({
   kind: 'enum',
   values: ['contextualizes', 'contradicts', 'qualifies', 'supports'],
+} as const);
+// The spec-check classifier emits exactly one of these states, and the one
+// conflict kind the workflows write. A new value has to be added here first,
+// so an unrecognized one halts the run instead of entering the ledger.
+const SPEC_FOLDER_STATE_RULE = Object.freeze({
+  kind: 'enum',
+  values: ['conflict-detected', 'no-spec', 'spec-just-created-by-this-run', 'spec-present'],
+} as const);
+const SPEC_CONFLICT_KIND_RULE = Object.freeze({
+  kind: 'enum',
+  values: ['generated-fence-manual-edit'],
+  nullable: true,
 } as const);
 const TERMINAL_STATUS_RULE = Object.freeze({
   kind: 'enum',
@@ -417,26 +430,26 @@ const DATA_FIELD_RULES = Object.freeze({
     stopReason: 'prose',
   },
   'deep_research.spec_check_result': {
-    folderState: 'code',
+    folderState: SPEC_FOLDER_STATE_RULE,
     normalizedTopic: 'prose',
     specPath: 'prose',
     lockPath: 'prose',
   },
   'deep_research.spec_seed_created': {
-    folderState: 'code',
+    folderState: SPEC_FOLDER_STATE_RULE,
     anchorsTouched: 'prose-array',
     diffSummary: 'prose',
     seedMarkers: 'code-array',
   },
   'deep_research.spec_preinit_context_added': {
-    folderState: 'code',
+    folderState: SPEC_FOLDER_STATE_RULE,
     normalizedTopic: 'prose',
     specPath: 'prose',
     anchorsTouched: 'prose-array',
     diffSummary: 'prose',
   },
   'deep_research.spec_preinit_context_deduped': {
-    folderState: 'code',
+    folderState: SPEC_FOLDER_STATE_RULE,
     normalizedTopic: 'prose',
     specPath: 'prose',
     anchorsTouched: 'prose-array',
@@ -449,11 +462,11 @@ const DATA_FIELD_RULES = Object.freeze({
     generatedFence: 'code',
   },
   'deep_research.spec_mutation_conflict': {
-    folderState: 'code',
+    folderState: SPEC_FOLDER_STATE_RULE,
     reason: 'prose',
     specPath: 'prose',
     generatedFence: 'nullable-identifier',
-    conflictKind: 'nullable-identifier',
+    conflictKind: SPEC_CONFLICT_KIND_RULE,
   },
   'deep_research.spec_synthesis_deferred': {
     reason: 'prose',
@@ -689,7 +702,10 @@ function isScope(stem: DeepResearchEventStem, value: unknown): boolean {
 }
 
 function isFieldValue(rule: DataFieldRule, value: unknown): boolean {
-  if (typeof rule !== 'string') return rule.values.includes(String(value));
+  if (typeof rule !== 'string') {
+    if (value === null) return rule.nullable === true;
+    return rule.values.includes(String(value));
+  }
   switch (rule) {
     case 'boolean':
       return typeof value === 'boolean';

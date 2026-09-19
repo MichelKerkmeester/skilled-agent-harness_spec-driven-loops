@@ -22,9 +22,9 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-19 |
-| **Branch** | `worktrees/055-skilled-source-root-migration` |
+| **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -164,7 +164,7 @@ Every spec-protocol row the research workflows emit is accepted by the gateway, 
 
 ## 10. OPEN QUESTIONS
 
-- None blocking. The build waits only on the operator's go-ahead, because it changes a durable format.
+- None.
 <!-- /ANCHOR:questions -->
 
 ---
