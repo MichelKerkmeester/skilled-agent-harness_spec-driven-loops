@@ -120,7 +120,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-020 [P0] All acceptance criteria met
 - [x] CHK-021 [P0] Manual testing complete. `--all` in the worktree and in a clean clone under Node 22
 - [x] CHK-022 [P1] Edge cases tested. Multi-mode, sequenced, pointer prompts, orphan targets
 - [x] CHK-023 [P1] Error scenarios validated. Three mutants of the scorer each fail the suite
@@ -176,7 +176,7 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A hub serves compiled routing only after it earns the `compiled-serving` verdict, and the only tool that measured it was retired",
     "created_at": "2026-09-19T05:30:03Z",
-    "last_save_at": "2026-09-19T06:07:50.020Z",
+    "last_save_at": "2026-09-19T06:29:22.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd1cc28d4ceacf6cb1b41f654d17df8a4298c3b80dc5a581cd6716a001871b8c",
+    "source_fingerprint": "sha256:9efa9b647393bf67133ca711d8a7272478e552a23188685a925e1d22f1f15abd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e58937eb3aea4abd0e4b7d559fb33a391f4c691c11c29cefaa33af11f47a1333",
       "plan.md": "50aa30713d4bec4c3f5689dc7615d2208cbd81762d0f102bf5b29aac85cc9641",
-      "tasks.md": "5d311b2cc178b2afd9c3138289a1b8acfea05b9a46207b8b123bc68be233cf5a",
-      "implementation-summary.md": "49049f37f0242e32c25125f687c25a2831ffa9484d007f5c3977cd04c1407a77"
+      "tasks.md": "415cd6f358c9182b7a5f2ff8850161345c5437300fc1b67484603f7b68e1d47f",
+      "implementation-summary.md": "2ebf6fabeddb986e1f5aabbf70c216caaa2dd09446278e5a3d658531ebd51d44"
     },
     "last_active_at": null
   }

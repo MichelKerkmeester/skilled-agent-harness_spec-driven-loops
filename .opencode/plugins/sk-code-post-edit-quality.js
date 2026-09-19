@@ -19,7 +19,7 @@ import { createRequire } from 'node:module';
 import { appendFileSync, copyFileSync, existsSync, mkdirSync, statSync, truncateSync } from 'node:fs';
 import { dirname, isAbsolute, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
+import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 const require = createRequire(import.meta.url);
 const router = require('../hooks/post-edit-quality/lib/post-edit-router.cjs');
@@ -33,11 +33,13 @@ const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
 const DISABLED_ENV = 'SK_CODE_POST_EDIT_QUALITY_DISABLED';
 const LOG_NAME = 'post-edit-quality.log';
 
-// Logs live under the project's source root, whichever name it carries. A
+// Logs live under the source root of the checkout the project sits in, whichever
+// name it carries, even when the project is a directory below that root. A
 // project with no toolchain tree logs under its .opencode directory rather than
 // creating a source root that does not exist.
 function logPathFor(projectDir, name) {
-  return join(findSourceRoot(projectDir) ?? join(projectDir, '.opencode'), 'logs', name);
+  const repoRoot = findRepoRoot(projectDir);
+  return join(findSourceRoot(repoRoot) ?? join(repoRoot, '.opencode'), 'logs', name);
 }
 const MAX_LOG_BYTES = 256 * 1024;
 const MAX_CALL_IDS = 1_000;

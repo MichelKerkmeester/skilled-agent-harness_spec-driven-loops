@@ -16,7 +16,7 @@ import { createRequire } from 'node:module';
 import { appendFileSync, copyFileSync, mkdirSync, statSync, truncateSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
+import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -35,11 +35,13 @@ const RISKY_BASH_COMMAND_REGEX = /opencode\s+run|\bvalidate\.sh\b/i;
 const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
 const WARN_LOG_NAME = 'dist-freshness-guard.log';
 
-// Logs live under the project's source root, whichever name it carries. A
+// Logs live under the source root of the checkout the project sits in, whichever
+// name it carries, even when the project is a directory below that root. A
 // project with no toolchain tree logs under its .opencode directory rather than
 // creating a source root that does not exist.
 function logPathFor(projectDir, name) {
-  return join(findSourceRoot(projectDir) ?? join(projectDir, '.opencode'), 'logs', name);
+  const repoRoot = findRepoRoot(projectDir);
+  return join(findSourceRoot(repoRoot) ?? join(repoRoot, '.opencode'), 'logs', name);
 }
 const MAX_GUARD_LOG_BYTES = 256 * 1024;
 const MAX_SESSION_IDS = 1_000;

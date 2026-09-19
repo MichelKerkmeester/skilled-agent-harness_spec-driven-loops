@@ -24,7 +24,7 @@ import { createRequire } from 'node:module';
 import { tool } from '@opencode-ai/plugin/tool';
 
 import * as messageIdentity from './lib/opencode-message-identity.js';
-import { findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
+import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -334,7 +334,9 @@ function advisorSourceSignature(workspaceRoot) {
   // Hashing the skills under a source-root name the workspace lacks records the same
   // absent marker on every call, so cached advice would outlive any change to them. With
   // no source root the signature is refused, and a refused signature is never cached.
-  const sourceRoot = findSourceRoot(workspaceRoot);
+  // The workspace may be any directory inside the checkout, so the source root is found
+  // from the repository root above it.
+  const sourceRoot = findSourceRoot(findRepoRoot(workspaceRoot));
   if (!sourceRoot) throw new Error(`no source root under ${workspaceRoot}`);
   const hash = createHash('sha256');
   for (const sourcePath of ADVISOR_SOURCE_PATHS) {
