@@ -100,7 +100,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Loader, scorer and floor check against fixtures, one per status and sub-reason | `node:test` |
+| Unit | Loader, scorer and floor check against fixtures, one per status and sub-reason | `node:test`, run by the node gate |
 | Integration | A live run on sk-doc, the hub with the most gold | `node:test` |
 | Manual | `--all` over the five hubs; a sandboxed flip | CLI runs |
 <!-- /ANCHOR:testing -->

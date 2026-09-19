@@ -65,7 +65,7 @@ A compiled-serving hub's routing decision passes through four layers on disk, in
 
 A hub earns the **`compiled-serving`** verdict when its compiled decision matches the legacy (prose-router replay) decision on **every** scenario in its benchmark set — zero drift, zero unsafe over-detection, zero silent defers on a scenario legacy actually routes. The Lane C harness measured it, and that harness was retired with its lane, so the verdicts recorded here stand as measured and no current tool re-measures them.
 
-The bar for any new hub changes with the harness that replaces it. That check runs each hub's compiled decision against the routing gold its playbook already authors: the expected workflow mode and leaf resources, with negative and `defer` gold counting a compiled route as a failure, and a coverage floor for every workflow mode. It is chosen but not built, so until it ships no tool can admit a new hub.
+The bar for any new hub changed with the harness that replaced it. `.skilled/bin/compiled-route-admission.cjs` runs each hub's compiled decision against the routing gold its playbook already authors: the expected workflow mode and leaf resources, where every gold mode must be routed and negative, `UNKNOWN` or `defer` gold counts any compiled route as a failure. A `clarify` counts as a non-route. A hub outside the default-on cohort must also meet the coverage floors: at least one scored scenario for every declared workflow mode, and at least one negative or `defer` scenario. The admitted hubs get the same coverage measurement as a report. CI runs the check warn-only in the Routing Registry Drift Guard workflow.
 
 Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub cohort the resolver consults when the flag is unset. As of this reference, the five hubs in Section 2 carry that verdict and are in the cohort (verify directly in `014-runtime-engine/lib/resolve.cjs`).
 
@@ -78,8 +78,8 @@ Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub 
 For a hub to go from "just scaffolded" to genuinely compiled-serving, in order:
 
 1. **Build the shadow-child compiler to route to the gold.** Grow `registry-compiler.cjs`'s detectors and `router.cjs`/`canary-router.cjs`'s selection logic against the hub's real `hub-router.json` vocabulary and its full playbook/route-gold scenario set, until compiled output satisfies the routing gold on all of them. Model it on the existing shadow children under `009-parent-hub-rollout/`; `002-system-deep-loop` has the largest compiler.
-2. **Pass the admission check** in Section 4. The Lane C harness that measured parity was retired and the gold check that replaces it is not built, so no tool runs this step today, and a new hub cannot reach `compiled-serving` until one does.
-3. **Re-mint the activation manifest** to the shadow-child's fresh hash, flipping `servingAuthority` to `"compiled"` (still reversible: flipping it back, or the fleet kill-switch, restores legacy byte-for-byte).
+2. **Pass the admission check** in Section 4: `node .skilled/bin/compiled-route-admission.cjs --hub <hub>` must report `pass`. It reads the engine directly, so the hub does not need to be serving yet, only registered in `HUB_CHILD`.
+3. **Re-mint the activation manifest** to the shadow-child's fresh hash, flipping `servingAuthority` to `"compiled"` (still reversible: flipping it back, or the fleet kill-switch, restores legacy byte-for-byte). This step is blocked today. The activation and flip tools both run the hub's `validate-canary.cjs`, and every hub's canary still scores through modules that were retired with the benchmark lane. The flip also refuses until the advisor scorer freeze is renewed.
 4. **Join `DEFAULT_ON_HUBS`** in `014-runtime-engine/lib/resolve.cjs` so the hub serves compiled by default once the flag is unset, not only when forced on.
 
 **This whole path is outside `create-skill`'s authority.** `HUB_CHILD` and `DEFAULT_ON_HUBS` are hardcoded, frozen tables owned by the runtime-engine phase, not derived from any manifest or scaffold output. A hub absent from `HUB_CHILD` always falls back to legacy, by construction, no matter what its manifest says — `create-skill` cannot add a sixth hub to this cohort, and does not attempt to.
@@ -100,7 +100,7 @@ What this proves: the hub's own router files are internally self-consistent and 
 | --- | --- | --- |
 | Engine | No shadow-child directory exists yet | Hand-built under `009-parent-hub-rollout/00N-<hub>/`, registered in `HUB_CHILD` |
 | Manifest | `servingAuthority: "legacy"`, `shadowOnly: true` | `servingAuthority: "compiled"`, re-minted to the shadow-child hash |
-| Coverage proof | None — no scenarios were evaluated | Parity with legacy for the five admitted hubs; the gold check in Section 4 for a new hub, once it is built |
+| Coverage proof | None — no scenarios were evaluated | Parity with legacy for the five admitted hubs; the admission check in Section 4 for a new hub |
 | Runtime effect | None; the front door always returns the legacy sentinel for this hub | Live, once the hub also joins `DEFAULT_ON_HUBS` (or the flag is forced on) |
 | Owned by | `create-skill` | The hub's own coverage build-out, then the runtime-engine cohort change (Section 5) |
 

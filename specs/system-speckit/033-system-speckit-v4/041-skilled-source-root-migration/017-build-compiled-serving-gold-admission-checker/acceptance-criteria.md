@@ -9,25 +9,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker"
-    last_updated_at: "2026-09-19T05:32:44Z"
+    last_updated_at: "2026-09-19T05:53:38Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Planned the build"
-    next_safe_action: "Answer the open questions in spec.md section 10"
+    recent_action: "Built the checker; the flip stays blocked"
+    next_safe_action: "Decide how the flip gate and the scorer freeze are unblocked"
     blockers:
-      - "The open questions in spec.md section 10 need the operator's answers"
+      - "Every hub's validate-canary.cjs scores through modules retired with the skill-benchmark lane, so activation and flip fail closed"
+      - "The scorer freeze may be renewed only on a green routing battery, and two advisor parity tests are red"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "6d11af6f-653e-4807-aca8-1c09c81640c1"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 70
     open_questions:
-      - "How does a clarify decision count?"
-      - "What coverage floor applies, and to admitted hubs as well as new ones?"
-      - "How does multi-mode gold score?"
-      - "Repair the flip tool or replace it?"
-      - "Should CI block on drift from day one?"
-    answered_questions: []
+      - "How should the canary gate be unblocked: replace it with the admission check, restore the retired modules, or leave the flip blocked?"
+      - "Renew the scorer freeze now, or after the two advisor parity failures are resolved?"
+      - "When should CI block: after the four baseline failures are fixed, or with an exemption list?"
+    answered_questions:
+      - "The five build decisions, accepted as recommended on 2026-09-19"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
 # Acceptance Criteria: Phase 17: build-compiled-serving-gold-admission-checker
@@ -45,7 +45,7 @@ _memory:
 
 **Packet:** 041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker
 **Level:** 2
-**Status:** Planned
+**Status:** In Progress
 **Date:** 2026-09-19
 <!-- /ANCHOR:metadata -->
 
@@ -58,13 +58,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a fixture per status and sub-reason, When the scorer runs, Then each gets its expected status, and an unparseable gold value fails the run | The fixture tests | Unmet | - |
-| AC-002 | REQ-002 | Given a hub whose manifest reads legacy, When the checker runs, Then it still scores the hub and no manifest changes | A test that hashes the activation manifests before and after | Unmet | - |
-| AC-003 | REQ-003 | Given a hub below the floor, When the checker runs, Then it reports `insufficient-coverage` | A fixture hub | Unmet | - |
-| AC-004 | REQ-004 | Given the live corpus, When the tests run, Then the corpus count matches its pin and one live hub scores | The live test | Unmet | - |
-| AC-005 | REQ-005 | Given a push, When CI runs, Then the checker runs over all five hubs | A CI run ID | Unmet | - |
-| AC-006 | REQ-006 | Given the baseline report, When it is read, Then every failure carries a class | The committed report | Unmet | - |
-| AC-007 | REQ-007 | Given a sandbox copy, When the flip step runs, Then the manifest reads `compiled` and the lock and journal are clean | The sandbox run | Unmet | - |
+| AC-001 | REQ-001 | Given a fixture per status and sub-reason, When the scorer runs, Then each gets its expected status, and an unparseable gold value fails the run | `.skilled/bin/tests/compiled-route-admission.test.cjs:158` lists one expected status per fixture. `node --test` on the file: 29 pass, 0 fail, fifteen of them one per scenario status and sub-reason. Three mutants of the scorer (clarify as a route, must-include dropped, floors on admitted hubs) each fail the suite | Met | - |
+| AC-002 | REQ-002 | Given a hub whose manifest reads legacy, When the checker runs, Then it still scores the hub and no manifest changes | `.skilled/bin/tests/compiled-route-admission.test.cjs:244` hashes the tree. The checker calls `compiledRoute()`, which never reads the serving flag or manifest. The live test hashes the promoted activation tree before and after scoring every hub and finds it unchanged | Met | - |
+| AC-003 | REQ-003 | Given a hub below the floor, When the checker runs, Then it reports `insufficient-coverage` | `.skilled/bin/tests/compiled-route-admission.test.cjs:193` and the tests after it: a candidate missing a mode's gold, and one with no negative scenario, each report `insufficient-coverage`; an admitted hub with the same gaps passes and still reports them | Met | - |
+| AC-004 | REQ-004 | Given the live corpus, When the tests run, Then the corpus count matches its pin and one live hub scores | `.skilled/bin/tests/compiled-route-admission.test.cjs:32` pins the count. The live tests pin 73 scenarios and score all five hubs through the real engine | Met | - |
+| AC-005 | REQ-005 | Given a push, When CI runs, Then the checker runs over all five hubs | `.github/workflows/routing-registry-drift.yml:176` runs it warn-only. It ran in a clean clone under Node 22 with no installs. A CI run ID waits on the push | Unmet | - |
+| AC-006 | REQ-006 | Given the baseline report, When it is read, Then every failure carries a class | `baseline/admission-report.md:32` and the rows around it, classed in `implementation-summary.md`: three engine drifts, one stale gold entry, five scenarios without a prompt | Met | - |
+| AC-007 | REQ-007 | Given a sandbox copy, When the flip step runs, Then the manifest reads `compiled` and the lock and journal are clean | `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/flip-serving.cjs:101` runs the canary, and `009-parent-hub-rollout/007-sk-doc/harness/validate-canary.cjs:84` pins the retired `load-playbook-scenarios.cjs`. Run once against a sandboxed copy with a fresh freeze, the flip fails closed at that gate. The live activation state was unchanged | Unmet | - |
 
 ### Status values
 
@@ -91,5 +91,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-The build has not started. It waits on the answers to `spec.md` section 10.
+The checker, its tests, the CI step, the baseline and the runbook are done. The flip is not: its canary gate scores through retired modules for every hub, and renewing the scorer freeze waits on red advisor parity. AC-005 waits on a CI run.
 <!-- /ANCHOR:closure -->

@@ -129,7 +129,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 14 | `014-fix-pre-existing-defects-found-by-migration/` | Fix the pre-existing defects phases 12 and 13 recorded: the red scaffold proof, unrun tests, the stale trigger index, test runs writing a tracked database, Codex hook drift, root-name hardcodes, and the deep-loop and sk-doc tests CI never ran | complete |
 | 15 | `015-compiled-serving-admission-research/` | Research how a new hub can be admitted to compiled-serving now that the Lane C parity harness is retired, and recommend one path | complete |
 | 16 | `016-fix-stale-compiled-routing-docs-and-research-workflow/` | Correct the seven-hub and pre-rename compiled-routing text phase 15 found, and stop the research workflows passing a retired validator rule | complete |
-| 17 | `017-build-compiled-serving-gold-admission-checker/` | Build the checker that admits a hub to compiled-serving against its playbook routing gold, with coverage floors, and repair the flip step | planned |
+| 17 | `017-build-compiled-serving-gold-admission-checker/` | Build the checker that admits a hub to compiled-serving against its playbook routing gold, with coverage floors, and repair the flip step | in progress |
 
 ### Phase Transition Rules
 

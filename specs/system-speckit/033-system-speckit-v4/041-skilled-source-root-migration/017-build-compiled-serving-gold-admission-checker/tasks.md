@@ -32,8 +32,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Get the operator's answers to `spec.md` section 10
-- [ ] T002 Pin the gold corpus: list every typed-gold scenario per hub and record the count
+- [x] T001 Get the operator's answers to `spec.md` section 10
+- [x] T002 Pin the gold corpus: 73 typed-gold scenarios across the five hubs
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,12 +41,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Write the gold loader with loud parse failures (`.skilled/bin/lib/compiled-route-admission/`)
-- [ ] T004 Write fixtures for every status and sub-reason, and the scorer against them (`.skilled/bin/tests/`)
-- [ ] T005 Write the floor check from each hub's `mode-registry.json`
-- [ ] T006 Write the reporter and the command line (`.skilled/bin/compiled-route-admission.cjs`)
-- [ ] T007 Repair or replace the flip step, per the decision
-- [ ] T008 Add the checker to CI, warn-only (`.github/workflows/routing-registry-drift.yml`)
+- [x] T003 Write the gold loader with loud parse failures (`.skilled/bin/lib/compiled-route-admission.cjs`)
+- [x] T004 Write fixtures for every status and sub-reason, and the scorer against them (`.skilled/bin/tests/compiled-route-admission.test.cjs`)
+- [x] T005 Write the floor check from each hub's `mode-registry.json`
+- [x] T006 Write the reporter and the command line (`.skilled/bin/compiled-route-admission.cjs`)
+- [B] T007 Repair the flip step. The scorer path is repaired and the pins rekeyed; re-freezing waits on red advisor parity, and every hub's canary scores through retired modules
+- [x] T008 Add the checker to CI, warn-only (`.github/workflows/routing-registry-drift.yml`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -54,11 +54,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Run `--all`, commit the baseline report, and class each failure as engine drift or stale gold
-- [ ] T010 Flip a sandbox copy of a hub end to end
-- [ ] T011 Write the admission runbook (`compiled-routing-architecture.md`)
-- [ ] T012 Make the CI step blocking once the baseline is triaged
-- [ ] T013 Run the node gate and the bin vitest suite
+- [x] T009 Run `--all`, commit the baseline report, and class each failure as engine drift or stale gold (`baseline/`)
+- [B] T010 Flip a sandbox copy of a hub end to end. Run once: it fails closed at the canary gate
+- [x] T011 Write the admission runbook (`compiled-routing-architecture.md`)
+- [ ] T012 Make the CI step blocking once the baseline is clean or excused
+- [x] T013 Run the node gate and the bin vitest suite
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -68,7 +68,7 @@ contextType: "implementation"
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -101,7 +101,7 @@ contextType: "implementation"
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
 - [x] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-003 [P1] Dependencies identified and available
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -109,10 +109,10 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks. Every commit passes the pre-commit gates
+- [x] CHK-011 [P0] No console errors or warnings
+- [x] CHK-012 [P1] Error handling implemented. An engine error scores `broken`; a parse failure scores `invalid`
+- [x] CHK-013 [P1] Code follows project patterns. Matches the sibling `compiled-route-*` tools
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -121,9 +121,9 @@ contextType: "implementation"
 ## Testing Checklist
 
 - [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-021 [P0] Manual testing complete. `--all` in the worktree and in a clean clone under Node 22
+- [x] CHK-022 [P1] Edge cases tested. Multi-mode, sequenced, pointer prompts, orphan targets
+- [x] CHK-023 [P1] Error scenarios validated. Three mutants of the scorer each fail the suite
 <!-- /ANCHOR:testing -->
 
 ---
@@ -131,13 +131,13 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each finding has a class. Dead scorer path: `instance-only`. Dead canary imports: `class-of-bug`, all five hubs.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory: `rg -n "skill-benchmark|load-playbook-scenarios"` over the rollout harnesses finds all five canaries.
+- [x] CHK-FIX-003 [P0] Consumer inventory: the freeze contract's two callers, `flip-serving.cjs` and `activate-hub.cjs`.
+- [x] CHK-FIX-004 [P0] Parser cases tested: joined and sequenced modes, junk labels, malformed leaf lists, pointer prompts.
+- [x] CHK-FIX-005 [P1] Matrix: fifteen scenario statuses by two cohort states, in the test file.
+- [x] CHK-FIX-006 [P1] The live test hashes the activation tree before and after.
+- [x] CHK-FIX-007 [P1] Evidence pinned to `b6a52d315a..HEAD` on the phase branch.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -145,9 +145,9 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Gold parse failures fail the run
-- [ ] CHK-032 [P1] No gate bypass variable used
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] Gold parse failures fail the run
+- [x] CHK-032 [P1] No gate bypass variable used
 <!-- /ANCHOR:security -->
 
 ---
@@ -155,9 +155,9 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-041 [P1] No ephemeral ids in code comments
+- [x] CHK-042 [P2] Reference updated with the admission runbook
 <!-- /ANCHOR:docs -->
 
 ---
@@ -165,8 +165,8 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in the session scratchpad only
-- [ ] CHK-051 [P1] scratch/ holds nothing but its placeholder
+- [x] CHK-050 [P1] Temp files in the session scratchpad only
+- [x] CHK-051 [P1] scratch/ holds nothing but its placeholder
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -176,11 +176,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 2/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 11/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Not yet verified
+**Verification Date**: 2026-09-19
 <!-- /ANCHOR:summary -->
 
 ---

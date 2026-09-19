@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-09-19 |
 | **Branch** | `worktrees/055-skilled-source-root-migration` |
 | **Parent Spec** | ../spec.md |
@@ -44,7 +44,7 @@ This is **Phase 17** of the skilled source-root migration specification.
 **Dependencies**:
 - Phase 15's research, whose recommendation and scoring rules this phase builds.
 - The operator's choice of the restated admission bar on 2026-09-19.
-- The decisions in section 10, which gate the build.
+- The operator's answers in section 10.
 
 **Deliverables**:
 - `.skilled/bin/compiled-route-admission.cjs` with tests and a CI step.
@@ -93,7 +93,7 @@ Any hub can be checked against the admission bar with one command, the check run
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.skilled/bin/compiled-route-admission.cjs` | Create | The checker's command line |
-| `.skilled/bin/lib/compiled-route-admission/` | Create | Gold loader, scorer and report writer |
+| `.skilled/bin/lib/compiled-route-admission.cjs` | Create | Gold loader, scorer and report writer |
 | `.skilled/bin/tests/compiled-route-admission.test.cjs` and fixtures | Create | Status fixtures, live run, corpus pin |
 | `.github/workflows/routing-registry-drift.yml` | Modify | Run the checker beside the route guard |
 | `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs` or a new flip step | Modify or Create | A flip that works |
@@ -145,7 +145,7 @@ Any hub can be checked against the admission bar with one command, the check run
 | Risk | Coverage floors fail most admitted hubs on day one | High | Section 10 decides whether floors bind admitted hubs or only new ones; the phase 15 count shows four of five hubs below a per-mode floor |
 | Risk | Authored gold has drifted from live behaviour | Med | The baseline triages each failure before CI is made blocking |
 | Risk | The checker becomes its own oracle | Med | Scoring rules are fixed in fixtures before the live run |
-| Dependency | The decisions in section 10 | High | The build does not start until they are answered |
+| Dependency | The answers in section 10 | Low | Answered on 2026-09-19 |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -158,7 +158,7 @@ Any hub can be checked against the admission bar with one command, the check run
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: `--all` finishes in under a minute on a developer machine; it evaluates about 74 prompts.
+- **NFR-P01**: `--all` finishes in under a minute on a developer machine; it evaluates 73 prompts.
 
 ### Security
 - **NFR-S01**: The checker reads only the repository and writes only its report path.
@@ -175,7 +175,7 @@ Any hub can be checked against the admission bar with one command, the check run
 ### Data Boundaries
 - A scenario with gold for a mode the hub does not declare: fails as stale gold.
 - Multi-mode gold such as `sk-create-agent+sk-create-command`: scored per the decision in section 10.
-- 21 of the 74 scenarios have an empty leaf list: the mode is scored and the leaf check is `n/a`.
+- 21 of the 73 scenarios have an empty leaf list: the mode is scored and there is no leaf to check.
 
 ### Error Scenarios
 - A hub's engine throws: the hub reports `broken`, not a pass.
@@ -201,13 +201,19 @@ Any hub can be checked against the admission bar with one command, the check run
 
 ## 10. OPEN QUESTIONS
 
-These gate the build. Each has a recommendation.
+The operator accepted all five recommendations on 2026-09-19, so none is open:
 
-- **How does a `clarify` decision count?** Recommend: like `defer`, as a non-route. It passes on `UNKNOWN` or `defer` gold and fails on concrete gold.
-- **What coverage floor applies, and to whom?** Recommend: for a new hub, at least one scored positive scenario per declared workflow mode and at least one negative or `defer` scenario. For the admitted hubs, report the gaps as authoring backlog without failing CI. Today sk-code covers 1 of 6 modes, cli-external-orchestration 2 of 7, mcp-tooling 8 of 9 and sk-doc 12 of 14.
-- **How does multi-mode gold score?** Recommend: must-include. The route passes when its targets cover every listed mode, the same rule leaf gold uses.
-- **Repair the flip tool or replace it?** Recommend: repair. Repoint `SCORER_DIR` in `frozen-scorer-contract.cjs` at `runtime/lib/scorer` and re-pin its digests, keeping the lock and journal it already has.
-- **Should CI block on drift for admitted hubs from day one?** Recommend: warn-only until the baseline is triaged, then block.
+- **A `clarify` decision counts like `defer`, as a non-route.** It passes on `UNKNOWN` or `defer` gold and fails on concrete gold.
+- **Coverage floors bind new hubs only.** A new hub needs at least one scored positive scenario per declared workflow mode and at least one negative or `defer` scenario. The admitted hubs get the same measurement as a gap report that does not fail them.
+- **Multi-mode gold is must-include.** The route passes when its targets cover every listed mode.
+- **The flip tool is repaired, not replaced.** `SCORER_DIR` is repointed at `runtime/lib/scorer`, and the digests are re-pinned.
+- **CI starts warn-only** and blocks once the baseline is triaged.
+
+The build found three things these answers did not cover, and each needs a decision:
+
+- **The canary gate is dead for every hub.** The activation and flip tools both run each hub's `validate-canary.cjs`, and all five canaries pin and score through the skill-benchmark modules phase 13 retired. Repointing the scorer path cannot make the flip work while they stay red.
+- **The scorer freeze cannot be renewed on its own rule.** The pins say to re-freeze only when the routing battery is green on the new scorer, and two of the advisor's parity tests are red.
+- **Blocking CI needs the baseline clean or excused.** The baseline records three engine drifts and one stale gold entry against admitted hubs, so a blocking step would fail every push.
 <!-- /ANCHOR:questions -->
 
 ---

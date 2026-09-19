@@ -25,15 +25,31 @@ const path = require('node:path');
 const PINS_PATH = path.join(__dirname, 'frozen-scorer-pins.json');
 // The scoring surface: every TypeScript source under the advisor's scorer
 // directory. Anything here changes ranking behavior; nothing else does at the
-// granularity this contract protects.
-const SCORER_DIR = path.join('.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'lib', 'scorer');
+// granularity this contract protects. Pins are keyed relative to that directory,
+// so they hold whichever name the checkout gives its source root.
+const SOURCE_ROOT_NAMES = ['.skilled', '.opencode'];
+const SOURCE_ROOT_SENTINEL = path.join('skills', 'system-spec-kit', 'SKILL.md');
+const SCORER_SUBPATH = path.join('skills', 'system-skill-advisor', 'runtime', 'lib', 'scorer');
+
+function sourceRootName(repoRoot) {
+  const name = SOURCE_ROOT_NAMES.find((candidate) => (
+    fs.existsSync(path.join(repoRoot, candidate, SOURCE_ROOT_SENTINEL))
+  ));
+  if (!name) throw new Error(`no source root with ${SOURCE_ROOT_SENTINEL} under ${repoRoot}`);
+  return name;
+}
+
+function scorerRoot(repoRoot) {
+  return path.join(repoRoot, sourceRootName(repoRoot), SCORER_SUBPATH);
+}
 
 function sha256(filePath) {
   return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
 }
 
 function listScorerFiles(repoRoot) {
-  const root = path.join(repoRoot, SCORER_DIR);
+  const root = scorerRoot(repoRoot);
+  if (!fs.existsSync(root)) throw new Error(`advisor scorer directory not found: ${root}`);
   const out = [];
   const walk = (dir) => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -42,7 +58,7 @@ function listScorerFiles(repoRoot) {
         if (entry.name === '__tests__') continue;
         walk(abs);
       } else if (entry.name.endsWith('.ts')) {
-        out.push(path.relative(repoRoot, abs).split(path.sep).join('/'));
+        out.push(path.relative(root, abs).split(path.sep).join('/'));
       }
     }
   };
@@ -51,8 +67,9 @@ function listScorerFiles(repoRoot) {
 }
 
 function currentDigests(repoRoot) {
+  const root = scorerRoot(repoRoot);
   return Object.fromEntries(listScorerFiles(repoRoot).map((rel) => (
-    [rel, sha256(path.join(repoRoot, rel))]
+    [rel, sha256(path.join(root, rel))]
   )));
 }
 
@@ -98,7 +115,7 @@ module.exports = { assertScorerFrozen, refreeze };
 function findRepoRoot(start) {
   let current = start;
   for (let i = 0; i < 12; i += 1) {
-    if (fs.existsSync(path.join(current, '.opencode', 'skills'))) return current;
+    if (SOURCE_ROOT_NAMES.some((name) => fs.existsSync(path.join(current, name, SOURCE_ROOT_SENTINEL)))) return current;
     const parent = path.dirname(current);
     if (parent === current) break;
     current = parent;

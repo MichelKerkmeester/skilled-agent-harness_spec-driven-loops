@@ -183,17 +183,17 @@
     ],
     "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
     "created_at": "2026-09-16T08:35:04Z",
-    "last_save_at": "2026-09-19T05:33:00.295Z",
+    "last_save_at": "2026-09-19T05:56:31.927Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:13b5bb09c0962ec1882313751de90fac06800460077e4dc2170ed852f12b8a53",
+    "source_fingerprint": "sha256:9f27692adfa0d2e0d9590597266bb28075db7f304c2c3724621f93014ab97a5a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a543ba4ce2611069d8a3150b5e67d719d1f3094ce65edc9ae69a76b22b3f64f1"
+      "spec.md": "5a49eb6fe5d0591137bf04775298606809a68bab779c825799fd7e18d17a5f50"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research",
     "last_active_at": "2026-09-18T22:35:59.779Z"
