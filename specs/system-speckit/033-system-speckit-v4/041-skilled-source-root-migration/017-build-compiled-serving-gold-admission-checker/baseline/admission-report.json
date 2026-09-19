@@ -1,0 +1,1768 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "hubs": [
+    {
+      "hubId": "cli-external-orchestration",
+      "admitted": true,
+      "verdict": "pass",
+      "counts": {
+        "pass": 7,
+        "drift": 0,
+        "stale-gold": 0,
+        "invalid": 0,
+        "broken": 0,
+        "n/a": 3
+      },
+      "fitted": {
+        "total": 8,
+        "judged": 5,
+        "pass": 5
+      },
+      "holdout": {
+        "total": 2,
+        "judged": 2,
+        "pass": 2
+      },
+      "negative": {
+        "total": 0,
+        "judged": 0,
+        "pass": 0
+      },
+      "coverage": {
+        "modes": [
+          {
+            "workflowMode": "cli-claude-code",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "cli-codex",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "cli-cursor",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "cli-devin",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "cli-hermes",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "cli-opencode",
+            "scenarios": 3
+          },
+          {
+            "workflowMode": "cli-pi",
+            "scenarios": 0
+          }
+        ],
+        "uncovered": [
+          "cli-codex",
+          "cli-cursor",
+          "cli-devin",
+          "cli-hermes",
+          "cli-pi"
+        ],
+        "negatives": 2,
+        "enforced": false,
+        "short": true
+      },
+      "scenarios": [
+        {
+          "id": "CE-CR-001",
+          "file": "manual-testing-playbook/compiled-routing/ordered-bundle-cli-transport-compiled-routing.md",
+          "stage": "fitted",
+          "goldModes": [
+            "cli-opencode"
+          ],
+          "goldLeaves": [
+            "cli-opencode:references/cli-reference.md",
+            "cli-opencode:references/integration-patterns.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "cli-opencode"
+          ]
+        },
+        {
+          "id": "CE-003",
+          "file": "manual-testing-playbook/hub-routing/ambiguous-defer.md",
+          "stage": "fitted",
+          "goldModes": [
+            "defer"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "CE-002",
+          "file": "manual-testing-playbook/hub-routing/claude-code-second-opinion.md",
+          "stage": "fitted",
+          "goldModes": [
+            "cli-claude-code"
+          ],
+          "goldLeaves": [
+            "cli-claude-code:references/cli-reference.md",
+            "cli-claude-code:references/integration-patterns.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "cli-claude-code"
+          ]
+        },
+        {
+          "id": "CE-H01",
+          "file": "manual-testing-playbook/hub-routing/holdout-external-runtime.md",
+          "stage": "holdout",
+          "goldModes": [
+            "cli-opencode"
+          ],
+          "goldLeaves": [
+            "cli-opencode:references/cli-reference.md",
+            "cli-opencode:references/integration-patterns.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "cli-opencode"
+          ]
+        },
+        {
+          "id": "CE-H02",
+          "file": "manual-testing-playbook/hub-routing/holdout-second-opinion.md",
+          "stage": "holdout",
+          "goldModes": [
+            "cli-claude-code"
+          ],
+          "goldLeaves": [
+            "cli-claude-code:references/cli-reference.md",
+            "cli-claude-code:references/integration-patterns.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "cli-claude-code"
+          ]
+        },
+        {
+          "id": "CE-001",
+          "file": "manual-testing-playbook/hub-routing/opencode-full-runtime-dispatch.md",
+          "stage": "fitted",
+          "goldModes": [
+            "cli-opencode"
+          ],
+          "goldLeaves": [
+            "cli-opencode:references/cli-reference.md",
+            "cli-opencode:references/integration-patterns.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "cli-opencode"
+          ]
+        },
+        {
+          "id": "CE-P01",
+          "file": "manual-testing-playbook/plugins-and-hooks/cli-dispatch-audit-trail.md",
+          "stage": "fitted",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "n/a",
+          "reason": "no-prompt",
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "CE-P04",
+          "file": "manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+          "stage": "fitted",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "n/a",
+          "reason": "no-prompt",
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "CE-P02",
+          "file": "manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
+          "stage": "fitted",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "n/a",
+          "reason": "no-prompt",
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "CE-P03",
+          "file": "manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md",
+          "stage": "fitted",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        }
+      ]
+    },
+    {
+      "hubId": "mcp-tooling",
+      "admitted": true,
+      "verdict": "pass",
+      "counts": {
+        "pass": 16,
+        "drift": 0,
+        "stale-gold": 0,
+        "invalid": 0,
+        "broken": 0,
+        "n/a": 0
+      },
+      "fitted": {
+        "total": 9,
+        "judged": 9,
+        "pass": 9
+      },
+      "holdout": {
+        "total": 7,
+        "judged": 7,
+        "pass": 7
+      },
+      "negative": {
+        "total": 0,
+        "judged": 0,
+        "pass": 0
+      },
+      "coverage": {
+        "modes": [
+          {
+            "workflowMode": "mcp-aside-devtools",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-chrome-devtools",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-click-up",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-figma",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-magicpath",
+            "scenarios": 1
+          },
+          {
+            "workflowMode": "mcp-mobbin",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-notion",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "mcp-obsidian",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "mcp-refero",
+            "scenarios": 2
+          }
+        ],
+        "uncovered": [
+          "mcp-notion"
+        ],
+        "negatives": 1,
+        "enforced": false,
+        "short": true
+      },
+      "scenarios": [
+        {
+          "id": "MT-004",
+          "file": "manual-testing-playbook/hub-routing/ambiguous-defer.md",
+          "stage": "fitted",
+          "goldModes": [
+            "defer"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "MT-007",
+          "file": "manual-testing-playbook/hub-routing/aside-browser-automation.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-aside-devtools"
+          ],
+          "goldLeaves": [
+            "mcp-aside-devtools:references/aside-cli-reference.md",
+            "mcp-aside-devtools:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-aside-devtools"
+          ]
+        },
+        {
+          "id": "MT-001",
+          "file": "manual-testing-playbook/hub-routing/chrome-devtools-browser-debug.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-chrome-devtools"
+          ],
+          "goldLeaves": [
+            "mcp-chrome-devtools:references/cdp-patterns.md",
+            "mcp-chrome-devtools:references/session-management.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-chrome-devtools"
+          ]
+        },
+        {
+          "id": "MT-002",
+          "file": "manual-testing-playbook/hub-routing/clickup-task-management.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-click-up"
+          ],
+          "goldLeaves": [
+            "mcp-click-up:references/cupt-commands.md",
+            "mcp-click-up:references/mcp-tools.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-click-up"
+          ]
+        },
+        {
+          "id": "MT-003",
+          "file": "manual-testing-playbook/hub-routing/figma-transport.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-figma"
+          ],
+          "goldLeaves": [
+            "mcp-figma:references/figma-cli-reference.md",
+            "mcp-figma:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-figma"
+          ]
+        },
+        {
+          "id": "MT-H04",
+          "file": "manual-testing-playbook/hub-routing/holdout-agentic-browser.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-aside-devtools"
+          ],
+          "goldLeaves": [
+            "mcp-aside-devtools:references/aside-cli-reference.md",
+            "mcp-aside-devtools:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-aside-devtools"
+          ]
+        },
+        {
+          "id": "MT-H01",
+          "file": "manual-testing-playbook/hub-routing/holdout-browser-inspect.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-chrome-devtools"
+          ],
+          "goldLeaves": [
+            "mcp-chrome-devtools:references/cdp-patterns.md",
+            "mcp-chrome-devtools:references/session-management.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-chrome-devtools"
+          ]
+        },
+        {
+          "id": "MT-H02",
+          "file": "manual-testing-playbook/hub-routing/holdout-design-tokens.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-figma"
+          ],
+          "goldLeaves": [
+            "mcp-figma:references/figma-cli-reference.md",
+            "mcp-figma:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-figma"
+          ]
+        },
+        {
+          "id": "MT-H07",
+          "file": "manual-testing-playbook/hub-routing/holdout-knowledge-base.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-obsidian"
+          ],
+          "goldLeaves": [
+            "mcp-obsidian:references/mcp-tools.md",
+            "mcp-obsidian:references/obsidian-cli-commands.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-obsidian"
+          ]
+        },
+        {
+          "id": "MT-H06",
+          "file": "manual-testing-playbook/hub-routing/holdout-mobile-pattern-research.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-mobbin"
+          ],
+          "goldLeaves": [
+            "mcp-mobbin:references/tool-surface.md",
+            "mcp-mobbin:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-mobbin"
+          ]
+        },
+        {
+          "id": "MT-H03",
+          "file": "manual-testing-playbook/hub-routing/holdout-task-tracking.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-click-up"
+          ],
+          "goldLeaves": [
+            "mcp-click-up:references/cupt-commands.md",
+            "mcp-click-up:references/mcp-tools.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-click-up"
+          ]
+        },
+        {
+          "id": "MT-H05",
+          "file": "manual-testing-playbook/hub-routing/holdout-web-design-reference.md",
+          "stage": "holdout",
+          "goldModes": [
+            "mcp-refero"
+          ],
+          "goldLeaves": [
+            "mcp-refero:references/tool-surface.md",
+            "mcp-refero:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-refero"
+          ]
+        },
+        {
+          "id": "MT-011",
+          "file": "manual-testing-playbook/hub-routing/magicpath-component-lookup.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-magicpath"
+          ],
+          "goldLeaves": [
+            "mcp-magicpath:references/tool-surface.md",
+            "mcp-magicpath:references/credential-setup.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-magicpath"
+          ]
+        },
+        {
+          "id": "MT-009",
+          "file": "manual-testing-playbook/hub-routing/mobbin-app-research.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-mobbin"
+          ],
+          "goldLeaves": [
+            "mcp-mobbin:references/tool-surface.md",
+            "mcp-mobbin:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-mobbin"
+          ]
+        },
+        {
+          "id": "MT-010",
+          "file": "manual-testing-playbook/hub-routing/obsidian-note-management.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-obsidian"
+          ],
+          "goldLeaves": [
+            "mcp-obsidian:references/mcp-tools.md",
+            "mcp-obsidian:references/obsidian-cli-commands.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-obsidian"
+          ]
+        },
+        {
+          "id": "MT-008",
+          "file": "manual-testing-playbook/hub-routing/refero-design-reference.md",
+          "stage": "fitted",
+          "goldModes": [
+            "mcp-refero"
+          ],
+          "goldLeaves": [
+            "mcp-refero:references/tool-surface.md",
+            "mcp-refero:references/mcp-wiring.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "mcp-refero"
+          ]
+        }
+      ]
+    },
+    {
+      "hubId": "sk-code",
+      "admitted": true,
+      "verdict": "pass",
+      "counts": {
+        "pass": 1,
+        "drift": 0,
+        "stale-gold": 0,
+        "invalid": 0,
+        "broken": 0,
+        "n/a": 0
+      },
+      "fitted": {
+        "total": 1,
+        "judged": 1,
+        "pass": 1
+      },
+      "holdout": {
+        "total": 0,
+        "judged": 0,
+        "pass": 0
+      },
+      "negative": {
+        "total": 0,
+        "judged": 0,
+        "pass": 0
+      },
+      "coverage": {
+        "modes": [
+          {
+            "workflowMode": "sk-code-mobile-cli",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "sk-code-obsidian",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "sk-code-opencode",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "sk-code-quality",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "sk-code-review",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "sk-code-webflow",
+            "scenarios": 1
+          }
+        ],
+        "uncovered": [
+          "sk-code-mobile-cli",
+          "sk-code-obsidian",
+          "sk-code-opencode",
+          "sk-code-quality",
+          "sk-code-review"
+        ],
+        "negatives": 0,
+        "enforced": false,
+        "short": true
+      },
+      "scenarios": [
+        {
+          "id": "CB-CR-001",
+          "file": "manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-code-webflow"
+          ],
+          "goldLeaves": [
+            "sk-code-webflow:references/implementation/animation-workflows/overview-decision-tree-and-css.md",
+            "sk-code-webflow:references/implementation/animation-workflows/motion-dev-and-performance.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-code-webflow"
+          ]
+        }
+      ]
+    },
+    {
+      "hubId": "sk-doc",
+      "admitted": true,
+      "verdict": "drift",
+      "counts": {
+        "pass": 22,
+        "drift": 1,
+        "stale-gold": 1,
+        "invalid": 0,
+        "broken": 0,
+        "n/a": 2
+      },
+      "fitted": {
+        "total": 16,
+        "judged": 14,
+        "pass": 13
+      },
+      "holdout": {
+        "total": 10,
+        "judged": 10,
+        "pass": 9
+      },
+      "negative": {
+        "total": 0,
+        "judged": 0,
+        "pass": 0
+      },
+      "coverage": {
+        "modes": [
+          {
+            "workflowMode": "sk-create-agent",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "sk-create-benchmark",
+            "scenarios": 1
+          },
+          {
+            "workflowMode": "sk-create-changelog",
+            "scenarios": 5
+          },
+          {
+            "workflowMode": "sk-create-command",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "sk-create-diff",
+            "scenarios": 1
+          },
+          {
+            "workflowMode": "sk-create-feature-catalog",
+            "scenarios": 3
+          },
+          {
+            "workflowMode": "sk-create-frontmatter",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "sk-create-manual-testing-playbook",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "sk-create-quality-control",
+            "scenarios": 7
+          },
+          {
+            "workflowMode": "sk-create-readme",
+            "scenarios": 4
+          },
+          {
+            "workflowMode": "sk-create-repo-rule",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "sk-create-skill",
+            "scenarios": 7
+          },
+          {
+            "workflowMode": "sk-create-skill-parent",
+            "scenarios": 1
+          },
+          {
+            "workflowMode": "sk-create-with-human-voice",
+            "scenarios": 2
+          }
+        ],
+        "uncovered": [
+          "sk-create-frontmatter",
+          "sk-create-repo-rule"
+        ],
+        "negatives": 1,
+        "enforced": false,
+        "short": true
+      },
+      "scenarios": [
+        {
+          "id": "SD-018",
+          "file": "manual-testing-playbook/agent-dispatch/markdown-agent-cli-claude-code.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-changelog"
+          ],
+          "goldLeaves": [
+            "sk-create-changelog:assets/changelog-template.md"
+          ],
+          "status": "n/a",
+          "reason": "no-prompt",
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "SD-020",
+          "file": "manual-testing-playbook/agent-dispatch/markdown-agent-cli-opencode.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-changelog"
+          ],
+          "goldLeaves": [
+            "sk-create-changelog:assets/changelog-template.md"
+          ],
+          "status": "n/a",
+          "reason": "no-prompt",
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "SD-011",
+          "file": "manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-skill"
+          ],
+          "goldLeaves": [
+            "sk-create-skill:references/skill/creation-workflow.md",
+            "sk-create-skill:assets/skill/skill-md-template.md",
+            "sk-create-skill:assets/skill/skill-readme-template.md",
+            "sk-create-skill:assets/skill/skill-reference-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-skill"
+          ]
+        },
+        {
+          "id": "SD-012",
+          "file": "manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-skill",
+            "sk-create-quality-control",
+            "sk-create-changelog"
+          ],
+          "goldLeaves": [
+            "sk-create-skill:references/skill/creation-workflow.md",
+            "sk-create-skill:assets/skill/skill-md-template.md",
+            "sk-create-skill:assets/skill/skill-readme-template.md",
+            "sk-create-skill:assets/skill/skill-reference-template.md",
+            "sk-create-quality-control:references/validation.md",
+            "sk-create-quality-control:references/workflows.md",
+            "sk-create-quality-control:references/core-standards.md",
+            "sk-create-quality-control:references/evergreen-packet-id-rule.md",
+            "sk-create-changelog:assets/changelog-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-changelog",
+            "sk-create-quality-control",
+            "sk-create-skill"
+          ]
+        },
+        {
+          "id": "SD-010",
+          "file": "manual-testing-playbook/cross-cli-dispatch/short-prompt-baseline.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-changelog"
+          ],
+          "goldLeaves": [
+            "sk-create-changelog:assets/changelog-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-changelog"
+          ]
+        },
+        {
+          "id": "SD-H04",
+          "file": "manual-testing-playbook/holdout/changelog-natural.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-create-changelog"
+          ],
+          "goldLeaves": [
+            "sk-create-changelog:assets/changelog-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-changelog"
+          ]
+        },
+        {
+          "id": "SD-H02",
+          "file": "manual-testing-playbook/holdout/doc-quality-natural.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-create-quality-control"
+          ],
+          "goldLeaves": [
+            "sk-create-quality-control:references/validation.md",
+            "sk-create-quality-control:references/workflows.md",
+            "sk-create-quality-control:references/core-standards.md",
+            "sk-create-quality-control:references/evergreen-packet-id-rule.md"
+          ],
+          "status": "drift",
+          "reason": "silent-defer",
+          "detail": "engine returned defer",
+          "routedModes": []
+        },
+        {
+          "id": "SD-H09",
+          "file": "manual-testing-playbook/holdout/ind-changelog.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-create-changelog"
+          ],
+          "goldLeaves": [
+            "sk-create-changelog:assets/changelog-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-changelog"
+          ]
+        },
+        {
+          "id": "SD-H07",
+          "file": "manual-testing-playbook/holdout/ind-doc-quality.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-create-quality-control"
+          ],
+          "goldLeaves": [
+            "sk-create-quality-control:references/validation.md",
+            "sk-create-quality-control:references/workflows.md",
+            "sk-create-quality-control:references/core-standards.md",
+            "sk-create-quality-control:references/evergreen-packet-id-rule.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-quality-control"
+          ]
+        },
+        {
+          "id": "SD-H13",
+          "file": "manual-testing-playbook/holdout/ind-feature-catalog.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-create-feature-catalog"
+          ],
+          "goldLeaves": [
+            "sk-create-feature-catalog:references/README.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-feature-catalog"
+          ]
+        },
+        {
+          "id": "SD-H11",
+          "file": "manual-testing-playbook/holdout/ind-optimization.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-create-quality-control"
+          ],
+          "goldLeaves": [
+            "sk-create-quality-control:references/optimization.md",
+            "sk-create-quality-control:assets/llmstxt-templates.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-quality-control"
+          ]
+        },
+        {
+          "id": "SD-H08",
+          "file": "manual-testing-playbook/holdout/ind-readme.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-create-readme"
+          ],
+          "goldLeaves": [
+            "sk-create-readme:references/README.md",
+            "sk-create-readme:assets/readme-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-readme"
+          ]
+        },
+        {
+          "id": "SD-H06",
+          "file": "manual-testing-playbook/holdout/ind-skill-creation.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-create-skill"
+          ],
+          "goldLeaves": [
+            "sk-create-skill:references/skill/creation-workflow.md",
+            "sk-create-skill:assets/skill/skill-md-template.md",
+            "sk-create-skill:assets/skill/skill-readme-template.md",
+            "sk-create-skill:assets/skill/skill-reference-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-skill"
+          ]
+        },
+        {
+          "id": "SD-H03",
+          "file": "manual-testing-playbook/holdout/readme-natural.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-create-readme"
+          ],
+          "goldLeaves": [
+            "sk-create-readme:references/README.md",
+            "sk-create-readme:assets/readme-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-readme"
+          ]
+        },
+        {
+          "id": "SD-H01",
+          "file": "manual-testing-playbook/holdout/skill-creation-natural.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-create-skill"
+          ],
+          "goldLeaves": [
+            "sk-create-skill:references/skill/creation-workflow.md",
+            "sk-create-skill:assets/skill/skill-md-template.md",
+            "sk-create-skill:assets/skill/skill-readme-template.md",
+            "sk-create-skill:assets/skill/skill-reference-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-skill"
+          ]
+        },
+        {
+          "id": "SD-003",
+          "file": "manual-testing-playbook/intent-detection/agent-command.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-agent",
+            "sk-create-command"
+          ],
+          "goldLeaves": [
+            "sk-create-agent:references/README.md",
+            "sk-create-agent:assets/agent-template.md",
+            "sk-create-command:references/README.md",
+            "sk-create-command:assets/command-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-agent",
+            "sk-create-command"
+          ]
+        },
+        {
+          "id": "SD-001",
+          "file": "manual-testing-playbook/intent-detection/doc-quality.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-quality-control"
+          ],
+          "goldLeaves": [
+            "sk-create-quality-control:references/validation.md",
+            "sk-create-quality-control:references/workflows.md",
+            "sk-create-quality-control:references/core-standards.md",
+            "sk-create-quality-control:references/evergreen-packet-id-rule.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-quality-control"
+          ]
+        },
+        {
+          "id": "SD-016",
+          "file": "manual-testing-playbook/intent-detection/optimization.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-quality-control"
+          ],
+          "goldLeaves": [
+            "sk-create-quality-control:references/optimization.md",
+            "sk-create-quality-control:assets/llmstxt-templates.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-quality-control"
+          ]
+        },
+        {
+          "id": "SD-002",
+          "file": "manual-testing-playbook/intent-detection/skill-creation.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-skill"
+          ],
+          "goldLeaves": [
+            "sk-create-skill:references/skill/creation-workflow.md",
+            "sk-create-skill:assets/skill/skill-md-template.md",
+            "sk-create-skill:assets/skill/skill-readme-template.md",
+            "sk-create-skill:assets/skill/skill-reference-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-skill"
+          ]
+        },
+        {
+          "id": "SD-006",
+          "file": "manual-testing-playbook/resource-loading/mixed-references-assets.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-readme"
+          ],
+          "goldLeaves": [
+            "sk-create-readme:references/README.md",
+            "sk-create-readme:assets/readme-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-readme"
+          ]
+        },
+        {
+          "id": "SD-004",
+          "file": "manual-testing-playbook/resource-loading/references-global-only.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-with-human-voice"
+          ],
+          "goldLeaves": [
+            "sk-create-with-human-voice:references/hvr-rules.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-with-human-voice"
+          ]
+        },
+        {
+          "id": "SD-015",
+          "file": "manual-testing-playbook/token-cost-baseline/max-load.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-agent",
+            "sk-create-benchmark",
+            "sk-create-changelog",
+            "sk-create-command",
+            "sk-create-diff",
+            "sk-create-feature-catalog",
+            "sk-design-diagram",
+            "sk-create-manual-testing-playbook",
+            "sk-create-quality-control",
+            "sk-create-readme",
+            "sk-create-skill",
+            "sk-create-skill-parent"
+          ],
+          "goldLeaves": [
+            "sk-create-agent:assets/agent-template.md",
+            "sk-create-agent:references/README.md",
+            "sk-create-agent:references/agent-vs-skill-vs-command.md",
+            "sk-create-agent:references/common-pitfalls.md",
+            "sk-create-agent:references/permission-design.md",
+            "sk-create-benchmark:assets/behavior-benchmark/behavior-benchmark-baseline-template.md",
+            "sk-create-benchmark:assets/behavior-benchmark/behavior-benchmark-index-template.md",
+            "sk-create-benchmark:assets/behavior-benchmark/behavior-benchmark-scenario-template.md",
+            "sk-create-benchmark:assets/model-benchmark/model-benchmark-code-task-fixture-template.md",
+            "sk-create-benchmark:assets/model-benchmark/model-benchmark-pattern-fixture-template.md",
+            "sk-create-benchmark:assets/model-benchmark/model-benchmark-profile-template.md",
+            "sk-create-benchmark:assets/shared/benchmark-report-template.md",
+            "sk-create-benchmark:assets/shared/source-template.md",
+            "sk-create-benchmark:references/agent-improvement/agent-improvement-authoring-guide.md",
+            "sk-create-benchmark:references/behavior-benchmark/behavior-benchmark-guide.md",
+            "sk-create-benchmark:references/model-benchmark/model-benchmark-fixture-guide.md",
+            "sk-create-benchmark:references/shared/README.md",
+            "sk-create-benchmark:references/shared/case-studies.md",
+            "sk-create-benchmark:references/shared/pitfalls.md",
+            "sk-create-benchmark:references/shared/worked-example.md",
+            "sk-create-changelog:assets/changelog-template.md",
+            "sk-create-changelog:references/README.md",
+            "sk-create-changelog:references/topology-edge-cases.md",
+            "sk-create-changelog:references/version-bump-rules.md",
+            "sk-create-changelog:references/worked-examples.md",
+            "sk-create-command:assets/command-contract.json",
+            "sk-create-command:assets/command-contract.schema.json",
+            "sk-create-command:assets/command-presentation-template.md",
+            "sk-create-command:assets/command-router-template.md",
+            "sk-create-command:assets/command-template.md",
+            "sk-create-command:references/README.md",
+            "sk-create-command:references/argument-hints-and-modes.md",
+            "sk-create-command:references/common-pitfalls.md",
+            "sk-create-command:references/router-presentation-split.md",
+            "sk-create-command:references/worked-example.md",
+            "sk-create-diff:assets/fixtures/README.md",
+            "sk-create-diff:assets/fixtures/onboarding-after.md",
+            "sk-create-diff:assets/fixtures/onboarding-before.md",
+            "sk-create-diff:references/README.md",
+            "sk-create-diff:references/accessibility-contract.md",
+            "sk-create-diff:references/capabilities-and-fidelity.md",
+            "sk-create-diff:references/cli-reference.md",
+            "sk-create-diff:references/worked-example.md",
+            "sk-create-diff:references/workflow.md",
+            "sk-create-feature-catalog:assets/feature-catalog-snippet-template.md",
+            "sk-create-feature-catalog:assets/feature-catalog-template.md",
+            "sk-create-feature-catalog:references/README.md",
+            "sk-create-feature-catalog:references/common-pitfalls.md",
+            "sk-create-feature-catalog:references/examples.md",
+            "sk-design-diagram:assets/ascii-patterns/approval-workflow-loops.md",
+            "sk-design-diagram:assets/ascii-patterns/decision-tree-flow.md",
+            "sk-design-diagram:assets/ascii-patterns/parallel-execution.md",
+            "sk-design-diagram:assets/ascii-patterns/simple-workflow.md",
+            "sk-design-diagram:assets/ascii-patterns/system-architecture-swimlane.md",
+            "sk-design-diagram:assets/ascii-patterns/user-onboarding.md",
+            "sk-design-diagram:references/README.md",
+            "sk-design-diagram:references/notation-and-validator.md",
+            "sk-design-diagram:references/pattern-selection.md",
+            "sk-design-diagram:references/worked-example.md",
+            "sk-create-manual-testing-playbook:assets/manual-testing-playbook-snippet-template.md",
+            "sk-create-manual-testing-playbook:assets/manual-testing-playbook-template.md",
+            "sk-create-manual-testing-playbook:references/README.md",
+            "sk-create-manual-testing-playbook:references/common-pitfalls.md",
+            "sk-create-manual-testing-playbook:references/examples.md",
+            "sk-create-manual-testing-playbook:references/prompt-voice.md",
+            "sk-create-quality-control:assets/llmstxt-templates.md",
+            "sk-create-quality-control:references/README.md",
+            "sk-create-quality-control:references/core-standards.md",
+            "sk-create-quality-control:references/evergreen-packet-id-rule.md",
+            "sk-create-quality-control:references/hvr-rules.md",
+            "sk-create-quality-control:references/optimization.md",
+            "sk-create-quality-control:references/transformation-patterns.md",
+            "sk-create-quality-control:references/validation.md",
+            "sk-create-quality-control:references/validation-and-enforcement.md",
+            "sk-create-quality-control:references/workflow-examples.md",
+            "sk-create-quality-control:references/workflows.md",
+            "sk-create-readme:assets/readme-code-template.md",
+            "sk-create-readme:assets/readme-template.md",
+            "sk-create-readme:references/README.md",
+            "sk-create-readme:references/readme/quality-and-checklist.md",
+            "sk-create-readme:references/readme/types-and-voice.md",
+            "sk-create-readme:references/readme/writing-patterns.md",
+            "sk-create-skill:assets/parent-skill/parent-skill-description-template.json",
+            "sk-create-skill:assets/parent-skill/parent-skill-graph-metadata-template.json",
+            "sk-create-skill:assets/parent-skill/parent-skill-hub-router-template.json",
+            "sk-create-skill:assets/parent-skill/parent-skill-hub-template.md",
+            "sk-create-skill:assets/parent-skill/parent-skill-registry-template.json",
+            "sk-create-skill:assets/parent-skill/parent-skill-root-router-template.md",
+            "sk-create-skill:assets/parent-skill/scaffold/hub-skill-scaffold.md",
+            "sk-create-skill:assets/parent-skill/scaffold/packet-skill-scaffold.md",
+            "sk-create-skill:assets/skill/skill-asset-template.md",
+            "sk-create-skill:assets/skill/skill-md-template.md",
+            "sk-create-skill:assets/skill/skill-procedure-template.md",
+            "sk-create-skill:assets/skill/skill-readme-template.md",
+            "sk-create-skill:assets/skill/skill-reference-template.md",
+            "sk-create-skill:assets/skill/skill-scaffold-template.md",
+            "sk-create-skill:assets/skill/skill-smart-router.md",
+            "sk-create-skill:references/README.md",
+            "sk-create-skill:references/parent-skill/parent-hub-router-schema.md",
+            "sk-create-skill:references/parent-skill/parent-skills-nested-packets.md",
+            "sk-create-skill:references/shared/common-pitfalls.md",
+            "sk-create-skill:references/shared/overview.md",
+            "sk-create-skill:references/shared/validation-and-packaging.md",
+            "sk-create-skill:references/skill/creation-workflow.md",
+            "sk-create-skill:references/skill/examples-and-maintenance.md",
+            "sk-create-skill-parent:assets/parent-skill/parent-skill-description-template.json",
+            "sk-create-skill-parent:assets/parent-skill/parent-skill-graph-metadata-template.json",
+            "sk-create-skill-parent:assets/parent-skill/parent-skill-hub-router-template.json",
+            "sk-create-skill-parent:assets/parent-skill/parent-skill-hub-template.md",
+            "sk-create-skill-parent:assets/parent-skill/parent-skill-registry-template.json",
+            "sk-create-skill-parent:assets/parent-skill/parent-skill-root-router-template.md",
+            "sk-create-skill-parent:assets/parent-skill/scaffold/hub-skill-scaffold.md",
+            "sk-create-skill-parent:assets/parent-skill/scaffold/packet-skill-scaffold.md",
+            "sk-create-skill-parent:assets/skill/skill-asset-template.md",
+            "sk-create-skill-parent:assets/skill/skill-md-template.md",
+            "sk-create-skill-parent:assets/skill/skill-procedure-template.md",
+            "sk-create-skill-parent:assets/skill/skill-readme-template.md",
+            "sk-create-skill-parent:assets/skill/skill-reference-template.md",
+            "sk-create-skill-parent:assets/skill/skill-scaffold-template.md",
+            "sk-create-skill-parent:assets/skill/skill-smart-router.md",
+            "sk-create-skill-parent:references/README.md",
+            "sk-create-skill-parent:references/parent-skill/parent-hub-router-schema.md",
+            "sk-create-skill-parent:references/parent-skill/parent-skills-nested-packets.md",
+            "sk-create-skill-parent:references/shared/common-pitfalls.md",
+            "sk-create-skill-parent:references/shared/overview.md",
+            "sk-create-skill-parent:references/shared/validation-and-packaging.md",
+            "sk-create-skill-parent:references/skill/creation-workflow.md",
+            "sk-create-skill-parent:references/skill/examples-and-maintenance.md"
+          ],
+          "status": "stale-gold",
+          "reason": "undeclared-mode",
+          "detail": "sk-design-diagram",
+          "routedModes": []
+        },
+        {
+          "id": "SD-014",
+          "file": "manual-testing-playbook/token-cost-baseline/medium-load.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-skill"
+          ],
+          "goldLeaves": [
+            "sk-create-skill:references/skill/creation-workflow.md",
+            "sk-create-skill:assets/skill/skill-md-template.md",
+            "sk-create-skill:assets/skill/skill-readme-template.md",
+            "sk-create-skill:assets/skill/skill-reference-template.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-skill"
+          ]
+        },
+        {
+          "id": "SD-013",
+          "file": "manual-testing-playbook/token-cost-baseline/minimal-load.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-with-human-voice"
+          ],
+          "goldLeaves": [
+            "sk-create-with-human-voice:references/hvr-rules.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-with-human-voice"
+          ]
+        },
+        {
+          "id": "SD-009",
+          "file": "manual-testing-playbook/unknown-fallback/disambiguation-required.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-create-feature-catalog",
+            "sk-create-manual-testing-playbook"
+          ],
+          "goldLeaves": [
+            "sk-create-feature-catalog:references/README.md",
+            "sk-create-manual-testing-playbook:references/README.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-create-feature-catalog",
+            "sk-create-manual-testing-playbook"
+          ]
+        },
+        {
+          "id": "SD-008",
+          "file": "manual-testing-playbook/unknown-fallback/no-keyword-match.md",
+          "stage": "fitted",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        }
+      ]
+    },
+    {
+      "hubId": "system-deep-loop",
+      "admitted": true,
+      "verdict": "drift",
+      "counts": {
+        "pass": 18,
+        "drift": 2,
+        "stale-gold": 0,
+        "invalid": 0,
+        "broken": 0,
+        "n/a": 0
+      },
+      "fitted": {
+        "total": 18,
+        "judged": 18,
+        "pass": 16
+      },
+      "holdout": {
+        "total": 0,
+        "judged": 0,
+        "pass": 0
+      },
+      "negative": {
+        "total": 2,
+        "judged": 2,
+        "pass": 2
+      },
+      "coverage": {
+        "modes": [
+          {
+            "workflowMode": "agent-improvement",
+            "scenarios": 2
+          },
+          {
+            "workflowMode": "ai-council",
+            "scenarios": 3
+          },
+          {
+            "workflowMode": "model-benchmark",
+            "scenarios": 1
+          },
+          {
+            "workflowMode": "research",
+            "scenarios": 8
+          },
+          {
+            "workflowMode": "review",
+            "scenarios": 3
+          }
+        ],
+        "uncovered": [],
+        "negatives": 3,
+        "enforced": false,
+        "short": false
+      },
+      "scenarios": [
+        {
+          "id": "AI-003",
+          "file": "manual-testing-playbook/advisor-integration/command-bridge-guard.md",
+          "stage": "fitted",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "drift",
+          "reason": "unsafe-route",
+          "detail": "routed to model-benchmark",
+          "routedModes": [
+            "model-benchmark"
+          ]
+        },
+        {
+          "id": "AI-002",
+          "file": "manual-testing-playbook/advisor-integration/lexical-mode-scoring.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "AI-004",
+          "file": "manual-testing-playbook/advisor-integration/no-false-fire-code-edit.md",
+          "stage": "negative",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "AI-001",
+          "file": "manual-testing-playbook/advisor-integration/single-advisor-identity.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "DL-CR-001",
+          "file": "manual-testing-playbook/compiled-routing/ordered-bundle-deep-mode-compiled-routing.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [
+            "research:references/protocol/loop-protocol.md",
+            "research:references/state/state-jsonl.md",
+            "research:references/convergence/convergence.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "IL-001",
+          "file": "manual-testing-playbook/improvement-lane-routing/agent-improvement.md",
+          "stage": "fitted",
+          "goldModes": [
+            "agent-improvement"
+          ],
+          "goldLeaves": [
+            "agent-improvement:references/agent-improvement/candidate-proposal-format.md",
+            "agent-improvement:references/agent-improvement/score-dimensions.md",
+            "agent-improvement:references/shared/promotion-gate-contract.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "agent-improvement"
+          ]
+        },
+        {
+          "id": "IL-002",
+          "file": "manual-testing-playbook/improvement-lane-routing/model-benchmark.md",
+          "stage": "fitted",
+          "goldModes": [
+            "model-benchmark"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "model-benchmark"
+          ]
+        },
+        {
+          "id": "MO-003",
+          "file": "manual-testing-playbook/mode-routing/ai-council-routing.md",
+          "stage": "fitted",
+          "goldModes": [
+            "ai-council"
+          ],
+          "goldLeaves": [
+            "ai-council:references/integration/loop-protocol.md",
+            "ai-council:references/scoring/scoring-rubric.md",
+            "ai-council:references/structure/output-schema.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "ai-council"
+          ]
+        },
+        {
+          "id": "MO-004",
+          "file": "manual-testing-playbook/mode-routing/mode-hint-override.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [
+            "research:references/protocol/loop-protocol.md",
+            "research:references/state/state-jsonl.md",
+            "research:references/convergence/convergence.md"
+          ],
+          "status": "drift",
+          "reason": "silent-defer",
+          "detail": "engine returned clarify",
+          "routedModes": []
+        },
+        {
+          "id": "MO-001",
+          "file": "manual-testing-playbook/mode-routing/research-routing.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [
+            "research:references/protocol/loop-protocol.md",
+            "research:references/state/state-jsonl.md",
+            "research:references/convergence/convergence.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "MO-002",
+          "file": "manual-testing-playbook/mode-routing/review-routing.md",
+          "stage": "fitted",
+          "goldModes": [
+            "review"
+          ],
+          "goldLeaves": [
+            "review:references/protocol/loop-protocol.md",
+            "review:references/protocol/completion-criteria.md",
+            "review:references/convergence/convergence.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "review"
+          ]
+        },
+        {
+          "id": "RB-004",
+          "file": "manual-testing-playbook/runtime-and-backend/external-adapter.md",
+          "stage": "negative",
+          "goldModes": [
+            "UNKNOWN"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": []
+        },
+        {
+          "id": "RB-003",
+          "file": "manual-testing-playbook/runtime-and-backend/improvement-host.md",
+          "stage": "fitted",
+          "goldModes": [
+            "agent-improvement"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "agent-improvement"
+          ]
+        },
+        {
+          "id": "RB-002",
+          "file": "manual-testing-playbook/runtime-and-backend/runtime-loop-council.md",
+          "stage": "fitted",
+          "goldModes": [
+            "ai-council"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "ai-council"
+          ]
+        },
+        {
+          "id": "RB-001",
+          "file": "manual-testing-playbook/runtime-and-backend/runtime-loop-research.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "SC-002",
+          "file": "manual-testing-playbook/state-and-convergence-discipline/artifact-root-writes.md",
+          "stage": "fitted",
+          "goldModes": [
+            "ai-council"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "ai-council"
+          ]
+        },
+        {
+          "id": "SC-003",
+          "file": "manual-testing-playbook/state-and-convergence-discipline/convergence-stop.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        },
+        {
+          "id": "SC-001",
+          "file": "manual-testing-playbook/state-and-convergence-discipline/externalized-state.md",
+          "stage": "fitted",
+          "goldModes": [
+            "review"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "review"
+          ]
+        },
+        {
+          "id": "SC-004",
+          "file": "manual-testing-playbook/state-and-convergence-discipline/hub-logic-boundary.md",
+          "stage": "fitted",
+          "goldModes": [
+            "review"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "review"
+          ]
+        },
+        {
+          "id": "WC-001",
+          "file": "manual-testing-playbook/write-containment/shared-checkout-run.md",
+          "stage": "fitted",
+          "goldModes": [
+            "research"
+          ],
+          "goldLeaves": [],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "research"
+          ]
+        }
+      ]
+    }
+  ]
+}

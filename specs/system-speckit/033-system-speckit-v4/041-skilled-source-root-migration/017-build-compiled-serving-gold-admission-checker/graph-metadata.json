@@ -39,16 +39,21 @@
       "acceptance"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "baseline/admission-report.md",
+      ".skilled/bin/compiled-route-admission.cjs",
+      ".skilled/bin/lib/compiled-route-admission.cjs",
+      ".skilled/bin/tests/compiled-route-admission.test.cjs",
       ".github/workflows/routing-registry-drift.yml",
       "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs",
-      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md"
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+      "baseline/admission-report.json"
     ],
     "entities": [
       {
@@ -82,6 +87,24 @@
         "source": "derived"
       },
       {
+        "name": "admission-report.md",
+        "kind": "doc",
+        "path": "baseline/admission-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-admission.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-admission.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "routing-registry-drift.yml",
         "kind": "config",
         "path": ".github/workflows/routing-registry-drift.yml",
@@ -100,7 +123,19 @@
         "source": "derived"
       },
       {
+        "name": "admission-report.json",
+        "kind": "config",
+        "path": "baseline/admission-report.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -125,12 +160,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -170,35 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A hub serves compiled routing only after it earns the `compiled-serving` verdict, and the only tool that measured it was retired",
     "created_at": "2026-09-19T05:30:03Z",
-    "last_save_at": "2026-09-19T05:33:11.059Z",
+    "last_save_at": "2026-09-19T05:54:53.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a2f5ac49c43ec8c670c628e8da86d76e4c1e5fb3b5bd787cf0e72f8177bf743",
+    "source_fingerprint": "sha256:758c47528828b9cf25131dd57eacebedd410848f6b52bd0f883d19c85d6a4349",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0766b2d19ced12abf7ae825898fcada51161456706a88e1ffe18ece40a833e5d",
-      "plan.md": "8468b370371237b27acd2d728092878eb2604507c6d9512a5ddac517aa113adf",
-      "tasks.md": "cd707278bb97695a51fc8da4d9f64b887fa22c3f9d74c1c126dac62561d7ac8f",
-      "implementation-summary.md": "9c04b4b1c7ffe166c238b5f2e45c558d7f5042939694e8f56022675d47ada42a"
+      "spec.md": "dfb9b8c2a8e2d5b9d3917b69924ffa32be929ecb3915cf7db86fce7fd40116ed",
+      "plan.md": "50aa30713d4bec4c3f5689dc7615d2208cbd81762d0f102bf5b29aac85cc9641",
+      "tasks.md": "30fff003a1d72ad363c2af0e7497fe0244eafb55328d4e4ec24c547cb09d0026",
+      "implementation-summary.md": "a94653778cd19f48b2f64f213bcf17316df7f2afbde80c0bf8e9f99444f39f36"
     },
     "last_active_at": null
   }
