@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5decd2a7e944fdc15f16de022cd5e4b62d15f1d692b2df2f9a460400cdcfca0a",
+  "corpusHash": "7d655a6e6119e63b128a017a87c6cc442fe7982c48319636f9ed2175b432fc49",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27320,
+  "includedPathCount": 27325,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -18426,6 +18426,11 @@
     "specs/system-deep-loop/049-deep-loop-alignment-review/017-guard-index-and-parent-doc-fixes/tasks.md",
     "specs/system-deep-loop/049-deep-loop-alignment-review/goal.md",
     "specs/system-deep-loop/049-deep-loop-alignment-review/spec.md",
+    "specs/system-deep-loop/050-spec-protocol-ledger-events/acceptance-criteria.md",
+    "specs/system-deep-loop/050-spec-protocol-ledger-events/implementation-summary.md",
+    "specs/system-deep-loop/050-spec-protocol-ledger-events/plan.md",
+    "specs/system-deep-loop/050-spec-protocol-ledger-events/spec.md",
+    "specs/system-deep-loop/050-spec-protocol-ledger-events/tasks.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/implementation-summary.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/plan.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md",
@@ -27342,7 +27347,7 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6227cd6dd4beb8dae518e4bb8a0f6eb421c068e82fb53b151c12632e7e9bc1f6",
+  "manifestHash": "22948de5e4e85a7d49263a4a14d1b1ed32e624394e9bac6a370d93b7b3d104de",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30417,6 +30422,10 @@
     },
     {
       "path": "specs/system-deep-loop/049-deep-loop-alignment-review/017-guard-index-and-parent-doc-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/050-spec-protocol-ledger-events/scratch",
       "reason": "excluded directory"
     },
     {
