@@ -24,6 +24,8 @@ _memory:
 
 # Phase 4 — Dedicated sk-code Mode for Mobile-CLI App Work
 
+> **Superseded in part.** The surface this phase planned was retired by [009-sk-code-mobile-cli-deprecation](../009-sk-code-mobile-cli-deprecation/spec.md); this packet is kept as the record of how the mode was designed, not as a live target.
+>
 > **Phase parent (plan-only).** This file documents the phase's purpose and its work-leaf only.
 > The mode design plan — with its `spec.md` / `plan.md` / `tasks.md` / `checklist.md` — lives in
 > the leaf [`001-mode-design-plan/`](001-mode-design-plan/). No skill files are authored in this

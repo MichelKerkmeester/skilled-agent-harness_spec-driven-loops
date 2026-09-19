@@ -71,9 +71,8 @@ dark host themes because its inner layer matches the background rather than the 
   session and no on-device run has happened... treat any accessibility claim here as static
   analysis until someone runs VoiceOver, TalkBack, or NVDA against it." That caveat applies to
   every claim in this reference too.
-- **No WCAG contrast test exists in this tree.** Unlike `sk-code-mobile-cli`'s `contrast.test.ts`
-  (arithmetic 4.5:1 / 3:1 checks), this plugin has no equivalent automated contrast suite — colors
-  route through Obsidian's own theme variables (`theme-variables.md`), which is a reasonable
+- **No WCAG contrast test exists in this tree.** This plugin ships no automated contrast suite.
+  Colors route through Obsidian's own theme variables (`theme-variables.md`), which is a reasonable
   contrast argument but not a measured one.
 - **No touch-target-size test exists.** `mobile-and-touch.md` documents `isTouchDevice(...)` and
   the 760px layout breakpoint; no automated check measures actual rendered hit-target dimensions

@@ -235,9 +235,7 @@ Check `advisorRouting.routingClass` first. Most modes are `metadata` and skip ro
 
 **A green gate is not integration.** `parent-skill-check` covers rows 1-3, 9 and 11. Row 7 is covered by
 check 6b, which asserts the mode is *named in the table* and nothing more. Rows 4, 5, 6, 8 and 10 have no gate:
-a hub can pass every check with a mode that no request can reach. Two shipped examples today are
-`sk-code-obsidian` and `sk-code-mobile-cli`, both named in their hub's table with no vocabulary in
-`graph-metadata.json`, `ROUTER.md` or `description.json` — a request for either routes to a different hub.
+a hub can pass every check with a mode that no request can reach.
 
 ### Verify against the hub you changed
 

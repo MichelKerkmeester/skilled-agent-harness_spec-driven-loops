@@ -122,4 +122,4 @@ issues). Re-run the extractor after each pass and read `dqi.breakdown` for the e
 
 - `../comment-grammar.md` — the code-side counterpart of this doc-side quality discipline.
 - `../folder-docs.md` — the folder-scope threshold this packet's own `references/` layout
-  satisfies by mirroring `sk-code-mobile-cli`.
+  satisfies.

@@ -33,7 +33,7 @@ category directory owns grouping, not display order.
 | 5 | Token Cost Baseline | `token-cost-baseline/` | OB-017 .. OB-019 | Cost normalization: floor (1 reference), median (3 references), ceiling (13 references spanning every declared intent plus one unmapped reference). |
 | 6 | Agent Dispatch | `agent-dispatch/` (waived) | — | Waived: this packet is read-only, advisor-invisible (`routingClass: metadata`), and never routes as a primary per `SKILL.md` §1/§5; its evidenced work (`src/`, `styles.css`, `tools/screenshots/`) lives in a separate Obsidian plugin repository outside this monorepo, so a real dispatch that executes work is outside this playbook's write boundary. |
 | 7 | Holdout | `holdout/` | OB-H01 .. OB-H06 | Natural-phrasing rewrites of all five fitted intents (OB-H01..H05) plus one independent, keyword-blind probe (OB-H06) for a reference `SKILL.md` §2b never wires to any declared intent. |
-| 8 | Surface Detection | `surface-detection/` | OB-020, OB-021 | Positive control confirming the three `OBSIDIAN` markers and precedence order; negative control confirming a Mobile CLI (`PI_REMOTE`) target pulls in none of this packet's evidence. |
+| 8 | Surface Detection | `surface-detection/` | OB-020, OB-021 | Positive control confirming the three `OBSIDIAN` markers and precedence order; negative control confirming a target that resolves no surface pulls in none of this packet's evidence. |
 
 ---
 
@@ -89,8 +89,8 @@ pair fields the sibling `routing-gold` contract uses (deliberately absent here �
 note below).
 
 ### 08 — Surface Detection
-- **OB-020** — [surface-detection/obsidian-surface-resolution.md](surface-detection/obsidian-surface-resolution.md) — positive control: the three `OBSIDIAN` markers and the `OPENCODE > OBSIDIAN > PI_REMOTE > WEBFLOW > UNKNOWN` precedence order.
-- **OB-021** — [surface-detection/negative-control-non-obsidian.md](surface-detection/negative-control-non-obsidian.md) — negative control: a Mobile CLI (`app-mobile/`/`app-relay/`/`packages/pi-rpc-protocol/`) target resolves `PI_REMOTE` and cites zero `sk-code-obsidian` evidence.
+- **OB-020** — [surface-detection/obsidian-surface-resolution.md](surface-detection/obsidian-surface-resolution.md) — positive control: the three `OBSIDIAN` markers and the `OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN` precedence order.
+- **OB-021** — [surface-detection/negative-control-non-obsidian.md](surface-detection/negative-control-non-obsidian.md) — negative control: a target shaped like the removed mobile stack (`app-mobile/`/`app-relay/`/`packages/pi-rpc-protocol/`) resolves `UNKNOWN` and cites zero `sk-code-obsidian` evidence.
 
 ---
 
@@ -101,9 +101,9 @@ note below).
 2. Every path cited in every scenario's `expected_resources` resolves under
    `.skilled/skills/sk-code/sk-code-obsidian/` — verified directly with `test -e`, never assumed
    from `SKILL.md` §2b's `RESOURCE_MAP` text alone (see the honesty note below).
-3. For `OB-021`, `.skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md` §1 is present and documents
-   its own `PI_REMOTE` markers, since the negative control's pass condition depends on that sibling
-   packet's markers staying accurate.
+3. For `OB-021`, no surface claims the target's marker paths (`app-mobile/`, `app-relay/`,
+   `packages/pi-rpc-protocol/`), since the negative control's pass condition depends on that shape
+   resolving `UNKNOWN`.
 4. For `OB-014`, at least two CLI runtimes (`cli-opencode`, `cli-claude-code`) are installed and
    authenticated.
 5. Token-cost baselines (`OB-017` → `OB-018` → `OB-019`) MUST run in order on the same CLI to keep the
@@ -127,8 +127,7 @@ For every scenario in this package:
   resource type appears, a stale carryover is observed, an `OBSIDIAN` marker is found in a
   negative-control target, or vice versa).
 - **SKIP** iff: a specific sandbox, credential, or runtime blocker prevents the check from running —
-  for example, `OB-014`/`OB-016` require an unavailable second CLI runtime, or `OB-021` cannot reach
-  the sibling `sk-code-mobile-cli` packet's `SKILL.md` in the current sandbox. Document the named
+  for example, `OB-014`/`OB-016` require an unavailable second CLI runtime. Document the named
   blocker; a bare `SKIP` with no stated cause is not a valid outcome.
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: Stack & Surface Detection
-description: Surface detection (WEBFLOW/OPENCODE/OBSIDIAN/PI_REMOTE/UNKNOWN) and OPENCODE language sub-detection. Primary routing key for sk-code.
+description: Surface detection (WEBFLOW/OPENCODE/OBSIDIAN/UNKNOWN) and OPENCODE language sub-detection. Primary routing key for sk-code.
 trigger_phrases:
   - "sk-code surface detection"
   - "webflow opencode detection"
@@ -27,7 +27,7 @@ Detect **where the work is happening** before deciding which standards apply.
 | --- | --- | --- |
 | WEBFLOW | Webflow / vanilla HTML, CSS, JavaScript, animation libraries, CDN/minification, browser behavior | `.skilled/` system code |
 | OPENCODE | `.skilled/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | Webflow/browser behavior |
-| PI_REMOTE | The Pi Remote Mobile-CLI app family (`app-mobile/` — a SvelteKit + Svelte-runes PWA with component-scoped `<style>` blocks — plus `app-relay/` and `packages/pi-*` / `@pi-remote/*`) and its formalized design system (`--pi-*` tokens, `@ds` grammar, browser-free verification) | `.skilled/` system code; Webflow browser artifacts |
+
 | OBSIDIAN | The Note Database Obsidian plugin (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`, `from "obsidian"` imports, the single `styles.css` carrying `.db-*` classes) and its worktrees | `.opencode/` hub code reached through the repo's symlinks; Webflow browser artifacts |
 | UNKNOWN | Fallback for unsupported or ambiguous surfaces | No standards applied until clarified |
 
@@ -37,7 +37,7 @@ Detect **where the work is happening** before deciding which standards apply.
 
 ## 2. DETECTION ORDER
 
-**Precedence**: OPENCODE > OBSIDIAN > PI_REMOTE > WEBFLOW > UNKNOWN. An OPENCODE target/CWD wins, but only when its **resolved** real path lands inside the hub's own `.skilled/` directory — see the symlink guard below. OBSIDIAN follows, because an Obsidian plugin repository is structurally a generic TypeScript + `package.json` tree that would otherwise fall through to UNKNOWN. PI_REMOTE then wins over WEBFLOW, and WEBFLOW over UNKNOWN. Use early-return logic — later branches must not overwrite earlier matches.
+**Precedence**: OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN. An OPENCODE target/CWD wins, but only when its **resolved** real path lands inside the hub's own `.skilled/` directory — see the symlink guard below. OBSIDIAN follows, because an Obsidian plugin repository is structurally a generic TypeScript + `package.json` tree that would otherwise fall through to UNKNOWN. WEBFLOW then wins over UNKNOWN. Use early-return logic — later branches must not overwrite earlier matches.
 
 ```bash
 # 1. OPENCODE (highest precedence — disambiguates mixed-marker workspaces)
@@ -50,12 +50,8 @@ Detect **where the work is happening** before deciding which standards apply.
 grep -rlq 'from "obsidian"' src 2>/dev/null
 grep -q '\.db-' styles.css 2>/dev/null
 
-# 3. PI_REMOTE (the Pi Remote Mobile-CLI app family)
-# CWD or any changed/target file under app-mobile/, app-relay/,
-# or a packages/pi-* / @pi-remote/* workspace. The design-system evidence
-# (--pi-* tokens, @ds grammar, browser-free verification) lives in app-mobile/.
 
-# 4. WEBFLOW
+# 3. WEBFLOW
 [ -d "src/2_javascript" ]
 ls *.webflow.js 2>/dev/null | head -1
 grep -lq "Webflow\.push\|--vw-" src/**/*.{js,css,html} 2>/dev/null
@@ -63,7 +59,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
   src/**/*.{js,mjs,ts,html} *.{js,mjs,ts,html} 2>/dev/null
 [ -f "wrangler.toml" ]
 
-# 5. UNKNOWN
+# 4. UNKNOWN
 # Ask which surface and verification commands apply.
 ```
 
@@ -84,7 +80,6 @@ must be evaluated before the generic-Node guard drops the tree to UNKNOWN. When 
 surface, the hub bundles the read-only `sk-code-obsidian` evidence packet behind the chosen workflow
 mode.
 
-**Why PI_REMOTE sits above WEBFLOW**: the Pi Remote web app is React 19 + Vite + Tailwind, not a Webflow project. Scoping it by its workspace paths keeps a stray vanilla-web or animation marker from mis-routing app work to Webflow standards. `.opencode/` targets still win over it, so editing a skill, agent, or command inside the repo stays OPENCODE. When PI_REMOTE is the surface, the hub bundles the read-only `sk-code-mobile-cli` evidence packet behind the chosen workflow mode.
 
 **Generic-Node guard**: WEBFLOW markers are gated to actual Webflow signals (vendor globals, Webflow paths, `wrangler.toml`, `src/2_javascript/`). Bare Motion package imports and generic Motion documentation mentions are MOTION_DEV intent signals after surface selection, not WEBFLOW surface markers. Generic Node.js outside `.skilled/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
 
@@ -140,13 +135,13 @@ YAML is a live OpenCode config-adjacent genre for command routers, command auto/
 | HTML/CSS/JS with GSAP or Lenis | WEBFLOW | Vanilla animation web signal |
 | CWD `.skilled/skills/sk-code` | OPENCODE | Skill/system code context |
 | Changed `.skilled/agents/code.md` | OPENCODE | Target file under `.skilled/` |
-| CWD or target under `app-mobile/` (SvelteKit + Svelte runes + scoped styles) | PI_REMOTE | Pi Remote app workspace; the design-system evidence surface is bundled behind the workflow mode |
+
 | CWD or target under the Obsidian plugin repo (`manifest.json` + `esbuild.config.mjs` present) | OBSIDIAN | Plugin repo-root markers resolve; the read-only `sk-code-obsidian` evidence packet is bundled |
 | CWD `Obsidian Plugin/.worktrees/001-*/src/views`, target `DatabaseView.ts` | OBSIDIAN | No **resolved** target path lands in the hub tree, despite the `.opencode` symlink at the repo root |
 | Target `Obsidian Plugin/.opencode/skills/sk-code/...`, resolving inside the hub | OPENCODE | The symlink genuinely targets hub content; OPENCODE wins once the path is resolved |
 | Literal path string contains `.opencode/` but resolves outside the hub | not OPENCODE | The realpath gate refuses OPENCODE on a string match alone |
 | Root `package.json`, no `manifest.json`, no `.skilled/` target | UNKNOWN | Generic Node is not owned; OBSIDIAN needs its positive markers, not merely the absence of other surfaces |
-| Changed `app-mobile/src/app.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins even inside the Pi Remote repo |
+| Changed `app-mobile/src/app.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins when a task also touches a path outside the hub |
 | WEBFLOW marker (Lenis, GSAP) AND changed `.skilled/skills/sk-doc/scripts/preview-server.js` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
 | Prompt says `NOT Webflow no Webflow Designer` and asks for Motion.dev guidance | **UNKNOWN/N/A** | Explicit non-Webflow guard blocks WEBFLOW promotion |
 | Root `package.json` with no `.skilled/` target | UNKNOWN | Generic Node.js is not owned |

@@ -1,5 +1,5 @@
 {
-  "count": 1023,
+  "count": 1024,
   "mode": "readme",
   "results": [
     {
@@ -47,6 +47,46 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".github/workflows/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".opencode/plugins/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".opencode/plugins/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".opencode/plugins/tests/helpers/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -481,36 +521,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/logs/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/plugins/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/plugins/tests/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/plugins/tests/helpers/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -4745,13 +4755,13 @@
       "warnings": []
     },
     {
-      "auto_fixable_count": 0,
+      "auto_fixable_count": null,
       "blocking_errors": [],
-      "document_type": "readme",
+      "document_type": null,
       "file": ".skilled/skills/sk-code/sk-code-mobile-cli/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
+      "return_code": 2,
+      "total_issues": null,
+      "valid": false,
       "warnings": []
     },
     {

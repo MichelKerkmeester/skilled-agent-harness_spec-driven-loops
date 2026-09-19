@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 4.2.2.0
+version: 4.2.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -38,7 +38,7 @@ Routing is a two-stage decision: **surface-first, intent-second**. Surface narro
 
 ### Bundled Evidence Surfaces
 
-Beyond the two code surfaces this router maps by detection, the hub can bundle a read-only **evidence surface** alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. `PI_REMOTE` — the Pi Remote Mobile-CLI app (`app-mobile/`) — is one such surface: its detection lives in [`stack-detection.md`](shared/references/stack-detection.md) and its design-system evidence (the `--pi-*` token library, the natural comment convention, the browser-free verification gate) in the `sk-code-mobile-cli` packet. Evidence surfaces are registered in `mode-registry.json`, typed in `leaf-manifest.json`, and — like the Webflow and OpenCode surfaces — folded into the machine `RESOURCE_MAP` projection in §11: each surface's packet-local map is re-prefixed and unioned under the shared intent keys, and a drift guard enforces that the parent projection equals the union of all surface maps plus the parent-owned universal/shared tier.
+Beyond the two code surfaces this router maps by detection, the hub can bundle a read-only **evidence surface** alongside the chosen workflow mode through `hub-router.json`'s `surfaceBundle` outcome. Evidence surfaces are registered in `mode-registry.json`, typed in `leaf-manifest.json`, and — like the Webflow and OpenCode surfaces — folded into the machine `RESOURCE_MAP` projection in §11: each surface's packet-local map is re-prefixed and unioned under the shared intent keys, and a drift guard enforces that the parent projection equals the union of all surface maps plus the parent-owned universal/shared tier.
 
 ### Key Sources
 
@@ -344,7 +344,7 @@ INTENT_SIGNALS = {
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
     "OBSIDIAN_PLUGIN": {"weight": 4, "keywords": ["obsidian plugin", "note database plugin", "plugin data layer", "db class naming", "obsidian plugin conventions"]},
-    "MOBILE_CLI": {"weight": 4, "keywords": ["mobile cli", "pi remote", "svelte design system", "mobile cli conventions", "editability guardrails"]},
+
     "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
 }
 
@@ -383,14 +383,7 @@ RESOURCE_MAP = {
         "sk-code-webflow/assets/integrations/README.md",
         "sk-code-webflow/assets/patterns/README.md",
         "sk-code-webflow/assets/templates/README.md",
-        "sk-code-mobile-cli/references/design-system/design-system.md",
-        "sk-code-mobile-cli/references/design-system/token-library.md",
-        "sk-code-mobile-cli/references/conventions/comment-grammar.md",
-        "sk-code-mobile-cli/references/design-system/component-tokens.md",
-        "sk-code-mobile-cli/references/design-system/retint-recipes.md",
-        "sk-code-mobile-cli/references/design-system/theme-remap.md",
-        "sk-code-mobile-cli/references/design-system/scoped-style-ownership.md",
-        "sk-code-mobile-cli/assets/token-retint-checklist.md",
+
     ],
     "CODE_QUALITY": [
         "shared/references/universal/code-quality-standards.md",
@@ -407,19 +400,7 @@ RESOURCE_MAP = {
         "sk-code-opencode/assets/checklists/rust-checklist/p1-required.md",
         "sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md",
         "sk-code-review/assets/code-quality-checklist.md",
-        "sk-code-mobile-cli/references/conventions/conventions.md",
-        "sk-code-mobile-cli/references/storybook/running-storybook.md",
-        "sk-code-mobile-cli/references/conventions/editability-guardrails.md",
-        "sk-code-mobile-cli/references/design-system/css-class-naming-bem.md",
-        "sk-code-mobile-cli/references/conventions/comment-grammar.md",
-        "sk-code-mobile-cli/references/conventions/folder-docs.md",
-        "sk-code-mobile-cli/references/storybook/storybook.md",
-        "sk-code-mobile-cli/references/storybook/component-story-upkeep.md",
-        "sk-code-mobile-cli/references/storybook/screenshot-archive.md",
-        "sk-code-mobile-cli/references/storybook/docs-layer.md",
-        "sk-code-mobile-cli/assets/guardrail-audit-checklist.md",
-        "sk-code-mobile-cli/assets/bem-rename-checklist.md",
-        "sk-code-mobile-cli/assets/story-coverage-checklist.md",
+
     ],
     "DEBUGGING": [
         "shared/references/universal/error-recovery.md",
@@ -432,10 +413,7 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/debugging/error-recovery.md",
         "shared/references/universal-debugging-checklist.md",
         "sk-code-webflow/assets/webflow-debugging-checklist.md",
-        "sk-code-mobile-cli/references/verification/verification.md",
-        "sk-code-mobile-cli/references/design-system/component-tokens.md",
-        "sk-code-mobile-cli/references/svelte/svelte.md",
-        "sk-code-mobile-cli/assets/runes-effect-audit-checklist.md",
+
     ],
     "VERIFICATION": [
         "sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md",
@@ -444,10 +422,7 @@ RESOURCE_MAP = {
         "shared/references/universal-verification-checklist.md",
         "sk-code-webflow/assets/webflow-verification-checklist.md",
         "sk-code-opencode/assets/scripts/README.md",
-        "sk-code-mobile-cli/references/verification/verification.md",
-        "sk-code-mobile-cli/references/setup/device-preview.md",
-        "sk-code-mobile-cli/references/verification/skill-reference-integrity.md",
-        "sk-code-mobile-cli/assets/ds-verification-checklist.md",
+
     ],
     "TESTING": [
         "sk-code-webflow/assets/animation/playbook-entries.md",
@@ -501,10 +476,7 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/implementation/animation-workflows/motion-dev-advanced.md",
         "sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md",
         "sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md",
-        "sk-code-mobile-cli/references/conventions/editability-guardrails.md",
-        "sk-code-mobile-cli/references/verification/verification.md",
-        "sk-code-mobile-cli/references/svelte/svelte.md",
-        "sk-code-mobile-cli/assets/a11y-parity-checklist.md",
+
     ],
     "FORMS": [
         "sk-code-webflow/references/implementation/form-upload-workflows/overview-architecture-and-filepond.md",
@@ -550,14 +522,7 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/javascript/quality-standards/shared-listener-and-weakmap.md",
         "sk-code-webflow/references/javascript/quality-standards/enforcement-and-quick-reference.md",
         "sk-code-webflow/references/javascript/quick-reference.md",
-        "sk-code-mobile-cli/references/design-system/token-library.md",
-        "sk-code-mobile-cli/references/design-system/component-tokens.md",
-        "sk-code-mobile-cli/references/design-system/theme-remap.md",
-        "sk-code-mobile-cli/references/design-system/scoped-style-ownership.md",
-        "sk-code-mobile-cli/references/design-system/css-class-naming-bem.md",
-        "sk-code-mobile-cli/references/svelte/svelte.md",
-        "sk-code-mobile-cli/references/conventions/comment-grammar.md",
-        "sk-code-mobile-cli/references/conventions/folder-docs.md",
+
     ],
     "JAVASCRIPT": [
         "sk-code-opencode/references/javascript/style-guide.md",
@@ -593,12 +558,7 @@ RESOURCE_MAP = {
         "sk-code-obsidian/references/db-class-naming.md",
         "sk-code-obsidian/references/comment-grammar.md"
     ],
-    "MOBILE_CLI": [
-        "sk-code-mobile-cli/references/conventions/conventions.md",
-        "sk-code-mobile-cli/references/design-system/component-tokens.md",
-        "sk-code-mobile-cli/references/conventions/editability-guardrails.md",
-        "sk-code-mobile-cli/references/conventions/comment-grammar.md"
-    ],
+
     "RUST": [
         "sk-code-opencode/references/rust/style-guide/overview-and-file-header.md",
         "sk-code-opencode/references/rust/style-guide/toolchain-and-project-structure.md",

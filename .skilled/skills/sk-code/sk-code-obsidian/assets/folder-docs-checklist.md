@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 Use this whenever a folder under `src/` or `tools/` in the Note Database plugin crosses the
 paired-doc threshold, in either direction. No folder in this repository carries a `README.md` or
-`CODE.md` today — this is a target convention mirrored from `sk-code-mobile-cli`, applied here for
+`CODE.md` today — this is a target convention applied here for
 the first time.
 
 ---
@@ -45,7 +45,7 @@ documentation is complete, then confirm against THE GATE.
   **three or more direct source files**, **or** when any of its immediate child folders itself
   contains source (regardless of how many direct files the parent holds)
 - [ ] A smaller folder — fewer than three direct source files and no source-bearing child — owes
-  **`README.md` only**, under the lighter rule (mirrored from `sk-code-mobile-cli`'s own threshold)
+  **`README.md` only**, under the lighter rule
 - [ ] A folder that drops below the threshold (files removed or moved elsewhere) no longer strictly
   owes the pairing — but do not delete an existing accurate `README.md`/`CODE.md` on that basis
   alone; a doc going stale from neglect is a different problem than a doc becoming technically
@@ -90,8 +90,7 @@ crosses the threshold owes the same pairing even if it is not named here.
 
 ## 5. README VS CODE CONTENT SPLIT
 
-Mirrored from `sk-code-mobile-cli`'s own folder-doc convention — keep the split consistent, not
-duplicated across both files:
+Keep the split consistent across both files rather than duplicated:
 
 - [ ] `README.md` carries the folder's **purpose and orientation**: what the folder is for, how its
   files relate to each other, and what a newcomer reads first

@@ -54,7 +54,7 @@ test is to make that failure loud instead.
   surface: `db-table-cell`, `db-board-card`, `db-gallery-card-cover`, `db-chart-drilldown-modal`,
   `db-color-picker-popup`, and so on. No further delimiter convention (no `--` BEM split) is
   enforced today — names are hyphenated freeform (`db-icon-picker-search`,
-  `db-accent-focus-ring`), unlike `sk-code-mobile-cli`'s `block--element` grammar.
+  `db-accent-focus-ring`).
 - **`note-database*`** — 11 distinct classes, the outer container/chrome layer:
   `note-database-container`, `note-database-modal`, `note-database-settings`. These are the
   surface roots `src/views/accessibility-defects.test.ts` asserts a focus ring on (see
