@@ -12,7 +12,7 @@
       "type": "local",
       "command": [
         "node",
-        ".opencode/bin/mcp-code-mode-launcher.cjs"
+        ".skilled/bin/mcp-code-mode-launcher.cjs"
       ],
       "environment": {
         "UTCP_CONFIG_FILE": ".utcp_config.json"

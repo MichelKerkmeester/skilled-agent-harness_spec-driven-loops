@@ -55,12 +55,12 @@
       "pi/sync-prompts-pi.cjs",
       "pi/sync-agents-pi.cjs",
       "scratch/review-ledger.md",
+      ".skilled/bin/mcp-code-mode-launcher.cjs",
+      ".opencode/SYNC.md",
+      ".opencode/README.md",
+      "shared/embeddings/factory.ts",
       ".opencode/skills/system-spec-kit/SKILL.md",
-      ".codex/hooks.json",
-      ".pi/extensions/lib/claude-hook-adapter.ts",
-      ".cursor/rules/sk-vision.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"
+      ".codex/hooks.json"
     ],
     "entities": [
       {
@@ -148,6 +148,30 @@
         "source": "derived"
       },
       {
+        "name": "mcp-code-mode-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/mcp-code-mode-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".opencode/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
@@ -157,30 +181,6 @@
         "name": "hooks.json",
         "kind": "config",
         "path": ".codex/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "claude-hook-adapter.ts",
-        "kind": "code",
-        "path": ".pi/extensions/lib/claude-hook-adapter.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sk-vision.md",
-        "kind": "doc",
-        "path": ".cursor/rules/sk-vision.md",
-        "source": "derived"
-      },
-      {
-        "name": "dist-freshness.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "hook-registry.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 007 moves the files, and nothing that points at them moves along",
     "created_at": "2026-09-16T17:54:08Z",
-    "last_save_at": "2026-09-17T14:53:01.843Z",
+    "last_save_at": "2026-09-19T13:01:29.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:362dfe3ac7c2195f30f1e922164a1b78da2a740cf8069ae8a4c2c993510e10eb",
+    "source_fingerprint": "sha256:25ba3985c9baca157fa40787b546eb5a61879f97a767d533a3b0c5bc4fc805c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "323324ed8fac8baac87e4432cacf94991d416e2d9025470fffd0c9ba1ac2b835",
       "plan.md": "b73f848526689073a228f3e259d07030aa45fd7a7401c65084825a1444d60fd5",
       "tasks.md": "fa01bc7259286d30c0639123d584c234eef8294ebac452417da80fee98395b25",
-      "implementation-summary.md": "cbbb0ed9585b1f0ec4d0f9013a46e782826896963c434a2bfa017ea7cb183c02"
+      "implementation-summary.md": "c6be7d30164ace1613edc10961a1273db15c780c11f7988d4606ab9b1edca54f"
     },
     "last_active_at": null
   }
