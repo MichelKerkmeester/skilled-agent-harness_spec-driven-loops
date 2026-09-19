@@ -141,7 +141,7 @@ YAML is a live OpenCode config-adjacent genre for command routers, command auto/
 | Target `Obsidian Plugin/.opencode/skills/sk-code/...`, resolving inside the hub | OPENCODE | The symlink genuinely targets hub content; OPENCODE wins once the path is resolved |
 | Literal path string contains `.opencode/` but resolves outside the hub | not OPENCODE | The realpath gate refuses OPENCODE on a string match alone |
 | Root `package.json`, no `manifest.json`, no `.skilled/` target | UNKNOWN | Generic Node is not owned; OBSIDIAN needs its positive markers, not merely the absence of other surfaces |
-| Changed `app-mobile/src/app.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins when a task also touches a path outside the hub |
+| Changed `apps/desktop/src/styles/app.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins when a task also touches a path outside the hub |
 | WEBFLOW marker (Lenis, GSAP) AND changed `.skilled/skills/sk-doc/scripts/preview-server.js` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
 | Prompt says `NOT Webflow no Webflow Designer` and asks for Motion.dev guidance | **UNKNOWN/N/A** | Explicit non-Webflow guard blocks WEBFLOW promotion |
 | Root `package.json` with no `.skilled/` target | UNKNOWN | Generic Node.js is not owned |

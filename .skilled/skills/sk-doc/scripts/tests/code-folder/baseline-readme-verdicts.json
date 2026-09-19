@@ -1,5 +1,5 @@
 {
-  "count": 1024,
+  "count": 1266,
   "mode": "readme",
   "results": [
     {
@@ -4752,16 +4752,6 @@
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": null,
-      "blocking_errors": [],
-      "document_type": null,
-      "file": ".skilled/skills/sk-code/sk-code-mobile-cli/README.md",
-      "return_code": 2,
-      "total_issues": null,
-      "valid": false,
       "warnings": []
     },
     {
@@ -10566,6 +10556,2017 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/containment/baseline/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": "specs/cli-external-orchestration/z_archive/010-cli-opencode-providers/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -10757,6 +12758,805 @@
     },
     {
       "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-a/containment/baseline/specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna/containment/quarantine/content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/specs/system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal/research/lineages/live-b/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
       "blocking_errors": [
         {
           "fix_hint": "Add section with name containing \"overview\"",
@@ -10804,6 +13604,53 @@
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-communication/benchmark/reply-harness/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/sk-doc/sk-create-with-human-voice/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh/containment/baseline/.opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {

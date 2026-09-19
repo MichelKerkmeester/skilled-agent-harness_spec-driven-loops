@@ -2,7 +2,7 @@
 id: OB-021
 category: surface_detection
 title: 'Negative control: non-OBSIDIAN target resolves no surface'
-description: "This scenario validates that a target carrying no Obsidian markers does NOT resolve OBSIDIAN for OB-021. It focuses on confirming a target shaped like the removed mobile stack resolves no surface at all and triggers none of this packet's evidence, proving the detector is precise rather than merely permissive."
+description: "This scenario validates that a target carrying no Obsidian markers does NOT resolve OBSIDIAN for OB-021. It focuses on confirming a target shaped like an unrelated desktop-app stack resolves no surface at all and triggers none of this packet's evidence, proving the detector is precise rather than merely permissive."
 expected_surface: UNKNOWN
 expected_intent: "N/A — no surface resolves"
 expected_resources: []
@@ -18,41 +18,40 @@ This document captures the routing-recall contract, execution process, source an
 ## 1. OVERVIEW
 
 This scenario validates that a target carrying no Obsidian markers does NOT resolve `OBSIDIAN` for
-`OB-021`. It focuses on confirming that a task whose CWD/target files sit under `app-mobile/`,
-`app-relay/`, or `packages/pi-rpc-protocol/` carries only paths that no live surface claims, so it
+`OB-021`. It focuses on confirming that a task whose CWD/target files sit under `apps/desktop/src/`
+carries only paths that no live surface claims, so it
 resolves `UNKNOWN`, not `OBSIDIAN`, and pulls in none of this packet's evidence. This is the
 negative-control pair to `OB-020`: a detector that only ever fires is not proven precise; one that
 correctly stays silent on a genuinely different surface is.
 
 ### Why This Matters
 
-An over-eager surface detector that bundles `sk-code-obsidian` evidence for an unowned mobile-stack
+An over-eager surface detector that bundles `sk-code-obsidian` evidence for an unrelated desktop-app
 task would hand the operator irrelevant, potentially misleading evidence — `.db-*` class
-grammar and `styles.css` guidance mean nothing in a SvelteKit app repository, and citing them there
+grammar and `styles.css` guidance mean nothing in a desktop-app repository, and citing them there
 would be actively wrong, not merely unhelpful.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-Operators confirm a mobile-stack target carries none of the three `OBSIDIAN` markers and
+Operators confirm a desktop-app target carries none of the three `OBSIDIAN` markers and
 resolves `UNKNOWN` instead, with zero `sk-code-obsidian` resources cited.
 
-- Objective: confirm a task whose target files sit under `app-mobile/`, `app-relay/`, or
-  `packages/pi-rpc-protocol/` resolves surface `UNKNOWN`, not `OBSIDIAN`, and `expected_resources`
+- Objective: confirm a task whose target files sit under `apps/desktop/src/panels/` resolves surface `UNKNOWN`, not `OBSIDIAN`, and `expected_resources`
   for this packet stays empty.
-- Real user request: `I'm adding a new primitive token to app-mobile/src/shared/primitives/ in the Mobile CLI app repo — which surface's evidence applies here?`
-- Prompt: `I'm adding a new primitive token to app-mobile/src/shared/primitives/ in the Mobile CLI app repo — which surface's evidence applies here?`
+- Real user request: `I'm adding a new keyboard-shortcut panel to apps/desktop/src/panels/ in a Tauri desktop app repo — which surface's evidence applies here?`
+- Prompt: `I'm adding a new keyboard-shortcut panel to apps/desktop/src/panels/ in a Tauri desktop app repo — which surface's evidence applies here?`
 
 **Exact prompt**:
 ```text
-I'm adding a new primitive token to app-mobile/src/shared/primitives/ in the Mobile CLI app repo — which surface's evidence applies here?
+I'm adding a new keyboard-shortcut panel to apps/desktop/src/panels/ in a Tauri desktop app repo — which surface's evidence applies here?
 ```
 
 - Expected execution process: the hub checks for `manifest.json`'s `minAppVersion`,
-  `esbuild.config.mjs`, and `from "obsidian"` imports; none is present in an `app-mobile/` target;
-  no live surface claims `app-mobile/`, `app-relay/`, or `packages/pi-rpc-protocol/`, so the hub
-  resolves `UNKNOWN` and bundles no surface evidence.
+  `esbuild.config.mjs`, and `from "obsidian"` imports; none is present in an `apps/desktop/src/`
+  target; no live surface claims `apps/desktop/src/`, so the hub resolves `UNKNOWN` and bundles no
+  surface evidence.
 - Expected signals: none of the three `OBSIDIAN` markers appear in the target context; this packet's
   `expected_resources` list stays empty; no `sk-code-obsidian/references/` or
   `sk-code-obsidian/assets/` path is cited in the response.
@@ -60,7 +59,7 @@ I'm adding a new primitive token to app-mobile/src/shared/primitives/ in the Mob
   it, and cites zero `sk-code-obsidian` paths.
 - Pass/fail: PASS if zero `OBSIDIAN` markers are present in the target context and zero
   `sk-code-obsidian` resources are cited in the response; FAIL if any `OBSIDIAN` marker is found in
-  the negative-control target, or `sk-code-obsidian` evidence is cited for a mobile-stack task.
+  the negative-control target, or `sk-code-obsidian` evidence is cited for a desktop-app task.
 
 ---
 
@@ -68,7 +67,7 @@ I'm adding a new primitive token to app-mobile/src/shared/primitives/ in the Mob
 
 ### Prompt
 
-- Prompt: `I'm adding a new primitive token to app-mobile/src/shared/primitives/ in the Mobile CLI app repo — which surface's evidence applies here?`
+- Prompt: `I'm adding a new keyboard-shortcut panel to apps/desktop/src/panels/ in a Tauri desktop app repo — which surface's evidence applies here?`
 
 ### Commands
 
@@ -93,7 +92,7 @@ the response cites zero `sk-code-obsidian/references/` or `sk-code-obsidian/asse
 - **Pass**: step 3 prints `0`, step 2 confirms none of the three `OBSIDIAN` markers appears in the
   target context, and a live dispatch resolves `UNKNOWN` and cites zero `sk-code-obsidian` paths.
 - **Fail**: an `OBSIDIAN` marker is found in the negative-control target, or a live dispatch cites any
-  `sk-code-obsidian/references/` or `sk-code-obsidian/assets/` path for this mobile-stack task.
+  `sk-code-obsidian/references/` or `sk-code-obsidian/assets/` path for this desktop-app task.
 
 ### Failure Triage
 

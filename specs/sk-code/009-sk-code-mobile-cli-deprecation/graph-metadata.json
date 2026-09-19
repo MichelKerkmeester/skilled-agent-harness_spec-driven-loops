@@ -57,9 +57,10 @@
       "specs/sk-code/008-sk-code-mobile-cli-mode/spec.md",
       "scratch/delegation-plan.md",
       ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
-      ".skilled/skills/README.txt",
+      ".skilled/skills/sk-code/sk-code-obsidian/README.md",
+      ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/negative-control-non-obsidian.md",
       ".skilled/skills/sk-code/shared/references/stack-detection.md",
-      "specs/sk-code/description.json"
+      ".skilled/skills/README.txt"
     ],
     "entities": [
       {
@@ -153,9 +154,15 @@
         "source": "derived"
       },
       {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".skilled/skills/README.txt",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-obsidian/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "negative-control-non-obsidian.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/negative-control-non-obsidian.md",
         "source": "derived"
       },
       {
@@ -165,9 +172,9 @@
         "source": "derived"
       },
       {
-        "name": "description.json",
-        "kind": "config",
-        "path": "specs/sk-code/description.json",
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
         "source": "derived"
       },
       {
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Pi Remote",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `sk-code` parent hub registers `sk-code-mobile-cli` as a read-only surface packet for",
     "created_at": "2026-09-19T09:02:48Z",
-    "last_save_at": "2026-09-19T10:01:34.610Z",
+    "last_save_at": "2026-09-19T11:32:45.632Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41e03bbffaffc8a111d959a20af0b4ec571f654a84d502e418f90a0aa628bd06",
+    "source_fingerprint": "sha256:bd35b4ac11e16fde1b23c2d9edea8090dfd5e2a297ef80b9853716624d7949ad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2b25293d8e5224965ad84fcc984a37056c5c947c65e82aa29be5f44d1f36bea6",
       "plan.md": "e86ac50d39f0ab5cc9826ff63d15d03b7911501fab04ae1512ef3b47d008a5ca",
       "tasks.md": "7eb65ba99eb1629dc2f3cbf12540637d98199125c8e495e538b289444254f6a8",
-      "implementation-summary.md": "cb2d7b751ac94100469e77293d102e3ba857e8d115eedcad0514b39663f0a28a"
+      "implementation-summary.md": "25d5e8c9990b4936704ad3dd4b292634d71fc960c28a478dc1add7dc151ca234"
     },
     "last_active_at": null
   }
