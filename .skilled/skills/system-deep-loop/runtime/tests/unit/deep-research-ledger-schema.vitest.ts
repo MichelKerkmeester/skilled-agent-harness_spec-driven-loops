@@ -766,6 +766,41 @@ describe('deep-research typed ledger schema', () => {
     )).toThrow();
   });
 
+  it('accepts only the classifier folder states and the known conflict kind on spec-protocol stems', () => {
+    const registry = createDeepResearchEventRegistry();
+    const folderStateStems = [
+      'deep_research.spec_check_result',
+      'deep_research.spec_seed_created',
+      'deep_research.spec_preinit_context_added',
+      'deep_research.spec_preinit_context_deduped',
+      'deep_research.spec_mutation_conflict',
+    ] as const;
+    const folderStates = ['conflict-detected', 'no-spec', 'spec-just-created-by-this-run', 'spec-present'];
+
+    for (const stem of folderStateStems) {
+      for (const folderState of folderStates) {
+        expect(() => prepareDeepResearchEvent(
+          eventInputWithDataField(stem, 1, 'folderState', folderState),
+          registry,
+        )).not.toThrow();
+      }
+      expect(() => prepareDeepResearchEvent(
+        eventInputWithDataField(stem, 1, 'folderState', 'spec-missing'),
+        registry,
+      )).toThrow();
+    }
+    for (const conflictKind of ['generated-fence-manual-edit', null]) {
+      expect(() => prepareDeepResearchEvent(
+        eventInputWithDataField('deep_research.spec_mutation_conflict', 1, 'conflictKind', conflictKind),
+        registry,
+      )).not.toThrow();
+    }
+    expect(() => prepareDeepResearchEvent(
+      eventInputWithDataField('deep_research.spec_mutation_conflict', 1, 'conflictKind', 'anchor-missing'),
+      registry,
+    )).toThrow();
+  });
+
   it('rejects a quoted passage disguised as an admission reason code before append', async () => {
     const harness = createHarness();
     const fakeQuotedPassage = (

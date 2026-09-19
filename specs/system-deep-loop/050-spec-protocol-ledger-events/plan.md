@@ -41,9 +41,9 @@ contextType: "implementation"
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -66,12 +66,12 @@ Workflow row → gateway → upcast to stem → authorized ledger frame → redu
 ### Legacy row shapes
 | Row | Fields besides `type`, `event` and `timestamp` |
 |-----|-----|
-| `spec_check_result` | `folder_state`, `normalized_topic`, `specPath`, `hostAnchor` |
+| `spec_check_result` | `folder_state`, `normalized_topic`, `specPath`, `lockPath` |
 | `spec_seed_created` | `folder_state`, `anchors_touched`, `diff_summary`, `seed_markers` |
-| `spec_preinit_context_added` | `folder_state`, `anchors_touched`, `diff_summary`, `normalized_topic` |
-| `spec_preinit_context_deduped` | the same, plus `specPath` |
+| `spec_preinit_context_added` | `folder_state`, `anchors_touched`, `diff_summary`, `normalized_topic`, `specPath` |
+| `spec_preinit_context_deduped` | the same |
 | `spec_mutation` | `phase`, `anchors_touched`, `diff_summary`, `generatedFence` |
-| `spec_mutation_conflict` | `folder_state`, `reason`, `hostAnchor`, `specPath`, `generatedFence`, `conflictKind` |
+| `spec_mutation_conflict` | `folder_state`, `reason`, `specPath`; the post-synthesis row adds `generatedFence` and `conflictKind` |
 | `spec_synthesis_deferred` | `reason`, `generatedFence` |
 
 ### Payload mapping
@@ -79,7 +79,7 @@ Every stem is scoped `['runId', 'lineageId']`. The legacy key is what the workfl
 
 | Legacy key | Payload field | Field rule | Used by |
 |-----|-----|-----|-----|
-| `folder_state` | `folderState` | `code` | check_result, seed_created, preinit_context_added, preinit_context_deduped, mutation_conflict |
+| `folder_state` | `folderState` | `enum`: `conflict-detected`, `no-spec`, `spec-just-created-by-this-run`, `spec-present` | check_result, seed_created, preinit_context_added, preinit_context_deduped, mutation_conflict |
 | `normalized_topic` | `normalizedTopic` | `prose` | check_result, preinit_context_added, preinit_context_deduped |
 | `lockPath` | `lockPath` | `prose` | check_result |
 | `specPath` | `specPath` | `prose` | check_result, preinit_context_added, preinit_context_deduped, mutation_conflict |
@@ -88,7 +88,7 @@ Every stem is scoped `['runId', 'lineageId']`. The legacy key is what the workfl
 | `seed_markers` | `seedMarkers` | `code-array` | seed_created |
 | `phase` | `phase` | `code` | mutation |
 | `generatedFence` | `generatedFence` | `code`; `nullable-identifier` on mutation_conflict | mutation, mutation_conflict, synthesis_deferred |
-| `conflictKind` | `conflictKind` | `nullable-identifier` | mutation_conflict |
+| `conflictKind` | `conflictKind` | nullable `enum`: `generated-fence-manual-edit` | mutation_conflict |
 | `reason` | `reason` | `prose` | mutation_conflict, synthesis_deferred |
 
 The legacy `type` is `event` for `spec_check_result` and `spec_mutation` for the other six. The fields are taken from the rows the two research workflows write, not from the protocol reference's minimum schema, which lists a `hostAnchor` no row carries. `spec_mutation_conflict` has two shapes: the pre-init row has only `folder_state`, `reason` and `specPath`, so its `generatedFence` and `conflictKind` are null, and the projection writes a null field back as absent.
@@ -119,7 +119,7 @@ Required inventories:
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-The build is dispatched to DeepSeek V4.1 Flash through cli-pi as one brief per task T003 to T007, each naming its file and edit, with `PI_BLACKHOLE_PASSIVE=true` in the child. Each diff and check is reviewed before the next brief goes out.
+The build is dispatched to DeepSeek V4.1 Flash through cli-pi as one brief per task T003 to T007, each naming its file and edit, with `PI_BLACKHOLE_PASSIVE=true` in the child. Each diff and check is reviewed before the next brief goes out. It ran as eight briefs: five for the runtime files, two for the tests and one for the protocol reference.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -141,7 +141,7 @@ The build is dispatched to DeepSeek V4.1 Flash through cli-pi as one brief per t
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Operator go-ahead | Operator | Yellow | A durable format change waits for it |
+| Operator go-ahead | Operator | Green, given 2026-09-19 | A durable format change waits for it |
 | The run-now precedent | Internal | Green | None |
 <!-- /ANCHOR:dependencies -->
 
@@ -192,7 +192,7 @@ Registry + rules ──► Upcaster ──► Reducer + projection ──► Tes
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Committed ledger fixtures replayed before and after
+- [x] Committed ledger fixtures replayed before and after
 - [ ] No research run in flight when it lands
 - [ ] Rollback note read by the operator
 
