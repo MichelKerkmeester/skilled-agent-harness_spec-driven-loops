@@ -128,6 +128,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 13 | `013-clear-pre-existing-ci-and-doc-debt/` | Turn the two CI workflows that were red before the migration green, guard the Hermes mirrors, and remove the retired skill-benchmark lane's live documents | complete |
 | 14 | `014-fix-pre-existing-defects-found-by-migration/` | Fix the pre-existing defects phases 12 and 13 recorded: the red scaffold proof, unrun tests, the stale trigger index, test runs writing a tracked database, Codex hook drift, root-name hardcodes, and the deep-loop and sk-doc tests CI never ran | complete |
 | 15 | `015-compiled-serving-admission-research/` | Research how a new hub can be admitted to compiled-serving now that the Lane C parity harness is retired, and recommend one path | complete |
+| 16 | `016-fix-stale-compiled-routing-docs-and-research-workflow/` | Correct the seven-hub and pre-rename compiled-routing text phase 15 found, and stop the research workflows passing a retired validator rule | complete |
 
 ### Phase Transition Rules
 
@@ -155,6 +156,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 012-fix-deep-review-p1-p2-findings-for-source-root-migration | 013-clear-pre-existing-ci-and-doc-debt | Every review finding is closed, and the only red CI left is the failure set that predates the migration | Phase 012's acceptance criteria and CI at `5844a02227` |
 | 013-clear-pre-existing-ci-and-doc-debt | 014-fix-pre-existing-defects-found-by-migration | Every phase 13 criterion is met and CI is green on both branches | Phase 013's acceptance criteria and its recorded CI runs |
 | 014-fix-pre-existing-defects-found-by-migration | 015-compiled-serving-admission-research | Every phase 14 criterion is met and CI is green on both branches | Phase 014's acceptance criteria and its recorded CI runs |
+| 015-compiled-serving-admission-research | 016-fix-stale-compiled-routing-docs-and-research-workflow | The research names the stale text and the operator has chosen what to fix | Phase 015's `research/research.md` and the operator's 2026-09-19 answers |
 <!-- /ANCHOR:phase-map -->
 
 ---

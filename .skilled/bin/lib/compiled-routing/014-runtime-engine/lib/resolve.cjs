@@ -26,11 +26,12 @@ const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 const DEBUG_FLAG = 'SPECKIT_COMPILED_ROUTING_DEBUG';
 
-// Per-hub default-on cohort. All seven compiled-eligible hubs were verified
-// compiled-serving by Lane C parity (compiled byte-identical to legacy on every
-// scenario, 0 drift) before that harness was retired, and were cut over together, so an unset flag now
-// resolves to compiled for every eligible hub. SPECKIT_COMPILED_ROUTING=0
-// remains the explicit fleet-wide kill-switch back to legacy.
+// Per-hub default-on cohort. These five hubs were verified compiled-serving by
+// the legacy-parity harness (compiled byte-identical to legacy on every
+// scenario, 0 drift) before that harness was retired, and were cut over
+// together, so an unset flag resolves to compiled for every hub listed here.
+// SPECKIT_COMPILED_ROUTING=0 remains the explicit fleet-wide kill-switch back
+// to legacy.
 const DEFAULT_ON_HUBS = new Set([
   'sk-code',
   'system-deep-loop',

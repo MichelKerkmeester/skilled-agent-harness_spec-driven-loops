@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-09-18T22:36:18Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Compiled the two-lineage research and wrote the findings back into the spec"
-    next_safe_action: "Operator decides whether to accept the restated admission bar before any build phase"
+    next_safe_action: "Plan the gold checker build; the operator accepted the restated bar on 2026-09-19"
     blockers: []
     key_files:
       - "research/research.md"
@@ -24,10 +24,10 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions:
-      - "Does the operator accept the restated admission bar, or require literal legacy equality?"
       - "How should a clarify decision count, and what coverage floor should each workflow mode need?"
     answered_questions:
       - "Which admission path to recommend: a new checker against routing gold"
+      - "Does the operator accept the restated admission bar? Yes, chosen on 2026-09-19, to be built in its own phase"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary

@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Two CI workflows have failed on every push for days, so a new failure in either one looks like the old one and nobody reads it",
     "created_at": "2026-09-18T11:43:38Z",
-    "last_save_at": "2026-09-18T16:07:45.957Z",
+    "last_save_at": "2026-09-19T05:05:36.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4659bc21694ae7188c09b08571c8320f2c7f3835ebfece6b92cd1d99e8cc3b24",
+    "source_fingerprint": "sha256:1fd6a7a76134a005e6df000be106864962a51e4fecfebf0b30436a4edbd81d64",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b4ac0bde858d7e34ad0a3916a7f036e99c0732ebba8118b34458c5f551163e70",
       "plan.md": "6076d9c165f88b3201af0124e8a6651ec8293cda1472603cd348739e8305b35b",
       "tasks.md": "1994a11a3dca9662e9a51b1db7ca531af80611fc986346c8d237380224d4c6f7",
-      "implementation-summary.md": "62fca511bfcbdf8181d3593a8b15d2ca8d5367e716709ddadac2f2c30699fc11"
+      "implementation-summary.md": "b83c631da3f1bd02302d3e830141f511c0527ef19fefc5413fb8e8b6bb99cb23"
     },
     "last_active_at": null
   }
