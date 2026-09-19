@@ -46,7 +46,7 @@ Every spec-protocol row the research workflows emit is accepted by the gateway, 
 
 ### In Scope
 - Seven research stems, one per legacy row, named after it: `deep_research.spec_check_result`, `spec_seed_created`, `spec_preinit_context_added`, `spec_preinit_context_deduped`, `spec_mutation`, `spec_mutation_conflict` and `spec_synthesis_deferred`.
-- Their wire types, payload field rules, scopes and producer status (`spoken`, by the two research workflows), in `deep-research-ledger-types.ts` and `deep-research-ledger-schema.ts`.
+- Their wire types, payload field rules, scopes and producer status, in `deep-research-ledger-types.ts` and `deep-research-ledger-schema.ts`. The status is `reserved`: the workflows keep writing legacy rows that the gateway upcasts, and the stem-producer census counts only a staged `stem` key as an emitter, the rule `run_resumed` already follows.
 - A lossless upcast for each legacy row in `legacy-compatibility.ts`, removing the seven from the pinned sets.
 - Reducer cases that leave research state unchanged, and a legacy projection that writes each event back as its legacy row.
 - Tests: schema guards, legacy round trip, the append-gateway CLI accepting each row, and the protocol append-site checker.
@@ -78,7 +78,7 @@ Every spec-protocol row the research workflows emit is accepted by the gateway, 
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | `append-mode-event.cjs --mode research` accepts each of the seven legacy rows and exits 0. |
-| REQ-002 | Each accepted row projects back into the state log byte-equivalent to the row as written. |
+| REQ-002 | Each accepted row projects back into the state log with the same fields, values and key order as the row as written. The timestamp is the append time, as the gateway already stamps every upcast legacy row. |
 | REQ-003 | Existing ledgers replay unchanged: no existing event's fingerprint or reduced state moves. |
 
 ### P1 - Required (complete OR user-approved deferral)

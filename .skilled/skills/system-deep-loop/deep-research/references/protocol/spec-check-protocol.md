@@ -160,6 +160,8 @@ The workflow writes or replaces exactly one machine-owned fence nested under the
 
 All protocol events reach `research/deep-research-state.jsonl` through the append gateway, the only way a record reaches the log.
 
+Each spec-protocol row a workflow writes keeps its legacy shape. The append gateway accepts it and stores it as a typed ledger event under one of seven stems: `deep_research.spec_check_result`, `deep_research.spec_seed_created`, `deep_research.spec_preinit_context_added`, `deep_research.spec_preinit_context_deduped`, `deep_research.spec_mutation`, `deep_research.spec_mutation_conflict`, and `deep_research.spec_synthesis_deferred`. The gateway upcasts the row into that stem's payload, and the state log shows the row as written, with the append time as its timestamp.
+
 Every audit payload is typed. At minimum, emit:
 - `type`
 - `event`
@@ -169,12 +171,12 @@ Every audit payload is typed. At minimum, emit:
 
 | Event | Minimum payload schema |
 |-------|------------------------|
-| `spec_check_result` | `{ "type": "event", "event": "spec_check_result", "folder_state": "...", "normalized_topic": "...", "specPath": "...", "hostAnchor": "...", "timestamp": "..." }` |
+| `spec_check_result` | `{ "type": "event", "event": "spec_check_result", "folder_state": "...", "normalized_topic": "...", "specPath": "...", "lockPath": "...", "timestamp": "..." }` |
 | `spec_seed_created` | `{ "type": "spec_mutation", "event": "spec_seed_created", "folder_state": "spec-just-created-by-this-run", "anchors_touched": ["Scope", "Requirements"], "diff_summary": "...", "seed_markers": ["DR-SEED:SCOPE", "DR-SEED:REQUIREMENTS"], "timestamp": "..." }` |
-| `spec_preinit_context_added` | `{ "type": "spec_mutation", "event": "spec_preinit_context_added", "folder_state": "spec-present", "anchors_touched": ["Open Questions", "Research Context"], "diff_summary": "...", "normalized_topic": "...", "timestamp": "..." }` |
+| `spec_preinit_context_added` | `{ "type": "spec_mutation", "event": "spec_preinit_context_added", "folder_state": "spec-present", "anchors_touched": ["Open Questions", "Research Context"], "diff_summary": "...", "normalized_topic": "...", "specPath": "...", "timestamp": "..." }` |
 | `spec_preinit_context_deduped` | `{ "type": "spec_mutation", "event": "spec_preinit_context_deduped", "folder_state": "spec-present", "anchors_touched": ["Open Questions"], "diff_summary": "...", "normalized_topic": "...", "specPath": "...", "timestamp": "..." }` |
 | `spec_mutation` | `{ "type": "spec_mutation", "event": "spec_mutation", "phase": "post-synthesis", "anchors_touched": ["<chosen host anchor>"], "diff_summary": "...", "generatedFence": "deep-research/spec-findings", "timestamp": "..." }` |
-| `spec_mutation_conflict` | `{ "type": "spec_mutation", "event": "spec_mutation_conflict", "folder_state": "conflict-detected", "reason": "...", "hostAnchor": "...", "specPath": "...", "generatedFence": "deep-research/spec-findings", "conflictKind": "...", "timestamp": "..." }` |
+| `spec_mutation_conflict` | Pre-init: `{ "type": "spec_mutation", "event": "spec_mutation_conflict", "folder_state": "conflict-detected", "reason": "...", "specPath": "...", "timestamp": "..." }`. Post-synthesis adds `"generatedFence": "deep-research/spec-findings"` and `"conflictKind": "..."`. |
 | `spec_synthesis_deferred` | `{ "type": "spec_mutation", "event": "spec_synthesis_deferred", "reason": "...", "generatedFence": "deep-research/spec-findings", "timestamp": "..." }` |
 
 ### Audit Requirements

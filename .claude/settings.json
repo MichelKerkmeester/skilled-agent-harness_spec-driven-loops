@@ -1,18 +1,13 @@
 {
+  "skillListingBudgetFraction": 0.02,
   "env": {
     "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
     "ENABLE_PROMPT_CACHING_1H": "true",
     "ENABLE_TOOL_SEARCH": "true",
     "MAX_THINKING_TOKENS": "999999",
-    "SYSTEM_SPEC_GATE_ENFORCE": "0"
+    "SYSTEM_SPEC_GATE_ENFORCE": "0",
+    "CLAUDE_CODE_ENABLE_FUNCTION_HOOKS": "1"
   },
-  "statusLine": {
-    "type": "command",
-    "command": "bash .claude/statusline-command.sh"
-  },
-  "skillListingBudgetFraction": 0.02,
-  "autoCompactEnabled": true,
-  "autoCompactWindow": 1000000,
   "hooks": {
     "PreToolUse": [
       {
@@ -200,5 +195,22 @@
         ]
       }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash .claude/statusline-command.sh"
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-mods": {
+      "source": {
+        "source": "github",
+        "repo": "karanb192/claude-code-mods"
+      }
+    }
+  },
+  "autoCompactWindow": 1000000,
+  "autoCompactEnabled": true,
+  "enabledPlugins": {
+    "cache-tax@claude-code-mods": true
   }
 }

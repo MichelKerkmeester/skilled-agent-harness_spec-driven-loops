@@ -853,3 +853,174 @@ describe('gateway-recorded rows survive a later projection refresh', () => {
     expect(rows.some((row) => row.event === 'question_registered')).toBe(true);
   });
 });
+
+describe('legacy spec-protocol rows append through the research gateway', () => {
+  // The research workflows wrote these rows directly to the state log before the
+  // gateway could carry them as ledger events. Each must still land as the same
+  // legacy row, with the same snake_case keys in the same order, because the
+  // state consumers read those names. Only the timestamp is new: it is the
+  // append time, not the workflow's own stamp.
+  const ISO_TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
+
+  const specMutationRow = {
+    type: 'spec_mutation',
+    event: 'spec_mutation',
+    phase: 'post-synthesis',
+    anchors_touched: ['Open Questions'],
+    diff_summary: 'Replaced fence.',
+    generatedFence: 'deep-research/spec-findings',
+    timestamp: '2026-09-19T08:00:00Z',
+  };
+
+  const legacyRows: ReadonlyArray<{ readonly slug: string; readonly row: Record<string, unknown> }> = [
+    {
+      slug: 'spec-check-result',
+      row: {
+        type: 'event',
+        event: 'spec_check_result',
+        folder_state: 'spec-present',
+        normalized_topic: 'a topic',
+        specPath: 'specs/demo/spec.md',
+        lockPath: 'specs/demo/research/.deep-research.lock',
+        timestamp: '2026-09-19T08:00:00Z',
+      },
+    },
+    {
+      slug: 'spec-seed-created',
+      row: {
+        type: 'spec_mutation',
+        event: 'spec_seed_created',
+        folder_state: 'spec-just-created-by-this-run',
+        anchors_touched: ['Requirements', 'Scope'],
+        diff_summary: 'Seeded spec.md.',
+        seed_markers: ['DR-SEED:REQUIREMENTS', 'DR-SEED:SCOPE'],
+        timestamp: '2026-09-19T08:00:00Z',
+      },
+    },
+    {
+      slug: 'spec-preinit-context-added',
+      row: {
+        type: 'spec_mutation',
+        event: 'spec_preinit_context_added',
+        folder_state: 'spec-present',
+        anchors_touched: ['Open Questions', 'Research Context'],
+        diff_summary: 'Appended context.',
+        normalized_topic: 'a topic',
+        specPath: 'specs/demo/spec.md',
+        timestamp: '2026-09-19T08:00:00Z',
+      },
+    },
+    {
+      slug: 'spec-preinit-context-deduped',
+      row: {
+        type: 'spec_mutation',
+        event: 'spec_preinit_context_deduped',
+        folder_state: 'spec-present',
+        anchors_touched: ['Open Questions'],
+        diff_summary: 'Skipped duplicate.',
+        normalized_topic: 'a topic',
+        specPath: 'specs/demo/spec.md',
+        timestamp: '2026-09-19T08:00:00Z',
+      },
+    },
+    { slug: 'spec-mutation', row: specMutationRow },
+    {
+      slug: 'spec-mutation-conflict-preinit',
+      row: {
+        type: 'spec_mutation',
+        event: 'spec_mutation_conflict',
+        folder_state: 'conflict-detected',
+        reason: 'Pre-init mutation is unsafe.',
+        specPath: 'specs/demo/spec.md',
+        timestamp: '2026-09-19T08:00:00Z',
+      },
+    },
+    {
+      slug: 'spec-mutation-conflict-post-synthesis',
+      row: {
+        type: 'spec_mutation',
+        event: 'spec_mutation_conflict',
+        folder_state: 'conflict-detected',
+        reason: 'Manual edits in the fence.',
+        specPath: 'specs/demo/spec.md',
+        generatedFence: 'deep-research/spec-findings',
+        conflictKind: 'generated-fence-manual-edit',
+        timestamp: '2026-09-19T08:00:00Z',
+      },
+    },
+    {
+      slug: 'spec-synthesis-deferred',
+      row: {
+        type: 'spec_mutation',
+        event: 'spec_synthesis_deferred',
+        reason: 'Synthesis cannot safely write back.',
+        generatedFence: 'deep-research/spec-findings',
+        timestamp: '2026-09-19T08:00:00Z',
+      },
+    },
+  ];
+
+  function stateLogPath(runDir: string): string {
+    return join(runDir, 'research', 'deep-research-state.jsonl');
+  }
+
+  function readStateLogLines(runDir: string): string[] {
+    const path = stateLogPath(runDir);
+    if (!existsSync(path)) return [];
+    const content = readFileSync(path, 'utf8').trim();
+    return content ? content.split(/\r?\n/).filter(Boolean) : [];
+  }
+
+  function appendLegacyRow(runDir: string, row: Record<string, unknown>): CliResult {
+    const eventJsonPath = join(runDir, 'event.json');
+    writeFileSync(eventJsonPath, JSON.stringify(row), 'utf8');
+    return runCli([
+      '--mode',
+      'deep-research',
+      '--run-directory',
+      runDir,
+      '--event-json',
+      eventJsonPath,
+    ]);
+  }
+
+  for (const { slug, row } of legacyRows) {
+    it(`appends the legacy ${slug} row and rebuilds it as the last state-log line`, () => {
+      const runDir = createTempDir(`legacy-spec-protocol-${slug}`);
+
+      const result = appendLegacyRow(runDir, row);
+
+      expect(result.exitCode, result.stderr).toBe(0);
+      expect(result.json.ok).toBe(true);
+
+      const lines = readStateLogLines(runDir);
+      expect(lines).toHaveLength(1);
+      const projectedRow = JSON.parse(lines[lines.length - 1]) as Record<string, unknown>;
+
+      const { timestamp } = projectedRow;
+      expect(typeof timestamp).toBe('string');
+      expect(timestamp).toMatch(ISO_TIMESTAMP_PATTERN);
+
+      const expectedRow = { ...row, timestamp };
+      expect(Object.keys(projectedRow)).toEqual(Object.keys(expectedRow));
+      expect(projectedRow).toEqual(expectedRow);
+    });
+  }
+
+  it('refuses a spec_mutation row whose generatedFence is missing, before writing', () => {
+    // generatedFence is the fence the mutation claims to have replaced. A row
+    // that cannot name it is refused by name, and the refusal must precede any
+    // write: no state-log line exists to carry a fence-less mutation.
+    const runDir = createTempDir('legacy-spec-mutation-missing-fence');
+    const mutationWithoutFence = Object.fromEntries(
+      Object.entries(specMutationRow).filter(([key]) => key !== 'generatedFence'),
+    );
+
+    const result = appendLegacyRow(runDir, mutationWithoutFence);
+
+    expect(result.exitCode).not.toBe(0);
+    expect(result.json.ok).toBe(false);
+    expect(String(result.json.reason)).toContain('spec-mutation-fields-missing');
+    expect(readStateLogLines(runDir)).toHaveLength(0);
+  });
+});

@@ -137,6 +137,15 @@ export const DEEP_RESEARCH_EVENT_ROUTING = Object.freeze({
   'deep_research.run_now_restored': Object.freeze(['status']),
   'deep_research.synthesis_incomplete': Object.freeze(['status']),
   'deep_research.synthesis_complete': Object.freeze(['status']),
+  // Spec-protocol rows are audit records: the append gateway upcasts them from
+  // legacy state-log rows, so they must not feed or move a research plane.
+  'deep_research.spec_check_result': Object.freeze([]),
+  'deep_research.spec_seed_created': Object.freeze([]),
+  'deep_research.spec_preinit_context_added': Object.freeze([]),
+  'deep_research.spec_preinit_context_deduped': Object.freeze([]),
+  'deep_research.spec_mutation': Object.freeze([]),
+  'deep_research.spec_mutation_conflict': Object.freeze([]),
+  'deep_research.spec_synthesis_deferred': Object.freeze([]),
 } as const satisfies Readonly<Record<DeepResearchEventStem, readonly ProjectionPlane[]>>);
 
 function stemsForPlane(plane: ProjectionPlane): readonly DeepResearchEventStem[] {
@@ -1315,6 +1324,13 @@ function artifactFromEvent(
     case 'deep_research.run_now_restored':
     case 'deep_research.synthesis_incomplete':
     case 'deep_research.synthesis_complete':
+    case 'deep_research.spec_check_result':
+    case 'deep_research.spec_seed_created':
+    case 'deep_research.spec_preinit_context_added':
+    case 'deep_research.spec_preinit_context_deduped':
+    case 'deep_research.spec_mutation':
+    case 'deep_research.spec_mutation_conflict':
+    case 'deep_research.spec_synthesis_deferred':
       return null;
   }
   return assertNeverStem((event as DeepResearchLedgerEvent).payload.stem as never);
@@ -1422,6 +1438,13 @@ function statusTransitionForEvent(
     case 'deep_research.run_now_restored':
     case 'deep_research.synthesis_incomplete':
     case 'deep_research.synthesis_complete':
+    case 'deep_research.spec_check_result':
+    case 'deep_research.spec_seed_created':
+    case 'deep_research.spec_preinit_context_added':
+    case 'deep_research.spec_preinit_context_deduped':
+    case 'deep_research.spec_mutation':
+    case 'deep_research.spec_mutation_conflict':
+    case 'deep_research.spec_synthesis_deferred':
       return null;
     case 'deep_research.memory_save_failed': {
       const payload = payloadFor(event, 'deep_research.memory_save_failed');
@@ -1810,6 +1833,13 @@ function applyEvent(
     case 'deep_research.memory_save_completed':
     case 'deep_research.memory_save_failed':
     case 'deep_research.run_completed':
+    case 'deep_research.spec_check_result':
+    case 'deep_research.spec_seed_created':
+    case 'deep_research.spec_preinit_context_added':
+    case 'deep_research.spec_preinit_context_deduped':
+    case 'deep_research.spec_mutation':
+    case 'deep_research.spec_mutation_conflict':
+    case 'deep_research.spec_synthesis_deferred':
       break;
     default:
       return assertNeverStem((event as DeepResearchLedgerEvent).payload.stem as never);

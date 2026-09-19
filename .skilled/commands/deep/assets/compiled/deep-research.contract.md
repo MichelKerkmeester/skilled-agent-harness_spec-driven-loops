@@ -52,7 +52,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md",
-      "sha256": "d35b22738d9e9539cd29aec6aa9188d4002b62dee54b732db394ddb4926c24c1",
+      "sha256": "81092a9790c0d47e74cc2d8890b23e6f7fe2c0d00602189faabdb9d85f72016e",
       "section": "full"
     },
     {

@@ -27,7 +27,7 @@ contextType: "implementation"
 | **Testing** | The deep-loop runtime Vitest suite |
 
 ### Overview
-`b8da689d67` added the run-now and synthesis stems as `spoken` stems produced by the research workflows, and it is the template here. Each legacy spec-protocol row maps to one new stem with the same name. The upcaster moves the row's fields into the stem's payload without loss, the reducer leaves research state alone, and the legacy projection writes the row back into the state log exactly as the workflow wrote it.
+`b8da689d67` added the run-now and synthesis stems and is the template for every file touched. One difference: those stems are `spoken` because the workflow stages them as `{stem, scope, data}` envelopes, while these seven are reached only by upcasting the legacy row the workflows keep writing, so the census declares them `reserved`, as it does `run_resumed`. Each legacy spec-protocol row maps to one stem of the same name; the upcaster moves its fields into the payload without loss, the reducer leaves research state alone, and the legacy projection writes the row back into the state log exactly as the workflow wrote it.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -73,6 +73,25 @@ Workflow row → gateway → upcast to stem → authorized ledger frame → redu
 | `spec_mutation` | `phase`, `anchors_touched`, `diff_summary`, `generatedFence` |
 | `spec_mutation_conflict` | `folder_state`, `reason`, `hostAnchor`, `specPath`, `generatedFence`, `conflictKind` |
 | `spec_synthesis_deferred` | `reason`, `generatedFence` |
+
+### Payload mapping
+Every stem is scoped `['runId', 'lineageId']`. The legacy key is what the workflow writes and what the projection must write back; the payload field is its camelCase form.
+
+| Legacy key | Payload field | Field rule | Used by |
+|-----|-----|-----|-----|
+| `folder_state` | `folderState` | `code` | check_result, seed_created, preinit_context_added, preinit_context_deduped, mutation_conflict |
+| `normalized_topic` | `normalizedTopic` | `prose` | check_result, preinit_context_added, preinit_context_deduped |
+| `lockPath` | `lockPath` | `prose` | check_result |
+| `specPath` | `specPath` | `prose` | check_result, preinit_context_added, preinit_context_deduped, mutation_conflict |
+| `anchors_touched` | `anchorsTouched` | `prose-array` (new rule: an array of prose strings) | seed_created, preinit_context_added, preinit_context_deduped, mutation |
+| `diff_summary` | `diffSummary` | `prose` | seed_created, preinit_context_added, preinit_context_deduped, mutation |
+| `seed_markers` | `seedMarkers` | `code-array` | seed_created |
+| `phase` | `phase` | `code` | mutation |
+| `generatedFence` | `generatedFence` | `code`; `nullable-identifier` on mutation_conflict | mutation, mutation_conflict, synthesis_deferred |
+| `conflictKind` | `conflictKind` | `nullable-identifier` | mutation_conflict |
+| `reason` | `reason` | `prose` | mutation_conflict, synthesis_deferred |
+
+The legacy `type` is `event` for `spec_check_result` and `spec_mutation` for the other six. The fields are taken from the rows the two research workflows write, not from the protocol reference's minimum schema, which lists a `hostAnchor` no row carries. `spec_mutation_conflict` has two shapes: the pre-init row has only `folder_state`, `reason` and `specPath`, so its `generatedFence` and `conflictKind` are null, and the projection writes a null field back as absent.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -99,6 +118,8 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+
+The build is dispatched to DeepSeek V4.1 Flash through cli-pi as one brief per task T003 to T007, each naming its file and edit, with `PI_BLACKHOLE_PASSIVE=true` in the child. Each diff and check is reviewed before the next brief goes out.
 <!-- /ANCHOR:phases -->
 
 ---

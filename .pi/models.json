@@ -73,6 +73,9 @@
             "output": 0.6,
             "cacheRead": 0.003,
             "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false
           }
         },
         {

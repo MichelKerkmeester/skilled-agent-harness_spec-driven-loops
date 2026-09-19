@@ -33,12 +33,17 @@ const LEGACY_EVENT_STEMS = Object.freeze({
   restarted: 'deep_research.run_restarted',
   blocked_stop: 'deep_research.convergence_blocked',
   question_registered: 'deep_research.question_registered',
+  spec_check_result: 'deep_research.spec_check_result',
+  spec_seed_created: 'deep_research.spec_seed_created',
+  spec_preinit_context_added: 'deep_research.spec_preinit_context_added',
+  spec_preinit_context_deduped: 'deep_research.spec_preinit_context_deduped',
+  spec_mutation: 'deep_research.spec_mutation',
+  spec_mutation_conflict: 'deep_research.spec_mutation_conflict',
+  spec_synthesis_deferred: 'deep_research.spec_synthesis_deferred',
 } as const satisfies Readonly<Record<string, DeepResearchEventStem>>);
 
 const PINNED_LEGACY_TYPES = new Set([
   'iteration_start',
-  // Also emitted as a record type; the type branch is tested before the event branch.
-  'spec_mutation',
 ]);
 
 const PINNED_LEGACY_EVENTS = new Set([
@@ -76,18 +81,25 @@ const PINNED_LEGACY_EVENTS = new Set([
   'pivot_completed',
   'pivot_failed',
   'pivot_override_accepted',
-  // Spec-protocol side effects emitted by the runtime have no lossless research-event
-  // target: the canonical stems describe run lifecycle and research semantics, not
-  // spec-folder mutations, seeds, preinit context, or guard outcomes. Pinning keeps
-  // the records addressable without coercing them into a stem that means something else.
+  // Artifact-path migration bookkeeping and the convergence-floor guard outcome
+  // have no lossless research-event target: the canonical stems describe run
+  // lifecycle and research semantics, not those side effects. Pinning keeps the
+  // records addressable without coercing them into a stem that means something else.
   'migration',
   'min_iterations_guard_pass',
-  'spec_check_result',
-  'spec_mutation',
-  'spec_mutation_conflict',
-  'spec_preinit_context_added',
-  'spec_preinit_context_deduped',
-  'spec_seed_created',
+]);
+
+// The workflows write the spec-protocol rows without run or session identity, so
+// their scope comes from the append context rather than the record. Their payload
+// fields are checked in the upcaster, where a missing field becomes a named refusal.
+const CONTEXT_SCOPE_STEMS = new Set<DeepResearchEventStem>([
+  'deep_research.spec_check_result',
+  'deep_research.spec_seed_created',
+  'deep_research.spec_preinit_context_added',
+  'deep_research.spec_preinit_context_deduped',
+  'deep_research.spec_mutation',
+  'deep_research.spec_mutation_conflict',
+  'deep_research.spec_synthesis_deferred',
 ]);
 
 // ───────────────────────────────────────────────────────────────────
@@ -122,6 +134,21 @@ function decision(
   });
 }
 
+function refusedUpcast(
+  compatibility: DeepResearchCompatibilityDecision,
+  reasonCode: string,
+): LegacyUpcastResult {
+  return Object.freeze({
+    status: 'refused',
+    decision: decision(
+      'pin-old-runtime',
+      reasonCode,
+      compatibility.targetStem,
+      compatibility.sourceVersion,
+    ),
+  });
+}
+
 function hasStableIdentity(record: Record<string, unknown>): boolean {
   return isNonEmptyString(record.runId ?? record.sessionId)
     && isNonEmptyString(record.lineageId ?? record.parentSessionId ?? record.sessionId);
@@ -137,13 +164,35 @@ function hasIterationIdentity(record: Record<string, unknown>): boolean {
 function recordTarget(record: Record<string, unknown>): DeepResearchEventStem | null {
   if (record.type === 'config') return 'deep_research.run_initialized';
   if (record.type === 'iteration') return 'deep_research.iteration_completed';
-  if (record.type !== 'event' || !isNonEmptyString(record.event)) return null;
-  return LEGACY_EVENT_STEMS[record.event as keyof typeof LEGACY_EVENT_STEMS] ?? null;
+  // The workflows stamp the six mutation-family rows with a spec_mutation record
+  // type, so for those rows the event name is the only key that names a stem.
+  if ((record.type === 'event' || record.type === 'spec_mutation')
+    && isNonEmptyString(record.event)) {
+    return LEGACY_EVENT_STEMS[record.event as keyof typeof LEGACY_EVENT_STEMS] ?? null;
+  }
+  return null;
 }
 
 function stringArray(value: unknown): string[] | null {
   if (!Array.isArray(value) || !value.every(isNonEmptyString)) return null;
   return [...value];
+}
+
+function requiredStringField(record: Record<string, unknown>, field: string): string | null {
+  return isNonEmptyString(record[field]) ? record[field] : null;
+}
+
+// Absent reads as null; present must be a non-empty string, else undefined marks it invalid.
+function optionalStringField(record: Record<string, unknown>, field: string): string | null | undefined {
+  if (!(field in record)) return null;
+  return isNonEmptyString(record[field]) ? record[field] : undefined;
+}
+
+function requiredStringArrayField(
+  record: Record<string, unknown>,
+  field: string,
+): string[] | null {
+  return stringArray(record[field]);
 }
 
 function hasQuestionRegistrationData(record: Record<string, unknown>): boolean {
@@ -167,6 +216,9 @@ function stableTargetIdentity(
   if (targetStem === 'deep_research.question_registered') {
     return hasQuestionRegistrationData(record);
   }
+  // The spec-protocol rows carry no run or session identity: the append context
+  // supplies their scope and the upcaster validates their payload fields.
+  if (CONTEXT_SCOPE_STEMS.has(targetStem)) return true;
   return hasStableIdentity(record);
 }
 
@@ -385,6 +437,91 @@ export function upcastLegacyDeepResearchRecord(
       };
       warnings.push('Legacy convergence signals were not independently addressable.');
       break;
+    case 'deep_research.spec_check_result': {
+      const folderState = requiredStringField(input, 'folder_state');
+      const normalizedTopic = requiredStringField(input, 'normalized_topic');
+      const specPath = requiredStringField(input, 'specPath');
+      const lockPath = requiredStringField(input, 'lockPath');
+      if (folderState === null || normalizedTopic === null
+        || specPath === null || lockPath === null) {
+        return refusedUpcast(compatibility, 'spec-check-result-fields-missing');
+      }
+      data = { folderState, normalizedTopic, specPath, lockPath };
+      break;
+    }
+    case 'deep_research.spec_seed_created': {
+      const folderState = requiredStringField(input, 'folder_state');
+      const anchorsTouched = requiredStringArrayField(input, 'anchors_touched');
+      const diffSummary = requiredStringField(input, 'diff_summary');
+      const seedMarkers = requiredStringArrayField(input, 'seed_markers');
+      if (folderState === null || anchorsTouched === null
+        || diffSummary === null || seedMarkers === null) {
+        return refusedUpcast(compatibility, 'spec-seed-created-fields-missing');
+      }
+      data = { folderState, anchorsTouched, diffSummary, seedMarkers };
+      break;
+    }
+    case 'deep_research.spec_preinit_context_added': {
+      const folderState = requiredStringField(input, 'folder_state');
+      const normalizedTopic = requiredStringField(input, 'normalized_topic');
+      const specPath = requiredStringField(input, 'specPath');
+      const anchorsTouched = requiredStringArrayField(input, 'anchors_touched');
+      const diffSummary = requiredStringField(input, 'diff_summary');
+      if (folderState === null || normalizedTopic === null || specPath === null
+        || anchorsTouched === null || diffSummary === null) {
+        return refusedUpcast(compatibility, 'spec-preinit-context-added-fields-missing');
+      }
+      data = { folderState, normalizedTopic, specPath, anchorsTouched, diffSummary };
+      break;
+    }
+    case 'deep_research.spec_preinit_context_deduped': {
+      const folderState = requiredStringField(input, 'folder_state');
+      const normalizedTopic = requiredStringField(input, 'normalized_topic');
+      const specPath = requiredStringField(input, 'specPath');
+      const anchorsTouched = requiredStringArrayField(input, 'anchors_touched');
+      const diffSummary = requiredStringField(input, 'diff_summary');
+      if (folderState === null || normalizedTopic === null || specPath === null
+        || anchorsTouched === null || diffSummary === null) {
+        return refusedUpcast(compatibility, 'spec-preinit-context-deduped-fields-missing');
+      }
+      data = { folderState, normalizedTopic, specPath, anchorsTouched, diffSummary };
+      break;
+    }
+    case 'deep_research.spec_mutation': {
+      const phase = requiredStringField(input, 'phase');
+      const anchorsTouched = requiredStringArrayField(input, 'anchors_touched');
+      const diffSummary = requiredStringField(input, 'diff_summary');
+      const generatedFence = requiredStringField(input, 'generatedFence');
+      if (phase === null || anchorsTouched === null
+        || diffSummary === null || generatedFence === null) {
+        return refusedUpcast(compatibility, 'spec-mutation-fields-missing');
+      }
+      data = { phase, anchorsTouched, diffSummary, generatedFence };
+      break;
+    }
+    case 'deep_research.spec_mutation_conflict': {
+      const folderState = requiredStringField(input, 'folder_state');
+      const reason = requiredStringField(input, 'reason');
+      const specPath = requiredStringField(input, 'specPath');
+      // The pre-init row carries neither field; the post-synthesis row carries both.
+      const generatedFence = optionalStringField(input, 'generatedFence');
+      const conflictKind = optionalStringField(input, 'conflictKind');
+      if (folderState === null || reason === null || specPath === null
+        || generatedFence === undefined || conflictKind === undefined) {
+        return refusedUpcast(compatibility, 'spec-mutation-conflict-fields-missing');
+      }
+      data = { folderState, reason, specPath, generatedFence, conflictKind };
+      break;
+    }
+    case 'deep_research.spec_synthesis_deferred': {
+      const reason = requiredStringField(input, 'reason');
+      const generatedFence = requiredStringField(input, 'generatedFence');
+      if (reason === null || generatedFence === null) {
+        return refusedUpcast(compatibility, 'spec-synthesis-deferred-fields-missing');
+      }
+      data = { reason, generatedFence };
+      break;
+    }
     default:
       return Object.freeze({
         status: 'refused',
