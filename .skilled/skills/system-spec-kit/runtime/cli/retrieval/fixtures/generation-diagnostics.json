@@ -3,10 +3,10 @@
     "duplicate-phrase": 54,
     "missing-frontmatter": 7157,
     "non-yaml-frontmatter": 1,
-    "ok": 15319,
+    "ok": 15324,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27320,
+  "documentsScanned": 27325,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "6227cd6dd4beb8dae518e4bb8a0f6eb421c068e82fb53b151c12632e7e9bc1f6",
+  "manifestHash": "22948de5e4e85a7d49263a4a14d1b1ed32e624394e9bac6a370d93b7b3d104de",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 36424,
+      "ok": 36436,
       "prose-sentence": 27,
       "single-token": 303,
       "stop-word-only": 3
@@ -79956,6 +79956,10 @@
     },
     {
       "path": "specs/system-deep-loop/049-deep-loop-alignment-review/017-guard-index-and-parent-doc-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/050-spec-protocol-ledger-events/scratch",
       "reason": "excluded directory"
     },
     {

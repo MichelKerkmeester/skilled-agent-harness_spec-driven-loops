@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6227cd6dd4beb8dae518e4bb8a0f6eb421c068e82fb53b151c12632e7e9bc1f6",
+  "manifestHash": "22948de5e4e85a7d49263a4a14d1b1ed32e624394e9bac6a370d93b7b3d104de",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -35350,6 +35350,9 @@
     "deep research snake case resources": [
       "deep-research snake_case resources"
     ],
+    "deep research spec write back audit": [
+      "deep research spec write-back audit"
+    ],
     "deep research state jsonl": [
       "deep-research-state.jsonl"
     ],
@@ -57819,6 +57822,9 @@
     "legacy read fallback": [
       "legacy read fallback"
     ],
+    "legacy record has no lossless mode event": [
+      "legacy record has no lossless mode event"
+    ],
     "legacy removal summary": [
       "legacy removal summary"
     ],
@@ -71123,6 +71129,18 @@
     ],
     "packet 048": [
       "packet 048"
+    ],
+    "packet 050 closure gate": [
+      "packet 050 closure gate"
+    ],
+    "packet 050 plan": [
+      "packet 050 plan"
+    ],
+    "packet 050 status": [
+      "packet 050 status"
+    ],
+    "packet 050 tasks": [
+      "packet 050 tasks"
     ],
     "packet 052 live instance": [
       "packet 052 live instance"
@@ -99279,6 +99297,9 @@
     "spec metadata reconciliation": [
       "spec metadata reconciliation"
     ],
+    "spec mutation audit event": [
+      "spec mutation audit event"
+    ],
     "spec mutation gate": [
       "spec mutation gate"
     ],
@@ -99293,6 +99314,21 @@
     ],
     "spec path cleanup": [
       "spec path cleanup"
+    ],
+    "spec protocol ledger events": [
+      "spec protocol ledger events"
+    ],
+    "spec protocol ledger events acceptance": [
+      "spec protocol ledger events acceptance"
+    ],
+    "spec protocol ledger events plan": [
+      "spec protocol ledger events plan"
+    ],
+    "spec protocol ledger events summary": [
+      "spec protocol ledger events summary"
+    ],
+    "spec protocol ledger events tasks": [
+      "spec protocol ledger events tasks"
     ],
     "spec regrouping": [
       "spec regrouping"
