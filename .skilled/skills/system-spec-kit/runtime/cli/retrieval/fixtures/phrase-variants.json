@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fd42fdcbddf682f4d95b00772f87ab19374acbfc4031eac04eb39c8fd45c41e5",
+  "manifestHash": "ff0fa1806a5a158e58ebf32eac4f10b12a4273d3eeb19a2f58325d0a5f4f6461",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -25973,6 +25973,9 @@
     "compiled policy shadow parity rollback": [
       "compiled policy shadow parity rollback"
     ],
+    "compiled route admission build": [
+      "compiled route admission build"
+    ],
     "compiled route cap implementation": [
       "compiled route cap implementation"
     ],
@@ -26318,6 +26321,9 @@
     ],
     "compiled serving admission acceptance": [
       "compiled-serving admission acceptance"
+    ],
+    "compiled serving admission checker": [
+      "compiled-serving admission checker"
     ],
     "compiled serving admission plan": [
       "compiled-serving admission plan"
@@ -50623,6 +50629,18 @@
     "goalprompt": [
       "goalPrompt"
     ],
+    "gold admission checker acceptance": [
+      "gold admission checker acceptance"
+    ],
+    "gold admission checker plan": [
+      "gold admission checker plan"
+    ],
+    "gold admission checker summary": [
+      "gold admission checker summary"
+    ],
+    "gold admission checker tasks": [
+      "gold admission checker tasks"
+    ],
     "gold battery fix summary": [
       "gold battery fix summary"
     ],
@@ -73782,11 +73800,20 @@
     "phase 16 tasks": [
       "phase 16 tasks"
     ],
+    "phase 17 closure gate": [
+      "phase 17 closure gate"
+    ],
+    "phase 17 gold checker": [
+      "phase 17 gold checker"
+    ],
     "phase 17 plan": [
       "phase 17 plan"
     ],
     "phase 17 results": [
       "phase 17 results"
+    ],
+    "phase 17 status": [
+      "phase 17 status"
     ],
     "phase 17 tasks": [
       "phase 17 tasks"
@@ -86594,6 +86621,9 @@
     ],
     "routing findings status": [
       "routing findings status"
+    ],
+    "routing gold admission check": [
+      "routing gold admission check"
     ],
     "routing gold agreement checker": [
       "routing gold agreement checker"
