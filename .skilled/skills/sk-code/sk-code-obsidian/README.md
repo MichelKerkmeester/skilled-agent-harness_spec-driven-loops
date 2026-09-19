@@ -49,7 +49,7 @@ OBSIDIAN now detects, and the plugin's design-system evidence loads with the wor
 
 ### The Design-System Evidence Layer
 
-Unlike `sk-code-mobile-cli`'s Svelte app, this plugin ships no separate design-system document or live
+This plugin ships no separate design-system document or live
 catalog. The **evidence for this surface is the plugin source itself**: `styles.css` (the class
 grammar), `src/views/screenshot-fixtures.test.ts` (the invented-class guard), and
 `tools/screenshots/manifest.json` (the capture freshness record) are the sources of truth this packet's
@@ -89,12 +89,12 @@ A workflow bundling this surface should, in order:
 
 `sk-code` declares a `surface-axis` extension: `packetKind: "surface"` entries are read-only evidence
 bases bundled alongside a workflow mode, never advisor identities of their own. This packet is the
-fourth surface, beside `sk-code-webflow`, `sk-code-opencode`, and `sk-code-mobile-cli`.
+third surface, beside `sk-code-webflow` and `sk-code-opencode`.
 
 ### Detection and Bundling
 
 Surface detection (in `../shared/references/stack-detection.md`) resolves OBSIDIAN from the CWD and
-changed/target files, at precedence **OPENCODE > OBSIDIAN > PI_REMOTE > WEBFLOW > UNKNOWN**, OPENCODE
+changed/target files, at precedence **OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN**, OPENCODE
 still wins a genuinely resolved `.opencode/` target; OBSIDIAN catches the plugin repository's own
 paths, which would otherwise fall to UNKNOWN as generic Node.js. The hub then bundles this surface
 behind the chosen workflow mode via `routerPolicy.outcomes.surfaceBundle` (workflow ordered first,
@@ -112,7 +112,7 @@ returns `[sk-code-quality, sk-code-obsidian]`.
 
 ### Related Skills
 
-- `../sk-code-webflow`, `../sk-code-opencode`, `../sk-code-mobile-cli`: sibling read-only surfaces on
+- `../sk-code-webflow`, `../sk-code-opencode`: sibling read-only surfaces on
   the same axis.
 - `../sk-code-quality`, `../sk-code-review`: workflow modes that bundle this surface.
 - `../shared/`: the implement → debug → verify doctrine this surface folds in via symlink.

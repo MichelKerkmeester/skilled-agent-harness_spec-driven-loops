@@ -21,7 +21,7 @@ This document captures the routing-recall contract, execution process, source an
 This scenario validates the hub's `OBSIDIAN` surface-detection markers for `OB-020`. It focuses on
 confirming the three documented markers — `manifest.json` carrying `minAppVersion`,
 `esbuild.config.mjs`, and `from "obsidian"` imports — resolve `OBSIDIAN` at the hub's documented
-precedence (`OPENCODE > OBSIDIAN > PI_REMOTE > WEBFLOW > UNKNOWN`), independently of which intent a
+precedence (`OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN`), independently of which intent a
 prompt later classifies as. Surface resolution and intent classification are two separate steps in
 this packet's own account (`SKILL.md` §1 versus §2b); this scenario isolates the first step alone.
 
@@ -37,7 +37,7 @@ exercising a surface the hub never actually bundles.
 ## 2. SCENARIO CONTRACT
 
 Operators confirm the three documented `OBSIDIAN` detection markers are present in `SKILL.md` §1 and
-that the precedence order names `OBSIDIAN` above `PI_REMOTE` and `WEBFLOW`.
+that the precedence order names `OBSIDIAN` above `WEBFLOW` and `UNKNOWN`.
 
 - Objective: confirm `SKILL.md` §1 names all three detection markers and the documented precedence
   order, and that the packet's default entry evidence (`obsidian-plugin-api.md`) resolves once
@@ -52,7 +52,7 @@ I'm working in the Obsidian Note Database plugin repo — manifest.json declares
 
 - Expected execution process: the hub reads `SKILL.md` §1's three markers, confirms all three are
   present in the task's CWD/target-file context, and resolves `OBSIDIAN` at the documented
-  precedence over `PI_REMOTE`/`WEBFLOW`/`UNKNOWN`.
+  precedence over `WEBFLOW`/`UNKNOWN`.
 - Expected signals: `SKILL.md` §1 names all three markers and the precedence line; the default entry
   path `references/obsidian-plugin-api.md` exists.
 - Desired user-visible outcome: the bundled workflow states plainly that this task resolves
@@ -79,7 +79,7 @@ I'm working in the Obsidian Note Database plugin repo — manifest.json declares
 
 Step 1 shows `expected_surface: OBSIDIAN`. Step 2's output names all three markers (`manifest.json`
 carrying `minAppVersion`, `esbuild.config.mjs`, `from "obsidian"` imports) and the precedence line
-`OPENCODE > OBSIDIAN > PI_REMOTE > WEBFLOW > UNKNOWN`. Step 3 prints `OK`.
+`OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN`. Step 3 prints `OK`.
 
 ### Evidence
 

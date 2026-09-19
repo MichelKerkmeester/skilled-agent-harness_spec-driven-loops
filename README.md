@@ -947,7 +947,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.skilled/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
 **What "adapting `sk-code`" looks like**:
-- Replace the surface packets (`sk-code-webflow/`, `sk-code-opencode/`, `sk-code-mobile-cli/`, `sk-code-obsidian/`) with packets for your stack. Each one owns its own `references/` and `assets/`.
+- Replace the surface packets (`sk-code-webflow/`, `sk-code-opencode/`, `sk-code-obsidian/`) with packets for your stack. Each one owns its own `references/` and `assets/`.
 - Register your packets in `mode-registry.json` and `hub-router.json`, and update the mode table in `SKILL.md` §1.
 - Update `shared/references/stack-detection.md` to match your stack's marker files and CWD signals.
 - Update the `RESOURCE_MAP` in `ROUTER.md` §11 so each intent key points at your renamed packet resources.

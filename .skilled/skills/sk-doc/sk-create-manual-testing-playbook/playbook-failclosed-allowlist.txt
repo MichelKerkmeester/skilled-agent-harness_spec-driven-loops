@@ -30,7 +30,6 @@
 .skilled/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook
 .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook
 .skilled/skills/sk-code/manual-testing-playbook
-.skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook
 .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook
 .skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook
 .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook

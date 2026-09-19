@@ -56,7 +56,7 @@ styling. The runtime dependency surface is `chart.js` alone; everything else (`o
 ## 3. MODULE HEADERS AND SECTIONS — TARGET, NOT SHIPPED
 
 A `MODULE:` banner plus numbered box-drawing sections is this packet's proposed target
-(`comment-grammar.md`), mirroring `sk-code-mobile-cli`. **Zero of 249 source files carry one
+(`comment-grammar.md`). **Zero of 249 source files carry one
 today** (measured). Do not describe any file in this tree as following that convention until a
 later phase adopts it and the count changes.
 
@@ -67,7 +67,7 @@ later phase adopts it and the count changes.
 Files are **PascalCase-dominant**: 232 PascalCase filenames against 16 kebab-case, measured, with
 one camelCase outlier (`textLinkScheme`) and one underscore-prefixed folder (`_shared`, under
 `tools/screenshots/scenarios/`). No scanner enforces either form today. A kebab-case target exists
-(mirroring `sk-code-mobile-cli`'s own filename grammar) but is not adopted — see the design
+but is not adopted — see the design
 plan's phase sequencing for the manifest-driven rename that would execute it. Functions are
 camelCase, interfaces/types are PascalCase, and constants that are true module-level constants are
 UPPER_SNAKE_CASE (`DATABASE_VIEW_TYPE`, `TOUCH_LAYOUT_MAX_WIDTH`, `MAX_SOURCE_RULE_MATCH_TEXT_

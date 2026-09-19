@@ -1,6 +1,6 @@
 ---
 title: Folder Documentation Thresholds (Target State)
-description: The README.md/CODE.md pairing threshold mirrored from sk-code-mobile-cli — three or more direct source files, or any child folder that itself contains source — and the seven folders that owe both today, measured, none of which carry either yet.
+description: The README.md/CODE.md pairing threshold — three or more direct source files, or any child folder that itself contains source — and the seven folders that owe both today, measured, none of which carry either yet.
 trigger_phrases:
   - "folder owes readme code md obsidian plugin"
   - "zero folder docs exist in plugin tree"
@@ -13,8 +13,8 @@ version: 0.1.0.0
 
 # Folder Documentation Thresholds (Target State)
 
-This packet proposes the same `README.md`/`CODE.md` folder-doc threshold `sk-code-mobile-cli`
-uses for its own tree. **Zero folders in this plugin carry either document today.** This
+This packet proposes a `README.md`/`CODE.md` folder-doc threshold. **Zero folders in this plugin
+carry either document today.** This
 reference names the threshold and exactly which folders would owe what, measured against the
 current tree — a target to adopt, not a state already reached.
 
@@ -25,8 +25,8 @@ current tree — a target to adopt, not a state already reached.
 ### Core Principle
 
 Documentation weight tracks folder weight. A folder below the threshold owes a `README.md` only;
-at or above it, it also owes a `CODE.md` code map. The same threshold `sk-code-mobile-cli`
-enforces for `app-mobile/src` applies here: **3 or more direct source files, OR any child folder
+at or above it, it also owes a `CODE.md` code map. The threshold applied here is:
+**3 or more direct source files, OR any child folder
 that itself contains source.**
 
 ### When to Use
@@ -38,8 +38,6 @@ that itself contains source.**
 ### Key Sources
 
 - `002-repo-convention-audit/audit.json` → `folderDocs` — the measured owing list below
-- `$HUB/.skilled/skills/sk-code/sk-code-mobile-cli/references/folder-docs.md` — the mirrored
-  source convention
 
 ---
 

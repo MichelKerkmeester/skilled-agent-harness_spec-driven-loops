@@ -140,22 +140,6 @@
       }
     },
     {
-      "id": "single-mobile-cli",
-      "prompt": "svelte design system",
-      "riskSlice": "evidence:nonmutating:single",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "sk-code-mobile-cli"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "sk-code-mobile-cli"
-        ],
-        "expectedResources": []
-      }
-    },
-    {
       "id": "single-obsidian",
       "prompt": "obsidian plugin implementation",
       "riskSlice": "evidence:nonmutating:single",

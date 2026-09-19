@@ -1,5 +1,5 @@
 {
-  "manifestHash": "22948de5e4e85a7d49263a4a14d1b1ed32e624394e9bac6a370d93b7b3d104de",
+  "manifestHash": "4d3f7357d4291daebfde91e13772f33ee9b6ce5abc34ec497290fcf7b08045d3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8589,9 +8589,6 @@
     "a1 extend quality loop authored tasks": [
       "a1 extend quality loop authored tasks"
     ],
-    "a11y parity checklist": [
-      "a11y parity checklist"
-    ],
     "a7 sanitizer": [
       "a7 sanitizer"
     ],
@@ -8744,9 +8741,6 @@
     ],
     "acb scenario contract": [
       "ACB scenario contract"
-    ],
-    "accent strong asymmetric": [
-      "accent strong asymmetric"
     ],
     "accept path unexercised": [
       "accept path unexercised"
@@ -9308,6 +9302,24 @@
     ],
     "adjudicator verdict scoring cjs": [
       "adjudicator-verdict-scoring.cjs"
+    ],
+    "admission baseline fix": [
+      "admission baseline fix"
+    ],
+    "admission baseline fix acceptance": [
+      "admission baseline fix acceptance"
+    ],
+    "admission baseline fix plan": [
+      "admission baseline fix plan"
+    ],
+    "admission baseline fix summary": [
+      "admission baseline fix summary"
+    ],
+    "admission baseline fix tasks": [
+      "admission baseline fix tasks"
+    ],
+    "admission ci blocking": [
+      "admission ci blocking"
     ],
     "admission research fan out": [
       "admission research fan-out"
@@ -11497,9 +11509,6 @@
     "ai council strategy 029": [
       "ai council strategy 029"
     ],
-    "ai deploy playbook": [
-      "ai deploy playbook"
-    ],
     "ai derived slug rule": [
       "ai-derived slug rule"
     ],
@@ -11999,9 +12008,6 @@
     "and or filter stacking": [
       "and or filter stacking"
     ],
-    "android emulator preview": [
-      "android emulator preview"
-    ],
     "android health data files": [
       "android health data files"
     ],
@@ -12173,9 +12179,6 @@
     ],
     "app design research": [
       "app design research"
-    ],
-    "app path resolves top level": [
-      "app path resolves top-level"
     ],
     "append after repair": [
       "append after repair"
@@ -12765,9 +12768,6 @@
     ],
     "argv positional subsystem route": [
       "argv-positional subsystem route"
-    ],
-    "aria hide outside overlay": [
-      "aria hide outside overlay"
     ],
     "aria state sync": [
       "aria state sync"
@@ -13534,9 +13534,6 @@
     "attachment metadata": [
       "attachment metadata"
     ],
-    "attention inbox fallback": [
-      "attention inbox fallback"
-    ],
     "attestation point implementation summary": [
       "attestation point implementation summary"
     ],
@@ -14188,9 +14185,6 @@
     "backlog gauge shipped pending": [
       "backlog gauge shipped pending"
     ],
-    "backticked path claim verify": [
-      "backticked path claim verify"
-    ],
     "backup file removal audit": [
       "backup file removal audit"
     ],
@@ -14229,9 +14223,6 @@
     ],
     "bar line composed tooltip transfer": [
       "bar-line-composed tooltip transfer"
-    ],
-    "barcode detector scan image": [
-      "barcode detector scan image"
     ],
     "bare integer reference hit rate": [
       "bare integer reference hit rate"
@@ -14569,9 +14560,6 @@
     "before after template": [
       "before-after template"
     ],
-    "before claiming a color change works": [
-      "before claiming a color change works"
-    ],
     "beforemcpexecution payload": [
       "beforeMCPExecution payload"
     ],
@@ -14691,9 +14679,6 @@
     ],
     "bem naming enforcement": [
       "bem naming enforcement"
-    ],
-    "bem rename checklist": [
-      "bem rename checklist"
     ],
     "bench gate calibration": [
       "bench gate calibration"
@@ -15253,9 +15238,6 @@
     "bitemporal wiring corrupts live reads": [
       "bitemporal wiring corrupts live reads"
     ],
-    "bits ui accessibility parity": [
-      "bits-ui accessibility parity"
-    ],
     "black cell acceptance": [
       "black cell acceptance"
     ],
@@ -15348,12 +15330,6 @@
     ],
     "block convergence critical disagreement": [
       "block convergence critical disagreement"
-    ],
-    "block element class naming": [
-      "block element class naming"
-    ],
-    "block element rename complete": [
-      "block--element rename complete"
     ],
     "block task sequencing": [
       "block task sequencing"
@@ -15562,9 +15538,6 @@
     "boot integrity retention probe tasks": [
       "boot integrity retention probe tasks"
     ],
-    "boot pi remote": [
-      "boot pi remote"
-    ],
     "boot scan rebuild repair": [
       "boot scan rebuild repair"
     ],
@@ -15678,9 +15651,6 @@
     ],
     "box art diagram spec kit": [
       "box-art diagram spec-kit"
-    ],
-    "box drawing section banner": [
-      "box drawing section banner"
     ],
     "box drawing section banner target state": [
       "box drawing section banner target state"
@@ -15909,12 +15879,6 @@
     ],
     "browser devtools profiling": [
       "browser devtools profiling"
-    ],
-    "browser free resolver proof": [
-      "browser-free resolver proof"
-    ],
-    "browser free verification gate": [
-      "browser-free verification gate"
     ],
     "browser launch fails": [
       "browser launch fails"
@@ -17013,9 +16977,6 @@
     "catalog and playbook generator tasks": [
       "catalog and playbook generator tasks"
     ],
-    "catalog and screenshot archive": [
-      "catalog and screenshot archive"
-    ],
     "catalog bijection phantom row": [
       "catalog bijection phantom row"
     ],
@@ -17175,12 +17136,6 @@
     ],
     "catalog schema version history error codes enrichment": [
       "catalog schema version history error codes enrichment"
-    ],
-    "catalog smoke render": [
-      "catalog smoke render"
-    ],
-    "catalog smoke render both themes": [
-      "catalog smoke render both themes"
     ],
     "catalog snippet subheadings": [
       "catalog snippet subheadings"
@@ -17521,9 +17476,6 @@
     ],
     "cg remediation branch fixes": [
       "cg-remediation branch fixes"
-    ],
-    "change a colour or spacing": [
-      "change a colour or spacing"
     ],
     "change gate obsidian plugin": [
       "change gate obsidian plugin"
@@ -19206,14 +19158,8 @@
     "class h root router md": [
       "class-H root ROUTER.md"
     ],
-    "class name vs dom id token": [
-      "class name vs dom id token"
-    ],
     "class of bug vs finding": [
       "class of bug vs finding"
-    ],
-    "class prop global rule": [
-      "class prop global rule"
     ],
     "class s skill build": [
       "class-S skill build"
@@ -21145,6 +21091,15 @@
     "cli pi bridge phase parent 045": [
       "cli pi bridge phase parent 045"
     ],
+    "cli pi build brief plan": [
+      "cli-pi build brief plan"
+    ],
+    "cli pi build brief summary": [
+      "cli-pi build brief summary"
+    ],
+    "cli pi build brief tasks": [
+      "cli-pi build brief tasks"
+    ],
     "cli pi carve out rationale": [
       "cli-pi carve-out rationale"
     ],
@@ -21273,6 +21228,9 @@
     ],
     "cli pi native model bridge": [
       "cli pi native model bridge"
+    ],
+    "cli pi one change per brief": [
+      "cli-pi one change per brief"
     ],
     "cli pi opencode openrouter roster plan": [
       "cli-pi opencode openrouter roster plan"
@@ -22159,9 +22117,6 @@
     ],
     "cluster validate formatters tests": [
       "cluster validate formatters tests"
-    ],
-    "co located stories ts component": [
-      "co-located stories.ts component"
     ],
     "coaching marker waiver adr": [
       "coaching marker waiver adr"
@@ -23449,9 +23404,6 @@
     "code index tool decommission cleanup": [
       "code-index tool decommission cleanup"
     ],
-    "code map source folder": [
-      "code map source folder"
-    ],
     "code mode": [
       "code mode"
     ],
@@ -23984,9 +23936,6 @@
     ],
     "code standards research outcome": [
       "code standards research outcome"
-    ],
-    "code standards summary": [
-      "code standards summary"
     ],
     "code style enforcement gate": [
       "code style enforcement gate"
@@ -25497,9 +25446,6 @@
     "comment checker vocabulary holes": [
       "comment checker vocabulary holes"
     ],
-    "comment convention mobile cli": [
-      "comment convention mobile cli"
-    ],
     "comment ephemeral pointer cleanup": [
       "comment ephemeral pointer cleanup"
     ],
@@ -25520,9 +25466,6 @@
     ],
     "comment extraction tasks": [
       "comment extraction tasks"
-    ],
-    "comment grammar scan": [
-      "comment grammar scan"
     ],
     "comment hygiene": [
       "comment hygiene"
@@ -25966,6 +25909,9 @@
     ],
     "compiled eligibility single source": [
       "compiled eligibility single source"
+    ],
+    "compiled engine drift fix": [
+      "compiled engine drift fix"
     ],
     "compiled lane c parity harness": [
       "compiled lane c parity harness"
@@ -26550,9 +26496,6 @@
     "compliance log review": [
       "compliance log review"
     ],
-    "component catalog pi remote": [
-      "component catalog pi remote"
-    ],
     "component choice agent skill command": [
       "component choice agent skill command"
     ],
@@ -26574,9 +26517,6 @@
     "component migration fan out": [
       "component migration fan-out"
     ],
-    "component misbehaves at runtime": [
-      "component misbehaves at runtime"
-    ],
     "component naming gate plan": [
       "component naming gate plan"
     ],
@@ -26589,17 +26529,8 @@
     "component state matrix": [
       "component state matrix"
     ],
-    "component story required": [
-      "component story required"
-    ],
     "component taxonomy": [
       "component taxonomy"
-    ],
-    "component token blast radius": [
-      "component token blast radius"
-    ],
-    "component token retint": [
-      "component token retint"
     ],
     "compose after requires authority from": [
       "compose after requires authority from"
@@ -26903,9 +26834,6 @@
     ],
     "confirm invariance": [
       "confirm invariance"
-    ],
-    "confirm no do not edit fence changed": [
-      "confirm no do-not-edit fence changed"
     ],
     "confirm the target file": [
       "confirm the target file"
@@ -29953,9 +29881,6 @@
     "cross ai scoring": [
       "cross-AI scoring"
     ],
-    "cross boundary state selector": [
-      "cross boundary state selector"
-    ],
     "cross cli intent stability": [
       "cross-CLI intent stability"
     ],
@@ -30162,9 +30087,6 @@
     ],
     "cross repo drift guard": [
       "cross-repo drift guard"
-    ],
-    "cross repo path drift": [
-      "cross repo path drift"
     ],
     "cross role handoff": [
       "cross role handoff"
@@ -30379,9 +30301,6 @@
     "css autofill override patterns": [
       "css autofill override patterns"
     ],
-    "css class rename pi remote": [
-      "css class rename pi remote"
-    ],
     "css component state patterns": [
       "css component state patterns"
     ],
@@ -30397,9 +30316,6 @@
     "css decision matrix": [
       "css decision matrix"
     ],
-    "css decomposition cascade": [
-      "css decomposition cascade"
-    ],
     "css deployment checklist": [
       "css deployment checklist"
     ],
@@ -30412,14 +30328,8 @@
     "css has parent selector": [
       "css has parent selector"
     ],
-    "css naming grammar scan": [
-      "css naming grammar scan"
-    ],
     "css pass criteria": [
       "css pass criteria"
-    ],
-    "css resolver method": [
-      "css resolver method"
     ],
     "css snippet customization": [
       "css snippet customization"
@@ -31837,9 +31747,6 @@
     ],
     "database icon": [
       "database icon"
-    ],
-    "database migrations": [
-      "database migrations"
     ],
     "database open close tests": [
       "database open close tests"
@@ -36878,9 +36785,6 @@
     "deploy mcp sh rebuild recycle helper": [
       "deploy-mcp.sh rebuild recycle helper"
     ],
-    "deploy pi remote": [
-      "deploy pi remote"
-    ],
     "deprecate cocoindex phase 010": [
       "deprecate cocoindex phase 010"
     ],
@@ -38074,15 +37978,6 @@
     "design system extractor cli": [
       "design-system-extractor cli"
     ],
-    "design system guardrails": [
-      "design system guardrails"
-    ],
-    "design system mobile cli": [
-      "design system mobile cli"
-    ],
-    "design system value preservation check": [
-      "design system value-preservation check"
-    ],
     "design thresholds": [
       "design thresholds"
     ],
@@ -38115,12 +38010,6 @@
     ],
     "design writing style": [
       "design writing style"
-    ],
-    "designer catalog tuning": [
-      "designer catalog tuning"
-    ],
-    "designer edit safety check": [
-      "designer edit safety check"
     ],
     "desired prior diff actions": [
       "desired prior diff actions"
@@ -38302,23 +38191,8 @@
     "device and inode match": [
       "device and inode match"
     ],
-    "device and session management": [
-      "device and session management"
-    ],
-    "device enrollment": [
-      "device enrollment"
-    ],
-    "device lockout": [
-      "device lockout"
-    ],
     "device metrics override": [
       "device metrics override"
-    ],
-    "device preview on mac": [
-      "device preview on mac"
-    ],
-    "device revocation": [
-      "device revocation"
     ],
     "devin": [
       "devin"
@@ -39361,9 +39235,6 @@
     "dialog role aria modal panel": [
       "dialog role aria-modal panel"
     ],
-    "diff add remove tokens": [
-      "diff add remove tokens"
-    ],
     "diff budget": [
       "diff budget"
     ],
@@ -39657,9 +39528,6 @@
     ],
     "disable github ruleset admin push": [
       "disable github ruleset admin push"
-    ],
-    "disable mutation authority": [
-      "disable mutation authority"
     ],
     "discard failed experiment branch": [
       "discard failed experiment branch"
@@ -40084,15 +39952,6 @@
     "do not cite results": [
       "do_not_cite_results"
     ],
-    "do not edit guardrail note": [
-      "do not edit guardrail note"
-    ],
-    "do not edit note": [
-      "do not edit note"
-    ],
-    "do not edit notes": [
-      "do not edit notes"
-    ],
     "do not re pin the baseline": [
       "do not re-pin the baseline"
     ],
@@ -40179,9 +40038,6 @@
     ],
     "doc quality dead command binding": [
       "doc quality dead command binding"
-    ],
-    "doc quality gate": [
-      "doc quality gate"
     ],
     "doc quality mode audit plan": [
       "doc quality mode audit plan"
@@ -40302,9 +40158,6 @@
     ],
     "docs catalogs phase parent": [
       "docs catalogs phase parent"
-    ],
-    "docs change gate": [
-      "docs change gate"
     ],
     "docs change gate obsidian surface": [
       "docs change gate obsidian surface"
@@ -41082,14 +40935,8 @@
     "dotenv variable loading": [
       "dotenv variable loading"
     ],
-    "double dash bem delimiter": [
-      "double dash bem delimiter"
-    ],
     "double quoted variables": [
       "double quoted variables"
-    ],
-    "down migration schema reversal": [
-      "down migration schema reversal"
     ],
     "download attachment": [
       "download attachment"
@@ -41123,12 +40970,6 @@
     ],
     "dqi regression gate": [
       "dqi regression gate"
-    ],
-    "dqi score regression check": [
-      "dqi score regression check"
-    ],
-    "dqi score target": [
-      "dqi score target"
     ],
     "dqi score target reference file": [
       "dqi score target reference file"
@@ -41709,9 +41550,6 @@
     "durable wave scheduler plan": [
       "durable wave scheduler plan"
     ],
-    "durable why comment": [
-      "durable why comment"
-    ],
     "durable why replacement": [
       "durable why replacement"
     ],
@@ -41732,12 +41570,6 @@
     ],
     "dynamic 5d scoring mode": [
       "dynamic-5d scoring mode"
-    ],
-    "dynamic class construction kind": [
-      "dynamic class construction kind"
-    ],
-    "dynamic class rename audit": [
-      "dynamic class rename audit"
     ],
     "dynamic db class construction site": [
       "dynamic db class construction site"
@@ -41956,12 +41788,6 @@
     "edit note yaml metadata": [
       "edit note YAML metadata"
     ],
-    "editable seams and frozen lines": [
-      "editable seams and frozen lines"
-    ],
-    "editable seams reference catalog": [
-      "editable seams reference catalog"
-    ],
     "editorial extraction exemplar": [
       "editorial extraction exemplar"
     ],
@@ -41989,9 +41815,6 @@
     "effect enablement tasks": [
       "effect enablement tasks"
     ],
-    "effect loop self invalidation": [
-      "effect loop self invalidation"
-    ],
     "effect producer at dispatch": [
       "effect producer at dispatch"
     ],
@@ -42006,9 +41829,6 @@
     ],
     "effect recovery gateway tasks": [
       "effect recovery gateway tasks"
-    ],
-    "effect update depth exceeded pi remote": [
-      "effect update depth exceeded pi remote"
     ],
     "effectivedepth gate query handler": [
       "effectiveDepth gate query handler"
@@ -43060,12 +42880,6 @@
     "enrichment state helpers": [
       "enrichment-state helpers"
     ],
-    "enroll the phone": [
-      "enroll the phone"
-    ],
-    "enrollment installation limits": [
-      "enrollment installation limits"
-    ],
     "ensure ready debounce stale read": [
       "ensure-ready debounce stale read"
     ],
@@ -43651,9 +43465,6 @@
     "evidence before claims obsidian plugin": [
       "evidence before claims obsidian plugin"
     ],
-    "evidence before claims pi remote": [
-      "evidence before claims — pi remote"
-    ],
     "evidence boundary fix": [
       "evidence boundary fix"
     ],
@@ -43771,9 +43582,6 @@
     ],
     "ex 037 ex 042 scenario plan": [
       "EX-037 EX-042 scenario plan"
-    ],
-    "exact action approval": [
-      "exact-action approval"
     ],
     "exact original assembly fallback": [
       "exact-original assembly fallback"
@@ -44455,9 +44263,6 @@
     ],
     "extract session data": [
       "extract session data"
-    ],
-    "extract structure script": [
-      "extract structure script"
     ],
     "extract structure script obsidian": [
       "extract structure script obsidian"
@@ -47566,12 +47371,6 @@
     "focus ring and keyboard navigation": [
       "focus ring and keyboard navigation"
     ],
-    "focus ring data focus visible": [
-      "focus ring data-focus-visible"
-    ],
-    "focus ring hover state svelte": [
-      "focus ring hover state svelte"
-    ],
     "focus trap modal": [
       "focus trap modal"
     ],
@@ -47626,17 +47425,8 @@
     "folder discovery weak signal gate": [
       "folder discovery weak signal gate"
     ],
-    "folder doc reference resolution": [
-      "folder doc reference resolution"
-    ],
     "folder docs checklist obsidian plugin": [
       "folder docs checklist obsidian plugin"
-    ],
-    "folder docs scan": [
-      "folder docs scan"
-    ],
-    "folder documentation threshold": [
-      "folder documentation threshold"
     ],
     "folder documentation threshold obsidian": [
       "folder documentation threshold obsidian"
@@ -47661,9 +47451,6 @@
     ],
     "folder owes a readme": [
       "folder owes a readme"
-    ],
-    "folder owes code md": [
-      "folder owes code md"
     ],
     "folder owes readme code md obsidian plugin": [
       "folder owes readme code md obsidian plugin"
@@ -48636,9 +48423,6 @@
     "frozen corpus routing replay": [
       "frozen corpus routing replay"
     ],
-    "frozen primitive tokens": [
-      "frozen primitive tokens"
-    ],
     "frozen rename map executable": [
       "frozen rename map executable"
     ],
@@ -48650,9 +48434,6 @@
     ],
     "frozen scorer digest re pin": [
       "frozen scorer digest re-pin"
-    ],
-    "frozen security posture": [
-      "frozen security posture"
     ],
     "frozen sha gate": [
       "frozen sha gate"
@@ -48725,9 +48506,6 @@
     ],
     "fts5 shadow rebuild": [
       "FTS5 shadow rebuild"
-    ],
-    "full access runtime verifier": [
-      "full-access runtime verifier"
     ],
     "full auto canonical save self reject": [
       "full-auto canonical save self-reject"
@@ -50097,9 +49875,6 @@
     ],
     "global changelog example": [
       "global changelog example"
-    ],
-    "global css ownership": [
-      "global css ownership"
     ],
     "global disable": [
       "global disable"
@@ -51563,12 +51338,6 @@
     ],
     "guardrail activation gate tasks": [
       "guardrail activation gate tasks"
-    ],
-    "guardrail audit checklist": [
-      "guardrail audit checklist"
-    ],
-    "guardrail fence counter": [
-      "guardrail fence counter"
     ],
     "guardrail negative controls": [
       "guardrail negative controls"
@@ -53195,6 +52964,9 @@
     "hub command surface validation": [
       "hub command surface validation"
     ],
+    "hub de registration": [
+      "hub de-registration"
+    ],
     "hub description budget trim": [
       "hub description budget trim"
     ],
@@ -54692,9 +54464,6 @@
     "independent review verification": [
       "independent review verification"
     ],
-    "indeterminate mutation": [
-      "indeterminate mutation"
-    ],
     "index fingerprint": [
       "index fingerprint"
     ],
@@ -55121,9 +54890,6 @@
     "install surface repair": [
       "install surface repair"
     ],
-    "install the pwa": [
-      "install the pwa"
-    ],
     "install time prewarm distribution legacy kill switch": [
       "install-time prewarm distribution legacy kill switch"
     ],
@@ -55514,9 +55280,6 @@
     "internal spec references": [
       "internal spec references"
     ],
-    "interpolated class must resolve": [
-      "interpolated class must resolve"
-    ],
     "interpreter candidate search": [
       "interpreter candidate search"
     ],
@@ -55643,12 +55406,6 @@
     "invite guest user": [
       "invite guest user"
     ],
-    "ios safari installed pwa": [
-      "ios safari installed pwa"
-    ],
-    "ios simulator pi remote": [
-      "ios simulator pi remote"
-    ],
     "ipc bridge handshake exclusive lease": [
       "ipc bridge handshake exclusive lease"
     ],
@@ -55708,12 +55465,6 @@
     ],
     "is phone body class capture": [
       "is-phone body class capture"
-    ],
-    "is state class rename": [
-      "is- state class rename"
-    ],
-    "is state modifier single dash": [
-      "is state modifier single dash"
     ],
     "is the route gold green hollow": [
       "is the route-gold green hollow"
@@ -56458,9 +56209,6 @@
     ],
     "keyed versus free text retrieval": [
       "keyed versus free-text retrieval"
-    ],
-    "keyframes ownership": [
-      "keyframes ownership"
     ],
     "keystone composition implementation": [
       "keystone composition implementation"
@@ -57537,9 +57285,6 @@
     "lease eperm accept no action": [
       "lease EPERM accept-no-action"
     ],
-    "lease expiry": [
-      "lease expiry"
-    ],
     "lease hardening shipped": [
       "lease hardening shipped"
     ],
@@ -58146,9 +57891,6 @@
     "light dark chart gallery": [
       "light dark chart gallery"
     ],
-    "light dark system dark": [
-      "light dark system dark"
-    ],
     "light developer style reference example": [
       "light developer style reference example"
     ],
@@ -58473,9 +58215,6 @@
     ],
     "literal naming tasks": [
       "literal naming tasks"
-    ],
-    "literal roles per theme": [
-      "literal roles per theme"
     ],
     "literal spec folder names": [
       "literal spec folder names",
@@ -59048,9 +58787,6 @@
     "local owner artifact rollback": [
       "local owner artifact rollback"
     ],
-    "local pi smoke test": [
-      "local pi smoke test"
-    ],
     "local projection design": [
       "local projection design"
     ],
@@ -59398,9 +59134,6 @@
     ],
     "machine readable task list": [
       "machine-readable task list"
-    ],
-    "machine status stage readiness": [
-      "machine status stage readiness"
     ],
     "macos daemon ipc sock einval": [
       "macOS daemon-ipc.sock einval"
@@ -60524,9 +60257,6 @@
     ],
     "marker preservation": [
       "marker preservation"
-    ],
-    "markup section comment": [
-      "markup section comment"
     ],
     "marquee autoplay control": [
       "marquee autoplay control"
@@ -66067,9 +65797,6 @@
     "model server supervision fstat symlink rejection": [
       "model server supervision fstat symlink rejection"
     ],
-    "model sheet tokens": [
-      "model sheet tokens"
-    ],
     "model swap": [
       "model swap"
     ],
@@ -66133,23 +65860,14 @@
     "module banner checklist": [
       "module banner checklist"
     ],
-    "module banner comment": [
-      "module banner comment"
-    ],
     "module banner comment obsidian plugin": [
       "module banner comment obsidian plugin"
-    ],
-    "module banner section divider": [
-      "module banner section divider"
     ],
     "module component headers": [
       "MODULE COMPONENT headers"
     ],
     "module header block": [
       "MODULE header block"
-    ],
-    "module header conformance": [
-      "module header conformance"
     ],
     "module map": [
       "module map"
@@ -66607,9 +66325,6 @@
     "mutation hooks action batches": [
       "mutation hooks action batches"
     ],
-    "mutation kill switch": [
-      "mutation kill switch"
-    ],
     "mutation ledger automated audit": [
       "mutation_ledger automated audit"
     ],
@@ -66675,9 +66390,6 @@
     ],
     "naming": [
       "naming"
-    ],
-    "naming and commenting standards": [
-      "naming and commenting standards"
     ],
     "naming checker code dirs scope gap": [
       "naming checker code dirs scope gap"
@@ -66831,9 +66543,6 @@
     ],
     "native trial log 13 rows": [
       "native trial log 13 rows"
-    ],
-    "natural comment convention": [
-      "natural comment convention"
     ],
     "natural human vs rcaf": [
       "natural human vs rcaf"
@@ -67029,9 +66738,6 @@
     ],
     "never invent a db class": [
       "never invent a db class"
-    ],
-    "never invent story values": [
-      "never invent story values"
     ],
     "never run test files wired or deleted": [
       "never-run test files wired or deleted"
@@ -68197,9 +67903,6 @@
     "numeric design laws": [
       "numeric design laws"
     ],
-    "numeric thresholds release": [
-      "numeric thresholds release"
-    ],
     "numerical accuracy validation": [
       "numerical accuracy validation"
     ],
@@ -69220,9 +68923,6 @@
     "onboard style guide": [
       "onboard style guide"
     ],
-    "onboard the phone": [
-      "onboard the phone"
-    ],
     "onboarding completion states": [
       "onboarding completion states"
     ],
@@ -69366,9 +69066,6 @@
     ],
     "open the changed png": [
       "open the changed png"
-    ],
-    "open the component catalog": [
-      "open the component catalog"
     ],
     "open the obsidian daily note headlessly": [
       "open the Obsidian daily note headlessly"
@@ -72072,9 +71769,6 @@
     "path resolution parity test": [
       "path resolution parity test"
     ],
-    "path rot after app moves": [
-      "path rot after app moves"
-    ],
     "path scoped validation rules": [
       "path-scoped validation rules"
     ],
@@ -72533,9 +72227,6 @@
     ],
     "per skill kebab case migration": [
       "per-skill kebab-case migration"
-    ],
-    "per surface component tokens": [
-      "per-surface component tokens"
     ],
     "per surface differences": [
       "per-surface differences"
@@ -73878,8 +73569,17 @@
     "phase 19 benchmarks": [
       "phase 19 benchmarks"
     ],
+    "phase 19 closure gate": [
+      "phase 19 closure gate"
+    ],
     "phase 19 implementation summary": [
       "phase 19 implementation summary"
+    ],
+    "phase 19 plan": [
+      "phase 19 plan"
+    ],
+    "phase 19 status": [
+      "phase 19 status"
     ],
     "phase 19 tasks": [
       "phase 19 tasks"
@@ -73902,6 +73602,9 @@
     "phase 2 tasks": [
       "phase 2 tasks"
     ],
+    "phase 20 closure gate": [
+      "phase 20 closure gate"
+    ],
     "phase 20 implementation summary": [
       "phase 20 implementation summary"
     ],
@@ -73913,6 +73616,9 @@
     ],
     "phase 20 sk code rename": [
       "phase 20 sk-code rename"
+    ],
+    "phase 20 status": [
+      "phase 20 status"
     ],
     "phase 20 tasks": [
       "phase 20 tasks"
@@ -74481,6 +74187,15 @@
     "pi bare model id llmgateway": [
       "pi bare model id llmgateway"
     ],
+    "pi blackhole dispatched child": [
+      "pi-blackhole dispatched child"
+    ],
+    "pi blackhole passive": [
+      "pi blackhole passive"
+    ],
+    "pi blackhole passive child": [
+      "pi blackhole passive child"
+    ],
     "pi built in tools": [
       "pi built-in tools"
     ],
@@ -74593,6 +74308,9 @@
     "pi caching synthesis": [
       "pi caching synthesis"
     ],
+    "pi child compaction loop": [
+      "pi child compaction loop"
+    ],
     "pi claude app parity": [
       "pi claude app parity"
     ],
@@ -74601,9 +74319,6 @@
     ],
     "pi claude hook adapter": [
       "pi claude hook adapter"
-    ],
-    "pi clay accent token": [
-      "pi-clay accent token"
     ],
     "pi clear check": [
       "pi clear check"
@@ -75290,20 +75005,8 @@
     "pi remote best experience": [
       "pi remote best experience"
     ],
-    "pi remote boot": [
-      "pi remote boot"
-    ],
-    "pi remote code standards": [
-      "pi remote code standards"
-    ],
     "pi remote contract and threat baseline": [
       "pi remote contract and threat baseline"
-    ],
-    "pi remote deployment verification": [
-      "pi remote deployment verification"
-    ],
-    "pi remote design system verification": [
-      "pi remote design system verification"
     ],
     "pi remote documentation and runbooks": [
       "pi remote documentation and runbooks"
@@ -75311,23 +75014,14 @@
     "pi remote experience parity": [
       "pi remote experience parity"
     ],
-    "pi remote guardrail check": [
-      "pi remote guardrail check"
-    ],
     "pi remote mobile": [
       "pi remote mobile"
     ],
     "pi remote mobile pwa and reconciliation": [
       "pi remote mobile pwa and reconciliation"
     ],
-    "pi remote operations": [
-      "pi remote operations"
-    ],
     "pi remote phase map": [
       "pi remote phase map"
-    ],
-    "pi remote phone enrollment": [
-      "pi remote phone enrollment"
     ],
     "pi remote push and platform hardening": [
       "pi remote push and platform hardening"
@@ -75338,23 +75032,8 @@
     "pi remote release verification and rollout": [
       "pi remote release verification and rollout"
     ],
-    "pi remote rollback": [
-      "pi remote rollback"
-    ],
-    "pi remote security posture": [
-      "pi remote security posture"
-    ],
-    "pi remote setup": [
-      "pi remote setup"
-    ],
-    "pi remote token layers": [
-      "pi remote token layers"
-    ],
     "pi remote ux research": [
       "pi remote ux research"
-    ],
-    "pi remote verification checklist": [
-      "pi remote verification checklist"
     ],
     "pi resource loader": [
       "pi resource loader"
@@ -75367,9 +75046,6 @@
     ],
     "pi rpc mode": [
       "pi rpc mode"
-    ],
-    "pi rpc mode transition": [
-      "pi rpc mode transition"
     ],
     "pi rpc relay": [
       "pi rpc relay"
@@ -75817,9 +75493,6 @@
     ],
     "platform ismobile istablet": [
       "platform.ismobile istablet"
-    ],
-    "platform limits push delivery": [
-      "platform limits push delivery"
     ],
     "playbook": [
       "playbook"
@@ -76526,9 +76199,6 @@
     ],
     "portable shebang sweep": [
       "portable shebang sweep"
-    ],
-    "ported effect re run loop": [
-      "ported effect re-run loop"
     ],
     "portfolio map": [
       "portfolio map"
@@ -77359,9 +77029,6 @@
     "presentation md to txt": [
       "presentation md to txt"
     ],
-    "presentation only edits": [
-      "presentation only edits"
-    ],
     "presentation ownership typed exceptions": [
       "presentation ownership typed exceptions"
     ],
@@ -77424,12 +77091,6 @@
     ],
     "primary secondary tertiary content": [
       "primary secondary tertiary content"
-    ],
-    "primitive derived roles": [
-      "primitive derived roles"
-    ],
-    "primitive swap accessibility pi remote": [
-      "primitive swap accessibility pi remote"
     ],
     "primitive variants": [
       "Primitive variants"
@@ -78725,12 +78386,6 @@
     "push and platform hardening": [
       "push and platform hardening"
     ],
-    "push delivery failure": [
-      "push delivery failure"
-    ],
-    "push subscription lifecycle": [
-      "push subscription lifecycle"
-    ],
     "pushed work not visible in main checkout": [
       "pushed work not visible in main checkout"
     ],
@@ -79535,9 +79190,6 @@
     "read a single notion block by id": [
       "read a single Notion block by ID"
     ],
-    "read an editability seam": [
-      "read an editability seam"
-    ],
     "read back verification": [
       "read back verification"
     ],
@@ -80096,9 +79748,6 @@
     "readme vs 027 alignment": [
       "readme vs 027 alignment"
     ],
-    "readme vs code md": [
-      "readme vs code md"
-    ],
     "readme writing patterns": [
       "readme writing patterns"
     ],
@@ -80522,9 +80171,6 @@
     "recovery playbook": [
       "recovery playbook"
     ],
-    "recovery procedure": [
-      "recovery procedure"
-    ],
     "recovery shadow replay results": [
       "recovery shadow replay results"
     ],
@@ -80620,9 +80266,6 @@
     ],
     "redact council graph metadata": [
       "redact council graph metadata"
-    ],
-    "redaction and privacy": [
-      "redaction and privacy"
     ],
     "redaction canary scanning": [
       "redaction canary scanning"
@@ -81843,17 +81486,8 @@
     "relative import census": [
       "relative import census"
     ],
-    "relay baseline evidence": [
-      "relay baseline evidence"
-    ],
-    "relay deployment": [
-      "relay deployment"
-    ],
     "relay protocol and state": [
       "relay protocol and state"
-    ],
-    "relay runtime configuration": [
-      "relay runtime configuration"
     ],
     "release alignment remediation": [
       "release alignment remediation"
@@ -82002,9 +81636,6 @@
     ],
     "release verification and rollout": [
       "release verification and rollout"
-    ],
-    "release verify gate": [
-      "release verify gate"
     ],
     "release yml github actions": [
       "release.yml github actions"
@@ -82296,9 +81927,6 @@
     ],
     "remove guest access": [
       "remove guest access"
-    ],
-    "remove ingress drain approvals": [
-      "remove ingress drain approvals"
     ],
     "remove interface commands": [
       "remove interface commands"
@@ -83987,9 +83615,6 @@
     "resolution inventory consumers": [
       "resolution inventory consumers"
     ],
-    "resolve css custom properties": [
-      "resolve css custom properties"
-    ],
     "resolve database paths": [
       "resolve database paths"
     ],
@@ -84038,9 +83663,6 @@
     ],
     "resolver and hook improvements": [
       "resolver and hook improvements"
-    ],
-    "resolver diff verification": [
-      "resolver diff verification"
     ],
     "resolver p0 fix plan": [
       "resolver P0 fix plan"
@@ -84264,9 +83886,6 @@
     "restore level upgrade vocabulary invariance": [
       "restore level upgrade vocabulary invariance"
     ],
-    "restore relay database": [
-      "restore relay database"
-    ],
     "restore staged": [
       "restore staged"
     ],
@@ -84438,9 +84057,6 @@
     "retention forgetting flag": [
       "retention forgetting flag"
     ],
-    "retention limits": [
-      "retention limits"
-    ],
     "retention policy sweep": [
       "retention policy sweep"
     ],
@@ -84470,27 +84086,6 @@
     ],
     "retentionpolicy ephemeral decouple": [
       "retentionPolicy ephemeral decouple"
-    ],
-    "retint a component token": [
-      "retint a component token"
-    ],
-    "retint a pi remote role": [
-      "retint a pi remote role"
-    ],
-    "retint a semantic role": [
-      "retint a semantic role"
-    ],
-    "retint one surface": [
-      "retint one surface"
-    ],
-    "retint pi remote": [
-      "retint pi remote"
-    ],
-    "retint recipes": [
-      "retint recipes"
-    ],
-    "retinting a component token": [
-      "retinting a component token"
     ],
     "retire a rule": [
       "retire a rule"
@@ -85776,9 +85371,6 @@
     "roll back council round": [
       "roll back council round"
     ],
-    "roll forward stop conditions": [
-      "roll forward stop conditions"
-    ],
     "rollback": [
       "rollback"
     ],
@@ -85857,6 +85449,21 @@
     "rollback runbook deleted": [
       "rollback runbook deleted"
     ],
+    "rollback snapshot refresh": [
+      "rollback snapshot refresh"
+    ],
+    "rollback snapshot refresh acceptance": [
+      "rollback snapshot refresh acceptance"
+    ],
+    "rollback snapshot refresh plan": [
+      "rollback snapshot refresh plan"
+    ],
+    "rollback snapshot refresh summary": [
+      "rollback snapshot refresh summary"
+    ],
+    "rollback snapshot refresh tasks": [
+      "rollback snapshot refresh tasks"
+    ],
     "rollback state event": [
       "rollback state event"
     ],
@@ -85874,9 +85481,6 @@
     ],
     "rolling novelty mad": [
       "rolling novelty MAD"
-    ],
-    "rollout evidence matrix": [
-      "rollout evidence matrix"
     ],
     "rollout flip tooling delete": [
       "rollout flip tooling delete"
@@ -87057,9 +86661,6 @@
     "run doctor subsystem diagnostic": [
       "run doctor subsystem diagnostic"
     ],
-    "run dqi scorer": [
-      "run dqi scorer"
-    ],
     "run dqi scorer obsidian packet": [
       "run dqi scorer obsidian packet"
     ],
@@ -87129,9 +86730,6 @@
     "run spec recall gate": [
       "run spec recall gate"
     ],
-    "run storybook mobile cli": [
-      "run storybook mobile cli"
-    ],
     "run substrate stress harness maintainer mode": [
       "run-substrate-stress-harness maintainer mode"
     ],
@@ -87161,9 +86759,6 @@
     ],
     "runcompatibilitydoctor": [
       "runCompatibilityDoctor"
-    ],
-    "rune effect dependency check": [
-      "rune effect dependency check"
     ],
     "runner buildspawnargs tasks": [
       "runner buildSpawnArgs tasks"
@@ -88314,9 +87909,6 @@
     "scan skill references": [
       "scan skill references"
     ],
-    "scan skill references broken": [
-      "scan skill references broken"
-    ],
     "scan skill references obsidian": [
       "scan-skill-references obsidian"
     ],
@@ -88635,9 +88227,6 @@
     "scoped staging discipline": [
       "scoped staging discipline"
     ],
-    "scoped style vs app css": [
-      "scoped style vs app css"
-    ],
     "score a document": [
       "score a document"
     ],
@@ -88873,9 +88462,6 @@
     "screenshot": [
       "screenshot"
     ],
-    "screenshot archive mobile cli": [
-      "screenshot archive mobile cli"
-    ],
     "screenshot coverage checklist": [
       "screenshot coverage checklist"
     ],
@@ -88885,17 +88471,11 @@
     "screenshot decisions": [
       "screenshot decisions"
     ],
-    "screenshot diff regression storybook": [
-      "screenshot diff regression storybook"
-    ],
     "screenshot fixture guard test": [
       "screenshot fixture guard test"
     ],
     "screenshot fixture harness": [
       "screenshot fixture harness"
-    ],
-    "screenshot flake byte identical": [
-      "screenshot flake byte identical"
     ],
     "screenshot ocr": [
       "screenshot OCR"
@@ -89491,9 +89071,6 @@
     "security sweep summary": [
       "security sweep summary"
     ],
-    "see the app on a phone": [
-      "see the app on a phone"
-    ],
     "see the page templates on a notion data source": [
       "see the page templates on a Notion data source"
     ],
@@ -89746,9 +89323,6 @@
     "semantic role layer tokens": [
       "semantic role layer tokens"
     ],
-    "semantic role retint": [
-      "semantic role retint"
-    ],
     "semantic routing lane strategy": [
       "semantic routing lane strategy"
     ],
@@ -89925,6 +89499,9 @@
     ],
     "serving flip lock recovery": [
       "serving flip lock recovery"
+    ],
+    "serving prior snapshot": [
+      "serving prior snapshot"
     ],
     "serving snapshot current status": [
       "serving snapshot current status"
@@ -92156,6 +91733,9 @@
     "sk code mobile cli assets": [
       "sk code mobile cli assets"
     ],
+    "sk code mobile cli deprecation": [
+      "sk-code-mobile-cli deprecation"
+    ],
     "sk code mobile cli template conformance status": [
       "sk code mobile cli template conformance status"
     ],
@@ -92659,9 +92239,6 @@
     ],
     "sk code stale baseline refresh": [
       "sk-code stale baseline refresh"
-    ],
-    "sk code standard surface": [
-      "sk-code standard surface"
     ],
     "sk code standards compliance": [
       "sk-code standards compliance"
@@ -97412,9 +96989,6 @@
     "skill reference integrity": [
       "skill reference integrity"
     ],
-    "skill reference integrity guard": [
-      "skill reference integrity guard"
-    ],
     "skill reference templates": [
       "skill reference templates"
     ],
@@ -97932,9 +97506,6 @@
     "sla task breakdown": [
       "sla task breakdown"
     ],
-    "slash autocomplete tokens": [
-      "slash autocomplete tokens"
-    ],
     "slash command": [
       "slash command"
     ],
@@ -98271,9 +97842,6 @@
     ],
     "source baseline tasks": [
       "source-baseline tasks"
-    ],
-    "source conventions pi remote": [
-      "source conventions pi remote"
     ],
     "source directory readme": [
       "source directory readme"
@@ -100060,9 +99628,6 @@
     "stage frontmatter injection for routing holdout negative": [
       "stage frontmatter injection for routing holdout negative"
     ],
-    "stage readiness rollout": [
-      "stage readiness rollout"
-    ],
     "stage split scoring semantics": [
       "stage split scoring semantics"
     ],
@@ -100378,6 +99943,9 @@
     "stale reference sweep tasks": [
       "stale reference sweep tasks"
     ],
+    "stale rollback manifest": [
+      "stale rollback manifest"
+    ],
     "stale runtime catalog fix": [
       "stale runtime catalog fix"
     ],
@@ -100627,9 +100195,6 @@
     ],
     "start sh reaper allowlist": [
       "start.sh reaper allowlist"
-    ],
-    "start storybook for me": [
-      "start storybook for me"
     ],
     "start timer": [
       "start timer"
@@ -101039,45 +100604,6 @@
     ],
     "store coverage graph records": [
       "store coverage graph records"
-    ],
-    "story coverage allowlist reason": [
-      "story coverage allowlist reason"
-    ],
-    "story coverage gate": [
-      "story coverage gate"
-    ],
-    "story coverage gate fails": [
-      "story coverage gate fails"
-    ],
-    "story coverage green": [
-      "story coverage green"
-    ],
-    "story new scaffold": [
-      "story new scaffold"
-    ],
-    "story new scaffold command": [
-      "story new scaffold command"
-    ],
-    "story shots capture screenshots": [
-      "story shots capture screenshots"
-    ],
-    "storybook catalog upkeep": [
-      "storybook catalog upkeep"
-    ],
-    "storybook entry reference": [
-      "storybook entry reference"
-    ],
-    "storybook mobile cli": [
-      "storybook mobile cli"
-    ],
-    "storybook port 6006": [
-      "storybook port 6006"
-    ],
-    "storybook upkeep pi remote": [
-      "storybook upkeep pi remote"
-    ],
-    "storybook will not start": [
-      "storybook will not start"
     ],
     "strategic milestones": [
       "strategic milestones"
@@ -102223,9 +101749,6 @@
     "surface cites a dead path": [
       "surface cites a dead path"
     ],
-    "surface code asymmetric": [
-      "surface code asymmetric"
-    ],
     "surface comparison checklist": [
       "surface comparison checklist"
     ],
@@ -102310,9 +101833,6 @@
     "surface router version bump": [
       "surface router version bump"
     ],
-    "surface skill different repo": [
-      "surface skill different repo"
-    ],
     "surface slice sync plan": [
       "surface slice sync plan"
     ],
@@ -102360,9 +101880,6 @@
     ],
     "suspect queue sole confirmation funnel": [
       "suspect queue sole confirmation funnel"
-    ],
-    "svelte effect audit": [
-      "svelte effect audit"
     ],
     "svelte vue include patterns": [
       "svelte vue include patterns"
@@ -102552,9 +102069,6 @@
     ],
     "symptom to fix table": [
       "symptom to fix table"
-    ],
-    "sync barrier stall": [
-      "sync barrier stall"
     ],
     "sync derived block": [
       "sync derived block"
@@ -103685,15 +103199,6 @@
     "tail signal or noise": [
       "tail signal or noise"
     ],
-    "tailnet boundary": [
-      "tailnet boundary"
-    ],
-    "tailscale serve deployment": [
-      "tailscale serve deployment"
-    ],
-    "tailscale serve pwa install": [
-      "tailscale serve pwa install"
-    ],
     "tangent suppression": [
       "tangent suppression"
     ],
@@ -104569,9 +104074,6 @@
     "test support": [
       "test support"
     ],
-    "test the app in the emulator": [
-      "test the app in the emulator"
-    ],
     "test validation": [
       "test validation"
     ],
@@ -104679,9 +104181,6 @@
     ],
     "theme package": [
       "theme package"
-    ],
-    "theme remap roles": [
-      "theme remap roles"
     ],
     "themed parent tracks 027": [
       "themed parent tracks 027"
@@ -104809,9 +104308,6 @@
     "three layer reaper architecture": [
       "three-layer reaper architecture"
     ],
-    "three layer token model": [
-      "three layer token model"
-    ],
     "three leg benchmark task ledger": [
       "three leg benchmark task ledger"
     ],
@@ -104853,9 +104349,6 @@
     ],
     "threshold authority": [
       "threshold authority"
-    ],
-    "threshold checker measurements": [
-      "threshold checker measurements"
     ],
     "threshold flag": [
       "threshold flag"
@@ -105040,26 +104533,14 @@
     "token efficient navigation": [
       "token efficient navigation"
     ],
-    "token layer semantic component": [
-      "token layer semantic component"
-    ],
     "token map": [
       "token map"
     ],
     "token per relevant row": [
       "token per relevant row"
     ],
-    "token playground retune designer": [
-      "token playground retune designer"
-    ],
-    "token propagation blast radius": [
-      "token propagation blast radius"
-    ],
     "token reduction": [
       "token reduction"
-    ],
-    "token retint checklist": [
-      "token retint checklist"
     ],
     "token stability classification": [
       "token stability classification"
@@ -105321,9 +104802,6 @@
     ],
     "touch device interface rules": [
       "touch device interface rules"
-    ],
-    "touch target 44px": [
-      "touch target 44px"
     ],
     "touched language set rust typescript": [
       "touched language set rust typescript"
@@ -106256,9 +105734,6 @@
     "type selection and routing": [
       "Type selection and routing"
     ],
-    "typecheck build test web": [
-      "typecheck build test web"
-    ],
     "typed agent io adapter": [
       "typed agent io adapter"
     ],
@@ -106462,9 +105937,6 @@
     ],
     "typography font stack": [
       "typography font stack"
-    ],
-    "ui audit both themes findings": [
-      "ui audit both themes findings"
     ],
     "ui component classification": [
       "ui component classification"
@@ -106811,20 +106283,11 @@
     "untouched scaffold zero errors": [
       "untouched scaffold zero errors"
     ],
-    "untrack dispatch audit": [
-      "untrack dispatch audit"
-    ],
-    "untrack svelte runes": [
-      "untrack svelte runes"
-    ],
     "untrusted output boundary source kind render escaper": [
       "untrusted output boundary source_kind render escaper"
     ],
     "unused mcp response type removed": [
       "unused mcp response type removed"
-    ],
-    "unwarranted code document": [
-      "unwarranted code document"
     ],
     "upcast fork migrate cutover": [
       "upcast fork migrate cutover"
@@ -107014,9 +106477,6 @@
     ],
     "used vs unused citation signal separation": [
       "used vs unused citation signal separation"
-    ],
-    "useeffect port self invalidation": [
-      "useeffect port self-invalidation"
     ],
     "usefulness synthesis report": [
       "usefulness synthesis report"
@@ -107760,9 +107220,6 @@
     "value of computation allocation tasks": [
       "value of computation allocation tasks"
     ],
-    "value preservation check": [
-      "value preservation check"
-    ],
     "var name binding": [
       "var:name binding"
     ],
@@ -108080,9 +107537,6 @@
     ],
     "verify class rename against fixtures": [
       "verify class rename against fixtures"
-    ],
-    "verify class rename behaviour preserving": [
-      "verify class rename behaviour-preserving"
     ],
     "verify findings at source": [
       "verify findings at source"
@@ -108914,12 +108368,6 @@
     "wave dispatch tasks": [
       "wave dispatch tasks"
     ],
-    "wcag aa retint contrast": [
-      "wcag aa retint contrast"
-    ],
-    "wcag contrast both themes": [
-      "wcag contrast both themes"
-    ],
     "wcag design review": [
       "wcag design review"
     ],
@@ -109419,9 +108867,6 @@
     "what v4 actually ships": [
       "what v4 actually ships"
     ],
-    "when does a folder need code md": [
-      "when does a folder need code.md"
-    ],
     "when field validation": [
       "when field validation"
     ],
@@ -109469,9 +108914,6 @@
     ],
     "where does this content belong": [
       "where does this content belong"
-    ],
-    "where does this css rule go": [
-      "where does this css rule go"
     ],
     "where does this css rule go obsidian plugin": [
       "where does this css rule go obsidian plugin"
@@ -109529,9 +108971,6 @@
     ],
     "which embedder do we use": [
       "which embedder do we use"
-    ],
-    "which file does this css rule go in": [
-      "which file does this css rule go in"
     ],
     "which findings survived verification": [
       "which findings survived verification"

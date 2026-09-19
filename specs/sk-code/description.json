@@ -1,15 +1,16 @@
 {
   "specFolder": "sk-code",
-  "description": "Track folder for sk-code packets - unified two-axis code skill: two workflow modes (code-quality, code-review) plus two read-only surface evidence packets (code-webflow, code-opencode).",
+  "description": "Track folder for sk-code packets - unified two-axis code skill: two workflow modes (code-quality, code-review) plus three read-only surface evidence packets (code-webflow, code-opencode, code-obsidian).",
   "keywords": [
     "sk-code",
     "track",
     "code-quality",
     "code-review",
     "code-webflow",
-    "code-opencode"
+    "code-opencode",
+    "code-obsidian"
   ],
-  "lastUpdated": "2026-07-07T00:00:00.000Z",
+  "lastUpdated": "2026-09-19T09:30:00.000Z",
   "specId": "sk-code",
   "folderSlug": "sk-code",
   "parentChain": [],

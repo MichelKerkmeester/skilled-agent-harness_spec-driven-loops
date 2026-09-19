@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/009-sk-code-mobile-cli-deprecation",
+  "spec_folder": "sk-code/009-sk-code-mobile-cli-deprecation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "sk-code-mobile-cli deprecation",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "hub de-registration",
+      "task breakdown",
+      "implementation tasks"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "sk-code-mobile-cli",
+      "deprecation",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/changelog/v4.2.3.0.md",
+      ".skilled/skills/sk-code/changelog/v4.2.2.0.md",
+      ".skilled/skills/sk-code/graph-metadata.json",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "specs/sk-code/008-sk-code-mobile-cli-mode/spec.md",
+      "scratch/delegation-plan.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/README.txt",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      "specs/sk-code/description.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.2.3.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v4.2.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.2.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v4.2.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-failclosed-allowlist.txt",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skills-nested-packets.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "delegation-plan.md",
+        "kind": "doc",
+        "path": "scratch/delegation-plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote Mobile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-code` parent hub registers `sk-code-mobile-cli` as a read-only surface packet for",
+    "created_at": "2026-09-19T09:02:48Z",
+    "last_save_at": "2026-09-19T10:01:34.610Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:41e03bbffaffc8a111d959a20af0b4ec571f654a84d502e418f90a0aa628bd06",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2b25293d8e5224965ad84fcc984a37056c5c947c65e82aa29be5f44d1f36bea6",
+      "plan.md": "e86ac50d39f0ab5cc9826ff63d15d03b7911501fab04ae1512ef3b47d008a5ca",
+      "tasks.md": "7eb65ba99eb1629dc2f3cbf12540637d98199125c8e495e538b289444254f6a8",
+      "implementation-summary.md": "cb2d7b751ac94100469e77293d102e3ba857e8d115eedcad0514b39663f0a28a"
+    },
+    "last_active_at": null
+  }
+}

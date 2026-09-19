@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7157,
+    "missing-frontmatter": 7116,
     "non-yaml-frontmatter": 1,
-    "ok": 15324,
+    "ok": 15305,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27325,
+  "documentsScanned": 27265,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "22948de5e4e85a7d49263a4a14d1b1ed32e624394e9bac6a370d93b7b3d104de",
+  "manifestHash": "4d3f7357d4291daebfde91e13772f33ee9b6ce5abc34ec497290fcf7b08045d3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 36436,
+      "ok": 36249,
       "prose-sentence": 27,
       "single-token": 303,
       "stop-word-only": 3
@@ -8111,6 +8111,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.4.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/agent-bridge/project-agent-override.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -11174,6 +11180,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/changelog/v4.2.3.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -11368,264 +11380,6 @@
       "line": 2,
       "path": ".skilled/skills/sk-code/shared/README.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.10.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.11.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.2.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.3.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.4.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.5.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.6.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.7.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.7.1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.8.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/changelog/v0.1.9.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/cross-cli-dispatch/short-prompt-baseline.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/accessibility-natural.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/debugging-natural.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/implementation-natural.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/ind-code-quality.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/ind-language-standards.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/ind-verification.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/accessibility-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/comment-convention-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/debugging-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/guardrail-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/language-standards-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/token-edit-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/verification-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/resource-loading/mixed-load.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/resource-loading/references-only-load.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/surface-detection/negative-control-non-mobile-cli.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/surface-detection/pi-remote-positive-detection.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/token-cost-baseline/floor-single-resource.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/token-cost-baseline/median-load.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/unknown-fallback/disambiguation-required.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/references/storybook/docs-layer.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -76891,6 +76645,18 @@
   ],
   "skippedPaths": [
     {
+      "path": ".skilled/hooks/dispatch/lib/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/hooks/dispatch/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/hooks/dispatch/pi/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/hooks/git-preflight/README.md",
       "reason": "duplicate of an already-indexed document"
     },
@@ -76907,20 +76673,16 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
-      "path": ".skilled/skills/sk-code/benchmark/fixtures",
+      "path": ".skilled/skills/mcp-code-mode/mcp-server/dist",
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/references/workflow-debug.md",
-      "reason": "duplicate of an already-indexed document"
+      "path": ".skilled/skills/mcp-code-mode/mcp-server/node_modules",
+      "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/references/workflow-implement.md",
-      "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/skills/sk-code/sk-code-mobile-cli/references/workflow-verify.md",
-      "reason": "duplicate of an already-indexed document"
+      "path": ".skilled/skills/sk-code/benchmark/fixtures",
+      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-obsidian/references/workflow-debug.md",
@@ -76963,6 +76725,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/skills/sk-communication/cli-communication-projection/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/skills/sk-communication/cli-communication-projection/test/fixtures",
       "reason": "excluded directory"
     },
@@ -76972,6 +76738,14 @@
     },
     {
       "path": ".skilled/skills/sk-design/sk-design-diagram/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/dist",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -77019,7 +76793,15 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/system-deep-loop/deep-improvement/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -77241,6 +77023,18 @@
     {
       "path": "specs/agents/z_archive",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/ai-systems",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/anobel.com",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/app-mobile-cli",
+      "reason": "broken symlink"
     },
     {
       "path": "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/scratch",
@@ -77567,6 +77361,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/073-cli-pi-build-brief-and-blackhole/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/z_archive",
       "reason": "excluded directory"
     },
@@ -77752,6 +77550,14 @@
     },
     {
       "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-fast-mode/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-openai-fast-mode/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -78107,7 +77913,15 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/obsidian",
+      "reason": "symlinked directory"
+    },
+    {
       "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/009-sk-code-mobile-cli-deprecation/scratch",
       "reason": "excluded directory"
     },
     {
@@ -79748,6 +79562,10 @@
     },
     {
       "path": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -82008,6 +81826,14 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/scratch",
       "reason": "excluded directory"
     },
     {

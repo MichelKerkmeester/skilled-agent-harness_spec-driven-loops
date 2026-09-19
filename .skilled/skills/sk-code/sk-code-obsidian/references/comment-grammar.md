@@ -15,7 +15,7 @@ version: 0.1.0.0
 # Source Comment Grammar (Target State)
 
 This packet documents a `MODULE:` banner and numbered box-drawing section convention for the
-plugin's source, mirroring `sk-code-mobile-cli`'s own comment grammar. State plainly before
+plugin's source. State plainly before
 applying it: **this convention is target-state, not shipped.** The measured tree carries zero of
 it today.
 
@@ -81,8 +81,7 @@ replacement).
 
 ## 4. THE TARGET GRAMMAR (once adopted)
 
-Mirroring `sk-code-mobile-cli`'s convention (`references/comment-grammar.md` in that packet):
-every source file opens with a `MODULE:` banner naming its component, and numbered ALL-CAPS
+Every source file opens with a `MODULE:` banner naming its component, and numbered ALL-CAPS
 section dividers drawn with box-drawing rules (`─`) mark the body's structure for a reader who
 scans rather than reads top to bottom. A purpose comment sits immediately above a non-obvious
 function, effect, or CSS rule — stating why it exists, not what its name already says. Sentence

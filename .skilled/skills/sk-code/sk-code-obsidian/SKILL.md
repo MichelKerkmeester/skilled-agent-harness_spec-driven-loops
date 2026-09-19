@@ -29,7 +29,7 @@ which ones are target-state and not yet adopted in the shipped tree.
 - The task's CWD or changed/target files sit under the Obsidian Plugin repository tree — markers are
   `manifest.json` carrying `minAppVersion`, `esbuild.config.mjs`, `from "obsidian"` imports, and
   `.db-*` classes in `styles.css`. The hub's surface detection resolves **OBSIDIAN**, at precedence
-  `OPENCODE > OBSIDIAN > PI_REMOTE > WEBFLOW > UNKNOWN`.
+  `OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN`.
 - The active workflow phase needs the plugin's design-system evidence: the single-stylesheet ownership
   model, the `.db-*` class grammar and its orphan/fixture split, or the browser-based (but
   fixture-driven, not live-renderer) verification gate.
@@ -56,7 +56,7 @@ primary and mutates nothing. It supplies evidence while the acting workflow appl
 | [`references/screenshot-harness.md`](references/screenshot-harness.md) | `scenarios.mjs`'s registration contract, `verify.mjs`'s source-hash freshness gate (180 entries measured), the hand-fixture-vs-real-renderer distinction, and `theme.css`/`runtime-vars.css` standing in for what Obsidian supplies at runtime. |
 | [`references/verification.md`](references/verification.md) | The gate command set and measured baseline: `tsc --noEmit` (clean), `build` (clean, no tracked diff), `vitest run` (386 passing across 49 files), `screenshots:verify` (180 entries), and `lint` (115 known problems — recorded baseline, not a target). |
 | [`references/comment-grammar.md`](references/comment-grammar.md) | The target `MODULE:` banner and numbered box-drawing convention — 0 of 249 files carry one today — distinguished from the pre-existing Chinese-language CSS property cheat sheet in `styles.css`, plus the repository rule against spec/requirement/task/checklist ids in comments. |
-| [`references/folder-docs.md`](references/folder-docs.md) | The `README.md`/`CODE.md` pairing threshold (three or more direct source files, or any child folder that itself contains source), mirrored from `sk-code-mobile-cli`, and the folders that owe docs today. |
+| [`references/folder-docs.md`](references/folder-docs.md) | The `README.md`/`CODE.md` pairing threshold (three or more direct source files, or any child folder that itself contains source), and the folders that owe docs today. |
 | [`references/view-renderer-architecture.md`](references/view-renderer-architecture.md) | The `src/views/*Renderer.ts` family (Table, Board, Gallery, List, Calendar, Timeline, Chart), the `src/data/` pipeline (`DataSource`, `RowPipeline`), and `main.ts` as the single `Plugin` entry registering both `DatabaseView` and `DatabaseFileDashboardView`. |
 | [`references/skill-reference-integrity.md`](references/skill-reference-integrity.md) | The cross-repo drift guard that resolves every plugin path this surface names (expects `broken : 0`), and why a clean run is only meaningful because the guard also rejects a counter-example. |
 | [`references/workflow-implement.md`](references/workflow-implement.md) · [`workflow-debug.md`](references/workflow-debug.md) · [`workflow-verify.md`](references/workflow-verify.md) | The shared implement → debug → verify doctrine (symlinked from `../../shared/references/`). |
@@ -207,10 +207,9 @@ adopts — each labeled honestly, because most of them are not shipped yet.
   manifest-driven rename executes this in a later phase; this packet documents the target, not a
   completed migration.
 - **A `MODULE:` banner plus numbered, upper-case box-drawing sections** at the top of every source file,
-  in the same style `sk-code-mobile-cli` documents for its own stack — applied here once a later phase
-  lands it, not present in the shipped tree today.
+  applied here once a later phase lands it, not present in the shipped tree today.
 - **Paired `README.md`/`CODE.md` folder documents** at the three-or-more-direct-source-files (or any
-  child source folder) threshold, mirrored from `sk-code-mobile-cli`'s own folder-doc rule. Measured
+  child source folder) threshold. Measured
   against the current tree, these folders owe both documents: `src`, `src/data`, `src/views`,
   `src/views/modals`, `tools`, `tools/screenshots`, `tools/screenshots/scenarios`. These owe a
   `README.md` only, under the smaller-folder rule: `src/__tests__`, `src/data/__tests__`.
@@ -289,6 +288,6 @@ slice.
   `counter-example rejected : yes`; either failing exits 1.
 - **Source gates:** `bash scripts/run-source-gates.sh` from the plugin repo root runs the naming,
   comment-grammar, folder-doc and reference-integrity guards as one PASS/FAIL gate.
-- **Related:** `../sk-code-webflow`, `../sk-code-opencode`, and `../sk-code-mobile-cli` (sibling
+- **Related:** `../sk-code-webflow` and `../sk-code-opencode` (sibling
   surfaces), `../../shared/` (the shared implement → debug → verify doctrine), `system-spec-kit` (spec
   folders), and `sk-git` (worktrees and commits).

@@ -41,8 +41,7 @@ confirm against THE GATE.
 ## 2. THE MODULE BANNER SHAPE
 
 - [ ] Every file gaining the convention opens with a box-drawing `MODULE:` banner naming the file's
-  role in one line — mirrored from `sk-code-mobile-cli`'s own banner shape, not invented fresh for
-  this plugin
+  role in one line
 - [ ] The banner states **what the module is**, not **why it was changed** — no packet name, phase
   number, or task id belongs in it (see §5)
 - [ ] Applied once per file, at the top, before imports — not repeated per-section or per-export
