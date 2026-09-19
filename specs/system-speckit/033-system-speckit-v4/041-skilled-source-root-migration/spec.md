@@ -131,6 +131,8 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 16 | `016-fix-stale-compiled-routing-docs-and-research-workflow/` | Correct the seven-hub and pre-rename compiled-routing text phase 15 found, and stop the research workflows passing a retired validator rule | complete |
 | 17 | `017-build-compiled-serving-gold-admission-checker/` | Build the checker that admits a hub to compiled-serving against its playbook routing gold, with coverage floors, and repair the flip step | in progress |
 | 18 | `018-restore-advisor-suite-and-renew-scorer-freeze/` | Restore the advisor test suite phase 17 found red, and renew the compiled-routing scorer freeze once the routing battery passes | complete |
+| 19 | `019-refresh-rollback-snapshots-on-re-mint/` | Keep each hub's rollback snapshot naming the policy it serves now, so a rollback restores that policy under legacy authority | planned |
+| 20 | `020-fix-admission-baseline-and-block-ci/` | Fix the four admission baseline failures, then make the CI admission step blocking | planned |
 
 ### Phase Transition Rules
 
@@ -161,6 +163,8 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 015-compiled-serving-admission-research | 016-fix-stale-compiled-routing-docs-and-research-workflow | The research names the stale text and the operator has chosen what to fix | Phase 015's `research/research.md` and the operator's 2026-09-19 answers |
 | 016-fix-stale-compiled-routing-docs-and-research-workflow | 017-build-compiled-serving-gold-admission-checker | The operator has chosen the gold bar and answered the questions in phase 017's section 10 | Phase 017's spec, with the answers recorded |
 | 017-build-compiled-serving-gold-admission-checker | 018-restore-advisor-suite-and-renew-scorer-freeze | The admission gate is in place and the operator chose to fix the advisor suite before renewing the freeze | Phase 017's records and the operator's 2026-09-19 answers |
+| 018-restore-advisor-suite-and-renew-scorer-freeze | 019-refresh-rollback-snapshots-on-re-mint | The scorer freeze is renewed and the stale snapshots are recorded | Phase 018's records |
+| 019-refresh-rollback-snapshots-on-re-mint | 020-fix-admission-baseline-and-block-ci | Rollback restores each hub's current policy | Phase 019's acceptance criteria |
 <!-- /ANCHOR:phase-map -->
 
 ---

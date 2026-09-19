@@ -22,7 +22,6 @@ _memory:
       parent_session_id: null
     completion_pct: 90
     open_questions:
-      - "When should CI block: after the four baseline failures are fixed, or with an exemption list?"
     answered_questions:
       - "The five build decisions, accepted as recommended on 2026-09-19"
       - "The dead canary gate is replaced by the admission check (operator, 2026-09-19)"
@@ -90,5 +89,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-Every criterion is met. The phase stays open on one task: CI blocks only once the four baseline failures are fixed or excused, which needs a decision.
+Every criterion is met. The phase stays open on one task, making CI blocking, which the operator placed after the four baseline failures are fixed; phase 20 plans that.
 <!-- /ANCHOR:closure -->

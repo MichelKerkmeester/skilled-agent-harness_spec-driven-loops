@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-09-19T05:54:19Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Gated activation and the flip on the admission check and proved a sandboxed flip"
-    next_safe_action: "Decide when the admission step blocks CI"
+    next_safe_action: "Phase 20 fixes the four baseline failures and makes the step blocking"
     blockers:
       - "The scorer freeze may be renewed only on a green routing battery, and two advisor parity tests are red"
     key_files:
@@ -26,11 +26,11 @@ _memory:
       parent_session_id: null
     completion_pct: 90
     open_questions:
-      - "When should CI block: after the four baseline failures are fixed, or with an exemption list?"
     answered_questions:
       - "The five build decisions, accepted as recommended on 2026-09-19"
       - "The dead canary gate is replaced by the admission check (operator, 2026-09-19)"
       - "The scorer re-freeze waits on the advisor suite, fixed in phase 18 (operator, 2026-09-19)"
+      - "CI blocks once the four baseline failures are fixed, planned as phase 20 (operator, 2026-09-19)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
