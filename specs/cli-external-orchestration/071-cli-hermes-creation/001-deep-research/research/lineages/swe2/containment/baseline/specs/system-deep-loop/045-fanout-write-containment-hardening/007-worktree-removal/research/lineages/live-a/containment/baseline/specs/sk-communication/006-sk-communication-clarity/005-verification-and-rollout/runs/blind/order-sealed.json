@@ -1,0 +1,92 @@
+{
+  "sealedRecord": true,
+  "sideA": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/before-replies",
+  "sideB": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/after-replies",
+  "writtenAt": "2026-09-14T15:09:52.087Z",
+  "cases": {
+    "C1": {
+      "B": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/before-replies/C1.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      },
+      "A": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/after-replies/C1.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      }
+    },
+    "C2": {
+      "A": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/before-replies/C2.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      },
+      "B": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/after-replies/C2.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      }
+    },
+    "C3": {
+      "B": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/before-replies/C3.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      },
+      "A": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/after-replies/C3.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      }
+    },
+    "C4": {
+      "A": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/before-replies/C4.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      },
+      "B": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/after-replies/C4.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      }
+    },
+    "C5": {
+      "B": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/before-replies/C5.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      },
+      "A": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/after-replies/C5.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      }
+    },
+    "C6": {
+      "B": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/before-replies/C6.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      },
+      "A": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/after-replies/C6.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      }
+    },
+    "NC1": {
+      "A": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/before-replies/NC1.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      },
+      "B": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/after-replies/NC1.md",
+        "provider": "llmgateway/glm-5.3-flash"
+      }
+    }
+  }
+}

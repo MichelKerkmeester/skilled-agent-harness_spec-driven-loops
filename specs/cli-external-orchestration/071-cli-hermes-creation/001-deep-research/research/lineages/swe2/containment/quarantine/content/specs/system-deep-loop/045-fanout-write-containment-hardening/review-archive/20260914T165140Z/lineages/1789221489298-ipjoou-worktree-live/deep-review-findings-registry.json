@@ -1,0 +1,199 @@
+{
+  "sessionId": "fanout-worktree-live-1789221489298-ipjoou",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "implementation-summary.md contradicts itself: a green verification table for three shipped phases sits above a body that says nothing was built",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
+      "line": 55,
+      "contentHash": "sha256:11ad2b9cdb97b8129643957f7fe1d25ca5fd0f15580cee9c7c14e143a94a6d10",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "acceptance-criteria closure block contradicts its own fourteen Met rows, miscounts the criteria, and its Status field contradicts spec.md",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
+      "line": 103,
+      "contentHash": "sha256:f408a50d3ba4d047518bd154bf5a27263768e549608b7aed5957805ef91fe86f",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "plan.md predates the worktree resolution and the shipped phase; M3 still certifies the disqualified sweep-shaped criterion",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/plan.md",
+      "line": 306,
+      "contentHash": "sha256:f36d80a6194c9277944faa463008affd78bf89a92a966ab4fae6a7b79c97c272",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "review loop protocol carries no containment rule; task ledger says no change needed; hub still routes review readers to the research packet",
+      "file": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      "line": 280,
+      "contentHash": "sha256:35edf9e67abf6e681dc547a3697374a3ef98acfeb1a137a381ac2263415a3939",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "AC-011 marked Met while superseded revert-and-fail-closed wording survives on three command-workflow surfaces",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": 1213,
+      "contentHash": "sha256:00460f6ffd7547174175a1c138edc9343fb96ed04918819daffdc527cb69a7cc",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P1",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Known Limitations #6/#8 and open task T032 describe a pre-HEAD code state; the retry collision is fixed and the staging sweep is wired",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
+      "line": 117,
+      "contentHash": "sha256:11ad2b9cdb97b8129643957f7fe1d25ca5fd0f15580cee9c7c14e143a94a6d10",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "four stale _memory.continuity blocks with all-zero fingerprints route the next session to landed phases",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
+      "line": 17,
+      "contentHash": "sha256:f408a50d3ba4d047518bd154bf5a27263768e549608b7aed5957805ef91fe86f",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "tasks verification checklist reports 0/36 verified while the verification tasks above it are complete with green-suite evidence",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/tasks.md",
+      "line": 244,
+      "contentHash": "sha256:ca3a34029548e59c3ba02f65a4a4fd9457ff4939ce935672e26f4f530c573434",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "four line-anchored citations in the closure gate and its task mirror no longer resolve to the claim",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
+      "line": 66,
+      "contentHash": "sha256:f408a50d3ba4d047518bd154bf5a27263768e549608b7aed5957805ef91fe86f",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [
+    {
+      "run": 1,
+      "blockedBy": ["convergenceGate"],
+      "gateResults": {
+        "convergenceGate": false,
+        "dimensionCoverageGate": true,
+        "p0ResolutionGate": true,
+        "evidenceDensityGate": true,
+        "hotspotSaturationGate": true,
+        "claimAdjudicationGate": true,
+        "fixCompletenessReplayGate": true,
+        "candidateCoverageGate": true,
+        "graphlessFallbackGate": true
+      },
+      "recoveryStrategy": "Convergence cannot be claimed: ratio 1.00 against a 0.10 threshold and composite stop score 0.45 against 0.60. The run stops on maxIterations=1 instead. Re-dispatch with --max-iterations=3 or higher to reach a legal convergence stop.",
+      "timestamp": "2026-09-12T14:06:30Z"
+    }
+  ],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "searchDebt": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 3
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": false,
+  "releaseReadinessState": "in-progress",
+  "stopReason": "maxIterationsReached",
+  "convergenceAchieved": false,
+  "iterationsCompleted": 1
+}

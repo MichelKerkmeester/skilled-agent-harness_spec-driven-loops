@@ -1,0 +1,13 @@
+diff --git a/specs/sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules/spec.md b/specs/sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules/spec.md
+index b36a38cb45..39f9a592a9 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules/spec.md
++++ b/specs/sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules/spec.md
+@@ -22,7 +22,7 @@ contextType: "general"
+ |-------|-------|
+ | **Level** | 2 |
+ | **Priority** | P1 |
+-| **Status** | Draft |
++| **Status** | Complete |
+ | **Created** | 2026-09-12 |
+ | **Branch** | `skilled/v4.0.0.0` |
+ | **Parent Spec** | ../spec.md |

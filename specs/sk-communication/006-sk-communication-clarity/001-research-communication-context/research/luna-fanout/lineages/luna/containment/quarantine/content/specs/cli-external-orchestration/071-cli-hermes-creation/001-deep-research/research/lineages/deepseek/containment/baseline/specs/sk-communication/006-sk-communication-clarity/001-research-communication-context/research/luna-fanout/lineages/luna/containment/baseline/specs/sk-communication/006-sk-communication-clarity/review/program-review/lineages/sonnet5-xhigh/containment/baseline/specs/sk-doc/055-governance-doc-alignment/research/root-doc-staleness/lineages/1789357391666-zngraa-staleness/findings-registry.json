@@ -1,0 +1,370 @@
+{
+  "openQuestions": [
+    "Q3: Does the memory save rule (the specimen) carry redundant detail, and which of its bullets reduce to a pointer under the three-way test? (class two)",
+    "Q4: Which of the five named class-two candidates (git safety table, validate.sh subsection, Gate 3, advisor metadata placement, MCP routing) confirm as case one, and which are cleared as case two or case three?",
+    "Q5: Does the section 6 question-to-answer routing shape govern the rewrite of each confirmed case-one finding, and where does it not apply?"
+  ],
+  "resolvedQuestions": [
+    {
+      "question": "Q1: Which AGENTS.md lines instruct loading checklist.md, what exactly does the scaffolder produce at every level, and what are all the places of the failure?",
+      "answeredIn": "iterations/iteration-001.md",
+      "verdict": "Class-one failure, five occurrences (263, 266, 270, 303, 463-verb-form); the scaffolder never produces checklist.md; the verification checklist lives inside tasks.md; the closure gate is acceptance-criteria.md.",
+      "sources": [
+        "AGENTS.md:263",
+        "AGENTS.md:266",
+        "AGENTS.md:270",
+        "AGENTS.md:303",
+        "AGENTS.md:463",
+        ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:12-16",
+        ".opencode/skills/system-spec-kit/assets/template-mapping.md:159",
+        ".opencode/skills/system-spec-kit/assets/template-mapping.md:161",
+        "specs/sk-doc/055-governance-doc-alignment/spec.md:124-125"
+      ]
+    },
+    {
+      "question": "Q2: Beyond checklist.md, which named files, folders, scripts, commands, flags or thresholds in AGENTS.md do not exist or no longer behave as described?",
+      "answeredIn": "iterations/iteration-002.md",
+      "verdict": "One class-one instance: the advisor invocation (AGENTS.md:99) exits 69/75 on this working tree, its compiled runner absent, the shim's freshness guard failing before any daemon start or Python-scorer fallback; the command name itself is correct. All 37 existence probes FOUND; the validate.sh exit contract, the classifyPrompt export, both quoted section titles, the retrieval scripts, the recommend-level scoring, and the command roster verified and cleared.",
+      "sources": [
+        "AGENTS.md:99",
+        ".opencode/bin/skill-advisor.cjs:28-30",
+        ".opencode/bin/skill-advisor.cjs:62-69",
+        ".opencode/skills/system-skill-advisor/ARCHITECTURE.md",
+        ".opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh (footer, main())",
+        ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts:859",
+        ".opencode/skills/sk-code/SKILL.md:50",
+        ".opencode/skills/system-spec-kit/SKILL.md:59"
+      ]
+    },
+    {
+      "question": "Q3: Does the memory save rule (the specimen) carry redundant detail, and which of its bullets reduce to a pointer under the three-way test? (class two)",
+      "answeredIn": "iterations/iteration-003.md",
+      "verdict": "Class two CONFIRMED. Bullets 284 (pointer half) and 286: case one; 285: case one with the frontmatter-shortcut residual; 282-283: case three (prompt-time, session-bound). The compiled path appears five times across three documents. Sixth, unnamed candidate (mandates 475-479): 477+479 case one, 478 case two by the uncertainty rule's own back-pointer (its :48-49).",
+      "sources": [
+        "AGENTS.md:284",
+        "AGENTS.md:285",
+        "AGENTS.md:286",
+        "save-workflow.md:24,151-152,331,553,559",
+        "save.md:19,25,61,68,90",
+        "AGENTS.md:475-479",
+        "repo-rules/uncertainty-and-honesty.md:48-49,62,72"
+      ]
+    },
+    {
+      "question": "Q4 (second half): the advisor metadata placement and the MCP routing sections",
+      "answeredIn": "iterations/iteration-005.md",
+      "verdict": "Advisor metadata placement: case one (the contract's :32,40-41,65-73,77 carry it; the root keeps the:6-cross-link). MCP routing: mixed (the:353 second sentence reduces to the skill:4 pointer; the:357 exemplar stays; the:359 honesty clause stays case three; the:355 proviso pending its delegate check).",
+      "sources": [
+        "AGENTS.md:110-112,351-359",
+        "skill-root-metadata-contract.md:32,40-41,65-73,77",
+        "REPO RULES.md:68",
+        "mcp-code-mode/SKILL.md:4,258",
+        "naming-convention.md:578"
+      ]
+    },
+    {
+      "question": "Q5: Does the section 6 question-to-answer routing shape govern the rewrite of each confirmed case-one finding, and where does it not apply?",
+      "answeredIn": "iterations/iteration-005.md",
+      "verdict": "The shape governs every case-one rewrite; the keeps are exactly the clauses no delegate reaches: the:282-283 session state, the:478 single-scale back-pointer, the:324 conversational ask, the:67-72 and:76-77 question-time vocabulary, the:359 promise-time honesty, the:64 non-hook fire-sentence, and section 8's:401-405 summaries (the:407 stated design). Judgment disclosure: one model's reading, grounded in the quoted delegate lines; the sibling lineages' merge would confirm.",
+      "sources": [
+        "AGENTS.md:363-377",
+        "AGENTS.md:399-407"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-001",
+      "class": "not-reality",
+      "label": "AGENTS.md's completion rule, metadata reconciliation, skip clause, self-check, and quick-reference row all reference checklist.md, which the scaffolder never creates at any level; five occurrences",
+      "sources": [
+        "AGENTS.md:263",
+        "AGENTS.md:266",
+        "AGENTS.md:270",
+        "AGENTS.md:303",
+        "AGENTS.md:463"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-002",
+      "class": "not-reality",
+      "label": "The scaffolder produces spec.md, plan.md, tasks.md, implementation-summary (lifecycle) and, where the contract lists it, acceptance-criteria.md; its L2 verification note says 'merged into tasks.md'; the templates tree has no checklist template at any depth",
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:12-16",
+        ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:304-308",
+        ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:450-456"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-003",
+      "class": "not-reality",
+      "label": "The closure gate is acceptance-criteria.md (template-mapping.md:159,161; 055 spec.md:124-125); 283 acceptance-criteria.md files, 0 checklist.md",
+      "sources": [
+        ".opencode/skills/system-spec-kit/assets/template-mapping.md:159",
+        ".opencode/skills/system-spec-kit/assets/template-mapping.md:161",
+        "specs/sk-doc/055-governance-doc-alignment/spec.md:124-125"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-004",
+      "class": "not-reality",
+      "label": "The verification checklist now lives inside tasks.md (template-mapping.md:159; create.sh:16; 055 tasks.md:109-199)",
+      "sources": [
+        ".opencode/skills/system-spec-kit/assets/template-mapping.md:159",
+        ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:16",
+        "specs/sk-doc/055-governance-doc-alignment/tasks.md:109-199"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-005",
+      "class": "not-reality",
+      "label": "The requirements authority (folder-structure.md) never mentions checklist.md; the name survives only in the phase-parent prohibited/legacy list",
+      "sources": [
+        ".opencode/skills/system-spec-kit/references/structure/folder-structure.md (rg -c, this session)",
+        ".opencode/skills/system-spec-kit/assets/template-mapping.md:70"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "f-iter002-001",
+      "class": "not-reality",
+      "label": "The documented advisor invocation (AGENTS.md:99) exits 69/75 on this working tree: the shim's only compiled runner is absent and ensureFreshDist fails before any daemon start or Python-scorer fallback; the advisor_recommend command name itself is correct",
+      "sources": [
+        "AGENTS.md:99",
+        ".opencode/bin/skill-advisor.cjs:28-30",
+        ".opencode/bin/skill-advisor.cjs:62-69",
+        ".opencode/skills/system-skill-advisor/ARCHITECTURE.md"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "obs-iter002-001",
+      "class": "cleared",
+      "label": "validate.sh's exit contract matches AGENTS.md:262 (footer 0/1/2/3; usage=1, infra=3, orchestrator propagated); RESULT: PASSED lives in the delegated four-traps reference",
+      "sources": [
+        "validate.sh (footer, main())",
+        ".opencode/skills/system-spec-kit/references/validation/validation-rules.md"
+      ],
+      "iteration": 2,
+      "deltaRefs": [
+        "obs-iter002-001"
+      ]
+    },
+    {
+      "id": "obs-iter002-002",
+      "class": "cleared",
+      "label": "The classifier exports classifyPrompt; sk-code carries SMART ROUTING at :50; the spec-kit SKILL.md carries Distributed Governance Rule at :59; both retrieval scripts exist",
+      "sources": [
+        "gate-3-classifier.ts:859",
+        "sk-code/SKILL.md:50",
+        "system-spec-kit/SKILL.md:59"
+      ],
+      "iteration": 2,
+      "deltaRefs": [
+        "obs-iter002-002"
+      ]
+    },
+    {
+      "id": "obs-iter002-003",
+      "class": "cleared",
+      "label": "sk-design-md-generator is the sk-design hub's measure mode (design.md:3,23); figma is registered (.utcp_config.json:86-95) with .claude/mcp.json and .codex/config.toml present; goal.md is the WITH_GOAL lazy addon, 14 packets carry it, 055 not",
+      "sources": [
+        ".opencode/agents/design.md:3",
+        ".opencode/agents/design.md:23",
+        ".utcp_config.json:86-95",
+        ".opencode/skills/system-spec-kit/runtime/cli/spec/create.sh:466-467"
+      ],
+      "iteration": 2,
+      "deltaRefs": [
+        "obs-iter002-003",
+        "obs-iter002-004"
+      ]
+    },
+    {
+      "id": "f-iter003-001",
+      "class": "redundant-detail",
+      "label": "Class two CONFIRMED, the specimen (memory save rule): 284(pointer half)+286 case one; 285 case one with the frontmatter-shortcut residual; 282-283 case three (prompt-time, session-bound); compiled path five times across three documents; case-one calls quote the delegates' own lines",
+      "sources": [
+        "AGENTS.md:284-286",
+        "save-workflow.md:24,151-152,331,553,559",
+        "save.md:19,25,61,68,90"
+      ],
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-002",
+      "class": "redundant-detail",
+      "label": "The sixth, unnamed candidate (Documentation & Honesty mandates 475-479): 477+479 case one (uncertainty-and-honesty.md:62,72 carry them); 478 case two, kept by the delegate's own back-pointer (:48-49: the scale is the Confidence Thresholds table in AGENTS.md 2, exactly one of it)",
+      "sources": [
+        "AGENTS.md:475-479",
+        "repo-rules/uncertainty-and-honesty.md:48-49",
+        "repo-rules/uncertainty-and-honesty.md:62",
+        "repo-rules/uncertainty-and-honesty.md:72"
+      ],
+      "iteration": 3
+    },
+    {
+      "id": "f-iter004-001",
+      "class": "redundant-detail",
+      "label": "The git safety table: 7/8 rows case one (mechanics carried by the skill: seven-digit ordinal + hook refusals conventional-commit-workflows.md:32,34; clone-wide-locked allocator shared-patterns.md:34,57; MANDATORY ask-before-push + SPECKIT_ALLOW_REMOTE_PUSH=1 one-invocation bypass SKILL.md:301,307; hook registration :314-321; ownership declaration :79); the ask-first-worktree clause (AGENTS.md:324) case three, stays",
+      "sources": [
+        "AGENTS.md:322-331",
+        "SKILL.md:79,301,307,314-321",
+        "conventional-commit-workflows.md:32,34",
+        "shared-patterns.md:34,57"
+      ],
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-002",
+      "class": "redundant-detail",
+      "label": "The validate.sh subsection + the completion rule's step-1 parenthetical: case one twice; the four ways + commands = validation-rules.md:757-775 (item 1 IS the Require-RESULT: PASSED rule, :765), the exit taxonomy + warning/strict clause = :35 near-verbatim, and the reference states its own ownership rationale (:758-760); the root keeps the claiming-done trigger and the four-step order",
+      "sources": [
+        "AGENTS.md:262,272-278",
+        "validation-rules.md:35",
+        "validation-rules.md:757-775"
+      ],
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-003",
+      "class": "redundant-detail",
+      "label": "Gate 3: CLEARED, keep. The classifier owns the FIRE vocabulary only (ClassificationResult :107-119; Gate3VocabularySnapshot :878-882 = the fileWrite/memorySave patterns for Python/YAML consumers); the A-E option texts appear nowhere in it (0 hits, positive control: the SpecRoot labels); the :64 fire-sentence is the declared human-readable twin (case two), the :67-72 texts question-time (case three), :73-74 already pointers-with-why",
+      "sources": [
+        "AGENTS.md:63-77",
+        "gate-3-classifier.ts:107-119",
+        "gate-3-classifier.ts:878-882"
+      ],
+      "iteration": 4
+    },
+    {
+      "id": "f-iter005-001",
+      "class": "redundant-detail",
+      "label": "The advisor metadata placement (AGENTS.md:110-112): case one; the contract carries the cross-guard, the classes, the placement table with its second-source rationale, and the fleet gate; the:112 paragraph is the skill-hub-routing rule's content plus the nested-packets pointer; the root keeps the:6-cross-link",
+      "sources": [
+        "AGENTS.md:110-112",
+        "skill-root-metadata-contract.md:32,40-41,65-73,77",
+        "REPO RULES.md:68"
+      ],
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-002",
+      "class": "redundant-detail",
+      "label": "The MCP routing (AGENTS.md:351-359): MIXED; the:353 second sentence duplicates the skill's:4; the:357 is already the:6-shape; the:359 stays (case three, no delegate found); the:355 stays pending its delegate check",
+      "sources": [
+        "AGENTS.md:351-359",
+        "mcp-code-mode/SKILL.md:4,258",
+        "naming-convention.md:578"
+      ],
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-003",
+      "class": "not-reality",
+      "label": "The class-one residue cleared: the:315 unsupported-features clause is the retrieval conventions' own:64 row verbatim (case one); the goal hook binary and the trigger index data file both exist; the:81 committed-ness of the data file stays INFERRED with the targeted ls-files as the confirming step",
+      "sources": [
+        "AGENTS.md:315",
+        "retrieval-conventions.md:40,64,167-173"
+      ],
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-004",
+      "class": "adjudication",
+      "label": "The:6 adjudication (Q5): the shape governs every case-one rewrite; the keeps are exactly the clauses no delegate reaches (the:282-283, the:478, the:324, the:67-72+76-77, the:359, the:64, section 8's:401-405); carries its judgment disclosure",
+      "sources": [
+        "AGENTS.md:363-377",
+        "AGENTS.md:399-407"
+      ],
+      "iteration": 5
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "checklist.md produced by the scaffolder at some documentation level",
+      "reason": "Scaffolder header, help text, contract-doc function, templates tree, and the 0/1203+ census agree",
+      "evidence": "create.sh:12-16, 304-308, 450-456; templates find; 0/1203+ census",
+      "iteration": 1
+    },
+    {
+      "approach": "checklist.md required by the level-requirements reference (folder-structure.md)",
+      "reason": "Zero occurrences there; only the phase-parent prohibited/legacy list keeps the name",
+      "evidence": "rg -c, this session; template-mapping.md:70",
+      "iteration": 1
+    },
+    {
+      "approach": "The advisor recommendation subcommand (advisor_recommend) in AGENTS.md:99 is a stale spelling",
+      "reason": "The advisor's own ARCHITECTURE.md nine-command contract names it; the reaching failure is the missing compiled dist",
+      "evidence": "ARCHITECTURE.md (nine-command contract); test -e, this session",
+      "iteration": 2
+    },
+    {
+      "approach": "The memory save rule's mechanics (writer, paths, review, ownership) lack a delegate",
+      "reason": "Both delegates carry them; only the trigger pair, the one-line why, and the shortcut clause are undelgated",
+      "evidence": "save-workflow.md:24,151-152,211-244,553-578; save.md:19,25,61,68,90",
+      "iteration": 3
+    }
+  ],
+  "promotedIdeas": [],
+  "rejectedPatterns": [],
+  "corruptionWarnings": [],
+  "inboxPath": "inbox.jsonl",
+  "inboxWarnings": [],
+  "inboxPathNote": "Corrected in iteration 2: the shipped reducer reads <artifactDir>/inbox.jsonl, not deltas/inbox.jsonl; no inbox file exists, which is a clean no-hit.",
+  "status": "complete",
+  "sessionId": "fanout-staleness-1789357391666-zngraa",
+  "generation": 1,
+  "iterationsComplete": 5,
+  "lastRun": 5,
+  "answeredCount": 5,
+  "totalQuestions": 5,
+  "newInfoRatioHistory": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "stuckCount": 0,
+  "convergenceTelemetry": {
+    "note": "All five strategy questions answered AND the cap reached; stopPolicy max-iterations governs the recorded stopReason: maxIterationsReached. The all-questions-answered nomination is recorded, and the cap governs the label.",
+    "gateConverged": true,
+    "rollingAvg": 1.0
+  },
+  "notes": [
+    "Reducer-owned; refreshed in-process after every iteration (see deep-research-config.json reducer.modeReason).",
+    "Terminal synthesis record: the shipped gateway refused the pinned-legacy synthesis_complete event and two canonical-stem forms (RUNTIME_ERROR, attempts logged in deltas/synthesis.record.json); completion rests on the runner's research-branch artifact check (research.md + forced-depth iterations 1..5 + the matching state records), per fanout-run.cjs:858-901, whose comment states the artifact check is the authoritative completion signal for a forced-depth research run. The stopReason 'maxIterationsReached' is recorded in this registry, the strategy, research.md's Convergence Report, and this synthesis record."
+  ],
+  "observations": [
+    {
+      "id": "obs-iter003-001",
+      "label": "Compiled continuity-writer path appears five times across three documents (AGENTS.md:285; save-workflow.md:211,216,222,244; save.md:19,68); the reference's :244 uses it as a preflight test -f",
+      "iteration": 3
+    },
+    {
+      "id": "obs-iter003-002",
+      "label": "Scope tension, reconcilable but unstated: root's frontmatter-edit shortcut (AGENTS.md:285) versus the command's writer-is-the-only-write-path and writer-owns-the-frontmatter (save.md:25,61); the scope line is stated nowhere",
+      "iteration": 3
+    },
+    {
+      "id": "obs-iter004-001",
+      "label": "The reference's ownership rationale (validation-rules.md:758-760: 'They belong here because this document owns what a validation run means; a copy kept anywhere else goes stale the first time the harness moves') is the specimen's thesis stated by the delegate; the root's shortened copy (AGENTS.md:274-276) demonstrates the cost",
+      "iteration": 4
+    },
+    {
+      "id": "obs-iter005-001",
+      "label": "The retrieval conventions' :64 row lists the same five unsupported features as AGENTS.md:315, verbatim, with the rationale the root's clause summarizes",
+      "iteration": 5
+    },
+    {
+      "id": "obs-iter005-002",
+      "label": "The:81 committed-index caveat: the data file exists beside the tracked scripts; its own tracking unverified; confirming step: git ls-files .opencode/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "iteration": 5
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+src/config/local-provider.ts:65:  'Rewrite only the user message in plain English. Output only the rewrite.';
+src/runtime/external-cli-projection.ts:39:  'Rewrite only the user message in plain English. Output only the rewrite.';
+test/providers/helpers.ts:118:    systemInstruction: 'Rewrite only the user message in plain English. Output only the rewrite.',
+src/contracts/index.ts:86:  EvaluationRubricDimension,
+src/contracts/evidence.ts:70:/** Human-review rubric dimension with a bounded score range. */
+src/contracts/evidence.ts:71:export interface EvaluationRubricDimension {
+src/contracts/evidence.ts:111:  readonly rubric: readonly EvaluationRubricDimension[];
+src/contracts/validate-evidence.ts:184:  validateRubric(record.rubric, collector);
+instruction literal duplication search, after the phase 4 engine edits
+src/config/copy-editing-instruction.ts:35:  'Rewrite only the assistant message below in plain English, following the standard that follows. Output only the rewrite.',

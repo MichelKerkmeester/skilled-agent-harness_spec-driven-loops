@@ -1,0 +1,67 @@
+{
+  "topic": "Which recommendations in the three vendored communication sources under specs/sk-communication/006-sk-communication-clarity/context (clarity.md, claude-style-patch-main/STYLE.md plus its README, and i-have-adhd-main including its SKILL.md, hooks, evals and runtime manifests) are already covered by this repository's own communication stack, which are genuinely new, and which contradict a rule the repository already has.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context",
+  "createdAt": "2026-09-14T16:23:56Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-1789402391295-tfhy3y",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout": {
+    "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages/luna",
+    "executorDispatchSatisfiedInProcess": true,
+    "nestedDispatch": false
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resourceMap": {
+    "present": true,
+    "emit": true,
+    "path": "resource-map.md"
+  },
+  "stopConditions": [
+    "Run all five iterations because stopPolicy is max-iterations",
+    "Record synthesis stopReason as maxIterationsReached",
+    "Do not write outside the lineage directory"
+  ]
+}

@@ -1,0 +1,4 @@
+{"event":"config_echo","kind":"cli-pi","model":"deepseek-v4.1-flash","reasoningEffort":"max","sandboxMode":"workspace-write","permissionMode":"acceptEdits","webSearch":"inherit","invocationFingerprint":"inv:ca9b27f6b38dfe79f5d57478697baf508df64bca17c650ce74fdedcf3b1946a2","writeSurface":"specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2","artifactRootBoundBy":"config.fanout_lineage_artifact_dir","resolveArtifactRootInvoked":false}
+{"event":"iteration","iteration":1,"status":"complete","iterationFile":"iterations/iteration-001.md","delta":"deltas/iter-001.jsonl","newFindingsRatio":0.70}
+{"event":"loop_decision","decision":"STOP","stopReason":"maxIterationsReached","convergenceAchieved":false}
+{"event":"synthesis","verdict":"CONDITIONAL","activeP0":0,"activeP1":5,"activeP2":2,"report":"review-report.md"}

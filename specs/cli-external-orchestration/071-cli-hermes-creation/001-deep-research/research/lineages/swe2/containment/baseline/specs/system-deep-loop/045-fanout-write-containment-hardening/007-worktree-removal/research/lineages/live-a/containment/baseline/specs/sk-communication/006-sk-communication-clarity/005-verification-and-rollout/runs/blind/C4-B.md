@@ -1,0 +1,9 @@
+Case: C4
+
+a deliberately failing command
+
+Reply B:
+
+`ls no-such-file-xyz` failed: it printed `ls: no-such-file-xyz: No such file or directory` and exited with code 1. No file with that name exists in the current directory (`Public/`).
+
+Nothing is blocked on you.

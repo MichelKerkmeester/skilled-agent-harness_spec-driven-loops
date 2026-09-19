@@ -1,0 +1,108 @@
+{
+  "sessionId": "fanout-sonnet5-xhigh-1789399870247-b3u57o",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Fidelity checks array shrinks on the no-op rewrite path, informational only",
+      "file": ".opencode/skills/sk-communication/cli-communication-projection/src/fidelity/validator.ts",
+      "line": 212,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [{ "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "AcceptedProjection.changeKind added to a contract type with no construction call site",
+      "file": ".opencode/skills/sk-communication/cli-communication-projection/src/contracts/projection.ts",
+      "line": 29,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [{ "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "goal.md completion-criteria row unchecked despite fully-Met child acceptance criteria and its own LOG table",
+      "file": "specs/sk-communication/006-sk-communication-clarity/goal.md",
+      "line": 96,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [{ "iteration": 3, "from": null, "to": "P1", "reason": "Initial discovery, adjudicated same iteration (self-contradiction confirmed against primary child evidence)" }]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Stale continuity/status metadata in 006 and 008 acceptance-criteria.md frontmatter",
+      "file": "specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/acceptance-criteria.md",
+      "line": 18,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [{ "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "compareClaimCoverage veto and changeKind no-op classification ship with zero test coverage",
+      "file": ".opencode/skills/sk-communication/cli-communication-projection/src/fidelity/semantics.ts",
+      "line": 130,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [{ "iteration": 4, "from": null, "to": "P1", "reason": "Initial discovery, adjudicated same iteration" }]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "manual-testing-playbook.md has no scenario covering phase-004 additions",
+      "file": ".opencode/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 1,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [{ "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 4
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/006-sk-communication-clarity/006-reply-shape-rules",
+  "spec_folder": "sk-communication/006-sk-communication-clarity/006-reply-shape-rules",
+  "parent_id": "sk-communication/006-sk-communication-clarity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reply shape rules",
+      "first line contract",
+      "concise not compressed",
+      "tangent suppression",
+      "sentence relation rule",
+      "reply shape tasks",
+      "ten candidates",
+      "counterweight cross-reference",
+      "size check",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability"
+    ],
+    "key_topics": [
+      "reply",
+      "shape",
+      "rules",
+      "first",
+      "line",
+      "contract",
+      "concise",
+      "compressed",
+      "tangent",
+      "suppression",
+      "sentence",
+      "relation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "repo-rules/communication.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Ten",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "Yes This",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. CRITERIA",
+        "kind": "heading",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status values",
+        "kind": "heading",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ten adopted candidates belong to the rule that governs how a reply reads",
+    "created_at": "2026-09-12T16:39:30Z",
+    "last_save_at": "2026-09-14T17:57:07.959Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:607cc29858a9b391303ae1ae13314e086ce04d3b9f17ddee87a1e0d43db8ed93",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "86abc9425cdd3f0b7cf6e90502e957de5e21845efce54be4ef7a4419b33cb924",
+      "tasks.md": "2f584c7fafce10620328aa437bf811b1909bd9636ac9b6907fdb7c25cf6c2e93",
+      "implementation-summary.md": "00b12f7ca87be47b48fb08c6f087acb0e269cae90e0e03d9803a563405f0b80d"
+    },
+    "last_active_at": null
+  }
+}

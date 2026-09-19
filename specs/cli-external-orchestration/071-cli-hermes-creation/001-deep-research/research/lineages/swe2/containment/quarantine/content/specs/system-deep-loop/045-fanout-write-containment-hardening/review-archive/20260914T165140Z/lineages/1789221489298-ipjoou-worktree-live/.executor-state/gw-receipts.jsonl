@@ -1,0 +1,4 @@
+{"event":"config_echo","kind":"cli-pi","model":"deepseek-v4.1-flash","reasoningEffort":"max","sandboxMode":"workspace-write","permissionMode":"acceptEdits","webSearch":"inherit","invocationFingerprint":"inv:8f589a4508df4a869ccb0d22cfdf0e4dedd5789f2ccadbf4a11d4f6ff3cab477","writeSurface":"specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/worktree-live","artifactRootBoundBy":"config.fanout_lineage_artifact_dir","resolveArtifactRootInvoked":false,"reviewedRevision":"2d7439c0a5","isolation":"dedicated-worktree"}
+{"event":"iteration","iteration":1,"status":"complete","iterationFile":"iterations/iteration-001.md","delta":"deltas/iter-001.jsonl","newFindingsRatio":1.0}
+{"event":"loop_decision","decision":"STOP","stopReason":"maxIterationsReached","convergenceAchieved":false}
+{"event":"synthesis","verdict":"CONDITIONAL","activeP0":0,"activeP1":6,"activeP2":3,"report":"review-report.md"}

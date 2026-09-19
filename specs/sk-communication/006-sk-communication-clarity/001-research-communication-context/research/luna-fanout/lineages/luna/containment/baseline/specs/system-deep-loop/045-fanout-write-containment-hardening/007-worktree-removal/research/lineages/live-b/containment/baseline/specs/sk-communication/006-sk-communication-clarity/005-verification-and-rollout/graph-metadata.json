@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/006-sk-communication-clarity/005-verification-and-rollout",
+  "spec_folder": "sk-communication/006-sk-communication-clarity/005-verification-and-rollout",
+  "parent_id": "sk-communication/006-sk-communication-clarity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reply scoring harness",
+      "communication behavior benchmark",
+      "runtime mirror rollout",
+      "recursive strict validation",
+      "verification tasks",
+      "negative control task",
+      "delta report task",
+      "recursive validation task",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr"
+    ],
+    "key_topics": [
+      "reply",
+      "scoring",
+      "harness",
+      "communication",
+      "behavior",
+      "benchmark",
+      "runtime",
+      "mirror",
+      "rollout",
+      "recursive",
+      "strict",
+      "validation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
+      ".opencode/skills/sk-communication/benchmark/README.md",
+      "scratch/model-step.md",
+      ".opencode/skills/sk-communication/changelog/v1.3.0.0.md",
+      "runs/results/before.json",
+      "runs/results/after.json",
+      "runs/results/compare.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "model-step.md",
+        "kind": "doc",
+        "path": "scratch/model-step.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.3.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/changelog/v1.3.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.json",
+        "kind": "config",
+        "path": "runs/results/before.json",
+        "source": "derived"
+      },
+      {
+        "name": "after.json",
+        "kind": "config",
+        "path": "runs/results/after.json",
+        "source": "derived"
+      },
+      {
+        "name": "compare.txt",
+        "kind": "file",
+        "path": "runs/results/compare.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nothing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nothing in this repository measures whether a communication rule changes a reply",
+    "created_at": "2026-09-12T12:44:38Z",
+    "last_save_at": "2026-09-14T17:56:53.173Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:75bdb653fdc6c20da19696a34dcb73c498379cef044f62350235a28c2496d41d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8347f243987d06d4f096fccf267e8e12dbb121033e7b1bd391fa63fa55e59fbc",
+      "tasks.md": "636e0681f60ba73c7c23619c4af76435840b5b18c5b3c1435dbfe1edebda9b24",
+      "implementation-summary.md": "d573e3479ad13592133da5cf9f70d1d61afe1715292f0cf6bcd9b6186bbc481d"
+    },
+    "last_active_at": null
+  }
+}

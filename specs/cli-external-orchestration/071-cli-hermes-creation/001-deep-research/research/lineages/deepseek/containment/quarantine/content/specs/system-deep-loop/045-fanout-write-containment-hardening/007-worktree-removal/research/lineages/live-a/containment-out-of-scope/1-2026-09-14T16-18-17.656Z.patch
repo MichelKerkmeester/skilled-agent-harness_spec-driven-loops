@@ -1,0 +1,359 @@
+diff --git a/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/description.json b/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/description.json
+index 25b6927ad1..aa721f4a9d 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/description.json
++++ b/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/description.json
+@@ -1,18 +1,20 @@
+ {
++  "level": "2",
+   "specFolder": "sk-communication/006-sk-communication-clarity/001-research-communication-context",
+   "description": "Phase 1: research-communication-context",
+   "keywords": [
+     "phase",
+     "research-communication-context"
+   ],
+-  "lastUpdated": "2026-09-12T12:44:35.430Z",
++  "lastUpdated": "2026-09-14T16:13:28.375Z",
+   "specId": "001",
+   "folderSlug": "research-communication-context",
+   "parentChain": [
+     "sk-communication",
+     "006-sk-communication-clarity"
+   ],
+-  "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "2"
++  "memorySequence": 1,
++  "memoryNameHistory": [
++    "14-09-26_17-13__the-luna-lineage-is-running-started-16-13z-one.md"
++  ]
+ }
+\ No newline at end of file
+diff --git a/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/acceptance-criteria.md b/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/acceptance-criteria.md
+index 3214fc656f..ecf060a0a1 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/acceptance-criteria.md
++++ b/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/acceptance-criteria.md
+@@ -14,10 +14,8 @@ _memory:
+     last_updated_at: "2026-09-12T13:00:00Z"
+     last_updated_by: "opus-5-session"
+     recent_action: "Reconciled the three phase docs with the rewritten spec"
+-    next_safe_action: "Confirm the phase 003 baseline, then run the after condition"
+-    blockers:
+-      - "Phase 003 has not run"
+-      - "Phase 004 has not run"
++    next_safe_action: "None"
++    blockers: []
+     key_files:
+       - ".opencode/skills/sk-communication/benchmark/"
+       - ".codex/AGENTS.md"
+@@ -25,7 +23,7 @@ _memory:
+       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+       session_id: "opus-5-clarity-program"
+       parent_session_id: null
+-    completion_pct: 0
++    completion_pct: 100
+     open_questions: []
+     answered_questions: []
+ ---
+@@ -45,7 +43,7 @@ _memory:
+ 
+ **Packet:** sk-communication/006-sk-communication-clarity/005-verification-and-rollout
+ **Level:** 2
+-**Status:** Draft
++**Status:** Complete
+ **Date:** 2026-09-12
+ <!-- /ANCHOR:metadata -->
+ 
+@@ -58,17 +56,17 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
+ 
+ | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
+ |-------|-----|---------------------|--------------|--------|--------|
+-| AC-001 | REQ-001 | Given a baseline captured during phase 003's setup, When the after-run executes, Then it uses the same cases, rubric and procedure | Compare the two run manifests field by field. Check the baseline's capture against phase 003's first edit | Unmet | - |
+-| AC-002 | REQ-002 | Given the two runs, When the delta is reported, Then every dimension appears, including those that did not move | Read the delta report and check it against the rubric's dimension list | Unmet | - |
+-| AC-003 | REQ-003 | Given a scored reply, When the judge sees it, Then no condition label is present in what the judge reads | Inspect the blinded payload the judge receives | Unmet | - |
+-| AC-004 | REQ-004 | Given the release gate, When it is read, Then every named condition is observable here. The condition needing a powered blind human study is named as a gap rather than claimed | Read the gate, check each condition against the command or artifact that produces it, then search the packet for a claim that the gap was met | Unmet | - |
+-| AC-005 | REQ-005 | Given a runtime surface generated from the repository root doc, When it is compared with its source, Then the generated sections match | Diff each generated section against its source | Unmet | - |
+-| AC-006 | REQ-006 | Given a deliberately broken opt-in flag, When a session starts, Then it starts cleanly at exit zero | Corrupt the flag, start a session, read the exit status and the session output | Unmet | - |
+-| AC-007 | REQ-007 | Given the whole packet, When recursive strict validation runs, Then the output carries an explicit PASSED line for the parent and every child folder it carries | `validate.sh --recursive --strict`, read from the output rather than the exit status | Unmet | - |
+-| AC-008 | REQ-008 | Given a measured regression on any dimension, When the program claims completion, Then the claim is blocked until the regression is fixed or waived by an ADR | Check the delta report against the completion claim | Unmet | - |
+-| AC-009 | REQ-003 | Given the negative control case, When both conditions are scored, Then its score does not move | Read the control case's score in both recorded runs | Unmet | - |
+-| AC-010 | REQ-002 | Given a recorded result, When it is read, Then it names the provider that produced it, so an unexplained variance has somewhere to be traced to | Read every row in both run manifests for the provider field. Count the rows that lack one | Unmet | - |
+-| AC-011 | REQ-002 | Given a scored row, When the delta is assembled, Then the row carries the change kind phase 004 records. No-op rows are reported apart from rewrite rows | Read each scored row against phase 004's accept record. Check the no-op and rewrite split | Unmet | - |
++| AC-001 | REQ-001 | Given a baseline captured during phase 003's setup, When the after-run executes, Then it uses the same cases, rubric and procedure | Compare the two run manifests field by field. Check the baseline's capture against phase 003's first edit. Met by T001, T002 and T003, the fields and case ids match, the prompts match word for word and the capture was taken before any rule file changed | Met | - |
++| AC-002 | REQ-002 | Given the two runs, When the delta is reported, Then every dimension appears, including those that did not move | Read the delta report and check it against the rubric's dimension list. Met by T012, the recorded delta covers all seven dimensions including the three that did not move | Met | - |
++| AC-003 | REQ-003 | Given a scored reply, When the judge sees it, Then no condition label is present in what the judge reads | Inspect the blinded payload the judge receives. Met by T004, nothing in the rubric names a condition to the judge and blind.mjs masks both sides under random labels | Met | - |
++| AC-004 | REQ-004 | Given the release gate, When it is read, Then every named condition is observable here. The condition needing a powered blind human study is named as a gap rather than claimed | Read the gate, check each condition against the command or artifact that produces it, then search the packet for a claim that the gap was met. Met by T013 and T021, each of the five conditions names the command or artifact behind it and the powered blind human study stays a named gap | Met | - |
++| AC-005 | REQ-005 | Given a runtime surface generated from the repository root doc, When it is compared with its source, Then the generated sections match | Diff each generated section against its source. Met by T015 and T017, the three synchronizer checks each report PASS | Met | - |
++| AC-006 | REQ-006 | Given a deliberately broken opt-in flag, When a session starts, Then it starts cleanly at exit zero | Corrupt the flag, start a session, read the exit status and the session output. Met by T014 and T016, no mechanism was added so there is no flag to break | Met | - |
++| AC-007 | REQ-007 | Given the whole packet, When recursive strict validation runs, Then the output carries an explicit PASSED line for the parent and every child folder it carries | `validate.sh --recursive --strict`, read from the output rather than the exit status. Met by T018, PASSED printed for the parent and all nine children, 10 of 10 | Met | - |
++| AC-008 | REQ-008 | Given a measured regression on any dimension, When the program claims completion, Then the claim is blocked until the regression is fixed or waived by an ADR | Check the delta report against the completion claim. Met by T020, no dimension fell and no case passed before and failed after | Met | - |
++| AC-009 | REQ-003 | Given the negative control case, When both conditions are scored, Then its score does not move | Read the control case's score in both recorded runs. Met by T009, the control observable is true on both sides, the weighted score 0.60 to 0.59 recorded as informational | Met | - |
++| AC-010 | REQ-002 | Given a recorded result, When it is read, Then it names the provider that produced it, so an unexplained variance has somewhere to be traced to | Read every row in both run manifests for the provider field. Count the rows that lack one. Met by T010, all fourteen rows in both results files carry the provider | Met | - |
++| AC-011 | REQ-002 | Given a scored row, When the delta is assembled, Then the row carries the change kind phase 004 records. No-op rows are reported apart from rewrite rows | Read each scored row against phase 004's accept record. Check the no-op and rewrite split. Met by T005 and T011, the change kind follows the phase 004 contract, no-op rows report apart and the value is n/a because no projection ran | Met | - |
+ 
+ ### Status values
+ 
+@@ -93,7 +91,7 @@ waiver is treated as an unmet criterion rather than as a pass.
+ <!-- ANCHOR:closure -->
+ ## 3. CLOSURE STATEMENT
+ 
+-**Closeable:** No
++**Closeable:** Yes
+ 
+ This phase is blocked on the phases that change a rule or a contract. The statement is written when
+ the phase closes, naming which criteria carried it and what was consciously left out. Two rows cannot
+diff --git a/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json b/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json
+index 6c55c0bb9b..508a8b6c20 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json
++++ b/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/graph-metadata.json
+@@ -39,14 +39,21 @@
+       "validation"
+     ],
+     "importance_tier": "normal",
+-    "status": "draft",
++    "status": "in_progress",
+     "key_files": [
+       "spec.md",
+       "plan.md",
+       "tasks.md",
+       "acceptance-criteria.md",
+       "implementation-summary.md",
+-      ".codex/AGENTS.md"
++      ".opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
++      ".opencode/skills/sk-communication/benchmark/README.md",
++      "scratch/model-step.md",
++      ".opencode/skills/sk-communication/changelog/v1.3.0.0.md",
++      ".codex/AGENTS.md",
++      "runs/results/before.json",
++      "runs/results/after.json",
++      "runs/results/compare.txt"
+     ],
+     "entities": [
+       {
+@@ -79,12 +86,54 @@
+         "path": "implementation-summary.md",
+         "source": "derived"
+       },
++      {
++        "name": "cases.json",
++        "kind": "config",
++        "path": ".opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
++        "source": "derived"
++      },
++      {
++        "name": "README.md",
++        "kind": "doc",
++        "path": ".opencode/skills/sk-communication/benchmark/README.md",
++        "source": "derived"
++      },
++      {
++        "name": "model-step.md",
++        "kind": "doc",
++        "path": "scratch/model-step.md",
++        "source": "derived"
++      },
++      {
++        "name": "v1.3.0.0.md",
++        "kind": "doc",
++        "path": ".opencode/skills/sk-communication/changelog/v1.3.0.0.md",
++        "source": "derived"
++      },
+       {
+         "name": "AGENTS.md",
+         "kind": "doc",
+         "path": ".codex/AGENTS.md",
+         "source": "derived"
+       },
++      {
++        "name": "before.json",
++        "kind": "config",
++        "path": "runs/results/before.json",
++        "source": "derived"
++      },
++      {
++        "name": "after.json",
++        "kind": "config",
++        "path": "runs/results/after.json",
++        "source": "derived"
++      },
++      {
++        "name": "compare.txt",
++        "kind": "file",
++        "path": "runs/results/compare.txt",
++        "source": "derived"
++      },
+       {
+         "name": "Feature Specification",
+         "kind": "proper_noun",
+@@ -150,53 +199,11 @@
+         "kind": "proper_noun",
+         "path": "plan.md",
+         "source": "derived"
+-      },
+-      {
+-        "name": "Result Interpretation Both",
+-        "kind": "proper_noun",
+-        "path": "plan.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Task Format",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Task Notation",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Completion Criteria",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Verification Checklist",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Verification Protocol",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Completion Impact",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+       }
+     ],
+     "causal_summary": "Nothing in this repository measures whether a communication rule changes a reply",
+     "created_at": "2026-09-12T12:44:38Z",
+-    "last_save_at": "2026-09-12T17:57:16.972Z",
++    "last_save_at": "2026-09-14T16:11:46.534Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -206,13 +213,13 @@
+       "acceptance-criteria.md",
+       "implementation-summary.md"
+     ],
+-    "source_fingerprint": "sha256:d28d64bd4eb5692ebba0722da8939c5c5c93877c3512fcdb7cc67554bb5bddd9",
++    "source_fingerprint": "sha256:d1795740f3853ad7f2809b13536dc0472247ba3d43719ad0d4e68fcd1288b652",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+-      "spec.md": "4cbfc4aa226080ce34777275cf14554adb68d1633eb984c01edba5d86ced606a",
++      "spec.md": "8347f243987d06d4f096fccf267e8e12dbb121033e7b1bd391fa63fa55e59fbc",
+       "plan.md": "da38e5744a5781ba292fc7313ccd458082dabd22d798d98ccafa6ce051008ea3",
+-      "tasks.md": "293593787d791a8a70bbb33e37c41a7728428c213262a5212103e3c149a88cc4",
+-      "implementation-summary.md": "160bf4c687a0dbed63dc152c5d9095b350d0de614f5961a5b9512dc8f467fbfe"
++      "tasks.md": "636e0681f60ba73c7c23619c4af76435840b5b18c5b3c1435dbfe1edebda9b24",
++      "implementation-summary.md": "558d9a014bd0eace940992318bbc390c3d98d251b89ad453dc8cb5db711fddf8"
+     },
+     "last_active_at": null
+   }
+diff --git a/specs/sk-communication/006-sk-communication-clarity/graph-metadata.json b/specs/sk-communication/006-sk-communication-clarity/graph-metadata.json
+index 38461f527e..cc50d6a96c 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/graph-metadata.json
++++ b/specs/sk-communication/006-sk-communication-clarity/graph-metadata.json
+@@ -12,7 +12,8 @@
+     "sk-communication/006-sk-communication-clarity/006-reply-shape-rules",
+     "sk-communication/006-sk-communication-clarity/007-wording-standard-restructure",
+     "sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules",
+-    "sk-communication/006-sk-communication-clarity/009-adjacent-surface-rules"
++    "sk-communication/006-sk-communication-clarity/009-adjacent-surface-rules",
++    "sk-communication/006-sk-communication-clarity/010-review-remediation"
+   ],
+   "manual": {
+     "depends_on": [],
+@@ -49,7 +50,7 @@
+       "compression"
+     ],
+     "importance_tier": "important",
+-    "status": "draft",
++    "status": "in_progress",
+     "key_files": [
+       "spec.md",
+       "goal.md",
+@@ -67,7 +68,9 @@
+       "context/claude-style-patch-main/STYLE.md",
+       "context/i-have-adhd-main/skills/i-have-adhd/SKILL.md",
+       "001-research-communication-context/research/research.md",
+-      "004-sk-communication-upgrade/research/research.md"
++      "004-sk-communication-upgrade/research/research.md",
++      "002-synthesis-and-decisions/allocation-table.md",
++      "repo-rules/prose-mechanics.md"
+     ],
+     "entities": [
+       {
+@@ -148,6 +151,18 @@
+         "path": "context/claude-style-patch-main/STYLE.md",
+         "source": "derived"
+       },
++      {
++        "name": "allocation-table.md",
++        "kind": "doc",
++        "path": "002-synthesis-and-decisions/allocation-table.md",
++        "source": "derived"
++      },
++      {
++        "name": "prose-mechanics.md",
++        "kind": "doc",
++        "path": "repo-rules/prose-mechanics.md",
++        "source": "derived"
++      },
+       {
+         "name": "Feature Specification",
+         "kind": "proper_noun",
+@@ -197,19 +212,7 @@
+         "source": "derived"
+       },
+       {
+-        "name": "a",
+-        "kind": "key_phrase",
+-        "path": "goal.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "an",
+-        "kind": "key_phrase",
+-        "path": "goal.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "its",
++        "name": "no",
+         "kind": "key_phrase",
+         "path": "goal.md",
+         "source": "derived"
+@@ -217,7 +220,7 @@
+     ],
+     "causal_summary": "The repository governs how a reply reads across three layers: `AGENTS.md` keeps the two clauses",
+     "created_at": "2026-09-12T12:44:34Z",
+-    "last_save_at": "2026-09-14T05:57:21.625Z",
++    "last_save_at": "2026-09-14T16:13:28.503Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -225,12 +228,13 @@
+       "goal.md",
+       "handover.md"
+     ],
+-    "source_fingerprint": "sha256:2f011dbc1f64be7eb15807c5679d1aacb3a7adbf5a08a6c26c7e7f98713eb3ed",
++    "source_fingerprint": "sha256:7be2c78a846f822c4b59f20fbca8826286b224b111e006fd33237ef345824a3e",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+-      "spec.md": "d2e948308183e55006f4f1d8a48955006f44a9ccc8e9ff0ea79cd0889876e4f3",
++      "spec.md": "2ba7c70c767405e376c13fa99ff0fe829b07948d5ed9f99d2274f335b74860b5",
+       "handover.md": "f267747a0b9a41034095aa657bb7ef695c8345b65f3f10d4f094cc04602e5cef"
+     },
+-    "last_active_at": null
++    "last_active_child_id": "sk-communication/006-sk-communication-clarity/001-research-communication-context",
++    "last_active_at": "2026-09-14T16:13:28.503Z"
+   }
+ }

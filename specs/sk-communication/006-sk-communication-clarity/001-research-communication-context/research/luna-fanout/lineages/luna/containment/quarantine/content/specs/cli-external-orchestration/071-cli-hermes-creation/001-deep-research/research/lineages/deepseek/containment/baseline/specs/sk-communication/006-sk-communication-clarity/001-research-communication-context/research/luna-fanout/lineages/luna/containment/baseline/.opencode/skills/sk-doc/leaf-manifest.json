@@ -1,0 +1,254 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "assets/agent-template.md",
+        "references/README.md",
+        "references/agent-vs-skill-vs-command.md",
+        "references/common-pitfalls.md",
+        "references/permission-design.md"
+      ],
+      "packet": "sk-create-agent",
+      "workflowMode": "sk-create-agent"
+    },
+    {
+      "leaves": [
+        "assets/behavior-benchmark/behavior-benchmark-baseline-template.md",
+        "assets/behavior-benchmark/behavior-benchmark-index-template.md",
+        "assets/behavior-benchmark/behavior-benchmark-scenario-template.md",
+        "assets/model-benchmark/model-benchmark-code-task-fixture-template.md",
+        "assets/model-benchmark/model-benchmark-pattern-fixture-template.md",
+        "assets/model-benchmark/model-benchmark-profile-template.md",
+        "assets/shared/benchmark-report-template.md",
+        "assets/shared/source-template.md",
+        "assets/skill-benchmark/skill-benchmark-readme-template.md",
+        "references/agent-improvement/agent-improvement-authoring-guide.md",
+        "references/behavior-benchmark/behavior-benchmark-guide.md",
+        "references/model-benchmark/model-benchmark-fixture-guide.md",
+        "references/shared/README.md",
+        "references/shared/case-studies.md",
+        "references/shared/pitfalls.md",
+        "references/shared/worked-example.md",
+        "references/skill-benchmark/serving-snapshot-schema.md",
+        "references/skill-benchmark/skill-benchmark-storage-guide.md"
+      ],
+      "packet": "sk-create-benchmark",
+      "workflowMode": "sk-create-benchmark"
+    },
+    {
+      "leaves": [
+        "assets/changelog-template.md",
+        "references/README.md",
+        "references/topology-edge-cases.md",
+        "references/version-bump-rules.md",
+        "references/worked-examples.md"
+      ],
+      "packet": "sk-create-changelog",
+      "workflowMode": "sk-create-changelog"
+    },
+    {
+      "leaves": [
+        "assets/command-contract.json",
+        "assets/command-contract.schema.json",
+        "assets/command-presentation-template.md",
+        "assets/command-router-template.md",
+        "assets/command-template.md",
+        "references/README.md",
+        "references/argument-hints-and-modes.md",
+        "references/common-pitfalls.md",
+        "references/router-presentation-split.md",
+        "references/worked-example.md"
+      ],
+      "packet": "sk-create-command",
+      "workflowMode": "sk-create-command"
+    },
+    {
+      "leaves": [
+        "assets/fixtures/README.md",
+        "assets/fixtures/onboarding-after.md",
+        "assets/fixtures/onboarding-before.md",
+        "references/README.md",
+        "references/accessibility-contract.md",
+        "references/capabilities-and-fidelity.md",
+        "references/cli-reference.md",
+        "references/worked-example.md",
+        "references/workflow.md"
+      ],
+      "packet": "sk-create-diff",
+      "workflowMode": "sk-create-diff"
+    },
+    {
+      "leaves": [
+        "assets/feature-catalog-snippet-template.md",
+        "assets/feature-catalog-template.md",
+        "references/README.md",
+        "references/common-pitfalls.md",
+        "references/examples.md"
+      ],
+      "packet": "sk-create-feature-catalog",
+      "workflowMode": "sk-create-feature-catalog"
+    },
+    {
+      "leaves": [
+        "assets/fixtures/README.md",
+        "assets/fixtures/over-budget-description.md",
+        "assets/fixtures/under-budget-trim-lost-tokens.md",
+        "assets/frontmatter-templates.md",
+        "references/README.md",
+        "references/frontmatter-versioning.md"
+      ],
+      "packet": "sk-create-frontmatter",
+      "workflowMode": "sk-create-frontmatter"
+    },
+    {
+      "leaves": [
+        "assets/manual-testing-playbook-snippet-template.md",
+        "assets/manual-testing-playbook-template.md",
+        "references/README.md",
+        "references/common-pitfalls.md",
+        "references/examples.md",
+        "references/prompt-voice.md"
+      ],
+      "packet": "sk-create-manual-testing-playbook",
+      "workflowMode": "sk-create-manual-testing-playbook"
+    },
+    {
+      "leaves": [
+        "assets/llmstxt-templates.md",
+        "references/README.md",
+        "references/core-standards.md",
+        "references/evergreen-packet-id-rule.md",
+        "references/hvr-rules.md",
+        "references/optimization.md",
+        "references/transformation-patterns.md",
+        "references/validation-and-enforcement.md",
+        "references/validation.md",
+        "references/workflow-examples.md",
+        "references/workflows.md"
+      ],
+      "packet": "sk-create-quality-control",
+      "workflowMode": "sk-create-quality-control"
+    },
+    {
+      "leaves": [
+        "assets/install-guide-template.md",
+        "assets/readme-code-template.md",
+        "assets/readme-template.md",
+        "references/README.md",
+        "references/install-guide/quality-and-standards.md",
+        "references/install-guide/section-examples.md",
+        "references/readme/quality-and-checklist.md",
+        "references/readme/types-and-voice.md",
+        "references/readme/writing-patterns.md"
+      ],
+      "packet": "sk-create-readme",
+      "workflowMode": "sk-create-readme"
+    },
+    {
+      "leaves": [
+        "assets/repo-rule-template.md",
+        "assets/repo-rules-router-template.md",
+        "references/README.md",
+        "references/agents-md-integration.md",
+        "references/creation-standards.md",
+        "references/decision-tests.md",
+        "references/rule-anatomy.md"
+      ],
+      "packet": "sk-create-repo-rule",
+      "workflowMode": "sk-create-repo-rule"
+    },
+    {
+      "leaves": [
+        "assets/parent-skill/parent-skill-command-metadata-template.json",
+        "assets/parent-skill/parent-skill-description-template.json",
+        "assets/parent-skill/parent-skill-graph-metadata-template.json",
+        "assets/parent-skill/parent-skill-hub-router-template.json",
+        "assets/parent-skill/parent-skill-hub-template.md",
+        "assets/parent-skill/parent-skill-leaf-aliases-template.json",
+        "assets/parent-skill/parent-skill-readme-template.md",
+        "assets/parent-skill/parent-skill-registry-template.json",
+        "assets/parent-skill/parent-skill-root-router-template.md",
+        "assets/parent-skill/scaffold/hub-skill-scaffold.md",
+        "assets/parent-skill/scaffold/packet-skill-scaffold.md",
+        "assets/skill/skill-asset-template.md",
+        "assets/skill/skill-graph-metadata-template.json",
+        "assets/skill/skill-leaf-manifest-config-template.json",
+        "assets/skill/skill-md-template.md",
+        "assets/skill/skill-procedure-template.md",
+        "assets/skill/skill-readme-template.md",
+        "assets/skill/skill-reference-template.md",
+        "assets/skill/skill-scaffold-template.md",
+        "assets/skill/skill-smart-router.md",
+        "assets/skill/skill-sync-manifest-template.md",
+        "references/README.md",
+        "references/parent-skill/compiled-routing-architecture.md",
+        "references/parent-skill/compiled-routing-lockstep-surfaces.json",
+        "references/parent-skill/parent-hub-router-schema.md",
+        "references/parent-skill/parent-skills-nested-packets.md",
+        "references/shared/advisor-index-handoff.md",
+        "references/shared/common-pitfalls.md",
+        "references/shared/overview.md",
+        "references/shared/skill-root-metadata-contract.md",
+        "references/shared/validation-and-packaging.md",
+        "references/skill/creation-workflow.md",
+        "references/skill/examples-and-maintenance.md",
+        "references/skill/upgrading-a-skill-to-v4.md"
+      ],
+      "packet": "sk-create-skill",
+      "workflowMode": "sk-create-skill"
+    },
+    {
+      "leaves": [
+        "assets/parent-skill/parent-skill-command-metadata-template.json",
+        "assets/parent-skill/parent-skill-description-template.json",
+        "assets/parent-skill/parent-skill-graph-metadata-template.json",
+        "assets/parent-skill/parent-skill-hub-router-template.json",
+        "assets/parent-skill/parent-skill-hub-template.md",
+        "assets/parent-skill/parent-skill-leaf-aliases-template.json",
+        "assets/parent-skill/parent-skill-readme-template.md",
+        "assets/parent-skill/parent-skill-registry-template.json",
+        "assets/parent-skill/parent-skill-root-router-template.md",
+        "assets/parent-skill/scaffold/hub-skill-scaffold.md",
+        "assets/parent-skill/scaffold/packet-skill-scaffold.md",
+        "assets/skill/skill-asset-template.md",
+        "assets/skill/skill-graph-metadata-template.json",
+        "assets/skill/skill-leaf-manifest-config-template.json",
+        "assets/skill/skill-md-template.md",
+        "assets/skill/skill-procedure-template.md",
+        "assets/skill/skill-readme-template.md",
+        "assets/skill/skill-reference-template.md",
+        "assets/skill/skill-scaffold-template.md",
+        "assets/skill/skill-smart-router.md",
+        "assets/skill/skill-sync-manifest-template.md",
+        "references/README.md",
+        "references/parent-skill/compiled-routing-architecture.md",
+        "references/parent-skill/compiled-routing-lockstep-surfaces.json",
+        "references/parent-skill/parent-hub-router-schema.md",
+        "references/parent-skill/parent-skills-nested-packets.md",
+        "references/shared/advisor-index-handoff.md",
+        "references/shared/common-pitfalls.md",
+        "references/shared/overview.md",
+        "references/shared/skill-root-metadata-contract.md",
+        "references/shared/validation-and-packaging.md",
+        "references/skill/creation-workflow.md",
+        "references/skill/examples-and-maintenance.md",
+        "references/skill/upgrading-a-skill-to-v4.md"
+      ],
+      "packet": "sk-create-skill",
+      "workflowMode": "sk-create-skill-parent"
+    },
+    {
+      "leaves": [
+        "assets/voice-report-template.md",
+        "references/README.md",
+        "references/hvr-publish-supplement.md",
+        "references/hvr-rules.md",
+        "references/scope-and-exemptions.md",
+        "references/scoring-and-verification.md"
+      ],
+      "packet": "sk-create-with-human-voice",
+      "workflowMode": "sk-create-with-human-voice"
+    }
+  ],
+  "resourceContractVersion": 1
+}

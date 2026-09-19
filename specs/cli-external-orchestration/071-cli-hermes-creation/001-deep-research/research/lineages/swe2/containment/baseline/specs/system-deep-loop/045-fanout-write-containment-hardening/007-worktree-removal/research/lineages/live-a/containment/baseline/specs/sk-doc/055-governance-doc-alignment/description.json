@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/055-governance-doc-alignment",
+  "description": "The 006 clarity program paused with its validation state unproven: a swarm rewrote twelve documents, and the repair pass that would confirm them was",
+  "keywords": [
+    "clarity",
+    "program",
+    "paused",
+    "validation",
+    "state",
+    "unproven",
+    "swarm",
+    "rewrote",
+    "twelve",
+    "documents",
+    "repair",
+    "pass",
+    "confirm",
+    "them"
+  ],
+  "lastUpdated": "2026-09-14T05:45:15.733Z",
+  "specId": "055",
+  "folderSlug": "governance-doc-alignment",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

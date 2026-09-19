@@ -1,0 +1,24 @@
+Lineage `live-b` finished: init, one iteration (cap-bound), synthesis. All writes stayed inside the lineage directory.
+
+**Answer delivered** — `write-containment.ts` exports **8 functions** (plus 3 constants and 12 types, listed separately so the asked class stays unambiguous):
+
+| Exported function | `file:line` |
+|---|---|
+| `drainGitContentionWarnings` | `write-containment.ts:312` |
+| `classifyViolation` | `write-containment.ts:511` |
+| `snapshotOutOfScopeDirtyPaths` | `write-containment.ts:772` |
+| `detectNewOutOfScopeViolations` | `write-containment.ts:814` |
+| `quarantineViolations` | `write-containment.ts:1065` |
+| `revertOutOfScopeViolations` | `write-containment.ts:1146` |
+| `buildContainmentViolationEvent` | `write-containment.ts:1214` |
+| `enforceWriteContainment` | `write-containment.ts:1267` |
+
+Each carries a one-line purpose in `research.md` §1 and `iterations/iteration-001.md` §1.1, anchored to its declaration line and body span.
+
+**Artifacts written** (in `…/lineages/live-b/`): `deep-research-config.json`, `deep-research-state.jsonl` (4 records, iteration record with route proof + stop event `maxIterationsReached`, `stopPolicy: max-iterations`, `maxIterations: 1`), `deep-research-strategy.md`, `deep-research-dashboard.md`, `findings-registry.json`, `iterations/iteration-001.md`, `deltas/iter-001.jsonl`, `research.md`, `resource-map.md`, `prompts/iteration-001.md`, `orchestration-status.log`, `dispatch-receipts/research-i1-g1.json`. All JSON/JSONL re-parsed clean after writing.
+
+**Two deviations, recorded honestly rather than silently** (`research.md` §7): artifact root bound directly to `config.fanout_lineage_artifact_dir`, and the append gateway was **not** invoked — it resolves a durable authority root outside the run directory and a protected path at `<runDirectory>/../.legacy-authority-protected`, so calling it risked an out-of-scope write. The state log and delta were written as the projection instead, which is the sanctioned legacy-writer path while the mode is not under ledger authority (the gate reports `not-enforced` there). A one-line contract fix is proposed in the same section.
+
+**Containment verified:** no file outside the lineage was written by this process (my writes span 18:23:03–18:23:10; the only other recent activity in the tree is a separate concurrent `luna-fanout` job appending its own ledgers). No nested CLI, agent, or subprocess was spawned for any iteration.
+
+FANOUT_LINEAGE_COMPLETE:live-b

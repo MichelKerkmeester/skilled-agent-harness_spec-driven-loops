@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-communication/006-sk-communication-clarity",
+  "description": "The repository governs how a reply reads across three layers: `AGENTS.md` keeps the two clauses",
+  "keywords": [
+    "repository",
+    "governs",
+    "reply",
+    "reads",
+    "across",
+    "three",
+    "layers",
+    "agents",
+    "keeps",
+    "two",
+    "clauses"
+  ],
+  "lastUpdated": "2026-09-14T15:11:58.449Z",
+  "specId": "006",
+  "folderSlug": "sk-communication-clarity",
+  "parentChain": [
+    "sk-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
