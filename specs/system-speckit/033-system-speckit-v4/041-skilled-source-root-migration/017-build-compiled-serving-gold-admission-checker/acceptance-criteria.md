@@ -61,7 +61,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-002 | REQ-002 | Given a hub whose manifest reads legacy, When the checker runs, Then it still scores the hub and no manifest changes | `.skilled/bin/tests/compiled-route-admission.test.cjs:244` hashes the tree. The checker calls `compiledRoute()`, which never reads the serving flag or manifest. The live test hashes the promoted activation tree before and after scoring every hub and finds it unchanged | Met | - |
 | AC-003 | REQ-003 | Given a hub below the floor, When the checker runs, Then it reports `insufficient-coverage` | `.skilled/bin/tests/compiled-route-admission.test.cjs:193` and the tests after it: a candidate missing a mode's gold, and one with no negative scenario, each report `insufficient-coverage`; an admitted hub with the same gaps passes and still reports them | Met | - |
 | AC-004 | REQ-004 | Given the live corpus, When the tests run, Then the corpus count matches its pin and one live hub scores | `.skilled/bin/tests/compiled-route-admission.test.cjs:32` pins the count. The live tests pin 73 scenarios and score all five hubs through the real engine | Met | - |
-| AC-005 | REQ-005 | Given a push, When CI runs, Then the checker runs over all five hubs | `.github/workflows/routing-registry-drift.yml:176` runs it warn-only. It ran in a clean clone under Node 22 with no installs. A CI run ID waits on the push | Unmet | - |
+| AC-005 | REQ-005 | Given a push, When CI runs, Then the checker runs over all five hubs | `.github/workflows/routing-registry-drift.yml:176` runs it warn-only. Routing Registry Drift Guard passed with the step on `520f215b59`: run `35425580051` on `main` and `35425580193` on `skilled/v4.0.0.0` | Met | - |
 | AC-006 | REQ-006 | Given the baseline report, When it is read, Then every failure carries a class | `baseline/admission-report.md:32` and the rows around it, classed in `implementation-summary.md`: three engine drifts, one stale gold entry, five scenarios without a prompt | Met | - |
 | AC-007 | REQ-007 | Given a sandbox copy, When the flip step runs, Then the manifest reads `compiled` and the lock and journal are clean | `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/admission-gate.cjs:40` is the gate both tools now call. In a sandboxed copy with its own fresh freeze, mcp-tooling flipped to `compiled` with no lock or journal left and `admissionPassed: true` recorded, then rolled back byte-identically. sk-doc was refused for drift. The live activation hash was unchanged | Met | - |
 
@@ -90,5 +90,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-Everything but AC-005 is met; it waits on a CI run of the pushed step. A live flip still needs the scorer freeze renewed, which phase 18 owns.
+Every criterion is met. The phase stays open on one task: CI blocks only once the four baseline failures are fixed or excused, which needs a decision.
 <!-- /ANCHOR:closure -->

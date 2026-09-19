@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-09-19T05:54:19Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Gated activation and the flip on the admission check and proved a sandboxed flip"
-    next_safe_action: "Record the CI run for AC-005; phase 18 renews the scorer freeze"
+    next_safe_action: "Decide when the admission step blocks CI"
     blockers:
       - "The scorer freeze may be renewed only on a green routing battery, and two advisor parity tests are red"
     key_files:
@@ -46,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 017-build-compiled-serving-gold-admission-checker |
-| **Completed** | Not yet: AC-005 waits on CI |
+| **Completed** | Not yet: making the CI step blocking waits on a decision |
 | **Level** | 2 |
 | **Status** | In Progress |
 <!-- /ANCHOR:metadata -->
@@ -148,7 +148,7 @@ The scoring rules were fixed in fixture tests before the first live run, and thr
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No hub can be flipped live until phase 18 renews the scorer freeze.**
+1. **Phase 18 renewed the scorer freeze.** A live flip now depends only on the admission check and the rollback snapshots phase 18 found stale.
 2. **The four baseline failures are reported, not fixed.** They belong to the hubs' engines and playbooks.
 3. **Found while testing, outside this phase:**
    - Phase 12's `63ad140f9b` broke 8 of the advisor plugin's cache tests. They build workspaces with no source root, which the plugin now declines to cache. The plugin before that commit passes all 40, and no CI job runs this suite.

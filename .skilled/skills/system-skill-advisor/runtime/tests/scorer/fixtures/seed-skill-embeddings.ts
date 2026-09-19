@@ -34,6 +34,9 @@ interface CacheManifest {
 
 const CACHE_DIR = join(dirname(fileURLToPath(import.meta.url)), '.embeddings-cache');
 const CACHE_PATH = join(CACHE_DIR, 'skill-embeddings.json');
+// The cache is committed, so a test run reads it but does not rewrite it: vectors a
+// run computes stay in memory unless this variable asks for the file to be refreshed.
+const CACHE_REFRESH_ENV = 'SPECKIT_REFRESH_EMBEDDINGS_CACHE';
 
 function emptyManifest(): CacheManifest {
   return { version: 1, entries: {} };
@@ -140,7 +143,7 @@ export async function seedSkillEmbeddings(skills: readonly SeededSkill[]): Promi
     }
   }
 
-  if (changed) {
+  if (changed && process.env[CACHE_REFRESH_ENV] === '1') {
     writeManifest(manifest);
   }
 

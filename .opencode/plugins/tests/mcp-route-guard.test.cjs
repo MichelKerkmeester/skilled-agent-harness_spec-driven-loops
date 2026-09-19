@@ -51,3 +51,13 @@ test('logs under .opencode when that is the only source root', async (t) => {
   assert.match(fs.readFileSync(path.join(projectDir, '.opencode', 'logs', 'mcp-route-guard.log'), 'utf8'), /WARN/);
   assert.equal(fs.existsSync(path.join(projectDir, '.skilled')), false);
 });
+
+test('logs under the checkout root when the project is a directory below it', async (t) => {
+  const checkout = temporaryDirectory(t, 'mcp-route-guard-nested-', '.skilled');
+  const projectDir = path.join(checkout, 'packages', 'app');
+  fs.mkdirSync(projectDir, { recursive: true });
+  await callExternalMcpTool(t, projectDir);
+
+  assert.match(fs.readFileSync(path.join(checkout, '.skilled', 'logs', 'mcp-route-guard.log'), 'utf8'), /WARN/);
+  assert.equal(fs.existsSync(path.join(projectDir, '.opencode')), false);
+});

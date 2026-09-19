@@ -1,6 +1,7 @@
 import { EventEmitter } from 'node:events';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mockedBridge = vi.hoisted(() => ({
@@ -250,6 +251,23 @@ describe('system-skill-advisor OpenCode plugin', () => {
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('cache_hits=1');
     expect(status).toContain('cache_misses=2');
+  });
+
+  it('caches for a workspace nested inside the checkout and never for one outside any checkout', async () => {
+    const nested = await makePlugin({ cacheTTLMs: 5000 }, `${process.cwd()}/nested-workspace`);
+    await runPrompt(nested, { prompt: 'implement feature X' });
+    await runPrompt(nested, { prompt: 'implement feature X' });
+    expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
+
+    const outside = mkdtempSync(join(tmpdir(), 'advisor-no-checkout-'));
+    try {
+      const detached = await makePlugin({ cacheTTLMs: 5000 }, outside);
+      await runPrompt(detached, { prompt: 'implement feature X' });
+      await runPrompt(detached, { prompt: 'implement feature X' });
+      expect(mockedBridge.spawn).toHaveBeenCalledTimes(3);
+    } finally {
+      rmSync(outside, { recursive: true, force: true });
+    }
   });
 
   it('reports cache accounting with bridge invocations as cache misses', async () => {

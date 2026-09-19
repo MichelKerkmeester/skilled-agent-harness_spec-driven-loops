@@ -633,9 +633,9 @@
       "gold": "system-deep-loop",
       "promptHash": "sha256:5249917554f1290d938ac3c8f25a9a88d10403495e7d245adfcfe2e9e19ff50b",
       "localTop": "deep-research",
-      "nativeTop": "system-spec-kit",
-      "reason": "current-state capture after the deep-loop skill consolidation; legacy mode aliases remain represented by the current hub",
-      "approvedAt": "2026-08-15"
+      "nativeTop": "system-deep-loop",
+      "reason": "native now routes the /deep:research command to its gold hub; the Python reference still names the legacy deep-research alias",
+      "approvedAt": "2026-09-19"
     },
     {
       "id": "rr-iter3-170",
