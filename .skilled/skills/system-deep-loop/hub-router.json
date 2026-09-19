@@ -58,7 +58,7 @@
       "keywords": ["improve agent", "evaluate agent", "agent scoring", "agent candidate", "score agent candidate", "promote or rollback agent change", "agent-improvement", "deep-improvement", "agent improvement"]
     },
     "model-benchmark-aliases": {
-      "keywords": ["/deep:model-benchmark", "model benchmark", "benchmark a model"]
+      "keywords": ["/deep:model-benchmark"]
     },
     "hub-identity": {
       "keywords": ["system-deep-loop", "deep-loop-workflows", "deep loop workflows", "deep loop workflow"]

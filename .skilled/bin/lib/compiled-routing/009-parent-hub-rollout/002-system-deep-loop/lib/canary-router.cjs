@@ -235,6 +235,17 @@ function explicitModeMatches(snapshot, value) {
   ));
 }
 
+// A leading "<mode>:" hint resolves the request before keyword scoring, matching the hub's
+// documented hint override. Only an exact single-mode match is taken: an unrecognised prefix
+// (prose colons, or an alias that names no mode) falls through to scoring rather than deferring,
+// so the hint adds no new no-match path of its own.
+function hintedMode(snapshot, text) {
+  const match = /^([a-z0-9][a-z0-9-]*):/.exec(text);
+  if (!match) return null;
+  const matches = explicitModeMatches(snapshot, match[1]);
+  return matches.length === 1 ? matches[0].workflowMode : null;
+}
+
 // Score every mode by (count of matched keywords) x weight -- identical to the
 // frozen legacy replay's scoreIntents formula (weight is constant per mode in
 // both, so summing weight-per-hit equals count-of-hits x weight). Keywords
@@ -274,6 +285,7 @@ function evaluateCanary(snapshot, input) {
   const built = buildRequest(snapshot, input);
   const text = normalize(input.prompt || '');
   const constraints = new Set((input.constraints || []).map(normalize));
+  const hinted = hintedMode(snapshot, text);
   let decision;
   let scores = [];
   if (constraints.has('forbidden') || text.includes('forbidden')) {
@@ -286,6 +298,8 @@ function evaluateCanary(snapshot, input) {
     else if (constraints.has('clarify') || matches.length > 1) {
       decision = clarify(snapshot, built.request);
     } else decision = negative('defer', { reason: 'no-match', recovery: [] });
+  } else if (hinted) {
+    decision = routeSingle(snapshot, hinted);
   } else {
     scores = scoreModes(snapshot.routingModel, text);
     const order = new Map(snapshot.routingModel.tieBreak.map((mode, index) => [mode, index]));

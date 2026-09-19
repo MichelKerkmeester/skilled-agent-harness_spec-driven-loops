@@ -1,8 +1,8 @@
 ---
 id: SD-015
-title: 'Ceiling token cost: ON_DEMAND_KEYWORDS load all RESOURCE_MAP'
-description: "This scenario validates ON_DEMAND_ALL ceiling token-cost behavior for SD-015."
-stage: routing
+title: 'Ceiling token cost: a full-toolkit request defers instead of fanning out'
+description: "SD-015 asserts the fail-safe outcome: a bare full-toolkit request must not fan out across every authoring mode."
+stage: negative
 expected_intent: UNKNOWN
 expected_resources:
   - sk-create-agent/assets/agent-template.md
@@ -397,7 +397,7 @@ This scenario validates ON_DEMAND_ALL ceiling token-cost behavior for `SD-015`. 
 
 ### Why This Matters
 
-The ceiling case proves that load-all behavior is available only when explicitly requested and gives operators an upper-bound cost baseline. This scenario catches accidental truncation, missing resource-map entries, and unbounded expansion beyond the enumerated toolkit.
+The ceiling case records the upper-bound inventory an explicit full-toolkit request would load, and gives operators the cost reference for it. The compiled router does not fan out: a route is capped at the largest declared bundle, and a prompt that names only the hub takes the defer outcome by contract. The assertion is therefore the fail-safe one — no mode may route — and it catches a misroute into a single authoring mode or unbounded expansion beyond the enumerated toolkit. Fan-out to the full inventory remains an open architecture gap; the inventory below stays the reference for the ceiling if it is ever implemented.
 
 ---
 
@@ -405,12 +405,12 @@ The ceiling case proves that load-all behavior is available only when explicitly
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Verify sk-doc routes the scenario to `ON_DEMAND_ALL` with the expected resources.
+- Objective: Verify sk-doc emits no route for a bare full-toolkit request (fail-safe), instead of fanning out across every authoring mode.
 - Real user request: `Show the full sk-doc toolkit: all templates, frameworks, format guide, references, and assets.`
 - Prompt: `Show the full sk-doc toolkit: all templates, frameworks, format guide, references, and assets.`
-- Expected signals: Intent resolves to `ON_DEMAND_ALL`; loaded resources match `expected_resources`.
-- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
-- Pass/fail: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
+- Expected signals: The decision is a non-route (defer); no intent's resources load.
+- Desired user-visible outcome: The router trace reports a defer, and no authoring mode's resources are loaded.
+- Pass/fail: PASS when the router emits no route (defer or a disambiguation prompt); FAIL if any mode routes.
 
 ---
 
@@ -436,7 +436,7 @@ Show the full sk-doc toolkit: all templates, frameworks, format guide, reference
 
 ### Expected
 
-Intent resolves to `ON_DEMAND_ALL`; loaded resources match `expected_resources`.
+No route: the router defers, and no intent's resources load (the enumerated inventory above is the reference ceiling, not a load list).
 
 ### Evidence
 
@@ -444,8 +444,8 @@ CLI transcript with intent, resources, response shape, token counts where applic
 
 ### Pass / Fail
 
-- **Pass**: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
-- **Fail**: wrong intent or empty output
+- **Pass**: PASS when the router emits no route (defer or a disambiguation prompt); FAIL if any mode routes.
+- **Fail**: any mode routes for this phrasing
 
 ### Failure Triage
 
