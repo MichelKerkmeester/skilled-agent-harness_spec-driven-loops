@@ -182,3 +182,42 @@ The mirror parity gate refuses a commit that stages some generated mirrors while
 <!-- /ANCHOR:limitations -->
 
 ---
+
+<!-- ANCHOR:follow-up -->
+## Follow-up: OpenCode alias retirement (2026-09-19)
+
+Two aliases under `.opencode` were retired after this phase closed, because no consumer reached them any more once the hand-made links resolved into `.skilled` directly.
+
+`bin` and `logs` were per-entry symlinks onto `../.skilled/bin` and `../.skilled/logs`. The `bin` alias had one consumer, the `code_mode` MCP server entry in `opencode.json`, which now names `.skilled/bin/mcp-code-mode-launcher.cjs`. The `logs` alias had none: the three OpenCode plugins that write a workspace log resolve their path through `findSourceRoot()` and fall back to `<repoRoot>/.opencode` only when no toolchain tree exists, and that fallback calls `mkdirSync` with `recursive`, so it recreates the directory instead of failing.
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `opencode.json` | Modified | `mcp.code_mode.command` names `.skilled/bin/mcp-code-mode-launcher.cjs` |
+| `.opencode/bin`, `.opencode/logs` | Deleted | No consumer remained |
+| `.opencode/SYNC.md` | Modified | The two inventory rows and the section 1 reference to the launcher path |
+| `.opencode/README.md` | Modified | The `bin/` and `logs/` rows in the entry table |
+| `bin/tests/opencode-compat-layout.test.cjs` | Modified | The launcher assertion matched `.opencode/bin/...` and now matches `.skilled/bin/...` |
+
+`opencode-compat-layout.test.cjs` reads the section 2 inventory out of `SYNC.md` and asserts that every entry on disk is listed there, so the manifest rows and the symlinks had to change together. Removing either alone leaves the test red.
+
+| Check | Result |
+|-------|--------|
+| `opencode-compat-layout.test.cjs` | PASS. 19 pass, 2 skipped as install-time, 0 fail, exit 0 |
+| Launcher target resolves | PASS. `.skilled/bin/mcp-code-mode-launcher.cjs` exists |
+| Originals retained | PASS. `.skilled/bin` and `.skilled/logs` are unchanged |
+| `validate.sh --strict` on this folder | PASS, `RESULT: PASSED` |
+
+Rollback for this follow-up: `git checkout -- .opencode/bin .opencode/logs opencode.json .opencode/SYNC.md .opencode/README.md .skilled/bin/tests/opencode-compat-layout.test.cjs`.
+
+### The embedder question, resolved without a change
+
+The same request asked whether anything still embeds, and whether `hf-model-server.cjs` could go. It stays, because it is the local-only tier of the skill-advisor embedding cascade rather than dead code.
+
+One skill embeds at runtime: `system-skill-advisor`. Its `runtime/lib/skill-graph/skill-graph-db.ts` calls `createEmbeddingsProvider()` and writes vectors, and the persisted pointer in `runtime/database/skill-graph.sqlite` reads `active_embedder_provider=ollama`, `active_embedder_name=nomic-embed-text-v1.5`, `active_embedder_dim=768`, with 13 rows in `vec_768`. Its `semantic_shadow` lane is live at weight 0.05.
+
+`shared/embeddings/factory.ts` resolves auto mode as ollama when the persisted provider is reachable and hf-local otherwise, so the model server is reachable whenever Ollama is not answering. Ollama is installed on this machine and serves the tier-one model, so hf-local is currently unreached, and retiring it would move that tier to the cloud providers instead.
+
+Nothing else consumes an embedder. `system-spec-kit` does not embed at all, since its memory MCP surface was retired and its retrieval path is the lexical trigger index plus the ripgrep lane. `system-deep-loop` has no embedding or vector usage. The sk-design style library injects its own `embedder` callback for a git-ignored vector lane and never names the model server.
+<!-- /ANCHOR:follow-up -->
+
+---

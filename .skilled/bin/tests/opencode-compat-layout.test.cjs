@@ -107,10 +107,10 @@ describe('the shipped .opencode directory matches its sync manifest', () => {
     assert.equal(resolved.startsWith(fs.realpathSync(path.join(COMPAT_ROOT, 'node_modules')) + path.sep), true, resolved);
   });
 
-  test('the MCP launcher opencode.json names is reachable through this directory', () => {
+  test('the MCP launcher opencode.json names resolves under the source tree', () => {
     const config = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'opencode.json'), 'utf8'));
-    const named = JSON.stringify(config).match(/\.opencode\/bin\/[A-Za-z0-9._-]+/g) || [];
-    assert.ok(named.length > 0, 'opencode.json names no launcher under .opencode/bin');
+    const named = JSON.stringify(config).match(/\.skilled\/bin\/[A-Za-z0-9._-]+/g) || [];
+    assert.ok(named.length > 0, 'opencode.json names no launcher under .skilled/bin');
     for (const relative of new Set(named)) {
       assert.equal(fs.existsSync(path.join(REPO_ROOT, relative)), true, `${relative} does not resolve`);
     }
