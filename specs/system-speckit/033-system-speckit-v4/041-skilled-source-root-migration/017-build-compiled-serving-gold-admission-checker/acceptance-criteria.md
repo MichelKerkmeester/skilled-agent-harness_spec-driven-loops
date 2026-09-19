@@ -14,20 +14,19 @@ _memory:
     recent_action: "Built the checker; the flip stays blocked"
     next_safe_action: "Decide how the flip gate and the scorer freeze are unblocked"
     blockers:
-      - "Every hub's validate-canary.cjs scores through modules retired with the skill-benchmark lane, so activation and flip fail closed"
       - "The scorer freeze may be renewed only on a green routing battery, and two advisor parity tests are red"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "6d11af6f-653e-4807-aca8-1c09c81640c1"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 90
     open_questions:
-      - "How should the canary gate be unblocked: replace it with the admission check, restore the retired modules, or leave the flip blocked?"
-      - "Renew the scorer freeze now, or after the two advisor parity failures are resolved?"
       - "When should CI block: after the four baseline failures are fixed, or with an exemption list?"
     answered_questions:
       - "The five build decisions, accepted as recommended on 2026-09-19"
+      - "The dead canary gate is replaced by the admission check (operator, 2026-09-19)"
+      - "The scorer re-freeze waits on the advisor suite, fixed in phase 18 (operator, 2026-09-19)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
 # Acceptance Criteria: Phase 17: build-compiled-serving-gold-admission-checker
@@ -64,7 +63,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-004 | REQ-004 | Given the live corpus, When the tests run, Then the corpus count matches its pin and one live hub scores | `.skilled/bin/tests/compiled-route-admission.test.cjs:32` pins the count. The live tests pin 73 scenarios and score all five hubs through the real engine | Met | - |
 | AC-005 | REQ-005 | Given a push, When CI runs, Then the checker runs over all five hubs | `.github/workflows/routing-registry-drift.yml:176` runs it warn-only. It ran in a clean clone under Node 22 with no installs. A CI run ID waits on the push | Unmet | - |
 | AC-006 | REQ-006 | Given the baseline report, When it is read, Then every failure carries a class | `baseline/admission-report.md:32` and the rows around it, classed in `implementation-summary.md`: three engine drifts, one stale gold entry, five scenarios without a prompt | Met | - |
-| AC-007 | REQ-007 | Given a sandbox copy, When the flip step runs, Then the manifest reads `compiled` and the lock and journal are clean | `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/flip-serving.cjs:101` runs the canary, and `009-parent-hub-rollout/007-sk-doc/harness/validate-canary.cjs:84` pins the retired `load-playbook-scenarios.cjs`. Run once against a sandboxed copy with a fresh freeze, the flip fails closed at that gate. The live activation state was unchanged | Unmet | - |
+| AC-007 | REQ-007 | Given a sandbox copy, When the flip step runs, Then the manifest reads `compiled` and the lock and journal are clean | `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/admission-gate.cjs:40` is the gate both tools now call. In a sandboxed copy with its own fresh freeze, mcp-tooling flipped to `compiled` with no lock or journal left and `admissionPassed: true` recorded, then rolled back byte-identically. sk-doc was refused for drift. The live activation hash was unchanged | Met | - |
 
 ### Status values
 
@@ -91,5 +90,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-The checker, its tests, the CI step, the baseline and the runbook are done. The flip is not: its canary gate scores through retired modules for every hub, and renewing the scorer freeze waits on red advisor parity. AC-005 waits on a CI run.
+Everything but AC-005 is met; it waits on a CI run of the pushed step. A live flip still needs the scorer freeze renewed, which phase 18 owns.
 <!-- /ANCHOR:closure -->

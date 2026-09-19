@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 17: build-compiled-serving-gold-admission-checker"
-description: "The admission checker is built, tested and running in CI warn-only, and its baseline finds three engine drifts and one stale gold entry among the admitted hubs. The flip cannot run yet: every hub's canary gate scores through modules retired with the benchmark lane."
+description: "The admission checker is built, tested and running in CI warn-only, and its baseline finds three engine drifts and one stale gold entry among the admitted hubs. Activation and the flip are now gated on it, and a sandboxed flip and rollback work; a live flip waits on the scorer freeze."
 trigger_phrases:
   - "gold admission checker summary"
   - "phase 17 status"
@@ -12,10 +12,9 @@ _memory:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker"
     last_updated_at: "2026-09-19T05:54:19Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Built the checker, its tests and CI step, and ran the baseline"
-    next_safe_action: "Decide how the flip gate and the scorer freeze are unblocked"
+    recent_action: "Gated activation and the flip on the admission check and proved a sandboxed flip"
+    next_safe_action: "Record the CI run for AC-005; phase 18 renews the scorer freeze"
     blockers:
-      - "Every hub's validate-canary.cjs scores through modules retired with the skill-benchmark lane, so activation and flip fail closed"
       - "The scorer freeze may be renewed only on a green routing battery, and two advisor parity tests are red"
     key_files:
       - ".skilled/bin/compiled-route-admission.cjs"
@@ -25,13 +24,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "6d11af6f-653e-4807-aca8-1c09c81640c1"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 90
     open_questions:
-      - "How should the canary gate be unblocked: replace it with the admission check, restore the retired modules, or leave the flip blocked?"
-      - "Renew the scorer freeze now, or after the two advisor parity failures are resolved?"
       - "When should CI block: after the four baseline failures are fixed, or with an exemption list?"
     answered_questions:
       - "The five build decisions, accepted as recommended on 2026-09-19"
+      - "The dead canary gate is replaced by the admission check (operator, 2026-09-19)"
+      - "The scorer re-freeze waits on the advisor suite, fixed in phase 18 (operator, 2026-09-19)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -47,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 017-build-compiled-serving-gold-admission-checker |
-| **Completed** | Not yet: the flip is blocked |
+| **Completed** | Not yet: AC-005 waits on CI |
 | **Level** | 2 |
 | **Status** | In Progress |
 <!-- /ANCHOR:metadata -->
@@ -86,10 +85,11 @@ The retired parity harness scored these hubs as zero drift. It compared compiled
 
 ### The flip
 
-`frozen-scorer-contract.cjs` now finds the scorer under either source-root name at `runtime/lib/scorer`. Its pins are keyed relative to that directory, and every digest is unchanged, so the gate names the 7 scorer files that really changed since the 2026-08-15 freeze instead of crashing. The flip still cannot run, for two reasons that need decisions:
+`frozen-scorer-contract.cjs` now finds the scorer under either source-root name at `runtime/lib/scorer`. Its pins are keyed relative to that directory, and every digest is unchanged, so the gate names the 7 scorer files that really changed since the 2026-08-15 freeze instead of crashing.
 
-- **The canary gate is dead for every hub.** `activate-hub.cjs` and `flip-serving.cjs` both run each hub's `validate-canary.cjs`. All five canaries pin and score through `load-playbook-scenarios.cjs` and `score-skill-benchmark.cjs`, which phase 13 deleted with the benchmark lane. A sandboxed flip with a fresh freeze failed closed there, and the live state was unchanged.
-- **The freeze may not be renewed yet.** Its pins say to re-freeze only when the routing battery is green on the new scorer. Two advisor parity tests are red: one ledgered prompt now ranks `system-deep-loop` above `system-spec-kit`, and the Python-correct count fell from 109 to 108.
+Activation and the flip used to run each hub's `validate-canary.cjs`. All five canaries pinned and scored through `load-playbook-scenarios.cjs` and `score-skill-benchmark.cjs`, which phase 13 deleted with the benchmark lane. sk-doc's canary also pinned authored sources that have since changed, and packets that no longer exist, so none of the five could pass even with the modules restored. The operator chose to replace that gate. `shared/admission-gate.cjs` now runs the admission check for the hub, and `activate-hub.cjs` and `flip-serving.cjs` both refuse anything short of `pass`; the records they write carry `admissionPassed` instead of `canaryGreen`.
+
+In a sandboxed copy of the cutover tooling with its own fresh freeze, mcp-tooling flipped to `compiled` with no lock or journal left behind and rolled back byte-identically. sk-doc was refused for its drift. A live flip still refuses on the stale scorer freeze. Its pins say to re-freeze only when the routing battery is green, and two advisor parity tests are red, so the operator moved the re-freeze to phase 18.
 
 ### Files Changed
 
@@ -100,6 +100,8 @@ The retired parity harness scored these hubs as zero drift. It compared compiled
 | `.skilled/bin/tests/compiled-route-admission.test.cjs` | Created | 29 tests |
 | `.github/workflows/routing-registry-drift.yml` | Modified | Warn-only step; playbooks join the triggers |
 | `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs`, `frozen-scorer-pins.json` | Modified | Scorer path; pins rekeyed, digests unchanged |
+| `.../shared/admission-gate.cjs` | Created | The gate activation and the flip share |
+| `.../013-live-activation/lib/activate-hub.cjs`, `.../014-runtime-engine/lib/flip-serving.cjs` | Modified | Admission gate in place of the dead canary |
 | `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md` | Modified | Admission runbook and its blockers |
 | `baseline/admission-report.json`, `.md` | Created | The baseline |
 <!-- /ANCHOR:what-built -->
@@ -121,7 +123,7 @@ The scoring rules were fixed in fixture tests before the first live run, and thr
 |----------|-----|
 | Rekey the pins but keep every digest | A re-freeze is a conscious act the pins reserve for a green routing battery; rekeying only makes the gate report the truth |
 | Keep CI warn-only | The baseline has four failures on admitted hubs, and fixing engines or gold is outside this phase |
-| Report the flip blocker instead of patching around it | The canary gate is a designed safety check; replacing or restoring it is a design choice |
+| Replace the canary gate only after the operator chose it | It was a designed safety check, and its replacement changes what activation proves |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -135,7 +137,8 @@ The scoring rules were fixed in fixture tests before the first live run, and thr
 | Mutation check | 3 of 3 scorer mutants fail the suite |
 | Checker, live | `--all`: 3 hubs pass, 2 drift; exit 1, and 0 with `--warn-only` |
 | Clean clone, Node 22 | Same result with no installs |
-| Sandboxed flip | Fails closed at the canary gate; live activation hash unchanged |
+| Sandboxed flip | mcp-tooling flips and rolls back byte-identically; sk-doc is refused for drift; live activation hash unchanged |
+| Runtime-engine harness | 5 of 11 before and after; the flip checks stop at the stale scorer freeze |
 | Scorer gate | Names the 7 changed files |
 | Reference | `validate_document.py`: 0 issues |
 <!-- /ANCHOR:verification -->
@@ -145,7 +148,7 @@ The scoring rules were fixed in fixture tests before the first live run, and thr
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No hub can be activated or flipped yet.** See the flip section above; both blockers need a decision.
+1. **No hub can be flipped live until phase 18 renews the scorer freeze.**
 2. **The four baseline failures are reported, not fixed.** They belong to the hubs' engines and playbooks.
 3. **Found while testing, outside this phase:**
    - Phase 12's `63ad140f9b` broke 8 of the advisor plugin's cache tests. They build workspaces with no source root, which the plugin now declines to cache. The plugin before that commit passes all 40, and no CI job runs this suite.
