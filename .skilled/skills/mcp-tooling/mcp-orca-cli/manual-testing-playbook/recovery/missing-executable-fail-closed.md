@@ -2,7 +2,7 @@
 title: "ORCA-003 -- Fail closed on a missing executable"
 description: "This scenario validates that the packet fails closed when no Orca executable resolves, without installing or inspecting source silently."
 stage: recovery
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # ORCA-003 -- Fail closed on a missing executable
@@ -24,9 +24,9 @@ The resolution order is terminal: an execution error must not fall through to an
 - Scenario Objective: With no resolvable executable, the packet reports the failure and asks the operator instead of installing, inspecting source or switching executables.
 - Exact Prompt: `In a shell with no Orca executable, request an Orca worktree listing and observe the failure behavior. Do not install anything.`
 - Exact Command Sequence: `1. agent: resolve the Orca executable in an isolated PATH -> 2. bash: command -v orca (expected: not found) -> 3. agent: report the failure and ask the operator`
-- Expected Signals: `command -v` finds nothing; the packet reports the missing executable with its resolution attempt; no installation, source inspection or silent retry occurs.
+- Expected Signals: `command -v` finds nothing. The packet reports the missing executable with its resolution attempt. No installation, source inspection or silent retry occurs.
 - Evidence: The isolated `PATH` state, the `command -v` result and the reported failure text.
-- Pass/Fail Criteria: PASS when the packet fails closed and asks; FAIL on any silent install, source inspection or executable switch; SKIP without an authorized isolated shell environment.
+- Pass/Fail Criteria: PASS when the packet fails closed and asks. FAIL on any silent install, source inspection or executable switch. SKIP without an authorized isolated shell environment.
 - Failure Triage: 1. Confirm the environment was genuinely isolated. 2. Re-run the resolution order. 3. Escalate any observed fall-through as a contract violation.
 
 ---
@@ -69,7 +69,7 @@ Isolated `PATH` state, `command -v` output, reported failure text.
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ORCA-003 | Fail closed on a missing executable | Prove no install, no source inspection, no fall-through | `In a shell with no Orca executable, request an Orca worktree listing and observe the failure behavior. Do not install anything.` | isolation -> `command -v orca` -> report and ask | Not found; failure reported; no retry | PATH state, command output, failure text | PASS on fail-closed; SKIP without isolated env; FAIL on silent fallback | Verify isolation, rerun order, escalate violation |
+| ORCA-003 | Fail closed on a missing executable | Prove no install, no source inspection, no fall-through | `In a shell with no Orca executable, request an Orca worktree listing and observe the failure behavior. Do not install anything.` | isolation -> `command -v orca` -> report and ask | Not found. Failure reported. No retry | PATH state, command output, failure text | PASS on fail-closed. SKIP without isolated env. FAIL on silent fallback | Verify isolation, rerun order, escalate violation |
 
 ---
 

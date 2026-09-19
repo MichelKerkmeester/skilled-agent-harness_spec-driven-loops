@@ -2,7 +2,7 @@
 title: "ORCA-007 -- Terminal receipts and replay"
 description: "This scenario validates terminal receipt stages, retry-request replay and the unverifiable bulk-close outcome on an authorized disposable terminal."
 stage: mutation
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # ORCA-007 -- Terminal receipts and replay
@@ -24,9 +24,9 @@ An accepted input is not a started turn and a timeout from `--wait-submit` is no
 - Scenario Objective: On an authorized disposable terminal, send one tracked prompt, distinguish the receipt stages, replay via the reported retry request on an ambiguous failure and observe the bulk-close outcome without claiming unproven exits.
 - Exact Prompt: `Send one tracked prompt to a disposable Orca terminal, record each receipt stage and if delivery is ambiguous replay with the reported retry request. Do not claim exits the host did not confirm.`
 - Exact Command Sequence: `1. bash: orca terminal send --terminal <handle> --text "..." --enter --json -> 2. bash: orca terminal send ... --wait-submit 10 --json -> 3. bash: retry-request replay of the exact command if a transport failure occurs -> 4. bash: orca terminal close (specific or bulk per the guide, --json)`
-- Expected Signals: `input_accepted` is reported separately from `turn_started`; `--wait-submit` observes the same accepted request; replay uses the reported retry request rather than a new prompt; a bulk close that cannot confirm every PTY is recorded as `unverifiable`.
+- Expected Signals: `input_accepted` is reported separately from `turn_started`. `--wait-submit` observes the same accepted request. Replay uses the reported retry request rather than a new prompt. A bulk close that cannot confirm every PTY is recorded as `unverifiable`.
 - Evidence: Every receipt stage with exit statuses, the retry request id used and the close outcome exactly as the host reported it.
-- Pass/Fail Criteria: PASS only with an authorized disposable terminal and receipts preserved; SKIP by default without one (blocker: missing authorized terminal); FAIL on a resend of an untracked prompt, a disguised `unverifiable` or a claimed exit without a receipt.
+- Pass/Fail Criteria: PASS only with an authorized disposable terminal and receipts preserved. SKIP by default without one (blocker: missing authorized terminal). FAIL on a resend of an untracked prompt, a disguised `unverifiable` or a claimed exit without a receipt.
 - Failure Triage: 1. Re-read the receipt stages. 2. Replay only with the exact command and reported retry request. 3. Preserve `unverifiable` as the outcome and do not retry on another host.
 
 ---
@@ -70,7 +70,7 @@ Receipt stages, exit statuses, retry request id, close outcome.
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ORCA-007 | Terminal receipts and replay | Distinguish receipt stages, replay correctly, record unverifiable close | `Send one tracked prompt to a disposable Orca terminal, record each receipt stage and if delivery is ambiguous replay with the reported retry request. Do not claim exits the host did not confirm.` | send -> wait-submit -> retry replay -> close | `input_accepted` distinct from `turn_started`; replay uses retry request; `unverifiable` preserved | Receipt stages, exit statuses, retry id, close outcome | PASS with authorized terminal plus preserved receipts; SKIP by default; FAIL on untracked resend or unproven exit | Re-read receipts, exact replay, preserve unverifiable |
+| ORCA-007 | Terminal receipts and replay | Distinguish receipt stages, replay correctly, record unverifiable close | `Send one tracked prompt to a disposable Orca terminal, record each receipt stage and if delivery is ambiguous replay with the reported retry request. Do not claim exits the host did not confirm.` | send -> wait-submit -> retry replay -> close | `input_accepted` distinct from `turn_started`. Replay uses retry request. `unverifiable` preserved | Receipt stages, exit statuses, retry id, close outcome | PASS with authorized terminal plus preserved receipts. SKIP by default. FAIL on untracked resend or unproven exit | Re-read receipts, exact replay, preserve unverifiable |
 
 ---
 

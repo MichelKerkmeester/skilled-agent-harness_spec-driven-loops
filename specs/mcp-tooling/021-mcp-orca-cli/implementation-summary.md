@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/021-mcp-orca-cli"
-    last_updated_at: "2026-09-19T12:31:05Z"
+    last_updated_at: "2026-09-19T15:08:09Z"
     last_updated_by: "implementation-owner"
-    recent_action: "Integrated mcp-orca-cli and mcp-tooling routing surfaces"
+    recent_action: "Closed the 0.1.0.0 residuals with the 0.1.1.0 documentation conformance release"
     next_safe_action: "Obtain explicit authorization for live mutation/publishing tests or compiled-route activation"
     blockers: []
     key_files:
@@ -121,7 +121,7 @@ A later operator-directed pass brought the leaf packet into full sk-doc / sk-cre
 | `README.md` | Restructured to the skill README template: `---` dividers, four-row AT A GLANCE, problem-first OVERVIEW with narrative hook, INTEGRATION & NAVIGATION ownership table, HVR-clean prose. | `validate_document.py --type readme`: VALID, 0 issues (baseline was 6 blocking separator errors plus HVR hits). |
 | `manual-testing-playbook/` | Restructured into the split-package shape: root directory playbook plus six category folders with ten per-feature scenario files, each carrying the full execution contract and source metadata. The persistence-contract marker is present. | Root playbook `--type playbook` VALID, 0 issues; 10/10 scenario files `--type playbook_feature` VALID, 0 issues. |
 | `changelog/` | Renamed `v1.0.0.0.md` to `v0.1.0.0.md` and set every leaf frontmatter version to 0.1.0.0, matching the mcp-notion and mcp-obsidian first-version convention. The hub stays at 1.7.0.0. | Version sweep: 18/18 leaf files at 0.1.0.0; changelog validator VALID; no residual v1.0.0.0 self-references. |
-| This packet | Added the conformance tasks and acceptance criteria AC-009 through AC-012 with evidence. | Strict validation rerun below. |
+| This packet | Added the conformance and residual-alignment criteria AC-009 through AC-013 with evidence. | Strict validation rerun below. |
 
 ### Post-Remediation Gates
 
@@ -137,8 +137,14 @@ A later operator-directed pass brought the leaf packet into full sk-doc / sk-cre
 
 ### External Review (cli-devin, DeepSeek v4.1 Flash High)
 
-The read-only reviewer (no edits, no repository tooling) read all 16 scoped files and ran its own banned-form greps. Verdicts: 16/16 PASS. Factual-coherence checks passed for the CLI-only backend claim, the executable resolution order, the archive-hook gate, the terminal-receipt semantics, and the browser ownership boundaries. Findings were limited to P2 polish, of which the pitch order, the ORCA-005 scope wording, and the truncated-list Oxford-comma spots were fixed immediately; the remaining residuals are accepted: semicolons and occasional Oxford-comma clauses inside scenario contract bullets follow the sibling precedent (mcp-notion scenario files carry the same forms) and sit outside the packet's HVR verification scope, and `SKILL.md`/`INSTALL-GUIDE.md` retain their pre-existing forms noted below. The review prompt and full transcript are stored at `.skilled/skills/mcp-tooling/benchmark/reports/orca-integration/2026-09-19--conformance-remediation/`.
+The read-only reviewer (no edits, no repository tooling) read all 16 scoped files and ran its own banned-form greps. Verdicts: 16/16 PASS. Factual-coherence checks passed for the CLI-only backend claim, the executable resolution order, the archive-hook gate, the terminal-receipt semantics, and the browser ownership boundaries. Findings were limited to P2 polish, of which the pitch order, the ORCA-005 scope wording, and the truncated-list Oxford-comma spots were fixed immediately; the remaining residuals were accepted at review time and were subsequently closed by the 0.1.1.0 alignment release recorded below. The review prompt and full transcript are stored at `.skilled/skills/mcp-tooling/benchmark/reports/orca-integration/2026-09-19--conformance-remediation/`.
 
-### Residual Out-of-Scope Observations
+### Residual Alignment (0.1.1.0, 2026-09-19)
 
-Two leaf documents sit outside the frozen remediation scope and keep their pre-pass state. `SKILL.md` retains its pre-existing Oxford-comma prose. `INSTALL-GUIDE.md` carries no frontmatter at all and reports seven issues under `validate_document.py --type install_guide`, exactly as it shipped. Both passed `package_skill.py --check` as shipped. A later alignment pass over those two files would close the remaining template gap in the leaf.
+The residuals recorded by the remediation and its external review were closed by a documentation conformance release. `INSTALL-GUIDE.md` gained the full frontmatter block, the required Overview, Prerequisites, and Installation sections, `---` dividers, and HVR-clean prose; its install-guide validator count dropped from 7 issues to 0. `SKILL.md` gained the ten section dividers, a closed numbering gap, removal of the stray "Workflow lanes" heading, and a voice pass over the serial-comma clauses and em dashes; its skill validator count dropped from 11 issues to 0. Clause periods replaced the 85 contract semicolons across the ten scenario files, the root playbook's flagged serial-comma clauses were removed, and the released 0.1.0.0 note's serial commas were normalized with its facts unchanged. Versions: SKILL.md, README.md, INSTALL-GUIDE.md, the root playbook, and the ten scenario files carry 0.1.1.0, while the four references and the 0.1.0.0 entry keep 0.1.0.0. `changelog/v0.1.1.0.md` records the release.
+
+| Check | Result |
+|---|---|
+| Leaf document validators | PASS — 19/19 scoped documents (skill, readme, install guide, 4 references, playbook root, 10 scenarios, 2 changelog entries) VALID with 0 issues. |
+| Whole-leaf HVR sweep | PASS — serial-comma, em-dash, and semicolon greps return no matches in any leaf document, and the banned-word greps return no matches. |
+| Structural gates | PASS — `package_skill.py --check` PASS; `parent-skill-check.cjs` OK with 0 warnings at hub 1.7.0.0 (no manifest drift: the touched documents are not manifest leaves); metadata fleet 13/13. |

@@ -10,7 +10,7 @@ trigger_phrases:
   - "orca browser"
   - "orca handoff"
   - "orca artifacts"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # mcp-orca-cli
@@ -122,4 +122,5 @@ Both commands exit 0 on success. The package check covers the leaf shape. The pa
 | [`references/mutation-and-browser-boundaries.md`](./references/mutation-and-browser-boundaries.md) | Mutation gates and browser ownership |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Recovery and escalation |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Safety matrix for live manual verification |
+| [`changelog/v0.1.1.0.md`](./changelog/v0.1.1.0.md) | Documentation conformance release |
 | [`changelog/v0.1.0.0.md`](./changelog/v0.1.0.0.md) | Initial packet release |

@@ -2,7 +2,7 @@
 title: "ORCA-010 -- Unrelated OpenOrca prompts defer"
 description: "This scenario validates that a prompt naming only an unrelated OpenOrca model does not select this Orca CLI packet."
 stage: routing
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # ORCA-010 -- Unrelated OpenOrca prompts defer
@@ -24,9 +24,9 @@ A bare `orca` alias would capture unrelated OpenOrca model traffic. The registry
 - Scenario Objective: Replay an OpenOrca-model prompt through the hub routing and confirm `mcp-orca-cli` is not selected.
 - Exact Prompt: `Show the OpenOrca model label for the current request.` as a standalone routing request.
 - Exact Command Sequence: `1. agent: route the prompt through the hub -> 2. bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<prompt>" --threshold 0.5`
-- Expected Signals: The prompt defers or routes elsewhere; `mcp-orca-cli` is not selected; no Orca workflow alias captures the model label.
+- Expected Signals: The prompt defers or routes elsewhere. `mcp-orca-cli` is not selected. No Orca workflow alias captures the model label.
 - Evidence: Router or advisor output with the score and selected resource.
-- Pass/Fail Criteria: PASS when Orca-specific routing does not capture the prompt; FAIL when `mcp-orca-cli` is selected; SKIP when the advisor or router is unavailable.
+- Pass/Fail Criteria: PASS when Orca-specific routing does not capture the prompt. FAIL when `mcp-orca-cli` is selected. SKIP when the advisor or router is unavailable.
 - Failure Triage: 1. Re-run the advisor with the exact prompt. 2. Compare against the registry alias list for over-broad aliases. 3. Record any capture as a routing defect against the alias-narrowness contract.
 
 ---
@@ -68,7 +68,7 @@ Router and advisor output with score and selected resource.
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ORCA-010 | Unrelated OpenOrca prompts defer | OpenOrca model label does not capture | `Show the OpenOrca model label for the current request.` | hub route -> advisor replay | Defer or non-Orca route; no `mcp-orca-cli` selection | Router and advisor output with score | PASS when not captured; SKIP if router unavailable; FAIL on selection | Re-run advisor, compare aliases, record defect |
+| ORCA-010 | Unrelated OpenOrca prompts defer | OpenOrca model label does not capture | `Show the OpenOrca model label for the current request.` | hub route -> advisor replay | Defer or non-Orca route. No `mcp-orca-cli` selection | Router and advisor output with score | PASS when not captured. SKIP if router unavailable. FAIL on selection | Re-run advisor, compare aliases, record defect |
 
 ---
 

@@ -2,7 +2,7 @@
 title: "ORCA-009 -- Sibling browser ownership"
 description: "This scenario validates that generic Chrome/CDP and generic agentic browser requests route to their sibling packets rather than this Orca packet."
 stage: routing
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # ORCA-009 -- Sibling browser ownership
@@ -24,9 +24,9 @@ Orca's embedded browser is worktree-scoped. If this packet captured generic brow
 - Scenario Objective: Replay two generic routing prompts and confirm neither selects `mcp-orca-cli`.
 - Exact Prompt: `Debug a Chrome page over CDP and capture console output.` plus `Automate a login flow on this public website.` each as standalone routing requests.
 - Exact Command Sequence: `1. agent: route the CDP prompt through the hub -> 2. agent: route the agentic browser prompt through the hub -> 3. bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<prompt>" --threshold 0.5 for each`
-- Expected Signals: The CDP prompt routes to `mcp-chrome-devtools`; the agentic browser prompt routes to `mcp-aside-devtools`; neither resolves to `mcp-orca-cli` or to an Orca leaf resource.
+- Expected Signals: The CDP prompt routes to `mcp-chrome-devtools`. The agentic browser prompt routes to `mcp-aside-devtools`. Neither resolves to `mcp-orca-cli` or to an Orca leaf resource.
 - Evidence: Router or advisor output for both prompts with scores and selected resources.
-- Pass/Fail Criteria: PASS when hub routing selects the incumbent owner for both; FAIL when either selects `mcp-orca-cli`; SKIP when the advisor or router is unavailable.
+- Pass/Fail Criteria: PASS when hub routing selects the incumbent owner for both. FAIL when either selects `mcp-orca-cli`. SKIP when the advisor or router is unavailable.
 - Failure Triage: 1. Re-run the advisor with the exact prompt. 2. Compare the alias capture against the registry. 3. Escalate any Orca capture of generic browser traffic as a routing defect.
 
 ---
@@ -69,7 +69,7 @@ Router and advisor outputs with scores and selected resources for both prompts.
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ORCA-009 | Sibling browser ownership | Generic CDP and agentic browser stay with siblings | `Debug a Chrome page over CDP and capture console output.` / `Automate a login flow on this public website.` | route CDP prompt -> route agentic prompt -> advisor replay | Sibling packets selected; no Orca capture | Router and advisor outputs with scores | PASS when incumbents selected; SKIP if router unavailable; FAIL on any Orca capture | Re-run advisor, compare aliases, record defect |
+| ORCA-009 | Sibling browser ownership | Generic CDP and agentic browser stay with siblings | `Debug a Chrome page over CDP and capture console output.` / `Automate a login flow on this public website.` | route CDP prompt -> route agentic prompt -> advisor replay | Sibling packets selected. No Orca capture | Router and advisor outputs with scores | PASS when incumbents selected. SKIP if router unavailable. FAIL on any Orca capture | Re-run advisor, compare aliases, record defect |
 
 ---
 
