@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.3.0
+version: 1.5.4.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -202,6 +202,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 - **An invalid `.pi/extensions/*.ts` fails the whole session, not just that extension.** The pinned contract confirmed Pi validates extensions must export a factory function; a broken one blocks the entire dispatch with `Extension does not export a valid factory function` rather than skipping it with a warning.
 - **The default provider is `google`, not Anthropic.** `pi --help` documents `--provider <name> (default: google)`. Do not assume an Anthropic-first default when composing a dispatch that omits `--provider`.
 - **`pi install`/`pi list` require `--approve` to see or modify project-local package config.** Without it, both commands behave as if no packages exist, even when one is installed — the trust gate applies to reads, not only writes.
+- **The operator's global Pi packages load in a dispatched child, and pi-blackhole compacts it mid-run.** pi-blackhole's config (`~/.pi/agent/pi-blackhole/pi-blackhole-config.json`) auto-compacts at `compactAfterTokens`, 272,000 here, with `midRunCompaction: "resume"`. The compaction replaces everything the child has read with a structural summary, so a child still reading when it fires starts reading again and can loop without ever editing. Set `PI_BLACKHOLE_PASSIVE=true` in the child's environment, which the package documents as switching off its background workers and its auto-compaction. Pi's own compaction is off in `.pi/settings.json`, so the child keeps its model's full context window.
 
 ---
 
@@ -220,6 +221,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 9. Treat Pi-native discovery claims as confirmed only when backed by the pinned contract or a linked live documentation page.
 10. Compose every dispatch as `{resolved agent persona + task prompt}`, never a bare task. Resolve the persona from the ACTIVE runtime's agent directory (AGENTS.md §9; never hardcode a runtime) and map each subtask to the right agent (code, review, design, deep-research, markdown). Core Pi has no native persona surface on `pi -p`, so INLINE the persona block into the payload — the child cannot resolve agent paths by reference. A persona-less leaf runs as a generic assistant, dropping its tool-scope, verification gates, and output contract. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
 11. Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt. The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
+12. Give a build dispatch one change per brief: name the file, the edit, and the check that proves it. A brief that asks the child to read a subsystem before it edits spends its context first; a DeepSeek V4.1 Flash build brief carrying five changes across five runtime files read about 995,000 characters in 25 minutes and wrote nothing. Chain the changes as separate dispatches and check each diff before sending the next.
 
 ### ⛔ NEVER
 

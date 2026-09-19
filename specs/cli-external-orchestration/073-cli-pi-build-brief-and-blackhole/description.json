@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/073-cli-pi-build-brief-and-blackhole",
+  "description": "On 2026-09-19 a DeepSeek V4.1 Flash build of `specs/system-deep-loop/050-spec-protocol-ledger-events`, dispatched through `pi -p`, ran for 41 minutes",
+  "keywords": [
+    "deepseek",
+    "flash",
+    "specs",
+    "system-deep-loop",
+    "050-spec-protocol-ledger-events",
+    "dispatched",
+    "ran",
+    "minutes"
+  ],
+  "lastUpdated": "2026-09-19T07:54:19.386Z",
+  "specId": "073",
+  "folderSlug": "cli-pi-build-brief-and-blackhole",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
