@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a5b0836258aab5ea52315dbaee2949ccb77cd8b2165fd0b37169d1cd23492f5a",
+  "manifestHash": "fd42fdcbddf682f4d95b00772f87ab19374acbfc4031eac04eb39c8fd45c41e5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -26046,14 +26046,14 @@
     "compiled router enable by default program": [
       "compiled router enable by default program"
     ],
+    "compiled router five hubs": [
+      "compiled router five hubs"
+    ],
     "compiled router rollout phases": [
       "compiled router rollout phases"
     ],
     "compiled router safe cutover contract": [
       "compiled router safe cutover contract"
-    ],
-    "compiled router seven hubs": [
-      "compiled router seven hubs"
     ],
     "compiled router synthesis correction report": [
       "compiled router synthesis correction report"
@@ -26075,6 +26075,9 @@
     ],
     "compiled routing architecture": [
       "compiled routing architecture"
+    ],
+    "compiled routing architecture correction": [
+      "compiled routing architecture correction"
     ],
     "compiled routing authority": [
       "compiled routing authority"
@@ -73761,6 +73764,9 @@
     "phase 15 tasks": [
       "phase 15 tasks"
     ],
+    "phase 16 closure gate": [
+      "phase 16 closure gate"
+    ],
     "phase 16 implementation summary": [
       "phase 16 implementation summary"
     ],
@@ -73769,6 +73775,9 @@
     ],
     "phase 16 results": [
       "phase 16 results"
+    ],
+    "phase 16 stale docs": [
+      "phase 16 stale docs"
     ],
     "phase 16 tasks": [
       "phase 16 tasks"
@@ -84530,6 +84539,12 @@
     ],
     "retired skill benchmark removal": [
       "retired skill-benchmark removal"
+    ],
+    "retired template headers rule": [
+      "retired template headers rule"
+    ],
+    "retired template headers rule fixed": [
+      "retired template headers rule fixed"
     ],
     "retired tool id sweep": [
       "retired tool id sweep"
@@ -100054,6 +100069,18 @@
     "stale compiled manifests": [
       "stale compiled manifests"
     ],
+    "stale compiled routing text acceptance": [
+      "stale compiled routing text acceptance"
+    ],
+    "stale compiled routing text plan": [
+      "stale compiled routing text plan"
+    ],
+    "stale compiled routing text summary": [
+      "stale compiled routing text summary"
+    ],
+    "stale compiled routing text tasks": [
+      "stale compiled routing text tasks"
+    ],
     "stale completion frontmatter": [
       "stale completion frontmatter"
     ],
@@ -100266,6 +100293,9 @@
     ],
     "stale scripts reference removed": [
       "stale scripts reference removed"
+    ],
+    "stale seven hub text": [
+      "stale seven hub text"
     ],
     "stale skill graph daemon lease": [
       "stale skill graph daemon lease",
