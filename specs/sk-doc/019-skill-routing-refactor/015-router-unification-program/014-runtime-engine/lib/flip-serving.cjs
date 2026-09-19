@@ -7,7 +7,7 @@
 // authority from 'legacy' to 'compiled' (and shadowOnly true->false), so the
 // resolver treats the compiled contract as authoritative for this hub. Gated on:
 //   - the hub is already P4a-bound (selectedPolicy is the compiled generation),
-//   - the shadow canary is green,
+//   - the hub passes the compiled-serving admission check,
 //   - the three frozen scorer digests are unchanged,
 //   - the compiled engine actually routes at least one designed scenario,
 //   - the loaded snapshot identity equals the manifest's selectedPolicy.
@@ -25,9 +25,9 @@
 const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
-const { execFileSync } = require('child_process');
 const { compiledRoute, loadHubEngine, HUB_CHILD } = require('./compiled-route.cjs');
 const { assertScorerFrozen } = require('../../shared/frozen-scorer-contract.cjs');
+const { assertAdmissionPasses } = require('../../shared/admission-gate.cjs');
 const { withHubLock } = require('../../shared/hub-lock.cjs');
 
 const IMPL_ROOT = path.resolve(__dirname, '..', '..');
@@ -94,11 +94,6 @@ function recoverFromJournal(hubDir) {
   })}\n`);
   fs.rmSync(journalPath, { force: true });
   return j;
-}
-
-function assertCanaryGreen(hubId) {
-  const child = path.join(IMPL_ROOT, HUB_CHILD[hubId]);
-  execFileSync('node', [path.join(child, 'harness', 'validate-canary.cjs')], { stdio: ['ignore', 'ignore', 'pipe'] });
 }
 
 // The engine must route at least one designed scenario (proves the compiled
@@ -226,7 +221,7 @@ function main() {
     // Preconditions.
     if (manifest.selectedPolicy.effectivePolicyHash == null) throw new Error(`${hubId} is not P4a-bound (selectedPolicy is legacy)`);
     assertScorerFrozen(findRepoRoot(IMPL_ROOT), 'the serving flip');
-    assertCanaryGreen(hubId);
+    const admission = assertAdmissionPasses(findRepoRoot(IMPL_ROOT), hubId);
     const routeProof = assertEngineRoutes(hubId);
 
     // Identity binding: the snapshot we are about to make authoritative MUST be the
@@ -251,7 +246,7 @@ function main() {
     const record = {
       hubId, servingAuthority: 'compiled', shadowOnly: false,
       selectedPolicy: flipped.selectedPolicy, fenceEpoch: { before: fence, after: nextFence },
-      gate: { canaryGreen: true, scorerFrozen: true, ...routeProof },
+      gate: { admissionPassed: admission.admissionPassed, scorerFrozen: true, ...routeProof },
       rollbackTo: 'manifest.serving-prior.json',
     };
     atomicWrite(recordPath, `${stableStringify(record)}\n`);
@@ -268,7 +263,7 @@ function main() {
       : 'no-op';
     process.stdout.write(`ALREADY-COMPILED hub=${hubId} (${note})\n`);
   } else {
-    process.stdout.write(`FLIPPED hub=${hubId} serving=compiled shadowOnly=false gen=${out.selectedPolicy.generation} fence=${out.fenceEpoch.before}->${out.fenceEpoch.after} routed=${out.routeProof.routedScenarios}/${out.routeProof.totalScenarios} canaryGreen=true scorerFrozen=true\n`);
+    process.stdout.write(`FLIPPED hub=${hubId} serving=compiled shadowOnly=false gen=${out.selectedPolicy.generation} fence=${out.fenceEpoch.before}->${out.fenceEpoch.after} routed=${out.routeProof.routedScenarios}/${out.routeProof.totalScenarios} admissionPassed=true scorerFrozen=true\n`);
   }
 }
 

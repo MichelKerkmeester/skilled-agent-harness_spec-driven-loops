@@ -45,7 +45,7 @@ contextType: "implementation"
 - [x] T004 Write fixtures for every status and sub-reason, and the scorer against them (`.skilled/bin/tests/compiled-route-admission.test.cjs`)
 - [x] T005 Write the floor check from each hub's `mode-registry.json`
 - [x] T006 Write the reporter and the command line (`.skilled/bin/compiled-route-admission.cjs`)
-- [B] T007 Repair the flip step. The scorer path is repaired and the pins rekeyed; re-freezing waits on red advisor parity, and every hub's canary scores through retired modules
+- [x] T007 Repair the flip step: the scorer path is repaired, the pins rekeyed, and the dead canary gate in activation and flip replaced by the admission check (`shared/admission-gate.cjs`). Re-freezing moved to phase 18
 - [x] T008 Add the checker to CI, warn-only (`.github/workflows/routing-registry-drift.yml`)
 <!-- /ANCHOR:phase-2 -->
 
@@ -55,7 +55,7 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [x] T009 Run `--all`, commit the baseline report, and class each failure as engine drift or stale gold (`baseline/`)
-- [B] T010 Flip a sandbox copy of a hub end to end. Run once: it fails closed at the canary gate
+- [x] T010 Flip a sandbox copy of a hub end to end: mcp-tooling flips and rolls back byte-identically; sk-doc is refused for drift
 - [x] T011 Write the admission runbook (`compiled-routing-architecture.md`)
 - [ ] T012 Make the CI step blocking once the baseline is clean or excused
 - [x] T013 Run the node gate and the bin vitest suite
@@ -67,7 +67,7 @@ contextType: "implementation"
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 

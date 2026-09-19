@@ -96,7 +96,7 @@ Any hub can be checked against the admission bar with one command, the check run
 | `.skilled/bin/lib/compiled-route-admission.cjs` | Create | Gold loader, scorer and report writer |
 | `.skilled/bin/tests/compiled-route-admission.test.cjs` and fixtures | Create | Status fixtures, live run, corpus pin |
 | `.github/workflows/routing-registry-drift.yml` | Modify | Run the checker beside the route guard |
-| `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs` or a new flip step | Modify or Create | A flip that works |
+| `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/shared/frozen-scorer-contract.cjs`, `shared/admission-gate.cjs`, `014-runtime-engine/lib/flip-serving.cjs`, `013-live-activation/lib/activate-hub.cjs` | Modify and Create | A flip that works, gated on the admission check |
 | `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md` | Modify | Admission runbook |
 <!-- /ANCHOR:scope -->
 
@@ -211,8 +211,8 @@ The operator accepted all five recommendations on 2026-09-19, so none is open:
 
 The build found three things these answers did not cover, and each needs a decision:
 
-- **The canary gate is dead for every hub.** The activation and flip tools both run each hub's `validate-canary.cjs`, and all five canaries pin and score through the skill-benchmark modules phase 13 retired. Repointing the scorer path cannot make the flip work while they stay red.
-- **The scorer freeze cannot be renewed on its own rule.** The pins say to re-freeze only when the routing battery is green on the new scorer, and two of the advisor's parity tests are red.
+- **The canary gate was dead for every hub.** The activation and flip tools both ran each hub's `validate-canary.cjs`, and all five canaries pinned and scored through the skill-benchmark modules phase 13 retired, and pinned authored sources that have since moved. The operator chose on 2026-09-19 to replace that gate with the admission check, which this phase did.
+- **The scorer freeze cannot be renewed on its own rule.** The pins say to re-freeze only when the routing battery is green on the new scorer, and two of the advisor's parity tests are red. The operator moved that work to phase 18.
 - **Blocking CI needs the baseline clean or excused.** The baseline records three engine drifts and one stale gold entry against admitted hubs, so a blocking step would fail every push.
 <!-- /ANCHOR:questions -->
 

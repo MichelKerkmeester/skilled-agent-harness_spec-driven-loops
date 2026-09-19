@@ -11,15 +11,15 @@
 // the byte-identical prior manifest.
 //
 // The activation manifests live under this phase (activation/<hub>/), seeded
-// byte-for-byte from the hub's shadow rollout child, so the completed canary
-// children stay pristine and green.
+// byte-for-byte from the hub's shadow rollout child, so the rollout children
+// stay pristine.
 
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
-const { execFileSync } = require('child_process');
 const { assertScorerFrozen } = require('../../shared/frozen-scorer-contract.cjs');
+const { assertAdmissionPasses } = require('../../shared/admission-gate.cjs');
 const { withHubLock } = require('../../shared/hub-lock.cjs');
 
 const PHASE_ROOT = path.resolve(__dirname, '..'); // .../013-live-activation
@@ -90,7 +90,7 @@ function parseArgs(argv) {
   return out;
 }
 
-// Confinement gate — runs BEFORE any side effect (canary exec, seed writes). The
+// Confinement gate — runs BEFORE any side effect (admission check, seed writes). The
 // hub id must be a safe slug, the target activation dir must resolve inside
 // ACTIVATION_ROOT, and the rollout child must resolve inside the repo. Closes the
 // pre-validation window where a traversal --hub or an out-of-tree --child could
@@ -111,15 +111,6 @@ function confineArgs(hub, childRoot) {
     throw new Error(`rollout child escapes the repo root: ${childResolved}`);
   }
   return hubDir;
-}
-
-function assertCanaryGreen(childRoot) {
-  const canary = path.join(childRoot, 'harness', 'validate-canary.cjs');
-  if (!fs.existsSync(canary)) throw new Error(`canary harness missing: ${canary}`);
-  // Non-zero exit throws — the canary asserts route-gold GREEN, rollback pass,
-  // serving-authority legacy, and protected-digest stability internally.
-  execFileSync('node', [canary], { stdio: ['ignore', 'ignore', 'pipe'] });
-  return { canaryGreen: true };
 }
 
 function scopedTempDir(prefix) {
@@ -307,12 +298,12 @@ function main() {
   }
 
   const childRoot = path.isAbsolute(args.child) ? args.child : path.join(REPO_ROOT, args.child);
-  // Confinement BEFORE any side effect (canary exec, seed writes).
+  // Confinement BEFORE any side effect (admission check, seed writes).
   const confinedHubDir = confineArgs(args.hub, childRoot);
   if (!fs.existsSync(childRoot)) throw new Error(`rollout child not found: ${childRoot}`);
 
   const scorerDigests = assertScorerFrozen(REPO_ROOT, 'activation');
-  const canary = assertCanaryGreen(childRoot);
+  const admission = assertAdmissionPasses(REPO_ROOT, args.hub);
   const acceptance = readJson(path.join(childRoot, 'activation', 'acceptance.json'));
   // Some rollout children omit hubId from their compiled acceptance record; when
   // present it must match --hub, otherwise --hub is authoritative for naming.
@@ -366,7 +357,7 @@ function main() {
       fenceEpoch: { before: fenceBefore, after: fenceAfter },
       sourceHashes: acceptance.sourceHashes,
       eligibility: {
-        canaryGreen: canary.canaryGreen,
+        admissionPassed: admission.admissionPassed,
         scorerDigestsPinned: true,
         scorerDigests,
       },
@@ -388,7 +379,7 @@ function main() {
       `ACTIVATION ${activated ? 'BOUND' : 'NOT-BOUND'} hub=${args.hub} ` +
         `serving=${servingNow.servingAuthority} shadowOnly=${servingNow.shadowOnly} ` +
         `gen=${servingNow.selectedPolicy.generation} fence=${fenceBefore}->${fenceAfter} ` +
-        `rollback.byteExact=${rollback.byteExact} scorerFrozen=true canaryGreen=true\n`,
+        `rollback.byteExact=${rollback.byteExact} scorerFrozen=true admissionPassed=true\n`,
     );
   }
 }
