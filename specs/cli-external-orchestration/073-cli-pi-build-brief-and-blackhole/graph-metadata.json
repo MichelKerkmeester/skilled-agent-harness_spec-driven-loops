@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/073-cli-pi-build-brief-and-blackhole",
+  "spec_folder": "cli-external-orchestration/073-cli-pi-build-brief-and-blackhole",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-pi one change per brief",
+      "pi-blackhole dispatched child",
+      "pi blackhole passive",
+      "pi child compaction loop",
+      "cli-pi build brief plan",
+      "cli-pi build brief tasks",
+      "cli-pi build brief summary",
+      "pi blackhole passive child"
+    ],
+    "key_topics": [
+      "cli-pi",
+      "one",
+      "change",
+      "per",
+      "brief",
+      "pi-blackhole",
+      "dispatched",
+      "child",
+      "blackhole",
+      "passive",
+      "compaction",
+      "loop"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.4.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.4.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.4.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Gotcha",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On 2026-09-19 a DeepSeek V4.1 Flash build of `specs/system-deep-loop/050-spec-protocol-ledger-events`, dispatched through `pi -p`, ran for 41 minutes and made no edit",
+    "created_at": "2026-09-19T07:52:15Z",
+    "last_save_at": "2026-09-19T07:54:32.158Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c307663bc95ad6ee0cbd531273c71e6db0edf897badced067e0689ed23df011b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c161b32b638c8c8452f082cf9c6a32d7af0a8f0aad0d1849b28fe53ea2e6746f",
+      "plan.md": "1a17330ad15820a84df13a918541c381c1350ec4a44681ce38e9bb0247e2388f",
+      "tasks.md": "fa12302c686bb02337169d8b97bd4b793ef1e4edd5a2a4a00130095df5de71fb",
+      "implementation-summary.md": "5a7d7b560d4ea6726664c32ee5aeba200a162ce18896df1d3ee0cbdb075cf56b"
+    },
+    "last_active_at": null
+  }
+}
