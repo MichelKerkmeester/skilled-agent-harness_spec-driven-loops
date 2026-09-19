@@ -165,7 +165,7 @@ jobs:
         # covers only an uncompilable hub and never a stale or drifted one.
         run: |
           set -euo pipefail
-          node .opencode/bin/compiled-route-guard.cjs
+          node .skilled/bin/compiled-route-guard.cjs
       - name: Compiled-serving admission — compiled decisions against playbook routing gold
         # Scores every hub's compiled decisions against the routing gold its playbook
         # authors, the bar a hub must clear to serve compiled traffic. Warn-only until
@@ -173,7 +173,7 @@ jobs:
         # admitted hubs, and a blocking step would fail every unrelated push on them.
         run: |
           set -euo pipefail
-          node .opencode/bin/compiled-route-admission.cjs --all --warn-only
+          node .skilled/bin/compiled-route-admission.cjs --all --warn-only
       - name: Parent-skill structural invariants (one identity, registry coverage) — every hub
         # Glob-enrolled: every skill carrying a mode-registry.json is a parent hub and is
         # checked, so a fifth hub joins the gate automatically with no hand-maintained list.
