@@ -54,16 +54,6 @@ expected_resources:
   - sk-create-feature-catalog/references/README.md
   - sk-create-feature-catalog/references/common-pitfalls.md
   - sk-create-feature-catalog/references/examples.md
-  - sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md
-  - sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md
-  - sk-design-diagram/assets/ascii-patterns/parallel-execution.md
-  - sk-design-diagram/assets/ascii-patterns/simple-workflow.md
-  - sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md
-  - sk-design-diagram/assets/ascii-patterns/user-onboarding.md
-  - sk-design-diagram/references/ascii-format/README.md
-  - sk-design-diagram/references/ascii-format/notation-and-validator.md
-  - sk-design-diagram/references/ascii-format/pattern-selection.md
-  - sk-design-diagram/references/ascii-format/worked-example.md
   - sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md
   - sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md
   - sk-create-manual-testing-playbook/references/README.md
@@ -110,7 +100,36 @@ expected_resources:
   - sk-create-skill/references/shared/validation-and-packaging.md
   - sk-create-skill/references/skill/creation-workflow.md
   - sk-create-skill/references/skill/examples-and-maintenance.md
-expected_workflow_mode: sk-create-agent+sk-create-benchmark+sk-create-changelog+sk-create-command+sk-create-diff+sk-create-feature-catalog+sk-design-diagram+sk-create-manual-testing-playbook+sk-create-quality-control+sk-create-readme+sk-create-skill+sk-create-skill-parent
+  - sk-create-skill/assets/skill/skill-graph-metadata-template.json
+  - sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json
+  - sk-create-skill/assets/skill/skill-sync-manifest-template.md
+  - sk-create-skill/references/shared/advisor-index-handoff.md
+  - sk-create-skill/references/shared/skill-root-metadata-contract.md
+  - sk-create-skill/references/skill/upgrading-a-skill-to-v4.md
+  - sk-create-frontmatter/assets/fixtures/README.md
+  - sk-create-frontmatter/assets/fixtures/over-budget-description.md
+  - sk-create-frontmatter/assets/fixtures/under-budget-trim-lost-tokens.md
+  - sk-create-frontmatter/assets/frontmatter-templates.md
+  - sk-create-frontmatter/references/README.md
+  - sk-create-frontmatter/references/frontmatter-versioning.md
+  - sk-create-repo-rule/assets/repo-rule-template.md
+  - sk-create-repo-rule/assets/repo-rules-router-template.md
+  - sk-create-repo-rule/references/README.md
+  - sk-create-repo-rule/references/agents-md-integration.md
+  - sk-create-repo-rule/references/creation-standards.md
+  - sk-create-repo-rule/references/decision-tests.md
+  - sk-create-repo-rule/references/rule-anatomy.md
+  - sk-create-with-human-voice/assets/voice-report-template.md
+  - sk-create-with-human-voice/references/README.md
+  - sk-create-with-human-voice/references/hvr-publish-supplement.md
+  - sk-create-with-human-voice/references/scope-and-exemptions.md
+  - sk-create-with-human-voice/references/scoring-and-verification.md
+  - sk-create-skill/assets/parent-skill/parent-skill-command-metadata-template.json
+  - sk-create-skill/assets/parent-skill/parent-skill-leaf-aliases-template.json
+  - sk-create-skill/assets/parent-skill/parent-skill-readme-template.md
+  - sk-create-skill/references/parent-skill/compiled-routing-architecture.md
+  - sk-create-skill/references/parent-skill/compiled-routing-lockstep-surfaces.json
+expected_workflow_mode: sk-create-skill+sk-create-skill-parent+sk-create-readme+sk-create-agent+sk-create-command+sk-create-feature-catalog+sk-create-manual-testing-playbook+sk-create-benchmark+sk-create-changelog+sk-create-diff+sk-create-frontmatter+sk-create-quality-control+sk-create-repo-rule+sk-create-with-human-voice
 full_inventory_intent: true
 expected_leaf_resources:
   - workflow_mode: sk-create-agent
@@ -130,10 +149,6 @@ expected_leaf_resources:
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: assets/behavior-benchmark/behavior-benchmark-scenario-template.md
   - workflow_mode: sk-create-benchmark
-  - workflow_mode: sk-create-benchmark
-  - workflow_mode: sk-create-benchmark
-  - workflow_mode: sk-create-benchmark
-  - workflow_mode: sk-create-benchmark
     leaf_resource_id: assets/model-benchmark/model-benchmark-code-task-fixture-template.md
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: assets/model-benchmark/model-benchmark-pattern-fixture-template.md
@@ -148,13 +163,11 @@ expected_leaf_resources:
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/behavior-benchmark/behavior-benchmark-guide.md
   - workflow_mode: sk-create-benchmark
-  - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/model-benchmark/model-benchmark-fixture-guide.md
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/shared/README.md
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/shared/case-studies.md
-  - workflow_mode: sk-create-benchmark
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/shared/pitfalls.md
   - workflow_mode: sk-create-benchmark
@@ -217,26 +230,18 @@ expected_leaf_resources:
     leaf_resource_id: references/common-pitfalls.md
   - workflow_mode: sk-create-feature-catalog
     leaf_resource_id: references/examples.md
-  - workflow_mode: sk-design-diagram
-    leaf_resource_id: assets/ascii-patterns/approval-workflow-loops.md
-  - workflow_mode: sk-design-diagram
-    leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
-  - workflow_mode: sk-design-diagram
-    leaf_resource_id: assets/ascii-patterns/parallel-execution.md
-  - workflow_mode: sk-design-diagram
-    leaf_resource_id: assets/ascii-patterns/simple-workflow.md
-  - workflow_mode: sk-design-diagram
-    leaf_resource_id: assets/ascii-patterns/system-architecture-swimlane.md
-  - workflow_mode: sk-design-diagram
-    leaf_resource_id: assets/ascii-patterns/user-onboarding.md
-  - workflow_mode: sk-design-diagram
+  - workflow_mode: sk-create-frontmatter
+    leaf_resource_id: assets/fixtures/README.md
+  - workflow_mode: sk-create-frontmatter
+    leaf_resource_id: assets/fixtures/over-budget-description.md
+  - workflow_mode: sk-create-frontmatter
+    leaf_resource_id: assets/fixtures/under-budget-trim-lost-tokens.md
+  - workflow_mode: sk-create-frontmatter
+    leaf_resource_id: assets/frontmatter-templates.md
+  - workflow_mode: sk-create-frontmatter
     leaf_resource_id: references/README.md
-  - workflow_mode: sk-design-diagram
-    leaf_resource_id: references/notation-and-validator.md
-  - workflow_mode: sk-design-diagram
-    leaf_resource_id: references/pattern-selection.md
-  - workflow_mode: sk-design-diagram
-    leaf_resource_id: references/worked-example.md
+  - workflow_mode: sk-create-frontmatter
+    leaf_resource_id: references/frontmatter-versioning.md
   - workflow_mode: sk-create-manual-testing-playbook
     leaf_resource_id: assets/manual-testing-playbook-snippet-template.md
   - workflow_mode: sk-create-manual-testing-playbook
@@ -264,9 +269,9 @@ expected_leaf_resources:
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/transformation-patterns.md
   - workflow_mode: sk-create-quality-control
-    leaf_resource_id: references/validation.md
-  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/validation-and-enforcement.md
+  - workflow_mode: sk-create-quality-control
+    leaf_resource_id: references/validation.md
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/workflow-examples.md
   - workflow_mode: sk-create-quality-control
@@ -283,24 +288,26 @@ expected_leaf_resources:
     leaf_resource_id: references/readme/types-and-voice.md
   - workflow_mode: sk-create-readme
     leaf_resource_id: references/readme/writing-patterns.md
-  - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/parent-skill/parent-skill-description-template.json
-  - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/parent-skill/parent-skill-graph-metadata-template.json
-  - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/parent-skill/parent-skill-hub-router-template.json
-  - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/parent-skill/parent-skill-hub-template.md
-  - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/parent-skill/parent-skill-registry-template.json
-  - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/parent-skill/parent-skill-root-router-template.md
-  - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/parent-skill/scaffold/hub-skill-scaffold.md
-  - workflow_mode: sk-create-skill
-    leaf_resource_id: assets/parent-skill/scaffold/packet-skill-scaffold.md
+  - workflow_mode: sk-create-repo-rule
+    leaf_resource_id: assets/repo-rule-template.md
+  - workflow_mode: sk-create-repo-rule
+    leaf_resource_id: assets/repo-rules-router-template.md
+  - workflow_mode: sk-create-repo-rule
+    leaf_resource_id: references/README.md
+  - workflow_mode: sk-create-repo-rule
+    leaf_resource_id: references/agents-md-integration.md
+  - workflow_mode: sk-create-repo-rule
+    leaf_resource_id: references/creation-standards.md
+  - workflow_mode: sk-create-repo-rule
+    leaf_resource_id: references/decision-tests.md
+  - workflow_mode: sk-create-repo-rule
+    leaf_resource_id: references/rule-anatomy.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-asset-template.md
+  - workflow_mode: sk-create-skill
+    leaf_resource_id: assets/skill/skill-graph-metadata-template.json
+  - workflow_mode: sk-create-skill
+    leaf_resource_id: assets/skill/skill-leaf-manifest-config-template.json
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-md-template.md
   - workflow_mode: sk-create-skill
@@ -314,21 +321,27 @@ expected_leaf_resources:
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-smart-router.md
   - workflow_mode: sk-create-skill
+    leaf_resource_id: assets/skill/skill-sync-manifest-template.md
+  - workflow_mode: sk-create-skill
     leaf_resource_id: references/README.md
   - workflow_mode: sk-create-skill
-    leaf_resource_id: references/parent-skill/parent-hub-router-schema.md
-  - workflow_mode: sk-create-skill
-    leaf_resource_id: references/parent-skill/parent-skills-nested-packets.md
+    leaf_resource_id: references/shared/advisor-index-handoff.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: references/shared/common-pitfalls.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: references/shared/overview.md
+  - workflow_mode: sk-create-skill
+    leaf_resource_id: references/shared/skill-root-metadata-contract.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: references/shared/validation-and-packaging.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: references/skill/creation-workflow.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: references/skill/examples-and-maintenance.md
+  - workflow_mode: sk-create-skill
+    leaf_resource_id: references/skill/upgrading-a-skill-to-v4.md
+  - workflow_mode: sk-create-skill-parent
+    leaf_resource_id: assets/parent-skill/parent-skill-command-metadata-template.json
   - workflow_mode: sk-create-skill-parent
     leaf_resource_id: assets/parent-skill/parent-skill-description-template.json
   - workflow_mode: sk-create-skill-parent
@@ -338,6 +351,10 @@ expected_leaf_resources:
   - workflow_mode: sk-create-skill-parent
     leaf_resource_id: assets/parent-skill/parent-skill-hub-template.md
   - workflow_mode: sk-create-skill-parent
+    leaf_resource_id: assets/parent-skill/parent-skill-leaf-aliases-template.json
+  - workflow_mode: sk-create-skill-parent
+    leaf_resource_id: assets/parent-skill/parent-skill-readme-template.md
+  - workflow_mode: sk-create-skill-parent
     leaf_resource_id: assets/parent-skill/parent-skill-registry-template.json
   - workflow_mode: sk-create-skill-parent
     leaf_resource_id: assets/parent-skill/parent-skill-root-router-template.md
@@ -346,35 +363,25 @@ expected_leaf_resources:
   - workflow_mode: sk-create-skill-parent
     leaf_resource_id: assets/parent-skill/scaffold/packet-skill-scaffold.md
   - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: assets/skill/skill-asset-template.md
+    leaf_resource_id: references/parent-skill/compiled-routing-architecture.md
   - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: assets/skill/skill-md-template.md
-  - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: assets/skill/skill-procedure-template.md
-  - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: assets/skill/skill-readme-template.md
-  - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: assets/skill/skill-reference-template.md
-  - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: assets/skill/skill-scaffold-template.md
-  - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: assets/skill/skill-smart-router.md
-  - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: references/README.md
+    leaf_resource_id: references/parent-skill/compiled-routing-lockstep-surfaces.json
   - workflow_mode: sk-create-skill-parent
     leaf_resource_id: references/parent-skill/parent-hub-router-schema.md
   - workflow_mode: sk-create-skill-parent
     leaf_resource_id: references/parent-skill/parent-skills-nested-packets.md
-  - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: references/shared/common-pitfalls.md
-  - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: references/shared/overview.md
-  - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: references/shared/validation-and-packaging.md
-  - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: references/skill/creation-workflow.md
-  - workflow_mode: sk-create-skill-parent
-    leaf_resource_id: references/skill/examples-and-maintenance.md
+  - workflow_mode: sk-create-with-human-voice
+    leaf_resource_id: assets/voice-report-template.md
+  - workflow_mode: sk-create-with-human-voice
+    leaf_resource_id: references/README.md
+  - workflow_mode: sk-create-with-human-voice
+    leaf_resource_id: references/hvr-publish-supplement.md
+  - workflow_mode: sk-create-with-human-voice
+    leaf_resource_id: references/hvr-rules.md
+  - workflow_mode: sk-create-with-human-voice
+    leaf_resource_id: references/scope-and-exemptions.md
+  - workflow_mode: sk-create-with-human-voice
+    leaf_resource_id: references/scoring-and-verification.md
 version: 2.1.0.14
 ---
 

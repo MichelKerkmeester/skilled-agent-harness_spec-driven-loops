@@ -172,12 +172,52 @@ below. `parent-skill-check.cjs` runs clean for all six hubs, with `sk-code` at 5
 
 1. **No lane return exists.** The three delegated lanes were killed at the tool timeout after writing their edits; their `stderr` logs carry only a skill-advisor fallback timeout, not an edit failure. Everything they wrote was verified by opening the diffs and re-running the gates, and the remaining work was completed by the orchestrator.
 2. **`changelog/v4.2.2.0.md` was annotated, not rewritten.** The plan expected its prose corrected; its body is a true record of that release, so it carries a supersession note instead.
-3. **The sk-doc README baseline keeps one row for the deleted file** until the deletion is committed, because that baseline is built from git-tracked paths.
+3. **The sk-doc README baseline keeps one row for the deleted file** until the deletion is committed, because that baseline is built from git-tracked paths. **Resolved** — the deletion is committed and the baseline was refreshed; see the follow-up section.
 4. **The promotion is fleet-wide.** `compiled-route-sync.cjs` traces and promotes the whole closure, so it also refreshed five other hubs' harness and fixture copies whose authored sources had drifted — byte-identical afterwards, and the only way to keep the runtime mirror faithful.
-5. **Nothing is committed.** The whole change sits in the working tree on `skilled/v4.0.0.0`; committing and pushing are the operator's call, and the worktree-versus-branch choice comes first.
-6. **`changelog/v4.2.2.0.md` keeps its body**, so the residue is wider than the plan allowed for: the plan expected both historical entries rewritten, but that entry is the record of what that release shipped. Beyond the two changelog entries, the sk-doc baseline row and the retrieval fixtures, the census is clean.
-7. **The predecessor packet was already failing its own validation.** Adding the supersession note surfaced it: `specs/sk-code/008-sk-code-mobile-cli-mode` reports one pre-existing error — `spec.md` has no `contextType` — and its `002-scripts-ownership` and `003-skill-doc-alignment` children report missing `importance_tier` and `trigger_phrases`. Verified pre-existing by stashing the note and re-running the validator. That packet's derived metadata was re-derived so the note's own hash change is recorded (a 3-line generator refresh); the frontmatter gaps are outside this scope and are one field each to fix.
+5. **Committed and pushed after close-out.** The operator directed the commit and push; the change landed as `173ce63f59` (145 files), with `main` and `skilled/v4.0.0.0` both carrying it. The follow-up section records the later residue sweep.
+6. **`changelog/v4.2.2.0.md` keeps its body**, so the residue is wider than the plan allowed for: the plan expected both historical entries rewritten, but that entry is the record of what that release shipped. Beyond the two changelog entries, the sk-doc baseline row and the retrieval fixtures, the census is clean. A later sweep found one more class — abbreviated aliases — recorded in the follow-up section.
+7. **The predecessor packet was already failing its own validation.** Adding the supersession note surfaced it: `specs/sk-code/008-sk-code-mobile-cli-mode` reports one pre-existing error — `spec.md` has no `contextType` — and its `002-scripts-ownership` and `003-skill-doc-alignment` children report missing `importance_tier` and `trigger_phrases`. Verified pre-existing by stashing the note and re-running the validator. That packet's derived metadata was re-derived so the note's own hash change is recorded (a 3-line generator refresh); those frontmatter gaps were filled family-wide and pushed as `4030c85a76`.
 <!-- /ANCHOR:limitations -->
 
 ---
+
+<!-- ANCHOR:follow-up -->
+## Follow-Up: The Alias Class The Slug Census Missed
+
+Operator-directed sweep that ran after the commit and push. The close-out census matched the full packet slug
+(`sk-code-mobile-cli`, `PI_REMOTE`) and the packet name, so a class of **abbreviated** aliases escaped it: the hub's
+hand-curated vocabulary named the surface as `mobile cli`, `pi remote`, `svelte`, `ink-on-parchment` and
+`editability`, and the obsidian packet's negative-control scenario still used the retired stack as its target shape.
+
+What changed:
+
+1. `.skilled/skills/sk-code/graph-metadata.json` — ten retired-surface entries removed from the authored vocabulary
+   (`keywords`, `intent_signals`, and the derived `trigger_phrases` / `intent_signals` / `key_topics` lists).
+   `regenerate-skill-derived.cjs` declares those fields authored and preserves them, so no generator run could have
+   pruned them; `derived.key_topics` keeps `design-tokens`, which is a live `sk-design` handoff rather than surface
+   vocabulary.
+2. `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` — recompiled from the hub metadata, so the
+   compiled advisor corpus now carries zero retired aliases.
+3. `.skilled/skills/sk-code/sk-code-obsidian/README.md` — the detection-history sentence no longer names `Pi Remote`.
+4. `.skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/surface-detection/negative-control-non-obsidian.md`
+   and its index — OB-021's negative-control target moved off the retired stack to `apps/desktop/src/panels/` in a Tauri
+   desktop app repo. The compiled router returns `defer` with no targets for the rewritten prompt, which is the
+   scenario's own pass condition, re-proved against the live engine after the edit.
+5. `.skilled/skills/sk-code/shared/references/stack-detection.md` — the precedence table's worked example no longer uses
+   an `app-mobile/` path.
+6. `.skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json` — refreshed through the tool's
+   documented `--write` path; the deleted README's row is gone as allowlist item 4 predicted, and the baseline now
+   enumerates today's 1,266 tracked READMEs.
+
+Deliberate survivors, so the census is not read as incomplete: the obsidian packet's `references/standards/code-standards.md`
+and `references/stylesheet-ownership.md` name Svelte only to contrast it with that plugin's framework-free single
+stylesheet, and items 1-3 of the residue allowlist stand unchanged.
+
+Gates re-run green on the final state: `validate-playbook-package --strict` for `sk-code`, `sk-code-obsidian` and
+`sk-doc`; derived freshness 13/13; leaf-manifest freshness 13/13; root metadata 13/13;
+`skill_graph_compiler.py --validate-only`; `parent-skill-check` for both hubs; `compiled-route-guard` fresh; the
+advisor drift-guard and parity suites (21 tests); markdown link integrity 13,175 links / 0 broken; and
+`compiled-route-admission --all` reports zero stale gold.
+
+<!-- /ANCHOR:follow-up -->
 

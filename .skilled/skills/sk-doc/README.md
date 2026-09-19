@@ -131,7 +131,7 @@ The scripts own the deterministic work. `extract_structure.py` parses, measures,
 
 Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, an agent, a command or another OpenCode component and when you need a quality gate before publishing. Use it when you build a feature catalog, a testing playbook, a flowchart, a changelog or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
 
-You reach it through eleven `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/design:diagram`, `/create:readme`, `/create:changelog` and `/create:diff`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
+You reach it through twelve `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:readme`, `/create:changelog`, `/create:diff`, `/create:repo-rule` and `/create:with-human-voice`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
 
 Skip sk-doc when the task belongs to a neighbor:
 
