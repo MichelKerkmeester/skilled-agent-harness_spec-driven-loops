@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 815,
+  "derived_count": 817,
   "directories": [
     ".",
     ".claude",
@@ -294,6 +294,7 @@
     ".skilled/skills/mcp-tooling/benchmark/reports/2026-08-03--playbook-validation--live",
     ".skilled/skills/mcp-tooling/benchmark/reports/2026-08-03--playbook-validation--router",
     ".skilled/skills/mcp-tooling/benchmark/reports/baseline",
+    ".skilled/skills/mcp-tooling/benchmark/reports/orca-integration/2026-09-19--orca-integration",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/examples",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli",
@@ -328,6 +329,7 @@
     ".skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-cli",
     ".skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp",
     ".skilled/skills/mcp-tooling/mcp-obsidian/scripts",
+    ".skilled/skills/mcp-tooling/mcp-orca-cli",
     ".skilled/skills/mcp-tooling/mcp-refero",
     ".skilled/skills/mcp-tooling/mcp-refero/examples",
     ".skilled/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp",
