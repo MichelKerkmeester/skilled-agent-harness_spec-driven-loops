@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/021-mcp-orca-cli"
-    last_updated_at: "2026-09-19T12:31:05Z"
+    last_updated_at: "2026-09-19T15:08:09Z"
     last_updated_by: "implementation-owner"
-    recent_action: "Reconciled acceptance matrix with delivered leaf and hub integration"
+    recent_action: "Recorded the 0.1.1.0 residual alignment as AC-013"
     next_safe_action: "Obtain authorization for disposable mutation/publishing tests or compiled-route activation"
     blockers: []
     key_files:
@@ -64,7 +64,8 @@ _memory:
 | AC-009 | REQ-005 | Given the leaf references must follow the skill-reference template, when each reference is validated, then all four files under `references/` pass `validate_document.py --type reference` with zero issues, carry the full frontmatter block, a short intro, a required OVERVIEW, numbered ALL-CAPS H2s with `---` dividers, and HVR-clean prose. | Validator run on 2026-09-19: all four references VALID, 0 issues; HVR greps (em dash, semicolon, Oxford comma, banned words) return no matches. | Met | - |
 | AC-010 | REQ-005 | Given the leaf README must follow the skill README template, when the README is validated, then it passes `validate_document.py --type readme` with zero issues, keeps a four-row AT A GLANCE, opens OVERVIEW problem-first, and passes the HVR scripted checks. | Validator run on 2026-09-19: README VALID, 0 issues (baseline was 6 blocking separator errors); HVR greps return no prose matches. | Met | - |
 | AC-011 | REQ-006 | Given the manual-testing playbook must follow the split-package convention, when the playbook package is validated, then the root playbook passes `validate_document.py --type playbook` with zero issues, ten per-feature scenario files pass `--type playbook_feature` with zero issues, the persistence contract marker is present, and the routing-boundary scenarios ORCA-009 and ORCA-010 survive. | Validator run on 2026-09-19: root VALID 0 issues; 10/10 scenario files VALID 0 issues; `MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT` present. | Met | - |
-| AC-012 | REQ-006 | Given the first-version changelog convention, when the leaf identity is inspected, then `changelog/` holds exactly `v0.1.0.0.md`, every leaf frontmatter version is 0.1.0.0, no residual v1.0.0.0 self-references remain, and the hub gates still pass with the hub at 1.7.0.0. | Version sweep over 18 leaf files shows all 0.1.0.0; `package_skill.py --check` PASS; `parent-skill-check.cjs` OK with 0 warnings at hub version 1.7.0.0; metadata fleet check 13/13. | Met | - |
+| AC-012 | REQ-006 | Given the released-identity convention, when the leaf identity is inspected, then `changelog/` holds the released entries, SKILL.md, README.md, INSTALL-GUIDE.md, the root playbook, and the ten scenario frontmatters carry 0.1.1.0, the four references and the 0.1.0.0 entry keep 0.1.0.0, and the hub gates still pass with the hub at 1.7.0.0. | Validator run on 2026-09-19: 19/19 scoped documents VALID with 0 issues; whole-leaf HVR sweep clean; `package_skill.py --check` PASS; `parent-skill-check.cjs` OK with 0 warnings at hub version 1.7.0.0; metadata fleet check 13/13. | Met | - |
+| AC-013 | REQ-005 | Given the 0.1.0.0 residuals (INSTALL-GUIDE without frontmatter, SKILL.md skill-type issues and voice, scenario contract semicolons), when the residual alignment release runs, then INSTALL-GUIDE passes `--type install_guide` with 0 issues, SKILL.md passes `--type skill` with 0 issues, the whole-leaf HVR sweep is clean, and the 0.1.1.0 changelog entry records the alignment. | Validator run on 2026-09-19: install_guide 0 issues (was 7), skill 0 issues (was 11), 19/19 scoped documents VALID with 0 issues, HVR and banned-word greps clean, `changelog/v0.1.1.0.md` present and VALID. | Met | - |
 
 ### Status values
 
@@ -81,4 +82,4 @@ _memory:
 
 **Closeable:** Yes — specification and source integration deliverable; operator-gated runtime lanes remain.
 
-All planning criteria are met with document and command evidence. The leaf and hub integration are evidenced separately; closure does not certify repository mutation, publishing, browser-driving, authentication, or compiled serving. The conformance-remediation criteria AC-009 through AC-012 are met with validator and gate evidence from the sk-doc alignment pass.
+All planning criteria are met with document and command evidence. The leaf and hub integration are evidenced separately; closure does not certify repository mutation, publishing, browser-driving, authentication, or compiled serving. The conformance-remediation criteria AC-009 through AC-013 are met with validator and gate evidence from the sk-doc alignment and residual-alignment passes.

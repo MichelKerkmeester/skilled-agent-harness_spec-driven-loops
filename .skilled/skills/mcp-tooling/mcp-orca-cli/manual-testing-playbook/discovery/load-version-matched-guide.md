@@ -2,7 +2,7 @@
 title: "ORCA-002 -- Load the version-matched guide"
 description: "This scenario validates loading the version-matched orca-cli guide and confirming the conditional browser, automation and publishing references resolve."
 stage: discovery
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # ORCA-002 -- Load the version-matched guide
@@ -24,9 +24,9 @@ The public `orca-cli` skill is a discovery stub. Command flags live in the insta
 - Scenario Objective: Retrieve the full guide and confirm the browser, automation and publishing references are available for their action gates.
 - Exact Prompt: `Load the Orca version-matched guide and confirm the browser, automation and publishing references are available. Read-only only.`
 - Exact Command Sequence: `1. bash: orca skills get orca-cli --full -> 2. bash: orca skills get orca-cli --reference references/browser.md -> 3. bash: orca skills get orca-cli --reference references/automations.md -> 4. bash: orca skills get orca-cli --reference references/publishing.md`
-- Expected Signals: The full guide returns local and deterministic content; each reference flag returns its reference document; unknown reference flags are handled by falling back to the full guide or command help, never by guessing.
+- Expected Signals: The full guide returns local and deterministic content. Each reference flag returns its reference document. Unknown reference flags are handled by falling back to the full guide or command help, never by guessing.
 - Evidence: Guide length or head, each reference retrieval result and exit status and the recorded fallback behavior if a flag is unsupported.
-- Pass/Fail Criteria: PASS when the guide or its documented fallback completes; FAIL when a flag is guessed or a retrieval error is disguised as success; SKIP when the executable predates the guide option and the operator declines the fallback path (blocker: missing version-matched guide).
+- Pass/Fail Criteria: PASS when the guide or its documented fallback completes. FAIL when a flag is guessed or a retrieval error is disguised as success. SKIP when the executable predates the guide option and the operator declines the fallback path (blocker: missing version-matched guide).
 - Failure Triage: 1. Re-check `orca skills get orca-cli --full`. 2. Compare the installed version with the guide's documented version. 3. Use the command's own help for the unsupported flag.
 
 ---
@@ -70,7 +70,7 @@ Guide retrieval mode, reference retrieval results, exit statuses, any fallback u
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ORCA-002 | Load the version-matched guide | Retrieve guide plus three conditional references | `Load the Orca version-matched guide and confirm the browser, automation and publishing references are available. Read-only only.` | `orca skills get orca-cli --full` -> three `--reference` retrievals | Guide text; reference documents; local deterministic retrieval | Guide head, reference results, exit statuses, fallback notes | PASS on guide or documented fallback; SKIP on unsupported flags without fallback; FAIL on guessed flags | Re-run guide, compare versions, use command help |
+| ORCA-002 | Load the version-matched guide | Retrieve guide plus three conditional references | `Load the Orca version-matched guide and confirm the browser, automation and publishing references are available. Read-only only.` | `orca skills get orca-cli --full` -> three `--reference` retrievals | Guide text. Reference documents. Local deterministic retrieval | Guide head, reference results, exit statuses, fallback notes | PASS on guide or documented fallback. SKIP on unsupported flags without fallback. FAIL on guessed flags | Re-run guide, compare versions, use command help |
 
 ---
 

@@ -70,12 +70,20 @@ The operator-directed conformance pass completed the following leaf-alignment ta
 
 Remaining operator-gated checks are not failures and are not claimed as performed: controlled repository mutation, disposable terminal/browser driving, authentication, publishing, skill sharing, and compiled-route sync/finalize.
 
+## Phase 5: Residual Alignment (0.1.1.0)
+
+The residual-closure pass recorded the following:
+
+- [x] C006 Restructure `INSTALL-GUIDE.md` to the install-guide contract: full frontmatter block, required OVERVIEW, PREREQUISITES, and INSTALLATION sections, `---` dividers, and HVR-clean prose (install-guide validator count 7 to 0).
+- [x] C007 Bring `SKILL.md` to the skill contract: ten `---` section dividers, closed numbering gap, removal of the stray "Workflow lanes" heading, and a voice pass over the serial-comma clauses and em dashes (skill validator count 11 to 0).
+- [x] C008 Voice-pass the root playbook, the ten scenario contract bullets, and the released 0.1.0.0 note, cut the 0.1.1.0 release identity with its changelog entry, and rerun the leaf, hub, and strict-spec gates.
+
 ## Completion Criteria for This Specification Packet
 
 - [x] All specification-preparation tasks are marked `[x]` after the final checks run.
 - [x] No `[B]` blocked tasks remain.
 - [x] `acceptance-criteria.md` has every row `Met`, `Waived`, or `Superseded` with evidence.
-- [x] The conformance-remediation criteria AC-009 through AC-012 are `Met` with validator and gate evidence.
+- [x] The conformance-remediation criteria AC-009 through AC-013 are `Met` with validator and gate evidence.
 - [x] `validate.sh --strict` prints an explicit `RESULT: PASSED`.
 - [x] The implementation summary states what was delivered, what remains operator-gated, and why compiled serving is deferred.
 

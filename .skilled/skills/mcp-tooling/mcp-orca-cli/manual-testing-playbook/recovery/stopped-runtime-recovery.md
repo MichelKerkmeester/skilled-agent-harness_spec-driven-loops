@@ -2,7 +2,7 @@
 title: "ORCA-004 -- Recover from a stopped runtime"
 description: "This scenario validates stopped-runtime behavior using read-only status or schema commands and an authorized recovery path only."
 stage: recovery
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # ORCA-004 -- Recover from a stopped runtime
@@ -24,9 +24,9 @@ This scenario verifies how the packet behaves when the local schema is readable 
 - Scenario Objective: Observe the exact error and recovery path when a runtime-dependent command runs against a stopped runtime, without starting or authenticating anything implicitly.
 - Exact Prompt: `Check whether a runtime-dependent Orca command works while the runtime is stopped and record the exact recovery path. Read-only unless recovery is authorized.`
 - Exact Command Sequence: `1. bash: orca agent-context --json (expected: works) -> 2. bash: orca status --json or the guide's status command -> 3. agent: report the runtime state and the documented recovery path`
-- Expected Signals: The schema read succeeds; the runtime command fails with a specific error; the reported recovery is the documented read-only path and requires authorization for anything further.
+- Expected Signals: The schema read succeeds. The runtime command fails with a specific error. The reported recovery is the documented read-only path and requires authorization for anything further.
 - Evidence: Both command outputs with exit statuses, the error code and the recovery path reported.
-- Pass/Fail Criteria: PASS when the exact recovery is observed and reported; FAIL on a disguised failure, an implicit runtime start or an invented recovery; SKIP if runtime control is not authorized or the runtime cannot be stopped safely (blocker: missing authorized runtime control).
+- Pass/Fail Criteria: PASS when the exact recovery is observed and reported. FAIL on a disguised failure, an implicit runtime start or an invented recovery. SKIP if runtime control is not authorized or the runtime cannot be stopped safely (blocker: missing authorized runtime control).
 - Failure Triage: 1. Confirm the schema read result. 2. Re-run the status command. 3. Ask the operator before any start or authentication step.
 
 ---
@@ -69,7 +69,7 @@ Command outputs, exit statuses, error code, reported recovery path.
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| ORCA-004 | Recover from a stopped runtime | Observe stopped-runtime error and authorized recovery | `Check whether a runtime-dependent Orca command works while the runtime is stopped and record the exact recovery path. Read-only unless recovery is authorized.` | `orca agent-context --json` -> status command -> report recovery | Schema succeeds; runtime command fails specifically; recovery documented | Outputs, exit statuses, error code, recovery path | PASS on exact observed recovery; SKIP without runtime control; FAIL on implicit start or invented recovery | Re-run schema and status, ask operator |
+| ORCA-004 | Recover from a stopped runtime | Observe stopped-runtime error and authorized recovery | `Check whether a runtime-dependent Orca command works while the runtime is stopped and record the exact recovery path. Read-only unless recovery is authorized.` | `orca agent-context --json` -> status command -> report recovery | Schema succeeds. Runtime command fails specifically. Recovery documented | Outputs, exit statuses, error code, recovery path | PASS on exact observed recovery. SKIP without runtime control. FAIL on implicit start or invented recovery | Re-run schema and status, ask operator |
 
 ---
 

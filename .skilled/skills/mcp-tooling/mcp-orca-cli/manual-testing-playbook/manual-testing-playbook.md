@@ -1,7 +1,7 @@
 ---
 title: "mcp-orca-cli: Manual Testing Playbook"
-description: "Split-package operator playbook for the Orca CLI workflow packet: executable discovery, fail-closed recovery, gated mutation, browser, publishing and routing-boundary scenarios with PASS, FAIL, or SKIP verdicts."
-version: 0.1.0.0
+description: "Split-package operator playbook for the Orca CLI workflow packet: executable discovery, fail-closed recovery, gated mutation, browser, publishing and routing-boundary scenarios with PASS, FAIL or SKIP verdicts."
+version: 0.1.1.0
 ---
 
 # mcp-orca-cli: Manual Testing Playbook
@@ -25,7 +25,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ---
 
-**EXECUTION POLICY:** Every scenario is executed for real against the resolved Orca executable where authorization exists, and is recorded as `SKIP` with a named blocker where it does not. Run actual commands, inspect real output and exit statuses, and preserve receipts.
+**EXECUTION POLICY:** Every scenario is executed for real against the resolved Orca executable where authorization exists and is recorded as `SKIP` with a named blocker where it does not. Run actual commands, inspect real output and exit statuses and preserve receipts.
 
 ---
 
@@ -49,7 +49,7 @@ Coverage is ten scenarios across six categories. Two cover executable and guide 
 
 1. A user names an Orca-managed surface (worktree, terminal, browser tab, automation, artifact) in a request.
 2. The packet resolves one executable, captures its version and loads the version-matched guide.
-3. The selected lane runs only inside its authorization gate, and every mutating lane requires explicit authorization plus rollback evidence.
+3. The selected lane runs only inside its authorization gate and every mutating lane requires explicit authorization plus rollback evidence.
 4. The operator records the verdict, the redacted transcript and the specific blocker for any `SKIP`.
 
 ### Coverage Boundary
