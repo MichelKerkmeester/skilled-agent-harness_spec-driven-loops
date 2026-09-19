@@ -1,22 +1,22 @@
 {
   "skill": "mcp-tooling",
-  "version": "1.6.1.0",
+  "version": "1.7.0.0",
   "resourceContractVersion": 1,
-  "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/packetKind/backendKind) PLUS the advisorRouting projection for mcp-tooling. The hub reads this file to resolve a mode; the advisor routes any MCP tool-bridge query to the single identity mcp-tooling and the hub picks the mode. All modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection — the advisor does not read this file at runtime.",
+  "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/packetKind/backendKind) PLUS the advisorRouting projection for mcp-tooling. The hub reads this file to resolve a mode; the advisor routes any MCP tool-bridge query to the single identity mcp-tooling and the hub picks the mode. All modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection \u2014 the advisor does not read this file at runtime.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
-    "packetKind": "The axis discriminator: 'workflow' for the local-mutating tool bridges (mcp-chrome-devtools, mcp-click-up, mcp-aside-devtools) that write to this repo's workspace; 'transport' for mcp-figma, which bridges to Figma Desktop rather than performing design judgment or mutating this workspace.",
-    "backendKind": "Which backend runs the mode: cli-plus-mcp for the workflow bridges (CLI-primary, Code Mode MCP fallback); figma-desktop-transport for the figma transport (drives the external Figma Desktop app over its local daemon); code-mode-remote-mcp for the refero and mobbin transports (remote MCP servers reached through Code Mode via their registered manuals)."
+    "packetKind": "The axis discriminator: 'workflow' for mcp-chrome-devtools, mcp-click-up, mcp-obsidian, mcp-aside-devtools, mcp-notion, and mcp-orca-cli, whose operations can change local or external workflow state; 'transport' for mcp-figma, mcp-refero, mcp-mobbin, and mcp-magicpath, which bridge external design surfaces and remain read-only in this workspace.",
+    "backendKind": "Which backend runs the mode: cli-plus-mcp for mcp-chrome-devtools, mcp-click-up, mcp-obsidian, and mcp-aside-devtools; code-mode-remote-mcp for mcp-notion, mcp-refero, and mcp-mobbin; figma-desktop-transport for mcp-figma; code-mode-cli for mcp-magicpath; and cli-only for mcp-orca-cli."
   },
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. For mcp-tooling every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity mcp-tooling and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
-    "packetSkillName": "The packet's SKILL.md name. For mcp-tooling the packet folder IS its packetSkillName for every mode — so no mode has a folder/name mismatch and grandfatheredFolderMismatch is false throughout.",
-    "grandfatheredFolderMismatch": "true only when a packet folder differs from its packetSkillName (a preserved legacy mismatch). All mcp-tooling modes use folder == packetSkillName, so none has a mismatch — grandfatheredFolderMismatch is false for all.",
+    "packetSkillName": "The packet's SKILL.md name. For mcp-tooling the packet folder IS its packetSkillName for every mode \u2014 so no mode has a folder/name mismatch and grandfatheredFolderMismatch is false throughout.",
+    "grandfatheredFolderMismatch": "true only when a packet folder differs from its packetSkillName (a preserved legacy mismatch). All mcp-tooling modes use folder == packetSkillName, so none has a mismatch \u2014 grandfatheredFolderMismatch is false for all.",
     "command": "The bound slash command for the mode. No mcp-tooling mode has a dedicated command today (command:null on all, per ADR-006); the /doctor:mcp router is a separate command that covers install/debug for every mcp-* skill, including mcp-tooling's members."
   },
   "extensions": {
     "transport-axis": {
-      "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata'). mutatesWorkspace:false declares the DOMINANT mutation posture: document/content mutation lands in the external tool, and no transport edits existing repo files (Write/Edit/Task forbidden). Local write nuance is declared per mode via an optional toolSurface.workspaceWrites clarifier: mcp-figma is export-only (its export commands save requested artifacts to explicit local output paths); mcp-refero and mcp-mobbin perform no local writes at all. Transports never decide design themselves and always hand the judgment to a DIFFERENT, standalone skill, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply it. Which skill depends on what the transport returns: mcp-figma, mcp-refero and mcp-mobbin retrieve visual material carrying no token vocabulary of its own, so they hand off to sk-design-md-generator for measured design-reference extraction; mcp-magicpath's get_theme already returns named CSS variables and fonts, so there is nothing to re-measure and it pairs unconditionally with sk-design, the decide skill, under the design agent persona (see crossHubPairing). sk-design-md-generator still applies to mcp-magicpath when the reference is an external live site rather than a MagicPath theme. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual — both remote MCP through Code Mode); code-mode-cli (mcp-magicpath, whose provider ships no MCP server: a UTCP cli manual runs the vendor CLI through Code Mode, and only the provider's read-only commands are registered, so mutatesWorkspace:false holds for the same reason it holds for the remote-MCP transports).",
+      "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata'). mutatesWorkspace:false declares the DOMINANT mutation posture: document/content mutation lands in the external tool, and no transport edits existing repo files (Write/Edit/Task forbidden). Local write nuance is declared per mode via an optional toolSurface.workspaceWrites clarifier: mcp-figma is export-only (its export commands save requested artifacts to explicit local output paths); mcp-refero and mcp-mobbin perform no local writes at all. Transports never decide design themselves and always hand the judgment to a DIFFERENT, standalone skill, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply it. Which skill depends on what the transport returns: mcp-figma, mcp-refero and mcp-mobbin retrieve visual material carrying no token vocabulary of its own, so they hand off to sk-design-md-generator for measured design-reference extraction; mcp-magicpath's get_theme already returns named CSS variables and fonts, so there is nothing to re-measure and it pairs unconditionally with sk-design, the decide skill, under the design agent persona (see crossHubPairing). sk-design-md-generator still applies to mcp-magicpath when the reference is an external live site rather than a MagicPath theme. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual \u2014 both remote MCP through Code Mode); code-mode-cli (mcp-magicpath, whose provider ships no MCP server: a UTCP cli manual runs the vendor CLI through Code Mode, and only the provider's read-only commands are registered, so mutatesWorkspace:false holds for the same reason it holds for the remote-MCP transports).",
       "transports": [
         "mcp-figma",
         "mcp-refero",
@@ -367,6 +367,41 @@
         "magicpath canvas",
         "magicpath design system",
         "magicpath.ai"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-orca-cli",
+      "packetKind": "workflow",
+      "backendKind": "cli-only",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Glob",
+          "Grep"
+        ],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-orca-cli",
+      "packetSkillName": "mcp-orca-cli",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "orca cli",
+        "orca worktree",
+        "orca terminal",
+        "orca skills",
+        "orca automation",
+        "orca browser",
+        "orca handoff",
+        "orca artifacts"
       ],
       "advisorRouting": {
         "routingClass": "metadata"

@@ -1,0 +1,10 @@
+$ command -v orca
+/usr/local/bin/orca
+$ orca --version
+1.4.205
+$ orca agent-context --json | <redacted structural summary>
+{"commandCount": 234, "hasMcp": false, "schemaVersion": 1}
+$ orca skills get orca-cli --json | <redacted structural summary>
+{"contentLines": 221, "hasAutomationReference": true, "hasBrowserReference": true, "hasPublishingReference": true, "keys": ["full", "markdown", "name"]}
+$ orca status --json | <redacted structural summary>
+{"ok": true, "resultKeys": ["app", "graph", "runtime", "target"]}

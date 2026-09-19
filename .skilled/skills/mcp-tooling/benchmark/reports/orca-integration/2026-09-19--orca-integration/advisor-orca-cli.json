@@ -1,0 +1,97 @@
+[
+  {
+    "skill": "mcp-tooling",
+    "kind": "skill",
+    "confidence": 0.9325,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.767365,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-tooling",
+      "liveScore": 0.767365,
+      "shadowScore": 0.716428,
+      "delta": -0.050937,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "cli-external-orchestration",
+    "kind": "skill",
+    "confidence": 0.632,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.208354,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "cli-external-orchestration",
+      "liveScore": 0.208354,
+      "shadowScore": 0.19507,
+      "delta": -0.013284,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.5741,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.100674,
+    "dominant_lane": "graph_causal",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.100674,
+      "shadowScore": 0.14151,
+      "delta": 0.040836,
+      "dominantShadowLane": "graph_causal"
+    }
+  },
+  {
+    "skill": "mcp-code-mode",
+    "kind": "skill",
+    "confidence": 0.5632,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.080407,
+    "dominant_lane": "graph_causal",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-code-mode",
+      "liveScore": 0.080407,
+      "shadowScore": 0.112551,
+      "delta": 0.032144,
+      "dominantShadowLane": "graph_causal"
+    }
+  },
+  {
+    "skill": "sk-design",
+    "kind": "skill",
+    "confidence": 0.5474,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.051013,
+    "dominant_lane": "graph_causal",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-design",
+      "liveScore": 0.051013,
+      "shadowScore": 0.067311,
+      "delta": 0.016298,
+      "dominantShadowLane": "graph_causal"
+    }
+  }
+]

@@ -1,156 +1,140 @@
 ---
 title: mcp-tooling
-description: "One routing identity for eight MCP tool bridges: browser debugging and automation, ClickUp task operations, Obsidian vault and markdown-note management, Aside agentic browser tasks, Notion workspace operations and three design-research transports, resolved through mode-registry.json and hub-router.json."
+description: "One advisor identity routes ten MCP tool bridges: six workflow modes and four read-only design transports."
 trigger_phrases:
   - "chrome devtools"
   - "clickup task"
   - "obsidian vault"
-  - "notesmd-cli"
-  - "figma cli"
+  - "aside browser"
   - "notion mcp"
+  - "orca cli"
+  - "orca worktree"
+  - "figma cli"
+  - "magicpath components"
   - "mcp tool bridge"
-version: 1.6.1.0
+version: 1.7.0.0
 ---
 
 # mcp-tooling
 
-> One advisor identity routes every request to the right MCP tool bridge: browser debugging, ClickUp task operations, Obsidian vault work and design research, all reached through plain language instead of a manual.
-
----
+> One advisor identity routes ten MCP tool bridges through the right workflow packet: six workflow bridges and four read-only design transports.
 
 ## 1. AT A GLANCE
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Browser debugging and automation, ClickUp task operations, Obsidian vault and markdown-note management, Aside agentic browser tasks, Notion workspace operations, Figma Desktop transport, Refero web UI reference search and Mobbin mobile-app design research |
-| **Invoke with** | Keyword routing through Gate 2 with no bound slash command for any of the eight modes, plus `/doctor:mcp` for install and debug |
-| **Routes to** | All eight packet directories via `mode-registry.json` and `hub-router.json`: five mutating workflow bridges and three read-only design transports |
-| **Produces** | Browser evidence, ClickUp task state changes, Obsidian note and vault operations, Aside browser evidence, Notion page and data-source operations, Figma reads and exports plus Refero and Mobbin research, paired with `sk-design-md-generator` for a measured Style Reference; MagicPath component and design-system reads, paired with `sk-design` |
-
----
+| **Use it for** | Browser debugging, ClickUp, Obsidian, Aside, Notion, Orca-managed state, Figma Desktop, Refero, Mobbin, and MagicPath |
+| **Invoke with** | Plain-language tool-specific requests through the hub and its two-stage router |
+| **Routes to** | Ten packet directories via `mode-registry.json`, `hub-router.json`, and root `ROUTER.md` |
+| **Workflow modes** | `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`, `mcp-orca-cli` |
+| **Transport modes** | `mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-magicpath` |
+| **Produces** | External-tool evidence and state changes owned by the selected packet, with explicit safety boundaries |
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
+External tools do not share one setup story or one safety model. The hub gives them one advisor identity while keeping each provider's command surface, credential boundary, mutation policy, and recovery rules in a nested packet.
 
-Every external tool arrives with its own way in: a CLI, an MCP server or a desktop app, plus its own setup story and failure modes. Before the hub existed, an agent that wanted to debug a browser and update a ClickUp task had to hold each surface in mind separately while the manuals kept piling up. The hub removes that cost. One advisor identity fields the request, resolves the mode, picks the packet and hands over the work.
+The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.json`. The root `ROUTER.md` then maps the selected mode to the exact packet-local references needed for the request. `mcp-code-mode` is shared infrastructure for packets that use Code Mode, not another hub member.
 
-### What It Does
-
-The hub holds no packet-local logic. It routes every request to exactly one of eight nested packets through `mode-registry.json` and `hub-router.json`, then lets the packet's own `SKILL.md` take over. Each packet keeps its own `SKILL.md`, `README.md`, `INSTALL-GUIDE.md` and `changelog/`. The hub carries the single `graph-metadata.json` advisor identity for all eight. `mcp-code-mode` is the shared execution substrate that the CLI-plus-MCP workflows and the design transports reach through. It is excluded from the hub on purpose and stays a flat standalone skill with no hub membership.
-
-### The Routing Surface
+## 3. MODE DIRECTORY
 
 | Mode | What the hub routes |
 |---|---|
-| [`mcp-chrome-devtools`](./mcp-chrome-devtools/README.md) | Browser debugging and automation through the `bdg` CLI (fast and token-efficient) with an MCP fallback through Code Mode |
-| [`mcp-click-up`](./mcp-click-up/README.md) | ClickUp task management: the `cupt` CLI for daily operations and the official ClickUp MCP for the heavier document, goal and bulk work |
-| [`mcp-obsidian`](./mcp-obsidian/README.md) | Obsidian vault and markdown-note management through headless `notesmd-cli`, the app-backed `obsidian` CLI and the cyanheads MCP |
-| [`mcp-aside-devtools`](./mcp-aside-devtools/README.md) | Agentic browser tasks through the Aside CLI with deterministic REPL evidence capture and an MCP fallback |
-| [`mcp-notion`](./mcp-notion/README.md) | Notion workspace operations through the official `@notionhq/notion-mcp-server` over Code Mode, direct Notion API for the five gaps, plus the data-source / property / relation / rollup knowledge layer |
-| [`mcp-figma`](./mcp-figma/README.md) | Figma Desktop transport: drives Figma Desktop from the terminal through `figma-ds-cli`, read-only in this workspace with writes landing only in Figma Desktop |
-| [`mcp-refero`](./mcp-refero/README.md) | Real-app web UI reference search through the Refero MCP, read-only through Code Mode |
-| [`mcp-mobbin`](./mcp-mobbin/README.md) | Mobile app screen, flow and UX pattern research through the Mobbin MCP, read-only through Code Mode |
-| [`mcp-magicpath`](./mcp-magicpath/README.md) | MagicPath component and design-system lookup through the vendor CLI, reached over a UTCP `cli` manual in Code Mode, read-only |
+| [`mcp-chrome-devtools`](./mcp-chrome-devtools/README.md) | Developer-driven Chrome/CDP debugging, screenshots, network and console evidence, HAR export, and Lighthouse through `bdg` or its MCP fallback |
+| [`mcp-click-up`](./mcp-click-up/README.md) | ClickUp task management through `cupt` for daily operations and the official MCP for heavier document, goal, and bulk work |
+| [`mcp-obsidian`](./mcp-obsidian/README.md) | Obsidian vault and markdown-note management plus Iconic rulebook automation through CLI and MCP lanes |
+| [`mcp-aside-devtools`](./mcp-aside-devtools/README.md) | Goal-driven Aside browser tasks and deterministic REPL evidence, with Code Mode composition when needed |
+| [`mcp-notion`](./mcp-notion/README.md) | Notion pages, blocks, data sources, comments, users, search, and direct API gap fills |
+| [`mcp-orca-cli`](./mcp-orca-cli/README.md) | Orca-managed worktrees, terminals, repositories, handoffs, automations, artifacts, skill sharing, comments, and embedded browser state through the version-matched CLI guide |
+| [`mcp-figma`](./mcp-figma/README.md) | Figma Desktop transport through `figma-ds-cli`, with explicit-path local exports and design-reference handoff |
+| [`mcp-refero`](./mcp-refero/README.md) | Read-only real-app web UI reference search through Refero MCP |
+| [`mcp-mobbin`](./mcp-mobbin/README.md) | Read-only mobile app screen, flow, and UX pattern research through Mobbin MCP |
+| [`mcp-magicpath`](./mcp-magicpath/README.md) | Read-only MagicPath component, project, team, theme, and canvas lookup through the vendor CLI over a UTCP `cli` manual |
 
-### The Transport Axis
+## 4. QUICK START
 
-Five modes are workflow bridges that mutate this workspace directly. The remaining four are read-only design transports that bridge to an external tool's surface and never perform design judgment or mutate this workspace. `mcp-figma` drives Figma Desktop over its local daemon with `mutatesWorkspace:false`: export commands write artifacts only to explicit output paths while document changes land in Figma Desktop. `mcp-refero` and `mcp-mobbin` run as remote MCP servers reached through Code Mode with no local writes at all. `mcp-magicpath` is the one transport whose provider ships no MCP server at all: a UTCP `cli` manual runs the vendor CLI through Code Mode, and only the provider's read-only commands are registered, so the commands that would write files into the calling project are unreachable from a tool call rather than merely discouraged. Every design-affecting operation pairs the transport with a standalone skill that supplies the judgment, because a transport never decides taste on its own. For `mcp-figma`, `mcp-refero` and `mcp-mobbin` that partner is `sk-design-md-generator`, which extracts a measured Style Reference (design tokens) from a live source. For `mcp-magicpath` it is `sk-design`: its themes already return named CSS variables and fonts, so there is nothing to measure and what is missing is the decision.
-
----
-
-## 3. QUICK START
-
-**Step 1: Make a plain request.** Keyword routing through Gate 2 matches the request to the single `mcp-tooling` identity. The hub then resolves the mode. No slash command binds any of the eight modes, so the request itself is the entry point.
-
-**Step 2: Try a workflow bridge.**
+Make a plain-language request that names the owning surface:
 
 ```text
 Use Chrome DevTools to capture a HAR for the staging dashboard.
+
+Mark the ClickUp task done and add a shipping note.
+
+Create a daily note in my Obsidian vault.
+
+Use the Orca CLI to inspect the current worktree and terminals.
+
+Open the Orca-managed browser page and capture a fresh snapshot.
+
+Query my Notion roadmap data source for in-progress rows.
+
+Search MagicPath for the saved button component and show its source.
 ```
 
-The request reaches `mcp-chrome-devtools`, which runs the `bdg` CLI first and falls back to the Code Mode MCP when the CLI cannot serve the task.
+The hub routes a browser/CDP request to Chrome, a generic agentic browser request to Aside, and an Orca-managed browser request to Orca. It does not treat a bare `orca` mention as an Orca signal because unrelated OpenOrca model traffic must remain outside this hub mode.
 
-```text
-Mark the ClickUp task done and add a note that it shipped.
+For installation or debugging, use `/doctor:mcp`. The doctor route reports bridge state without changing configuration.
+
+## 5. ROUTING AND BOUNDARIES
+
+### Two-stage routing
+
+Stage 1 resolves the workflow mode. Stage 2 resolves packet-local resources. Use the compiled route when it is serving:
+
+```bash
+node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
 ```
 
-The request reaches `mcp-click-up`, which runs the `cupt` CLI for daily operations and the official ClickUp MCP for the heavy work like documents or bulk changes.
+On a route, load only the returned targets. On `clarify` or `defer`, ask for the missing tool identity. The hub's default resources are fallback-only and are not unioned into scored routes.
 
-```text
-Create a daily note for today in my Obsidian vault and register the vault.
-```
+### Workflow modes
 
-The request reaches `mcp-obsidian`, which operates the vault through headless `notesmd-cli` without opening the app.
+Workflow packets may change local or external workflow state. Their packet contracts define the required authorization, rollback, and verification boundary. Orca is classified as workflow because worktrees, terminals, agents, automations, browser interactions, and publishing can change state.
 
-```text
-Query my Notion roadmap data source for in-progress rows and update a page's status.
-```
+### Transport modes
 
-The request reaches `mcp-notion`, which operates the workspace through the official Notion MCP over Code Mode: targeting a data-source id and routing to the direct Notion API for the capabilities the MCP does not expose.
+Transport packets bridge external tool surfaces and remain `mutatesWorkspace:false` in this workspace. Figma, Refero, and Mobbin use `sk-design-md-generator` when measured design-reference extraction is required. MagicPath is different: its read-only theme data already includes named CSS variables and fonts, so it pairs with `sk-design` for design judgment. Its vendor write commands remain unregistered.
 
-**Step 3: Route a design transport with its measured-reference partner.**
+### Shared Code Mode
 
-```text
-Render this component in Figma and export the design tokens.
-```
-
-The request reaches `mcp-figma`, which drives Figma Desktop through `figma-ds-cli`. The transport pairs with `sk-design-md-generator` before any design-affecting operation, using it to extract a measured Style Reference from a live source, because the transport never decides taste on its own.
-
-**Step 4: Install or debug a bridge.** `/doctor:mcp` covers install and debug for every `mcp-*` skill, including every hub member. The doctor route reports the state of the target bridge without changing its configuration.
-
----
-
-## 4. HOW IT WORKS
-
-### The Routing Decision
-
-Every request arrives as a plain phrase. Gate 2 keyword routing matches it to the single `mcp-tooling` advisor identity. The hub then resolves exactly one mode through `mode-registry.json` and `hub-router.json` before handing the work to that packet's `SKILL.md`.
-
-### The Identity Split
-
-The hub owns one `graph-metadata.json` advisor identity for all eight modes, while each packet keeps its own `SKILL.md`, `README.md`, `INSTALL-GUIDE.md` and `changelog/`. The split keeps routing centralized and packet ownership local: a mode can grow its own references and playbook without touching the hub's routing tables.
-
-### The Code Mode Substrate
-
-`mcp-code-mode` provides the shared execution substrate that the CLI-plus-MCP workflows and the remote transports reach through. It stays outside the hub as a flat standalone skill and keeps the unchanged `code_mode` registration key, so hub membership never re-routes its traffic.
-
----
-
-## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for the hub whenever a request names one of its eight surfaces: browser debugging, ClickUp task operations, Obsidian vault work, agentic browser tasks, Notion workspace operations, Figma Desktop, real-app UI references or mobile app design research. Design work always pairs a transport with the skill that owns the judgment: `sk-design-md-generator` for a measured Style Reference, or `sk-design` for `mcp-magicpath`, whose themes arrive already tokenised. When a bridge needs install or debug help, `/doctor:mcp` is the route.
-
-### Related Skills
-
-| Skill | Relationship |
-|---|---|
-| `mcp-code-mode` | Shared MCP execution substrate for the CLI-plus-MCP workflows and the remote transports through the unchanged `code_mode` registration key. External infrastructure, not a hub member |
-| `sk-design-md-generator` | Mandatory cross-hub measured-reference partner for `mcp-figma`, `mcp-refero` and `mcp-mobbin`: extracts a measured Style Reference (design tokens) from a live source. Also applies to `mcp-magicpath` when the reference is an external live site rather than a MagicPath theme |
-| `sk-design` | Mandatory unconditional partner for `mcp-magicpath`, loaded on every invocation under the design agent persona. It owns values, interaction, motion and the WCAG review pass; the transport supplies only the evidence |
-| `sk-code` | Consumes browser-debugging output, ClickUp task context, Obsidian note context, Aside evidence, Notion workspace context, Figma exports and `DESIGN.md` plus Refero and Mobbin research as implementation input |
-| `sk-doc` | Documentation and component authoring. The sibling parent hub whose structure this hub mirrors |
-
----
+`mcp-code-mode` owns the shared MCP execution substrate and manual registration mechanics. Packets that use it discover their live callables at runtime. The Orca packet does not use Code Mode because no native Orca MCP command was found in the inspected 1.4.205 registry.
 
 ## 6. VERIFICATION
+
+Hub structure and coupled metadata:
 
 ```bash
 node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/mcp-tooling
 ```
 
-Expected: 0 invariant failures and 0 warnings with `PARENT_HUB_CHECK_STRICT=1`.
+Positive route replay:
 
----
+```bash
+node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use the Orca CLI to inspect the current worktree"
+```
 
-## 7. RELATED DOCUMENTS
+Advisor replay:
 
-| Document | Purpose |
+```bash
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Use the Orca CLI to inspect the current worktree" --threshold 0.5
+```
+
+Generated metadata and leaf package:
+
+```bash
+node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --skills-dir .skilled/skills --fix
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-orca-cli --check
+```
+
+## 7. RELATED SKILLS
+
+| Skill | Relationship |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime router, mode table and routing invariants for the hub |
-| [`mode-registry.json`](./mode-registry.json) | Declarative registry that resolves a request to one mode |
-| [`hub-router.json`](./hub-router.json) | Router policy and tie-break rules across the eight modes |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every hub mode and capability |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate hub routing |
+| `mcp-code-mode` | Shared MCP execution substrate for packets that use registered MCP or UTCP manuals |
+| `mcp-chrome-devtools` | Chrome/CDP debugging owner |
+| `mcp-aside-devtools` | Generic agentic browser owner |
+| `mcp-orca-cli` | Orca-managed worktree, terminal, automation, publishing, and embedded-browser owner |
+| `sk-design-md-generator` | Measured-reference partner for Figma, Refero, and Mobbin |
+| `sk-design` | Design authority for MagicPath theme and component evidence |
+| `sk-code` | Consumes external-tool evidence as implementation input |
+| `sk-doc` | Documentation and nested-packet authoring precedent |

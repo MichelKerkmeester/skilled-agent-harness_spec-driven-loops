@@ -1,0 +1,18 @@
+{
+  "hubId": "mcp-tooling",
+  "servingAuthority": "legacy",
+  "shadowOnly": false,
+  "selectedPolicy": {
+    "generation": 4
+  },
+  "effectivePolicyHash": "b44332fb40a458ac2c61ebcffbf487f1f5fd5957f019d6dad54a2b285d565813",
+  "fenceEpoch": 4,
+  "manifestFingerprint": "eed74e0cdb8a6becbd969fde8cfba4105a78683b1cc6ad55d0a64e27ce6b8d39",
+  "causeCode": "stale-manifest",
+  "manifestFreshness": {
+    "manifestValid": true,
+    "fresh": false,
+    "causeCode": "stale-manifest",
+    "currentPolicyHash": "44405eceda08b826fa71bc63876e1174a42d93ec3f8955604e74ff9fc34d5f4f"
+  }
+}

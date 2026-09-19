@@ -8,14 +8,14 @@
       {
         "target": "mcp-code-mode",
         "weight": 0.7,
-        "context": "External cross-skill dependency (ADR-005): the shared MCP execution substrate all eight modes reach through the unchanged code_mode MCP registration key — the four dual CLI+MCP workflow bridges (mcp-chrome-devtools, mcp-click-up, mcp-obsidian for dual CLI+MCP Obsidian vault and note management, and mcp-aside-devtools) as their MCP fallback lane, mcp-notion as an MCP-only workflow bridge reaching the official Notion MCP (@notionhq/notion-mcp-server) through Code Mode as its primary path, and the three transports (mcp-figma via the optional Framelink manual, mcp-refero and mcp-mobbin as remote MCP through Code Mode). mcp-code-mode is infrastructure serving consumers beyond this hub, not a hub member."
+        "context": "External cross-skill dependency: mcp-code-mode is the shared execution substrate for the nine Code Mode-backed members (mcp-chrome-devtools, mcp-click-up, mcp-obsidian, mcp-aside-devtools, mcp-notion, mcp-figma, mcp-refero, mcp-mobbin, and mcp-magicpath). mcp-orca-cli is intentionally CLI-only because the inspected Orca command registry exposed no native Orca MCP command. mcp-code-mode serves consumers beyond this hub and is not a hub member."
       }
     ],
     "enhances": [
       {
         "target": "sk-code",
         "weight": 0.5,
-        "context": "Union of all eight modes contributions to sk-code implementation: browser debugging for the WEB stack route (mcp-chrome-devtools), task-management context for development workflows (mcp-click-up), Obsidian vault and markdown-note management through dual CLI plus MCP (mcp-obsidian), agentic-browser task evidence and REPL captures (mcp-aside-devtools), Notion workspace read/write and data-source inventory over the official Notion MCP (mcp-notion), Figma exports/DESIGN.md/variables/screenshots feeding implementation (mcp-figma), and real-app UI reference research grounding what gets built (mcp-refero for web products, mcp-mobbin for mobile app patterns)."
+        "context": "Union of all ten mode contributions to sk-code implementation: browser debugging from mcp-chrome-devtools, task-management context from mcp-click-up, Obsidian vault and markdown-note context from mcp-obsidian, agentic-browser evidence from mcp-aside-devtools, Notion workspace and data-source context from mcp-notion, Orca worktree, terminal, browser, automation, and handoff evidence from mcp-orca-cli, Figma exports from mcp-figma, and real-app UI reference research from mcp-refero and mcp-mobbin. mcp-magicpath supplies read-only component and design-system evidence."
       }
     ],
     "siblings": [
@@ -57,7 +57,15 @@
     "notion",
     "notion-api",
     "data-source-model",
-    "knowledge-workspace"
+    "knowledge-workspace",
+    "orca",
+    "orca-cli",
+    "worktrees",
+    "terminals",
+    "automations",
+    "agent-handoffs",
+    "embedded-browser",
+    "publishing"
   ],
   "intent_signals": [
     "chrome devtools",
@@ -163,7 +171,18 @@
     "ios app examples",
     "phone apps",
     "magicpath component",
-    "magicpath design system"
+    "magicpath design system",
+    "orca cli",
+    "orca worktree",
+    "orca terminal",
+    "orca skills",
+    "orca automation",
+    "orca browser",
+    "orca handoff",
+    "orca artifacts",
+    "mcp-orca-cli",
+    "managed worktree",
+    "paired terminal"
   ],
   "derived": {
     "trigger_phrases": [
@@ -229,7 +248,18 @@
       "magicpath",
       "magicpath ai",
       "magicpath component",
-      "magicpath canvas"
+      "magicpath canvas",
+      "orca cli",
+      "orca worktree",
+      "orca terminal",
+      "orca skills",
+      "orca automation",
+      "orca browser",
+      "orca handoff",
+      "orca artifacts",
+      "mcp-orca-cli",
+      "managed worktree",
+      "paired terminal"
     ],
     "key_topics": [
       "devtools",
@@ -277,7 +307,15 @@
       "iconic rulebook",
       "icon automation",
       "file icons",
-      "folder icons"
+      "folder icons",
+      "Orca CLI",
+      "Orca worktrees",
+      "Orca terminals",
+      "Orca browser",
+      "Orca automations",
+      "Orca agent handoffs",
+      "Orca artifact and skill sharing",
+      "version-matched Orca guides"
     ],
     "intent_signals": [
       "browser debug",
@@ -345,7 +383,20 @@
       "icon rules",
       "icon automation",
       "file icons",
-      "folder icons"
+      "folder icons",
+      "orca cli",
+      "orca worktree",
+      "orca terminal",
+      "orca skills",
+      "orca automation",
+      "orca browser",
+      "orca handoff",
+      "orca artifacts",
+      "mcp-orca-cli",
+      "orca repository",
+      "orca embedded browser",
+      "managed worktree",
+      "paired terminal"
     ],
     "key_files": [
       ".skilled/skills/mcp-tooling/SKILL.md",
@@ -362,7 +413,14 @@
       ".skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md",
       ".skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md",
       ".skilled/skills/mcp-tooling/mcp-notion/SKILL.md",
-      ".skilled/skills/mcp-tooling/mcp-notion/references/mcp-tools.md"
+      ".skilled/skills/mcp-tooling/mcp-notion/references/mcp-tools.md",
+      ".skilled/skills/mcp-tooling/ROUTER.md",
+      ".skilled/skills/mcp-tooling/README.md",
+      ".skilled/skills/mcp-tooling/description.json",
+      ".skilled/skills/mcp-tooling/mcp-orca-cli/SKILL.md",
+      ".skilled/skills/mcp-tooling/mcp-orca-cli/README.md",
+      ".skilled/skills/mcp-tooling/mcp-orca-cli/references/orca-cli-reference.md",
+      ".skilled/skills/mcp-tooling/mcp-orca-cli/references/mutation-and-browser-boundaries.md"
     ],
     "entities": [
       {
@@ -418,9 +476,15 @@
         "kind": "skill",
         "path": ".skilled/skills/mcp-tooling/mcp-notion/SKILL.md",
         "source": "derived"
+      },
+      {
+        "name": "mcp-orca-cli",
+        "kind": "skill",
+        "path": ".skilled/skills/mcp-tooling/mcp-orca-cli/SKILL.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "mcp-tooling is the single public advisor identity for nine MCP tool bridges: five workflow modes and four design transports, folded into one parent hub (packet 126-mcp-tooling-parent, extended to eight modes by the aside/refero/mobbin/obsidian/notion additions). mcp-chrome-devtools routes browser-debugging work between the bdg CLI and Code Mode MCP, prioritizing the cheapest effective interface. mcp-click-up routes ClickUp task management between the cupt CLI (daily ops) and the official ClickUp MCP (documents, goals, bulk operations), with agent-safety invariants (dry-run before batch completion, per-list status resolution). mcp-obsidian routes Obsidian vault and markdown-note management plus Iconic data.json rulebook automation across headless notesmd-cli, the official app-backed obsidian CLI, and the cyanheads MCP. mcp-notion operates a Notion workspace through the official @notionhq/notion-mcp-server over Code Mode (24 tools across pages, blocks, data sources, comments, users, and search), fills five API gaps with direct Notion REST calls, and carries the Notion data-source knowledge layer (22 property types, relations, rollups, Formulas 2.0) — it is the read-side inventory enabler for the packet-015 Notion→Obsidian migration. mcp-aside-devtools drives the agentic Aside browser (natural-language tasks and the deterministic repl evidence lane) for autonomous browser work that developer-driven CDP inspection does not cover. mcp-figma drives Figma Desktop from the terminal through figma-ds-cli, gated read-only/mutating/destructive. mcp-refero searches real shipped web-product UI references and mcp-mobbin researches real mobile app/screen/flow patterns, both read-only remote MCP through Code Mode. mcp-magicpath looks up MagicPath components, projects and design systems through the vendor CLI over a UTCP cli manual: its provider ships no MCP server, and only the read-only commands are registered, so the vendor's file-writing commands are unreachable from a tool call. All four transports carry a mandatory sk-design-md-generator cross-hub pairing for a measured Style Reference before any design-affecting operation — no transport decides taste or emits a Style Reference itself. It matters because it gives eight previously-flat or independently-added MCP bridges one coherent advisor identity while preserving the contract owned by each mode, and mcp-code-mode — the shared execution substrate all eight reach through Code Mode — stays external infrastructure rather than a dissolved hub member.",
+    "causal_summary": "mcp-tooling is the single public advisor identity for ten MCP tool bridges: six workflow modes and four read-only design transports, folded into one parent hub. mcp-chrome-devtools routes developer-driven browser debugging through bdg and its Code Mode fallback. mcp-click-up routes ClickUp task management through cupt and the official MCP. mcp-obsidian routes vault and markdown-note management plus Iconic automation through its CLI and MCP lanes. mcp-aside-devtools drives generic agentic browser work. mcp-notion operates Notion through Code Mode and direct API gap fills. mcp-orca-cli owns Orca-managed worktrees, repositories, terminals, handoffs, automations, artifacts, skill sharing, comments, and embedded browser state through the version-matched CLI guide; its inspected command registry exposed no native Orca MCP command, so it remains CLI-only. mcp-figma drives Figma Desktop, mcp-refero searches real shipped web-product references, mcp-mobbin researches mobile app patterns, and mcp-magicpath looks up components and design systems through a read-only UTCP CLI manual. Figma, Refero, and Mobbin pair with sk-design-md-generator for measured references, while MagicPath theme evidence pairs with sk-design for judgment. The nine Code Mode-backed members share mcp-code-mode as external infrastructure rather than dissolving that substrate into the hub.",
     "source_docs": [
       "SKILL.md",
       "mode-registry.json",
@@ -439,10 +503,20 @@
       "mcp-mobbin/README.md",
       "mcp-obsidian/SKILL.md",
       "mcp-notion/SKILL.md",
-      "mcp-notion/README.md"
+      "mcp-notion/README.md",
+      "ROUTER.md",
+      "README.md",
+      "description.json",
+      "mcp-orca-cli/SKILL.md",
+      "mcp-orca-cli/README.md",
+      "mcp-orca-cli/INSTALL-GUIDE.md",
+      "mcp-orca-cli/references/orca-cli-reference.md",
+      "mcp-orca-cli/references/session-and-runtime.md",
+      "mcp-orca-cli/references/mutation-and-browser-boundaries.md",
+      "mcp-orca-cli/references/troubleshooting.md"
     ],
     "created_at": "2026-07-10T06:16:00Z",
-    "last_updated_at": "2026-08-21T00:00:00Z",
+    "last_updated_at": "2026-09-19T00:00:00Z",
     "last_save_at": "2026-08-21T00:00:00Z"
   }
 }

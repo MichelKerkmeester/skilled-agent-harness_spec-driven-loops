@@ -1,0 +1,1 @@
+PASS: no configured secret-pattern matches found in the benchmark artifacts

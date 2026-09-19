@@ -1,12 +1,12 @@
 ---
 title: "Compiled Routing And Legacy Fallback"
-description: "How mcp-tooling resolves the compiled per-hub router contract ahead of its own registry-driven routing, and the explicit `SPECKIT_COMPILED_ROUTING=0` kill-switch that falls back to legacy."
+description: "How mcp-tooling conditionally resolves the compiled per-hub router contract and falls back to registry-driven routing when serving is withheld or stale."
 trigger_phrases:
   - "compiled routing and legacy fallback"
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "mcp-tooling compiled routing"
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
@@ -15,9 +15,9 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`mcp-tooling`'s `SKILL.md` carries a default-on, flag-gated, additive directive that asks the compiled per-hub router contract to resolve the mode before falling through to the mode-registry-driven routing described in [`workflow-vs-transport-routing.md`](../workflow-vs-transport-routing/workflow-vs-transport-routing.md).
+`mcp-tooling` exposes a compiled-route front door, but compiled serving is conditional. The resolver may serve only when the tri-state runtime flag permits it and the promoted activation manifest is fresh and authorizes compiled serving. Otherwise the legacy registry-driven `hub-router.json` and `mode-registry.json` contract remains authoritative.
 
-The directive is on by default for `mcp-tooling` (a member of the per-hub default-on cohort): the compiled front door resolves and `mcp-tooling` follows the returned decision directly. Because compiled routing was verified byte-identical to legacy on every scenario (Lane C parity, `compiledRouting.subVerdict: 'compiled-serving'`, measured before that harness was retired), this is a transparent implementation swap, not a behavior change. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch: it forces `mcp-tooling` (and every eligible hub) back to legacy registry-driven routing.
+Adding a packet or changing hub routing does not promote a compiled shadow child automatically. A stale activation manifest is expected drift after source changes, not proof that the legacy router is broken.
 
 ---
 
@@ -25,19 +25,27 @@ The directive is on by default for `mcp-tooling` (a member of the per-hub defaul
 
 ### Resolution Order
 
-By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"` before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.skilled/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `mcp-tooling`'s promoted activation manifest (`.skilled/bin/lib/compiled-routing/010-live-activation/activation/mcp-tooling/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `mcp-tooling` routes unchanged. As of this writing, `mcp-tooling`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `mcp-tooling` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
+Run the status probe before treating a compiled result as evidence:
+
+```bash
+node .skilled/bin/compiled-route-status.cjs --hub mcp-tooling
+```
+
+Then use the front door:
+
+```bash
+node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+```
+
+A `route` result may be followed directly. A `clarify` or `defer` result requires disambiguation. A legacy sentinel, stale-manifest cause, or resolver error means that the caller must use the registry-driven route and record compiled serving as unavailable for that run.
 
 ### Tri-State Flag
 
-`SPECKIT_COMPILED_ROUTING` is tri-state, parsed identically by the resolver and by the advisor-side consumption path. Each side owns its own per-hub default-on cohort: `mcp-tooling` (like all seven eligible hubs) is now a member of the resolver's cohort, so `mcp-tooling`'s hub-routing directive resolves to compiled serving when the flag is unset — the advisor-side `compiledRoute` enrichment cohort is tracked separately in `system-skill-advisor/runtime/lib/compiled-routing-flag.ts` and is unaffected by this cutover; `1` force-enables compiled resolution wherever the manifest also authorizes it; `0`, `false`, or `off` is an explicit fleet-wide kill-switch that forces legacy regardless of manifest state; any other value fails closed to legacy. `SPECKIT_COMPILED_ROUTING_DEBUG` gates optional stderr-only breadcrumbs for a fallback decision and never changes the served outcome.
+`SPECKIT_COMPILED_ROUTING=1` requests compiled resolution but cannot override an invalid or stale activation manifest. `SPECKIT_COMPILED_ROUTING=0`, `false`, or `off` forces legacy routing. Unset behavior is determined by the runtime's activation cohort and manifest; it is not a promise that this hub is currently compiled-serving.
 
-### Outcome Handling
+### Current Orca Integration Boundary
 
-A served compiled decision returns one of four actions — `route` (use the returned `targets`), `clarify` or `defer` (disambiguate before proceeding), or `reject` (refuse) — which the `mcp-tooling` directive follows directly. The same decision, when returned inside `advisor_recommend`, is additionally attached to that recommendation's `compiledRoute` field and threaded into brief rendering as `metadata.compiledRouteSummary`; see [`advisor-recommend.md`](../../../system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md) for the shared advisor-side consumption path.
-
-### Serving Status And Drift
-
-`node .skilled/bin/compiled-route-status.cjs --hub mcp-tooling` reports `mcp-tooling`'s current serving posture as one stable JSON record with a `causeCode`: `compiled-serving` when the flag permits, the manifest authorizes, and the engine actually routes; `flag-off` or `legacy-authority` when the manifest is ready but the flag or manifest authority withholds it (expected drift, not breakage); `missing-manifest` when no promoted manifest exists; `engine-throw` when the flag and manifest both authorize compiled serving but the engine itself fails (a genuine break, distinct from expected drift). See [`feature-flag-governance.md`](../../../system-spec-kit/feature-catalog/governance/feature-flag-governance.md) for the `SPECKIT_COMPILED_ROUTING` flag-governance entry.
+The Orca packet is registered in the source hub artifacts and in the generated leaf manifest. This ordinary packet integration does not modify the compiled shadow-child compiler, admission manifest, or runtime activation cohort. Until an independently authorized promotion refreshes those artifacts, a status result such as `legacy` with `stale-manifest` is the honest outcome.
 
 ---
 
@@ -47,18 +55,18 @@ A served compiled decision returns one of four actions — `route` (use the retu
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/mcp-tooling/SKILL.md` | Shared | Carries the default-on compiled-routing directive `mcp-tooling` follows. |
-| `.skilled/bin/compiled-route.cjs` | Script | Promoted CLI front door the directive shells out to. |
-| `.skilled/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` | Shared | Tri-state flag parsing and the manifest serving-authority gate. |
-| `.skilled/bin/lib/compiled-routing/010-live-activation/activation/mcp-tooling/manifest.json` | Shared | `mcp-tooling`'s promoted activation manifest (serving authority, shadow status, selected policy). |
-| `.skilled/bin/compiled-route-status.cjs` | Script | Per-hub serving-status probe with a drift-vs-break `causeCode`. |
+| `.skilled/skills/mcp-tooling/SKILL.md` | Shared | Tells callers to use the compiled front door when it is serving. |
+| `.skilled/bin/compiled-route.cjs` | Script | Conditional compiled-route CLI front door. |
+| `.skilled/bin/compiled-route-status.cjs` | Script | Reports serving authority and cause code. |
+| `.skilled/skills/mcp-tooling/mode-registry.json` | Source | Declares the ten source modes, including `mcp-orca-cli`. |
+| `.skilled/skills/mcp-tooling/hub-router.json` | Source | Supplies the source routing policy and vocabulary. |
 
-### Validation And Tests
+### Validation and tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/bin/compiled-routing-foundation.vitest.ts` | Automated test | Resolver, tri-state flag, and promoted-closure parity coverage. |
-| `.skilled/skills/system-skill-advisor/runtime/tests/compiled-routing-consumption.vitest.ts` | Automated test | Advisor-side attach/consume/invalidate coverage shared by every eligible hub. |
+| `.skilled/skills/mcp-tooling/manual-testing-playbook/` | Manual gold | Records source-router outcomes and compiled availability. |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Automated gate | Checks the generated leaf manifest and root metadata class. |
 
 ---
 
@@ -67,8 +75,3 @@ A served compiled decision returns one of four actions — `route` (use the retu
 - Group: Compiled Routing And Legacy Fallback
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md`
-
-Related references:
-- [workflow-vs-transport-routing.md](../workflow-vs-transport-routing/workflow-vs-transport-routing.md) — the registry-driven routing this directive resolves ahead of.
-- [feature-flag-governance.md](../../../system-spec-kit/feature-catalog/governance/feature-flag-governance.md) — `SPECKIT_COMPILED_ROUTING` flag governance (phased defaults, eligibility, serving status, drift, kill-switch).
-- [advisor-recommend.md](../../../system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md) — how `advisor_recommend` attaches or omits `compiledRoute`.
