@@ -30,11 +30,15 @@ version: 1.7.0.0
 | **Transport modes** | `mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-magicpath` |
 | **Produces** | External-tool evidence and state changes owned by the selected packet, with explicit safety boundaries |
 
+---
+
 ## 2. OVERVIEW
 
 External tools do not share one setup story or one safety model. The hub gives them one advisor identity while keeping each provider's command surface, credential boundary, mutation policy, and recovery rules in a nested packet.
 
 The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.json`. The root `ROUTER.md` then maps the selected mode to the exact packet-local references needed for the request. `mcp-code-mode` is shared infrastructure for packets that use Code Mode, not another hub member.
+
+---
 
 ## 3. MODE DIRECTORY
 
@@ -50,6 +54,8 @@ The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.js
 | [`mcp-refero`](./mcp-refero/README.md) | Read-only real-app web UI reference search through Refero MCP |
 | [`mcp-mobbin`](./mcp-mobbin/README.md) | Read-only mobile app screen, flow, and UX pattern research through Mobbin MCP |
 | [`mcp-magicpath`](./mcp-magicpath/README.md) | Read-only MagicPath component, project, team, theme, and canvas lookup through the vendor CLI over a UTCP `cli` manual |
+
+---
 
 ## 4. QUICK START
 
@@ -75,6 +81,8 @@ The hub routes a browser/CDP request to Chrome, a generic agentic browser reques
 
 For installation or debugging, use `/doctor:mcp`. The doctor route reports bridge state without changing configuration.
 
+---
+
 ## 5. ROUTING AND BOUNDARIES
 
 ### Two-stage routing
@@ -98,6 +106,8 @@ Transport packets bridge external tool surfaces and remain `mutatesWorkspace:fal
 ### Shared Code Mode
 
 `mcp-code-mode` owns the shared MCP execution substrate and manual registration mechanics. Packets that use it discover their live callables at runtime. The Orca packet does not use Code Mode because no native Orca MCP command was found in the inspected 1.4.205 registry.
+
+---
 
 ## 6. VERIFICATION
 
@@ -125,6 +135,8 @@ Generated metadata and leaf package:
 node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --skills-dir .skilled/skills --fix
 python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-orca-cli --check
 ```
+
+---
 
 ## 7. RELATED SKILLS
 
