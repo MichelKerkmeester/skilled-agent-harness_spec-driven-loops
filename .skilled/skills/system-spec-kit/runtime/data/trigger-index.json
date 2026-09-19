@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a5b0836258aab5ea52315dbaee2949ccb77cd8b2165fd0b37169d1cd23492f5a",
+  "manifestHash": "fd42fdcbddf682f4d95b00772f87ab19374acbfc4031eac04eb39c8fd45c41e5",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -15362,6 +15362,11 @@
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/research/research.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/spec.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/goal.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/review-report.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/spec.md",
@@ -43959,14 +43964,14 @@
     "compiled router enable by default program": [
       5966
     ],
+    "compiled router five hubs": [
+      1061
+    ],
     "compiled router rollout phases": [
       5953
     ],
     "compiled router safe cutover contract": [
       5885
-    ],
-    "compiled router seven hubs": [
-      1061
     ],
     "compiled router synthesis correction report": [
       5901
@@ -43993,6 +43998,9 @@
     ],
     "compiled routing architecture": [
       1061
+    ],
+    "compiled routing architecture correction": [
+      15355
     ],
     "compiled routing authority": [
       3685
@@ -60160,7 +60168,7 @@
       7321
     ],
     "dot skilled migration": [
-      15354
+      15359
     ],
     "dot state directories": [
       14601
@@ -60623,7 +60631,7 @@
       15296
     ],
     "dual root resolver findings": [
-      15353
+      15358
     ],
     "dual root task breakdown": [
       15300
@@ -65956,7 +65964,7 @@
       215
     ],
     "fewer skills safer paths": [
-      15355
+      15360
     ],
     "fidelity checklist": [
       887
@@ -85282,7 +85290,7 @@
       14801
     ],
     "memory decommission history": [
-      15356
+      15361
     ],
     "memory decommission inventory": [
       14784
@@ -85307,7 +85315,7 @@
     ],
     "memory decommission timeline": [
       3996,
-      15357
+      15362
     ],
     "memory delete causal cleanup": [
       12923
@@ -88870,7 +88878,7 @@
       14504
     ],
     "move opencode to skilled": [
-      15354
+      15359
     ],
     "move or rename a note": [
       445
@@ -97785,19 +97793,28 @@
       3282,
       15351
     ],
+    "phase 16 closure gate": [
+      15352
+    ],
     "phase 16 implementation summary": [
       7003
     ],
     "phase 16 plan": [
       3284,
-      7004
+      7004,
+      15354
     ],
     "phase 16 results": [
-      3283
+      3283,
+      15353
+    ],
+    "phase 16 stale docs": [
+      15355
     ],
     "phase 16 tasks": [
       3286,
-      7006
+      7006,
+      15356
     ],
     "phase 17 plan": [
       3288
@@ -98987,7 +99004,7 @@
       11753,
       12898,
       15040,
-      15356
+      15361
     ],
     "phase parent 049": [
       10237
@@ -110666,6 +110683,12 @@
     "retired skill benchmark removal": [
       15339
     ],
+    "retired template headers rule": [
+      15355
+    ],
+    "retired template headers rule fixed": [
+      15353
+    ],
     "retired tool id sweep": [
       9664
     ],
@@ -113964,7 +113987,7 @@
       2593
     ],
     "runtime symlink inversion": [
-      15354
+      15359
     ],
     "runtime symlink resolution probe": [
       15280
@@ -124581,16 +124604,16 @@
       15324
     ],
     "skilled migration binding": [
-      15352
+      15357
     ],
     "skilled migration closeout": [
       15329
     ],
     "skilled migration completion criteria": [
-      15352
+      15357
     ],
     "skilled migration deep review": [
-      15353
+      15358
     ],
     "skilled migration design": [
       15287
@@ -124602,7 +124625,7 @@
       15271
     ],
     "skilled migration goal": [
-      15352
+      15357
     ],
     "skilled migration research": [
       15272
@@ -124671,7 +124694,7 @@
       15299
     ],
     "skilled source root": [
-      15354
+      15359
     ],
     "skilled source root move": [
       15305
@@ -125239,7 +125262,7 @@
       889
     ],
     "source parent migration": [
-      15354
+      15359
     ],
     "source phase metadata cleanup": [
       6849
@@ -125251,10 +125274,10 @@
       15298
     ],
     "source root migration directive": [
-      15352
+      15357
     ],
     "source root migration review": [
-      15353
+      15358
     ],
     "source root move acceptance criteria": [
       15301
@@ -126091,10 +126114,10 @@
     ],
     "spec kit v4 chronology": [
       3996,
-      15357
+      15362
     ],
     "spec kit v4 timeline": [
-      15356
+      15361
     ],
     "spec kit version migration": [
       11717,
@@ -127279,6 +127302,18 @@
     "stale compiled manifests": [
       5995
     ],
+    "stale compiled routing text acceptance": [
+      15352
+    ],
+    "stale compiled routing text plan": [
+      15354
+    ],
+    "stale compiled routing text summary": [
+      15353
+    ],
+    "stale compiled routing text tasks": [
+      15356
+    ],
     "stale completion frontmatter": [
       2784
     ],
@@ -127508,6 +127543,9 @@
     ],
     "stale scripts reference removed": [
       2256
+    ],
+    "stale seven hub text": [
+      15355
     ],
     "stale skill graph daemon lease": [
       11166,
@@ -131123,11 +131161,11 @@
       14309
     ],
     "system speckit v4": [
-      15356
+      15361
     ],
     "system speckit v4 timeline": [
       3996,
-      15357
+      15362
     ],
     "system to embedder mapping": [
       11194,
@@ -133418,7 +133456,7 @@
       14536
     ],
     "template reduction history": [
-      15356
+      15361
     ],
     "template reduction requirements": [
       14516
@@ -136878,10 +136916,10 @@
       15155
     ],
     "v4 0 0 0 release notes": [
-      15355
+      15360
     ],
     "v4 changelog": [
-      15355
+      15360
     ],
     "v4 changelog draft update": [
       15159
@@ -136891,7 +136929,7 @@
     ],
     "v4 packet order": [
       3996,
-      15357
+      15362
     ],
     "v4 pro retirement status": [
       2469
@@ -139961,7 +139999,7 @@
       1136
     ],
     "what changed in v4": [
-      15355
+      15360
     ],
     "what colors are in this design": [
       1134
@@ -140555,7 +140593,7 @@
     ],
     "which spec was worked on first": [
       3996,
-      15357
+      15362
     ],
     "which system uses cocoindex or mk spec memory": [
       12423

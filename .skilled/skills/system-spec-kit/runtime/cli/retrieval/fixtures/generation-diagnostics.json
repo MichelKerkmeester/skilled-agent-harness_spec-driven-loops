@@ -3,10 +3,10 @@
     "duplicate-phrase": 54,
     "missing-frontmatter": 7156,
     "non-yaml-frontmatter": 1,
-    "ok": 15304,
+    "ok": 15309,
     "valid-empty-list": 4789
   },
-  "documentsScanned": 27304,
+  "documentsScanned": 27309,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "a5b0836258aab5ea52315dbaee2949ccb77cd8b2165fd0b37169d1cd23492f5a",
+  "manifestHash": "fd42fdcbddf682f4d95b00772f87ab19374acbfc4031eac04eb39c8fd45c41e5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 36392,
+      "ok": 36402,
       "prose-sentence": 27,
       "single-token": 303,
       "stop-word-only": 3
@@ -81986,6 +81986,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/scratch",
       "reason": "excluded directory"
     },
     {
