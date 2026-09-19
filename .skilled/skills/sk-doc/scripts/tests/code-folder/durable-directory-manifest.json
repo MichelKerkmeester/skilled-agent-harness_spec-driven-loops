@@ -1,9 +1,8 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 817,
+  "derived_count": 813,
   "directories": [
     ".",
-    ".claude",
     ".claude/commands/create",
     ".claude/hooks",
     ".github/workflows",
@@ -20,8 +19,6 @@
     ".pi/extensions/pi-fast-mode-w-subagent-support/benchmark/reports/2026-08-17--manual-testing-playbook--fast-mode-usage",
     ".pi/extensions/pi-fast-mode-w-subagent-support/src",
     ".pi/extensions/pi-fast-mode-w-subagent-support/tests",
-    ".pi/git/github.com/dbachelder/pi-btw",
-    ".pi/git/github.com/janvitos/pi-plan-build",
     ".skilled/bin",
     ".skilled/bin/lib",
     ".skilled/bin/tests",
@@ -74,7 +71,6 @@
     ".skilled/skills/.state/loop-guard",
     ".skilled/skills/.state/smart-router-telemetry",
     ".skilled/skills/.state/spec-gate",
-    ".skilled/skills/.state/spec-gate/.archive",
     ".skilled/skills/cli-external-orchestration",
     ".skilled/skills/cli-external-orchestration/benchmark",
     ".skilled/skills/cli-external-orchestration/cli-claude-code",
