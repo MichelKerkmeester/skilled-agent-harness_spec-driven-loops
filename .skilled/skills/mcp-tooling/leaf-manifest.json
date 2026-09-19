@@ -112,6 +112,16 @@
     },
     {
       "leaves": [
+        "references/mutation-and-browser-boundaries.md",
+        "references/orca-cli-reference.md",
+        "references/session-and-runtime.md",
+        "references/troubleshooting.md"
+      ],
+      "packet": "mcp-orca-cli",
+      "workflowMode": "mcp-orca-cli"
+    },
+    {
+      "leaves": [
         "assets/utcp-refero-manual.md",
         "references/discovery-fixture-2026-07-16.json",
         "references/mcp-wiring.md",

@@ -1,6 +1,6 @@
 {
  "skill": "mcp-tooling",
- "version": "1.6.1.0",
+ "version": "1.7.0.0",
  "routerPolicy": {
   "defaultMode": null,
   "ambiguityDelta": 1,
@@ -10,6 +10,7 @@
    "mcp-obsidian",
    "mcp-aside-devtools",
    "mcp-notion",
+   "mcp-orca-cli",
    "mcp-figma",
    "mcp-refero",
    "mcp-mobbin",
@@ -85,6 +86,16 @@
    ],
    "resources": [
     "mcp-notion/SKILL.md"
+   ]
+  },
+  "mcp-orca-cli": {
+   "weight": 4,
+   "classes": [
+    "orca-cli-aliases",
+    "orca-worktree-terminal"
+   ],
+   "resources": [
+    "mcp-orca-cli/SKILL.md"
    ]
   },
   "mcp-figma": {
@@ -377,6 +388,31 @@
     "magicpath canvas",
     "magicpath design system",
     "magicpath.ai"
+   ]
+  },
+  "orca-cli-aliases": {
+   "keywords": [
+    "orca cli",
+    "orca worktree",
+    "orca terminal",
+    "orca skills",
+    "orca automation",
+    "orca browser",
+    "orca handoff",
+    "orca artifacts",
+    "mcp-orca-cli"
+   ]
+  },
+  "orca-worktree-terminal": {
+   "keywords": [
+    "orca worktree",
+    "orca terminal",
+    "orca repository",
+    "orca automation",
+    "orca handoff",
+    "orca embedded browser",
+    "managed worktree",
+    "paired terminal"
    ]
   }
  }

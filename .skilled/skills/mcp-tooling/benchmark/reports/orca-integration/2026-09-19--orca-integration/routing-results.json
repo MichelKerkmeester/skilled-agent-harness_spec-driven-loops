@@ -1,0 +1,5 @@
+{"id":"ORCA-ROUTE-001","prompt":"Use the Orca CLI to inspect the current worktree and terminals","action":"route","workflowModes":["mcp-orca-cli"],"matchedScores":[{"mode":"mcp-orca-cli","score":4}]}
+{"id":"ORCA-ROUTE-002","prompt":"Inspect the managed worktree record and its paired terminal sessions before I continue","action":"route","workflowModes":["mcp-orca-cli"],"matchedScores":[{"mode":"mcp-orca-cli","score":8}]}
+{"id":"ORCA-NEG-001","prompt":"OpenOrca model label","action":"defer","workflowModes":[],"matchedScores":[]}
+{"id":"ORCA-NEG-002","prompt":"Inspect the generic Git worktree and ordinary shell terminal","action":"defer","workflowModes":[],"matchedScores":[]}
+{"id":"ORCA-DEFER-001","prompt":"Use the MCP tool bridge for this","action":"defer","workflowModes":[],"matchedScores":[]}

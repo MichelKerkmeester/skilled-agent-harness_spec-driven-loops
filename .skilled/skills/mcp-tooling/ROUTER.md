@@ -8,7 +8,7 @@ trigger_phrases:
   - "mcp tool bridge resource map"
 importance_tier: important
 contextType: general
-version: 1.6.1.0
+version: 1.7.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -21,7 +21,7 @@ This is mcp-tooling's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub selects a workflow
 mode in [`hub-router.json`](hub-router.json) (`mcp-chrome-devtools`,
 `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`,
-`mcp-figma`, `mcp-refero`, `mcp-mobbin`, or `mcp-magicpath`); this doc maps a request's tool-bridge intent to the exact
+`mcp-orca-cli`, `mcp-figma`, `mcp-refero`, `mcp-mobbin`, or `mcp-magicpath`); this doc maps a request's tool-bridge intent to the exact
 packet-local leaf resources that mode should load. Every path is
 packet-qualified (`<packet>/references|assets/…`, where `<packet>` is the mode's
 `mode-registry.json` `packet` field) and converts to the canonical
@@ -67,6 +67,10 @@ emits leaf paths, and this router never re-decides the mode.
   credential-setup guide a request to look up a MagicPath component or design
   system loads. The transport ships no MCP server of its own, so the pair covers
   what the UTCP cli manual exposes and the token it needs.
+- **mcp-orca-cli leaves** — the version-matched Orca command reference and the
+  mutation/browser boundary guide a request to operate Orca-managed worktrees,
+  terminals, handoffs, automations, artifacts, skill sharing, or embedded browser
+  state loads.
 
 A bare tool-bridge phrase that names no tool (e.g. "use the MCP tool bridge for
 this") names no mode, so it fires no intent and falls back to the hub default
@@ -100,6 +104,7 @@ INTENT_SIGNALS = {
     "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp", "figma daemon", "export from figma", "design file"]},
     "REFERO":          {"weight": 4, "keywords": ["refero", "refero mcp", "refero.design", "design reference search", "ui reference", "real app screens", "reference styles", "web products"]},
     "MOBBIN":          {"weight": 4, "keywords": ["mobbin", "mobbin mcp", "app design research", "ux flow references", "mobile design patterns", "mobile ux research", "onboarding flow examples", "ios app examples", "phone apps"]},
+    "ORCA_CLI":        {"weight": 4, "keywords": ["orca cli", "orca worktree", "orca terminal", "orca skills", "orca automation", "orca browser", "orca handoff", "orca artifacts", "mcp-orca-cli", "managed worktree", "paired terminal"]},
     "MAGICPATH":       {"weight": 4, "keywords": ["magicpath", "magicpath ai", "magicpath component", "magicpath canvas", "magicpath design system", "magicpath.ai"]},
 }
 
@@ -136,6 +141,10 @@ RESOURCE_MAP = {
         "mcp-mobbin/references/tool-surface.md",
         "mcp-mobbin/references/mcp-wiring.md"
     ],
+    "ORCA_CLI": [
+        "mcp-orca-cli/references/orca-cli-reference.md",
+        "mcp-orca-cli/references/mutation-and-browser-boundaries.md"
+    ],
     "MAGICPATH": [
         "mcp-magicpath/references/tool-surface.md",
         "mcp-magicpath/references/credential-setup.md"
@@ -157,4 +166,4 @@ RESOURCE_MAP = {
   first slice.
 - No keyword match is the hub's `defer` fallback: confirm the target tool
   (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`, `mcp-notion`,
-  `mcp-figma`, `mcp-refero`, `mcp-mobbin`, or `mcp-magicpath`) before loading anything.
+  `mcp-orca-cli`, `mcp-figma`, `mcp-refero`, `mcp-mobbin`, or `mcp-magicpath`) before loading anything.
