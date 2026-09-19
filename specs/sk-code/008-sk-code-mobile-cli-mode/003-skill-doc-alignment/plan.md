@@ -2,6 +2,7 @@
 title: "Phase 3 plan - how the skill doc alignment gets done"
 description: "The approach for bringing seven sk-code-mobile-cli docs to the sk-create-skill v4 templates, deleting the design-reference folder with its dangler repair, and reconciling the README and playbook to post-migration reality. Four ordered workstreams A-D, structure-first then deletion then the large rewrite, framed around template conformance and link integrity rather than runtime tests. Plan only; no code lands from this repo."
 contextType: "planning"
+importance_tier: "important"
 _memory:
   continuity:
     packet_pointer: "sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment"

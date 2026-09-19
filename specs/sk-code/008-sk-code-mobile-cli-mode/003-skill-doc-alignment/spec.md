@@ -2,6 +2,7 @@
 title: "Phase 3 - sk-code-mobile-cli skill doc alignment (plan only)"
 description: "Plan-only Level-2 packet to bring seven straggler docs in the sk-code-mobile-cli skill up to the sk-create-skill v4 templates, delete the obsolete design-reference folder and repair its live danglers, and reconcile the skill README and manual-testing playbook to post-migration reality. Docs-only alignment: no app-mobile source or runtime behavior changes. The skill lives in the Public monorepo and its edits land later via an isolated-worktree cross-repo flow, so status is planned / not started."
 contextType: "planning"
+importance_tier: "important"
 _memory:
   continuity:
     packet_pointer: "sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment"
@@ -11,7 +12,10 @@ _memory:
     next_safe_action: "Merge PR #38 to Public main, then reconcile packet to complete (implementation-summary.md, checklist)."
     blockers: []
     completion_pct: 90
-trigger_phrases: []
+trigger_phrases:
+  - "skill doc alignment"
+  - "documentation template conformance"
+  - "obsolete reference cleanup"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

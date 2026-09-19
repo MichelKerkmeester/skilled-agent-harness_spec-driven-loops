@@ -2,6 +2,7 @@
 title: "Phase 2 — Scripts ownership: the app keeps scripts/, the skill references it"
 description: "Decision packet answering whether the Mobile CLI verification tooling in scripts/ (token-identity, the *-cdp render gates, naming/scan-*, release-verify, 26 scripts) should move into the sk-code-mobile-cli surface skill. It should not: the skill is a read-only surface leaf that cannot own or run executable tooling, the scripts are coupled to the app tree and CI and wired as npm scripts, and the skill already references them by name. Analysis only — no files move."
 contextType: "planning"
+importance_tier: "important"
 _memory:
   continuity:
     packet_pointer: "sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership"
@@ -11,7 +12,10 @@ _memory:
     next_safe_action: "None — decision packet complete; no code change follows."
     blockers: []
     completion_pct: 100
-trigger_phrases: []
+trigger_phrases:
+  - "scripts ownership decision"
+  - "app-owned verification scripts"
+  - "skill script ownership boundary"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

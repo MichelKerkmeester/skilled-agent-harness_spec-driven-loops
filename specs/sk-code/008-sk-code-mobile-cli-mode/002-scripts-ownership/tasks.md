@@ -2,6 +2,7 @@
 title: "Phase 2 tasks — scripts-ownership analysis ledger"
 description: "Inventory the scripts, confirm their invocation and coupling, confirm the skill's read-only contract and its references to them, record the decision, and verify no files moved. Evidence inline."
 contextType: "planning"
+importance_tier: "normal"
 _memory:
   continuity:
     packet_pointer: "sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership"

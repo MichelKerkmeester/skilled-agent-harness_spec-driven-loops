@@ -2,6 +2,7 @@
 title: "Phase 2 implementation summary — scripts-ownership decision"
 description: "Decision: the Mobile CLI verification tooling in scripts/ (26 files) stays in the app repo; the sk-code-mobile-cli surface skill references it rather than hosting it. A read-only surface leaf cannot own executable, app-coupled, CI-wired tooling. No files moved — the deliverable is the recorded decision, proven by an unchanged working tree outside this packet."
 contextType: "implementation"
+importance_tier: "normal"
 _memory:
   continuity:
     packet_pointer: "sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership"

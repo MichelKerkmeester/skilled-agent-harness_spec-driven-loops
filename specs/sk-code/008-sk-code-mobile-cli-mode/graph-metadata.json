@@ -89,16 +89,16 @@
     ],
     "causal_summary": "Code work on `apps/pi-remote-web/` detects a generic frontend surface and does not auto-load this",
     "created_at": "2026-08-17T05:11:33.008Z",
-    "last_save_at": "2026-09-19T09:57:16.531Z",
+    "last_save_at": "2026-09-19T11:10:18.750Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9a698b54a1c6fbe551d7e766ca3696812ecb4f08edd90be48f72cdaab2d5c261",
+    "source_fingerprint": "sha256:a22590404b07d1cf0dd776ea7934cdd4b55752d3849295fadd449c9c25b1493a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ab59bfdd4bdae3d1774fa001d574236201e797e50e9ef7e58399bf7d15ebe755"
+      "spec.md": "4b912fd2b2cd8f723d9758b11b995664012927a7c7d26a6eac12aea12f636735"
     },
     "last_active_child_id": "sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan",
     "last_active_at": null
