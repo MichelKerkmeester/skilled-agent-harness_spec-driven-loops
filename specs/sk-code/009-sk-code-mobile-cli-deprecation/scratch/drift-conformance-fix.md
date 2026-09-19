@@ -59,9 +59,12 @@ decision), so it clears the drift while keeping the typed gold valid and the ref
 - The hub's registry `aliases` still list the bare benchmark phrases. They project as metadata
   (`registry-compiler.cjs` `aliasProjections`), not scoring vocabulary, so the compiled contract is narrowed
   by the hub-router edit alone; the legacy advisor surface keeps them until that path is retired.
-- **SD-015's reservation stands**: the token-cost ladder's ceiling rung no longer asserts a load-all outcome.
-  It now measures that a full-toolkit request must not fan out. Restoring a real ceiling needs a fan-out
-  feature (`compositionRules` + a 14-mode bundle), not a gold edit.
+- **SD-015's reservation stands, and the barrier is a contract rather than a missing mechanism**: the token-cost
+  ladder's ceiling rung no longer asserts a load-all outcome, and it now measures that a full-toolkit request must
+  not fan out. `policy.compositionRules` with `assertComposition` already gates multi-target routes and this hub's
+  compiler declares bundles in `SUPPLEMENTAL_BUNDLE_RULES`, so a routed ceiling would mean overriding the hub-stage
+  contract that a prompt naming only the hub must defer instead of fanning out, not adding a feature. The scenario
+  keeps its inventory as the ceiling reference, and its supplemental block now matches that fail-safe contract.
 - The holdout bucket drops 19 → 18; the generalization gap SD-H02 measured is now recorded in the scenario
   and here rather than as a red admission line.
 - The reviewer's cost estimates and its in-memory hash prediction were not reproduced (the real policy hash

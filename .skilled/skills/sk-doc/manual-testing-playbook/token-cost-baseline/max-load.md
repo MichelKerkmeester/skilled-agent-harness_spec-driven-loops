@@ -393,11 +393,11 @@ This document captures the routing-gold contract, current behavior, execution no
 
 ## 1. OVERVIEW
 
-This scenario validates ON_DEMAND_ALL ceiling token-cost behavior for `SD-015`. It focuses on a full-toolkit prompt that should intentionally load the complete sk-doc resource map.
+This scenario validates the ceiling token-cost rung for `SD-015`. It focuses on a bare full-toolkit prompt, which the compiled router must defer rather than route.
 
 ### Why This Matters
 
-The ceiling case records the upper-bound inventory an explicit full-toolkit request would load, and gives operators the cost reference for it. The compiled router does not fan out: a route is capped at the largest declared bundle, and a prompt that names only the hub takes the defer outcome by contract. The assertion is therefore the fail-safe one — no mode may route — and it catches a misroute into a single authoring mode or unbounded expansion beyond the enumerated toolkit. Fan-out to the full inventory remains an open architecture gap; the inventory below stays the reference for the ceiling if it is ever implemented.
+The ceiling case records the upper-bound inventory an explicit full-toolkit request would load, and gives operators the cost reference for it. The compiled router does not fan out: a route is capped at the largest declared bundle, and a prompt that names only the hub takes the defer outcome by contract. The assertion is therefore the fail-safe one, that no mode may route, and it catches a misroute into a single authoring mode or unbounded expansion beyond the enumerated toolkit. Fan-out to the full inventory is not implemented, and the barrier is a contract rather than a missing mechanism: `policy.compositionRules` with `assertComposition` already gates multi-target routes, this hub's compiler declares its bundles in `SUPPLEMENTAL_BUNDLE_RULES`, and the hub-stage contract keeps the two routing stages separate, so a prompt naming only the hub defers instead. The inventory below stays the reference for the ceiling if that contract ever changes.
 
 ---
 
@@ -453,22 +453,28 @@ Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare a
 
 ### Optional Supplemental Checks
 
-**Expected Behavior**
+Reference material only. Nothing in this block is a pass condition for SD-015, whose assertion is the non-route in section 3.
 
-- **Intent picked**: ON_DEMAND fallback (load-all)
-- **Resources loaded**: every reference + asset enumerated in `RESOURCE_MAP` (all 11 intents' resources).
-- **Outcome**: CLI emits a directory-style summary of loaded resources, NOT a normal intent-specific output. This establishes the CEILING token cost per CLI.
+**Ceiling Reference**
+
+The inventory in this scenario's frontmatter is what an explicit full-toolkit request would load if fan-out existed: 124 resources across the 14 authoring modes, expressed as 125 typed (mode, leaf) pairs. It stays the cost reference for that ceiling.
+
+**Legacy Replay Path**
+
+The legacy machine-readable router in `../../ROUTER.md` declares the `FULL_INVENTORY` intent with keywords that include `full sk-doc toolkit` and `all templates`, and its own contract fires that intent only on an explicit full-toolkit request. Replayed against that surface the prompt resolves to `FULL_INVENTORY` and the whole resource map loads. That is the reference measurement, never an expected outcome of the compiled router.
 
 **Cross-CLI Variants**
+
+If the ceiling is ever measured, run it on:
 
 - **cli-opencode (gpt-5.5/high/fast)**: stress-tests context window; record peak input tokens.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: may truncate output; record peak input tokens.
 
-**Success Criteria**
+**Ceiling Measurement (only where fan-out exists)**
 
-- ON_DEMAND_KEYWORDS triggered; load-all engaged
-- all 22 enumerated resources appear in the loaded set (false_positive_resource_load_count tolerated up to 3 for any new RESOURCE_MAP additions)
-- per-CLI ceiling token cost recorded; should be the upper bound of SD-013/SD-014/SD-015 spectrum
+- `FULL_INVENTORY` matched on the legacy replay, load-all engaged
+- every resource enumerated in this scenario's frontmatter appears in the loaded set (false_positive_resource_load_count tolerated up to 3 for any new RESOURCE_MAP additions)
+- per-CLI ceiling token cost recorded; should be the upper bound of the SD-013/SD-014/SD-015 spectrum
 
 
 ---
