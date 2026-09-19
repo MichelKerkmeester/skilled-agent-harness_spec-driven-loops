@@ -58,6 +58,16 @@ The authorized continuation completed the following implementation tasks:
 - [x] I004 Regenerate the hub leaf manifest and pass parent-skill, source-routing, advisor, package, and strict-spec checks.
 - [x] I005 Reconcile the packet documents with the delivered implementation and record the compiled-routing fallback boundary.
 
+## Phase 4: sk-doc Conformance Remediation
+
+The operator-directed conformance pass completed the following leaf-alignment tasks:
+
+- [x] C001 Re-shell the four leaf references to the skill-reference template (full frontmatter, short intro, required OVERVIEW, numbered ALL-CAPS H2s, `---` dividers, HVR-clean prose) and pass the reference validator on every file.
+- [x] C002 Restructure the leaf README to the skill README template (dividers, four-row AT A GLANCE, problem-first OVERVIEW, narrative hook, HVR-clean prose) and pass the readme validator with zero issues.
+- [x] C003 Restructure the manual-testing playbook into the split-package shape (root directory plus six category folders and ten per-feature scenario files with the persistence contract) and pass the playbook and playbook-feature validators.
+- [x] C004 Apply the 0.1.0.0 first-version identity: rename the changelog entry to `v0.1.0.0.md` and set every leaf frontmatter version to 0.1.0.0, matching the mcp-notion first-version convention.
+- [x] C005 Record the remediation in this packet, rerun the leaf, hub, and strict-spec gates, and dispatch the read-only cli-devin review of the restructured docs.
+
 Remaining operator-gated checks are not failures and are not claimed as performed: controlled repository mutation, disposable terminal/browser driving, authentication, publishing, skill sharing, and compiled-route sync/finalize.
 
 ## Completion Criteria for This Specification Packet
@@ -65,6 +75,7 @@ Remaining operator-gated checks are not failures and are not claimed as performe
 - [x] All specification-preparation tasks are marked `[x]` after the final checks run.
 - [x] No `[B]` blocked tasks remain.
 - [x] `acceptance-criteria.md` has every row `Met`, `Waived`, or `Superseded` with evidence.
+- [x] The conformance-remediation criteria AC-009 through AC-012 are `Met` with validator and gate evidence.
 - [x] `validate.sh --strict` prints an explicit `RESULT: PASSED`.
 - [x] The implementation summary states what was delivered, what remains operator-gated, and why compiled serving is deferred.
 
