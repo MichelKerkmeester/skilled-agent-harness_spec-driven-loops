@@ -14,7 +14,9 @@
     "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity",
     "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/009-silent-failure-and-harness-repair",
     "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch",
-    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening"
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/012-deep-loop-test-debt",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review"
   ],
   "manual": {
     "depends_on": [],
@@ -90,8 +92,8 @@
       }
     ],
     "causal_summary": "Runtime code READMEs and sk-code alignment, plus artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority, routing-parity, silent-failure, docs-drift, and identity and lock hardening.",
-    "created_at": "2026-08-13T09:22:52.476Z",
-    "last_save_at": "2026-08-30T15:39:21.657Z",
+    "created_at": "2026-09-20T08:33:46.791Z",
+    "last_save_at": "2026-09-20T08:33:46.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -102,7 +104,7 @@
     "source_doc_hashes": {
       "spec.md": "b94c271789a302b4d0569b014cb9b608898a1fec9df036da012148d94bf0d596"
     },
-    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding",
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review",
     "last_active_at": null
   }
 }

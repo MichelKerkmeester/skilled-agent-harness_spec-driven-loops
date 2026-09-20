@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-09-11T10:11:50.405Z",
+  "generated": "2026-09-20T09:23:18.582Z",
   "folders": [
     {
       "specFolder": "agents/001-terminal-proof-discipline",
@@ -32058,6 +32058,47 @@
       "lastUpdated": "2026-08-19T19:14:43.845Z"
     },
     {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/008-fanout-convergence-mode-flag",
+      "description": "The fan-out path never read --convergence-mode, so every lineage silently took the default while the caller believed convergence was disabled.",
+      "keywords": [
+        "fan-out",
+        "path",
+        "never",
+        "read",
+        "convergence-mode",
+        "every",
+        "lineage",
+        "silently",
+        "took",
+        "default",
+        "while",
+        "caller",
+        "believed",
+        "convergence",
+        "disabled"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.576Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-spec-protocol-ledger-events",
+      "description": "The spec-check protocol (`system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` §6) requires every spec write a research run",
+      "keywords": [
+        "spec-check",
+        "protocol",
+        "system-deep-loop",
+        "deep-research",
+        "references",
+        "spec-check-protocol",
+        "requires",
+        "every",
+        "spec",
+        "write",
+        "research",
+        "run"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.620Z"
+    },
+    {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover",
       "description": "Shared mode contracts and fixtures, mode and lane migrations, staged state migration and authority cutover, and legacy-writer retirement.",
       "keywords": [
@@ -33618,6 +33659,50 @@
       "lastUpdated": "2026-08-19T19:14:44.385Z"
     },
     {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/005-synthesis-chat-presentation",
+      "description": "A run could spend twenty minutes producing a ranked set of findings and then report an iteration count, four file paths and a status token",
+      "keywords": [
+        "run",
+        "spend",
+        "twenty",
+        "minutes",
+        "producing",
+        "ranked",
+        "set",
+        "findings",
+        "report",
+        "iteration",
+        "count",
+        "four",
+        "file",
+        "paths",
+        "status",
+        "token"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.574Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/006-deprecate-skill-benchmark",
+      "description": "The `skill-benchmark` lane is carried by the `system-deep-loop` hub as a sixth workflow mode, with a command in five runtime trees, a 56-file script",
+      "keywords": [
+        "skill-benchmark",
+        "lane",
+        "carried",
+        "system-deep-loop",
+        "hub",
+        "sixth",
+        "workflow",
+        "mode",
+        "command",
+        "five",
+        "runtime",
+        "trees",
+        "56-file",
+        "script"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.575Z"
+    },
+    {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift",
       "description": "Whole-system gate, integrate-latest closeout, and drift census and plan revalidation.",
       "keywords": [
@@ -33990,6 +34075,363 @@
         "caller-supplied"
       ],
       "lastUpdated": "2026-08-19T19:14:44.763Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/012-deep-loop-test-debt",
+      "description": "Fix the pre-existing red tests and typecheck errors that the spec-kit nesting triage attributed to system-deep-loop: council persist-artifacts",
+      "keywords": [
+        "pre-existing",
+        "red",
+        "tests",
+        "typecheck",
+        "errors",
+        "spec-kit",
+        "nesting",
+        "triage",
+        "attributed",
+        "system-deep-loop",
+        "council",
+        "persist-artifacts"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.490Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review",
+      "description": "The containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs across twenty phases",
+      "keywords": [
+        "containment",
+        "packet",
+        "changed",
+        "deep-loop",
+        "runtime",
+        "commands",
+        "protocols",
+        "catalogs",
+        "agents",
+        "docs",
+        "across",
+        "twenty",
+        "phases"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.620Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/001-angle-driven-review",
+      "description": "Twenty phases of the containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs",
+      "keywords": [
+        "twenty",
+        "phases",
+        "containment",
+        "packet",
+        "changed",
+        "deep-loop",
+        "runtime",
+        "commands",
+        "protocols",
+        "catalogs",
+        "agents",
+        "docs"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.577Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/002-roster-completeness",
+      "description": "The external orchestration router listed six CLI kinds in its opening parenthetical, its leaf-set bullets and its disambiguation rule while its own",
+      "keywords": [
+        "external",
+        "orchestration",
+        "router",
+        "listed",
+        "six",
+        "cli",
+        "kinds",
+        "opening",
+        "parenthetical",
+        "leaf-set",
+        "bullets",
+        "disambiguation",
+        "rule",
+        "while",
+        "own"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.596Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/003-version-authority",
+      "description": "The three hubs carried six disagreeing version values across their routing artifacts: system-deep-loop spanned 1.0.1.0 to 3.0.0.0 across five files,",
+      "keywords": [
+        "three",
+        "hubs",
+        "carried",
+        "six",
+        "disagreeing",
+        "version",
+        "values",
+        "across",
+        "routing",
+        "artifacts",
+        "system-deep-loop",
+        "spanned",
+        "five",
+        "files"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.597Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability",
+      "description": "The generator skipped any directory entry that was not a plain file, and a symlink never reports as one, so every symlinked reference was invisible",
+      "keywords": [
+        "generator",
+        "skipped",
+        "directory",
+        "entry",
+        "plain",
+        "file",
+        "symlink",
+        "never",
+        "reports",
+        "one",
+        "every",
+        "symlinked",
+        "reference",
+        "invisible"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.598Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/005-catalog-and-readme-truth",
+      "description": "The review found ten classes of documentation that the tree contradicts: nine catalog references citing absent paths, a superseded runtime generation",
+      "keywords": [
+        "review",
+        "found",
+        "ten",
+        "classes",
+        "documentation",
+        "tree",
+        "contradicts",
+        "nine",
+        "catalog",
+        "references",
+        "citing",
+        "absent",
+        "paths",
+        "superseded",
+        "runtime",
+        "generation"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.599Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/006-confirm-variant-parity",
+      "description": "The review measured seven divergences between the confirm and auto variants of the two deep commands",
+      "keywords": [
+        "review",
+        "measured",
+        "seven",
+        "divergences",
+        "between",
+        "confirm",
+        "auto",
+        "variants",
+        "two",
+        "deep",
+        "commands"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.600Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/007-ledger-stem-producers",
+      "description": "The ledger schemas register 61 dotted event stems, and a census of the nine producer surfaces found 56 of them written by no mechanical producer at",
+      "keywords": [
+        "ledger",
+        "schemas",
+        "register",
+        "dotted",
+        "event",
+        "stems",
+        "census",
+        "nine",
+        "producer",
+        "surfaces",
+        "found",
+        "them",
+        "written",
+        "mechanical"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.602Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/008-agent-mirror-parity",
+      "description": "Six trees mirror the same twelve agents, and the translation between them was undocumented and partly lossy",
+      "keywords": [
+        "six",
+        "trees",
+        "mirror",
+        "same",
+        "twelve",
+        "agents",
+        "translation",
+        "between",
+        "them",
+        "undocumented",
+        "partly",
+        "lossy"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.605Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/009-containment-promise-and-severity-scale",
+      "description": "Two governed domains each had two authorities pronouncing and nothing reconciling them",
+      "keywords": [
+        "two",
+        "governed",
+        "domains",
+        "authorities",
+        "pronouncing",
+        "nothing",
+        "reconciling",
+        "them"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.605Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/010-version-authority-completion",
+      "description": "Phase 003 gave three hubs one version authority and wrote the remaining two into its own out-of-scope list, so `sk-doc` and `mcp-tooling` still carry",
+      "keywords": [
+        "phase",
+        "gave",
+        "three",
+        "hubs",
+        "one",
+        "version",
+        "authority",
+        "wrote",
+        "remaining",
+        "two",
+        "own",
+        "out-of-scope",
+        "list",
+        "sk-doc",
+        "mcp-tooling",
+        "still",
+        "carry"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.607Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/011-routing-doctrine-and-discovery",
+      "description": "Every hub that declared both an always-loaded policy and a stage-two preamble stated them",
+      "keywords": [
+        "every",
+        "hub",
+        "declared",
+        "always-loaded",
+        "policy",
+        "stage-two",
+        "preamble",
+        "stated",
+        "them"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.608Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/012-missing-stress-fixture-root",
+      "description": "Review finding F044 records that `active-critic-overfit.md`, `proposal-only-boundary.md` and `skill-load-not-protocol.md` list",
+      "keywords": [
+        "review",
+        "finding",
+        "f044",
+        "records",
+        "active-critic-overfit",
+        "proposal-only-boundary",
+        "skill-load-not-protocol",
+        "list"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.609Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/013-recorded-adjacent-defects",
+      "description": "Four phases of this packet each ended by recording defects they had measured but not fixed, on the reasoning that the surface belonged to another",
+      "keywords": [
+        "four",
+        "phases",
+        "packet",
+        "ended",
+        "recording",
+        "defects",
+        "measured",
+        "reasoning",
+        "surface",
+        "belonged",
+        "another"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.610Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review",
+      "description": "Thirteen phases changed one hundred and fifty files on the claim that each surface now says what the code does",
+      "keywords": [
+        "thirteen",
+        "phases",
+        "changed",
+        "one",
+        "hundred",
+        "fifty",
+        "files",
+        "claim",
+        "surface",
+        "now",
+        "says",
+        "code"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.615Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings",
+      "description": "A ten-iteration review of the program found seven defects in work every phase had already called verified",
+      "keywords": [
+        "ten-iteration",
+        "review",
+        "program",
+        "found",
+        "seven",
+        "defects",
+        "work",
+        "every",
+        "phase",
+        "already",
+        "called",
+        "verified"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.616Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/016-iteration-state-record-contract",
+      "description": "Deep-loop iteration records name their iteration number two ways",
+      "keywords": [
+        "deep-loop",
+        "iteration",
+        "records",
+        "name",
+        "number",
+        "two",
+        "ways"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.617Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/017-guard-index-and-parent-doc-fixes",
+      "description": "Three checks were red or wrong for reasons unrelated to what they guard",
+      "keywords": [
+        "three",
+        "checks",
+        "red",
+        "wrong",
+        "reasons",
+        "unrelated",
+        "guard"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.619Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
@@ -34453,6 +34895,459 @@
       "lastUpdated": "2026-08-17T08:29:24.517Z"
     },
     {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/008-cli-pi-devpass-glm-route",
+      "description": "The operator asked for a deep-research run on GLM-5.3-Flash at `max` through cli-pi, billed to DevPass, their flat-price LLM Gateway plan",
+      "keywords": [
+        "operator",
+        "asked",
+        "deep-research",
+        "run",
+        "glm-5",
+        "3-flash",
+        "max",
+        "cli-pi",
+        "billed",
+        "devpass",
+        "flat-price",
+        "llm",
+        "gateway",
+        "plan"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.488Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/009-cli-pi-devpass-deepseek-route",
+      "description": "The operator asked for a second research round on DeepSeek V4 Flash at `max` through cli-pi",
+      "keywords": [
+        "operator",
+        "asked",
+        "second",
+        "research",
+        "round",
+        "deepseek",
+        "flash",
+        "max",
+        "cli-pi"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.492Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening",
+      "description": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed",
+      "keywords": [
+        "fan-out",
+        "runner",
+        "snapshots",
+        "dirty",
+        "paths",
+        "outside",
+        "lineage",
+        "directory",
+        "dispatch",
+        "lane",
+        "treats",
+        "every",
+        "tracked",
+        "file",
+        "changed"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.535Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/001-never-fatal-untracked",
+      "description": "The write-containment guard failed a fan-out iteration whenever an untracked file appeared outside the lane's packet tree, even under the preserve",
+      "keywords": [
+        "write-containment",
+        "guard",
+        "failed",
+        "fan-out",
+        "iteration",
+        "whenever",
+        "untracked",
+        "file",
+        "appeared",
+        "outside",
+        "lane",
+        "packet",
+        "tree",
+        "even",
+        "preserve"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.493Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/002-iteration-record-dedupe",
+      "description": "Two of four research lanes, on two executor kinds, finished all three iterations and were still rejected with `duplicate state records for iterations:",
+      "keywords": [
+        "two",
+        "four",
+        "research",
+        "lanes",
+        "executor",
+        "kinds",
+        "finished",
+        "three",
+        "iterations",
+        "still",
+        "rejected",
+        "duplicate",
+        "state",
+        "records"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.495Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/003-publish-manifest-provenance",
+      "description": "The attribution table printed `unknown` in the Kind and Model column for every lineage of a completed run",
+      "keywords": [
+        "attribution",
+        "table",
+        "printed",
+        "unknown",
+        "kind",
+        "model",
+        "column",
+        "every",
+        "lineage",
+        "completed",
+        "run"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.497Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/004-index-lock-retry",
+      "description": "Every git call in the containment guard returned an empty result on any non-zero exit and discarded stderr, and every caller read empty as a clean",
+      "keywords": [
+        "every",
+        "git",
+        "call",
+        "containment",
+        "guard",
+        "returned",
+        "empty",
+        "result",
+        "non-zero",
+        "exit",
+        "discarded",
+        "stderr",
+        "caller",
+        "read",
+        "clean"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.498Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/005-churn-cumulative-arm",
+      "description": "The churn detector compared each heartbeat's newly dirty out-of-lineage paths against a per-window threshold and forgot them immediately after",
+      "keywords": [
+        "churn",
+        "detector",
+        "compared",
+        "heartbeat",
+        "newly",
+        "dirty",
+        "out-of-lineage",
+        "paths",
+        "against",
+        "per-window",
+        "threshold",
+        "forgot",
+        "them",
+        "immediately"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.500Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/006-reducer-ordered-lists",
+      "description": "The retained SWE-2 lineage finished three iterations with 25 finding records in its deltas and numbered findings in its iteration files, yet its",
+      "keywords": [
+        "retained",
+        "swe-2",
+        "lineage",
+        "finished",
+        "three",
+        "iterations",
+        "finding",
+        "records",
+        "deltas",
+        "numbered",
+        "findings",
+        "iteration",
+        "files"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.501Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/007-worktree-removal",
+      "description": "The per-lineage worktree mechanism cost 1.6 GB and about 22 seconds per lane, existed only to make write attribution exact, and attribution is not a",
+      "keywords": [
+        "per-lineage",
+        "worktree",
+        "mechanism",
+        "cost",
+        "about",
+        "seconds",
+        "per",
+        "lane",
+        "existed",
+        "only",
+        "write",
+        "attribution",
+        "exact"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.503Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/008-quarantine-destination-canonical",
+      "description": "The quarantine writer created directories and wrote content copies, patches and the manifest under a path derived from the lane's own directory",
+      "keywords": [
+        "quarantine",
+        "writer",
+        "directories",
+        "wrote",
+        "content",
+        "copies",
+        "patches",
+        "manifest",
+        "path",
+        "derived",
+        "lane",
+        "own",
+        "directory"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.509Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/009-baseline-deletion-detection",
+      "description": "The detector iterated the post-dispatch git status and subtracted the baseline, so an untracked file present at baseline and deleted by the lane was",
+      "keywords": [
+        "detector",
+        "iterated",
+        "post-dispatch",
+        "git",
+        "status",
+        "subtracted",
+        "baseline",
+        "untracked",
+        "file",
+        "present",
+        "deleted",
+        "lane"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.510Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/010-containment-on-failed-lanes",
+      "description": "The containment block ran only after every verdict gate passed",
+      "keywords": [
+        "containment",
+        "block",
+        "ran",
+        "only",
+        "every",
+        "verdict",
+        "gate",
+        "passed"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.511Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/011-restore-never-through-symlink",
+      "description": "Under restore, the baseline write used `writeFileSync` on the violated path",
+      "keywords": [
+        "restore",
+        "baseline",
+        "write",
+        "writefilesync",
+        "violated",
+        "path"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.512Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/012-quarantine-retention-per-pass",
+      "description": "The quarantine writer targeted one fixed directory per lane and its docs said a later pass replaces the manifest and named files",
+      "keywords": [
+        "quarantine",
+        "writer",
+        "targeted",
+        "one",
+        "directory",
+        "per",
+        "lane",
+        "docs",
+        "said",
+        "later",
+        "pass",
+        "replaces",
+        "manifest",
+        "named",
+        "files"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.513Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config",
+      "description": "The empty-registry advisory checked `keyFindings` for every loop type, but a review registry carries `openFindings`, so both lanes of the",
+      "keywords": [
+        "empty-registry",
+        "advisory",
+        "checked",
+        "keyfindings",
+        "every",
+        "loop",
+        "type",
+        "review",
+        "registry",
+        "carries",
+        "openfindings",
+        "lanes"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.515Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/014-alignment-review",
+      "description": "The fan-out containment packet changed the deep-loop runtime, its command YAMLs, the deep-research references and compiled contract, and the skill",
+      "keywords": [
+        "fan-out",
+        "containment",
+        "packet",
+        "changed",
+        "deep-loop",
+        "runtime",
+        "command",
+        "yamls",
+        "deep-research",
+        "references",
+        "compiled",
+        "contract",
+        "skill"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.516Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/015-symlink-contained-paths",
+      "description": "The fresh review found three residual gaps in one class: the restore guard checked only the final component, so a symlinked parent directory still",
+      "keywords": [
+        "fresh",
+        "review",
+        "found",
+        "three",
+        "residual",
+        "gaps",
+        "one",
+        "class",
+        "restore",
+        "guard",
+        "checked",
+        "only",
+        "final",
+        "component",
+        "symlinked",
+        "parent",
+        "directory",
+        "still"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.525Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/016-command-yaml-alignment",
+      "description": "The four command YAMLs drove the fan-out runner with different loop flags: none passed the convergence mode the runner reads, and the confirm review",
+      "keywords": [
+        "four",
+        "command",
+        "yamls",
+        "drove",
+        "fan-out",
+        "runner",
+        "different",
+        "loop",
+        "flags",
+        "none",
+        "passed",
+        "convergence",
+        "mode",
+        "reads",
+        "confirm",
+        "review"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.526Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/017-protocol-and-catalog-alignment",
+      "description": "The parent required both loop protocols to describe the containment model, but only the deep-research protocol did; the deep-review protocol's only",
+      "keywords": [
+        "parent",
+        "required",
+        "loop",
+        "protocols",
+        "describe",
+        "containment",
+        "model",
+        "only",
+        "deep-research",
+        "protocol",
+        "deep-review"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.527Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/018-orchestrate-mirror-alignment",
+      "description": "The orchestrate agent said it orchestrates through the delegation tool, but its OpenCode permission block did not grant it and its Pi mirror did not",
+      "keywords": [
+        "orchestrate",
+        "agent",
+        "said",
+        "orchestrates",
+        "delegation",
+        "tool",
+        "opencode",
+        "permission",
+        "block",
+        "grant",
+        "mirror"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.528Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/019-forced-depth-empty-records",
+      "description": "One alignment-review lane wrote its five iteration records numbered under `run` instead of `iteration`",
+      "keywords": [
+        "one",
+        "alignment-review",
+        "lane",
+        "wrote",
+        "five",
+        "iteration",
+        "records",
+        "numbered",
+        "run",
+        "instead"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.529Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway",
+      "description": "The projection store appends only when the current state log is a durable prefix of the folded projection and otherwise replaces the file, so any row",
+      "keywords": [
+        "projection",
+        "store",
+        "appends",
+        "only",
+        "current",
+        "state",
+        "log",
+        "durable",
+        "prefix",
+        "folded",
+        "otherwise",
+        "replaces",
+        "file",
+        "row"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.531Z"
+    },
+    {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
       "description": "Runtime code review, review drift remediation, rollback candidate hash hardening, and review containment exemption.",
       "keywords": [
@@ -34542,6 +35437,29 @@
         "telemetry"
       ],
       "lastUpdated": "2026-08-17T08:29:24.523Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/005-review-leaf-protocol",
+      "description": "Two review lineages were rejected because the leaf retyped its artifact directory's track segment, one because it reached the iteration cap without",
+      "keywords": [
+        "two",
+        "review",
+        "lineages",
+        "rejected",
+        "because",
+        "leaf",
+        "retyped",
+        "artifact",
+        "directory",
+        "track",
+        "segment",
+        "one",
+        "reached",
+        "iteration",
+        "cap",
+        "without"
+      ],
+      "lastUpdated": "2026-09-20T08:32:53.491Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation",
@@ -35446,107 +36364,6 @@
         "alone"
       ],
       "lastUpdated": "2026-08-15T14:41:04.637Z"
-    },
-    {
-      "specFolder": "system-deep-loop/041-cli-pi-devpass-glm-route",
-      "description": "The operator asked for a deep-research run on GLM-5.3-Flash at `max` through cli-pi, billed to DevPass, their flat-price LLM Gateway plan",
-      "keywords": [
-        "operator",
-        "asked",
-        "deep-research",
-        "run",
-        "glm-5",
-        "3-flash",
-        "max",
-        "cli-pi",
-        "billed",
-        "devpass",
-        "flat-price",
-        "llm",
-        "gateway",
-        "plan"
-      ],
-      "lastUpdated": "2026-09-07T16:17:14.192Z"
-    },
-    {
-      "specFolder": "system-deep-loop/042-deep-loop-test-debt",
-      "description": "Fix the pre-existing red tests and typecheck errors that the spec-kit nesting triage attributed to system-deep-loop: council persist-artifacts",
-      "keywords": [
-        "pre-existing",
-        "red",
-        "tests",
-        "typecheck",
-        "errors",
-        "spec-kit",
-        "nesting",
-        "triage",
-        "attributed",
-        "system-deep-loop",
-        "council",
-        "persist-artifacts"
-      ],
-      "lastUpdated": "2026-09-05T18:37:48.129Z"
-    },
-    {
-      "specFolder": "system-deep-loop/043-review-leaf-protocol",
-      "description": "Two review lineages were rejected because the leaf retyped its artifact directory's track segment, one because it reached the iteration cap without",
-      "keywords": [
-        "two",
-        "review",
-        "lineages",
-        "rejected",
-        "because",
-        "leaf",
-        "retyped",
-        "artifact",
-        "directory",
-        "track",
-        "segment",
-        "one",
-        "reached",
-        "iteration",
-        "cap",
-        "without"
-      ],
-      "lastUpdated": "2026-09-05T19:47:34.920Z"
-    },
-    {
-      "specFolder": "system-deep-loop/044-cli-pi-devpass-deepseek-route",
-      "description": "The operator asked for a second research round on DeepSeek V4 Flash at `max` through cli-pi",
-      "keywords": [
-        "operator",
-        "asked",
-        "second",
-        "research",
-        "round",
-        "deepseek",
-        "flash",
-        "max",
-        "cli-pi"
-      ],
-      "lastUpdated": "2026-09-07T04:51:46.881Z"
-    },
-    {
-      "specFolder": "system-deep-loop/045-fanout-write-containment-hardening",
-      "description": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed",
-      "keywords": [
-        "fan-out",
-        "runner",
-        "snapshots",
-        "dirty",
-        "paths",
-        "outside",
-        "lineage",
-        "directory",
-        "dispatch",
-        "lane",
-        "treats",
-        "every",
-        "tracked",
-        "file",
-        "changed"
-      ],
-      "lastUpdated": "2026-09-08T17:59:16.506Z"
     },
     {
       "specFolder": "system-deep-loop/z_archive/001-sk-recursive-agent-loop",

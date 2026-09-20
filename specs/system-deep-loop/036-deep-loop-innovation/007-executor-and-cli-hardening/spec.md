@@ -1,6 +1,6 @@
 ---
 title: "Executor and CLI Hardening"
-description: "CLI adapter stress and playbooks, executor wiring and parity, write-containment hardening, deep-alignment integrity, trustworthy state records, residual finding closeouts, and cli-devin executor repair."
+description: "CLI adapter stress and playbooks, executor wiring and parity, cli-pi DevPass route alignment for GLM-5.3-Flash and DeepSeek V4 Flash, fan-out write-containment hardening for shared checkouts, deep-alignment integrity, trustworthy state records, residual finding closeouts, and cli-devin executor repair."
 trigger_phrases:
   - "executor cli hardening"
   - "containment alignment state records"
@@ -46,7 +46,10 @@ This phase groups the related child phases below so parent-level context stays a
 | 4 | `004-deep-alignment-integrity` | in_progress | predecessor `003-write-containment-hardening`; successor `005-trustworthy-state-records` |
 | 5 | `005-trustworthy-state-records` | complete | predecessor `004-deep-alignment-integrity`; successor `006-residual-finding-closeouts` |
 | 6 | `006-residual-finding-closeouts` | in_progress | predecessor `005-trustworthy-state-records`; successor `007-cli-devin-executor-repair` |
-| 7 | `007-cli-devin-executor-repair` | complete | predecessor `006-residual-finding-closeouts`; successor `none` |
+| 7 | `007-cli-devin-executor-repair` | complete | predecessor `006-residual-finding-closeouts`; successor `008-cli-pi-devpass-glm-route` |
+| 8 | `008-cli-pi-devpass-glm-route` | complete | predecessor `007-cli-devin-executor-repair`; successor `009-cli-pi-devpass-deepseek-route` |
+| 9 | `009-cli-pi-devpass-deepseek-route` | complete | predecessor `008-cli-pi-devpass-glm-route`; successor `010-fanout-write-containment-hardening` |
+| 10 | `010-fanout-write-containment-hardening` | complete | predecessor `009-cli-pi-devpass-deepseek-route`; successor `none` |
 
 ## What Needs Done
 

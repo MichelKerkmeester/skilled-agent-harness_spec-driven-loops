@@ -1,0 +1,34 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/005-catalog-and-readme-truth",
+  "description": "The review found ten classes of documentation that the tree contradicts: nine catalog references citing absent paths, a superseded runtime generation",
+  "keywords": [
+    "review",
+    "found",
+    "ten",
+    "classes",
+    "documentation",
+    "tree",
+    "contradicts",
+    "nine",
+    "catalog",
+    "references",
+    "citing",
+    "absent",
+    "paths",
+    "superseded",
+    "runtime",
+    "generation"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.599Z",
+  "specId": "005",
+  "folderSlug": "catalog-and-readme-truth",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening",
+    "013-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/017-protocol-and-catalog-alignment",
+  "description": "The parent required both loop protocols to describe the containment model, but only the deep-research protocol did; the deep-review protocol's only",
+  "keywords": [
+    "parent",
+    "required",
+    "loop",
+    "protocols",
+    "describe",
+    "containment",
+    "model",
+    "only",
+    "deep-research",
+    "protocol",
+    "deep-review"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.527Z",
+  "specId": "017",
+  "folderSlug": "protocol-and-catalog-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "010-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

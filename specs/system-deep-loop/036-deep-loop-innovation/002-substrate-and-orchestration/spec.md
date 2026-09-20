@@ -1,6 +1,6 @@
 ---
 title: "Substrate and Orchestration"
-description: "Live-tools unblock, authorized-ledger substrate, evidence and control services, compatibility and rollback bridge, durable fan-out orchestration, novelty projections, and convergence and health."
+description: "Live-tools unblock, authorized-ledger substrate, evidence and control services, compatibility and rollback bridge, durable fan-out orchestration, novelty projections, convergence and health, plus the fan-out convergence-mode flag and the spec-protocol ledger events."
 trigger_phrases:
   - "ledger substrate orchestration"
   - "fan-out convergence health"
@@ -46,7 +46,9 @@ This phase groups the related child phases below so parent-level context stays a
 | 4 | `004-compatibility-shadow-and-rollback-bridge` | in_progress | predecessor `003-shared-evidence-and-control-services`; successor `005-fanout-fanin-durable-orchestration` |
 | 5 | `005-fanout-fanin-durable-orchestration` | in_progress | predecessor `004-compatibility-shadow-and-rollback-bridge`; successor `006-novelty-claims-continuity-and-projections` |
 | 6 | `006-novelty-claims-continuity-and-projections` | complete | predecessor `005-fanout-fanin-durable-orchestration`; successor `007-convergence-termination-and-health` |
-| 7 | `007-convergence-termination-and-health` | in_progress | predecessor `006-novelty-claims-continuity-and-projections`; successor `none` |
+| 7 | `007-convergence-termination-and-health` | in_progress | predecessor `006-novelty-claims-continuity-and-projections`; successor `008-fanout-convergence-mode-flag` |
+| 8 | `008-fanout-convergence-mode-flag` | complete | predecessor `007-convergence-termination-and-health`; successor `009-spec-protocol-ledger-events` |
+| 9 | `009-spec-protocol-ledger-events` | complete | predecessor `008-fanout-convergence-mode-flag`; successor `none` |
 
 ## What Needs Done
 

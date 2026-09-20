@@ -1,0 +1,29 @@
+{
+  "note": "Data for rewrite-references.mjs: path-anchored old-to-new mapping for the packets nested into the 036 phase parent. Derived from census-w1a.out / census-w1b.out and reproduced against git.",
+  "packets": [
+    { "old": "system-deep-loop/041-cli-pi-devpass-glm-route", "new": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/008-cli-pi-devpass-glm-route" },
+    { "old": "system-deep-loop/042-deep-loop-test-debt", "new": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/012-deep-loop-test-debt" },
+    { "old": "system-deep-loop/043-review-leaf-protocol", "new": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/005-review-leaf-protocol" },
+    { "old": "system-deep-loop/044-cli-pi-devpass-deepseek-route", "new": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/009-cli-pi-devpass-deepseek-route" },
+    { "old": "system-deep-loop/045-fanout-write-containment-hardening", "new": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening" },
+    { "old": "system-deep-loop/046-synthesis-chat-presentation", "new": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/005-synthesis-chat-presentation" },
+    { "old": "system-deep-loop/047-deprecate-skill-benchmark", "new": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/006-deprecate-skill-benchmark" },
+    { "old": "system-deep-loop/048-fanout-convergence-mode-flag", "new": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/008-fanout-convergence-mode-flag" },
+    { "old": "system-deep-loop/049-deep-loop-alignment-review", "new": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review" },
+    { "old": "system-deep-loop/050-spec-protocol-ledger-events", "new": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-spec-protocol-ledger-events" }
+  ],
+  "scanRoots": [
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/008-cli-pi-devpass-glm-route",
+    "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/012-deep-loop-test-debt",
+    "specs/system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/005-review-leaf-protocol",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/009-cli-pi-devpass-deepseek-route",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening",
+    "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/005-synthesis-chat-presentation",
+    "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/006-deprecate-skill-benchmark",
+    "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/008-fanout-convergence-mode-flag",
+    "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review",
+    "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-spec-protocol-ledger-events"
+  ],
+  "skipPathSegments": ["research", "review", "review-archive", "scratch"],
+  "extensions": [".md"]
+}

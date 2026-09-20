@@ -1,6 +1,6 @@
 ---
 title: "Mode Contracts, Migration and Cutover"
-description: "Shared mode contracts and fixtures, mode and lane migrations, staged state migration and authority cutover, and legacy-writer retirement."
+description: "Shared mode contracts and fixtures, mode and lane migrations, staged state migration and authority cutover, legacy-writer retirement, plus the synthesis chat presentation contract and the skill-benchmark lane retirement."
 trigger_phrases:
   - "mode contracts cutover"
   - "lane migration legacy retirement"
@@ -43,7 +43,9 @@ This phase groups the related child phases below so parent-level context stays a
 | 1 | `001-shared-mode-contracts-and-fixtures` | in_progress | predecessor `none`; successor `002-mode-and-lane-migrations` |
 | 2 | `002-mode-and-lane-migrations` | in_progress | predecessor `001-shared-mode-contracts-and-fixtures`; successor `003-staged-state-migration-and-authority-cutover` |
 | 3 | `003-staged-state-migration-and-authority-cutover` | in_progress | predecessor `002-mode-and-lane-migrations`; successor `004-legacy-writer-retirement` |
-| 4 | `004-legacy-writer-retirement` | planned | predecessor `003-staged-state-migration-and-authority-cutover`; successor `none` |
+| 4 | `004-legacy-writer-retirement` | planned | predecessor `003-staged-state-migration-and-authority-cutover`; successor `005-synthesis-chat-presentation` |
+| 5 | `005-synthesis-chat-presentation` | draft | predecessor `004-legacy-writer-retirement`; successor `006-deprecate-skill-benchmark` |
+| 6 | `006-deprecate-skill-benchmark` | complete | predecessor `005-synthesis-chat-presentation`; successor `none` |
 
 ## What Needs Done
 

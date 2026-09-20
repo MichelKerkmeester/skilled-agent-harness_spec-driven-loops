@@ -1,0 +1,25 @@
+check-markdown-links: 7806 files, 13357 links checked, 20 broken
+
+Broken markdown links (target resolves under neither the file dir nor repo root):
+  .skilled/skills/cli-external-orchestration/cli-pi/README.md  ](../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md)
+  .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md  ](../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md)
+  .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md  ](../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md)
+  .skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md  ](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md)
+  .skilled/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md  ](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md)
+  .skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md  ](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md)
+  .skilled/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md  ](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md)
+  .skilled/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md  ](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md)
+  .skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md  ](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md)
+  .skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md  ](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md)
+  .skilled/skills/cli-orca/SKILL.md  ](feature-catalog/feature-catalog.md)
+  .skilled/skills/cli-orca/SKILL.md  ](manual-testing-playbook/manual-testing-playbook.md)
+  .skilled/skills/cli-orca/references/official-skills/computer-use.md  ](../../../assets/official-skills/PROVENANCE.md)
+  .skilled/skills/cli-orca/references/official-skills/linear-tickets.md  ](../../../assets/official-skills/PROVENANCE.md)
+  .skilled/skills/cli-orca/references/official-skills/orca-linear.md  ](../../../assets/official-skills/PROVENANCE.md)
+  .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md  ](../../../../../specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/goal-coverage-buildout.md)
+  .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md  ](../../../../../specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/handover.md)
+  .skilled/skills/system-spec-kit/runtime/hooks/cursor/README.md  ](../../../../../../specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md)
+  .skilled/skills/system-spec-kit/runtime/hooks/devin/README.md  ](../../../../../../specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md)
+  .skilled/skills/system-spec-kit/runtime/hooks/devin/README.md  ](../../../../../../specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md)
+
+Fix the link, or — if it is an intentional placeholder/example — add it to the ALLOWLIST in this script.

@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway",
+  "description": "The projection store appends only when the current state log is a durable prefix of the folded projection and otherwise replaces the file, so any row",
+  "keywords": [
+    "projection",
+    "store",
+    "appends",
+    "only",
+    "current",
+    "state",
+    "log",
+    "durable",
+    "prefix",
+    "folded",
+    "otherwise",
+    "replaces",
+    "file",
+    "row"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.531Z",
+  "specId": "020",
+  "folderSlug": "direct-append-sites-through-gateway",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "010-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

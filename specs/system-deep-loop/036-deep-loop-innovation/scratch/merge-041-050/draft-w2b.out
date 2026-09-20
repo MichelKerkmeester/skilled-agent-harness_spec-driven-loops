@@ -1,0 +1,215 @@
+W2B draft. Read-only: no files were written, no shell run. All line numbers refer to the packets at their pre-move paths (`specs/system-deep-loop/046-…` … `050-…`). Packets appear in table order.
+
+---
+
+## 1) 046-synthesis-chat-presentation → 003/005 (`synthesis-chat-presentation`, seq 69)
+
+### 1.1 Timeline row
+
+`| 69 | \`synthesis-chat-presentation\` | 2026-09-11T14:03:05Z | 2026-09-11T19:44:00+02:00 | \`system-deep-loop/046-synthesis-chat-presentation\` (merged 2026-09-20) | draft | confirmed |`
+
+### 1.2 Status
+
+**Draft — confirmed against its own documents, with one repo-level exception.**
+
+- `spec.md:25` — `**Status** | Draft`; `graph-metadata.json:42` — `"status": "draft"` (agreement).
+- No closure evidence anywhere: `implementation-summary.md:51` is still the template hook, `implementation-summary.md:24` is `completion_pct: 0`; `tasks.md:37` (`T001`), `tasks.md:47` (`T004`), `tasks.md:58` (`T008`) are all unchecked placeholders; `acceptance-criteria.md:57` is the scaffold row with status `Unmet` and no real criterion.
+- **No internal contradiction** between `spec.md`, `acceptance-criteria.md` and `graph-metadata.json`; all three read Draft/unmet.
+- **Exception (repo check, not packet docs):** the five scoped files already carry content blocks matching the spec's change table (`spec.md:63-67`). The `.skilled/commands/deep/assets/` copies carry `### What the completion message must carry` at `deep-research-presentation.txt:279`, `deep-ai-council-presentation.txt:296`, `deep-model-benchmark-presentation.txt:331`, `deep-agent-improvement-presentation.txt:344`, `deep-review-presentation.txt:366`, and the `.opencode` mirrors carry the same sections (content read-verified; line number only verified for the `.skilled` copies). Which workstream landed those edits is **UNKNOWN** — no packet doc records it. Recommendation: keep the packet-record status `draft` (that is what the merge record should carry), and let the orchestrator decide whether to reconcile the file reality or the record first.
+
+### 1.3 Changelog block (new `## 2026-09-20` entry)
+
+> One of the merged packets arrived as a plan rather than a result. `046-synthesis-chat-presentation` wrote down the gap it meant to close — a run could spend twenty minutes producing a ranked set of findings and report an iteration count, four file paths and a status token (`spec.md:36`) — and stayed Draft (`spec.md:25`): the implementation summary is still the template (`implementation-summary.md:51`), every task is unchecked (`tasks.md:37`), and its lone acceptance criterion is an unfilled placeholder marked Unmet (`acceptance-criteria.md:57`). It entered the program as scoped intent, not as shipped behaviour.
+
+### 1.4 At-a-glance bullet
+
+- **A content contract scoped but not closed** — `046-synthesis-chat-presentation` defines the required content block five deep-loop modes should carry in their completion messages (`spec.md:50`, `spec.md:79`) and remains Draft, with unchecked tasks and an unmet acceptance criterion (`spec.md:25`, `tasks.md:37`, `acceptance-criteria.md:57`).
+
+### 1.5 Before-and-after addendum (`What happened after the switch-over`)
+
+- **A draft about answering in the message.** `046-synthesis-chat-presentation` records why a completion message carrying only a path and a count moves the reading onto the person who asked, and specifies per-mode content for five presentation contracts (`spec.md:36`, `spec.md:63-67`). It never closed — tasks unchecked, acceptance criterion unmet (`tasks.md:37`, `acceptance-criteria.md:57`) — so it joins the program as intent rather than as a change.
+
+### 1.6 Parent phase-map rows (`003-mode-contracts-migration-and-cutover`)
+
+Amend existing row 4 (`003/spec.md:46`): successor `none` → `005-synthesis-chat-presentation`:
+
+`| 4 | \`004-legacy-writer-retirement\` | planned | predecessor \`003-staged-state-migration-and-authority-cutover\`; successor \`005-synthesis-chat-presentation\` |`
+
+Append:
+
+`| 5 | \`005-synthesis-chat-presentation\` | draft | predecessor \`004-legacy-writer-retirement\`; successor \`006-deprecate-skill-benchmark\` |`
+
+### 1.7 Contradictions / exceptions
+
+- Status vocabulary: the 003 map currently uses `planned`/`in_progress`/`complete`; the packet's evidenced status is `draft` (used elsewhere in the spec system, e.g. `z_archive` packets). I propose `draft`; if the map must stay on its three-value vocabulary, the equivalent is `planned`.
+- The five files the spec scopes already contain the change (`spec.md:63-67` vs the repo sections in 1.2); attribution `UNKNOWN`. This does not change the Draft record status.
+
+---
+
+## 2) 047-deprecate-skill-benchmark → 003/006 (`deprecate-skill-benchmark`, seq 70)
+
+### 2.1 Timeline row
+
+`| 70 | \`deprecate-skill-benchmark\` | 2026-09-11T17:07:53Z | 2026-09-11T19:53:21+02:00 | \`system-deep-loop/047-deprecate-skill-benchmark\` (merged 2026-09-20) | complete | confirmed |`
+
+### 2.2 Status
+
+**Complete — fully evidenced.**
+
+- `spec.md:37` — `**Status** | Complete`; `graph-metadata.json:42` — `"status": "complete"`; `implementation-summary.md:24` — `completion_pct: 100`, `implementation-summary.md:42` — Completed 2026-09-11.
+- `acceptance-criteria.md:57-63` — all seven rows `Met` with evidence; `acceptance-criteria.md:88` — `Closeable: Yes`.
+- **No contradiction** across `spec.md`, `acceptance-criteria.md` and `graph-metadata.json`.
+
+### 2.3 Changelog block
+
+> `047-deprecate-skill-benchmark` removed the `skill-benchmark` lane from every reachable surface — five runtime command trees, the hub registry and router pair, the advisor command-bridge projection, its script and fixture trees, and three runtime ledger libraries — so the `system-deep-loop` hub registers five workflow modes where it registered six (`spec.md:23`, `implementation-summary.md:51`, `acceptance-criteria.md:58`). 196 tracked files were deleted and 57 edited, while the 554 historical benchmark reports other skills own were preserved byte-identical (`implementation-summary.md:51`, `acceptance-criteria.md:60`). It mattered because every surface that still advertised the lane was a route to code that should not run (`spec.md:23`), and it closed with residue deliberately left as operator questions rather than silent fixes: a dead `'skill-benchmark'` string constant, four `sk-doc` scripts that imported the deleted tree, a fleet-wide manual-playbook runner gone with the lane, and retrieval corpora that still index the vocabulary (`implementation-summary.md:139-141`, `implementation-summary.md:143`, `spec.md:223-225`).
+
+### 2.4 At-a-glance bullet
+
+- **The sixth lane removed, not renamed** — `skill-benchmark` is gone from every reachable surface and the hub registers exactly five workflow modes (`spec.md:23`, `acceptance-criteria.md:58`), with the 554 historical reports other skills own untouched (`acceptance-criteria.md:60`) and the residue recorded as operator questions rather than fixed on this packet's authority (`spec.md:223-225`).
+
+### 2.5 Before-and-after addendum
+
+- **A lane removed cleanly.** `047-deprecate-skill-benchmark` took the `skill-benchmark` lane out of five runtime command trees, the hub registry and router, the advisor bridge, its script and fixture trees and three runtime ledger libraries, so the hub now registers five workflow modes instead of six (`spec.md:23`, `implementation-summary.md:51`). It deleted 196 tracked files and edited 57 while keeping the 554 historical benchmark reports owned by other skills byte-identical (`implementation-summary.md:51`, `acceptance-criteria.md:60`), and it left its residue — a dead type constant, four broken `sk-doc` imports, a missing manual-playbook runner, indexed vocabulary — as recorded operator questions (`implementation-summary.md:139-141`, `implementation-summary.md:143`).
+
+### 2.6 Parent phase-map row (`003-mode-contracts-migration-and-cutover`)
+
+`| 6 | \`006-deprecate-skill-benchmark\` | complete | predecessor \`005-synthesis-chat-presentation\`; successor \`none\` |`
+
+### 2.7 Contradictions / exceptions
+
+None internal. The open questions and limitations are recorded, not contradictory (`spec.md:223-225`, `implementation-summary.md:139-144`).
+
+---
+
+## 3) 048-fanout-convergence-mode-flag → 002/008 (`fanout-convergence-mode-flag`, seq 71)
+
+### 3.1 Timeline row
+
+`| 71 | \`fanout-convergence-mode-flag\` | 2026-09-11T20:55:35.915Z | 2026-09-11T22:55:50+02:00 | \`system-deep-loop/048-fanout-convergence-mode-flag\` (merged 2026-09-20) | complete | confirmed |`
+
+### 3.2 Status
+
+**Complete — evidenced.**
+
+- `spec.md:41` — `**Status** | Complete`; `implementation-summary.md:41` — Status Complete; `graph-metadata.json:36` — `"status": "complete"`.
+- No `acceptance-criteria.md` exists: the packet is Level 1 (`spec.md:29`), which scaffold-for-skips AC — expected, not a defect.
+- Verification rows PASS at `implementation-summary.md:101-104` (runner syntax, unknown-value rejection with `INPUT_VALIDATION`, accepted value, all three emission points).
+- **No contradiction** across documents.
+
+### 3.3 Changelog block
+
+> `048-fanout-convergence-mode-flag` fixed a flag that was documented and reached nothing. The command surface documented `--convergence-mode` with four values, but the fan-out runner never read it, so every lineage took the default while the caller believed otherwise — a completed run recorded `convergenceMode: "standard"` and `maxIterations: 6` against a caller that had asked for `off` and `5` (`implementation-summary.md:55-57`, `spec.md:51`). The runner now validates the value and carries it into the leaf's prompt config, command line and setup bindings, an unknown value fails fast with the valid list, and an absent flag changes nothing (`spec.md:90-92`, `implementation-summary.md:102-104`). It mattered because the gap was invisible: the carried `--stop-policy=max-iterations` produced the same visible outcome, so only the recorded config revealed the divergence (`implementation-summary.md:58-59`).
+
+### 3.4 At-a-glance bullet
+
+- **A documented flag that finally arrives** — The fan-out runner now reads and validates `--convergence-mode`, threads it to the leaf's prompt config, command line and setup bindings, and rejects unknown values instead of falling back to the default that produced the original silence (`spec.md:90-92`, `implementation-summary.md:102-104`).
+
+### 3.5 Before-and-after addendum
+
+- **A silent fan-out default made visible.** `048-fanout-convergence-mode-flag` found that `--convergence-mode` was documented with four values but the fan-out runner never read it, so a lineage ran `standard` against a caller who asked for `off` — invisible because the carried `--stop-policy=max-iterations` produced the same visible outcome (`implementation-summary.md:55-59`). The runner now validates the value and threads it to the leaf at all three emission points, and an unknown value fails with an input error instead of slipping through (`spec.md:90`, `implementation-summary.md:102-104`).
+
+### 3.6 Parent phase-map rows (`002-substrate-and-orchestration`)
+
+Amend existing row 7 (`002/spec.md:49`): successor `none` → `008-fanout-convergence-mode-flag`:
+
+`| 7 | \`007-convergence-termination-and-health\` | in_progress | predecessor \`006-novelty-claims-continuity-and-projections\`; successor \`008-fanout-convergence-mode-flag\` |`
+
+Append:
+
+`| 8 | \`008-fanout-convergence-mode-flag\` | complete | predecessor \`007-convergence-termination-and-health\`; successor \`009-spec-protocol-ledger-events\` |`
+
+### 3.7 Contradictions / exceptions
+
+None. Known limitations are recorded honestly: the leaf's per-mode handling is unchanged and untested here, and pre-change runs recorded the default regardless of caller intent (`implementation-summary.md:110-116`).
+
+---
+
+## 4) 049-deep-loop-alignment-review → 006/013 (`deep-loop-alignment-review`, seq 72)
+
+### 4.1 Timeline row
+
+`| 72 | \`deep-loop-alignment-review\` | 2026-09-15T09:48:33Z | 2026-09-15T11:50:15+02:00 | \`system-deep-loop/049-deep-loop-alignment-review\` (merged 2026-09-20) | complete | confirmed |`
+
+Evidence-column caveat: `complete` is evidenced by `spec.md:50`, `goal.md:75-80` and all 17 children; `graph-metadata.json:55` alone reads `in_progress`. If the orchestrator treats graph metadata as the status authority, this row becomes `in_progress` / `disputed` — I recommend against that (see 4.2/4.7).
+
+### 4.2 Status
+
+**Complete — evidenced by the packet's own primary documents; one contradicted derived field.**
+
+- `spec.md:50` — `**Status** | Complete`; phase map rows 1-17 all `Complete` at `spec.md:103-120`; `goal.md:75-80` — all six completion criteria checked `[x]`.
+- No `implementation-summary.md` and no `acceptance-criteria.md`: phase parent by design (its phase children own plan/tasks/summary; the content-discipline note is at `spec.md:20-28`).
+- **Contradiction:** `graph-metadata.json:55` — `"status": "in_progress"`, disagreeing with `spec.md:50` and with all 17 children's own `Status: Complete` rows (e.g. `001-angle-driven-review/spec.md:36`, `017-guard-index-and-parent-doc-fixes/spec.md:25`). Evidence favors `complete`; the derived field appears stale (last save 2026-09-16, while the phase map and goal record the final state).
+- **Merge-relevant staleness:** `spec.md:55-56` carries `Predecessor | 048-fanout-convergence-mode-flag` and `Successor | None` from its former top-level lineage; once nested under 006 those fields no longer describe its adjacency (048 lands under 002). Flag for reconciliation; not a status contradiction.
+
+### 4.3 Changelog block
+
+> `049-deep-loop-alignment-review` read the whole deep-loop system as one architecture and made its surfaces agree. Twenty angle-driven review iterations ran in two waves across four lanes on DeepSeek V4.1 Flash max and GLM 5.3 Flash max, with wave-two angles rewritten from wave-one findings (`spec.md:78`), and every confirmed finding at any severity became its own phase (`spec.md:69`). Seventeen phases closed the rosters, version authority, leaf manifests and doctrine reachability, catalog and README truth, confirm-variant parity, ledger stems, agent mirrors, containment and severity language, and routing doctrine and discovery, plus two operator-added phases for the iteration-record contract and the drift guard, trigger index and parent-document defects (`spec.md:103-120`). It mattered because nobody had read the system as one architecture or against the repo rules that say how it should have been built (`spec.md:66`); the parent closes with all six completion criteria checked (`goal.md:75-80`).
+
+### 4.4 At-a-glance bullet
+
+- **The whole system read as one architecture** — A twenty-iteration angle-driven review across four lanes turned every confirmed finding of any severity into its own phase, and seventeen phases then aligned rosters, version authority, leaf manifests and doctrine reachability, catalogs and READMEs, confirm variants, ledger stems, agent mirrors, containment language and routing doctrine, ending with the goal's criteria checked (`spec.md:69`, `spec.md:103-120`, `goal.md:75-80`).
+
+### 4.5 Before-and-after addendum
+
+- **A review that ended in agreement, not findings.** `049-deep-loop-alignment-review` ran twenty angle-driven review iterations in two waves across four lanes (`spec.md:78`) and never stopped at the report: every confirmed finding at any tier became its own phase — seventeen in all — fixing the surfaces the earlier containment work left disagreeing, through rosters, version authority, leaf manifests and doctrine reachability, catalog and README truth, confirm-variant parity, ledger stems, agent mirrors, containment and severity language, routing doctrine, and two operator-added closeout phases (`spec.md:66`, `spec.md:103-120`). It lands Complete on all six completion criteria, while its own `graph-metadata.json` still reads `in_progress` — a stale derived field the orchestrator should reconcile (`goal.md:75-80`, `graph-metadata.json:55`).
+
+### 4.6 Parent phase-map row (`006-runtime-docs-and-integrity-hardening`)
+
+`| 13 | \`013-deep-loop-alignment-review\` | complete | predecessor \`012-deep-loop-test-debt\`; successor \`none\` |`
+
+(Row 12 stays reserved for the sibling lane's `012-deep-loop-test-debt`.)
+
+### 4.7 Contradictions / exceptions
+
+- `spec.md:50` + `goal.md:75-80` + 17 children vs `graph-metadata.json:55` (`in_progress`). Orchestrator should refresh the graph field when the move lands; the timeline/map status I propose is `complete`.
+- `spec.md:55-56` predecessor/successor become stale under the new parent (see 4.2).
+- Cosmetic only: the phase map has a stray blank line before row 13 (`spec.md:115`); no content defect.
+
+---
+
+## 5) 050-spec-protocol-ledger-events → 002/009 (`spec-protocol-ledger-events`, seq 73)
+
+### 5.1 Timeline row
+
+`| 73 | \`spec-protocol-ledger-events\` | 2026-09-19T06:34:57Z | 2026-09-19T08:37:14+02:00 | \`system-deep-loop/050-spec-protocol-ledger-events\` (merged 2026-09-20) | complete | confirmed |`
+
+### 5.2 Status
+
+**Complete — evidenced.**
+
+- `spec.md:25` — `**Status** | Complete`; `implementation-summary.md:47` — Status Complete, `implementation-summary.md:26` — `completion_pct: 100`; `graph-metadata.json:42` — `"status": "complete"`.
+- `acceptance-criteria.md:56-60` — all five rows `Met` with evidence; `acceptance-criteria.md:85` — `Closeable: Yes`.
+- **Minor internal discrepancy:** `implementation-summary.md:207` says the acceptance file still has no `file:line` evidence and the validator reports an advisory coverage floor, while the AC cells do cite evidence including `append-mode-event-cli.vitest.ts:988` and `implementation-summary.md:120` (`acceptance-criteria.md:56-60`). Record-level status is unaffected; the wording should be reconciled when the packet moves.
+
+### 5.3 Changelog block
+
+> `050-spec-protocol-ledger-events` made a research run's spec writes visible in its own log. The append gateway had refused all seven spec-protocol rows the research workflows write, so a run that seeded, extended or wrote findings into `spec.md` left no record of it (`spec.md:36`); the packet gave each legacy row a research event stem of its own name, upcasts it losslessly, and projects it back into the state log as the row the workflow wrote (`spec.md:48`, `implementation-summary.md:55`). Producers stay `reserved` because the workflows keep writing legacy rows and the census counts only a staged stem key (`implementation-summary.md:59`), and the change was proven safe on history: 23 committed research ledgers and 175 events replay with identical heads, event counts, stems and fold outcomes, with the full suite green at 2,694 tests (`acceptance-criteria.md:58-59`, `implementation-summary.md:114`).
+
+### 5.4 At-a-glance bullet
+
+- **Spec write-backs now reach the ledger** — Seven research event stems let the append gateway accept the spec-protocol rows a research run emits, upcast each legacy row losslessly, and project it back into the state log, with committed research ledgers replaying unchanged (`spec.md:48`, `acceptance-criteria.md:56-58`).
+
+### 5.5 Before-and-after addendum
+
+- **A gap between the protocol and the ledger closed.** `050-spec-protocol-ledger-events` gave the deep-research ledger seven event stems so the spec-protocol rows its workflows already emit are accepted by the gateway, stored as typed ledger frames and projected back into the state log (`spec.md:36`, `implementation-summary.md:55`). It proved 23 committed research ledgers and 175 events replay identically apart from the reader's registry digest, and the suite passed at 2,694 tests with the stem census and append-site checker clean (`acceptance-criteria.md:58-59`, `implementation-summary.md:114`).
+
+### 5.6 Parent phase-map row (`002-substrate-and-orchestration`)
+
+`| 9 | \`009-spec-protocol-ledger-events\` | complete | predecessor \`008-fanout-convergence-mode-flag\`; successor \`none\` |`
+
+### 5.7 Contradictions / exceptions
+
+- `implementation-summary.md:207` vs `acceptance-criteria.md:56-60`: the claimed absence of `file:line` evidence is not true of the AC file as it stands; outcome status unchanged.
+- The summary's follow-up section records later route-proof and budget seams from a re-projection; none contradict the packet's status (`implementation-summary.md:141-171`).
+
+---
+
+## Assembly notes for the orchestrator
+
+1. **Timeline append point:** after seq 63 (`036/timeline.md:122`), rows 69-73 above; rows 64-68 belong to the sibling lane. The timeline's "28 current children" intro/narrative counts will need re-deriving after both lanes land (28 + 5 this lane; +5 sibling = 38), and the `Last updated: 2026-09-05` metadata is stale for a 2026-09-20 merge — arithmetic from the brief, not from packet docs.
+2. **Parent-map edits:** amend `002/spec.md:49` row 7 successor; amend `003/spec.md:46` row 4 successor; append the five new rows exactly as drafted in §1.6, §2.6, §3.6, §4.6, §5.6. Status vocabulary: only 046's `draft` is new to these maps; 049's `complete` requires deciding whether `graph-metadata.json:55` or `spec.md:50` wins (I propose `complete`).
+3. **Moved-packet metadata:** all five `graph-metadata.json` files carry `parent_id: null` and their `packet_id`/`spec_folder` strings are the old top-level paths (e.g. `050/graph-metadata.json` `packet_id: "system-deep-loop/050-spec-protocol-ledger-events"`); 049's `spec.md:52-56` parent/predecessor/successor fields also go stale under nesting. The merge cannot validate against the new tree until those are refreshed. Flagged as UNKNOWN? No — the fields are read-verified; the required target values follow from the brief's destination table.
+4. **Open item carried forward:** 046's file-vs-record exception (§1.2/§1.7). The three other statuses are clean; no packet doc contradicts a merge row except 049's derived field.
+
+W2B DRAFT RETURN COMPLETE

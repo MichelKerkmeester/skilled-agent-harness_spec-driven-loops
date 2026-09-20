@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/001-angle-driven-review",
+  "description": "Twenty phases of the containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs",
+  "keywords": [
+    "twenty",
+    "phases",
+    "containment",
+    "packet",
+    "changed",
+    "deep-loop",
+    "runtime",
+    "commands",
+    "protocols",
+    "catalogs",
+    "agents",
+    "docs"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.577Z",
+  "specId": "001",
+  "folderSlug": "angle-driven-review",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening",
+    "013-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

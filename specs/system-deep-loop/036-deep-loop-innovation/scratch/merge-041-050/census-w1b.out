@@ -1,0 +1,240 @@
+## 1. Reference-form variants (observed)
+
+Scope note: `.opencode/specs` → `../.skilled/specs` → canonical `specs/` (symlink chain, `.opencode/SYNC.md` §2). Searches over the alias paths hit the same files; counts below are canonical `specs/` files only, no double-counting.
+
+| Variant pattern | Example file:line | Count (hit-bearing files observed) |
+|---|---|---|
+| `specs/system-deep-loop/<slug>/…` | `specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/review/lineages/wave2-glm/prompts/iteration-001.md:88` | Dominant; present in every self md-rewrite file, all 049 lineage artifacts, every external doc below (~230 files total census) |
+| `system-deep-loop/<slug>` (track-relative; JSON values, frontmatter) | `specs/system-deep-loop/049-deep-loop-alignment-review/description.json:3`; `.../046-synthesis-chat-presentation/spec.md:12` | All 42 self `description.json`/`graph-metadata.json` across the five packets + frontmatter `packet_pointer` rows |
+| bare `<slug>` (prose, branches, keywords) | `specs/system-deep-loop/049-deep-loop-alignment-review/spec.md:55` (`048-fanout-convergence-mode-flag`); `.../046-synthesis-chat-presentation/spec.md:27` (`scaffold/046-synthesis-chat-presentation`) | ~25 files (self branch/session rows, worklist, baseline, prompts, 073 keyword) |
+| absolute `/Users/…/Public/specs/system-deep-loop/<slug>/…` | `specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/review/lineages/wave2-glm/prompts/iteration-001.md:63` | 3 files (all 049, ledgers) |
+| `scaffold/<slug>`, `scaffold-<slug>` (branch/session id) | `.../046-synthesis-chat-presentation/acceptance-criteria.md:13`; `.../047-deprecate-skill-benchmark/implementation-summary.md:22` | 4 files (046 ×3, 047 ×1) |
+| `.opencode/specs/system-deep-loop/<slug>` | — | 0 — not observed for these five (only for old 041/044/045 names in 036 research) |
+| `.skilled/specs/system-deep-loop/<slug>` | — | 0 — not observed |
+
+Rendering forms observed inside the above: backticked paths, paths inside code fences (049 prompt blocks), JSON string values, shell commands (`049/008-agent-mirror-parity/tasks.md:141` → `bash .opencode/... validate.sh specs/system-deep-loop/049-...`), markdown links.
+
+## 2. Per packet
+
+### 046-synthesis-chat-presentation
+
+**Self-scope counts**
+- md-rewrite: 3 files
+- derived-json-regen: 2 files
+- ledger-artifact-leave: 0 files
+- other-exception: 0 files
+- (no hit: plan.md, tasks.md, scratch/.gitkeep)
+
+**Self-scope md-rewrite file list** (relative to `specs/system-deep-loop/`)
+```
+046-synthesis-chat-presentation/spec.md
+046-synthesis-chat-presentation/acceptance-criteria.md
+046-synthesis-chat-presentation/implementation-summary.md
+```
+
+**Self-scope ledger/other**: none.
+
+**Sibling references from this tree**: none — 0 for all nine (`041`–`045`, `047`–`050`).
+
+**External referrers** (`path | class | file:line | live/historical`)
+- `specs/agents/009-turn-closeout-next-steps/spec.md` | md-rewrite | :120 | live-pointer ("work moves to specs/…046")
+- `specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/spec.md` | md-rewrite | :42 | live-pointer (scope boundary)
+- `specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/research/lineages/pi-deepseek/deep-research-strategy.md` | ledger-artifact-leave | :29 | historical-narrative
+- `…/pi-deepseek/resource-map.md` | ledger-artifact-leave | :69 | historical
+- `…/pi-deepseek/iterations/iteration-004.md` | ledger-artifact-leave | :10 | historical
+- `…/pi-deepseek/research.md` | ledger-artifact-leave | :342 | historical
+- `…/pi-deepseek/deep-research-dashboard.md` | ledger-artifact-leave | :55 | historical
+- `…/pi-deepseek/logs/fanout-lineage.out` | ledger-artifact-leave | :16 | historical
+- `…/pi-deepseek/findings-registry.json` | ledger-artifact-leave | :123 | historical
+- `…/pi-deepseek/containment-reverted/1-2026-09-11T14-13-57.964Z.patch` | ledger-artifact-leave (containment snapshot) | :1234 | historical
+- `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | derived-json-regen (stale; flagged exception in worklist) | :5249 | live index
+- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json` | other-exception (retrieval fixture) | :12988 | live fixture
+- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json` | other-exception (retrieval fixture) | :71188 | live fixture
+- `specs/system-deep-loop/036-deep-loop-innovation/scratch/merge-041-050/worklist.md` | other-exception (merge workspace) | :25 | live (this census)
+- `…/scratch/merge-041-050/baseline-file-counts.txt` | other-exception (merge workspace) | :6 | live
+- `…/scratch/merge-041-050/prompts/prompt-w1a.md` / `prompt-w1b.md` / `brief-w1a.md` / `brief-w1b.md` | other-exception (merge workspace) | prompt-w1b.md:484 | live
+
+### 047-deprecate-skill-benchmark
+
+**Self-scope counts**
+- md-rewrite: 3 files
+- derived-json-regen: 2 files
+- ledger-artifact-leave: 0 files
+- other-exception: 0 files
+- (no hit: spec.md, tasks.md, scratch/.gitkeep)
+
+**Self-scope md-rewrite file list**
+```
+047-deprecate-skill-benchmark/plan.md
+047-deprecate-skill-benchmark/acceptance-criteria.md
+047-deprecate-skill-benchmark/implementation-summary.md
+```
+Note: `plan.md:185` is an executable instruction ("Remove `specs/system-deep-loop/047-deprecate-skill-benchmark/`") — rewrite must preserve its meaning post-move.
+
+**Self-scope ledger/other**: none.
+
+**Sibling references from this tree**: none — 0 for all nine.
+
+**External referrers**
+- `specs/agents/010-repo-rule-system-integration/research/lineages/deprecation-audit/iterations/iteration-003.md` | ledger-artifact-leave | :81 | historical-narrative
+- `.skilled/…/trigger-index.json` | derived-json-regen | :5254 | live index
+- `.skilled/…/fixtures/corpus-manifest.json` | other-exception (fixture) | :12993 | live fixture
+- `.skilled/…/fixtures/generation-diagnostics.json` | other-exception (fixture) | :79700 | live fixture
+- 036 merge scratch: `worklist.md` :26, `baseline-file-counts.txt` :7, `prompt-w1a.md`, `prompt-w1b.md`, `brief-w1a.md`, `brief-w1b.md` | other-exception (merge workspace) | worklist.md:26 | live
+
+### 048-fanout-convergence-mode-flag
+
+**Self-scope counts**
+- md-rewrite: 4 files
+- derived-json-regen: 2 files
+- ledger-artifact-leave: 0 files
+- other-exception: 0 files
+- (all 6 packet files carry a hit)
+
+**Self-scope md-rewrite file list**
+```
+048-fanout-convergence-mode-flag/spec.md
+048-fanout-convergence-mode-flag/plan.md
+048-fanout-convergence-mode-flag/tasks.md
+048-fanout-convergence-mode-flag/implementation-summary.md
+```
+
+**Self-scope ledger/other**: none.
+
+**Sibling references from this tree**: none — 0 for all nine.
+
+**External referrers**
+- `.skilled/…/trigger-index.json` | derived-json-regen | :5259 | live index
+- `.skilled/…/fixtures/corpus-manifest.json` | other-exception (fixture) | :12998 | live fixture
+- `.skilled/…/fixtures/generation-diagnostics.json` | other-exception (fixture) | :79704 region | live fixture
+- 036 merge scratch: `worklist.md` :27, `baseline-file-counts.txt` :8, `prompt-w1a.md`, `prompt-w1b.md`, `brief-w1a.md`, `brief-w1b.md` | other-exception (merge workspace) | worklist.md:27 | live
+- No other external referrer observed.
+
+### 049-deep-loop-alignment-review
+
+**Self-scope counts**
+- md-rewrite: 42 files
+- derived-json-regen: 36 files (18 `description.json` + 18 `graph-metadata.json`: parent + children 001–017)
+- ledger-artifact-leave: ~77 files observed, grouped below
+- other-exception: 0 files
+
+**Self-scope md-rewrite file list** (relative to `specs/system-deep-loop/`)
+```
+049-deep-loop-alignment-review/spec.md
+049-deep-loop-alignment-review/goal.md
+049-deep-loop-alignment-review/001-angle-driven-review/goal.md
+049-deep-loop-alignment-review/001-angle-driven-review/implementation-summary.md
+049-deep-loop-alignment-review/002-roster-completeness/acceptance-criteria.md
+049-deep-loop-alignment-review/002-roster-completeness/implementation-summary.md
+049-deep-loop-alignment-review/003-version-authority/acceptance-criteria.md
+049-deep-loop-alignment-review/003-version-authority/implementation-summary.md
+049-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability/acceptance-criteria.md
+049-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability/implementation-summary.md
+049-deep-loop-alignment-review/005-catalog-and-readme-truth/acceptance-criteria.md
+049-deep-loop-alignment-review/005-catalog-and-readme-truth/implementation-summary.md
+049-deep-loop-alignment-review/006-confirm-variant-parity/acceptance-criteria.md
+049-deep-loop-alignment-review/006-confirm-variant-parity/implementation-summary.md
+049-deep-loop-alignment-review/007-ledger-stem-producers/acceptance-criteria.md
+049-deep-loop-alignment-review/007-ledger-stem-producers/implementation-summary.md
+049-deep-loop-alignment-review/008-agent-mirror-parity/acceptance-criteria.md
+049-deep-loop-alignment-review/008-agent-mirror-parity/goal.md
+049-deep-loop-alignment-review/008-agent-mirror-parity/implementation-summary.md
+049-deep-loop-alignment-review/008-agent-mirror-parity/tasks.md
+049-deep-loop-alignment-review/009-containment-promise-and-severity-scale/acceptance-criteria.md
+049-deep-loop-alignment-review/009-containment-promise-and-severity-scale/implementation-summary.md
+049-deep-loop-alignment-review/010-version-authority-completion/acceptance-criteria.md
+049-deep-loop-alignment-review/010-version-authority-completion/goal.md
+049-deep-loop-alignment-review/010-version-authority-completion/implementation-summary.md
+049-deep-loop-alignment-review/011-routing-doctrine-and-discovery/acceptance-criteria.md
+049-deep-loop-alignment-review/011-routing-doctrine-and-discovery/implementation-summary.md
+049-deep-loop-alignment-review/012-missing-stress-fixture-root/acceptance-criteria.md
+049-deep-loop-alignment-review/012-missing-stress-fixture-root/goal.md
+049-deep-loop-alignment-review/012-missing-stress-fixture-root/implementation-summary.md
+049-deep-loop-alignment-review/013-recorded-adjacent-defects/acceptance-criteria.md
+049-deep-loop-alignment-review/013-recorded-adjacent-defects/implementation-summary.md
+049-deep-loop-alignment-review/014-post-work-review/acceptance-criteria.md
+049-deep-loop-alignment-review/014-post-work-review/implementation-summary.md
+049-deep-loop-alignment-review/014-post-work-review/spec.md
+049-deep-loop-alignment-review/015-review-confirmed-findings/acceptance-criteria.md
+049-deep-loop-alignment-review/015-review-confirmed-findings/implementation-summary.md
+049-deep-loop-alignment-review/016-iteration-state-record-contract/acceptance-criteria.md
+049-deep-loop-alignment-review/016-iteration-state-record-contract/implementation-summary.md
+049-deep-loop-alignment-review/017-guard-index-and-parent-doc-fixes/acceptance-criteria.md
+049-deep-loop-alignment-review/017-guard-index-and-parent-doc-fixes/implementation-summary.md
+049-deep-loop-alignment-review/017-guard-index-and-parent-doc-fixes/spec.md
+```
+
+**Self-scope ledger-artifact-leave** (all under `review/`; grouped, not individually listed)
+- `review/` root JSON/JSONL/log: 9 files — `001-…/review/{deep-review-config.json, deep-review-findings-registry.json, orchestration-summary.json, orchestration-status.log, observability-events.jsonl}`, `014-…/review/{deep-review-config.json, orchestration-summary.json, orchestration-status.log, observability-events.jsonl}` — samples `001-…/review/orchestration-summary.json:4`, `014-…/review/orchestration-status.log:74`
+- lineage markdown (iterations/prompts/dashboards/strategies/reports): 36 files (wave1-glm 11, wave1-deepseek 6, wave2-glm 9, wave2-deepseek 7, swe2 3) — samples `001-…/review/lineages/wave1-glm/prompts/iteration-001.md:27`, `014-…/review/lineages/swe2/review-report.md:4`
+- lineage JSON (configs, findings registries, probe-stem): 9 files — sample `001-…/review/lineages/wave1-glm/.executor-state/probe-stem.json:1`
+- lineage JSONL (state logs, deltas, event streams): 20 files — samples `…/wave2-deepseek/logs/synthesis-events.jsonl:2`, `…/swe2/deltas/iter-001.jsonl:2`
+- lock: 1 file — `…/wave1-glm/.deep-review.lock:6`
+- logs `.out`: 2 files — `…/wave1-deepseek/logs/fanout-lineage.out:37`, `…/swe2/logs/fanout-lineage.out:4`
+- frames: 0 hit files (14 `.frame` files present; none carry the slug)
+- Also no-hit but revisioned: `reviewed-files.txt`, `fanout-attribution.md`, `fanout-lineage.err` (checked; 0 slug)
+
+**Sibling references from this tree** (other nine slugs)
+- `047-deprecate-skill-benchmark` — 3 files, ledger class: `001-…/review/lineages/wave2-deepseek/iterations/iteration-005.md:34`, `…/wave2-deepseek/deltas/iter-005.jsonl:1`, `…/wave2-deepseek/deep-review-state.jsonl:10`
+- `048-fanout-convergence-mode-flag` — 1 file, md-rewrite: `spec.md:55` (predecessor row)
+- `041`, `042`, `043`, `044`, `045`, `046`, `050` — 0
+
+**External referrers**
+- `specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/research/research.md` | ledger-artifact-leave | :158 | historical-narrative
+- `.skilled/…/trigger-index.json` | derived-json-regen | :5263+ (049 block) | live index
+- `.skilled/…/fixtures/corpus-manifest.json` | other-exception (fixture) | :13002+ | live fixture
+- `.skilled/…/fixtures/generation-diagnostics.json` | other-exception (fixture) | :47395+ | live fixture
+- 036 merge scratch: `worklist.md` :30, `baseline-file-counts.txt` :9, `prompt-w1a.md`, `prompt-w1b.md`, `brief-w1a.md`, `brief-w1b.md` | other-exception (merge workspace) | worklist.md:30 | live
+
+### 050-spec-protocol-ledger-events
+
+**Self-scope counts**
+- md-rewrite: 2 files
+- derived-json-regen: 2 files
+- ledger-artifact-leave: 2 files (append-only dispatch receipts)
+- other-exception: 2 files (scratch verification outputs)
+- (no hit: spec.md, plan.md, tasks.md, scratch/.gitkeep)
+
+**Self-scope md-rewrite file list**
+```
+050-spec-protocol-ledger-events/acceptance-criteria.md
+050-spec-protocol-ledger-events/implementation-summary.md
+```
+
+**Self-scope ledger-artifact-leave**
+- dispatch receipts (2): `scratch/dispatch-receipts/dispatch-verify-four-fixes.completion.json:1`, `…/dispatch-verify-four-fixes.intent.json:1`
+
+**Self-scope other-exception** (named — recommend leave; not in the never-rewrite list explicitly)
+- `scratch/verification-brief.md:72` (live write instruction inside historical brief)
+- `scratch/verification-gemini-3-8-flash-high.md:28` (verification report)
+
+**Sibling references from this tree**: none — 0 for all nine.
+
+**External referrers**
+- `specs/cli-external-orchestration/073-cli-pi-build-brief-and-blackhole/spec.md` | md-rewrite | :36 | historical-narrative (incident record)
+- `specs/cli-external-orchestration/073-…/description.json` | derived-json-regen | :4, :10 | historical (derived from spec)
+- `specs/cli-external-orchestration/073-…/graph-metadata.json` | derived-json-regen | :193 | historical
+- `specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/implementation-summary.md` | md-rewrite | :182 | historical-narrative
+- `specs/system-speckit/033-…/042-v4-doc-freshness/research/iterations/iteration-004.md` | ledger-artifact-leave | :9 | historical
+- `specs/system-speckit/033-…/042-v4-doc-freshness/research/research.md` | ledger-artifact-leave | :242 | historical
+- `specs/system-speckit/033-…/042-v4-doc-freshness/research/deltas/iter-004.jsonl` | ledger-artifact-leave | :5 | historical
+- `.skilled/…/trigger-index.json` | derived-json-regen | :5365+ | live index
+- `.skilled/…/fixtures/corpus-manifest.json` | other-exception (fixture) | :13105+ | live fixture
+- `.skilled/…/fixtures/generation-diagnostics.json` | other-exception (fixture) | :71272 | live fixture
+- 036 merge scratch: `worklist.md` :28, `baseline-file-counts.txt` :10, `prompt-w1a.md`, `prompt-w1b.md`, `brief-w1a.md`, `brief-w1b.md` | other-exception (merge workspace) | worklist.md:28 | live
+- `.git/COMMIT_EDITMSG` | ledger-artifact-leave (git-internal; do not touch) | :32 | historical
+
+## 3. Exception list
+
+- `specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/containment/quarantine/…/system-deep-loop/…` — ~10 nested files return `File name too long (os error 63)`; unreadable/unclassifiable. Nested copies reference `045-…`, not 046–050 in any readable file. `specs/cli-external-orchestration/071-…/research/lineages/swe2/containment/quarantine/content/…` (sample error path).
+- `050-spec-protocol-ledger-events/scratch/verification-brief.md:72` and `…/verification-gemini-3-8-flash-high.md:28` — classed `other-exception` (historical scratch report/brief); orchestrator to decide rewrite-vs-leave.
+- 036 merge workspace files (`worklist.md`, `baseline-file-counts.txt`, `prompt-w1a/b.md`, `brief-w1a/b.md`) — classed `other-exception` (merge workspace) rather than `md-rewrite`; they are the census's own records.
+- `.git/COMMIT_EDITMSG:32` — classed `ledger-artifact-leave` by judgment (git-internal bytes must not change).
+- Residual: the whole-`review/` 049 pass truncated at 50KB; lineage counts come from per-lineage scoped passes and are observed-hit counts. Any unseen review file still moves untouched with the tree (ledger).
+- `049/review/fanout-attribution.md`, `reviewed-files.txt`, `*.err` — verified 0 slug hits (not exceptions; noted for completeness).
+
+## 4. Method line
+
+Searches run: per-slug and combined 5-slug sweeps (`046-`…`050-` slugs) scoped to each of the five packet trees, 036, 037, `z_archive`, parent `description.json`/`graph-metadata.json`; `specs` with glob `!**/system-deep-loop/**`; per-track sweeps (`agents`, `cli-external-orchestration` incl. 071/073, `sk-communication/006`, `sk-doc`, `system-speckit`, and root-level non-specs with `!specs/**`); `.skilled`, `.git`, `.pi`, `.claude`, `.codex`, `.cursor`, `.devin`, `.hermes`, `repo-rules`, `.github`, `barter`, `a_nobel_en_zn`, root `*.md`/`*.json`, both frontmatter manifests; variant greps `\.skilled/specs/…`, `\.opencode/specs/…`, `Public/specs/…`; 049 file-type passes `**/*.md`, `**/*.json`, `**/*.jsonl`, `**/*.frame`, `**/logs/**`, `**/*.err`, `**/*.txt`, `**/*.lock`, plus `!**/review/**` and `**/review/**`; per-lineage scoped passes for wave1-glm/wave1-deepseek/wave2-glm/wave2-deepseek/swe2; containment finds `**/containment/**/system-deep-loop/<slug>/**` for all five slugs; cross-scope checks of 041–045 slugs inside the five trees and vice versa.
+
+CENSUS RETURN COMPLETE

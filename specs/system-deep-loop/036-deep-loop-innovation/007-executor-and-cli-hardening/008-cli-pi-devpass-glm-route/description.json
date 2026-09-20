@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/008-cli-pi-devpass-glm-route",
+  "description": "The operator asked for a deep-research run on GLM-5.3-Flash at `max` through cli-pi, billed to DevPass, their flat-price LLM Gateway plan",
+  "keywords": [
+    "operator",
+    "asked",
+    "deep-research",
+    "run",
+    "glm-5",
+    "3-flash",
+    "max",
+    "cli-pi",
+    "billed",
+    "devpass",
+    "flat-price",
+    "llm",
+    "gateway",
+    "plan"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.488Z",
+  "specId": "008",
+  "folderSlug": "cli-pi-devpass-glm-route",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

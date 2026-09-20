@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability",
+  "description": "The generator skipped any directory entry that was not a plain file, and a symlink never reports as one, so every symlinked reference was invisible",
+  "keywords": [
+    "generator",
+    "skipped",
+    "directory",
+    "entry",
+    "plain",
+    "file",
+    "symlink",
+    "never",
+    "reports",
+    "one",
+    "every",
+    "symlinked",
+    "reference",
+    "invisible"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.598Z",
+  "specId": "004",
+  "folderSlug": "leaf-manifest-and-doctrine-reachability",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening",
+    "013-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

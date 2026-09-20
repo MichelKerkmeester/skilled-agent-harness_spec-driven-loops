@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/012-missing-stress-fixture-root",
+  "description": "Review finding F044 records that `active-critic-overfit.md`, `proposal-only-boundary.md` and `skill-load-not-protocol.md` list",
+  "keywords": [
+    "review",
+    "finding",
+    "f044",
+    "records",
+    "active-critic-overfit",
+    "proposal-only-boundary",
+    "skill-load-not-protocol",
+    "list"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.609Z",
+  "specId": "012",
+  "folderSlug": "missing-stress-fixture-root",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening",
+    "013-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

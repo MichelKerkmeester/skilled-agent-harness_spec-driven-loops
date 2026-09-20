@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/005-churn-cumulative-arm",
+  "description": "The churn detector compared each heartbeat's newly dirty out-of-lineage paths against a per-window threshold and forgot them immediately after",
+  "keywords": [
+    "churn",
+    "detector",
+    "compared",
+    "heartbeat",
+    "newly",
+    "dirty",
+    "out-of-lineage",
+    "paths",
+    "against",
+    "per-window",
+    "threshold",
+    "forgot",
+    "them",
+    "immediately"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.500Z",
+  "specId": "005",
+  "folderSlug": "churn-cumulative-arm",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "010-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

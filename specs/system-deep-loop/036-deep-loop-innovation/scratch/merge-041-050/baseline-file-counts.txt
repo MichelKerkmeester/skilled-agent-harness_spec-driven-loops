@@ -1,0 +1,10 @@
+041-cli-pi-devpass-glm-route md=4 json=2 other=1 total=7
+042-deep-loop-test-debt md=4 json=2 other=1 total=7
+043-review-leaf-protocol md=4 json=2 other=1 total=7
+044-cli-pi-devpass-deepseek-route md=4 json=2 other=0 total=6
+045-fanout-write-containment-hardening md=278 json=202 other=338 total=818
+046-synthesis-chat-presentation md=5 json=2 other=1 total=8
+047-deprecate-skill-benchmark md=5 json=2 other=1 total=8
+048-fanout-convergence-mode-flag md=4 json=2 other=0 total=6
+049-deep-loop-alignment-review md=158 json=62 other=129 total=349
+050-spec-protocol-ledger-events md=7 json=4 other=1 total=12

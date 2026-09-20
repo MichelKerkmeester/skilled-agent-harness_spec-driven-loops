@@ -1,6 +1,6 @@
 ---
 title: "Runtime Docs and Integrity Hardening"
-description: "Runtime code READMEs and sk-code alignment, plus artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority, routing-parity, silent-failure, docs-drift, and identity and lock hardening."
+description: "Runtime code READMEs and sk-code alignment, plus artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority, routing-parity, silent-failure, docs-drift, and identity and lock hardening, deep-loop test-debt clearance, and the deep-loop alignment review."
 trigger_phrases:
   - "runtime docs integrity hardening"
   - "promotion routing identity lock"
@@ -50,7 +50,9 @@ This phase groups the related child phases below so parent-level context stays a
 | 8 | `008-runtime-mirror-and-routing-parity` | in_progress | predecessor `007-improvement-promotion-authority`; successor `009-silent-failure-and-harness-repair` |
 | 9 | `009-silent-failure-and-harness-repair` | in_progress | predecessor `008-runtime-mirror-and-routing-parity`; successor `010-docs-drift-and-p2-batch` |
 | 10 | `010-docs-drift-and-p2-batch` | in_progress | predecessor `009-silent-failure-and-harness-repair`; successor `011-identity-and-lock-ownership-hardening` |
-| 11 | `011-identity-and-lock-ownership-hardening` | complete | predecessor `010-docs-drift-and-p2-batch`; successor `none` |
+| 11 | `011-identity-and-lock-ownership-hardening` | complete | predecessor `010-docs-drift-and-p2-batch`; successor `012-deep-loop-test-debt` |
+| 12 | `012-deep-loop-test-debt` | complete | predecessor `011-identity-and-lock-ownership-hardening`; successor `013-deep-loop-alignment-review` |
+| 13 | `013-deep-loop-alignment-review` | complete | predecessor `012-deep-loop-test-debt`; successor `none` |
 
 ## What Needs Done
 

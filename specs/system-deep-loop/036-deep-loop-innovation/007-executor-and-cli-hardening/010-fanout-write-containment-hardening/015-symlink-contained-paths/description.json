@@ -1,0 +1,36 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/015-symlink-contained-paths",
+  "description": "The fresh review found three residual gaps in one class: the restore guard checked only the final component, so a symlinked parent directory still",
+  "keywords": [
+    "fresh",
+    "review",
+    "found",
+    "three",
+    "residual",
+    "gaps",
+    "one",
+    "class",
+    "restore",
+    "guard",
+    "checked",
+    "only",
+    "final",
+    "component",
+    "symlinked",
+    "parent",
+    "directory",
+    "still"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.525Z",
+  "specId": "015",
+  "folderSlug": "symlink-contained-paths",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "010-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

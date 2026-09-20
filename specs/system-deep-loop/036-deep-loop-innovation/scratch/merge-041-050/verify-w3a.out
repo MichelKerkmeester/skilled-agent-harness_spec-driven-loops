@@ -1,0 +1,65 @@
+I have all evidence needed. Compiling the final audit report.
+
+---
+
+# W3a Mechanical Audit — packet-nesting merge (036-deep-loop-innovation)
+
+Tooling note: read-only (`read`/`grep`/`find`/`ls`) only; no git, no shell. Exact file/line counts were obtained with **boundary probes** (a `find`/`grep` at `limit=k` reports `k results limit reached` iff at least `k` entries exist; one probe at `k` and one at `k+1` pins the count), calibrated on scopes with independently known counts.
+
+## Claim 1 — No old paths left in live documents — **CONFIRMED**
+
+- Exhaustive negative search over all `036/**/*.md`, excluding `**/{research,review,review-archive,scratch}/**`, for `system-deep-loop/04[1-9]-|system-deep-loop/050-` returned **exactly 15 lines**, nothing else: `spec.md:162-166` (5, merged-children block) and `timeline.md:125-134` (10, rows 64-73, `path_at_baseline` cells with "(merged 2026-09-20)"). No fourth class exists.
+- Run-record total reconstructed by scope decomposition, summed = **432** (exact): 045 root `research/` **87** (probe-pinned: limit 86→msg, 87→msg, 88→clean), `review/` 67, `review-archive/20260914T165140Z` 74, `20260914T231749Z` 80, `007-worktree-removal/research` 5, `014-alignment-review/review` 18; 049 `001-angle-driven-review/review` 78, `014-post-work-review/review` 4; plus **19** in `001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations-modes/iteration-038.md:368-424`. Total 432 + 15 = **447, exactly as claimed**.
+- **Classification nuance on those 19 lines**: they are inside a `/research/` path (class a structurally) but match the literal regex only because of a *different* numbering lineage — they reference `.opencode/specs/system-deep-loop/041-deep-research-loop-instrumentation`, `044-deep-loop-locks-state-and-recovery`, `045-deep-loop-fanout-reliability`. They are not old paths of the ten merged packets. No other line was outside the three classes.
+- Run records not rewritten: every run-record hit still carries old top-level paths, and a grep for `036-deep-loop-innovation` inside all run dirs of 045 and 049 returned **zero** hits (a rewritten record would show the nested path). The merge's own exception list agrees: "a merge rewrites no run record" (`scratch/merge-041-050/mapping.md` §3).
+
+## Claim 2 — Metadata parentage — **CONFIRMED** (with two surviving anomalies outside the checked file set, below)
+
+- All ten destinations: `description.json.specFolder`, `graph-metadata.json.packet_id`/`spec_folder` = `system-deep-loop/036-deep-loop-innovation/<parent>/<folder>`, and `parent_id` = containing parent's `packet_id` (parents' ids read directly: `002`, `003`, `006`, `007`, `008`).
+- Descendants sampled (they are correct for all checked, e.g. `007/010/001-never-fatal-untracked`, `007/010/002-iteration-record-dedupe`, `007/010/003-publish-manifest-provenance`; `006/013/001-angle-driven-review`, `006/013/003-version-authority`, `006/013/005-catalog-and-readme-truth`).
+- First-existing markdown continuity pointer per destination (priority list): 041 `implementation-summary.md:13`, 042 `…:13`, 043 `…:12`, 044 `…:13`, 045 `…:13`, 046 `…:13`, 047 `…:13`, 048 `…:11`, 050 `…:11`, 049 (no impl-summary/handover) `spec.md:12` — **all nested ids already**. A defect sweep (`packet_pointer.*system-deep-loop/04[1-9]-`, `…/050-`) over all of 036 returned **zero**.
+
+**Anomalies found (do not violate the claim as written, because neither `goal.md` nor `acceptance-criteria.md` is in the checked list, but they are live-doc pointers that are neither old nor nested):**
+1. `003-mode-contracts-migration-and-cutover/005-synthesis-chat-presentation/acceptance-criteria.md:13` → `packet_pointer: "scaffold/046-synthesis-chat-presentation"`.
+2. **25 `goal.md` files** carry `packet_pointer: "scaffold/<child>"` — 13 under `007/010/008…020` (documented in `mapping.md` §3 as a pre-existing scaffolding value "left as-is") and **11 under `006/013` (`002-007,009,011,013,014,015`) that the exception list does not mention** (e.g. `006/013/003-version-authority/goal.md:13`, `006/013/014-post-work-review/goal.md:13`), plus `006/013/001-angle-driven-review/acceptance-criteria.md:13`.
+
+## Claim 3 — Parent and root inventories — **CONFIRMED**
+
+- `graph-metadata.json.children_ids` equal on-disk numbered children and counts: 002=9 (001-009), 003=6 (001-006), 006=13 (001-013), 007=10 (001-010), 008=5 (001-005), all nested ids.
+- spec.md `PHASE DOCUMENTATION MAP` rows: 002=9 (`spec.md:39ff`, new 008/009 present), 003=6 (new 005/006), 006=13 (new 012/013), 007=10 (new 008/009/010), 008=5 (new 005) — each exactly the on-disk children.
+- 036 root: `graph-metadata.json.children_ids` = 28 (001-028); `spec.md` **PHASE MAP & OUTCOMES** table = 28 rows and **PHASE DOCUMENTATION MAP** table = 28 rows (both list 001-028). Count not grown (merge moved children inward; root text states "direct-child count is unchanged at 28").
+
+## Claim 4 — Per-packet file parity — **CONFIRMED for eight; PARTIAL for 045/049**
+
+Fully reproduced on disk (files only, dirs excluded; verified against `baseline-file-counts.txt`):
+- 041 4/2/1/7, 042 4/2/1/7, 043 4/2/1/7, 044 4/2/0/6, 046 5/2/1/8, 047 5/2/1/8, 048 4/2/0/6, 050 7/4/1/12 — all exact.
+- 045: md=**278** and json=**202** (probe-pinned exactly); `other=338`/`total=818` are the record's residual (818−278−202), not independently countable with these tools (the `**/*` listing exceeds the output cap and includes directories).
+- 049: md=**158**, json=**62** (probe-pinned); `other=129`/`total=349` residual from the record.
+- No contrary evidence found for the residual figures; arithmetic is internally consistent (278+202+338=818; 158+62+129=349).
+
+## Claim 5 — Nothing else moved in — **CONFIRMED with one unverifiable sub-clause**
+
+- Top level of `specs/system-deep-loop/` contains only `036-deep-loop-innovation/`, `037-graph-engineering/`, `description.json`, `graph-metadata.json`, `z_archive/`, `.DS_Store`. No `04[1-9]-*` or `050-*` directory exists **anywhere** under `specs/system-deep-loop` (finds returned none), so nothing was orphaned and `z_archive/` gained no such folder.
+- `.skilled/**/*.md` grep for the ten old path forms: **zero** hits.
+- "z_archive untouched" and "no file outside 036 changed": not provable without git/diff; nothing contradicts it, and the merge's exception list documents which outside files were deliberately left.
+
+## Claim 6 — Derived JSON freshness and parent relations — **CONFIRMED (freshness); PARTIAL (manual relations)**
+
+- Content freshness: nested ids verified per claim 2; the regenerated files carry merge-day timestamps (`description.json.lastUpdated = 2026-09-20T08:32:53Z`; `graph-metadata.json.created_at = 2026-09-20T08:33:39Z` for 041) and `regen-derived.log` records creation of the JSON at the **new nested paths**, i.e. after the rewrite. File mtimes are not observable with this toolset.
+- 002 and 007 `graph-metadata.json` name the new children (002 includes 008/009; 007 includes 008/009/010). Their `manual` blocks (`depends_on`, `supersedes`, `related_to`) are **empty arrays**, as are all five parents'. No pre-move snapshot exists in-tree (searched `scratch/merge-041-050/*`), so "non-empty where non-empty before" cannot be tested without git history — reported as unverified, not as a failure.
+
+## Summary of unexplained / extra items
+
+| # | Item | Where | Note |
+|---|------|-------|------|
+| 1 | 19 regex hits that are foreign numbering, not moved-packet paths | `001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations-modes/iteration-038.md:368-424` | Inside `/research/`; class (a) by path, but reference `.opencode/specs/…041/044/045` of a different lineage |
+| 2 | `scaffold/046-synthesis-chat-presentation` pointer | `003/005-synthesis-chat-presentation/acceptance-criteria.md:13` | Live doc; not old id, not nested id |
+| 3 | 13 undocumented `scaffold/<child>` goal.md pointers under 049 + 2 acceptance-criteria `scaffold/<child>` pointers | `006/013/{002…007,009,011,013,014,015}/goal.md`, `006/013/001-angle-driven-review/acceptance-criteria.md` | The documented exception covers only 045's `008-020` goal.md files |
+| 4 | `specs/`-prefixed pointer variant | `003/006-deprecate-skill-benchmark/acceptance-criteria.md:13` | Nested but with a `specs/` prefix unlike every other pointer (benign formatting variance) |
+| 5 | Manual relations before-state | 002/007 `graph-metadata.json` | All empty now; pre-move state unverifiable here |
+
+## Verdicts
+
+1 CONFIRMED · 2 CONFIRMED · 3 CONFIRMED · 4 CONFIRMED (8/10 fully; 045/049 md+json exact, other/total record-only) · 5 CONFIRMED (except z_archive-diff, unverifiable) · 6 CONFIRMED (freshness) / PARTIAL (manual relations before-state)
+
+W3A AUDIT COMPLETE
