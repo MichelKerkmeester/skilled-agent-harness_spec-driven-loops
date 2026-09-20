@@ -136,7 +136,57 @@ OpenCode resolves project-local agent files from `.opencode/agents/<slug>.md`, b
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 5. STRUCTURE
+
+```text
+cli-opencode/
+  SKILL.md                                        # runtime instructions, the smart router and the full rule set
+  README.md                                       # this orientation document
+  assets/                                         # dispatch templates and permissions-matrix configs
+    permissions-matrix.example-packet-local.json  # example matrix: writes confined to the active packet
+    permissions-matrix.example-readonly.json      # example matrix: read-only corpus inspection
+    permissions-matrix.example-repo-wide.json     # example matrix: .skilled writes with explicit denials
+    permissions-matrix.schema.json                # schema for permissions-matrix configs
+    prompt-quality-card.md                        # executor-specific model overrides and the CLEAR check
+    prompt-templates.md                           # copy-paste prompt templates per use case and agent
+  benchmark/                                      # curated validation reports for manual testing playbook runs
+  changelog/                                      # versioned release notes
+  manual-testing-playbook/                        # per-feature test scenarios grouped by category
+  references/                                     # intent-loaded deep-dive reference docs
+    agent-delegation.md                           # agent roster, primary versus subagent routing, leaf-agent constraints
+    cli-reference.md                              # subcommands, flags, provider auth and version drift
+    context-budget.md                             # model context windows and the truncation marker
+    destructive-scope-violations.md               # the RM-8 incident and the four-layer prevention playbook
+    integration-patterns.md                       # the use cases, the decision tree and the silent-stdin trap
+    opencode-tools.md                             # unique value versus sibling cli-* skills
+    permissions-matrix.md                         # matrix schema, resolution semantics and RM-8 replay reasoning
+    providers-and-models.md                       # the provider, model and variant-effort roster
+    self-invocation-guard.md                      # the layered guard and the parallel-detached exception
+```
+
+| File | Role |
+|---|---|
+| `SKILL.md` | Routing contract: runtime instructions, the smart router and the full rule set |
+| `README.md` | This orientation document for the packet folder |
+| [`references/agent-delegation.md`](./references/agent-delegation.md) | Agent roster with primary-versus-subagent routing and leaf-agent constraints |
+| [`references/cli-reference.md`](./references/cli-reference.md) | Subcommands, flags, provider auth pre-flight and version drift handling |
+| [`references/context-budget.md`](./references/context-budget.md) | Model context windows and the truncation marker for bounded prompts |
+| [`references/destructive-scope-violations.md`](./references/destructive-scope-violations.md) | The RM-8 incident and its four-layer prevention playbook |
+| [`references/integration-patterns.md`](./references/integration-patterns.md) | The use cases, the decision tree and the silent-stdin trap |
+| [`references/opencode-tools.md`](./references/opencode-tools.md) | Unique value versus sibling cli-* skills |
+| [`references/permissions-matrix.md`](./references/permissions-matrix.md) | Matrix schema, resolution semantics and RM-8 replay reasoning |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | The provider, model and variant-effort roster |
+| [`references/self-invocation-guard.md`](./references/self-invocation-guard.md) | The layered guard and its parallel-detached exception |
+| [`assets/permissions-matrix.example-packet-local.json`](./assets/permissions-matrix.example-packet-local.json) | Example matrix allowing writes only under the active packet |
+| [`assets/permissions-matrix.example-readonly.json`](./assets/permissions-matrix.example-readonly.json) | Example matrix allowing read-only corpus inspection |
+| [`assets/permissions-matrix.example-repo-wide.json`](./assets/permissions-matrix.example-repo-wide.json) | Example matrix allowing `.skilled` writes with explicit denials |
+| [`assets/permissions-matrix.schema.json`](./assets/permissions-matrix.schema.json) | JSON schema for permissions-matrix configs |
+| [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Executor-specific model overrides and the CLEAR check |
+| [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates per use case and agent |
+
+---
+
+## 6. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -167,7 +217,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `mcp-code-mode` | Orchestrates external MCP tool calls. The dispatched OpenCode session has MCP tools loaded natively. |
 ---
 
-## 6. TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -182,7 +232,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 ---
 
-## 7. FAQ
+## 8. FAQ
 
 **Q: What does the full-runtime dispatch buy over a sibling cli-* skill?**
 
@@ -206,7 +256,7 @@ A: Default to `opencode-go/deepseek-v4-flash --variant max` via the Go gateway, 
 
 ---
 
-## 8. VERIFICATION
+## 9. VERIFICATION
 
 The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, external dispatch, multi-provider routing, agent routing, session continuity, integration patterns, prompt templates, parallel detached sessions and cross-repo or cross-server dispatch.
 
@@ -218,7 +268,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 10. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

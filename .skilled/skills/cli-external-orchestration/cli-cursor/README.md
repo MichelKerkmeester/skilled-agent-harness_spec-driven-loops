@@ -136,7 +136,45 @@ cli-cursor authenticates through Cursor account OAuth (`cursor-agent login`) or 
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 5. STRUCTURE
+
+```text
+.skilled/skills/cli-external-orchestration/cli-cursor/
++-- SKILL.md                    # Routing contract, hard rules, smart router and dispatch gotchas
++-- README.md                   # This file
++-- assets/                     # Prompt quality card and prompt templates
+|   +-- prompt-quality-card.md  # Fast-path prompt framework + CLEAR check (ALWAYS loaded)
+|   `-- prompt-templates.md     # Copy-paste ready prompt templates for common tasks
++-- benchmark/                  # Derived validation reports for manual-testing-playbook runs
++-- changelog/                  # Versioned packet changelog
++-- manual-testing-playbook/    # CU-numbered scenarios, the canonical PASS/FAIL/SKIP validation gate
+`-- references/                 # CLI, providers, tools, patterns, delegation, hooks, shared config
+    +-- agent-delegation.md     # Cursor execution-mode roster (default/plan/ask) and delegation patterns
+    +-- cli-reference.md        # Complete CLI subcommands, flags, auth and troubleshooting reference
+    +-- cursor-tools.md         # Cursor-unique surfaces: worktree, cloud worker, plugin marketplace, MCP
+    +-- hook-contract.md        # Cursor's shared hooks.json contract
+    +-- integration-patterns.md # Cross-AI orchestration patterns and workflows
+    +-- providers-and-models.md # Single-source catalog of the Cursor provider and the enforced 21-id model allowlist
+    `-- shared-editor-config.md # The shared .cursor editor-config surface and dispatch-isolation implications
+```
+
+| File | Role |
+|---|---|
+| `SKILL.md` | The routing contract: hard rules, the smart router and dispatch-critical gotchas |
+| `README.md` | This file: human-facing overview, quick start and troubleshooting |
+| `references/agent-delegation.md` | Cursor execution-mode roster (default/plan/ask) and delegation patterns |
+| `references/cli-reference.md` | Complete CLI subcommands, flags, auth and troubleshooting reference |
+| `references/cursor-tools.md` | Cursor-unique surfaces: native worktree, cloud worker, plugin marketplace, MCP |
+| `references/hook-contract.md` | Cursor's shared hooks.json contract |
+| `references/integration-patterns.md` | Cross-AI orchestration patterns and workflows |
+| `references/providers-and-models.md` | Single-source catalog of the Cursor provider and the enforced 21-id model allowlist |
+| `references/shared-editor-config.md` | The shared `.cursor` editor-config surface and dispatch-isolation implications |
+| `assets/prompt-quality-card.md` | Fast-path prompt framework + CLEAR check, ALWAYS loaded |
+| `assets/prompt-templates.md` | Copy-paste ready prompt templates for common tasks |
+
+---
+
+## 6. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -166,7 +204,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Cursor session back into the caller's spec folder. |
 ---
 
-## 6. TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -181,7 +219,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 ---
 
-## 7. FAQ
+## 8. FAQ
 
 **Q: Why not just call `cursor-agent -p` directly from my shell?**
 
@@ -205,7 +243,7 @@ A: Reach for Cursor when the task specifically wants Composer, a read-only plan 
 
 ---
 
-## 8. VERIFICATION
+## 9. VERIFICATION
 
 The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, execution modes, approvals and sandbox, worktree isolation, MCP integration, hooks, session continuity, cloud worker and prompt templates.
 
@@ -218,7 +256,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 10. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
