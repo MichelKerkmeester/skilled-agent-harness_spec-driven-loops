@@ -1,0 +1,10 @@
+DRIFT cli-external-orchestration
+DRIFT cli-devin
+DRIFT cli-jev
+DRIFT cli-orca
+DRIFT mcp-tooling
+DRIFT agent-orchestrate
+DRIFT agent-prompt-improver
+STALE mcp-orca-cli
+FAIL: 7 drifted, 1 stale; run without --check to regenerate
+sync-skills-hermes --check exit=1

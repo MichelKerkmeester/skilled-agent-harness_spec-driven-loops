@@ -1,0 +1,32 @@
+# child: cli-opencode
+# command: pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt>
+# model: glm-5.3-flash  effort: high  sandbox: workspace-write
+# invocationFingerprint: inv:0d2ab07389214d6c14716734dd89b07987f5a4386daf0f5fa39e03b38f3a7b5a
+# executableVersion: sha256:a7c29b72044cb7e03b026424b59a177133ae95dbbd7d12f9421be811e8e2eeac
+# promptPath: specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/prompts/opencode.md
+# timeoutMs: 1500000  durationMs: 496430  timedOut: false
+# exitStatus: 0  signal: null
+# stdoutBytes: 1933  stderrBytes: 0
+
+────── STDOUT ──────
+```text
+BINDING: command=/create:readme
+BINDING: target=.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+BINDING: output=.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+BINDING: template=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+BINDING: mode=AUTONOMOUS
+BINDING: specFolder=specs/cli-external-orchestration/075-cli-runtime-readme-refresh
+STATUS=OK PATH=.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+DQI=95
+TEMPLATE=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+CHECKS=validate_document.py (VALID, 0 issues, exit 0), grep H2 numbering (1..10 sequential, no gaps), git diff --stat (additive: +55/-5, all 5 deletions are the mandated renumber lines), git status (only the target file modified)
+NOTES=Tree roles grounded in packet SKILL.md (§2 LOADING_LEVELS, §3 provider/agent sections, §5 reference lists), README §9, and each file's own frontmatter/description (context-budget.md, permissions-matrix.md, the three example matrices, schema, benchmark/README.md). Tree shows SKILL.md, README.md, all 5 subdirectories, 9 references/ and 6 assets/ files, each with a one-line # comment. Table has one row per required file (17 rows) with relative links. No TOC, no anchor comments, no existing prose touched. DQI is a judgment score: the validator emits issues count, not a numeric DQI.
+SECTIONS=1. AT A GLANCE, 2. OVERVIEW, 3. QUICK START, 4. HOW IT WORKS, 5. STRUCTURE, 6. INTEGRATION & NAVIGATION, 7. TROUBLESHOOTING, 8. FAQ, 9. VERIFICATION, 10. RELATED DOCUMENTS
+LINES=+55/-5
+```
+
+The file exists on disk with the new `## 5. STRUCTURE` section (fenced tree + `| File | Role |` table), all names spelled exactly per contract, all claims grounded in evidence read this session, and the shared validator reports `VALID:` with zero issues. Nothing is committed; the change sits as a working-tree modification in the target file only.
+
+
+────── STDERR ──────
+(empty)

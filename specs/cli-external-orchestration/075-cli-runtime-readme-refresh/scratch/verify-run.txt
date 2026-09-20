@@ -1,0 +1,15 @@
+# verify.sh receipt
+# generated: 2026-09-20 13:51:38
+# state: worktree 057-cli-runtime-readme-refresh; READMEs + cli-pi repoint + hermes mirror committed
+
+PASS  validator 8/8 VALID                8/8 VALID
+PASS  subdirectories named               42 /42 named
+PASS  references+assets files named      70 /70 named
+PASS  fenced tree present                8/8 have a fenced text block
+PASS  sequential H2 numbering 1..N       all 8 sequential 1..N
+PASS  stale pin cleared (9 files)        0 stale occurrence(s); archived target present
+PASS  hermes cli-pi mirror in sync       cli-pi absent; drift=7 stale=1 (before: 7/1)
+PASS  authorized paths only              2 authorized; 0 unexpected
+PASS  broken links 15 -> <=5, no cluster broken=5 (before 15); cli-pi/README hits=0
+
+RESULT: PASSED (passed=9 failed=0)

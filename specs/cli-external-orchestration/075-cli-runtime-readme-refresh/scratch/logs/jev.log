@@ -1,0 +1,34 @@
+# child: cli-jev
+# command: pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt>
+# model: glm-5.3-flash  effort: high  sandbox: workspace-write
+# invocationFingerprint: inv:eaa23577f24d12251a5b3eb0453a8e2a41549dff982be7e34a2a319ee0d7a04d
+# executableVersion: sha256:a7c29b72044cb7e03b026424b59a177133ae95dbbd7d12f9421be811e8e2eeac
+# promptPath: specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/prompts/jev.md
+# timeoutMs: 1500000  durationMs: 872595  timedOut: false
+# exitStatus: 0  signal: null
+# stdoutBytes: 2307  stderrBytes: 0
+
+────── STDOUT ──────
+The other five modified READMEs are sibling workers' output from the same fan-out (my baseline check at start confirmed `cli-jev/README.md` was clean; I touched only my one bound path). Scope holds. Final report:
+
+```text
+BINDING: command=/create:readme
+BINDING: target=.skilled/skills/cli-external-orchestration/cli-jev/README.md
+BINDING: output=.skilled/skills/cli-external-orchestration/cli-jev/README.md
+BINDING: template=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+BINDING: mode=AUTONOMOUS
+BINDING: specFolder=specs/cli-external-orchestration/075-cli-runtime-readme-refresh
+STATUS=OK PATH=.skilled/skills/cli-external-orchestration/cli-jev/README.md
+DQI=95
+TEMPLATE=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+CHECKS=validate_document.py (VALID, 0 issues, exit 0; baseline was INVALID on missing overview), grep '^## ' sequential 1..6, git diff --stat (19+/6-), full diff read line by line, git status scope check (only cli-jev/README.md touched by this dispatch)
+NOTES=File already had LAYOUT at position 5, so per contract item 3 no STRUCTURE insertion and no renumbering: extended the existing tree (added purpose comments to references/ and the four leaf dirs) and appended the | File | Role | table (7 rows). Retitled section 1 to OVERVIEW with a two-line lead sentence, body untouched. One mid-edit correction: my first tree edit swapped changelog/benchmark order; restored original order so the diff is purely additive. All role clauses grounded in SKILL.md §5 and the references' own scope lines; new prose HVR-clean. DQI holds at 95 not 100 because the shared validator cannot check the six-file layout parity the orchestrator's contract adds; that parity is confirmed only by my own diff read.
+SECTIONS=1. OVERVIEW, 2. THE THREE PRIMITIVES, 3. THE DISPATCH RULES, 4. WHAT IT CANNOT DO, 5. LAYOUT, 6. PROVENANCE
+LINES=19/6
+```
+
+Honest status: `validate_document.py` printed `✅ VALID` (exit 0), headings run 1–6 with no gaps, and the diff shows only the mandated retitle, tree extension, and new role table. Nothing is committed; the change sits as a working-tree modification for the orchestrator to collect. One thing is the operator's: the five sibling READMEs modified in this worktree are other dispatches' work, and I did not verify them.
+
+
+────── STDERR ──────
+(empty)

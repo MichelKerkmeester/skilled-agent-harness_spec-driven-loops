@@ -1,0 +1,38 @@
+{
+  "specFolder": "cli-external-orchestration/075-cli-runtime-readme-refresh",
+  "description": "cli runtime readme refresh: give all eight cli-external-orchestration runtime READMEs a directory tree and file/role map naming every subfolder and re",
+  "keywords": [
+    "cli",
+    "runtime",
+    "readme",
+    "refresh",
+    "give",
+    "eight",
+    "cli-external-orchestration",
+    "readmes",
+    "directory",
+    "tree",
+    "file",
+    "role",
+    "map",
+    "naming",
+    "every",
+    "subfolder",
+    "reference",
+    "repoint",
+    "cli-pi",
+    "contract",
+    "pin",
+    "archived",
+    "packet"
+  ],
+  "lastUpdated": "2026-09-20T11:44:35.893Z",
+  "specId": "075",
+  "folderSlug": "cli-runtime-readme-refresh",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

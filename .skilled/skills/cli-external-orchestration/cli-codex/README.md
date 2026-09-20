@@ -161,7 +161,43 @@ cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch th
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 5. STRUCTURE
+
+```text
+.skilled/skills/cli-external-orchestration/cli-codex/
++-- SKILL.md                                # Runtime instructions, the smart router and the full rule set
++-- README.md                               # This file
++-- assets/                                 # Prompt-quality card and prompt templates
+|   +-- prompt-quality-card.md              # Fast-path prompt discipline and the CLEAR check
+|   `-- prompt-templates.md                 # Copy-paste prompt templates for common tasks
++-- benchmark/                              # Benchmark reports derived from the manual testing playbook
++-- changelog/                              # Packet-local version changelog
++-- manual-testing-playbook/                # Per-feature manual test scenarios
+`-- references/                             # Deep-dive references loaded by intent
+    +-- agent-delegation.md                 # Agent roster, routing table and invocation patterns
+    +-- cli-reference.md                    # Complete CLI subcommands, flags, sandbox modes and config reference
+    +-- codex-tools.md                      # Built-in capabilities: the review subcommand, --search, MCP and sessions
+    +-- hook-contract.md                    # Native hook contract and Spec Kit startup wiring
+    +-- integration-patterns.md             # Cross-AI orchestration patterns and workflows
+    `-- providers-and-models.md             # Single-source catalog of the OpenAI provider, the model roster and the effort ladder
+```
+
+| File | Role |
+|---|---|
+| `SKILL.md` | Runtime instructions, the smart router and the full rule set |
+| `README.md` | This file |
+| `references/agent-delegation.md` | Agent roster, routing table and invocation patterns |
+| `references/cli-reference.md` | Complete CLI subcommands, flags, sandbox modes and config reference |
+| `references/codex-tools.md` | Built-in capabilities: the review subcommand, `--search`, MCP and sessions |
+| `references/hook-contract.md` | Native hook contract and Spec Kit startup wiring |
+| `references/integration-patterns.md` | Cross-AI orchestration patterns and workflows |
+| `references/providers-and-models.md` | Single-source catalog of the OpenAI provider, the model roster and the effort ladder |
+| `assets/prompt-quality-card.md` | Fast-path prompt discipline and the CLEAR check |
+| `assets/prompt-templates.md` | Copy-paste prompt templates for common tasks |
+
+---
+
+## 6. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -191,7 +227,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Codex session back into the caller's spec folder. |
 ---
 
-## 6. TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -206,7 +242,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 ---
 
-## 7. FAQ
+## 8. FAQ
 
 **Q: Why not just call `codex exec` directly from my shell?**
 
@@ -230,7 +266,7 @@ A: Reach for Codex when the task needs sandboxed edits, live web search, a diff-
 
 ---
 
-## 8. VERIFICATION
+## 9. VERIFICATION
 
 The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, sandbox modes, reasoning effort, agent routing, session continuity, integration patterns, prompt templates and built-in tools.
 
@@ -242,7 +278,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 10. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

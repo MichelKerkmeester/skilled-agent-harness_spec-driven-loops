@@ -1,0 +1,14 @@
+cli-claude-code	fenced-text-blocks=0
+0
+cli-codex	fenced-text-blocks=0
+0
+cli-cursor	fenced-text-blocks=0
+0
+cli-devin	fenced-text-blocks=0
+0
+cli-hermes	fenced-text-blocks=1
+cli-jev	fenced-text-blocks=1
+cli-opencode	fenced-text-blocks=0
+0
+cli-pi	fenced-text-blocks=0
+0
