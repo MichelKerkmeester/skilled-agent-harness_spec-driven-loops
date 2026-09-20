@@ -57,10 +57,10 @@ You MUST produce THREE artifacts per iteration. The YAML-owned post_dispatch_val
 
 1. **Iteration narrative markdown** at `{state_paths_iteration_pattern}` (path is pre-substituted for the current iteration number). Structure: headings for Focus, Actions Taken, Findings, Questions Answered, Questions Remaining, Next Focus.
 
-2. **Canonical iteration record recorded THROUGH THE APPEND GATEWAY** — never written to `{state_paths_state_log}` directly — the gateway is its only writer, and it refreshes that log from the ledger after authorizing, fencing, and receipting the record. The record MUST use `"type":"iteration"` EXACTLY — NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored (the iteration will look incomplete and the reducer may re-run it). Required schema:
+2. **Canonical iteration record recorded THROUGH THE APPEND GATEWAY** — never written to `{state_paths_state_log}` directly — the gateway is its only writer, and it refreshes that log from the ledger after authorizing, fencing, and receipting the record. The record MUST use `"type":"iteration"` EXACTLY — NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored (the iteration will look incomplete and the reducer may re-run it). The record MUST also carry stable identity: `runId`, `sessionId` and `lineageId`, all set to the run's session id, which you read from `{state_paths_config}` (the `lineage.sessionId` field). A record without them is refused with `stable-identity-missing`, because the gateway cannot attach a record it cannot place in a run. Required schema:
 
 ```json
-{"type":"iteration","iteration":<n>,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":<0..1>,"status":"<string>","focus":"<string>","graphEvents":[/* optional */],"executor":{/* workflow-owned for non-native runs */}}
+{"type":"iteration","iteration":<n>,"runId":"<run session id>","sessionId":"<run session id>","lineageId":"<run session id>","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":<0..1>,"status":"<string>","focus":"<string>","graphEvents":[/* optional */],"executor":{/* workflow-owned for non-native runs */}}
 ```
 
 Record this single JSON object through the append gateway — do NOT `echo`/`>>` it into `{state_paths_state_log}` (the gateway is its only writer and refreshes it from the ledger). Write the one-line record to a temp file, then run:
@@ -80,7 +80,7 @@ For non-native CLI executors, the workflow owns executor provenance. It writes a
 
 Example delta file contents (one iteration):
 ```json
-{"type":"iteration","iteration":3,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.62,"status":"insight","focus":"..."}
+{"type":"iteration","iteration":3,"runId":"<run session id>","sessionId":"<run session id>","lineageId":"<run session id>","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.62,"status":"insight","focus":"..."}
 {"type":"finding","id":"f-iter003-001","severity":"P1","label":"...","iteration":3}
 {"type":"invariant","id":"inv-iter003-001","label":"...","iteration":3}
 {"type":"observation","id":"obs-iter003-001","packet":"007","classification":"real","iteration":3}

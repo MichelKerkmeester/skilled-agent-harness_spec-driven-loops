@@ -63,7 +63,7 @@
       "goal.md",
       "001-deep-research/spec.md",
       "002-per-runtime-reference-map/spec.md",
-      ".skilled/bin/mcp-code-mode-launcher.cjs",
+      ".opencode/bin/mcp-code-mode-launcher.cjs",
       "review/review-report.md",
       "001-deep-research/research/research.md",
       "001-deep-research/goal.md",
@@ -186,17 +186,17 @@
     ],
     "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
     "created_at": "2026-09-16T08:35:04Z",
-    "last_save_at": "2026-09-19T15:59:33.219Z",
+    "last_save_at": "2026-09-20T02:23:15.957Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9c8af9b6a259cc07884bb16cfd9017c06c982c20e6a14347143e8cf8ba7c9a8a",
+    "source_fingerprint": "sha256:d10be02ba0b9919eb3de8b4a90966bdb244b4e2e48aa3dff5735e2246d9e8956",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2d7f25732b3720cb67528bd651b4b5f176b1d6237c7a83e43c6c731f9d5f45e"
+      "spec.md": "989b7223cf9d788b40b6f702723df635ff924b248f9513247be02b17ba37b125"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze",
     "last_active_at": "2026-09-18T22:35:59.779Z"

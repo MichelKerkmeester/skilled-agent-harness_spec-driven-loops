@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan — mcp-obsidian plugin-coverage review + scenario testing
 
 ## Approach (as executed)

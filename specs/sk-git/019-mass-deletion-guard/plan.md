@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan — Mass-Deletion Guard
 
 ## Approach

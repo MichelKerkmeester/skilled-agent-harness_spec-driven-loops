@@ -12,6 +12,7 @@ parent: "../spec.md"
 predecessor: "018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
 successor: "None"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Boundary-Gated Directive Delivery
 
 <!-- SPECKIT_LEVEL: 2 -->

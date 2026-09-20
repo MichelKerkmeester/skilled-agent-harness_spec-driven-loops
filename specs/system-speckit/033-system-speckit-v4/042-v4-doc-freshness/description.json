@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/033-system-speckit-v4/042-v4-doc-freshness",
+  "description": "Phase 1: v4-doc-freshness",
+  "keywords": [
+    "phase",
+    "v4-doc-freshness"
+  ],
+  "lastUpdated": "2026-09-19T18:39:04.964Z",
+  "specId": "042",
+  "folderSlug": "v4-doc-freshness",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

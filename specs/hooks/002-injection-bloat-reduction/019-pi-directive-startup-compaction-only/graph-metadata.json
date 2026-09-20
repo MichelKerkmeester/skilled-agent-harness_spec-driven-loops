@@ -42,7 +42,6 @@
       "plan.md",
       "implementation-summary.md",
       ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
       ".opencode/hooks/injection-contract.md",
       "hooks/claude/user-prompt-submit.ts"
     ],
@@ -69,12 +68,6 @@
         "name": "prompt-advisor.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "render.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
         "source": "derived"
       },
       {
@@ -194,7 +187,7 @@
     ],
     "causal_summary": "Constant advisor directives shown on every cli-pi message. Root-caused: the directives-only advisor-failure fallback was intentionally always-shown, so it repeats whenever the advisor is unavailable in Pi. Fix ships: the fallback now dedups to once per boundary (Pi). Root-cause of the advisor unavailability in cli-pi is a separate open thread.",
     "created_at": "2026-08-30T15:39:09.055Z",
-    "last_save_at": "2026-09-11T16:41:47.096Z",
+    "last_save_at": "2026-09-20T04:33:37.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +195,12 @@
       "plan.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31c3d8eaca48a1db364cf49451504230d5dc47c0b723ecd027fd6710e16d1f7a",
+    "source_fingerprint": "sha256:999df26557c57294c0d42d18c4448011122e7ad6cc28a0b9f6fcf2a2a47e097a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b49d58c034cc5c0bdc7f5cb478ea5a58d069d46b61c949cb425637d5c2018ea",
-      "plan.md": "1bc547d91b0b6a05ad1d287ebe8c00b04cea2375b92ee6c401f39fc1619bb48f",
-      "implementation-summary.md": "dbe07a6f724f815cdc359697c918f2e3db9cd1678b4348aec6f9c0b85e6c2744"
+      "spec.md": "1bdda32eb899287af2f698113df5f8ba0c94492b3052e6123e63e49d93019aa0",
+      "plan.md": "d84dad200fe3b024aa806d457f45be00e20bf9e508c2ecd63083c2add4de9b81",
+      "implementation-summary.md": "67452266a0523197acb0531cce4c302214a72e5aa8a7f80147502ea0d2d11ac3"
     },
     "last_active_child_id": null,
     "last_active_at": null

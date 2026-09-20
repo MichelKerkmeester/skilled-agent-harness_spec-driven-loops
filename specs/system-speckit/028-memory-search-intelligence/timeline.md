@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Run the daemon-side captures (live p50, envelope bytes, embedding reconcile) after a daemon restart"
     completion_pct: 100
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
 # 028 Chronological Timeline
 
 > **Sort key:** git commit order on `system-speckit/028-memory-search-intelligence`, oldest to newest.

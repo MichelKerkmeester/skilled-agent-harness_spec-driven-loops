@@ -47,6 +47,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+      "scratch/verification-gemini-3-8-flash-high.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
@@ -88,6 +89,12 @@
         "name": "deep-research.contract.md",
         "kind": "doc",
         "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-gemini-3-8-flash-high.md",
+        "kind": "doc",
+        "path": "scratch/verification-gemini-3-8-flash-high.md",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The spec-check protocol (`system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` §6) requires every spec write a research run makes to reach the state log as a typed audit row, and the research workflows ask for seven such rows",
     "created_at": "2026-09-19T06:34:57Z",
-    "last_save_at": "2026-09-19T11:35:19.205Z",
+    "last_save_at": "2026-09-20T04:49:50.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66c8a84d789aac45754f5d35d8d96980e32e57587b45b5c73a380f157ce73bd9",
+    "source_fingerprint": "sha256:359e3febdbd9311bbf8297ca12c8f5710dc1060bb4a26083d44ba71d822cc328",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "49790d180de68d1cb83862aaa90ee1ac6f7c78c4816509cb1df3ab0def66d556",
       "plan.md": "eef622dc9a3d47262be77ea445c3c43c1179f370d8f621c230fc361a18ce0726",
       "tasks.md": "993aa83e45e70af08fb167cbddbfe05628b3524cb6bae3dca45767559262e035",
-      "implementation-summary.md": "0d703ae8b071ab8ac4e67a9b8627acd737427d6260d51550d5e4ba1bb3735b10"
+      "implementation-summary.md": "085c6eaaa637d5e3e5627fc7fb4fc2142a8ac596b1369e50066cb09d0ebecb3a"
     },
     "last_active_at": null
   }

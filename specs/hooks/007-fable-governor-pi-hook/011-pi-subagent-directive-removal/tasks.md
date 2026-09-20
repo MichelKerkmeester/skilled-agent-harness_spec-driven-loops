@@ -31,6 +31,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 # Tasks: Pi Subagent Directive Removal
 

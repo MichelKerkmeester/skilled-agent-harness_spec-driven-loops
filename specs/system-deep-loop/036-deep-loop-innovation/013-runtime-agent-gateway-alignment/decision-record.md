@@ -19,6 +19,7 @@ _memory:
     answered_questions: []
 trigger_phrases: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: Runtime Agent Gateway Alignment
 
 ## Context

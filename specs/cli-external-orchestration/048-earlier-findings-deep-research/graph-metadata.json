@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Running the sk-vision manual-testing-playbook across Cursor and Devin surfaced five host-adapter findings (Cursor MCP approval, Devin `dangerous`-only MCP, moondream2 text truncation, Cursor `.mcp.json` chain, base64 padding + `settings` passthrough)",
     "created_at": "2026-08-17T18:11:01.051Z",
-    "last_save_at": "2026-09-10T20:43:16.260Z",
+    "last_save_at": "2026-09-20T04:33:35.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:7718b663015d28d87b6c22fb90e2d3c7f704047cd3e81c181b4f37ca03edf07f",
+    "source_fingerprint": "sha256:02d0fdf2ccc69835bea26d3992a4edd9f1ff5eaa848e721737580039e8003b1e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4875e218f1605891b4c208d4ba0e65353db99e28d9a073737d60f8a10fb21082",
       "plan.md": "4b96e36b0405bfc8269a338fd240c5232d3d4a0ac5815d39756505164c54e117",
       "tasks.md": "d6f94a34bb35c3bac9088e57f7f761f3dfa4411a4ae5e7e08ef7da4110239f22",
       "implementation-summary.md": "0c341808bbc240fd74542ad08efeb8b8a9f860b6f1f0f68a41df01c1110916a3",
-      "resource-map.md": "cc113d2f98eac1f1112fcdbdf5e0e053e70966474853d35318a0d1c5da7b6550"
+      "resource-map.md": "b3153082471b01035446765ac54e8fd7eec2e481dfd266b52c6927c1ed75b673"
     },
     "last_active_child_id": null,
     "last_active_at": null

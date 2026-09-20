@@ -11,9 +11,9 @@
 
 **Reasons to try it**
 
-[![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/stargazers)
-[![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
-[![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/skilled-agent-harness_spec-driven-loops?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/stargazers)
+[![License](https://img.shields.io/github/license/MichelKerkmeester/skilled-agent-harness_spec-driven-loops?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/skilled-agent-harness_spec-driven-loops?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases)
 
 - **Continuity that survives context resets:** decisions, architecture and history persist across sessions, crashes and compactions
 - **Verification, not vibes:** nothing counts as "done" without fresh evidence, and code-review findings get re-challenged before they stick
@@ -42,7 +42,7 @@ The framework adds three layers on top of the base platform:
                               │
                               ▼
          ┌──────────────────────────────────────────┐
-         │       GATE SYSTEM (3 mandatory gates)    │
+         │       GATE SYSTEM (5 mandatory gates)    │
          │                                          │
          │  Gate 1: Context     Gate 2: Skills      │
          │  Surface relevant    Auto-load the right │
@@ -50,13 +50,16 @@ The framework adds three layers on top of the base platform:
          │                                          │
          │  Gate 3: Spec Folder (HARD BLOCK)        │
          │  Every file change needs documentation    │
+         │                                          │
+         │  Gate 4: Workflow tiebreakers            │
+         │  Gate 5: Repo rules load (HARD BLOCK)
          └──────────────────────┬───────────────────┘
                                 │
                  ┌──────────────┴──────────────┐
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 12 specialized│          │ 20 domain skills │
+         │ 12 specialized│          │ 13 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -89,12 +92,12 @@ The framework adds three layers on top of the base platform:
 
 ### Installation
 
-**Prerequisites:** Node.js 18+ with `npm`, `git` and a POSIX shell. The launcher binaries vendor their own dependencies on first run, so you do not need TypeScript or `tsc` installed globally.
+**Prerequisites:** Node.js 20.11+ (22.12+ for the spec-kit runtime CLI) with `npm`, `git` and a POSIX shell. The launcher binaries vendor their own dependencies on first run, so you do not need TypeScript or `tsc` installed globally.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration.git
-cd opencode--spec-kit-skilled-agent-orchestration
+git clone https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops.git
+cd skilled-agent-harness_spec-driven-loops
 
 # 2. Install root dependencies (file watcher + shared HTTP utilities)
 npm install
@@ -177,7 +180,7 @@ specs/<track>/<###-feature-name>/
 &nbsp;
 #### Available Templates
 
-Sixteen templates ship under `.skilled/skills/system-spec-kit/templates/`. Which ones a packet gets depends on how each document is triggered, not on its level alone.
+Eighteen templates ship under `.skilled/skills/system-spec-kit/templates/`. Which ones a packet gets depends on how each document is triggered, not on its level alone.
 
 | Trigger | Templates | Where |
 | ------- | --------- | ----- |
@@ -186,7 +189,7 @@ Sixteen templates ship under `.skilled/skills/system-spec-kit/templates/`. Which
 | `--with-goal` on `create.sh` | `goal.md` | `addons/` |
 | The inline gate renderer by hand | `resource-map.md`, or any add-on for an existing packet | `addons/` |
 | Command or agent owned | `handover.md` (memory save), `debug-delegation.md` (`@debug`), `research.md` (`/deep:research`) | `addons/` |
-| Packet type, not a level | `phase-parent.spec.md`, `review.spec.md` | `packet-types/` |
+| Packet type, not a level | `phase-parent.spec.md`, `review.spec.md`, `research.spec.md`, `review-report.md` | `packet-types/` |
 
 Beyond the four numbered levels, the contract also defines three packet types with their own required documents: `phase` (a phase parent, needs only `spec.md`), `review` (needs `spec.md` plus `review/review-report.md`) and `research` (needs `spec.md` plus `research/research.md`).
 
@@ -258,7 +261,7 @@ TypeScript sources compile to `.skilled/skills/system-spec-kit/runtime/cli/dist/
 &nbsp;
 #### Gate System
 
-3 mandatory gates run before any file change. Every request passes through the same sequence.
+5 mandatory gates run before any file change. Every request passes through the same sequence. Three further gates run after execution: final-state verification, completion verification and the memory save rule.
 
 ```
   User message arrives
@@ -268,7 +271,7 @@ TypeScript sources compile to `.skilled/skills/system-spec-kit/runtime/cli/dist/
   │  Gate 1: Understanding (SOFT BLOCK)         │
   │  trigger index lookup surfaces context      │
   │  Classify intent: Research / Implementation │
-  │  confidence >= 0.70, uncertainty <= 0.35     │
+  │  Levels: 80%+ go, 40-79% caveat, <40% ask     │
   └──────────────────┬──────────────────────────┘
                      │
                      ▼
@@ -283,6 +286,19 @@ TypeScript sources compile to `.skilled/skills/system-spec-kit/runtime/cli/dist/
   │  Gate 3: Spec Folder (HARD BLOCK)           │
   │  Only if file modification detected           │
   │  A) Existing  B) New  C) Related  D) Skip   │
+  └──────────────────┬──────────────────────────┘
+                     │
+                     ▼
+  ┌─────────────────────────────────────────────┐
+  │  Gate 4: Workflow Tiebreakers (REQUIRED)    │
+  │  Executor CLI never overrides skill route    │
+  │  command-spec-kit wins on ambiguity          │
+  └──────────────────┬──────────────────────────┘
+                     │
+                     ▼
+  ┌─────────────────────────────────────────────┐
+  │  Gate 5: Repo Rules Load (HARD BLOCK)       │
+  │  REPO RULES.md routes the first write       │
   └──────────────────┬──────────────────────────┘
                      │
                      ▼
@@ -564,7 +580,7 @@ For details, see the [Deep Loop Runtime README](.skilled/skills/system-deep-loop
 
 **sk-code**
 - **Write code that fits the stack you're in.** Loads surface-aware patterns, checklists and verification recipes per surface, and detects the active stack from paths and library markers. Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
-- **Two ready surfaces:** WEBFLOW (Webflow and vanilla HTML/CSS/JS animation, CDN deploy, Lighthouse/TBT/INP targets) and OPENCODE (`.skilled/` system code across JS/TS/Python/Shell/JSON, MCP servers, agents, commands, skills)
+- **Three ready surfaces:** WEBFLOW (Webflow and vanilla HTML/CSS/JS animation, CDN deploy, Lighthouse/TBT/INP targets), OPENCODE (`.skilled/` system code across JS/TS/Python/Shell/JSON, MCP servers, agents, commands, skills) and OBSIDIAN (Obsidian plugin development, vault tooling and Desktop API integration)
 - **Verifies before it claims done:** three mandatory phases run implementation, then testing and debugging, then verification
 - **Reviews before you ship (`code-review` mode).** A stack-agnostic findings-first review baseline that reuses the surface evidence above; the security, correctness, SOLID and threat-model checklists always run first and their minimums are never relaxed, and findings come ranked P0/P1/P2
 
@@ -604,9 +620,9 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - **98.7% less context overhead:** tool schemas load on demand at first use, zero upfront cost, type-safe with autocomplete
 
 **mcp-tooling**
-- **Parent hub for MCP tool bridges.** One advisor identity routing to `mcp-chrome-devtools` (browser debugging), `mcp-click-up` (ClickUp tasks), and `mcp-figma` (Figma Desktop transport) through `mode-registry.json`
+- **Parent hub for MCP tool bridges.** One advisor identity routing to ten modes through `mode-registry.json`: six workflow modes (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`, `mcp-orca-cli`) and four design transports (`mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-magicpath`)
 - **`mcp-chrome-devtools`: drive a real browser from the assistant.** Chrome DevTools with smart 2-mode routing: CLI mode (`bdg`) runs in the terminal, supports Unix pipes and composes in CI/CD, with MCP mode as the fallback for multi-tool flows
-- **`mcp-click-up`: manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing. Agent-safe by design: per-list status resolution, dry-run before batch completion, `--json` output, empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 76-scenario playbook included
+- **`mcp-click-up`: manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing. Agent-safe by design: per-list status resolution, dry-run before batch completion, `--json` output, empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 37-scenario playbook included
 - **`mcp-obsidian`: manage Obsidian notes from the assistant.** Dual CLI + MCP mode using `notesmd-cli` for headless vault operations, the official `obsidian` CLI for app-backed control, and cyanheads `obsidian-mcp-server` through the Local REST API
 - **`mcp-figma` _(transport)_: drive Figma Desktop from the terminal.** Reads, authors, modifies, and exports designs, tokens, and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context. CLI-primary and gated: a local daemon brokers every command, read-only inspection and exports are free, authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Never decides design taste on its own: pairs with `sk-design-md-generator` for the measured design reference
 
@@ -670,6 +686,11 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 **Prompt-Improver**
 - **Strengthens high-stakes prompts.** Picks the best `sk-prompt` framework, applies DEPTH at the right energy and validates with CLEAR
 - **Returns a structured package** (`FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT`, `ESCALATION_NOTES`). Used by the CLI mirror-card pipeline and `/prompt-improve` agent mode when inline prompting is too weak
+
+&nbsp;
+
+**Design**
+- **Owns design decisions and artifacts across four modes.** Decides values and behavior through `sk-design-fundamentals`, measures an existing surface into a Style Reference through `sk-design-md-generator`, and authors charts and diagrams through `sk-design-chart` and `sk-design-diagram`
 
 &nbsp;
 #### DEEP LOOP
@@ -836,7 +857,7 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 - Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle schema migration (e.g. v3.3.0.0 → v3.4.1.0). Wall-clock 8-25 min
 
-The 12 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode/invariants/upstream_assets/user_inputs/field_handling` block plus phased execution. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+The 13 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode/invariants/upstream_assets/user_inputs/field_handling` block plus phased execution. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY
@@ -893,13 +914,17 @@ Canonical native server set: `code_mode` is the only registered MCP server. The 
 &nbsp;
 #### External Integrations (via `.utcp_config.json`)
 
+14 templates are registered. Six carry a description here; the rest back a `mcp-tooling` mode of the same name or ship without a mode packet of their own.
+
 - **`chrome_devtools_1`** (MCP/stdio) - Browser automation (instance 1). No env var needed.
 - **`chrome_devtools_2`** (MCP/stdio) - Browser automation (instance 2). No env var needed.
-- **`clickup`** (MCP/stdio) - ClickUp community server (`@taazkareem/clickup-mcp-server`). Requires `CLICKUP_API_KEY`.
 - **`clickup_official`** (MCP/stdio) - Official ClickUp MCP (`@clickup/mcp-server`). Requires `CLICKUP_API_KEY` + `CLICKUP_TEAM_ID`. Used by `mcp-click-up` skill.
 - **`figma`** (MCP/stdio) - Design files, components, exports. Requires `FIGMA_API_KEY`. This is the optional Code Mode MCP. The primary Figma surface is the `mcp-figma` skill via `figma-ds-cli`.
 - **`github`** (MCP/stdio) - Issues, pull requests, commits. Requires `GITHUB_PERSONAL_ACCESS_TOKEN`.
 - **`webflow`** (MCP/remote) - Sites, CMS collections. Requires Webflow auth.
+- **`aside`**, **`mobbin`**, **`notion`**, **`obsidian`**, **`refero`** (MCP/stdio) - Each backs the `mcp-tooling` mode of the same name.
+- **`magicpath`** (CLI) - Backs the `mcp-magicpath` mode.
+- **`magnific`** and **`gitkraken`** (MCP/stdio) - Registered with no mode packet of their own.
 
 &nbsp;
 #### Performance
@@ -933,7 +958,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 | Skill / Surface                                     | Out-of-the-box                             | Notes                                                                                                                                                                                                    |
 | --------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`sk-code`**                                       | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Motion.dev surfaces with your own (e.g., Next.js + Tailwind + Postgres or React Native + Reanimated or Go + sqlc, etc.). Includes the findings-first `code-review` mode that reuses these surfaces as review evidence.   |
+| **`sk-code`**                                       | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Obsidian surfaces with your own (e.g., Next.js + Tailwind + Postgres or React Native + Reanimated or Go + sqlc, etc.). Motion.dev is an animation overlay inside the Webflow surface rather than a surface of its own. Includes the findings-first `code-review` mode that reuses these surfaces as review evidence.   |
 | `sk-doc`                                            | ✅ Codebase-agnostic                        | Markdown quality + component creation. Works for any project.                                                                                                                                            |
 | `sk-git`                                            | ✅ Codebase-agnostic                        | Worktree + commit + PR workflow. Works for any project.                                                                                                                                                  |
 | `sk-design`                  | ✅ Codebase-agnostic                        | Parent hub for design work over four modes: values and review (`sk-design-fundamentals`), design-reference extraction from a live URL into a v3 Style Reference `DESIGN.md` (`sk-design-md-generator`), standalone HTML charts across 29 forms (`sk-design-chart`), and HTML/SVG diagrams across 27 types (`sk-design-diagram`). Pairs with `sk-code` for the build. Works for any project. |
@@ -942,7 +967,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `system-deep-loop` | ✅ Codebase-agnostic                        | Parent hub for the unified deep-loop skill (research, review, ai-council and improvement modes, including agent improvement and model benchmarking) over nested `runtime/` infrastructure. Work for any topic / target.     |
 | `sk-prompt`                                         | ✅ Codebase-agnostic                        | Prompt-engineering framework. Works for any project.                                                                                                                                                     |
 | `cli-external-orchestration` | ✅ Codebase-agnostic                        | Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes`. Stack-independent.                                                                                                                                                           |
-| `mcp-tooling`                                       | ✅ Codebase-agnostic                        | Parent hub for MCP tool bridges: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`), `mcp-obsidian` (Obsidian notes via notesmd-cli, the official obsidian CLI, and cyanheads obsidian-mcp-server), and `mcp-figma` (Figma Desktop transport via the silships `figma-ds-cli`, requires Figma Desktop open). Stack-independent.   |
+| `mcp-tooling`                                       | ✅ Codebase-agnostic                        | Parent hub for MCP tool bridges, ten modes: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`), `mcp-obsidian` (Obsidian notes via notesmd-cli, the official obsidian CLI, and cyanheads obsidian-mcp-server), `mcp-aside-devtools`, `mcp-notion` and `mcp-orca-cli`, plus the design transports `mcp-figma` (Figma Desktop via the silships `figma-ds-cli`, requires Figma Desktop open), `mcp-refero`, `mcp-mobbin` and `mcp-magicpath`. Stack-independent.   |
 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.skilled/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
@@ -963,7 +988,6 @@ The other shipped skills will continue working unchanged: `sk-doc` will still va
 - **`opencode.json`** - MCP server bindings, model configuration and launcher notes. Used by OpenCode platform.
 - **`.utcp_config.json`** - Code Mode external tool registrations. Used by `mcp-code-mode` skill.
 - **`.claude/mcp.json`** - Claude Code MCP configuration. Claude Code only.
-- **`.vscode/mcp.json`** - VS Code / Copilot MCP configuration wrapper.
 
 &nbsp;
 ### Retrieval And Continuity Configuration

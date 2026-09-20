@@ -34,6 +34,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 # Implementation Summary: Pi Subagent Directive Removal
 

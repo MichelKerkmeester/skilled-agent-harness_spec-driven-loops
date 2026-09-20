@@ -9,7 +9,7 @@
   },
   "stuckThreshold": 3,
   "maxDurationMinutes": 120,
-  "maxToolCallsPerIteration": 12,
+  "maxToolCallsPerIteration": 24,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
   "specFolder": "",

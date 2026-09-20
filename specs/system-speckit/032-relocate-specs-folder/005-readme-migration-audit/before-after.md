@@ -7,6 +7,7 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "reference"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: before-after | v2.2 -->
 
 # Before vs After: README Migration Audit
 

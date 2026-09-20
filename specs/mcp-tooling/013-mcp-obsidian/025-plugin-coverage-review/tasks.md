@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks — mcp-obsidian plugin-coverage review + scenario testing
 
 - [x] T1: Deep-review the skill's plugin coverage (3 cycles; converged findings).

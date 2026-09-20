@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration"
-    last_updated_at: "2026-09-16T08:35:04Z"
-    last_updated_by: "claude-opus-5"
-    recent_action: "Phase 001 research landed and verified; figures corrected against the live tree"
-    next_safe_action: "Plan phases 003 to 011, then execute them in order"
+    last_updated_at: "2026-09-19T23:10:00Z"
+    last_updated_by: "v4-doc-freshness-run"
+    recent_action: "Migration closed; compatibility root settled as per-entry symlinks"
+    next_safe_action: "None outstanding; other-machine cutover is the operator's item"
     blockers: []
     key_files:
       - "001-deep-research/spec.md"
@@ -25,11 +25,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "041-scaffold"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions:
-      - "Does .opencode stay as a symlink farm, or can it shrink to only what the opencode runtime itself reads?"
       - "Can each runtime be pointed at a root other than its own directory name?"
-    answered_questions: []
+    answered_questions:
+      - "Does .opencode stay as a symlink farm, or can it shrink to only what the opencode runtime itself reads? Settled: the root is kept as a real directory whose top-level entries are tracked symlinks into .skilled, because a whole-directory link is invisible to the GitHub web view and collapses to one text file in a clone without symlink support."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.2 -->

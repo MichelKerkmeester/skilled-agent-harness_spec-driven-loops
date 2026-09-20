@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary — Mass-Deletion Guard
 
 ## Final state

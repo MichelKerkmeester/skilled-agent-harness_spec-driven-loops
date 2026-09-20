@@ -30,17 +30,15 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> Everything above the log is DURABLE: it is what an operator sets as the session
-> objective, and it must stay true for the life of the packet. Keep it short:
-> the runtime goal surfaces cap what they will hold, and a truncated objective
-> loses its tail, which is where the completion criteria live.
+> Above the log is DURABLE: the operator's session objective. Keep it short; a truncated
+> objective loses the criteria in its tail.
 
 ---
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Fix every finding the spec-kit simplification program recorded rather than fixed, plus the operator items it left open: sixteen children under specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure, each implemented in order, tested, validated strict and committed with its own goal, so the program's last census reads fixed on every line.
+**Objective:** Fix every finding the spec-kit simplification program recorded rather than fixed, plus the operator items it left open: the sixteen children of this packet, each implemented in order, tested, validated strict and committed with its own goal, so the program's last census reads fixed on every line.
 
 ### Decisions
 
@@ -48,20 +46,18 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | One child per finding cluster, executed in numeric order; a child closes only when its criteria are Met and its tests and lanes pass |
-| D2 | Every sweep over closed packets regenerates their metadata and excludes packets another session owns (specs/sk-doc/051, sk-doc/052, system-deep-loop/036, sk-design), listing them for their owners |
-| D3 | A surface under another session's active edit is coordinated, never overwritten: check git status first and stop if dirty |
-| D4 | Commits are assembled in a private index and pushed to skilled/v4.0.0.0 and main after each green child |
-| D5 | Nothing is deferred again; a child that cannot fix a row records why in its own goal log and the parent map says so |
+| D1 | One child per finding cluster in numeric order; a child closes when its criteria are Met and its tests and lanes pass |
+| D2 | A sweep over closed packets regenerates their metadata and leaves packets another session owns to their owners |
+| D3 | A surface under another session's active edit is coordinated, never overwritten: check git status first |
+| D4 | After each green child the commit goes to skilled/v4.0.0.0 and main |
+| D5 | Nothing is deferred again; a child that cannot fix a row says why in its log and this map records it |
 
 ### Operator copy
 
-The operator holds this directive as the session objective, and that copy is
-what judges completion, not this file. Whenever anything above the log changes
-(objective, a decision, the binding table, a criterion), resend the full text
-of this file in chat so the operator can update their copy. A child goal change
-that alters a parent decision or criterion is an amendment to the parent: apply
-it there first, then resend the parent.
+The operator's copy of this directive judges completion, not this file. Resend this
+file's chat slice whenever anything above the log changes. Never send more than 4000
+characters; cut the file first. A child change that alters a parent decision is an
+amendment to the parent, applied there first.
 <!-- /ANCHOR:directive -->
 
 ---
@@ -94,9 +90,8 @@ it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-Three to seven bullets, each checkable without opening another file. Copy them
-verbatim into the objective: nothing dereferences a path, so criteria left only
-here are invisible to whatever judges completion.
+Each bullet is checkable without opening another file. Copy them into the objective
+verbatim: criteria left only here stay invisible to whatever judges completion.
 
 - [x] All sixteen children are Complete with every acceptance criterion Met (one criterion, 011 AC-002, Waived by ADR-001 and its four routed failures fixed in 014 and 016)
 - [x] validate.sh --strict --recursive prints RESULT: PASSED for this parent and every child

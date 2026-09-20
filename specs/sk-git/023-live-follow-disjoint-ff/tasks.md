@@ -19,6 +19,7 @@ _memory:
       session_id: "023-tasks"
       parent_session_id: null
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
 # Tasks: Live-Sync Disjoint Fast-Forward

@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks — Mass-Deletion Guard
 
 - [x] **T1** Author `lib/mass-deletion-guard.sh` (count/verdict/report helpers),

@@ -110,9 +110,8 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-Three to seven bullets, each checkable without opening another file. Copy them
-verbatim into the objective: nothing dereferences a path, so criteria left only
-here are invisible to whatever judges completion.
+Each bullet is checkable without opening another file. Copy them into the objective
+verbatim: criteria left only here stay invisible to whatever judges completion.
 
 - [x] All five research children are Complete with two ten-iteration lineages and one five-iteration lineage each and a confirmed-findings.md covering all three rounds
 - [x] Every confirmed finding has a remediation child that is Complete, or a recorded decision not to change with its reason

@@ -6,6 +6,7 @@ importance_tier: "high"
 parent: "skilled-agent-orchestration/125-sk-doc-parent/002-architecture-decision"
 trigger_phrases: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
 # ADR — sk-doc Parent-Hub Architecture
 

@@ -127,18 +127,18 @@
     ],
     "causal_summary": "Close the deep-loop-innovation (036) gap-analysis findings: substrate identity fail-closed, per-mode authority cutover, production-boundary verification, and traceability/status reconciliation.",
     "created_at": "2026-08-14T12:47:57.530Z",
-    "last_save_at": "2026-09-11T16:42:26.950Z",
+    "last_save_at": "2026-09-20T04:36:06.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:f25b04c5b411a1104cc27c7cf52ce6ec68c300c58968e62e5494385a33e4cbef",
+    "source_fingerprint": "sha256:240a32c6ffab89cfac7426bf9e31d12bcad1882006f0a3b7d7b49cb57b0f38be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f92a34716cf16bfdd4bfe6363740dc851fb5b3a42370605e0c4baff9226060a7",
-      "handover.md": "e5d3f6e09bb663834ee1c71f1c62c5727fa96b87947f17929f1605db0a426f3c"
+      "handover.md": "a4379c4c6f61d9d62118f9ccc25c545cd06417ed25cb494effeb43c60b6fb24c"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/005-closeout-and-drift-reconcile",
     "last_active_at": null

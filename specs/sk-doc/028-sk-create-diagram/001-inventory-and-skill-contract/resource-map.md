@@ -26,6 +26,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v1.1 -->
 
 # Resource Map: diagram-design source inventory
 

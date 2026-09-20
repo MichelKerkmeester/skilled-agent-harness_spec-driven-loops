@@ -179,7 +179,7 @@
     ],
     "causal_summary": "Spec — Mass-Deletion Guard for Commits and Pushes",
     "created_at": "2026-08-13T00:00:00.000Z",
-    "last_save_at": "2026-09-03T22:52:34.684Z",
+    "last_save_at": "2026-09-20T04:36:02.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,13 +188,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b8b76969d71b696e3f28a7b74c29c9c160d7c618a7f128bfde66a7305124c48",
+    "source_fingerprint": "sha256:90a443f8a6b7c18ab41575790e208224c5dd8868b1e04215482879dddb8b048a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "99e4ddd3a05529a0a4e3708101595f8ddd96db067b05e108e3c9fcebbb85be14",
-      "plan.md": "1ef822dbeccf3b1c49809850363c866d4089c88e7ef38c7e4bed02dd49c0a4d6",
-      "tasks.md": "e2c8220061fcbd66ca248fbfe36846adab3aa53611a3aa8bc2712fcdea5da874",
-      "implementation-summary.md": "6204002d5f432bbfd5f585e9ba9a0c66a0687941838bada665723705f4c1328f"
+      "spec.md": "c9b9b747d0756f2f806536e4dd6eba598b74344df747fa05c3a2dc53d2366b8e",
+      "plan.md": "3217f1c6f700e71cc0edd1b7aad943c8b3b2727c78f3c1013fc0e90e2f926198",
+      "tasks.md": "cd97d0972de08ca52a36b26d40f2f1815aebd334f5fe6e14fb1d9f6775b5d6f1",
+      "implementation-summary.md": "468719cb80f9381aea2e31885cb9de397b6adae79bdd785b84dc51b64739835b"
     },
     "last_active_child_id": null,
     "last_active_at": null

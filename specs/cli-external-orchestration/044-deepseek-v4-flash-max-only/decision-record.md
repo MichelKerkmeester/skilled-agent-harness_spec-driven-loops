@@ -13,6 +13,7 @@ _memory:
     completion_pct: 100
 trigger_phrases: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: DeepSeek V4 Flash max-thinking pin
 
 <!-- SPECKIT_LEVEL: 2 -->
