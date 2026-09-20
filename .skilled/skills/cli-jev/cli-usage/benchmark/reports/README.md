@@ -28,6 +28,7 @@ report for the captured verdict and per-scenario detail.
 
 | Executed | Folder | Trace mode | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-09-20 | [`2026-09-20-post-migration-reverification/`](./2026-09-20-post-migration-reverification/) | live, both halves (no-key rows under an isolated credential store, credential rows against the stored `official` key) | 22 PASS, 0 FAIL, 0 SKIP | **PASS** | `manual-testing-playbook` |
 | 2026-09-20 | [`2026-09-20-authenticated-verification/`](./2026-09-20-authenticated-verification/) | live, authenticated (operator `official` key in the credential store) | JEV-021 PASS in full, JEV-022 PASS; the other twenty rows unchanged | **PASS** | `manual-testing-playbook` |
 | 2026-09-20 | [`2026-09-20-phase-004-unauthenticated-pass/`](./2026-09-20-phase-004-unauthenticated-pass/) | live, unauthenticated (no provider key in the environment at run time) | 20 PASS, 0 FAIL, 2 SKIP (authenticated) | **PASS** | `manual-testing-playbook` |
 

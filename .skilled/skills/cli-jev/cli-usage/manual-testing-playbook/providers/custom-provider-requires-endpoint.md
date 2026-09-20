@@ -1,7 +1,7 @@
 ---
 title: "JEV-009 -- Custom without an endpoint exits 2 before any request"
 description: "Confirm the `custom` provider requires an endpoint and validates it before the key, for `JEV-009`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-009 -- Custom without an endpoint exits 2 before any request

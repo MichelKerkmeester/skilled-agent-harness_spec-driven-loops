@@ -1,0 +1,29 @@
+### CJ-001
+PROMPT: Use jev judgment to decide whether this incident is urgent, and give me the probability.
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"3240ebf5ec2848ba6b0a2c0fabf77f6b1b4c2b7475519154e1f7816fe3a670d2","generation":1}
+
+### CJ-002
+PROMPT: cli-jev noul for this question.
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"3240ebf5ec2848ba6b0a2c0fabf77f6b1b4c2b7475519154e1f7816fe3a670d2","generation":1}
+
+### CJ-003
+PROMPT: Summarize the open questions in this spec packet.
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"3240ebf5ec2848ba6b0a2c0fabf77f6b1b4c2b7475519154e1f7816fe3a670d2","generation":1}
+
+### CJ-003-holdout
+PROMPT: score this flavor of ice cream
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"3240ebf5ec2848ba6b0a2c0fabf77f6b1b4c2b7475519154e1f7816fe3a670d2","generation":1}
+
+### CJ-001 kill-switch control
+PROMPT: Use jev judgment to decide whether this incident is urgent, and give me the probability.
+RC: {"servingAuthority":"legacy","hubId":"cli-jev"}
+rc=0
+
+### CJ-001 judgment executed through the resolved packet
+CMD: jev noul -q "Is this incident urgent?" -s "Checkout is failing since 09:12 UTC." --value </dev/null
+0.86
+rc=0

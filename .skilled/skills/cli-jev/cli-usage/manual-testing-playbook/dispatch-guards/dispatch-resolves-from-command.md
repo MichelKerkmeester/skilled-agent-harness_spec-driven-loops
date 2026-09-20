@@ -1,7 +1,7 @@
 ---
 title: "JEV-017 -- A jev dispatch resolves to cli-jev from the command"
 description: "Confirm the dispatch audit resolves a jev judgment command to the cli-jev packet, for `JEV-017`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-017 -- A jev dispatch resolves to cli-jev from the command

@@ -1,0 +1,30 @@
+### violating-value-with-run
+CMD: jev run @request.json --value
+RC: 0
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Dispatch blocked by cli-jev hard-rule(s):\n  • [jev-value-not-with-run] Never combine `--value` with `run`. Batched requests answer several questions under caller-defined keys, so no single primary value exists; the CLI rejects the combination only after a successful billed call, which spends quota to learn a flag conflict."}}
+
+### clean-run
+CMD: jev run @request.json
+RC: 0
+OUT: <empty>
+
+### clean-noul
+CMD: jev noul -q "Is it urgent?" -s "Restore service today."
+RC: 0
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Dispatch blocked by cli-jev hard-rule(s):\n  • [jev-stdin-bounded] A judgment whose state comes from stdin (`-s -`, an omitted state flag, or `run -`) MUST feed or close stdin with `</dev/null`, a pipe, or a heredoc. Jev reads stdin to EOF by default, so an inherited terminal stdin blocks until the operator types something that never arrives, and the hang reads as a slow model rather than a deadlock."}}
+
+### inline-credential
+CMD: JEV_API_KEY=sk-live-abc jev noul -q "Is it?" -s "x"
+RC: 0
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Dispatch blocked by cli-jev hard-rule(s):\n  • [jev-stdin-bounded] A judgment whose state comes from stdin (`-s -`, an omitted state flag, or `run -`) MUST feed or close stdin with `</dev/null`, a pipe, or a heredoc. Jev reads stdin to EOF by default, so an inherited terminal stdin blocks until the operator types something that never arrives, and the hang reads as a slow model rather than a deadlock."}}
+
+### prose-mention
+CMD: echo "remember to run jev run @request.json --value later"
+RC: 0
+OUT: <empty>
+
+### unrelated-bash
+CMD: git status --short
+RC: 0
+OUT: <empty>
+

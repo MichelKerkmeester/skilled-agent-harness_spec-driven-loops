@@ -8,7 +8,7 @@ trigger_phrases:
   - "jev transport classification"
   - "jev dispatch guards"
 last_updated: "2026-09-20"
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # cli-usage: Feature Catalog

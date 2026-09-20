@@ -1,5 +1,5 @@
 {
-  "manifestHash": "67fa90e521786ae902be228aa13dbf6b55c4edf7690ced5a66b84004f98c9cf2",
+  "manifestHash": "13c18ad03d8285dd8905077dca34eeccbc526ae5ed65a47143bfd5c3662f6608",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7199,6 +7199,9 @@
     "2026 05 14 substrate wave closeout": [
       "2026-05-14 substrate wave closeout"
     ],
+    "2026 09 20 cli jev playbook re run": [
+      "2026-09-20 cli-jev playbook re-run"
+    ],
     "2026 09 20 cli jev validation": [
       "2026-09-20 cli-jev validation"
     ],
@@ -7660,6 +7663,9 @@
     ],
     "activate theme": [
       "activate theme"
+    ],
+    "activation manifest": [
+      "activation manifest"
     ],
     "activation matrix rollback plan": [
       "activation matrix rollback plan"
@@ -16646,6 +16652,9 @@
     "cli jev creation": [
       "cli-jev creation"
     ],
+    "cli jev decoupling": [
+      "cli-jev decoupling"
+    ],
     "cli jev feature catalog": [
       "cli-jev feature catalog"
     ],
@@ -16655,6 +16664,9 @@
     "cli jev hub migration": [
       "cli-jev hub migration"
     ],
+    "cli jev hub routing baseline": [
+      "cli-jev hub routing baseline"
+    ],
     "cli jev parent hub": [
       "cli-jev parent hub"
     ],
@@ -16663,6 +16675,9 @@
     ],
     "cli jev playbook run": [
       "cli-jev playbook run"
+    ],
+    "cli jev post migration re verification": [
+      "cli-jev post-migration re-verification"
     ],
     "cli jev root router": [
       "cli-jev root router"
@@ -22666,6 +22681,9 @@
     "create readme v1 1 0 0": [
       "create-readme v1.1.0.0"
     ],
+    "create readme v1 2 0 0": [
+      "create-readme v1.2.0.0"
+    ],
     "create repo rule": [
       "create repo rule"
     ],
@@ -24618,6 +24636,9 @@
     ],
     "decommissioned server tasks": [
       "decommissioned server tasks"
+    ],
+    "decouple and rewire": [
+      "decouple and rewire"
     ],
     "decoupled enrichment gauge": [
       "decoupled enrichment gauge"
@@ -29439,6 +29460,9 @@
     "dispatch name council": [
       "dispatch name council"
     ],
+    "dispatch packetpath": [
+      "dispatch packetPath"
+    ],
     "dispatch preflight": [
       "dispatch preflight"
     ],
@@ -29468,6 +29492,9 @@
     ],
     "dispatch review iteration": [
       "dispatch review iteration"
+    ],
+    "dispatch rewiring": [
+      "dispatch rewiring"
     ],
     "dispatch rule checks hermes": [
       "dispatch rule checks hermes"
@@ -37284,6 +37311,9 @@
     ],
     "generated state verification evidence": [
       "generated state verification evidence"
+    ],
+    "generated surfaces": [
+      "generated surfaces"
     ],
     "generatedocumentembedding catch swallow": [
       "generateDocumentEmbedding catch swallow"
@@ -55779,6 +55809,9 @@
     "phase children silently skipped": [
       "phase children silently skipped"
     ],
+    "phase closeout": [
+      "phase closeout"
+    ],
     "phase completion": [
       "phase completion"
     ],
@@ -56060,6 +56093,9 @@
     ],
     "phase system knowledge node": [
       "phase system knowledge node"
+    ],
+    "phase tasks": [
+      "phase tasks"
     ],
     "phase three deliverables": [
       "phase three deliverables"
@@ -60083,6 +60119,9 @@
     ],
     "readme pre publish checklist": [
       "readme pre-publish checklist"
+    ],
+    "readme problem first adr": [
+      "readme problem-first adr"
     ],
     "readme quality criteria": [
       "readme quality criteria"
@@ -64984,6 +65023,9 @@
     "roster mentions": [
       "roster mentions"
     ],
+    "roster rewiring": [
+      "roster rewiring"
+    ],
     "round 4 complete": [
       "round 4 complete"
     ],
@@ -67913,6 +67955,9 @@
     "server side tag filter": [
       "server-side tag filter"
     ],
+    "serving closure": [
+      "serving closure"
+    ],
     "serving prior snapshot": [
       "serving prior snapshot"
     ],
@@ -70214,6 +70259,9 @@
     ],
     "sk create readme playbook": [
       "sk-create-readme playbook"
+    ],
+    "sk create readme problem section decision": [
+      "sk-create-readme problem section decision"
     ],
     "sk create repo rule shape parity": [
       "sk-create-repo-rule shape parity"

@@ -8,7 +8,7 @@ expected_resources: []
 expected_workflow_mode: none
 expected_leaf_resources: []
 created: 2026-09-20
-version: 1.0.0.0
+version: 0.2.0.2
 ---
 
 # CJ-003: A request with no Jev signal resolves no mode

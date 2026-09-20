@@ -1,0 +1,34 @@
+### auth-status
+CMD: jev auth status
+{"ok": true, "stored": true, "store": "/Users/michelkerkmeester/.config/jev-cli/credentials.json"}
+rc=0
+
+### auth-status-absent-provider
+CMD: jev auth status --provider vercel
+{"ok": false, "error": "stored vercel API key is empty"}
+rc=3
+
+### auth-test
+CMD: jev auth test
+{"ok": true, "valid": true, "model": "jev-1.13.0"}
+rc=0
+
+### noul-value
+CMD: jev noul -q "Does this message express urgency?" -s "Please restore service today." --value
+0.95
+rc=0
+
+### choice
+CMD: jev choice -q "Which queue owns this?" -s @state.txt -o billing=... -o technical=...
+{"model": "jev-1.13.0", "answers": {"answer": {"type": "choice", "choice": "billing", "confidence": 0.94, "probabilities": {"billing": 0.97, "technical": 0.03}}}, "usage": {"input_tokens": 347, "output_tokens": 31}}
+rc=0
+
+### score-value
+CMD: jev score -q "How severe is this?" -s @state.txt -l "no impact" -l "degraded" -l "outage" --value
+2.0
+rc=0
+
+### noul-wrong-provider
+CMD: jev noul -q "Is it?" -s "x" --provider vercel
+{"ok": false, "error": "stored vercel API key is empty"}
+rc=3

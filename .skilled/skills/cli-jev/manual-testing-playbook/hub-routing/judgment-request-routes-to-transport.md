@@ -9,7 +9,7 @@ expected_resources:
 expected_workflow_mode: cli-usage
 expected_leaf_resources: []
 created: 2026-09-20
-version: 1.0.0.0
+version: 0.2.0.2
 ---
 
 # CJ-001: A Jev judgment request resolves cli-usage
@@ -22,4 +22,4 @@ The `jev judgment` phrase is a `cli-usage-aliases` signal, so the hub resolves `
 
 ## Success Criteria
 
-The resolved workflow mode is `cli-usage` and the loaded packet is `cli-usage/SKILL.md`. The phrase has to be one the hub vocabulary actually carries: a bare `jev` with a distant `probability` is a defer, not a route, because a multi-word detector only spans two intervening words. Now that the hub has joined the compiled serving closure the compiled-route CLI returns a route whose target is `cli-usage`, so the scenario is executed rather than SKIPped on a legacy sentinel.
+The resolved workflow mode is `cli-usage` and the loaded packet is `cli-usage/SKILL.md`. The phrase has to be one the hub vocabulary actually carries: a bare `jev` with a distant `probability` is a defer, not a route, because a multi-word detector only spans two intervening words. Now that the hub has joined the compiled serving closure the compiled-route CLI answers with a route whose target is `cli-usage` rather than the legacy sentinel, so this check reads an observed route; the verdict from its run lives in the hub's run record.

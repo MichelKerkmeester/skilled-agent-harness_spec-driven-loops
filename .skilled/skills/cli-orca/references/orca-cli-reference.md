@@ -92,6 +92,7 @@ orca worktree list --repo id:<repoId> --json
 orca worktree show --worktree <selector> --json
 orca worktree set --worktree active --comment "checkpoint" --json
 orca worktree rm --worktree id:<repoId>::<worktreePath> --force --json
+# Gated removal: the archive hook must pass and --force does not bypass it. Requirement: references/mutation-and-browser-boundaries.md §3; recovery: references/troubleshooting.md.
 ```
 
 (guide: skill-guides/orca-cli.md)
@@ -106,6 +107,7 @@ orca terminal read --terminal <handle> --json
 orca terminal send --terminal <handle> --text "continue" --enter --json
 orca terminal wait --terminal <handle> --for tui-idle --timeout-ms 300000 --json
 orca terminal close --worktree id:<repoId>::<worktreePath> --all --json
+# Bulk close is destructive: it stops every terminal in that workspace and durably drops tabs, layouts and agent-resume records. Explicit authorization, then the receipt rules in references/session-and-runtime.md; see references/mutation-and-browser-boundaries.md §3.
 ```
 
 (guide: skill-guides/orca-cli.md)

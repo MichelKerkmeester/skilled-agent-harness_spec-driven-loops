@@ -1,7 +1,7 @@
 ---
 title: "JEV-018 -- A jev mention in prose is not a dispatch"
 description: "Confirm the dispatch audit does not resolve jev text that no shell would execute, for `JEV-018`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-018 -- A jev mention in prose is not a dispatch

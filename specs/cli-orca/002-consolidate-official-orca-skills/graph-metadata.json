@@ -59,11 +59,11 @@
       ".skilled/skills/cli-orca/assets/PROVENANCE.md",
       ".skilled/skills/README.txt",
       "scratch/gate-results.md",
-      ".skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
-      ".skilled/skills/cli-orca/SKILL.md",
-      ".skilled/skills/cli-orca/graph-metadata.json",
-      ".skilled/skills/cli-orca/leaf-manifest.config.json",
-      ".skilled/skills/cli-orca/README.md"
+      "review/deep-review-state.jsonl",
+      "review/review-report.md",
+      "review/synthesis-remediation-plan.md",
+      "scratch/remediation-evidence.md",
+      "scratch/gate-results-final-review.md"
     ],
     "entities": [
       {
@@ -157,33 +157,33 @@
         "source": "derived"
       },
       {
-        "name": "skill-root-metadata-contract.md",
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "synthesis-remediation-plan.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-orca/SKILL.md",
+        "path": "review/synthesis-remediation-plan.md",
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".skilled/skills/cli-orca/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-manifest.config.json",
-        "kind": "config",
-        "path": ".skilled/skills/cli-orca/leaf-manifest.config.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
+        "name": "remediation-evidence.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-orca/README.md",
+        "path": "scratch/remediation-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-results-final-review.md",
+        "kind": "doc",
+        "path": "scratch/gate-results-final-review.md",
         "source": "derived"
       },
       {
@@ -213,7 +213,7 @@
     ],
     "causal_summary": "Move the Orca CLI subject out of the mcp-tooling parent hub into a standalone class-S skill named cli-orca, with all eight official Orca skills embedded.",
     "created_at": "2026-09-20T09:00:00Z",
-    "last_save_at": "2026-09-20T11:19:49.273Z",
+    "last_save_at": "2026-09-20T15:09:33.302Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,16 +226,16 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:cca585d0ec8449a3cf4bfb3d31d54c4a58696e96a0fb4b047b394d76581f80a7",
+    "source_fingerprint": "sha256:c6bebeac90ab2cf638be0627c97899dfa2cd97baf2d3b57ce614ccd4a3fb4274",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bb3fd8a5e769f6807794de66ec7fbeec110b1b00016ec4ab162d27b597de380c",
+      "spec.md": "d060f3154660eab2c5ca8ccee64ada144af62f96a58237cb79d2c907c44c95ef",
       "plan.md": "7df5ffac13388a5eb5d53604cb71b3343d490a8a137688fd14fa326d908fac5c",
-      "tasks.md": "f301250869fc563f9f3a5e9423ddeca2eb5cadb6717166c8eaaf3d8bc7758419",
+      "tasks.md": "0f19fdcff1df4d380339c0517f88ca9b30fcc6ea88bf5d497a33a7c76667d074",
       "decision-record.md": "c5fa572bb6fd9d42d6e8ddb197dcae0135b8e09fdcd1665d837f5372d2809570",
-      "implementation-summary.md": "9c5436cb2b923174226749c3f5bb1c94ff5154f4fd1269151331537b34d50334",
+      "implementation-summary.md": "6a8e8f153d3141b2f60c8dae011299987001b7ccec3230578486317fa2ad3c79",
       "research/research.md": "0c7829540907ece87ea4596745a4a1a8275da79d87386b483172a026d0ab1452",
-      "resource-map.md": "931d2b9fe87ef269cc42c6b899a6cce6bd381ae36a3a516df48d869af81ffa9d"
+      "resource-map.md": "e80497c2ae77ad7e252d295a9cfaf0c471704bd00d40f65efe72edbc812c9b99"
     },
     "last_active_at": null
   }

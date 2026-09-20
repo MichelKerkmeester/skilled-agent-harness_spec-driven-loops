@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "cli-jev/002-cli-jev-hub-migration"
     last_updated_at: "2026-09-20T15:35:00Z"
     last_updated_by: "orchestrator-session"
-    recent_action: "Phases 001 to 004 closed: hub live, retired wiring removed, hub serving compiled policy"
-    next_safe_action: "Run phase 005: re-run the hub and transport playbooks from the new home"
+    recent_action: "Phases 001 to 005 closed: hub serving compiled policy, both playbooks re-run from the new home"
+    next_safe_action: "Operator decision: commit the working tree, or leave it uncommitted"
     blockers: []
     key_files:
       - "specs/cli-jev/002-cli-jev-hub-migration/spec.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-002-hub-migration"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions:
       - "Whether the working tree is committed is the operator's call"
     answered_questions: []
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 3 (phased packet) |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `specs/cli-jev/` (track root) |
@@ -59,12 +59,13 @@ _memory:
 
 ### Problem Statement
 
-The jev transport packet currently sits inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose
+The jev transport packet sat inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose
 seven other modes are the CLI executors that the executor-delegation scorer enumerates from that same
 `mode-registry.json`. The transport answers one typed judgment and runs nothing, so it belongs to a different
 family: it has no executor semantics, no workspace mutation, and no reason to sit beside a roster that exists to
-dispatch work. Its spec history sits in the `cli-external-orchestration` track for the same reason, and the
-`cli-jev` track exists on disk with no metadata and no packets.
+dispatch work. Its spec history sat in the `cli-external-orchestration` track for the same reason, while the
+`cli-jev` track existed on disk with no metadata and no packets. This program closed that gap: the hub now
+lives at `.skilled/skills/cli-jev/` with `cli-usage` as its first mode, and its history at `specs/cli-jev/`.
 
 ### Purpose
 
@@ -166,7 +167,7 @@ fleet so its routing decision is served from a fresh manifest like every other h
 | 2 | `002-hub-scaffold-and-mode-migration/` | Stand up `.skilled/skills/cli-jev/` and move the packet's skill content into `cli-usage` as the hub's first transport mode | Complete |
 | 3 | `003-decouple-and-rewire/` | Remove the transport from `cli-external-orchestration` and rewire dispatch, hook tests, rosters and generated artifacts | Complete |
 | 4 | `004-compiled-fleet-onboarding/` | Register the hub in the compiled fleet: rollout child, cohort copies, manifests, admission | Complete |
-| 5 | `005-playbook-reverification-and-closeout/` | Re-run the playbook from the new home and close out with evidence | Pending |
+| 5 | `005-playbook-reverification-and-closeout/` | Re-run the playbook from the new home and close out with evidence | Complete |
 
 ### Phase Transition Rules
 

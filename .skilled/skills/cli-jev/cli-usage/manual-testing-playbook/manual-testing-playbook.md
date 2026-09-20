@@ -8,7 +8,7 @@ trigger_phrases:
   - "jev exit code checks"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # cli-usage: Manual Testing Playbook
@@ -18,7 +18,10 @@ version: 1.0.0.0
 > `jev` command, inspects the real output, and captures stdout, stderr, exit code and elapsed
 > seconds. **Exit code alone is never proof**: `jev` can exit 0 having produced a payload the caller
 > misreads, and it prints *nothing* on stdout for every failure, so each check also names the content
-> it reads. The only acceptable verdicts are PASS, FAIL, or SKIP with a specific blocker.
+> it reads. Every judgment command also closes stdin — `</dev/null`, a pipe into `jev`, or a
+> heredoc — because the dispatch preflight refuses a judgment whose state is not an unquoted inline
+> value and whose stdin is left open, and because a command that really does read stdin blocks until
+> it is fed. The only acceptable verdicts are PASS, FAIL, or SKIP with a specific blocker.
 
 > **PROVIDER BOUNDARY**: At authoring time no provider credential existed in this workspace, so the
 > scenarios whose observable needs an authenticated call were recorded as SKIP with that named
@@ -36,8 +39,9 @@ version: 1.0.0.0
 > **RESULT PERSISTENCE** (`MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT`): a scenario is only
 > recorded as executed when its command, its named provider-variable state, its streams and its exit
 > status are written down together. The run records for the playbook live in
-> `../benchmark/reports/` — the unauthenticated pass and the authenticated verification that closed
-> the two credential rows — and this file does not restate their verdicts so the three cannot drift.
+> `../benchmark/reports/` — the unauthenticated pass, the authenticated verification that closed the
+> two credential rows, and the post-migration re-verification that re-ran all 22 from the mode's new
+> home — and this file does not restate their verdicts, so the two cannot drift.
 
 ---
 
@@ -106,9 +110,14 @@ a provider key present that the row did not name is not reproducible and is reco
 
 ## 4. RUN RECORD
 
-The recorded runs live under `../benchmark/reports/`: the phase-004 unauthenticated pass, and the
-authenticated verification that closed the two credential rows. Their verdicts and per-scenario
-evidence are there; this file does not restate them, so they cannot drift.
+The recorded runs live under `../benchmark/reports/`: the phase-004 unauthenticated pass, the
+authenticated verification that closed the two credential rows, and the post-migration
+re-verification. Their verdicts and per-scenario evidence are there; this file does not restate
+them, so they cannot drift.
+
+| Run | Date | Scenarios | Verdict | Report |
+|---|---|---|---|---|
+| post-migration re-verification | 2026-09-20 | JEV-001 … JEV-022 | 22 PASS, 0 FAIL, 0 SKIP | [`2026-09-20-post-migration-reverification/`](../benchmark/reports/2026-09-20-post-migration-reverification/) |
 
 The gateway-key question lives in [providers-and-models.md](../references/providers-and-models.md)
 §4: the operator's existing gateway credential is not a Jev credential under any provider, the

@@ -1,7 +1,7 @@
 ---
 title: "JEV-020 -- The server answers a handshake and claims four tools"
 description: "Confirm `jev-mcp` completes a stdio handshake and lists exactly four tools, for `JEV-020`."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # JEV-020 -- The server answers a handshake and claims four tools

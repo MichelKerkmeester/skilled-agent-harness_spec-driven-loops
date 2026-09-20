@@ -93,6 +93,8 @@ Routing notes:
 - Prefer condition-based waits over fixed sleeps (guide: `skill-guides/orca-cli/references/browser.md`).
 - Browser commands default to the current worktree and its active tab. `--worktree all` is for intentional reads only, and mutating verbs run unscoped under it (guide: `skill-guides/orca-cli/references/browser.md`, guide: `skill-guides/orca-emulator.md`).
 
+The routing vocabulary and the ownership matrix are stated canonically in [SKILL.md](../SKILL.md); the browser matrix above expands that statement for this context.
+
 ---
 
 ## 5. UNTRUSTED CONTENT RULES

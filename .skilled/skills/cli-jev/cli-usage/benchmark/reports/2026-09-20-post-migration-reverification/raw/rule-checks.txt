@@ -1,0 +1,28 @@
+✔ parses the flat hard_rules list from real SKILL.md frontmatter (1.839958ms)
+✔ CI GUARD: every declared check id maps to a known check (a typo fails loudly) (1.557042ms)
+✔ stdin-redirect-required covers every headless CLI shape, not just opencode run (0.534917ms)
+✔ availability checks pass for a resolvable binary and never refuse without PATH (0.124958ms)
+✔ AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof) (0.459625ms)
+✔ other checks discriminate correctly (0.255417ms)
+✔ every runtime with a preflight adapter has it registered (0.420625ms)
+✔ pi dispatches need --offline and a provider-qualified model (0.259291ms)
+✔ predicate bypasses: equals-form flags and unquoted slash prompts are caught (0.167542ms)
+✔ hermes headless shapes need stdin handled: --query-file counts, a bare -q does not (0.090833ms)
+✔ hermes rules discriminate on the flags the packet contract pins (0.676416ms)
+✔ fail-open: a check that throws never produces a violation (0.070291ms)
+✔ parseHardRules returns [] for frontmatter without the key or malformed input (0.043084ms)
+✔ severity maps error and block to a blocking violation; anything else advises (0.047458ms)
+✔ every runtime dispatch shape resolves to its skill (mutation-proof) (0.620708ms)
+✔ a dispatch is resolved from the command, not from text that merely contains one (1.799916ms)
+✔ ENFORCEMENT GUARD: every check names a command it accepts and one it refuses (1.012959ms)
+✔ a jev dispatch is governed from the command, and mentions of it are not (0.202625ms)
+✔ ENFORCEMENT GUARD: every cli packet declares at least one rule (0.977125ms)
+✔ ENFORCEMENT GUARD: declared checks and implemented checks are a bijection (0.885375ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 63.99175

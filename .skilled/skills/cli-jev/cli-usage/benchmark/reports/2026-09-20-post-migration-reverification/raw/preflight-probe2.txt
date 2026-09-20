@@ -1,0 +1,60 @@
+### quoted-state-no-close
+CMD: jev noul -q "Is it urgent?" -s "Restore service today."
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Dispatch blocked by cli-jev hard-rule(s):\n  • [jev-stdin-bounded] A judgment whose state comes from stdin (`-s -`, an omitted state flag, or `run -`) MUST feed or close stdin with `</dev/null`, a pipe, or a heredoc. Jev reads stdin to EOF by default, so an inherited terminal stdin blocks until the operator types something that never arrives, and the hang reads as a slow model rather than a deadlock."}}
+
+### quoted-state-with-close
+CMD: jev noul -q "Is it urgent?" -s "Restore service today." </dev/null
+OUT: <approved>
+
+### unquoted-at-file
+CMD: jev noul -q "Is it urgent?" -s @state.txt
+OUT: <approved>
+
+### dash-state-no-close
+CMD: jev noul -q "Is it urgent?" -s -
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Dispatch blocked by cli-jev hard-rule(s):\n  • [jev-stdin-bounded] A judgment whose state comes from stdin (`-s -`, an omitted state flag, or `run -`) MUST feed or close stdin with `</dev/null`, a pipe, or a heredoc. Jev reads stdin to EOF by default, so an inherited terminal stdin blocks until the operator types something that never arrives, and the hang reads as a slow model rather than a deadlock."}}
+
+### dash-state-with-close
+CMD: jev noul -q "Is it urgent?" -s - </dev/null
+OUT: <approved>
+
+### run-dash-no-close
+CMD: jev run -
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Dispatch blocked by cli-jev hard-rule(s):\n  • [jev-stdin-bounded] A judgment whose state comes from stdin (`-s -`, an omitted state flag, or `run -`) MUST feed or close stdin with `</dev/null`, a pipe, or a heredoc. Jev reads stdin to EOF by default, so an inherited terminal stdin blocks until the operator types something that never arrives, and the hang reads as a slow model rather than a deadlock."}}
+
+### choice-one-option
+CMD: jev choice -q "Which queue?" -s @state.txt -o only=the only option
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Dispatch blocked by cli-jev hard-rule(s):\n  • [jev-choice-option-cardinality] A `jev choice` dispatch MUST pass at least two `-o KEY=DESCRIPTION` options. The CLI accepts a single option, but one option is not a choice: the answer is a foregone conclusion, and the model bills for a decision nobody made. The MCP tool refuses the same input at two."}}
+
+### score-one-level
+CMD: jev score -q "How severe?" -s @state.txt -l only
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Dispatch blocked by cli-jev hard-rule(s):\n  • [jev-score-level-cardinality] A `jev score` dispatch MUST pass at least two `-l DESCRIPTION` levels. The CLI accepts a single level, but one level is not a scale, and the returned zero-based position carries no information. The MCP tool refuses the same input at two."}}
+
+### custom-no-endpoint
+CMD: jev noul -q "Is it?" -s @state.txt --provider custom
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"Dispatch blocked by cli-jev hard-rule(s):\n  • [jev-custom-endpoint-required] A `--provider custom` judgment MUST pass `--endpoint <url>` or carry `JEV_ENDPOINT` in the command's environment. Without one the CLI exits 2 before any request, and the endpoint it does receive is sent the `JEV_API_KEY` bearer, so use a trusted HTTPS origin only."}}
+
+### inline-credential
+CMD: TYPESAFE_API_KEY=sk-live-abc jev noul -q "Is it?" -s @state.txt </dev/null
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","additionalContext":"⚠ cli-jev dispatch hard-rule advisory:\n  • [jev-no-inline-credential] Never put an API key literal on a jev command line (`TYPESAFE_API_KEY=... jev ...`). Shell history, process arguments and transcripts all retain it. Export the variable for the session, pipe it to `jev auth set` once, or let the credential store supply it."}}
+
+### mcp-nonloopback
+CMD: jev-mcp --host 0.0.0.0
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","additionalContext":"⚠ cli-jev dispatch hard-rule advisory:\n  • [jev-mcp-host-only] Never run `jev-mcp` from a shell. Its stdin and stdout carry MCP protocol frames, so a hand-started server writes JSON-RPC into the transcript and answers nothing. Start it only from an MCP host configuration, and read `references/mcp-server.md` for the block."}}
+
+### choice-two-options
+CMD: jev choice -q "Which queue?" -s @state.txt -o a=first -o b=second
+OUT: <approved>
+
+### score-two-levels
+CMD: jev score -q "How severe?" -s @state.txt -l low -l high
+OUT: <approved>
+
+### custom-with-endpoint
+CMD: jev noul -q "Is it?" -s @state.txt --provider custom --endpoint https://127.0.0.1:1/v1/systemone
+OUT: <approved>
+
+### mcp-loopback
+CMD: jev-mcp
+OUT: {"hookSpecificOutput":{"hookEventName":"PreToolUse","additionalContext":"⚠ cli-jev dispatch hard-rule advisory:\n  • [jev-mcp-host-only] Never run `jev-mcp` from a shell. Its stdin and stdout carry MCP protocol frames, so a hand-started server writes JSON-RPC into the transcript and answers nothing. Start it only from an MCP host configuration, and read `references/mcp-server.md` for the block."}}
+

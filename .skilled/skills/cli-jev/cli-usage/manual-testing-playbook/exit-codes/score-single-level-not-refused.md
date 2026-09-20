@@ -1,7 +1,7 @@
 ---
 title: "JEV-013 -- A single-level score is not refused by the CLI"
 description: "Confirm the CLI does not enforce a two-level minimum for `score`, for `JEV-013`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-013 -- A single-level score is not refused by the CLI

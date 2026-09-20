@@ -9,7 +9,7 @@ trigger_phrases:
   - "typesafe jev mcp"
 importance_tier: "important"
 contextType: "reference"
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # Jev MCP Server

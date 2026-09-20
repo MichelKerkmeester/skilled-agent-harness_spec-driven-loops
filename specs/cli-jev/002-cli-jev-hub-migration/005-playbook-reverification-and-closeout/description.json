@@ -1,18 +1,22 @@
 {
   "level": "1",
   "specFolder": "cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "The migration moved the transport, decoupled the old hub, and onboarded the new one to compiled serving, but it never executed the thing those changes",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "migration",
+    "moved",
+    "transport",
+    "decoupled",
+    "old",
+    "hub",
+    "onboarded",
+    "new",
+    "one",
+    "compiled",
+    "serving",
+    "never"
   ],
-  "lastUpdated": "2026-09-20T11:06:03.466Z",
+  "lastUpdated": "2026-09-20T14:45:46Z",
   "specId": "005",
   "folderSlug": "playbook-reverification-and-closeout",
   "parentChain": [

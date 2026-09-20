@@ -1,5 +1,5 @@
 {
-  "corpusHash": "804c907bd09c232ea9c2967a0f61635d52b50838effd3957204986b1fa6889ff",
+  "corpusHash": "daee28650ca48e9c6deb2a7597ee5af79487fddd179cbe96cc42651aea0be059",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22164,
+  "includedPathCount": 22246,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -1564,13 +1564,16 @@
     ".skilled/skills/cli-jev/ROUTER.md",
     ".skilled/skills/cli-jev/SKILL.md",
     ".skilled/skills/cli-jev/benchmark/README.md",
+    ".skilled/skills/cli-jev/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
     ".skilled/skills/cli-jev/changelog/v0.1.0.0.md",
+    ".skilled/skills/cli-jev/changelog/v0.2.0.0.md",
     ".skilled/skills/cli-jev/cli-usage/README.md",
     ".skilled/skills/cli-jev/cli-usage/SKILL.md",
     ".skilled/skills/cli-jev/cli-usage/assets/question-shaping-card.md",
     ".skilled/skills/cli-jev/cli-usage/benchmark/README.md",
     ".skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-authenticated-verification/skill-benchmark-report.md",
     ".skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-phase-004-unauthenticated-pass/skill-benchmark-report.md",
+    ".skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/skill-benchmark-report.md",
     ".skilled/skills/cli-jev/cli-usage/benchmark/reports/README.md",
     ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.0.0.md",
     ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.1.0.md",
@@ -6172,6 +6175,7 @@
     ".skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.1.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/self-explanatory-folder-stays-unchanged.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/skill-readme.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/evidence-and-shape/code-folder-navigation-shape.md",
@@ -6222,6 +6226,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.2.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
@@ -8642,6 +8647,15 @@
     "specs/cli-orca/002-consolidate-official-orca-skills/plan.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/research/research.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/resource-map.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/.skilled/skills/cli-jev/changelog/v0.2.0.0.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/implementation-summary.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/plan.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/spec.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/tasks.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/goal.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/spec.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/goal.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/spec.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/goal.md",
@@ -8651,12 +8665,74 @@
     "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/tasks.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/goal.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/spec.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.claude/agents/orchestrate.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.claude/agents/prompt-improver.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.pi/agents/orchestrate.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.pi/agents/prompt-improver.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/agents/orchestrate.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/agents/prompt-improver.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/README.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/ROUTER.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/SKILL.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/changelog/v0.1.0.0.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/shared/references/core-standards.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/changelog/v1.2.0.0.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/cli-jev/001-cli-jev-creation/spec.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/spec.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/acceptance-criteria.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/implementation-summary.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/plan.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/spec.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/tasks.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/.skilled/skills/cli-external-orchestration/README.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/.skilled/skills/cli-external-orchestration/SKILL.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/goal.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/implementation-summary.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/plan.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/spec.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/tasks.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-doc/056-sk-create-readme-writing-style/acceptance-criteria.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-doc/056-sk-create-readme-writing-style/implementation-summary.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-doc/056-sk-create-readme-writing-style/plan.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/4/content/.skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/4/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/4/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/implementation-summary.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/4/content/specs/cli-jev/002-cli-jev-hub-migration/spec.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/.skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/.skilled/skills/sk-doc/sk-create-readme/changelog/v1.2.0.0.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/README.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/acceptance-criteria.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/decision-record.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/implementation-summary.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/plan.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/spec.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/tasks.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/deep-review-dashboard.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/deep-review-strategy.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-001.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-002.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-003.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-004.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-005.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-1.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-2.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-3.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-4.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-5.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/synthesis.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/review-report.md",
+    "specs/cli-orca/002-consolidate-official-orca-skills/review/synthesis-remediation-plan.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/spec.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/tasks.md",
     "specs/hooks/001-hook-docs-relocation/decision-record.md",
@@ -11120,6 +11196,12 @@
     "specs/sk-doc/055-governance-doc-alignment/plan.md",
     "specs/sk-doc/055-governance-doc-alignment/spec.md",
     "specs/sk-doc/055-governance-doc-alignment/tasks.md",
+    "specs/sk-doc/056-sk-create-readme-writing-style/acceptance-criteria.md",
+    "specs/sk-doc/056-sk-create-readme-writing-style/decision-record.md",
+    "specs/sk-doc/056-sk-create-readme-writing-style/implementation-summary.md",
+    "specs/sk-doc/056-sk-create-readme-writing-style/plan.md",
+    "specs/sk-doc/056-sk-create-readme-writing-style/spec.md",
+    "specs/sk-doc/056-sk-create-readme-writing-style/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -22186,7 +22268,7 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "67fa90e521786ae902be228aa13dbf6b55c4edf7690ced5a66b84004f98c9cf2",
+  "manifestHash": "13c18ad03d8285dd8905077dca34eeccbc526ae5ed65a47143bfd5c3662f6608",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -22721,6 +22803,74 @@
     },
     {
       "path": "specs/cli-orca/001-mcp-orca-cli/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-external-orchestration/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/mcp-tooling/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-design/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-doc/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-git/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-deep-loop/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-skill-advisor/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-speckit/026-graph-and-context-optimization/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/cli-external-orchestration/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/mcp-tooling/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-design/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-doc/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-git/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-deep-loop/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-skill-advisor/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-speckit/026-graph-and-context-optimization/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -23729,6 +23879,10 @@
     },
     {
       "path": "specs/sk-doc/055-governance-doc-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/056-sk-create-readme-writing-style/scratch",
       "reason": "excluded directory"
     },
     {

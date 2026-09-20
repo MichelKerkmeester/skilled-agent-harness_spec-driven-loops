@@ -1,7 +1,7 @@
 ---
 title: "JEV-005 -- An unreadable state file exits 2"
 description: "Confirm the `@path` state form fails at exit 2 when the file cannot be read, for `JEV-005`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-005 -- An unreadable state file exits 2

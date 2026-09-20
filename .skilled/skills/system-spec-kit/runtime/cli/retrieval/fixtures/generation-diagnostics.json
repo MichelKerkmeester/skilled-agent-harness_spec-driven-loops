@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7264,
-    "ok": 11209,
+    "missing-frontmatter": 7290,
+    "ok": 11265,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22164,
+  "documentsScanned": 22246,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "67fa90e521786ae902be228aa13dbf6b55c4edf7690ced5a66b84004f98c9cf2",
+  "manifestHash": "13c18ad03d8285dd8905077dca34eeccbc526ae5ed65a47143bfd5c3662f6608",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27318,
+      "ok": 27334,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -8511,6 +8511,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/cli-jev/changelog/v0.1.0.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-jev/changelog/v0.2.0.0.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -30935,6 +30941,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.3.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -39546,6 +39558,96 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/.skilled/skills/cli-jev/changelog/v0.2.0.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.claude/agents/orchestrate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.claude/agents/prompt-improver.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.pi/agents/orchestrate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.pi/agents/prompt-improver.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/agents/orchestrate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/agents/prompt-improver.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/changelog/v0.1.0.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/.skilled/skills/cli-external-orchestration/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/4/content/.skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/.skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -39565,6 +39667,24 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-1.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -39572,6 +39692,42 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/synthesis.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/synthesis-remediation-plan.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -69991,6 +70147,74 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-external-orchestration/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/mcp-tooling/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-design/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-doc/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-git/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-deep-loop/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-skill-advisor/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-speckit/026-graph-and-context-optimization/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/cli-external-orchestration/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/mcp-tooling/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-design/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-doc/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-git/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-deep-loop/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-skill-advisor/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-speckit/026-graph-and-context-optimization/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/scratch",
       "reason": "excluded directory"
     },
@@ -70996,6 +71220,10 @@
     },
     {
       "path": "specs/sk-doc/055-governance-doc-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/056-sk-create-readme-writing-style/scratch",
       "reason": "excluded directory"
     },
     {

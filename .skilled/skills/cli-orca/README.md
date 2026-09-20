@@ -57,6 +57,8 @@ The package is organized around the four leaf roots declared in `leaf-manifest.c
 
 **Negative holdouts** are the requests that look adjacent but belong elsewhere: generic worktree and branch work (`sk-git`), ordinary shell terminals (the normal coding workflow), Chrome or Chromium CDP work (`mcp-chrome-devtools`), generic agentic browser work (`mcp-aside-devtools`) and supervised multi-agent coordination (the official `orchestration` skill). An unrelated `OpenOrca` model label gets no Orca route at all. The manual testing playbook records these as fixtures.
 
+The routing vocabulary and the ownership matrix are stated canonically in [SKILL.md](SKILL.md); the summaries on this page orient the reader and never override it.
+
 Two collisions are worth keeping straight. `orca-linear` and `linear-tickets` are skill names, not CLI namespaces, and every command still runs as `orca linear`. The local `cli-external-orchestration` hub dispatches external CLI executors, which is a different thing from the official `orchestration` skill that coordinates supervised Orca workers.
 
 ---

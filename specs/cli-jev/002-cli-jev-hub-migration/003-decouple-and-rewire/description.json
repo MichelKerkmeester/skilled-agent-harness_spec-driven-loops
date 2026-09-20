@@ -1,18 +1,22 @@
 {
   "level": "1",
   "specFolder": "cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "After phase 002 two registries named one packet and the enforcement chain still read the retired path: `dispatch-audit.mjs` resolved the packet `SKILL",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "after",
+    "phase",
+    "002",
+    "two",
+    "registries",
+    "named",
+    "one",
+    "packet",
+    "enforcement",
+    "chain",
+    "still",
+    "read"
   ],
-  "lastUpdated": "2026-09-20T11:06:03.455Z",
+  "lastUpdated": "2026-09-20T14:45:46Z",
   "specId": "003",
   "folderSlug": "decouple-and-rewire",
   "parentChain": [
