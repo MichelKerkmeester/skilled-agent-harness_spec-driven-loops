@@ -1,0 +1,29 @@
+cli-claude-code  pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt 7913 chars>
+cli-codex        pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt 7926 chars>
+cli-cursor       pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt 8013 chars>
+cli-devin        pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt 7926 chars>
+cli-hermes       pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt 8358 chars>
+cli-jev          pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt 8279 chars>
+cli-opencode     pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt 8605 chars>
+cli-pi           pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt 8019 chars>
+
+dispatching 8 job(s), 3 at a time, 25m timeout each
+
+[w1] start  cli-claude-code
+[w2] start  cli-codex
+[w3] start  cli-cursor
+[w1] done   cli-claude-code  status=0 signal=null 231s stdout=1954B -> specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/claude-code.log
+[w1] start  cli-devin
+[w3] done   cli-cursor       status=0 signal=null 419s stdout=1994B -> specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/cursor.log
+[w3] start  cli-hermes
+[w2] done   cli-codex        status=0 signal=null 490s stdout=1990B -> specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/codex.log
+[w2] start  cli-jev
+[w1] done   cli-devin        status=0 signal=null 272s stdout=2445B -> specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/devin.log
+[w1] start  cli-opencode
+[w1] done   cli-opencode     status=0 signal=null 496s stdout=1933B -> specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/opencode.log
+[w1] start  cli-pi
+[w2] done   cli-jev          status=0 signal=null 873s stdout=2307B -> specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/jev.log
+[w1] done   cli-pi           status=0 signal=null 476s stdout=2192B -> specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/pi.log
+[w3] done   cli-hermes       status=0 signal=null 1410s stdout=2290B -> specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/hermes.log
+
+summary: 8/8 exited 0

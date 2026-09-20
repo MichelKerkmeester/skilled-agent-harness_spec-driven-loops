@@ -1,0 +1,36 @@
+# child: cli-hermes
+# command: pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt>
+# model: glm-5.3-flash  effort: high  sandbox: workspace-write
+# invocationFingerprint: inv:2bc7a24ea70d1ca6f5772173b5c716c05456ee704bc312a0dfa4e469cd1e0337
+# executableVersion: sha256:a7c29b72044cb7e03b026424b59a177133ae95dbbd7d12f9421be811e8e2eeac
+# promptPath: specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/prompts/hermes.md
+# timeoutMs: 1500000  durationMs: 1409934  timedOut: false
+# exitStatus: 0  signal: null
+# stdoutBytes: 2290  stderrBytes: 0
+
+────── STDOUT ──────
+All three verification requirements pass from the final state:
+
+1. **Validator**: `✅ VALID: .skilled/skills/cli-external-orchestration/cli-hermes/README.md`, `Total issues: 0`, exit 0.
+2. **Numbering**: `## 5. STRUCTURE` stays 5, sequence runs 1..9 with no gaps, no renumbering performed (contract rule 3: file already had the section).
+3. **Diff**: purely additive, `13 insertions(+)`, `0 deletions(-)`, only the tree block and the table rows changed; no prose touched.
+
+```text
+BINDING: command=/create:readme
+BINDING: target=.skilled/skills/cli-external-orchestration/cli-hermes/README.md
+BINDING: output=.skilled/skills/cli-external-orchestration/cli-hermes/README.md
+BINDING: template=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+BINDING: mode=AUTONOMOUS
+BINDING: specFolder=specs/cli-external-orchestration/075-cli-runtime-readme-refresh
+STATUS=OK PATH=.skilled/skills/cli-external-orchestration/cli-hermes/README.md
+DQI=96
+TEMPLATE=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+CHECKS=validate_document.py(VALID,exit0), grep ^## headings(1..9 sequential), git diff --stat(13+/0-, additive), diff content review(additive-only), folder inventory cross-check(find)
+NOTES=This file already had ## 5. STRUCTURE, so per contract rule 3 I made only the two named changes: added feature-catalog/ plus its six on-disk entries (feature-catalog.md, dispatch-guards/, fanout-dispatch/, hub-registration/, prompt-contract/, runtime-surface/) to the existing tree, and appended six matching rows to the existing Path|Purpose table. Insertion points chosen so changelog/ keeps its terminal `-- connector and every pre-existing line is byte-identical (0 deletions). All role clauses are grounded in the feature-catalog files' own names/content read on disk, no invented behavior. Growth is +13 lines, slightly under the +15 aim, correct for a file that already had the section. Read-only defect observed elsewhere, not touched: manual-testing-playbook/manual-testing-playbook.md §19 line 337 states "No feature-catalog/ package exists for cli-hermes", which is now false on disk.
+SECTIONS=1. OVERVIEW, 2. QUICK START, 3. FEATURES, 4. REQUIREMENTS, 5. STRUCTURE, 6. CONFIGURATION, 7. USAGE EXAMPLES, 8. TROUBLESHOOTING, 9. RELATED RESOURCES
+LINES=13/0
+```
+
+
+────── STDERR ──────
+(empty)

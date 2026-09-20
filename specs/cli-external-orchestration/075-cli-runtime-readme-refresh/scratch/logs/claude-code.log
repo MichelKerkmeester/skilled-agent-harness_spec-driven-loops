@@ -1,0 +1,38 @@
+# child: cli-claude-code
+# command: pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt>
+# model: glm-5.3-flash  effort: high  sandbox: workspace-write
+# invocationFingerprint: inv:d54cea1631bfbd4b05b04285b346b39a31d267e7be8b095b1a361214b04f9568
+# executableVersion: sha256:a7c29b72044cb7e03b026424b59a177133ae95dbbd7d12f9421be811e8e2eeac
+# promptPath: specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/prompts/claude-code.md
+# timeoutMs: 1500000  durationMs: 230688  timedOut: false
+# exitStatus: 0  signal: null
+# stdoutBytes: 1954  stderrBytes: 0
+
+────── STDOUT ──────
+All three verification requirements pass:
+
+1. **Validator**: `✅ VALID:` with `Total issues: 0`, exit 0
+2. **Numbering**: `## 1.` through `## 10.` sequential, no gaps or duplicates
+3. **Diff**: `39 insertions(+), 5 deletions(-)` — the 5 deletions are exactly the five H2 lines that had to be renumbered; no prose removed or reworded
+
+```text
+BINDING: command=/create:readme
+BINDING: target=.skilled/skills/cli-external-orchestration/cli-claude-code/README.md
+BINDING: output=.skilled/skills/cli-external-orchestration/cli-claude-code/README.md
+BINDING: template=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+BINDING: mode=AUTONOMOUS
+BINDING: specFolder=specs/cli-external-orchestration/075-cli-runtime-readme-refresh
+STATUS=OK PATH=.skilled/skills/cli-external-orchestration/cli-claude-code/README.md
+DQI=100
+TEMPLATE=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+CHECKS=validate_document.py(VALID,0 issues,exit 0), grep '^## '(1..10 sequential), git diff --stat(39+/5-), git diff(read, additive only)
+NOTES=Directory tree includes the five immediate subdirectories with comment roles; roles for reference/asset files reuse the purposes already published in this README's RELATED DOCUMENTS table and SKILL.md §2 ALWAYS-load notes ("always loaded"). benchmark/ and changelog/ are not described in SKILL.md or references/, so their tree-comment roles use the shortest safe wording grounded in direct disk observation (benchmark README + reports; one changelog file per release version). manual-testing-playbook/ role grounded in README §9 VERIFICATION prose and on-disk scenario folders.
+SECTIONS=1. AT A GLANCE, 2. OVERVIEW, 3. QUICK START, 4. HOW IT WORKS, 5. STRUCTURE, 6. INTEGRATION & NAVIGATION, 7. TROUBLESHOOTING, 8. FAQ, 9. VERIFICATION, 10. RELATED DOCUMENTS
+LINES=39/5
+```
+
+Worked, not committed: the edit sits as an uncommitted change in the worktree; committing and pushing is the operator's call.
+
+
+────── STDERR ──────
+(empty)
