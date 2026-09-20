@@ -7,7 +7,7 @@ trigger_phrases:
   - "jev answer shapes"
 importance_tier: "important"
 contextType: "reference"
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # Judgment primitives

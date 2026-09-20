@@ -23,7 +23,7 @@ This packet dissolves the hub membership and promotes the subject into a standal
 
 **Key Decisions**: classify the new root as class S (no registry, no router, no description.json), delete the 292 MB repository copy that lived inside the skill tree, embed each official skill as an authored reference plus a verbatim snapshot, dispatch research and writing work to external read-only workers, and keep the class-S package shape from the sk-create-skill templates.
 
-**Current implementation state**: reopened after closure on the operator's instruction, so that a deep review of the shipped skill, the remediation it justifies and the playbook run can be recorded as evidence. The extraction itself is complete: the snapshot copy was removed with a verified equivalent, the research wave returned three cited reports, the hub runs at nine aligned modes, and the skill corpus, packet move, fleet catalog updates and sixteen-gate close-out suite all passed.
+**Current implementation state**: complete, after a post-closure review cycle recorded on the operator's instruction. The extraction stands: the snapshot copy was removed with a verified equivalent, the research wave returned three cited reports, the hub runs at nine aligned modes, and the skill corpus, packet move, fleet catalog updates and sixteen-gate close-out suite all passed. The cycle added five recorded review iterations, a fresh-context synthesis fix list, seven applied remediations and a full playbook run; the gate suite still reports zero failing gates, and the playbook's runtime wave is recorded as skipped against a named environment blocker, so no release recommendation is claimed.
 
 **Critical Dependencies**: the vendored Orca snapshot at `specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main`, the sk-create-skill class-S contract, the mcp-tooling hub invariants, and the system-spec-kit strict validator.
 
@@ -38,7 +38,7 @@ This packet dissolves the hub membership and promotes the subject into a standal
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Packet role** | Migration and upgrade record for the new cli-orca skill |

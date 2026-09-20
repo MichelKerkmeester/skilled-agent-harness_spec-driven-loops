@@ -1,0 +1,84 @@
+
+ RUN  v5.0.1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > matchDispatchShape > recognizes an opencode run dispatch 1ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > matchDispatchShape > recognizes a claude -p / --print dispatch 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > matchDispatchShape > does not expose prose or quoted payloads as direct matches 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > matchDispatchShape > records a quote-safe command-position executor as a direct dispatch 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > matchDispatchShape > fast-exits non-dispatch bash commands 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > matchDispatchShape > fast-exits non-string or empty input without throwing 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > direct OpenCode 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > direct Claude 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > direct Codex 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > direct Devin 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > direct Cursor 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > direct Pi 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > transparent env wrapper 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > prose payload 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > echo payload 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > quoted prose 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > quote-safe executor 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > quote-safe path executor 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > quoted executor without print flag 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > bare executor without print flag 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > bare pi subcommand 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > bare pi flagless run 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > stray print flag in unrelated segment 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > quoted executor as an argument stays prose 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > variable executor 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > alias-shaped command 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > command substitution 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > quoted command substitution 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > unknown wrapper 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > variable prompt 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > two dispatch segments 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > unsupported redirection without dispatch 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > pipeline without dispatch 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > heredoc without dispatch 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > unbalanced non-dispatch quote 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > inspects a dispatch segment without borrowing a match from another segment 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > inspectDispatch > bounds malformed and overlong input without throwing 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > DISPATCH_SHAPES > exposes the skill + packetPath pairs the preflight lint twin resolves SKILL.md from 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > DISPATCH_SHAPES > resolves every shape to a SKILL.md that exists, because a missing one fails open 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > DISPATCH_SHAPES > recognizes each external CLI print-mode dispatch and ignores non-dispatch bash 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > extractDispatchMeta > parses --model and --agent flags from the command text 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > extractDispatchMeta > reads duration/exit hints from an opaque metadata object, defensively 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > extractDispatchMeta > computes outputBytes from outputText when present 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > extractDispatchMeta > degrades every field to null when metadata is missing entirely 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > extractDispatchMeta > never throws on a non-string command or a malformed meta object 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > extractDispatchMeta > does not misreport a null exitCode as 0 when a later candidate holds the real value 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > extractDispatchMeta > does not misreport a null durationMs as 0 when a later candidate holds the real value 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > extractDispatchMeta > still falls through to null when every duration/exit candidate is null or undefined 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > produces exactly one parseable JSON line with the expected fields 1ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > truncates a multi-KB command to the fixed cap and marks it truncated 1ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > leaves embedded newlines inside a single valid JSON line (no raw line breaks in the file) 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > scrubs secret-shaped flags, env assignments, bearer tokens, and provider key prefixes 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > degrades to null on an unserializable record rather than throwing 6ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > handles an empty/non-string command without throwing 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > scrubs lowercase and camelCase secret-named env-var assignments 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > scrubs underscore-delimited live/test provider key formats 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > scrubs a quoted multi-word secret flag value in full 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > scrubs a secret-shaped model field before serialization 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > scrubs a quoted multi-word env-assignment secret value in full 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > scrubs a colon-form header credential (x-api-key: <value>) 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > scrubs an Authorization: Basic <b64> header alongside the existing Bearer form 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > scrubs a bare Authorization header value with no Bearer/Basic scheme 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > scrubs a bare PEM private-key block with no surrounding keyword 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > scrubs a bare JWT with no surrounding keyword 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > truncates an oversized target field before serialization 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > buildAuditLine > leaves a normal short model/target field untouched 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > appendAuditLog > writes exactly one parseable JSONL line to a fresh log 2ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > appendAuditLog > rotates the primary log to a .1 backup once the size cap is reached 28ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > appendAuditLog > is fail-open: an unwritable log path returns false without throwing 1ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > appendAuditLog > returns false for empty/invalid inputs without throwing 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > isAuditDisabled > is true only when the kill-switch env var is exactly "1" 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > recordDispatch > matches a dispatch and writes one audit line end-to-end 1ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > recordDispatch > returns false and writes nothing for a non-dispatch command 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > recordDispatch > honors the kill-switch env var as a full no-op 0ms
+ ✓ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > recordDispatch > never throws even when the log path is unwritable 1ms
+
+ Test Files  1 passed (1)
+      Tests  75 passed (75)
+   Start at  16:13:50
+   Duration  159ms (tests 53%, transform 22%, import 21%, worker 3%)
+

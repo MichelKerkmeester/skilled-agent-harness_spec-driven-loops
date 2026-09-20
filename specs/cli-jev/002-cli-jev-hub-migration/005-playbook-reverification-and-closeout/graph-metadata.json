@@ -15,14 +15,14 @@
       "problem statement",
       "requirements and scope",
       "success criteria",
+      "playbook re-verification",
+      "cli-jev closeout",
       "implementation plan",
       "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "execution phases",
+      "quality gates",
+      "phase tasks",
+      "task ledger"
     ],
     "key_topics": [
       "feature",
@@ -33,19 +33,20 @@
       "scope",
       "success",
       "criteria",
-      "implementation",
-      "plan",
-      "technical",
-      "approach"
+      "playbook",
+      "re-verification",
+      "cli-jev",
+      "closeout"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/cli-jev/cli-usage/README.md"
     ],
     "entities": [
       {
@@ -79,6 +80,12 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-jev/cli-usage/README.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -109,7 +116,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,7 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Observe",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -145,18 +158,6 @@
         "source": "derived"
       },
       {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -169,33 +170,33 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "goal.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "quarantine",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The migration moved the transport, decoupled the old hub, and onboarded the new one to compiled serving, but it never executed the thing those changes exist to protect: the mode's own playbook",
     "created_at": "2026-09-20T11:00:14Z",
-    "last_save_at": "2026-09-20T11:06:03.639Z",
+    "last_save_at": "2026-09-20T14:57:56.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:93a293ae62ff07e127896ea217ca1daaf1237d32c10ebafc505dce43dfd330a2",
+    "source_fingerprint": "sha256:3deadc9234512afaba3358ade147a646d20ce526359924921c4474d18a280711",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca519361eb6b6b8c6219231dd2bd39aaa089264f4f98b0fe28c03969df8280c2",
-      "plan.md": "1aedb286658f4075a5d80442db280b804808fc80ba6e7c99eec4eebf287b8d38",
-      "tasks.md": "763c970f0d0095ea89c316d4a806d5c00307987be70ac3dde793801186281710",
-      "implementation-summary.md": "9856b4d570f7042d0d6092eadbbf862fd05605db3113722cf3276e1dde1e20f3"
+      "spec.md": "fd4eb80eb1ebc921c02e0a3d1f9e9385001391c2269d000aa6b6eef1d0a7435d",
+      "plan.md": "9dbbb3f24e1a5b0949a31c6af20bb18e45d36620e0928378705aa3ff39bd4248",
+      "tasks.md": "afc2a5b536b1fc86103cbaa244cc1cec89177b2023b1f4e6eba38fdb594ae679",
+      "implementation-summary.md": "2542bd711faa974abf23b65511bf2295ed9ab66b1bb3f8c894ac303a46a32ce5"
     },
     "last_active_at": null
   }

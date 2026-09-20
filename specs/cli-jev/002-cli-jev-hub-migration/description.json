@@ -1,22 +1,22 @@
 {
   "level": "3",
   "specFolder": "cli-jev/002-cli-jev-hub-migration",
-  "description": "The jev transport packet currently sits inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose",
+  "description": "The jev transport packet sat inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose seven other modes are the CLI executors that th",
   "keywords": [
     "jev",
     "transport",
     "packet",
-    "currently",
-    "sits",
+    "sat",
     "inside",
     "skilled",
     "skills",
     "cli-external-orchestration",
     "cli-jev",
     "hub",
-    "whose"
+    "whose",
+    "seven"
   ],
-  "lastUpdated": "2026-09-20T12:30:55.975Z",
+  "lastUpdated": "2026-09-20T14:45:46Z",
   "specId": "002",
   "folderSlug": "cli-jev-hub-migration",
   "parentChain": [

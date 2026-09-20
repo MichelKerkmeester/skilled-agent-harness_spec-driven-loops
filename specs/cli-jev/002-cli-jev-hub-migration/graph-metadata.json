@@ -49,7 +49,7 @@
       "packet"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -188,12 +188,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -216,21 +210,27 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Stand",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The jev transport packet currently sits inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose",
+    "causal_summary": "The jev transport packet sat inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose",
     "created_at": "2026-09-20T11:00:11Z",
-    "last_save_at": "2026-09-20T13:54:00.503Z",
+    "last_save_at": "2026-09-20T14:57:56.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:37c9167c5aa6899500300e96cb309bdbaf1202543139044e3553e9ba20d727c5",
+    "source_fingerprint": "sha256:85027a3f4acaa7d91ce8b799cbc23dae3c6f432d99c870ea1cb703f0fca61a4f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37d7c996b0f16f2eb14eb0875fc15809210b04adda32b666a6815f3f7d6984b7"
+      "spec.md": "80f507a57cf4a596a4f79939449cc24425a1230f0469e3242e267a89fabce2d5"
     },
     "last_active_at": null
   }

@@ -32,6 +32,8 @@ The `--worktree all` scoping trap sits inside the browser and emulator lanes. Br
 
 The ownership split keeps the neighbours in charge. `sk-git` owns generic git worktrees, branches and commits. `mcp-chrome-devtools` owns Chrome and CDP inspection, HAR capture, Lighthouse and performance traces. `mcp-aside-devtools` owns generic agentic browser work not tied to Orca state. The official `computer-use` skill owns desktop control of a visible app window through `orca computer`, and external pages needing page automation go to a tool such as Playwright or CDP. The official `orchestration` skill owns supervised multi-agent coordination, while full ownership handoffs stay with `orca-cli`. An unrelated `OpenOrca` model label and the bare `orca` token route nowhere in this skill. A request that crosses into generic CDP work, generic agentic browser work, supervised orchestration or an unverified MCP surface escalates instead of being handled here.
 
+The ownership matrix and the routing vocabulary are stated canonically in [SKILL.md](../../SKILL.md); the split above expands that statement for this safety surface.
+
 ---
 
 ## 3. SOURCE FILES

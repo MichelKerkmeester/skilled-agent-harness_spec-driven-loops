@@ -17,11 +17,11 @@ contextType: "general"
 <!-- ANCHOR:summary -->
 ## Summary
 
-- **Total references**: 53 rows (glob rows each cover one uniform set)
-- **By category**: READMEs=2, Skills=31, Specs=10, Scripts=9, Tests=1
+- **Total references**: 54 rows (glob rows each cover one uniform set)
+- **By category**: READMEs=2, Skills=32, Specs=10, Scripts=9, Tests=1
 - **Missing on disk**: 0
 - **Scope**: Declared audit surfaces for the cli-orca deep review, written before review init so the coverage gate arms. One packet-level map for a root target, aggregating the skill package, the surfaces it integrates with, the contract validators it answers to, and the artifacts the review itself must produce.
-- **Generated**: 2026-09-20T13:24:00+02:00
+- **Generated**: 2026-09-20T16:30:56+02:00 (re-derived after the remediation pass)
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
 > **Status vocabulary**: `OK` (exists on disk) · `MISSING` (referenced but absent) · `PLANNED` (intentional future path).
@@ -59,10 +59,11 @@ contextType: "general"
 | `.skilled/skills/cli-orca/references/orca-skills/**` | Analyzed | OK | Official-skills layer: overview plus one reference per official skill (9 files) |
 | `.skilled/skills/cli-orca/assets/*.txt` | Analyzed | OK | Eight byte-for-byte upstream snapshots the version check compares |
 | `.skilled/skills/cli-orca/assets/PROVENANCE.md` | Analyzed | OK | Snapshot source, per-skill revisions and digests, refresh procedure |
-| `.skilled/skills/cli-orca/feature-catalog/feature-catalog.md` | Analyzed | OK | Feature inventory checked by the catalog validator |
-| `.skilled/skills/cli-orca/manual-testing-playbook/manual-testing-playbook.md` | Analyzed | OK | Safety matrix, routing fixtures, negative holdouts |
+| `.skilled/skills/cli-orca/feature-catalog/**` | Analyzed | OK | Feature inventory plus its four per-feature documents: official-skill layer, routing vocabulary, runtime preflight, safety bounds (5 files) |
+| `.skilled/skills/cli-orca/manual-testing-playbook/**` | Analyzed | OK | Safety matrix, routing fixtures and negative holdouts plus the eight scenario contracts (9 files) |
 | `.skilled/skills/cli-orca/changelog/v0.1.0.0.md` | Analyzed | OK | Extraction release note; claims no gate result of its own |
 | `.skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/**` | Created | PLANNED | Playbook verdicts, transcripts, exit status and per-scenario reasons |
+| `.skilled/skills/cli-orca/benchmark/reports/2026-09-20--extraction-routing-verification/**` | Analyzed | OK | Captured routing evidence: report plus replay JSON |
 | `.skilled/skills/mcp-tooling/SKILL.md` | Analyzed | OK | Hub skill surface whose aligned mode set the parent check proves |
 | `.skilled/skills/mcp-tooling/hub-router.json` | Analyzed | OK | Compiled-route manifest that must stay fresh for the hub to serve compiled |
 | `.skilled/skills/mcp-tooling/ROUTER.md` | Analyzed | OK | Authored routing copy that must agree with the manifest |

@@ -14,15 +14,15 @@ _memory:
     packet_pointer: "cli-jev/002-cli-jev-hub-migration"
     last_updated_at: "2026-09-20T14:45:00Z"
     last_updated_by: "orchestrator-session"
-    recent_action: "Phases 001-004 closed; hub serves compiled policy"
-    next_safe_action: "Run phase 005: re-run the hub and transport playbooks from the new home"
+    recent_action: "Phases 001-005 closed; both playbooks re-run from the new home"
+    next_safe_action: "Operator decision: commit the working tree, or leave it uncommitted"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-002-hub-migration"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -86,8 +86,8 @@ Each phase has its own `goal.md`; a child that changes a decision here amends it
 - [x] `cli-external-orchestration` is back to seven workflow modes with no transport trace
 - [x] The dispatch chain resolves the moved packet; both hook suites pass
 - [x] History lives at `specs/cli-jev/001-cli-jev-creation`; the track root declares both children
-- [ ] Six hubs report `compiled-serving` fresh; the foundation suite passes
-- [ ] The playbook ran from the new home with zero failures
+- [x] Six hubs report `compiled-serving` fresh and the guard exits 0; the suites keep their pre-existing resolution failures only — two of 37 and fifteen of 42, all the archived authored resolver
+- [x] The playbook ran from the new home with zero failures
 - [x] The recursive strict gate passes across both packets
 <!-- /ANCHOR:completion -->
 
@@ -106,4 +106,7 @@ Each phase has its own `goal.md`; a child that changes a decision here amends it
 | 2026-09-20 | Phase 004 closed: the hub is the sixth fleet member — rollout child `008-cli-jev` built at `3240ebf5…`, six surfaces wired, activation minted (generation 1, fence epoch 1) and fresh, `compiled-route.cjs` serves it under an unset flag, admission passes for the fleet, and the hub's doctor and validator report `0.2.0.0` and `compiled-ready` |
 | 2026-09-20 | Operator direction recorded: the new hub starts its own release line at `0.1.0.0` instead of continuing the transport's `1.x` history, which stays in the mode's changelog |
 | 2026-09-20 | Measured, and left open: the fleet-wide completion bullet cannot be ticked in this tree — `sk-doc` reports `stale-manifest` on another writer's uncommitted packet `SKILL.md`, and the router-unification program's authored resolver is archived, which is why the foundation suite keeps four failures and the manifest suite sixteen. Both were measured before phase 004's first edit and are unchanged by it |
+| 2026-09-20 | Phase 005 closed: all 22 transport scenarios and the hub's three routing scenarios executed from the new home — 22 PASS / 0 FAIL / 0 SKIP, the no-key half byte-identical to its recorded baseline, the credential half live with zero key material in any capture, the dispatch gates deciding again (5 deny, 2 advisory, 8 approve), and one judgment returning `0.86` through the hub's own resolved route. Reports: `cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/` and `cli-jev/benchmark/reports/2026-09-20-hub-routing-baseline/` |
+| 2026-09-20 | Two findings from the re-run, recorded rather than smoothed: the no-key rows are only reproducible with `XDG_CONFIG_HOME` pointed away from the stored credential, and `jev-stdin-bounded` refuses a quoted-literal state as well as the forms its declaration names — the predicate is shared infrastructure and was left unchanged |
+| 2026-09-20 | Re-measured at close: the sk-doc owner re-minted its hub, so all six serve `compiled-serving` fresh and the guard exits 0; the suites stand at 2 failures of 37 and 15 of 42 — every remaining failure the archived authored resolver, none from this program |
 <!-- /ANCHOR:log -->

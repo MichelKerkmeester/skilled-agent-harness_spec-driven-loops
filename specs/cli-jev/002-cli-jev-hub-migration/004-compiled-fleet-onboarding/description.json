@@ -1,18 +1,22 @@
 {
   "level": "1",
   "specFolder": "cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "Before this phase the hub resolved through the legacy path: it was absent from the engine's dispatch map, so `compiled-route.cjs --hub cli-jev` return",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "before",
+    "phase",
+    "hub",
+    "resolved",
+    "through",
+    "legacy",
+    "path",
+    "absent",
+    "engine's",
+    "dispatch",
+    "map",
+    "compiled-route.cjs"
   ],
-  "lastUpdated": "2026-09-20T11:06:03.474Z",
+  "lastUpdated": "2026-09-20T14:45:46Z",
   "specId": "004",
   "folderSlug": "compiled-fleet-onboarding",
   "parentChain": [

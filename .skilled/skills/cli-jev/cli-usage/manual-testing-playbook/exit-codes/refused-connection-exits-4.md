@@ -1,7 +1,7 @@
 ---
 title: "JEV-010 -- A refused connection exits 4, never 0"
 description: "Confirm a dead endpoint is reported as a transport failure at exit 4, for `JEV-010`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-010 -- A refused connection exits 4, never 0

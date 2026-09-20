@@ -1,7 +1,7 @@
 ---
 title: "JEV-007 -- A missing required flag is an argparse failure"
 description: "Confirm each judgment subcommand refuses a missing required flag with usage text at exit 2, for `JEV-007`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-007 -- A missing required flag is an argparse failure

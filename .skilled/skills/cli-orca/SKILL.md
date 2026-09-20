@@ -66,9 +66,9 @@ A bare `orca` mention is never sufficient. The token also matches the `OpenOrca`
 | Signal | Lane |
 |--------|------|
 | `orca worktree`, `managed worktree`, `orca repository`, worktree id `<repoId>::<path>` | Worktree and handoff lane, [`references/orca-cli-reference.md`](references/orca-cli-reference.md) |
-| `orca terminal`, `paired terminal`, read/wait/send terminal, terminal receipts | Terminal lane, [`references/session-and-runtime.md`](references/session-and-runtime.md) |
+| `orca terminal`, `paired terminal` | Terminal lane, [`references/session-and-runtime.md`](references/session-and-runtime.md) |
 | `orca browser`, `orca embedded browser`, Orca tab snapshots or refs | Browser lane, [`references/mutation-and-browser-boundaries.md`](references/mutation-and-browser-boundaries.md) |
-| `orca automation`, `orca artifacts`, `orca skills`, share or publish actions | Automation and publishing lane, [`references/mutation-and-browser-boundaries.md`](references/mutation-and-browser-boundaries.md) |
+| `orca automation`, `orca artifacts`, `orca skills` | Automation and publishing lane, [`references/mutation-and-browser-boundaries.md`](references/mutation-and-browser-boundaries.md) |
 | Any named official skill in an Orca context | Official skills index, [`references/orca-skills/overview.md`](references/orca-skills/overview.md) |
 | Runtime stopped, executable missing, guide mismatch, ambiguous result | Recovery lane, [`references/troubleshooting.md`](references/troubleshooting.md) |
 
@@ -92,6 +92,7 @@ A bare `orca` mention is never sufficient. The token also matches the `OpenOrca`
 ### Smart Router Pseudocode
 
 ```python
+import re
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
@@ -99,11 +100,13 @@ RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/orca-skills/overview.md"
 
 INTENT_SIGNALS = {
-    "WORKTREE": {"weight": 4, "keywords": ["orca worktree", "managed worktree", "orca repository", "child worktree"]},
-    "TERMINAL": {"weight": 4, "keywords": ["orca terminal", "paired terminal", "read the terminal", "send to the terminal", "terminal receipt"]},
-    "BROWSER": {"weight": 4, "keywords": ["orca browser", "orca embedded browser", "embedded browser"]},
-    "AUTOMATIONS": {"weight": 3, "keywords": ["orca automation", "orca artifacts", "orca skills", "share skills"]},
-    "ORCA_SKILLS": {"weight": 4, "keywords": ["orca-cli", "orchestration skill", "computer-use", "orca-linear", "orca-emulator", "orca-per-workspace-env"]},
+    "WORKTREE": {"weight": 4, "keywords": ["orca worktree", "managed worktree", "orca repository", "child worktree", "orca cli", "orca handoff", "$orca-cli", "full ownership handoff"]},
+    "TERMINAL": {"weight": 4, "keywords": ["orca terminal", "paired terminal"]},
+    "BROWSER": {"weight": 4, "keywords": ["orca browser", "orca embedded browser"]},
+    "AUTOMATIONS": {"weight": 3, "keywords": ["orca automation", "orca artifacts", "orca skills"]},
+    "ORCA_SKILLS": {"weight": 4, "keywords": ["orca-cli", "orchestration skill", "computer-use", "linear-tickets", "orca-linear", "orca-emulator", "orca-emulator-android", "orca-per-workspace-env"]},
+    # The recovery lane names runtime failure states rather than Orca surfaces, so it is the one
+    # lane that may be entered without an Orca qualifier.
     "RECOVERY": {"weight": 3, "keywords": ["runtime stopped", "executable missing", "guide mismatch", "ambiguous send"]},
 }
 
@@ -147,8 +150,20 @@ def discover_markdown_resources() -> set[str]:
             docs.extend(path for path in base.rglob("*.md") if path.is_file())
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
+ORCA_PLACEMENT = re.compile(r"(?:^|[^a-z0-9])\$?orca(?![a-z0-9])")
+
+
+def _places_in_orca(text: str) -> bool:
+    """True when the request names Orca itself, which is what qualifies a bare official skill name."""
+    return bool(ORCA_PLACEMENT.search(text))
+
+
 def orca_qualified_phrases(request: str) -> list[str]:
-    """Only Orca-qualified phrases count. The bare token is excluded on purpose."""
+    """The request's signals: Orca-qualified phrases plus the sanctioned compound surfaces.
+
+    The recovery lane is state-based by design, so it needs no Orca qualifier; the official-skill
+    names carry one only when the request also places them in Orca, which route() enforces.
+    """
     text = request.lower()
     return [keyword for signals in INTENT_SIGNALS.values() for keyword in signals["keywords"] if keyword in text]
 
@@ -160,6 +175,10 @@ def route(request: str) -> dict:
     if foreign and not any(signal.startswith("orca") for signal in signals):
         return {"action": "defer", "owners": foreign}
     lane = max(INTENT_SIGNALS, key=lambda name: sum(signal in signals for signal in INTENT_SIGNALS[name]["keywords"]))
+    if lane == "ORCA_SKILLS" and not _places_in_orca(request.lower()):
+        # An official skill name routes only when the request also places it in Orca, so a bare
+        # name falls back instead of claiming the lane on its own.
+        return dict(UNKNOWN_FALLBACK)
     resources = RESOURCE_MAP[lane]
     missing = [resource for resource in resources if resource not in discover_markdown_resources()]
     if missing:

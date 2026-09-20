@@ -1,7 +1,7 @@
 ---
 title: "JEV-001 -- Binary resolves and pins the version"
 description: "Confirm `jev` resolves on `PATH` and prints the pinned version for `JEV-001`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-001 -- Binary resolves and pins the version

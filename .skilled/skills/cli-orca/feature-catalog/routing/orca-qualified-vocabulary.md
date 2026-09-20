@@ -27,6 +27,8 @@ Command-family phrases pair the Orca qualifier with a command surface: `orca cli
 
 The negative holdouts are the reason the vocabulary is multi-word. Generic git worktrees and branch management belong to `sk-git`, ordinary shell terminal commands to the normal coding workflow, Chrome DevTools Protocol debugging to `mcp-chrome-devtools`, generic agentic browser work to `mcp-aside-devtools`, supervised multi-agent coordination to the official `orchestration` skill, and an unrelated `OpenOrca` model label to no Orca route at all. Qualified siblings disambiguate the crowded token: `cursor worktree` routes to `cli-cursor` even though it shares the word worktree, and bare `handoff` or `full handoff` without an Orca qualifier routes to whatever continuity or dispatch context used it. Recorded replays pin both sides: the positive fixtures `orca cli` and `managed worktree` with `paired terminal` resolve to the Orca lane, while the negative fixtures for an `OpenOrca` model label and a generic git worktree defer.
 
+The routing vocabulary and the ownership matrix are stated canonically in [SKILL.md](../../SKILL.md); this page expands the vocabulary and never overrides it.
+
 ---
 
 ## 3. SOURCE FILES

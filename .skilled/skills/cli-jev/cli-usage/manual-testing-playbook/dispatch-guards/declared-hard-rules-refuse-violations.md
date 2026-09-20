@@ -1,7 +1,7 @@
 ---
 title: "JEV-019 -- Each declared hard rule refuses its violating command"
 description: "Confirm every rule declared in the packet has an implementation and a refusing fixture, for `JEV-019`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-019 -- Each declared hard rule refuses its violating command

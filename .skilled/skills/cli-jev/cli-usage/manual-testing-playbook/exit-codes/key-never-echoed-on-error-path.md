@@ -1,7 +1,7 @@
 ---
 title: "JEV-011 -- The key is never echoed on the error path"
 description: "Confirm the credential never appears in the output of a failing call, for `JEV-011`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-011 -- The key is never echoed on the error path
@@ -49,12 +49,12 @@ Operators run the exact prompt and command sequence for `JEV-011` and confirm th
 
 ```bash
 env JEV_API_KEY=dummy-sentinel jev noul -q 'Is it?' -s 'x' \
-  --provider custom --endpoint 'http://127.0.0.1:9/v1/systemone' 2>&1 | grep -c 'dummy-sentinel'
+  --provider custom --endpoint 'http://127.0.0.1:9/v1/systemone' </dev/null 2>&1 | grep -c 'dummy-sentinel'
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| JEV-011 | Credential redaction | Confirm the sentinel key value never appears in the combined output of a failing call | `Is it?` | 1. `env JEV_API_KEY=dummy-sentinel jev noul -q 'Is it?' -s 'x' --provider custom --endpoint 'http://127.0.0.1:9/v1/systemone' 2>&1 \| grep -c 'dummy-sentinel'` | The sentinel search count is `0`; the failure itself is still reported on stderr | The command, the search count, and the failing error string that proves output was produced | PASS when the count is 0 and the failure is still reported; FAIL when the sentinel appears in either stream; SKIP only when the failure does not occur, naming the absent error path as the blocker | A count above zero is a rotation event: rotate the key before doing anything else. A count of zero with no error line means the pipeline swallowed the output and the check proved nothing |
+| JEV-011 | Credential redaction | Confirm the sentinel key value never appears in the combined output of a failing call | `Is it?` | 1. `env JEV_API_KEY=dummy-sentinel jev noul -q 'Is it?' -s 'x' --provider custom --endpoint 'http://127.0.0.1:9/v1/systemone' </dev/null 2>&1 \| grep -c 'dummy-sentinel'` | The sentinel search count is `0`; the failure itself is still reported on stderr | The command, the search count, and the failing error string that proves output was produced | PASS when the count is 0 and the failure is still reported; FAIL when the sentinel appears in either stream; SKIP only when the failure does not occur, naming the absent error path as the blocker | A count above zero is a rotation event: rotate the key before doing anything else. A count of zero with no error line means the pipeline swallowed the output and the check proved nothing |
 
 ### Recorded Result
 

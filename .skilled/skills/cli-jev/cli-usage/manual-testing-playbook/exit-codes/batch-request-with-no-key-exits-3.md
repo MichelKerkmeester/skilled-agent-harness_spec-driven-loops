@@ -1,7 +1,7 @@
 ---
 title: "JEV-015 -- A batch request with no key exits 3"
 description: "Confirm a well-formed `run` request exits 3 at the credential check with `--value` accepted at parse time, for `JEV-015`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-015 -- A batch request with no key exits 3

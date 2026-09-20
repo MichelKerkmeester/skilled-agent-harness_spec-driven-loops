@@ -5,7 +5,7 @@
   "lineageMode": "new",
   "continuedFromRun": null,
   "terminalStop": null,
-  "status": "INITIALIZED",
+  "status": "COMPLETE",
   "openFindings": [
     {
       "findingId": "P1-001",

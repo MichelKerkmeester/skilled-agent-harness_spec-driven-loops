@@ -1,7 +1,7 @@
 ---
 title: "JEV-012 -- A single-option choice is not refused by the CLI"
 description: "Confirm the CLI does not enforce a two-option minimum for `choice`, for `JEV-012`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-012 -- A single-option choice is not refused by the CLI

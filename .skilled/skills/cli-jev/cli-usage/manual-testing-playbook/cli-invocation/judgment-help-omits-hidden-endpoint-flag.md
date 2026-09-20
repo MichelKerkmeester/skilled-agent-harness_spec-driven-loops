@@ -1,7 +1,7 @@
 ---
 title: "JEV-003 -- The judgment help omits the hidden endpoint flag"
 description: "Confirm `--endpoint` works while `--help` never lists it, for `JEV-003`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-003 -- The judgment help omits the hidden endpoint flag

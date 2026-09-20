@@ -12,7 +12,7 @@ trigger_phrases:
   - "typed judgment transport"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.0.0
+version: 1.0.0.3
 ---
 
 # cli-usage

@@ -1,7 +1,7 @@
 ---
 title: "cli-jev: Manual Testing Playbook"
 description: "Operator-facing index for cli-jev hub-routing validation: does the router resolve a jev judgment request to the cli-usage transport, under the hub's own id and alias."
-version: 1.0.0.0
+version: 0.2.0.1
 ---
 
 # cli-jev: Manual Testing Playbook
@@ -64,7 +64,7 @@ Commands are shown from the repository root. Replace angle-bracket placeholders 
 
 | Run | Date | Scenarios | Verdict | Report |
 |---|---|---|---|---|
-| — | — | CJ-001 … CJ-003 | not run | First execution is scheduled with the hub's compiled-fleet onboarding; the baseline report lands under `benchmark/reports/`. |
+| hub-routing baseline | 2026-09-20 | CJ-001 … CJ-003 | 3 PASS, 0 FAIL, 0 SKIP; the transport judgment ran end to end | [`2026-09-20-hub-routing-baseline/`](../../benchmark/reports/2026-09-20-hub-routing-baseline/) |
 
 ---
 

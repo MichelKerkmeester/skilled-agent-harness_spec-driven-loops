@@ -41,6 +41,30 @@ stale_sweep() {
   [ "$hits" -eq 0 ]
 }
 
+router_probes() {
+  # The routing contract is machine-shaped in exactly one fenced block, so probe that block
+  # itself rather than the prose that restates it; a green document check proves nothing here.
+  python3 - <<'PROBE_EOF'
+import pathlib, sys
+p = pathlib.Path('.skilled/skills/cli-orca/SKILL.md'); src = p.read_text().splitlines()
+s = next(i for i,l in enumerate(src) if l.strip()=='```python')
+e = next(i for i in range(s+1,len(src)) if src[i].strip()=='```')
+ns = {'__file__': str(p.resolve())}
+exec(compile('\n'.join(src[s+1:e]),'SKILL.md','exec'), ns); r = ns['route']
+bad = []
+if r("please read the terminal and share skills")["action"]=="load": bad.append("generic terminal routed")
+if r("embedded browser snapshot")["action"]=="load": bad.append("generic browser routed")
+if r("help me with computer-use")["action"]=="load": bad.append("unplaced official name routed")
+if r("Show the OpenOrca model label for the current request.")["action"]!="defer": bad.append("holdout routed")
+if r("orca terminal read --json")["load_level"]!="TERMINAL": bad.append("orca terminal lane lost")
+if r("managed worktree listing")["load_level"]!="WORKTREE": bad.append("sanctioned compound lost")
+for q in ["use the orca cli","orca handoff to another agent",
+          "help me with the linear-tickets skill in Orca","the orca-emulator-android skill in Orca"]:
+    if r(q)["action"]!="load": bad.append("listed trigger does not route: "+q)
+print("router probes:", "PASS" if not bad else "FAIL: "+"; ".join(bad)); sys.exit(1 if bad else 0)
+PROBE_EOF
+}
+
 {
   echo "# Gate results: cli-orca extraction"
   echo ""
@@ -80,6 +104,8 @@ run "15. sk-doc frozen directory manifest reproduction" \
   python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py || FAILS=$((FAILS+1))
 run "16. Compiled route replay against the hub for the former Orca prompt" \
   node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use the Orca CLI to inspect the current worktree and terminal" || FAILS=$((FAILS+1))
+run "17. cli-orca router probes (routing contract behaviour)" \
+  router_probes || FAILS=$((FAILS+1))
 
 echo "" | tee -a "$OUT"
 echo "FAILING GATES: $FAILS" | tee -a "$OUT"

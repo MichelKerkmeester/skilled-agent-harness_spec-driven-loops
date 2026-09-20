@@ -1,7 +1,7 @@
 ---
 title: "JEV-022 -- One judgment per type returns a typed answer"
 description: "Confirm each judgment type returns its documented answer shape once a credential exists, for `JEV-022`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-022 -- One judgment per type returns a typed answer

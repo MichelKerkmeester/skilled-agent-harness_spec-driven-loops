@@ -1,7 +1,7 @@
 ---
 title: "JEV-002 -- Root help lists the six subcommands"
 description: "Confirm the root help surface names all six `jev` subcommands for `JEV-002`."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # JEV-002 -- Root help lists the six subcommands
