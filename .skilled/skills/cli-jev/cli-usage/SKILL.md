@@ -249,7 +249,8 @@ the process exit code carries the class.
 
 ### Evidence Base
 
-- Contract pin: `specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/research/live-pin.md`.
+- Contract pin: `specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md`,
+  with the captured probes beside it at `scratch/probe-matrix.txt` and `scratch/probe-surface.txt`.
 - Vendored source: `specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/`
   (read-only; `src/jev_cli/__init__.py` is the CLI contract and `src/jev_cli/mcp_server.py` the MCP
   contract).
@@ -279,7 +280,9 @@ another packet.
 `cli-usage` is the first mode of the `cli-jev` hub and its only transport. It is declared
 in `mode-registry.json` as `packetKind: "transport"` under the `transport-axis` extension,
 `mutatesWorkspace: false`, forbidding `Write`, `Edit` and `Task`, and it routes by hub membership
-like every other mode. `ROUTER.md` carries its intent signal and leaf set.
+like every other mode. `hub-router.json` carries its intent signal and `leaf-manifest.json` its
+leaf set; the hub's `ROUTER.md` is the stage-two control map, declared `stage1-only` and empty until
+stage two.
 
 ### Not a Deep-Loop Executor
 
@@ -309,6 +312,6 @@ judgment gets one from a workflow executor and reads the result.
 - Upstream project: `specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/README.md`.
 - Upstream bundled skill: the same tree's `skills/jev-cli/SKILL.md` — the vendor's own guidance,
   which this packet supersedes for repo dispatch behavior.
-- Hub router: `ROUTER.md`; registry: `mode-registry.json`.
+- Hub router: `hub-router.json`; stage-two control map: `ROUTER.md`; registry: `mode-registry.json`.
 - Structural precedent for a transport packet: the hub doctrine's `transport-axis` extension in
   `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
