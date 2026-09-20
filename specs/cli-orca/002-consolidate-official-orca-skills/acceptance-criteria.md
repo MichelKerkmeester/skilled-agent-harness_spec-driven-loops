@@ -25,7 +25,7 @@ contextType: "implementation"
 
 **Packet:** cli-orca/002-consolidate-official-orca-skills
 **Level:** 3
-**Status:** Complete
+**Status:** In Progress
 **Date:** 2026-09-20
 <!-- /ANCHOR:metadata -->
 
@@ -47,6 +47,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-007 | REQ-007 | Given the specs tree, When the track metadata is read, Then `specs/cli-orca` carries identity metadata and the mcp-tooling track no longer lists the moved packet | `specs/cli-orca/{description.json,graph-metadata.json}` present, and the mcp-tooling track metadata carries no Orca child | Met | - |
 | AC-008 | REQ-008 | Given the fleet catalogs, When the class table is read, Then eight class-S roots are named and the cli family is described as CLI tool surfaces | `.skilled/skills/README.txt` names fourteen roots with `cli-*` at 2, and the root metadata contract lists eight class-S roots | Met | - |
 | AC-009 | REQ-009 | Given each authored skill document, When the document validator runs, Then it reports zero blocking issues | Corpus sweep, `cli-orca docs checked=32 blocking=0` | Met | - |
+| AC-010 | REQ-010 | Given the five-iteration review loop, When it finishes, Then each iteration record ends in a single verdict line, every iteration is appended to the ledger, and the loop report exists | `review/iterations/iteration-00N.md` verdict lines, `review/deep-review-state.jsonl`, `review/review-report.md` | Unmet | - |
+| AC-011 | REQ-011 | Given the loop report, ledger and declared audit surfaces, When the fresh-context synthesis returns, Then the fix list tags every finding and cites the file and line it lands in | `review/synthesis-remediation-plan.md` | Unmet | - |
+| AC-012 | REQ-012 | Given the prioritised fix list, When the remediation set lands and every gate is re-run, Then each change carries its proving check and no gate that passed at baseline now fails | Applied diffs plus `scratch/gate-results-final-review.md` compared against `scratch/gate-results-baseline-review.md` | Unmet | - |
+| AC-013 | REQ-013 | Given the eight playbook scenarios, When they run in wave order, Then each records a verdict, a transcript, an exit status and a reason | `.skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/**` | Unmet | - |
+| AC-014 | REQ-014 | Given the vendored snapshot, When the leaked-key pattern is searched across the packet tree, Then no live secret remains | `git grep -E "AIza[0-9A-Za-z_-]{35}" -- specs/cli-orca/` returns no hits after the ADR-009 redaction | Met | - |
 
 ### Status values
 
@@ -71,8 +76,8 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** Yes
+**Closeable:** No
 
-Every criterion is met with observed evidence. The sixteen-gate close-out suite passed with zero failing gates, and the captured output plus exit status of each gate lives in `scratch/gate-results.md`. Two limits stay open and are recorded rather than waived: the advisor recall hole for long mixed Orca prompts, and the hub compiled-routing posture of `stale-manifest`, which reports legacy authority while the prose router keeps serving.
+The packet was reopened on the operator's instruction so that a deep review of the shipped skill, the remediation it justifies and the playbook run can be recorded as evidence. The original closure evidence stands: the sixteen-gate close-out suite passed with zero failing gates, and the captured output plus exit status of each gate lives in `scratch/gate-results.md`. Five criteria are unmet until the review cycle lands. Two limits stay open and are recorded rather than waived: the advisor recall hole for long mixed Orca prompts, and the hub compiled-routing posture of `stale-manifest`, which reports legacy authority while the prose router keeps serving.
 
 <!-- /ANCHOR:closure -->
