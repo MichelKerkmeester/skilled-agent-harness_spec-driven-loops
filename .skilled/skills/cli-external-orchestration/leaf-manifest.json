@@ -73,17 +73,6 @@
     },
     {
       "leaves": [
-        "assets/question-shaping-card.md",
-        "references/cli-reference.md",
-        "references/integration-patterns.md",
-        "references/mcp-server.md",
-        "references/providers-and-models.md"
-      ],
-      "packet": "cli-jev",
-      "workflowMode": "cli-jev"
-    },
-    {
-      "leaves": [
         "assets/permissions-matrix.example-packet-local.json",
         "assets/permissions-matrix.example-readonly.json",
         "assets/permissions-matrix.example-repo-wide.json",
