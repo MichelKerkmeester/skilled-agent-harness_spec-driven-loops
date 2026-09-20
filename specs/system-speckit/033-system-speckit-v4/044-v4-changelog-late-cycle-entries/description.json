@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-speckit/033-system-speckit-v4/044-v4-changelog-late-cycle-entries",
+  "description": "`../CHANGELOG-v4.0.0.0.md` was last edited 2026-09-16, and the two late-cycle skill moves that landed 2026-09-20 are absent from it: `cli-jev`",
+  "keywords": [
+    "changelog-v4",
+    "last",
+    "edited",
+    "two",
+    "late-cycle",
+    "skill",
+    "moves",
+    "landed",
+    "absent",
+    "cli-jev"
+  ],
+  "lastUpdated": "2026-09-20T20:32:25.806Z",
+  "specId": "044",
+  "folderSlug": "v4-changelog-late-cycle-entries",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
