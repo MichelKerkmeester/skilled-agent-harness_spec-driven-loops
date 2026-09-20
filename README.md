@@ -11,7 +11,7 @@ An assistant framework that gives your AI coding agent a memory, a paper trail a
 
 All of it lives inside your own repository, as files you can read and diff.
 
-Built for OpenCode and Claude Code, with bridges to five more model providers.
+Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 
 **What's inside**
 
@@ -30,7 +30,7 @@ Built for OpenCode and Claude Code, with bridges to five more model providers.
 
 > Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
----
+&nbsp;
 
 ## 1. ⚠️ THE PROBLEM: EVERY SESSION STARTS FROM ZERO
 
@@ -60,7 +60,6 @@ Every file change gets a spec folder that records what changed, why and how. Lik
 - Reviews rank findings P0/P1/P2 and re-challenge critical findings before they stick, and an open blocker forces another pass
 - Every packet is plain markdown in your repo, so the history is yours to read, diff and keep
 
-&nbsp;
 ### 🧠 Spec Memory & Search: memory that survives resets
 
 Your architecture, decisions and session history are written into the spec folder they belong to, then found again through instant keyword search.
@@ -69,7 +68,6 @@ Your architecture, decisions and session history are written into the spec folde
 - A committed trigger index plus ripgrep recipes find prior work fast, with no database and no daemon on this path
 - A phrase nobody wrote is a clean no-hit, never a nearest guess
 
-&nbsp;
 ### 🔄 Deep Loop: loops that finish the job
 
 Research, review and improvement loops run unattended and stop only when their own evidence says done.
@@ -77,8 +75,7 @@ Research, review and improvement loops run unattended and stop only when their o
 - Progress lives on disk, so a loop survives crashes, new sessions and long runs
 - One shared runtime under every loop, so you learn the workflow once
 - Run fully hands-off or pause at each step, your choice
-
-&nbsp;
+-
 ### 🎯 Skill Advisor: the right skill at the right time
 
 Type a prompt and the matching expertise loads before any tool runs. No memorizing skill names.
@@ -87,7 +84,6 @@ Type a prompt and the matching expertise loads before any tool runs. No memorizi
 - A live skill graph tracks what each skill depends on, enhances and conflicts with
 - Daemon down? A local scorer answers instead and marks itself stale rather than pretending to be live
 
-&nbsp;
 ### 🤖 Agent Library: many models, one conductor
 
 Twelve specialized agents own focused roles, and supported runtimes can dispatch five more AI CLIs as sub-tools.
@@ -96,7 +92,6 @@ Twelve specialized agents own focused roles, and supported runtimes can dispatch
 - The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns
 - Every skill refuses to call itself, so delegation never loops
 
-&nbsp;
 ### 🧩 Plugin & Extension Library: a goal that survives resets and context that stays lean
 
 The framework extends each runtime through plugins, hooks and extensions rather than asking you to wire anything by hand.
@@ -104,8 +99,6 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **Goal Plugin:** binds a session to a spec packet's `goal.md` and injects the durable slice - the directive plus its completion criteria - on every turn (at session start on Cursor), so intent survives context resets instead of fading with the window
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
-
-&nbsp;
 
 Behind them: 13 on-demand skills, 32 command entry points and the Code Mode MCP single-tool interface, each detailed in its own section below.
 
@@ -126,8 +119,6 @@ Three building blocks carry the whole system:
 3. **Coordinated agents and skills**
 
    12 specialized agents routed by a gate system that loads the right skills at the right time.
-
-&nbsp;
 
 From request to documented result:
 
@@ -207,7 +198,6 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 node .skilled/bin/skill-advisor.cjs list-tools --format json
 ```
 
-&nbsp;
 ### Verify Installation
 
 ```bash
@@ -218,7 +208,6 @@ grep -l mcp-code-mode-launcher opencode.json .claude/mcp.json .cursor/mcp.json .
 node .skilled/bin/skill-advisor.cjs list-tools --format json
 ```
 
-&nbsp;
 ### First Use
 
 Open OpenCode in your project directory. The framework is active. Try:
@@ -237,7 +226,6 @@ That one command does five things:
 
 Come back tomorrow and `/speckit:resume` reads it back.
 
-&nbsp;
 ### Adapting to Your Stack
 
 This repo ships as a public template.
@@ -256,7 +244,6 @@ The Spec Kit enforces structured spec folders for every file-modifying conversat
 
 Gate 3 requires a spec folder answer before any file modification begins. Only a trivial fix of a few characters in one file is exempt.
 
-&nbsp;
 #### Documentation Levels
 
 Documentation depth scales with task complexity.
@@ -326,8 +313,6 @@ Eighteen templates ship under `.skilled/skills/system-spec-kit/templates/`. Whic
 - The closure gate: every row Met, Unmet, Waived or Superseded before the packet may close.
 - Lives in `addons/`, scaffolded at Level 2 and above.
 
-&nbsp;
-
 ##### Lazy Add-ons
 
 Render with `--with-lazy-addons` or `--with-goal` on `create.sh`, or with the inline gate renderer on an existing packet. All live in `addons/`.
@@ -356,8 +341,6 @@ Render with `--with-lazy-addons` or `--with-goal` on `create.sh`, or with the in
 - Chronological record of events, outcomes and milestones.
 - For long-running or incident-driven work.
 
-&nbsp;
-
 ##### Command & Agent Owned
 
 Written by a command or agent, not by scaffold flags. All live in `addons/`.
@@ -371,8 +354,6 @@ Written by a command or agent, not by scaffold flags. All live in `addons/`.
 
 **`research.md`**
 - The technical investigation a `/deep:research` loop produces: analysis, architecture patterns and implementation guidance.
-
-&nbsp;
 
 ##### Packet Types
 
