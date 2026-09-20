@@ -1,0 +1,105 @@
+{
+  "model": "glm-5.3-flash",
+  "effort": "high",
+  "sandbox": "workspace-write",
+  "timeoutMs": 1500000,
+  "concurrency": 3,
+  "results": [
+    {
+      "runtime": "claude-code",
+      "logPath": "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/claude-code.log",
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 230688,
+      "stdoutBytes": 1954,
+      "stderrBytes": 0,
+      "error": null,
+      "invocationFingerprint": "inv:d54cea1631bfbd4b05b04285b346b39a31d267e7be8b095b1a361214b04f9568"
+    },
+    {
+      "runtime": "codex",
+      "logPath": "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/codex.log",
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 490457,
+      "stdoutBytes": 1990,
+      "stderrBytes": 0,
+      "error": null,
+      "invocationFingerprint": "inv:3dcb72034dc64d8e9397e721041aafd2bbb627b47a2146d06d08db200fb4b929"
+    },
+    {
+      "runtime": "cursor",
+      "logPath": "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/cursor.log",
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 418826,
+      "stdoutBytes": 1994,
+      "stderrBytes": 0,
+      "error": null,
+      "invocationFingerprint": "inv:eac419e48e34a5ee7351faf13dc79b40377a1ec1db5482fc9bdf21e519c41cc9"
+    },
+    {
+      "runtime": "devin",
+      "logPath": "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/devin.log",
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 271996,
+      "stdoutBytes": 2445,
+      "stderrBytes": 0,
+      "error": null,
+      "invocationFingerprint": "inv:2cbde621ad331f22c44db503c43b41dbb3d225af5a35c8c0d9980f9b4aefd4bf"
+    },
+    {
+      "runtime": "hermes",
+      "logPath": "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/hermes.log",
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 1409934,
+      "stdoutBytes": 2290,
+      "stderrBytes": 0,
+      "error": null,
+      "invocationFingerprint": "inv:2bc7a24ea70d1ca6f5772173b5c716c05456ee704bc312a0dfa4e469cd1e0337"
+    },
+    {
+      "runtime": "jev",
+      "logPath": "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/jev.log",
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 872595,
+      "stdoutBytes": 2307,
+      "stderrBytes": 0,
+      "error": null,
+      "invocationFingerprint": "inv:eaa23577f24d12251a5b3eb0453a8e2a41549dff982be7e34a2a319ee0d7a04d"
+    },
+    {
+      "runtime": "opencode",
+      "logPath": "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/opencode.log",
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 496430,
+      "stdoutBytes": 1933,
+      "stderrBytes": 0,
+      "error": null,
+      "invocationFingerprint": "inv:0d2ab07389214d6c14716734dd89b07987f5a4386daf0f5fa39e03b38f3a7b5a"
+    },
+    {
+      "runtime": "pi",
+      "logPath": "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/logs/pi.log",
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 475725,
+      "stdoutBytes": 2192,
+      "stderrBytes": 0,
+      "error": null,
+      "invocationFingerprint": "inv:89e1be7e4a115566ba0a5e03154b75bc69adef89f83cd6b9d240e54fcc6df87f"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+=== cli-claude-code ===
+  line 41: numeric count for 'guard': cli-claude-code is the single routing point for external runtimes that need Claude Code. A smart router scores the task against intent signals (deep reasoning, code editing, structured output, review, agent delegation) and loads only the references that match. A self-invocation guard checks three layers and refuses to load if the caller is already inside Claude Code.
+  line 122: numeric count for 'guard': If the agent reading this skill is itself running inside Claude Code, the skill refuses to load. The guard checks three layers in order:
+  line 126: numeric count for 'files': 3. Lock files under `~/.claude/state/<id>/lock`, which signal an active session.
+FAIL /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/057-cli-runtime-readme-refresh/.skilled/skills/cli-external-orchestration/cli-claude-code/README.md: claims=3 failures=3
+SUMMARY files=1 pass=0 fail=1
+=== cli-codex ===
+  line 40: numeric count for 'guard': cli-codex is the single routing point for external runtimes that need Codex CLI. A smart router scores the task against intent signals (code generation, review, web research, architecture exploration, agent delegation) and loads only the references that match. It fails closed when `command -v codex` cannot resolve the binary. A three-layer self-invocation guard refuses to load if the caller is already inside Codex. Orchestrated execution delegates to the shipped deep-loop runtime. This packet does not build a second adapter.
+  line 121: numeric count for 'guard': If the agent reading this skill is itself running inside Codex, the skill refuses to load. The guard checks three layers in order:
+  line 125: numeric count for 'files': 3. Lock files under `~/.codex/state/<id>/lock`, which signal an active session.
+FAIL /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/057-cli-runtime-readme-refresh/.skilled/skills/cli-external-orchestration/cli-codex/README.md: claims=3 failures=3
+SUMMARY files=1 pass=0 fail=1
+=== cli-cursor ===
+  line 119: numeric count for 'guard': If the agent reading this skill is itself running inside Cursor CLI, the skill refuses to load. The guard checks three layers in order:
+FAIL /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/057-cli-runtime-readme-refresh/.skilled/skills/cli-external-orchestration/cli-cursor/README.md: claims=1 failures=1
+SUMMARY files=1 pass=0 fail=1
+=== cli-devin ===
+PASS /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/057-cli-runtime-readme-refresh/.skilled/skills/cli-external-orchestration/cli-devin/README.md: claims=0 failures=0
+SUMMARY files=1 pass=1 fail=0
+=== cli-hermes ===
+PASS /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/057-cli-runtime-readme-refresh/.skilled/skills/cli-external-orchestration/cli-hermes/README.md: claims=3 failures=0
+SUMMARY files=1 pass=1 fail=0
+=== cli-jev ===
+PASS /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/057-cli-runtime-readme-refresh/.skilled/skills/cli-external-orchestration/cli-jev/README.md: claims=0 failures=0
+SUMMARY files=1 pass=1 fail=0
+=== cli-opencode ===
+  line 39: numeric count for 'guard': cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. The default dispatch is `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root>`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
+  line 121: numeric count for 'guard': If the agent reading this skill is already inside OpenCode, the skill refuses to load. The guard checks three layers in order:
+  line 231: numeric count for 'guard': | [`references/self-invocation-guard.md`](./references/self-invocation-guard.md) | The three-layer guard and the parallel-detached exception |
+FAIL /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/057-cli-runtime-readme-refresh/.skilled/skills/cli-external-orchestration/cli-opencode/README.md: claims=6 failures=3
+SUMMARY files=1 pass=0 fail=1
+=== cli-pi ===
+PASS /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/057-cli-runtime-readme-refresh/.skilled/skills/cli-external-orchestration/cli-pi/README.md: claims=1 failures=0
+SUMMARY files=1 pass=1 fail=0

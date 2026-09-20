@@ -1,0 +1,15 @@
+# files still citing the un-archived packet path
+.skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.2.0.0.md:1
+.skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.0.0.0.md:1
+.skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.1.0.0.md:1
+.skilled/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md:1
+.skilled/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md:1
+.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md:1
+.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md:1
+.skilled/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md:1
+.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md:1
+.skilled/skills/cli-external-orchestration/cli-pi/README.md:1
+.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:2
+.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md:2
+# total hits
+      14
