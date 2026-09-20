@@ -841,63 +841,7 @@ Every bridge shares the same foundation:
 
 **`cli-external-orchestration`** - parent hub for external CLI dispatch
 
-One skill, seven bridges: describe the job and it hands the dispatch to the right CLI.
-
-&nbsp;
-
-**`cli-opencode`** - OpenCode CLI orchestrator
-
-- **The whole project runtime in one dispatch.** The task sees every plugin, skill and MCP server your project has, so nothing is missing from the answer
-- **Parallel sessions and other repos.** Run several dispatches at once, or point one at a different repository
-
-&nbsp;
-
-**`cli-claude-code`** - Claude Code CLI orchestrator
-
-- **Deep thinking and careful edits.** Extended reasoning for hard problems, surgical diff-based edits, and structured JSON output when another tool needs to read the answer
-- **A team of specialists built in.** Nine agents come with it, and a follow-up dispatch can pick up where the last one stopped
-
-&nbsp;
-
-**`cli-codex`** - OpenAI Codex CLI orchestrator
-
-- **An OpenAI second opinion.** Coding, repo analysis, PR review, web research, or a cross-model check on work another model did
-
-&nbsp;
-
-**`cli-cursor`** - Cursor CLI orchestrator
-
-- **Cursor's own models, plus a read-only planning pass.** Composer dispatch for build work, and a plan or ask mode that reads without touching anything, handy as a second opinion
-- **One config for editor and CLI.** Its settings are shared with the Cursor editor, so a dispatched session behaves like the editor you already set up
-
-&nbsp;
-
-**`cli-devin`** - Devin CLI orchestrator
-
-- **A multi-model contractor.** Cognition's router picks among Opus, Sonnet, GPT, Gemini and more, so the dispatch gets the strength the task needs, with subagent delegation and cloud handoff when the job outgrows one machine
-
-&nbsp;
-
-**`cli-pi`** - Pi CLI orchestrator
-
-- **Your Pi setup, headless.** Guarded coding dispatch, read-only reviews with a limited tool set, and JSON or RPC output when another tool needs to read the answer
-- Pi-native resources and community packages come along, so a dispatch sees what your interactive Pi sees
-
-&nbsp;
-
-**`cli-hermes`** - Hermes Agent CLI orchestrator
-
-- **Quiet one-shot answers through Nous Research's Hermes.** A second model reads the work and answers without ceremony, which suits cross-AI validation
-- Models route through your LLM Gateway, and adding one is a roster edit
-- Its skills and agents live under `.hermes/` as generated copies, because Hermes reads its skill folder in full
-
-&nbsp;
-
-**`cli-orca`** - Orca terminal CLI orchestrator
-
-- **Drive the Orca app from a dispatch.** Managed worktrees, paired terminals you can read back after a send, the embedded browser for pages the runtime itself hosts, automations, and full ownership handoffs
-- **Checks the app before it touches anything.** It resolves the `orca` executable and confirms the runtime answers, so a broken install stops the route instead of half-running it
-- The mcp-tooling hub hands Orca-qualified prompts here first, and the eight official Orca skills ride along as authored references, with flag detail always read from the version-matched guide the binary itself serves
+One skill, seven bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-hermes`. Describe the job and it hands the dispatch to the right one.
 
 &nbsp;
 #### JUDGMENT TRANSPORT
@@ -973,6 +917,14 @@ One advisor identity routing to ten modes through `mode-registry.json`: six work
 
 - **Local vision for text-only models.** OCR, inspect, detect and pixel analysis on screenshots through a private Moondream runtime
 - **No keys, no cloud, no per-image cost:** OpenCode leaves the tools unregistered by default, Pi registers them hidden, Devin gets evidence through a prompt-time hook and Cursor runs the CLI
+
+&nbsp;
+
+**`cli-orca`** - Orca terminal CLI orchestrator
+
+- **Drive the Orca app from a dispatch.** Managed worktrees, paired terminals you can read back after a send, the embedded browser for pages the runtime itself hosts, automations, and full ownership handoffs
+- **Checks the app before it touches anything.** It resolves the `orca` executable and confirms the runtime answers, so a broken install stops the route instead of half-running it
+- The mcp-tooling hub hands Orca-qualified prompts here first, and the eight official Orca skills ride along as authored references, with flag detail always read from the version-matched guide the binary itself serves
 
 ---
 
