@@ -138,7 +138,43 @@ The skill refuses to load when the calling session is itself running inside Devi
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 5. STRUCTURE
+
+```text
+cli-devin/
++-- SKILL.md                       # Routing contract: smart router, hard rules and the full rule set
++-- README.md                      # Overview and navigation front page
++-- assets/                        # Prompt resources loaded at routing time
+|   +-- prompt-quality-card.md     # Fast-path prompt discipline and the CLEAR check, always loaded
+|   `-- prompt-templates.md        # Copy-paste prompt templates for common tasks
++-- benchmark/                     # Benchmark reports derived from the manual-testing playbook
++-- changelog/                     # Versioned changelog entries, one file per release
++-- manual-testing-playbook/       # Devin-native manual validation scenarios
+`-- references/                    # Deep-dive reference docs loaded by intent
+    +-- agent-delegation.md        # Subagent profile roster, routing table and custom AGENT.md patterns
+    +-- cli-reference.md           # CLI subcommands, flags, permission modes, auth pre-flight and troubleshooting
+    +-- cloud-handoff.md           # /handoff mechanics, use cases and state transfer
+    +-- devin-tools.md             # Built-in capabilities: run_subagent, /handoff, MCP and session management
+    +-- integration-patterns.md    # Dispatch shapes and the failure-mode matrix
+    `-- providers-and-models.md    # Single-source catalog of the curated model families, aliases and defaults
+```
+
+| File | Role |
+|---|---|
+| `SKILL.md` | Runtime router, hard rules and the full rule set |
+| `README.md` | Overview and navigation front page |
+| `references/agent-delegation.md` | Subagent profile roster, routing table and custom AGENT.md patterns |
+| `references/cli-reference.md` | CLI subcommands, flags, permission modes, auth pre-flight and troubleshooting, always loaded |
+| `references/cloud-handoff.md` | `/handoff` mechanics, use cases and state transfer |
+| `references/devin-tools.md` | Built-in capabilities: `run_subagent`, `/handoff`, MCP and session management |
+| `references/integration-patterns.md` | Dispatch shapes and the failure-mode matrix |
+| `references/providers-and-models.md` | Single-source catalog of the curated model families, aliases and defaults |
+| `assets/prompt-quality-card.md` | Fast-path prompt discipline and the CLEAR check, always loaded |
+| `assets/prompt-templates.md` | Copy-paste prompt templates for common tasks |
+
+---
+
+## 6. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -155,7 +191,7 @@ Use cli-devin when the task benefits from a second AI perspective: an independen
 
 ---
 
-## 6. TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -173,7 +209,7 @@ Full recovery procedures live in `references/cli-reference.md` and `references/i
 
 ---
 
-## 7. FAQ
+## 8. FAQ
 
 **Q: When should I dispatch to Devin instead of doing the work myself?**
 
@@ -197,7 +233,7 @@ A: Orchestrated dispatches run through the shared deep-loop runtime (`fanout-run
 
 ---
 
-## 8. VERIFICATION
+## 9. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -207,7 +243,7 @@ A: Orchestrated dispatches run through the shared deep-loop runtime (`fanout-run
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 10. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

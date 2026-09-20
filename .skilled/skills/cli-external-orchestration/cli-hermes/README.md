@@ -105,6 +105,13 @@ The rule that follows: a dispatch given a write or terminal toolset passes `--yo
 +-- assets/                     # Prompt quality card and prompt templates
 +-- manual-testing-playbook/    # Playbook root, symlinked into .hermes/
 +-- benchmark/                  # Benchmark index for playbook-derived reports
++-- feature-catalog/            # Per-feature inventory of the shipped surface
+|   +-- feature-catalog.md      # Canonical current-state inventory for the shipped surface
+|   +-- dispatch-guards/        # Hard-rule preflight checks and dispatch-shape recognition
+|   +-- fanout-dispatch/        # Executor kind, closed roster, run budget and toolset policy
+|   +-- hub-registration/       # Hub mode registration
+|   +-- prompt-contract/        # Prompt card and improver eligibility
+|   `-- runtime-surface/        # The .hermes/ runtime folder and the repo-guards plugin
 `-- changelog/                  # Packet-local changelog
 ```
 
@@ -120,6 +127,12 @@ The rule that follows: a dispatch given a write or terminal toolset passes `--yo
 | `references/mcp-policy.md` | Operator steps for MCP and deny-by-default per tool |
 | `assets/prompt-quality-card.md` | Thin delegator to the canonical prompt-models card |
 | `assets/prompt-templates.md` | Write, read-only, generation and fan-out scaffolds |
+| `feature-catalog/feature-catalog.md` | Canonical current-state inventory for the shipped surface |
+| `feature-catalog/dispatch-guards/` | Hard-rule preflight checks and dispatch-shape recognition |
+| `feature-catalog/fanout-dispatch/` | Executor kind, closed roster, run budget and toolset policy |
+| `feature-catalog/hub-registration/` | Hub mode registration |
+| `feature-catalog/prompt-contract/` | Prompt card and improver eligibility |
+| `feature-catalog/runtime-surface/` | The `.hermes/` runtime folder and the repo-guards plugin |
 
 The repo-root `.hermes/` folder is the runtime surface Hermes itself reads.
 

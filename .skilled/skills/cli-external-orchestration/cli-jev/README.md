@@ -23,7 +23,10 @@ version: 1.0.0.0
 
 ---
 
-## 1. WHAT THIS PACKET IS
+## 1. OVERVIEW
+
+`cli-jev` is the hub's transport for typed judgments, documented here for readers deciding whether a
+question belongs to Jev or to a workflow mode.
 
 `cli-jev` bridges the `jev` CLI and the `jev-mcp` stdio server into the hub's routing layer. A
 request that needs a decision a script can consume — is this urgent, which queue owns it, how severe
@@ -94,18 +97,28 @@ implemented check in the runtime-neutral dispatch engine:
 cli-jev/
   SKILL.md                             # the contract: when to use, dispatch shape, eight hard rules
   README.md                            # this file
-  references/
+  references/                          # deep-dive docs loaded by intent
     cli-reference.md                   # subcommands, flags, input forms, exit codes, output shapes
     providers-and-models.md             # the four providers, key variables, endpoints, translation
     integration-patterns.md            # gate, triage, branch and batch patterns
     mcp-server.md                      # jev-mcp tools, host-only rule, operator step
   assets/
     question-shaping-card.md           # drafting the question so the value is usable
-  changelog/
-  benchmark/
-  manual-testing-playbook/
-  feature-catalog/
+  changelog/                           # versioned changelog entries, one file per release
+  benchmark/                           # benchmark reports for the packet
+  manual-testing-playbook/             # deterministic scenarios with expected observables
+  feature-catalog/                     # the capability index with source anchors
 ```
+
+| File | Role |
+|---|---|
+| `SKILL.md` | The routing contract: activation triggers, dispatch shape, eight hard rules |
+| `README.md` | This front page: what the packet is, how it dispatches, what it cannot do |
+| `references/cli-reference.md` | Every subcommand, flag, input form, exit code and output shape |
+| `references/providers-and-models.md` | The four providers, their key variables, endpoints and translation behavior |
+| `references/integration-patterns.md` | The shipped judgment patterns: gate, triage, branch and batch |
+| `references/mcp-server.md` | The `jev-mcp` stdio server, its tools and the host-only rule |
+| `assets/question-shaping-card.md` | Drafting the question so the returned value is usable |
 
 ---
 
