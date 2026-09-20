@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/033-system-speckit-v4/043-v4-root-readme",
+  "description": "Phase 1: v4-root-readme",
+  "keywords": [
+    "phase",
+    "v4-root-readme"
+  ],
+  "lastUpdated": "2026-09-20T06:53:26.362Z",
+  "specId": "043",
+  "folderSlug": "v4-root-readme",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

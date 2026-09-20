@@ -102,6 +102,26 @@ const HERMES_WRITE_TOOLSETS = /(?:^|[\s=,])(?:terminal|coding|code_execution|bro
 // it yields a leaf that cannot read anything and still exits 0 with empty stdout.
 const HERMES_FILE_TOOLSET = /(?:^|,)file(?:,|$)/;
 
+// Jev's judgment shapes. `jev` has no print flag and no headless subcommand: the subcommand IS the
+// dispatch, exactly as `codex exec` is for codex, so membership here is the evidence.
+const JEV_JUDGMENT = /\bjev\s+(?:noul|choice|score|run)\b/;
+const JEV_CHOICE = /\bjev\s+choice\b/;
+const JEV_SCORE = /\bjev\s+score\b/;
+const JEV_RUN = /\bjev\s+run\b/;
+// `jev-mcp` is a stdio server, not a judgment: it is matched only by the rule that refuses a shell
+// start, so it is deliberately absent from JEV_JUDGMENT.
+const JEV_MCP = /(?:^|[\s;&|])jev-mcp(?:\s|$)/;
+const JEV_CREDENTIAL_VARS = /(?:^|\s)(?:TYPESAFE_API_KEY|AI_GATEWAY_API_KEY|OPENROUTER_API_KEY|JEV_API_KEY)=[^\s]+/;
+// A state flag with an inline value is the only form that does NOT read stdin; `-s -` and an
+// omitted flag both read it to EOF, which is a hang when stdin is an inherited terminal.
+const JEV_INLINE_STATE = /(?:^|\s)(?:-s|--state)(?:\s+|=)(?!(?:-|$))[^\s"']+/;
+
+/** Count repeatable `-o`/`-l` occurrences: the CLI accepts one, a choice or a scale needs two. */
+function repeatedFlagCount(command, names) {
+  const pattern = new RegExp(`(?:^|\\s)(?:${names})(?:\\s+|=)`, 'g');
+  return (command.match(pattern) || []).length;
+}
+
 // Some checks have a legitimate negative control: a scenario proving the refusal exists must
 // issue the shape that gets refused. Testing the delegation guard needs the delegation
 // toolset; proving a read-nothing leaf needs no reader; proving the approval gate needs a
@@ -233,6 +253,45 @@ export const CHECKS = {
   // Shell hooks are user-level with a consent allowlist; --accept-hooks blesses whatever the
   // operator's config declares, so a dispatch never passes it.
   'hermes-hooks-user-level': (cmd) => !/\bhermes\b/.test(cmd) || !/(^|\s)--accept-hooks(\s|$)/.test(cmd),
+  // Jev reads its state from stdin by default, so a dispatch that neither passes an inline state
+  // nor redirects stdin blocks on a terminal that will never produce the EOF it waits for.
+  'jev-stdin-bounded': (cmd) => {
+    if (!JEV_JUDGMENT.test(cmd)) return true;
+    const fromStdin = JEV_RUN.test(cmd)
+      ? /\bjev\s+run\s+-(?:\s|$)/.test(cmd)
+      : !JEV_INLINE_STATE.test(cmd);
+    if (!fromStdin) return true;
+    if (STDIN_REDIRECT.test(cmd)) return true;
+    return /\|\s*(?:[A-Z_]+=\S+\s+)*jev\b/.test(cmd);
+  },
+  // One option is not a choice. The CLI sends it anyway, so the guard is the only surface that
+  // refuses it before a model is billed to confirm the only answer available.
+  'jev-choice-option-cardinality': (cmd) => !JEV_CHOICE.test(cmd)
+    || repeatedFlagCount(cmd, '-o|--option') >= 2,
+  // One level is not a scale: the returned zero-based position carries no information.
+  'jev-score-level-cardinality': (cmd) => !JEV_SCORE.test(cmd)
+    || repeatedFlagCount(cmd, '-l|--level') >= 2,
+  // `--value` prints a single primary answer, which a batched request does not have; the CLI only
+  // reports the conflict after the call succeeds, so the guard is the cheap refusal.
+  'jev-value-not-with-run': (cmd) => !JEV_RUN.test(cmd)
+    || !/(?:^|\s)--value(?:\s|$)/.test(cmd),
+  // A proxy bearer travels to whatever endpoint the flag names, and the endpoint is also the one
+  // value the CLI validates first, so an unnamed endpoint is a command that cannot run at all.
+  'jev-custom-endpoint-required': (cmd) => {
+    if (!JEV_JUDGMENT.test(cmd)) return true;
+    if (!/(?:^|\s)--provider(?:\s+|=)custom(?:\s|$)/.test(cmd)) return true;
+    return /(?:^|\s)--endpoint(?:\s|=)/.test(cmd) || /JEV_ENDPOINT=/.test(cmd);
+  },
+  // Shell history, process arguments and transcripts all retain an inline key, and the CLI's own
+  // credential store exists precisely so the value never appears on a command line.
+  'jev-no-inline-credential': (cmd) => {
+    if (!JEV_JUDGMENT.test(cmd) && !JEV_MCP.test(cmd)) return true;
+    return !JEV_CREDENTIAL_VARS.test(cmd);
+  },
+  // stdout is a JSON-RPC frame stream, so a hand-started server writes frames into the transcript
+  // and answers nothing; only a host that speaks the protocol should own the process.
+  'jev-mcp-host-only': (cmd) => !JEV_MCP.test(cmd),
+  'command-v-jev-required': binaryOnPathCheck('jev', /\bjev\s+/),
   // Non-interactive claude -p with a Bash-heavy prompt and no permission bypass can deadlock.
   'non-interactive-permission-mode-risk': (cmd) => {
     if (!/\bclaude\s+-p\b|\bclaude\s+--print\b/.test(cmd)) return true;

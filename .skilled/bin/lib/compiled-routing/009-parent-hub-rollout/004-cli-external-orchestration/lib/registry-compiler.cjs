@@ -25,6 +25,10 @@ const {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ACTOR_ROLE = 'actor';
+// A transport bridges an external surface and returns a value: it is routable and it acts on
+// nothing, so the runtime's non-actor role is the honest one to declare.
+const TRANSPORT_ROLE = 'transport';
+const TRANSPORT_FORBIDDEN_TOOLS = ['Write', 'Edit', 'Task'];
 const FORBIDDEN_SIGNAL = 'forbidden';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -110,9 +114,20 @@ function destinationId(skillId, mode) {
   };
 }
 
-function authorityRef(id) {
+function authorityRef(id, role = ACTOR_ROLE) {
   const digest = sha256(Buffer.from(canonicalize(id), 'utf8')).slice(0, 24);
-  return `authority:${ACTOR_ROLE}:${digest}`;
+  return `authority:${role}:${digest}`;
+}
+
+// A destination's role follows its packetKind: a workflow acts, a transport selects.
+function roleForMode(mode) {
+  return mode.packetKind === TRANSPORT_ROLE ? TRANSPORT_ROLE : ACTOR_ROLE;
+}
+
+// A transport may not hold commit authority; the runtime refuses such a policy outright, so the
+// authored edge has to say so rather than being silently dropped.
+function authorityRelationForRole(role) {
+  return role === TRANSPORT_ROLE ? 'evidenceOnly' : 'approveBeforeCommit';
 }
 
 function combinations(values, size, offset = 0, prefix = []) {
@@ -160,10 +175,27 @@ function assertHubShape(registry, hubRouter) {
     fail('DEFAULT_MODE_FORBIDDEN', 'this hub must fail closed without a default mode');
   }
   for (const mode of registry.modes) {
-    if (mode.packetKind !== 'workflow' || mode.backendKind !== 'cli-dispatch') {
+    if (mode.packetKind === TRANSPORT_ROLE) {
+      // The transport contract: routable, advisor-invisible, and unable to act. Enforced here
+      // because a transport that can write is a workflow wearing the wrong packetKind, and the
+      // compiled policy is what the runtime actually serves.
+      if (mode.backendKind !== 'cli-dispatch') {
+        fail('TRANSPORT_ARCHETYPE_DRIFT', `${mode.workflowMode} must dispatch through the CLI`);
+      }
+      if (mode.toolSurface?.mutatesWorkspace !== false) {
+        fail('TRANSPORT_MUTATION_DRIFT', `${mode.workflowMode} must declare no workspace mutation`);
+      }
+      const forbidden = Array.isArray(mode.toolSurface?.forbidden) ? mode.toolSurface.forbidden : [];
+      const missing = TRANSPORT_FORBIDDEN_TOOLS.filter((tool) => !forbidden.includes(tool));
+      if (missing.length > 0) {
+        fail('TRANSPORT_TOOL_SURFACE_DRIFT', `${mode.workflowMode} must forbid ${missing.join(', ')}`);
+      }
+      if (mode.advisorRouting?.routingClass !== 'metadata') {
+        fail('TRANSPORT_ROUTING_CLASS_DRIFT', `${mode.workflowMode} must stay advisor-invisible`);
+      }
+    } else if (mode.packetKind !== 'workflow' || mode.backendKind !== 'cli-dispatch') {
       fail('EXECUTOR_ARCHETYPE_DRIFT', `${mode.workflowMode} is not a CLI workflow actor`);
-    }
-    if (mode.toolSurface?.mutatesWorkspace !== true) {
+    } else if (mode.toolSurface?.mutatesWorkspace !== true) {
       fail('EXECUTOR_MUTATION_DRIFT', `${mode.workflowMode} must declare workspace mutation`);
     }
     const signal = hubRouter.routerSignals[mode.workflowMode];
@@ -195,12 +227,12 @@ function authoredModel(input, sourceHashes) {
   const destinations = registry.modes.map((mode) => {
     const id = destinationId(registry.skill, mode);
     return {
-      authorityRef: authorityRef(id),
+      authorityRef: authorityRef(id, roleForMode(mode)),
       backendKind: id.backendKind,
-      mutatesWorkspace: true,
+      mutatesWorkspace: mode.toolSurface.mutatesWorkspace === true,
       packetId: id.packetId,
       packetKind: id.packetKind,
-      role: ACTOR_ROLE,
+      role: roleForMode(mode),
       skillId: id.skillId,
       workflowMode: id.workflowMode,
     };
@@ -227,7 +259,7 @@ function authoredModel(input, sourceHashes) {
     aliases: registry.modes.flatMap((mode) => mode.aliases || []),
     authorityGraph: destinations.map((destination) => ({
       fromAuthorityRef: destination.authorityRef,
-      relation: 'approveBeforeCommit',
+      relation: authorityRelationForRole(destination.role),
       toWorkflowMode: destination.workflowMode,
     })),
     bundleRules: orderedBundleRules(hubRouter.routerPolicy.tieBreak),
@@ -343,6 +375,7 @@ function compileRegistry(input) {
 
 module.exports = {
   ACTOR_ROLE,
+  TRANSPORT_ROLE,
   FORBIDDEN_SIGNAL,
   artifactBytes,
   compileRegistry,

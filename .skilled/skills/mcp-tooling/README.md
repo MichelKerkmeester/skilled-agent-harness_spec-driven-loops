@@ -1,32 +1,30 @@
 ---
 title: mcp-tooling
-description: "One advisor identity routes ten MCP tool bridges: six workflow modes and four read-only design transports."
+description: "One advisor identity routes nine MCP tool bridges: five workflow modes and four read-only design transports."
 trigger_phrases:
   - "chrome devtools"
   - "clickup task"
   - "obsidian vault"
   - "aside browser"
   - "notion mcp"
-  - "orca cli"
-  - "orca worktree"
   - "figma cli"
   - "magicpath components"
   - "mcp tool bridge"
-version: 1.7.0.0
+version: 1.8.0.0
 ---
 
 # mcp-tooling
 
-> One advisor identity routes ten MCP tool bridges through the right workflow packet: six workflow bridges and four read-only design transports.
+> One advisor identity routes nine MCP tool bridges through the right workflow packet: five workflow bridges and four read-only design transports.
 
 ## 1. AT A GLANCE
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Browser debugging, ClickUp, Obsidian, Aside, Notion, Orca-managed state, Figma Desktop, Refero, Mobbin, and MagicPath |
+| **Use it for** | Browser debugging, ClickUp, Obsidian, Aside, Notion, Figma Desktop, Refero, Mobbin, and MagicPath |
 | **Invoke with** | Plain-language tool-specific requests through the hub and its two-stage router |
-| **Routes to** | Ten packet directories via `mode-registry.json`, `hub-router.json`, and root `ROUTER.md` |
-| **Workflow modes** | `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`, `mcp-orca-cli` |
+| **Routes to** | Nine packet directories via `mode-registry.json`, `hub-router.json`, and root `ROUTER.md` |
+| **Workflow modes** | `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion` |
 | **Transport modes** | `mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-magicpath` |
 | **Produces** | External-tool evidence and state changes owned by the selected packet, with explicit safety boundaries |
 
@@ -49,7 +47,6 @@ The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.js
 | [`mcp-obsidian`](./mcp-obsidian/README.md) | Obsidian vault and markdown-note management plus Iconic rulebook automation through CLI and MCP lanes |
 | [`mcp-aside-devtools`](./mcp-aside-devtools/README.md) | Goal-driven Aside browser tasks and deterministic REPL evidence, with Code Mode composition when needed |
 | [`mcp-notion`](./mcp-notion/README.md) | Notion pages, blocks, data sources, comments, users, search, and direct API gap fills |
-| [`mcp-orca-cli`](./mcp-orca-cli/README.md) | Orca-managed worktrees, terminals, repositories, handoffs, automations, artifacts, skill sharing, comments, and embedded browser state through the version-matched CLI guide |
 | [`mcp-figma`](./mcp-figma/README.md) | Figma Desktop transport through `figma-ds-cli`, with explicit-path local exports and design-reference handoff |
 | [`mcp-refero`](./mcp-refero/README.md) | Read-only real-app web UI reference search through Refero MCP |
 | [`mcp-mobbin`](./mcp-mobbin/README.md) | Read-only mobile app screen, flow, and UX pattern research through Mobbin MCP |
@@ -68,16 +65,12 @@ Mark the ClickUp task done and add a shipping note.
 
 Create a daily note in my Obsidian vault.
 
-Use the Orca CLI to inspect the current worktree and terminals.
-
-Open the Orca-managed browser page and capture a fresh snapshot.
-
 Query my Notion roadmap data source for in-progress rows.
 
 Search MagicPath for the saved button component and show its source.
 ```
 
-The hub routes a browser/CDP request to Chrome, a generic agentic browser request to Aside, and an Orca-managed browser request to Orca. It does not treat a bare `orca` mention as an Orca signal because unrelated OpenOrca model traffic must remain outside this hub mode.
+The hub routes a browser/CDP request to Chrome and a generic agentic browser request to Aside. Orca CLI work is owned by the standalone `cli-orca` skill, which keeps a bare `orca` mention out of routing because unrelated OpenOrca model traffic and the GNOME screen reader share the token.
 
 For installation or debugging, use `/doctor:mcp`. The doctor route reports bridge state without changing configuration.
 
@@ -97,7 +90,7 @@ On a route, load only the returned targets. On `clarify` or `defer`, ask for the
 
 ### Workflow modes
 
-Workflow packets may change local or external workflow state. Their packet contracts define the required authorization, rollback, and verification boundary. Orca is classified as workflow because worktrees, terminals, agents, automations, browser interactions, and publishing can change state.
+Workflow packets may change local or external workflow state. Their packet contracts define the required authorization, rollback, and verification boundary.
 
 ### Transport modes
 
@@ -105,7 +98,7 @@ Transport packets bridge external tool surfaces and remain `mutatesWorkspace:fal
 
 ### Shared Code Mode
 
-`mcp-code-mode` owns the shared MCP execution substrate and manual registration mechanics. Packets that use it discover their live callables at runtime. The Orca packet does not use Code Mode because no native Orca MCP command was found in the inspected 1.4.205 registry.
+`mcp-code-mode` owns the shared MCP execution substrate and manual registration mechanics. Packets that use it discover their live callables at runtime.
 
 ---
 
@@ -120,20 +113,20 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/mcp
 Positive route replay:
 
 ```bash
-node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use the Orca CLI to inspect the current worktree"
+node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use Chrome DevTools to capture a HAR for the staging dashboard"
 ```
 
 Advisor replay:
 
 ```bash
-python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Use the Orca CLI to inspect the current worktree" --threshold 0.5
+python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Use Chrome DevTools to capture a HAR for the staging dashboard" --threshold 0.5
 ```
 
 Generated metadata and leaf package:
 
 ```bash
 node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --skills-dir .skilled/skills --fix
-python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling/mcp-orca-cli --check
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling --check
 ```
 
 ---
@@ -145,7 +138,8 @@ python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled
 | `mcp-code-mode` | Shared MCP execution substrate for packets that use registered MCP or UTCP manuals |
 | `mcp-chrome-devtools` | Chrome/CDP debugging owner |
 | `mcp-aside-devtools` | Generic agentic browser owner |
-| `mcp-orca-cli` | Orca-managed worktree, terminal, automation, publishing, and embedded-browser owner |
+| `sk-git` | Generic Git worktree, branch, and commit owner |
+| `cli-orca` | Orca CLI owner: managed worktrees, terminals, automations, publishing, and the embedded browser |
 | `sk-design-md-generator` | Measured-reference partner for Figma, Refero, and Mobbin |
 | `sk-design` | Design authority for MagicPath theme and component evidence |
 | `sk-code` | Consumes external-tool evidence as implementation input |

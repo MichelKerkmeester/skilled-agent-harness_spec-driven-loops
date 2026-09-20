@@ -1,7 +1,7 @@
 {
   "name": "cli-external-orchestration",
-  "description": "Parent hub for external CLI dispatch: routes to seven workflow modes, cli-opencode (OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback), cli-claude-code (Claude Code CLI executor: Anthropic-backed reasoning, edits, reviews, structured cross-AI handoff), cli-codex (Codex CLI executor: OpenAI-backed coding, review, and web research; fails closed when codex is absent), cli-cursor (Cursor CLI executor: cursor-agent-backed coding, Composer-model dispatch, read-only plan/ask modes; fails closed when cursor-agent is absent), cli-devin (Devin CLI executor: Cognition-backed coding, cloud handoff, subagent delegation; fails closed when devin is absent), cli-pi (Pi CLI executor: guarded print, JSON event, RPC, native-resource, and community-package dispatch; fails closed when pi is absent), and cli-hermes (Hermes Agent CLI executor: quiet oneshot chat dispatch, LLM Gateway model routing, project skills and plugins; fails closed when hermes is absent or unconfigured), through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. All seven modes orchestrate a CLI binary and their dispatched writes land in this repo's workspace, so none is a transport packet.",
-  "version": "1.5.0.0",
+  "description": "Parent hub for external CLI dispatch: routes to seven workflow modes and one transport mode, cli-opencode (OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback), cli-claude-code (Claude Code CLI executor: Anthropic-backed reasoning, edits, reviews, structured cross-AI handoff), cli-codex (Codex CLI executor: OpenAI-backed coding, review, and web research; fails closed when codex is absent), cli-cursor (Cursor CLI executor: cursor-agent-backed coding, Composer-model dispatch, read-only plan/ask modes; fails closed when cursor-agent is absent), cli-devin (Devin CLI executor: Cognition-backed coding, cloud handoff, subagent delegation; fails closed when devin is absent), cli-pi (Pi CLI executor: guarded print, JSON event, RPC, native-resource, and community-package dispatch; fails closed when pi is absent), cli-hermes (Hermes Agent CLI executor: quiet oneshot chat dispatch, LLM Gateway model routing, project skills and plugins; fails closed when hermes is absent or unconfigured), and cli-jev (Jev CLI transport: typed judgments — yes/no probability, choice, score, batched — returning a value and never acting; declares mutatesWorkspace false and forbids Write/Edit/Task; fails closed when jev is absent or no provider credential is available), through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. The seven workflow modes orchestrate a CLI binary and their dispatched writes land in this repo's workspace; the transport mode is the hub's only packetKind transport, declared through the transport-axis extension, and it selects rather than acts.",
+  "version": "1.6.0.0",
   "importance_tier": "high",
   "keywords": [
     "cli-external-orchestration",
@@ -42,7 +42,16 @@
     "nous-hermes",
     "delegate-to-hermes",
     "hermes-chat",
-    "hermes-oneshot"
+    "hermes-oneshot",
+    "cli-jev",
+    "jev-cli",
+    "jev-judgment",
+    "typesafe-jev",
+    "jev-noul",
+    "jev-choice",
+    "jev-score",
+    "jev-run",
+    "transport-mode"
   ],
-  "lastUpdated": "2026-09-14T00:00:00Z"
+  "lastUpdated": "2026-09-20T00:00:00Z"
 }

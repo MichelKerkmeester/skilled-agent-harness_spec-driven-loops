@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/074-cli-jev-creation/003-hub-mode-registration",
+  "description": "Phase 3: hub-mode-registration",
+  "keywords": [
+    "phase",
+    "hub-mode-registration"
+  ],
+  "lastUpdated": "2026-09-20T07:39:07.579Z",
+  "specId": "003",
+  "folderSlug": "hub-mode-registration",
+  "parentChain": [
+    "cli-external-orchestration",
+    "074-cli-jev-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

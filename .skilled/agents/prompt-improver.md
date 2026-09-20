@@ -67,6 +67,8 @@ The Luna asymmetry is intentional: Luna is eligible through `cli-codex` and not 
 
 The allowance list is closed (default-deny). A pair that matches no allowance clause is not eligible; for example, Gemini reached through `cli-cursor` is not eligible.
 
+The route list above is a list of executors. The hub's transport mode, `cli-jev`, is deliberately absent: it answers one typed judgment and runs nothing, so no prompt-improvement task can be dispatched to it and it needs no eligibility row.
+
 An ineligible model that finds itself acting as this agent must refuse the prompt-improve work, name the rule that denied it, and name an eligible (model, route) pair in its place. It must not do the work anyway with a caveat.
 
 ---

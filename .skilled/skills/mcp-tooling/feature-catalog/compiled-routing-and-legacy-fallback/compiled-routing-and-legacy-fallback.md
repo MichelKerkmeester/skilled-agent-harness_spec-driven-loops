@@ -43,9 +43,9 @@ A `route` result may be followed directly. A `clarify` or `defer` result require
 
 `SPECKIT_COMPILED_ROUTING=1` requests compiled resolution but cannot override an invalid or stale activation manifest. `SPECKIT_COMPILED_ROUTING=0`, `false`, or `off` forces legacy routing. Unset behavior is determined by the runtime's activation cohort and manifest; it is not a promise that this hub is currently compiled-serving.
 
-### Current Orca Integration Boundary
+### Former Orca Integration Boundary
 
-The Orca packet is registered in the source hub artifacts and in the generated leaf manifest. This ordinary packet integration does not modify the compiled shadow-child compiler, admission manifest, or runtime activation cohort. Until an independently authorized promotion refreshes those artifacts, a status result such as `legacy` with `stale-manifest` is the honest outcome.
+The Orca packet left this hub for the standalone `cli-orca` skill, so the former hub-mode registration no longer exists and no compiled promotion applies to it. This change never modified the compiled shadow-child compiler, admission manifest, or runtime activation cohort. Until an independently authorized promotion refreshes those artifacts, a status result such as `legacy` with `stale-manifest` is the honest outcome for this hub.
 
 ---
 
@@ -58,7 +58,7 @@ The Orca packet is registered in the source hub artifacts and in the generated l
 | `.skilled/skills/mcp-tooling/SKILL.md` | Shared | Tells callers to use the compiled front door when it is serving. |
 | `.skilled/bin/compiled-route.cjs` | Script | Conditional compiled-route CLI front door. |
 | `.skilled/bin/compiled-route-status.cjs` | Script | Reports serving authority and cause code. |
-| `.skilled/skills/mcp-tooling/mode-registry.json` | Source | Declares the ten source modes, including `mcp-orca-cli`. |
+| `.skilled/skills/mcp-tooling/mode-registry.json` | Source | Declares the nine source modes. |
 | `.skilled/skills/mcp-tooling/hub-router.json` | Source | Supplies the source routing policy and vocabulary. |
 
 ### Validation and tests

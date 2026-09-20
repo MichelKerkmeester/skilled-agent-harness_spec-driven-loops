@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-orca/002-consolidate-official-orca-skills",
+  "spec_folder": "cli-orca/002-consolidate-official-orca-skills",
+  "parent_id": "cli-orca",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-orca extraction",
+      "mcp-orca-cli migration",
+      "official Orca skills consolidation",
+      "standalone Orca CLI skill",
+      "cli-orca implementation plan",
+      "hub extraction plan",
+      "official Orca skills embedding plan",
+      "cli-orca tasks",
+      "extraction task list",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability"
+    ],
+    "key_topics": [
+      "cli-orca",
+      "extraction",
+      "mcp-orca-cli",
+      "migration",
+      "official",
+      "orca",
+      "skills",
+      "consolidation",
+      "standalone",
+      "cli",
+      "skill",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "scratch/baseline-pre-extraction.txt",
+      "scratch/research-official-skills.md",
+      "scratch/research-orca-cli-surface.md",
+      "scratch/research-routing-boundaries.md",
+      ".skilled/skills/cli-orca/assets/PROVENANCE.md",
+      ".skilled/skills/README.txt",
+      "scratch/gate-results.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+      ".skilled/skills/cli-orca/SKILL.md",
+      ".skilled/skills/cli-orca/graph-metadata.json",
+      ".skilled/skills/cli-orca/leaf-manifest.config.json",
+      ".skilled/skills/cli-orca/README.md",
+      ".skilled/skills/mcp-tooling/ROUTER.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-pre-extraction.txt",
+        "kind": "file",
+        "path": "scratch/baseline-pre-extraction.txt",
+        "source": "derived"
+      },
+      {
+        "name": "research-official-skills.md",
+        "kind": "doc",
+        "path": "scratch/research-official-skills.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-orca-cli-surface.md",
+        "kind": "doc",
+        "path": "scratch/research-orca-cli-surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-routing-boundaries.md",
+        "kind": "doc",
+        "path": "scratch/research-routing-boundaries.md",
+        "source": "derived"
+      },
+      {
+        "name": "PROVENANCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-orca/assets/PROVENANCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "gate-results.md",
+        "kind": "doc",
+        "path": "scratch/gate-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-orca/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-orca/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.config.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-orca/leaf-manifest.config.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-orca/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Consolidate Official Orca Skills Into Standalone",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orca Agent Skills",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Skills",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Move the Orca CLI subject out of the mcp-tooling parent hub into a standalone class-S skill named cli-orca, with all eight official Orca skills embedded.",
+    "created_at": "2026-09-20T09:00:00Z",
+    "last_save_at": "2026-09-20T09:39:00.881Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:2775a495bdae0652fe11a46c4c82e341d4c19976ab3ab0d1a89db13b8cdf810f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c6fb17a7383235f6f75733772df61686a30659343923b786c9e458efaed70038",
+      "plan.md": "7df5ffac13388a5eb5d53604cb71b3343d490a8a137688fd14fa326d908fac5c",
+      "tasks.md": "fbeec5b33b7c40a84a52ed41aa9acb2428259617cff129aea99cad84da753f11",
+      "decision-record.md": "aaf6693955b2d3033e469246648d78d5670ed90eedee00d61ca3a78f5af00a87",
+      "implementation-summary.md": "4c7d115e391e24e72ce89b659123fc928c9facc7472eb38dc847b6d8e86d5c18",
+      "research/research.md": "0c7829540907ece87ea4596745a4a1a8275da79d87386b483172a026d0ab1452"
+    },
+    "last_active_at": null
+  }
+}

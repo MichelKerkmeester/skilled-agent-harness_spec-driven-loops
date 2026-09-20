@@ -1,0 +1,14 @@
+node_modules/
+src/terminal/terminal-webview-engine.generated.ts
+src/components/pr-sidebar/mermaid-webview-engine.generated.ts
+.expo/
+dist/
+/android/
+/ios/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/

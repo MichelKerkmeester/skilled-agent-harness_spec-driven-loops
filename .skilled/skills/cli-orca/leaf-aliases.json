@@ -1,0 +1,172 @@
+[
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "assets/PROVENANCE.md",
+    "diskPath": "assets/PROVENANCE.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "assets/computer-use.txt",
+    "diskPath": "assets/computer-use.txt"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "assets/linear-tickets.txt",
+    "diskPath": "assets/linear-tickets.txt"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "assets/orca-cli.txt",
+    "diskPath": "assets/orca-cli.txt"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "assets/orca-emulator-android.txt",
+    "diskPath": "assets/orca-emulator-android.txt"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "assets/orca-emulator.txt",
+    "diskPath": "assets/orca-emulator.txt"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "assets/orca-linear.txt",
+    "diskPath": "assets/orca-linear.txt"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "assets/orca-per-workspace-env.txt",
+    "diskPath": "assets/orca-per-workspace-env.txt"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "assets/orchestration.txt",
+    "diskPath": "assets/orchestration.txt"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "feature-catalog/orca-skills/official-skill-layer.md",
+    "diskPath": "feature-catalog/orca-skills/official-skill-layer.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "feature-catalog/routing/orca-qualified-vocabulary.md",
+    "diskPath": "feature-catalog/routing/orca-qualified-vocabulary.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "feature-catalog/runtime/preflight-and-resolution.md",
+    "diskPath": "feature-catalog/runtime/preflight-and-resolution.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "feature-catalog/safety/mutation-and-ownership-boundaries.md",
+    "diskPath": "feature-catalog/safety/mutation-and-ownership-boundaries.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "manual-testing-playbook/handoffs/hub-deferral-receipt.md",
+    "diskPath": "manual-testing-playbook/handoffs/hub-deferral-receipt.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "manual-testing-playbook/ownership/embedded-browser-boundary.md",
+    "diskPath": "manual-testing-playbook/ownership/embedded-browser-boundary.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "manual-testing-playbook/ownership/official-skill-handoff.md",
+    "diskPath": "manual-testing-playbook/ownership/official-skill-handoff.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "manual-testing-playbook/routing/negative-holdouts.md",
+    "diskPath": "manual-testing-playbook/routing/negative-holdouts.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "manual-testing-playbook/routing/orca-positive-route.md",
+    "diskPath": "manual-testing-playbook/routing/orca-positive-route.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "manual-testing-playbook/runtime/ambiguous-send-recovery.md",
+    "diskPath": "manual-testing-playbook/runtime/ambiguous-send-recovery.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "manual-testing-playbook/runtime/preflight-executable-resolution.md",
+    "diskPath": "manual-testing-playbook/runtime/preflight-executable-resolution.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "manual-testing-playbook/runtime/runtime-stopped-recovery.md",
+    "diskPath": "manual-testing-playbook/runtime/runtime-stopped-recovery.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/mutation-and-browser-boundaries.md",
+    "diskPath": "references/mutation-and-browser-boundaries.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/orca-cli-reference.md",
+    "diskPath": "references/orca-cli-reference.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/orca-skills/computer-use.md",
+    "diskPath": "references/orca-skills/computer-use.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/orca-skills/linear-tickets.md",
+    "diskPath": "references/orca-skills/linear-tickets.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/orca-skills/orca-cli.md",
+    "diskPath": "references/orca-skills/orca-cli.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/orca-skills/orca-emulator-android.md",
+    "diskPath": "references/orca-skills/orca-emulator-android.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/orca-skills/orca-emulator.md",
+    "diskPath": "references/orca-skills/orca-emulator.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/orca-skills/orca-linear.md",
+    "diskPath": "references/orca-skills/orca-linear.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/orca-skills/orca-per-workspace-env.md",
+    "diskPath": "references/orca-skills/orca-per-workspace-env.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/orca-skills/orchestration.md",
+    "diskPath": "references/orca-skills/orchestration.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/orca-skills/overview.md",
+    "diskPath": "references/orca-skills/overview.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/session-and-runtime.md",
+    "diskPath": "references/session-and-runtime.md"
+  },
+  {
+    "workflowMode": "cli-orca",
+    "leafResourceId": "references/troubleshooting.md",
+    "diskPath": "references/troubleshooting.md"
+  }
+]

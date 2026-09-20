@@ -1,419 +1,383 @@
 {
- "skill": "mcp-tooling",
- "version": "1.7.0.0",
- "routerPolicy": {
-  "defaultMode": null,
-  "ambiguityDelta": 1,
-  "tieBreak": [
-   "mcp-chrome-devtools",
-   "mcp-click-up",
-   "mcp-obsidian",
-   "mcp-aside-devtools",
-   "mcp-notion",
-   "mcp-orca-cli",
-   "mcp-figma",
-   "mcp-refero",
-   "mcp-mobbin",
-   "mcp-magicpath"
-  ],
-  "outcomes": {
-   "single": "one dominant tool signal routes to one mode",
-   "orderedBundle": "multiple explicitly requested tools route in tie-break order",
-   "defer": "unclear or contradictory tool intent asks for disambiguation"
+  "skill": "mcp-tooling",
+  "version": "1.8.0.0",
+  "routerPolicy": {
+    "defaultMode": null,
+    "ambiguityDelta": 1,
+    "tieBreak": [
+      "mcp-chrome-devtools",
+      "mcp-click-up",
+      "mcp-obsidian",
+      "mcp-aside-devtools",
+      "mcp-notion",
+      "mcp-figma",
+      "mcp-refero",
+      "mcp-mobbin",
+      "mcp-magicpath"
+    ],
+    "outcomes": {
+      "single": "one dominant tool signal routes to one mode",
+      "orderedBundle": "multiple explicitly requested tools route in tie-break order",
+      "defer": "unclear or contradictory tool intent asks for disambiguation"
+    },
+    "defaultResource": [
+      "ROUTER.md",
+      "mode-registry.json"
+    ],
+    "defaultResourceSemantics": "fallback-only",
+    "defaultResourceContract": "A scored route assembles exactly the selected mode's declared resources. defaultResource is consulted ONLY when no mode scores (zero-signal branch), and then only as the defer-time suggestion offered alongside disambiguation - it is never unioned into a scored route's resource set.",
+    "discoveryClasses": [
+      "hub-identity",
+      "provider-neutral-design-research"
+    ],
+    "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: a prompt matching only discovery vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode."
   },
-  "defaultResource": [
-   "ROUTER.md",
-   "mode-registry.json"
-  ],
-  "defaultResourceSemantics": "fallback-only",
-  "defaultResourceContract": "A scored route assembles exactly the selected mode's declared resources. defaultResource is consulted ONLY when no mode scores (zero-signal branch), and then only as the defer-time suggestion offered alongside disambiguation - it is never unioned into a scored route's resource set.",
-  "discoveryClasses": [
-   "hub-identity",
-   "provider-neutral-design-research"
-  ],
-  "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: a prompt matching only discovery vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode."
- },
- "routerSignals": {
-  "mcp-chrome-devtools": {
-   "weight": 4,
-   "classes": [
-    "chrome-devtools-aliases",
-    "browser-debug"
-   ],
-   "resources": [
-    "mcp-chrome-devtools/SKILL.md"
-   ]
+  "routerSignals": {
+    "mcp-chrome-devtools": {
+      "weight": 4,
+      "classes": [
+        "chrome-devtools-aliases",
+        "browser-debug"
+      ],
+      "resources": [
+        "mcp-chrome-devtools/SKILL.md"
+      ]
+    },
+    "mcp-click-up": {
+      "weight": 4,
+      "classes": [
+        "clickup-aliases",
+        "task-management"
+      ],
+      "resources": [
+        "mcp-click-up/SKILL.md"
+      ]
+    },
+    "mcp-obsidian": {
+      "weight": 4,
+      "classes": [
+        "obsidian-aliases",
+        "note-management",
+        "health-md-data",
+        "iconic-rulebook",
+        "excalidraw-drawing",
+        "minimal-theme"
+      ],
+      "resources": [
+        "mcp-obsidian/SKILL.md"
+      ]
+    },
+    "mcp-aside-devtools": {
+      "weight": 4,
+      "classes": [
+        "aside-devtools-aliases",
+        "agentic-browser"
+      ],
+      "resources": [
+        "mcp-aside-devtools/SKILL.md"
+      ]
+    },
+    "mcp-notion": {
+      "weight": 4,
+      "classes": [
+        "notion-aliases",
+        "notion-data"
+      ],
+      "resources": [
+        "mcp-notion/SKILL.md"
+      ]
+    },
+    "mcp-figma": {
+      "weight": 4,
+      "classes": [
+        "figma-aliases",
+        "design-transport"
+      ],
+      "resources": [
+        "mcp-figma/SKILL.md"
+      ]
+    },
+    "mcp-refero": {
+      "weight": 4,
+      "classes": [
+        "refero-aliases",
+        "design-reference-research"
+      ],
+      "resources": [
+        "mcp-refero/SKILL.md"
+      ]
+    },
+    "mcp-mobbin": {
+      "weight": 4,
+      "classes": [
+        "mobbin-aliases",
+        "app-design-research"
+      ],
+      "resources": [
+        "mcp-mobbin/SKILL.md"
+      ]
+    },
+    "mcp-magicpath": {
+      "weight": 4,
+      "classes": [
+        "magicpath-aliases"
+      ],
+      "resources": [
+        "mcp-magicpath/SKILL.md"
+      ]
+    }
   },
-  "mcp-click-up": {
-   "weight": 4,
-   "classes": [
-    "clickup-aliases",
-    "task-management"
-   ],
-   "resources": [
-    "mcp-click-up/SKILL.md"
-   ]
-  },
-  "mcp-obsidian": {
-   "weight": 4,
-   "classes": [
-    "obsidian-aliases",
-    "note-management",
-    "health-md-data",
-    "iconic-rulebook",
-    "excalidraw-drawing",
-    "minimal-theme"
-   ],
-   "resources": [
-    "mcp-obsidian/SKILL.md"
-   ]
-  },
-  "mcp-aside-devtools": {
-   "weight": 4,
-   "classes": [
-    "aside-devtools-aliases",
-    "agentic-browser"
-   ],
-   "resources": [
-    "mcp-aside-devtools/SKILL.md"
-   ]
-  },
-  "mcp-notion": {
-   "weight": 4,
-   "classes": [
-    "notion-aliases",
-    "notion-data"
-   ],
-   "resources": [
-    "mcp-notion/SKILL.md"
-   ]
-  },
-  "mcp-orca-cli": {
-   "weight": 4,
-   "classes": [
-    "orca-cli-aliases",
-    "orca-worktree-terminal"
-   ],
-   "resources": [
-    "mcp-orca-cli/SKILL.md"
-   ]
-  },
-  "mcp-figma": {
-   "weight": 4,
-   "classes": [
-    "figma-aliases",
-    "design-transport"
-   ],
-   "resources": [
-    "mcp-figma/SKILL.md"
-   ]
-  },
-  "mcp-refero": {
-   "weight": 4,
-   "classes": [
-    "refero-aliases",
-    "design-reference-research"
-   ],
-   "resources": [
-    "mcp-refero/SKILL.md"
-   ]
-  },
-  "mcp-mobbin": {
-   "weight": 4,
-   "classes": [
-    "mobbin-aliases",
-    "app-design-research"
-   ],
-   "resources": [
-    "mcp-mobbin/SKILL.md"
-   ]
-  },
-  "mcp-magicpath": {
-   "weight": 4,
-   "classes": [
-    "magicpath-aliases"
-   ],
-   "resources": [
-    "mcp-magicpath/SKILL.md"
-   ]
+  "vocabularyClasses": {
+    "hub-identity": {
+      "note": "Discovery-only (see routerPolicy.discoveryClasses): hub-level vocabulary that identifies THIS hub, not any one mode. Deliberately unreferenced by routerSignals so hub-identity-only prompts defer.",
+      "keywords": [
+        "mcp-tooling",
+        "mcp tool bridge",
+        "mode-registry",
+        "hub-router"
+      ]
+    },
+    "provider-neutral-design-research": {
+      "note": "Discovery-only (see routerPolicy.discoveryClasses): generic design-research phrasing naming neither provider. Reserved for defer between mcp-refero and mcp-mobbin per MT-008/MT-009 scenario contracts; never provider-scoring vocabulary.",
+      "keywords": [
+        "screen examples"
+      ]
+    },
+    "chrome-devtools-aliases": {
+      "keywords": [
+        "chrome devtools",
+        "browser debug",
+        "dom inspect",
+        "lighthouse",
+        "bdg",
+        "cdp",
+        "chrome-devtools",
+        "mcp-chrome-devtools"
+      ]
+    },
+    "browser-debug": {
+      "keywords": [
+        "screenshot capture",
+        "console errors",
+        "network requests",
+        "har export",
+        "performance trace",
+        "cdp domain",
+        "capture browser screenshots"
+      ]
+    },
+    "clickup-aliases": {
+      "keywords": [
+        "clickup",
+        "cupt",
+        "task management",
+        "work queue",
+        "mark done",
+        "time tracking",
+        "project tracker",
+        "mcp-click-up",
+        "click-up"
+      ]
+    },
+    "obsidian-aliases": {
+      "keywords": [
+        "obsidian",
+        "obsidian vault",
+        "notesmd-cli",
+        "obsidian mcp",
+        "markdown notes"
+      ]
+    },
+    "note-management": {
+      "keywords": [
+        "create note",
+        "vault search",
+        "backlinks",
+        "daily note",
+        "knowledge base",
+        "note crud",
+        "note management"
+      ]
+    },
+    "task-management": {
+      "keywords": [
+        "log time",
+        "process queue",
+        "clickup documents",
+        "clickup goals",
+        "bulk tasks",
+        "clickup task",
+        "task list",
+        "complete task",
+        "add note to task",
+        "tag task",
+        "start timer",
+        "stop timer",
+        "mark task done"
+      ]
+    },
+    "figma-aliases": {
+      "keywords": [
+        "figma",
+        "figma cli",
+        "figma-ds-cli",
+        "figma desktop",
+        "render in figma",
+        "figma tokens",
+        "extract design.md",
+        "figma mcp"
+      ]
+    },
+    "design-transport": {
+      "keywords": [
+        "figma daemon",
+        "connect to figma",
+        "figma variables",
+        "export from figma",
+        "figma export",
+        "design tokens",
+        "design file"
+      ]
+    },
+    "aside-devtools-aliases": {
+      "keywords": [
+        "aside",
+        "aside browser",
+        "aside cli",
+        "aside mcp",
+        "aside repl",
+        "ai browser automation",
+        "agentic browser"
+      ]
+    },
+    "agentic-browser": {
+      "keywords": [
+        "agentic browser task",
+        "natural language browser",
+        "browser agent",
+        "aside daemon",
+        "aside account",
+        "repl evidence capture",
+        "click through",
+        "on its own"
+      ]
+    },
+    "notion-aliases": {
+      "keywords": [
+        "notion",
+        "notion mcp",
+        "notion api",
+        "notion page",
+        "notion token",
+        "ntn_"
+      ]
+    },
+    "notion-data": {
+      "keywords": [
+        "notion database",
+        "notion data source",
+        "query notion",
+        "notion property",
+        "notion relation",
+        "notion rollup",
+        "notion formula",
+        "notion markdown"
+      ]
+    },
+    "refero-aliases": {
+      "keywords": [
+        "refero",
+        "refero mcp",
+        "design reference search",
+        "ui reference",
+        "real app screens",
+        "refero.design",
+        "real app screen search"
+      ]
+    },
+    "design-reference-research": {
+      "keywords": [
+        "design reference",
+        "ui screens from real apps",
+        "design inspiration search",
+        "reference styles",
+        "user flow references",
+        "web products"
+      ]
+    },
+    "mobbin-aliases": {
+      "keywords": [
+        "mobbin",
+        "mobbin mcp",
+        "app design research",
+        "ux flow references",
+        "mobile design patterns",
+        "real app ux patterns"
+      ]
+    },
+    "app-design-research": {
+      "keywords": [
+        "real app screenshots",
+        "mobile ux research",
+        "onboarding flow examples",
+        "app screen gallery",
+        "design pattern research",
+        "ios app examples",
+        "phone apps"
+      ]
+    },
+    "health-md-data": {
+      "keywords": [
+        "health md",
+        "health.md",
+        "health data",
+        "apple health",
+        "health chart",
+        "health visualization"
+      ]
+    },
+    "iconic-rulebook": {
+      "keywords": [
+        "iconic",
+        "iconic rulebook",
+        "icon rules",
+        "icon automation",
+        "file icons",
+        "folder icons",
+        "icon color",
+        "iconic data json",
+        "iconic ruleset"
+      ]
+    },
+    "excalidraw-drawing": {
+      "keywords": [
+        "excalidraw",
+        "excalidraw.md",
+        "drawing note",
+        "embedded drawing",
+        "whiteboard",
+        "drawing script"
+      ]
+    },
+    "minimal-theme": {
+      "keywords": [
+        "minimal theme",
+        "css theme",
+        "theme snippet",
+        "style settings",
+        "appearance",
+        "snippets"
+      ]
+    },
+    "magicpath-aliases": {
+      "keywords": [
+        "magicpath",
+        "magicpath ai",
+        "magicpath component",
+        "magicpath canvas",
+        "magicpath design system",
+        "magicpath.ai"
+      ]
+    }
   }
- },
- "vocabularyClasses": {
-  "hub-identity": {
-   "note": "Discovery-only (see routerPolicy.discoveryClasses): hub-level vocabulary that identifies THIS hub, not any one mode. Deliberately unreferenced by routerSignals so hub-identity-only prompts defer.",
-   "keywords": [
-    "mcp-tooling",
-    "mcp tool bridge",
-    "mode-registry",
-    "hub-router"
-   ]
-  },
-  "provider-neutral-design-research": {
-   "note": "Discovery-only (see routerPolicy.discoveryClasses): generic design-research phrasing naming neither provider. Reserved for defer between mcp-refero and mcp-mobbin per MT-008/MT-009 scenario contracts; never provider-scoring vocabulary.",
-   "keywords": [
-    "screen examples"
-   ]
-  },
-  "chrome-devtools-aliases": {
-   "keywords": [
-    "chrome devtools",
-    "browser debug",
-    "dom inspect",
-    "lighthouse",
-    "bdg",
-    "cdp",
-    "chrome-devtools",
-    "mcp-chrome-devtools"
-   ]
-  },
-  "browser-debug": {
-   "keywords": [
-    "screenshot capture",
-    "console errors",
-    "network requests",
-    "har export",
-    "performance trace",
-    "cdp domain",
-    "capture browser screenshots"
-   ]
-  },
-  "clickup-aliases": {
-   "keywords": [
-    "clickup",
-    "cupt",
-    "task management",
-    "work queue",
-    "mark done",
-    "time tracking",
-    "project tracker",
-    "mcp-click-up",
-    "click-up"
-   ]
-  },
-  "obsidian-aliases": {
-   "keywords": [
-    "obsidian",
-    "obsidian vault",
-    "notesmd-cli",
-    "obsidian mcp",
-    "markdown notes"
-   ]
-  },
-  "note-management": {
-   "keywords": [
-    "create note",
-    "vault search",
-    "backlinks",
-    "daily note",
-    "knowledge base",
-    "note crud",
-    "note management"
-   ]
-  },
-  "task-management": {
-   "keywords": [
-    "log time",
-    "process queue",
-    "clickup documents",
-    "clickup goals",
-    "bulk tasks",
-    "clickup task",
-    "task list",
-    "complete task",
-    "add note to task",
-    "tag task",
-    "start timer",
-    "stop timer",
-    "mark task done"
-   ]
-  },
-  "figma-aliases": {
-   "keywords": [
-    "figma",
-    "figma cli",
-    "figma-ds-cli",
-    "figma desktop",
-    "render in figma",
-    "figma tokens",
-    "extract design.md",
-    "figma mcp"
-   ]
-  },
-  "design-transport": {
-   "keywords": [
-    "figma daemon",
-    "connect to figma",
-    "figma variables",
-    "export from figma",
-    "figma export",
-    "design tokens",
-    "design file"
-   ]
-  },
-  "aside-devtools-aliases": {
-   "keywords": [
-    "aside",
-    "aside browser",
-    "aside cli",
-    "aside mcp",
-    "aside repl",
-    "ai browser automation",
-    "agentic browser"
-   ]
-  },
-  "agentic-browser": {
-   "keywords": [
-    "agentic browser task",
-    "natural language browser",
-    "browser agent",
-    "aside daemon",
-    "aside account",
-    "repl evidence capture",
-    "click through",
-    "on its own"
-   ]
-  },
-  "notion-aliases": {
-   "keywords": [
-    "notion",
-    "notion mcp",
-    "notion api",
-    "notion page",
-    "notion token",
-    "ntn_"
-   ]
-  },
-  "notion-data": {
-   "keywords": [
-    "notion database",
-    "notion data source",
-    "query notion",
-    "notion property",
-    "notion relation",
-    "notion rollup",
-    "notion formula",
-    "notion markdown"
-   ]
-  },
-  "refero-aliases": {
-   "keywords": [
-    "refero",
-    "refero mcp",
-    "design reference search",
-    "ui reference",
-    "real app screens",
-    "refero.design",
-    "real app screen search"
-   ]
-  },
-  "design-reference-research": {
-   "keywords": [
-    "design reference",
-    "ui screens from real apps",
-    "design inspiration search",
-    "reference styles",
-    "user flow references",
-    "web products"
-   ]
-  },
-  "mobbin-aliases": {
-   "keywords": [
-    "mobbin",
-    "mobbin mcp",
-    "app design research",
-    "ux flow references",
-    "mobile design patterns",
-    "real app ux patterns"
-   ]
-  },
-  "app-design-research": {
-   "keywords": [
-    "real app screenshots",
-    "mobile ux research",
-    "onboarding flow examples",
-    "app screen gallery",
-    "design pattern research",
-    "ios app examples",
-    "phone apps"
-   ]
-  },
-  "health-md-data": {
-   "keywords": [
-    "health md",
-    "health.md",
-    "health data",
-    "apple health",
-    "health chart",
-    "health visualization"
-   ]
-  },
-  "iconic-rulebook": {
-   "keywords": [
-    "iconic",
-    "iconic rulebook",
-    "icon rules",
-    "icon automation",
-    "file icons",
-    "folder icons",
-    "icon color",
-    "iconic data json",
-    "iconic ruleset"
-   ]
-  },
-  "excalidraw-drawing": {
-   "keywords": [
-    "excalidraw",
-    "excalidraw.md",
-    "drawing note",
-    "embedded drawing",
-    "whiteboard",
-    "drawing script"
-   ]
-  },
-  "minimal-theme": {
-   "keywords": [
-    "minimal theme",
-    "css theme",
-    "theme snippet",
-    "style settings",
-    "appearance",
-    "snippets"
-   ]
-  },
-  "magicpath-aliases": {
-   "keywords": [
-    "magicpath",
-    "magicpath ai",
-    "magicpath component",
-    "magicpath canvas",
-    "magicpath design system",
-    "magicpath.ai"
-   ]
-  },
-  "orca-cli-aliases": {
-   "keywords": [
-    "orca cli",
-    "orca worktree",
-    "orca terminal",
-    "orca skills",
-    "orca automation",
-    "orca browser",
-    "orca handoff",
-    "orca artifacts",
-    "mcp-orca-cli"
-   ]
-  },
-  "orca-worktree-terminal": {
-   "keywords": [
-    "orca worktree",
-    "orca terminal",
-    "orca repository",
-    "orca automation",
-    "orca handoff",
-    "orca embedded browser",
-    "managed worktree",
-    "paired terminal"
-   ]
-  }
- }
 }

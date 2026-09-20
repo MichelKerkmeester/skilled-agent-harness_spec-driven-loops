@@ -1,0 +1,82 @@
+import { relativePathInsideRoot } from '../../../shared/cross-platform-path'
+
+function stripTrailingSeparators(path: string): string {
+  return path.replace(/[\\/]+$/, '')
+}
+
+function stripLeadingSeparators(path: string): string {
+  return path.replace(/^[\\/]+/, '')
+}
+
+function getSeparator(path: string): '/' | '\\' {
+  return path.includes('\\') ? '\\' : '/'
+}
+
+export function normalizeRelativePath(path: string): string {
+  return stripLeadingSeparators(path).replace(/[\\/]+/g, '/')
+}
+
+export function getRelativePathInsideRoot(
+  filePath: string,
+  rootPath: string | null
+): string | null {
+  if (!rootPath) {
+    return null
+  }
+  // Why: delegate so renderer containment folds Unicode the same way the rest of
+  // the app does — a local copy silently missed NFD-vs-NFC matches (#10832).
+  return relativePathInsideRoot(rootPath, filePath)
+}
+
+export function basename(path: string): string {
+  const normalizedPath = stripTrailingSeparators(path)
+  const lastSeparatorIndex = Math.max(
+    normalizedPath.lastIndexOf('/'),
+    normalizedPath.lastIndexOf('\\')
+  )
+
+  return lastSeparatorIndex === -1 ? normalizedPath : normalizedPath.slice(lastSeparatorIndex + 1)
+}
+
+export function dirname(path: string): string {
+  const normalizedPath = stripTrailingSeparators(path)
+
+  if (!normalizedPath) {
+    return getSeparator(path)
+  }
+
+  if (/^[A-Za-z]:$/.test(normalizedPath)) {
+    return normalizedPath
+  }
+
+  const lastSeparatorIndex = Math.max(
+    normalizedPath.lastIndexOf('/'),
+    normalizedPath.lastIndexOf('\\')
+  )
+
+  if (lastSeparatorIndex === -1) {
+    return '.'
+  }
+
+  if (lastSeparatorIndex === 0) {
+    return normalizedPath[0]
+  }
+
+  return normalizedPath.slice(0, lastSeparatorIndex)
+}
+
+export function joinPath(basePath: string, relativePath: string): string {
+  if (!basePath) {
+    return relativePath
+  }
+
+  if (!relativePath) {
+    return basePath
+  }
+
+  const separator = getSeparator(basePath)
+  const normalizedBasePath = stripTrailingSeparators(basePath)
+  const normalizedRelativePath = stripLeadingSeparators(relativePath).replace(/[\\/]+/g, separator)
+
+  return `${normalizedBasePath}${separator}${normalizedRelativePath}`
+}

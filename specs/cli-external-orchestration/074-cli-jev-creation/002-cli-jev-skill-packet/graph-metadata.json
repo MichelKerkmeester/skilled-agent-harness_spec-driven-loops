@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/074-cli-jev-creation/002-cli-jev-skill-packet",
+  "spec_folder": "cli-external-orchestration/074-cli-jev-creation/002-cli-jev-skill-packet",
+  "parent_id": "cli-external-orchestration/074-cli-jev-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "approach and phases",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "approach",
+      "phases"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "benchmark/reports/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/references/cli-reference.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/references/integration-patterns.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/references/mcp-server.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/assets/question-shaping-card.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/changelog/v1.0.0.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/benchmark/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/benchmark/reports/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-jev/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration-patterns.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/integration-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-server.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/mcp-server.md",
+        "source": "derived"
+      },
+      {
+        "name": "question-shaping-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-jev/assets/question-shaping-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-jev/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eleven Markdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub routes to executables whose contracts live in their own documentation",
+    "created_at": "2026-09-20T07:39:06Z",
+    "last_save_at": "2026-09-20T08:59:17.261Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fdb7cffda44bc607a2c40800e1808a64b587b0adb344ebb03ed3c7f185c4ded6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "42d8452704f9adc329391deabb9a6f3c39ba1b25680c2d033b5313e2a68f3b73",
+      "plan.md": "680521eb23339b08589fb5cf6c6c8eef6c2f5f302af8220c7696c6b80e3a588e",
+      "tasks.md": "9a6eaa81baf2304245fac11820b542d4ae466d9810390802e0a3223704feefd1",
+      "implementation-summary.md": "8ada259f0ef1ccffc23e935e0d53631106020d02cbf73de53d30b61a4caf4a4a"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "cli-orca/001-mcp-orca-cli",
+  "description": "Before this integration, the repository had no Orca workflow member, while the official `orca-cli` skill describes a stateful CLI spanning worktrees,",
+  "keywords": [
+    "integration",
+    "repository",
+    "orca",
+    "workflow",
+    "member",
+    "while",
+    "official",
+    "orca-cli",
+    "skill",
+    "describes",
+    "stateful",
+    "cli",
+    "spanning",
+    "worktrees"
+  ],
+  "lastUpdated": "2026-09-20T10:45:00.000Z",
+  "specId": "001",
+  "folderSlug": "mcp-orca-cli",
+  "parentChain": [
+    "cli-orca"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

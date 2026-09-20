@@ -1,0 +1,117 @@
+### noul-help
+usage: jev noul [-h] [--provider {official,vercel,openrouter,custom}]
+                [--model MODEL] [--json-state] [--pretty] [--value]
+                -q QUESTION [-s STATE]
+
+options:
+  -h, --help            show this help message and exit
+  --provider {official,vercel,openrouter,custom}
+                        API provider (default: official)
+  --model MODEL         model name (default depends on provider)
+  --json-state          parse state as JSON
+  --pretty              pretty-print JSON
+  --value               print only the primary answer value
+  -q, --question QUESTION
+                        question to answer
+  -s, --state STATE     text, @file, or - for stdin (default: stdin)
+
+### choice-help
+usage: jev choice [-h] [--provider {official,vercel,openrouter,custom}]
+                  [--model MODEL] [--json-state] [--pretty] [--value]
+                  -q QUESTION [-s STATE] -o KEY=DESCRIPTION
+
+options:
+  -h, --help            show this help message and exit
+  --provider {official,vercel,openrouter,custom}
+                        API provider (default: official)
+  --model MODEL         model name (default depends on provider)
+  --json-state          parse state as JSON
+  --pretty              pretty-print JSON
+  --value               print only the primary answer value
+  -q, --question QUESTION
+                        question to answer
+  -s, --state STATE     text, @file, or - for stdin (default: stdin)
+  -o, --option KEY=DESCRIPTION
+
+### score-help
+usage: jev score [-h] [--provider {official,vercel,openrouter,custom}]
+                 [--model MODEL] [--json-state] [--pretty] [--value]
+                 -q QUESTION [-s STATE] -l DESCRIPTION
+
+options:
+  -h, --help            show this help message and exit
+  --provider {official,vercel,openrouter,custom}
+                        API provider (default: official)
+  --model MODEL         model name (default depends on provider)
+  --json-state          parse state as JSON
+  --pretty              pretty-print JSON
+  --value               print only the primary answer value
+  -q, --question QUESTION
+                        question to answer
+  -s, --state STATE     text, @file, or - for stdin (default: stdin)
+  -l, --level DESCRIPTION
+
+### run-help
+usage: jev run [-h] [--provider {official,vercel,openrouter,custom}]
+               [--model MODEL] [--json-state] [--pretty] [--value]
+               request
+
+positional arguments:
+  request               JSON file or - for stdin
+
+options:
+  -h, --help            show this help message and exit
+  --provider {official,vercel,openrouter,custom}
+                        API provider (default: official)
+  --model MODEL         model name (default depends on provider)
+  --json-state          parse state as JSON
+  --pretty              pretty-print JSON
+  --value               print only the primary answer value
+
+### auth-help
+usage: jev auth [-h] {set,status,test} ...
+
+positional arguments:
+  {set,status,test}
+    set              store an API key from a hidden prompt or stdin
+    status           check whether an API key is stored
+    test             connect to Jev and verify the API key
+
+options:
+  -h, --help         show this help message and exit
+
+### auth-set-help
+usage: jev auth set [-h] [--provider {official,vercel,openrouter,custom}]
+
+options:
+  -h, --help            show this help message and exit
+  --provider {official,vercel,openrouter,custom}
+
+### install-skills-help
+usage: jev install-skills [-h] [-g] [--claude]
+
+options:
+  -h, --help    show this help message and exit
+  -g, --global  install in the user home
+  --claude      install for Claude instead of .agents
+
+### run-valid-payload-no-key
+{"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
+rc=3
+
+### run-valid-payload-no-key-with-value
+{"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
+rc=3
+
+### run-missing-questions-no-key
+{"ok": false, "error": "request must be an object containing state and questions"}
+rc=2
+
+### mcp-tools-list
+initialize: {"jsonrpc":"2.0","id":1,"result":{"capabilities":{"experimental":{},"prompts":{"listChanged":false},"resources":{"listChanged":false,"subscribe":false},"tools":{"listChanged":false}},"instructions":"Ask TypeSafe Jev typed questions about text or JSON state. Use noul for a yes/no probability, choice for one key from explicit options, score for an ordered level, and run for a complete multi-question request. State is sent verbatim.","protocolVersion":"2025-06-18","serverInfo":{"name":"jev","title":"TypeSafe Jev","version":"0.6.2"}}}
+tools/list: {"jsonrpc":"2.0","id":2,"result":{"tools":[{"description":"Answer one yes/no question about the state with a probability from 0 to 1.\n\nThe state is sent verbatim; `-` and `@path` are literal strings here, not stdin or a file.\n","inputSchema":{"properties":{"state":{"description":"The text or JSON value to judge. It is sent verbatim, so `-` and `@path` are literal strings here, not stdin or a file.","title":"State"},"question":{"description":"The decision question to answer about the state.","title":"Question","type":"string"},"provider":{"anyOf":[{"enum":["official","vercel","openrouter","custom"],"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; selects one of the CLI-supported providers.","title":"Provider"},"model":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; overrides the selected provider's default model.","title":"Model"},"endpoint":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; overrides the selected provider endpoint and is required for `custom` when no configured endpoint exists.","title":"Endpoint"}},"required":["state","question"],"type":"object","title":"noulArguments"},"name":"noul","outputSchema":{"type":"object","additionalProperties":true,"title":"noulDictOutput"}},{"description":"Select exactly one option key for the state from a map of at least two key/description pairs.\n\nThe state is sent verbatim; `-` and `@path` are literal strings here, not stdin or a file.\n","inputSchema":{"properties":{"state":{"description":"The text or JSON value to judge. It is sent verbatim, so `-` and `@path` are literal strings here, not stdin or a file.","title":"State"},"question":{"description":"The decision question to answer about the state.","title":"Question","type":"string"},"options":{"additionalProperties":{"type":"string"},"description":"At least two option keys mapped to what each key means. The selected key is returned verbatim as the answer, so the keys are the stable output values.","title":"Options","type":"object"},"provider":{"anyOf":[{"enum":["official","vercel","openrouter","custom"],"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; selects one of the CLI-supported providers.","title":"Provider"},"model":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; overrides the selected provider's default model.","title":"Model"},"endpoint":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; overrides the selected provider endpoint and is required for `custom` when no configured endpoint exists.","title":"Endpoint"}},"required":["state","question","options"],"type":"object","title":"choiceArguments"},"name":"choice","outputSchema":{"type":"object","additionalProperties":true,"title":"choiceDictOutput"}},{"description":"Score the state against at least two ordered levels, numbered from zero in the supplied order.\n\nThe state is sent verbatim; `-` and `@path` are literal strings here, not stdin or a file.\n","inputSchema":{"properties":{"state":{"description":"The text or JSON value to judge. It is sent verbatim, so `-` and `@path` are literal strings here, not stdin or a file.","title":"State"},"question":{"description":"The decision question to answer about the state.","title":"Question","type":"string"},"levels":{"description":"At least two level descriptions ordered from lowest to highest. The answer is the zero-based position of the selected level in this list.","items":{"type":"string"},"title":"Levels","type":"array"},"provider":{"anyOf":[{"enum":["official","vercel","openrouter","custom"],"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; selects one of the CLI-supported providers.","title":"Provider"},"model":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; overrides the selected provider's default model.","title":"Model"},"endpoint":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; overrides the selected provider endpoint and is required for `custom` when no configured endpoint exists.","title":"Endpoint"}},"required":["state","question","levels"],"type":"object","title":"scoreArguments"},"name":"score","outputSchema":{"type":"object","additionalProperties":true,"title":"scoreDictOutput"}},{"description":"Send a complete System One request object containing `state` and `questions`.\n\nAn explicit `model` overrides the request model; otherwise the request model is kept and\nthe provider default is added only when the request omits it.\n","inputSchema":{"properties":{"request":{"$ref":"#/$defs/RunRequest","description":"A complete System One request object holding the state and the questions to answer. Members this client does not know are forwarded unchanged."},"provider":{"anyOf":[{"enum":["official","vercel","openrouter","custom"],"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; selects one of the CLI-supported providers.","title":"Provider"},"model":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; overrides the selected provider's default model.","title":"Model"},"endpoint":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null,"description":"Normally omitted; overrides the selected provider endpoint and is required for `custom` when no configured endpoint exists.","title":"Endpoint"}},"required":["request"],"type":"object","$defs":{"QuestionSpec":{"additionalProperties":true,"description":"One typed question, answered under the key that maps to it.","properties":{"type":{"description":"The judgment kind: `noul` for a yes/no probability, `choice` for one option key, `score` for an ordered level.","enum":["noul","choice","score"],"title":"Type","type":"string"},"instructions":{"description":"The decision question to answer about the state.","title":"Instructions","type":"string"},"criteria":{"anyOf":[{"additionalProperties":{"type":"string"},"type":"object"},{"items":{"type":"string"},"type":"array"}],"description":"Required by `choice` and `score`, omitted by `noul`. For `choice`, at least two option keys mapped to what each key means; the selected key is returned verbatim. For `score`, at least two level descriptions ordered from lowest to highest; the answer is the zero-based position of the selected level.","title":"Criteria"}},"required":["type","instructions"],"title":"QuestionSpec","type":"object"},"RunRequest":{"additionalProperties":true,"description":"A complete System One request.","properties":{"state":{"description":"The text or JSON value every question is answered against. It is sent verbatim.","title":"State"},"questions":{"additionalProperties":{"$ref":"#/$defs/QuestionSpec"},"description":"Caller-defined answer keys mapped to question specifications. Each key names where that question's answer appears in the response.","title":"Questions","type":"object"},"model":{"description":"Normally omitted; the request model, kept unless the tool `model` argument overrides it and filled with the provider default when absent.","title":"Model","type":"string"}},"required":["state","questions"],"title":"RunRequest","type":"object"}},"title":"runArguments"},"name":"run","outputSchema":{"type":"object","additionalProperties":true,"title":"runDictOutput"}}]}}
+  tool=noul required=['state', 'question'] properties=['endpoint', 'model', 'provider', 'question', 'state']
+  tool=choice required=['state', 'question', 'options'] properties=['endpoint', 'model', 'options', 'provider', 'question', 'state']
+  tool=score required=['state', 'question', 'levels'] properties=['endpoint', 'levels', 'model', 'provider', 'question', 'state']
+  tool=run required=['request'] properties=['endpoint', 'model', 'provider', 'request']
+rc=0

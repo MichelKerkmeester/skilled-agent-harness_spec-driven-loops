@@ -99,6 +99,11 @@ function sourceInputs() {
       'cli-hermes',
       'SKILL.md',
     ),
+    'cli-external-orchestration/cli-jev/SKILL.md': path.join(
+      SKILL_ROOT,
+      'cli-jev',
+      'SKILL.md',
+    ),
     'cli-external-orchestration/hub-router.json': path.join(SKILL_ROOT, 'hub-router.json'),
     'cli-external-orchestration/mode-registry.json': path.join(
       SKILL_ROOT,
@@ -171,8 +176,13 @@ function typedGold(snapshot, fixture) {
     const observed = projectToRouteGold(result.decision, { policy: snapshot.policy });
     const row = {
       assertions: {
+        // Every route target must be a destination that acts: a workflow acts on this workspace and
+        // the transport acts on the external surface it bridges. Evidence and judgment roles are
+        // never route targets, and neither is an actor-less destination.
         actorFirst: result.decision.action !== 'route'
-          || result.decision.route.targets.every((item) => item.role === 'actor'),
+          || result.decision.route.targets.every((item) => (
+            item.role === 'actor' || item.role === 'transport'
+          )),
         authorityWithheldUntilVerify: result.decision.action === 'route',
         negativeTargetFree: result.decision.action === 'route'
           || !Object.hasOwn(result.decision[result.decision.action], 'targets'),

@@ -1,0 +1,45 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "assets/PROVENANCE.md",
+        "assets/computer-use.txt",
+        "assets/linear-tickets.txt",
+        "assets/orca-cli.txt",
+        "assets/orca-emulator-android.txt",
+        "assets/orca-emulator.txt",
+        "assets/orca-linear.txt",
+        "assets/orca-per-workspace-env.txt",
+        "assets/orchestration.txt",
+        "feature-catalog/orca-skills/official-skill-layer.md",
+        "feature-catalog/routing/orca-qualified-vocabulary.md",
+        "feature-catalog/runtime/preflight-and-resolution.md",
+        "feature-catalog/safety/mutation-and-ownership-boundaries.md",
+        "manual-testing-playbook/handoffs/hub-deferral-receipt.md",
+        "manual-testing-playbook/ownership/embedded-browser-boundary.md",
+        "manual-testing-playbook/ownership/official-skill-handoff.md",
+        "manual-testing-playbook/routing/negative-holdouts.md",
+        "manual-testing-playbook/routing/orca-positive-route.md",
+        "manual-testing-playbook/runtime/ambiguous-send-recovery.md",
+        "manual-testing-playbook/runtime/preflight-executable-resolution.md",
+        "manual-testing-playbook/runtime/runtime-stopped-recovery.md",
+        "references/mutation-and-browser-boundaries.md",
+        "references/orca-cli-reference.md",
+        "references/orca-skills/computer-use.md",
+        "references/orca-skills/linear-tickets.md",
+        "references/orca-skills/orca-cli.md",
+        "references/orca-skills/orca-emulator-android.md",
+        "references/orca-skills/orca-emulator.md",
+        "references/orca-skills/orca-linear.md",
+        "references/orca-skills/orca-per-workspace-env.md",
+        "references/orca-skills/orchestration.md",
+        "references/orca-skills/overview.md",
+        "references/session-and-runtime.md",
+        "references/troubleshooting.md"
+      ],
+      "packet": ".",
+      "workflowMode": "cli-orca"
+    }
+  ],
+  "resourceContractVersion": 1
+}
