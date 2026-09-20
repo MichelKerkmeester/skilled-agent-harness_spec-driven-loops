@@ -149,7 +149,41 @@ When the caller needs to keep a Claude Code session's context, a 7-step Memory H
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 5. STRUCTURE
+
+```text
+cli-claude-code/
++-- SKILL.md                      # Routing contract: smart router, dispatch rules and the full rule set
++-- README.md                     # Overview and navigation front page
++-- assets/                       # Dispatch-time prompt resources
+|   +-- prompt-quality-card.md    # Fast-path prompt discipline, the framework table and CLEAR check
+|   `-- prompt-templates.md       # Copy-paste prompt templates per task
++-- benchmark/                    # Benchmark reports for the skill
++-- changelog/                    # Versioned changelog entries, one file per release
++-- manual-testing-playbook/      # Manual testing playbook with per-feature scenario folders
+`-- references/                   # Deep-dive reference docs loaded by intent
+    +-- agent-delegation.md       # Agent roster, routing table and invocation patterns
+    +-- claude-tools.md           # Unique capabilities and a comparison with OpenCode
+    +-- cli-reference.md          # Complete CLI flags, commands, models and authentication
+    +-- integration-patterns.md   # Cross-AI orchestration patterns, external AI conducts and Claude Code executes
+    `-- providers-and-models.md   # Anthropic model ids catalog, the default pin and the --effort mapping
+```
+
+| File | Role |
+|---|---|
+| `SKILL.md` | Routing contract: the smart router, dispatch rules and the full rule set |
+| `README.md` | Overview and navigation front page |
+| `references/agent-delegation.md` | Agent roster, routing table and invocation patterns |
+| `references/claude-tools.md` | Unique capabilities and a comparison with OpenCode |
+| `references/cli-reference.md` | Complete CLI flags, commands, models and authentication, always loaded |
+| `references/integration-patterns.md` | Cross-AI orchestration patterns where the external AI conducts and Claude Code executes |
+| `references/providers-and-models.md` | Single-source catalog of Anthropic model ids, the default pin and the `--effort` mapping |
+| `assets/prompt-quality-card.md` | Fast-path prompt discipline, the framework table and CLEAR check, always loaded |
+| `assets/prompt-templates.md` | Copy-paste prompt templates per task |
+
+---
+
+## 6. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -181,7 +215,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Claude Code session back into the caller's spec folder. |
 ---
 
-## 6. TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -194,7 +228,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 ---
 
-## 7. FAQ
+## 8. FAQ
 
 **Q: Why not just call `claude` directly from my shell?**
 
@@ -218,7 +252,7 @@ A: The self-invocation guard detects it (via `$CLAUDECODE`, process ancestry or 
 
 ---
 
-## 8. VERIFICATION
+## 9. VERIFICATION
 
 The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, permission modes, reasoning and models, agent routing and session continuity.
 
@@ -230,7 +264,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 10. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

@@ -1,0 +1,38 @@
+# child: cli-devin
+# command: pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt>
+# model: glm-5.3-flash  effort: high  sandbox: workspace-write
+# invocationFingerprint: inv:2cbde621ad331f22c44db503c43b41dbb3d225af5a35c8c0d9980f9b4aefd4bf
+# executableVersion: sha256:a7c29b72044cb7e03b026424b59a177133ae95dbbd7d12f9421be811e8e2eeac
+# promptPath: specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/prompts/devin.md
+# timeoutMs: 1500000  durationMs: 271996  timedOut: false
+# exitStatus: 0  signal: null
+# stdoutBytes: 2445  stderrBytes: 0
+
+────── STDOUT ──────
+All three verification gates pass:
+
+1. **Validator**: `✅ VALID:` — document type readme, `Total issues: 0`, exit 0.
+2. **Numbering**: `## 5. STRUCTURE` inserted after HOW IT WORKS; sequence 1..10 with no gaps, duplicates or skips.
+3. **Diff**: `41 insertions(+), 5 deletions(-)` — the 5 removed lines are exactly the five renumbered H2 headings (`5→6` … `9→10`), which the contract item 2 requires; no prose was removed or reworded. 41 added lines sits inside the +15..+45 bound. Every role line is copied or condensed from the README's own RELATED DOCUMENTS table, the SKILL.md loading levels (`always loaded` for cli-reference.md and prompt-quality-card.md), or the on-disk benchmark report names (`--manual-testing-playbook--*`).
+
+```text
+BINDING: command=/create:readme
+BINDING: target=.skilled/skills/cli-external-orchestration/cli-devin/README.md
+BINDING: output=.skilled/skills/cli-external-orchestration/cli-devin/README.md
+BINDING: template=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+BINDING: mode=AUTONOMOUS
+BINDING: specFolder=specs/cli-external-orchestration/075-cli-runtime-readme-refresh
+STATUS=OK PATH=.skilled/skills/cli-external-orchestration/cli-devin/README.md
+DQI=95
+TEMPLATE=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+CHECKS=validate_document.py(VALID, 0 issues, exit 0), grep '^## '(1..10 sequential, no gaps), git diff --stat + full diff read(41+/5-, deletions are the five renumbered H2s only), all required file names spelled exactly and present in tree and table
+NOTES=Role lines sourced from the README's own RELATED DOCUMENTS table; "always loaded" grounded in SKILL.md LOADING_LEVELS ALWAYS (cli-reference.md, prompt-quality-card.md) and README section 4; benchmark role grounded in on-disk report folder names (2026-08-08--manual-testing-playbook--*). DQI is a self-assessment anchored on the validator result, not a tool-computed metric. The edit tool emitted a [frontmatter-versions] hook notice after the edit; it is a hook notice, not a validation failure. No defects found in other files.
+SECTIONS=1. AT A GLANCE, 2. OVERVIEW, 3. QUICK START, 4. HOW IT WORKS, 5. STRUCTURE, 6. INTEGRATION & NAVIGATION, 7. TROUBLESHOOTING, 8. FAQ, 9. VERIFICATION, 10. RELATED DOCUMENTS
+LINES=41 added / 5 removed
+```
+
+One file written: `.skilled/skills/cli-external-orchestration/cli-devin/README.md` (dirty, uncommitted). The operator's next step, if any: commit it.
+
+
+────── STDERR ──────
+(empty)

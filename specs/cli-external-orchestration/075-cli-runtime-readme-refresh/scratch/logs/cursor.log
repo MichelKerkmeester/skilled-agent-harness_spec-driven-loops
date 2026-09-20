@@ -1,0 +1,32 @@
+# child: cli-cursor
+# command: pi -p --offline --model llmgateway/glm-5.3-flash --thinking max <prompt>
+# model: glm-5.3-flash  effort: high  sandbox: workspace-write
+# invocationFingerprint: inv:eac419e48e34a5ee7351faf13dc79b40377a1ec1db5482fc9bdf21e519c41cc9
+# executableVersion: sha256:a7c29b72044cb7e03b026424b59a177133ae95dbbd7d12f9421be811e8e2eeac
+# promptPath: specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/prompts/cursor.md
+# timeoutMs: 1500000  durationMs: 418826  timedOut: false
+# exitStatus: 0  signal: null
+# stdoutBytes: 1994  stderrBytes: 0
+
+────── STDOUT ──────
+All verification commands ran and read. The `cli-claude-code/README.md` modification predates this dispatch (not mine; I touched exactly one file — confirmed by `git diff`, which shows only `cli-cursor/README.md`).
+
+```text
+BINDING: command=/create:readme
+BINDING: target=.skilled/skills/cli-external-orchestration/cli-cursor/README.md
+BINDING: output=.skilled/skills/cli-external-orchestration/cli-cursor/README.md
+BINDING: template=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+BINDING: mode=AUTONOMOUS
+BINDING: specFolder=specs/cli-external-orchestration/075-cli-runtime-readme-refresh
+STATUS=OK PATH=.skilled/skills/cli-external-orchestration/cli-cursor/README.md
+DQI=100
+TEMPLATE=.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+CHECKS=validate_document.py(VALID,0-issues,exit=0),grep-^##-(1..10-sequential-no-gaps),git-diff-read(additive-plus-required-renumber),git-status-scope-check
+NOTES=Section 5 STRUCTURE inserted between HOW IT WORKS and INTEGRATION & NAVIGATION; old 5..9 renumbered to 6..10; no Section-N cross-refs existed in README so renumber is safe (the one §-ref points at SKILL.md §3, untouched). All roles grounded in SKILL.md §5 verbatim; benchmark/ and changelog/ roles grounded in measured folder contents (benchmark/README.md, changelog/v1.4.1.0.md). Tree convention mirrors sibling cli-hermes (+--/`-- with # comments). Growth: +38 net lines, inside the +15..+45 bound. Pre-existing dirty sibling file cli-claude-code/README.md observed and left alone (out of scope). Observation, not acted on: README §9 self-check table names validator path .skilled/skills/sk-doc/scripts/validate_document.py while the shipped shared validator is .skilled/skills/sk-doc/shared/scripts/validate_document.py (the one used here, per contract).
+SECTIONS=1. AT A GLANCE, 2. OVERVIEW, 3. QUICK START, 4. HOW IT WORKS, 5. STRUCTURE, 6. INTEGRATION & NAVIGATION, 7. TROUBLESHOOTING, 8. FAQ, 9. VERIFICATION, 10. RELATED DOCUMENTS
+LINES=43/5
+```
+
+
+────── STDERR ──────
+(empty)

@@ -31,7 +31,7 @@ version: 1.5.0.8
 
 ### Why This Skill Exists
 
-A calling AI that wants Pi's headless surfaces has no safe shortcut. Hand-building a dispatch risks malformed flags, a failed provider call treated as success or a surface mismatch. Pi exposes more than one headless surface. Its JSON event mode and persistent RPC mode require different consumers. The local contract pin confirms the core command shape and the unreliable failure exit-code behavior. See the [pinned contract](../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+A calling AI that wants Pi's headless surfaces has no safe shortcut. Hand-building a dispatch risks malformed flags, a failed provider call treated as success or a surface mismatch. Pi exposes more than one headless surface. Its JSON event mode and persistent RPC mode require different consumers. The local contract pin confirms the core command shape and the unreliable failure exit-code behavior. See the [pinned contract](../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
 
 That is the whole reason this skill exists. It makes Pi reachable as a controlled headless surface: probe the binary, pick the output contract and delegate execution to the shared deep-loop runtime. The calling AI stays the conductor and validates what comes back. The skill is not a launcher for one command. Matching the consumer to the right surface is the point.
 
@@ -93,7 +93,47 @@ The packet's guard is conservative. Process ancestry is checked first, then a .p
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 5. STRUCTURE
+
+The packet folder holds the routing contract, this README and the resources the smart router loads.
+
+```text
+cli-pi/
+  SKILL.md                                      # Runtime instructions, smart routing and hard rules
+  README.md                                     # Folder orientation and navigation for the packet
+  assets/                                       # Prompt-quality card and dispatch templates
+    assets/prompt-quality-card.md               # Thin prompt-quality delegator with the two-tier rule
+    assets/prompt-templates.md                  # Print, JSON, RPC, review and generation scaffolds
+  benchmark/                                    # Curated validation reports
+  changelog/                                    # Versioned release notes
+  manual-testing-playbook/                      # Manual scenarios that validate packet behavior
+  references/                                   # Routing-loaded reference documents
+    references/agent-delegation.md              # Pi's built-in tool surface and the delegation boundary
+    references/cli-reference.md                 # Confirmed CLI flags, modes, auth failure and command examples
+    references/integration-patterns.md          # Conductor/executor patterns, cross-validation and anti-patterns
+    references/mcp-and-third-party-packages.md  # MCP and community package boundaries
+    references/native-skills-and-extensions.md  # Native resource discovery with confidence labels
+    references/pi-tools.md                      # Capabilities with no sibling analog (RPC, native extensions/prompts, tool surface)
+    references/providers-and-models.md          # Authenticated provider/model roster and the --thinking effort scale
+```
+
+| File | Role |
+|---|---|
+| SKILL.md | Runtime instructions, smart routing and hard rules |
+| README.md | Folder orientation and navigation for the packet |
+| assets/prompt-quality-card.md | Thin prompt-quality delegator with the two-tier precedence rule |
+| assets/prompt-templates.md | Print, JSON, RPC, review and generation scaffolds |
+| references/agent-delegation.md | Pi's built-in tool surface and the delegation boundary |
+| references/cli-reference.md | Confirmed CLI flags, modes, auth failure behavior and command examples |
+| references/integration-patterns.md | Conductor/executor patterns, cross-validation and anti-patterns |
+| references/mcp-and-third-party-packages.md | MCP and community package boundaries |
+| references/native-skills-and-extensions.md | Native resource discovery with confidence labels |
+| references/pi-tools.md | Capabilities with no sibling analog (RPC, native extensions/prompts, tool surface) |
+| references/providers-and-models.md | Authenticated provider/model roster and the --thinking effort scale |
+
+---
+
+## 6. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -121,7 +161,7 @@ Use cli-pi when the request names Pi, needs Pi's native model or provider surfac
 
 ---
 
-## 6. TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -134,7 +174,7 @@ Use cli-pi when the request names Pi, needs Pi's native model or provider surfac
 
 ---
 
-## 7. FAQ
+## 8. FAQ
 
 **Q: Is Pi's RPC mode a JSON version of print mode?**
 
@@ -154,7 +194,7 @@ A: It is a common short word and a math constant. This packet uses multi-word al
 
 ---
 
-## 8. VERIFICATION
+## 9. VERIFICATION
 
 | Check | Result |
 |---|---|
@@ -169,7 +209,7 @@ A: It is a common short word and a math constant. This packet uses multi-word al
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 10. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

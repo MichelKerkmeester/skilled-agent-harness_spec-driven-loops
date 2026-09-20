@@ -1,0 +1,8 @@
+cli-claude-code	Total issues: 0
+cli-codex	Total issues: 0
+cli-cursor	Total issues: 0
+cli-devin	Total issues: 0
+cli-hermes	Total issues: 0
+cli-jev	    Fix: Add section with name containing "overview"
+cli-opencode	Total issues: 0
+cli-pi	Total issues: 0
