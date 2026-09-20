@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 819,
+  "derived_count": 820,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -285,6 +285,7 @@
     ".skilled/skills/cli-jev/cli-usage",
     ".skilled/skills/cli-jev/cli-usage/benchmark",
     ".skilled/skills/cli-jev/cli-usage/benchmark/reports",
+    ".skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw",
     ".skilled/skills/cli-jev/shared",
     ".skilled/skills/cli-orca",
     ".skilled/skills/cli-orca/assets",

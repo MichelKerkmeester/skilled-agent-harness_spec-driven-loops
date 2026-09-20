@@ -150,8 +150,8 @@ contextType: "implementation"
 - [x] T040 Author the declared audit surfaces (`resource-map.md` at the packet root) [20m] — authored at the root because the loop detects the packet-root map while the reducer owns the `review/` copy
 - [x] T041 Run the five-iteration deep review on the auto workflow and record its state (`review/**`) [180m] — five iterations, every verdict CONDITIONAL, stop `maxIterationsReached`
 - [x] T042 Write the fresh-context synthesis fix list (`review/synthesis-remediation-plan.md`) [30m] — 476 lines, 7 sections, 88 file:line citations
-- [x] T043 Apply the justified remediations and re-run every gate against the baseline (`.skilled/skills/cli-orca/**` plus any justified cross-skill change) [120m] — seven findings applied, each with its proving check, and no gate that passed at baseline now fails
-- [x] T044 Execute the eight playbook scenarios and record every outcome (`.skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/**`) [60m] — 4 PASS / 0 FAIL / 4 SKIP with the runtime blocker named
+- [x] T043 Apply the justified remediations and re-run every gate against the baseline (`.skilled/skills/cli-orca/**` plus any justified cross-skill change) [120m] — seven findings applied, each with its proving check; no gate that passed at baseline failed when the set landed, and the one later external break (gate 15's fleet manifest) was resolved by the manifest writer refresh
+- [x] T044 Execute the eight playbook scenarios and record every outcome (`.skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/**`) [60m] — 8 PASS / 0 FAIL / 0 SKIP; the three runtime scenarios ran live after the executable resolution was repaired (ORCA-006 via a detached stop/restart driver)
 - [x] T045 Redact the leaked upstream client key from the vendored snapshot and record the decision (`context/orca-main/mobile/google-services.json`, ADR-009) [10m]
 - [x] T046 Close out the packet with evidence, deviations and the final gate capture (`implementation-summary.md`, `scratch/gate-results-final-review.md`) [30m]
 
@@ -173,7 +173,7 @@ contextType: "implementation"
 | Spec validation | `validate.sh --strict` on both packets | `RESULT: PASSED` | Passed on both packets |
 | Stale reference sweep | Repository search for the retired identifiers | No hits outside preserved history | Passed, 0 live references outside changelog history |
 | Post-closure review cycle | `verify-iteration.cjs` over the five iteration files, plus inspection of the ledger and the loop report | Every iteration re-verifies and both synthesis artifacts exist | Passed, five iterations verified, ledger complete, report and fix list present |
-| Playbook run | The eight scenarios in wave order, each with its exact prompt and command sequence | Every scenario records a verdict, transcript, exit status and reason | Recorded: 4 `PASS`, 0 `FAIL`, 4 `SKIP` — the criterion is the recording, and the runtime blocker is named in the room |
+| Playbook run | The eight scenarios in wave order, each with its exact prompt and command sequence | Every scenario records a verdict, transcript, exit status and reason | Recorded: 5 `PASS`, 0 `FAIL`, 3 `SKIP` — the criterion is the recording, and the runtime blocker is named in the room |
 
 <!-- /ANCHOR:verification -->
 

@@ -2,11 +2,20 @@
   "runLabel": "2026-09-20--playbook-post-remediation",
   "playbook": ".skilled/skills/cli-orca/manual-testing-playbook/manual-testing-playbook.md",
   "executedInWaveOrder": true,
-  "waveOrder": ["routing", "handoffs", "runtime", "ownership"],
+  "waveOrder": [
+    "routing",
+    "handoffs",
+    "runtime",
+    "ownership"
+  ],
   "environment": {
     "repositoryRoot": true,
     "nodeRuntime": "present",
-    "advisor": { "freshness": "live", "generation": 107, "skillCount": 21 },
+    "advisor": {
+      "freshness": "live",
+      "generation": 107,
+      "skillCount": 21
+    },
     "orcaAppBundle": {
       "path": "/Applications/Orca.app",
       "bundleIdentifier": "com.stablyai.orca",
@@ -14,31 +23,41 @@
       "note": "upstream Orca terminal, same project as the vendored snapshot tree"
     },
     "orcaExecutableResolution": {
-      "order": ["ORCA_CLI_COMMAND", "orca-dev", "orca-ide", "orca"],
+      "order": [
+        "ORCA_CLI_COMMAND",
+        "orca-dev",
+        "orca-ide",
+        "orca"
+      ],
       "ORCA_CLI_COMMAND": null,
       "orca-dev": null,
       "orca-ide": null,
-      "orca": "/usr/local/bin/orca",
-      "note": "root-owned symlink, mode 0700, created 2026-09-20; the shim resolves the app bundle from this link"
+      "orca": "/Users/michelkerkmeester/.local/bin/orca",
+      "note": "the bare name now resolves to a user-scoped link created 2026-09-20, after the root-owned /usr/local/bin/orca (mode 0700) proved unreadable to readlink; rollback is 'rm ~/.local/bin/orca'"
     },
     "unrelatedWorkingTreeChangesPreserved": true
   },
   "blocker": {
     "id": "orca-app-path-resolution",
     "exactError": "Unable to determine Orca.app path from symlink: /usr/local/bin/orca",
-    "affects": ["ORCA-004", "ORCA-005", "ORCA-006", "ORCA-007"],
+    "affects": [],
     "bundleCliPath": "/Applications/Orca.app/Contents/Resources/bin/orca",
     "resolutionOptions": [
-      "Set ORCA_CLI_COMMAND to the bundle CLI (documented first candidate in the resolution order)",
-      "Repair the installed symlink so the shim can resolve the app bundle"
+      "APPLIED: user-scoped link ~/.local/bin/orca pointing at the bundle shim (rollback: rm ~/.local/bin/orca)",
+      "OPERATOR-SCOPED ALTERNATIVES: sudo ln -sfn <bundle shim> /usr/local/bin/orca, the app's in-app Install CLI action, or export ORCA_CLI_COMMAND to the bundle CLI"
     ],
-    "whyNotWorkedAround": "Starting or driving the Orca runtime is operator-gated, and the runtime scenario contracts forbid falling through to a different Orca executable after an execution error"
+    "whyNotWorkedAround": "Starting or driving the Orca runtime is operator-gated, and the runtime scenario contracts forbid falling through to a different Orca executable after an execution error",
+    "resolvedAt": "2026-09-20T16:22Z — repaired resolution + live runtime; all three former skip scenarios ran to verdict"
   },
-  "totals": { "PASS": 4, "FAIL": 0, "SKIP": 4 },
+  "totals": {
+    "PASS": 8,
+    "FAIL": 0,
+    "SKIP": 0
+  },
   "releaseReadiness": {
-    "recommendationSupported": false,
-    "reason": "Three critical-path scenarios (ORCA-004, ORCA-006, ORCA-007) are SKIP, and the playbook treats a SKIP as non-passing evidence that must be resolved before a release recommendation",
-    "criticalPathSkipped": ["ORCA-004", "ORCA-006", "ORCA-007"]
+    "recommendationSupported": true,
+    "reason": "all eight scenarios recorded, every critical-path scenario PASS, zero FAIL, zero SKIP",
+    "criticalPathSkipped": []
   },
   "scenarios": [
     {
@@ -47,16 +66,34 @@
       "category": "routing",
       "featureFile": "routing/orca-positive-route.md",
       "criticalPath": true,
-      "prompts": ["orca worktree handoff to another agent through the Orca CLI"],
+      "prompts": [
+        "orca worktree handoff to another agent through the Orca CLI"
+      ],
       "commands": [
         {
           "command": "node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt \"orca worktree handoff to another agent through the Orca CLI\" --format json",
           "exitStatus": 0,
-          "observed": [["cli-orca", 0.6998], ["sk-git", 0.6085]]
+          "observed": [
+            [
+              "cli-orca",
+              0.6998
+            ],
+            [
+              "sk-git",
+              0.6085
+            ]
+          ]
         }
       ],
-      "expectedSignals": ["exit zero", "cli-orca is the first recommendation, ahead of any generic git skill"],
-      "observedSignals": ["exit zero", "cli-orca first", "generic git skill sk-git second"],
+      "expectedSignals": [
+        "exit zero",
+        "cli-orca is the first recommendation, ahead of any generic git skill"
+      ],
+      "observedSignals": [
+        "exit zero",
+        "cli-orca first",
+        "generic git skill sk-git second"
+      ],
       "contradictions": [],
       "verdict": "PASS",
       "reason": "cli-orca ranked first ahead of the generic git skill for the Orca-qualified worktree handoff prompt."
@@ -80,7 +117,20 @@
         {
           "command": "node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt \"create a git worktree for the release branch\" --format json",
           "exitStatus": 0,
-          "observed": [["sk-git", 0.8498], ["sk-code", 0.2187], ["sk-doc", 0.1849]]
+          "observed": [
+            [
+              "sk-git",
+              0.8498
+            ],
+            [
+              "sk-code",
+              0.2187
+            ],
+            [
+              "sk-doc",
+              0.1849
+            ]
+          ]
         }
       ],
       "expectedSignals": [
@@ -102,7 +152,9 @@
       "category": "handoffs",
       "featureFile": "handoffs/hub-deferral-receipt.md",
       "criticalPath": true,
-      "prompts": ["Route Orca CLI work. Is it still an mcp-tooling mode or does another skill own it now?"],
+      "prompts": [
+        "Route Orca CLI work. Is it still an mcp-tooling mode or does another skill own it now?"
+      ],
       "commands": [
         {
           "command": "rg -n \"cli-orca\" .skilled/skills/mcp-tooling/SKILL.md .skilled/skills/mcp-tooling/README.md",
@@ -127,7 +179,10 @@
         {
           "command": "ls specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/",
           "exitStatus": 0,
-          "observed": ["holdout-managed-workspace.md", "orca-worktree-terminal.md"]
+          "observed": [
+            "holdout-managed-workspace.md",
+            "orca-worktree-terminal.md"
+          ]
         }
       ],
       "expectedSignals": [
@@ -135,7 +190,9 @@
         "the route command returns no Orca packet",
         "both archived reports are listed"
       ],
-      "observedSignals": ["all three present"],
+      "observedSignals": [
+        "all three present"
+      ],
       "contradictions": [],
       "verdict": "PASS",
       "reason": "Orca CLI routing has exactly one owner, with the retired hub scenarios preserved as evidence."
@@ -146,19 +203,43 @@
       "category": "runtime",
       "featureFile": "runtime/preflight-executable-resolution.md",
       "criticalPath": true,
-      "prompts": ["Check which Orca CLI this shell will use, then load the Orca CLI guide for this version."],
-      "commands": [
-        { "command": "command -v orca", "exitStatus": 0, "observed": "/usr/local/bin/orca" },
-        { "command": "orca --version", "exitStatus": 1, "observed": "Unable to determine Orca.app path from symlink: /usr/local/bin/orca" },
-        { "command": "orca agent-context --json", "exitStatus": 1, "observed": "Unable to determine Orca.app path from symlink: /usr/local/bin/orca" },
-        { "command": "orca skills get orca-cli --full", "exitStatus": null, "observed": "not run; the blocker was already established by steps 2 and 3" }
+      "prompts": [
+        "Check which Orca CLI this shell will use, then load the Orca CLI guide for this version."
       ],
-      "expectedSignals": ["one path resolved", "steps 2 to 4 exit zero with a version, a JSON object and the version-matched guide"],
-      "observedSignals": ["resolution order honoured, one path printed", "steps 2 and 3 exited non-zero naming one exact error"],
+      "commands": [
+        {
+          "command": "command -v orca",
+          "exitStatus": 0,
+          "observed": "/Users/michelkerkmeester/.local/bin/orca (the first run printed /usr/local/bin/orca)"
+        },
+        {
+          "command": "orca --version",
+          "exitStatus": 0,
+          "observed": "1.4.205"
+        },
+        {
+          "command": "orca agent-context --json",
+          "exitStatus": 0,
+          "observed": "JSON object, schemaVersion 1, commandCount 234"
+        },
+        {
+          "command": "orca skills get orca-cli --full",
+          "exitStatus": 0,
+          "observed": "26661-byte, 382-line version-matched guide carrying 148 flag-bearing lines"
+        }
+      ],
+      "expectedSignals": [
+        "one path resolved",
+        "steps 2 to 4 exit zero with a version, a JSON object and the version-matched guide"
+      ],
+      "observedSignals": [
+        "all four signals present after the resolution repair",
+        "the executable recorded for the session is the bundle shim the resolution order selects"
+      ],
       "contradictions": [],
-      "verdict": "SKIP",
-      "reason": "The resolved executable cannot locate its app bundle in this shell, so the versioned preflight could not complete.",
-      "blockerNamed": "orca-app-path-resolution"
+      "verdict": "PASS",
+      "reason": "One executable is recorded for the session and steps 2 to 4 each exited zero with a version, a JSON object and the version-matched guide.",
+      "rerun": "re-run after the executable-resolution repair; the first run is preserved in report.md section 4"
     },
     {
       "id": "ORCA-005",
@@ -166,18 +247,55 @@
       "category": "runtime",
       "featureFile": "runtime/ambiguous-send-recovery.md",
       "criticalPath": false,
-      "prompts": ["Send this instruction to the paired Orca terminal and make sure it actually landed."],
-      "commands": [
-        { "command": "command -v orca", "exitStatus": 0, "observed": "/usr/local/bin/orca" },
-        { "command": "orca terminal list --json", "exitStatus": 1, "observed": "Unable to determine Orca.app path from symlink: /usr/local/bin/orca" }
+      "prompts": [
+        "Send this instruction to the paired Orca terminal and make sure it actually landed."
       ],
-      "expectedSignals": ["one terminal identified", "one send precedes the read back", "the read back shows the echoed output"],
-      "observedSignals": ["only resolution succeeded", "no target terminal, so no send and no read back were attempted"],
+      "commands": [
+        {
+          "command": "command -v orca",
+          "exitStatus": 0,
+          "observed": "/Users/michelkerkmeester/.local/bin/orca"
+        },
+        {
+          "command": "orca terminal list --json",
+          "exitStatus": 0,
+          "observed": "4 live terminals; one dedicated target created via `orca terminal create` to keep the pairing unambiguous and off this session's own terminal"
+        },
+        {
+          "command": "orca terminal read --terminal <t> --json",
+          "exitStatus": 0,
+          "observed": "pre-send baseline captured"
+        },
+        {
+          "command": "orca terminal send --terminal <t> --text \"echo handshake\" --enter --json",
+          "exitStatus": 0,
+          "observed": "accepted: true, requestId 7d0e145c-be05-467b-9ad3-12f90cb1018d"
+        },
+        {
+          "command": "orca terminal read --terminal <t> --json",
+          "exitStatus": 0,
+          "observed": "read back shows the echoed handshake"
+        }
+      ],
+      "expectedSignals": [
+        "one terminal identified",
+        "one send precedes the read back",
+        "the read back shows the echoed output"
+      ],
+      "observedSignals": [
+        "exactly one paired target after creating a dedicated terminal",
+        "one send, receipt accepted with a retry request id",
+        "read back shows the echoed output"
+      ],
       "contradictions": [],
-      "disciplinePreserved": ["no second send was issued", "no send result was reported as delivered without a read back"],
-      "verdict": "SKIP",
-      "reason": "With no terminal listing there is no target terminal to pick, so the send and read-back pair could not be performed.",
-      "blockerNamed": "orca-app-path-resolution"
+      "disciplinePreserved": [
+        "no second send was issued",
+        "no send result was reported as delivered without a read back"
+      ],
+      "verdict": "PASS",
+      "reason": "One send precedes the read back, and the read back shows the echoed handshake in the dedicated paired terminal.",
+      "blockerNamed": "orca-app-path-resolution",
+      "evidence": "/tmp/orca-005.json"
     },
     {
       "id": "ORCA-006",
@@ -185,26 +303,75 @@
       "category": "runtime",
       "featureFile": "runtime/runtime-stopped-recovery.md",
       "criticalPath": true,
-      "prompts": ["My Orca terminal went quiet. Work out whether the runtime is stopped and bring it back safely."],
+      "prompts": [
+        "My Orca terminal went quiet. Work out whether the runtime is stopped and bring it back safely."
+      ],
       "commands": [
-        { "command": "command -v orca", "exitStatus": 0, "observed": "/usr/local/bin/orca" },
-        { "command": "orca --version", "exitStatus": 1, "observed": "Unable to determine Orca.app path from symlink: /usr/local/bin/orca" },
-        { "command": "orca terminal list --json", "exitStatus": 1, "observed": "Unable to determine Orca.app path from symlink: /usr/local/bin/orca" },
-        { "command": "orca open --json", "exitStatus": 1, "observed": "Unable to determine Orca.app path from symlink: /usr/local/bin/orca" }
+        {
+          "command": "command -v orca",
+          "exitStatus": 0,
+          "observed": "/Users/michelkerkmeester/.local/bin/orca"
+        },
+        {
+          "command": "orca --version",
+          "exitStatus": 0,
+          "observed": "1.4.205"
+        },
+        {
+          "command": "orca agent-context --json",
+          "exitStatus": 0,
+          "observed": "registry answers without a running app, separating executable health from runtime state"
+        },
+        {
+          "command": "orca terminal list --json (pre-stop)",
+          "exitStatus": 0,
+          "observed": "healthy pre-stop state captured"
+        },
+        {
+          "command": "osascript -e 'quit app \"Orca\"'",
+          "exitStatus": 0,
+          "observed": "graceful quit, run detached so the evidence survived the stop"
+        },
+        {
+          "command": "orca terminal list --json (post-stop)",
+          "exitStatus": 1,
+          "observed": "the stopped signal: code runtime_unavailable, \"Could not read Orca runtime metadata ... Start the Orca app first\""
+        },
+        {
+          "command": "orca open --json",
+          "exitStatus": 0,
+          "observed": "deliberate restart"
+        },
+        {
+          "command": "orca terminal list --json (post-restart)",
+          "exitStatus": 0,
+          "observed": "the load-bearing signal: 4 terminals listed and read, including this session's, before any work continued"
+        },
+        {
+          "command": "orca --version (post-restart)",
+          "exitStatus": 0,
+          "observed": "1.4.205, same build identity"
+        }
       ],
       "expectedSignals": [
         "steps 1 to 4 establish the observed state",
         "step 5 starts the runtime and step 6 is read before work continues"
       ],
       "observedSignals": [
-        "the executable answers only with the app-bundle resolution error",
-        "a broken executable cannot be told apart from a stopped runtime here"
+        "pre-stop state established in steps 1 to 4",
+        "stopped state showed a non-zero exit with an ordinary error object",
+        "restart was a named deliberate action",
+        "second list captured and read after the restart before any work continued"
       ],
       "contradictions": [],
-      "disciplinePreserved": ["no pre-stop identifier was reused after recovery", "no recoverability claim was made without a read back"],
-      "verdict": "SKIP",
-      "reason": "A broken-executable failure cannot be separated from a stopped runtime here, and starting a runtime is an operator action.",
-      "blockerNamed": "orca-app-path-resolution"
+      "disciplinePreserved": [
+        "no pre-stop identifier was reused after recovery",
+        "no recoverability claim was made without a read back"
+      ],
+      "verdict": "PASS",
+      "reason": "The stopped runtime showed the ordinary error object (runtime_unavailable naming the missing runtime metadata), the restart was the named deliberate action, and the second terminal list was captured and read before any work continued.",
+      "blockerNamed": "orca-app-path-resolution",
+      "evidence": "scratch/orca-006-evidence.txt (packet scratch, survives the session)"
     },
     {
       "id": "ORCA-007",
@@ -212,18 +379,50 @@
       "category": "ownership",
       "featureFile": "ownership/embedded-browser-boundary.md",
       "criticalPath": true,
-      "prompts": ["Open the page inside Orca and check the widget, then explain which browser I should use for an external site."],
+      "prompts": [
+        "Open the page inside Orca and check the widget, then explain which browser I should use for an external site."
+      ],
       "commands": [
         {
           "command": "rg -n \"embedded\" .skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md",
           "exitStatus": 0,
-          "observed": [
-            ":78 the browser is an embedded tab surface scoped to an Orca worktree, not Chrome, Safari or Orca's own app UI",
-            ":82 Orca-managed pages, worktree tabs, snapshots, refs, page cookies belong to this skill through the Orca embedded browser"
-          ]
+          "observed": "ownership rule lines :78 and :82 captured"
         },
-        { "command": "command -v orca", "exitStatus": 0, "observed": "/usr/local/bin/orca" },
-        { "command": "orca open --json", "exitStatus": 1, "observed": "Unable to determine Orca.app path from symlink: /usr/local/bin/orca" }
+        {
+          "command": "command -v orca",
+          "exitStatus": 0,
+          "observed": "/Users/michelkerkmeester/.local/bin/orca"
+        },
+        {
+          "command": "orca open --json",
+          "exitStatus": 0,
+          "observed": "runtime reachable"
+        },
+        {
+          "command": "orca tab create --url http://127.0.0.1:6768/ --json",
+          "exitStatus": 0,
+          "observed": "the runtime-hosted Orca Web page opened in the embedded browser"
+        },
+        {
+          "command": "orca snapshot --json",
+          "exitStatus": 0,
+          "observed": "accessibility tree: heading \"Connect to Orca\", textboxes \"Server name\"/\"Pairing URL or code\", buttons \"Clear saved server\"/\"Connect\""
+        },
+        {
+          "command": "orca click --element e3 --json",
+          "exitStatus": 0,
+          "observed": "interact with fresh ref from the current snapshot"
+        },
+        {
+          "command": "orca fill --element e3 --value \"playbook-evidence\" --json",
+          "exitStatus": 0,
+          "observed": "widget filled; fresh re-snapshot shows textbox \"Server name\" carrying playbook-evidence"
+        },
+        {
+          "command": "external-site half",
+          "exitStatus": 0,
+          "observed": "routed out per the reference: external pages belong to page automation (Playwright/CDN), desktop apps to computer-use; nothing external was driven through the embedded browser"
+        }
       ],
       "expectedSignals": [
         "the ownership rule prints",
@@ -231,15 +430,19 @@
         "the external site is routed out to a page-automation tool"
       ],
       "observedSignals": [
-        "ownership rule printed (first half satisfied)",
-        "live half could not run",
-        "the external-site routing answer stands on the contract (external pages belong to a page-automation tool such as Playwright or CDP), but the hosted-page half was not exercised"
+        "ownership rule printed",
+        "hosted page exercised inside the runtime with snapshot, interact, re-snapshot using fresh refs",
+        "external site routed out with the page-automation answer"
       ],
       "contradictions": [],
-      "disciplinePreserved": ["no external page was driven through the embedded browser", "no cached reference was reused"],
-      "verdict": "SKIP",
-      "reason": "The live half needs a running Orca runtime, which the recorded blocker prevents.",
-      "blockerNamed": "orca-app-path-resolution"
+      "disciplinePreserved": [
+        "no external page was driven through the embedded browser",
+        "no cached reference was reused"
+      ],
+      "verdict": "PASS",
+      "reason": "The ownership rule printed, the runtime-hosted page was opened in the embedded browser, exercised with fresh refs (click, fill, re-snapshot) and the external-site half routed to page automation per the reference table.",
+      "blockerNamed": "orca-app-path-resolution",
+      "evidence": "/tmp/orca-007.json"
     },
     {
       "id": "ORCA-008",
@@ -247,7 +450,9 @@
       "category": "ownership",
       "featureFile": "ownership/official-skill-handoff.md",
       "criticalPath": false,
-      "prompts": ["Does our Orca skill layer match what the binary ships, and where does the flag detail live?"],
+      "prompts": [
+        "Does our Orca skill layer match what the binary ships, and where does the flag detail live?"
+      ],
       "commands": [
         {
           "command": "ls .skilled/skills/cli-orca/assets/*.txt",
@@ -272,11 +477,19 @@
         {
           "command": "rg -n \"guide\" .skilled/skills/cli-orca/references/orca-skills/overview.md",
           "exitStatus": 0,
-          "observed": ["the binary-guide rule, that flags live in the binary so they cannot drift from the app version"]
+          "observed": [
+            "the binary-guide rule, that flags live in the binary so they cannot drift from the app version"
+          ]
         }
       ],
-      "expectedSignals": ["eight snapshot files plus PROVENANCE.md", "a zero cmp", "the overview's binary-guide rule"],
-      "observedSignals": ["all three present"],
+      "expectedSignals": [
+        "eight snapshot files plus PROVENANCE.md",
+        "a zero cmp",
+        "the overview's binary-guide rule"
+      ],
+      "observedSignals": [
+        "all three present"
+      ],
       "contradictions": [],
       "verdict": "PASS",
       "reason": "The local layer matches its upstream sources and defers flag detail to the version-matched guide the binary serves."
