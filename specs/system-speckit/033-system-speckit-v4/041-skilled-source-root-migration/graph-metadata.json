@@ -187,17 +187,17 @@
     ],
     "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
     "created_at": "2026-09-16T08:35:04Z",
-    "last_save_at": "2026-09-20T07:41:16.082Z",
+    "last_save_at": "2026-09-20T08:35:52.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:832b9e1db2a50590e87f0a5f31d085512fbc97bf9b5951e784f11e0b9fe1fe09",
+    "source_fingerprint": "sha256:419267b782544b266a9543b19d803dc115b79d9052427efd1580eb5d62da75ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b2cb0ffc44916c61a8eec10c3bde0af77514503159d8e4e7f784be0e90fc69f1"
+      "spec.md": "cc4a5813b8095652224c5c37a10685fc21f49775f5b6c5ed4fe4828778522b35"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze",
     "last_active_at": "2026-09-18T22:35:59.779Z"

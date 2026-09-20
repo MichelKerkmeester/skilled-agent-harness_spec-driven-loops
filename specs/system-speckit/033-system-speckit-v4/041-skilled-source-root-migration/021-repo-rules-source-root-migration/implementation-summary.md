@@ -48,6 +48,7 @@ _memory:
 | **Branch** | `worktrees/056-repo-rules-source-root-migration` |
 | **Base Commit** | `c1817442b2` |
 | **Level** | 2 |
+| **Delivery** | Branch `worktrees/056-repo-rules-source-root-migration` pushed for CI; the operator declined a PR, and the merge is the operator's |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -137,6 +138,7 @@ the corpus fix can be reverted without reverting the relocation.
 | Links and history | Every `AGENTS.md` rule link resolves; `git log --follow` reaches 11 commits per rule through the move |
 | Packet validation | Child `RESULT: PASSED`, parent `--recursive --strict` `RESULT: PASSED` |
 | Full harness | `scratch/verify.sh` — `RESULT: PASSED (passed=20 failed=0)`, receipt in `scratch/verify-run.txt` |
+| Delivery | Branch pushed; no PR by operator decision |
 <!-- /ANCHOR:verification -->
 
 ---
