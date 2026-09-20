@@ -29,7 +29,7 @@ version: 1.0.1.0
 
 # Rule: Delegation and orchestration
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before work leaves your hands.
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load before work leaves your hands.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when

@@ -27,7 +27,7 @@ version: 1.0.1.0
 
 # Rule: Scope discipline
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before touching anything you were not asked to touch.
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load before touching anything you were not asked to touch.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when

@@ -25,7 +25,7 @@ version: 1.0.1.0
 
 # Rule: Blast radius and reversibility
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before the action, not after it.
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load before the action, not after it.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when

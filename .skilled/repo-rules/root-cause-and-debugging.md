@@ -26,7 +26,7 @@ version: 1.0.1.0
 
 # Rule: Root cause and debugging
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load when something is red.
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load when something is red.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when

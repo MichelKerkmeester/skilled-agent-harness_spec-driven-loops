@@ -1,0 +1,1 @@
+../.skilled/repo-rules/scope-discipline.md
