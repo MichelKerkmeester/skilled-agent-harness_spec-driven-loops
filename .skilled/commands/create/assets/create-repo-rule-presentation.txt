@@ -100,12 +100,12 @@ strips two router rows, so it runs autonomously only when the operator wrote the
 
 ## 7. SUCCESS OUTPUT
 
-  Rule written : repo-rules/{name}.md   ({lines} lines, {band})
+  Rule written : {rules_dir}{name}.md   ({lines} lines, {band})
   Wired        : trigger row · index row · pointer in AGENTS.md {section}
   Verified     : frontmatter parses · dividers={n} sections={n} · links {n}/{n}
                  no trigger-phrase collisions
 
-  STATUS=OK PATH=repo-rules/{name}.md
+  STATUS=OK PATH={rules_dir}{name}.md
 
 ## 8. RETIRE OUTPUT
 

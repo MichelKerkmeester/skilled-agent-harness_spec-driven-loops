@@ -25,7 +25,7 @@ When an approved plan names a specific workflow, command, agent or skill (e.g., 
 1. **VERIFY, don't assume** — READ the named workflow's contract (its `SKILL.md` or command doc) to test any friction you believe it has.
 2. **FLAG deviations** — If it genuinely blocks the task, STATE the deviation to the user ("plan says X, I propose Y because Z") and get approval before proceeding.
 3. **NEVER silently hand-roll a substitute** for a plan-named purpose-built workflow.
-4. **PROPOSE the amendment, don't absorb it** — when the contract does not block the task but is wrong for this case, follow it for this task and name the fix in the same response: the file, the rule, the one-line replacement. The difference from step 2 is whether you can comply. The adjacent case, a frozen scope you believe is wrong, is [`scope-discipline.md`](repo-rules/scope-discipline.md) §5 and §6.
+4. **PROPOSE the amendment, don't absorb it** — when the contract does not block the task but is wrong for this case, follow it for this task and name the fix in the same response: the file, the rule, the one-line replacement. The difference from step 2 is whether you can comply. The adjacent case, a frozen scope you believe is wrong, is [`scope-discipline.md`](.skilled/repo-rules/scope-discipline.md) §5 and §6.
 
 > Reinventing a workflow's core feature because you assumed friction you never checked against its contract is a HARD violation.
 
@@ -113,7 +113,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 #### Blast-Radius Management
 
 - **Open non-trivial work with a stakes read**, low-blast and reversible or high-blast and what it touches, and size the effort to it.
-- **Name the rollback, stop for yes** — before delete, overwrite, migrate, deploy, send or install, write how to undo and wait for confirmation. This wait is mandatory and no rule file relaxes it. The ladder and the rest are [`blast-radius.md`](repo-rules/blast-radius.md).
+- **Name the rollback, stop for yes** — before delete, overwrite, migrate, deploy, send or install, write how to undo and wait for confirmation. This wait is mandatory and no rule file relaxes it. The ladder and the rest are [`blast-radius.md`](.skilled/repo-rules/blast-radius.md).
 
 #### Execution Behavior
 
@@ -141,7 +141,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 | "best practice", "always should" | a pattern imported without checking fit | Name the specific failure it prevents here, or drop it |
 | "while we're here", "also add", "might as well" | work outside the frozen scope | Note it separately; do not fold it into this change |
 | "DRY this up" across two instances | similarity mistaken for sameness | Two is not a pattern; wait for the third before abstracting |
-| The change touches callers or a shared contract | the blast radius is wider than the file | Name owner, callers, and the frozen contract before editing, the touch check in [`prevent-overengineering.md`](repo-rules/prevent-overengineering.md) §2 |
+| The change touches callers or a shared contract | the blast radius is wider than the file | Name owner, callers, and the frozen contract before editing, the touch check in [`prevent-overengineering.md`](.skilled/repo-rules/prevent-overengineering.md) §2 |
 | The fix works only where the bug surfaced | the symptom was treated, not the cause | Trace to the producer and fix at source |
 
 ---
@@ -206,7 +206,7 @@ Trigger: a session bound to a spec packet, on every turn.
 
 - **Never choose the workspace yourself, and never create a branch with git primitives.** When a git workspace trigger fires, ask the operator to choose **A) Create a git worktree** or **B) Work on current branch**, and wait. Branches come only from `sk-git`'s commands.
 - **Ask before every push to a branch outside sk-git's remote allowlist.** A prior approval never carries forward. An explicit push instruction is itself the go-ahead.
-- Naming, numbering, commit identity, live-sync and the hooks that back all of it are `sk-git`'s. Publishing and reversibility are [`blast-radius.md`](repo-rules/blast-radius.md)'s.
+- Naming, numbering, commit identity, live-sync and the hooks that back all of it are `sk-git`'s. Publishing and reversibility are [`blast-radius.md`](.skilled/repo-rules/blast-radius.md)'s.
 
 #### Code Search Decision Tree
 
@@ -258,7 +258,7 @@ Confidence stays below 80% after two failed attempts → ask with two or three o
 
 ## 8. 🗣️ COMMUNICATION QUALITY
 
-Load [`communication.md`](repo-rules/communication.md) and [`communication-prose.md`](repo-rules/communication-prose.md) before any substantive reply, [`communication-decisions.md`](repo-rules/communication-decisions.md) before a recommendation or a long stretch of work, and [`communication-handoff.md`](repo-rules/communication-handoff.md) before ending a turn. Load [`answer-the-actual-request.md`](repo-rules/answer-the-actual-request.md) before answering a request you are tempted to warn about, narrow, decline, or price. These five fire on a reply rather than on a write, so Gate 5 never reaches them.
+Load [`communication.md`](.skilled/repo-rules/communication.md) and [`communication-prose.md`](.skilled/repo-rules/communication-prose.md) before any substantive reply, [`communication-decisions.md`](.skilled/repo-rules/communication-decisions.md) before a recommendation or a long stretch of work, and [`communication-handoff.md`](.skilled/repo-rules/communication-handoff.md) before ending a turn. Load [`answer-the-actual-request.md`](.skilled/repo-rules/answer-the-actual-request.md) before answering a request you are tempted to warn about, narrow, decline, or price. These five fire on a reply rather than on a write, so Gate 5 never reaches them.
 
 Two things stay here because they bind regardless of what loads. **Delivery never softens rigor** — no rule about how a reply reads may weaken a claim, a caveat, or a verification standard from §4. And **voice is not a performance**: over-constraining it produces hedged, timid answers, so when honoring a delivery rule would weaken the answer, keep the answer.
 

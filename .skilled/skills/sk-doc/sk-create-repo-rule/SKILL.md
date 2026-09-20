@@ -11,7 +11,8 @@ version: 1.1.0.0
 
 `create-repo-rule` is the repo-rule authoring workflow packet of the `sk-doc` family. It
 turns a user's request — a behaviour they want, or a failure they keep hitting — into a
-file under `repo-rules/`, wired into that repository's `REPO RULES.md` router.
+file in the target repository's rules directory (`.skilled/repo-rules/` where a `.skilled`
+source root exists, `repo-rules/` otherwise), wired into its `REPO RULES.md` router.
 
 **Most requests should not become a rule.** The four decision tests in
 `references/decision-tests.md` refuse more than they admit, and running them first is the
