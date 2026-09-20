@@ -9,12 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration"
-    last_updated_at: "2026-09-20T00:00:00Z"
+    last_updated_at: "2026-09-20T10:30:00Z"
     last_updated_by: "pi"
-    recent_action: "Scaffolded the phase and recorded baselines"
-    next_safe_action: "Run the bounded research loop, then move the corpus"
+    recent_action: "Packet closed: docs, research synthesis, verification receipt"
+    next_safe_action: "Open the PR and leave the merge to the operator"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/repo-rules/blast-radius.md"
+      - ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs"
+      - "REPO RULES.md"
+      - "AGENTS.md"
+      - ".github/workflows/repo-rules-corpus.yml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "021-repo-rules-source-root-migration"
@@ -38,7 +43,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Phase** | 21 of 22 |
-| **Status** | In progress |
+| **Status** | Complete |
 | **Started** | 2026-09-20 |
 | **Branch** | `worktrees/056-repo-rules-source-root-migration` |
 | **Base Commit** | `c1817442b2` |
@@ -68,8 +73,9 @@ commit leaves the corpus unreachable. `git log --follow` still walks each rule's
 
 `check-repo-rules.cjs` probes `.skilled/repo-rules` and then `repo-rules`, and identifies router
 rows by resolving each link into the chosen directory. It keeps its nine checks and its output
-format, so the phase's claim is a verdict delta on an unchanged instrument, and it gains the
-farm-integrity check.
+format, so the phase's claim is a verdict delta on an unchanged instrument. The farm-integrity
+assertion lives beside it in the phase's own `scratch/check-farm.cjs`, because a tenth check
+inside the checker would change the very contract the claim is measured on.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -81,6 +87,27 @@ Ordered as: baselines, a bounded research loop over the consumer census, the mov
 the reference rewrite, the machine and consumer surfaces, then the verification list. Each unit is
 its own commit, and the divider fix in `answer-the-actual-request.md` is separable from the move so
 the corpus fix can be reverted without reverting the relocation.
+
+### Where the plan and the tree disagreed
+
+- **The research surface.** The plan names `/deep:research`; its contract is a thin router over the
+  deep-loop fan-out engine, and a Pi child running it with `--executor=cli-pi` would dispatch Pi
+  from inside a Pi stack, which the shared runtime refuses. The engine was invoked directly with
+  the arguments the command would compute — one `cli-pi` lineage, three iterations. `scratch/research-dispatch.sh`
+  is the run's own record and `research/research.md` §2 states the deviation.
+- **The commit order.** A rename-only commit was planned, with the farm, the divider fix and the
+  checker as separate steps. The backlink depth and the checker's link resolution have to change
+  together or the checker is transiently red, so the farm, the divider fix and the layout-aware
+  checker ship in one commit (`6eedc5f930`) behind the rename-only move (`f1b798914e`).
+- **`.claude/agents/**` is hand-authored, not generated.** Its body parity with `.skilled/agents/**`
+  is what the mirror gate enforces, so both sides were edited identically and the generated trees
+  (`.pi`, `.codex`, `.hermes`) were regenerated.
+- **The benchmark cases.** The generator reads `cases.json` and never writes it; the case set is
+  frozen word-for-word from the measurement baseline and its coverage case keys on bare filenames,
+  so there was no case artifact to refresh and the frozen set was left alone.
+- **The CI filter needs its twin.** `check-gate-inputs.sh` fails a path filter that names one source
+  root without its twin in the same block, so the canonical filter carries a deliberately inert
+  `.opencode/repo-rules/**` twin with the reason written beside it.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -102,11 +129,14 @@ the corpus fix can be reverted without reverting the relocation.
 
 | Check | Result |
 |-------|--------|
-| Corpus checker, worktree | Pending |
-| Corpus checker, plain-layout fixture | Pending |
-| Farm integrity | Pending |
-| Gate inputs, mirror gates, derived artifacts | Pending |
-| Frozen set unchanged | Pending |
+| Corpus checker, worktree | `RESULT: PASSED (9/9 checks)` — 13 files, 8 trigger rows, 13 index rows, 252 unique phrases, 45 resolving rule links |
+| Corpus checker, plain-layout fixture | `RESULT: PASSED (9/9 checks)` in a temp tree carrying only `repo-rules/` |
+| Farm integrity | `PASSED files=13 links=13 every link resolves`, and the mutated fixture names a deleted entry |
+| Gate inputs, mirror gates, derived artifacts | `check-gate-inputs.sh` `RESULT: PASSED`; runtime mirrors, Codex agents and prompts and Pi agents `PASS`; doctor roster and catalog `STATUS=OK`; the Hermes drift set equals the base (`DRIFT cli-devin`) |
+| Frozen set unchanged | No modified or deleted frozen file since `c1817442`; the one activation manifest the commit gate re-minted differs by `effectivePolicyHash` |
+| Links and history | Every `AGENTS.md` rule link resolves; `git log --follow` reaches 11 commits per rule through the move |
+| Packet validation | Child `RESULT: PASSED`, parent `--recursive --strict` `RESULT: PASSED` |
+| Full harness | `scratch/verify.sh` — `RESULT: PASSED (passed=20 failed=0)`, receipt in `scratch/verify-run.txt` |
 <!-- /ANCHOR:verification -->
 
 ---
