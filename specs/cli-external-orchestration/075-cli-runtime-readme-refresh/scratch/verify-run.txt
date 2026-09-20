@@ -1,6 +1,6 @@
 # verify.sh receipt
-# generated: 2026-09-20T11:46:27Z  worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/057-cli-runtime-readme-refresh
-# branch: worktrees/057-cli-runtime-readme-refresh  base: befe3993f1c4e1294b05d6440deb5b027ec76036
+# generated: 2026-09-20 13:51:38
+# state: worktree 057-cli-runtime-readme-refresh; READMEs + cli-pi repoint + hermes mirror committed
 
 PASS  validator 8/8 VALID                8/8 VALID
 PASS  subdirectories named               42 /42 named
@@ -9,28 +9,7 @@ PASS  fenced tree present                8/8 have a fenced text block
 PASS  sequential H2 numbering 1..N       all 8 sequential 1..N
 PASS  stale pin cleared (9 files)        0 stale occurrence(s); archived target present
 PASS  hermes cli-pi mirror in sync       cli-pi absent; drift=7 stale=1 (before: 7/1)
-PASS  authorized paths only              49 authorized; 0 unexpected
+PASS  authorized paths only              2 authorized; 0 unexpected
 PASS  broken links 15 -> <=5, no cluster broken=5 (before 15); cli-pi/README hits=0
 
---- recorded (non-gating) ---
-  sync: DRIFT cli-external-orchestration
-  sync: DRIFT cli-devin
-  sync: DRIFT cli-jev
-  sync: DRIFT cli-orca
-  sync: DRIFT mcp-tooling
-  sync: DRIFT agent-orchestrate
-  sync: DRIFT agent-prompt-improver
-  sync: STALE mcp-orca-cli
-  sync: FAIL: 7 drifted, 1 stale; run without --check to regenerate
-  links: check-markdown-links: 7822 files, 13466 links checked, 5 broken
-    .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md  ](../../../../../specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/goal-coverage-buildout.md)
-    .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md  ](../../../../../specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/handover.md)
-    .skilled/skills/system-spec-kit/runtime/hooks/cursor/README.md  ](../../../../../../specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md)
-    .skilled/skills/system-spec-kit/runtime/hooks/devin/README.md  ](../../../../../../specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md)
-    .skilled/skills/system-spec-kit/runtime/hooks/devin/README.md  ](../../../../../../specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md)
-  
-  Fix the link, or — if it is an intentional placeholder/example — add it to the ALLOWLIST in this script.
-
 RESULT: PASSED (passed=9 failed=0)
-
-# verify.sh exit status: 0

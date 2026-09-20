@@ -53,10 +53,10 @@
       ".skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md",
       "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch/verify.sh",
       "scratch/verify.sh",
+      "scratch/verify-run.txt",
       ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/cursor/README.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/devin/README.md",
-      ".skilled/scripts/install-git-hooks.sh",
       ".skilled/skills/sk-doc/scripts/validate_document.py",
       ".skilled/skills/cli-external-orchestration/cli-codex/README.md",
       ".skilled/skills/cli-external-orchestration/cli-cursor/README.md",
@@ -112,15 +112,15 @@
         "source": "derived"
       },
       {
-        "name": "compiled-routing-architecture.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+        "name": "verify-run.txt",
+        "kind": "file",
+        "path": "scratch/verify-run.txt",
         "source": "derived"
       },
       {
-        "name": "install-git-hooks.sh",
-        "kind": "script",
-        "path": ".skilled/scripts/install-git-hooks.sh",
+        "name": "compiled-routing-architecture.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Every runtime packet under `.skilled/skills/cli-external-orchestration/` ships a `README.md`, and they",
     "created_at": "2026-09-20T10:58:00Z",
-    "last_save_at": "2026-09-20T11:46:18.142Z",
+    "last_save_at": "2026-09-20T11:51:54.575Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2385de382d5ebed1d8babe81ca315406104f138fa925671a7cfc2262c4c1f24c",
+    "source_fingerprint": "sha256:acf21b90a139986a4993bd34aaf3faf714fdce959c305123281f430d98cc1425",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f10cc55254458c3a4940d185e18ebac1f1114a234708403f43224043a2f2929",
       "plan.md": "e274d446ffadbe960fadffeebee22e89c6e0e49e0fc9b9da12d00d08043afa0b",
       "tasks.md": "4ece8316b388f251335c99b29648864e05d2b087f5ffecba8f0e65aab4f31dac",
-      "implementation-summary.md": "95ebe4a46df72cd05fac2e2d40a5d019e812d5853a0a8541e789af390ba295b4"
+      "implementation-summary.md": "05fc2215c6530abba4ff1610cc3ba2a6a6ac0e35cdd8abafb14d451731ac188a"
     },
     "last_active_at": null
   }
