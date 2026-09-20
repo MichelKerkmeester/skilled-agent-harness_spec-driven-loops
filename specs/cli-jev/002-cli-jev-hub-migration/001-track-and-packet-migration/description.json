@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration",
+  "description": "Phase 1: track-and-packet-migration",
+  "keywords": [
+    "phase",
+    "track-and-packet-migration"
+  ],
+  "lastUpdated": "2026-09-20T11:00:11.708Z",
+  "specId": "001",
+  "folderSlug": "track-and-packet-migration",
+  "parentChain": [
+    "cli-jev",
+    "002-cli-jev-hub-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout",
+  "description": "Phase 5: docs-governance-and-closeout",
+  "keywords": [
+    "phase",
+    "docs-governance-and-closeout"
+  ],
+  "lastUpdated": "2026-09-20T09:03:46.678Z",
+  "specId": "005",
+  "folderSlug": "docs-governance-and-closeout",
+  "parentChain": [
+    "cli-jev",
+    "001-cli-jev-creation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-09-26_10-03__phase-005-closeout-verified-end-to-end.md"
+  ]
+}

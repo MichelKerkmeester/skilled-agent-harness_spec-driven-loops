@@ -66,10 +66,26 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Alternative README Variant (Post-Closure Follow-On)
+
+User-requested exploratory variant of the root README, recorded after packet closure. Lives in `scratch/README-alt.md`; the shipped `README.md` was not modified by this workstream.
+
+- [x] T015 Draft marketing-style alternative using the Barter Managed document as style reference (`scratch/README-alt.md`)
+- [x] T016 Restructure into dedicated feature sections in remote-main order: Spec Kit with integrated Spec Memory & Search, Deep Loop, Skill Advisor, Skill Library, Agent Library, Plugin & Extension Library, Command Library, Code Mode MCP, Git Worktree (`scratch/README-alt.md` lines 264-1374)
+- [x] T017 Apply remote-main spacing conventions: `&nbsp;` spacers between subsections, `---` before numbered H2 sections, emoji headings (`scratch/README-alt.md`, 137 `&nbsp;` occurrences)
+- [x] T018 Obtain Gemini 3.8 Flash High review via `devin -p --model gemini-3-8-flash-high` (Cursor route out of usage) and apply findings: `🧰` emoji on Skill Library, `CLAUDE.md`-to-`AGENTS.md` symlink correction, `system-skill-advisor` added to the §6 customization inventory (`scratch/README-alt.md` lines 745, 1418, 1479-1480)
+- [x] T019 Validate variant: `validate_document.py` -> `VALID`, 0 issues; `hvr_scan.py` -> 0 real prose semicolons (all 138 `;` flags are `&nbsp;` entities, a scanner false positive)
+- [x] T020 Iterate on user feedback: feature-name benefit headings in §2, per-template descriptions in Available Templates (`**name**` + bullets under `#####` groups), merged Scripts and Validation, promoted each feature to its own numbered ALL-CAPS H2 with emojis, highlighted `pi-cache-optimizer` in the Plugin & Extension Library
+- [x] T021 Promote `scratch/README-alt.md` to root `README.md` on user request; validators re-run on the promoted file -> `VALID`, 0 issues; `hvr_scan.py` -> 0 hard blockers, 90/100
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks T001-T014 marked `[x]`
+- [x] All tasks T001-T021 marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Document validation and spec validation passed
 <!-- /ANCHOR:completion -->

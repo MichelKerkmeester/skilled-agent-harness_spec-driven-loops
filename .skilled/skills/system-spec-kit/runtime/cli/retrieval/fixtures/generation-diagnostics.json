@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 7248,
-    "ok": 11160,
+    "ok": 11193,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22099,
+  "documentsScanned": 22132,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "dc471727730063873e2149a59680ab8544683ddd5ade004f31529f6a43ad9a55",
+  "manifestHash": "1412eef2d2d701ef947c5aab2b2c6750c1a7c332592b78abd24223e9887fc898",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27281,
+      "ok": 27300,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -38077,121 +38077,121 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/CODE_OF_CONDUCT.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/CODE_OF_CONDUCT.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/CONTRIBUTING.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/CONTRIBUTING.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/README.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/SECURITY.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/SECURITY.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/design.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/proposal.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/specs/mcp-server/spec.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/tasks.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/design.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/design.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/proposal.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/proposal.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/specs/mcp-server/spec.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/specs/mcp-server/spec.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/tasks.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/tasks.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/design.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/proposal.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/proposal.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/specs/mcp-server/spec.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/specs/mcp-server/spec.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/tasks.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/specs/mcp-server/spec.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/tasks.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/skills/jev-cli/SKILL.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/proposal.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/skills/jev-cli/references/cli.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/specs/mcp-server/spec.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/tasks.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/specs/mcp-server/spec.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/src/jev_cli/bundled_skills/jev-cli/SKILL.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/skills/jev-cli/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/src/jev_cli/bundled_skills/jev-cli/references/cli.md",
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/skills/jev-cli/references/cli.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/bundled_skills/jev-cli/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/bundled_skills/jev-cli/references/cli.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -69843,27 +69843,47 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/002-cli-jev-skill-packet/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/003-hub-mode-registration/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/004-catalog-and-playbook/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/005-docs-governance-and-closeout/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/cli-external-orchestration/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/003-hub-mode-registration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {
@@ -73524,6 +73544,14 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/scratch",
       "reason": "excluded directory"
     },
     {

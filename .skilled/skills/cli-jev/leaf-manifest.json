@@ -1,0 +1,16 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "assets/question-shaping-card.md",
+        "references/cli-reference.md",
+        "references/integration-patterns.md",
+        "references/mcp-server.md",
+        "references/providers-and-models.md"
+      ],
+      "packet": "cli-usage",
+      "workflowMode": "cli-usage"
+    }
+  ],
+  "resourceContractVersion": 1
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout",
+  "spec_folder": "cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout",
+  "parent_id": "cli-jev/001-cli-jev-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-jev closeout",
+      "docs governance",
+      "recursive strict validation",
+      "roster mentions",
+      "implementation plan",
+      "approach and phases",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "acceptance criteria"
+    ],
+    "key_topics": [
+      "cli-jev",
+      "closeout",
+      "docs",
+      "governance",
+      "recursive",
+      "strict",
+      "validation",
+      "roster",
+      "mentions",
+      "implementation",
+      "plan",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/agents/orchestrate.md",
+      ".skilled/agents/prompt-improver.md",
+      ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+      ".skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
+      ".skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md",
+      "specs/cli-jev/001-cli-jev-creation/spec.md",
+      "specs/cli-jev/001-cli-jev-creation/goal.md",
+      "specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/spec.md",
+      "specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/plan.md",
+      ".skilled/commands/rewrite/response-by-external-agent.md",
+      "feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".skilled/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-executor-dispatch-routing.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "response-by-external-agent.md",
+        "kind": "doc",
+        "path": ".skilled/commands/rewrite/response-by-external-agent.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Truth",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mode is registered, routed and guarded, but the documents a reader consults first were written before it existed",
+    "created_at": "2026-09-20T07:39:08Z",
+    "last_save_at": "2026-09-20T11:08:50.798Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3a602d0e158dac2f908bb834ef66a53786a1a4cd0d6e2eb5f4772c129c369226",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c6572ebd721997e129d86759df89d993a56309cf0c21fa558a74ee9e64cb13d2",
+      "plan.md": "fcf93d9fa19fd416eb2391491e0846fe46332ba508652d413d099539691508ad",
+      "tasks.md": "640165adf8bdd64880459c8f3450432f7532f349bb3349366ad8af8a448b0ba9",
+      "implementation-summary.md": "6abd159fd11a10beae266d518759a6a8f27b2e55b2ff7bf7523a48dae8a71354"
+    },
+    "last_active_at": null
+  }
+}
