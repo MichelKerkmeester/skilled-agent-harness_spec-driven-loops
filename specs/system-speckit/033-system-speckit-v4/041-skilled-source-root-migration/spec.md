@@ -133,6 +133,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 18 | `018-restore-advisor-suite-and-renew-scorer-freeze/` | Restore the advisor test suite phase 17 found red, and renew the compiled-routing scorer freeze once the routing battery passes | complete |
 | 19 | `019-refresh-rollback-snapshots-on-re-mint/` | Keep each hub's rollback snapshot naming the policy it serves now, so a rollback restores that policy under legacy authority | planned |
 | 20 | `020-fix-admission-baseline-and-block-ci/` | Fix the four admission baseline failures, then make the CI admission step blocking | planned |
+| 21 | `021-repo-rules-source-root-migration/` | Move the rule corpus under `.skilled`, keep the repository-root path resolving through a tracked per-entry farm, and re-point every live reference | in progress |
 
 ### Phase Transition Rules
 
@@ -141,6 +142,8 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 - Phases 1 to 18 worked in the dedicated worktree `worktrees/055-skilled-source-root-migration`, an operator decision of 2026-09-16. On 2026-09-19 the operator removed that worktree, which sat outside the canonical `.worktrees/` base because the repository's `speckit.worktreeBase` config pointed elsewhere; the config is now unset, and the operator chose to continue on the current branch in the main checkout.
+- Phase 21 works in `worktrees/056-repo-rules-source-root-migration`, created off HEAD on 2026-09-20. It does not run in the main checkout because the three sibling repositories read that checkout's `repo-rules/` while the move is in flight.
+- Phases 17, 19 and 20 belong to the compiled-serving track inside this parent: they gate each other and nothing else. Phase 21 neither waits on them nor blocks them.
 
 ### Phase Handoff Criteria
 
@@ -165,6 +168,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 017-build-compiled-serving-gold-admission-checker | 018-restore-advisor-suite-and-renew-scorer-freeze | The admission gate is in place and the operator chose to fix the advisor suite before renewing the freeze | Phase 017's records and the operator's 2026-09-19 answers |
 | 018-restore-advisor-suite-and-renew-scorer-freeze | 019-refresh-rollback-snapshots-on-re-mint | The scorer freeze is renewed and the stale snapshots are recorded | Phase 018's records |
 | 019-refresh-rollback-snapshots-on-re-mint | 020-fix-admission-baseline-and-block-ci | Rollback restores each hub's current policy | Phase 019's acceptance criteria |
+| 020-fix-admission-baseline-and-block-ci | 021-repo-rules-source-root-migration | The corpus is canonical under `.skilled/repo-rules`, the root farm resolves every rule file, and the corpus checker is green on both layouts | Phase 021's acceptance criteria |
 <!-- /ANCHOR:phase-map -->
 
 ---

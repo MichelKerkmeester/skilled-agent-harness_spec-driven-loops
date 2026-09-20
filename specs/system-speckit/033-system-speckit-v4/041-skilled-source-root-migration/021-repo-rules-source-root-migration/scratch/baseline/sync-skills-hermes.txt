@@ -1,0 +1,4 @@
+$ node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+DRIFT cli-devin
+FAIL: 1 drifted, 0 stale; run without --check to regenerate
+exit=1

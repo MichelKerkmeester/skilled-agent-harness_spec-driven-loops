@@ -1,0 +1,15 @@
+$ node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs
+
+/doctor command-catalog-mirror — read-only coverage check
+canonical: .skilled/commands frontmatter (35 commands)
+
+  OK   commands/README.txt                35/35 listed
+  OK   commands/create/README.txt         12/12 listed
+  OK   commands/speckit/README.txt        6/6 listed
+  OK   sk-design/command-metadata.json    3 entries
+  OK   sk-doc/command-metadata.json       12 entries
+  OK   system-deep-loop/command-metadata.json 5 entries
+
+STATUS=OK command-catalog-mirror: every catalog and hub metadata covers the command tree
+
+exit=0

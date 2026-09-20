@@ -23,7 +23,8 @@
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker",
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze",
     "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint",
-    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci"
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci",
+    "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration"
   ],
   "manual": {
     "depends_on": [],
@@ -186,17 +187,17 @@
     ],
     "causal_summary": "`.opencode/` is the authoring home for every skill, command, agent, hook, plugin and runtime script in this repository, and the six other CLI runtimes reach it through 174 symlinks",
     "created_at": "2026-09-16T08:35:04Z",
-    "last_save_at": "2026-09-20T02:23:15.957Z",
+    "last_save_at": "2026-09-20T07:41:16.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d10be02ba0b9919eb3de8b4a90966bdb244b4e2e48aa3dff5735e2246d9e8956",
+    "source_fingerprint": "sha256:832b9e1db2a50590e87f0a5f31d085512fbc97bf9b5951e784f11e0b9fe1fe09",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "989b7223cf9d788b40b6f702723df635ff924b248f9513247be02b17ba37b125"
+      "spec.md": "b2cb0ffc44916c61a8eec10c3bde0af77514503159d8e4e7f784be0e90fc69f1"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze",
     "last_active_at": "2026-09-18T22:35:59.779Z"

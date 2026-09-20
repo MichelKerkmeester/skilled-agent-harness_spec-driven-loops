@@ -1,0 +1,4 @@
+$ node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs
+check-markdown-links: 7774 files, 13218 links checked, 0 broken
+OK — 0 broken markdown links.
+exit=0

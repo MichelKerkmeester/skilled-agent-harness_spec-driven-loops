@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration",
+  "spec_folder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration",
+  "parent_id": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "repo rules source migration",
+      "rule corpus relocation",
+      "repo rules symlink farm",
+      "repo rules source migration plan",
+      "phase 21 plan",
+      "repo rules source migration tasks",
+      "phase 21 tasks",
+      "repo rules source migration acceptance",
+      "phase 21 closure gate",
+      "repo rules source migration summary",
+      "phase 21 status"
+    ],
+    "key_topics": [
+      "repo",
+      "rules",
+      "source",
+      "migration",
+      "rule",
+      "corpus",
+      "relocation",
+      "symlink",
+      "farm",
+      "plan",
+      "phase",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".pi/settings.json",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+      ".skilled/commands/create/repo-rule.md",
+      ".skilled/agents/markdown.md",
+      ".skilled/agents/orchestrate.md",
+      ".github/workflows/repo-rules-corpus.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/sk-communication/benchmark/reply-harness/generate-prompts.mjs",
+      "scratch/baseline/freeze-digest.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-repo-rules.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "repo-rule.md",
+        "kind": "doc",
+        "path": ".skilled/commands/create/repo-rule.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "repo-rules-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/repo-rules-corpus.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-prompts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/generate-prompts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "freeze-digest.txt",
+        "kind": "file",
+        "path": "scratch/baseline/freeze-digest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every authored surface in this repository lives under `.skilled/`, except the rule corpus, which",
+    "created_at": "2026-09-20T07:20:12Z",
+    "last_save_at": "2026-09-20T07:40:37.742Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ba887f35eda1521a0c228b9bf3a69fe0e227cc90d4263f42ddf1ec6013c74bd7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "644b901d032faabefa406ffbfdb21ad7e80a67c8a388a6fcae765253292167d1",
+      "plan.md": "18e7a1a133d342fce7c9fa8997e48a80317657b56281a3dfe30bc0b71c562a9d",
+      "tasks.md": "d115bfb84f54a9f1d292091a46a7070fdedfd174c9b1b6fc341bd83bfe06a77d",
+      "implementation-summary.md": "a5636b9fea63800319ae6354715bda6473918a6015576594cd713baa3899b8df"
+    },
+    "last_active_at": null
+  }
+}

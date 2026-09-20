@@ -1,0 +1,5 @@
+# Frozen-set digest at the phase base commit.
+# base=c1817442b25afebba69ac46e50a7b19a1998e96c
+specs              files=92204 sha256=213c8e901e256ad27f6b9237ca82dc374c5d5d67c91c7bbf2064e01c091cbe60
+changelog          files=2258 sha256=d003d034cf9cc96c66114d5273d9988cf59fe90b621d5b51ed764fc8c53abea7
+benchmark-reports  files=2118 sha256=510ec24e523215297e7fdb53a225142d7bf805785f43c894e203aa73c5484f0c
