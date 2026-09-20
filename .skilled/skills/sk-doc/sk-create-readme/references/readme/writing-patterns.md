@@ -9,7 +9,7 @@ trigger_phrases:
   - "readme heading hierarchy"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.6
+version: 1.2.0.0
 ---
 
 # README Writing Patterns
@@ -46,6 +46,8 @@ Get users to a working state in under 2 minutes. "30-Second Setup" is aspiration
 ### Features
 
 Comprehensive feature documentation with two-tier structure. Split into a narrative subsection (`### 3.1 HOW IT WORKS`) and a reference subsection (`### 3.2 TECHNICAL REFERENCE`). Use numbered H3 ALL CAPS subsections with `---` dividers between them, and numbered H4 ALL CAPS sub-subsections (3.1.1, 3.1.2) within narrative subsections. Open each sub-subsection with 1-2 plain-language sentences, and bold key term names on first use.
+
+Name the feature in its heading and lead with its benefit: `### Spec Kit: a written record of every change` rather than `### Powered by Spec Kit`. When a document covers four or more major features, give each one its own numbered H2 section instead of splitting a single Features section, so every feature gets the full two-tier treatment and its own anchor.
 
 ### Structure
 
@@ -87,6 +89,14 @@ Guide users to additional resources. Use relative paths for internal docs.
 | **H4 (unnumbered)** | Title Case | `#### Options` |
 
 Numbered subsections appear inside Feature sections (3.1, 3.2 at H3 and 3.1.1, 3.1.2 at H4). Unnumbered subsections appear everywhere else.
+
+### Emoji Use
+
+Two registers apply. The repository front-page README may use decorative emoji on its numbered H2 headings, the way `## 5. 📋 SPEC KIT` names and signals a feature. Every other README stays on the technical register: semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers, and only where the symbol carries the meaning. Never copy the front-page README's decorative style into a skill, feature, component or code-folder README.
+
+### Paragraphs and Bullets
+
+Keep paragraphs to 2-4 sentences. A paragraph that stacks several distinct points becomes a bullet list: one idea per bullet, in the shortest form that still says what it is and when it applies.
 
 ### Blockquote Tagline
 
@@ -169,6 +179,20 @@ Tables are scannable. Use them for feature comparisons, configuration options, f
 | `query` | string | required | Free-text search query |
 | `limit` | number | `10` | Results to return (1-100) |
 ```
+
+**Itemized Inventory** lists named artifacts such as templates, scripts, commands and config files where each item needs more than a table cell. Use a bold code name with short bullets saying what the item is and when it applies.
+
+```markdown
+**`spec.md`**
+- What the feature is and why it exists.
+- Required at every level.
+
+**`decision-record.md`**
+- Architecture decision records: choices, alternatives and consequences.
+- Required backing for any `Waived` or `Superseded` acceptance-criteria row.
+```
+
+Group related items under an unnumbered `#####` heading when the inventory has natural groups, for example by how each item is triggered. Prefer the Key Files or Parameter table instead when every item fits one line.
 
 ---
 

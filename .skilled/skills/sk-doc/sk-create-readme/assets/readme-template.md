@@ -8,7 +8,7 @@ trigger_phrases:
   - "narrative readme structure"
 importance_tier: normal
 contextType: general
-version: 1.1.0.39
+version: 1.2.0.0
 ---
 
 # README Template and Selection Guide
@@ -99,11 +99,22 @@ Write for scanning first.
 - Lead with what the thing does.
 - Put the fastest useful path before detailed reference.
 - Use tables for options, file lists and comparisons.
+- Give every inventory item a description. When an item needs more than one line, switch to the itemized pattern below instead of widening the table.
 - Use fenced code blocks with language tags.
 - Test commands before documenting them.
 - Show expected output for verification commands.
 - Use relative links for local docs.
 - Remove unused sections instead of leaving placeholders.
+
+The itemized pattern for inventories where each item needs more than one line:
+
+```markdown
+**`spec.md`**
+- What the feature is and why it exists.
+- Required at every level.
+```
+
+Group related items under an unnumbered `#####` heading when the inventory has natural groups, for example by how each item is triggered.
 
 Voice by README type:
 
@@ -230,6 +241,9 @@ Expected result: [what success looks like].
 | Path | Purpose |
 |---|---|
 | `[path]` | [Role] |
+
+<!-- For items needing more than one line, use the itemized pattern
+     from Section 4 instead of this table. -->
 
 
 ---
