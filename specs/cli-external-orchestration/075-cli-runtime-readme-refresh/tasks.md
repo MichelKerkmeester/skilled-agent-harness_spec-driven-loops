@@ -48,18 +48,18 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T008 [P] Rewrite `cli-claude-code/README.md` (`STRUCTURE` added, renumbered)
-- [ ] T009 [P] Rewrite `cli-codex/README.md` (`STRUCTURE` added, renumbered)
-- [ ] T010 [P] Rewrite `cli-cursor/README.md` (`STRUCTURE` added, renumbered)
-- [ ] T011 [P] Rewrite `cli-devin/README.md` (`STRUCTURE` added, renumbered)
-- [ ] T012 [P] Extend `cli-hermes/README.md` tree with `feature-catalog/`
-- [ ] T013 [P] Retitle `cli-jev/README.md` section 1 to `OVERVIEW` and extend its `LAYOUT` tree
-- [ ] T014 [P] Rewrite `cli-opencode/README.md` (`STRUCTURE` added; name `context-budget.md`, `permissions-matrix.md`)
-- [ ] T015 [P] Rewrite `cli-pi/README.md` (`STRUCTURE` added; name `providers-and-models.md`)
-- [ ] T016 Audit `git status --porcelain` after each dispatch batch and revert any write outside a child's one README
-- [ ] T017 Repoint the cli-pi contract pin across the 9 files holding it as a link (one substring; relative depth unchanged)
-- [ ] T018 Regenerate `.hermes/skills/cli-pi/SKILL.md` and restore every unrelated drifted mirror
-- [ ] T019 Hand-repair whatever the children leave behind (validator errors, unnamed files, numbering gaps)
+- [x] T008 [P] Rewrite `cli-claude-code/README.md` (`STRUCTURE` added, renumbered)
+- [x] T009 [P] Rewrite `cli-codex/README.md` (`STRUCTURE` added, renumbered)
+- [x] T010 [P] Rewrite `cli-cursor/README.md` (`STRUCTURE` added, renumbered)
+- [x] T011 [P] Rewrite `cli-devin/README.md` (`STRUCTURE` added, renumbered)
+- [x] T012 [P] Extend `cli-hermes/README.md` tree with `feature-catalog/`
+- [x] T013 [P] Retitle `cli-jev/README.md` section 1 to `OVERVIEW` and extend its `LAYOUT` tree
+- [x] T014 [P] Rewrite `cli-opencode/README.md` (`STRUCTURE` added; name `context-budget.md`, `permissions-matrix.md`)
+- [x] T015 [P] Rewrite `cli-pi/README.md` (`STRUCTURE` added; name `providers-and-models.md`)
+- [x] T016 Audit `git status --porcelain` after each dispatch batch and revert any write outside a child's one README — audited after every batch; no stray write occurred, so nothing needed reverting
+- [x] T017 Repoint the cli-pi contract pin across the 9 files holding it as a link (one substring; relative depth unchanged)
+- [x] T018 Regenerate `.hermes/skills/cli-pi/SKILL.md` and restore every unrelated drifted mirror
+- [x] T019 Hand-repair whatever the children leave behind (validator errors, unnamed files, numbering gaps) — audited all eight READMEs against the contract; the children left nothing to repair
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,13 +67,13 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T020 [P] Run `validate_document.py` on all eight READMEs: expect 8/8 `VALID` (before: 7/8)
-- [ ] T021 [P] Run `check-markdown-links.cjs`: expect 15 broken before, 5 after, none naming the cli-pi cluster or the eight READMEs
-- [ ] T022 Write and run `scratch/verify.sh`, capturing `scratch/verify-run.txt` with its exit status
-- [ ] T023 Run `validate.sh --strict` on the packet and require the literal `RESULT: PASSED`
-- [ ] T024 Audit `git status --porcelain` in the worktree against the authorized path list
-- [ ] T025 Record the advisory derived-count and reference-check findings, each classified
-- [ ] T026 Commit in reviewable units, naming paths at commit time
+- [x] T020 [P] Run `validate_document.py` on all eight READMEs: expect 8/8 `VALID` (before: 7/8)
+- [x] T021 [P] Run `check-markdown-links.cjs`: expect 15 broken before, 5 after, none naming the cli-pi cluster or the eight READMEs
+- [x] T022 Write and run `scratch/verify.sh`, capturing `scratch/verify-run.txt` with its exit status
+- [x] T023 Run `validate.sh --strict` on the packet and require the literal `RESULT: PASSED`
+- [x] T024 Audit `git status --porcelain` in the worktree against the authorized path list
+- [x] T025 Record the advisory derived-count and reference-check findings, each classified
+- [x] T026 Commit in reviewable units, naming paths at commit time
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
