@@ -85,7 +85,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
-Behind them: 14 on-demand skills, 32 command entry points and the Code Mode MCP single-tool interface, each detailed in its own section below.
+Behind them: 15 on-demand skills, 32 command entry points and the Code Mode MCP single-tool interface, each detailed in its own section below.
 
 ---
 
@@ -129,7 +129,7 @@ From request to documented result:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 12 specialized│          │ 14 domain skills │
+         │ 12 specialized│          │ 15 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -771,7 +771,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 ## 8. 🧰 SKILL LIBRARY
 
-14 advisor skill identities in `.skilled/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+15 advisor skill identities in `.skilled/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 &nbsp;
 #### SYSTEM
@@ -902,6 +902,15 @@ One advisor identity routing through `mode-registry.json` to seven modes.
 - `hermes status` is NOT a usable probe: it reads the built-in catalog only, so it reports no provider on a correctly configured machine
 - Hermes has no agent flag, so each shared agent is mirrored as the preloadable skill `agent-<name>` and bound by an environment variable
 - Its repo surface is `.hermes/`: generated markdown-only skill copies rather than symlinks (because Hermes scans a linked directory in full and quarantines it), plus generated prompt templates and one `repo-guards` plugin
+
+&nbsp;
+
+**`cli-orca`** - Orca terminal CLI orchestrator
+
+- Reach for it when the dispatched task lives in the **Orca app**: managed worktrees, paired terminals you can read back after a send, the embedded browser for pages the runtime itself hosts, automations, and full ownership handoffs, all driven through the `orca` CLI
+- Availability-gated and fails closed: it resolves one executable in a documented order, then checks the runtime with `orca status` before touching anything, so a broken install stops the route instead of half-running it
+- The mcp-tooling hub hands Orca-qualified prompts to this skill, the advisor ranks it first for them, and compiled routing keeps that hand-off pinned
+- It embeds the eight official Orca skills as authored references, while flag detail always comes from the version-matched guide the binary itself serves
 
 &nbsp;
 #### JUDGMENT TRANSPORT
@@ -1587,7 +1596,7 @@ Nothing to configure.
 
 &nbsp;
 
-**Q: Do I need all 14 skills installed to use the framework?**
+**Q: Do I need all 15 skills installed to use the framework?**
 
 No. Skills are loaded on demand by Gate 2, so you only need the ones relevant to your work.
 
