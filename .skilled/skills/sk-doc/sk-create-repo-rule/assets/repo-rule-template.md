@@ -14,9 +14,10 @@ version: 1.1.0.4
 
 # Repo Rule Template
 
-Copy everything between the markers into `repo-rules/<subject>.md` and fill it. Angle
-brackets are placeholders. Every instruction here is derived from the shipped corpus,
-not from taste.
+Copy everything between the markers into the target repository's rules directory
+(`.skilled/repo-rules/<subject>.md` where a `.skilled` source root exists,
+`repo-rules/<subject>.md` otherwise) and fill it. Angle brackets are placeholders.
+Every instruction here is derived from the shipped corpus, not from taste.
 
 ---
 

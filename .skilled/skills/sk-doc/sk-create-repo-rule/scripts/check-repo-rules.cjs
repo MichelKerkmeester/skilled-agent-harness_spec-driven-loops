@@ -2,12 +2,12 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Repo rules corpus checker
 // ───────────────────────────────────────────────────────────────────
-// The corpus under repo-rules/ is hand-maintained and nothing else reads it:
-// ordinary link checkers walk other roots, and no hook or workflow touches the
-// router or the bodies of the rule files themselves. One report keeps files,
-// router rows, phrases, structure, body links and firing conditions in
-// agreement, so drift fails here instead of surfacing later as a rule that
-// silently never loads or points at a file that is gone.
+// The corpus is hand-maintained and nothing else reads it: ordinary link
+// checkers walk other roots, and no hook or workflow touches the router or the
+// bodies of the rule files themselves. One report keeps files, router rows,
+// phrases, structure, body links and firing conditions in agreement, so drift
+// fails here instead of surfacing later as a rule that silently never loads or
+// points at a file that is gone.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -23,7 +23,11 @@ const path = require('node:path');
 
 const TAG = '[repo-rules-check]';
 const ROUTER_FILE = 'REPO RULES.md';
-const RULES_DIR = 'repo-rules';
+// A repository that keeps its toolchain under a source root keeps the corpus
+// inside it, and one that does not keeps the corpus at the repository root. The
+// probe order is the whole layout decision: the first candidate that exists as a
+// directory is the one this run reads, so both layouts pass the same nine checks.
+const RULES_DIR_CANDIDATES = ['.skilled/repo-rules', 'repo-rules'];
 const LINE_LIMIT = 250;
 const NAME_WIDTH = 19;
 const REQUIRED_KEYS = [
@@ -44,12 +48,45 @@ function findRepoRoot(startDir) {
   let current = path.resolve(startDir);
   for (;;) {
     const hasRouter = fs.existsSync(path.join(current, ROUTER_FILE));
-    const hasRules = fs.existsSync(path.join(current, RULES_DIR));
-    if (hasRouter && hasRules) return current;
+    const rulesDir = resolveRulesDir(current);
+    if (hasRouter && rulesDir !== null) return { root: current, rulesDir };
     const parent = path.dirname(current);
     if (parent === current) return null;
     current = parent;
   }
+}
+
+// The rules directory of one candidate root, or null when that root has none.
+function resolveRulesDir(root) {
+  for (const candidate of RULES_DIR_CANDIDATES) {
+    const absolute = path.join(root, candidate);
+    if (fs.existsSync(absolute) && fs.statSync(absolute).isDirectory()) return candidate;
+  }
+  return null;
+}
+
+// A router row belongs to the corpus when its link resolves into a rules
+// directory, whichever layout this checkout uses and whichever spelling the row
+// carries. Resolving instead of matching a prefix keeps rows recognized while a
+// corpus is mid-move, when the rows may still name the public path and that
+// path is a link into the canonical one.
+function ruleLinkDir(context, target) {
+  let resolved;
+  try {
+    resolved = fs.realpathSync(path.resolve(context.root, target));
+  } catch {
+    return null;
+  }
+  for (const candidate of RULES_DIR_CANDIDATES) {
+    let dirAbsolute;
+    try {
+      dirAbsolute = fs.realpathSync(path.resolve(context.root, candidate));
+    } catch {
+      continue;
+    }
+    if (path.dirname(resolved) === dirAbsolute) return candidate;
+  }
+  return null;
 }
 
 // Count displayed lines; a single trailing newline is a terminator, not a line.
@@ -174,16 +211,16 @@ function summarize(problems) {
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
-function loadContext(root) {
+function loadContext(root, rulesDir) {
   const routerLines = fs.readFileSync(path.join(root, ROUTER_FILE), 'utf8').split(/\r\n|\r|\n/u);
   const sections = splitRouterSections(routerLines);
 
   const rules = fs
-    .readdirSync(path.join(root, RULES_DIR))
+    .readdirSync(path.join(root, rulesDir))
     .filter((name) => name.endsWith('.md'))
     .sort()
     .map((name) => {
-      const content = fs.readFileSync(path.join(root, RULES_DIR, name), 'utf8');
+      const content = fs.readFileSync(path.join(root, rulesDir, name), 'utf8');
       const lines = content.split(/\r\n|\r|\n/u);
       const range = frontmatterRange(lines);
       const bodyStart = range === null ? 0 : range.end + 1;
@@ -203,6 +240,7 @@ function loadContext(root) {
 
   return {
     root,
+    rulesDir,
     rules,
     triggerRows: sections.get('2') || [],
     indexRows: sections.get('3') || []
@@ -230,7 +268,7 @@ function checkWiring(context) {
         if (!isExternal(target) && !fs.existsSync(path.resolve(context.root, target))) {
           problems.push(`line ${row.lineNumber}: missing ${target}`);
         }
-        if (target.startsWith(`${RULES_DIR}/`)) linkedBy[kind].add(path.basename(target));
+        if (!isExternal(target) && ruleLinkDir(context, target) !== null) linkedBy[kind].add(path.basename(target));
       }
     }
   };
@@ -324,7 +362,7 @@ function checkRuleLinks(context) {
         const target = normalizeTarget(link);
         if (isExternal(target)) continue;
         links += 1;
-        if (!fs.existsSync(path.resolve(context.root, RULES_DIR, target))) {
+        if (!fs.existsSync(path.resolve(context.root, context.rulesDir, target))) {
           problems.push(`${rule.name}: line ${rule.bodyStartLine + index}: unresolved ${target}`);
         }
       }
@@ -374,7 +412,7 @@ function checkIndexSummaries(context) {
   for (const row of context.indexRows) {
     const cells = row.text.split('|').map((cell) => cell.trim());
     const summary = cells[2] === undefined ? '' : cells[2];
-    const target = row.links.map(normalizeTarget).find((link) => link.startsWith(`${RULES_DIR}/`));
+    const target = row.links.map(normalizeTarget).find((link) => ruleLinkDir(context, link) !== null);
     if (target === undefined) continue;
     const rule = byName.get(path.basename(target));
     if (rule === undefined) continue;
@@ -407,13 +445,13 @@ const CHECKS = [
 ];
 
 function main() {
-  const root = findRepoRoot(__dirname);
-  if (root === null) {
-    console.error(`${TAG} ERROR: no ${ROUTER_FILE} with a ${RULES_DIR}/ directory found above ${__dirname}`);
+  const located = findRepoRoot(__dirname);
+  if (located === null) {
+    console.error(`${TAG} ERROR: no ${ROUTER_FILE} with a ${RULES_DIR_CANDIDATES.join(' or ')} directory found above ${__dirname}`);
     return 2;
   }
 
-  const context = loadContext(root);
+  const context = loadContext(located.root, located.rulesDir);
   let failed = 0;
   CHECKS.forEach(([name, run], index) => {
     const result = run(context);

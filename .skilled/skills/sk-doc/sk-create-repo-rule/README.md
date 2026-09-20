@@ -23,7 +23,7 @@ version: 1.1.0.5
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Creating, revising or retiring a repo rule under `repo-rules/` |
+| **Use it for** | Creating, revising or retiring a repo rule in the rules directory (`.skilled/repo-rules/` here, `repo-rules/` with no source root) |
 | **Invoke with** | `/create:repo-rule`, "add a repo rule" or a direct read of `SKILL.md` |
 | **Works on** | A described failure, an out-of-date rule or a rule nothing still needs |
 | **Produces** | One rule file, two router rows and a pointer. Or a refusal naming where the content belongs |
@@ -83,7 +83,7 @@ Four tests run before anything gets written. Reading them first tells you whethe
 **Step 3: Check the structural invariant on whatever comes out.**
 
 ```bash
-awk 'NR==1&&/^---$/{fm=1;next} fm&&/^---$/{fm=0;next} /^## [0-9]+\./{s++} /^---$/{d++} END{print "sections="s, "dividers="d, "lines="NR}' repo-rules/<file>.md
+awk 'NR==1&&/^---$/{fm=1;next} fm&&/^---$/{fm=0;next} /^## [0-9]+\./{s++} /^---$/{d++} END{print "sections="s, "dividers="d, "lines="NR}' .skilled/repo-rules/<file>.md
 ```
 
 Sections and dividers match in all nine shipped rules and in the router. The command skips the frontmatter delimiters, so it reads the router correctly too. Lines at or under 160 is preferred, and over 250 means the rule needs splitting or cutting.
@@ -174,9 +174,9 @@ A: No. Every refusal except the restraint one names a destination. The restraint
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
-| Structural invariant | `awk 'NR==1&&/^---$/{fm=1;next} fm&&/^---$/{fm=0;next} /^## [0-9]+\./{s++} /^---$/{d++} END{print s, d, NR}' repo-rules/<file>.md` | The first two numbers match, and the third is at or under 250 |
-| Router parity | `awk '/^## 2\. TRIGGER TABLE/{t=1} /^## 3\. INDEX/{t=0;i=1} /^## 4\./{i=0} t&&/repo-rules\//{tr++} i&&/repo-rules\//{ix++} END{print tr, ix}' 'REPO RULES.md'` | Both numbers equal the count of files in `repo-rules/` |
-| Phrase collisions | `grep -rn '^  - "<phrase>"' repo-rules/` | At most one match. Anchor the pattern, because an unanchored search matches body prose |
+| Structural invariant | `awk 'NR==1&&/^---$/{fm=1;next} fm&&/^---$/{fm=0;next} /^## [0-9]+\./{s++} /^---$/{d++} END{print s, d, NR}' .skilled/repo-rules/<file>.md` | The first two numbers match, and the third is at or under 250 |
+| Router parity | `awk '/^## 2\. TRIGGER TABLE/{t=1} /^## 3\. INDEX/{t=0;i=1} /^## 4\./{i=0} t&&/repo-rules\//{tr++} i&&/repo-rules\//{ix++} END{print tr, ix}' 'REPO RULES.md'` | Both numbers equal the count of files in the rules directory (`.skilled/repo-rules/`). The pattern matches both spellings, so it reads either layout |
+| Phrase collisions | `grep -rn '^  - "<phrase>"' .skilled/repo-rules/` | At most one match. Anchor the pattern, because an unanchored search matches body prose |
 | Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook` | `PASS`, tier `FAIL_CLOSED`, `violations=0` |
 
 ---

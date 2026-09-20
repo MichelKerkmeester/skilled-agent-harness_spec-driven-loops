@@ -1,0 +1,14 @@
+$ node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
+
+/doctor agent-roster-mirror — read-only coverage check
+canonical: .claude/agents (12 agents)
+
+  OK   cursor    12/12 symlinked
+  OK   devin     12/12 symlinked
+  OK   opencode  12/12 present
+  OK   codex     12/12 present
+  OK   pi        12/12 present
+
+STATUS=OK agent-roster-mirror: every runtime covers the canonical roster
+
+exit=0

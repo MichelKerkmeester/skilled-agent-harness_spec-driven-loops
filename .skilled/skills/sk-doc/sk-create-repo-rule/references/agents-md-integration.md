@@ -138,7 +138,8 @@ a deliverable — nobody asked for it.
 
 ## 8. THE SIBLING FEDERATION
 
-A rule file can be shared. A rule in `repo-rules/` may be symlinked into sibling
+A rule file can be shared. A rule in the rules directory — `.skilled/repo-rules/` where a
+source root exists, `repo-rules/` otherwise — may be symlinked into sibling
 repositories, and each sibling's router then points at the link. The source file stays
 here. A sibling holds only a path to it, so **every shared rule is edited, versioned
 and retired in one place**.
@@ -155,8 +156,11 @@ that shares the set. Each omission breaks something specific:
 
 **The symlink shape.** Create a relative symlink in the sibling's `repo-rules/`
 directory, named after the rule and pointing at the source file, for example
-`../../Code_Environment/Public/repo-rules/<rule>.md`. A relative target names the
-sibling's own layout instead of an absolute home directory.
+`../../Code_Environment/Public/.skilled/repo-rules/<rule>.md`. A relative target names the
+sibling's own layout instead of an absolute home directory. A source repository that
+keeps its corpus under a source root also keeps the public `repo-rules/<rule>.md` path
+as a link into that directory, so a sibling already pointing at the public path keeps
+resolving.
 
 **The `.gitignore` entry.** Add `repo-rules/<rule>.md` to the sibling's shared-rules
 block. Local rule files and the router beside the symlinks stay tracked. Only the
@@ -171,9 +175,9 @@ Retire by running that order backwards in every sibling: rows first, then the
 `.gitignore` entry, then the symlink, and the source file last. Deleting the source
 first leaves every sibling row pointing at nothing.
 
-**Promoting a local rule.** Move the file into the source repository's `repo-rules/`,
-replace each sibling's local copy with the symlink, and add the ignore entry and the
-rows that are missing.
+**Promoting a local rule.** Move the file into the source repository's rules directory
+(`.skilled/repo-rules/` there), replace each sibling's local copy with the symlink, and
+add the ignore entry and the rows that are missing.
 
 **Verifying a shared rule.** Follow each link to a real file, confirm both rows
 resolve, and confirm that every sibling still has the same count of files, trigger

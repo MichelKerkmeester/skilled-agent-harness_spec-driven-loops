@@ -1,0 +1,2 @@
+c1817442b25afebba69ac46e50a7b19a1998e96c
+?? specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/

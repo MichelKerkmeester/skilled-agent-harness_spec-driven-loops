@@ -14,7 +14,7 @@ version: 1.1.0.5
 
 # Rule Anatomy Contract
 
-Derived from the corpus under `repo-rules/` plus the router, parsed structurally rather
+Derived from the corpus under `.skilled/repo-rules/` plus the router, parsed structurally rather
 than recalled. Nothing below is aspirational: every MUST element is carried by every
 shipped rule.
 
