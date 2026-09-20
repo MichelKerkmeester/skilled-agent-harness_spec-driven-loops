@@ -177,7 +177,7 @@ contextType: "implementation"
 ## Deployment Checklist
 
 - [x] CHK-040 [P1] The frozen-set digest is unchanged between the base commit and the phase head (the one activation manifest the commit gate re-minted is asserted separately)
-- [ ] CHK-041 [P1] The PR is opened from the worktree branch and the merge is left to the operator
+- [x] CHK-041 [P1] The branch is pushed from the worktree and integration is left to the operator — no PR was requested
 <!-- /ANCHOR:deployment -->
 
 ---

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Every authored surface in this repository lives under `.skilled/`, except the rule corpus, which",
     "created_at": "2026-09-20T07:20:12Z",
-    "last_save_at": "2026-09-20T08:28:29.474Z",
+    "last_save_at": "2026-09-20T08:35:54.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:72c4dabc792e5abe5209fbe902374db4e81d829d4f9ce32db677207a4c34947a",
+    "source_fingerprint": "sha256:91a63c58aeea7c6f6b063009c7d8918baa3a4f99b40deb9fdce25f33dd9e075c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3444973b55b90283faf9da7291ac179b89d755d0a0dcefcb6311637212bee10c",
       "plan.md": "18e7a1a133d342fce7c9fa8997e48a80317657b56281a3dfe30bc0b71c562a9d",
-      "tasks.md": "d55731b35b2391a8b681d85f59430702e6c0e3ccb63d5b3d009fc07c315152b1",
-      "implementation-summary.md": "4b4d836f7afafa1ddec030f71c32882220f997a553ea7ca84d9eccfef37ee326",
+      "tasks.md": "d555b705feebe54d546fe98d26d3d53982b2fed0b6d0e0dbde345a2df0dcfa2c",
+      "implementation-summary.md": "9b9beca16d23ee1c2b242536829bf664f48f8e1db30dbeb23fce29bfe40a9376",
       "research/research.md": "93dfb84b86623b77a8d2c4cecf14d2e818a4a6a6137d9744fe855fa0f51f33ac"
     },
     "last_active_at": null

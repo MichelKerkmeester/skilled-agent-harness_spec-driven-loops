@@ -133,7 +133,7 @@ Per-phase detail lives in each child's plan. The surface is measured rather than
 | 18 | `018-restore-advisor-suite-and-renew-scorer-freeze/` | Restore the advisor test suite phase 17 found red, and renew the compiled-routing scorer freeze once the routing battery passes | complete |
 | 19 | `019-refresh-rollback-snapshots-on-re-mint/` | Keep each hub's rollback snapshot naming the policy it serves now, so a rollback restores that policy under legacy authority | planned |
 | 20 | `020-fix-admission-baseline-and-block-ci/` | Fix the four admission baseline failures, then make the CI admission step blocking | planned |
-| 21 | `021-repo-rules-source-root-migration/` | Move the rule corpus under `.skilled`, keep the repository-root path resolving through a tracked per-entry farm, and re-point every live reference | in progress |
+| 21 | `021-repo-rules-source-root-migration/` | Move the rule corpus under `.skilled`, keep the repository-root path resolving through a tracked per-entry farm, and re-point every live reference | complete |
 
 ### Phase Transition Rules
 
