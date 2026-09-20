@@ -30,6 +30,7 @@ _memory:
     answered_questions:
       - "The seven findings are confirmed against live runtime code; four were corrected during verification (see below)."
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
 # Handover — 036/009 Innovation Gap Remediation
 

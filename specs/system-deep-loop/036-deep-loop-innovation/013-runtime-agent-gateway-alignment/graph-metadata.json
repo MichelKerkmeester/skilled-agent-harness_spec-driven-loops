@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The `012-runtime-enablement` work made the typed event ledger authoritative for all eight deep-loop modes and turned each `-state.jsonl` into a pure projection of the ledger",
     "created_at": "2026-08-25T07:11:26.953Z",
-    "last_save_at": "2026-09-11T04:38:31.719Z",
+    "last_save_at": "2026-09-20T04:36:16.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11bd6a78eb57e31f78a9f36ce6b4bb664fe84578189b92f0aa1f72895a702f3f",
+    "source_fingerprint": "sha256:01708c5ed62ccc352b71bc8d12f7fb306e48d8f8f46ccc8a5996aa8dc8a81f78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd84afd1fae1705d9db71607f41af5e6b6199cce6e0d1642d3228bc72900e581",
       "plan.md": "b36e17d0592a108e899de8e6269bc1f909c3b70b5dda5efcb40d3217535cadb3",
       "tasks.md": "2311f08240a89a748a533e876dbc436d114628ddad45e4afb3b5872841f0c097",
-      "decision-record.md": "f4e4d20234bb1e1a476e52b28c506e84587b5eaa4bea244f5a3cdee69bfa9aa1",
+      "decision-record.md": "39a8cd23c968b5672fc142f106b3320b9f24964b7a8bd3a9ae37d7e45ad0ff27",
       "implementation-summary.md": "30588465b68bd3b7328ffbd500da554af8614c16068bb3c84ebbd883b79e2aee"
     },
     "last_active_child_id": null,

@@ -111,7 +111,7 @@ agent_config:
   leaf_only: true
   tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
   mcp_servers: []
-  tool_call_budget: { target: 8, max: 12 }
+  tool_call_budget: { target: 12, max: 24 }
 
 # ─────────────────────────────────────────────────────────────────
 # STATE FILE PATHS

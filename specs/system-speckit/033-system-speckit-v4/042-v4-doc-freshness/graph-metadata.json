@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/042-v4-doc-freshness",
+  "spec_folder": "system-speckit/033-system-speckit-v4/042-v4-doc-freshness",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 doc freshness",
+      "changelog drift audit",
+      "readme drift audit",
+      "documentation freshness verdict",
+      "stale dot-opencode references in release docs",
+      "ten iteration release doc research",
+      "v4 doc freshness plan",
+      "release doc research lane",
+      "verdict gated documentation edits",
+      "v4 doc freshness tasks",
+      "release doc research lane tasks",
+      "verdict application tasks"
+    ],
+    "key_topics": [
+      "doc",
+      "freshness",
+      "changelog",
+      "drift",
+      "audit",
+      "readme",
+      "documentation",
+      "verdict",
+      "stale",
+      "dot-opencode",
+      "references",
+      "release"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
+      "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/verdict-changelog.md",
+      "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/verdict-readme.md",
+      "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/research.md",
+      "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/review-of-synthesis.md",
+      "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/readme-verdict-rows.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      ".skilled/skills/mcp-tooling/mode-registry.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "CHANGELOG-v4.0.0.0.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdict-changelog.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/verdict-changelog.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdict-readme.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/verdict-readme.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-of-synthesis.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/review-of-synthesis.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme-verdict-rows.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/readme-verdict-rows.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documentation Freshness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Both release documents were written to describe a tree that has since moved",
+    "created_at": "2026-09-19T18:39:04Z",
+    "last_save_at": "2026-09-20T03:52:12.492Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:763da078fb7a22ed0174a1eca43b6403e1ca72167f280438e70d4c91fc153be6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1301a2dce6873e42b27c2ad0c084c9926067f549bedd2493d4ecf92551a82d86",
+      "plan.md": "cd4bacc0a448773660222cb5ec41d42d339daacdd5bf09ced915884ccdc6af24",
+      "tasks.md": "d584064858ba2448d40ec0c349c55e9fd79e8c36fa2d4db625ccfccf6255e4a9",
+      "implementation-summary.md": "723017ccc9a7f7a5284649b52fdb6f5373683372a88439d6fb9d095cd30b0c4a",
+      "research/research.md": "ae2c661da8924592ca1fe52540dd68a2ffc2ea6ba25bbf174517d80fb53256e6"
+    },
+    "last_active_at": null
+  }
+}

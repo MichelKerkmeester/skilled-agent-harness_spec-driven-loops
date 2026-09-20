@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary — mcp-obsidian + hub post-audit fixes
 
 ## Final state: complete — shipped to v4

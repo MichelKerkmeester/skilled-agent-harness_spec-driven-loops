@@ -19,6 +19,7 @@ _memory:
       session_id: "023-plan"
       parent_session_id: null
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
 # Plan: Live-Sync Disjoint Fast-Forward

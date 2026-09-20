@@ -254,7 +254,10 @@ function verify(loopType, artifactDir, iteration) {
     }
   }
 
-  // 2. Canonical state-log record for this iteration + route-proof.
+  // 2. Canonical state-log record for this iteration. Existence must come from the
+  // projection -- the gateway is its only writer -- but the route proof may not: the
+  // ledger upcast keeps no leaf dispatch fields, so every re-projection rebuilds the
+  // state log without them. The leaf's own delta record always carries them.
   const stateLogPath = path.join(artifactDir, stateLogName);
   const stateLog = readJsonlRecordsDetailed(stateLogPath);
   if (stateLog.malformedLines.length > 0) {
@@ -273,9 +276,33 @@ function verify(loopType, artifactDir, iteration) {
   if (!iterationRecord) {
     return { ok: false, reason: REASONS.STATE_RECORD_MISSING, detail: `no type=iteration record with iteration=${iteration} in ${stateLogName}` };
   }
-  const routeReason = checkRouteProof(iterationRecord, loopType, leaf);
-  if (routeReason) {
-    return { ok: false, reason: routeReason, detail: `iteration ${iteration} state record failed route-proof (expected mode=${loopType} target_agent=${leaf})` };
+
+  // 3. Per-iteration delta file with at least one iteration record.
+  const deltaLog = readJsonlRecordsDetailed(path.join(artifactDir, 'deltas', `iter-${pad3(iteration)}.jsonl`));
+  if (deltaLog.malformedLines.length > 0) {
+    return { ok: false, reason: REASONS.DELTA_FILE_MALFORMED, detail: `deltas/iter-${pad3(iteration)}.jsonl contains malformed JSONL at line(s) ${deltaLog.malformedLines.join(', ')}` };
+  }
+  const deltaRecords = deltaLog.records;
+  if (!deltaRecords || !deltaRecords.some((r) => r && r.type === 'iteration')) {
+    return { ok: false, reason: REASONS.DELTA_FILE_MISSING, detail: `deltas/iter-${pad3(iteration)}.jsonl missing or has no type=iteration record` };
+  }
+
+  // 4. Route proof, preferring the projection and falling back to the delta the leaf
+  // wrote itself. The delta is the authoritative record of the dispatch, so reading it
+  // is not a relaxation: it is the same evidence the projection was built from, taken
+  // before the projection dropped it. Only a mismatch in BOTH is a failure.
+  const routeWarnings = [];
+  const stateRouteReason = checkRouteProof(iterationRecord, loopType, leaf);
+  const deltaRouteReason = checkRouteProof(deltaRecords.findLast((r) => r && r.type === 'iteration'), loopType, leaf);
+  if (stateRouteReason && deltaRouteReason) {
+    return {
+      ok: false,
+      reason: stateRouteReason,
+      detail: `iteration ${iteration} failed route-proof in both the state record and deltas/iter-${pad3(iteration)}.jsonl (expected mode=${loopType} target_agent=${leaf})`,
+    };
+  }
+  if (stateRouteReason) {
+    routeWarnings.push(`route proof for iteration ${iteration} came from deltas/iter-${pad3(iteration)}.jsonl; the ${stateLogName} projection carries no leaf dispatch fields`);
   }
 
   // 2b. Structural ledger-backing gate (default on; DEEP_LOOP_LEDGER_BACKING_GATE=0
@@ -322,17 +349,7 @@ function verify(loopType, artifactDir, iteration) {
       ? `gateway receipt check inconclusive for ${stateLogName}: ${gatewayCheck.detail}`
       : null;
 
-  // 3. Per-iteration delta file with at least one iteration record.
-  const deltaLog = readJsonlRecordsDetailed(path.join(artifactDir, 'deltas', `iter-${pad3(iteration)}.jsonl`));
-  if (deltaLog.malformedLines.length > 0) {
-    return { ok: false, reason: REASONS.DELTA_FILE_MALFORMED, detail: `deltas/iter-${pad3(iteration)}.jsonl contains malformed JSONL at line(s) ${deltaLog.malformedLines.join(', ')}` };
-  }
-  const deltaRecords = deltaLog.records;
-  if (!deltaRecords || !deltaRecords.some((r) => r && r.type === 'iteration')) {
-    return { ok: false, reason: REASONS.DELTA_FILE_MISSING, detail: `deltas/iter-${pad3(iteration)}.jsonl missing or has no type=iteration record` };
-  }
-
-  const warnings = [gatewayWarning, ledgerRootWarning].filter(Boolean);
+  const warnings = [...routeWarnings, gatewayWarning, ledgerRootWarning].filter(Boolean);
   return {
     ok: true,
     reason: null,

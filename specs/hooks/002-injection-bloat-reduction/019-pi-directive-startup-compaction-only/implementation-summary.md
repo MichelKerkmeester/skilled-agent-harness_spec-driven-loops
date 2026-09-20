@@ -33,6 +33,7 @@ _memory:
     answered_questions:
       - "Land the fallback-dedup mask now and root-cause in parallel (operator: Both)"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Pi Directives-Only Fallback Dedup
 
 <!-- SPECKIT_LEVEL: 2 -->

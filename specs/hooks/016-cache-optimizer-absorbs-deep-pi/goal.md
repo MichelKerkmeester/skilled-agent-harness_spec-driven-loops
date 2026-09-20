@@ -49,20 +49,6 @@ cost accounting, retry guarding and verified edits across that whole surface, an
 | D5 | Work happens on the current branch, `skilled/v4.0.0.0` |
 | D6 | Documentation is reconciled last, once behavior is done and tested |
 
-### Roadmap
-
-| # | Phase | Outcome |
-|---|-------|---------|
-| 1 | `001-reclaim-deepseek-direct-ownership` | The carve-out predicate, its six early returns and the duplicated-allowlist machinery are gone; one extension covers every model |
-| 2 | `002-port-cache-economics` | Hit rate, real input cost, estimated savings and prefix churn are measured and reportable for any model |
-| 3 | `003-port-retry-loop-guard` | A failing turn stops re-billing the same request |
-| 4 | `004-port-hash-verified-edits` | An edit whose hash no longer matches what the model saw is refused, not applied to moved content |
-| 5 | `005-remove-deep-pi` | The extension, its enabled-package entry and every live reference are gone |
-| 6 | `006-reconcile-extension-documentation` | The root README and every other Pi-extension README or inventory matches what ships |
-
-Each phase holds its own `goal.md` with the criteria that decide that phase. This file is the
-parent directive; a child goal that would change a decision here is an amendment to this file.
-
 ### Completion criteria
 
 1. No model reaches Pi without cache handling, proven by the extension suite rather than by reading.
@@ -121,4 +107,18 @@ anything above changes, the full text is resent in chat so the operator can upda
 |------|-------|
 | 2026-09-08 | Packet scaffolded; phase decomposition and execution contract frozen |
 | 2026-09-08 | All six phases shipped; parent and children validate clean |
+### Roadmap
+
+| # | Phase | Outcome |
+|---|-------|---------|
+| 1 | `001-reclaim-deepseek-direct-ownership` | The carve-out predicate, its six early returns and the duplicated-allowlist machinery are gone; one extension covers every model |
+| 2 | `002-port-cache-economics` | Hit rate, real input cost, estimated savings and prefix churn are measured and reportable for any model |
+| 3 | `003-port-retry-loop-guard` | A failing turn stops re-billing the same request |
+| 4 | `004-port-hash-verified-edits` | An edit whose hash no longer matches what the model saw is refused, not applied to moved content |
+| 5 | `005-remove-deep-pi` | The extension, its enabled-package entry and every live reference are gone |
+| 6 | `006-reconcile-extension-documentation` | The root README and every other Pi-extension README or inventory matches what ships |
+
+Each phase holds its own `goal.md` with the criteria that decide that phase. This file is the
+parent directive; a child goal that would change a decision here is an amendment to this file.
+
 <!-- /ANCHOR:log -->

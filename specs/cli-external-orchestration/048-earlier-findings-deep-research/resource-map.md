@@ -2,6 +2,7 @@
 title: "Known Context — sk-vision host-adapter findings (research corpus)"
 trigger_phrases: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v1.1 -->
 # Known Context — sk-vision host-adapter findings (research corpus)
 
 This packet seeds a deep-research loop over five findings surfaced while running the

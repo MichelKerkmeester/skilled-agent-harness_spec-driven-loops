@@ -413,10 +413,12 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * four were list-verified only, NOT dispatch-tested (operator decision) — no
  * dispatch-test claim is made for them.
  *
- * Gemini 3.8 Flash High was in this scope from 2026-08-15 to 2026-09-06 and was
- * retired by operator decision: Devin bills it at twice the 3.7 rate and one
- * research pass exhausted the daily quota. It stays reachable through the
- * cursor route only.
+ * Gemini 3.8 Flash High returns to this scope by operator decision, which accepts
+ * the same two costs that retired it: the billing premium over Gemini 3.7, and the
+ * daily-quota pressure a full research pass puts on it. It stays reachable through
+ * the cursor route as well, so one model is now dispatchable on two routes. Spelling
+ * the uid is the trap: Devin's roster publishes the dashed `gemini-3-8-flash-high`,
+ * while the Cursor scope spells the same model with dots.
  *
  * The DeepSeek V4.1 Flash family joined 2026-09-15, both tiers confirmed
  * verbatim in the live `devin models list` output. Devin exposes this family
@@ -431,6 +433,7 @@ export const DEVIN_SUPPORTED_MODELS = [
   'deepseek-v4-1-flash-high',
   'deepseek-v4-1-flash-max',
   'deepseek-v4-flash-max',
+  'gemini-3-8-flash-high',
   'glm-5-2',
   'glm-5-2-1m',
   'glm-5-2-max',

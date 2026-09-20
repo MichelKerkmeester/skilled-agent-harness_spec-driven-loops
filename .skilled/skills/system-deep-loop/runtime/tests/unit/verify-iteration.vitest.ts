@@ -86,19 +86,30 @@ describe('verify-iteration leaf-reliability check', () => {
     expect(r.reason).toBe(REASONS.STATE_RECORD_MISSING);
   });
 
-  it('fails route_proof_missing when the record omits route-proof fields', () => {
+  it('fails route_proof_missing when neither the state record nor the delta carries route-proof fields', () => {
     writeComplete(dir, 1);
     const bare = { type: 'iteration', iteration: 1, run: 'run-001', status: 'complete' };
     fs.writeFileSync(path.join(dir, 'deep-review-state.jsonl'), `${JSON.stringify(bare)}\n`);
+    fs.writeFileSync(path.join(dir, 'deltas', 'iter-001.jsonl'), `${JSON.stringify(bare)}\n`);
     const r = verify('review', dir, 1);
     expect(r.ok).toBe(false);
     expect(r.reason).toBe(REASONS.ROUTE_PROOF_MISSING);
   });
 
-  it('fails route_proof_mismatch when target_agent is wrong', () => {
+  it('passes on the delta when the projection drops route-proof fields, and names its source', () => {
+    writeComplete(dir, 1);
+    const bare = { type: 'iteration', iteration: 1, run: 'run-001', status: 'complete' };
+    fs.writeFileSync(path.join(dir, 'deep-review-state.jsonl'), `${JSON.stringify(bare)}\n`);
+    const r = verify('review', dir, 1);
+    expect(r.ok).toBe(true);
+    expect(r.warnings?.join(' ')).toContain('deltas/iter-001.jsonl');
+  });
+
+  it('fails route_proof_mismatch when target_agent is wrong in both places', () => {
     writeComplete(dir, 1);
     const wrong = reviewRecord(1, { target_agent: 'general' });
     fs.writeFileSync(path.join(dir, 'deep-review-state.jsonl'), `${JSON.stringify(wrong)}\n`);
+    fs.writeFileSync(path.join(dir, 'deltas', 'iter-001.jsonl'), `${JSON.stringify(wrong)}\n`);
     const r = verify('review', dir, 1);
     expect(r.ok).toBe(false);
     expect(r.reason).toBe(REASONS.ROUTE_PROOF_MISMATCH);

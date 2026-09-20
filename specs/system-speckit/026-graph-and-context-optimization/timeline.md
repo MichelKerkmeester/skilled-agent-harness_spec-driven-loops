@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
 # 026 Chronological Timeline
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 026 root). -->

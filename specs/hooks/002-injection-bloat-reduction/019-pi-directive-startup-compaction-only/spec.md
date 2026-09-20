@@ -14,6 +14,7 @@ parent: "../spec.md"
 predecessor: "018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
 successor: "None"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Directive Delivery — Startup + Compaction Only
 
 <!-- SPECKIT_LEVEL: 2 -->

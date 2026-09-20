@@ -34,6 +34,7 @@ _memory:
       - "Commit 037 on the worktree branch + merge to main so live pi picks up the fix?"
       - "Start packet 038 (fresh-session startup latency)?"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 # Session Handover Document
 
 Handover for 2026-08-02 late-evening state. Three threads: **036 (committed b70167711f)**, **037 (implemented, verified, validated, committed 9d1f0fffb8, merged to main a2cfec7e93)**, **038 (proposed, not started)**.

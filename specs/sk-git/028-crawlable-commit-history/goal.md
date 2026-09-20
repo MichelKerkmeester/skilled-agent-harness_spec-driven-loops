@@ -89,8 +89,7 @@ phase and binds as if written here.
 | 007-git-workflow-run-failures | `007-git-workflow-run-failures/goal.md` |
 | 008-second-pass-subjects-and-attribution | `008-second-pass-subjects-and-attribution/goal.md` |
 
-**Precedence.** Decisions above outrank child detail. Child detail outranks any
-summary of it. Name a conflict rather than resolving it silently.
+**Precedence.** Decisions above outrank child detail, which outranks any summary of it. Name a conflict; never resolve it silently.
 
 **Stop.** Only the criteria below decide done. An evaluator sees the objective
 string, not these files.
@@ -101,9 +100,8 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-Three to seven bullets, each checkable without opening another file. Copy them
-verbatim into the objective: nothing dereferences a path, so criteria left only
-here are invisible to whatever judges completion.
+Each bullet is checkable without opening another file. Copy them into the objective
+verbatim: criteria left only here stay invisible to whatever judges completion.
 
 - [x] 001-research/research/lineages/deepseek/deep-research-state.jsonl holds 10 iteration records and 001-research/research/research.md exists with file:line citations
 - [x] 002-format-decision/decision-record.md records the grammar and an operator approval line

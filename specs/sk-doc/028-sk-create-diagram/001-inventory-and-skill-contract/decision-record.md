@@ -8,6 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 version: 1.0.0.0
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
 # Decision Record: sk-create-diagram scope, name, tree, and command surface
 

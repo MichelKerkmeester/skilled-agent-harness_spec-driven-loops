@@ -17,6 +17,7 @@ trigger_phrases:
   - "validation evidence"
   - "continuation notes"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Pi Remote Experience Parity Research
 
 ## Status: Review

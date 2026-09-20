@@ -24,6 +24,7 @@ _memory:
       session_id: "023-spec"
       parent_session_id: null
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
 # Feature Specification: Live-Sync Disjoint Fast-Forward

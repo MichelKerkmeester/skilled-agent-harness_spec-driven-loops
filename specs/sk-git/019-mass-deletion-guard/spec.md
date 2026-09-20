@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec — Mass-Deletion Guard for Commits and Pushes
 
 ## Status

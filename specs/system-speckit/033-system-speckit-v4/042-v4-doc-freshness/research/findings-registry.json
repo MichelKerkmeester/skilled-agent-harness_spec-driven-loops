@@ -1,0 +1,555 @@
+{
+  "sessionId": "rsr-2026-09-19T18-45-00Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-which-path-command-or-binary-references-in-the-v4-changelog-point-at-roots-th",
+      "inboxId": null,
+      "text": "Q1: Which path, command or binary references in the v4 changelog point at roots that no longer exist, and which of them remain true through a compatibility alias or symlink?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-which-capability-family-mode-or-workflow-claims-in-the-changelog-no-longer-ma",
+      "inboxId": null,
+      "text": "Q2: Which capability, family, mode or workflow claims in the changelog no longer match the shipped tree after the retirements, renames and moves?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-q3-which-statements-in-the-root-readme-about-entry-points-structure-commands-or-",
+      "inboxId": null,
+      "text": "Q3: Which statements in the root README about entry points, structure, commands or setup are now false after the source-root migration and the packet moves?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-q4-which-post-draft-work-the-deep-loop-ledger-protocol-and-admission-fixes-the-o",
+      "inboxId": null,
+      "text": "Q4: Which post-draft work (the deep-loop ledger, protocol and admission fixes, the orca packet, the documentation-correction commits) is missing from the changelog narrative?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q5-does-either-document-require-a-full-rewrite-or-are-targeted-corrections-suffi",
+      "inboxId": null,
+      "text": "Q5: Does either document require a full rewrite, or are targeted corrections sufficient?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-which-path-command-or-binary-references-in-the-v4-changelog-point-at-roots-th",
+      "inboxId": null,
+      "text": "Q1: Which path, command or binary references in the v4 changelog point at roots that no longer exist, and which of them remain true through a compatibility alias or symlink?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-which-capability-family-mode-or-workflow-claims-in-the-changelog-no-longer-ma",
+      "inboxId": null,
+      "text": "Q2: Which capability, family, mode or workflow claims in the changelog no longer match the shipped tree after the retirements, renames and moves?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-which-statements-in-the-root-readme-about-entry-points-structure-commands-or-",
+      "inboxId": null,
+      "text": "Q3: Which statements in the root README about entry points, structure, commands or setup are now false after the source-root migration and the packet moves?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-which-post-draft-work-the-deep-loop-ledger-protocol-and-admission-fixes-the-o",
+      "inboxId": null,
+      "text": "Q4: Which post-draft work (the deep-loop ledger, protocol and admission fixes, the orca packet, the documentation-correction commits) is missing from the changelog narrative?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-does-either-document-require-a-full-rewrite-or-are-targeted-corrections-suffi",
+      "inboxId": null,
+      "text": "Q5: Does either document require a full rewrite, or are targeted corrections sufficient?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q3 (README vs post-migration tree), Q4 (post-draft work missing from the changelog - now includes the `mcp-orca-cli` mode), Q5 (rewrite vs targeted corrections).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 residuals carried: L15 \"deliberately tolerant gate\" behavior; `.hermes` skills/agents mirror contents.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 residuals: compiled-router closure status for sk-design; Rust placement; `@markdown`/`deep-ai-council` renames.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 residuals: clone-slug redirect status (needs a network check); `ai-council` vs `deep-ai-council` mode-key naming (registry mode ids not enumerated; the packet dir is `deep-ai-council`); \"121 advisor test files / 872 tests\" count (pattern-based count not completed); `AC_CLOSURE`/`AC_COVERAGE` not found in `runtime/cli/spec/validate.sh` (14.5 KB thin dispatcher - check `dist/` before any verdict); Node \"18+\" engines claim (no root manifest; `.skilled/package.json` engines unread); `.utcp_config.json` carries 14 manual call templates vs 7 integrations listed at L894-902 (names unsampled); Related Documents links (L420-431) not individually probed; doctor 12-vs-13 and templates 16-vs-18 intent checks.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 residuals (carried): L15 gate tolerance; .hermes skills/agents mirror contents.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 (post-draft work missing from the changelog narrative) and Q5 (rewrite vs targeted corrections) remain open; Q3's evidence suggests targeted corrections suffice for the README.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 residuals (carried): compiled-router closure status for sk-design; Rust placement; @markdown/deep-ai-council renames.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 (final verdict): rewrite vs targeted corrections — evidence to date favors targeted corrections for both documents.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New residual: whether the changelog mentions `.skilled` anywhere was not directly grepped (the date evidence already settles that 041 cannot be narrated); the scan's final four match lines (changelog L581-600) were not displayed — no `orca`/`admission` occurrence was seen, and orca absence is independently confirmed by iteration 2.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 residuals (carried): clone-slug redirect status; `ai-council` vs `deep-ai-council` mode-key naming; \"121 advisor test files / 872 tests\" count; `AC_CLOSURE`/`AC_COVERAGE` in `dist/`; Node \"18+\" engines; `.utcp_config.json` template count; Related Documents links; doctor 12-vs-13 and templates 16-vs-18.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 residuals (carried): L15 gate tolerance; `.hermes` skills/agents mirror contents.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 residuals (carried): compiled-router closure status for sk-design; Rust placement; `@markdown`/`deep-ai-council` renames.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1 residual: L130 anchor-resolver behavior under the two root names.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: additive-gap list stands; F5 adds the `.hermes/agents` repoint to the 041 class.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 residuals: compiled-router closure for `sk-design`; Rust placement; `@markdown` / `deep-ai-council` renames.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 residuals (carried): clone-slug redirect; `ai-council` vs `deep-ai-council` mode-key naming; advisor test counts; `AC_CLOSURE`/`AC_COVERAGE` in `dist/`; Node \"18+\" engines; `.utcp_config.json` template count; Related Documents links; doctor 12-vs-13 and templates 16-vs-18.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 residuals: \"121 advisor test files / 872 tests\" (L412) not counted; `AC_CLOSURE`/`AC_COVERAGE` presence in `dist/`; Node \"18+\" engines (L92); `.utcp_config.json` 14 templates vs 7 integrations (L894-902); Related Documents links (L420-431); `ai-council` vs `deep-ai-council` mode-key naming; new residuals: L609 96/76 totals; L936 \"Motion.dev\" naming; badge redirect behavior on shields.io.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: additive-gap list stands (iterations 4-5).",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "README residuals carried from iteration 6: advisor test counts (L412), Node engines (L92), `.utcp_config.json` 14 vs 7 (L894-902), Related Documents links (L420-431), L609 96/76 totals, L936 Motion.dev naming, shields.io badge redirect behavior.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 residuals: compiled-router closure for sk-design (L392 says planned, not shipped, and was not re-verified), Rust placement, `@markdown` and `deep-ai-council` renames.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Changelog residuals: L96 \"Forty rules are registered\" (not re-verified, no rules manifest found under `runtime/cli/spec`), L32/L278 \"eighteen of the twenty-two hook packages\" (the repo-guards plugin was not read), chart and diagram form counts (L385 29 forms, L386 27 types) not re-counted, and the historical narrative numbers (L11 28KB and 3,000 lines, L108 22 plus 16 children, L114 1,275 lines and 175 vs 944, L228 178 recommendations, L90 42 surfaces, L120 44 alerts).",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The changelog's historical narrative numbers (L11 28KB and 3,000 lines, L108 22 plus 16 children, L114 1,275 lines and 175 vs 944, L228 178 recommendations, L90 42 surfaces, L120 44 alerts) were not re-verified; they are outside this iteration's named focus.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hermes 18/22: which of the five unmatched hook packages is the bridged 18th (candidate: session-lifecycle via the session-start advisories L278 lists) — needs a deeper read of `__init__.py`.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: shields.io badge redirect behavior; sk-design compiled-router closure; `@markdown` / `deep-ai-council` renames; Rust placement; the advisor 121/872 provenance if it exists outside the tree.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Changelog L130 anchor-resolver behavior and L392 compiled-router closure not re-verified.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: the \"Related Documents\" anchor is missing from the README, so the 10-link row needs re-location before editing.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hermes 18-of-22: which package is the bridged 18th (candidate: session-lifecycle via the session-start advisories). Needs a deeper `__init__.py` read.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: README L59 \"20 domain skills\" taxonomy unverified.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Changelog historical numbers (L11, L90, L108, L114, L120, L228) not re-verified.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: shields.io badge redirect behavior, `@markdown` and `deep-ai-council` renames, Rust placement, the advisor 121/872 provenance if it exists outside the tree.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None material for the two documents. Closed with flags and no edits: the changelog's pre-release numerics (A16) and L130 behavior note (A17), the README's L59 diagram figure (B8), Rust line (B16) and badge URL (B17), and the carried `@markdown` / `deep-ai-council` rename checks (no evidence of error, not load-bearing). Applying the lists is the orchestrator's step, not the research leaf's.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1: Which path, command or binary references in the v4 changelog point at roots that no longer exist, and which of them remain true through a compatibility alias or symlink?",
+    "Q2: Which capability, family, mode or workflow claims in the changelog no longer match the shipped tree after the retirements, renames and moves?",
+    "Q3: Which statements in the root README about entry points, structure, commands or setup are now false after the source-root migration and the packet moves?",
+    "Q4: Which post-draft work (the deep-loop ledger, protocol and admission fixes, the orca packet, the documentation-correction commits) is missing from the changelog narrative?",
+    "Q5: Does either document require a full rewrite, or are targeted corrections sufficient?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-hermes-mirrors-hermes-plugins-repo-guards-verified-present-the-skills-agents-mir",
+      "text": "`.hermes/` mirrors — `.hermes/plugins/repo-guards` verified present; the skills/agents mirror contents are unverified.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-l15-deliberately-tolerant-gate-behavior-unverified",
+      "text": "L15 \"deliberately tolerant gate\" — behavior unverified.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-l580-hvr-rules-md-location-tested-spelling-skilled-skills-sk-create-with-human-v",
+      "text": "L580 `hvr-rules.md` location — tested spelling `.skilled/skills/sk-create-with-human-voice/references/hvr-rules.md` absent; the skill's real (likely hub-nested) location must be resolved before any verdict.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-l580-deep-loop-storage-database-not-found-at-the-two-tested-spellings-needs-the-",
+      "text": "L580 deep-loop `storage/` → `database/` — not found at the two tested spellings; needs the runtime's actual directory level.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-deep-loop-mode-count-stale-p2-l592-says-the-six-modes-behave-as-before-the-shipp",
+      "text": "**deep-loop mode count - STALE (P2).** L592 says \"The six modes behave as before\". The shipped registry has five active modes (`research`, `review`, `ai-council`, `agent-improvement`, `model-benchmark`) and an empty `deprecatedModes` array; the same document's L581 retires the `deep-alignment` mode and the skill-benchmark lane. \"Six\" reads as a merge-time count that survived into the shipped narrative.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-hub-and-standalone-roster-p2-six-hubs-now-route-to-modes-l21-holds-exactly-six-f",
+      "text": "**Hub and standalone roster (P2).** \"Six hubs now route to modes\" (L21) holds: exactly six families carry a `mode-registry.json` - `sk-code`, `sk-doc`, `sk-design`, `mcp-tooling`, `cli-external-orchestration`, `system-deep-loop`. The seven standalones named at L55/L491 all exist (`sk-vision`, `sk-communication`, `sk-git`, `mcp-code-mode`, `system-spec-kit`, `system-skill-advisor`, `sk-prompt`); 6 + 7 = 13 matches `.skilled/skills`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-hvr-rules-md-was-f-iter001-1-the-base-standard-lives-at-skilled-skills-sk-doc-sk",
+      "text": "**hvr-rules.md (was f-iter001-1).** The base standard lives at `.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md` with `hvr-publish-supplement.md` beside it; the packet is hub-nested under sk-doc, which is why iter-1's top-level spelling missed. L580 holds.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-mcp-tooling-mode-count-stale-p1-l41-and-l511-say-the-hub-ships-nine-modes-the-sh",
+      "text": "**mcp-tooling mode count - STALE (P1).** L41 and L511 say the hub ships \"nine modes\". The shipped registry registers ten: `mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`, `mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-obsidian`, `mcp-notion`, `mcp-magicpath`, `mcp-orca-cli`. The tenth is the orca packet: `.skilled/skills/mcp-tooling/mcp-orca-cli/` exists on disk and in the registry, and the changelog never names it - zero case-insensitive `orca` matches in the file. This is both the Q2 focus item and a Q4 input (post-draft work missing from the narrative).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-renames-sampled-p2-doc-quality-to-create-quality-control-registry-create-dirs-to",
+      "text": "**Renames sampled (P2).** `doc-quality` to `create-quality-control` (registry), `create-*` dirs to `sk-create-*`, `cli-external` to `cli-external-orchestration`, `prose-mechanics.md` to `communication-prose.md` (REPO RULES index), Gate 3 letters C/D (root `AGENTS.md` shows A-D), `/prompt:improve` (`.skilled/commands/prompt/improve.md`). L579/L501 hold where sampled.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-retirements-p2-no-cli-gemini-no-cli-copilot-no-mcp-webflow-in-any-registry-inter",
+      "text": "**Retirements (P2).** No `cli-gemini`, no `cli-copilot`, no `mcp-webflow` in any registry; `/interface:*` gone; no memory database under `system-spec-kit`; retired prompt skill names (`sk-prompt-small-model`, `sk-prompt-models`, `sk-prompt-improve`) absent from the tree. L340/L581/L501 hold.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-seven-cli-executors-p2-cli-external-orchestration-registry-carries-the-l211-rost",
+      "text": "**Seven CLI executors (P2).** `cli-external-orchestration` registry carries the L211 roster exactly: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`. (`cli-devin` is the packet's known-stale exclusion; not re-litigated.)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-sk-design-four-modes-p2-registry-sk-design-fundamentals-sk-design-md-generator-s",
+      "text": "**sk-design four modes (P2).** Registry: `sk-design-fundamentals`, `sk-design-md-generator`, `sk-design-diagram`, `sk-design-chart`. Chart/diagram are absent from sk-doc (registry and dirs); `/interface:*` is gone from the command tree; `/design:extract`, `/design:chart`, `/design:diagram` exist. L36/L379-388 hold.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-sk-doc-counts-p2-14-sk-create-modes-in-the-registry-13-sk-create-packet-dirs-sk-",
+      "text": "**sk-doc counts (P2).** 14 `sk-create-*` modes in the registry, 13 `sk-create-*` packet dirs (`sk-create-skill-parent` has no dir), and exactly 12 command files under `.skilled/commands/create/` - the L162 \"fourteen modes across thirteen packets, twelve `/create:*` commands\" claim holds.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-storage-to-database-was-f-iter001-2-skilled-skills-system-deep-loop-runtime-data",
+      "text": "**storage/ to database/ (was f-iter001-2).** `.skilled/skills/system-deep-loop/runtime/database/` exists. L580 holds at the runtime level.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-create-to-markdown-agent-rename-ai-council-to-deep-ai-council-packet-move-the-de",
+      "text": "`@create` to `@markdown` agent rename; `ai-council/` to `deep-ai-council/` packet move (the `deep-ai-council` dir exists; the rename itself was not sampled).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-l392-s-caveat-that-sk-design-does-not-yet-resolve-through-a-compiled-router-cont",
+      "text": "L392's caveat that sk-design \"does not yet resolve through a compiled router contract\" - needs `.skilled/bin/compiled-route-status.cjs` or the compiled-route manifest run; deferred under the tool-call budget.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-l447-rust-joins-the-code-no-rust-packet-dir-under-sk-code-likely-inside-sk-code-",
+      "text": "L447 \"Rust Joins the Code\" - no Rust packet dir under sk-code; likely inside `sk-code-quality` stack guidance, not packet-level.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-13-on-demand-skills-l10-l547-l990-12-specialized-agents-l9-l36-l59-l638-47-scena",
+      "text": "\"13 On-Demand Skills\" (L10, L547, L990), \"12 Specialized Agents\" (L9, L36, L59, L638), \"47 scenario files\" (L413; 47 scenario .md plus index plus vitest harness = 49 hits), \"five /deep:* loop commands\" (L427; five command files confirmed), \"four loop families with two improvement lanes\" (L427/L534; packet dirs deep-research, deep-review, deep-ai-council, deep-improvement), packet structure L161-173 (the 042 packet matches), spec-kit-docs.json contract L156/L191 (levels 1,2,3,3+,phase,review,research; documents index matches), core config list L961-965 minus `.vscode` (opencode.json carries `code_mode` local via `.skilled/bin/mcp-code-mode-launcher.cjs`), MCP shape L976-984, and the \"Verify Installation\" grep targets (all four config files reference `mcp-code-mode-launcher`).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-advisor-nine-commands-statements-l116-l323-l374-l379-l404-are-mutually-consisten",
+      "text": "Advisor \"nine commands\" statements (L116, L323, L374, L379, L404) are mutually consistent and the tools/handlers layout supports them; a direct nine-id enumeration was not completed (residual).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-command-inventory-l696-is-exact-32-command-entry-points-across-7-groups-create-1",
+      "text": "Command inventory L696 is exact: 32 command entry points across 7 groups (create 12, deep 5, design 3, doctor 3, prompt 1, rewrite 2, speckit 6) plus 3 root utilities (`agent-router.md`, `goal-opencode.md`, `vision.md`) under `.skilled/commands/`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-post-041-path-surface-every-sampled-skilled-path-in-the-readme-resolves-55-probe",
+      "text": "Post-041 path surface: every sampled `.skilled/...` path in the README resolves (~55 probes OK), including the advisor runtime tree, spec-kit script suite, continuity sources and dist, trigger index, hooks, goal hooks, doctor routes/assets, sk-code packets and CLI READMEs. The only miss is `.vscode/mcp.json` (finding above).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-runtime-config-compat-surface-opencode-agents-bin-changelog-commands-hooks-scrip",
+      "text": "Runtime config compat surface: `.opencode/{agents,bin,changelog,commands,hooks,scripts,skills,specs}` and `.hermes/agents` are symlinks into `.skilled/...`; `.claude/skills` and `.pi/skills` symlink to `.skilled/skills`; `.claude/.utcp_config.json` symlinks to the root file. L638's mirror/link description is exactly right.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-dispatch-guard-coverage-l33-l282-284-matches-the-work-the-last-refresh-recorded-",
+      "text": "Dispatch-guard coverage (L33, L282-284) matches the work the last refresh recorded — the narrative was accurate at the refresh point.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-the-ledger-flip-narrative-l226-235-matches-the-pre-refresh-ledger-commits-the-fl",
+      "text": "The ledger flip narrative (L226-235) matches the pre-refresh ledger commits: the flip, the projections and the fail-closed guard are the recorded state; only the follow-on events/protocol work is missing.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-a1-mode-registry-json-modes-keys-0-9-ten-total-and-mcp-orca-cli-is-present-the-t",
+      "text": "A1: `mode-registry.json` modes keys 0-9, ten total, and `mcp-orca-cli/` is present. The \"ten modes\" replacement holds.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-a14-communication-handoff-md-and-communication-decisions-md-are-present-and-the-",
+      "text": "A14: `communication-handoff.md` and `communication-decisions.md` are present and the two old names are absent. The rename-list addition holds.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-a15-git-log-oneline-1d43dbd38b-head-wc-l-gives-231-and-the-changelog-s-last-touc",
+      "text": "A15: `git log --oneline 1d43dbd38b..HEAD | wc -l` gives 231, and the changelog's last touch is `1d43dbd38b 2026-09-16`. The post-draft section holds.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-a2-deep-loop-registry-modes-keys-0-4-five-total-and-skilled-commands-deep-holds-",
+      "text": "A2: deep-loop registry modes keys 0-4, five total, and `.skilled/commands/deep/` holds five command files (agent-improvement, ai-council, model-benchmark, research, review) plus an assets directory. The \"five\" replacements hold.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-a3-repo-rules-holds-13-files-answer-the-actual-request-md-among-them-the-thirtee",
+      "text": "A3: `repo-rules/` holds 13 files, `answer-the-actual-request.md` among them. The \"Thirteen\" replacement holds.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-a4-wc-l-agents-md-gives-284-the-to-284-replacement-holds",
+      "text": "A4: `wc -l AGENTS.md` gives 284. The \"to 284\" replacement holds.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-a5-sk-code-ships-sk-code-webflow-sk-code-opencode-and-sk-code-obsidian-plus-the-",
+      "text": "A5: `sk-code/` ships `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` plus the quality and review modes, with no mobile-cli packet. The drop-and-delete replacement holds.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-a6-hermes-agents-skilled-agents-is-a-symlink-and-hermes-skills-is-a-generated-co",
+      "text": "A6: `.hermes/agents -> ../.skilled/agents` is a symlink and `.hermes/skills` is a generated-copy directory. The narrowed parenthetical holds.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-11-b1-through-b4-carry-iteration-8-s-evidence-the-engines-census-the-advisor-test-s",
+      "text": "B1 through B4 carry iteration 8's evidence (the engines census, the advisor test scan, the catalog and playbook reads, the template enumeration). Nothing re-checked this iteration contradicts them.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-b14-vscode-does-not-exist-so-the-vscode-mcp-json-reference-is-a-miss-the-fix-or-",
+      "text": "B14: `.vscode/` does not exist, so the `.vscode/mcp.json` reference is a miss. The \"fix or drop\" replacement holds.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-b5-the-same-sk-code-listing-as-a5-the-webflow-opencode-obsidian-replacement-hold",
+      "text": "B5: the same sk-code listing as A5. The \"Webflow + OpenCode + Obsidian\" replacement holds.",
+      "addedAtIteration": 10,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 31,
+    "keyFindings": 35,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.23,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

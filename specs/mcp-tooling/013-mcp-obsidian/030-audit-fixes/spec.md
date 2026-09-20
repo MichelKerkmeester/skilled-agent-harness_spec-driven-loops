@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec — mcp-obsidian + hub post-audit fixes
 
 ## Status

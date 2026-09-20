@@ -22,6 +22,7 @@ _memory:
       session_id: "023-implementation-summary"
       parent_session_id: null
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
 # Implementation Summary: Live-Sync Disjoint Fast-Forward

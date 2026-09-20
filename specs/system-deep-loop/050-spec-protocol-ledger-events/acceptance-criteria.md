@@ -53,11 +53,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given each of the seven legacy rows, When it goes through `append-mode-event.cjs --mode research`, Then it exits 0 | Eight CLI tests, one per row and both conflict shapes, exit 0; `--mode research` run by hand appends the check-result row | Met | - |
-| AC-002 | REQ-002 | Given an accepted row, When the state log is rebuilt, Then the row reads as written, apart from the append-time timestamp | The same eight tests read the rebuilt last state-log line back with the written fields, values and key order | Met | - |
-| AC-003 | REQ-003 | Given the committed research fixtures, When they replay, Then no fingerprint or reduced state moves | 23 committed research ledgers, 175 events, read through the runtime at `d71a52c736` and at HEAD: identical heads, event counts, stems and fold outcomes. Of 3,353 fields in a verified event, only the reader's `registryDigest` differs, which names the registry doing the read | Met | - |
-| AC-004 | REQ-004 | Given the change, When the deep-loop suite runs, Then it passes, including the stem-producer and append-site checkers | The whole suite passes, 2,694 tests in 154 files with 8 skipped; the stem census reports 68 registered, 56 reserved, 12 spoken and no violations; the append-site checker scans 10 sites with no violations | Met | - |
-| AC-005 | REQ-005 | Given the spec-check protocol reference, When it is read, Then it names the seven stems | `spec-check-protocol.md` §6 names all seven | Met | - |
+| AC-001 | REQ-001 | Given each of the seven legacy rows, When it goes through `append-mode-event.cjs --mode research`, Then it exits 0 | `append-mode-event-cli.vitest.ts:988` - eight CLI tests, one per row and both conflict shapes, exit 0; `--mode research` run by hand appends the check-result row | Met | - |
+| AC-002 | REQ-002 | Given an accepted row, When the state log is rebuilt, Then the row reads as written, apart from the append-time timestamp | `append-mode-event-cli.vitest.ts:988` - the same eight tests read the rebuilt last state-log line back with the written fields, values and key order | Met | - |
+| AC-003 | REQ-003 | Given the committed research fixtures, When they replay, Then no fingerprint or reduced state moves | `implementation-summary.md:120` - 23 committed research ledgers, 175 events, read through the runtime at `d71a52c736` and at HEAD: identical heads, event counts, stems and fold outcomes. Of 3,353 fields in a verified event, only the reader's `registryDigest` differs, which names the registry doing the read | Met | - |
+| AC-004 | REQ-004 | Given the change, When the deep-loop suite runs, Then it passes, including the stem-producer and append-site checkers | `check-ledger-stem-producers.vitest.ts:128` - the whole suite passes, 2,694 tests in 154 files with 8 skipped; the stem census reports 68 registered, 56 reserved, 12 spoken and no violations; the append-site checker scans 10 sites with no violations | Met | - |
+| AC-005 | REQ-005 | Given the spec-check protocol reference, When it is read, Then it names the seven stems | `spec-check-protocol.md:163` - names all seven stems | Met | - |
 
 ### Status values
 

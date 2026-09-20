@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The source plugin ships 282 files (references, 100 example HTML assets, two Python extractors, its own CI/lint tooling, marketplace/plugin manifests for three runtimes) using its own conventions",
     "created_at": "2026-08-12T05:47:23.000Z",
-    "last_save_at": "2026-08-30T15:39:17.952Z",
+    "last_save_at": "2026-09-20T04:35:59.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,15 +207,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:c5ecb1713a89dc274fb26bb83b3128b30bd393deb2c1da8962f63a6f263e0258",
+    "source_fingerprint": "sha256:01e762f148d62799365cf10e42955781ed378ccfa20ea3faa6d1cc222f3a79c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "caa6ec98ff64d918f590206630127849e54f228f2f7046a1433834c22e93350e",
       "plan.md": "6d4dcaa4c0fdfba115131bf4330b24379a3059cbf644a693aabe42512f7cb08f",
       "tasks.md": "1b6f91dece835ee52932253323417c99102c8a592c038b28e8a27db6843f8034",
-      "decision-record.md": "fedc2c99dcc080213a41c955936db211abb172b87b6f1d9b6d048e0f86372cfd",
+      "decision-record.md": "9e5f2d7bc0d527b7ed055a7a17b70eaad0a691e99811a1d0aee32dad7ab762c3",
       "implementation-summary.md": "a4a0720ad8961b382d234d7d0670c77c26c4e9f642ef23f75f21e5ce7a402d71",
-      "resource-map.md": "246f403d82744af28632848a5cbb8511ae6e800bdabd7e459fc51f9827c28b94"
+      "resource-map.md": "115f50dbb6d425e47780ebde52a4e2fd61a74434fa7338d45138d7eceeb8626f"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-12T05:47:23.000Z"

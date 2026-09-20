@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Use the current phase map and child metadata as the operational source of truth for the remaining packet work."
     completion_pct: 100
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
 # 019 Chronological Timeline
 
 > **Sort key:** git commit order on skilled/v4.0.0.0, oldest to newest.

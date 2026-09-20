@@ -96,9 +96,8 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-Three to seven bullets, each checkable without opening another file. Copy them
-verbatim into the objective: nothing dereferences a path, so criteria left only
-here are invisible to whatever judges completion.
+Each bullet is checkable without opening another file. Copy them into the objective
+verbatim: criteria left only here stay invisible to whatever judges completion.
 
 - [ ] `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED`
 - [ ] Every phase folder under `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/` carries a Status of Complete in its own spec.md or implementation-summary.md metadata table

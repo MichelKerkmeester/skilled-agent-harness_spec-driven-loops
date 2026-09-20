@@ -20,6 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v1.1 -->
 # Resource map — grok46-xhigh nested-goal lineage
 
 Emitted from this lineage's iteration deltas. Spec-folder `resource-map.md` was absent at init (`resource_map_present: false`). This file is lineage-local.

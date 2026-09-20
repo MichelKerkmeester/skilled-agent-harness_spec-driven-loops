@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks — mcp-obsidian + hub post-audit fixes
 
 - [x] T1: Dispatch 8 parallel `cli-codex gpt-5.6-luna` max/fast agents (one per file) to append `## SOURCE FILES` + `## SOURCE METADATA` to the 8 non-conformant tie-in files.

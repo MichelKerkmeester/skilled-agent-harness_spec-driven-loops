@@ -97,6 +97,19 @@ inspection of the diff.
 
 ---
 
+## RELATED DOCUMENTS
+
+- [`spec.md`](spec.md) — the packet specification and phase map.
+- [`roadmap.md`](roadmap.md) — sequencing and milestones.
+- `<plugin-repo>/specs/public/HANDOVER.md` — the traps and open debt encoded as evidence.
+
+---
+
+<!-- ANCHOR:log -->
+## LOG
+
+Volatile: status, findings and position, kept out of the durable objective.
+
 ## 6. CURRENT POSITION
 
 All thirteen phases are built. The packet mirrors the template's tree, the hub routes to it, and the
@@ -113,9 +126,4 @@ unreachable, so every leaf carries two environmental errors that no amount of au
 
 One standing risk worth carrying: the reference guard resolves paths, not claims. A document can
 cite a file that exists while describing it wrongly. Only reading keeps the prose true.
-
-## RELATED DOCUMENTS
-
-- [`spec.md`](spec.md) — the packet specification and phase map.
-- [`roadmap.md`](roadmap.md) — sequencing and milestones.
-- `<plugin-repo>/specs/public/HANDOVER.md` — the traps and open debt encoded as evidence.
+<!-- /ANCHOR:log -->

@@ -25,6 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
 # Handover: Post-Audit Remediation Program (Phases 013-020)
 

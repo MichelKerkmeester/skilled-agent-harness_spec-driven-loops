@@ -17,6 +17,7 @@ _memory:
     next_safe_action: "Use the parent spec phase map as the current structure; the migration itself remains Planned and unexecuted."
     completion_pct: 0
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
 # 020 Chronological Timeline
 
 > **Sort key:** git commit order for phase creation, oldest to newest.

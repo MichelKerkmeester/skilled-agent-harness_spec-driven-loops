@@ -25,6 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 
 # Goal: sk-design hallmark design-system adoption
 
@@ -46,6 +47,21 @@ _memory:
 | Authority | Deep-alignment conformance authority | sk-design canon + spec-kit templates → resolved to **sk-doc** (docs) + **sk-code** (code) lanes |
 | Workspace | Where the build runs | Isolated worktrees from v4 (build `0099`; fix + audits `0101`) |
 | Execution | Build + verify model | **GPT-5.6-SOL-high-fast** builds (cli-codex, file-authoring, no git) → **Sonnet-5-xhigh** adversarial verify (Agent tool) → orchestrator runs gates + commits |
+
+## 8. Key artifacts
+
+- Commits on v4: `6837453a4c` · `615f80e106` · `a4bbe1b68c` · `b452b49f8a` · `9b4cee6814` (5 lanes) · `61ac737580` (fix) · `442eebdbe3` (remediation).
+- Review findings registry: `004-hallmark-design-system/review/deep-review-findings-registry.json`.
+- Alignment record: `004-hallmark-design-system/006-deep-alignment-and-review/alignment/`.
+- Correct alignment lane-config: `scratchpad/hallmark-align-lanes-v2.json`.
+- Handover: `handover.md` (this folder). Claude-native goal memory: `goal_hallmark-design-system-adoption.md`, `goal_deep-alignment-fix-and-hallmark-deep-loops.md`.
+
+---
+
+<!-- ANCHOR:log -->
+## LOG
+
+Volatile: status, findings and position, kept out of the durable objective.
 
 ## 3. Build status — five lanes (all shipped to v4)
 
@@ -99,11 +115,4 @@ Phase-0 cross-ref fixes (stale `014-`/`016-` refs the merge left) folded into La
 - **Daemon hazard:** a worktree memory daemon truncated tracked source docs twice — always `pkill` the worktree `context-server` + revert out-of-scope corruption after each dispatch, before verify/commit.
 - **Deep-loop mechanics:** review fan-out is runtime-driven (reliable); single-executor alignment is orchestrator-driven; cli-opencode leaves need a non-opencode orchestrator; use `--stop-policy=max-iterations` / `--convergence-mode=off` for no-early-convergence (and note the review fan-out hardcodes its target to the spec-folder).
 - **Freshness:** sync `last_updated_at`→now + backfill per packet before commit.
-
-## 8. Key artifacts
-
-- Commits on v4: `6837453a4c` · `615f80e106` · `a4bbe1b68c` · `b452b49f8a` · `9b4cee6814` (5 lanes) · `61ac737580` (fix) · `442eebdbe3` (remediation).
-- Review findings registry: `004-hallmark-design-system/review/deep-review-findings-registry.json`.
-- Alignment record: `004-hallmark-design-system/006-deep-alignment-and-review/alignment/`.
-- Correct alignment lane-config: `scratchpad/hallmark-align-lanes-v2.json`.
-- Handover: `handover.md` (this folder). Claude-native goal memory: `goal_hallmark-design-system-adoption.md`, `goal_deep-alignment-fix-and-hallmark-deep-loops.md`.
+<!-- /ANCHOR:log -->

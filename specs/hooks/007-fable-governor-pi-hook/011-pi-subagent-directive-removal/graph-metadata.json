@@ -48,7 +48,6 @@
       ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
       ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
       ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/prompt-advisor.vitest.ts",
       ".opencode/hooks/dispatch/pi/directive-dedup.test.ts",
       ".opencode/hooks/injection-contract.md",
       ".pi/PLUGINS.md",
@@ -96,12 +95,6 @@
         "name": "dispatch-preflight-lint.test.ts",
         "kind": "test",
         "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-advisor.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/prompt-advisor.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Tasks: Pi Subagent Directive Removal",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 injected a Pi-only per-turn directive mandating the native pi-subagents plugin for subagent delegation, and phase 006 added tool-call enforcement of the same policy",
     "created_at": "2026-09-08T07:25:00.675Z",
-    "last_save_at": "2026-09-08T07:25:00.675Z",
+    "last_save_at": "2026-09-20T04:33:42.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ef45509bb42544027ea40fde019ad42adc4c32ed11bc76f63db312c7f2ed9d2",
+    "source_fingerprint": "sha256:05162d6ed4d7a07317d5b6f6175b0672a570d118f77e6abd78323f53e796c82e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "16cfe0463569660fcf234a34be7b6ea546010b84e7203cca02766df6d523de5c",
-      "plan.md": "143836916fb01b7a9417c4a8d47ca87dd6fd62535cf944e17f0ceb8f31b7a708",
-      "tasks.md": "7e6c30518257279efecae0da2f545fc6443c8d1604ae47bba2e4a000a276771f",
-      "implementation-summary.md": "2b16e4527dafe5e5bcefde0ec403e14fe6e571ab96c7cd46a2820cbccc33ba08"
+      "plan.md": "af20c87576c547adc486e012bfaf5eba030aa4a108927d2eb81787a105847c66",
+      "tasks.md": "69ab36a5a84eed9a63bbf85a6fe0182335bc1d71c911fee602e289ce7eef271a",
+      "implementation-summary.md": "4a370ba475c92cce2cc02bf0214224f053e1721817780723d8684065b5443078"
     },
     "last_active_child_id": null,
     "last_active_at": null

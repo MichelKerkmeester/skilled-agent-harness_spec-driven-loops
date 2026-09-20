@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec — mcp-obsidian plugin-coverage review + scenario testing
 
 ## Status

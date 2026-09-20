@@ -196,13 +196,13 @@
         "source": "derived"
       },
       {
-        "name": "high",
-        "kind": "quoted",
+        "name": "LOG",
+        "kind": "heading",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "fast",
+        "name": "high",
         "kind": "quoted",
         "path": "goal.md",
         "source": "derived"
@@ -222,7 +222,7 @@
     ],
     "causal_summary": "We can drive ClickUp from both a terminal CLI and an MCP tool (the `mcp-click-up` mode of the `mcp-tooling` hub)",
     "created_at": "2026-08-02T05:50:25Z",
-    "last_save_at": "2026-09-11T16:41:50.506Z",
+    "last_save_at": "2026-09-20T04:47:09.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -230,7 +230,7 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1db4ad56082ff06d631cb11d2df8577f222688848f2f33bbb5ff7fae3bdc4d8b",
+    "source_fingerprint": "sha256:e36b765c89d6153545bc3266dd5bcbfb3d16902d480a80e1e4261d932cbe542c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cfcb16e3e42a7eba6bbb7084732f87901aecf8bb982d7f8072983113460a351c",

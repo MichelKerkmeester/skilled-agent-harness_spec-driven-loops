@@ -31,6 +31,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 # Implementation Plan: Pi Subagent Directive Removal
 
