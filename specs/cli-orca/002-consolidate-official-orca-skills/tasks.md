@@ -41,6 +41,7 @@ contextType: "implementation"
 | M4 | T016-T022 | Hub clean at nine modes |
 | M5 | T023-T028 | Packets moved and metadata live |
 | M6 | T029-T036 | Fleet catalogs, re-ingestion and gates closed |
+| M7 | T037-T046 | Post-closure review cycle closed and the leaked key remediated |
 
 <!-- /ANCHOR:milestones -->
 
@@ -138,6 +139,26 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:phase-8 -->
+## Phase 8: Post-Closure Review Cycle and Secret Remediation [Milestone M7]
+
+> Reopened on the operator's instruction after closure. The vendored `context/orca-main/` tree stays untouched apart from the key redaction recorded in ADR-009.
+
+- [x] T037 Persist the close-out suite and capture the pre-remediation baseline (`scratch/final-gates.sh`, `scratch/gate-results-baseline-review.md`) [15m]
+- [B] T038 Probe the provider path with one print-mode dispatch and read its output text rather than its exit code — blocked on the operator naming `cli-pi` in a request, which is the text the Pi dispatch guard reads [5m]
+- [ ] T039 Reopen the packet at in-progress status and re-validate it (`spec.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md`, `decision-record.md`) [30m]
+- [ ] T040 Author the declared audit surfaces (`review/resource-map.md`) [20m]
+- [ ] T041 Run the five-iteration deep review on the auto workflow and record its state (`review/**`) [180m]
+- [ ] T042 Write the fresh-context synthesis fix list (`review/synthesis-remediation-plan.md`) [30m]
+- [ ] T043 Apply the justified remediations and re-run every gate against the baseline (`.skilled/skills/cli-orca/**` plus any justified cross-skill change) [120m]
+- [ ] T044 Execute the eight playbook scenarios and record every outcome (`.skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/**`) [60m]
+- [x] T045 Redact the leaked upstream client key from the vendored snapshot and record the decision (`context/orca-main/mobile/google-services.json`, ADR-009) [10m]
+- [ ] T046 Close out the packet with evidence, deviations and the final gate capture (`implementation-summary.md`, `scratch/gate-results-final-review.md`) [30m]
+
+<!-- /ANCHOR:phase-8 -->
+
+---
+
 <!-- ANCHOR:verification -->
 ## Verification Checklist
 
@@ -159,11 +180,11 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`
-- [x] No `[B]` blocked tasks remaining
-- [x] All milestones achieved
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] All milestones achieved
 - [x] Every verification row carries an observed result
-- [x] Acceptance criteria each carry evidence
+- [ ] Acceptance criteria each carry evidence
 - [x] ADRs have status Accepted or a recorded deferral
 
 <!-- /ANCHOR:completion -->

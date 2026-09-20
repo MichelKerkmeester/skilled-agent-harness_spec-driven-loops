@@ -564,3 +564,71 @@ The hub's compiled routing depends on a promoted activation manifest at `.skille
 ---
 
 <!-- /ANCHOR:adr-008 -->
+
+---
+
+<!-- ANCHOR:adr-009 -->
+## ADR-009: Redact the upstream client key from the vendored snapshot
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-20 |
+| **Deciders** | Operator, orchestration session |
+
+---
+
+### Context
+
+GitHub secret scanning opened an alert against `context/orca-main/mobile/google-services.json`, the vendored copy of the upstream mobile Firebase configuration, at the `current_key` Google API key for the `onorca-cloud` project. The repository is public, so the alert reported the key as publicly leaked. Secret scanning does not close an alert when the secret stops being detected, so removing the value and recording a resolution are two separate actions.
+
+### Constraints
+
+- The vendored `context/orca-main` tree is the provenance source that `assets/PROVENANCE.md` and the ORCA-008 playbook scenario compare against, so the tree stays in place.
+- The key belongs to the upstream project rather than to this repository, so rotating it is not this repository's action to take.
+- Nothing in this repository reads `google-services.json`; the only reference to it is the vendored `mobile/app.json` beside it.
+
+---
+
+### Decision
+
+**Summary**: Replace the key value in place with a redaction marker, keep the file at its path, and record the deviation from the verbatim snapshot.
+
+**Details**: The redaction changes one value inside one vendored file. The path stays valid for the frozen retrieval manifest and for the vendored `app.json` reference, the file remains valid JSON, and the structure that made the file worth vendoring survives. Deleting the file was rejected because it would leave a dangling reference, and the placeholder names what happened so a later reader does not mistake the value for a broken configuration.
+
+---
+
+### Alternatives Considered
+
+| Alternative | Why it was not chosen |
+|-------------|----------------------|
+| Delete the file | Leaves the vendored `app.json` reference dangling and removes the non-secret structure the snapshot carries |
+| Delete the whole vendored tree | Destroys the provenance source that the skill digest and the ORCA-008 scenario depend on |
+| Leave the key and close the alert as a false positive | The key is real and the alert is accurate; the repository would keep carrying a third-party credential |
+| Rewrite history to purge the key | Rewrites shared history on a public repository, which the operator has not approved |
+
+---
+
+### Consequences
+
+**Positive**:
+- The key pattern no longer exists anywhere in the packet tree.
+- The provenance tree and every reference to it stay intact.
+
+**Negative**:
+- The vendored copy now deviates from upstream in exactly one redacted value - Mitigation: this record names the file and the value, so a future re-vendor re-applies the same redaction.
+- The key remains in the history of commit `91ccdd7ac4` - Mitigation: the alert is resolved on GitHub, the residual is reported to the operator, and rotation belongs to the upstream project because the key is a client-side key shipped inside a mobile app.
+
+---
+
+### Implementation
+
+**Affected Systems**: `specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/google-services.json`.
+
+**Rollback**: Restore the value from commit `91ccdd7ac4` if the vendored copy ever has to match upstream byte for byte.
+
+---
+
+<!-- /ANCHOR:adr-009 -->

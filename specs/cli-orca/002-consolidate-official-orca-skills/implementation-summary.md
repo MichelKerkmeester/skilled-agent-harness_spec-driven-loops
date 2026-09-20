@@ -18,7 +18,7 @@ contextType: "implementation"
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-consolidate-official-orca-skills |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Level** | 3 |
 | **Started** | 2026-09-20 |
 | **Branch** | `skilled/v4.0.0.0` |
@@ -126,6 +126,7 @@ No performance, security or reliability NFR was placed at risk. The work touches
 | M4 Hub clean at nine modes | Achieved |
 | M5 Packets moved and metadata live | Achieved |
 | M6 Fleet catalogs, re-ingestion and gates closed | Achieved |
+| M7 Post-closure review cycle closed and the leaked key remediated | Pending |
 
 <!-- /ANCHOR:milestones -->
 

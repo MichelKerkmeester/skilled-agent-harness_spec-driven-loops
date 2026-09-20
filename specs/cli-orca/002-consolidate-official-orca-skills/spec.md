@@ -23,7 +23,7 @@ This packet dissolves the hub membership and promotes the subject into a standal
 
 **Key Decisions**: classify the new root as class S (no registry, no router, no description.json), delete the 292 MB repository copy that lived inside the skill tree, embed each official skill as an authored reference plus a verbatim snapshot, dispatch research and writing work to external read-only workers, and keep the class-S package shape from the sk-create-skill templates.
 
-**Current implementation state**: in progress. The snapshot copy was removed with a verified equivalent, the research wave returned three cited reports, the hub is still carrying ten modes, and the skill corpus, hub extraction, packet move and gates are pending.
+**Current implementation state**: reopened after closure on the operator's instruction, so that a deep review of the shipped skill, the remediation it justifies and the playbook run can be recorded as evidence. The extraction itself is complete: the snapshot copy was removed with a verified equivalent, the research wave returned three cited reports, the hub runs at nine aligned modes, and the skill corpus, packet move, fleet catalog updates and sixteen-gate close-out suite all passed.
 
 **Critical Dependencies**: the vendored Orca snapshot at `specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main`, the sk-create-skill class-S contract, the mcp-tooling hub invariants, and the system-spec-kit strict validator.
 
@@ -38,7 +38,7 @@ This packet dissolves the hub membership and promotes the subject into a standal
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-09-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Packet role** | Migration and upgrade record for the new cli-orca skill |
@@ -122,6 +122,11 @@ Deliver one standalone cli-orca skill that owns the Orca CLI routing surface and
 | REQ-007 | `specs/cli-orca` track metadata exists and the mcp-tooling track metadata no longer lists 021. |
 | REQ-008 | The fleet catalogs name eight class-S roots and describe the cli-* family as CLI tool surfaces rather than only dispatch executors. |
 | REQ-009 | Every authored skill document passes `validate_document.py` with zero blocking issues. |
+| REQ-010 | A five-iteration deep review of `.skilled/skills/cli-orca` records one verdict line per iteration, appends each iteration to the JSONL ledger, and produces a loop report under the packet's `review/` directory. |
+| REQ-011 | A fresh-context synthesis returns a prioritised fix list in which every finding cites the file and line it lands in. |
+| REQ-012 | Every justified finding is remediated, each change is proven by a check, and no gate that passed in the pre-remediation baseline fails afterwards. |
+| REQ-013 | The eight playbook scenarios run in wave order and each outcome is recorded with its transcript, exit status and reason under the skill's dated benchmark reports. |
+| REQ-014 | No live secret remains in the repository: the leaked upstream client key in the vendored snapshot is redacted and the redaction is recorded in the decision record. |
 
 <!-- /ANCHOR:requirements -->
 
