@@ -776,7 +776,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 &nbsp;
 #### SYSTEM
 
-**`system-spec-kit`**
+##### `system-spec-kit`
 
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
@@ -785,7 +785,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 &nbsp;
 
-**`system-skill-advisor`**
+##### `system-skill-advisor`
 
 - Gate 2 skill-routing subsystem at `.skilled/skills/system-skill-advisor/`
 - Owns prompt-time skill routing, the `skill_graph_*` commands, freshness and lifecycle checks, plus the shared embeddings stack
@@ -794,7 +794,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 &nbsp;
 #### CODE WORKFLOW
 
-**`sk-code`** - write code that fits the stack you're in
+##### `sk-code` - write code that fits the stack you're in
 
 - Loads surface-aware patterns, checklists and verification recipes per surface, and detects the active stack from paths and library markers
 - Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
@@ -804,7 +804,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 &nbsp;
 
-**`sk-git`** - one clean path from change to PR
+##### `sk-git` - one clean path from change to PR
 
 - Orchestrates three sub-skills so branches and commits stay tidy
 - **`git-worktree`:** isolated workspaces, branch creation, parallel development
@@ -839,14 +839,14 @@ Every bridge shares the same foundation:
 
 > **Self-invocation guard:** every skill refuses to call itself. A Claude Code session never dispatches `cli-claude-code`, an OpenCode session never dispatches `cli-opencode`, etc. Cross-AI delegation only, no cycles.
 
-**`cli-external-orchestration`** - parent hub for external CLI dispatch
+##### `cli-external-orchestration` - parent hub for external CLI dispatch
 
 One skill, seven bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-hermes`. Describe the job and it hands the dispatch to the right one.
 
 &nbsp;
 #### JUDGMENT TRANSPORT
 
-**`cli-jev`** - typed judgments from the Jev CLI
+##### `cli-jev` - typed judgments from the Jev CLI
 
 When a decision needs a number rather than prose, this hub asks the `jev` CLI for one: a probability, a choice between options, a score position or a batch of keyed answers. It returns the value and changes nothing else.
 
@@ -856,14 +856,14 @@ When a decision needs a number rather than prose, this hub asks the `jev` CLI fo
 &nbsp;
 #### MCP INTEGRATION
 
-**`mcp-code-mode`**
+##### `mcp-code-mode`
 
 - **Reach 200+ external tools without bloating context.** One TypeScript interface fronts every external MCP tool (Figma, GitHub, Chrome DevTools, ClickUp, Webflow)
 - **98.7% less context overhead:** tool schemas load on demand at first use, zero upfront cost, type-safe with autocomplete
 
 &nbsp;
 
-**`mcp-tooling`** - parent hub for MCP tool bridges
+##### `mcp-tooling` - parent hub for MCP tool bridges
 
 One advisor identity routing to ten modes through `mode-registry.json`: six workflow modes (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`, `mcp-orca-cli`) and four design transports (`mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-magicpath`).
 
@@ -875,7 +875,7 @@ One advisor identity routing to ten modes through `mode-registry.json`: six work
 &nbsp;
 #### DESIGN
 
-**`sk-design`** - parent hub for design work over four modes
+##### `sk-design` - parent hub for design work over four modes
 
 - The hub carries no procedure of its own. It decides which mode owns the question in front of you and hands over
 - **`sk-design-fundamentals`**, the default and the only mode without a command. Designs, builds and reviews any laid-out surface from fixed value scales: spacing, type, colour, contrast and hierarchy. Covers screen UI, slide decks, printed pages and document layouts, and adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen
@@ -888,7 +888,7 @@ One advisor identity routing to ten modes through `mode-registry.json`: six work
 &nbsp;
 #### DOCUMENTATION
 
-**`sk-doc`**
+##### `sk-doc`
 
 - **Parent hub for documentation authoring, routed via `mode-registry.json` to fourteen workflow modes across thirteen packets.** Markdown specialist with DQI quality scoring (Structure 40%, Content 35%, Style 25%) plus HVR compliance checking
 - **Scaffolds components** (skills, agents, commands) and handles README templates, frontmatter validation and feature-catalog authoring
@@ -896,7 +896,7 @@ One advisor identity routing to ten modes through `mode-registry.json`: six work
 &nbsp;
 #### PROMPTING
 
-**`sk-prompt`**
+##### `sk-prompt`
 
 - **Standalone prompt-engineering skill.** Turns a rough ask into a structured, scored prompt
 - **Auto-selects from 7 frameworks** (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT), then refines and scores: DEPTH thinking across 3-10 rounds, then CLEAR scoring (Correctness, Logic, Expression, Arrangement, Reusability) against a fixed threshold
@@ -905,7 +905,7 @@ One advisor identity routing to ten modes through `mode-registry.json`: six work
 &nbsp;
 #### COMMUNICATION
 
-**`sk-communication`**
+##### `sk-communication`
 
 - **CLI output in plain English.** Projects terse CLI and agent output into careful prose across six runtimes while leaving the canonical byte stream unchanged
 - **Fails safe:** every unsafe or failed path returns the exact original output
@@ -913,14 +913,14 @@ One advisor identity routing to ten modes through `mode-registry.json`: six work
 &nbsp;
 #### OTHER
 
-**`sk-vision`**
+##### `sk-vision`
 
 - **Local vision for text-only models.** OCR, inspect, detect and pixel analysis on screenshots through a private Moondream runtime
 - **No keys, no cloud, no per-image cost:** OpenCode leaves the tools unregistered by default, Pi registers them hidden, Devin gets evidence through a prompt-time hook and Cursor runs the CLI
 
 &nbsp;
 
-**`cli-orca`** - Orca terminal CLI orchestrator
+##### `cli-orca` - Orca terminal CLI orchestrator
 
 - **Drive the Orca app from a dispatch.** Managed worktrees, paired terminals you can read back after a send, the embedded browser for pages the runtime itself hosts, automations, and full ownership handoffs
 - **Checks the app before it touches anything.** It resolves the `orca` executable and confirms the runtime answers, so a broken install stops the route instead of half-running it
@@ -935,7 +935,7 @@ One advisor identity routing to ten modes through `mode-registry.json`: six work
 &nbsp;
 #### AGENT ORCHESTRATION
 
-**Orchestrate** - runs the show on multi-step work
+##### Orchestrate - runs the show on multi-step work
 
 - Decomposes a task, delegates to specialist agents and merges their output into one answer with conflict resolution
 - Read-only by design: it directs, the specialists implement
@@ -943,7 +943,7 @@ One advisor identity routing to ten modes through `mode-registry.json`: six work
 
 &nbsp;
 
-**Code** - ships surface-aware code and proves it works
+##### Code - ships surface-aware code and proves it works
 
 - Write-capable specialist that reads `sk-code`'s detected surface at dispatch, so the agent body stays stack-agnostic
 - Seven dispatch modes: full build, surgical fix, refactor, test-add, scaffold, rename/move, dependency bump
@@ -952,28 +952,28 @@ One advisor identity routing to ten modes through `mode-registry.json`: six work
 
 &nbsp;
 
-**Context** - finds what you already know before searching code
+##### Context - finds what you already know before searching code
 
 - Continuity-first retrieval in order: `handover.md` → `_memory.continuity` → packet spec docs → trigger index lookup → ripgrep recipes
 - Returns a Context Package that combines packet continuity findings with codebase evidence. Read-only
 
 &nbsp;
 
-**Review** - guards code quality, never edits
+##### Review - guards code quality, never edits
 
 - Strict read-only, loading `sk-code`'s `code-review` mode (the findings-first baseline) and layering its router-selected surface standards
 - Safety floor holds: security and correctness minimums are never relaxed. Output is findings-first severity with quality scoring
 
 &nbsp;
 
-**Debug** - a fresh pair of eyes after you're stuck
+##### Debug - a fresh pair of eyes after you're stuck
 
 - Receives a structured context handoff instead of the failed conversation, so it skips inherited bias. Use after 3+ failed tries
 - Systematic 5-phase method: Observe → Analyze → Hypothesize → Validate → Fix, written up in `debug-delegation.md`
 
 &nbsp;
 
-**Markdown** - scoped doc authoring you can trust
+##### Markdown - scoped doc authoring you can trust
 
 - LEAF executor for the `/create:*` family plus scoped spec-doc and markdown writing, loading `sk-doc` and the right template on every run
 - Refuses anything out of scope: unscoped writes and nested delegation receive a canonical REFUSE
@@ -981,14 +981,14 @@ One advisor identity routing to ten modes through `mode-registry.json`: six work
 
 &nbsp;
 
-**Prompt-Improver** - strengthens high-stakes prompts
+##### Prompt-Improver - strengthens high-stakes prompts
 
 - Picks the best `sk-prompt` framework, applies DEPTH at the right energy and validates with CLEAR
 - Returns a structured package (`FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT`, `ESCALATION_NOTES`). Used by the CLI mirror-card pipeline and `/prompt-improve` agent mode when inline prompting is too weak
 
 &nbsp;
 
-**Design** - owns design decisions and artifacts across four modes
+##### Design - owns design decisions and artifacts across four modes
 
 - Decides values and behavior through `sk-design-fundamentals`
 - Measures an existing surface into a Style Reference through `sk-design-md-generator`
@@ -1088,7 +1088,7 @@ Other entries in `.pi/extensions/`:
 &nbsp;
 #### SPEC KIT
 
-**`/speckit:plan --intake-only`** - intake-only mode
+##### `/speckit:plan --intake-only` - intake-only mode
 
 - A mode of `/speckit:plan`, not a separate command
 - Standalone intake workflow that publishes `spec.md`, `description.json` and `graph-metadata.json`
@@ -1097,7 +1097,7 @@ Other entries in `.pi/extensions/`:
 
 &nbsp;
 
-**`/speckit:complete`** - build a feature end to end
+##### `/speckit:complete` - build a feature end to end
 
 - End-to-end workflow: intake/delegate → research → plan → implement → verify → save continuity
 - Smart-detects missing or unhealthy packet state and reuses the shared intake contract from `/speckit:plan --intake-only`. Healthy folders continue without extra setup prompts
@@ -1106,7 +1106,7 @@ Other entries in `.pi/extensions/`:
 
 &nbsp;
 
-**`/speckit:plan`** - planning only
+##### `/speckit:plan` - planning only
 
 - Authors `spec.md`, `plan.md` and `tasks.md` without implementing
 - Reuses the shared intake contract from `/speckit:plan --intake-only` when the packet is `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade`
@@ -1115,7 +1115,7 @@ Other entries in `.pi/extensions/`:
 
 &nbsp;
 
-**`/speckit:implement`** - execute an existing plan
+##### `/speckit:implement` - execute an existing plan
 
 - Requires `plan.md` to already exist
 - 9-step workflow covering task breakdown, implementation, testing and verification
@@ -1123,7 +1123,7 @@ Other entries in `.pi/extensions/`:
 
 &nbsp;
 
-**`/speckit:resume`** - pick up where you left off
+##### `/speckit:resume` - pick up where you left off
 
 - Continues a previous session by auto-loading continuity from the spec folder
 - Presents session summary, shows progress against `tasks.md`
@@ -1146,7 +1146,7 @@ Other entries in `.pi/extensions/`:
 &nbsp;
 #### CONTINUITY
 
-**`/speckit:save`**
+##### `/speckit:save`
 
 - Updates packet continuity and supporting generated context artifacts via `generate-context.js`
 - AI composes structured JSON with session summary, key decisions and findings
@@ -1154,7 +1154,7 @@ Other entries in `.pi/extensions/`:
 
 &nbsp;
 
-**`/speckit:search`**
+##### `/speckit:search`
 
 - Two lexical lanes over spec docs and skill docs: trigger-index lookup with `--triggers`, ripgrep recipes otherwise
 - `--paths` and `--count` pick the recipe. `--packet <specFolder>` narrows the search roots
@@ -1163,14 +1163,14 @@ Other entries in `.pi/extensions/`:
 &nbsp;
 #### CREATE
 
-**`/create:sk-skill`** - unified skill creation and update workflow
+##### `/create:sk-skill` - unified skill creation and update workflow
 
 - Creates `SKILL.md` with 8-section structure, `README.md`, references and assets directories
 - Registers in the skill catalog. Modes: `:auto`, `:confirm`
 
 &nbsp;
 
-**`/create:sk-skill-parent`** - parent skill with nested modes
+##### `/create:sk-skill-parent` - parent skill with nested modes
 
 - Scaffolds a parent skill with nested mode packets: one hub identity plus a `mode-registry.json` source of truth the modes project from
 - Generates the routing-only `SKILL.md`, single hub `graph-metadata.json`, N mode packets and a non-discoverable `shared/`
@@ -1178,7 +1178,7 @@ Other entries in `.pi/extensions/`:
 
 &nbsp;
 
-**`/create:agent`** - new agent definitions
+##### `/create:agent` - new agent definitions
 
 - Scaffolds a new agent definition with proper frontmatter, behavioral rules and tool permissions
 - Creates the source-of-truth file in `.skilled/agents/` and the Claude Code mirror
@@ -1186,7 +1186,7 @@ Other entries in `.pi/extensions/`:
 
 &nbsp;
 
-**`/create:readme`** - README and install guides
+##### `/create:readme` - README and install guides
 
 - Unified README and install guide creation using `sk-doc` quality standards
 - Auto-detects folder type, loads the appropriate template, validates via DQI scoring
@@ -1194,7 +1194,7 @@ Other entries in `.pi/extensions/`:
 
 &nbsp;
 
-**`/create:changelog`** - formatted release notes
+##### `/create:changelog` - formatted release notes
 
 - Auto-detects recent work from spec folder artifacts or git history
 - Resolves the correct component folder, calculates the next version number
@@ -1202,7 +1202,7 @@ Other entries in `.pi/extensions/`:
 
 &nbsp;
 
-**`/create:feature-catalog`** - feature catalog packages
+##### `/create:feature-catalog` - feature catalog packages
 
 - Creates or updates feature catalog packages with category routing
 - Generates both technical reference entries and simple-terms companion entries
@@ -1210,7 +1210,7 @@ Other entries in `.pi/extensions/`:
 
 &nbsp;
 
-**`/create:testing-playbook`** - manual testing scenarios
+##### `/create:testing-playbook` - manual testing scenarios
 
 - Creates or updates manual testing playbook packages
 - Generates scenario files with test steps, expected results and verification evidence fields
@@ -1223,31 +1223,31 @@ The active autonomous loop families (the improvement family carries two lanes). 
 
 &nbsp;
 
-**`/deep:ai-council`** - plan hard decisions with several models
+##### `/deep:ai-council` - plan hard decisions with several models
 
 - Multi-seat planning for complex decisions, planning-only. Modes: `:auto`, `:confirm`
 
 &nbsp;
 
-**`/deep:research`** - research until the answer holds
+##### `/deep:research` - research until the answer holds
 
 - Iterative research until convergence, anchored to a real `spec.md`, with `new`/`resume`/`restart` lifecycle. Modes: `:auto`, `:confirm`
 
 &nbsp;
 
-**`/deep:review`** - audit code until it is clean
+##### `/deep:review` - audit code until it is clean
 
 - Iterative code audit until convergence, ending in a PASS/CONDITIONAL/FAIL verdict. Modes: `:auto`, `:confirm`
 
 &nbsp;
 
-**`/deep:agent-improvement`** - improve your own agents
+##### `/deep:agent-improvement` - improve your own agents
 
 - Evaluates and improves any agent, with guarded promotion and rollback. Modes: `:auto`, `:confirm`
 
 &nbsp;
 
-**`/deep:model-benchmark`** - benchmark models and frameworks
+##### `/deep:model-benchmark` - benchmark models and frameworks
 
 - Benchmarks a model or prompt framework against fixtures. Modes: `:auto`, `:confirm`
 
@@ -1258,7 +1258,7 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 
 &nbsp;
 
-**`/doctor <target>` (router)**
+##### `/doctor <target>` (router)
 
 - Single entry point for 9 subsystems: `memory` (checks the trigger index, its lookup and the ripgrep recipes), `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `skill-graph-freshness`, `parent-skill`, `runtime-mirrors`, `fable-mode`
 - Argv-positional dispatch via `.skilled/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
@@ -1269,14 +1269,14 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 
 &nbsp;
 
-**`/doctor:mcp install|debug`** - MCP infrastructure repair
+##### `/doctor:mcp install|debug` - MCP infrastructure repair
 
 - `install`. Fresh install or reinstall of the native MCP server and the Skill Advisor daemon from their install guides. Handles old-conflicting-with-new (clean reinstall with venv/node_modules removal)
 - `debug`. Diagnoses the Skill Advisor and Code Mode with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
 
 &nbsp;
 
-**`/doctor:update`** - multi-subsystem orchestrator
+##### `/doctor:update` - multi-subsystem orchestrator
 
 - Dependency-safe rebuild across trigger index → skill-graph → advisor → deep-loop
 - One lock (`system-skill-advisor/runtime/database/.doctor-update.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-update.last-run.json`)
@@ -1289,7 +1289,7 @@ The 13 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-
 &nbsp;
 #### UTILITY
 
-**Agent Router**
+##### Agent Router
 
 - Routes requests to supported external AI systems such as Claude Code
 - The receiving AI operates under its own system prompt - full identity adoption
@@ -1297,7 +1297,7 @@ The 13 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-
 
 &nbsp;
 
-**`/prompt:improve`**
+##### `/prompt:improve`
 
 - Refines prompts and prompt packages through 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
 - Applies DEPTH thinking methodology with CLEAR quality scoring
@@ -1305,7 +1305,7 @@ The 13 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-
 
 &nbsp;
 
-**`/goal`**
+##### `/goal`
 
 - Sets a session completion condition the agent keeps working toward across turns
 - See [Goal Plugin](#goal-plugin) above for the full contract
@@ -1390,7 +1390,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 &nbsp;
 
-**`sk-code`** - 🎨 stack-specific, the customization point
+##### `sk-code` - 🎨 stack-specific, the customization point
 
 - Surface-aware code-quality patterns
 - Replace the shipped Webflow + OpenCode + Obsidian surfaces with your own (Next.js + Tailwind + Postgres, React Native + Reanimated, Go + sqlc, etc.)
@@ -1399,80 +1399,80 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 &nbsp;
 
-**`sk-doc`** - ✅ codebase-agnostic
+##### `sk-doc` - ✅ codebase-agnostic
 
 - Markdown quality + component creation. Works for any project
 
 &nbsp;
 
-**`sk-git`** - ✅ codebase-agnostic
+##### `sk-git` - ✅ codebase-agnostic
 
 - Worktree + commit + PR workflow. Works for any project
 
 &nbsp;
 
-**`sk-design`** - ✅ codebase-agnostic
+##### `sk-design` - ✅ codebase-agnostic
 
 - Parent hub for design work over four modes: values and review (`sk-design-fundamentals`), design-reference extraction from a live URL into a v3 Style Reference `DESIGN.md` (`sk-design-md-generator`), standalone HTML charts across 29 forms (`sk-design-chart`), and HTML/SVG diagrams across 27 types (`sk-design-diagram`)
 - Pairs with `sk-code` for the build. Works for any project
 
 &nbsp;
 
-**`system-spec-kit`** - ✅ codebase-agnostic
+##### `system-spec-kit` - ✅ codebase-agnostic
 
 - Spec folder workflow + validator + continuity. Works for any project
 
 &nbsp;
 
-**`system-skill-advisor`** - ✅ codebase-agnostic
+##### `system-skill-advisor` - ✅ codebase-agnostic
 
 - Prompt-time skill routing over the shared skill graph. Works for any project
 
 &nbsp;
 
-**`mcp-code-mode`** - ✅ codebase-agnostic
+##### `mcp-code-mode` - ✅ codebase-agnostic
 
 - Multi-tool MCP orchestration. Works for any project
 
 &nbsp;
 
-**`system-deep-loop`** - ✅ codebase-agnostic
+##### `system-deep-loop` - ✅ codebase-agnostic
 
 - Parent hub for the unified deep-loop skill (research, review, ai-council and improvement modes, including agent improvement and model benchmarking) over nested `runtime/` infrastructure. Works for any topic / target
 
 &nbsp;
 
-**`sk-prompt`** - ✅ codebase-agnostic
+##### `sk-prompt` - ✅ codebase-agnostic
 
 - Prompt-engineering framework. Works for any project
 
 &nbsp;
 
-**`sk-vision`** - ✅ codebase-agnostic
+##### `sk-vision` - ✅ codebase-agnostic
 
 - Local OCR and image inspection through a private Moondream runtime. Works for any project
 
 &nbsp;
 
-**`sk-communication`** - ✅ codebase-agnostic
+##### `sk-communication` - ✅ codebase-agnostic
 
 - Plain-English projection of CLI output across six runtimes. Works for any project
 
 &nbsp;
 
-**`cli-external-orchestration`** - ✅ codebase-agnostic
+##### `cli-external-orchestration` - ✅ codebase-agnostic
 
 - Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes`. Stack-independent
 
 &nbsp;
 
-**`cli-jev`** - ✅ codebase-agnostic
+##### `cli-jev` - ✅ codebase-agnostic
 
 - Parent hub for the Jev typed-judgment transport: routes to `cli-usage` for a probability, an option key, a score position or a batch of keyed answers from the `jev` CLI. Stack-independent. Needs the `jev` CLI on PATH
 
 &nbsp;
 
-**`mcp-tooling`** - ✅ codebase-agnostic
+##### `mcp-tooling` - ✅ codebase-agnostic
 
 - Parent hub for MCP tool bridges, ten modes: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`), `mcp-obsidian` (Obsidian notes via notesmd-cli, the official obsidian CLI, and cyanheads obsidian-mcp-server), `mcp-aside-devtools`, `mcp-notion` and `mcp-orca-cli`, plus the design transports `mcp-figma` (Figma Desktop via the silships `figma-ds-cli`, requires Figma Desktop open), `mcp-refero`, `mcp-mobbin` and `mcp-magicpath`. Stack-independent
 

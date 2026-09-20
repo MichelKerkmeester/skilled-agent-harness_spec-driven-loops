@@ -162,6 +162,8 @@ contextType: "implementation"
 <!-- ANCHOR:verification -->
 - [x] T047 Add the missing `cli-orca` entry to the root README skill catalog and correct the fleet counts (`README.md`) [20m] — entry in the CROSS-AI CLI group, four counts 14 → 15, HVR zero hard blockers, doc validator no worse than HEAD, packet PASSED
 
+- [x] T048 Convert the README entry names from bold text to `#####` headings and push (`README.md`) [20m] — 61 entries converted across §8/§9/§11/§14; HVR unchanged at 0 hard blockers / 90 ceiling; doc validator no worse than HEAD; packet PASSED
+
 ## Verification Checklist
 
 | Check | Command shape | Expected result | Status |
