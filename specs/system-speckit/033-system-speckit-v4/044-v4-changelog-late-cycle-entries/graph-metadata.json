@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/044-v4-changelog-late-cycle-entries",
+  "spec_folder": "system-speckit/033-system-speckit-v4/044-v4-changelog-late-cycle-entries",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 changelog late cycle entries",
+      "cli-jev changelog entry",
+      "cli-orca changelog entry",
+      "after this draft update",
+      "v4 changelog late cycle plan",
+      "v4 changelog late cycle tasks",
+      "v4 changelog late cycle summary",
+      "cli-jev changelog evidence"
+    ],
+    "key_topics": [
+      "changelog",
+      "late",
+      "cycle",
+      "entries",
+      "cli-jev",
+      "entry",
+      "cli-orca",
+      "draft",
+      "plan",
+      "tasks",
+      "summary",
+      "evidence"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/skill-benchmark-report.md",
+      ".skilled/skills/cli-jev/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
+      ".skilled/skills/mcp-tooling/mode-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/skill-benchmark-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "After This Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "anchor-asserting",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks: v4 changelog late-cycle entries",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shipped As",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`../CHANGELOG-v4.0.0.0.md` was last edited 2026-09-16, and the two late-cycle skill moves that landed 2026-09-20 are absent from it: `cli-jev` becoming its own transport hub, and `mcp-orca-cli` being promoted to the standalone `cli-orca` class-S skill",
+    "created_at": "2026-09-20T20:52:56.613Z",
+    "last_save_at": "2026-09-20T20:52:56.613Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:71fb9730c7cb9f16551a1beda1da7c258745d1bc94d05c497fa7a193be7aab28",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "524045cac271bc1d8710684e8944d44fc100e41add50918241b4a66bc32fcbd1",
+      "plan.md": "91f8832f5c33ab45a36ab8c2215192609ee15e02527d31d10de922e5fa3c0527",
+      "tasks.md": "3891c255992bfa70ed927ce3347dfdcfddad58df5e24c9fdded36ceb3509628c",
+      "implementation-summary.md": "658efe466d5b5f5afac17db083c4d050873132e773e4b6de63a2cf5a1cacc7fa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -523,4 +523,6 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 **Changelog draft brought in line with the repository:** 2026-09-08, `035`. Status: Done. Evidence: `CHANGELOG-v4.0.0.0.md` and `035-v4-changelog-draft-update/implementation-summary.md`.
 
 **Third consolidation wave into this parent:** 2026-09-12. Status: Done. Evidence: the track's `034-spec-doc-healer` and `035-derived-artifact-registry` moved to children `036`/`037`, `036-goal-unification` renumbered to `038` by first commit, the `044`/`045` leftovers reconciled into `012`/`014`; this timeline.
+
+**The v4 changelog records the two late-cycle skill moves:** 2026-09-20, `044`. Status: Done. Evidence: `044-v4-changelog-late-cycle-entries/implementation-summary.md`, the entries shipped as commit `799bb5e679`.
 <!-- /ANCHOR:milestones -->

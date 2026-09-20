@@ -150,6 +150,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 41 | 041-skilled-source-root-migration/ | Root the shared skill, command and agent library at .skilled instead of .opencode, keeping the .opencode aliases as tracked per-entry symlinks | complete |
 | 42 | 042-v4-doc-freshness/ | Ten iterations of cited evidence on whether the v4 changelog and the root README still match the tree, then the confirmed corrections | complete |
 | 43 | 043-v4-root-readme/ | Root README writing, readability, structural consistency, and bloat removal | complete |
+| 44 | 044-v4-changelog-late-cycle-entries/ | The After This Draft section records the cli-jev hub promotion and the cli-orca standalone extraction, with the corrected commit total and mode count | complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
