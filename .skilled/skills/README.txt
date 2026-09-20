@@ -21,14 +21,14 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Four prefix families: `cli-*` (1), `mcp-*` (2), `sk-*` (7), `system-*` (3) |
+| **Families** | Four prefix families: `cli-*` (2), `mcp-*` (2), `sk-*` (7), `system-*` (3) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
 
 ## 2. OVERVIEW
 
-Thirteen top-level skill identities live under `.skilled/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
+Fourteen top-level skill identities live under `.skilled/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
 
 New skills are discovered automatically from a valid `SKILL.md` frontmatter plus `graph-metadata.json`; no manual registration step exists.
 
@@ -38,11 +38,12 @@ New skills are discovered automatically from a valid `SKILL.md` frontmatter plus
 
 Each skill name links to its own README. One-line descriptions reflect current behavior.
 
-### cli-*: Cross-AI CLI Dispatch
+### cli-*: CLI Tool Surfaces and Cross-AI CLI Dispatch
 
 | Skill | What it does |
 |---|---|
 | [`cli-external-orchestration`](cli-external-orchestration/README.md) | Parent hub for external CLI dispatch, holding no per-mode logic: routes by `workflowMode` to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-hermes` |
+| [`cli-orca`](cli-orca/README.md) | Standalone class-S skill for Orca CLI work: managed worktrees, terminals, the embedded browser, automations, artifacts, handoffs and skill sharing, plus one authored reference and one verbatim snapshot for each of the eight official Orca skills |
 
 ### mcp-*: External Tool Surfaces
 

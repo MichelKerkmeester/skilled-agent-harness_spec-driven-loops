@@ -1,0 +1,33 @@
+[project]
+name = "jev-cli"
+version = "0.6.2"
+description = "Small CLI and stdio MCP server for TypeSafe Jev"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.13"
+dependencies = ["mcp>=2.2.0,<3"]
+keywords = ["typesafe", "jev", "cli", "mcp", "ai"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/tumf/jev-cli"
+Repository = "https://github.com/tumf/jev-cli"
+Issues = "https://github.com/tumf/jev-cli/issues"
+
+[project.scripts]
+jev = "jev_cli:main"
+jev-mcp = "jev_cli.mcp_server:main"
+
+[build-system]
+requires = ["uv_build>=0.8.15,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+source-include = ["tests/**", "skills/**", "scripts/embed_skills.py"]

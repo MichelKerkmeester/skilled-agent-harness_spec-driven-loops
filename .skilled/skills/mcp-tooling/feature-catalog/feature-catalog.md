@@ -1,32 +1,31 @@
 ---
 title: "mcp-tooling: Feature Catalog"
-description: "Current-state inventory for the mcp-tooling hub, covering ten workflow-vs-transport modes, metadata routing, generated leaf resources, and the conditional compiled-routing front door."
+description: "Current-state inventory for the mcp-tooling hub, covering nine workflow-vs-transport modes, metadata routing, generated leaf resources, and the conditional compiled-routing front door."
 trigger_phrases:
   - "mcp-tooling feature catalog"
   - "mcp-tooling hub capabilities"
   - "workflow vs transport routing"
   - "mcp-tooling compiled routing"
-  - "Orca CLI hub integration"
-last_updated: "2026-09-19"
-version: 1.1.0.0
+last_updated: "2026-09-20"
+version: 1.2.0.0
 ---
 
 # mcp-tooling: Feature Catalog
 
-This catalog inventories the live `mcp-tooling` hub surface. The hub scores and dispatches ten MCP-bridge packets across a workspace-mutating workflow axis and a read-only external-transport axis. A conditional compiled-routing front door may resolve the same decision ahead of registry-driven routing when its activation manifest is fresh; otherwise the legacy hub router remains authoritative.
+This catalog inventories the live `mcp-tooling` hub surface. The hub scores and dispatches nine MCP-bridge packets across a workspace-mutating workflow axis and a read-only external-transport axis. A conditional compiled-routing front door may resolve the same decision ahead of registry-driven routing when its activation manifest is fresh; otherwise the legacy hub router remains authoritative.
 
 ---
 
 ## 1. OVERVIEW
 
-Use this catalog as the current-state inventory for the `mcp-tooling` hub. The hub does not call an external tool itself — it selects one of six workflow packets, one of four transports, an ordered bundle, or a deferred disambiguation, then hands off to the selected packet.
+Use this catalog as the current-state inventory for the `mcp-tooling` hub. The hub does not call an external tool itself — it selects one of five workflow packets, one of four transports, an ordered bundle, or a deferred disambiguation, then hands off to the selected packet.
 
 | Axis | Modes | Contract |
 |---|---|---|
-| Workflow | `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`, `mcp-orca-cli` | May change local or external workflow state and must apply packet-specific authorization and verification gates |
+| Workflow | `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion` | May change local or external workflow state and must apply packet-specific authorization and verification gates |
 | Transport | `mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-magicpath` | External read or explicit-export surfaces; remain `mutatesWorkspace:false` in this workspace |
 
-`mcp-orca-cli` owns Orca-managed worktrees, repositories, terminals, handoffs, automations, artifacts, skill sharing, comments, and embedded browser state. It is deliberately CLI-only because the inspected Orca command registry exposed no native Orca MCP command.
+Orca CLI work left this hub for the standalone `cli-orca` skill, which owns Orca-managed worktrees, repositories, terminals, handoffs, automations, artifacts, skill sharing, comments, and embedded browser state.
 
 ---
 
@@ -52,7 +51,7 @@ The activation manifest is not promoted by adding an ordinary packet. After a hu
 
 ```bash
 node .skilled/bin/compiled-route-status.cjs --hub mcp-tooling
-node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use the Orca CLI to inspect the current worktree"
+node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use Chrome DevTools to capture a HAR for the staging dashboard"
 ```
 
 See [`compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md`](compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md) for the flag, activation, and fallback contract.
@@ -84,4 +83,3 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.c
 | `leaf-manifest.json` | Generated mode-to-leaf inventory |
 | `manual-testing-playbook/` | Hub routing scenarios and coverage claims |
 | `benchmark/` | Historical Lane C archive plus dated current-run reports |
-| `mcp-orca-cli/` | Orca CLI workflow packet |

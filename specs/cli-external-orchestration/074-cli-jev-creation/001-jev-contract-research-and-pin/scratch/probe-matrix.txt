@@ -1,0 +1,152 @@
+### version
+CMD: jev --version
+RC: 0
+STDOUT: jev 0.6.2
+STDERR: <empty>
+
+### root-help
+CMD: jev --help
+RC: 0
+STDOUT: usage: jev [-h] [--version] {auth,install-skills,noul,choice,score,run} ...
+
+Evaluate text or JSON with TypeSafe Jev. Uses its own local credential store.
+
+positional arguments:
+  {auth,install-skills,noul,choice,score,run}
+    auth                manage the API key in the Jev credential store
+    install-skills      install bundled agent skills
+    noul                answer one yes/no question with a probability
+    choice              choose one option
+    score               score against ordered levels
+    run                 send a complete request JSON for batched questions
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+STDERR: <empty>
+
+### auth-status-no-key
+CMD: jev auth status
+RC: 3
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
+
+### auth-test-no-key
+CMD: jev auth test
+RC: 3
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
+
+### noul-no-key
+CMD: jev noul -q Is this urgent? -s Please restore service today.
+RC: 3
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
+
+### noul-no-key-value
+CMD: jev noul -q Is this urgent? -s Please restore service today. --value
+RC: 3
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
+
+### noul-stdin-form
+CMD: jev noul -q Is this urgent? -s -
+RC: 3
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
+
+### noul-at-file-missing
+CMD: jev noul -q Is it? -s @specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/scratch/absent.txt
+RC: 2
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "cannot read state file: [Errno 2] No such file or directory: 'specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/scratch/absent.txt'"}
+
+### custom-provider-no-endpoint
+CMD: jev noul -q Is it? -s x --provider custom
+RC: 2
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "custom provider requires JEV_ENDPOINT or --endpoint"}
+
+### custom-provider-with-endpoint
+CMD: jev noul -q Is it? -s x --provider custom --endpoint https://127.0.0.1:1/v1/systemone
+RC: 3
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "custom API key is not stored; run: jev auth set --provider custom"}
+
+### missing-question
+CMD: jev noul -s x
+RC: 2
+STDOUT: <empty>
+STDERR: usage: jev noul [-h] [--provider {official,vercel,openrouter,custom}]
+                [--model MODEL] [--json-state] [--pretty] [--value]
+                -q QUESTION [-s STATE]
+jev noul: error: the following arguments are required: -q/--question
+
+### choice-missing-option
+CMD: jev choice -q Which? -s x
+RC: 2
+STDOUT: <empty>
+STDERR: usage: jev choice [-h] [--provider {official,vercel,openrouter,custom}]
+                  [--model MODEL] [--json-state] [--pretty] [--value]
+                  -q QUESTION [-s STATE] -o KEY=DESCRIPTION
+jev choice: error: the following arguments are required: -o/--option
+
+### score-missing-level
+CMD: jev score -q How bad? -s x
+RC: 2
+STDOUT: <empty>
+STDERR: usage: jev score [-h] [--provider {official,vercel,openrouter,custom}]
+                 [--model MODEL] [--json-state] [--pretty] [--value]
+                 -q QUESTION [-s STATE] -l DESCRIPTION
+jev score: error: the following arguments are required: -l/--level
+
+### bad-json-state
+CMD: jev noul -q Is it? -s not json --json-state
+RC: 2
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "invalid JSON state: Expecting value: line 1 column 1 (char 0)"}
+
+### value-with-run-stdin
+CMD: jev run - --value
+RC: 2
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "invalid request JSON: Expecting value: line 1 column 1 (char 0)"}
+
+### run-bad-payload
+CMD: jev run @specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/scratch/absent-request.json
+RC: 2
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "cannot read state file: [Errno 2] No such file or directory: '@specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/scratch/absent-request.json'"}
+
+### unknown-subcommand
+CMD: jev judge -q Is it?
+RC: 2
+STDOUT: <empty>
+STDERR: usage: jev [-h] [--version] {auth,install-skills,noul,choice,score,run} ...
+jev: error: argument command: invalid choice: 'judge' (choose from 'auth', 'install-skills', 'noul', 'choice', 'score', 'run')
+
+### unknown-provider-env
+CMD: env JEV_PROVIDER=nope jev noul -q Is it? -s x
+RC: 2
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "invalid JEV_PROVIDER: nope"}
+
+### choice-single-option-cli
+CMD: jev choice -q Which? -s x -o only=The only option
+RC: 3
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
+
+### score-single-level-cli
+CMD: jev score -q How bad? -s x -l Only level
+RC: 3
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
+
+### negative-control-unreachable-endpoint
+CMD: JEV_API_KEY=<sentinel> jev noul -q Is it urgent? -s Restore service today. --provider custom --endpoint http://127.0.0.1:9/v1/systemone
+RC: 4
+STDOUT: <empty>
+STDERR: {"ok": false, "error": "API connection failed: <urlopen error [Errno 61] Connection refused>"}
+CHECK: sentinel absent from stderr
+

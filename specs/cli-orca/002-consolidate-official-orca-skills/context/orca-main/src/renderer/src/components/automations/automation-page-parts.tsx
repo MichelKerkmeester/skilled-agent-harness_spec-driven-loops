@@ -1,0 +1,118 @@
+import React from 'react'
+import type { Badge } from '@/components/ui/badge'
+import { cn } from '@/lib/utils'
+import type { AutomationRun } from '../../../../shared/automations-types'
+
+// Frozen at module scope: every run row formats a date, and constructing a
+// DateTimeFormat per cell dominates the render of a long runs table.
+const automationDateTimeFormatter = new Intl.DateTimeFormat(undefined, {
+  month: 'short',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: '2-digit'
+})
+
+export function formatAutomationDateTime(value: number | null | undefined): string {
+  if (!value) {
+    return 'Never'
+  }
+  return automationDateTimeFormatter.format(value)
+}
+
+export function formatAutomationRelativeTime(
+  value: number | null | undefined,
+  now = Date.now()
+): string | null {
+  if (!value) {
+    return null
+  }
+  const diffMs = value - now
+  const absMs = Math.abs(diffMs)
+  const minuteMs = 60 * 1000
+  const hourMs = 60 * minuteMs
+  const dayMs = 24 * hourMs
+  const format = (amount: number, unit: string): string => `${amount}${unit}`
+  let text: string
+  if (absMs < minuteMs) {
+    text = 'now'
+  } else if (absMs < hourMs) {
+    text = format(Math.round(absMs / minuteMs), 'm')
+  } else if (absMs < dayMs) {
+    text = format(Math.round(absMs / hourMs), 'h')
+  } else {
+    text = format(Math.round(absMs / dayMs), 'd')
+  }
+  if (text === 'now') {
+    return text
+  }
+  return diffMs >= 0 ? `in ${text}` : `${text} ago`
+}
+
+export function formatAutomationDateTimeWithRelative(
+  value: number | null | undefined,
+  now = Date.now()
+): string {
+  const absolute = formatAutomationDateTime(value)
+  const relative = formatAutomationRelativeTime(value, now)
+  return relative ? `${absolute} (${relative})` : absolute
+}
+
+export function getAutomationRunStatusVariant(
+  status: AutomationRun['status']
+): React.ComponentProps<typeof Badge>['variant'] {
+  if (status === 'dispatched' || status === 'completed') {
+    return 'secondary'
+  }
+  if (status.startsWith('skipped')) {
+    return 'outline'
+  }
+  if (status === 'dispatch_failed') {
+    return 'destructive'
+  }
+  return 'dot'
+}
+
+export function getAutomationRunStatusLabel(status: AutomationRun['status']): string {
+  switch (status) {
+    case 'pending':
+      return 'Queued'
+    case 'dispatching':
+      return 'Starting'
+    case 'dispatched':
+      return 'Launched'
+    case 'completed':
+      return 'Done'
+    case 'skipped_precheck':
+      return 'Precheck skipped'
+    case 'skipped_missed':
+      return 'Skipped'
+    case 'skipped_unavailable':
+      return 'Unavailable'
+    case 'skipped_needs_interactive_auth':
+      return 'Needs credentials'
+    case 'dispatch_failed':
+      return 'Failed'
+  }
+}
+
+export const AUTOMATION_EDITOR_SECTION_LABEL_CLASS =
+  'text-[11px] font-semibold uppercase tracking-[0.05em]'
+
+export function Field({
+  label,
+  children,
+  className,
+  labelClassName
+}: {
+  label: React.ReactNode
+  children: React.ReactNode
+  className?: string
+  labelClassName?: string
+}): React.JSX.Element {
+  return (
+    <div className={cn('min-w-0 space-y-1.5', className)}>
+      <div className={cn('text-xs text-muted-foreground', labelClassName)}>{label}</div>
+      {children}
+    </div>
+  )
+}

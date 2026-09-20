@@ -1,7 +1,7 @@
 {
   "name": "mcp-tooling",
-  "description": "Parent hub for ten MCP tool bridges: six workflow modes (mcp-chrome-devtools for browser inspection and debugging, mcp-click-up for ClickUp task management, mcp-obsidian for Obsidian vault and markdown-note management, mcp-aside-devtools for AI-browser automation, mcp-notion for Notion workspace operations, and mcp-orca-cli for Orca-managed worktrees, terminals, repositories, handoffs, automations, artifacts, skill sharing, comments, and embedded browser state) plus four read-only design transports (mcp-figma bridging to Figma Desktop, mcp-refero searching real-app UI references, mcp-mobbin researching mobile-app patterns, and mcp-magicpath looking up MagicPath components and design systems through its read-only vendor CLI over a UTCP cli manual). The advisor sees one hub identity and workflowMode selects the packet. mcp-code-mode is shared infrastructure, not a hub member.",
-  "version": "1.7.0.0",
+  "description": "Parent hub for nine MCP tool bridges: five workflow modes (mcp-chrome-devtools for browser inspection and debugging, mcp-click-up for ClickUp task management, mcp-obsidian for Obsidian vault and markdown-note management, mcp-aside-devtools for AI-browser automation, and mcp-notion for Notion workspace operations) plus four read-only design transports (mcp-figma bridging to Figma Desktop, mcp-refero searching real-app UI references, mcp-mobbin researching mobile-app patterns, and mcp-magicpath looking up MagicPath components and design systems through its read-only vendor CLI over a UTCP cli manual). The advisor sees one hub identity and workflowMode selects the packet. mcp-code-mode is shared infrastructure, not a hub member.",
+  "version": "1.8.0.0",
   "importance_tier": "high",
   "keywords": [
     "mcp-tooling",
@@ -14,15 +14,6 @@
     "mcp-obsidian",
     "mcp-aside-devtools",
     "mcp-notion",
-    "mcp-orca-cli",
-    "orca cli",
-    "orca worktree",
-    "orca terminal",
-    "orca skills",
-    "orca automation",
-    "orca browser",
-    "orca handoff",
-    "orca artifacts",
     "mcp-figma",
     "mcp-refero",
     "mcp-mobbin",
@@ -30,5 +21,5 @@
     "mcp tool bridge",
     "transport-axis"
   ],
-  "lastUpdated": "2026-09-19T00:00:00Z"
+  "lastUpdated": "2026-09-20T10:40:00.000Z"
 }

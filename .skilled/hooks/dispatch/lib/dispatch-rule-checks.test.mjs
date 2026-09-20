@@ -332,6 +332,37 @@ const CHECK_FIXTURES = {
   'command-v-devin-required': { satisfied: 'npm test', violated: 'devin -p "task"', emptyPath: true },
   'command-v-pi-required': { satisfied: 'npm test', violated: 'pi -p "task"', emptyPath: true },
   'command-v-hermes-required': { satisfied: 'npm test', violated: 'hermes chat -q "task"', emptyPath: true },
+  'command-v-jev-required': { satisfied: 'npm test', violated: 'jev noul -q "Is it urgent?" -s @state.txt', emptyPath: true },
+  // Jev reads stdin when the state flag carries no inline value, so the satisfied case is the one
+  // that passes its state explicitly and the violated case is the one that leaves stdin open.
+  'jev-stdin-bounded': {
+    satisfied: 'jev choice -q "Which queue?" -s @state.txt -o a=first -o b=second',
+    violated: 'jev noul -q "Is it urgent?" -s -',
+  },
+  'jev-choice-option-cardinality': {
+    satisfied: 'jev choice -q "Which queue?" -s @state.txt -o a=first -o b=second',
+    violated: 'jev choice -q "Which queue?" -s @state.txt -o only=the only option',
+  },
+  'jev-score-level-cardinality': {
+    satisfied: 'jev score -q "How severe?" -s @state.txt -l low -l high',
+    violated: 'jev score -q "How severe?" -s @state.txt -l only',
+  },
+  'jev-value-not-with-run': {
+    satisfied: 'jev run @request.json --pretty',
+    violated: 'jev run @request.json --value',
+  },
+  'jev-custom-endpoint-required': {
+    satisfied: 'jev noul -q "Is it urgent?" -s @state.txt --provider custom --endpoint https://proxy.example.com/v1/systemone',
+    violated: 'jev noul -q "Is it urgent?" -s @state.txt --provider custom',
+  },
+  'jev-no-inline-credential': {
+    satisfied: 'jev noul -q "Is it urgent?" -s @state.txt',
+    violated: 'TYPESAFE_API_KEY=sk-live-sentinel jev noul -q "Is it urgent?" -s @state.txt',
+  },
+  'jev-mcp-host-only': {
+    satisfied: 'jev noul -q "Is it urgent?" -s @state.txt',
+    violated: 'jev-mcp < request.jsonl',
+  },
 };
 
 // The shape list matches its pattern anywhere in the command string, so a command that
@@ -406,6 +437,41 @@ test('ENFORCEMENT GUARD: every check names a command it accepts and one it refus
   }
 });
 
+// Jev is a transport, not an executor, and its shape has its own false-positive surface: the word
+// appears in this packet's own prose, in the vendor's README and in any command that greps for it.
+// The audit must govern the invocation and not the mention, or a documentation edit reads as a
+// dispatch and the guard refuses the edit.
+test('a jev dispatch is governed from the command, and mentions of it are not', () => {
+  const govern = [
+    ['plain judgment', 'jev noul -q "Is it urgent?" -s @state.txt </dev/null'],
+    ['choice with options', 'jev choice -q "Which queue?" -s @state.txt -o a=first -o b=second'],
+    ['score with levels', 'jev score -q "How severe?" -s @state.txt -l low -l high'],
+    ['batch request', 'jev run @request.json --pretty'],
+    ['state piped in', 'cat state.txt | jev noul -q "Is it urgent?"'],
+    ['piped through an env prefix', 'printf x | JEV_PROVIDER=official jev noul -q "Is it urgent?"'],
+    ['after a setup statement', 'cd /tmp && jev noul -q "Is it urgent?" -s @state.txt </dev/null'],
+    ['wrapped in bash -c', 'bash -c "jev noul -q \\"Is it urgent?\\" -s @state.txt </dev/null"'],
+    ['stdio server started by a shell', 'jev-mcp < request.jsonl'],
+  ];
+  for (const [label, cmd] of govern) {
+    assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-jev', `should govern (${label}): ${cmd}`);
+  }
+
+  const doNotGovern = [
+    ['prose quoting it', 'echo "triage with jev choice before dispatch"'],
+    ['grep for the text', 'grep -rn "jev noul" .skilled/skills/cli-external-orchestration/cli-jev'],
+    ['heredoc documenting it', 'python3 - <<\'PY\'\nshape = "jev score -l low -l high"\nPY'],
+    ['node printing it', 'node -e \'console.log("jev run @request.json")\''],
+    ['version probe', 'jev --version'],
+    ['auth management', 'jev auth status'],
+    ['skill install', 'jev install-skills --global'],
+    ['not a dispatch at all', 'git status'],
+  ];
+  for (const [label, cmd] of doNotGovern) {
+    assert.equal(resolveDispatchPacket(cmd), null, `should not govern (${label}): ${cmd}`);
+  }
+});
+
 // A packet with no rules contributes nothing to enforcement, and the preflight returns
 // early when a skill declares none -- which reads exactly like a clean dispatch.
 test('ENFORCEMENT GUARD: every cli packet declares at least one rule', () => {
@@ -414,8 +480,7 @@ test('ENFORCEMENT GUARD: every cli packet declares at least one rule', () => {
     .map((e) => [e.name, path.join(CLI_ORCHESTRATION, e.name, 'SKILL.md')])
     .filter(([, md]) => fs.existsSync(md));
   assert.ok(packets.length >= 7, `expected every cli packet, saw ${packets.length}`);
-  for (const [name, md] of packets) {
-    const rules = readHardRules(md);
+  for (const [name, md] of packets) {    const rules = readHardRules(md);
     assert.ok(rules.length > 0, `${name} declares no hard rules, so its preflight enforces nothing`);
     for (const rule of rules) {
       assert.ok(rule.message && rule.message.length > 20, `${name}/${rule.id} has no usable message`);

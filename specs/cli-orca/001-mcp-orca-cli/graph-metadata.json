@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-orca/001-mcp-orca-cli",
+  "spec_folder": "cli-orca/001-mcp-orca-cli",
+  "parent_id": "cli-orca",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Orca CLI integration",
+      "mcp-orca-cli",
+      "Orca workflow packet",
+      "Orca hub routing",
+      "implementation plan",
+      "Orca CLI technical approach",
+      "mcp-tooling hub integration",
+      "Orca routing verification",
+      "Orca implementation tasks",
+      "mcp-orca verification checklist",
+      "Orca routing task breakdown",
+      "Orca handoff"
+    ],
+    "key_topics": [
+      "orca",
+      "cli",
+      "integration",
+      "mcp-orca-cli",
+      "workflow",
+      "packet",
+      "hub",
+      "routing",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".pi/skills/mcp-tooling/leaf-manifest.json",
+      ".pi/skills/mcp-tooling/mode-registry.json",
+      ".pi/skills/mcp-tooling/hub-router.json",
+      ".pi/skills/mcp-tooling/ROUTER.md",
+      ".pi/skills/mcp-tooling/SKILL.md",
+      ".pi/skills/mcp-tooling/README.md",
+      ".pi/skills/mcp-tooling/description.json",
+      ".pi/skills/mcp-tooling/graph-metadata.json",
+      ".pi/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".pi/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".pi/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".pi/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".pi/skills/mcp-tooling/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".pi/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/skills/mcp-tooling/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".pi/skills/mcp-tooling/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".pi/skills/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skills-nested-packets.md",
+        "kind": "doc",
+        "path": ".pi/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Port Orca",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Skill",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Official Orca",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before this integration, the repository had no Orca workflow member, while the official `orca-cli` skill describes a stateful CLI spanning worktrees, folder contexts, terminals, repositories, automations, artifacts, comments, skill sharing, and an embedded browser",
+    "created_at": "2026-09-19T11:24:57Z",
+    "last_save_at": "2026-09-20T08:05:28.404Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:92aafc0bc5291ec2671a82bd13d69d9f4c9f47f93ac3fa7c069b52629d3d033b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b87c18a778caea532fdc7be96bc806094762c6f317abae3ba01ce119641f538f",
+      "plan.md": "717738491845cafa0c4dc018cacaee8e37617ff42ad1850edd3d4cb9997169a4",
+      "tasks.md": "056df9d5c2b6e726320d60d1239c8ea9165ad7c0a8a6cb726f811c1fb35cfff8",
+      "decision-record.md": "45db196b8cc70109108532e58e9491b2728130f6a39eca2e06a45be45e19f105",
+      "implementation-summary.md": "9933028c22d2a2dec7acca10dcb510804e487d66ba3415fbcdbf3a04f8c8f297",
+      "research/research.md": "f11cd9ee7d2191239dab11dce22d652b32383c3519e209876996450fddc2733c"
+    },
+    "last_active_at": null
+  }
+}

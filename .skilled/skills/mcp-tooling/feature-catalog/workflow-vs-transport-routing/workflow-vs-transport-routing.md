@@ -25,7 +25,7 @@ The hub's discriminator is `packetKind`, which separates workflow packets that m
 
 ### Two-Axis Model
 
-`packetKind: "workflow"` covers `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`, and `mcp-orca-cli`. Orca is a workflow member because worktrees, repositories, terminals, agent handoffs, automations, browser interactions, and publishing can change state. `packetKind: "transport"` covers `mcp-figma`, `mcp-refero`, `mcp-mobbin`, and `mcp-magicpath`; all remain `mutatesWorkspace: false` in this workspace.
+`packetKind: "workflow"` covers `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion`. `packetKind: "transport"` covers `mcp-figma`, `mcp-refero`, `mcp-mobbin`, and `mcp-magicpath`; all remain `mutatesWorkspace: false` in this workspace.
 
 Figma, Refero, and Mobbin use `sk-design-md-generator` when measured reference extraction is required. MagicPath theme evidence already carries named variables and fonts and therefore pairs with `sk-design` for design judgment. A transport never supplies the design verdict itself.
 
@@ -35,7 +35,7 @@ Resolution reads `hub-router.json`, scores `routerSignals` and `vocabularyClasse
 
 ### Outcomes
 
-The router resolves to `single` for one dominant signal, `orderedBundle` for multiple explicit near-tied signals, or `defer` when no signal identifies a mode. A bare `orca` mention is intentionally not enough to select `mcp-orca-cli` because unrelated OpenOrca model traffic must remain outside the hub.
+The router resolves to `single` for one dominant signal, `orderedBundle` for multiple explicit near-tied signals, or `defer` when no signal identifies a mode. Orca CLI work left this hub, so no Orca signal remains and an Orca request defers here rather than being captured.
 
 ---
 

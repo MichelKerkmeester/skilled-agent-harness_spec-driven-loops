@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v uv >/dev/null 2>&1; then
+  echo "error: uv is required: https://docs.astral.sh/uv/" >&2
+  exit 1
+fi
+
+uv sync --locked
+
+if command -v codegraph >/dev/null 2>&1; then
+  if [[ -d .codegraph ]]; then
+    codegraph sync .
+  else
+    codegraph init .
+  fi
+else
+  echo "warning: codegraph not found; skipping code index" >&2
+fi
+
+_local="${ROOT_WORKTREE_PATH:-.}/.wt/setup.local"
+if [[ -f "$_local" ]]; then
+  # shellcheck source=/dev/null
+  source "$_local"
+fi

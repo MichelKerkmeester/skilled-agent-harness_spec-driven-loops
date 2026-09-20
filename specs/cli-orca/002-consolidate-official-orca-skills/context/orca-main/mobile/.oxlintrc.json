@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": ["../.oxlintrc.json"],
+  "ignorePatterns": ["src/terminal/terminal-webview-engine.generated.ts"],
+  "rules": {
+    "react-hooks/exhaustive-deps": "off",
+    "react/no-unescaped-entities": "off",
+    "typescript/array-type": "off",
+    "typescript/consistent-type-definitions": "off",
+    "typescript/consistent-type-imports": "off",
+    "prefer-template": "off",
+    "no-useless-return": "off",
+    "unicorn/prefer-at": "off",
+    "unicorn/prefer-ternary": "off",
+    "unicorn/prefer-node-protocol": "off"
+  },
+  "overrides": [
+    {
+      "files": ["src/terminal/TerminalWebView.tsx"],
+      "rules": {
+        "max-lines": ["error", { "max": 379, "skipBlankLines": true, "skipComments": true }]
+      }
+    }
+  ]
+}

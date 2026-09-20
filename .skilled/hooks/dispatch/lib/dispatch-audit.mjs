@@ -40,11 +40,15 @@ export const DISPATCH_SHAPES = [
   // (`-q`, `--query`, `--query-file`, or the non-TTY `--oneshot`) and the top-level `-z`
   // oneshot. A bare `hermes chat` or a management subcommand is not a dispatch.
   { test: /\bhermes\s+chat\b[^\n;&|]*\s(-q|--query|--query-file|--oneshot)\b|\bhermes\b[^\n;&|]*\s(-z)\b/, skill: 'cli-hermes', packetPath: 'cli-external-orchestration/cli-hermes' },
+  // Jev has no print flag: the judgment subcommand IS the dispatch, exactly as `codex exec` is for
+  // codex. `jev-mcp` is a stdio server rather than a judgment, and it is matched here so the
+  // packet's host-only rule can refuse a shell start instead of leaving it unclassified.
+  { test: /\bjev\s+(?:noul|choice|score|run)\b|\bjev-mcp\b/, skill: 'cli-jev', packetPath: 'cli-external-orchestration/cli-jev' },
 ];
 
 const MAX_INSPECTED_COMMAND_CHARS = 32_768;
 const ASSIGNMENT_TOKEN = /^[A-Za-z_][A-Za-z0-9_]*=(.*)$/s;
-const EXECUTOR_BASENAMES = new Set(['opencode', 'claude', 'codex', 'devin', 'cursor-agent', 'pi', 'hermes']);
+const EXECUTOR_BASENAMES = new Set(['opencode', 'claude', 'codex', 'devin', 'cursor-agent', 'pi', 'hermes', 'jev', 'jev-mcp']);
 const PRINT_FLAGS = new Set(['-p', '--print']);
 // Hermes's equivalents of a print flag, scoped to the hermes branch so `-q` on any other
 // command (grep, curl) never reads as dispatch evidence.
@@ -223,6 +227,16 @@ function directExecutor(tokens) {
     if ((isChat && hasQueryFlag) || rest.some((token) => token.value === '-z')) return 'cli-hermes';
     return null;
   }
+  // Jev's judgment subcommands are its headless forms. `jev --version`, `jev auth status` and
+  // `jev install-skills` are management commands, not dispatches; `jev-mcp` is classified so the
+  // packet's host-only rule can refuse a shell start, which is the misuse rather than the use.
+  if (binary === 'jev' || binary === 'jev-mcp') {
+    if (binary === 'jev-mcp') return 'cli-jev';
+    const subcommand = tokens[start.index + 1]?.value;
+    return subcommand === 'noul' || subcommand === 'choice' || subcommand === 'score' || subcommand === 'run'
+      ? 'cli-jev'
+      : null;
+  }
   return null;
 }
 
@@ -231,7 +245,7 @@ function hasKnownExecutorToken(tokens) {
 }
 
 function hasDispatchText(value) {
-  return /\bopencode\s+run\b|\b(?:claude|devin|cursor-agent|pi)\b[^\n;&|]*\s(?:-p|--print)\b|\bcodex\s+exec\b[^\n;&|]*\s(?:-p|--print)\b|\bhermes\s+chat\b[^\n;&|]*\s(?:-q|--query|--query-file|--oneshot)\b|\bhermes\b[^\n;&|]*\s-z\b/.test(value);
+  return /\bopencode\s+run\b|\b(?:claude|devin|cursor-agent|pi)\b[^\n;&|]*\s(?:-p|--print)\b|\bcodex\s+exec\b[^\n;&|]*\s(?:-p|--print)\b|\bhermes\s+chat\b[^\n;&|]*\s(?:-q|--query|--query-file|--oneshot)\b|\bhermes\b[^\n;&|]*\s-z\b|\bjev\s+(?:noul|choice|score|run)\b/.test(value);
 }
 
 function hasDispatchEvidence(tokens, commandHasPrintFlag) {

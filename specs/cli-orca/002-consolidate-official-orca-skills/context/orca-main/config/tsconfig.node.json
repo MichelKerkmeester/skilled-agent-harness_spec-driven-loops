@@ -1,0 +1,18 @@
+{
+  "extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
+  "include": [
+    "../electron.vite.config.*",
+    "./build-plugins/**/*",
+    "./scripts/vitest-host-ports-setup.ts",
+    "../src/main/**/*",
+    "../src/renderer/src/lib/skill-freshness-display-status.ts",
+    "../src/preload/**/*",
+    "../src/shared/**/*",
+    "../src/relay/**/*",
+    "../src/types/**/*"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "types": ["electron-vite/node"]
+  }
+}

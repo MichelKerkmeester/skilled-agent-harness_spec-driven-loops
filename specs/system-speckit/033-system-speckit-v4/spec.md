@@ -149,6 +149,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 40 | 040-gate-3-option-merge/ | Merge Gate 3 options C and D into one related-packet option and relabel Skip across every surface | complete |
 | 41 | 041-skilled-source-root-migration/ | Root the shared skill, command and agent library at .skilled instead of .opencode, keeping the .opencode aliases as tracked per-entry symlinks | complete |
 | 42 | 042-v4-doc-freshness/ | Ten iterations of cited evidence on whether the v4 changelog and the root README still match the tree, then the confirmed corrections | complete |
+| 43 | 043-v4-root-readme/ | Root README writing, readability, structural consistency, and bloat removal | complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -165,6 +166,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 039-entry-point-symlink-resolution | 040-gate-3-option-merge | Every surface that prints the option list is inventoried | The grep in the 040 plan returns only the inventoried files |
 | 040-gate-3-option-merge | 041-skilled-source-root-migration | 041 depends on no output of 040 and opens its own track | 041 validates under --recursive --strict |
 | 041-skilled-source-root-migration | 042-v4-doc-freshness | 042 depends on no output of 041 and opens the documentation track | `validate.sh 042-v4-doc-freshness --strict` passes and the parent registers the child |
+| 042-v4-doc-freshness | 043-v4-root-readme | Root README audited and phase 43 packet initialized | validate.sh 043-v4-root-readme --strict |
 <!-- /ANCHOR:phase-map -->
 
 ---

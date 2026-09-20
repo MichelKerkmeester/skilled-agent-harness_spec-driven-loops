@@ -1,0 +1,137 @@
+{
+  "generated_by": "orchestrator",
+  "skill": "cli-orca",
+  "run_label": "2026-09-20--extraction-routing-verification",
+  "advisor": {
+    "generation": 65,
+    "freshness": "live",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "holdout_recommendations": [
+      {
+        "skillId": "cli-orca",
+        "score": 0.7,
+        "confidence": 0.8962,
+        "uncertainty": 0.16,
+        "dominantLane": "explicit_author",
+        "matchedDocs": [
+          "references/orca-skills/orca-cli.md"
+        ],
+        "status": "active"
+      },
+      {
+        "skillId": "sk-git",
+        "score": 0.608667,
+        "confidence": 0.8472,
+        "uncertainty": 0.12,
+        "dominantLane": "explicit_author",
+        "status": "active"
+      }
+    ]
+  },
+  "probes": [
+    {
+      "label": "positive_orca_phrase",
+      "prompt": "orca worktree handoff to another agent through the Orca CLI",
+      "recommendations": [
+        {
+          "skillId": "cli-orca",
+          "score": 0.7,
+          "confidence": 0.8962
+        },
+        {
+          "skillId": "sk-git",
+          "score": 0.608667,
+          "confidence": 0.8472
+        }
+      ],
+      "ambiguous": true,
+      "generation": 65
+    },
+    {
+      "label": "positive_short_phrase",
+      "prompt": "orca terminal",
+      "recommendations": [
+        {
+          "skillId": "cli-orca",
+          "score": 0.726667,
+          "confidence": 0.9106
+        }
+      ],
+      "ambiguous": false,
+      "generation": 65
+    },
+    {
+      "label": "positive_holdout_phrase",
+      "prompt": "managed worktree paired terminal",
+      "recommendations": [
+        {
+          "skillId": "cli-orca",
+          "score": 0.82,
+          "confidence": 0.95
+        },
+        {
+          "skillId": "sk-git",
+          "score": 0.638064,
+          "confidence": 0.863
+        }
+      ],
+      "ambiguous": false,
+      "generation": 65
+    },
+    {
+      "label": "negative_openorca",
+      "prompt": "Show the OpenOrca model label for the current request.",
+      "recommendations": [],
+      "ambiguous": false,
+      "generation": 65
+    },
+    {
+      "label": "negative_generic_worktree",
+      "prompt": "create a git worktree for the release branch",
+      "recommendations": [
+        {
+          "skillId": "sk-git",
+          "score": 0.849969,
+          "confidence": 0.95
+        },
+        {
+          "skillId": "sk-code",
+          "score": 0.21869,
+          "confidence": 0.82
+        },
+        {
+          "skillId": "sk-doc",
+          "score": 0.184936,
+          "confidence": 0.82
+        }
+      ],
+      "ambiguous": false,
+      "generation": 65
+    },
+    {
+      "label": "baseline_mixed_prompt",
+      "prompt": "use the orca cli to inspect the current worktree and terminal",
+      "recommendations": [],
+      "ambiguous": false,
+      "generation": 65
+    }
+  ],
+  "hub_serving": {
+    "compiled_route_hub_orca_prompt": {
+      "stdout": "{\"servingAuthority\":\"legacy\",\"hubId\":\"mcp-tooling\"}",
+      "exit": 0
+    },
+    "compiled_route_status_hub": {
+      "stdout": "{\"hubId\":\"mcp-tooling\",\"servingAuthority\":\"legacy\",\"shadowOnly\":false,\"selectedPolicy\":{\"generation\":4},\"effectivePolicyHash\":\"44405eceda08b826fa71bc63876e1174a42d93ec3f8955604e74ff9fc34d5f4f\",\"fenceEpoch\":4,\"manifestFingerprint\":\"136ed771e2122d589a2ad64c4c2f597c691da0c2c76934323c3c4b47e0f54eef\",\"causeCode\":\"stale-manifest\",\"manifestFreshness\":{\"manifestValid\":true,\"fresh\":false,\"causeCode\":\"stale-manifest\",\"currentPolicyHash\":\"50fb94b98f7c554416a4bf69d5c91f50bc7a3e617fc01ffa571bbe6c21a8efbe\"}}",
+      "exit": 0
+    },
+    "compiled_route_admission_hub": {
+      "stdout": "mcp-tooling                 pass                    16 pass, 0 drift, 0 stale, 0 n/a; 1 mode(s) without gold\n\nEvery hub passes the admission check.",
+      "exit": 0
+    }
+  }
+}

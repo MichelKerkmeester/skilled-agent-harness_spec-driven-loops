@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-orca",
+  "description": "Track folder for cli-orca packets — the standalone Orca CLI routing skill and its migration history: the original port of the Orca CLI surface out of the mcp-tooling hub, and the extraction that promoted it into a class-S skill carrying all eight official Orca skills as authored references plus verbatim snapshot assets.",
+  "keywords": [
+    "cli-orca",
+    "orca",
+    "orca-cli",
+    "orca-cli-migration",
+    "track",
+    "managed-worktrees",
+    "orca-terminals",
+    "embedded-browser",
+    "agent-handoff",
+    "official-orca-skills",
+    "hub-extraction"
+  ],
+  "lastUpdated": "2026-09-20T10:50:00.000Z",
+  "specId": "cli-orca",
+  "folderSlug": "cli-orca",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

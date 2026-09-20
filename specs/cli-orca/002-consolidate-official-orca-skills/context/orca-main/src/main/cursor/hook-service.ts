@@ -1,0 +1,295 @@
+import { homedir } from 'node:os'
+import { join } from 'node:path'
+import type { SFTPWrapper } from 'ssh2'
+import type { AgentHookInstallState, AgentHookInstallStatus } from '../../shared/agent-hook-types'
+import {
+  buildManagedCommandDefinition,
+  createManagedCommandMatcher,
+  getSharedManagedScriptPath,
+  readHooksJson,
+  removeManagedCommands,
+  writeHooksJson,
+  writeManagedScript,
+  type HookDefinition
+} from '../agent-hooks/installer-utils'
+import { refreshManagedScriptIfPresent } from '../agent-hooks/managed-hook-script-refresh'
+import {
+  readHooksJsonRemote,
+  writeHooksJsonRemote,
+  writeManagedScriptRemote
+} from '../agent-hooks/installer-utils-remote'
+import { CURSOR_EVENTS } from './hook-events'
+import { getManagedCommand, getManagedScript, getPosixManagedCommand } from './hook-script'
+
+function getConfigPath(): string {
+  return join(homedir(), '.cursor', 'hooks.json')
+}
+
+function getManagedScriptFileName(): string {
+  return process.platform === 'win32' ? 'cursor-hook.cmd' : 'cursor-hook.sh'
+}
+
+function getManagedScriptPath(): string {
+  return getSharedManagedScriptPath(getManagedScriptFileName())
+}
+
+/*
+function getManagedCommand(scriptPath: string): string {
+  return process.platform === 'win32'
+    ? wrapWindowsHookCommand(scriptPath)
+    : wrapPosixHookCommand(scriptPath)
+}
+
+function getManagedScript(target: 'local' | 'posix' = 'local'): string {
+  if (target === 'local' && process.platform === 'win32') {
+    return [
+      '@echo off',
+      'setlocal',
+      // Why: source current endpoint coordinates for PTYs surviving an Orca restart.
+      'if defined ORCA_AGENT_HOOK_ENDPOINT if exist "%ORCA_AGENT_HOOK_ENDPOINT%" call "%ORCA_AGENT_HOOK_ENDPOINT%" 2>nul',
+      ...buildWindowsHookEnvironmentGuardLines(),
+      buildWindowsAgentHookPostCommand('cursor'),
+      'exit /b 0',
+      ...buildWindowsHookStdinDrainEpilogue(),
+      ''
+    ].join('\r\n')
+  }
+
+  return [
+    '#!/bin/sh',
+    ...buildPosixHookPayloadCapture(),
+    ...buildPosixHookSpoolLines('cursor'),
+    // Why: refresh endpoint coordinates so surviving PTYs keep reporting.
+    'if [ -n "$ORCA_AGENT_HOOK_ENDPOINT" ] && [ -r "$ORCA_AGENT_HOOK_ENDPOINT" ]; then',
+    '  . "$ORCA_AGENT_HOOK_ENDPOINT" 2>/dev/null || :',
+    'fi',
+    'if [ -z "$ORCA_AGENT_HOOK_PORT" ] || [ -z "$ORCA_AGENT_HOOK_TOKEN" ] || [ -z "$ORCA_PANE_KEY" ]; then',
+    '  spool_hook_event',
+    '  exit 0',
+    'fi',
+    // Why: post form fields because path-bearing worktree IDs are unsafe in hand-built JSON.
+    // Why: pipe payload to curl stdin to keep large output off the command line.
+    'printf \'%s\' "$payload" | curl -sS -X POST "http://127.0.0.1:${ORCA_AGENT_HOOK_PORT}/hook/cursor" \\',
+    '  --connect-timeout 0.5 --max-time 1.5 \\',
+    '  -H "Content-Type: application/x-www-form-urlencoded" \\',
+    '  -H "X-Orca-Agent-Hook-Token: ${ORCA_AGENT_HOOK_TOKEN}" \\',
+    '  --data-urlencode "paneKey=${ORCA_PANE_KEY}" \\',
+    '  --data-urlencode "tabId=${ORCA_TAB_ID}" \\',
+    '  --data-urlencode "launchToken=${ORCA_AGENT_LAUNCH_TOKEN}" \\',
+    '  --data-urlencode "worktreeId=${ORCA_WORKTREE_ID}" \\',
+    '  --data-urlencode "env=${ORCA_AGENT_HOOK_ENV}" \\',
+    '  --data-urlencode "version=${ORCA_AGENT_HOOK_VERSION}" \\',
+    '  --data-urlencode "payload@-" >/dev/null 2>&1 || spool_hook_event',
+    'exit 0',
+    ''
+  ].join('\n')
+}
+*/
+export class CursorHookService {
+  async refreshManagedScripts(): Promise<void> {
+    await refreshManagedScriptIfPresent(getManagedScriptPath(), getManagedScript())
+  }
+
+  getStatus(): AgentHookInstallStatus {
+    const configPath = getConfigPath()
+    const scriptPath = getManagedScriptPath()
+    const config = readHooksJson(configPath)
+    if (!config) {
+      return {
+        agent: 'cursor',
+        state: 'error',
+        configPath,
+        managedHooksPresent: false,
+        detail: 'Could not parse Cursor hooks.json'
+      }
+    }
+
+    const missing: string[] = []
+    let presentCount = 0
+    for (const eventName of CURSOR_EVENTS) {
+      const command = getManagedCommand(scriptPath, eventName)
+      const definitions = Array.isArray(config.hooks?.[eventName]) ? config.hooks![eventName]! : []
+      // Why: Cursor puts command directly on the definition (Claude nests under `hooks`); match both shapes.
+      const hasCommand = definitions.some(
+        (definition) =>
+          definition.command === command ||
+          (definition.hooks ?? []).some((hook) => hook.command === command)
+      )
+      if (hasCommand) {
+        presentCount += 1
+      } else {
+        missing.push(eventName)
+      }
+    }
+    const managedHooksPresent = presentCount > 0
+    let state: AgentHookInstallState
+    let detail: string | null
+    if (missing.length === 0) {
+      state = 'installed'
+      detail = null
+    } else if (presentCount === 0) {
+      state = 'not_installed'
+      detail = null
+    } else {
+      state = 'partial'
+      detail = `Managed hook missing for events: ${missing.join(', ')}`
+    }
+    return { agent: 'cursor', state, configPath, managedHooksPresent, detail }
+  }
+
+  install(): AgentHookInstallStatus {
+    const configPath = getConfigPath()
+    const scriptPath = getManagedScriptPath()
+    const config = readHooksJson(configPath)
+    if (!config) {
+      return {
+        agent: 'cursor',
+        state: 'error',
+        configPath,
+        managedHooksPresent: false,
+        detail: 'Could not parse Cursor hooks.json'
+      }
+    }
+
+    // Why: config.hooks is undefined on a fresh file with no prior hook install.
+    const nextHooks = { ...config.hooks }
+    const managedEvents = new Set<string>(CURSOR_EVENTS)
+
+    // Why: match filenames to remove stale hooks from prior builds and user-data paths.
+    const isManagedCommand = createManagedCommandMatcher(getManagedScriptFileName())
+
+    // Why: sweep managed entries from events we no longer subscribe to, else upgraded users keep firing stale hooks.
+    for (const [eventName, definitions] of Object.entries(nextHooks)) {
+      if (managedEvents.has(eventName)) {
+        continue
+      }
+      if (!Array.isArray(definitions)) {
+        continue
+      }
+      const cleaned = removeManagedCommands(definitions, isManagedCommand)
+      // Also strip entries with the command at the top level (Cursor schema).
+      const strippedTopLevelCommands = cleaned.filter(
+        (definition) => !isManagedCommand(definition.command)
+      )
+      if (strippedTopLevelCommands.length === 0) {
+        delete nextHooks[eventName]
+      } else {
+        nextHooks[eventName] = strippedTopLevelCommands
+      }
+    }
+
+    for (const eventName of CURSOR_EVENTS) {
+      const command = getManagedCommand(scriptPath, eventName)
+      const current = Array.isArray(nextHooks[eventName]) ? nextHooks[eventName] : []
+      // Sweep Claude- and Cursor-shaped variants so installs converge on one entry.
+      const cleaned = removeManagedCommands(current, isManagedCommand).filter(
+        (definition) => !isManagedCommand(definition.command)
+      )
+      // Why: Cursor's schema puts `command` directly on the definition (not under `hooks`); emit that shape.
+      const definition: HookDefinition = buildManagedCommandDefinition(command)
+      nextHooks[eventName] = [...cleaned, definition]
+    }
+
+    // Why: Cursor requires `version: 1`; preserve user-pinned values.
+    const nextConfig: Record<string, unknown> = { ...config, hooks: nextHooks }
+    if (nextConfig.version === undefined) {
+      nextConfig.version = 1
+    }
+    writeManagedScript(scriptPath, getManagedScript())
+    writeHooksJson(configPath, nextConfig)
+    return this.getStatus()
+  }
+
+  // Installs managed Cursor hooks on an SSH remote (POSIX-only); the managed script/JSON shape must match local install() or remote panes report a different status.
+  async installRemote(sftp: SFTPWrapper, remoteHome: string): Promise<AgentHookInstallStatus> {
+    const remoteConfigPath = `${remoteHome.replace(/\/$/, '')}/.cursor/hooks.json`
+    const remoteScriptPath = `${remoteHome.replace(/\/$/, '')}/.orca/agent-hooks/cursor-hook.sh`
+    try {
+      const config = await readHooksJsonRemote(sftp, remoteConfigPath)
+      if (!config) {
+        return {
+          agent: 'cursor',
+          state: 'error',
+          configPath: remoteConfigPath,
+          managedHooksPresent: false,
+          detail: 'Could not parse remote Cursor hooks.json'
+        }
+      }
+
+      const nextHooks = { ...config.hooks }
+      const isManagedCommand = createManagedCommandMatcher('cursor-hook.sh')
+
+      for (const eventName of CURSOR_EVENTS) {
+        const command = getPosixManagedCommand(remoteScriptPath, eventName)
+        const current = Array.isArray(nextHooks[eventName]) ? nextHooks[eventName] : []
+        // Why: dual-shape sweep so repeated installs converge on a single managed entry.
+        const cleaned = removeManagedCommands(current, isManagedCommand).filter(
+          (definition) => !isManagedCommand(definition.command)
+        )
+        const definition: HookDefinition = buildManagedCommandDefinition(command)
+        nextHooks[eventName] = [...cleaned, definition]
+      }
+
+      const nextConfig: Record<string, unknown> = { ...config, hooks: nextHooks }
+      if (nextConfig.version === undefined) {
+        nextConfig.version = 1
+      }
+
+      // Why: script-then-config order so a partial mid-install leaves a working script nothing points at.
+      // Why: SSH hooks always use POSIX .sh paths, regardless of the local OS.
+      await writeManagedScriptRemote(sftp, remoteScriptPath, getManagedScript('posix'))
+      await writeHooksJsonRemote(sftp, remoteConfigPath, nextConfig)
+
+      return {
+        agent: 'cursor',
+        state: 'installed',
+        configPath: remoteConfigPath,
+        managedHooksPresent: true,
+        detail: null
+      }
+    } catch (err) {
+      return {
+        agent: 'cursor',
+        state: 'error',
+        configPath: remoteConfigPath,
+        managedHooksPresent: false,
+        detail: err instanceof Error ? err.message : String(err)
+      }
+    }
+  }
+
+  remove(): AgentHookInstallStatus {
+    const configPath = getConfigPath()
+    const config = readHooksJson(configPath)
+    if (!config) {
+      return {
+        agent: 'cursor',
+        state: 'error',
+        configPath,
+        managedHooksPresent: false,
+        detail: 'Could not parse Cursor hooks.json'
+      }
+    }
+
+    const nextHooks = { ...config.hooks }
+    const isManagedCommand = createManagedCommandMatcher(getManagedScriptFileName())
+    for (const [eventName, definitions] of Object.entries(nextHooks)) {
+      if (!Array.isArray(definitions)) {
+        continue
+      }
+      const cleaned = removeManagedCommands(definitions, isManagedCommand).filter(
+        (definition) => !isManagedCommand(definition.command)
+      )
+      if (cleaned.length === 0) {
+        delete nextHooks[eventName]
+      } else {
+        nextHooks[eventName] = cleaned
+      }
+    }
+    const nextConfig = { ...config, hooks: nextHooks }
+    writeHooksJson(configPath, nextConfig)
+    return this.getStatus()
+  }
+}
+
+export const cursorHookService = new CursorHookService()

@@ -1,0 +1,124 @@
+== BASELINE 2026-09-20T07:16:38Z ==
+
+== parent-skill-check ==
+INFO: 4b: registry declares no lexical modes; nothing to cross-check against the advisor
+PASS: 5a: hub-router.json exists and parses as JSON
+PASS: 5b: routerSignals keys match the registry workflowMode set (10)
+PASS: 5c: all 23 referenced vocabulary classes are defined
+PASS: 5d: every router resource path resolves on disk
+PASS: 5e: routerPolicy.tieBreak covers every registered mode
+PASS: 5f: bundleRules reference real modes
+PASS: 5g: base router outcomes present (single, orderedBundle, defer)
+PASS: 5h: routerPolicy.defaultMode is null (surface-primary or no default)
+PASS: 5i: tieBreak orders workflow modes before surface/transport modes
+INFO: 5j: hub declares no command subworkflows
+PASS: 6a: every hub child directory is a registered packet or an allowlisted support dir
+PASS: 6b: every registered mode (10) appears in the hub SKILL.md mode table
+PASS: 6c: every mode-table row whose registry entry declares a command shows that exact command
+PASS: 7a: all changelog entries are real files (no symlinks)
+PASS: 8a: description.json present with the required fields
+PASS: 8b: description.json carries no registry-owned duplicate keys
+PASS: 9a: manual-testing-playbook/ present
+PASS: 9b: benchmark/ baseline present
+PASS: 10a-manifest-source: resourceContractVersion declared and leaf-manifest.json is present, readable, and well-formed
+PASS: 10b-byte-drift: committed leaf-manifest.json matches a fresh regeneration byte for byte
+PASS: 10c-target-collision: no duplicate composite keys; every committed leaf resolves to a disk file or a declared alias
+PASS: 10d-reachability: all 10 manifest mode(s) reach back to a registered mode and vice versa
+PASS: 11a-class: root metadata conforms to class H (declares the complete mode-registry + hub-router pair)
+PASS: 12a-router-contract: root ROUTER.md conforms to the two-state contract (active)
+PASS: 13a-version: all routing artifacts carry the SKILL.md version 1.7.0.0
+PASS: 13b-version: SKILL.md version 1.7.0.0 matches the newest changelog entry
+
+─────────────────────────────────────────────────────────────────
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+exit=0
+
+== mode count ==
+modes: 10
+mode keys: mcp-chrome-devtools, mcp-click-up, mcp-aside-devtools, mcp-figma, mcp-refero, mcp-mobbin, mcp-obsidian, mcp-notion, mcp-magicpath, mcp-orca-cli
+
+== advisor positive Orca prompt ==
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "live",
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 44,
+      "checkedAt": "2026-09-20T07:16:50.606Z",
+      "lastLiveAt": "2026-09-20T07:16:49.098Z"
+    },
+    "generatedAt": "2026-09-20T07:16:51.354Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": true
+    },
+    "_shadow": {
+      "model": "advisor-shadow-learned-weights-v1",
+      "liveWeightsFrozen": true,
+      "recommendations": []
+    }
+  }
+}
+
+== advisor negative OpenOrca prompt ==
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "live",
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 44,
+      "checkedAt": "2026-09-20T07:16:52.303Z",
+      "lastLiveAt": "2026-09-20T07:16:49.098Z"
+    },
+    "generatedAt": "2026-09-20T07:16:52.347Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": true
+    },
+    "_shadow": {
+      "model": "advisor-shadow-learned-weights-v1",
+      "liveWeightsFrozen": true,
+      "recommendations": []
+    }
+  }
+}
+
+== advisor warm-only: chrome prompt ==
+recs: ['mcp-tooling']
+== advisor warm-only: orca prompt ==
+recs: []
+
+== compiled-route baseline (mcp-tooling, orca prompt) ==
+{"hubId":"mcp-tooling","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-only","packetId":"mcp-orca-cli","packetKind":"workflow","skillId":"mcp-tooling","workflowMode":"mcp-orca-cli"}],"effectivePolicyHash":"44405eceda08b826fa71bc63876e1174a42d93ec3f8955604e74ff9fc34d5f4f","generation":4}
+
+== orca-main snapshot state ==
+skill-tree copy: ABSENT at baseline capture
+spec-context copy: PRESENT
+spec-context size: 292M
+spec-context skills: computer-use linear-tickets orca-cli orca-emulator orca-emulator-android orca-linear orca-per-workspace-env orchestration 
+
+== snapshot equivalence (Trash vs spec-context) ==
+diff -rq --exclude=.git: exit 0, 0 differing lines -> byte-identical
+zip integrity: OK (no errors)
+Trash copy: ~/.Trash/orca-main ; tarball-equivalent: ~/.Trash/orca-main.zip (93 MB)
+skill-tree copy .skilled/skills/cli-orca/orca-main: absent since 2026-09-20 07:29 (Trash mtime); never git-tracked

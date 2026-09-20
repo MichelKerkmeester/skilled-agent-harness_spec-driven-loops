@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "cli-orca/002-consolidate-official-orca-skills",
+  "description": "Move the Orca CLI subject out of the mcp-tooling parent hub into a standalone class-S skill named cli-orca, with all eight official Orca skills",
+  "keywords": [
+    "move",
+    "orca",
+    "cli",
+    "subject",
+    "out",
+    "parent",
+    "hub",
+    "standalone",
+    "class-s",
+    "skill",
+    "named",
+    "cli-orca",
+    "with",
+    "all",
+    "eight",
+    "official",
+    "skills"
+  ],
+  "lastUpdated": "2026-09-20T07:46:55.881Z",
+  "specId": "002",
+  "folderSlug": "consolidate-official-orca-skills",
+  "parentChain": [
+    "cli-orca"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

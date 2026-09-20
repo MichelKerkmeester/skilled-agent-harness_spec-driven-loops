@@ -470,7 +470,9 @@ TASK #2: Implement Notification System
 
 ### Rule 7: External CLI Delegation — Explicit User Request Only
 
-**Trigger:** The user names an external CLI executor in their own words — one of the seven `cli-external-orchestration` modes: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`.
+**Trigger:** The user names an external CLI executor in their own words — one of the seven `cli-external-orchestration` executor modes: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`.
+
+The same hub also carries one **transport** mode, `cli-jev`: it answers a typed judgment question and runs nothing, so it is never a delegation target. It can be named the same way — as the object of a request for a judgment rather than for work — and its contract is dispatchable only when the user asks for a judgment.
 
 **Action:**
 
@@ -833,6 +835,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | Echo full tool output (>50 lines) into conversation | Raw output accumulates rapidly; summarize to 3-5 bullet points | §7 |
 | Continue after session degradation without user confirmation | Lost context leads to incorrect assumptions; stop, re-read AGENTS.md, summarize state, wait for confirmation | §6 |
 | Choose an external CLI executor the user did not name | External delegation is opt-in by explicit user request; an advisor score or a speed judgment is not a request, and self-selecting one sends the frozen scope outside this runtime with no operator decision behind it | §4 Rule 7 |
+| Delegate work to `cli-jev` | The transport mode answers one typed judgment and runs nothing; it has no file tools, no loop and no lineage, so a task sent to it comes back as an opinion rather than a change | §4 Rule 7 |
 
 ---
 
@@ -846,5 +849,5 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 - `.skilled/agents/ai-council.md` — the LEAF for multi-strategy planning and architecture synthesis.
 - `.skilled/agents/deep-research.md` — the LEAF for evidence-first iterative investigation.
 - `.skilled/agents/deep-review.md` — the LEAF for `/deep:review` iterative code-audit passes.
-- `.skilled/skills/cli-external-orchestration/SKILL.md` — the hub that routes the seven external CLI executor modes, and owns their invariants (§4 Rule 7).
+- `.skilled/skills/cli-external-orchestration/SKILL.md` — the hub that routes the seven external CLI executor modes plus the `cli-jev` transport, and owns their invariants (§4 Rule 7).
 - `repo-rules/delegation-and-orchestration.md` — the orchestrating posture: what a brief must carry, and why a delegate's return is unverified.

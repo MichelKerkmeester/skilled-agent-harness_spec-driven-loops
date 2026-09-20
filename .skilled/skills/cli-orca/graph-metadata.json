@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "skill_id": "cli-orca",
+  "family": "cli",
+  "category": "cli-tool",
+  "deprecated": false,
+  "edges": {
+    "depends_on": [],
+    "enhances": [
+      {
+        "target": "sk-git",
+        "weight": 0.4,
+        "context": "Orca manages worktrees and terminals on top of a repository that sk-git would otherwise own"
+      }
+    ],
+    "siblings": [
+      {
+        "target": "sk-git",
+        "weight": 0.5,
+        "context": "sk-git owns generic worktrees, branches and commits, while cli-orca owns the same surfaces only when Orca is the source of truth"
+      },
+      {
+        "target": "cli-external-orchestration",
+        "weight": 0.3,
+        "context": "the sibling CLI lane dispatches external executors, while cli-orca talks to the Orca runtime itself"
+      },
+      {
+        "target": "mcp-tooling",
+        "weight": 0.3,
+        "context": "the transport hub previously carried this subject as a mode, and the two now defer to each other by vocabulary"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "domains": [
+    "orca-cli",
+    "managed-worktrees",
+    "orca-terminals",
+    "embedded-browser",
+    "orca-automations",
+    "agent-handoffs",
+    "agent-skill-sharing",
+    "official-orca-skills"
+  ],
+  "intent_signals": [
+    "orca cli",
+    "orca worktree",
+    "orca terminal",
+    "orca browser",
+    "orca automation",
+    "orca handoff",
+    "orca artifacts",
+    "orca skills",
+    "orca repository",
+    "orca embedded browser",
+    "managed worktree",
+    "paired terminal",
+    "child worktree"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "orca cli",
+      "orca worktree",
+      "orca terminal",
+      "orca browser",
+      "orca automation",
+      "orca handoff",
+      "orca artifacts",
+      "orca skills",
+      "managed worktree",
+      "paired terminal",
+      "official orca skills",
+      "orca per workspace env"
+    ],
+    "key_topics": [
+      "orca",
+      "cli",
+      "worktree",
+      "terminal",
+      "browser",
+      "automation",
+      "handoff",
+      "artifacts",
+      "skills",
+      "orchestration"
+    ],
+    "key_files": [
+      ".skilled/skills/cli-orca/SKILL.md",
+      ".skilled/skills/cli-orca/references/orca-cli-reference.md",
+      ".skilled/skills/cli-orca/references/orca-skills/overview.md",
+      ".skilled/skills/cli-orca/assets/PROVENANCE.md"
+    ],
+    "entities": [
+      {
+        "name": "cli-orca",
+        "kind": "skill",
+        "path": ".skilled/skills/cli-orca/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "orca-cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-orca/references/orca-cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "orca-skills",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-orca/references/orca-skills/overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "PROVENANCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-orca/assets/PROVENANCE.md",
+        "source": "derived"
+      }
+    ],
+    "source_docs": [
+      "SKILL.md",
+      "leaf-manifest.config.json"
+    ],
+    "causal_summary": "Standalone class-S skill that routes Orca CLI work (managed worktrees, terminals, embedded browser, automations, artifacts, handoffs, skill sharing) and carries one authored reference plus a verbatim snapshot for each of the eight official Orca skills, deferring generic worktree, terminal, browser and orchestration vocabulary to its sibling owners",
+    "created_at": "2026-09-20T08:10:00Z",
+    "last_updated_at": "2026-09-20T10:30:00Z"
+  }
+}
