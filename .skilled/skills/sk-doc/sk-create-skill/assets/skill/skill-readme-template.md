@@ -1,6 +1,6 @@
 ---
 title: Skill README Template
-description: Template for human-facing skill README files in the narrative voice used by the repo root README and the changelogs: purpose-first identity, capability sections, at-a-glance table, problem-first overview, quick start, HVR enforcement, versioning and a strict validation checklist.
+description: Template for human-facing skill README files in the narrative voice used by the repo root README and the changelogs: purpose-first identity, capability sections, at-a-glance table, value-first overview, quick start, HVR enforcement, versioning and a strict validation checklist.
 trigger_phrases:
   - "skill readme template"
   - "narrative skill readme"
@@ -8,12 +8,12 @@ trigger_phrases:
   - "skill readme scaffold"
 importance_tier: normal
 contextType: general
-version: 1.2.0.15
+version: 1.3.0.0
 ---
 
 # Skill README Template
 
-Use this template for `.skilled/skills/[skill-name]/README.md`. It writes a skill README in the same narrative voice the repo root `README.md` and the changelogs use: a one-line human pitch, an at-a-glance table near the top, a problem-first overview, then quick start, navigation and a verification close.
+Use this template for `.skilled/skills/[skill-name]/README.md`. It writes a skill README in the same narrative voice the repo root `README.md` and the changelogs use: a one-line human pitch, an at-a-glance table near the top, a value-first overview, then quick start, navigation and a verification close.
 
 ---
 
@@ -52,7 +52,7 @@ A skill README uses numbered ALL-CAPS H2 sections with `---` dividers between th
 | # | Section | Purpose | Keep When |
 |---|---------|---------|-----------|
 | 1 | AT A GLANCE | Four-row table a reader scans in five seconds | Always |
-| 2 | OVERVIEW | Problem-first "why", then "what it does" | Always (required by the validator) |
+| 2 | OVERVIEW | What the skill is and what the reader gets first, then the optional problem narrative | Always (required by the validator) |
 | 3 | QUICK START | The fastest path to a first result | Skill has commands, scripts or a workflow |
 | 4 | HOW IT WORKS | The lifecycle or main workflow in prose, with a small ASCII diagram when the flow has multiple steps | Skill has non-obvious behavior worth narrating |
 | 5 | INTEGRATION & NAVIGATION | When to use it, plus how it hands off to sibling skills | Readers can confuse it with a neighbor |
@@ -63,7 +63,7 @@ A skill README uses numbered ALL-CAPS H2 sections with `---` dividers between th
 
 `OVERVIEW` is the one required section. Its normalized name must appear as a numbered header so the validator finds it. Every other section is optional. A small utility skill might run four sections (AT A GLANCE, OVERVIEW, QUICK START, RELATED DOCUMENTS). A large orchestrator might run all nine. Match the count to the skill. Never pad to hit a number.
 
-Inside OVERVIEW you may add two optional subsections. The first is a `### Why It Matters` value beat with two to four outcome bullets stated benefit-first. The second is the capability section below. Add the value beat when the payoff is not obvious from What It Does.
+Inside OVERVIEW the `### What It Does` subsection comes first: what the skill is and what the reader gets, modeled on the root README opening with its SUMMARY section and benefit bullets. You may then add up to three optional subsections. A `### Why This Skill Exists` problem narrative, used when the pain needs telling before the mechanism lands. A `### Why It Matters` value beat with two to four outcome bullets stated benefit-first. And the capability section below.
 
 ### Capability Section Pattern
 
@@ -83,11 +83,12 @@ When a skill has a headline strength, give it a named capability section inside 
 ## 3. WRITING RULES
 
 - State the outcome before the tooling. The pitch and the identity guidance name what the reader gets. The tool names follow as the means.
-- Write the problem as a short narrative, not a summary. Put the reader in a concrete failing situation and let them feel the pain before you name the solution. The repo root README opens this way. It describes losing every architecture decision when the session window closes, then introduces the fix. Aim for that texture at skill scale.
+- Open value-first, the way the repo root README opens now: what the skill is and what the reader gets before any feature list. When the pain needs telling, add the optional `### Why This Skill Exists` narrative inside OVERVIEW and put the reader in a concrete failing situation there.
 - Add a 2 to 3 sentence narrative hook right after the blockquote pitch, before AT A GLANCE, when a skill needs a running start into its story. Keep AT A GLANCE the first numbered section so the validator contract and the five-second scan both hold.
 - Descriptive length is welcome. One idea per sentence governs clarity, not length. A sentence with a subordinate clause is fine when it reads naturally aloud. The banned forms in Section 4 stay banned regardless of length.
 - Carry the explanation in prose. Reach for a table only when 4 or more parallel items need a lookup grid (skill relationships, CLI flags, a comparison).
-- A short, concrete analogy can carry an abstract mechanism better than adjectives (the repo root README uses "like a lab notebook for software", "like a triage nurse"). Use one only where it clarifies, never as decoration.
+- Use semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers. Decorative section emoji never: that register belongs to the repository front-page README, while a skill README keeps the technical formatting.
+- A short, concrete analogy can carry an abstract mechanism better than adjectives (the repo root README uses "like a lab notebook for software"). Use one only where it clarifies, never as decoration.
 - Put the AT A GLANCE table first. Four rows, one line each, no prose cells.
 - Name the canonical command or entry point in OVERVIEW or QUICK START so a reader knows where to start.
 - Link to real files under `references/`, `assets/`, `scripts/`, `feature-catalog/` or `manual-testing-playbook/`. Verify each path resolves.
@@ -172,20 +173,19 @@ version: 1.0.0.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
-
-[A short problem narrative, three to six sentences. Put the reader in a concrete failing situation and let them feel it before you name the solution. State the problem before the solution. No feature list here. Write it the way the root README opens, shown in the comment below, then delete the comment.]
-
-<!-- Example shape, replace with the skill's real problem and delete this comment:
-AI coding assistants have amnesia. Every session starts from zero. You explain your architecture on Monday and by Wednesday it is gone. The decisions, the trade-offs, the reasoning behind them, all lost the moment the window closes. This skill fixes that. -->
-
 ### What It Does
 
-[Two to four sentences. The core capability in plain language, naming the canonical command or entry point. If a sibling skill is easy to confuse with this one, name the boundary in a sentence.]
+[Two to four sentences, first. What the skill is and what the reader gets, in plain language, naming the canonical command or entry point. Model the shape on the root README SUMMARY section: identity first, then what the reader walks away with. If a sibling skill is easy to confuse with this one, name the boundary in a sentence.]
+
+### Why This Skill Exists
+
+[Optional. A short problem narrative, three to six sentences, used when the pain needs telling before the mechanism lands. Put the reader in a concrete failing situation and let them feel it before you name the solution. Delete this subsection when the payoff is obvious from What It Does.]
 
 ### Why It Matters
 
-[Optional. Two to four outcome bullets, benefit-first, each naming what the reader gets rather than what the skill has. Model: the root README "Reasons to try it" bullets. Drop this subsection when the payoff is already obvious from What It Does.]
+### Why It Matters
+
+[Optional. Two to four outcome bullets, benefit-first, each naming what the reader gets rather than what the skill has. Model: the root README "Why it earns a place" bullets. Drop this subsection when the payoff is already obvious from What It Does.]
 
 - **[Outcome, not feature]:** [the concrete benefit in plain words]
 - **[Outcome, not feature]:** [the concrete benefit in plain words]
@@ -310,13 +310,13 @@ Each check has a pass criterion. A check only passes when its criterion holds, n
 | 1 | Pitch | H1 is followed by a one-line blockquote stating the delivered outcome |
 | 2 | AT A GLANCE | First section, four rows, one line each |
 | 3 | Numbered ALL-CAPS H2 | Every H2 is numbered sequentially with `---` dividers |
-| 4 | OVERVIEW required | A numbered OVERVIEW section exists and opens problem-first |
+| 4 | OVERVIEW required | A numbered OVERVIEW section exists and opens value-first: what the skill delivers before any feature list |
 | 5 | Command output expectations | Every command block shows its expected output |
 | 6 | Link verification | Every relative link resolves on disk |
 | 7 | HVR clean | The four greps in Section 4 return zero matches outside code fences |
 | 8 | Validator | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues |
 | 9 | Optional sections | Sections without real content were removed and the rest renumbered |
-| 10 | Problem narrative | OVERVIEW opens with a concrete failing situation the reader recognizes, not a one-line summary |
+| 10 | Optional problem narrative | When `### Why This Skill Exists` is present, it reads as a concrete failing situation the reader recognizes, not a one-line summary |
 | 11 | Connection diagram | A multi-step skill includes a small ASCII diagram of how the pieces connect |
 
 Pass criteria in full:
@@ -326,13 +326,13 @@ Pass criteria in full:
 | 1 | A reader can say the outcome aloud from the pitch alone, without reading further. The pitch names no tool before the outcome. |
 | 2 | The table has exactly four Aspect rows and no cell wraps to a second line. |
 | 3 | `rg -n '^## [0-9]+\. ' README.md` lists every H2 in ascending order. Every title is ALL CAPS. |
-| 4 | The validator reports zero issues. The first OVERVIEW paragraph names the reader's situation before any feature list. |
+| 4 | The validator reports zero issues. The first OVERVIEW paragraph names what the skill delivers before any feature list. |
 | 5 | A reader can tell success from failure without running the command. |
 | 6 | Each target path exists relative to the README folder. |
 | 7 | The em dash, semicolon, Oxford comma and banned-word greps report no prose hits. |
 | 8 | The command exits 0 and reports zero issues. |
 | 9 | The final section numbers run in order with no gaps. |
-| 10 | The first OVERVIEW paragraph reads as a short story a reader feels, three to six sentences, before any feature list. |
+| 10 | The optional problem narrative reads as a short story a reader feels, three to six sentences, after What It Does. |
 | 11 | Skills with more than one step in HOW IT WORKS carry an ASCII diagram. A single-step utility skill is exempt. |
 
 > The validator is a floor, not a proxy for this checklist. It enforces a numbered ALL-CAPS H2 named OVERVIEW and little else. It does not check the pitch, the AT A GLANCE table, command outputs, links or HVR. A green run means the file cleared the floor, not that it passed the nine checks above.
@@ -346,7 +346,7 @@ The pilot README work distilled eight writing directives. Every directive has a 
 | Pilot directive | Template home | What the home says |
 |---|---|---|
 | Purpose-first identity | Section 1 Identity Guidance, Section 6 pitch and description placeholders | The outcome statement opens the README. The tooling is named after it as the means. |
-| Problem-first OVERVIEW | Section 2 OVERVIEW row, Section 6 Why This Skill Exists | The reader's situation and what goes wrong without the skill come before any feature list. |
+| Value-first OVERVIEW | Section 2 OVERVIEW row, Section 6 What It Does | What the skill is and what the reader gets come before any feature list, modeled on the root README SUMMARY section. The problem narrative is optional. |
 | One-line pitch | Section 3 first bullet, Section 6 blockquote | H1 is followed by a one-line blockquote stating the outcome in plain words. |
 | Narrative prose | Section 3 Writing Rules | Prose carries the explanation. Tables appear only for genuine lookups. |
 | Template structure | Section 2 Section Model, Section 6 scaffold | Numbered ALL-CAPS H2 with `---` dividers, AT A GLANCE first, OVERVIEW the only required section. |

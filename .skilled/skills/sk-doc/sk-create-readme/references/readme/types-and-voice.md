@@ -9,7 +9,7 @@ trigger_phrases:
   - "component readme voice"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.7
+version: 1.2.1.0
 ---
 
 # README Types and Voice
@@ -44,6 +44,12 @@ The README type decision tree lives in `SKILL.md` Section 2. This reference cove
 | **Code Folder** | `[code-dir]/README.md` | Developers reading or modifying code | Technical (reference only) |
 
 Project, Skill and Feature READMEs use both voice tiers. Component and Code Folder READMEs use the reference tier only.
+
+### Front-Page vs Technical Register
+
+One Project README is also the repository's front page: `/README.md`. It may use the marketing register: value-first ordering and benefit-led headings, with decorative emoji on section headings, because its job is to win the reader's attention in seconds.
+
+Every other README, including Skill and Feature, keeps the technical register for formatting: numbered ALL-CAPS sections, tables for lookups and only semantic emoji (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers. The writing voice may still borrow the front page's engagement: a skill README may open with a pitch and benefit-led bullets before the technical detail. It explains rather than sells, and it never copies the decorative section emoji.
 
 ---
 

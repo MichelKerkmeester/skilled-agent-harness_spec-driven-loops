@@ -9,7 +9,7 @@ trigger_phrases:
   - "hub readme validation"
 importance_tier: normal
 contextType: general
-version: 1.2.0.4
+version: 1.3.0.0
 ---
 
 # Parent Skill Hub README Template
@@ -54,7 +54,7 @@ A hub README uses numbered ALL-CAPS H2 sections with `---` dividers between them
 | # | Section | Purpose | Keep When |
 |---|---------|---------|-----------|
 | 1 | AT A GLANCE | A four-row table a reader scans in five seconds | Always |
-| 2 | OVERVIEW | The purpose-first why, then what the hub does | Always, it is the only required section |
+| 2 | OVERVIEW | What the hub is and what it routes first, then the optional problem narrative | Always, it is the only required section |
 | 3 | MODES AND PACKETS | One table row per child packet with a pointer | The hub has two or more packets |
 | 4 | NAVIGATION | Stable links to the registry and the manifest | The hub is registry-driven |
 | 5 | CHANGELOG | The per-release entry convention | The hub keeps a changelog folder |
@@ -71,9 +71,11 @@ A hub README uses numbered ALL-CAPS H2 sections with `---` dividers between them
 
 Open with a one-line blockquote pitch right after the H1. The pitch states the whole family outcome in plain words. The two example hubs show the shape: mcp-tooling opens with "One advisor identity, seven modes" and system-deep-loop opens with "One skill that routes to every active deep-loop workflow".
 
-The OVERVIEW starts with a `### Why This Hub Exists` subsection that names the reader's situation before any feature list: the family of problems, what went wrong before the hub unified them and where the reader is now. The `### What It Does` subsection then explains the mechanism: one advisor identity that routes through `mode-registry.json`. The hub holds no packet-local logic.
+The OVERVIEW starts with a `### What It Does` subsection: what the hub is and what the reader gets, modeled on the root README SUMMARY section, before any feature list. An optional `### Why This Hub Exists` subsection may follow when the pain needs telling: the family of problems, what went wrong before the hub unified them and where the reader is now.
 
-Write Why This Hub Exists as a short narrative, three to six sentences, not a summary. Put the reader in the situation they hit before the hub existed, when the family of problems lived in scattered places and every author invented a different front door. Let them feel that before you name the unifying identity. You may add a 2 to 3 sentence narrative hook after the blockquote, before AT A GLANCE. You may add an optional `### Why It Matters` value beat with outcome bullets inside OVERVIEW. For a hub with a multi-step routing flow, add a small ASCII diagram of request to registry to packet, modeled on the root README connection diagram.
+Write the optional Why This Hub Exists as a short narrative, three to six sentences, not a summary. Put the reader in the situation they hit before the hub existed, when the family of problems lived in scattered places and every author invented a different front door. Let them feel that before you name the unifying identity. You may add a 2 to 3 sentence narrative hook after the blockquote, before AT A GLANCE. You may add an optional `### Why It Matters` value beat with outcome bullets inside OVERVIEW. For a hub with a multi-step routing flow, add a small ASCII diagram of request to registry to packet, modeled on the root README connection diagram.
+
+Emoji use follows the technical register. Semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers, and sparingly. Decorative section emoji stay on the repository front-page README, never on a hub README.
 
 ### 4.2 Modes And Packets
 
@@ -136,13 +138,13 @@ version: 1.0.0.0
 
 ## 2. OVERVIEW
 
-### Why This Hub Exists
-
-[Two to four sentences, problem-first. State the situation a reader is in and what goes wrong without the hub. Name the family and the nested packets. No feature list here.]
-
 ### What It Does
 
-[Two to four sentences. One public advisor identity that routes every request to a nested packet. The hub holds no packet-local logic. Name the registry that resolves modes and the manifest that inventories leaves.]
+[Two to four sentences, first. One public advisor identity that routes every request to a nested packet. The hub holds no packet-local logic. Name the registry that resolves modes and the manifest that inventories leaves. Model the shape on the root README SUMMARY section: what the hub is and what the reader gets before any feature list.]
+
+### Why This Hub Exists
+
+[Optional. Two to four sentences, used when the pain needs telling. State the situation a reader is in and what goes wrong without the hub. Name the family and the nested packets. No feature list here.]
 
 ### Why It Matters
 
@@ -241,7 +243,7 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/[hu
 
 - [ ] H1 is followed by a one-line blockquote pitch stating the family outcome.
 - [ ] `AT A GLANCE` is the first section and its table is four rows of one-line cells.
-- [ ] A numbered `OVERVIEW` section exists and opens with `### Why This Hub Exists`, problem-first, before any feature list.
+- [ ] A numbered `OVERVIEW` section exists and opens value-first: what the hub delivers before any feature list. `### Why This Hub Exists` is optional.
 - [ ] H2 sections are numbered, ALL CAPS and separated by `---` dividers.
 - [ ] `MODES AND PACKETS` lists every mode from `mode-registry.json` with a relative pointer per row.
 - [ ] `NAVIGATION` links `mode-registry.json` and `leaf-manifest.json` with stable relative paths.
@@ -250,6 +252,7 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/[hu
 - [ ] `VERIFICATION` names the sk-doc readme validator and the HVR checks.
 - [ ] Every linked path resolves from the hub root.
 - [ ] HVR passes: zero em dashes, zero semicolons, zero Oxford commas, zero banned words and zero setup phrases.
+- [ ] Emoji use stays semantic (✅ ❌ ⚠️ 🔒 🚨) and sparing. No decorative section emoji.
 - [ ] `python3 .skilled/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues.
 
 > The script above is a floor, not a proxy for this checklist. It enforces the numbered ALL-CAPS `OVERVIEW` header. It does not check the pitch, the `AT A GLANCE` table, the packet table or HVR. A green run means the file cleared the floor, not that it passed the checks above.
