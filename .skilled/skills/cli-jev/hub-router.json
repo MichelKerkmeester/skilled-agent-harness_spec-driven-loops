@@ -1,0 +1,50 @@
+{
+  "skill": "cli-jev",
+  "version": "1.0.0.0",
+  "routerPolicy": {
+    "defaultMode": null,
+    "ambiguityDelta": 1,
+    "tieBreak": ["cli-usage"],
+    "outcomes": {
+      "single": "one dominant jev judgment intent routes to the cli-usage transport",
+      "orderedBundle": "a jev judgment intent paired with a workflow intent routes to the workflow mode first, with cli-usage attached as the judgment source",
+      "defer": "unclear or contradictory intent asks for disambiguation"
+    },
+    "defaultResource": ["cli-usage/SKILL.md"],
+    "bundleRules": []
+  },
+  "routerSignals": {
+    "cli-usage": {
+      "weight": 4,
+      "classes": ["cli-usage-aliases", "jev-dispatch"],
+      "resources": ["cli-usage/SKILL.md"]
+    }
+  },
+  "vocabularyClasses": {
+    "cli-usage-aliases": {
+      "keywords": [
+        "jev cli",
+        "jev judgment",
+        "typesafe jev",
+        "type-safe jev",
+        "cli-jev",
+        "cli jev",
+        "cli-usage",
+        "jev probability judgment",
+        "typed judgment cli"
+      ]
+    },
+    "jev-dispatch": {
+      "keywords": [
+        "jev dispatch",
+        "jev noul",
+        "jev choice",
+        "jev score",
+        "jev run",
+        "jev mcp",
+        "jev judgment call",
+        "run jev"
+      ]
+    }
+  }
+}

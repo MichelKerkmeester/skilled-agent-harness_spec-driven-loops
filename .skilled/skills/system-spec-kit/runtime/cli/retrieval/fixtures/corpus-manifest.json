@@ -1,5 +1,5 @@
 {
-  "corpusHash": "86cf4e93fb2eb4bf1604cc15db7ef4e587662b00d584c11789edc3450207abb7",
+  "corpusHash": "1c840083fb6edbfda7dae789f4f66faa0fca71af23bb387fd89758596b9d0499",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22099,
+  "includedPathCount": 22132,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -8320,58 +8320,85 @@
     "specs/cli-external-orchestration/073-cli-pi-build-brief-and-blackhole/plan.md",
     "specs/cli-external-orchestration/073-cli-pi-build-brief-and-blackhole/spec.md",
     "specs/cli-external-orchestration/073-cli-pi-build-brief-and-blackhole/tasks.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/plan.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/spec.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/tasks.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/002-cli-jev-skill-packet/acceptance-criteria.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/002-cli-jev-skill-packet/goal.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/002-cli-jev-skill-packet/implementation-summary.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/002-cli-jev-skill-packet/plan.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/002-cli-jev-skill-packet/spec.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/002-cli-jev-skill-packet/tasks.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/003-hub-mode-registration/acceptance-criteria.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/003-hub-mode-registration/goal.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/003-hub-mode-registration/implementation-summary.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/003-hub-mode-registration/plan.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/003-hub-mode-registration/spec.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/003-hub-mode-registration/tasks.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/004-catalog-and-playbook/acceptance-criteria.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/004-catalog-and-playbook/goal.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/004-catalog-and-playbook/implementation-summary.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/004-catalog-and-playbook/plan.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/004-catalog-and-playbook/spec.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/004-catalog-and-playbook/tasks.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/005-docs-governance-and-closeout/acceptance-criteria.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/005-docs-governance-and-closeout/goal.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/005-docs-governance-and-closeout/implementation-summary.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/005-docs-governance-and-closeout/plan.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/005-docs-governance-and-closeout/spec.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/005-docs-governance-and-closeout/tasks.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/CODE_OF_CONDUCT.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/CONTRIBUTING.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/README.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/SECURITY.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/design.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/proposal.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/specs/mcp-server/spec.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/tasks.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/design.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/proposal.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/specs/mcp-server/spec.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/tasks.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/proposal.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/specs/mcp-server/spec.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/tasks.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/openspec/specs/mcp-server/spec.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/skills/jev-cli/SKILL.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/skills/jev-cli/references/cli.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/src/jev_cli/bundled_skills/jev-cli/SKILL.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/context/jev-cli-main/src/jev_cli/bundled_skills/jev-cli/references/cli.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/goal.md",
-    "specs/cli-external-orchestration/074-cli-jev-creation/spec.md",
+    "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
+    "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
+    "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
+    "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/plan.md",
+    "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/spec.md",
+    "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/tasks.md",
+    "specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet/acceptance-criteria.md",
+    "specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet/goal.md",
+    "specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet/implementation-summary.md",
+    "specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet/plan.md",
+    "specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet/spec.md",
+    "specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet/tasks.md",
+    "specs/cli-jev/001-cli-jev-creation/003-hub-mode-registration/acceptance-criteria.md",
+    "specs/cli-jev/001-cli-jev-creation/003-hub-mode-registration/goal.md",
+    "specs/cli-jev/001-cli-jev-creation/003-hub-mode-registration/implementation-summary.md",
+    "specs/cli-jev/001-cli-jev-creation/003-hub-mode-registration/plan.md",
+    "specs/cli-jev/001-cli-jev-creation/003-hub-mode-registration/spec.md",
+    "specs/cli-jev/001-cli-jev-creation/003-hub-mode-registration/tasks.md",
+    "specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/acceptance-criteria.md",
+    "specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/goal.md",
+    "specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/implementation-summary.md",
+    "specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/plan.md",
+    "specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/spec.md",
+    "specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/tasks.md",
+    "specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/acceptance-criteria.md",
+    "specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/goal.md",
+    "specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/implementation-summary.md",
+    "specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/plan.md",
+    "specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/spec.md",
+    "specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/tasks.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/CODE_OF_CONDUCT.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/CONTRIBUTING.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/README.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/SECURITY.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/design.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/proposal.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/specs/mcp-server/spec.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-add-stdio-mcp-server/tasks.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/design.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/proposal.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/specs/mcp-server/spec.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-describe-mcp-inputs/tasks.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/proposal.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/specs/mcp-server/spec.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/changes/archive/2026-09-18-enforce-mcp-cardinality/tasks.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/openspec/specs/mcp-server/spec.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/skills/jev-cli/SKILL.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/skills/jev-cli/references/cli.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/bundled_skills/jev-cli/SKILL.md",
+    "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/bundled_skills/jev-cli/references/cli.md",
+    "specs/cli-jev/001-cli-jev-creation/goal.md",
+    "specs/cli-jev/001-cli-jev-creation/spec.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/goal.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/implementation-summary.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/plan.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/spec.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/tasks.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/goal.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/plan.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/spec.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/tasks.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/goal.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/implementation-summary.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/plan.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/spec.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/tasks.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/implementation-summary.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/plan.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/spec.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/tasks.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/goal.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/implementation-summary.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/plan.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/spec.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/tasks.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/goal.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/spec.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/orca-worktree-terminal.md",
@@ -22061,6 +22088,12 @@
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/plan.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/spec.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/research/research.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/goal.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-001.md",
     "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/review/iterations/iteration-002.md",
@@ -22121,7 +22154,7 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "dc471727730063873e2149a59680ab8544683ddd5ade004f31529f6a43ad9a55",
+  "manifestHash": "1412eef2d2d701ef947c5aab2b2c6750c1a7c332592b78abd24223e9887fc898",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -22607,27 +22640,47 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/001-jev-contract-research-and-pin/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/002-cli-jev-skill-packet/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/003-hub-mode-registration/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/004-catalog-and-playbook/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/074-cli-jev-creation/005-docs-governance-and-closeout/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/cli-external-orchestration/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/003-hub-mode-registration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {
@@ -26288,6 +26341,14 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/scratch",
       "reason": "excluded directory"
     },
     {

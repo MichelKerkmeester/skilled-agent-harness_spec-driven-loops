@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin",
+  "spec_folder": "cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin",
+  "parent_id": "cli-jev/001-cli-jev-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "approach and phases",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "approach",
+      "phases"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/probe-surface.sh",
+      "scratch/probe-surface.txt",
+      "scratch/probe-matrix.sh",
+      "scratch/probe-matrix.txt",
+      "scratch/mcp-probe.py",
+      ".skilled/skills/cli-external-orchestration/cli-jev/references/cli-reference.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-jev/references/mcp-server.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-surface.sh",
+        "kind": "script",
+        "path": "scratch/probe-surface.sh",
+        "source": "derived"
+      },
+      {
+        "name": "probe-surface.txt",
+        "kind": "file",
+        "path": "scratch/probe-surface.txt",
+        "source": "derived"
+      },
+      {
+        "name": "probe-matrix.sh",
+        "kind": "script",
+        "path": "scratch/probe-matrix.sh",
+        "source": "derived"
+      },
+      {
+        "name": "probe-matrix.txt",
+        "kind": "file",
+        "path": "scratch/probe-matrix.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-probe.py",
+        "kind": "file",
+        "path": "scratch/mcp-probe.py",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-server.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/mcp-server.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Hypothesis",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub is about to route work to a binary it does not control, and the only available accounts of that binary are a vendor README, a vendored source tree, and the binary itself",
+    "created_at": "2026-09-20T07:39:05Z",
+    "last_save_at": "2026-09-20T11:08:50.824Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a6986036dd9e80e2525c0655e2e01d63733da76481f3082687cc0433e932523c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8e6d6487dac4b9a51db9e350c175302a029544efda6fda10bf99bcb24e810d2c",
+      "plan.md": "0335d8630b8dfc05d8e25f2fb9c164479c53ee2a4f5b9c458df1fcc676829364",
+      "tasks.md": "50df3e9c888ba1cafef59467431c2c78aecc3dc84d5ec30adcff49e30e9a9521",
+      "implementation-summary.md": "979b6b7dffd308890bba22210be281937475d8d19299debc3fbfe1c8fa7c8b9d"
+    },
+    "last_active_at": null
+  }
+}

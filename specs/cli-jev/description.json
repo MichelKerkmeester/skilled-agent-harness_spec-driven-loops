@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-jev",
+  "description": "Track folder for the jev tooling family: the transport parent hub that bridges an external decision service and returns typed judgments, its CLI-usage mode, and the packet history of how the hub was created, migrated and onboarded to compiled routing.",
+  "keywords": [
+    "cli-jev",
+    "jev",
+    "track",
+    "typed-judgment",
+    "transport",
+    "cli-usage",
+    "noul",
+    "choice",
+    "score",
+    "jev-mcp",
+    "parent-hub"
+  ],
+  "lastUpdated": "2026-09-20T11:00:11.000Z",
+  "specId": "cli-jev",
+  "folderSlug": "cli-jev",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

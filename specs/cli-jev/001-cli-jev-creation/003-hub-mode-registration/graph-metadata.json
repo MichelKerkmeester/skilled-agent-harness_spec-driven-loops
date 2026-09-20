@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/001-cli-jev-creation/003-hub-mode-registration",
+  "spec_folder": "cli-jev/001-cli-jev-creation/003-hub-mode-registration",
+  "parent_id": "cli-jev/001-cli-jev-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "approach and phases",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "approach",
+      "phases"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/mode-registry.json",
+      ".skilled/skills/cli-external-orchestration/hub-router.json",
+      ".skilled/skills/cli-external-orchestration/ROUTER.md",
+      ".skilled/skills/cli-external-orchestration/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/README.md",
+      ".skilled/skills/cli-external-orchestration/leaf-manifest.json",
+      ".skilled/skills/cli-external-orchestration/description.json",
+      ".skilled/skills/cli-external-orchestration/changelog/v1.6.0.0.md",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/lib/registry-compiler.cjs",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/harness/build-artifacts.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "v1.6.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/changelog/v1.6.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "registry-compiler.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/lib/registry-compiler.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-artifacts.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/harness/build-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four independent mechanisms decide whether a mode is reachable: the per-hub gate reads the registry, the hub router scores signals, the dispatch audit decides which packet governs a command, and the compiled policy is what the runtime actually serves",
+    "created_at": "2026-09-20T07:39:06Z",
+    "last_save_at": "2026-09-20T11:29:12.356Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7f947aeaefeb2132c62f75855b394603c5fe8bea25031f91f900df24f74d95c5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "54df194b9c97cd0d3953e2f5ee5dbd29fed905f9caf80395fd80b87541d1750d",
+      "plan.md": "4996fec29e41c294b6c8f8864824233c9d866a67cffe0f3d50a2f2f7888b966b",
+      "tasks.md": "8a95e9b08c72f43a01722d3db71c8ad409f8696a37adbd6e0e50c2627161c492",
+      "implementation-summary.md": "71875e74c90f6d960b03307513705991491ff16a4cd35c7895ca7503bcfee2f8"
+    },
+    "last_active_at": null
+  }
+}

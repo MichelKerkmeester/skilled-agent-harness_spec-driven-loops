@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dc471727730063873e2149a59680ab8544683ddd5ade004f31529f6a43ad9a55",
+  "manifestHash": "1412eef2d2d701ef947c5aab2b2c6750c1a7c332592b78abd24223e9887fc898",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16661,8 +16661,17 @@
     "cli jev feature catalog": [
       "cli-jev feature catalog"
     ],
+    "cli jev hub": [
+      "cli-jev hub"
+    ],
+    "cli jev hub migration": [
+      "cli-jev hub migration"
+    ],
     "cli jev manual testing playbook benchmark": [
       "cli-jev manual testing playbook benchmark"
+    ],
+    "cli jev parent hub": [
+      "cli-jev parent hub"
     ],
     "cli jev playbook": [
       "cli-jev playbook"
@@ -17105,6 +17114,9 @@
     ],
     "cli unknown fallback": [
       "cli unknown fallback"
+    ],
+    "cli usage mode": [
+      "cli-usage mode"
     ],
     "cli versus mcp": [
       "cli versus mcp"
@@ -20122,6 +20134,9 @@
     ],
     "compiled engine drift fix": [
       "compiled engine drift fix"
+    ],
+    "compiled fleet onboarding": [
+      "compiled fleet onboarding"
     ],
     "compiled route admission build": [
       "compiled route admission build"
@@ -42317,6 +42332,9 @@
     "jev state input": [
       "jev state input"
     ],
+    "jev transport": [
+      "jev transport"
+    ],
     "jev transport classification": [
       "jev transport classification"
     ],
@@ -55590,11 +55608,20 @@
     "phase 20 tasks": [
       "phase 20 tasks"
     ],
+    "phase 21 closure gate": [
+      "phase 21 closure gate"
+    ],
     "phase 21 implementation summary": [
       "phase 21 implementation summary"
     ],
+    "phase 21 plan": [
+      "phase 21 plan"
+    ],
     "phase 21 playbook gold plan": [
       "phase 21 playbook gold plan"
+    ],
+    "phase 21 status": [
+      "phase 21 status"
     ],
     "phase 21 tasks": [
       "phase 21 tasks"
@@ -62142,6 +62169,27 @@
     "repo rules plan": [
       "repo rules plan"
     ],
+    "repo rules relocation reconciliation": [
+      "repo-rules relocation reconciliation"
+    ],
+    "repo rules source migration": [
+      "repo rules source migration"
+    ],
+    "repo rules source migration acceptance": [
+      "repo rules source migration acceptance"
+    ],
+    "repo rules source migration plan": [
+      "repo rules source migration plan"
+    ],
+    "repo rules source migration summary": [
+      "repo rules source migration summary"
+    ],
+    "repo rules source migration tasks": [
+      "repo rules source migration tasks"
+    ],
+    "repo rules symlink farm": [
+      "repo rules symlink farm"
+    ],
     "repo rules tasks": [
       "repo rules tasks"
     ],
@@ -64810,6 +64858,9 @@
     "root doc staleness": [
       "root doc staleness"
     ],
+    "root farm reference inventory": [
+      "root farm reference inventory"
+    ],
     "root gate closeout": [
       "root gate closeout"
     ],
@@ -65232,6 +65283,12 @@
     ],
     "rule contradiction resolution": [
       "rule contradiction resolution"
+    ],
+    "rule corpus consumer census": [
+      "rule corpus consumer census"
+    ],
+    "rule corpus relocation": [
+      "rule corpus relocation"
     ],
     "rule count 39 registry": [
       "rule count 39 registry"

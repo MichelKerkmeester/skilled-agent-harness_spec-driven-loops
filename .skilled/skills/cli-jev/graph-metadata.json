@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "skill_id": "cli-jev",
+  "family": "cli",
+  "category": "cli-orchestrator",
+  "deprecated": false,
+  "edges": {
+    "depends_on": [],
+    "enhances": [],
+    "siblings": [],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "domains": [
+    "cli",
+    "delegation",
+    "judgment"
+  ],
+  "intent_signals": [
+    "jev cli",
+    "jev judgment",
+    "typed judgment cli",
+    "use jev choice",
+    "ask jev for a probability",
+    "score levels with jev",
+    "jev noul",
+    "jev score",
+    "jev run",
+    "jev-mcp"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "cli-jev",
+      "cli-usage",
+      "jev judgment",
+      "typed judgment",
+      "jev cli transport",
+      "jev probability",
+      "jev choice",
+      "jev score"
+    ],
+    "key_topics": [
+      "cli",
+      "delegation",
+      "judgment",
+      "transport",
+      "noul",
+      "choice",
+      "score",
+      "run",
+      "mcp"
+    ],
+    "intent_signals": [
+      "ask jev for a probability",
+      "pick one option with jev",
+      "order levels with jev",
+      "batch typed questions through jev"
+    ],
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "mode-registry.json",
+      "hub-router.json",
+      "cli-usage/SKILL.md",
+      "cli-usage/README.md"
+    ],
+    "key_files": [
+      ".skilled/skills/cli-jev/SKILL.md",
+      ".skilled/skills/cli-jev/README.md",
+      ".skilled/skills/cli-jev/mode-registry.json",
+      ".skilled/skills/cli-jev/hub-router.json",
+      ".skilled/skills/cli-jev/graph-metadata.json",
+      ".skilled/skills/cli-jev/cli-usage/SKILL.md",
+      ".skilled/skills/cli-jev/cli-usage/references/cli-reference.md"
+    ],
+    "entities": [
+      {
+        "name": "cli-jev",
+        "kind": "skill",
+        "path": ".skilled/skills/cli-jev/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-usage",
+        "kind": "skill",
+        "path": ".skilled/skills/cli-jev/cli-usage/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "jev-contract",
+        "kind": "reference",
+        "path": ".skilled/skills/cli-jev/cli-usage/references/cli-reference.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-jev is the single public skill identity for Jev typed judgments, split out of the cli-external-orchestration family into a hub with one transport packet. The hub routes a judgment request to cli-usage through mode-registry.json and hub-router.json; the transport bridges the jev CLI and MCP surface, returning one typed value (a probability, one option key, an ordered score position, or a batch of keyed answers) while writing nothing into this workspace. Write, Edit and Task are forbidden and mutatesWorkspace is false, so the transport selects while a workflow acts. The advisor sees one hub and resolves the transport by hub membership, because every transport is routingClass metadata.",
+    "created_at": "2026-09-20T13:35:00Z",
+    "last_updated_at": "2026-09-20T13:35:00Z"
+  }
+}

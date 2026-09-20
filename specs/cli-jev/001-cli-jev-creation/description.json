@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-jev/001-cli-jev-creation",
+  "description": "cli-jev creation: add Jev as the eighth cli-external-orchestration mode, a transport packet that bridges the jev CLI and its judgment contract",
+  "keywords": [
+    "cli-jev",
+    "creation",
+    "jev",
+    "eighth",
+    "cli-external-orchestration",
+    "mode",
+    "transport",
+    "packet",
+    "bridges",
+    "cli",
+    "judgment",
+    "contract"
+  ],
+  "lastUpdated": "2026-09-20T07:39:05.459Z",
+  "specId": "001",
+  "folderSlug": "cli-jev-creation",
+  "parentChain": [
+    "cli-jev"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/043-v4-root-readme"
-    last_updated_at: "2026-09-20T07:15:00Z"
+    last_updated_at: "2026-09-20T10:30:00Z"
     last_updated_by: "devin"
-    recent_action: "Verified all ten acceptance criteria with observed evidence"
-    next_safe_action: "Close packet; root README refresh is verified"
+    recent_action: "Recorded post-closure alternative README variant; all ten criteria still Met"
+    next_safe_action: "Packet remains closed; variant kept in scratch per user decision"
     blockers: []
     key_files:
       - "README.md"
@@ -92,4 +92,6 @@ waiver is treated as an unmet criterion rather than as a pass.
 **Closeable:** Yes
 
 All ten criteria verified with observed evidence: `validate_document.py` reports `VALID` with 0 issues, `hvr_scan.py` reports 0 hard blockers at a 90/100 ceiling, and `validate.sh --strict` reports `RESULT: PASSED`.
+
+Post-closure follow-on (no new criteria): a user-requested marketing-style variant was drafted at `scratch/README-alt.md`, restructured into dedicated numbered feature sections and validated (`VALID`, 0 issues; zero real prose semicolons). Promoted to the root `README.md` on user request (2026-09-20); the promoted file re-verified clean (`VALID`, 0 issues; `hvr_scan.py` 0 hard blockers, 90/100). Recorded in `tasks.md` Phase 4 and the `plan.md` addendum.
 <!-- /ANCHOR:closure -->

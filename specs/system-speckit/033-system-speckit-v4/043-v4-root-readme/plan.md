@@ -170,3 +170,27 @@ Phase 1 (Structural fixes) ──► Phase 2 (Factual fixes) ──► Phase 3 (
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
+
+<!-- ANCHOR:addendum-alt-readme -->
+## ADDENDUM: Alternative README Variant (Post-Closure Follow-On)
+
+### Scope
+
+User-requested exploratory variant of the root README, drafted in `scratch/README-alt.md` after packet closure. Initially kept as a variant, then promoted to the root `README.md` on user request (2026-09-20); validators re-run on the promoted file.
+
+### Approach
+
+1. Style the draft on `/Users/michelkerkmeester/MEGA/Development/AI Systems/Product Context/Barter Managed/What is Barter Managed-20260920091728.md`: short paragraphs, bullets over prose, bold labels, separator rhythm.
+2. Iterate per user direction: fewer tables with restored detail, then marketing order (problem first, benefits second, tour third, internals last), then dedicated feature sections in remote-main order.
+3. Final feature order: Spec Kit (with `#### 🧠 Spec Memory & Search` integrated), Deep Loop, Skill Advisor, Skill Library, Agent Library, Plugin & Extension Library (Goal Plugin, `pi-cache-optimizer`, Pi extensions, OpenCode plugins, shared hooks), Command Library, Code Mode MCP, Git Worktree.
+4. Apply remote-main spacing conventions: `&nbsp;` between subsections, `---` before numbered ALL-CAPS H2 sections, emoji headings.
+5. Independent review: Gemini 3.8 Flash High via `devin -p --model gemini-3-8-flash-high` (Cursor route exhausted). Three findings applied (`🧰` Skill Library emoji, `CLAUDE.md` symlink wording, `system-skill-advisor` added to the customization inventory); two dismissed with reasons (mcp-tooling names all ten modes and profiles four; the diagram and section order are verbatim user-approved content).
+
+### Verification
+
+- `validate_document.py scratch/README-alt.md` -> `VALID`, 0 issues.
+- `hvr_scan.py scratch/README-alt.md` -> 0 real prose semicolons. The 138 `;` findings are `&nbsp;` entities (scanner has no HTML-entity mask; the remote-main convention itself would trip it).
+- Known gap proposed for follow-up: patch `hvr_scan.py` to mask `&[a-z]+;` entities before the punctuation check. Shared tooling change, separate spec scope, approved by user as a proposal on 2026-09-20.
+<!-- /ANCHOR:addendum-alt-readme -->
+
+---

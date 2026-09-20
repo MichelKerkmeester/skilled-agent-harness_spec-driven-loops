@@ -385,6 +385,11 @@ def mask_untargeted(lines, include_code, template_payload=False):
             continue
         paragraph.append(index)
     _mask_inline_spans(masked, paragraph)
+    # HTML entities are markup, not prose punctuation: `&nbsp;` ends in a
+    # semicolon but is not the banned join. Mask them so positions stay true.
+    entity = re.compile(r"&(?:[a-zA-Z][a-zA-Z0-9]*|#[0-9]+|#x[0-9a-fA-F]+);")
+    for index, line in enumerate(masked):
+        masked[index] = entity.sub(lambda m: " " * len(m.group(0)), line)
     return masked
 
 
