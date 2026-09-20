@@ -17,7 +17,7 @@ version: 1.5.0.8
 
 This reference records the Pi contract observed in the local live pin. It is the baseline for cli-pi dispatch composition.
 
-Source of confirmed behavior: [Pi contract pin](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md). The exact option names below were also checked against the installed pi --help output.
+Source of confirmed behavior: [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md). The exact option names below were also checked against the installed pi --help output.
 
 ## 1. OVERVIEW
 
