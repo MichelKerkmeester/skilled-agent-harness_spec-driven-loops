@@ -62,6 +62,10 @@ This packet records the extraction of the Orca CLI subject out of the mcp-toolin
 ---
 
 <!-- ANCHOR:review-cycle -->
+## Root README Catalog Addendum
+
+The root README's skill catalog was missing the `cli-orca` entry, and its fleet counts lagged the roster by one. The entry now sits in the CROSS-AI CLI group beside the other `cli-*` hubs, written in the skill-documentation human voice (HVR 100/100 on the entry, zero hard blockers, the whole file no lower than its pre-edit ceiling), and the four counts read 15, matching the fifteen advisor identities on disk. Recorded evidence: the advisor ranks `cli-orca` first for an Orca-qualified prompt, and both fleet hubs defer such prompts to it.
+
 ## Post-Closure Review Cycle
 
 The packet was reopened so that the shipped skill could be reviewed, remediated and exercised as one recorded cycle.
