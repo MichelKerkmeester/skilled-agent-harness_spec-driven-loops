@@ -28,7 +28,7 @@ jobs:
         # fail a build, so the suite that proves enforcement gets its own blocking job.
         run: |
           set -euo pipefail
-          SUITE=".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs"
+          SUITE=".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs"
           # Fail closed: a pull request that deletes the suite must not disable its own gate.
           if [ ! -f "$SUITE" ]; then
             echo "::error::Dispatch rule suite not found at $SUITE — failing closed."
