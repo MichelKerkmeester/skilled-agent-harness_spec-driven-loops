@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration",
+  "description": "Move the repo-rules corpus and every live reference under .skilled",
+  "keywords": [
+    "move",
+    "repo-rules",
+    "corpus",
+    "every",
+    "live",
+    "reference",
+    "skilled"
+  ],
+  "lastUpdated": "2026-09-20T07:40:43.965Z",
+  "specId": "021",
+  "folderSlug": "repo-rules-source-root-migration",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "041-skilled-source-root-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
