@@ -22,7 +22,7 @@ This is cli-external-orchestration's second-layer (surface) router, first-class 
 as `ROUTER.md`. The hub
 selects a workflow mode in [`hub-router.json`](hub-router.json)
 (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`,
-`cli-pi`, `cli-hermes`, or the `cli-jev` transport); this doc maps a request's CLI-dispatch intent to the exact
+`cli-pi`, or `cli-hermes`); this doc maps a request's CLI-dispatch intent to the exact
 packet-local leaf resources that mode should load. Every path is
 packet-qualified (`<packet>/references|assets/…`, where
 `<packet>` is the mode's `mode-registry.json` `packet` field) and converts to
@@ -68,12 +68,6 @@ per-mode references, it is not part of the first slice.
   chat, LLM Gateway model routing, exit codes, and the safe dispatch shape) and the
   integration-pattern guide a request to dispatch a Hermes conductor or headless
   executor session loads.
-- **cli-jev leaves** — the Jev CLI command reference (the four judgment
-  subcommands, state input forms, exit codes, and the two flags that behave unlike
-  their siblings) and the integration-pattern guide a gate, triage, branch or batch
-  request loads. `cli-jev` is this hub's only transport mode: it returns a typed
-  verdict and never acts, so a request that names an effecting step resolves to a
-  workflow mode and pairs with this one rather than routing here alone.
 
 A bare CLI-dispatch phrase that names no executor (e.g. "dispatch this to a CLI
 executor") names no mode, so it fires no intent and falls back to the hub default
@@ -104,7 +98,6 @@ INTENT_SIGNALS = {
     "DEVIN":       {"weight": 4, "keywords": ["devin", "devin cli", "cli-devin", "cognition devin", "delegate to devin", "swe-2 dispatch", "autonomous swe agent", "devin cloud session", "devin headless", "grok 4.5 devin dispatch", "grok 4.6 devin dispatch"]},
     "PI":          {"weight": 4, "keywords": ["pi cli", "cli-pi", "pi dispatch", "pi headless", "delegate to pi", "pi thinking", "pi passthrough", "pi print mode", "pi multi-provider"]},
     "HERMES":      {"weight": 4, "keywords": ["hermes cli", "cli-hermes", "hermes agent", "nous hermes", "delegate to hermes", "hermes chat", "hermes oneshot", "hermes dispatch", "hermes headless", "hermes query-file"]},
-    "JEV":         {"weight": 4, "keywords": ["jev cli", "cli-jev", "jev judgment", "typesafe jev", "type-safe jev", "jev noul", "jev choice", "jev score", "jev run", "jev mcp", "jev dispatch", "jev judgment call", "run jev"]},
 }
 
 RESOURCE_MAP = {
@@ -136,10 +129,6 @@ RESOURCE_MAP = {
         "cli-hermes/references/cli-reference.md",
         "cli-hermes/references/integration-patterns.md"
     ],
-    "JEV": [
-        "cli-jev/references/cli-reference.md",
-        "cli-jev/references/integration-patterns.md"
-    ],
 }
 ```
 
@@ -158,4 +147,4 @@ RESOURCE_MAP = {
   first slice.
 - No keyword match is the hub's `defer` fallback: confirm the target executor
   (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`,
-  `cli-pi`, `cli-hermes`) or the `cli-jev` transport before loading anything.
+  `cli-pi`, `cli-hermes`) before loading anything.

@@ -123,19 +123,7 @@
     "nous hermes",
     "hermes dispatch",
     "hermes headless",
-    "hermes query-file",
-    "jev cli",
-    "jev judgment",
-    "typesafe jev",
-    "type-safe jev",
-    "jev noul",
-    "jev choice",
-    "jev score",
-    "jev run",
-    "jev mcp",
-    "jev dispatch",
-    "jev judgment call",
-    "run jev"
+    "hermes query-file"
   ],
   "derived": {
     "trigger_phrases": [

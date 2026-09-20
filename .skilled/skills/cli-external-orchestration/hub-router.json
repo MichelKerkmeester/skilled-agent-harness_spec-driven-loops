@@ -11,8 +11,7 @@
       "cli-cursor",
       "cli-devin",
       "cli-pi",
-      "cli-hermes",
-      "cli-jev"
+      "cli-hermes"
     ],
     "outcomes": {
       "single": "one dominant executor signal routes to one mode",
@@ -99,16 +98,6 @@
       ],
       "resources": [
         "cli-hermes/SKILL.md"
-      ]
-    },
-    "cli-jev": {
-      "weight": 4,
-      "classes": [
-        "cli-jev-aliases",
-        "jev-dispatch"
-      ],
-      "resources": [
-        "cli-jev/SKILL.md"
       ]
     }
   },
@@ -276,30 +265,6 @@
         "hermes yolo dispatch",
         "hermes second opinion",
         "nous research agent dispatch"
-      ]
-    },
-    "cli-jev-aliases": {
-      "keywords": [
-        "jev cli",
-        "jev judgment",
-        "typesafe jev",
-        "type-safe jev",
-        "cli-jev",
-        "cli jev",
-        "jev probability judgment",
-        "typed judgment cli"
-      ]
-    },
-    "jev-dispatch": {
-      "keywords": [
-        "jev dispatch",
-        "jev noul",
-        "jev choice",
-        "jev score",
-        "jev run",
-        "jev mcp",
-        "jev judgment call",
-        "run jev"
       ]
     }
   }

@@ -8,11 +8,11 @@ metadata:
   family: cli
 ---
 
-<!-- Keywords: cli-external-orchestration, mode-registry, hub-router, workflowMode, packetKind, cli-opencode, opencode-cli, opencode-run, cli-claude-code, claude-code, claude-cli, cli-codex, codex-cli, codex-exec, cli-cursor, cursor-cli, cursor-agent, composer, cli-devin, devin-cli, cli-pi, pi-cli, pi-agent, pi.dev, cli-hermes, hermes-cli, hermes-agent, nous-hermes, cli-jev, jev-cli, jev-noul, jev-choice, jev-score, typesafe-jev, cross-ai, agent-delegation, executor-delegation -->
+<!-- Keywords: cli-external-orchestration, mode-registry, hub-router, workflowMode, packetKind, cli-opencode, opencode-cli, opencode-run, cli-claude-code, claude-code, claude-cli, cli-codex, codex-cli, codex-exec, cli-cursor, cursor-cli, cursor-agent, composer, cli-devin, devin-cli, cli-pi, pi-cli, pi-agent, pi.dev, cli-hermes, hermes-cli, hermes-agent, nous-hermes, cross-ai, agent-delegation, executor-delegation -->
 
 # CLI External Dispatch Hub (cli-external-orchestration)
 
-One skill, eight modes — seven workflow modes plus one transport — one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet, and the hub only routes by `workflowMode`.
+One skill, seven workflow modes — one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet, and the hub only routes by `workflowMode`.
 
 **Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json`, `hub-router.json`, and `ROUTER.md` carry the same value, so every hub-root artifact states the same release.
 
@@ -31,7 +31,6 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 | **cli-devin** | workflow | Devin CLI orchestration: Cognition-backed coding, cloud handoff, subagent delegation, MCP host integration; fails closed when `devin` is absent | `cli-external-orchestration/cli-devin/` |
 | **cli-pi** | workflow | Pi CLI orchestration: guarded headless print, JSON event, RPC, native-resource, and community-package dispatch; fails closed when `pi` is absent | `cli-external-orchestration/cli-pi/` |
 | **cli-hermes** | workflow | Hermes Agent CLI orchestration: quiet oneshot chat dispatch, LLM Gateway model routing, project skills and plugins, cross-AI validation; fails closed when `hermes` is absent or when no provider is configured | `cli-external-orchestration/cli-hermes/` |
-| **cli-jev** | transport | Jev CLI transport: typed judgments (yes/no probability, choice, score, batched) from a state; returns a value and never acts, so pair it with a workflow mode before any effecting step; fails closed when `jev` is absent or when no provider credential is available | `cli-external-orchestration/cli-jev/` |
 
 ### When NOT to Use
 
@@ -54,8 +53,7 @@ Routing is two-stage. Stage 1 (hub → mode): the compiled router / `hub-router.
 ### Two-Axis Model
 
 - `packetKind: "workflow"` — `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` orchestrate a CLI binary and their dispatched writes land in THIS repo's workspace (`mutatesWorkspace:true`). None is a transport packet: all classify intent, choose/confirm a provider, and conduct the dispatched session. (`cli-cursor`'s native worktree/cloud-worker surfaces are opt-in escape hatches, not its default dispatch shape.)
-- `packetKind: "transport"` — `cli-jev` bridges the Jev CLI/MCP surface: one typed judgment in, one value out, `mutatesWorkspace:false`, and `Write`/`Edit`/`Task` forbidden, so it cannot act even if asked. It is declared through the `transport-axis` extension, the only extension this hub carries.
-- One extension: `transport-axis` (`transports: ["cli-jev"]`). No surface-axis and no runtime-loop — no mode here is read-only evidence, and none converges on a loop. The seven workflows stay primary, independently-routable dispatch modes; the transport is routable but selects rather than acts, which is why `tieBreak` lists it after every workflow.
+- One extension: `transport-axis` (`transports: []`). No surface-axis and no runtime-loop — no mode here is read-only evidence, and none converges on a loop. The seven workflows stay primary, independently-routable dispatch modes.
 
 ### Routing Rule
 
@@ -82,8 +80,6 @@ Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and 
 ### Executor Delegation
 
 A prompt naming a specific executor (e.g. "use cli-opencode", "delegate to opencode", "get a claude code second opinion", "delegate to codex", "delegate to cursor", "delegate to devin", "delegate to pi", or a small model that dispatches through one) is resolved by the system-skill-advisor's executor-delegation scorer, which sources its alias table from THIS hub's `mode-registry.json` — keyed by each mode's `packetSkillName` — and resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes`. See `system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
-
-The transport is deliberately absent from that list. The scorer reads the `workflow` modes, because an executor there means "a CLI that can take a task"; `cli-jev` returns a value and runs nothing, so registering it would let a delegation phrase resolve to a mode that cannot execute it. It routes through this hub like every other mode and stays out of the scorer.
 
 ---
 
@@ -154,13 +150,6 @@ cli-external-orchestration/
     assets/
     manual-testing-playbook/
     changelog/
-  cli-jev/
-    SKILL.md
-    README.md
-    references/
-    assets/
-    manual-testing-playbook/
-    changelog/
 ```
 
 ### Companion Metadata
@@ -215,7 +204,6 @@ Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile
 - Advisor description: `description.json`.
 - Skill graph identity: `graph-metadata.json`.
 - Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`, `cli-cursor/SKILL.md`, `cli-devin/SKILL.md`, `cli-pi/SKILL.md`, `cli-hermes/SKILL.md`.
-- Transport packet: `cli-jev/SKILL.md`.
 - Per-mode provider/model/invocation catalogs: each mode's `references/providers-and-models.md` is the dedicated single-source index of that mode's providers, model ids, personas/effort tiers, and dispatch shapes.
 - Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
 - Constitutional CLI dispatch skill-preload rule: the retired constitutional rule docs.

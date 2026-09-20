@@ -99,11 +99,6 @@ function sourceInputs() {
       'cli-hermes',
       'SKILL.md',
     ),
-    'cli-external-orchestration/cli-jev/SKILL.md': path.join(
-      SKILL_ROOT,
-      'cli-jev',
-      'SKILL.md',
-    ),
     'cli-external-orchestration/hub-router.json': path.join(SKILL_ROOT, 'hub-router.json'),
     'cli-external-orchestration/mode-registry.json': path.join(
       SKILL_ROOT,
