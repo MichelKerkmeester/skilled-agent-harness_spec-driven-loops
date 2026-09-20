@@ -25,7 +25,7 @@ version: 1.0.1.0
 
 # Rule: Uncertainty and honest reporting
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load when you do not know.
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load when you do not know.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when

@@ -1,0 +1,1 @@
+../.skilled/repo-rules/skill-hub-routing.md

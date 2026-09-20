@@ -38,7 +38,7 @@ version: 1.6.0.0
 
 # Rule: Communication handoff
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before ending a turn that leaves the operator anything to do.
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load before ending a turn that leaves the operator anything to do.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when

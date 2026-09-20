@@ -29,7 +29,7 @@ version: 1.1.1.0
 
 # Rule: Evidence and proof
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before making any claim someone will act on.
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load before making any claim someone will act on.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when

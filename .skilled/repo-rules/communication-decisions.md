@@ -32,7 +32,7 @@ version: 1.3.0.0
 
 # Rule: Communication decisions
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before presenting a recommendation, a fork, a plan, or the result of a long run.
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load before presenting a recommendation, a fork, a plan, or the result of a long run.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when

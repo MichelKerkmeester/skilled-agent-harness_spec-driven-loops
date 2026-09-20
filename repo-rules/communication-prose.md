@@ -1,0 +1,1 @@
+../.skilled/repo-rules/communication-prose.md

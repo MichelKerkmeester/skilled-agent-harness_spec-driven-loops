@@ -29,7 +29,7 @@ version: 1.0.1.0
 
 # Rule: Prevent overengineering
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before the first write of anything new.
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load before the first write of anything new.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when
