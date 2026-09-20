@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config",
+  "description": "The empty-registry advisory checked `keyFindings` for every loop type, but a review registry carries `openFindings`, so both lanes of the",
+  "keywords": [
+    "empty-registry",
+    "advisory",
+    "checked",
+    "keyfindings",
+    "every",
+    "loop",
+    "type",
+    "review",
+    "registry",
+    "carries",
+    "openfindings",
+    "lanes"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.515Z",
+  "specId": "013",
+  "folderSlug": "review-lane-advisory-and-strict-config",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "010-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

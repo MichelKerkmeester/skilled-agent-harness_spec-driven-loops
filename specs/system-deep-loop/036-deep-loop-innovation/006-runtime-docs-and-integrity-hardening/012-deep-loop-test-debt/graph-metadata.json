@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/012-deep-loop-test-debt",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/012-deep-loop-test-debt",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop test debt",
+      "council persist artifacts",
+      "review reducer fail closed",
+      "deep review restart contract",
+      "deep loop typecheck errors",
+      "implementation plan",
+      "technical approach",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "test",
+      "debt",
+      "council",
+      "persist",
+      "artifacts",
+      "review",
+      "reducer",
+      "fail",
+      "closed",
+      "restart"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/deep/review.md",
+      ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
+      "runtime/cli/tests/review-reducer-fail-closed.vitest.ts",
+      "runtime/cli/tests/multi-ai-council-persist-artifacts.vitest.ts",
+      "runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts",
+      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-reducer-fail-closed.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/review-reducer-fail-closed.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-persist-artifacts.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/multi-ai-council-persist-artifacts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto-restart-contract.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "persist-artifacts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Producer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Failing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fix the pre-existing red tests and typecheck errors that the spec-kit nesting triage attributed to system-deep-loop: council persist-artifacts containment and fixture vantage, the reducer's fail-closed strategy anchors, the deep-review restart contract wording, and the runtime typecheck errors.",
+    "created_at": "2026-09-20T08:33:39.278Z",
+    "last_save_at": "2026-09-20T08:33:39.278Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1f8bc3406e53faefd58d33810e5b1b7d5be0d07fbe0336009f0aad7141568c73",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2ea8fb78460abb0701155cb11b8cfb31a9a31915b5700d80b30ff945e8e5f4ba",
+      "plan.md": "8a087849743eebc7b2c6cc488bff771a03493ecf09806390bfaca55a040df8ff",
+      "tasks.md": "a2602392bb38945d97645d5155eaabab6716a8efda7cefa1c3f416525dbc7eed",
+      "implementation-summary.md": "507962978f971e9d158875bf8dd798f1450582062bfadf5ef5d8882618c77356"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

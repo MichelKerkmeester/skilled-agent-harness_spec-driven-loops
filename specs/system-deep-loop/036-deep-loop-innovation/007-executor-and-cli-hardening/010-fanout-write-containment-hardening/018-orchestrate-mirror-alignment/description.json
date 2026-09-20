@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/018-orchestrate-mirror-alignment",
+  "description": "The orchestrate agent said it orchestrates through the delegation tool, but its OpenCode permission block did not grant it and its Pi mirror did not",
+  "keywords": [
+    "orchestrate",
+    "agent",
+    "said",
+    "orchestrates",
+    "delegation",
+    "tool",
+    "opencode",
+    "permission",
+    "block",
+    "grant",
+    "mirror"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.528Z",
+  "specId": "018",
+  "folderSlug": "orchestrate-mirror-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "010-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

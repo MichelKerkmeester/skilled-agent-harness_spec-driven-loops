@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/019-forced-depth-empty-records",
+  "description": "One alignment-review lane wrote its five iteration records numbered under `run` instead of `iteration`",
+  "keywords": [
+    "one",
+    "alignment-review",
+    "lane",
+    "wrote",
+    "five",
+    "iteration",
+    "records",
+    "numbered",
+    "run",
+    "instead"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.529Z",
+  "specId": "019",
+  "folderSlug": "forced-depth-empty-records",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "010-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

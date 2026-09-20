@@ -1,0 +1,256 @@
+# CENSUS RETURN — packages 041–045 (W1a, read-only)
+
+Boundary: dispatched read-only; no file was written, no command was run (bash denied by profile). The orchestrator persists this reply. Caps hit during retrieval are marked `≥`/`obs`; every `file:line` below was observed in tool output or read directly.
+
+---
+
+## 1. Reference-form variants
+
+| variant pattern | example file:line | count (observed) |
+|---|---|---|
+| `system-deep-loop/<slug>` (JSON value, no `specs/`) | `.../041-cli-pi-devpass-glm-route/description.json:3` | 50 files (25 `description.json` + 25 `graph-metadata.json`; 045 supplies 42 of them) |
+| `system-deep-loop/<slug>/<child>` (JSON value) | `.../045-.../017-protocol-and-catalog-alignment/description.json:2` | 41 files (20 child `description.json`, 20 child `graph-metadata.json`, 1 parent child-list) |
+| `specs/system-deep-loop/<slug>` (JSON/md/commands) | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json:9275` | ≥15 external files; in-tree lines in the hundreds (045 packet docs + review/research lineages; cap-limited) |
+| `file:specs/system-deep-loop/<slug>` (SOURCE tag) | `.../045-.../research/lineages/1789363775244-64o2qi-deepseek/deep-research-strategy.md:22` | 1 file observed |
+| `/Users/michelkerkmeester/worktrees/public/fanout-…/specs/system-deep-loop/<slug>/…` (absolute worktree path) | `.../lineages/1789366204116-kfp53e-glm/deep-research-config.json:25` | ≥6 files (deepseek/luna/glm lineage configs, state logs, prompts, logs, manifests, events) |
+| backticked bare `<slug>` | `036-.../scratch/merge-041-050/worklist.md:22` | 6 merge-workspace files + briefs |
+| bare `<slug>` and `<slug>/<child>/…` in prose | `baseline-file-counts.txt:1`; `.../045-.../013-.../acceptance-criteria.md:59` | 2 forms, ≥2 files |
+| `session_id` / `_memory` value `<slug>` | `.../045-.../implementation-summary.md:25` | folded into packet-doc rows |
+| shell-command argument | `.../045-.../handover.md:93` (`--folder specs/system-deep-loop/045-… --apply`) | 1 file observed |
+| **not observed for these five** (checked, negative) | — | `.opencode/specs/system-deep-loop/<slug>`: 0; `.skilled/specs/…`: 0; URL-embedded: 0 |
+
+---
+
+## 2. Per packet
+
+### 041-cli-pi-devpass-glm-route
+
+**Self-scope counts:** `md-rewrite: 1 file` · `derived-json-regen: 2 files` · `ledger-artifact-leave: 0` · `other-exception: 0`
+
+**Self-scope `md-rewrite` file list** (rewrite targets):
+```
+specs/system-deep-loop/041-cli-pi-devpass-glm-route/implementation-summary.md
+```
+(only hit md; `spec.md`, `plan.md`, `tasks.md` contain no path string)
+
+**Self-scope `other-exception` / `ledger-artifact-leave`:** none.
+
+**Sibling references:** none. Searched all nine slugs (042–045, 046–050) from this tree — 0 hits.
+
+**External referrers:**
+```
+.skilled/skills/system-spec-kit/runtime/data/trigger-index.json | derived-json-regen | :9275 | live
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json | derived-json-regen | :18070 | live
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json | derived-json-regen | :79576 (scratch entry) | live
+specs/descriptions.json | derived-json-regen | :35451 | live
+specs/system-deep-loop/036-deep-loop-innovation/scratch/merge-041-050/baseline-file-counts.txt | other-exception (merge scratch) | :1 | live
+.../scratch/merge-041-050/worklist.md | other-exception (merge plan) | :22 | live
+.../scratch/merge-041-050/prompts/brief-w1a.md | other-exception (dispatch scratch) | :9 | live
+.../scratch/merge-041-050/prompts/brief-w1b.md | other-exception (dispatch scratch) | :25 | live
+.../scratch/merge-041-050/prompts/prompt-w1a.md | other-exception (dispatch scratch) | :484 | live
+.../scratch/merge-041-050/prompts/prompt-w1b.md | other-exception (dispatch scratch) | :500 | live
+specs/sk-doc/049-sk-create-frontmatter/009-...-contract/implementation-summary.md | other-exception (external live doc) | :248 | historical-narrative
+```
+
+### 042-deep-loop-test-debt
+
+**Self-scope counts:** `md-rewrite: 1 file` · `derived-json-regen: 2 files` · `ledger-artifact-leave: 0` · `other-exception: 0`
+
+**Self-scope `md-rewrite` file list:**
+```
+specs/system-deep-loop/042-deep-loop-test-debt/implementation-summary.md
+```
+
+**Self-scope `other-exception` / `ledger-artifact-leave`:** none.
+
+**Sibling references:** none (0 hits for all nine other slugs).
+
+**External referrers:**
+```
+.skilled/.../trigger-index.json | derived-json-regen | :9279 | live
+.skilled/.../corpus-manifest.json | derived-json-regen | :18074 | live
+.skilled/.../generation-diagnostics.json | derived-json-regen | :79580 | live
+specs/descriptions.json | derived-json-regen | :35472 | live
+.../merge-041-050/baseline-file-counts.txt | other-exception (merge scratch) | :2 | live
+.../merge-041-050/worklist.md | other-exception | :29 | live
+.../prompts/brief-w1a.md | other-exception | :9 | live
+.../prompts/brief-w1b.md | other-exception | :25 | live
+.../prompts/prompt-w1a.md | other-exception | :484 | live
+.../prompts/prompt-w1b.md | other-exception | :500 | live
+```
+No other external track (agents, sk-doc, system-speckit, sk-communication, cli-external-orchestration) references 042.
+
+### 043-review-leaf-protocol
+
+**Self-scope counts:** `md-rewrite: 1 file` · `derived-json-regen: 2 files` · `ledger-artifact-leave: 0` · `other-exception: 0`
+
+**Self-scope `md-rewrite` file list:**
+```
+specs/system-deep-loop/043-review-leaf-protocol/implementation-summary.md
+```
+
+**Self-scope `other-exception` / `ledger-artifact-leave`:** none.
+
+**Sibling references:** none.
+
+**External referrers:**
+```
+.skilled/.../trigger-index.json | derived-json-regen | :9283 | live
+.skilled/.../corpus-manifest.json | derived-json-regen | :18078 | live
+.skilled/.../generation-diagnostics.json | derived-json-regen | :79584 | live
+specs/descriptions.json | derived-json-regen | :35491 | live
+specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/goal.md | other-exception (external live doc) | :144 | historical-narrative
+.../merge-041-050/baseline-file-counts.txt | other-exception | :3 | live
+.../merge-041-050/worklist.md | other-exception | :31 | live
+.../prompts/brief-w1a.md | other-exception | :10 | live
+.../prompts/brief-w1b.md | other-exception | :25 | live
+.../prompts/prompt-w1a.md | other-exception | :485 | live
+.../prompts/prompt-w1b.md | other-exception | :500 | live
+```
+
+### 044-cli-pi-devpass-deepseek-route
+
+**Self-scope counts:** `md-rewrite: 1 file` · `derived-json-regen: 2 files` · `ledger-artifact-leave: 0` · `other-exception: 0`
+
+**Self-scope `md-rewrite` file list:**
+```
+specs/system-deep-loop/044-cli-pi-devpass-deepseek-route/implementation-summary.md
+```
+
+**Self-scope `other-exception` / `ledger-artifact-leave`:** none. (No `scratch/`; baseline's `other=0` confirmed.)
+
+**Sibling references:** none.
+
+**External referrers:**
+```
+.skilled/.../trigger-index.json | derived-json-regen | :9287 | live
+.skilled/.../corpus-manifest.json | derived-json-regen | :18082 | live
+specs/descriptions.json | derived-json-regen | :35514 | live
+specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md | other-exception (external live doc) | :164 | historical-narrative
+.../merge-041-050/baseline-file-counts.txt | other-exception | :4 | live
+.../merge-041-050/worklist.md | other-exception | :23 | live
+.../prompts/brief-w1a.md | other-exception | :10 | live
+.../prompts/brief-w1b.md | other-exception | :26 | live
+.../prompts/prompt-w1a.md | other-exception | :485 | live
+.../prompts/prompt-w1b.md | other-exception | :501 | live
+```
+`generation-diagnostics.json`: no 044 hit (verified — consistent with 044 having no `scratch/`).
+
+### 045-fanout-write-containment-hardening
+
+**Self-scope counts:** `md-rewrite: 55 files` · `derived-json-regen: 42 files` · `ledger-artifact-leave: ≥110 files (lower bound; groups below, cap-limited)` · `other-exception: 0`
+
+**Self-scope `md-rewrite` file list** (relative to `specs/system-deep-loop/045-fanout-write-containment-hardening/`):
+```
+goal.md
+acceptance-criteria.md
+implementation-summary.md
+decision-record.md
+handover.md
+001-never-fatal-untracked/acceptance-criteria.md
+001-never-fatal-untracked/goal.md
+001-never-fatal-untracked/implementation-summary.md
+002-iteration-record-dedupe/acceptance-criteria.md
+002-iteration-record-dedupe/goal.md
+002-iteration-record-dedupe/implementation-summary.md
+003-publish-manifest-provenance/acceptance-criteria.md
+003-publish-manifest-provenance/goal.md
+003-publish-manifest-provenance/implementation-summary.md
+004-index-lock-retry/acceptance-criteria.md
+004-index-lock-retry/goal.md
+004-index-lock-retry/implementation-summary.md
+005-churn-cumulative-arm/acceptance-criteria.md
+005-churn-cumulative-arm/goal.md
+005-churn-cumulative-arm/implementation-summary.md
+005-churn-cumulative-arm/plan.md
+005-churn-cumulative-arm/spec.md
+005-churn-cumulative-arm/tasks.md
+006-reducer-ordered-lists/acceptance-criteria.md
+006-reducer-ordered-lists/goal.md
+006-reducer-ordered-lists/implementation-summary.md
+007-worktree-removal/acceptance-criteria.md
+007-worktree-removal/goal.md
+007-worktree-removal/implementation-summary.md
+008-quarantine-destination-canonical/acceptance-criteria.md
+008-quarantine-destination-canonical/implementation-summary.md
+009-baseline-deletion-detection/acceptance-criteria.md
+009-baseline-deletion-detection/implementation-summary.md
+010-containment-on-failed-lanes/acceptance-criteria.md
+010-containment-on-failed-lanes/implementation-summary.md
+011-restore-never-through-symlink/acceptance-criteria.md
+011-restore-never-through-symlink/implementation-summary.md
+012-quarantine-retention-per-pass/acceptance-criteria.md
+012-quarantine-retention-per-pass/implementation-summary.md
+013-review-lane-advisory-and-strict-config/acceptance-criteria.md
+013-review-lane-advisory-and-strict-config/implementation-summary.md
+014-alignment-review/acceptance-criteria.md
+014-alignment-review/implementation-summary.md
+015-symlink-contained-paths/acceptance-criteria.md
+015-symlink-contained-paths/implementation-summary.md
+016-command-yaml-alignment/acceptance-criteria.md
+016-command-yaml-alignment/implementation-summary.md
+017-protocol-and-catalog-alignment/acceptance-criteria.md
+017-protocol-and-catalog-alignment/implementation-summary.md
+018-orchestrate-mirror-alignment/acceptance-criteria.md
+018-orchestrate-mirror-alignment/implementation-summary.md
+019-forced-depth-empty-records/acceptance-criteria.md
+019-forced-depth-empty-records/implementation-summary.md
+020-direct-append-sites-through-gateway/acceptance-criteria.md
+020-direct-append-sites-through-gateway/implementation-summary.md
+```
+(Shape: parent 5 + all 20 children `acceptance-criteria` + `implementation-summary` (40) + `goal` for 001–007 (7) + 005's `spec/plan/tasks` (3). Parent `spec.md`/`plan.md`/`tasks.md` and other children's `spec/plan/tasks` carry no path string.)
+
+**Self-scope `ledger-artifact-leave` groups** (samples; frames and `.gitkeep` verified clean — `*.frame` = 0 matches):
+- `research/lineages/**` (1789363775244-64o2qi-{deepseek,luna,swe2}, 1789366204116-kfp53e-glm) — obs ≥40, est ~70 files: configs, dashboards, strategies, `research.md`, `resource-map.md`, `findings-registry.json`, `invocation-metadata.json`, `publish-manifest.json`, `state.jsonl`, `deltas/*.jsonl`, `iterations/*.md`, `prompts/*.md`, `events/*.json`, `logs/fanout-lineage.out`, `.deep-research.lock`. Samples: `1789366204116-kfp53e-glm/deep-research-config.json:3`; `1789363775244-64o2qi-luna/resource-map.md:15`; `1789363775244-64o2qi-swe2/resource-map.md:27`; `1789363775244-64o2qi-deepseek/research.md:14`.
+- `research/iterations/` — 4 files exact: `iteration-002.md:10`, `iteration-004.md:10`, `iteration-005.md:10`, `iteration-009.md:10`. `research/open-questions/`, `research/worktree-symlinks/`, `research/alternatives/` — 0 hits (verified).
+- `research/observability-events.jsonl` — 1 file (`:1`, `:38+`).
+- `007-worktree-removal/research/**` — obs ≥8 files: `lineages/live-a/deep-research-state.jsonl:1`, `lineages/live-a/observability-events.jsonl:38`, configs/registries/deltas/logs.
+- `review/lineages/**` — obs ≥35 files (deepseek lane exactly 11: `deep-review-config.json:10`, `deep-review-state.jsonl:1`, `prompts/iteration-001..003.md:23`, `deep-review-strategy.md:11`, `deep-review-dashboard.md:8`, `deep-review-findings-registry.json:140`, `review-report.md:3`, `iterations/iteration-003.md:25`, `deltas/iter-003.jsonl:1`; luna and `014-.../review/lineages/devin-a|b|c` follow the same template — samples `devin-a/deep-review-state.jsonl:1`, `devin-b/deltas/iter-005.jsonl:1`, `devin-c/deep-review-config.json:4`).
+- `review/` + `014-alignment-review/review/` root artifacts — `review/observability-events.jsonl:57`, `014-alignment-review/review/observability-events.jsonl:34`, config/registry files.
+- `review-archive/**` — obs ≥15 files: `20260914T165140Z/lineages/containment-live-2/containment-reverted/1-…patch:28`, `…/1789221489298-ipjoou-worktree-live/deep-review-state.jsonl:1`, `20260914T231749Z/lineages/deepseek| luna` state/deltas/reports, archive root `observability-events.jsonl:23`; frames clean.
+- `scratch/` — 0 hit files (`.gitkeep` only; `scratch/review-dispatch-record.md` says "packet 045" but contains no slug).
+
+**Sibling references:** none. Searched 041–044 and 046–050 from this tree — 0 hits.
+
+**External referrers:**
+```
+.skilled/.../trigger-index.json | derived-json-regen | :9291 (child files) | live
+.skilled/.../corpus-manifest.json | derived-json-regen | :18086 | live
+.skilled/.../generation-diagnostics.json | derived-json-regen | :54883, :79588 | live
+.skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json | other-exception (sk-doc test-baseline fixture; regeneratable) | :10700 | derived/historical
+specs/descriptions.json | derived-json-regen | :35530 | live
+specs/agents/009-turn-closeout-next-steps/spec.md | other-exception (external live doc) | :157 | live-pointer ("Tracked separately in specs/…045…")
+specs/agents/009-.../006-synthesis-presentation/research/lineages/pi-deepseek/containment-reverted/1-2026-09-11T14-13-57.964Z.patch | ledger-artifact-leave | :1231 | historical
+specs/sk-communication/006-.../005-verification-and-rollout/runs/attempt-1/before-replies/C5.md | ledger-artifact-leave (benchmark run output) | :4 | historical
+specs/sk-communication/006-.../005-verification-and-rollout/runs/attempt-1/blind/C5-B.md | ledger-artifact-leave (benchmark run output) | :10 | historical
+specs/sk-communication/006-.../004-.../research/deep-research-state.jsonl | ledger-artifact-leave | :6 | historical
+specs/sk-communication/006-.../001-.../research/luna-fanout/lineages/luna/logs/fanout-lineage.err | ledger-artifact-leave | :1163 | historical
+.../merge-041-050/baseline-file-counts.txt | other-exception | :5 | live
+.../merge-041-050/worklist.md | other-exception | :24 | live
+.../prompts/brief-w1a.md, brief-w1b.md, prompt-w1a.md, prompt-w1b.md | other-exception (dispatch scratch) | :11 / :26 / :486 / :501 | live
+CONTAINMENT SNAPSHOT FAMILIES (ledger-artifact-leave; grouped, see Exception list):
+  specs/sk-communication/006-.../001-.../research/containment/{quarantine/content, quarantine/patch-head}/specs/system-deep-loop/045-.../ — sample : .../quarantine/patch-head/.../045-.../description.json.patch ; 24 slug-named dir entries incl. recursive copies
+  specs/sk-communication/006-.../001-.../research/luna-fanout/lineages/luna/containment/{baseline,quarantine}/…/045-.../ (incl. copy-of-copy) — sample .../containment/baseline/specs/system-deep-loop/045-.../007-worktree-removal/goal.md
+  specs/sk-communication/006-.../004-.../research/containment/quarantine/content/…/045-.../research/worktree-symlinks/synthesis.md (copy)
+  specs/sk-communication/006-.../review/program-review/lineages/sonnet5-xhigh/containment/baseline/…/045-.../007-worktree-removal/goal.md (copy)
+  specs/cli-external-orchestration/071-.../001-deep-research/research/lineages/{swe2,deepseek}/containment/{baseline, quarantine/content, quarantine/patch-head}/…/045-.../ — 37 slug-named dir entries incl. recursion; deepest chain unreadable (E[NAMETOOLONG])
+```
+
+---
+
+## 3. Exception list
+
+- `specs/cli-external-orchestration/071-.../research/lineages/swe2/containment/quarantine/content/…/sonnet5-xhigh/…/1789357391666-zngraa-staleness/locks-and-fencing-v1/*/{coordinator-state.json, grant-journal.jsonl}` (and sibling chains) — **unsearchable**: OS reports `File name too long (os error 63)`; ~10 path chains observed. Classed `ledger-artifact-leave`; bytes not inspected.
+- **Deliberate deviation**: containment snapshots are grouped by family, not listed file-by-file, because the copies are recursive copies of the already-counted 045 artifacts and the family is excluded from rewriting by the merge worklist. Same rationale for grouping 045's in-tree `research/`/`review/` ledgers (explicitly permitted for self-scope ledger artifacts).
+- `specs/system-deep-loop/045-.../{008..020}/goal.md` use `_memory.continuity.packet_pointer: "scaffold/<child>"` (no full path). Not a variant of the five slugs, so not counted — but these pointers will remain relative to nothing after the move; flag for the rewrite wave. Sample: `045-.../009-baseline-deletion-detection/goal.md:11`.
+- `specs/system-deep-loop/graph-metadata.json` (track-level, stale since 2026-08-08 per worklist): **verified 0 hits** — recorded here only as an explicit negative.
+- 045's `graph-metadata.json` parent `children` list still names eight obsolete child slugs (`001-skip-worktree-cone` … `008-reclaim-relocated-trees`) alongside the 20 live ones (`:7-31`); derived JSON, will be regenerated.
+- External live docs (`agents/009/spec.md`, `sk-doc/049` impl-summary, `system-speckit/033` 019 + 030 goals) are classed `other-exception` with pointer nature, not `md-rewrite`: the merge worklist calls them live referrers "needing a decision", so they are rewrite candidates only if the operator extends the rewrite outside the moved trees.
+
+---
+
+## 4. Method line
+
+Searches run via the read toolset (no shell): per-slug exact-string Grep across `specs/system-deep-loop`, `specs` per track (`agents`, `sk-communication`, `sk-doc`, `system-speckit`, `cli-external-orchestration/073`, remainder tracks), `.skilled`, `.opencode`, `.pi`, `.claude`, `.codex`, `.cursor`, `.devin`, `.hermes`, `.github`, `repo-rules`, root docs (`README/CLAUDE/AGENTS/CONTRIBUTING/PUBLIC-RELEASE/BARTER`), `frontmatter-version-manifest.{json,csv}`, `specs/descriptions.json`, track-level JSON; glob-segmented Grep by filename (`goal.md`, `acceptance-criteria.md`, `implementation-summary.md`, `spec.md`, `plan.md`, `tasks.md`, `description.json`, `graph-metadata.json`, `*.frame`, `*.patch`, `*.jsonl`) for per-file enumeration; find sweeps for `**/<slug>` copy-roots across every specs track; cross-checked against the merge receipts (`baseline-file-counts.txt`, `baseline-census-external.txt`, `worklist.md`). Caps (100-match/50 KB) and the `File name too long` chains are the source of all `≥`/`obs` qualifiers.
+
+CENSUS RETURN COMPLETE

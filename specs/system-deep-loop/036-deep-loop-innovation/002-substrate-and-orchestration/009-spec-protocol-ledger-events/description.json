@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-spec-protocol-ledger-events",
+  "description": "The spec-check protocol (`system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` §6) requires every spec write a research run",
+  "keywords": [
+    "spec-check",
+    "protocol",
+    "system-deep-loop",
+    "deep-research",
+    "references",
+    "spec-check-protocol",
+    "requires",
+    "every",
+    "spec",
+    "write",
+    "research",
+    "run"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.620Z",
+  "specId": "009",
+  "folderSlug": "spec-protocol-ledger-events",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "002-substrate-and-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

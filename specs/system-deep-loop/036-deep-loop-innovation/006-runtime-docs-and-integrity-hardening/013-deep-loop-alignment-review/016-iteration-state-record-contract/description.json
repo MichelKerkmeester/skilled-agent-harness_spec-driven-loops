@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/016-iteration-state-record-contract",
+  "description": "Deep-loop iteration records name their iteration number two ways",
+  "keywords": [
+    "deep-loop",
+    "iteration",
+    "records",
+    "name",
+    "number",
+    "two",
+    "ways"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.617Z",
+  "specId": "016",
+  "folderSlug": "iteration-state-record-contract",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening",
+    "013-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

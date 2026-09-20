@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/010-containment-on-failed-lanes",
+  "description": "The containment block ran only after every verdict gate passed",
+  "keywords": [
+    "containment",
+    "block",
+    "ran",
+    "only",
+    "every",
+    "verdict",
+    "gate",
+    "passed"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.511Z",
+  "specId": "010",
+  "folderSlug": "containment-on-failed-lanes",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "010-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

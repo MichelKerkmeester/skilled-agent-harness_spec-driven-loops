@@ -1,0 +1,129 @@
+# W3b — Adversarial accuracy read: the 2026-09-20 merge documents
+
+**Scope:** the four root documents and five parent maps named in the brief, held against the ten merged packets' own `spec.md` / `implementation-summary.md` / `acceptance-criteria.md` / `tasks.md` / `goal.md` / `graph-metadata.json` / review registries.
+**Method:** full reads of all named sections and all ten packets' primary documents; filesystem verification of every claimed child count; recursive `find` verification of the Included Phases counts; the 049 phase-001 findings registry read directly. Read-only.
+
+**Result: 6 findings — 1× P0, 1× P1, 4× P2.** The destination map, time-line rows 64-73, all five parent-map adjacency chains, and every numeric claim except the "seventeen" family verified correct. The merge's factual record is otherwise clean.
+
+---
+
+## Findings
+
+### F1 — P0 (BA) / P1 (changelog, timeline): "seventeen confirmed findings" is false; seventeen is the **phase** count
+
+**Citations:**
+- `before-and-after.md:196` — "…`049-deep-loop-alignment-review` read the whole system as one architecture, **turning seventeen confirmed findings into seventeen phases** — it brought its 17 children with it."
+- `changelog.md:76-77` — "…turning **every confirmed finding** at any severity **into its own phase — seventeen in all** — covering rosters, version authority…"
+- `changelog.md:116` (first What's New bullet) — "…the twenty-iteration alignment review **whose every confirmed finding became a phase**, bringing 17 children…"
+- `timeline.md:259-260` — "…and **turned every confirmed finding into a phase — seventeen in all** — covering rosters, version authority…"
+
+**Evidence that refutes it** (all from 049's own documents):
+- `006-.../013-deep-loop-alignment-review/001-angle-driven-review/review/deep-review-findings-registry.json:4235` — `"openFindingsCount": 98`; lines ~4231-4233 — `"P0": 2, "P1": 34, "P2": 62`; line 30 — `"mergedVerdict": "FAIL"`. The review's own merged registry holds **98 findings, zero resolved** — two P0s alone already exceed seventeen.
+- `001-angle-driven-review/spec.md:97` — "Wave two angles (rewritten from **wave one's forty findings**)" — wave one alone produced forty.
+- The packet's own scope definition: "**one phase per confirmed finding class** at any severity, P0 to P3" — findings were grouped into classes, not given one phase each.
+- The 17 is the phase-map row count (`013-deep-loop-alignment-review/spec.md` PHASE DOCUMENTATION MAP, rows 1-17; 17 child folders on disk), and it includes non-finding phases: 001 is the review itself, 014 is a second review, and `goal.md` LOG records that "**Phases 016 and 017 were added by the operator on 2026-09-16 for work outside the phase-001 review**."
+
+**Impact:** the merge record overstates the review's outcome in four places — the strongest reading (17 findings) is off by more than 5×. The intended fact ("seventeen phases, one per confirmed finding class") is true and should replace the wording.
+**Fix:** "…turning every confirmed finding at any severity into a phase — seventeen phases in all…" and in BA "turning the review's confirmed findings into seventeen phases".
+
+### F2 — P1: timeline narrative's blanket "each one arrived with its own evidenced outcome" is contradicted by its own 046 bullet
+
+**Citation:** `timeline.md:233` — "They are the work that followed the executor and containment hardening, and **each one arrived with its own evidenced outcome**:"
+**Evidence:** the 046 sub-bullet three lines later says it "stays `draft` with unchecked tasks and an unmet criterion"; the changelog says it "arrived as a plan rather than a result" (`changelog.md` 2026-09-20 entry). 046's files confirm: `acceptance-criteria.md` AC-001 is the unfilled placeholder row with Status `Unmet`; every task in `tasks.md` is `[ ]` template text; `implementation-summary.md` is an unfilled template. 041's two open verification tasks (`tasks.md:66-67`, T014 and T017 "NOT DONE") are likewise not an evidenced outcome per its own `implementation-summary.md` limitations ("An end-to-end iteration is not yet proven on this route"). **Impact:** the blanket phrase smooths exactly the two statuses the root spec.md deliberately keeps honest. **Fix:** "…each one arrived with its own outcome:" or name the caveat.
+
+### F3 — P2: BA intro's "None of that later work touches the architecture described above" is overstated
+
+**Citation:** `before-and-after.md:188`. **Evidence:** the same section's bullets report later work that *did* change the described system: `025-deprecate-deep-alignment` "removed the deep-alignment mode entirely: the command, its agents, the mode packet and the shared runtime code… the removal cascaded to those surfaces too" (`before-and-after.md:194`), and 047 deleted "three runtime ledger libraries" (changelog 2026-09-20 entry; `006-deprecate-skill-benchmark/spec.md` scope). The "architecture described above" includes the eight-mode roster and the runtime libraries. The sentence is true only if read as "the substrate was not redesigned". **Fix:** "None of that later work redesigns the substrate described above."
+
+### F4 — P2: Included Phases count for group `003` is one short of the tree
+
+**Citation:** `changelog.md:349` — "`003-mode-contracts-migration-and-cutover` … | 6 | **76** |".
+**Evidence:** `changelog/003-mode-contracts-migration-and-cutover/` holds **77** `changelog-*.md` files (5 under `001-shared-mode-contracts-and-fixtures`, 64 across the eight mode lanes, 1 `changelog-002-mode-and-lane-migrations.md`, 5 under `003-staged-state-migration-and-authority-cutover`, 2 at group root). Every other row matches its subtree exactly (001 = 8, 002 = 41, 004 = 4, 005 = 5, 006 = 12, 007 = 24, 008 = 5, 009 = 6), and every "Direct phases" value matches the folder plus the merge increment (`002: 7→9, 003: 4→6, 006: 11→13, 007: 7→10, 008: 4→5`). **Impact:** one stale/miscounted figure in a reviewed table. The same figure appears in `changelog/README.md` (outside this review's scope), so the likeliest cause is a pre-existing count that one later changelog file outran; which of the 77 is the late addition is **UNVERIFIABLE** from the files available (git history would settle it).
+
+### F5 — P2: timeline metadata header stops the ledger's span at 2026-09-05
+
+**Citation:** `timeline.md:17` — "…spanning the original M0 baseline through the post-consolidation growth and the **2026-09-05 merge of three former top-level packets**." (Also the frontmatter description, which summarizes the ledger as "the post-consolidation **flat-leaf** children".)
+**Evidence:** the document itself carries rows 64-73 for the 2026-09-20 merge, a full narrative section for it, and a MILESTONES entry "**Merge of ten former top-level packets:** target **2026-09-20**. Status: Done." Rows 45+ also include phase parents (012, 019) and nested children (041-050), so "flat-leaf children" is not an accurate description of the whole post-consolidation set. **Fix:** extend the sentence to "…and the 2026-09-20 merge of ten further packets nested in five group parents".
+
+### F6 — P2: timeline table intro's chronology for the 28-child count
+
+**Citation:** `timeline.md:96` — "The packet grew from the nine consolidated group parents (`001`-`009`) to **28 direct children between 2026-08-16 and 2026-09-02**."
+**Evidence:** at 2026-09-02 the direct-child count was 25 (9 groups + rows 45-60 = 16 children); the 28th arrived with rows 61-63, which the same document and `spec.md` say "were merged in on **2026-09-05**". The date range is right for the children's *creation* dates but not for the count reaching 28. **Fix (if the intent is chronology):** "…grew … between 2026-08-16 and 2026-09-02, reaching 28 directly-held children with the 2026-09-05 merges".
+
+---
+
+## Verdicts against the brief's six checks
+
+### 1. Factual sentences, packet by packet
+
+| Packet | Verdict | Key evidence |
+|---|---|---|
+| 041 | **CONFIRMED** | per-token → `llmgateway` remap; `No API key found`; `LLMGATEWAY_`/`CLINE_` allowlist; opencode-go direct-only — `008-cli-pi-devpass-glm-route/spec.md`, `implementation-summary.md:what-built` |
+| 042 | **CONFIRMED** | producer fix = council-root guard; three stale tests; 53→0 typecheck — `012-deep-loop-test-debt/implementation-summary.md` |
+| 043 | **CONFIRMED** | verbatim-path + stop-reason duties; three tests repointed at the runtime's own vitest — `005-review-leaf-protocol/spec.md, implementation-summary.md` |
+| 044 | **CONFIRMED** | `429 GoUsageLimitError` "in six seconds each"; remap; round two launched at `max` — `009-cli-pi-devpass-deepseek-route/spec.md`, `tasks.md` (all checked) |
+| 045 | **CONFIRMED** | 1,858 paths reverted + lane failed; preserve default; pre-dispatch restore; completed outcome kept; worktree built → default-off → removed (ADR-007) — `010-fanout-write-containment-hardening/spec.md, goal.md` |
+| 046 | **CONFIRMED** | 20-minute/ranked-findings gap; stays Draft; unchecked tasks; unfiled criterion — `005-synthesis-chat-presentation/spec.md`, `acceptance-criteria.md`, `tasks.md` |
+| 047 | **CONFIRMED** | five command trees, registry+router, advisor bridge, three ledger libs; five modes; 196/57; 554 byte-identical; operator questions — `006-deprecate-skill-benchmark/spec.md, implementation-summary.md` |
+| 048 | **CONFIRMED** | four values documented, never read; `standard` vs requested `off`; `--stop-policy` masked it; validate/thread/fail-fast — `008-fanout-convergence-mode-flag/spec.md` |
+| 049 | **REFUTED in part** | 20 iterations / 4 lanes / 6 criteria / 17 phases confirmed; **"seventeen confirmed findings" refuted (F1)** |
+| 050 | **CONFIRMED** | seven spec-protocol rows; one stem per row; lossless upcast + projection; 23 ledgers / 175 events — `009-spec-protocol-ledger-events/spec.md`, `acceptance-criteria.md` AC-003, `implementation-summary.md` |
+
+*Narrative-level:* timeline "each one arrived with its own evidenced outcome" fails (F2). All other narrative sentences verified.
+
+### 2. Numeric claims
+
+| Claim | Verdict | Evidence |
+|---|---|---|
+| "1,858 tracked paths" (045) | **CONFIRMED** | `045/spec.md:22,53`; `goal.md:116` ("the `failed` event for label `luna` names 1,858 reverted paths") |
+| "132 of 132" (043) | **CONFIRMED in 043's docs; not cited by any reviewed root doc** | `043/spec.md:74`, `tasks.md:54`, `implementation-summary.md:94`. Distinct from the changelog's "132-plus tests", which is the stress program (`007/001-cli-adapter-stress-and-playbooks/spec.md:49` — 133 tests) — no misattribution |
+| "53 errors to zero" (042) | **CONFIRMED** | `042/tasks.md:36` (baseline 53: 34+15+2+2); `implementation-summary.md` verification row: "0 errors at `9c962fe7a3` (was 53…), no compiler option changed" |
+| "196 deleted and 57 edited" (047) | **CONFIRMED** | `implementation-summary.md:51`. Note: the packet's own complexity estimate (`spec.md` §9) says "196 deleted + **~40** modified" — a pre-execution estimate; the implementation summary's 57 is the actual and is what the root claim follows |
+| "554 historical benchmark reports" (047) | **CONFIRMED** | `acceptance-criteria.md` AC-004 ("unchanged at 554"); `implementation-summary.md:122` ("554 before, 554 after") and :51 ("byte-identical") |
+| "five workflow modes instead of six" (047) | **CONFIRMED** | `spec.md` exec summary; `implementation-summary.md:51` |
+| "twenty angle-driven iterations across four lanes" (049) | **CONFIRMED** | `review/fanout-attribution.md` (4 lineages × 5 iterations; wave1/wave2; both models); `goal.md` D1 |
+| "seventeen phases" / "17 children" (049) | **CONFIRMED** | phase map rows 1-17; 17 child folders on disk |
+| "seventeen confirmed findings" (049, BA) | **REFUTED** | registry: 98 findings (2/34/62); "wave one's forty findings"; per-class phases — see F1 |
+| "six completion criteria" (049) | **CONFIRMED** | `goal.md` §3 — six criteria, all `[x]` ("all six completion criteria checked") |
+| "23 committed research ledgers and 175 events" (050) | **CONFIRMED** | `acceptance-criteria.md` AC-003; `implementation-summary.md` verification row ("23 committed ledgers, 175 events … identical heads, event counts, stems and fold outcomes") |
+| "20 children" (045) / "17 children" (049) | **CONFIRMED** | directory listings: 20 subfolders `001`-`020`; 17 subfolders `001`-`017` |
+
+### 3. Status claims — PASS
+- **046** is described as `draft` in all four reviewed documents and nothing else; its files match (AC-001 placeholder `Unmet`; all tasks unchecked).
+- **041** is consistently `complete` (its declared status) and its open items are disclosed: `spec.md` merged-children block — "two verification tasks in its `tasks.md` remain open", matching `tasks.md:66-67` (T014, T017 both `[ ]`, "NOT DONE"). No reviewed document claims more verification than the packet holds.
+- **049** is consistently `complete`; the phase map is all-Complete and the six goal criteria are checked; `graph-metadata.json` `derived.status` is `in_progress`, and the "unevidenced rows" reading is supported by `001-angle-driven-review/tasks.md` (lines 37-70, all template `[ ]`) and `plan.md` (unchecked template rows). The exact derivation input for `derived.status` is **UNVERIFIABLE** from the files inspected; the graph-metadata generator would settle it.
+
+### 4. Adjacency claims — PASS (all five maps)
+Each map's new rows chain correctly, the previously-last existing row now points at the first new row, and the last new row ends `none`:
+007: …7→`008`→`009`→`010`(none); 006: 11→`012`→`013`(none); 008: 4→`005`(none); 003: 4→`005`→`006`(none); 002: 7→`008`→`009`(none). Row order matches the destination map exactly (041→007/008, 044→007/009, 045→007/010, 042→006/012, 049→006/013, 043→008/005, 046→003/005, 047→003/006, 048→002/008, 050→002/009).
+
+### 5. Cross-document consistency — PASS except F1
+Packet names, destinations, dates (2026-09-05 vs 2026-09-20), row statuses (046 `draft`, all others `complete`), and child counts are consistent across `spec.md`, `timeline.md`, `changelog.md`, `before-and-after.md`, and the five parent maps. No packet is missing from a document that should mention it. Internal packet context only: 047's "~40 modified" is an estimate superseded by its implementation summary; harmless.
+
+### 6. Coverage — PASS
+All ten packets appear in: the changelog entry (both its routing paragraph and its packet-by-packet paragraphs), the timeline narrative bullets, the `spec.md` merged-children block, and (bonus) the `before-and-after.md` bullet. All five parent maps show their new rows. The included-children parenthetical (`bringing its 20/17 children`) is correct on disk.
+
+---
+
+## Considered and not sustained
+- `spec.md` "Two of those later additions, `012` and `019`, are themselves phase parents with their own children" — true for the appended flat-leaf block (010-028); ambiguous because 045/049 are also later additions that are phase parents, and the intervening sentence names 041-050. Recommended clarification only; not a falsifiable falsehood.
+- The BA's "put GLM-5.3-Flash … on the flat-price DevPass plan" — 041's T017 remained open at writing, but the packet's own Purpose/SC-001 and declared `complete` status support the routing claim, and `spec.md` discloses the open tasks.
+- Included Phases row set omits 010/011/012 while `changelog/README.md` lists them — table scope is arguably the nine consolidation groups, so not sustained as a finding; worth a glance if the table is meant as the full inventory.
+- "clobbered" vs "reverted" for the 1,858 paths — equivalent descriptions of the same incident.
+
+## UNVERIFIABLE
+- Whether "seventeen confirmed findings" was intended to mean confirmed finding *classes* — as written it says findings, and no reading reconciles 17 with 98.
+- Which of group 003's 77 changelog files post-dates the "76" count (git history of `changelog/003-*/` and `changelog.md:349` would settle it).
+- The exact input the 049 graph-metadata generator used for `derived.status`.
+- Whether a full end-to-end GLM fan-out iteration ever completed after 041's writing (nothing in the packet reports one).
+
+## Adversarial self-check (P0/P1)
+
+| Finding | Hunter | Skeptic challenge | Referee verdict | Final |
+|---|---|---|---|---|
+| F1 seventeen findings | P0 | "Maybe classes or deduped findings" — disproved: registry counts 98 (2 P0/34 P1/62 P2), wave one alone 40, phases are per class | Confirmed; BA wording is flat-false (P0), changelog/timeline compressions misleading (P1) | **P0 / P1** |
+| F2 "evidenced outcome" | P1 | "Maybe `outcome` includes draft status" — disproved by the same section's own 046 bullet plus 046's unmet placeholder and unchecked tasks | Confirmed | **P1** |
+
+Confidence: **HIGH** for F1 and F2 (registry and file evidence read directly); **HIGH** for F4 (recursive count, cross-checked per subtree); **MEDIUM** for F3/F5/F6 (wording-intent dependent).
+
+W3B REVIEW COMPLETE

@@ -1,6 +1,6 @@
 ---
 title: "Review and Rollback Follow-up"
-description: "Runtime code review, review drift remediation, rollback candidate hash hardening, and review containment exemption."
+description: "Runtime code review, review drift remediation, rollback candidate hash hardening, review containment exemption, and the review-leaf protocol."
 trigger_phrases:
   - "review rollback followup"
   - "drift remediation containment exemption"
@@ -43,7 +43,8 @@ This phase groups the related child phases below so parent-level context stays a
 | 1 | `001-runtime-code-review` | complete | predecessor `none`; successor `002-review-drift-remediation` |
 | 2 | `002-review-drift-remediation` | complete | predecessor `001-runtime-code-review`; successor `003-rollback-candidate-hash-hardening` |
 | 3 | `003-rollback-candidate-hash-hardening` | complete | predecessor `002-review-drift-remediation`; successor `004-review-containment-exemption` |
-| 4 | `004-review-containment-exemption` | complete | predecessor `003-rollback-candidate-hash-hardening`; successor `none` |
+| 4 | `004-review-containment-exemption` | complete | predecessor `003-rollback-candidate-hash-hardening`; successor `005-review-leaf-protocol` |
+| 5 | `005-review-leaf-protocol` | complete | predecessor `004-review-containment-exemption`; successor `none` |
 
 ## What Needs Done
 

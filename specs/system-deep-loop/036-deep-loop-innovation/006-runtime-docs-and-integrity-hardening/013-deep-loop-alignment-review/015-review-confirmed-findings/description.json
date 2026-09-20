@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings",
+  "description": "A ten-iteration review of the program found seven defects in work every phase had already called verified",
+  "keywords": [
+    "ten-iteration",
+    "review",
+    "program",
+    "found",
+    "seven",
+    "defects",
+    "work",
+    "every",
+    "phase",
+    "already",
+    "called",
+    "verified"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.616Z",
+  "specId": "015",
+  "folderSlug": "review-confirmed-findings",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening",
+    "013-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

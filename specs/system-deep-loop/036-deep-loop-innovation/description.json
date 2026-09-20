@@ -1,5 +1,4 @@
 {
-  "level": "3",
   "specFolder": "system-deep-loop/036-deep-loop-innovation",
   "description": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
   "keywords": [
@@ -20,27 +19,7 @@
   "parentChain": [
     "system-deep-loop"
   ],
-  "memorySequence": 49,
-  "memoryNameHistory": [
-    "09-08-26_13-32__i-hold-you-ve-directed-hard-fresh-twice-now-that.md",
-    "09-08-26_13-32__holding-as-you-ve-directed-three-times-i-won-t.md",
-    "09-08-26_13-32__the-operator-has-directed-hold-three-times-i-won.md",
-    "09-08-26_13-33__held-per-your-explicit-direction-three-times-now.md",
-    "09-08-26_13-33__standing-by-goal-clear-ends-this-loop.md",
-    "09-08-26_13-33__standing-by-goal-clear-ends-this-loop.md",
-    "09-08-26_13-34__standing-by-goal-clear-ends-this-loop.md",
-    "09-08-26_13-34__standing-by-goal-clear-ends-this-loop.md",
-    "12-08-26_16-21__the-stop-hook-is-correctly-noting-steps-5-9-haven.md",
-    "12-08-26_16-21__the-hook-itself-confirms-the-hold-is-legitimate.md",
-    "12-08-26_16-21__nothing-has-changed-since-my-last-two-replies-and.md",
-    "12-08-26_16-22__heads-up-on-the-mechanism-the-goal-you-set-is-a.md",
-    "12-08-26_16-22__the-state-is-unchanged-and-the-frontier-remains.md",
-    "12-08-26_16-22__held-no-operator-authorization-no-action.md",
-    "12-08-26_16-22__held-pending-your-go-ahead.md",
-    "12-08-26_16-23__held-no-new-operator-input-no-action-taken.md",
-    "26-08-26_09-42__the-stop-hook-is-replaying-a-stale-already.md",
-    "26-08-26_09-42__git-confirms-it-the-stale-goal-is-genuinely.md",
-    "26-08-26_09-43__the-stop-hook-s-own-analysis-now-agrees-the-016.md",
-    "28-08-26_21-37__five-of-six-phases-done-and-pushed-85a974bf4c.md"
-  ]
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
 }

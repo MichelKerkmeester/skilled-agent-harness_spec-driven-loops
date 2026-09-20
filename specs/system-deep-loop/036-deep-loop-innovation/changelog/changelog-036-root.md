@@ -12,6 +12,75 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: changelog/root.md | v1.0 -->
 
+## 2026-09-20
+
+> Spec folder: `specs/system-deep-loop/036-deep-loop-innovation` (Phase Parent)
+
+Ten packets that had lived as separate top-level spec folders joined this program, each nested inside
+one of the five thematic group parents: executor and CLI hardening took the two cli-pi DevPass routes
+and the write-containment rework, mode contracts took the completion-message contract and the
+skill-benchmark retirement, substrate and orchestration took the convergence-mode flag and the
+ledger's spec-protocol events, runtime docs and integrity took the suite debt and the alignment
+review, and review follow-up took the review-leaf protocol. Nothing here renumbers a child of this
+packet — the direct-child count stays 28 — and each former path is recorded in `timeline.md`.
+
+The work itself, packet by packet. The deep-loop fan-out could reach GLM-5.3-Flash only through
+per-token billing, while the operator's flat-price DevPass plan sat one selector away; moving the
+bare `glm-5.3-flash` literal to `llmgateway` was only half of it, because the dispatch then died on
+`No API key found for llmgateway` until the `LLMGATEWAY_` and `CLINE_` prefixes Pi's own config
+declares were allowlisted for `cli-pi`, leaving GLM through opencode-go direct-dispatch only. Two
+days later the same wall appeared for DeepSeek V4 Flash, after opencode-go hit its monthly usage
+window and answered every lane with `429 GoUsageLimitError` in six seconds; the same fix sent its
+bare literal to `llmgateway` so the second research round could run at `max` on the flat-price plan.
+
+Several tests owned by the deep-loop but living in the spec-kit CLI suite were red, and a red suite
+every spec-kit change runs hides real regressions. That packet fixed the producer rather than the
+assertion — the council persistence guard now accepts the first write into a packet whose council
+root does not exist yet — aligned three stale tests to contracts later commits had superseded, and
+took the runtime typecheck from 53 errors to zero without loosening a compiler option. The review
+leaf got told its two duties: the fan-out runner closes a lineage that writes outside its directory
+or reaches the iteration cap without a recorded stop reason, and the lineage prompt plus the
+deep-review agent contract now state both rules, with three determinism tests repointed at the
+runtime's own vitest.
+
+The fan-out's write-containment guard could not tell a leaf's stray write from a human's edit in the
+same checkout, and its revert remedy clobbered 1,858 tracked paths belonging to a concurrent session
+and marked a completed research lane failed. Preservation became the default: an out-of-scope change
+is copied into a quarantine inside the lineage directory, the working tree is left exactly as the
+lane left it, restore returns files to their pre-dispatch bytes rather than to HEAD, and a completed
+lane keeps its completed outcome. The per-lineage worktree phase that followed was built, turned off
+by default and then removed outright once the operator ruled exact attribution out of scope.
+
+One of the ten arrived as a plan rather than a result. The completion-message contract wrote down the
+gap it meant to close — a run could spend twenty minutes producing a ranked set of findings and
+report an iteration count, four file paths and a status token — and stayed Draft: template summary,
+unchecked tasks, an unfilled acceptance criterion. It entered the program as scoped intent. The
+skill-benchmark lane, by contrast, was removed from every reachable surface — five runtime command
+trees, the hub registry and router pair, the advisor command-bridge projection, its script and
+fixture trees, and three runtime ledger libraries — so the hub registers five workflow modes where it
+registered six, 196 tracked files were deleted and 57 edited, and the 554 historical benchmark
+reports other skills own were preserved byte-identical. Its residue is recorded as operator questions
+rather than silent fixes.
+
+Two more closed quiet gaps. The fan-out runner never read the `--convergence-mode` flag the command
+surface documented with four values, so every lineage took the default while the caller believed
+otherwise — invisible because the carried `--stop-policy=max-iterations` produced the same visible
+outcome; the runner now validates the value, threads it to the leaf, and fails fast on an unknown
+one. And the append gateway had refused all seven spec-protocol rows the research workflows write, so
+a run that seeded, extended or wrote findings into `spec.md` left no record of it; each legacy row
+now has a research event stem of its own name, upcast losslessly and projected back into the state
+log, proven against 23 committed research ledgers and 175 replayed events.
+
+Finally, the program's own suite debt and a whole-system review. The deep-loop-owned red tests were
+cleared at the producer. And the alignment review read the whole deep-loop system as one architecture
+in twenty angle-driven iterations across four lanes, turning every confirmed finding class at any severity
+into its own phase — seventeen in all — covering rosters, version authority, leaf manifests and
+doctrine reachability, catalog and README truth, confirm-variant parity, ledger stems, agent mirrors,
+containment and severity language, and routing doctrine and discovery. It closes with all six
+completion criteria checked.
+
+---
+
 ## 2026-08-24
 
 > Spec folder: `specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement`
@@ -44,6 +113,7 @@ The work happened in the corners the loops already occupy, not on the path you u
 
 ## What's New at a Glance
 
+- **Ten packets folded in by theme** — Ten spec folders that had lived at the top level joined this program on 2026-09-20, nested inside the five thematic group parents: executor and CLI hardening took the two cli-pi DevPass routes (GLM-5.3-Flash and DeepSeek V4 Flash, both flat-price through `llmgateway`, both leaving their former providers direct-dispatch only) and the write-containment rework that makes preserve-and-quarantine the default in a shared checkout, bringing 20 children; mode contracts took the completion-message content contract, which stays Draft as scoped intent, and the retirement of the `skill-benchmark` lane that leaves the hub with five workflow modes; substrate and orchestration took the `--convergence-mode` flag the runner finally reads and the seven research event stems that let the ledger record a run's spec writes; runtime docs and integrity took the deep-loop-owned red tests in the spec-kit CLI suite and the twenty-iteration alignment review whose every confirmed finding class became a phase, bringing 17 children; review follow-up took the review-leaf protocol.
 - **A typed-ledger substrate, running dark** — A versioned event envelope, a typed append-only ledger, a fail-closed transition-authorization gateway, sealed reference artifacts keyed by a single reference set digest, replay fingerprints, and a shadow-parity harness with an identity registry — all landed non-authoritative, recording after the legacy result and returning it unchanged.
 - **Eight modes, one substrate** — Deep-research, deep-review, deep-ai-council, deep-improvement-common, agent-improvement, model-benchmark, skill-benchmark, and deep-alignment each migrated their full run behavior onto the ledger, ending in a rollback-guarded mode gate. All eight verified green.
 - **Additive-dark by design** — No mode authority flipped, no legacy writer retired. The ledger records beside the legacy emitter and the legacy result is what you get back. The cutovers and retirements are gated for operator approval and are not done.
@@ -275,11 +345,11 @@ The concrete things to know:
 | Group | Direct phases | Changelogs | Rollup |
 |---|---:|---:|---|
 | `001-research-inputs-and-architecture` — Research Inputs and Architecture | 4 | 8 | [`changelog-001-…`](./001-research-inputs-and-architecture/changelog-001-research-inputs-and-architecture.md) |
-| `002-substrate-and-orchestration` — Substrate and Orchestration | 7 | 41 | [`changelog-002-…`](./002-substrate-and-orchestration/changelog-002-substrate-and-orchestration.md) |
-| `003-mode-contracts-migration-and-cutover` — Mode Contracts, Migration and Cutover | 4 | 76 | [`changelog-003-…`](./003-mode-contracts-migration-and-cutover/changelog-003-mode-contracts-migration-and-cutover.md) |
+| `002-substrate-and-orchestration` — Substrate and Orchestration | 9 | 41 | [`changelog-002-…`](./002-substrate-and-orchestration/changelog-002-substrate-and-orchestration.md) |
+| `003-mode-contracts-migration-and-cutover` — Mode Contracts, Migration and Cutover | 6 | 76 | [`changelog-003-…`](./003-mode-contracts-migration-and-cutover/changelog-003-mode-contracts-migration-and-cutover.md) |
 | `004-gate-closeout-and-drift` — Gate, Closeout and Drift | 3 | 4 | [`changelog-004-…`](./004-gate-closeout-and-drift/changelog-004-gate-closeout-and-drift.md) |
 | `005-blocker-closeout` — Blocker Closeout | 4 | 5 | [`changelog-005-…`](./005-blocker-closeout/changelog-005-blocker-closeout.md) |
-| `006-runtime-docs-and-integrity-hardening` — Runtime Docs and Integrity Hardening | 11 | 12 | [`changelog-006-…`](./006-runtime-docs-and-integrity-hardening/changelog-006-runtime-docs-and-integrity-hardening.md) |
-| `007-executor-and-cli-hardening` — Executor and CLI Hardening | 7 | 24 | [`changelog-007-…`](./007-executor-and-cli-hardening/changelog-007-executor-and-cli-hardening.md) |
-| `008-review-and-rollback-followup` — Review and Rollback Follow-up | 4 | 5 | [`changelog-008-…`](./008-review-and-rollback-followup/changelog-008-review-and-rollback-followup.md) |
+| `006-runtime-docs-and-integrity-hardening` — Runtime Docs and Integrity Hardening | 13 | 12 | [`changelog-006-…`](./006-runtime-docs-and-integrity-hardening/changelog-006-runtime-docs-and-integrity-hardening.md) |
+| `007-executor-and-cli-hardening` — Executor and CLI Hardening | 10 | 24 | [`changelog-007-…`](./007-executor-and-cli-hardening/changelog-007-executor-and-cli-hardening.md) |
+| `008-review-and-rollback-followup` — Review and Rollback Follow-up | 5 | 5 | [`changelog-008-…`](./008-review-and-rollback-followup/changelog-008-review-and-rollback-followup.md) |
 | `009-innovation-gap-remediation` — Innovation Gap Remediation | 5 | 6 | [`changelog-009-…`](./009-innovation-gap-remediation/changelog-009-innovation-gap-remediation.md) |

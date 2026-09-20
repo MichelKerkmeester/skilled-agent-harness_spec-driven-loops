@@ -1,0 +1,146 @@
+BINDING: command=markdown
+BINDING: target=specs/system-deep-loop/{041-cli-pi-devpass-glm-route,042-deep-loop-test-debt,043-review-leaf-protocol,044-cli-pi-devpass-deepseek-route,045-fanout-write-containment-hardening}
+BINDING: output=none (read-only dispatch; this reply is the deliverable; no file written)
+BINDING: template=none (amendment drafts only; orchestrator owns committed documents)
+BINDING: mode=AUTONOMOUS
+BINDING: specFolder=specs/system-deep-loop/036-deep-loop-innovation
+
+# W2a drafts — integration text for packets 041–045
+
+Read-only dispatch. Every citation is `<file>:<line>` relative to the packet named in its section; cross-packet citations use the full path. Facts that could not be evidenced are marked `UNKNOWN`.
+
+---
+
+## 1. Timeline rows
+
+Append to `timeline.md` §2, post-consolidation table, after seq 63 (rows in ground-truth chronological order; `stable_id` is the durable id, the cell shows the former top-level path with the merge date):
+
+```
+| 64 | `cli-pi-devpass-glm-route` | 2026-09-05T10:59:12Z | 2026-09-05T16:34:20+02:00 | `system-deep-loop/041-cli-pi-devpass-glm-route` (merged 2026-09-20) | complete | confirmed |
+| 65 | `deep-loop-test-debt` | 2026-09-05T11:40:23Z | 2026-09-05T15:36:51+02:00 | `system-deep-loop/042-deep-loop-test-debt` (merged 2026-09-20) | complete | confirmed |
+| 66 | `review-leaf-protocol` | 2026-09-05T19:16:55Z | 2026-09-05T21:47:58+02:00 | `system-deep-loop/043-review-leaf-protocol` (merged 2026-09-20) | complete | confirmed |
+| 67 | `cli-pi-devpass-deepseek-route` | 2026-09-07T04:48:14.616Z | 2026-09-07T06:51:51+02:00 | `system-deep-loop/044-cli-pi-devpass-deepseek-route` (merged 2026-09-20) | complete | confirmed |
+| 68 | `fanout-write-containment-hardening` | 2026-09-08T17:47:19Z | 2026-09-08T20:00:51+02:00 | `system-deep-loop/045-fanout-write-containment-hardening` (merged 2026-09-20) | complete | confirmed |
+```
+
+Note on row 64 (041): `confirmed` is proposed on the strength of `spec.md:26` (`| **Status** | Complete |`) and `implementation-summary.md:17` (`next_safe_action: "None; packet complete"`), but two signals disagree — `graph-metadata.json:42` says `"status": "in_progress"` and `tasks.md:66-67,79-80` retains T014/T017 as NOT DONE. If the orchestrator weights those, use `in_progress` in the status cell or annotate the evidence cell as `confirmed (T014, T017 open)`. Details in §7.
+
+Composition reminder: the table's intro says "The packet grew … to 28 direct children … Three of those children, `026`-`028`, were merged in on 2026-09-05" (`timeline.md:94-99`) and the header says `**Last updated:** 2026-09-05` (`timeline.md:27`); both need a 2026-09-20 acknowledgement for these five merged packets.
+
+---
+
+## 2. Status evidence per packet
+
+**041-cli-pi-devpass-glm-route — Complete (declared); contested.**
+- `spec.md:26` — `| **Status** | Complete |`; `implementation-summary.md:17` — `next_safe_action: "None; packet complete"`; `implementation-summary.md:42` — `| **Completed** | 2026-09-05 |`.
+- No `acceptance-criteria.md` exists (Level 1; verified absent by search).
+- Contradiction: `graph-metadata.json:42` — `"status": "in_progress"`, and `tasks.md:66` (T014, whole runtime suite not run), `tasks.md:67` (T017, end-to-end iteration not proven), `tasks.md:79-80` (both restated as unmet). The completion declaration rests on targeted suites and a live direct dispatch (`implementation-summary.md:95`), not the whole suite.
+
+**042-deep-loop-test-debt — Complete. Consistent.**
+- `spec.md:26`; `implementation-summary.md:46` — `| **Status** | Complete |`; `graph-metadata.json:42` — `"status": "complete"`. No `acceptance-criteria.md`. No unchecked tasks.
+- Caveats (not status contradictions): verification records partial-suite results — `implementation-summary.md:110` (1568/1589 CLI tests; the one red file targets the in-flight 036 packet) and `implementation-summary.md:113` (9 of 154 runtime files red, described as environment-dependent or contract-drift).
+
+**043-review-leaf-protocol — Complete. Consistent.**
+- `spec.md:25`; `implementation-summary.md:43`; `graph-metadata.json:40`. No `acceptance-criteria.md`. No unchecked tasks.
+- Caveat: the whole runtime suite was not run — it hung (`implementation-summary.md:105`); the named files and unit directory carried the verification.
+
+**044-cli-pi-devpass-deepseek-route — Complete. Consistent.**
+- `spec.md:25`; `implementation-summary.md:43` — `| **Completed** | 2026-09-07 |`; `graph-metadata.json:42`. No `acceptance-criteria.md`. No unchecked tasks.
+- Caveats: the `max` probe was not read to completion (`implementation-summary.md:103`); round-two lane 001's first launch still reached opencode-go because worktree 046 ran its own copy of the driver (`implementation-summary.md:94`).
+
+**045-fanout-write-containment-hardening — Complete. Consistent at the status level.**
+- `spec.md:36`; `implementation-summary.md:45`; `acceptance-criteria.md:105` — `**Closeable:** Yes`; `graph-metadata.json:68`. No unchecked tasks.
+- Acceptance rows: AC-009 (`acceptance-criteria.md:71`), AC-015 (`:77`) and AC-017 (`:79`) are `Superseded` by ADR-007; AC-018 (`:80`) is marked `Met` but describes a mechanism that is not in the delivered tree — see §7.
+
+---
+
+## 3. Changelog blocks for the new `## 2026-09-20` entry
+
+**041-cli-pi-devpass-glm-route**
+The deep-loop fan-out could reach GLM-5.3-Flash only through per-token billing, while the operator's flat-price DevPass plan sat one selector away. One map value moved: the bare `glm-5.3-flash` literal now sends the fan-out through `llmgateway` (spec.md:60; implementation-summary.md:53). The second half was invisible until the first was done — with the route composed, the dispatch died on `No API key found for llmgateway` because `cli-pi` had no dispatch-env allowlist entry, so `LLMGATEWAY_` and `CLINE_`, the only two prefixes Pi's own config declares, are now allowlisted (spec.md:45,76). The accepted trade is that GLM-5.3-Flash through opencode-go is direct-dispatch only, exactly as the Cline route already was (implementation-summary.md:59).
+
+**042-deep-loop-test-debt**
+Several tests owned by the deep-loop but living in the spec-kit CLI suite were red before the CLI workspace moved, and a red suite every spec-kit change runs hides real regressions (spec.md:36). The packet fixed the producer rather than the assertion: the council persistence guard now accepts the first write into a packet whose council root does not exist yet, and three stale tests were aligned to the contracts that later, deliberate commits had superseded (implementation-summary.md:59,63-65). The deep-loop runtime typecheck now exits zero — down from 53 errors — with no compiler option loosened (implementation-summary.md:112).
+
+**043-review-leaf-protocol**
+The fan-out runner fails a lineage closed when it writes outside its directory or reaches the iteration cap without a recorded stop reason; six nesting passes showed the leaf breaking both rules from ignorance, not defiance (spec.md:35). The lineage prompt and the deep-review agent contract now state the two duties the runner enforces — copy the artifact directory verbatim, and record `stopReason: maxIterationsReached` under max-iterations — with every runtime mirror and the compiled contract regenerated (spec.md:46; implementation-summary.md:52). Three determinism tests that had read as environment failures were spawning a vitest binary the workspace hoist removed; they now resolve the runtime's own and pass 132 of 132 (spec.md:35,74; implementation-summary.md:94).
+
+**044-cli-pi-devpass-deepseek-route**
+Two days after the GLM route moved, the same wall appeared for DeepSeek V4 Flash: opencode-go had hit its monthly usage window, answered every lane with `429 GoUsageLimitError` in six seconds, and Devin's daily quota was gone (spec.md:38). The same fix was applied for the same reason — the bare `deepseek-v4-flash-vision-exp` literal now maps to `llmgateway`, so the second research round could run at `max` on the flat-price plan and opencode-go stayed direct-dispatch only (spec.md:40,53,98). The targeted suites stayed green and a direct dispatch returned `DEVPASS-DEEPSEEK-OK` (implementation-summary.md:90-92).
+
+**045-fanout-write-containment-hardening**
+On 2026-09-08 the fan-out's write-containment guard could not tell a leaf's stray write from a human's edit in the same checkout, and its `git checkout HEAD -- <path>` remedy reverted 1,858 tracked paths belonging to a concurrent session and marked a completed research lane failed (spec.md:22,39). The packet made preservation the default: an out-of-scope change is copied into a quarantine inside the lineage directory, the working tree is left exactly as the lane left it, restore (when opted into) returns files to their pre-dispatch bytes rather than to HEAD, and a completed lane keeps its completed outcome (spec.md:22,68; implementation-summary.md:101). The per-lineage worktree phase that followed was built, turned off by default and then removed outright once the operator ruled exact attribution out of scope, leaving one shared-checkout path under preserve-by-default containment (spec.md:24,42; implementation-summary.md:61).
+
+---
+
+## 4. `What's New at a Glance` bullets
+
+- **A DevPass route for GLM on cli-pi** — Moving the bare `glm-5.3-flash` literal to `llmgateway` and allowlisting `LLMGATEWAY_`/`CLINE_` for `cli-pi` lets the fan-out reach GLM-5.3-Flash on the operator's flat-price plan, with opencode-go direct-dispatch only (spec.md:60,76; implementation-summary.md:53,59).
+- **Deep-loop test debt cleared** — The deep-loop-owned red tests in the spec-kit CLI suite pass, three stale assertions now follow the committed contracts, the council persistence guard accepts a fresh packet's first write, and the runtime typecheck reads zero errors instead of 53 (implementation-summary.md:59,63-65,112).
+- **The review leaf is told its two duties** — The lineage prompt and the deep-review agent contract now state the verbatim-path rule and the max-iterations stop-reason rule, and three determinism tests spawn the runtime's own vitest at 132 of 132 green (spec.md:46,74; implementation-summary.md:52,94).
+- **A second DevPass route, for DeepSeek** — With opencode-go's monthly window closed, the bare `deepseek-v4-flash-vision-exp` literal moved to `llmgateway`, putting DeepSeek V4 Flash at `max` back on the flat-price plan (spec.md:38,53,98).
+- **Containment preserves instead of reverting** — Preserve-and-quarantine is the default, restore returns files to their pre-dispatch bytes, a completed lane keeps its completed outcome, and the worktree isolation phase was removed after attribution was ruled out of scope (spec.md:22,24,68; implementation-summary.md:101).
+
+---
+
+## 5. Before-and-after addenda (`What happened after the switch-over`)
+
+- **The DevPass GLM route.** The fan-out could reach GLM-5.3-Flash only through per-token routes while the operator held a flat-price DevPass plan; `041-cli-pi-devpass-glm-route` moved the bare `glm-5.3-flash` literal to `llmgateway` and gave `cli-pi` the two credential prefixes Pi's own config declares (spec.md:41,60,76). GLM-5.3-Flash through opencode-go is now direct-dispatch only (implementation-summary.md:59).
+- **The test debt under the suite.** `042-deep-loop-test-debt` fixed the deep-loop-owned red tests in the spec-kit CLI suite at the producer — the council persistence guard's first-write case — and aligned three stale assertions to contracts later commits had superseded, rather than reversing those decisions to make tests pass (spec.md:36-38; implementation-summary.md:59,63-65). The deep-loop runtime typecheck went from 53 errors to zero (implementation-summary.md:112).
+- **The review leaf's two duties.** `043-review-leaf-protocol` wrote the verbatim-path duty and the max-iterations stop-reason duty into the lineage prompt and the deep-review agent contract, so the leaf is told what the runner already enforces (spec.md:46; implementation-summary.md:52). It also repointed three determinism tests at the runtime's own vitest binary, 132 of 132 green (implementation-summary.md:94).
+- **The second DevPass route.** `044-cli-pi-devpass-deepseek-route` applied the GLM fix to DeepSeek V4 Flash after opencode-go's monthly window closed and rejected every lane, moving the bare `deepseek-v4-flash-vision-exp` literal to `llmgateway` (spec.md:38,53). The second research round could then run at `max` on the flat-price plan (spec.md:98).
+- **Containment that preserves.** `045-fanout-write-containment-hardening` turned the containment remedy from irreversible revert to quarantine-and-preserve after the guard reverted 1,858 paths of a concurrent session and failed a completed lane (spec.md:22,39,68). Restore, when opted into, now targets pre-dispatch bytes, outcome separation keeps a finished lane fulfilled, and the worktree isolation phase was later removed once attribution was ruled out of scope (spec.md:24,42; implementation-summary.md:101).
+
+Composition reminder: the section's intro sentence names "the children that follow, numbered 013 through 028" and the 2026-09-05 merge (`before-and-after.md:188`); it needs a parallel mention of the five 2026-09-20 merged packets.
+
+---
+
+## 6. Parent phase-map rows
+
+**`007-executor-and-cli-hardening/spec.md` — edit existing row 7, append 3 rows:**
+
+```
+| 7 | `007-cli-devin-executor-repair` | complete | predecessor `006-residual-finding-closeouts`; successor `008-cli-pi-devpass-glm-route` |
+| 8 | `008-cli-pi-devpass-glm-route` | complete | predecessor `007-cli-devin-executor-repair`; successor `009-cli-pi-devpass-deepseek-route` |
+| 9 | `009-cli-pi-devpass-deepseek-route` | complete | predecessor `008-cli-pi-devpass-glm-route`; successor `010-fanout-write-containment-hardening` |
+| 10 | `010-fanout-write-containment-hardening` | complete | predecessor `009-cli-pi-devpass-deepseek-route`; successor `none` |
+```
+
+**`006-runtime-docs-and-integrity-hardening/spec.md` — edit existing row 11, append 1 row:**
+
+```
+| 11 | `011-identity-and-lock-ownership-hardening` | complete | predecessor `010-docs-drift-and-p2-batch`; successor `012-deep-loop-test-debt` |
+| 12 | `012-deep-loop-test-debt` | complete | predecessor `011-identity-and-lock-ownership-hardening`; successor `none` |
+```
+
+**`008-review-and-rollback-followup/spec.md` — edit existing row 4, append 1 row:**
+
+```
+| 4 | `004-review-containment-exemption` | complete | predecessor `003-rollback-candidate-hash-hardening`; successor `005-review-leaf-protocol` |
+| 5 | `005-review-leaf-protocol` | complete | predecessor `004-review-containment-exemption`; successor `none` |
+```
+
+All new statuses are `complete` per §2; if 041's status is downgraded, the `008-cli-pi-devpass-glm-route` row in 007 follows.
+
+---
+
+## 7. Contradictions / exceptions
+
+**041 — status contest (spec.md vs graph-metadata vs tasks).**
+`spec.md:26` and `implementation-summary.md:17,42` declare Complete; `graph-metadata.json:42` says `"status": "in_progress"`; `tasks.md:66-67,79-80` retain T014 (whole runtime suite not run) and T017 (end-to-end iteration not proven) as NOT DONE. The implementation summary states both limitations itself (`implementation-summary.md:112`, and the T014 follow-up at `:114`). Completion of the routing fix is verified (`implementation-summary.md:95`); completion of the two verification tasks is not. Proposed row keeps `complete`/`confirmed`; downgrade to `in_progress` if open tasks are binding.
+
+**042 — no contradictions.** `spec.md:26`, `implementation-summary.md:46`, `graph-metadata.json:42` all Complete; no `acceptance-criteria.md`; no unchecked tasks. Exceptions are recorded limitations only: the full CLI project is 1568/1589 with the single red file attributed to the in-flight 036 packet (`implementation-summary.md:110`), and the runtime suite carries 9 pre-existing red files described as environment-dependent or contract-drift (`implementation-summary.md:113`).
+
+**043 — no contradictions.** `spec.md:25`, `implementation-summary.md:43`, `graph-metadata.json:40` all Complete; no `acceptance-criteria.md`; no unchecked tasks. Exception: the whole runtime suite hung and was not run (`implementation-summary.md:105`).
+
+**044 — no contradictions.** `spec.md:25`, `implementation-summary.md:43`, `graph-metadata.json:42` all Complete; no `acceptance-criteria.md`; no unchecked tasks. Exceptions: the route was proven at `low`, not `max` (`implementation-summary.md:103`); and the round-two note says the first launch still reached opencode-go because worktree 046 ran its own copy of the driver (`implementation-summary.md:94`) — a reference to a worktree mechanism that packet 045's phase 007 later removed (`045.../spec.md:42`), so that sentence is dated.
+
+**045 — four contradictions, all about the removed checkout watch and stale metadata; the closure decision itself is consistent.**
+1. **AC-018 vs the delivered tree.** `acceptance-criteria.md:80` marks AC-018 (`checkout_write_detected` / `checkout_watched` reporting) as `Met`, and `acceptance-criteria.md:107` says "the checkout-watch extension rows await the same sign-off"; `implementation-summary.md:110` records the watch GREEN and `implementation-summary.md:17` lists its sign-off as the `next_safe_action`. Against that, `spec.md:42` says the checkout watch "was removed in phase 007 under ADR-007", and `decision-record.md:470` marks ADR-005 "Superseded by ADR-007; the watch left with the mechanism it guarded". Ground truth from the tree: `checkout_write_detected`/`checkout_watched` have zero references anywhere under `.opencode/skills/system-deep-loop/`, and `tests/unit/worktree-lifecycle.vitest.ts` no longer exists (only `tests/stress/cli-adapter/fixtures/worktree-fixture.ts` remains). AC-018 should be `Superseded`/named to ADR-007, or the reversal note and ADR-005 status should be corrected — one of the two document sets is wrong.
+2. **Closure count.** `acceptance-criteria.md:107` says "the two worktree rows are superseded by ADR-007" while the table has three Superseded rows — AC-009 `:71`, AC-015 `:77`, AC-017 `:79` — and the closure lead at `:105` says "the three worktree rows".
+3. **Mixed "final state" evidence.** `implementation-summary.md:110` reports "full suite from the final state: 156 files passed, 2654 passed", but the phase-007 row reports "151 files / 2568 tests after the worktree removal in 007"; the watch row's "final state" predates the removal and is not the current tree.
+4. **graph-metadata children staleness.** `graph-metadata.json:7-18` mixes planning-phase child names that no longer exist (`001-skip-worktree-cone` :7, `004-eighth-dependency-root` :10, `006-shared-root-write-escape` :12, `007-reducer-ordered-lists` :13, `008-reclaim-relocated-trees` :14) with the executed child set, duplicating suffixes (`006-reducer-ordered-lists` :17 alongside :13; `002-iteration-record-dedupe` and `005-churn-cumulative-arm` appear in both groups), against the current 20-child table at `045.../spec.md:110-131`. Regenerate before committing if graph metadata ships.
+
+**Cross-cutting exception.** Only 045 has an `acceptance-criteria.md`; 041–044 are Level 1 and their completion rests on `spec.md` status rows plus implementation-summary verification tables. Where a claim rests only on a declared status and not on an observed check, this draft says so (041).
+
+W2A DRAFT RETURN COMPLETE

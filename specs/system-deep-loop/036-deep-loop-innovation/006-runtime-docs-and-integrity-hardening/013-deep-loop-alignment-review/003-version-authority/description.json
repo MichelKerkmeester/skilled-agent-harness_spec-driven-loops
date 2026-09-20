@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/003-version-authority",
+  "description": "The three hubs carried six disagreeing version values across their routing artifacts: system-deep-loop spanned 1.0.1.0 to 3.0.0.0 across five files,",
+  "keywords": [
+    "three",
+    "hubs",
+    "carried",
+    "six",
+    "disagreeing",
+    "version",
+    "values",
+    "across",
+    "routing",
+    "artifacts",
+    "system-deep-loop",
+    "spanned",
+    "five",
+    "files"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.597Z",
+  "specId": "003",
+  "folderSlug": "version-authority",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening",
+    "013-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

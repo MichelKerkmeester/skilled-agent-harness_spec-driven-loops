@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/009-baseline-deletion-detection",
+  "description": "The detector iterated the post-dispatch git status and subtracted the baseline, so an untracked file present at baseline and deleted by the lane was",
+  "keywords": [
+    "detector",
+    "iterated",
+    "post-dispatch",
+    "git",
+    "status",
+    "subtracted",
+    "baseline",
+    "untracked",
+    "file",
+    "present",
+    "deleted",
+    "lane"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.510Z",
+  "specId": "009",
+  "folderSlug": "baseline-deletion-detection",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "010-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

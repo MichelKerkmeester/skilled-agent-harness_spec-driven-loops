@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/001-never-fatal-untracked",
+  "description": "The write-containment guard failed a fan-out iteration whenever an untracked file appeared outside the lane's packet tree, even under the preserve",
+  "keywords": [
+    "write-containment",
+    "guard",
+    "failed",
+    "fan-out",
+    "iteration",
+    "whenever",
+    "untracked",
+    "file",
+    "appeared",
+    "outside",
+    "lane",
+    "packet",
+    "tree",
+    "even",
+    "preserve"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.493Z",
+  "specId": "001",
+  "folderSlug": "never-fatal-untracked",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "010-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

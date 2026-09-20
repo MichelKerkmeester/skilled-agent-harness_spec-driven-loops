@@ -1,6 +1,6 @@
 ---
 title: "036 Deep-Loop-Innovation — Phase Timeline"
-description: "Chronological identity ledger for the system-deep-loop 036-deep-loop-innovation packet: the frozen M0 baseline of original folder identities, the post-consolidation flat-leaf children and the program milestones between them."
+description: "Chronological identity ledger for the system-deep-loop 036-deep-loop-innovation packet: the frozen M0 baseline of original folder identities, the post-consolidation children and the program milestones between them."
 trigger_phrases:
   - "timeline"
   - "chronology"
@@ -14,7 +14,7 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> Append-only chronological identity ledger for the packet's 28 current children, spanning the original M0 baseline through the post-consolidation growth and the 2026-09-05 merge of three former top-level packets.
+> Append-only chronological identity ledger for the packet's 28 current children, spanning the original M0 baseline through the post-consolidation growth, the 2026-09-05 merge of three former top-level packets and the 2026-09-20 merge of ten further packets nested in five group parents.
 
 ---
 
@@ -24,7 +24,7 @@ contextType: "general"
 **Subject:** system-deep-loop/036-deep-loop-innovation folder identity and event history
 **Status:** In Progress
 **Started:** 2026-07-15
-**Last updated:** 2026-09-05
+**Last updated:** 2026-09-20
 **Owner:** system-deep-loop
 <!-- /ANCHOR:metadata -->
 
@@ -97,7 +97,9 @@ The packet grew from the nine consolidated group parents (`001`-`009`) to 28 dir
 2026-08-16 and 2026-09-02. Three of those children, `026`-`028`, were merged in on 2026-09-05 from
 separate top-level packets. Their `path_at_baseline` names the former top-level path they were
 renumbered from, since a reader tracing history from an older commit or document will search for the
-old number.
+old number. Ten further children, `041`-`050`, were merged in on 2026-09-20, this time nested inside
+five of the group parents rather than renumbered at the root, so the direct-child count is still 28;
+their `path_at_baseline` names the former top-level path they were nested from.
 
 | seq | stable_id | created_at | git_first_add | path_at_baseline | status | evidence |
 |----:|-----------|------------|---------------|------------------|--------|----------|
@@ -120,6 +122,16 @@ old number.
 | 61 | `codex-lineage-auth-isolation` | 2026-08-30T15:39:22.458Z | 2026-08-30T15:09:55+02:00 | `system-deep-loop/038-codex-lineage-auth-isolation` (merged 2026-09-05) | withdrawn | confirmed |
 | 62 | `executor-availability-docs` | 2026-08-31T08:33:25Z | 2026-08-31T11:56:13+02:00 | `system-deep-loop/039-executor-availability-docs` (merged 2026-09-05) | complete | confirmed |
 | 63 | `cli-lineage-nesting-and-containment-guard` | 2026-09-02T17:17:51Z | 2026-09-02T22:04:18+02:00 | `system-deep-loop/040-cli-lineage-nesting-and-containment-guard` (merged 2026-09-05) | complete | confirmed |
+| 64 | `cli-pi-devpass-glm-route` | 2026-09-05T10:59:12Z | 2026-09-05T16:34:20+02:00 | `system-deep-loop/041-cli-pi-devpass-glm-route` (merged 2026-09-20) | complete | confirmed |
+| 65 | `deep-loop-test-debt` | 2026-09-05T11:40:23Z | 2026-09-05T15:36:51+02:00 | `system-deep-loop/042-deep-loop-test-debt` (merged 2026-09-20) | complete | confirmed |
+| 66 | `review-leaf-protocol` | 2026-09-05T19:16:55Z | 2026-09-05T21:47:58+02:00 | `system-deep-loop/043-review-leaf-protocol` (merged 2026-09-20) | complete | confirmed |
+| 67 | `cli-pi-devpass-deepseek-route` | 2026-09-07T04:48:14.616Z | 2026-09-07T06:51:51+02:00 | `system-deep-loop/044-cli-pi-devpass-deepseek-route` (merged 2026-09-20) | complete | confirmed |
+| 68 | `fanout-write-containment-hardening` | 2026-09-08T17:47:19Z | 2026-09-08T20:00:51+02:00 | `system-deep-loop/045-fanout-write-containment-hardening` (merged 2026-09-20) | complete | confirmed |
+| 69 | `synthesis-chat-presentation` | 2026-09-11T14:03:05Z | 2026-09-11T19:44:00+02:00 | `system-deep-loop/046-synthesis-chat-presentation` (merged 2026-09-20) | draft | confirmed |
+| 70 | `deprecate-skill-benchmark` | 2026-09-11T17:07:53Z | 2026-09-11T19:53:21+02:00 | `system-deep-loop/047-deprecate-skill-benchmark` (merged 2026-09-20) | complete | confirmed |
+| 71 | `fanout-convergence-mode-flag` | 2026-09-11T20:55:35.915Z | 2026-09-11T22:55:50+02:00 | `system-deep-loop/048-fanout-convergence-mode-flag` (merged 2026-09-20) | complete | confirmed |
+| 72 | `deep-loop-alignment-review` | 2026-09-15T09:48:33Z | 2026-09-15T11:50:15+02:00 | `system-deep-loop/049-deep-loop-alignment-review` (merged 2026-09-20) | complete | confirmed |
+| 73 | `spec-protocol-ledger-events` | 2026-09-19T06:34:57Z | 2026-09-19T08:37:14+02:00 | `system-deep-loop/050-spec-protocol-ledger-events` (merged 2026-09-20) | complete | confirmed |
 
 ---
 
@@ -215,6 +227,46 @@ every iteration spawned a nested `codex exec` that died in the sandbox and retur
 write containment compounded the damage by reverting a concurrent operator edit from HEAD with no
 recoverable record. The fix adds a pre-spawn refusal that stops the nesting, and makes containment
 write a recovery patch before it reverts anything.
+
+Ten further packets merged in on 2026-09-20, this time nested inside the group parents rather than
+renumbered at the root. They are the work that followed the executor and containment hardening, and
+each one arrived with its own outcome:
+
+- **The two DevPass routes, `041` and `044`.** The deep-loop fan-out could reach GLM-5.3-Flash and
+  DeepSeek V4 Flash only through per-token routes while the operator held a flat-price DevPass plan,
+  so each bare model literal was remapped to `llmgateway` and the `cli-pi` dispatch environment was
+  given the credential prefixes Pi's own config declares. Both left their former providers
+  direct-dispatch only.
+- **Write containment that preserves, `045`.** The containment guard could not tell a leaf's stray
+  write from a human's edit in the same checkout, and its revert remedy clobbered 1,858 tracked paths
+  belonging to a concurrent session. Preserve-and-quarantine is now the default, restore targets
+  pre-dispatch bytes, and a completed lane keeps its completed outcome. Its 20 children came with it.
+- **A completion-message contract and a lane retirement, `046` and `047`.** `046` records why a
+  completion message carrying only a path and a count moves the reading onto the person who asked,
+  and stays `draft` with unchecked tasks and an unmet criterion. `047` removed the `skill-benchmark`
+  lane from every reachable surface — five command trees, the hub registry and router, the advisor
+  bridge and its ledger libraries — so the hub registers five workflow modes instead of six, and it
+  closed with its residue recorded as operator questions rather than silent fixes.
+- **A silent fan-out default and a ledger gap, `048` and `050`.** `048` found `--convergence-mode`
+  documented with four values while the runner never read it, so a lineage ran `standard` against a
+  caller who asked for `off`; the runner now validates the value and carries it to the leaf. `050`
+  gave the deep-research ledger its own spec-protocol event stems, so the spec rows a research run
+  already writes are accepted by the gateway and projected back into the state log, proven against 23
+  committed research ledgers.
+- **Suite debt and a whole-system review, `042` and `049`.** `042` fixed the deep-loop-owned red tests
+  in the spec-kit CLI suite at the producer and aligned three stale assertions, taking the runtime
+  typecheck from 53 errors to zero. `049` read the whole deep-loop system as one architecture in
+  twenty angle-driven iterations across four lanes and turned every confirmed finding class into a phase —
+  seventeen in all — covering rosters, version authority, leaf manifests, catalogs and READMEs,
+  confirm-variant parity, ledger stems, agent mirrors, routing doctrine and containment language,
+  ending with all six completion criteria checked. Its 17 children came with it.
+- **The review leaf's duties, `043`.** The lineage prompt and the deep-review agent contract now state
+  the verbatim-path rule and the max-iterations stop-reason rule the fan-out runner already enforces,
+  and three determinism tests were repointed at the runtime's own vitest.
+
+These ten keep this packet's direct-child count at 28: each lives inside a group parent, and each
+former path is recorded in the `path_at_baseline` column above.
+
 <!-- /ANCHOR:timeline -->
 
 ---
@@ -231,4 +283,6 @@ write a recovery patch before it reverts anything.
 **012 authority cutover:** target all eight modes flipped to `new_authoritative_final` and the legacy shadow writer dropped. Status: Done. Evidence: `012-runtime-enablement`.
 
 **Merge of three former top-level packets:** target 2026-09-05. Status: Done. Evidence: `026-codex-lineage-auth-isolation`, `027-executor-availability-docs`, `028-cli-lineage-nesting-and-containment-guard`.
+
+**Merge of ten former top-level packets:** target 2026-09-20. Status: Done. Evidence: `041-cli-pi-devpass-glm-route` through `050-spec-protocol-ledger-events`, nested inside the group parents `002`, `003`, `006`, `007` and `008`.
 <!-- /ANCHOR:milestones -->

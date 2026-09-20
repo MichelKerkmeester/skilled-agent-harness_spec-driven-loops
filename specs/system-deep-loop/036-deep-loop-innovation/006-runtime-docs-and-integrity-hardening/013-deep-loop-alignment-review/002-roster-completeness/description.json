@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/002-roster-completeness",
+  "description": "The external orchestration router listed six CLI kinds in its opening parenthetical, its leaf-set bullets and its disambiguation rule while its own",
+  "keywords": [
+    "external",
+    "orchestration",
+    "router",
+    "listed",
+    "six",
+    "cli",
+    "kinds",
+    "opening",
+    "parenthetical",
+    "leaf-set",
+    "bullets",
+    "disambiguation",
+    "rule",
+    "while",
+    "own"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.596Z",
+  "specId": "002",
+  "folderSlug": "roster-completeness",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening",
+    "013-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

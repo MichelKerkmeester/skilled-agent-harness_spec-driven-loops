@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/007-ledger-stem-producers",
+  "description": "The ledger schemas register 61 dotted event stems, and a census of the nine producer surfaces found 56 of them written by no mechanical producer at",
+  "keywords": [
+    "ledger",
+    "schemas",
+    "register",
+    "dotted",
+    "event",
+    "stems",
+    "census",
+    "nine",
+    "producer",
+    "surfaces",
+    "found",
+    "them",
+    "written",
+    "mechanical"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.602Z",
+  "specId": "007",
+  "folderSlug": "ledger-stem-producers",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening",
+    "013-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -7,7 +7,8 @@
     "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/001-runtime-code-review",
     "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/002-review-drift-remediation",
     "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/003-rollback-candidate-hash-hardening",
-    "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/004-review-containment-exemption"
+    "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/004-review-containment-exemption",
+    "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/005-review-leaf-protocol"
   ],
   "manual": {
     "depends_on": [],
@@ -83,8 +84,8 @@
       }
     ],
     "causal_summary": "Runtime code review, review drift remediation, rollback candidate hash hardening, and review containment exemption.",
-    "created_at": "2026-08-13T09:23:03.369Z",
-    "last_save_at": "2026-08-30T15:39:22.035Z",
+    "created_at": "2026-09-20T08:33:47.113Z",
+    "last_save_at": "2026-09-20T08:33:47.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -95,7 +96,7 @@
     "source_doc_hashes": {
       "spec.md": "ec9f71173eb34d392a9cd46c690da80e6c0bbee54b95c6dc76a724f1a717c47f"
     },
-    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/004-review-containment-exemption",
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/005-review-leaf-protocol",
     "last_active_at": null
   }
 }

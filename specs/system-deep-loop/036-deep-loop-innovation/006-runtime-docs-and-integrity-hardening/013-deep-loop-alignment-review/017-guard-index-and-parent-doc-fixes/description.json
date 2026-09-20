@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/017-guard-index-and-parent-doc-fixes",
+  "description": "Three checks were red or wrong for reasons unrelated to what they guard",
+  "keywords": [
+    "three",
+    "checks",
+    "red",
+    "wrong",
+    "reasons",
+    "unrelated",
+    "guard"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.619Z",
+  "specId": "017",
+  "folderSlug": "guard-index-and-parent-doc-fixes",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening",
+    "013-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

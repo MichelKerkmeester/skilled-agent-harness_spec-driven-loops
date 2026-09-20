@@ -1,0 +1,35 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/010-version-authority-completion",
+  "description": "Phase 003 gave three hubs one version authority and wrote the remaining two into its own out-of-scope list, so `sk-doc` and `mcp-tooling` still carry",
+  "keywords": [
+    "phase",
+    "gave",
+    "three",
+    "hubs",
+    "one",
+    "version",
+    "authority",
+    "wrote",
+    "remaining",
+    "two",
+    "own",
+    "out-of-scope",
+    "list",
+    "sk-doc",
+    "mcp-tooling",
+    "still",
+    "carry"
+  ],
+  "lastUpdated": "2026-09-20T08:32:53.607Z",
+  "specId": "010",
+  "folderSlug": "version-authority-completion",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening",
+    "013-deep-loop-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
