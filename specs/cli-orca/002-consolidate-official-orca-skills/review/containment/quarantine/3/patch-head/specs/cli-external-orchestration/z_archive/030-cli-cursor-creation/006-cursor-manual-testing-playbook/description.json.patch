@@ -1,0 +1,26 @@
+diff --git a/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook/description.json b/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook/description.json
+index bfa66ee8ffe..81e3f9cf3a3 100644
+--- a/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook/description.json
++++ b/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook",
++  "specFolder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook",
+   "description": "`cli-codex` ships a split-document manual-testing-playbook (1 root + per-feature scenario files across categories) as its canonical, no-mocking,",
+   "keywords": [
+     "cli-codex",
+@@ -16,11 +16,12 @@
+     "canonical",
+     "no-mocking"
+   ],
+-  "lastUpdated": "2026-08-15T14:40:55.173Z",
++  "lastUpdated": "2026-09-11T16:49:40.821Z",
+   "specId": "006",
+   "folderSlug": "cursor-manual-testing-playbook",
+   "parentChain": [
+     "cli-external-orchestration",
++    "z_archive",
+     "030-cli-cursor-creation"
+   ],
+   "memorySequence": 0,

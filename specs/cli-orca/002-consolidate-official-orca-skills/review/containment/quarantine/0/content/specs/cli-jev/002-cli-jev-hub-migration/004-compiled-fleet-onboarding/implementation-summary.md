@@ -1,0 +1,144 @@
+---
+title: "Implementation Summary: Phase 4: compiled-fleet-onboarding"
+description: "The hub is now the sixth member of the compiled fleet: registered in the engine dispatch map and every cohort copy, owner of a rollout child and a fresh activation manifest in both the runtime and authored trees, serving a compiled route under an unset flag, failing closed under the kill-switch, and reversible byte-exactly to the legacy sentinel."
+trigger_phrases:
+  - "implementation summary"
+  - "compiled fleet onboarding"
+  - "phase closeout"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding"
+    last_updated_at: "2026-09-20T15:55:00Z"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase authored at closeout from the executed onboarding"
+    next_safe_action: "Run phase 005: re-run the hub and transport playbooks from the new home"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-cli-jev-002-004-compiled-fleet-onboarding"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-compiled-fleet-onboarding |
+| **Completed** | 2026-09-20 |
+| **Level** | phase |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The hub answers from compiled policy. `compiled-route.cjs --hub cli-jev --prompt "use jev judgment to decide whether this incident is urgent"` returns a route whose single target is the `cli-usage` transport at generation 1, where phase 003 recorded the legacy sentinel for the same hub; the fleet lists six hubs with the new one `compiled-serving`; and the hub's own package validator reports `compiled-ready` where it previously reported `legacy (no manifest)`. The hub joined at its own first activation rather than inheriting an incumbent's records: its rollout child was cloned from the cli-external-orchestration model, its policy compiled at generation 1, and its manifest minted against the frozen bytes and rehearsed back to legacy and forward again.
+
+### Phase 4: compiled-fleet-onboarding
+
+Six surfaces had to agree before the hub could serve, and a half-wired cohort makes the fleet's lockstep suite name a diverging hub, so they moved in one pass: the engine's dispatch map, the resolver's default-on cohort, the advisor's eligibility set and its cohort, the guard's hub list, the sync tool's hub list, and the serving-closure record. Two of those are one source and its built output, which is why the advisor's twin was rebuilt by the package's own build rather than edited by hand.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-jev/**` | Created | Rollout child: harness, registry compiler, router, policy card, canary fixture, plus six built `compiled/` and five `activation/` artifacts |
+| `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs` | Modified | `HUB_CHILD` gains `cli-jev` → `009-parent-hub-rollout/008-cli-jev` |
+| `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` | Modified | `DEFAULT_ON_HUBS` gains the hub; the cohort prose records that this hub joined at its own first activation while the other five cut over together |
+| `.skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts` | Modified | `COMPILED_ROUTING_HUBS` and `DEFAULT_ON_HUBS` gain the hub |
+| `.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/compiled-routing-flag.js` | Rebuilt | Generated twin, rebuilt by `npm run build` in the package; the tree is gitignored, so the rebuild is the only sanctioned way to move it |
+| `.skilled/bin/compiled-route-guard.cjs`, `.skilled/bin/compiled-route-sync.cjs` | Modified | `HUBS` gains the hub, which also enrolls it in the pre-commit remint gate |
+| `.skilled/bin/lib/compiled-routing/serving-closure.manifest.json` | Modified | Six hubs, `fileCount` 48 → 55, with the child's five source files and the two activation files |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json`, `fence-state.json` | Created | Live activation: generation 1, `servingAuthority: "compiled"`, fence epoch 1 |
+| `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/*` | Created | Authored mirror: manifest and fence state byte-identical to the runtime, the pre-activation manifest, the rollback copy, the activation record with the four real source hashes, and the flip record |
+| `.skilled/bin/compiled-routing-foundation.vitest.ts` | Modified | Cohort lockstep five → six, the same for the order-identity comment, the file header and the move-simulation message |
+| `.skilled/bin/tests/compiled-route-manifest.test.cjs` | Modified | Seven `all N hubs resolve` expectations and the cohort-size assertion move to six |
+| `.skilled/skills/cli-jev/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `description.json` | Modified | Version `0.2.0.0`; the scaffold paragraph removed from `SKILL.md` because the directive it declared inert is now live; the changelog link follows |
+| `.skilled/skills/cli-jev/changelog/v0.2.0.0.md` | Created | Added/Changed/Not Changed entry for the onboarding |
+| `.skilled/skills/cli-jev/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md` | Modified | CJ-001 asks with a phrase the hub vocabulary carries and its success criteria state the served expectation instead of a SKIP on a legacy sentinel |
+| `.skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md` | Modified | CJ-003's gold names the `none` no-route label; a null value parses as a mode named null |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Delivered
+
+Freeze, compile once, mint against the frozen bytes, prove with the fleet's own gates. The hub's prose and version moved first, because they are the policy's inputs; the rollout child was cloned, repointed and built next, and its seven-case canary corpus was replayed against the authored expectations before anything else was wired. The six fleet surfaces then moved in one pass, the activation pair was written in both trees, and only after that did the fleet's tools speak: admission, status, the guard, three front-door probes and a rollback rehearsal. The hub's own doc pass closed the phase, and its gates re-ran afterwards because the version bump had moved routing inputs again.
+
+Two constraints shaped the build, and both were verified rather than assumed. The generic `001-sk-code` compiler's `PACKET_AUTHORITY` map knows only `workflow` and `surface`, so the CLI's `mint` verb cannot compile a transport-only hub; the manifest was therefore written through the same library the mint uses for its canonical bytes, and the sanctioned `refresh` verb — which prefers the hub's shadow child — was run to prove it re-derives the identical file. And every deployed artifact the engine serves comes from the child's own compiler, which is the one place in the fleet where `transport` is a first-class destination role.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Freeze the hub's prose and version before building the policy | Every consumer reads the same three authored files, so a prose edit after the build silently invalidates the hash the manifest pins; the phase therefore batches its hub edits, builds once, and re-verifies freshness at the end |
+| Wire all six surfaces in one pass | The lockstep suite compares four cohort copies and the engine map; a staged rollout would have left a deliberately red window that this phase's own gate could not distinguish from a real defect |
+| Rebuild the advisor's dist twin instead of editing it | The package's own build is the sanctioned writer, and the tree is gitignored, so a hand edit would drift from source without any gate noticing |
+| Write the activation manifest from the library's canonical bytes | The CLI's `mint` verb compiles through the generic map that has no `transport` entry, so minting this hub through it fails; using the same canonicalizer keeps the bytes identical to what a successful mint would have produced |
+| Verify the remint path is a no-op rather than assume it | The pre-commit gate refreshes every hub whose routing inputs are staged; running `refresh` by hand proved the hub is re-mintable and byte-stable, so the gate can do its job on this hub |
+| Rehearse the rollback instead of asserting it | The activation record claims a byte-exact rollback copy; writing that copy over the live manifest, watching status fall to `legacy-authority`, and restoring the recorded bytes turns the claim into a measured fact |
+| Use the fleet's canary corpus for this hub rather than re-using the transport's JEV cases | The hub's own routing is what this phase activates; the transport's 22 scenarios belong to the playbook re-verification phase and to a different compiled surface |
+| Fix the two hub-routing gold defects the replay exposed | CJ-001's shipped prompt deferred under the compiled vocabulary, and CJ-003's null gold is unparseable to the admission check; both would have made the hub's own corpus report drift on a hub whose code was correct |
+| Correct the cloned harness's authority assertion | The model's form asserted `true` only for routes, which reads as "a negative decision does not withhold authority"; the hub's form checks the route's declared authority and holds for a defer, a clarify and a reject |
+| Leave the fleet-count prose in other hubs' documents alone | Their `five hubs` sentences are that hub's to fix, and four of them are in sk-doc's own scaffolding assets; rewriting another hub's docs was out of bounds |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `node .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-jev/harness/build-artifacts.cjs` | exit 0: `{"activationArtifacts":5,"compiledArtifacts":6,"effectivePolicyHash":"3240ebf5…","graphHash":"fda05c50…","status":"built"}` |
+| Canary replay through the child's own router, compared case by case with the fixture | All seven cases match: four judgment requests route `single` to `cli-usage` (choice, hub name, judgment alias, score), two defer (no signal, alias narrowness) and one rejects (`forbidden`) |
+| `node .skilled/bin/compiled-route-manifest.cjs freshness --hub cli-jev --skill-root .skilled/skills/cli-jev` | `manifestValid: true`, `fresh: true`, `causeCode: "fresh"`, `currentPolicyHash` equal to the manifest's hash, `manifestFingerprint: 21e131ce…` |
+| `node .skilled/bin/compiled-route-manifest.cjs refresh --hub cli-jev --skill-root .skilled/skills/cli-jev` | exit 0, `refreshed: true`, and the manifest's SHA-256 is `21e131ce…` before and after — the pre-commit remint is a no-op for this hub |
+| `node .skilled/bin/compiled-route-admission.cjs --all` | exit 0, six hubs: `cli-jev  pass  3 pass, 0 drift, 0 stale` with `cli-usage` covered by two scenarios and one negative; every other hub still passes |
+| `node .skilled/bin/compiled-route-status.cjs --all` | Six rows; `cli-jev  compiled  compiled-serving  gen=1 fence=1`, alongside the five incumbents |
+| `node .skilled/bin/compiled-route-guard.cjs` | `cli-jev  fresh` with the five incumbents fresh; `sk-doc  stale-manifest` is pre-existing and tracked below; the tool exits 1 on that pre-existing staleness |
+| `node .skilled/bin/compiled-route.cjs --hub cli-jev --prompt …` (unset flag) | A compiled route to `cli-usage` for a judgment request, and a compiled `defer` for `summarize the open questions in this spec packet` |
+| `SPECKIT_COMPILED_ROUTING=0 node .skilled/bin/compiled-route.cjs --hub cli-jev --prompt …` | `{"servingAuthority":"legacy","hubId":"cli-jev"}` — the explicit kill-switch still fails closed |
+| Rollback rehearsal | Writing `manifest.serving-prior.json` over the live manifest drops status to `legacy-authority` and the front door to the sentinel; restoring the recorded bytes is byte-exact and the hub serves compiled again, with freshness re-verified after the exercise |
+| `npx vitest run --config vitest.config.bin.ts bin/compiled-routing-foundation.vitest.ts` | 37 tests, 4 failed / 33 passed — the same four failures as the baseline taken before any edit (two abort on the missing authored resolver, two on the sk-doc stale tolerance) |
+| `node --test .skilled/bin/tests/compiled-route-manifest.test.cjs` | 42 tests, 26 passed / 16 failed — the same sixteen names as the baseline; the cohort-size assertion it now carries moves to six and the sync publish family stays red on the missing authored closure |
+| `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-jev` | exit 0, 42 `PASS` lines, `0 warnings`, with `13a-version: all routing artifacts carry the SKILL.md version 0.2.0.0` and `13b-version: … matches the newest changelog entry` |
+| `python3 …/validate_skill_package.py .skilled/skills/cli-jev --strict` | exit 0: `package_skill.py --check --strict: PASS`, `compiled routing readiness: compiled-ready: PASS`, `parent-skill-check.cjs: PASS` |
+| Baseline captured before the first edit | The foundation suite at 4 failed / 33 passed with the four names, the manifest suite at 16 failed / 26 passed with all sixteen, admission green on five hubs, status listing five, and the guard already reporting `sk-doc  stale-manifest` |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **The authored resolver is missing, and two fleet tests abort on it.** `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/` now retains only activation state; the resolver, engine and compiler the sync tool treats as the authored source are absent, so the cohort-lockstep and move-simulation tests throw before their assertions and the manifest suite's sixteen publish, finalize, revert and reconciliation tests fail. Every one of those failures was measured before this phase's first edit and is unchanged; repopulating or retiring that authored tree is a decision for the packet that archived it.
+2. **The sk-doc hub's compiled manifest is stale.** A `sk-create-readme` packet `SKILL.md` is modified in this working tree, which is one of that hub's routing inputs. The guard therefore exits 1 and two fleet assertions tolerate only the wrong hub (`cli-external-orchestration`). The pre-commit route-remint gate re-mints a hub whose inputs are staged, so this resolves when that writer commits; it is not this phase's file to mint.
+3. **Four documents in other hubs still say the fleet holds five hubs.** `sk-doc`'s `sk-create-skill/assets/parent-skill/parent-skill-hub-template.md`, `…/assets/parent-skill/scaffold/hub-skill-scaffold.md`, `…/references/parent-skill/compiled-routing-architecture.md` (its Section 2 table, its trigger phrase and its body) and `sk-design/SKILL.md` each count the cohort. This phase deliberately leaves them to those hubs rather than editing another hub's documents from here.
+4. **The CLI's `mint` verb cannot compile a transport-only hub.** `compiled-route-manifest.cjs mint` compiles through the generic `001-sk-code` compiler, whose `PACKET_AUTHORITY` map has no `transport` entry, so the first manifest for this hub was written from the same library's canonical bytes and then proved re-mintable through `refresh`. A future hub whose only mode is a transport will hit the same wall unless that map learns the packet kind.
+5. **Three deliberate deviations from the cloned child are recorded here rather than in the child.** Its policy card carries this hub's marker, title and transport wording; its harness's `authorityWithheldUntilVerify` assertion now checks the route's declared authority; and its `activation-record.json` records a `goldArtifactHash` where the sibling hubs record a benchmark `scorerFrozen`, with `realModelVerification` omitted rather than fabricated, because no benchmark scorer or model-probe run exists for this hub.
+6. **The `.hermes/skills` mirror is still unrefreshed**, as phases 002 and 003 recorded: the generator is a whole-tree walker, so a refresh would absorb unrelated drifts and delete an orphan entry.
+7. **This phase's edits are uncommitted.** The program does not commit or push without an operator request; the tree carries the whole migration, and the pre-commit remint gate will re-verify the hub manifests when it is committed.
+<!-- /ANCHOR:limitations -->
+
+---

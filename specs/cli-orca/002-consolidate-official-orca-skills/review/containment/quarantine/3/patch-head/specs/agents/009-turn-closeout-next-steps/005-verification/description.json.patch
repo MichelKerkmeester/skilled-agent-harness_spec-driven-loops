@@ -1,0 +1,36 @@
+diff --git a/specs/agents/009-turn-closeout-next-steps/005-verification/description.json b/specs/agents/009-turn-closeout-next-steps/005-verification/description.json
+index 180e850eae8..ceb2adbc8fa 100644
+--- a/specs/agents/009-turn-closeout-next-steps/005-verification/description.json
++++ b/specs/agents/009-turn-closeout-next-steps/005-verification/description.json
+@@ -1,11 +1,18 @@
+ {
++  "level": "2",
+   "specFolder": "agents/009-turn-closeout-next-steps/005-verification",
+-  "description": "Phase 5: verification",
++  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+   "keywords": [
+-    "phase",
+-    "verification"
++    "broken",
++    "missing",
++    "inefficient",
++    "sentences",
++    "describing",
++    "specific",
++    "pain",
++    "point"
+   ],
+-  "lastUpdated": "2026-09-11T10:54:58.636Z",
++  "lastUpdated": "2026-09-11T17:37:37.670Z",
+   "specId": "005",
+   "folderSlug": "verification",
+   "parentChain": [
+@@ -13,6 +20,5 @@
+     "009-turn-closeout-next-steps"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "2"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

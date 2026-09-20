@@ -1,0 +1,1299 @@
+{
+  "sessionId": "2026-09-20T12:27:04Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Smart Router pseudocode admits generic non-Orca vocabulary, contradicting the qualification rule and NEVER #7",
+      "file": ".skilled/skills/cli-orca/SKILL.md",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "ORCA_SKILLS signal set omits official names listed as triggers (linear-tickets, bare orchestration)",
+      "file": ".skilled/skills/cli-orca/SKILL.md",
+      "line": 106,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "Resource map omits the in-scope benchmark evidence artifacts",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/resource-map.md",
+      "line": 65,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "Destructive representative calls miss the gate and authorization annotations the skill hard boundaries require",
+      "file": ".skilled/skills/cli-orca/references/orca-cli-reference.md",
+      "line": 94,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-004",
+      "severity": "P2",
+      "title": "Task ledger records 31 checked documents while the acceptance criterion and implementation summary both record 32",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/tasks.md",
+      "line": 169,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-005",
+      "severity": "P2",
+      "title": "Resource map carries no row for twelve in-scope feature-catalog and playbook sub-documents",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/resource-map.md",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-006",
+      "severity": "P2",
+      "title": "Routing and ownership invariants are restated across six documents with no machine cross-document check",
+      "file": ".skilled/skills/cli-orca/README.md",
+      "line": 24,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Smart Router pseudocode admits generic non-Orca vocabulary, contradicting the qualification rule and NEVER #7",
+      "file": ".skilled/skills/cli-orca/SKILL.md",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Smart Router pseudocode admits generic non-Orca vocabulary, contradicting the qualification rule and NEVER #7",
+      "file": ".skilled/skills/cli-orca/SKILL.md",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 6
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "coverage_gap",
+      "duplication_without_gate",
+      "false_negative_routing",
+      "spec_contract_mismatch",
+      "unsafe_mutation_guidance"
+    ],
+    "ruledOut": [
+      "authority_bypass",
+      "byte_integrity",
+      "command_injection",
+      "comment_hygiene_violation",
+      "config_consistency",
+      "coverage_gap",
+      "credential_leak",
+      "cross_runtime_drift",
+      "dead_path",
+      "false_negative_routing",
+      "missing_evidence",
+      "prompt_injection",
+      "script_copy_paste",
+      "secret_exposure",
+      "snapshot_maintenance_gap",
+      "stale_generated_metadata",
+      "stale_reference",
+      "version_drift"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "spec_contract_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3,
+          5
+        ]
+      },
+      "false_negative_routing": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "coverage_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3,
+          5
+        ]
+      },
+      "byte_integrity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "dead_path": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "config_consistency": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "cross_runtime_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "unsafe_mutation_guidance": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "credential_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "prompt_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "authority_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          5
+        ]
+      },
+      "missing_evidence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "duplication_without_gate": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_generated_metadata": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_hygiene_violation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "script_copy_paste": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "version_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "snapshot_maintenance_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/assets"
+      ],
+      "bugClass": "byte_integrity",
+      "disposition": "ruled_out",
+      "rationale": "REQ-005 integrity confirmed",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md:50",
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md:57"
+      ],
+      "reason": "byte-identical on all three legs"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-tooling",
+        ".skilled/skills/cli-orca"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "REQ-003 holds",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-tooling/changelog/v1.8.0.0.md:18"
+      ],
+      "reason": "all hits inside the REQ-003 carve-out"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/references/orca-skills/orca-cli.md"
+      ],
+      "bugClass": "dead_path",
+      "disposition": "ruled_out",
+      "rationale": "no local target intended",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/references/orca-skills/orca-cli.md:41"
+      ],
+      "reason": "upstream guide section names"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/config/route-exclusions.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/routing/route-exclusions.ts"
+      ],
+      "bugClass": "config_consistency",
+      "disposition": "ruled_out",
+      "rationale": "static integrity clean",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/routing/route-exclusions.ts:12"
+      ],
+      "reason": "no malformed config or script in scope"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".pi/skills"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "no cross-runtime drift possible",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/SKILL.md:1"
+      ],
+      "reason": "single source via symlink"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/google-services.json",
+        "specs/cli-orca/002-consolidate-official-orca-skills/acceptance-criteria.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "AC-014 literal command returns no hits on both trees and the redacted copy stays valid JSON",
+      "evidenceRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/acceptance-criteria.md:54",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/google-services.json:23",
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md:50"
+      ],
+      "reason": "verified by acceptance-command replay plus direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md",
+        ".skilled/skills/cli-orca/SKILL.md",
+        ".skilled/skills/cli-orca/references/troubleshooting.md"
+      ],
+      "bugClass": "credential_leak",
+      "disposition": "ruled_out",
+      "rationale": "explicit credential-output prohibition present at router, reference and recovery layers",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md:110",
+        ".skilled/skills/cli-orca/SKILL.md:265",
+        ".skilled/skills/cli-orca/references/troubleshooting.md:25"
+      ],
+      "reason": "doctrine present and consistent"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md",
+        ".skilled/skills/cli-orca/SKILL.md"
+      ],
+      "bugClass": "prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "untrusted-content contract explicit; no injection strings in the package; NEVER 3 blocks executing page-provided text",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md:100",
+        ".skilled/skills/cli-orca/SKILL.md:264"
+      ],
+      "reason": "contract verified and corpus clean"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        ".skilled/skills/sk-doc/scripts/validate_skill_package.py"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "no shell interpolation path found; the one full-body read (shim) is clean and remaining matches are fixed-argument invocations",
+      "evidenceRefs": [
+        ".skilled/bin/skill-advisor.cjs:105",
+        ".skilled/bin/skill-advisor.cjs:91",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:336",
+        ".skilled/skills/sk-doc/scripts/validate_skill_package.py:40"
+      ],
+      "reason": "exec surfaces bounded to fixed-command list-form calls"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-206",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md",
+        ".skilled/skills/cli-orca/references/troubleshooting.md",
+        ".skilled/skills/cli-orca/feature-catalog/safety/mutation-and-ownership-boundaries.md",
+        ".skilled/skills/cli-orca/references/orca-cli-reference.md"
+      ],
+      "bugClass": "authority_bypass",
+      "disposition": "ruled_out",
+      "rationale": "no rule contradiction; P2-003 covers example annotation, not the gate rule itself",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md:62",
+        ".skilled/skills/cli-orca/references/troubleshooting.md:43",
+        ".skilled/skills/cli-orca/feature-catalog/safety/mutation-and-ownership-boundaries.md:29",
+        ".skilled/skills/cli-orca/references/orca-cli-reference.md:197"
+      ],
+      "reason": "four-document consistency check passed"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".pi/skills/cli-orca",
+        ".skilled/skills/cli-orca"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "mirror is content-identical; the earlier symlink rationale is superseded by a direct diff",
+      "evidenceRefs": [
+        ".pi/skills/cli-orca"
+      ],
+      "reason": "verified by recursive byte comparison"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/assets",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/skills",
+        ".skilled/skills/cli-orca"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "no drift and no dangling reference in the corpus",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md",
+        ".skilled/skills/cli-orca/feature-catalog/feature-catalog.md"
+      ],
+      "reason": "byte comparison plus link graph both clean"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/review/deep-review-state.jsonl",
+        "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations"
+      ],
+      "bugClass": "missing_evidence",
+      "disposition": "ruled_out",
+      "rationale": "the in-flight loop contract holds so far; AC-010 stays Unmet only because iterations 3-5 and the report are still pending",
+      "evidenceRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-002.md"
+      ],
+      "reason": "ledger and verdict-line contract observed intact"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/graph-metadata.json",
+        ".skilled/skills/mcp-tooling/graph-metadata.json",
+        ".skilled/skills/system-skill-advisor/graph-metadata.json"
+      ],
+      "bugClass": "stale_generated_metadata",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/graph-metadata.json:88-117",
+        ".skilled/skills/system-skill-advisor/graph-metadata.json:103-143",
+        ".skilled/skills/mcp-tooling/graph-metadata.json:198-201"
+      ],
+      "reason": "false positives: bare name fields and keyword phrases, verified against find output"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-status.cjs",
+        ".skilled/bin/compiled-route-sync.cjs",
+        ".skilled/skills/sk-doc/scripts/validate_skill_package.py"
+      ],
+      "bugClass": "comment_hygiene_violation",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-status.cjs",
+        ".skilled/skills/sk-doc/scripts/validate_skill_package.py"
+      ],
+      "reason": "clean across all scoped scripts"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-status.cjs",
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "script_copy_paste",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-status.cjs:41,44"
+      ],
+      "reason": "helpers already extracted to shared lib modules"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/SKILL.md",
+        ".skilled/skills/cli-orca/README.md",
+        ".skilled/skills/cli-orca/changelog/v0.1.0.0.md"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/SKILL.md:14",
+        ".skilled/skills/cli-orca/README.md:10",
+        ".skilled/skills/cli-orca/changelog/v0.1.0.0.md:1"
+      ],
+      "reason": "versions consistent"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-406",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md",
+        ".skilled/skills/cli-orca/references/orca-skills/overview.md"
+      ],
+      "bugClass": "snapshot_maintenance_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md:48",
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md:76"
+      ],
+      "reason": "refresh procedure documented and digest-pinned"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/SKILL.md"
+      ],
+      "bugClass": "false_negative_routing",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/SKILL.md:159-161",
+        ".skilled/skills/cli-orca/SKILL.md:119-123"
+      ],
+      "reason": "defer/fallback paths present for every foreign phrase in the when-NOT table; no owner escapes to an Orca lane"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/SKILL.md"
+      ],
+      "bugClass": "authority_bypass",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/SKILL.md:134-140",
+        ".skilled/skills/cli-orca/SKILL.md:163-166"
+      ],
+      "reason": "guard covers path escape, suffix and registration on all branches"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/resource-map.md",
+        "specs/cli-orca/002-consolidate-official-orca-skills/applied/"
+      ],
+      "bugClass": "coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/resource-map.md:62-65",
+        "specs/cli-orca/002-consolidate-official-orca-skills/applied/"
+      ],
+      "reason": "no NEW coverage gap this pass; the observed gaps are already recorded as P2-002/P2-005 and applied/T-*.md remains absent"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/assets"
+      ],
+      "bugClass": "byte_integrity",
+      "disposition": "ruled_out",
+      "rationale": "REQ-005 integrity confirmed",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md:50",
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md:57"
+      ],
+      "proof": "byte-identical on all three legs"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/mcp-tooling",
+        ".skilled/skills/cli-orca"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "REQ-003 holds",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-tooling/changelog/v1.8.0.0.md:18"
+      ],
+      "proof": "all hits inside the REQ-003 carve-out"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/references/orca-skills/orca-cli.md"
+      ],
+      "bugClass": "dead_path",
+      "disposition": "ruled_out",
+      "rationale": "no local target intended",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/references/orca-skills/orca-cli.md:41"
+      ],
+      "proof": "upstream guide section names"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/config/route-exclusions.json",
+        ".skilled/skills/system-skill-advisor/runtime/lib/routing/route-exclusions.ts"
+      ],
+      "bugClass": "config_consistency",
+      "disposition": "ruled_out",
+      "rationale": "static integrity clean",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/routing/route-exclusions.ts:12"
+      ],
+      "proof": "no malformed config or script in scope"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".pi/skills"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "no cross-runtime drift possible",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/SKILL.md:1"
+      ],
+      "proof": "single source via symlink"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/google-services.json",
+        "specs/cli-orca/002-consolidate-official-orca-skills/acceptance-criteria.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "AC-014 literal command returns no hits on both trees and the redacted copy stays valid JSON",
+      "evidenceRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/acceptance-criteria.md:54",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/google-services.json:23",
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md:50"
+      ],
+      "proof": "verified by acceptance-command replay plus direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md",
+        ".skilled/skills/cli-orca/SKILL.md",
+        ".skilled/skills/cli-orca/references/troubleshooting.md"
+      ],
+      "bugClass": "credential_leak",
+      "disposition": "ruled_out",
+      "rationale": "explicit credential-output prohibition present at router, reference and recovery layers",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md:110",
+        ".skilled/skills/cli-orca/SKILL.md:265",
+        ".skilled/skills/cli-orca/references/troubleshooting.md:25"
+      ],
+      "proof": "doctrine present and consistent"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md",
+        ".skilled/skills/cli-orca/SKILL.md"
+      ],
+      "bugClass": "prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "untrusted-content contract explicit; no injection strings in the package; NEVER 3 blocks executing page-provided text",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md:100",
+        ".skilled/skills/cli-orca/SKILL.md:264"
+      ],
+      "proof": "contract verified and corpus clean"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/skill-advisor.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+        ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        ".skilled/skills/sk-doc/scripts/validate_skill_package.py"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "no shell interpolation path found; the one full-body read (shim) is clean and remaining matches are fixed-argument invocations",
+      "evidenceRefs": [
+        ".skilled/bin/skill-advisor.cjs:105",
+        ".skilled/bin/skill-advisor.cjs:91",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:336",
+        ".skilled/skills/sk-doc/scripts/validate_skill_package.py:40"
+      ],
+      "proof": "exec surfaces bounded to fixed-command list-form calls"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-206",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md",
+        ".skilled/skills/cli-orca/references/troubleshooting.md",
+        ".skilled/skills/cli-orca/feature-catalog/safety/mutation-and-ownership-boundaries.md",
+        ".skilled/skills/cli-orca/references/orca-cli-reference.md"
+      ],
+      "bugClass": "authority_bypass",
+      "disposition": "ruled_out",
+      "rationale": "no rule contradiction; P2-003 covers example annotation, not the gate rule itself",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md:62",
+        ".skilled/skills/cli-orca/references/troubleshooting.md:43",
+        ".skilled/skills/cli-orca/feature-catalog/safety/mutation-and-ownership-boundaries.md:29",
+        ".skilled/skills/cli-orca/references/orca-cli-reference.md:197"
+      ],
+      "proof": "four-document consistency check passed"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".pi/skills/cli-orca",
+        ".skilled/skills/cli-orca"
+      ],
+      "bugClass": "cross_runtime_drift",
+      "disposition": "ruled_out",
+      "rationale": "mirror is content-identical; the earlier symlink rationale is superseded by a direct diff",
+      "evidenceRefs": [
+        ".pi/skills/cli-orca"
+      ],
+      "proof": "verified by recursive byte comparison"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/assets",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/skills",
+        ".skilled/skills/cli-orca"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "no drift and no dangling reference in the corpus",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md",
+        ".skilled/skills/cli-orca/feature-catalog/feature-catalog.md"
+      ],
+      "proof": "byte comparison plus link graph both clean"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/review/deep-review-state.jsonl",
+        "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations"
+      ],
+      "bugClass": "missing_evidence",
+      "disposition": "ruled_out",
+      "rationale": "the in-flight loop contract holds so far; AC-010 stays Unmet only because iterations 3-5 and the report are still pending",
+      "evidenceRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-002.md"
+      ],
+      "proof": "ledger and verdict-line contract observed intact"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/graph-metadata.json",
+        ".skilled/skills/mcp-tooling/graph-metadata.json",
+        ".skilled/skills/system-skill-advisor/graph-metadata.json"
+      ],
+      "bugClass": "stale_generated_metadata",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/graph-metadata.json:88-117",
+        ".skilled/skills/system-skill-advisor/graph-metadata.json:103-143",
+        ".skilled/skills/mcp-tooling/graph-metadata.json:198-201"
+      ],
+      "proof": "false positives: bare name fields and keyword phrases, verified against find output"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-status.cjs",
+        ".skilled/bin/compiled-route-sync.cjs",
+        ".skilled/skills/sk-doc/scripts/validate_skill_package.py"
+      ],
+      "bugClass": "comment_hygiene_violation",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-status.cjs",
+        ".skilled/skills/sk-doc/scripts/validate_skill_package.py"
+      ],
+      "proof": "clean across all scoped scripts"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/compiled-route-status.cjs",
+        ".skilled/bin/compiled-route-sync.cjs"
+      ],
+      "bugClass": "script_copy_paste",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/compiled-route-status.cjs:41,44"
+      ],
+      "proof": "helpers already extracted to shared lib modules"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/SKILL.md",
+        ".skilled/skills/cli-orca/README.md",
+        ".skilled/skills/cli-orca/changelog/v0.1.0.0.md"
+      ],
+      "bugClass": "version_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/SKILL.md:14",
+        ".skilled/skills/cli-orca/README.md:10",
+        ".skilled/skills/cli-orca/changelog/v0.1.0.0.md:1"
+      ],
+      "proof": "versions consistent"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-406",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md",
+        ".skilled/skills/cli-orca/references/orca-skills/overview.md"
+      ],
+      "bugClass": "snapshot_maintenance_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md:48",
+        ".skilled/skills/cli-orca/assets/PROVENANCE.md:76"
+      ],
+      "proof": "refresh procedure documented and digest-pinned"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/SKILL.md"
+      ],
+      "bugClass": "false_negative_routing",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/SKILL.md:159-161",
+        ".skilled/skills/cli-orca/SKILL.md:119-123"
+      ],
+      "proof": "defer/fallback paths present for every foreign phrase in the when-NOT table; no owner escapes to an Orca lane"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/cli-orca/SKILL.md"
+      ],
+      "bugClass": "authority_bypass",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-orca/SKILL.md:134-140",
+        ".skilled/skills/cli-orca/SKILL.md:163-166"
+      ],
+      "proof": "guard covers path escape, suffix and registration on all branches"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/resource-map.md",
+        "specs/cli-orca/002-consolidate-official-orca-skills/applied/"
+      ],
+      "bugClass": "coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "specs/cli-orca/002-consolidate-official-orca-skills/resource-map.md:62-65",
+        "specs/cli-orca/002-consolidate-official-orca-skills/applied/"
+      ],
+      "proof": "no NEW coverage gap this pass; the observed gaps are already recorded as P2-002/P2-005 and applied/T-*.md remains absent"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "spec_contract_mismatch",
+      "false_negative_routing",
+      "coverage_gap",
+      "authority_bypass"
+    ],
+    "covered": [
+      "spec_contract_mismatch"
+    ],
+    "ruledOut": [
+      "false_negative_routing",
+      "coverage_gap",
+      "authority_bypass"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/description.json b/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/description.json
+index 12ea3b80bea..f4c239aad7d 100644
+--- a/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/description.json
+@@ -18,7 +18,7 @@
+     "validation",
+     "orchestrator"
+   ],
+-  "lastUpdated": "2026-09-08T18:23:18.771Z",
++  "lastUpdated": "2026-09-11T16:49:41.571Z",
+   "specId": "020",
+   "folderSlug": "runtime-package-rename",
+   "parentChain": [

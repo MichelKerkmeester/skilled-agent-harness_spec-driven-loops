@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/description.json
+index 04d18600aaf..0f983c5003b 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/description.json
+@@ -19,7 +19,7 @@
+     "carrying",
+     "matching"
+   ],
+-  "lastUpdated": "2026-09-16T18:41:00.536Z",
++  "lastUpdated": "2026-09-17T19:58:20.360Z",
+   "specId": "009",
+   "folderSlug": "reference-rewrite",
+   "parentChain": [

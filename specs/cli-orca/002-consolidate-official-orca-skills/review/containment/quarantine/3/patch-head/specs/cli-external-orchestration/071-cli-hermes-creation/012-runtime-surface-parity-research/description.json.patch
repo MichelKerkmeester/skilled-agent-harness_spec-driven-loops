@@ -1,0 +1,13 @@
+diff --git a/specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/description.json b/specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/description.json
+index a43427afd35..3bcdd49069d 100644
+--- a/specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/description.json
++++ b/specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/description.json
+@@ -12,7 +12,7 @@
+     "pain",
+     "point"
+   ],
+-  "lastUpdated": "2026-09-15T15:52:45.986Z",
++  "lastUpdated": "2026-09-15T19:24:07.710Z",
+   "specId": "012",
+   "folderSlug": "runtime-surface-parity-research",
+   "parentChain": [

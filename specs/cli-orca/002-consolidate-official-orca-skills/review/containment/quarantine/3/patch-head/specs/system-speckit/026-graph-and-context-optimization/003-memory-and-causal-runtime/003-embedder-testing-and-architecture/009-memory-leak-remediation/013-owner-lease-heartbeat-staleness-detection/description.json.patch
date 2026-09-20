@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection/description.json b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection/description.json
+index d8567ed7d10..70bd29af3a3 100644
+--- a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection/description.json
++++ b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection/description.json
+@@ -15,7 +15,7 @@
+     "heartbeat",
+     "freshness"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:11.145Z",
++  "lastUpdated": "2026-09-11T16:49:41.374Z",
+   "specId": "013",
+   "folderSlug": "owner-lease-heartbeat-staleness-detection",
+   "parentChain": [

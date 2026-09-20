@@ -1,0 +1,13 @@
+diff --git a/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/description.json b/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/description.json
+index 701e5a2646c..88908956ef4 100644
+--- a/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/description.json
++++ b/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/description.json
+@@ -13,7 +13,7 @@
+     "mcp",
+     "server"
+   ],
+-  "lastUpdated": "2026-09-11T14:37:47.679Z",
++  "lastUpdated": "2026-09-11T19:10:35.418Z",
+   "specId": "006",
+   "folderSlug": "runtime-package-rename",
+   "parentChain": [

@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/description.json
+index 2579f2c8cc2..acdd31791fd 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/description.json
+@@ -18,7 +18,7 @@
+     "legacy",
+     "every"
+   ],
+-  "lastUpdated": "2026-09-19T05:08:38.010Z",
++  "lastUpdated": "2026-09-19T05:35:46.590Z",
+   "specId": "015",
+   "folderSlug": "compiled-serving-admission-research",
+   "parentChain": [

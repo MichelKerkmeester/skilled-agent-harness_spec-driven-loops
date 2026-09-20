@@ -1,0 +1,36 @@
+diff --git a/specs/system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/description.json b/specs/system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/description.json
+index 16290037681..931ff05e8e2 100644
+--- a/specs/system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/description.json
++++ b/specs/system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/description.json
+@@ -1,6 +1,7 @@
+ {
++  "level": "2",
+   "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
+-  "description": "Runtime code review, review drift remediation, rollback candidate hash hardening, and review containment exemption.",
++  "description": "Runtime code review, review drift remediation, rollback candidate hash hardening, review containment exemption, and the review-leaf protocol.",
+   "keywords": [
+     "runtime",
+     "code",
+@@ -12,9 +13,11 @@
+     "hash",
+     "hardening",
+     "containment",
+-    "exemption"
++    "exemption",
++    "review-leaf",
++    "protocol"
+   ],
+-  "lastUpdated": "2026-08-19T19:14:44.938Z",
++  "lastUpdated": "2026-09-20T08:37:20.577Z",
+   "specId": "008",
+   "folderSlug": "review-and-rollback-followup",
+   "parentChain": [
+@@ -22,6 +25,5 @@
+     "036-deep-loop-innovation"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "2"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

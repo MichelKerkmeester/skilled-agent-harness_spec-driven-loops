@@ -1,0 +1,39 @@
+diff --git a/specs/cli-jev/002-cli-jev-hub-migration/description.json b/specs/cli-jev/002-cli-jev-hub-migration/description.json
+index d5f8ff85916..a76685b0505 100644
+--- a/specs/cli-jev/002-cli-jev-hub-migration/description.json
++++ b/specs/cli-jev/002-cli-jev-hub-migration/description.json
+@@ -1,18 +1,27 @@
+ {
++  "level": "3",
+   "specFolder": "cli-jev/002-cli-jev-hub-migration",
+-  "description": "cli-jev hub migration",
++  "description": "The jev transport packet currently sits inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose",
+   "keywords": [
++    "jev",
++    "transport",
++    "packet",
++    "currently",
++    "sits",
++    "inside",
++    "skilled",
++    "skills",
++    "cli-external-orchestration",
+     "cli-jev",
+     "hub",
+-    "migration"
++    "whose"
+   ],
+-  "lastUpdated": "2026-09-20T11:00:10.998Z",
++  "lastUpdated": "2026-09-20T12:30:55.975Z",
+   "specId": "002",
+   "folderSlug": "cli-jev-hub-migration",
+   "parentChain": [
+     "cli-jev"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "3"
+-}
++  "memoryNameHistory": []
++}
+\ No newline at end of file

@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/description.json b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/description.json
+index 584b0215d7c..81f374f1102 100644
+--- a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/description.json
++++ b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/description.json
+@@ -11,7 +11,7 @@
+     "promise",
+     "end"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:11.303Z",
++  "lastUpdated": "2026-09-11T16:49:41.385Z",
+   "specId": "011",
+   "folderSlug": "embedding-stack-hardening",
+   "parentChain": [

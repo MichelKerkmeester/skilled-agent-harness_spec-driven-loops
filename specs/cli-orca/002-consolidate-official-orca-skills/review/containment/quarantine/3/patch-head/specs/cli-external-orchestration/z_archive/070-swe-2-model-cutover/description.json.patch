@@ -1,0 +1,27 @@
+diff --git a/specs/cli-external-orchestration/z_archive/070-swe-2-model-cutover/description.json b/specs/cli-external-orchestration/z_archive/070-swe-2-model-cutover/description.json
+index e08fdaf1495..0a5f3e6e3df 100644
+--- a/specs/cli-external-orchestration/z_archive/070-swe-2-model-cutover/description.json
++++ b/specs/cli-external-orchestration/z_archive/070-swe-2-model-cutover/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "1",
+-  "specFolder": "cli-external-orchestration/070-swe-2-model-cutover",
++  "specFolder": "cli-external-orchestration/z_archive/070-swe-2-model-cutover",
+   "description": "The operator asked for a version bump",
+   "keywords": [
+     "operator",
+@@ -8,11 +8,12 @@
+     "version",
+     "bump"
+   ],
+-  "lastUpdated": "2026-09-12T04:17:50.120Z",
++  "lastUpdated": "2026-09-12T04:57:11.796Z",
+   "specId": "070",
+   "folderSlug": "swe-2-model-cutover",
+   "parentChain": [
+-    "cli-external-orchestration"
++    "cli-external-orchestration",
++    "z_archive"
+   ],
+   "memorySequence": 0,
+   "memoryNameHistory": []

@@ -1,0 +1,214 @@
+diff --git a/.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json b/.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+index 4f3295419fc..2ddf8f3ca5a 100644
+--- a/.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
++++ b/.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+@@ -1,5 +1,5 @@
+ {
+-  "manifestHash": "1412eef2d2d701ef947c5aab2b2c6750c1a7c332592b78abd24223e9887fc898",
++  "manifestHash": "67fa90e521786ae902be228aa13dbf6b55c4edf7690ced5a66b84004f98c9cf2",
+   "parserVersion": "1.0.0",
+   "variants": {
+     "0 05 ambiguity window": [
+@@ -16640,18 +16640,6 @@
+     "cli jev authenticated verification": [
+       "cli-jev authenticated verification"
+     ],
+-    "cli jev benchmark": [
+-      "cli-jev benchmark"
+-    ],
+-    "cli jev benchmark index": [
+-      "cli-jev benchmark index"
+-    ],
+-    "cli jev benchmark reports": [
+-      "cli-jev benchmark reports"
+-    ],
+-    "cli jev capabilities": [
+-      "cli-jev capabilities"
+-    ],
+     "cli jev closeout": [
+       "cli-jev closeout"
+     ],
+@@ -16667,9 +16655,6 @@
+     "cli jev hub migration": [
+       "cli-jev hub migration"
+     ],
+-    "cli jev manual testing playbook benchmark": [
+-      "cli-jev manual testing playbook benchmark"
+-    ],
+     "cli jev parent hub": [
+       "cli-jev parent hub"
+     ],
+@@ -16679,8 +16664,11 @@
+     "cli jev playbook run": [
+       "cli-jev playbook run"
+     ],
+-    "cli jev validation report": [
+-      "cli-jev validation report"
++    "cli jev root router": [
++      "cli-jev root router"
++    ],
++    "cli jev track": [
++      "cli-jev track"
+     ],
+     "cli lineage nesting": [
+       "cli lineage nesting"
+@@ -16766,6 +16754,9 @@
+     "cli opencode subagent contract fix": [
+       "cli-opencode subagent contract fix"
+     ],
++    "cli orca audit surfaces": [
++      "cli-orca audit surfaces"
++    ],
+     "cli orca decision record": [
+       "cli-orca decision record"
+     ],
+@@ -16787,6 +16778,9 @@
+     "cli orca ownership split": [
+       "cli-orca ownership split"
+     ],
++    "cli orca path catalog": [
++      "cli-orca path catalog"
++    ],
+     "cli orca readme": [
+       "cli-orca readme"
+     ],
+@@ -16920,6 +16914,9 @@
+       "cli-pi self dispatch",
+       "cli-pi self-dispatch"
+     ],
++    "cli pi stale contract pin": [
++      "cli-pi stale contract pin"
++    ],
+     "cli playbook model swap": [
+       "cli playbook model swap"
+     ],
+@@ -17019,6 +17016,12 @@
+     "cli runtime integration tasks": [
+       "cli runtime integration tasks"
+     ],
++    "cli runtime readme approach": [
++      "cli runtime readme approach"
++    ],
++    "cli runtime readme refresh": [
++      "cli runtime readme refresh"
++    ],
+     "cli runtime utilization": [
+       "cli runtime utilization"
+     ],
+@@ -17115,9 +17118,33 @@
+     "cli unknown fallback": [
+       "cli unknown fallback"
+     ],
++    "cli usage benchmark": [
++      "cli-usage benchmark"
++    ],
++    "cli usage benchmark index": [
++      "cli-usage benchmark index"
++    ],
++    "cli usage benchmark reports": [
++      "cli-usage benchmark reports"
++    ],
++    "cli usage capabilities": [
++      "cli-usage capabilities"
++    ],
++    "cli usage feature catalog": [
++      "cli-usage feature catalog"
++    ],
++    "cli usage manual testing playbook benchmark": [
++      "cli-usage manual testing playbook benchmark"
++    ],
+     "cli usage mode": [
+       "cli-usage mode"
+     ],
++    "cli usage playbook": [
++      "cli-usage playbook"
++    ],
++    "cli usage validation report": [
++      "cli-usage validation report"
++    ],
+     "cli versus mcp": [
+       "cli versus mcp"
+     ],
+@@ -27742,6 +27769,9 @@
+     "delegate to pi": [
+       "delegate to pi"
+     ],
++    "delegated readme refresh": [
++      "delegated readme refresh"
++    ],
+     "delete a block": [
+       "Delete a block"
+     ],
+@@ -40391,6 +40421,12 @@
+     "hub routing benchmark": [
+       "hub routing benchmark"
+     ],
++    "hub scaffold": [
++      "hub scaffold"
++    ],
++    "hub scaffold tasks": [
++      "hub scaffold tasks"
++    ],
+     "hub signal retirement": [
+       "hub signal retirement"
+     ],
+@@ -42329,6 +42365,9 @@
+     "jev question shaping": [
+       "jev question shaping"
+     ],
++    "jev routing control": [
++      "jev routing control"
++    ],
+     "jev state input": [
+       "jev state input"
+     ],
+@@ -53027,6 +53066,9 @@
+     "orca research": [
+       "orca research"
+     ],
++    "orca review resource map": [
++      "orca review resource map"
++    ],
+     "orca routing decision": [
+       "Orca routing decision"
+     ],
+@@ -53979,6 +54021,9 @@
+     "packet local changelog placement": [
+       "packet local changelog placement"
+     ],
++    "packet migration": [
++      "packet migration"
++    ],
+     "packet pointer handover check": [
+       "packet pointer handover check"
+     ],
+@@ -54180,6 +54225,9 @@
+     "parent hub router schema": [
+       "parent hub router schema"
+     ],
++    "parent hub scaffold": [
++      "parent hub scaffold"
++    ],
+     "parent hub task list": [
+       "parent hub task list"
+     ],
+@@ -65854,6 +65902,9 @@
+     "runtime readme coverage tasks": [
+       "runtime README coverage tasks"
+     ],
++    "runtime readme folder map": [
++      "runtime readme folder map"
++    ],
+     "runtime remediation matrix": [
+       "runtime remediation matrix"
+     ],
+@@ -79416,6 +79467,9 @@
+     "typed event policy ratification evidence": [
+       "typed event policy ratification evidence"
+     ],
++    "typed judgment routing": [
++      "typed judgment routing"
++    ],
+     "typed judgment transport": [
+       "typed judgment transport"
+     ],

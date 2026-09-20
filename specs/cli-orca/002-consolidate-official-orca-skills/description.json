@@ -7,7 +7,7 @@
     "orca",
     "cli",
     "subject",
-    "out",
+    "mcp-tooling",
     "parent",
     "hub",
     "standalone",
@@ -15,13 +15,11 @@
     "skill",
     "named",
     "cli-orca",
-    "with",
-    "all",
     "eight",
     "official",
     "skills"
   ],
-  "lastUpdated": "2026-09-20T07:46:55.881Z",
+  "lastUpdated": "2026-09-20T11:19:07.713Z",
   "specId": "002",
   "folderSlug": "consolidate-official-orca-skills",
   "parentChain": [

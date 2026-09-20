@@ -1,0 +1,13 @@
+diff --git a/specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/description.json b/specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/description.json
+index b74fd436b00..3cc9b71aac3 100644
+--- a/specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/description.json
++++ b/specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/description.json
+@@ -20,7 +20,7 @@
+     "paths",
+     "status"
+   ],
+-  "lastUpdated": "2026-09-11T14:04:05.309Z",
++  "lastUpdated": "2026-09-11T17:37:37.671Z",
+   "specId": "006",
+   "folderSlug": "synthesis-presentation",
+   "parentChain": [

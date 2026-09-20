@@ -1,0 +1,13 @@
+diff --git a/specs/sk-git/023-live-follow-disjoint-ff/description.json b/specs/sk-git/023-live-follow-disjoint-ff/description.json
+index 365a1255d6e..5a3b335100a 100644
+--- a/specs/sk-git/023-live-follow-disjoint-ff/description.json
++++ b/specs/sk-git/023-live-follow-disjoint-ff/description.json
+@@ -18,7 +18,7 @@
+     "carrying",
+     "unrelated"
+   ],
+-  "lastUpdated": "2026-08-18T10:12:06.484Z",
++  "lastUpdated": "2026-09-20T04:33:22.880Z",
+   "specId": "023",
+   "folderSlug": "live-follow-disjoint-ff",
+   "parentChain": [

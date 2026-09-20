@@ -1,0 +1,27 @@
+diff --git a/specs/sk-design/z_archive/014-template-conformance/description.json b/specs/sk-design/z_archive/014-template-conformance/description.json
+index 80480235791..c6ce2d69c5e 100644
+--- a/specs/sk-design/z_archive/014-template-conformance/description.json
++++ b/specs/sk-design/z_archive/014-template-conformance/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "sk-design/014-template-conformance",
++  "specFolder": "sk-design/z_archive/014-template-conformance",
+   "description": "An audit of every folder across every `sk-design` mode (`design-interface`, `design-motion`, `design-md-generator`, `design-mcp-open-design`,",
+   "keywords": [
+     "audit",
+@@ -14,11 +14,12 @@
+     "design-md-generator",
+     "design-mcp-open-design"
+   ],
+-  "lastUpdated": "2026-08-15T14:40:58.366Z",
++  "lastUpdated": "2026-09-11T16:49:40.959Z",
+   "specId": "014",
+   "folderSlug": "template-conformance",
+   "parentChain": [
+-    "sk-design"
++    "sk-design",
++    "z_archive"
+   ],
+   "memorySequence": 0,
+   "memoryNameHistory": []

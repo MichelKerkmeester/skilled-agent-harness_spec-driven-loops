@@ -1,0 +1,26 @@
+diff --git a/specs/sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract/description.json b/specs/sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract/description.json
+index 611b1546147..886e7e642c1 100644
+--- a/specs/sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract/description.json
++++ b/specs/sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": 3,
+-  "specFolder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
++  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
+   "description": "The create-skill creation/validation path does not enforce its documented contract",
+   "keywords": [
+     "create-skill",
+@@ -11,11 +11,12 @@
+     "documented",
+     "contract"
+   ],
+-  "lastUpdated": "2026-08-15T14:40:58.476Z",
++  "lastUpdated": "2026-09-11T16:49:41.010Z",
+   "specId": "000",
+   "folderSlug": "create-skill-contract",
+   "parentChain": [
+     "sk-doc",
++    "z_archive",
+     "014-sk-doc-parent",
+     "028-create-skill-contract-unification"
+   ],

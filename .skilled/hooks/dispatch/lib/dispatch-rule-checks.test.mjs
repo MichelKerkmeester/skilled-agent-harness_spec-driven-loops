@@ -9,6 +9,16 @@ import { DISPATCH_SHAPES, matchDispatchShape, resolveDispatchPacket } from './di
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const CLI_ORCHESTRATION = path.resolve(HERE, '../../../skills/cli-external-orchestration');
+// The Jev transport left that hub for one of its own. A scan of a single root reads its
+// eight checks as implemented-but-undeclared, so every cli-* packet in either hub is scanned.
+const CLI_JE = path.resolve(HERE, '../../../skills/cli-jev');
+const PACKET_ROOTS = [CLI_ORCHESTRATION, CLI_JE];
+const packetSkillDocs = () =>
+  PACKET_ROOTS.flatMap((root) =>
+    fs.readdirSync(root, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory() && entry.name.startsWith('cli-'))
+      .map((entry) => path.join(root, entry.name, 'SKILL.md'))
+      .filter((md) => fs.existsSync(md)));
 const CO = path.join(CLI_ORCHESTRATION, 'cli-opencode/SKILL.md');
 const CC = path.join(CLI_ORCHESTRATION, 'cli-claude-code/SKILL.md');
 
@@ -37,12 +47,9 @@ test('parses the flat hard_rules list from real SKILL.md frontmatter', () => {
 // looked at: eleven rules, several at severity `error`, silently doing nothing for as
 // long as they had existed. Enumerate the directory instead of listing packets by hand.
 test('CI GUARD: every declared check id maps to a known check (a typo fails loudly)', () => {
-  const packets = fs.readdirSync(CLI_ORCHESTRATION, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && entry.name.startsWith('cli-'))
-    .map((entry) => path.join(CLI_ORCHESTRATION, entry.name, 'SKILL.md'))
-    .filter((md) => fs.existsSync(md));
+  const packets = packetSkillDocs();
 
-  assert.ok(packets.length >= 6, `expected every cli-* packet to be scanned, saw ${packets.length}`);
+  assert.ok(packets.length >= 8, `expected every cli-* packet to be scanned, saw ${packets.length}`);
   for (const md of packets) {
     for (const rule of readHardRules(md)) {
       assert.ok(KNOWN_CHECKS.includes(rule.check), `unknown check "${rule.check}" in ${md}`);
@@ -459,7 +466,7 @@ test('a jev dispatch is governed from the command, and mentions of it are not', 
 
   const doNotGovern = [
     ['prose quoting it', 'echo "triage with jev choice before dispatch"'],
-    ['grep for the text', 'grep -rn "jev noul" .skilled/skills/cli-external-orchestration/cli-jev'],
+    ['grep for the text', 'grep -rn "jev noul" .skilled/skills/cli-jev/cli-usage'],
     ['heredoc documenting it', 'python3 - <<\'PY\'\nshape = "jev score -l low -l high"\nPY'],
     ['node printing it', 'node -e \'console.log("jev run @request.json")\''],
     ['version probe', 'jev --version'],
@@ -475,11 +482,8 @@ test('a jev dispatch is governed from the command, and mentions of it are not', 
 // A packet with no rules contributes nothing to enforcement, and the preflight returns
 // early when a skill declares none -- which reads exactly like a clean dispatch.
 test('ENFORCEMENT GUARD: every cli packet declares at least one rule', () => {
-  const packets = fs.readdirSync(CLI_ORCHESTRATION, { withFileTypes: true })
-    .filter((e) => e.isDirectory() && e.name.startsWith('cli-'))
-    .map((e) => [e.name, path.join(CLI_ORCHESTRATION, e.name, 'SKILL.md')])
-    .filter(([, md]) => fs.existsSync(md));
-  assert.ok(packets.length >= 7, `expected every cli packet, saw ${packets.length}`);
+  const packets = packetSkillDocs().map((md) => [path.basename(path.dirname(md)), md]);
+  assert.ok(packets.length >= 8, `expected every cli packet, saw ${packets.length}`);
   for (const [name, md] of packets) {    const rules = readHardRules(md);
     assert.ok(rules.length > 0, `${name} declares no hard rules, so its preflight enforces nothing`);
     for (const rule of rules) {
@@ -493,11 +497,7 @@ test('ENFORCEMENT GUARD: every cli packet declares at least one rule', () => {
 // implemented check no packet declares is dead code that reads as coverage.
 test('ENFORCEMENT GUARD: declared checks and implemented checks are a bijection', () => {
   const declared = new Set();
-  for (const entry of fs.readdirSync(CLI_ORCHESTRATION, { withFileTypes: true })) {
-    if (!entry.isDirectory() || !entry.name.startsWith('cli-')) continue;
-    const md = path.join(CLI_ORCHESTRATION, entry.name, 'SKILL.md');
-    if (fs.existsSync(md)) for (const rule of readHardRules(md)) declared.add(rule.check);
-  }
+  for (const md of packetSkillDocs()) for (const rule of readHardRules(md)) declared.add(rule.check);
   const orphanRules = [...declared].filter((c) => !KNOWN_CHECKS.includes(c));
   assert.deepEqual(orphanRules, [], `declared but never implemented: ${orphanRules.join(', ')}`);
   const orphanChecks = KNOWN_CHECKS.filter((c) => !declared.has(c));

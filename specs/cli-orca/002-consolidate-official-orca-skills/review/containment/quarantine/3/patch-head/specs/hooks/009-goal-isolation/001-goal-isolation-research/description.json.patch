@@ -1,0 +1,13 @@
+diff --git a/specs/hooks/009-goal-isolation/001-goal-isolation-research/description.json b/specs/hooks/009-goal-isolation/001-goal-isolation-research/description.json
+index dcc930e326f..0678a169b11 100644
+--- a/specs/hooks/009-goal-isolation/001-goal-isolation-research/description.json
++++ b/specs/hooks/009-goal-isolation/001-goal-isolation-research/description.json
+@@ -11,7 +11,7 @@
+     "active-goal",
+     "json"
+   ],
+-  "lastUpdated": "2026-08-15T14:40:55.863Z",
++  "lastUpdated": "2026-09-11T16:49:40.852Z",
+   "specId": "001",
+   "folderSlug": "goal-isolation-research",
+   "parentChain": [

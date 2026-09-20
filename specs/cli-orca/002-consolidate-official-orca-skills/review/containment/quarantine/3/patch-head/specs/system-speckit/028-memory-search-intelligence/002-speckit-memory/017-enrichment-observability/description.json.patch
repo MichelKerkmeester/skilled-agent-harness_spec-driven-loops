@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/017-enrichment-observability/description.json b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/017-enrichment-observability/description.json
+index 0149b35bc5f..869d41c91ca 100644
+--- a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/017-enrichment-observability/description.json
++++ b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/017-enrichment-observability/description.json
+@@ -18,7 +18,7 @@
+     "enrichment-pending",
+     "async"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:13.762Z",
++  "lastUpdated": "2026-09-11T16:49:41.483Z",
+   "specId": "017",
+   "folderSlug": "enrichment-observability",
+   "parentChain": [

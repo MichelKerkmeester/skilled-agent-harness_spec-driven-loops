@@ -1,0 +1,71 @@
+diff --git a/specs/agents/012-agent-avoidance-anti-patterns/description.json b/specs/agents/012-agent-avoidance-anti-patterns/description.json
+index e1df1a9211c..eca87b6b961 100644
+--- a/specs/agents/012-agent-avoidance-anti-patterns/description.json
++++ b/specs/agents/012-agent-avoidance-anti-patterns/description.json
+@@ -1,46 +1,31 @@
+ {
++  "level": "2",
+   "specFolder": "agents/012-agent-avoidance-anti-patterns",
+-  "description": "Audit the agent behavior ruleset (AGENTS.md, REPO RULES.md, repo-rules/*) against six user-reported agent-avoidance anti-patterns (unsolicited warning",
++  "description": "A pasted user report (Reddit r/ClaudeAI thread \"Claude's habit of inventing rules to avoid helping\", full text supplied by the operator; the thread",
+   "keywords": [
+-    "audit",
+-    "agent",
+-    "behavior",
+-    "ruleset",
+-    "agents",
+-    "repo",
++    "pasted",
++    "user",
++    "report",
++    "reddit",
++    "claudeai",
++    "thread",
++    "claude",
++    "habit",
++    "inventing",
+     "rules",
+-    "repo-rules",
+-    "against",
+-    "six",
+-    "user-reported",
+-    "agent-avoidance",
+-    "anti-patterns",
+-    "unsolicited",
+-    "warnings",
+-    "silent",
+-    "reinterpretation",
+-    "invented",
+-    "refusal",
+-    "dressed",
+-    "policy",
+-    "unverifiable",
+-    "done",
+-    "claims",
+-    "scope",
+-    "inflation",
+-    "stalling",
+-    "apply",
+-    "amendments",
+-    "coverage",
+-    "missing"
++    "avoid",
++    "helping",
++    "full",
++    "text",
++    "supplied",
++    "operator"
+   ],
+-  "lastUpdated": "2026-09-18T08:12:37.899Z",
++  "lastUpdated": "2026-09-18T10:08:09.329Z",
+   "specId": "012",
+   "folderSlug": "agent-avoidance-anti-patterns",
+   "parentChain": [
+     "agents"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "2"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

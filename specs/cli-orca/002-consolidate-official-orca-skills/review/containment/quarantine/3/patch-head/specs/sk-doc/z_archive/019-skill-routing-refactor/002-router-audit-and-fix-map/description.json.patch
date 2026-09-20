@@ -1,0 +1,26 @@
+diff --git a/specs/sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map/description.json b/specs/sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map/description.json
+index 52c90d89b2c..1fa1eb04666 100644
+--- a/specs/sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map/description.json
++++ b/specs/sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "3",
+-  "specFolder": "sk-doc/019-skill-routing-refactor/002-router-audit-and-fix-map",
++  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map",
+   "description": "Trigger ownership was inconsistent across packet source files and router projections",
+   "keywords": [
+     "trigger",
+@@ -13,11 +13,12 @@
+     "router",
+     "projections"
+   ],
+-  "lastUpdated": "2026-08-15T14:40:59.375Z",
++  "lastUpdated": "2026-09-11T16:49:41.034Z",
+   "specId": "002",
+   "folderSlug": "router-audit-and-fix-map",
+   "parentChain": [
+     "sk-doc",
++    "z_archive",
+     "019-skill-routing-refactor"
+   ],
+   "memorySequence": 0,

@@ -1,0 +1,49 @@
+diff --git a/README.md b/README.md
+index 3488ccf6241..ba6555840ef 100644
+--- a/README.md
++++ b/README.md
+@@ -2,11 +2,15 @@
+ 
+ > Spec-driven agent loops with structured documentation, packet-local memory and multi-model orchestration.
+ 
+-[![Discord](https://img.shields.io/discord/1423675330749399203?style=for-the-badge&logo=discord&logoColor=white&label=Discord&color=7289da)](https://discord.gg/wJQfZKNfVH)
+ [![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/skilled-agent-harness_spec-driven-loops?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/stargazers)
+ [![License](https://img.shields.io/github/license/MichelKerkmeester/skilled-agent-harness_spec-driven-loops?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
+ [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/skilled-agent-harness_spec-driven-loops?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases)
+ 
++> Like it? Please don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
++
++&nbsp;
++
++## 1. SUMMARY
+ An assistant framework that gives your AI coding agent a memory, a paper trail and a team of specialists.
+ 
+ All of it lives inside your own repository, as files you can read and diff.
+@@ -28,27 +32,8 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
+ - **Verification, not vibes:** nothing counts as "done" without fresh evidence, and code-review findings are re-challenged before they stick
+ - **Works the same in OpenCode and Claude Code**, with cross-CLI dispatch to five more model providers on top
+ 
+-> Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
+-
+ &nbsp;
+ 
+-## 1. ⚠️ THE PROBLEM: EVERY SESSION STARTS FROM ZERO
+-
+-AI coding assistants have amnesia. Every session starts from zero.
+-
+-You explain your architecture Monday. By Wednesday, it is gone. Decisions, trade-offs, the carefully reasoned choices behind them, all lost the moment the conversation window closes.
+-
+-And memory is only the first casualty:
+-
+-- **Changes ship undocumented.** Nothing records why a decision was made, so the next session - or the next teammate - has to reverse-engineer it.
+-- **"Done" is whatever the agent claims.** No gate stands between a confident answer and a verified one.
+-- **Every task starts cold.** The assistant reloads the same context, asks the same questions and repeats the same mistakes.
+-- **One model does every job.** The same weights plan the work, write the code and review their own output.
+-
+-This framework fixes that.
+-
+----
+-
+ ## 2. 🎁 WHAT YOU GET
+ 
+ ### 📋 Spec Kit: a written record of every change

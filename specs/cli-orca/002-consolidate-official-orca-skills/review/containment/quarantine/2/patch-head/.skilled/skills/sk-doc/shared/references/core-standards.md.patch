@@ -1,0 +1,24 @@
+diff --git a/.skilled/skills/sk-doc/shared/references/core-standards.md b/.skilled/skills/sk-doc/shared/references/core-standards.md
+index 8955534d882..0ef6603e978 100644
+--- a/.skilled/skills/sk-doc/shared/references/core-standards.md
++++ b/.skilled/skills/sk-doc/shared/references/core-standards.md
+@@ -8,7 +8,7 @@ trigger_phrases:
+   - "structural validation rules"
+ importance_tier: important
+ contextType: general
+-version: 2.1.0.36
++version: 2.1.0.37
+ ---
+ 
+ # Core Standards - Structure and Validation Rules
+@@ -301,7 +301,9 @@ H1 format: Flexible
+ Sections: Flexible
+ Quality target: High clarity (AI-friendly)
+ TOC: Never
+-Emojis: Allowed
++Emojis: Two registers. Decorative section emoji allowed on the
++        repository front-page README only. All other READMEs use
++        semantic emoji only (✅ ❌ ⚠️ 🔒 🚨)
+ ```
+ 
+ **llms.txt**:

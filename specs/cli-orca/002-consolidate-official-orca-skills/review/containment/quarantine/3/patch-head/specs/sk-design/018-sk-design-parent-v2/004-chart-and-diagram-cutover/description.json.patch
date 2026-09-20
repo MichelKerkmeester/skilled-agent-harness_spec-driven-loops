@@ -1,0 +1,13 @@
+diff --git a/specs/sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover/description.json b/specs/sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover/description.json
+index bc5a4aa1936..f8c52003e3c 100644
+--- a/specs/sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover/description.json
++++ b/specs/sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover/description.json
+@@ -12,7 +12,7 @@
+     "thirteen",
+     "modes"
+   ],
+-  "lastUpdated": "2026-09-06T15:25:53.695Z",
++  "lastUpdated": "2026-09-11T16:49:40.984Z",
+   "specId": "004",
+   "folderSlug": "chart-and-diagram-cutover",
+   "parentChain": [

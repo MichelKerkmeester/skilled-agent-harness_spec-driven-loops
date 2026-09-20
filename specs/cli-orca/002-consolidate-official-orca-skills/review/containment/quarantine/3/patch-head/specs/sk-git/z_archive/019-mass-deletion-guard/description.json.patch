@@ -1,0 +1,27 @@
+diff --git a/specs/sk-git/z_archive/019-mass-deletion-guard/description.json b/specs/sk-git/z_archive/019-mass-deletion-guard/description.json
+index cf77b5a4cd9..eaa1daa7798 100644
+--- a/specs/sk-git/z_archive/019-mass-deletion-guard/description.json
++++ b/specs/sk-git/z_archive/019-mass-deletion-guard/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "sk-git/019-mass-deletion-guard",
++  "specFolder": "sk-git/z_archive/019-mass-deletion-guard",
+   "description": "Spec — Mass-Deletion Guard for Commits and Pushes",
+   "keywords": [
+     "spec",
+@@ -9,11 +9,12 @@
+     "commits",
+     "pushes"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:02.224Z",
++  "lastUpdated": "2026-09-20T04:33:22.875Z",
+   "specId": "019",
+   "folderSlug": "mass-deletion-guard",
+   "parentChain": [
+-    "sk-git"
++    "sk-git",
++    "z_archive"
+   ],
+   "memorySequence": 0,
+   "memoryNameHistory": []

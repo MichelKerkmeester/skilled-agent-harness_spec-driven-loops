@@ -1,0 +1,20 @@
+diff --git a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene/description.json b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene/description.json
+index 4474bf6fea9..a52ba033f75 100644
+--- a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene/description.json
++++ b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene/description.json
+@@ -15,7 +15,7 @@
+     "pipx",
+     "venv"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:10.909Z",
++  "lastUpdated": "2026-09-11T16:49:41.373Z",
+   "specId": "005",
+   "folderSlug": "cocoindex-install-hygiene",
+   "parentChain": [
+@@ -29,4 +29,4 @@
+   "memoryNameHistory": [
+     "18-05-26_20-05__root-cause-of-instrumentation-failed-for-good.md"
+   ]
+-}
++}
+\ No newline at end of file

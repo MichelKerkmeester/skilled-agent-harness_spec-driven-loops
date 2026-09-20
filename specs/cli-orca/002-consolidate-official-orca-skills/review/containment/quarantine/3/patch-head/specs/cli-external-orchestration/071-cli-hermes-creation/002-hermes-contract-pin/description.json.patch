@@ -1,0 +1,36 @@
+diff --git a/specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/description.json b/specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/description.json
+index 73bda36ec97..11ae2ccdc3f 100644
+--- a/specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/description.json
++++ b/specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/description.json
+@@ -1,11 +1,18 @@
+ {
++  "level": "3",
+   "specFolder": "cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin",
+-  "description": "Phase 1: hermes-contract-pin",
++  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+   "keywords": [
+-    "phase",
+-    "hermes-contract-pin"
++    "broken",
++    "missing",
++    "inefficient",
++    "sentences",
++    "describing",
++    "specific",
++    "pain",
++    "point"
+   ],
+-  "lastUpdated": "2026-09-14T17:24:45.669Z",
++  "lastUpdated": "2026-09-14T20:19:01.423Z",
+   "specId": "002",
+   "folderSlug": "hermes-contract-pin",
+   "parentChain": [
+@@ -13,6 +20,5 @@
+     "071-cli-hermes-creation"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "3"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

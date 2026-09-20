@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/description.json b/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/description.json
+index 4ee8b652d29..5304e7fd090 100644
+--- a/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/description.json
++++ b/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/description.json
+@@ -14,7 +14,7 @@
+     "task",
+     "registry"
+   ],
+-  "lastUpdated": "2026-09-04T17:50:20.276Z",
++  "lastUpdated": "2026-09-11T16:49:41.449Z",
+   "specId": "006",
+   "folderSlug": "doc-truth-completion-and-mirrors",
+   "parentChain": [

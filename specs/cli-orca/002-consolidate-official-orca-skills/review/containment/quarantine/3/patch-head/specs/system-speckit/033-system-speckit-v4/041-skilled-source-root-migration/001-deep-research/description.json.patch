@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/description.json
+index 42929550dfc..6f570ec86b8 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/description.json
+@@ -14,7 +14,7 @@
+     "instead",
+     "opencode"
+   ],
+-  "lastUpdated": "2026-09-16T12:27:48.461Z",
++  "lastUpdated": "2026-09-16T17:26:12.873Z",
+   "specId": "001",
+   "folderSlug": "deep-research",
+   "parentChain": [

@@ -1,0 +1,26 @@
+diff --git a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/description.json b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/description.json
+index 2c76a3bc307..72d584eab28 100644
+--- a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/description.json
++++ b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation",
++  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation",
+   "description": "Two independent GPT-5.6 deep reviews (LUNA xhigh, SOL high; ten non-converging iterations each) audited the v4 compiled-routing landing (packet",
+   "keywords": [
+     "two",
+@@ -20,11 +20,12 @@
+     "landing",
+     "packet"
+   ],
+-  "lastUpdated": "2026-08-30T08:03:51.480Z",
++  "lastUpdated": "2026-09-11T16:49:41.051Z",
+   "specId": "016",
+   "folderSlug": "review-remediation",
+   "parentChain": [
+     "sk-doc",
++    "z_archive",
+     "019-skill-routing-refactor",
+     "015-router-unification-program",
+     "019-routing-coverage-activation-verification"

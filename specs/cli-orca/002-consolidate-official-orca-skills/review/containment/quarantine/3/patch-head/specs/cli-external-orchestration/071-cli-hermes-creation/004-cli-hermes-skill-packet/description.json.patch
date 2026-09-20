@@ -1,0 +1,41 @@
+diff --git a/specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet/description.json b/specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet/description.json
+index 6266e0164b3..b988826e2ef 100644
+--- a/specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet/description.json
++++ b/specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet/description.json
+@@ -1,11 +1,23 @@
+ {
++  "level": "3",
+   "specFolder": "cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet",
+-  "description": "Phase 3: cli-hermes-skill-packet",
++  "description": "No packet described how to dispatch Hermes, which flags a dispatch must carry, which operator steps the repo cannot perform, or which models are",
+   "keywords": [
+-    "phase",
+-    "cli-hermes-skill-packet"
++    "packet",
++    "described",
++    "dispatch",
++    "hermes",
++    "flags",
++    "must",
++    "carry",
++    "operator",
++    "steps",
++    "repo",
++    "cannot",
++    "perform",
++    "models"
+   ],
+-  "lastUpdated": "2026-09-14T17:24:47.165Z",
++  "lastUpdated": "2026-09-14T18:11:29.023Z",
+   "specId": "004",
+   "folderSlug": "cli-hermes-skill-packet",
+   "parentChain": [
+@@ -13,6 +25,5 @@
+     "071-cli-hermes-creation"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "3"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

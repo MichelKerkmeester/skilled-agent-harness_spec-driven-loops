@@ -1,0 +1,26 @@
+diff --git a/specs/system-deep-loop/z_archive/032-deep-alignment-mode/000-deep-loop-runtime-refinement/description.json b/specs/system-deep-loop/z_archive/032-deep-alignment-mode/000-deep-loop-runtime-refinement/description.json
+index 68e1328b7ee..9caae41643c 100644
+--- a/specs/system-deep-loop/z_archive/032-deep-alignment-mode/000-deep-loop-runtime-refinement/description.json
++++ b/specs/system-deep-loop/z_archive/032-deep-alignment-mode/000-deep-loop-runtime-refinement/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "system-deep-loop/032-deep-alignment-mode/000-deep-loop-runtime-refinement",
++  "specFolder": "system-deep-loop/z_archive/032-deep-alignment-mode/000-deep-loop-runtime-refinement",
+   "description": "Packet `052-deep-loop-unification/008-divergent-mode-dogfood` ran two real, evidence-heavy 10-iteration loops (`/deep:research`, `/deep:review`)",
+   "keywords": [
+     "packet",
+@@ -16,11 +16,12 @@
+     "research",
+     "review"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:02.935Z",
++  "lastUpdated": "2026-09-11T16:49:41.156Z",
+   "specId": "000",
+   "folderSlug": "deep-loop-runtime-refinement",
+   "parentChain": [
+     "system-deep-loop",
++    "z_archive",
+     "032-deep-alignment-mode"
+   ],
+   "memorySequence": 0,

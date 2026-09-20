@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/019-mem0-ranking-tweaks/description.json b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/019-mem0-ranking-tweaks/description.json
+index 84494929565..9441646937f 100644
+--- a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/019-mem0-ranking-tweaks/description.json
++++ b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/019-mem0-ranking-tweaks/description.json
+@@ -16,7 +16,7 @@
+     "surfaced",
+     "bundle"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:13.764Z",
++  "lastUpdated": "2026-09-11T16:49:41.483Z",
+   "specId": "019",
+   "folderSlug": "mem0-ranking-tweaks",
+   "parentChain": [

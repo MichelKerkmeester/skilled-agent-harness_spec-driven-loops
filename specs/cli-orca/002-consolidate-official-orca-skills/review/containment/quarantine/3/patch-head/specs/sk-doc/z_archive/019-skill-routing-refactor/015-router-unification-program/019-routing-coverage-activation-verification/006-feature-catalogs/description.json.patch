@@ -1,0 +1,26 @@
+diff --git a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs/description.json b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs/description.json
+index b9d9715301a..11f03bb01f7 100644
+--- a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs/description.json
++++ b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs",
++  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs",
+   "description": "Compiled routing has no discoverable documentation surface across six of seven eligible hubs",
+   "keywords": [
+     "compiled",
+@@ -14,11 +14,12 @@
+     "eligible",
+     "hubs"
+   ],
+-  "lastUpdated": "2026-08-30T08:03:50.560Z",
++  "lastUpdated": "2026-09-11T16:49:41.045Z",
+   "specId": "006",
+   "folderSlug": "feature-catalogs",
+   "parentChain": [
+     "sk-doc",
++    "z_archive",
+     "019-skill-routing-refactor",
+     "015-router-unification-program",
+     "019-routing-coverage-activation-verification"

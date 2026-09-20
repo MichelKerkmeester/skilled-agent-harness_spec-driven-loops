@@ -1,0 +1,36 @@
+diff --git a/specs/cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog/description.json b/specs/cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog/description.json
+index ab48c7a6e52..dd428234ebc 100644
+--- a/specs/cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog/description.json
++++ b/specs/cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog/description.json
+@@ -1,11 +1,18 @@
+ {
++  "level": "3",
+   "specFolder": "cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog",
+-  "description": "Phase 7: hermes-playbook-and-catalog",
++  "description": "The packet had a playbook root with categories and no scenarios, no recorded execution, and no catalog",
+   "keywords": [
+-    "phase",
+-    "hermes-playbook-and-catalog"
++    "packet",
++    "playbook",
++    "root",
++    "categories",
++    "scenarios",
++    "recorded",
++    "execution",
++    "catalog"
+   ],
+-  "lastUpdated": "2026-09-14T17:24:50.290Z",
++  "lastUpdated": "2026-09-15T13:18:22.761Z",
+   "specId": "008",
+   "folderSlug": "hermes-playbook-and-catalog",
+   "parentChain": [
+@@ -13,6 +20,5 @@
+     "071-cli-hermes-creation"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "3"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

@@ -2,7 +2,7 @@
 name: cli-jev
 description: "Routes Jev typed-judgment requests to the cli-usage transport through mode-registry.json; holds no packet-local logic."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 0.2.0.0
 ---
 
 <!-- Keywords: cli-jev, cli-usage, jev, typed judgment, transport, noul, choice, score, run, jev-mcp -->
@@ -38,13 +38,6 @@ Routing is registry-driven. `mode-registry.json` lists every packet, and `hub-ro
 > node .skilled/bin/compiled-route.cjs --hub cli-jev --prompt "<task>"
 > ```
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `cli-jev`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
-
-A newly scaffolded `cli-jev` ships without a compiled activation manifest, so the
-directive above stays inert (it returns the legacy sentinel) until `cli-jev` completes its
-own compiled-routing activation and joins the serving closure. That closure currently holds five hubs:
-`sk-code`, `sk-doc`, `mcp-tooling`, `system-deep-loop` and `cli-external-orchestration`. This paragraph sits outside the
-blockquote on purpose: the quoted directive is held in lockstep with every serving hub, and a
-template-only sentence inside it would read as drift to the parity check.
 
 ### Two-Axis Model
 
@@ -144,7 +137,7 @@ cli-jev/
 - Root router: [`ROUTER.md`](./ROUTER.md).
 - Transport packet: [`cli-usage/SKILL.md`](./cli-usage/SKILL.md), [`cli-usage/references/cli-reference.md`](./cli-usage/references/cli-reference.md), [`cli-usage/references/providers-and-models.md`](./cli-usage/references/providers-and-models.md), [`cli-usage/references/integration-patterns.md`](./cli-usage/references/integration-patterns.md), [`cli-usage/references/mcp-server.md`](./cli-usage/references/mcp-server.md).
 - Hub metadata: [`description.json`](./description.json), [`graph-metadata.json`](./graph-metadata.json), [`leaf-manifest.json`](./leaf-manifest.json).
-- Hub changelog: [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md).
+- Hub changelog: [`changelog/v0.2.0.0.md`](./changelog/v0.2.0.0.md).
 
 ---
 

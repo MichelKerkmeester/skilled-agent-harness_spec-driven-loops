@@ -1,0 +1,26 @@
+diff --git a/specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/description.json b/specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/description.json
+index 3471c17fd87..d3fd36da8f2 100644
+--- a/specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/description.json
++++ b/specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "1",
+-  "specFolder": "sk-design/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review",
++  "specFolder": "sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review",
+   "description": "Independent 10-iteration GPT-5.6-SOL review of the three implementation packets shipped this session (interface-command rewrite, styles library",
+   "keywords": [
+     "independent",
+@@ -18,11 +18,12 @@
+     "styles",
+     "library"
+   ],
+-  "lastUpdated": "2026-08-15T14:40:58.175Z",
++  "lastUpdated": "2026-09-11T16:49:40.943Z",
+   "specId": "003",
+   "folderSlug": "remediation-program-review",
+   "parentChain": [
+     "sk-design",
++    "z_archive",
+     "012-sk-design-program",
+     "005-reviews-and-remediation"
+   ],

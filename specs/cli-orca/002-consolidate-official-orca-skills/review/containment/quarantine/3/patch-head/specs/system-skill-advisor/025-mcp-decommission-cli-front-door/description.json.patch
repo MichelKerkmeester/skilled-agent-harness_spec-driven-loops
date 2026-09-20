@@ -1,0 +1,13 @@
+diff --git a/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/description.json b/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/description.json
+index e035bf79e26..dac444db300 100644
+--- a/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/description.json
++++ b/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/description.json
+@@ -16,7 +16,7 @@
+     "owns",
+     "behavior"
+   ],
+-  "lastUpdated": "2026-09-12T07:37:07.697Z",
++  "lastUpdated": "2026-09-12T08:08:55.399Z",
+   "specId": "025",
+   "folderSlug": "mcp-decommission-cli-front-door",
+   "parentChain": [

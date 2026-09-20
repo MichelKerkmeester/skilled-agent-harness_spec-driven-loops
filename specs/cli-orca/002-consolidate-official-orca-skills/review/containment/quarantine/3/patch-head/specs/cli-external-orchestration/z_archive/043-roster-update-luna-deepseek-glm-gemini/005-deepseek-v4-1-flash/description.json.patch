@@ -1,0 +1,43 @@
+diff --git a/specs/cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash/description.json b/specs/cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash/description.json
+index 8dc5c7fe483..e1bf2233e0a 100644
+--- a/specs/cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash/description.json
++++ b/specs/cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash/description.json
+@@ -1,18 +1,30 @@
+ {
+-  "specFolder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash",
+-  "description": "Phase 1: deepseek-v4-1-flash",
++  "level": "1",
++  "specFolder": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash",
++  "description": "Devin serves a DeepSeek V4.1 Flash family that neither enforced allowlist carried, so a fan-out naming it was refused before a request was sent.",
+   "keywords": [
+-    "phase",
+-    "deepseek-v4-1-flash"
++    "devin",
++    "serves",
++    "deepseek",
++    "flash",
++    "family",
++    "enforced",
++    "allowlist",
++    "carried",
++    "fan-out",
++    "naming",
++    "refused",
++    "request",
++    "sent"
+   ],
+-  "lastUpdated": "2026-09-15T18:35:32.210Z",
++  "lastUpdated": "2026-09-15T18:49:56.794Z",
+   "specId": "005",
+   "folderSlug": "deepseek-v4-1-flash",
+   "parentChain": [
+     "cli-external-orchestration",
++    "z_archive",
+     "043-roster-update-luna-deepseek-glm-gemini"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "1"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

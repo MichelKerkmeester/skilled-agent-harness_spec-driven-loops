@@ -1,0 +1,26 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/description.json b/specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/description.json
+index cbd77a4182a..e26817362d0 100644
+--- a/specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/description.json
+@@ -1,10 +1,10 @@
+ {
+   "level": "2",
+   "specFolder": "system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal",
+-  "description": "Commit `7673da6bc24` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered",
++  "description": "Commit `edff3a4c161` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered",
+   "keywords": [
+     "commit",
+-    "7673da6bc24",
++    "edff3a4c161",
+     "decommissioned",
+     "sequential",
+     "thinking",
+@@ -17,7 +17,7 @@
+     "script",
+     "unregistered"
+   ],
+-  "lastUpdated": "2026-09-08T18:23:18.786Z",
++  "lastUpdated": "2026-09-11T16:49:41.564Z",
+   "specId": "016",
+   "folderSlug": "sequential-thinking-residue-removal",
+   "parentChain": [

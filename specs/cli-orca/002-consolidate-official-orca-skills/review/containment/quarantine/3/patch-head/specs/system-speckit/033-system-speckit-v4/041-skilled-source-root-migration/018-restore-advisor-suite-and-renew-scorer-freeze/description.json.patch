@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/description.json
+index 1cc63821413..c3fe23d4d1c 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/description.json
+@@ -9,7 +9,7 @@
+     "nothing",
+     "runs"
+   ],
+-  "lastUpdated": "2026-09-19T06:29:02.127Z",
++  "lastUpdated": "2026-09-19T06:58:27.344Z",
+   "specId": "018",
+   "folderSlug": "restore-advisor-suite-and-renew-scorer-freeze",
+   "parentChain": [

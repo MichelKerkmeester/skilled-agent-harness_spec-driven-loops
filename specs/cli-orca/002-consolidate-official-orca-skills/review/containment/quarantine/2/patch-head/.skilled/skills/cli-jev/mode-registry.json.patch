@@ -1,0 +1,13 @@
+diff --git a/.skilled/skills/cli-jev/mode-registry.json b/.skilled/skills/cli-jev/mode-registry.json
+index 8ece70218a7..3dcf7ee422f 100644
+--- a/.skilled/skills/cli-jev/mode-registry.json
++++ b/.skilled/skills/cli-jev/mode-registry.json
+@@ -1,7 +1,7 @@
+ {
+   "resourceContractVersion": 1,
+   "skill": "cli-jev",
+-  "version": "1.0.0.0",
++  "version": "0.1.0.0",
+   "description": "Declarative packet registry: workflowMode, packetKind, backendKind, toolSurface, and advisorRouting for cli-jev. The advisor routes the hub identity; the hub resolves its one transport packet.",
+   "discriminator": {
+     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",

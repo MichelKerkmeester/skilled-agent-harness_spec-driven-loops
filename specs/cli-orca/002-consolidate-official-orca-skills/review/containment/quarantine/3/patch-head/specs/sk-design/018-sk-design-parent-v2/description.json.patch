@@ -1,0 +1,20 @@
+diff --git a/specs/sk-design/018-sk-design-parent-v2/description.json b/specs/sk-design/018-sk-design-parent-v2/description.json
+index 1d931ed739b..34cfed85584 100644
+--- a/specs/sk-design/018-sk-design-parent-v2/description.json
++++ b/specs/sk-design/018-sk-design-parent-v2/description.json
+@@ -15,7 +15,7 @@
+     "still",
+     "reaches"
+   ],
+-  "lastUpdated": "2026-09-06T21:05:39.090Z",
++  "lastUpdated": "2026-09-11T16:49:40.986Z",
+   "specId": "018",
+   "folderSlug": "sk-design-parent-v2",
+   "parentChain": [
+@@ -44,4 +44,4 @@
+     "07-09-26_16-58__two-done-criteria-closed-and-the-other-session.md",
+     "07-09-26_17-02__steps-4-and-5-are-done-pending-one-measurement.md"
+   ]
+-}
++}
+\ No newline at end of file

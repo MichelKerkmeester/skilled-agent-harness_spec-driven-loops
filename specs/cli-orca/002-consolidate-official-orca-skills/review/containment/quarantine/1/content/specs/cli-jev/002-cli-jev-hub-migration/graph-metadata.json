@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/002-cli-jev-hub-migration",
+  "spec_folder": "cli-jev/002-cli-jev-hub-migration",
+  "parent_id": "cli-jev",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration",
+    "cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration",
+    "cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire",
+    "cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding",
+    "cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "cli-external-orchestration",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-jev hub migration",
+      "cli-jev parent hub",
+      "cli-usage mode",
+      "jev transport",
+      "compiled fleet onboarding",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "cli-jev hub"
+    ],
+    "key_topics": [
+      "cli-jev",
+      "hub",
+      "migration",
+      "parent",
+      "cli-usage",
+      "mode",
+      "jev",
+      "transport",
+      "compiled",
+      "fleet",
+      "onboarding",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "specs/cli-jev/002-cli-jev-hub-migration/spec.md",
+      "specs/cli-jev/002-cli-jev-hub-migration/goal.md",
+      ".skilled/bin/compiled-routing-foundation.vitest.ts",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".skilled/skills/README.txt",
+      ".skilled/agents/orchestrate.md",
+      ".skilled/agents/prompt-improver.md",
+      ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+      ".skilled/commands/rewrite/response-by-external-agent.md",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+      ".skilled/bin/compiled-route-guard.cjs",
+      ".skilled/bin/compiled-route-sync.cjs",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json",
+      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/cli-jev/002-cli-jev-hub-migration/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "specs/cli-jev/002-cli-jev-hub-migration/goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-foundation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/compiled-routing-foundation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".skilled/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "response-by-external-agent.md",
+        "kind": "doc",
+        "path": ".skilled/commands/rewrite/response-by-external-agent.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "serving-closure.manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The jev transport packet currently sits inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose",
+    "created_at": "2026-09-20T11:00:11Z",
+    "last_save_at": "2026-09-20T14:00:05.415Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:023f338d8f62529d6741e4eb4eadc79d4f596934ff5d6d825cff509f4c827b5b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "10d58bb45613fbd2b0a020a358c950105ca851af98212edde4066730e1af37ec"
+    },
+    "last_active_at": null
+  }
+}

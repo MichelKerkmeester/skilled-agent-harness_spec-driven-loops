@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/031-ci-shared-package-resolution/description.json b/specs/system-speckit/033-system-speckit-v4/031-ci-shared-package-resolution/description.json
+index f15acca8783..a2eb6cebaf3 100644
+--- a/specs/system-speckit/033-system-speckit-v4/031-ci-shared-package-resolution/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/031-ci-shared-package-resolution/description.json
+@@ -15,7 +15,7 @@
+     "operator",
+     "time"
+   ],
+-  "lastUpdated": "2026-09-08T18:23:18.769Z",
++  "lastUpdated": "2026-09-11T16:49:41.586Z",
+   "specId": "031",
+   "folderSlug": "ci-shared-package-resolution",
+   "parentChain": [

@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation/description.json b/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation/description.json
+index c564cd7731a..69a2251245a 100644
+--- a/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation/description.json
++++ b/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation/description.json
+@@ -14,7 +14,7 @@
+     "dispatchers",
+     "cli-claude-code"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:11.524Z",
++  "lastUpdated": "2026-09-11T16:49:41.402Z",
+   "specId": "004",
+   "folderSlug": "cli-child-marker-propagation",
+   "parentChain": [

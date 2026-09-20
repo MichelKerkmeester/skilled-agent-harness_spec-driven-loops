@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/description.json b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/description.json
+index f7cd8579ba7..74d1c796c7f 100644
+--- a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/description.json
++++ b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/description.json
+@@ -19,7 +19,7 @@
+     "global",
+     "lease"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:11.311Z",
++  "lastUpdated": "2026-09-11T16:49:41.386Z",
+   "specId": "001",
+   "folderSlug": "self-maintaining-index",
+   "parentChain": [

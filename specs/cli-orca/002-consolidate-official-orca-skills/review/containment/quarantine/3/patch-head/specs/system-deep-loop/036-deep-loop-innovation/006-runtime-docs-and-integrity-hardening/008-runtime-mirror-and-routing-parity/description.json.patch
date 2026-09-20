@@ -1,0 +1,13 @@
+diff --git a/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity/description.json b/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity/description.json
+index 949bb7cedde..d8d2d6aacaf 100644
+--- a/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity/description.json
++++ b/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity/description.json
+@@ -19,7 +19,7 @@
+     "write",
+     "outside"
+   ],
+-  "lastUpdated": "2026-08-19T19:14:44.719Z",
++  "lastUpdated": "2026-09-11T16:49:41.228Z",
+   "specId": "008",
+   "folderSlug": "runtime-mirror-and-routing-parity",
+   "parentChain": [

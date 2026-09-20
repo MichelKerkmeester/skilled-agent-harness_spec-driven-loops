@@ -26,10 +26,10 @@ const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 const DEBUG_FLAG = 'SPECKIT_COMPILED_ROUTING_DEBUG';
 
-// Per-hub default-on cohort. These five hubs were verified compiled-serving by
-// the legacy-parity harness (compiled byte-identical to legacy on every
-// scenario, 0 drift) before that harness was retired, and were cut over
-// together, so an unset flag resolves to compiled for every hub listed here.
+// Per-hub default-on cohort. The five hubs cut over together were verified
+// compiled-serving by the legacy-parity harness before it was retired; cli-jev
+// joined at its own first activation, admitted on its own canary corpus and a
+// fresh manifest. An unset flag resolves to compiled for every hub listed here;
 // SPECKIT_COMPILED_ROUTING=0 remains the explicit fleet-wide kill-switch back
 // to legacy.
 const DEFAULT_ON_HUBS = new Set([
@@ -37,6 +37,7 @@ const DEFAULT_ON_HUBS = new Set([
   'system-deep-loop',
   'mcp-tooling',
   'cli-external-orchestration',
+  'cli-jev',
   'sk-doc',
 ]);
 

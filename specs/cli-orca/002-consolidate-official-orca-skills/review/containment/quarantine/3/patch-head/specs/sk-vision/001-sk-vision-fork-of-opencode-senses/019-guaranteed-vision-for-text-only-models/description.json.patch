@@ -1,0 +1,13 @@
+diff --git a/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/description.json b/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/description.json
+index c392efdc781..c7fc3e36575 100644
+--- a/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/description.json
++++ b/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/description.json
+@@ -20,7 +20,7 @@
+     "file",
+     "path"
+   ],
+-  "lastUpdated": "2026-08-18T07:19:19.908Z",
++  "lastUpdated": "2026-09-11T16:49:41.150Z",
+   "specId": "019",
+   "folderSlug": "guaranteed-vision-for-text-only-models",
+   "parentChain": [

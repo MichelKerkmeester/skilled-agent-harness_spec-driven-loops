@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation/description.json b/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation/description.json
+index 89aabde5f5b..69b4e089e10 100644
+--- a/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation/description.json
++++ b/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation/description.json
+@@ -14,7 +14,7 @@
+     "post-mutation",
+     "hooks"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:11.953Z",
++  "lastUpdated": "2026-09-11T16:49:41.425Z",
+   "specId": "004",
+   "folderSlug": "write-path-reconciliation",
+   "parentChain": [

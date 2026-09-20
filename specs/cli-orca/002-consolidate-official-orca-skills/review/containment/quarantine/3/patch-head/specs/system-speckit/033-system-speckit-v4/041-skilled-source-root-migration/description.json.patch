@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/description.json
+index ae1f3d5a65e..16e33c23cfd 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/description.json
+@@ -19,7 +19,7 @@
+     "cli",
+     "runtimes"
+   ],
+-  "lastUpdated": "2026-09-16T20:24:41.542Z",
++  "lastUpdated": "2026-09-20T09:54:54.821Z",
+   "specId": "041",
+   "folderSlug": "skilled-source-root-migration",
+   "parentChain": [

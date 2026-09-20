@@ -1,0 +1,13 @@
+diff --git a/specs/sk-doc/055-governance-doc-alignment/description.json b/specs/sk-doc/055-governance-doc-alignment/description.json
+index 40e57a3c914..3194e972354 100644
+--- a/specs/sk-doc/055-governance-doc-alignment/description.json
++++ b/specs/sk-doc/055-governance-doc-alignment/description.json
+@@ -18,7 +18,7 @@
+     "confirm",
+     "them"
+   ],
+-  "lastUpdated": "2026-09-14T05:45:15.733Z",
++  "lastUpdated": "2026-09-15T05:36:37.313Z",
+   "specId": "055",
+   "folderSlug": "governance-doc-alignment",
+   "parentChain": [

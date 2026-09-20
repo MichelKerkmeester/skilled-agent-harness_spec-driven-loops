@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/002-cli-jev-hub-migration",
+  "spec_folder": "cli-jev/002-cli-jev-hub-migration",
+  "parent_id": "cli-jev",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration",
+    "cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration",
+    "cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire",
+    "cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding",
+    "cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "cli-external-orchestration",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-jev hub migration",
+      "cli-jev parent hub",
+      "cli-usage mode",
+      "jev transport",
+      "compiled fleet onboarding"
+    ],
+    "key_topics": [
+      "cli-jev",
+      "hub",
+      "migration",
+      "parent",
+      "cli-usage",
+      "mode",
+      "jev",
+      "transport",
+      "compiled",
+      "fleet",
+      "onboarding",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "specs/cli-jev/002-cli-jev-hub-migration/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/cli-jev/002-cli-jev-hub-migration/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The jev transport packet currently sits inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose",
+    "created_at": "2026-09-20T11:00:11Z",
+    "last_save_at": "2026-09-20T14:00:05.411Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:76dc1387cf09ec55d6ac6439efaf38b29bb0b7306935078c129920ec99a0ff3c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cd0ba1b6e9209ed27a187cfe26f8ccff26915e7463c79957e700ded1379fa041"
+    },
+    "last_active_at": null
+  }
+}

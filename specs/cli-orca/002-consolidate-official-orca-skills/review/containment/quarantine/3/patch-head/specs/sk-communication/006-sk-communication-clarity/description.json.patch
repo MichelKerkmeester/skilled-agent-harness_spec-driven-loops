@@ -1,0 +1,13 @@
+diff --git a/specs/sk-communication/006-sk-communication-clarity/description.json b/specs/sk-communication/006-sk-communication-clarity/description.json
+index 21e38924e65..32adc83867d 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/description.json
++++ b/specs/sk-communication/006-sk-communication-clarity/description.json
+@@ -15,7 +15,7 @@
+     "two",
+     "clauses"
+   ],
+-  "lastUpdated": "2026-09-14T15:11:58.449Z",
++  "lastUpdated": "2026-09-15T20:43:20.954Z",
+   "specId": "006",
+   "folderSlug": "sk-communication-clarity",
+   "parentChain": [

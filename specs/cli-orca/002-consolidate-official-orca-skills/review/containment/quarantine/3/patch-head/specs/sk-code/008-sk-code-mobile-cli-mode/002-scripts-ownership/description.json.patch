@@ -1,0 +1,13 @@
+diff --git a/specs/sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership/description.json b/specs/sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership/description.json
+index 1acc90f928b..34e07392f6c 100644
+--- a/specs/sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership/description.json
++++ b/specs/sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership/description.json
+@@ -19,7 +19,7 @@
+     "naming",
+     "scan"
+   ],
+-  "lastUpdated": "2026-09-04T17:50:16.991Z",
++  "lastUpdated": "2026-09-19T11:10:05.236Z",
+   "specId": "002",
+   "folderSlug": "scripts-ownership",
+   "parentChain": [

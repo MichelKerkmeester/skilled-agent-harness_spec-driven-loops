@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch/description.json b/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch/description.json
+index e79c399cb5b..0ff43e935c2 100644
+--- a/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch/description.json
++++ b/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch/description.json
+@@ -16,7 +16,7 @@
+     "orchestrated",
+     "children"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:11.523Z",
++  "lastUpdated": "2026-09-11T16:49:41.401Z",
+   "specId": "003",
+   "folderSlug": "worktree-child-marker-dispatch",
+   "parentChain": [

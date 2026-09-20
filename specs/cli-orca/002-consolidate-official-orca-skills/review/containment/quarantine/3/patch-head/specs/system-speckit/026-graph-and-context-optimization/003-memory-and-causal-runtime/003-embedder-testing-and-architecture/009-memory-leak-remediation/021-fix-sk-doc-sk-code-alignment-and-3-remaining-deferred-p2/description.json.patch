@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/description.json b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/description.json
+index 842e29ee36e..2f7272e288f 100644
+--- a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/description.json
++++ b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/description.json
+@@ -19,7 +19,7 @@
+     "deferred-p2",
+     "findings"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:11.214Z",
++  "lastUpdated": "2026-09-11T16:49:41.379Z",
+   "specId": "021",
+   "folderSlug": "fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+   "parentChain": [

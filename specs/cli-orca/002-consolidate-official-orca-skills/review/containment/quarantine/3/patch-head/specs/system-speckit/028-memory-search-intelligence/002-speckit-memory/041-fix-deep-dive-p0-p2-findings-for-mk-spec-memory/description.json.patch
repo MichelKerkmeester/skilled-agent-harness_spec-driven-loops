@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/description.json b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/description.json
+index b98639085af..952ae87cd79 100644
+--- a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/description.json
++++ b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/description.json
+@@ -20,7 +20,7 @@
+     "search",
+     "stack"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:13.824Z",
++  "lastUpdated": "2026-09-11T16:49:41.490Z",
+   "specId": "041",
+   "folderSlug": "fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+   "parentChain": [

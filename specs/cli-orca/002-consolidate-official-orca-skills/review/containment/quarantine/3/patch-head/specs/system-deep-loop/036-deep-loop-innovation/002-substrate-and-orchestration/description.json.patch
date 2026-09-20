@@ -1,0 +1,28 @@
+diff --git a/specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/description.json b/specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/description.json
+index 8fcb59c3156..592e51d6b0a 100644
+--- a/specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/description.json
++++ b/specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/description.json
+@@ -1,4 +1,5 @@
+ {
++  "level": "2",
+   "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration",
+   "description": "Live-tools unblock, authorized-ledger substrate, evidence and control services, compatibility and rollback bridge, durable fan-out orchestration,",
+   "keywords": [
+@@ -16,7 +17,7 @@
+     "fan-out",
+     "orchestration"
+   ],
+-  "lastUpdated": "2026-08-19T19:14:43.854Z",
++  "lastUpdated": "2026-09-20T08:37:04.378Z",
+   "specId": "002",
+   "folderSlug": "substrate-and-orchestration",
+   "parentChain": [
+@@ -24,6 +25,5 @@
+     "036-deep-loop-innovation"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "2"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

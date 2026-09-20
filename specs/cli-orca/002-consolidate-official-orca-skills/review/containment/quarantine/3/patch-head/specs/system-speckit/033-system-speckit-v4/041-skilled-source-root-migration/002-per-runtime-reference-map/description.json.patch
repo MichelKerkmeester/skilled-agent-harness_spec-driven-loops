@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/description.json
+index cfcac820d23..21efa9adc76 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/description.json
+@@ -13,7 +13,7 @@
+     "cannot",
+     "rewrite"
+   ],
+-  "lastUpdated": "2026-09-16T13:51:48.239Z",
++  "lastUpdated": "2026-09-16T17:26:12.985Z",
+   "specId": "002",
+   "folderSlug": "per-runtime-reference-map",
+   "parentChain": [

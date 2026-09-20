@@ -1,0 +1,28 @@
+diff --git a/specs/system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review/description.json b/specs/system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review/description.json
+index 45b4bc70e76..01ec8a181b6 100644
+--- a/specs/system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review/description.json
++++ b/specs/system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review/description.json
+@@ -1,20 +1,20 @@
+ {
+   "level": "1",
+   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review",
+-  "description": "The 008 deep-skill doc-evolution ship (commit 5f3e0a2f53) reworked the 5 deep- skills' documentation substantially",
++  "description": "The 008 deep-skill doc-evolution ship (commit fb8d560443) reworked the 5 deep- skills' documentation substantially",
+   "keywords": [
+     "deep-skill",
+     "doc-evolution",
+     "ship",
+     "commit",
+-    "5f3e0a2f53",
++    "fb8d560443",
+     "reworked",
+     "deep",
+     "skills",
+     "documentation",
+     "substantially"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:05.590Z",
++  "lastUpdated": "2026-09-11T16:49:41.278Z",
+   "specId": "005",
+   "folderSlug": "doc-evolution-post-impl-deep-review",
+   "parentChain": [

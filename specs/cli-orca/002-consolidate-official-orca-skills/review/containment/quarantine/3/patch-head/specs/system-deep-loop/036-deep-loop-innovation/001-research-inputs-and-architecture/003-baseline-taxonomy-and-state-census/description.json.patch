@@ -1,0 +1,13 @@
+diff --git a/specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/description.json b/specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/description.json
+index e15b633443b..1e632ce501d 100644
+--- a/specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/description.json
++++ b/specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/description.json
+@@ -16,7 +16,7 @@
+     "behavior-benchmark",
+     "replay-fixture"
+   ],
+-  "lastUpdated": "2026-08-19T19:14:43.559Z",
++  "lastUpdated": "2026-09-11T16:49:41.165Z",
+   "specId": "003",
+   "folderSlug": "baseline-taxonomy-and-state-census",
+   "parentChain": [

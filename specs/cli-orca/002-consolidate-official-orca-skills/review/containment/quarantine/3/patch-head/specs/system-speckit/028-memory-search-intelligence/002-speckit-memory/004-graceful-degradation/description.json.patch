@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/004-graceful-degradation/description.json b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/004-graceful-degradation/description.json
+index b1257364a1c..379fea7506d 100644
+--- a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/004-graceful-degradation/description.json
++++ b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/004-graceful-degradation/description.json
+@@ -17,7 +17,7 @@
+     "degrading",
+     "lexical"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:13.737Z",
++  "lastUpdated": "2026-09-11T16:49:41.472Z",
+   "specId": "004",
+   "folderSlug": "graceful-degradation",
+   "parentChain": [

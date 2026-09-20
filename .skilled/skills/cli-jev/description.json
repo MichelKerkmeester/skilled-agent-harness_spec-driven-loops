@@ -1,7 +1,7 @@
 {
   "name": "cli-jev",
   "description": "cli-jev is the single public skill identity for Jev typed judgments: it routes a request to its cli-usage transport through mode-registry.json and hub-router.json, and holds no packet-local logic. The advisor sees one hub; the transport bridges the jev CLI and MCP surface, returns one typed value and never mutates this workspace.",
-  "version": "1.0.0.0",
+  "version": "0.2.0.0",
   "importance_tier": "high",
   "keywords": [
     "cli-jev",
@@ -25,5 +25,5 @@
     "run a batch of typed questions through jev",
     "what does the cli-jev hub do"
   ],
-  "lastUpdated": "2026-09-20T13:35:00Z"
+  "lastUpdated": "2026-09-20T13:40:00Z"
 }
