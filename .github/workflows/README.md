@@ -37,7 +37,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
 | `playbook-operator-contract.yml` | Checks the manual-testing-playbook operator-scenario contract. |
 | `prompt-card-sync.yml` | Checks prompt and knowledge-card synchronization. |
-| `repo-rules-corpus.yml` | Keeps the repo-rules corpus loadable. |
+| `repo-rules-corpus.yml` | Keeps the `.skilled/repo-rules/` corpus loadable. |
 | `routing-registry-drift.yml` | Detects drift between routing registries and skill surfaces. |
 | `rule-canary-sync.yml` | Checks rule canaries against their source rules. |
 | `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |

@@ -1,0 +1,4 @@
+100644 eb24ae0d818cdab2694c5666f2750e3740c0e379 0	.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/daemon-off-proof.json
+100644 c0ef36ba6fe72ed03491bee581d5b6704cea096f 0	.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/latency-report.json
+100644 89b7a86efa414eda4e3363bdc974369be4bd5024 0	.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/recipe-execution.json
+100644 da7209f9a20137f78f8a81c9e1e8704815119dbc 0	.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json

@@ -5,6 +5,10 @@ on:
     paths:
       - 'REPO RULES.md'
       - 'repo-rules/**'
+      - '.skilled/repo-rules/**'
+      # No .opencode/repo-rules tree exists; the gate-input check requires every
+      # source-root filter to name both roots, so this twin is required and inert.
+      - '.opencode/repo-rules/**'
       - '.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
       - '.skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
   push:
@@ -12,6 +16,10 @@ on:
     paths:
       - 'REPO RULES.md'
       - 'repo-rules/**'
+      - '.skilled/repo-rules/**'
+      # No .opencode/repo-rules tree exists; the gate-input check requires every
+      # source-root filter to name both roots, so this twin is required and inert.
+      - '.opencode/repo-rules/**'
       - '.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
       - '.skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
 
@@ -29,7 +37,7 @@ jobs:
       - name: Check repo-rules corpus
         run: |
           set -euo pipefail
-          GUARD=".opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs"
+          GUARD=".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs"
           # This gate keeps the repo-rules corpus loadable so drift cannot leave a rule silently unloaded.
           # Fail closed in CI: a PR that deletes or moves this required checker must not disable the gate.
           if [ ! -f "$GUARD" ]; then

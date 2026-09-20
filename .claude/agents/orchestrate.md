@@ -838,4 +838,4 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 - `.skilled/agents/deep-research.md` — the LEAF for evidence-first iterative investigation.
 - `.skilled/agents/deep-review.md` — the LEAF for `/deep:review` iterative code-audit passes.
 - `.skilled/skills/cli-external-orchestration/SKILL.md` — the hub that routes the seven external CLI executor modes plus the `cli-jev` transport, and owns their invariants (§4 Rule 7).
-- `repo-rules/delegation-and-orchestration.md` — the orchestrating posture: what a brief must carry, and why a delegate's return is unverified.
+- `.skilled/repo-rules/delegation-and-orchestration.md` — the orchestrating posture: what a brief must carry, and why a delegate's return is unverified.

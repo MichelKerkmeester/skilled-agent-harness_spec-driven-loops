@@ -113,7 +113,7 @@ field_handling:
     validation: "must be one of: create, revise, retire"
     default: create
   rule_name:
-    validation: kebab-case, matches an existing file under repo-rules/ for revise and retire
+    validation: kebab-case, matches an existing file in the rules directory for revise and retire
     required_when: operation is revise or retire
     note: >-
       Never inferred from the request text for retire. A wrong name deletes the wrong rule,
@@ -123,7 +123,11 @@ field_handling:
     default: repository root
     note: Resolved only from a PRE-BOUND SETUP ANSWERS marker; there is no flag for it.
   defaults:
-    rules_dir: repo-rules/
+    rules_dir: >-
+      The directory the rule file is written into, resolved during setup and kept with its
+      trailing slash: `.skilled/repo-rules/` when the target repository keeps a source
+      root there, otherwise `repo-rules/`. The checker probes the same two paths, in the
+      same order.
     router: REPO RULES.md
     preferred_max_lines: 160
     ceiling_lines: 250
@@ -146,7 +150,7 @@ context_loading:
   auto_resolution:
     default: >-
       Read the router's trigger table, index and scope statement, plus the frontmatter of every
-      file under repo-rules/, before running the tests. Test 3 part 2 and the trigger-phrase
+      file in the rules directory, before running the tests. Test 3 part 2 and the trigger-phrase
       collision check are both unanswerable without the whole set.
     on_absent: No router means no prior set. Emit the router first, then treat the set as empty.
 

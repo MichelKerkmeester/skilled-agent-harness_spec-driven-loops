@@ -1,0 +1,22 @@
+PASS  corpus checker         [repo-rules-check] RESULT: PASSED (9/9 checks)
+PASS  markdown links         OK — 0 broken markdown links.
+PASS  gate inputs            RESULT: PASSED
+PASS  farm integrity         [farm-check] PASSED files=13 links=13 every link resolves
+PASS  agent mirror sync      agent-mirror-sync: 12 agent(s) checked — all mirrors in sync — OK
+PASS  doctor roster          STATUS=OK agent-roster-mirror: every runtime covers the canonical roster
+PASS  doctor catalog         STATUS=OK command-catalog-mirror: every catalog and hub metadata covers the command tree
+PASS  runtime mirrors        [runtime-mirror-sync] PASS: 168 mirrors across 8 trees are in sync.
+PASS  codex agents           [codex-agent-sync] PASS: 12 agents are in sync.
+PASS  codex prompts          [codex-prompt-sync] PASS: 33 prompts are in sync.
+PASS  pi agents              [pi-agent-sync] PASS: 12 agents are in sync.
+PASS  hermes skills          drift set unchanged from base: DRIFT cli-devin
+PASS  frozen record          no modified or deleted frozen file since c1817442
+PASS  derived re-mints       1 manifest(s) re-minted by the commit gate
+PASS  AGENTS.md links        every rule link resolves
+PASS  history follows        11 commits reachable through the move
+PASS  plain layout           repo-rules/ fixture passes all nine checks
+PASS  farm gap detected      a deleted public entry is named
+PASS  packet validation      RESULT: PASSED
+PASS  parent validation      RESULT: PASSED
+
+RESULT: PASSED (passed=20 failed=0)

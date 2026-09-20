@@ -1,0 +1,12 @@
+$ node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs
+[repo-rules-check] 1/9 PASS count parity        - files=13 triggerRows=13 indexRows=13
+[repo-rules-check] 2/9 PASS row coverage        - files=13 triggerRows=13 indexRows=13 all links resolve
+[repo-rules-check] 3/9 PASS phrase uniqueness   - phrases=252 collisions=0
+[repo-rules-check] 4/9 PASS line ceiling        - max=246 limit=250
+[repo-rules-check] 5/9 PASS frontmatter keys    - files=13 keys=6
+[repo-rules-check] 6/9 FAIL divider parity      - answer-the-actual-request.md: 3 dividers vs 8 sections
+[repo-rules-check] 7/9 PASS rule links          - files=13 links=45 all resolve
+[repo-rules-check] 8/9 PASS fires-when sections - files=13 all declare firing conditions
+[repo-rules-check] 9/9 PASS index summaries     - indexRows=13 every summary matches its rule's description
+[repo-rules-check] RESULT: FAILED (8/9 checks)
+exit=1
