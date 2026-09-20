@@ -27,7 +27,7 @@ jobs:
         continue-on-error: true
         run: |
           set -uo pipefail
-          RUNNER=".opencode/scripts/run-node-tests.mjs"
+          RUNNER=".skilled/scripts/run-node-tests.mjs"
           # Fail closed: a missing script is a moved or deleted file, not an empty
           # report. The step keeps continue-on-error, so the job stays green by design
           # while this step shows the error.
