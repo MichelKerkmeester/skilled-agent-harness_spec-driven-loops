@@ -199,7 +199,7 @@ Spec folder: [path] (pre-approved, skip Gate 3). [task description]
 **Example:**
 
 ```bash
-pi -p "Spec folder: specs/cli-external-orchestration/031-cli-pi-creation/003-cli-pi-skill-packet (pre-approved, skip Gate 3). Add a new section to references/cli-reference.md documenting the --header flag." \
+pi -p "Spec folder: specs/cli-external-orchestration/z_archive/031-cli-pi-creation/003-cli-pi-skill-packet (pre-approved, skip Gate 3). Add a new section to references/cli-reference.md documenting the --header flag." \
   --offline --approve
 ```
 
@@ -222,6 +222,6 @@ unknowns: [unknown or none]
 
 ## 11. SOURCE AND CONFIDENCE
 
-Confirmed flags and observed failure behavior: [Pi contract pin](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+Confirmed flags and observed failure behavior: [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
 
 Native prompt-template and extension discovery are confirmed for the project-local surfaces this repo actually populates (phases 012/013). Full precedence across every documented discovery location, and native skill discovery specifically, remain per Pi docs, unconfirmed. Read [native-skills-and-extensions.md](../references/native-skills-and-extensions.md) before relying on those surfaces.
