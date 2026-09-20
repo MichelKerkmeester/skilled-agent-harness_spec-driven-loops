@@ -24,7 +24,7 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 - 🎯 **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
 - 🔄 **Autonomous Deep Loops** - research, review and improvement loops that run unattended and stop only when their own evidence says done
 - 🤖 **12 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
-- 🧰 **14 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
+- 🧰 **15 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
 
 **Why it earns a place**
 
@@ -830,99 +830,84 @@ Claude Code, OpenCode or a raw shell can dispatch supported AI CLIs as specialis
 
 Every bridge shares the same foundation:
 
-- **Any model the native CLI supports.** The shipped lists are starting points you can edit. Pi, OpenCode and Hermes read their rosters from provider config and a declared list, and the rest pass the model flag of their own CLI. Each skill's provider pre-flight lists the live set
+- **Any model the native CLI supports.** The shipped lists are starting points you can edit. Point a bridge at a different provider or model and the next dispatch uses it. Each skill's provider pre-flight lists the live set
 - **Built for deep-loop fan-out.** Every bridge is a deep-loop executor: bind several on one research, review or council run and each becomes its own lineage, with per-lineage state, budget caps and a stall watchdog, then the strongest-restriction merge picks the safest verdict. The shared runner makes a new model a config choice rather than new plumbing
 - **Skills, agents and commands travel with the dispatch.** Each bridge mirrors them into the runtime's own config surface as far as that runtime allows. Hermes, for example, rebuilds each shared agent as a preloadable skill because it has no agent flag
 - **Mirrors stay in sync on their own.** Commit-time mirror hooks and a CI parity job keep every mirror aligned with `.skilled/`, so a dispatched runtime never reads a stale copy
 - **Native extensibility included.** Each runtime also gets hooks, plugins or extensions where its platform allows, so much of the skilled feature set arrives with the dispatch
+- **Checks before it runs.** A bridge confirms its CLI is installed and usable before it starts, so a missing tool stops the route up front instead of failing mid-task
 
 > **Self-invocation guard:** every skill refuses to call itself. A Claude Code session never dispatches `cli-claude-code`, an OpenCode session never dispatches `cli-opencode`, etc. Cross-AI delegation only, no cycles.
 
 **`cli-external-orchestration`** - parent hub for external CLI dispatch
 
-One advisor identity routing through `mode-registry.json` to seven modes.
+One skill, seven bridges: describe the job and it hands the dispatch to the right CLI.
 
 &nbsp;
 
 **`cli-opencode`** - OpenCode CLI orchestrator
 
-- Reach for it when the dispatched task needs **the project's full plugin / skill / MCP runtime**: a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skills/` and every MCP server
-- Handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`)
-- Default model `opencode-go/deepseek-v4-pro` at high reasoning
-- Providers span `opencode-go` (default gateway: DeepSeek + open models), `deepseek` (direct API), `minimax-coding-plan` / `minimax` (MiniMax-M3), `xiaomi` (MiMo-V2.5-Pro), `kimi-for-coding` (Kimi k2.7 Code), `zai-coding-plan` (GLM-5.2) and `openai` (`gpt-5.5` family). See the skill's provider pre-flight for the live list
+- **The whole project runtime in one dispatch.** The task sees every plugin, skill and MCP server your project has, so nothing is missing from the answer
+- **Parallel sessions and other repos.** Run several dispatches at once, or point one at a different repository
 
 &nbsp;
 
 **`cli-claude-code`** - Claude Code CLI orchestrator
 
-- Reach for it for **extended thinking (chain-of-thought), surgical diff-based edits and JSON-schema-validated structured output**
-- Ships 9 built-in agents and session continuity
-- Three models: `claude-opus-4-6` (deep reasoning), `claude-sonnet-4-6` (default, balanced), `claude-haiku-4-5` (fast/cheap)
+- **Deep thinking and careful edits.** Extended reasoning for hard problems, surgical diff-based edits, and structured JSON output when another tool needs to read the answer
+- **A team of specialists built in.** Nine agents come with it, and a follow-up dispatch can pick up where the last one stopped
 
 &nbsp;
 
 **`cli-codex`** - OpenAI Codex CLI orchestrator
 
-- Reach for it for **OpenAI-backed coding, repo analysis, PR review, web research and cross-model second opinions**, dispatched through `codex exec` (`gpt-5.5` family)
-- Availability-gated and fails closed: every routing surface checks `command -v codex` before advertising or dispatching, and refuses the route when the binary is absent
-- Execution runs through the audited deep-loop runtime, and project hooks + agents mirror the Claude bridge under `.codex/`
+- **An OpenAI second opinion.** Coding, repo analysis, PR review, web research, or a cross-model check on work another model did
 
 &nbsp;
 
 **`cli-cursor`** - Cursor CLI orchestrator
 
-- Reach for it for **Composer-model dispatch** (Cursor's own native model), a **read-only `--mode plan`/`--mode ask`** pass, or a second-AI opinion, dispatched through `cursor-agent -p`
-- Models: `auto` router default, `composer-2.5`/`composer-2.5-fast`, plus 150+ hosted-frontier ids
-- Availability-gated and fails closed: checks `command -v cursor-agent` plus an explicit auth-state probe (`cursor-agent about`), since `-p` exits `0` even on an auth failure
-- Uniquely among the seven, its `.cursor/` config (hooks, MCP, rules) is **shared with the Cursor editor**, not tool-private: a dispatched CLI session inherits the operator's editor-level config
+- **Cursor's own models, plus a read-only planning pass.** Composer dispatch for build work, and a plan or ask mode that reads without touching anything, handy as a second opinion
+- **One config for editor and CLI.** Its settings are shared with the Cursor editor, so a dispatched session behaves like the editor you already set up
 
 &nbsp;
 
 **`cli-devin`** - Devin CLI orchestrator
 
-- Reach for it for **Cognition-backed multi-model coding, subagent delegation, cloud handoff and cross-model validation**, dispatched through `devin -p`
-- Model selection spans Opus, Sonnet, GPT, SWE, Gemini and more via Cognition's adaptive router
-- Availability-gated and fails closed: checks `command -v devin` before advertising or dispatching, and refuses the route when the binary is absent
+- **A multi-model contractor.** Cognition's router picks among Opus, Sonnet, GPT, Gemini and more, so the dispatch gets the strength the task needs, with subagent delegation and cloud handoff when the job outgrows one machine
 
 &nbsp;
 
 **`cli-pi`** - Pi CLI orchestrator
 
-- Reach for it for **guarded headless coding, read-only tool-constrained reviews, JSON event output, RPC integration, and Pi-native resource and community-package workflows**, dispatched through `pi --print` / `pi --mode rpc` (Pi CLI 0.82.1 per the pinned contract)
-- Availability-gated and fails closed: checks `command -v pi` before advertising or dispatching, and refuses the route when the binary is absent
-- Failure exit codes are unreliable, so inspect output rather than relying on exit status
+- **Your Pi setup, headless.** Guarded coding dispatch, read-only reviews with a limited tool set, and JSON or RPC output when another tool needs to read the answer
+- Pi-native resources and community packages come along, so a dispatch sees what your interactive Pi sees
 
 &nbsp;
 
 **`cli-hermes`** - Hermes Agent CLI orchestrator
 
-- Reach for it for **quiet oneshot headless dispatch, cross-AI validation and LLM Gateway model routing**, dispatched through `hermes chat -Q --oneshot` (Nous Research's Python agent CLI)
-- Model choice follows the roster the skill declares over the operator's `llmgateway` provider, and adding a model means amending that roster first. The skill's provider pre-flight lists the live set
-- Availability-gated and fails closed: checks `command -v hermes` and reads `hermes config get providers.llmgateway.base_url` for a configured provider before dispatching, and refuses the route when either fails
-- `hermes status` is NOT a usable probe: it reads the built-in catalog only, so it reports no provider on a correctly configured machine
-- Hermes has no agent flag, so each shared agent is mirrored as the preloadable skill `agent-<name>` and bound by an environment variable
-- Its repo surface is `.hermes/`: generated markdown-only skill copies rather than symlinks (because Hermes scans a linked directory in full and quarantines it), plus generated prompt templates and one `repo-guards` plugin
+- **Quiet one-shot answers through Nous Research's Hermes.** A second model reads the work and answers without ceremony, which suits cross-AI validation
+- Models route through your LLM Gateway, and adding one is a roster edit
+- Its skills and agents live under `.hermes/` as generated copies, because Hermes reads its skill folder in full
 
 &nbsp;
 
 **`cli-orca`** - Orca terminal CLI orchestrator
 
-- Reach for it when the dispatched task lives in the **Orca app**: managed worktrees, paired terminals you can read back after a send, the embedded browser for pages the runtime itself hosts, automations, and full ownership handoffs, all driven through the `orca` CLI
-- Availability-gated and fails closed: it resolves one executable in a documented order, then checks the runtime with `orca status` before touching anything, so a broken install stops the route instead of half-running it
-- The mcp-tooling hub hands Orca-qualified prompts to this skill, the advisor ranks it first for them, and compiled routing keeps that hand-off pinned
-- It embeds the eight official Orca skills as authored references, while flag detail always comes from the version-matched guide the binary itself serves
+- **Drive the Orca app from a dispatch.** Managed worktrees, paired terminals you can read back after a send, the embedded browser for pages the runtime itself hosts, automations, and full ownership handoffs
+- **Checks the app before it touches anything.** It resolves the `orca` executable and confirms the runtime answers, so a broken install stops the route instead of half-running it
+- The mcp-tooling hub hands Orca-qualified prompts here first, and the eight official Orca skills ride along as authored references, with flag detail always read from the version-matched guide the binary itself serves
 
 &nbsp;
 #### JUDGMENT TRANSPORT
 
-**`cli-jev`** - parent hub for the Jev typed-judgment transport
+**`cli-jev`** - typed judgments from the Jev CLI
 
-One advisor identity routing through `mode-registry.json` to its single `packetKind: "transport"` mode, `cli-usage`. The transport returns a typed value and never performs the follow-up work.
+When a decision needs a number rather than prose, this hub asks the `jev` CLI for one: a probability, a choice between options, a score position or a batch of keyed answers. It returns the value and changes nothing else.
 
-- Reach for it when a decision needs **one typed judgment from the `jev` CLI**: a probability (`noul`), one option key (`choice`), an ordered score position (`score`) or a batch of keyed answers (`run`), as structured JSON or a bare scalar with `--value`
-- **Read-only by contract:** `Read`, `Bash`, `Grep` and `Glob` only, with `Write`, `Edit` and `Task` forbidden. The transport selects a value and mutates nothing, so pair it with a workflow mode when the judgment feeds an edit
-- Availability-gated and fails closed: the dispatch preflight checks `command -v jev` and gates every judgment command with eight jev-specific rules (bounded stdin, no inline credentials, option and level cardinality, an explicit `--endpoint` for a custom provider)
-- **Compiled routing is default-on:** `node .skilled/bin/compiled-route.cjs --hub cli-jev` resolves `cli-usage` at the hub's compiled policy, and `SPECKIT_COMPILED_ROUTING=0` restores the legacy sentinel
+- **A value you can act on.** Structured JSON or a bare number, never a paragraph
+- **Pairs with the workflow skills.** The judgment stays read-only, so hand the follow-up edit to a workflow skill
 
 &nbsp;
 #### MCP INTEGRATION
