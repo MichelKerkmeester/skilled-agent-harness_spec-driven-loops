@@ -38,6 +38,12 @@
 *.key
 *.pem
 
+# A Firebase Android config embeds a client API key, and secret scanners flag the
+# value wherever the file lands. The vendored copy is redacted; this keeps a
+# stray or newly vendored copy from being staged fresh, because gitignore does
+# not apply to a path that is already tracked.
+google-services.json
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # Dependencies
 # ═══════════════════════════════════════════════════════════════════════════════
