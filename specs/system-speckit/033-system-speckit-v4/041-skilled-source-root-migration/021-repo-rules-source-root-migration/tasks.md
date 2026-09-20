@@ -43,9 +43,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Research
 
-- [ ] T005 Run the bounded deep-research loop over the reference census (research/)
-- [ ] T006 Reconcile every census row against the cited inventory: confirmed, corrected or added (research/research.md)
-- [ ] T007 Fold each corrected row into the layout decision and the scope (spec.md, plan.md)
+- [x] T005 Run the bounded deep-research loop over the reference census (research/) — one `cli-pi` lineage, three iterations; `scratch/research-dispatch.sh` is the run's record
+- [x] T006 Reconcile every census row against the cited inventory: confirmed, corrected or added (research/research.md)
+- [x] T007 Fold each corrected row into the layout decision and the scope (spec.md, plan.md)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,10 +53,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Move and Farm
 
-- [ ] T008 `git mv` the 13 rule files into `.skilled/repo-rules/` as a rename-only commit
-- [ ] T009 Create the 13 tracked symlinks and commit the farm with the move
-- [ ] T010 Confirm `git log --follow` still walks each rule's history
-- [ ] T011 Fix the divider defect in `answer-the-actual-request.md` as its own commit
+- [x] T008 `git mv` the 13 rule files into `.skilled/repo-rules/` as a rename-only commit (`f1b798914e`, 13 × `R100`)
+- [x] T009 Create the 13 tracked symlinks and commit the farm with the move
+- [x] T010 Confirm `git log --follow` still walks each rule's history
+- [x] T011 Fix the divider defect in `answer-the-actual-request.md` — bundled with the farm and the checker instead of a standalone commit, because the backlink rewrite and the layout-aware checker must land together or the checker is transiently red (`6eedc5f930`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,9 +64,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Reference Rewrite
 
-- [ ] T012 Re-point the 13 rule-body backlinks to `../../REPO%20RULES.md`
-- [ ] T013 Re-point the 26 router rows in `REPO RULES.md`
-- [ ] T014 Re-point `AGENTS.md`'s five links to the canonical path
+- [x] T012 Re-point the 13 rule-body backlinks to `../../REPO%20RULES.md`
+- [x] T013 Re-point the 26 router rows in `REPO RULES.md`
+- [x] T014 Re-point `AGENTS.md`'s five links to the canonical path (nine link instances across those five lines)
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -74,12 +74,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-5 -->
 ## Phase 5: Machine and Consumer Surfaces
 
-- [ ] T015 Make `check-repo-rules.cjs` layout-aware and add the farm-integrity check
-- [ ] T016 Update the sk-create-repo-rule skill, references and playbook
-- [ ] T017 Update the `/create:repo-rule` command description and assets
-- [ ] T018 Update the authored agent files and regenerate every mirror
-- [ ] T019 Update the CI filters and `GUARD`, and the workflows README row
-- [ ] T020 Update the sk-communication benchmark generator and refresh its cases
+- [x] T015 Make `check-repo-rules.cjs` layout-aware and add the farm-integrity check — the checker keeps its nine checks (its verdict delta is the claim); the farm check lives in `scratch/check-farm.cjs`
+- [x] T016 Update the sk-create-repo-rule skill, references and playbook
+- [x] T017 Update the `/create:repo-rule` command description and assets — the assets resolve the rules directory at setup; the catalog description keeps the public name (a label, mirrored across three catalogs)
+- [x] T018 Update the authored agent files and regenerate every mirror (`.skilled` and `.claude` edited together; `.pi`, `.codex` and `.hermes` regenerated)
+- [x] T019 Update the CI filters and `GUARD`, and the workflows README row
+- [x] T020 Update the sk-communication benchmark generator and refresh its cases — the generator reads `cases.json` rather than writing it, and the frozen case set is condition-agnostic, so there was no case artifact to refresh
 <!-- /ANCHOR:phase-5 -->
 
 ---
@@ -87,12 +87,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-6 -->
 ## Phase 6: Verification
 
-- [ ] T021 Corpus checker 9/9 from the worktree, twice
-- [ ] T022 Portability fixture: the same verdict with only `repo-rules/` present
-- [ ] T023 Farm integrity, router and rule-body link integrity
-- [ ] T024 Gate inputs, every mirror `--check`, derived-artifact freshness
-- [ ] T025 Frozen-set digest unchanged, and the full rescan with a disposition per hit
-- [ ] T026 Validate the child `--strict` and the parent `--recursive --strict`
+- [x] T021 Corpus checker 9/9 from the worktree
+- [x] T022 Portability fixture: the same verdict with only `repo-rules/` present
+- [x] T023 Farm integrity, router and rule-body link integrity, and the mutated fixture that proves the farm check reports a missing entry
+- [x] T024 Gate inputs, every mirror `--check`, derived-artifact freshness
+- [x] T025 Frozen-set digest unchanged, and the full rescan with a disposition per hit
+- [x] T026 Validate the child `--strict` and the parent `--recursive --strict`
 <!-- /ANCHOR:phase-6 -->
 
 ---
@@ -100,9 +100,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed — `scratch/verify.sh`, receipt in `scratch/verify-run.txt`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -144,10 +144,10 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The corpus checker keeps its nine checks and its output format
-- [ ] CHK-011 [P0] No code comment names a packet, phase or task id
-- [ ] CHK-012 [P1] Every edited markdown file keeps its frontmatter and anchors
-- [ ] CHK-013 [P1] No unrelated file appears in any phase commit
+- [x] CHK-010 [P0] The corpus checker keeps its nine checks and its output format
+- [x] CHK-011 [P0] No code comment names a packet, phase or task id — the blocking comment-hygiene gate ran inside every commit
+- [x] CHK-012 [P1] Every edited markdown file keeps its frontmatter and anchors
+- [x] CHK-013 [P1] No unrelated file appears in any phase commit
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -155,11 +155,11 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] The corpus checker prints `RESULT: PASSED (9/9 checks)` from the worktree
-- [ ] CHK-021 [P0] The same checker passes from a fixture that carries only `repo-rules/`
-- [ ] CHK-022 [P0] Every farm entry resolves, and no extra entry exists
-- [ ] CHK-023 [P0] Every generated mirror `--check` exits 0 with no drift
-- [ ] CHK-024 [P1] `check-gate-inputs.sh` reports `RESULT: PASSED`
+- [x] CHK-020 [P0] The corpus checker prints `RESULT: PASSED (9/9 checks)` from the worktree
+- [x] CHK-021 [P0] The same checker passes from a fixture that carries only `repo-rules/`
+- [x] CHK-022 [P0] Every farm entry resolves, and no extra entry exists
+- [x] CHK-023 [P0] Every generated mirror `--check` exits 0 with no NEW drift — the Hermes mirror carries one pre-existing drift at the base (`cli-devin`) and is judged against the base drift set
+- [x] CHK-024 [P1] `check-gate-inputs.sh` reports `RESULT: PASSED`
 <!-- /ANCHOR:testing -->
 
 ---
@@ -167,8 +167,8 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security Checklist
 
-- [ ] CHK-030 [P1] No farm symlink points outside the repository root
-- [ ] CHK-031 [P1] No private home-derived path enters a tracked file
+- [x] CHK-030 [P1] No farm symlink points outside the repository root
+- [x] CHK-031 [P1] No private home-derived path enters a tracked file
 <!-- /ANCHOR:security -->
 
 ---
@@ -176,7 +176,7 @@ contextType: "implementation"
 <!-- ANCHOR:deployment -->
 ## Deployment Checklist
 
-- [ ] CHK-040 [P1] The frozen-set digest is unchanged between the base commit and the phase head
+- [x] CHK-040 [P1] The frozen-set digest is unchanged between the base commit and the phase head (the one activation manifest the commit gate re-minted is asserted separately)
 - [ ] CHK-041 [P1] The PR is opened from the worktree branch and the merge is left to the operator
 <!-- /ANCHOR:deployment -->
 
@@ -185,8 +185,8 @@ contextType: "implementation"
 <!-- ANCHOR:acceptance -->
 ## Acceptance
 
-- [ ] CHK-050 [P0] Every row of acceptance-criteria.md carries evidence
-- [ ] CHK-051 [P0] `validate.sh --strict` passes for the child and the parent
+- [x] CHK-050 [P0] Every row of acceptance-criteria.md carries evidence
+- [x] CHK-051 [P0] `validate.sh --strict` passes for the child and the parent
 <!-- /ANCHOR:acceptance -->
 
 ---

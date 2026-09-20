@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-09-20T08:02:23.054Z",
+  "entries": [
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/scratch/check-farm.cjs",
+      "hash": "d75aa714355af74fe9fb50255a572f85a631a1ac",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/scratch/check-farm.cjs"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/scratch/verify.sh",
+      "hash": "0309e56134e823a896abc2ab279cea1717348357",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/scratch/verify.sh"
+    }
+  ]
+}

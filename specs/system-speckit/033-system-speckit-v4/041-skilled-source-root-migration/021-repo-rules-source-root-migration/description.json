@@ -1,16 +1,22 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration",
-  "description": "Move the repo-rules corpus and every live reference under .skilled",
+  "description": "Move the rule corpus under .skilled, keep the root path as a farm of links, and make the checker read either layout",
   "keywords": [
     "move",
-    "repo-rules",
+    "rule",
     "corpus",
-    "every",
-    "live",
-    "reference",
-    "skilled"
+    "skilled",
+    "keep",
+    "root",
+    "path",
+    "farm",
+    "links",
+    "checker",
+    "read",
+    "layout"
   ],
-  "lastUpdated": "2026-09-20T07:40:43.965Z",
+  "lastUpdated": "2026-09-20T08:24:29.222Z",
   "specId": "021",
   "folderSlug": "repo-rules-source-root-migration",
   "parentChain": [
@@ -19,6 +25,5 @@
     "041-skilled-source-root-migration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

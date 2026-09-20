@@ -1,0 +1,162 @@
+{
+  "sessionId": "fanout-deepseek-1789890318556-in1rmm",
+  "lineageId": "deepseek",
+  "loopType": "research",
+  "stopReason": "maxIterationsReached",
+  "iterations": 3,
+  "convergenceThreshold": 0.05,
+  "averageNewInfoRatio": 0.9,
+  "keyFindings": [
+    {
+      "id": "kf-01",
+      "question": "Q1",
+      "statement": "REPO RULES.md carries exactly 26 live repo-rules/ links: 13 trigger rows (lines 40-52) and 13 index rows (lines 60-72); all re-point to .skilled/repo-rules/<rule>.md.",
+      "evidence": "REPO RULES.md:40-52,60-72"
+    },
+    {
+      "id": "kf-02",
+      "question": "Q1",
+      "statement": "AGENTS.md carries 9 repo-rules/ link instances on 5 lines (28, 116, 144, 209, 261); the spec's count of 5 most plausibly counts lines or the five-link section 8 sentence.",
+      "evidence": "AGENTS.md:28,116,144,209,261; spec.md:109"
+    },
+    {
+      "id": "kf-03",
+      "question": "Q1",
+      "statement": "All 13 rule bodies carry one ../REPO%20RULES.md backlink; from .skilled/repo-rules/ each must become ../../REPO%20RULES.md, and the checker resolves body links against the chosen rules directory.",
+      "evidence": "repo-rules/*.md backlinks; check-repo-rules.cjs:327-328"
+    },
+    {
+      "id": "kf-04",
+      "question": "Q1",
+      "statement": "The checker hardcodes the layout in RULES_DIR:26, findRepoRoot:46-48, loadContext:182-186 and the missing-root error:412, and identifies router rows by the literal repo-rules/ prefix at :233 and :377.",
+      "evidence": "check-repo-rules.cjs:26,46-48,182-186,233,377,412"
+    },
+    {
+      "id": "kf-05",
+      "question": "Q1",
+      "statement": "The nine checks (count parity, row coverage, phrase uniqueness, line ceiling, frontmatter keys, divider parity, rule links, fires-when sections, index summaries) and RESULT: PASSED (9/9 checks) stay unchanged; HEAD prints FAILED (8/9) on the answer-the-actual-request divider defect.",
+      "evidence": "check-repo-rules.cjs:397-407,426; spec.md:69-70"
+    },
+    {
+      "id": "kf-06",
+      "question": "Q1",
+      "statement": "Skill, command, agent and benchmark surfaces that must re-point: sk-create-repo-rule SKILL.md:170, README.md:26,86,177-179, references and playbook; /create:repo-rule repo-rule.md:2,13 and three assets (rules_dir auto:113, confirm:126, presentation:103,108); .skilled/agents/orchestrate.md:850 and markdown.md:203; generate-prompts.mjs working-tree lane :69,127 (historical lane :108-113 stays).",
+      "evidence": "rg hits across the four surfaces"
+    },
+    {
+      "id": "kf-07",
+      "question": "Q1",
+      "statement": "Hub-registry keyword lists, the leaf-manifest filename, the router template asset, graph-metadata and all changelogs keep historical/portable meaning and do not change.",
+      "evidence": "spec.md:98-101"
+    },
+    {
+      "id": "kf-08",
+      "question": "Q1",
+      "statement": "Three real breakages without re-pointing: body backlinks resolve to a missing .skilled/REPO RULES.md; the CI filter repo-rules/** stops firing on canonical edits; prefix row recognition stops matching. Router/AGENTS/sibling links survive via the farm.",
+      "evidence": "repo-rules-corpus.yml:5-16; check-repo-rules.cjs:233,327"
+    },
+    {
+      "id": "kf-09",
+      "question": "Q2",
+      "statement": "Authored agents are .skilled/agents/*.md (.opencode/agents is a symlink); .claude/agents is a required parity mirror and the cursor/devin dialect source; .pi and .codex are generated; .hermes/skills is generated from skill SKILL.md plus agent personas.",
+      "evidence": "sync-agents.cjs:23-25; sync-agents-pi.cjs:21-23; sync-skills-hermes.cjs:20-38; sync-runtime-mirrors.cjs:36-40,121; mirror-sync-verify.cjs:18-22"
+    },
+    {
+      "id": "kf-10",
+      "question": "Q2",
+      "statement": "Checker wiring per mirror: check-agent-mirror-sync.cjs for claude/codex/opencode (agent-mirror-sync.yml:17,29; pre-commit:104-128); sync-agents.cjs --check for codex (spec-kit-check.yml:159); agent-roster-mirror-check.cjs for the five-runtime roster (spec-kit-check.yml:161); sync-skills-hermes.cjs --check for hermes (command-tree-parity.yml:65); sync-agents-pi.cjs --check documented but not CI-invoked (INFERRED gap).",
+      "evidence": "workflow and hook lines as cited"
+    },
+    {
+      "id": "kf-11",
+      "question": "Q2",
+      "statement": "Regeneration set for the authored edits: .claude/agents x2, .pi/agents x2, .codex/agents x2, .hermes/skills/agent-* x2, plus .hermes/skills/{sk-create-repo-rule,sk-doc}/SKILL.md from the skill-doc edits; cursor/devin resolve through .claude symlinks.",
+      "evidence": "rg -l repo-rules over the four mirror trees"
+    },
+    {
+      "id": "kf-12",
+      "question": "Q2",
+      "statement": "repo-rules-corpus.yml keys on four path filters and a fail-closed .opencode checker guard; check-gate-inputs.sh enforces five rules with strict .opencode/.skilled twin matching, so a .skilled/repo-rules/** filter needs a .opencode/repo-rules/** twin in the same paths group.",
+      "evidence": "repo-rules-corpus.yml:5-16,32-39; check-gate-inputs.sh:12-29,113-116,356,369,413"
+    },
+    {
+      "id": "kf-13",
+      "question": "Q2",
+      "statement": "The trigger-index generator walks specs, .skilled/skills, .skilled/hooks only; repo-rules is not walked; one corpus hash and one manifestHash couple index, manifest, diagnostics and variants; byte-identical second-run regeneration and cross-artifact hash equality are tested.",
+      "evidence": "lib/corpus.mjs:20-29; generate-trigger-index.mjs:64-67,141-145,211; trigger-index.vitest.ts:152,169,185,376,407-408"
+    },
+    {
+      "id": "kf-14",
+      "question": "Q2",
+      "statement": "The generator has no --check mode (publish or refuse), so drift verification is regenerate-and-diff; after the migration's walked-doc edits all four artifacts change together and must be regenerated in the same change; frozen captures stay pinned.",
+      "evidence": "generate-trigger-index.mjs:27,31,449-486; README.md:76-78"
+    },
+    {
+      "id": "kf-15",
+      "question": "Q3",
+      "statement": "Sibling repositories link into the main checkout's Public/repo-rules/<rule>.md; the one observable sibling uses absolute targets (documented shape is relative, ../../Code_Environment/Public/repo-rules/<rule>.md); the farm keeps them resolving; re-pointing siblings is out of scope.",
+      "evidence": "agents-md-integration.md:141-181; ls/readlink on MEGA/Development/Obsidian Plugin; spec.md:95-97"
+    },
+    {
+      "id": "kf-16",
+      "question": "Q3",
+      "statement": "The checker contract: probe .skilled/repo-rules then repo-rules, fail naming both when neither exists, identify rows by resolved containment (not string prefix) so the mid-move state passes, keep nine checks and output unchanged.",
+      "evidence": "plan.md:144-150; spec.md:194,201"
+    },
+    {
+      "id": "kf-17",
+      "question": "Q3",
+      "statement": "Farm integrity is a separate phase-verification script (planned scratch/verify.sh, absent at HEAD): one root symlink per rule, target ../.skilled/repo-rules/<rule>.md, no extras, no dangling links, coverage reporting, ls -L listing 13 files.",
+      "evidence": "plan.md:159; spec.md:91-92,151-152,162,181,198"
+    },
+    {
+      "id": "kf-18",
+      "question": "Q3",
+      "statement": "check-markdown-links.cjs walks skills/commands/agents roots only and never AGENTS.md or REPO RULES.md; the workflow filters exclude them; and the farm makes both path spellings resolve, so a missed re-point is invisible to link checking and rests on the phase rescan.",
+      "evidence": "check-markdown-links.cjs:23-26,185,189-190; markdown-link-integrity.yml:7-27; plan.md:88,96-99"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "kq-siblings",
+      "text": "Which three sibling repositories do the specs count, and where do the other two live?",
+      "status": "unknown",
+      "note": "Only one repository-level repo-rules directory (Obsidian Plugin, plus its worktrees) was observable on this machine; the load-bearing path shape is confirmed."
+    },
+    {
+      "id": "kq-containment",
+      "text": "Does the implementation use realpath-based containment or an equivalent?",
+      "status": "open",
+      "note": "The contract is behavioral; the mid-move edge case requires following the farm symlink, but the plan does not name the mechanism."
+    },
+    {
+      "id": "kq-filter-twin",
+      "text": "Does the implementation add .opencode/repo-rules/** beside .skilled/repo-rules/** in the workflow filters, or keep only the farm filter?",
+      "status": "open",
+      "note": "Filter-twins makes the canonical filter fail without its twin; the spec is silent."
+    },
+    {
+      "id": "kq-farm-script",
+      "text": "Where exactly does the farm-integrity script land?",
+      "status": "open",
+      "note": "The plan names scratch/verify.sh; the file does not exist at HEAD."
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "kq-q1",
+      "answer": "The outside-specs census is complete across the router, AGENTS.md, the 13 bodies, the checker, the skill/command/agent surfaces and the benchmark generator.",
+      "resolvedInRun": 1
+    },
+    {
+      "id": "kq-q2",
+      "answer": "Mirrors map to authored sources and checkers; both gate surfaces are characterized; the four retrieval artifacts are deterministic for a fixed corpus and must be regenerated together after the migration's doc edits.",
+      "resolvedInRun": 2
+    },
+    {
+      "id": "kq-q3",
+      "answer": "Siblings link into the main checkout and survive through the farm; the dual-root probe, resolved-containment row classification and farm-check placement are specified.",
+      "resolvedInRun": 3
+    }
+  ]
+}
