@@ -65,9 +65,20 @@ function section8(agentsText, sourceLabel) {
   return lines.slice(start, end).join("\n")
 }
 
-function walkRepoRules() {
-  const root = path.join(repoRoot, "repo-rules")
-  if (!fs.existsSync(root)) return []
+// The corpus lives inside the source tree when the repository keeps one, and at
+// the repository root when it does not. Both lanes probe in that order, so the
+// same script reads either layout and a repository that moved keeps working.
+const RULES_DIR_CANDIDATES = [".skilled/repo-rules", "repo-rules"]
+
+function resolveRulesDir(root) {
+  for (const candidate of RULES_DIR_CANDIDATES) {
+    if (fs.existsSync(path.join(root, candidate))) return candidate
+  }
+  return null
+}
+
+function walkRepoRules(rulesDir) {
+  const root = path.join(repoRoot, rulesDir)
   const found = []
   const visit = (rel) => {
     for (const e of fs.readdirSync(path.join(root, rel), { withFileTypes: true }).sort((x, y) => (x.name < y.name ? -1 : 1))) {
@@ -104,15 +115,27 @@ if (args.condition === "before") {
     { label: "REPO RULES.md", text: gitShow(commit, "REPO RULES.md") }
   ]
   let ruleList = []
-  try {
-    ruleList = execFileSync("git", ["ls-tree", "-r", "--name-only", commit, "--", "repo-rules/"], { cwd: repoRoot, encoding: "utf8", timeout: 60000 })
-      .split(/\r?\n/).filter(Boolean).map(p => p.replace(/^repo-rules\//, "")).sort((x, y) => (x < y ? -1 : 1))
-  } catch (error) {
-    die(`git ls-tree for ${commit} failed: ${String(error.stderr || error.message).trim().slice(0, 300)}`)
+  let rulesDir = null
+  for (const candidate of RULES_DIR_CANDIDATES) {
+    let listed
+    try {
+      listed = execFileSync("git", ["ls-tree", "-r", "--name-only", commit, "--", `${candidate}/`], { cwd: repoRoot, encoding: "utf8", timeout: 60000 })
+        .split(/\r?\n/).filter(Boolean)
+    } catch (error) {
+      die(`git ls-tree for ${commit} failed: ${String(error.stderr || error.message).trim().slice(0, 300)}`)
+    }
+    if (listed.length > 0) {
+      rulesDir = candidate
+      ruleList = listed.map(p => p.slice(candidate.length + 1)).sort((x, y) => (x < y ? -1 : 1))
+      break
+    }
   }
-  for (const rel of ruleList) sections.push({ label: `repo-rules/${rel}`, text: gitShow(commit, `repo-rules/${rel}`) })
+  if (rulesDir === null) die(`no rules directory at ${commit}: tried ${RULES_DIR_CANDIDATES.join(", ")}`)
+  for (const rel of ruleList) sections.push({ label: `${rulesDir}/${rel}`, text: gitShow(commit, `${rulesDir}/${rel}`) })
 } else {
   ruleSetSource = "working-tree"
+  const rulesDir = resolveRulesDir(repoRoot)
+  if (rulesDir === null) die(`no rules directory in the working tree: tried ${RULES_DIR_CANDIDATES.join(", ")}`)
   const readAt = (rel) => {
     try {
       return fs.readFileSync(path.join(repoRoot, rel), "utf8")
@@ -124,7 +147,7 @@ if (args.condition === "before") {
     { label: "AGENTS.md (section 8)", text: section8(readAt("AGENTS.md"), "AGENTS.md") },
     { label: "REPO RULES.md", text: readAt("REPO RULES.md") }
   ]
-  for (const rel of walkRepoRules()) sections.push({ label: `repo-rules/${rel}`, text: readAt(`repo-rules/${rel}`) })
+  for (const rel of walkRepoRules(rulesDir)) sections.push({ label: `${rulesDir}/${rel}`, text: readAt(`${rulesDir}/${rel}`) })
 }
 sections.sort((x, y) => (x.label < y.label ? -1 : 1))
 for (const s of sections) {
