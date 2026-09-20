@@ -601,10 +601,11 @@ No user-facing change in this section. It is here so you know what moved underne
 
 ## After This Draft
 
-Writing this draft was not the end of the work. 231 commits landed after the last edit here (`1d43dbd38b`, 2026-09-16) and none of them are recorded in the sections above, so the load-bearing ones are listed here.
+Writing this draft was not the end of the work. 266 commits landed after the last edit here (`1d43dbd38b`, 2026-09-16) and none of them are recorded in the sections above, so the load-bearing ones are listed here.
 
 - **The source root moved to `.skilled/`.** The migration closed as `60f0e91764` (2026-09-17), the compatibility root was settled in `8b2b831184` and `2a57cc635d` (2026-09-18), and `c34e1bd73b` retired the dead aliases (2026-09-19). Every `.opencode/*` path in this document still resolves, as a git-tracked symlink alias into `.skilled/` rather than as a directory of its own, so read any `.opencode/...` reference in these notes as `.skilled/...`.
 - **The deep-loop ledger, protocol and admission work.** The ledger and protocol packets opened (`9e650decee`) and closed (`6e82579080`), with the admission checks reworked across `bbb7d23386` and `9365fbc83d` so state records carry stable identity and route proof.
-- **The orca bridge.** `a3272f5944` and five follow-ups add `mcp-orca-cli`, which brings `mcp-tooling` to ten modes.
+- **The Orca bridge, then its own skill.** `a3272f5944` and five follow-ups added `mcp-orca-cli`, which brought `mcp-tooling` to ten modes. The 2026-09-20 close promoted that mode to a standalone class-S skill, `cli-orca` (`4685bdea2a`, with the post-closure review cycle `ec25183f806`), leaving the hub at nine modes and adding one authored reference and one verbatim snapshot for each of the eight official Orca skills. The version-matched routing and the mutation and receipt discipline carried over with it.
+- **The Jev judgment transport.** `cli-jev` became its own hub (`099990cf343`), leaving `cli-external-orchestration` with its seven workflow modes. Its one mode, `cli-usage`, is a read-only transport: it asks the `jev` CLI for a typed verdict, a probability, a choice between options, a score position or a batch of keyed answers, and it writes nothing into your workspace. The hub joined the compiled-routing cohort, and both of its playbooks re-ran live from the new home (`b8c17906f78`): 22 of 22 transport scenarios and 3 of 3 hub-routing scenarios pass.
 - **The mobile code surface retired.** `173ce63f59` retires `sk-code-mobile-cli` (2026-09-19), leaving three surfaces: webflow, opencode and obsidian.
 - **Documentation corrections.** `4dcc8c8f49`, `67fa4f7b8e` and `1bb11a2af2` corrected the documents this release rewrote.
