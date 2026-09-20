@@ -1,0 +1,92 @@
+# Superseded suite run: 2026-09-20 17:10 local (pre-amendment documents)
+# Condensed per-gate summary of scratch/gate-results-final-review.md as it read before the ORCA-004 re-run forced its regeneration.
+# Result: FAILING GATES: 0 across all 17 gates (16 baseline unchanged + the added router-probe gate).
+# Kept because the live capture path was reused for the later run.
+
+
+### 1. Fleet root metadata (class H/S conformance, regenerates derivable files)
+```text
+```
+exit=0  cmd=node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix
+
+### 2. cli-orca package validation
+```text
+```
+exit=0  cmd=python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/cli-orca --strict
+
+### 3. cli-orca package check
+```text
+```
+exit=0  cmd=python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/cli-orca --check --strict
+
+### 4. cli-orca feature catalog package
+```text
+```
+exit=0  cmd=python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package cli-orca
+
+### 5. cli-orca manual testing playbook package
+```text
+```
+exit=0  cmd=node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package cli-orca
+
+### 6. Hub parent check (nine modes)
+```text
+```
+exit=0  cmd=node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/mcp-tooling
+
+### 7. Packet 001 strict validation
+```text
+```
+exit=0  cmd=bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-orca/001-mcp-orca-cli --strict
+
+### 8. Packet 002 strict validation
+```text
+```
+exit=0  cmd=bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-orca/002-consolidate-official-orca-skills --strict
+
+### 9. cli-orca document corpus sweep (blocking issues)
+```text
+```
+exit=0  cmd=doc_sweep
+
+### 10. Stale reference sweep (live retired-leaf references)
+```text
+```
+exit=0  cmd=stale_sweep
+
+### 11. Frontmatter version gate (fleet)
+```text
+```
+exit=0  cmd=bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh
+
+### 12. Advisor positive replay (Orca phrase)
+```text
+```
+exit=0  cmd=node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt orca worktree handoff to another agent through the Orca CLI --format json
+
+### 13. Advisor holdout replay (OpenOrca)
+```text
+```
+exit=0  cmd=node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt Show the OpenOrca model label for the current request. --format json
+
+### 14. Skill derived metadata freshness (fleet)
+```text
+```
+exit=0  cmd=node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs
+
+### 15. sk-doc frozen directory manifest reproduction
+```text
+```
+exit=0  cmd=python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py
+
+### 16. Compiled route replay against the hub for the former Orca prompt
+```text
+```
+exit=0  cmd=node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt Use the Orca CLI to inspect the current worktree and terminal
+
+### 17. cli-orca router probes (routing contract behaviour)
+```text
+```
+exit=0  cmd=router_probes
+
+FAILING GATES: 0

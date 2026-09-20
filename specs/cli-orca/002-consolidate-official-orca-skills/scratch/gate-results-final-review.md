@@ -1,6 +1,6 @@
 # Gate results: cli-orca extraction
 
-Captured 2026-09-20T15:09:48Z on branch skilled/v4.0.0.0.
+Captured 2026-09-20T16:27:18Z on branch skilled/v4.0.0.0.
 
 ### 1. Fleet root metadata (class H/S conformance, regenerates derivable files)
 ```text
@@ -281,8 +281,8 @@ exit=0  cmd=bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-version
     "recommendations": [
       {
         "skillId": "cli-orca",
-        "score": 0.69982,
-        "confidence": 0.8962,
+        "score": 0.699771,
+        "confidence": 0.8961,
         "uncertainty": 0.16,
         "dominantLane": "explicit_author",
         "matchedDocs": [
@@ -292,7 +292,7 @@ exit=0  cmd=bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-version
       },
       {
         "skillId": "sk-git",
-        "score": 0.608533,
+        "score": 0.608504,
         "confidence": 0.8471,
         "uncertainty": 0.12,
         "dominantLane": "explicit_author",
@@ -304,11 +304,11 @@ exit=0  cmd=bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-version
     "trustState": {
       "state": "live",
       "reason": null,
-      "generation": 107,
-      "checkedAt": "2026-09-20T15:09:58.206Z",
-      "lastLiveAt": "2026-09-20T14:48:44.975Z"
+      "generation": 109,
+      "checkedAt": "2026-09-20T16:27:29.485Z",
+      "lastLiveAt": "2026-09-20T16:27:28.465Z"
     },
-    "generatedAt": "2026-09-20T15:09:58.778Z",
+    "generatedAt": "2026-09-20T16:27:30.072Z",
     "cache": {
       "hit": false,
       "sourceSignaturePresent": true
@@ -319,16 +319,16 @@ exit=0  cmd=bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-version
       "recommendations": [
         {
           "skillId": "cli-orca",
-          "liveScore": 0.69982,
-          "shadowScore": 0.642708,
-          "delta": -0.057112,
+          "liveScore": 0.699771,
+          "shadowScore": 0.642666,
+          "delta": -0.057105,
           "dominantShadowLane": "explicit_author"
         },
         {
           "skillId": "sk-git",
-          "liveScore": 0.608533,
-          "shadowScore": 0.600466,
-          "delta": -0.008067,
+          "liveScore": 0.608504,
+          "shadowScore": 0.600442,
+          "delta": -0.008062,
           "dominantShadowLane": "explicit_author"
         }
       ]
@@ -355,11 +355,11 @@ exit=0  cmd=node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt orca 
     "trustState": {
       "state": "live",
       "reason": null,
-      "generation": 107,
-      "checkedAt": "2026-09-20T15:09:59.518Z",
-      "lastLiveAt": "2026-09-20T14:48:44.975Z"
+      "generation": 109,
+      "checkedAt": "2026-09-20T16:27:30.811Z",
+      "lastLiveAt": "2026-09-20T16:27:28.465Z"
     },
-    "generatedAt": "2026-09-20T15:09:59.553Z",
+    "generatedAt": "2026-09-20T16:27:30.859Z",
     "cache": {
       "hit": false,
       "sourceSignaturePresent": true
@@ -383,7 +383,7 @@ exit=0  cmd=node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived
 
 ### 15. sk-doc frozen directory manifest reproduction
 ```text
-MANIFEST derived=819 frozen=819 baseline=501 gaps=23 exclusions=2 reproduced=True
+MANIFEST derived=820 frozen=820 baseline=501 gaps=24 exclusions=2 reproduced=True
 DISCOVERY readmes=792 pi_extensions=True github_workflows=True
 EXCLUSIONS classes=21 fixture_readmes_scored=False
 SUMMARY: discovery=pass exclusions=21/21 manifest=reproducible

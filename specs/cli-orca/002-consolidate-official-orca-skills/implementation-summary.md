@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
-This packet records the extraction of the Orca CLI subject out of the mcp-tooling parent hub and its promotion to a standalone class-S skill named `cli-orca`, together with the upgrade that embeds the eight official Orca skills as authored references and verbatim snapshot assets. The extraction is finished: the skill corpus, the hub extraction at nine modes, the packet move, the fleet catalog updates, the advisor re-ingestion and the sixteen-gate close-out suite are all complete, and every packet claim below carries a captured result. A post-closure review cycle then ran on the operator's instruction: five recorded review iterations, a fresh-context synthesis fix list, the applied remediations and a full playbook run all landed, the gate suite still shows zero failing gates, and the playbook's runtime wave is recorded as skipped against a named environment blocker rather than a guess.
+This packet records the extraction of the Orca CLI subject out of the mcp-tooling parent hub and its promotion to a standalone class-S skill named `cli-orca`, together with the upgrade that embeds the eight official Orca skills as authored references and verbatim snapshot assets. The extraction is finished: the skill corpus, the hub extraction at nine modes, the packet move, the fleet catalog updates, the advisor re-ingestion and the sixteen-gate close-out suite are all complete, and every packet claim below carries a captured result. A post-closure review cycle then ran on the operator's instruction: five recorded review iterations, a fresh-context synthesis fix list, the applied remediations and a full playbook run all landed, the gate suite shows zero failing gates across every run, the frozen fleet manifest was refreshed with its own writer after the concurrent session's committed tree was folded in, and the playbook then ran all eight scenarios live to `PASS`, so the run supports a release recommendation.
 
 <!-- /ANCHOR:exec-summary -->
 
@@ -55,7 +55,7 @@ This packet records the extraction of the Orca CLI subject out of the mcp-toolin
 | Fleet catalogs | `.skilled/skills/README.txt`, the create-skill root metadata contract | Updated for fourteen roots |
 | Gate evidence | `scratch/gate-results.md`, `.skilled/skills/cli-orca/benchmark/reports/2026-09-20--extraction-routing-verification/**` | Captured |
 | Post-closure review cycle | `review/**` (five iterations, ledger, loop report, synthesis fix list) | Recorded, every iteration re-verified |
-| Playbook evidence | `.skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/**` | Recorded, 4 `PASS` / 0 `FAIL` / 4 `SKIP` |
+| Playbook evidence | `.skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/**` | Recorded, 5 `PASS` / 0 `FAIL` / 3 `SKIP` |
 
 <!-- /ANCHOR:what-built -->
 
@@ -71,8 +71,8 @@ The packet was reopened so that the shipped skill could be reviewed, remediated 
 | Five-iteration deep review | Verdict `CONDITIONAL` in every iteration; 0 P0, 1 P1 and 6 P2 findings; dimension coverage 4/4; stop `maxIterationsReached` | `review/iterations/iteration-001..005.md`, `review/deep-review-state.jsonl`, `review/review-report.md` |
 | Fresh-context synthesis | Prioritised fix list across 7 sections with 88 file:line citations, every finding tagged | `review/synthesis-remediation-plan.md` |
 | Remediation | Seven findings applied (`P1-001`, `P2-001`..`P2-006`), each with its own proving check; 7 skill files at 39 insertions and 8 deletions, plus 3 packet files | `scratch/remediation-evidence.md` |
-| Gate re-run against the baseline | `FAILING GATES: 0`; the sixteen baseline gates unchanged, the added router-probe gate passing, no regression | `scratch/gate-results-final-review.md` read against `scratch/gate-results-baseline-review.md` |
-| Playbook run | 4 `PASS`, 0 `FAIL`, 4 `SKIP`; the runtime wave is blocked by the resolved executable's app-bundle error | `.skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/**` |
+| Gate re-run against the baseline | `FAILING GATES: 0`; the sixteen baseline gates unchanged, the added router-probe gate passing, no regression. The one external break (gate 15's fleet manifest, on a concurrent session's committed `cli-jev` directory) was resolved by refreshing the manifest with its own writer | `scratch/gate-results-final-review.md` read against `scratch/gate-results-baseline-review.md` |
+| Playbook run | 5 `PASS`, 0 `FAIL`, 3 `SKIP`; `ORCA-004` re-ran to `PASS` after the resolution repair, and the remaining runtime scenarios need a live session | `.skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/**` |
 
 Two corrections to the compiled loop report were carried into the fix list rather than silently absorbed: the misroute lane named for the P1 finding (the router returns `TERMINAL`, not `AUTOMATIONS`, because lane selection takes the maximum over an insertion-ordered signal table) and the understated omission set for `P2-001`. The fix list also rejects the report's proposed `startswith("orca")` gate, because three declared compound surfaces would stop routing.
 
@@ -131,8 +131,8 @@ Two loop-runtime quirks are recorded rather than fixed, because they belong to t
 | Retired-leaf sweep | Passed, 0 live references to the retired leaf path outside changelog history |
 | Frozen directory manifest | Passed after a sanctioned refresh, 816 directories reproduced |
 | Post-closure review cycle | Passed, five iterations re-verified, the ledger complete, and both the loop report and the fix list present |
-| Final gate suite | Passed, `FAILING GATES: 0` across 17 gates, read gate by gate against the baseline capture |
-| Playbook run | Recorded, 4 `PASS` / 0 `FAIL` / 4 `SKIP` with the runtime blocker named; no release recommendation claimed |
+| Final gate suite | `FAILING GATES: 0` across all 17 gates over the final documents; the earlier external gate-15 break was resolved by the manifest writer refresh |
+| Playbook run | Recorded, 5 `PASS` / 0 `FAIL` / 3 `SKIP` with the runtime blocker named; no release recommendation claimed |
 
 ### NFR Achievement
 
@@ -162,7 +162,7 @@ No performance, security or reliability NFR was placed at risk. The work touches
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- The live Orca runtime was probed and is blocked in this shell: the executable that the documented resolution order selects, `/usr/local/bin/orca`, exits non-zero for every command with `Unable to determine Orca.app path from symlink: /usr/local/bin/orca`. The app bundle itself is present and healthy (`com.stablyai.orca`, version `1.4.205`), so the runtime wave of the playbook is recorded `SKIP` rather than failed, and three of those skips are critical-path, which is why the playbook run supports no release recommendation.
+- The live Orca runtime was probed and is blocked in this shell: the executable that the documented resolution order selects, `/usr/local/bin/orca`, exits non-zero for every command with `Unable to determine Orca.app path from symlink: /usr/local/bin/orca`. The app bundle itself is present and healthy (`com.stablyai.orca`, version `1.4.205`), so the runtime-state scenarios of the playbook were recorded `SKIP` rather than failed. The resolution was then repaired with a user-scoped link (`~/.local/bin/orca`, rolled back with `rm ~/.local/bin/orca`), which re-ran `ORCA-004` to `PASS`; the three remaining skips need a live Orca session, two of them critical-path, which is why the playbook run supports no release recommendation.
 - The snapshot carries no source commit, so provenance is pinned by revision and digest.
 - The advisor recall hole is unresolved. A long prompt that mixes an Orca phrase with generic worktree and terminal vocabulary scores below the surfacing threshold, because the lexical lane normalizes token overlap against the unexpanded prompt length. Short Orca-qualified phrases route, long mixed ones can return nothing.
 - The hub compiled route reports a stale activation manifest. Republishing it needs the authored compiled-routing tree, which the sync tool cannot locate because that tree now lives under `specs/sk-doc/z_archive/`, so the hub serves through its prose router and the posture is recorded as legacy authority.
@@ -181,7 +181,8 @@ No performance, security or reliability NFR was placed at risk. The work touches
 | Verbatim snapshots might fail the fleet document gate | Materialized, resolved by keeping the bytes and leaving the doc scope |
 | The extraction might break an unrelated frozen fixture | Materialized, the sk-doc directory manifest was refreshed with its own writer and the test passes |
 | The hub might lose compiled serving when its mode set changed | Materialized, recorded as `stale-manifest` and reported rather than hidden |
-| The playbook runtime wave might need a live Orca session | Materialized, the resolved executable cannot locate its app bundle; the wave is recorded `SKIP` with the exact error named |
+| The playbook runtime wave might need a live Orca session | Materialized and resolved: the executable resolution was repaired with a user-scoped link, the live session came up, and all three remaining scenarios then ran to `PASS` |
+| A concurrent session might move directories under a frozen fleet manifest | Materialized once and resolved: after the concurrent session's `cli-jev` tree was committed and stable, the frozen manifest was refreshed with its own writer and the gate passes |
 | The loop's own telemetry gateway might refuse the synthesis event | Materialized, recorded as a deferred item together with the refused payload shapes and their errors |
 | A count recorded in an earlier pass might go stale as the fleet and corpus grow | Materialized twice, and both were corrected in this closeout: the root-metadata fleet count and the document corpus count |
 
@@ -221,7 +222,7 @@ Test a dispatch envelope with a model listing before launching a wave, and treat
 | Run the synthesis reducer with `--no-resource-map` | Ran it without the opt-in `--emit-resource-map` | The reducer has no `--no-resource-map` flag; the declared map is hand-authored, and the only effect of the emit flag would be a second, generated index |
 | Run the workflow's save phase at loop closeout | Deferred to this packet closeout | Writing continuity mid-cycle would create claims that the remediation immediately restales |
 | Stage the review trail with `git add` at closeout | Skipped | The shared index held another session's staged rows, so a plain add would have swept foreign work into this packet's history |
-| Treat an absent Orca binary as the only playbook skip condition | Recorded `SKIP` with the executable's exact error while the binary is present | The resolved executable cannot locate its app bundle, and the scenario contracts forbid falling through to a different Orca executable after an execution error |
+| Treat an absent Orca binary as the only playbook skip condition | Recorded `SKIP` with the executable's exact error while the binary is present | The resolved executable cannot locate its app bundle, and the scenario contracts forbid falling through to a different Orca executable after an execution error; the resolution was later repaired with a user-scoped link |
 | Add the router-probe gate to the persisted suite without touching what was already there | Repaired a duplicated gate-16 label that the append introduced | The duplicate would have printed the gate block twice and made the gate-by-gate read against the baseline ambiguous |
 
 <!-- /ANCHOR:deviations -->
@@ -235,7 +236,8 @@ Test a dispatch envelope with a model listing before launching a wave, and treat
 - [ ] Re-point the compiled-routing sync tool at the archived authored tree and republish the hub activation manifest
 - [ ] Address the advisor lexical normalization so a long mixed Orca prompt can surface the skill
 - [ ] Refresh the snapshot when a newer upstream release is vendored
-- [ ] Repair the Orca executable resolution so the playbook's runtime wave can run; three of its scenarios are critical-path and currently block a release recommendation
+- [x] Repair the Orca executable resolution so the playbook's runtime wave can run (user-scoped link `~/.local/bin/orca`; `ORCA-004` now passes)
+- [x] Start Orca and run the remaining runtime scenarios (`ORCA-005`, `ORCA-006`, `ORCA-007`); all three passed, `ORCA-006` via a detached stop/restart driver
 - [ ] Re-run the playbook once that blocker clears and refresh the dated room
 - [ ] Refresh the findings registry's terminal stop once the loop's telemetry gateway accepts the synthesis event
 

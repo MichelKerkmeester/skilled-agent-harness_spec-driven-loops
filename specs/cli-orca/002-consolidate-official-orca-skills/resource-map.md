@@ -62,7 +62,7 @@ contextType: "general"
 | `.skilled/skills/cli-orca/feature-catalog/**` | Analyzed | OK | Feature inventory plus its four per-feature documents: official-skill layer, routing vocabulary, runtime preflight, safety bounds (5 files) |
 | `.skilled/skills/cli-orca/manual-testing-playbook/**` | Analyzed | OK | Safety matrix, routing fixtures and negative holdouts plus the eight scenario contracts (9 files) |
 | `.skilled/skills/cli-orca/changelog/v0.1.0.0.md` | Analyzed | OK | Extraction release note; claims no gate result of its own |
-| `.skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/**` | Created | PLANNED | Playbook verdicts, transcripts, exit status and per-scenario reasons |
+| `.skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/**` | Created | OK | Playbook verdicts, transcripts, exit status and per-scenario reasons |
 | `.skilled/skills/cli-orca/benchmark/reports/2026-09-20--extraction-routing-verification/**` | Analyzed | OK | Captured routing evidence: report plus replay JSON |
 | `.skilled/skills/mcp-tooling/SKILL.md` | Analyzed | OK | Hub skill surface whose aligned mode set the parent check proves |
 | `.skilled/skills/mcp-tooling/hub-router.json` | Analyzed | OK | Compiled-route manifest that must stay fresh for the hub to serve compiled |
@@ -97,9 +97,9 @@ contextType: "general"
 | `specs/cli-orca/002-consolidate-official-orca-skills/implementation-summary.md` | Updated | OK | Close-out narrative amended by remediation |
 | `specs/cli-orca/002-consolidate-official-orca-skills/graph-metadata.json` | Updated | OK | Derived packet metadata regenerated alongside the documents |
 | `specs/cli-orca/002-consolidate-official-orca-skills/scratch/**` | Updated | OK | Gate suite and captured gate evidence, excluded from spec validation |
-| `specs/cli-orca/002-consolidate-official-orca-skills/review/review-report.md` | Created | PLANNED | Compiled by the loop: nine core sections plus the coverage gate |
-| `specs/cli-orca/002-consolidate-official-orca-skills/review/synthesis-remediation-plan.md` | Created | PLANNED | Fresh-context synthesis fix list with file:line citations |
-| `specs/cli-orca/002-consolidate-official-orca-skills/review/resource-map.md` | Created | PLANNED | Reducer-generated evidence index, distinct from this packet-level catalog |
+| `specs/cli-orca/002-consolidate-official-orca-skills/review/review-report.md` | Created | OK | Compiled by the loop: nine core sections plus the coverage gate |
+| `specs/cli-orca/002-consolidate-official-orca-skills/review/synthesis-remediation-plan.md` | Created | OK | Fresh-context synthesis fix list with file:line citations |
+| `specs/cli-orca/002-consolidate-official-orca-skills/review/resource-map.md` | Created | PLANNED | Reducer-generated evidence index, distinct from this packet-level catalog; not emitted by design, because the loop ran without `--emit-resource-map`, so no file is expected here |
 <!-- /ANCHOR:specs -->
 
 ---
